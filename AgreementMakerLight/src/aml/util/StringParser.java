@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2013 LASIGE                                                  *
+* Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -72,9 +72,11 @@ public class StringParser
 	 */
 	public static String normalizeFormula(String formula)
 	{
-		//Formulas are parsed to lower case but otherwise unprocessed
+		//Formulas are parsed to lower case and stripped of
+		//underscores but otherwise unprocessed
 		String parsed = formula;
 		parsed = parsed.toLowerCase();
+		parsed = parsed.replace("_"," ");
 		//The only exception is that if a formula closes brackets
 		//before opening brackets (which happens in NCI) we correct
 		//it by opening brackets at the start

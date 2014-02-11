@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2013 LASIGE                                                  *
+* Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -38,10 +38,15 @@ public class UMLSMatcher implements Matcher
 //Attributes
 	
 	//The path to the UMLS table
-	private final String PATH = "store/UMLS.lexicon";
+	private final String PATH = "store/knowledge/UMLS.lexicon";
 	//The UMLS table data structure
 	private Table3<String,String,Integer> table;
-    
+	//The set of UMLS ids
+	private HashSet<Integer> ids;
+	//Links to the intermediate alignments
+	private Alignment src;
+	private Alignment tgt;
+	
 //Constructors
     
 	/**
@@ -50,6 +55,7 @@ public class UMLSMatcher implements Matcher
 	public UMLSMatcher()
 	{
 		table = new Table3<String,String,Integer>();
+		ids = new HashSet<Integer>();
 		try
 		{
 			BufferedReader inStream = new BufferedReader(new FileReader(PATH));
@@ -59,6 +65,7 @@ public class UMLSMatcher implements Matcher
 				String[] words = line.split("\t");
 				int id = Integer.parseInt(words[0]);
 				table.add(words[2], words[1], id);
+				ids.add(id);
 			}			
 		}
 		catch(Exception e)
@@ -82,43 +89,69 @@ public class UMLSMatcher implements Matcher
 	{
 		Ontology source = a.getSource();
 		Ontology target = a.getTarget();
-		Alignment a1 = match(source);
-		Alignment a2 = match(target);
+		src = match(source);
+		tgt = match(target);
 		Alignment maps = new Alignment(a);
-		for(Mapping m : a1)
+		for(Mapping m : src)
 		{
 			int sourceId = m.getSourceId();
 			if(a.containsSource(sourceId))
 				continue;
 			int medId = m.getTargetId();
-			Vector<Integer> matches = a2.getTargetMappings(medId);
+			Vector<Integer> matches = tgt.getTargetMappings(medId);
 			for(Integer j : matches)
 			{
 				if(a.containsTarget(j))
 					continue;
 				double similarity = Math.min(m.getSimilarity(),
-						a2.getSimilarity(j, medId));
+						tgt.getSimilarity(j, medId));
 				maps.add(new Mapping(sourceId,j,similarity));
 			}
 		}
 		return maps;
 	}
 
+	/**
+	 * @return the similarity between the mediating and source ontologies
+	 * or -1.0 if MediatingMatcher has not been used to match or extendAlignment
+	 */
+	public double getSourceSimilarity()
+	{
+		if(src == null)
+			return -1.0;
+		double inter = Math.min(src.sourceCount(),src.targetCount());
+		double union = src.getSource().termCount() + ids.size() - inter;
+		return inter/union;
+	}
+	
+	/**
+	 * @return the similarity between the mediating and target ontologies
+	 * or -1.0 if MediatingMatcher has not been used to match or extendAlignment
+	 */
+	public double getTargetSimilarity()
+	{
+		if(tgt == null)
+			return -1.0;
+		double inter = Math.min(tgt.sourceCount(),tgt.targetCount());
+		double union = tgt.getSource().termCount() + ids.size() - inter;
+		return inter/union;
+	}
+	
 	@Override
 	public Alignment match(Ontology source, Ontology target, double thresh)
 	{
-		Alignment a1 = match(source);
-		Alignment a2 = match(target);
+		src = match(source);
+		tgt = match(target);
 		Alignment maps = new Alignment(source,target);
-		for(Mapping m : a1)
+		for(Mapping m : src)
 		{
 			int sourceId = m.getSourceId();
 			int medId = m.getTargetId();
-			Vector<Integer> matches = a2.getTargetMappings(medId);
+			Vector<Integer> matches = tgt.getTargetMappings(medId);
 			for(Integer j : matches)
 			{
 				double similarity = Math.min(m.getSimilarity(),
-						a2.getSimilarity(j, medId));
+						tgt.getSimilarity(j, medId));
 				maps.add(new Mapping(sourceId,j,similarity));
 			}
 		}

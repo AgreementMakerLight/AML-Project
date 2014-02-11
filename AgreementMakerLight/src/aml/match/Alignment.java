@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2013 LASIGE                                                  *
+* Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -18,11 +18,12 @@
 * The Alignment includes methods for input and output.                        *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 05-02-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -32,6 +33,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
@@ -82,7 +84,7 @@ public class Alignment implements Iterable<Mapping>
 	 * @param t: the target Ontology
 	 * @param file: the path to the input file
 	 */
-	public Alignment(Ontology s, Ontology t, String file)
+	public Alignment(Ontology s, Ontology t, String file) throws DocumentException
 	{
 		source = s;
 		target = t;
@@ -94,56 +96,83 @@ public class Alignment implements Iterable<Mapping>
 		//Open the alignment file using SAXReader
 		SAXReader reader = new SAXReader();
 		File f = new File(file);
-		try
-		{
-			Document doc = reader.read(f);
-			//Read the root, then go to the "Alignment" element
-			Element root = doc.getRootElement();
-			Element align = root.element("Alignment");
-			//Get an iterator over the mappings
-			Iterator<?> map = align.elementIterator("map");
-			while(map.hasNext())
-			{
-				//Get the "Cell" in each mapping
-				Element e = ((Element)map.next()).element("Cell");
-				if(e == null)
-					continue;
-				//Get the source term
-				String sourceURI = e.element("entity1").attributeValue("resource");
-				//Get the target term
-				String targetURI = e.element("entity2").attributeValue("resource");
-				//Get the similarity measure
-				String measure = e.elementText("measure");
-				//Parse it, assuming 1 if a valid measure is not found
-				double similarity = 1;
-				if(measure != null)
-				{
-					try{similarity = Double.parseDouble(measure);}
-	            	catch(Exception ex){/*Do nothing - use the default value*/};
-	            }
-	            if(similarity < 0 || similarity > 1)
-	            	similarity = 1;
 
-		
-				//See if the URIs are listed as terms in the Ontologies
+		Document doc = reader.read(f);
+		//Read the root, then go to the "Alignment" element
+		Element root = doc.getRootElement();
+		Element align = root.element("Alignment");
+		//Control variables to check if the order of the ontologies
+		//in the Alignment file is reversed
+		boolean reverseOrder = false;
+		boolean orderSet = false;
+		//Get an iterator over the mappings
+		Iterator<?> map = align.elementIterator("map");
+		while(map.hasNext())
+		{
+			//Get the "Cell" in each mapping
+			Element e = ((Element)map.next()).element("Cell");
+			if(e == null)
+				continue;
+			//Get the source term
+			String sourceURI = e.element("entity1").attributeValue("resource");
+			//Get the target term
+			String targetURI = e.element("entity2").attributeValue("resource");
+			//Get the similarity measure
+			String measure = e.elementText("measure");
+			//Parse it, assuming 1 if a valid measure is not found
+			double similarity = 1;
+			if(measure != null)
+			{
+				try{similarity = Double.parseDouble(measure);}
+            	catch(Exception ex){/*Do nothing - use the default value*/};
+            }
+            if(similarity < 0 || similarity > 1)
+            	similarity = 1;
+            //First we test ontologies in the order given unless we know the order is reversed
+            if(!reverseOrder)
+            {
+				//Check if the URIs are listed as terms in the Ontologies
 				int sourceIndex = s.getTermIndex(sourceURI);
 				int targetIndex = t.getTermIndex(targetURI);
-				//If they are, add the mapping to the termMappings
+				//If they are, add the mapping to the termMappings and proceed to next mapping
 				if(sourceIndex > -1 && targetIndex > -1)
-					add(sourceIndex, targetIndex, similarity);
-				//Otherwise see if they are listed as properties
-				else
 				{
-					sourceIndex = s.getPropertyIndex(sourceURI);
-					targetIndex = t.getPropertyIndex(targetURI);
-					if(sourceIndex > -1 && targetIndex > -1)
-						addPropMapping(sourceIndex, targetIndex, similarity);
+					add(sourceIndex, targetIndex, similarity);
+					//setting the order so we don't continue testing the reverse order
+					orderSet = true;
+					continue;
 				}
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
+				//Otherwise see if they are listed as properties and do the same
+				sourceIndex = s.getPropertyIndex(sourceURI);
+				targetIndex = t.getPropertyIndex(targetURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+				{
+					addPropMapping(sourceIndex, targetIndex, similarity);
+					orderSet = true;
+					continue;
+				}
+            }
+            //We check the reverse order if in doubt or sure it is reversed
+            if(reverseOrder || !orderSet)
+            {
+				//We proceed as before, but switching source and target URIs
+				int sourceIndex = s.getTermIndex(targetURI);
+				int targetIndex = t.getTermIndex(sourceURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+				{
+					add(sourceIndex, targetIndex, similarity);
+					reverseOrder = true;
+					continue;
+				}
+				sourceIndex = s.getPropertyIndex(targetURI);
+				targetIndex = t.getPropertyIndex(sourceURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+				{
+					addPropMapping(sourceIndex, targetIndex, similarity);
+					reverseOrder = true;
+					continue;
+				}
+            }
 		}
 	}
 	
@@ -523,13 +552,28 @@ public class Alignment implements Iterable<Mapping>
 				correct++;
 		return correct;
 	}
-	
+
 	/**
 	 * @param a: the base Alignment to which this Alignment will be compared 
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
 	public double gain(Alignment a)
+	{
+		double gain = 0.0;
+		for(Mapping m : termMappings)
+			if(!a.containsMapping(m))
+				gain++;
+		gain /= a.termMappingCount();
+		return gain;
+	}
+	
+	/**
+	 * @param a: the base Alignment to which this Alignment will be compared 
+	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
+	 * in comparison with the base Alignment
+	 */
+	public double gainOneToOne(Alignment a)
 	{
 		double sourceGain = 0.0;
 		Set<Integer> sources = sourceMaps.keySet();
@@ -757,11 +801,19 @@ public class Alignment implements Iterable<Mapping>
 	
 	@Override
 	/**
-	 * @return an Iterator over the list of Mappings
+	 * @return an Iterator over the list of term Mappings
 	 */
 	public Iterator<Mapping> iterator()
 	{
 		return termMappings.iterator();
+	}
+	
+	/**
+	 * @return the number of property Mappings in this alignment
+	 */
+	public int propertyMappingCount()
+	{
+		return propMappings.size();
 	}
 	
 	/**
@@ -804,18 +856,11 @@ public class Alignment implements Iterable<Mapping>
 	 * Saves the alignment into an .rdf file in OAEI format
 	 * @param file: the output file
 	 */
-	public void save(String file)
+	public void save(String file) throws FileNotFoundException
 	{
-		try
-		{
-			PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-			outStream.println(this.toString());
-			outStream.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
+		outStream.println(this.toString());
+		outStream.close();
 	}
 
 	/**
@@ -885,6 +930,14 @@ public class Alignment implements Iterable<Mapping>
 		double coverage = targetMaps.keyCount();
 		coverage /= target.termCount();
 		return coverage;
+	}
+	
+	/**
+	 * @return the number of term mappings in this Alignment
+	 */
+	public int termMappingCount()
+	{
+		return termMappings.size();
 	}
 
 	/**

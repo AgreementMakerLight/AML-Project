@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2013 LASIGE                                                  *
+* Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -30,14 +30,14 @@ public class Uberon extends Ontology
 	
 //Attributes
 
-	//Paths to the Uberon xrefs
-	private final String XREF = "store/uberon.xrefs";
+	//Path to the Uberon xrefs
+	private final String REF_PATH = "store/knowledge/uberon.xrefs";
 	
 //Constructors
 
-	public Uberon(URI path, boolean isInput)
+	public Uberon(URI path, boolean isInput, boolean owl)
 	{
-		super(path,isInput);
+		super(path,isInput,owl);
 		if(!isInput)
 			extendReferences();
 	}
@@ -48,7 +48,7 @@ public class Uberon extends Ontology
 	{
 		try
 		{
-			BufferedReader inStream = new BufferedReader(new FileReader(XREF));
+			BufferedReader inStream = new BufferedReader(new FileReader(REF_PATH));
 			String line;
 			while((line = inStream.readLine()) != null)
 			{

@@ -14,9 +14,3 @@
 |  or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY,  |
 |            or FITNESS FOR A PARTICULAR PURPOSE.              |
 \______________________________________________________________/
-/                                                              \
-|  AML is a lightweight automated ontology matching framework  |
-| specialized on biomedical ontologies but applicable to other |
-|   domains. You can find a detailed description of AML at:    |
-|    http://www.dit.unitn.it/~p2p/OM-2013/oaei13_paper1.pdf    |
-\______________________________________________________________/

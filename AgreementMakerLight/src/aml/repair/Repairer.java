@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2013 LASIGE                                                  *
+* Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -15,8 +15,8 @@
 * Heuristic repair algorithm that approximates the global minimum number of   *
 * removed mappings.                                                           *
 *                                                                             *
-* @author Emanuel Santos                                                      *
-* @date 22-10-2013                                                            *
+* @author Emanuel Santos & Daniel Faria                                       *
+* @date 31-01-2014                                                            *
 ******************************************************************************/
 package aml.repair;
 
@@ -45,21 +45,21 @@ public class Repairer
 	 */
 	public Repairer(){}
 	
-	/**
-	 * Constructs a new GlobalRepair Object
-	 */
-	public Repairer(int max)
-	{
-		maxchecklist = max;
-	}
-
 //Public Methods
 	
 	/**
-	 * Returns a global repair of an alignment with a coherency check at the end.
+	 * Returns a global repair of an alignment with a coherence check at the end.
 	 */
 	public Alignment repair(Alignment a)
 	{
+		//If the cardinality of the alignment is not 1-to-1,
+		//reduce the checklist size limit
+		double cardinality = a.cardinality();
+		if(cardinality > 1.4)
+			maxchecklist = 4000;
+		else if(cardinality > 1)
+			maxchecklist = 8000;
+		
 		Ontology source = a.getSource();
 		Ontology target = a.getTarget();
 		if(source.getRelationshipMap().disjointCount() == 0 &&

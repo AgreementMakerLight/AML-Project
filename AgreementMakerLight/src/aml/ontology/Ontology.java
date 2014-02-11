@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2013 LASIGE                                                  *
+* Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -82,9 +82,9 @@ public class Ontology
 	 * @param isInput: whether the ontology is an input ontology or
 	 * an external ontology
 	 */
-	public Ontology(URI path, boolean isInput)
+	public Ontology(URI path, boolean isInput, boolean owl)
 	{
-		//Step 1 - Initialize the data structurs
+		//Step 1 - Initialize the data structures
 		termURIs = new Vector<String>(0,1);
 		termNames = new Vector<String>(0,1);
 		propertyURIs = new Vector<String>(0,1);
@@ -97,16 +97,15 @@ public class Ontology
 		//Step 2 - Read the ontology as an OntModel
 		String uriString = path.toString();
 		OntModel o = null;
-		if(uriString.endsWith(".rdfs"))
-			o = ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM);
-		else
+		if(owl)
 			o = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+		else
+			o = ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM);
 		o.read(uriString,"RDF/XML");
 		
 		//Step 3 - Construct the Ontology object
-		uri = o.getNsPrefixURI("");
-		if(uri == null)
-			uri = o.listOntologies().next().getURI() + "#";
+		uri = o.listOntologies().next().getURI();
+		
 		String obo = "http://purl.obolibrary.org/obo/";
 		//If the ontology has an OBO prefix in its URI
 		if(uri.startsWith(obo))

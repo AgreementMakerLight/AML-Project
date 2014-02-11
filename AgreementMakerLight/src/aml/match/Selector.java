@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2013 LASIGE                                                  *
+* Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -20,6 +20,8 @@
 ******************************************************************************/
 package aml.match;
 
+import aml.match.MatchingConfigurations.SelectionType;
+
 public class Selector
 {
 	
@@ -28,6 +30,51 @@ public class Selector
 	private Selector(){}
 
 //Public Methods
+	
+	public static SelectionType detectSelectionType(Alignment a)
+	{
+		double cardinality = a.cardinality();
+		if(cardinality > 1.4)
+			return SelectionType.MANY;
+		else if(cardinality > 1.02)
+			return SelectionType.PERMISSIVE;
+		else
+			return SelectionType.STRICT;
+	}
+	
+	/**
+	 * Selects matches greedily in descending order of similarity to obtain
+	 * a one-to-one maximal alignment or a near one-to-one alignment
+	 * @param a: the Alignment to select
+	 * @param thresh: the minimum similarity threshold
+	 * @param s: the type of selection to carry out
+	 * @return the selected Alignment
+	 */
+	public static Alignment select(Alignment a, double thresh, SelectionType s)
+	{
+		SelectionType type = s;
+		if(type.equals(SelectionType.AUTO))
+			type = detectSelectionType(a);
+		//Initialize Alignment to return
+		Alignment selected = new Alignment(a.getSource(),a.getTarget());
+		//Start by boosting the reciprocal bestMatches by 10%
+		a.boostBestMatches(0.1);
+		//Then sort the alignment
+		a.sort();
+		//Then select Mappings in ranking order (by similarity)
+		for(Mapping m : a)
+		{
+			//If a Mapping has similarity below the threshold, end the loop
+			if(m.getSimilarity() < thresh)
+				break;
+			//Otherwise, add it if it obeys the rules for the chosen SelectionType
+			if(type.equals(SelectionType.MANY) ||
+					(type.equals(SelectionType.STRICT) && !selected.containsConflict(m)) ||
+					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(m)))
+				selected.add(m);
+		}
+		return selected;
+	}
 	
 	/**
 	 * Selects matches greedily in descending order of similarity, excluding
@@ -74,35 +121,6 @@ public class Selector
 		for(Mapping m : a)
 			if(highLevel.containsAncestralMapping(m.getSourceId(), m.getTargetId()))
 				selected.add(m);
-		return selected;
-	}
-	
-	/**
-	 * Selects matches greedily in descending order of similarity to obtain
-	 * a one-to-one maximal alignment or a near one-to-one alignment
-	 * @param a: the Alignment to select
-	 * @param thresh: the minimum similarity threshold
-	 * @param strict: whether the alignment is strictly one-to-one or ties are permitted
-	 * @return the selected Alignment
-	 */
-	public static Alignment selectOneToOne(Alignment a, double thresh, boolean strict)
-	{
-		//Initialize Alignment to return
-		Alignment selected = new Alignment(a.getSource(),a.getTarget());
-		//Start by boosting the reciprocal bestMatches by 10%
-		a.boostBestMatches(0.1);
-		//Then sort the alignment
-		a.sort();
-		//Then select Mappings in ranking order (by similarity)
-		for(Mapping m : a)
-		{
-			//If a Mapping has similarity below the threshold, end the loop
-			if(m.getSimilarity() < thresh)
-				break;
-			//Otherwise, add it only if it doesn't conflict with higher similarity Mappings
-			if((strict && !selected.containsConflict(m)) || (!strict && !selected.containsBetterMapping(m)))
-				selected.add(m);
-		}
 		return selected;
 	}
 }

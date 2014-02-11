@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2013 LASIGE                                                  *
+* Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -89,6 +89,19 @@ public class MediatingMatcher implements Matcher
 	{
 		return src;
 	}
+	
+	/**
+	 * @return the similarity between the mediating and source ontologies
+	 * or -1.0 if MediatingMatcher has not been used to match or extendAlignment
+	 */
+	public double getSourceSimilarity()
+	{
+		if(src == null)
+			return -1.0;
+		double inter = Math.min(src.sourceCount(),src.targetCount());
+		double union = src.getSource().termCount() + ext.termCount() - inter;
+		return inter/union;
+	}
 
 	/**
 	 * @return the intermediate alignment between the mediating and the target ontologies
@@ -97,6 +110,19 @@ public class MediatingMatcher implements Matcher
 	public Alignment getTargetAlignment()
 	{
 		return tgt;
+	}
+	
+	/**
+	 * @return the similarity between the mediating and target ontologies
+	 * or -1.0 if MediatingMatcher has not been used to match or extendAlignment
+	 */
+	public double getTargetSimilarity()
+	{
+		if(tgt == null)
+			return -1.0;
+		double inter = Math.min(tgt.sourceCount(),tgt.targetCount());
+		double union = tgt.getSource().termCount() + ext.termCount() - inter;
+		return inter/union;
 	}
 	
 	@Override

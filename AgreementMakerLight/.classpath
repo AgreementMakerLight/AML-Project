@@ -6,5 +6,7 @@
 	<classpathentry kind="lib" path="src/lib/dom4j.jar"/>
 	<classpathentry kind="lib" path="src/lib/jaws.jar"/>
 	<classpathentry kind="lib" path="src/lib/simmetrics.jar"/>
+	<classpathentry kind="lib" path="src/lib/gephi-toolkit.jar"/>
+	<classpathentry kind="lib" path="src/lib/swingx-all-1.6.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
