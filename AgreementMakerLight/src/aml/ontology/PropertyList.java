@@ -62,6 +62,16 @@ public class PropertyList implements Iterable<Property>
 			return "otherSynonym";
 		return "";
 	}
+	
+	public Property getProperty(int index)
+	{
+		return properties.get(index);
+	}
+	
+	public String getName(int index)
+	{
+		return properties.get(index).getName();
+	}
 
 	public double getWeight(String prop)
 	{

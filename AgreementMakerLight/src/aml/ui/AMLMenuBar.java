@@ -21,7 +21,6 @@ package aml.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -171,11 +170,29 @@ public class AMLMenuBar extends JMenuBar implements ActionListener
 			int returnVal = fc.showSaveDialog(this);
 			if(returnVal == JFileChooser.APPROVE_OPTION)
 			{
-				try{a.save(fc.getSelectedFile().getAbsolutePath());}
-				catch(Exception x)
+				String f = fc.getSelectedFile().getAbsolutePath();
+				String filter = fc.getFileFilter().getDescription();
+				if(filter.startsWith("OAEI"))
 				{
-					JOptionPane.showMessageDialog(this, "Could not save alignment!\n" + 
-							x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE); 
+					if(!f.endsWith(".rdf"))
+						f += ".rdf";
+					try{a.saveRDF(f);}
+					catch(Exception x)
+					{
+						JOptionPane.showMessageDialog(this, "Could not save alignment!\n" + 
+								x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE); 
+					}
+				}
+				else if(filter.startsWith("AML"))
+				{
+					if(!f.endsWith(".tsv"))
+						f += ".tsv";
+					try{a.saveTSV(f);}
+					catch(Exception x)
+					{
+						JOptionPane.showMessageDialog(this, "Could not save alignment!\n" + 
+								x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE); 
+					}
 				}
 			}
 		}

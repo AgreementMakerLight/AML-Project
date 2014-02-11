@@ -38,7 +38,9 @@ public class AlignmentFileChooser extends JFileChooser
 	{
 		super(new File("store/"));
 		setAcceptAllFileFilterUsed(false);
-		ExtensionFilter alignments = new ExtensionFilter("OAEI Alignment Files (*.rdf)", new String[] { ".rdf" }, true);
-		setFileFilter(alignments);
+		ExtensionFilter oaei = new ExtensionFilter("OAEI Alignment Files (*.rdf)", new String[] { ".rdf" }, true);
+		setFileFilter(oaei);
+		ExtensionFilter aml = new ExtensionFilter("AML Alignment Files (*.tsv)", new String[] { ".tsv" }, true);
+		setFileFilter(aml);
 	}
 }

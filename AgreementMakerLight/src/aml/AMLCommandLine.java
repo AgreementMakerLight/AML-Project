@@ -134,7 +134,7 @@ public class AMLCommandLine
 		
 		if(!alignPath.equals(""))
 		{
-			try{a.save(alignPath);}
+			try{a.saveRDF(alignPath);}
 			catch(Exception e)
 			{
 				e.printStackTrace();

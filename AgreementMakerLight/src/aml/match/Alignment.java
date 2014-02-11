@@ -22,9 +22,11 @@
 ******************************************************************************/
 package aml.match;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -84,7 +86,7 @@ public class Alignment implements Iterable<Mapping>
 	 * @param t: the target Ontology
 	 * @param file: the path to the input file
 	 */
-	public Alignment(Ontology s, Ontology t, String file) throws DocumentException
+	public Alignment(Ontology s, Ontology t, String file) throws Exception
 	{
 		source = s;
 		target = t;
@@ -93,87 +95,10 @@ public class Alignment implements Iterable<Mapping>
 		targetMaps = new Table2Plus<Integer,Integer,Double>();
 		propMappings = new Vector<Mapping>(0,1);
 		
-		//Open the alignment file using SAXReader
-		SAXReader reader = new SAXReader();
-		File f = new File(file);
-
-		Document doc = reader.read(f);
-		//Read the root, then go to the "Alignment" element
-		Element root = doc.getRootElement();
-		Element align = root.element("Alignment");
-		//Control variables to check if the order of the ontologies
-		//in the Alignment file is reversed
-		boolean reverseOrder = false;
-		boolean orderSet = false;
-		//Get an iterator over the mappings
-		Iterator<?> map = align.elementIterator("map");
-		while(map.hasNext())
-		{
-			//Get the "Cell" in each mapping
-			Element e = ((Element)map.next()).element("Cell");
-			if(e == null)
-				continue;
-			//Get the source term
-			String sourceURI = e.element("entity1").attributeValue("resource");
-			//Get the target term
-			String targetURI = e.element("entity2").attributeValue("resource");
-			//Get the similarity measure
-			String measure = e.elementText("measure");
-			//Parse it, assuming 1 if a valid measure is not found
-			double similarity = 1;
-			if(measure != null)
-			{
-				try{similarity = Double.parseDouble(measure);}
-            	catch(Exception ex){/*Do nothing - use the default value*/};
-            }
-            if(similarity < 0 || similarity > 1)
-            	similarity = 1;
-            //First we test ontologies in the order given unless we know the order is reversed
-            if(!reverseOrder)
-            {
-				//Check if the URIs are listed as terms in the Ontologies
-				int sourceIndex = s.getTermIndex(sourceURI);
-				int targetIndex = t.getTermIndex(targetURI);
-				//If they are, add the mapping to the termMappings and proceed to next mapping
-				if(sourceIndex > -1 && targetIndex > -1)
-				{
-					add(sourceIndex, targetIndex, similarity);
-					//setting the order so we don't continue testing the reverse order
-					orderSet = true;
-					continue;
-				}
-				//Otherwise see if they are listed as properties and do the same
-				sourceIndex = s.getPropertyIndex(sourceURI);
-				targetIndex = t.getPropertyIndex(targetURI);
-				if(sourceIndex > -1 && targetIndex > -1)
-				{
-					addPropMapping(sourceIndex, targetIndex, similarity);
-					orderSet = true;
-					continue;
-				}
-            }
-            //We check the reverse order if in doubt or sure it is reversed
-            if(reverseOrder || !orderSet)
-            {
-				//We proceed as before, but switching source and target URIs
-				int sourceIndex = s.getTermIndex(targetURI);
-				int targetIndex = t.getTermIndex(sourceURI);
-				if(sourceIndex > -1 && targetIndex > -1)
-				{
-					add(sourceIndex, targetIndex, similarity);
-					reverseOrder = true;
-					continue;
-				}
-				sourceIndex = s.getPropertyIndex(targetURI);
-				targetIndex = t.getPropertyIndex(sourceURI);
-				if(sourceIndex > -1 && targetIndex > -1)
-				{
-					addPropMapping(sourceIndex, targetIndex, similarity);
-					reverseOrder = true;
-					continue;
-				}
-            }
-		}
+		if(file.endsWith(".rdf"))
+			loadMappingsRDF(file);
+		else if(file.endsWith(".tsv"))
+			loadMappingsTSV(file);
 	}
 	
 	/**
@@ -856,10 +781,79 @@ public class Alignment implements Iterable<Mapping>
 	 * Saves the alignment into an .rdf file in OAEI format
 	 * @param file: the output file
 	 */
-	public void save(String file) throws FileNotFoundException
+	public void saveRDF(String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		outStream.println(this.toString());
+		outStream.println("<?xml version='1.0' encoding='utf-8'?>");
+		outStream.println("<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment'"); 
+		outStream.println("\t xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' "); 
+		outStream.println("\t xmlns:xsd='http://www.w3.org/2001/XMLSchema#' ");
+		outStream.println("\t alignmentSource='AgreementMakerLight'>\n");
+		outStream.println("<Alignment>");
+		outStream.println("\t<xml>yes</xml>");
+		outStream.println("\t<level>0</level>");
+		outStream.println("\t<type>11</type>");
+		outStream.println("\t<onto1>" + source.getURI() + "</onto1>");
+		outStream.println("\t<onto2>" + target.getURI() + "</onto2>");
+		outStream.println("\t<uri1>" + source.getURI() + "</uri1>");
+		outStream.println("\t<uri2>" + target.getURI() + "</uri2>");
+
+		for(Mapping m : termMappings)
+		{
+			outStream.println("\t<map>");
+			outStream.println("\t\t<Cell>");
+			outStream.println("\t\t\t<entity1 rdf:resource=\""+source.getTermURI(m.getSourceId())+"\"/>");
+			outStream.println("\t\t\t<entity2 rdf:resource=\""+target.getTermURI(m.getTargetId())+"\"/>");
+			outStream.println("\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+
+					m.getSimilarity()+"</measure>");
+			outStream.println("\t\t\t<relation>=</relation>");
+			outStream.println("\t\t</Cell>");
+			outStream.println("\t</map>");
+		}
+		for(Mapping m : propMappings)
+		{
+			outStream.println("\t<map>");
+			outStream.println("\t\t<Cell>");
+			outStream.println("\t\t\t<entity1 rdf:resource=\""+source.getPropertyURI(m.getSourceId())+"\"/>");
+			outStream.println("\t\t\t<entity2 rdf:resource=\""+target.getPropertyURI(m.getTargetId())+"\"/>");
+			outStream.println("\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+
+					m.getSimilarity()+"</measure>");
+			outStream.println("\t\t\t<relation>=</relation>");
+			outStream.println("\t\t</Cell>");
+			outStream.println("\t</map>");
+		}
+		outStream.println("</Alignment>");
+		outStream.println("</rdf:RDF>");		
+		outStream.close();
+	}
+	
+	/**
+	 * Saves the alignment into a .tsv file in AML format
+	 * @param file: the output file
+	 */
+	public void saveTSV(String file) throws FileNotFoundException
+	{
+		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
+		outStream.println("#AgreementMakerLight Alignment File");
+		outStream.println("#Source ontology:\t" + source.getURI());
+		outStream.println("#Target ontology:\t" + target.getURI());
+		outStream.println("Source URI\tSource Label\tTarget URI\tTarget Label\tSimilarity");
+		for(Mapping m : termMappings)
+		{
+			int sId = m.getSourceId();
+			int tId = m.getTargetId();
+			outStream.println(source.getTermURI(sId) + "\t" + source.getLexicon().getBestName(sId) +
+					"\t" + target.getTermURI(tId) + "\t" + target.getLexicon().getBestName(tId) +
+					"\t" + m.getSimilarity());
+		}
+		for(Mapping m : propMappings)
+		{
+			int sId = m.getSourceId();
+			int tId = m.getTargetId();
+			outStream.println(source.getPropertyURI(sId) + "\t" + source.getPropertyList().getName(sId) +
+					"\t" + target.getPropertyURI(tId) + "\t" + target.getPropertyList().getName(tId) +
+					"\t" + m.getSimilarity());
+		}
 		outStream.close();
 	}
 
@@ -941,58 +935,6 @@ public class Alignment implements Iterable<Mapping>
 	}
 
 	/**
-	 * Returns the alignment as a String in RDF format
-	 */
-	public String toString()
-	{
-		String a = "<?xml version='1.0' encoding='utf-8'?>\n" +
-			"<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment'\n" + 
-			"\t xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' \n" + 
-			"\t xmlns:xsd='http://www.w3.org/2001/XMLSchema#' \n" +
-			"\t alignmentSource='AgreementMakerLight'>\n\n" +
-			"<Alignment>\n" +
-			"\t<xml>yes</xml>\n" +
-			"\t<level>0</level>\n" +
-			"\t<type>11</type>\n" +
-			"\t<onto1>" + source.getURI() + "</onto1>\n" +
-			"\t<onto2>" + target.getURI() + "</onto2>\n" +
-			"\t<uri1>" + source.getURI() + "</uri1>\n" +
-			"\t<uri2>" + target.getURI() + "</uri2>\n";
-
-		for(Mapping m : termMappings)
-		{
-			String sourceTerm = source.getTermURI(m.getSourceId());
-			String targetTerm = target.getTermURI(m.getTargetId());
-			double sim = m.getSimilarity();
-			a += "\t<map>\n" +
-				"\t\t<Cell>\n" +
-				"\t\t\t<entity1 rdf:resource=\""+sourceTerm+"\"/>\n" +
-				"\t\t\t<entity2 rdf:resource=\""+targetTerm+"\"/>\n" +
-				"\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+sim+"</measure>\n" +
-				"\t\t\t<relation>=</relation>\n" +
-				"\t\t</Cell>\n" +
-				"\t</map>\n";
-		}
-		for(Mapping m : propMappings)
-		{
-			String sourceTerm = source.getPropertyURI(m.getSourceId());
-			String targetTerm = target.getPropertyURI(m.getTargetId());
-			double sim = m.getSimilarity();
-			a += "\t<map>\n" +
-				"\t\t<Cell>\n" +
-				"\t\t\t<entity1 rdf:resource=\""+sourceTerm+"\"/>\n" +
-				"\t\t\t<entity2 rdf:resource=\""+targetTerm+"\"/>\n" +
-				"\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+sim+"</measure>\n" +
-				"\t\t\t<relation>=</relation>\n" +
-				"\t\t</Cell>\n" +
-				"\t</map>\n";
-		}
-		a += "</Alignment>\n" +
-			"</rdf:RDF>";
-		return a;
-	}
-	
-	/**
 	 * @param a: the Alignment to unite with this Alignment 
 	 * @return the Alignment corresponding to the union between this Alignment and a
 	 */
@@ -1010,6 +952,164 @@ public class Alignment implements Iterable<Mapping>
 	
 //Private Methods
 
+	private void loadMappingsRDF(String file) throws DocumentException
+	{
+		//Open the alignment file using SAXReader
+		SAXReader reader = new SAXReader();
+		File f = new File(file);
+
+		Document doc = reader.read(f);
+		//Read the root, then go to the "Alignment" element
+		Element root = doc.getRootElement();
+		Element align = root.element("Alignment");
+		//Control variables to check if the order of the ontologies
+		//in the Alignment file is reversed
+		boolean reverseOrder = false;
+		boolean orderSet = false;
+		//Get an iterator over the mappings
+		Iterator<?> map = align.elementIterator("map");
+		while(map.hasNext())
+		{
+			//Get the "Cell" in each mapping
+			Element e = ((Element)map.next()).element("Cell");
+			if(e == null)
+				continue;
+			//Get the source term
+			String sourceURI = e.element("entity1").attributeValue("resource");
+			//Get the target term
+			String targetURI = e.element("entity2").attributeValue("resource");
+			//Get the similarity measure
+			String measure = e.elementText("measure");
+			//Parse it, assuming 1 if a valid measure is not found
+			double similarity = 1;
+			if(measure != null)
+			{
+				try{similarity = Double.parseDouble(measure);}
+            	catch(Exception ex){/*Do nothing - use the default value*/};
+            }
+            if(similarity < 0 || similarity > 1)
+            	similarity = 1;
+            //First we test ontologies in the order given unless we know the order is reversed
+            if(!reverseOrder)
+            {
+				//Check if the URIs are listed as terms in the Ontologies
+				int sourceIndex = source.getTermIndex(sourceURI);
+				int targetIndex = target.getTermIndex(targetURI);
+				//If they are, add the mapping to the termMappings and proceed to next mapping
+				if(sourceIndex > -1 && targetIndex > -1)
+				{
+					add(sourceIndex, targetIndex, similarity);
+					//setting the order so we don't continue testing the reverse order
+					orderSet = true;
+					continue;
+				}
+				//Otherwise see if they are listed as properties and do the same
+				sourceIndex = source.getPropertyIndex(sourceURI);
+				targetIndex = target.getPropertyIndex(targetURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+				{
+					addPropMapping(sourceIndex, targetIndex, similarity);
+					orderSet = true;
+					continue;
+				}
+            }
+            //We check the reverse order if in doubt or sure it is reversed
+            if(reverseOrder || !orderSet)
+            {
+				//We proceed as before, but switching source and target URIs
+				int sourceIndex = source.getTermIndex(targetURI);
+				int targetIndex = target.getTermIndex(sourceURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+				{
+					add(sourceIndex, targetIndex, similarity);
+					reverseOrder = true;
+					continue;
+				}
+				sourceIndex = source.getPropertyIndex(targetURI);
+				targetIndex = target.getPropertyIndex(sourceURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+				{
+					addPropMapping(sourceIndex, targetIndex, similarity);
+					reverseOrder = true;
+					continue;
+				}
+            }
+		}
+	}
+	
+	private void loadMappingsTSV(String file) throws Exception
+	{
+		BufferedReader inStream = new BufferedReader(new FileReader(file));
+		//First line contains the reference to AML
+		inStream.readLine();
+		//Second line contains the source ontology
+		String line = inStream.readLine();
+		String src = line.substring(line.indexOf("\t") + 1);
+		//Third line contains the target ontology
+		line = inStream.readLine();
+		String tgt = line.substring(line.indexOf("\t") + 1);
+		//Check if the ontologies in the file match those in this alignment
+		boolean rightOrder = source.getURI().equals(src) && target.getURI().equals(tgt);
+		//If not and they are not reversed, we can't proceed
+		if(!rightOrder && !(source.getURI().equals(tgt) && target.getURI().equals(src)))
+			return;
+		//Fourth line contains the headers
+		inStream.readLine();
+		//And from the fifth line forward we have mappings
+		while((line = inStream.readLine()) != null)
+		{
+			String[] col = line.split("\t");
+			//First column contains the source uri
+			String sourceURI = col[0];
+			//Third contains the target uri
+			String targetURI = col[2];
+			//And fifth contains the similarity
+			String measure = col[4];
+			//Parse it, assuming 1 if a valid measure is not found
+			double similarity = 1;
+			if(measure != null)
+			{
+				try{similarity = Double.parseDouble(measure);}
+            	catch(Exception ex){/*Do nothing - use the default value*/};
+            }
+            if(similarity < 0 || similarity > 1)
+            	similarity = 1;
+            //Get the indexes
+            int sourceIndex,targetIndex;
+            if(rightOrder)
+            {
+                //First checking if they are terms
+				sourceIndex = source.getTermIndex(sourceURI);
+				targetIndex = target.getTermIndex(targetURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+				{
+					add(sourceIndex, targetIndex, similarity);
+					continue;
+				}
+				//If not, check if they are properties
+				sourceIndex = source.getPropertyIndex(sourceURI);
+				targetIndex = target.getPropertyIndex(targetURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+					addPropMapping(sourceIndex, targetIndex, similarity);
+            }
+            else
+            {
+				sourceIndex = source.getTermIndex(targetURI);
+				targetIndex = target.getTermIndex(sourceURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+				{
+					add(sourceIndex, targetIndex, similarity);
+					continue;
+				}
+				sourceIndex = source.getPropertyIndex(targetURI);
+				targetIndex = target.getPropertyIndex(sourceURI);
+				if(sourceIndex > -1 && targetIndex > -1)
+					addPropMapping(sourceIndex, targetIndex, similarity);
+            }
+		}
+		inStream.close();
+	}
+	
 	//Recursive QuickSort implementation that does the actual sorting
 	private void quickSort(int begin, int end)
 	{

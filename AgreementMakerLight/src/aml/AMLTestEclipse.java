@@ -60,7 +60,7 @@ public class AMLTestEclipse
 			System.out.println(evaluate(a,referencePath));
 		//And save it
 		if(!alignPath.equals(""))
-			a.save(alignPath);
+			a.saveRDF(alignPath);
 	}
 	
 	private static Ontology loadOntology(URI u)
