@@ -12,13 +12,11 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An alignment between two Ontologies, separated into class alignment and     *
-* property alignment. The former is stored both as a list of Mappings and     *
-* as a Table, whereas the latter is stored only as a list of Mappings.        *
-* The Alignment includes methods for input and output.                        *
+* An alignment between two Ontologies, stored both as a list of Mappings and  *
+* as a Table of indexes, and including methods for input and output.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 05-02-2014                                                            *
+* @date 12-02-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -34,11 +32,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import aml.match.MatchingConfigurations.MappingRelation;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.util.Table2Plus;
@@ -54,13 +54,15 @@ public class Alignment implements Iterable<Mapping>
 	private Ontology target;
 	
 	//Term mappings organized in list
-	private Vector<Mapping> termMappings;
+	private Vector<Mapping> maps;
 	//Term mappings organized by source term
-	private Table2Plus<Integer,Integer,Double> sourceMaps;
+	private Table2Plus<Integer,Integer,Integer> sourceMaps;
 	//Term mappings organized by target term
-	private Table2Plus<Integer,Integer,Double> targetMaps;
-	//Property mappings organized in list
-	private Vector<Mapping> propMappings;
+	private Table2Plus<Integer,Integer,Integer> targetMaps;
+	
+	//Control variables
+	private int propertyMappingCount;
+	private int termMappingCount;
 
 //Constructors
 
@@ -73,10 +75,11 @@ public class Alignment implements Iterable<Mapping>
 	{
 		source = s;
 		target = t;
-		termMappings = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Double>();
-		targetMaps = new Table2Plus<Integer,Integer,Double>();
-		propMappings = new Vector<Mapping>(0,1);
+		maps = new Vector<Mapping>(0,1);
+		sourceMaps = new Table2Plus<Integer,Integer,Integer>();
+		targetMaps = new Table2Plus<Integer,Integer,Integer>();
+		propertyMappingCount = 0;
+		termMappingCount = 0;
 	}
 
 	/**
@@ -90,11 +93,11 @@ public class Alignment implements Iterable<Mapping>
 	{
 		source = s;
 		target = t;
-		termMappings = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Double>();
-		targetMaps = new Table2Plus<Integer,Integer,Double>();
-		propMappings = new Vector<Mapping>(0,1);
-		
+		maps = new Vector<Mapping>(0,1);
+		sourceMaps = new Table2Plus<Integer,Integer,Integer>();
+		targetMaps = new Table2Plus<Integer,Integer,Integer>();
+		propertyMappingCount = 0;
+		termMappingCount = 0;		
 		if(file.endsWith(".rdf"))
 			loadMappingsRDF(file);
 		else if(file.endsWith(".tsv"))
@@ -109,10 +112,11 @@ public class Alignment implements Iterable<Mapping>
 	{
 		source = a.source;
 		target = a.target;
-		sourceMaps = new Table2Plus<Integer,Integer,Double>();
-		targetMaps = new Table2Plus<Integer,Integer,Double>();
-		termMappings = new Vector<Mapping>(0,1);
-		propMappings = new Vector<Mapping>(0,1);
+		maps = new Vector<Mapping>(0,1);
+		sourceMaps = new Table2Plus<Integer,Integer,Integer>();
+		targetMaps = new Table2Plus<Integer,Integer,Integer>();
+		propertyMappingCount = 0;
+		termMappingCount = 0;
 		addAll(a);
 	}
 	
@@ -129,21 +133,66 @@ public class Alignment implements Iterable<Mapping>
 	public void add(int sourceId, int targetId, double sim)
 	{
 		//Construct the Mapping
-		Mapping m = new Mapping(sourceId, targetId, sim);
+		Mapping m = new Mapping(sourceId, targetId, sim, MappingRelation.EQUIVALENCE);
 		//If it isn't listed yet, add it
-		int index = termMappings.indexOf(m);
+		int index = maps.indexOf(m);
 		if(index < 0)
-			termMappings.add(m);
+		{
+			index = maps.size();
+			maps.add(m);
+			sourceMaps.add(sourceId, targetId, index);
+			targetMaps.add(targetId, sourceId, index);
+			if(source.isProperty(sourceId) && target.isProperty(targetId))
+				propertyMappingCount++;
+			else
+				termMappingCount++;
+		}
 		//Otherwise update the similarity
 		else
 		{
-			m = termMappings.get(index);
+			m = maps.get(index);
 			if(m.getSimilarity() < sim)
 				m.setSimilarity(sim);
+			if(!m.getRelationship().equals(MappingRelation.EQUIVALENCE))
+				m.setRelationship(MappingRelation.EQUIVALENCE);		
 		}
-		//Then update the MultiMaps
-		sourceMaps.addUpgrade(sourceId, targetId, sim);
-		targetMaps.addUpgrade(targetId, sourceId, sim);
+	}
+	
+	/**
+	 * Adds a new Mapping to the alignment if it is non-redundant
+	 * Otherwise, updates the similarity of the already present Mapping
+	 * to the maximum similarity of the two redundant Mappings
+	 * @param sourceId: the index of the source term to add to the alignment
+	 * @param targetId: the index of the target term to add to the alignment
+	 * @param sim: the similarity between the terms
+	 * @param r: the mapping relationship between the terms
+	 */
+	public void add(int sourceId, int targetId, double sim, MappingRelation r)
+	{
+		//Construct the Mapping
+		Mapping m = new Mapping(sourceId, targetId, sim, r);
+		//If it isn't listed yet, add it
+		int index = maps.indexOf(m);
+		if(index < 0)
+		{
+			index = maps.size();
+			maps.add(m);
+			sourceMaps.add(sourceId, targetId, index);
+			targetMaps.add(targetId, sourceId, index);
+			if(source.isProperty(sourceId) && target.isProperty(targetId))
+				propertyMappingCount++;
+			else
+				termMappingCount++;
+		}
+		//Otherwise update the similarity
+		else
+		{
+			m = maps.get(index);
+			if(m.getSimilarity() < sim)
+				m.setSimilarity(sim);
+			if(!m.getRelationship().equals(r))
+				m.setRelationship(r);		
+		}
 	}
 	
 	/**
@@ -154,7 +203,7 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public void add(Mapping m)
 	{
-		add(m.getSourceId(), m.getTargetId(), m.getSimilarity());
+		add(m.getSourceId(), m.getTargetId(), m.getSimilarity(), m.getRelationship());
 	}
 
 	/**
@@ -166,8 +215,7 @@ public class Alignment implements Iterable<Mapping>
 		//If the alignments aren't between the same ontologies, do nothing
 		if(source != a.source || target != a.target)
 			return;
-		addAll(a.termMappings);
-		addAllPropMappings(a.propMappings);
+		addAll(a.maps);
 	}
 	
 	/**
@@ -190,40 +238,9 @@ public class Alignment implements Iterable<Mapping>
 		//If the alignments aren't between the same ontologies, do nothing
 		if(source != a.source || target != a.target)
 			return;
-		for(Mapping m : a.termMappings)
+		for(Mapping m : a.maps)
 			if(!this.containsConflict(m))
 				add(m);
-	}
-	
-	/**
-	 * Adds all property Mappings in a to this Alignment
-	 * @param v: the list of Mappings to add to this Alignment
-	 */
-	public void addAllPropMappings(Vector<Mapping> v)
-	{
-		for(Mapping m : v)
-			addPropMapping(m);
-	}
-	
-	/**
-	 * Adds a new property Mapping to the alignment
-	 * @param sourceId: the index of the source term to add to the alignment
-	 * @param targetId: the index of the target term to add to the alignment
-	 * @param sim: the similarity between the terms
-	 */
-	public void addPropMapping(int sourceId, int targetId, double sim)
-	{
-		Mapping m = new Mapping(sourceId, targetId, sim);
-		propMappings.add(m);
-	}
-	
-	/**
-	 * Adds the given property Mapping to this Alignment
-	 * @param m: the Mapping to add to this Alignment
-	 */
-	public void addPropMapping(Mapping m)
-	{
-		propMappings.add(m);
 	}
 	
 	/**
@@ -243,9 +260,10 @@ public class Alignment implements Iterable<Mapping>
 		HashMap<Integer,Double> targetMax = new HashMap<Integer,Double>();
 		Set<Integer> targetList = targetMaps.keySet();
 		for(Integer i : targetList)
-			targetMax.put(i, getMaxSourceSim(i));
+			//NOTE: THIS WAS PREVIOUSLY SWITCHED AND SOMEHOW PRODUCED BETTER RESULTS
+			targetMax.put(i, getMaxTargetSim(i));
 		//Now boost each mapping
-		for(Mapping m: termMappings)
+		for(Mapping m: maps)
 		{
 			int sourceId = m.getSourceId();
 			int targetId = m.getTargetId();
@@ -253,10 +271,13 @@ public class Alignment implements Iterable<Mapping>
 			if(sourceMax.get(sourceId) == sim && targetMax.get(targetId) == sim)
 				//Adding an existing Mapping to the Alignment results in updating
 				//the similarity if it is higher than the previous similarity
-				add(sourceId, targetId, Math.min(1.0, sim*factor));
+				add(sourceId, targetId, Math.min(1.0, sim*factor), m.getRelationship());
 		}
 	}
 
+	/**
+	 * @return the average cardinality of this alignment
+	 */
 	public double cardinality()
 	{
 		double cardinality = 0.0;
@@ -311,18 +332,16 @@ public class Alignment implements Iterable<Mapping>
 		
 		if(containsSource(source))
 		{
-			HashMap<Integer,Double> src = sourceMaps.get(source);
-			Set<Integer> sources = src.keySet();
-			for(Integer i : sources)
-				if(src.get(i) > sim)
+			Set<Integer> targets = sourceMaps.keySet(source);
+			for(Integer i : targets)
+				if(getSimilarity(source,i) > sim)
 					return true;
 		}
 		if(containsTarget(target))
 		{
-			HashMap<Integer,Double> tgt = targetMaps.get(target);
-			Set<Integer> targets = tgt.keySet();
-			for(Integer i : targets)
-				if(tgt.get(i) > sim)
+			Set<Integer> sources = targetMaps.keySet(target);
+			for(Integer i : sources)
+				if(getSimilarity(i,target) > sim)
 					return true;
 		}
 		return false;
@@ -400,7 +419,6 @@ public class Alignment implements Iterable<Mapping>
 		for(Mapping m: lm)
 			if(!containsMapping(m))
 				return false;
-		
 		return true;
 	}
 	
@@ -424,18 +442,6 @@ public class Alignment implements Iterable<Mapping>
 				return true;
 		for(Integer ta : targetAncestors)
 			if(containsMapping(sourceId,ta))
-				return true;
-		return false;
-	}
-	
-	/**
-	 * @param m: the property Mapping to check in the alignment
-	 * @return whether the Alignment contains a property Mapping equivalent to m
-	 */
-	public boolean containsPropMapping(Mapping m)
-	{
-		for(Mapping n : propMappings)
-			if(m.getSourceId() == n.getSourceId() && m.getTargetId() == n.getTargetId())
 				return true;
 		return false;
 	}
@@ -469,11 +475,8 @@ public class Alignment implements Iterable<Mapping>
 		if(source != a.source || target != a.target)
 			return 0;
 		int correct = 0;
-		for(Mapping m : a.termMappings)
+		for(Mapping m : a.maps)
 			if(this.containsMapping(m))
-				correct++;
-		for(Mapping m : a.propMappings)
-			if(this.containsPropMapping(m))
 				correct++;
 		return correct;
 	}
@@ -486,7 +489,7 @@ public class Alignment implements Iterable<Mapping>
 	public double gain(Alignment a)
 	{
 		double gain = 0.0;
-		for(Mapping m : termMappings)
+		for(Mapping m : maps)
 			if(!a.containsMapping(m))
 				gain++;
 		gain /= a.termMappingCount();
@@ -521,7 +524,7 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public Mapping get(int index)
 	{
-		return termMappings.get(index);
+		return maps.get(index);
 	}
 	
 	/**
@@ -530,10 +533,19 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public int getBestSourceMatch(int sourceId)
 	{
-		Integer bestMatch = sourceMaps.getKeyMaximum(sourceId);
-		if(bestMatch == null)
-			return -1;
-		return bestMatch;
+		double max = 0;
+		int target = -1;
+		Set<Integer> targets = sourceMaps.keySet(sourceId);
+		for(Integer i : targets)
+		{
+			double sim = getSimilarity(sourceId,i);
+			if(sim > max)
+			{
+				max = sim;
+				target = i;
+			}
+		}
+		return target;
 	}
 
 	/**
@@ -542,10 +554,19 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public int getBestTargetMatch(int targetId)
 	{
-		Integer bestMatch = targetMaps.getKeyMaximum(targetId);
-		if(bestMatch == null)
-			return -1;
-		return bestMatch;
+		double max = 0;
+		int source = -1;
+		Set<Integer> sources = sourceMaps.keySet(targetId);
+		for(Integer i : sources)
+		{
+			double sim = getSimilarity(i,targetId);
+			if(sim > max)
+			{
+				max = sim;
+				source = i;
+			}
+		}
+		return source;
 	}
 	
 	/**
@@ -556,8 +577,8 @@ public class Alignment implements Iterable<Mapping>
 		RelationshipMap sourceMap = source.getRelationshipMap();
 		RelationshipMap targetMap = target.getRelationshipMap();
 		Alignment a = new Alignment(source, target);
-		int total = termMappings.size();
-		for(Mapping m : termMappings)
+		int total = maps.size();
+		for(Mapping m : maps)
 		{
 			Vector<Integer> sourceAncestors = sourceMap.getHighLevelAncestors(m.getSourceId());
 			Vector<Integer> targetAncestors = targetMap.getHighLevelAncestors(m.getTargetId());
@@ -566,7 +587,7 @@ public class Alignment implements Iterable<Mapping>
 				for(int j : targetAncestors)
 				{
 					double sim = a.getSimilarity(i, j) + 1.0 / total;
-					a.add(i,j,sim);
+					a.add(i,j,sim,MappingRelation.OVERLAP);
 				}
 			}
 		}
@@ -586,7 +607,7 @@ public class Alignment implements Iterable<Mapping>
 	public int getIndex(int sourceId, int targetId)
 	{
 		Mapping m = new Mapping(sourceId,targetId,1.0);
-		return termMappings.indexOf(m);
+		return maps.indexOf(m);
 	}
 	
 	/**
@@ -595,10 +616,15 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public double getMaxSourceSim(int sourceId)
 	{
-		Double sim = sourceMaps.getMaximumValue(sourceId);
-		if(sim == null)
-			return 0.0;
-		return sim;
+		double max = 0;
+		Set<Integer> targets = sourceMaps.keySet(sourceId);
+		for(Integer i : targets)
+		{
+			double sim = getSimilarity(sourceId,i);
+			if(sim > max)
+				max = sim;
+		}
+		return max;
 	}
 
 	/**
@@ -607,10 +633,28 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public double getMaxTargetSim(int targetId)
 	{
-		Double sim = targetMaps.getMaximumValue(targetId);
-		if(sim == null)
-			return 0.0;
-		return sim;
+		double max = 0;
+		Set<Integer> sources = targetMaps.keySet(targetId);
+		for(Integer i : sources)
+		{
+			double sim = getSimilarity(i,targetId);
+			if(sim > max)
+				max = sim;
+		}
+		return max;
+	}
+	
+	/**
+	 * @param sourceId: the index of the source term in the alignment
+	 * @param targetId: the index of the target term in the alignment
+	 * @return the mapping relationship between source and target
+	 */
+	public MappingRelation getRelationship(int sourceId, int targetId)
+	{
+		Integer index = sourceMaps.get(sourceId, targetId);
+		if(index == null)
+			return null;
+		return maps.get(index).getRelationship();
 	}
 	
 	/**
@@ -620,10 +664,10 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public double getSimilarity(int sourceId, int targetId)
 	{
-		Double sim = sourceMaps.get(sourceId, targetId);
-		if(sim == null)
+		Integer index = sourceMaps.get(sourceId, targetId);
+		if(index == null)
 			return 0.0;
-		return sim;
+		return maps.get(index).getSimilarity();
 	}
 	
 	/**
@@ -632,11 +676,11 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public Vector<Integer> getSourceMappings(int sourceId)
 	{
-		Vector<Integer> maps = new Vector<Integer>(0,1);
+		Vector<Integer> sMaps = new Vector<Integer>(0,1);
 		Set<Integer> sourceList = sourceMaps.keySet(sourceId);
 		if(sourceList != null)
-			maps.addAll(sourceList);
-		return maps;
+			sMaps.addAll(sourceList);
+		return sMaps;
 	}
 	
 	/**
@@ -652,9 +696,9 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public Vector<Integer> getSources()
 	{
-		Vector<Integer> maps = new Vector<Integer>(0,1);
-		maps.addAll(sourceMaps.keySet());
-		return maps;
+		Vector<Integer> sMaps = new Vector<Integer>(0,1);
+		sMaps.addAll(sourceMaps.keySet());
+		return sMaps;
 	}
 	
 	/**
@@ -663,11 +707,11 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public Vector<Integer> getTargetMappings(int targetId)
 	{
-		Vector<Integer> maps = new Vector<Integer>(0,1);
+		Vector<Integer> tMaps = new Vector<Integer>(0,1);
 		Set<Integer> targetList = targetMaps.keySet(targetId);
 		if(targetList != null)
-			maps.addAll(targetList);
-		return maps;
+			tMaps.addAll(targetList);
+		return tMaps;
 	}
 	
 	/**
@@ -683,9 +727,9 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public Vector<Integer> getTargets()
 	{
-		Vector<Integer> maps = new Vector<Integer>(0,1);
-		maps.addAll(targetMaps.keySet());
-		return maps;
+		Vector<Integer> tMaps = new Vector<Integer>(0,1);
+		tMaps.addAll(targetMaps.keySet());
+		return tMaps;
 	}
 
 	/**
@@ -699,12 +743,9 @@ public class Alignment implements Iterable<Mapping>
 			return null;
 		//Otherwise, compute the intersection
 		Alignment intersection = new Alignment(source,target);
-		for(Mapping m : termMappings)
+		for(Mapping m : maps)
 			if(a.containsMapping(m))
 				intersection.add(m);
-		for(Mapping m : propMappings)
-			if(a.containsPropMapping(m))
-				intersection.addPropMapping(m);
 		return intersection;
 	}
 	
@@ -713,8 +754,8 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public boolean isSorted()
 	{
-		double sim = termMappings.get(0).getSimilarity();
-		for(Mapping m : termMappings)
+		double sim = maps.get(0).getSimilarity();
+		for(Mapping m : maps)
 		{
 			if(m.getSimilarity() > sim)
 				return false;
@@ -730,17 +771,17 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public Iterator<Mapping> iterator()
 	{
-		return termMappings.iterator();
+		return maps.iterator();
 	}
 	
 	/**
-	 * @return the number of property Mappings in this alignment
+	 * @return the number of term mappings in this Alignment
 	 */
 	public int propertyMappingCount()
 	{
-		return propMappings.size();
+		return propertyMappingCount;
 	}
-	
+
 	/**
 	 * Removes the given Mapping from the Alignment
 	 * @param m: the Mapping to remove from the Alignment
@@ -751,7 +792,7 @@ public class Alignment implements Iterable<Mapping>
 		int targetId = m.getTargetId();
 		sourceMaps.remove(sourceId, targetId);
 		targetMaps.remove(targetId, sourceId);
-		termMappings.remove(m);
+		maps.remove(m);
 	}
 	
 	/**
@@ -764,7 +805,7 @@ public class Alignment implements Iterable<Mapping>
 		Mapping m = new Mapping(sourceId, targetId, 1.0);
 		sourceMaps.remove(sourceId, targetId);
 		targetMaps.remove(targetId, sourceId);
-		termMappings.remove(m);
+		maps.remove(m);
 	}
 	
 	/**
@@ -792,33 +833,25 @@ public class Alignment implements Iterable<Mapping>
 		outStream.println("<Alignment>");
 		outStream.println("\t<xml>yes</xml>");
 		outStream.println("\t<level>0</level>");
-		outStream.println("\t<type>11</type>");
+		double card = cardinality();
+		if(card < 1.02)
+			outStream.println("\t<type>11</type>");
+		else
+			outStream.println("\t<type>??</type>");
 		outStream.println("\t<onto1>" + source.getURI() + "</onto1>");
 		outStream.println("\t<onto2>" + target.getURI() + "</onto2>");
 		outStream.println("\t<uri1>" + source.getURI() + "</uri1>");
 		outStream.println("\t<uri2>" + target.getURI() + "</uri2>");
-
-		for(Mapping m : termMappings)
+		for(Mapping m : maps)
 		{
 			outStream.println("\t<map>");
 			outStream.println("\t\t<Cell>");
-			outStream.println("\t\t\t<entity1 rdf:resource=\""+source.getTermURI(m.getSourceId())+"\"/>");
-			outStream.println("\t\t\t<entity2 rdf:resource=\""+target.getTermURI(m.getTargetId())+"\"/>");
+			outStream.println("\t\t\t<entity1 rdf:resource=\""+source.getURI(m.getSourceId())+"\"/>");
+			outStream.println("\t\t\t<entity2 rdf:resource=\""+target.getURI(m.getTargetId())+"\"/>");
 			outStream.println("\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+
 					m.getSimilarity()+"</measure>");
-			outStream.println("\t\t\t<relation>=</relation>");
-			outStream.println("\t\t</Cell>");
-			outStream.println("\t</map>");
-		}
-		for(Mapping m : propMappings)
-		{
-			outStream.println("\t<map>");
-			outStream.println("\t\t<Cell>");
-			outStream.println("\t\t\t<entity1 rdf:resource=\""+source.getPropertyURI(m.getSourceId())+"\"/>");
-			outStream.println("\t\t\t<entity2 rdf:resource=\""+target.getPropertyURI(m.getTargetId())+"\"/>");
-			outStream.println("\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+
-					m.getSimilarity()+"</measure>");
-			outStream.println("\t\t\t<relation>=</relation>");
+			outStream.println("\t\t\t<relation>" + StringEscapeUtils.escapeXml(m.getRelationship().toString()) +
+					"</relation>");
 			outStream.println("\t\t</Cell>");
 			outStream.println("\t</map>");
 		}
@@ -837,22 +870,19 @@ public class Alignment implements Iterable<Mapping>
 		outStream.println("#AgreementMakerLight Alignment File");
 		outStream.println("#Source ontology:\t" + source.getURI());
 		outStream.println("#Target ontology:\t" + target.getURI());
-		outStream.println("Source URI\tSource Label\tTarget URI\tTarget Label\tSimilarity");
-		for(Mapping m : termMappings)
+		outStream.println("Source URI\tSource Label\tTarget URI\tTarget Label\tSimilarity\tRelationship");
+		for(Mapping m : maps)
 		{
 			int sId = m.getSourceId();
 			int tId = m.getTargetId();
-			outStream.println(source.getTermURI(sId) + "\t" + source.getLexicon().getBestName(sId) +
-					"\t" + target.getTermURI(tId) + "\t" + target.getLexicon().getBestName(tId) +
-					"\t" + m.getSimilarity());
-		}
-		for(Mapping m : propMappings)
-		{
-			int sId = m.getSourceId();
-			int tId = m.getTargetId();
-			outStream.println(source.getPropertyURI(sId) + "\t" + source.getPropertyList().getName(sId) +
-					"\t" + target.getPropertyURI(tId) + "\t" + target.getPropertyList().getName(tId) +
-					"\t" + m.getSimilarity());
+			if(source.isProperty(sId) && target.isProperty(tId))
+				outStream.println(source.getURI(sId) + "\t" + source.getPropertyList().getName(sId) +
+						"\t" + target.getURI(tId) + "\t" + target.getPropertyList().getName(tId) +
+						"\t" + m.getSimilarity() + "\t" + m.getRelationship().toString());
+			else
+				outStream.println(source.getURI(sId) + "\t" + source.getLexicon().getBestName(sId) +
+						"\t" + target.getURI(tId) + "\t" + target.getLexicon().getBestName(tId) +
+						"\t" + m.getSimilarity() + "\t" + m.getRelationship().toString());
 		}
 		outStream.close();
 	}
@@ -862,7 +892,7 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public int size()
 	{
-		return termMappings.size() + propMappings.size();
+		return maps.size();
 	}
 	
 	/**
@@ -870,7 +900,7 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public void sort()
 	{
-		quickSort(0,termMappings.size()-1);
+		quickSort(0,maps.size()-1);
 	}
 	
 	/**
@@ -902,7 +932,7 @@ public class Alignment implements Iterable<Mapping>
 			return this;
 		//Otherwise, compute the difference
 		Alignment difference = new Alignment(source,target);
-		for(Mapping m : termMappings)
+		for(Mapping m : maps)
 			if(!a.containsMapping(m))
 				difference.add(m);
 		return difference;
@@ -931,7 +961,7 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public int termMappingCount()
 	{
-		return termMappings.size();
+		return termMappingCount;
 	}
 
 	/**
@@ -962,10 +992,28 @@ public class Alignment implements Iterable<Mapping>
 		//Read the root, then go to the "Alignment" element
 		Element root = doc.getRootElement();
 		Element align = root.element("Alignment");
+		//Read the ontologies' uris
+		String s = align.elementText("uri1");
+		if(s == null)
+			s = align.elementText("onto1");
+		String t = align.elementText("uri2");
+		if(t == null)
+			t = align.elementText("onto2");
 		//Control variables to check if the order of the ontologies
 		//in the Alignment file is reversed
-		boolean reverseOrder = false;
+		boolean rightOrder = true;
 		boolean orderSet = false;
+		if(s != null && t != null)
+		{
+			orderSet = true;
+			rightOrder = (s.equals(source.getURI()) && t.equals(target.getURI()));
+			//If the order is neither right nor reversed, we can't read the alignment
+			if(!rightOrder && !s.equals(target.getURI()) && !t.equals(source.getURI()))
+				throw new DocumentException("Cannot read alignment file:" +
+						" listed ontologies do not correspond to opened ontologies.");
+		}
+		else
+			orderSet = false;
 		//Get an iterator over the mappings
 		Iterator<?> map = align.elementIterator("map");
 		while(map.hasNext())
@@ -984,54 +1032,52 @@ public class Alignment implements Iterable<Mapping>
 			double similarity = 1;
 			if(measure != null)
 			{
-				try{similarity = Double.parseDouble(measure);}
+				try
+				{
+					similarity = Double.parseDouble(measure);
+		            if(similarity < 0 || similarity > 1)
+		            	similarity = 1;
+				}
             	catch(Exception ex){/*Do nothing - use the default value*/};
             }
-            if(similarity < 0 || similarity > 1)
-            	similarity = 1;
-            //First we test ontologies in the order given unless we know the order is reversed
-            if(!reverseOrder)
+            //Get the relation
+            String r = e.elementText("relation");
+            if(r == null)
+            	r = "?";
+            MappingRelation rel = MappingRelation.parseRelation(StringEscapeUtils.unescapeXml(r));
+            //If we know the ontologies are in the right order or don't know yet, we test them in that order
+            if(rightOrder || !orderSet)
             {
 				//Check if the URIs are listed as terms in the Ontologies
-				int sourceIndex = source.getTermIndex(sourceURI);
-				int targetIndex = target.getTermIndex(targetURI);
-				//If they are, add the mapping to the termMappings and proceed to next mapping
+				int sourceIndex = source.getIndex(sourceURI);
+				int targetIndex = target.getIndex(targetURI);
+				//If they are, add the mapping to the maps and proceed to next mapping
 				if(sourceIndex > -1 && targetIndex > -1)
 				{
-					add(sourceIndex, targetIndex, similarity);
+					add(sourceIndex, targetIndex, similarity, rel);
 					//setting the order so we don't continue testing the reverse order
-					orderSet = true;
-					continue;
-				}
-				//Otherwise see if they are listed as properties and do the same
-				sourceIndex = source.getPropertyIndex(sourceURI);
-				targetIndex = target.getPropertyIndex(targetURI);
-				if(sourceIndex > -1 && targetIndex > -1)
-				{
-					addPropMapping(sourceIndex, targetIndex, similarity);
-					orderSet = true;
+					if(!orderSet)
+					{
+						rightOrder = true;
+						orderSet = true;
+					}
 					continue;
 				}
             }
-            //We check the reverse order if in doubt or sure it is reversed
-            if(reverseOrder || !orderSet)
+            //If we know they are in reverse order or don't know yet, we test them in that order
+            if(!rightOrder || !orderSet)
             {
 				//We proceed as before, but switching source and target URIs
-				int sourceIndex = source.getTermIndex(targetURI);
-				int targetIndex = target.getTermIndex(sourceURI);
+				int sourceIndex = source.getIndex(targetURI);
+				int targetIndex = target.getIndex(sourceURI);
 				if(sourceIndex > -1 && targetIndex > -1)
 				{
-					add(sourceIndex, targetIndex, similarity);
-					reverseOrder = true;
-					continue;
-				}
-				sourceIndex = source.getPropertyIndex(targetURI);
-				targetIndex = target.getPropertyIndex(sourceURI);
-				if(sourceIndex > -1 && targetIndex > -1)
-				{
-					addPropMapping(sourceIndex, targetIndex, similarity);
-					reverseOrder = true;
-					continue;
+					add(sourceIndex, targetIndex, similarity, rel.inverse());
+					if(!orderSet)
+					{
+						rightOrder = false;
+						orderSet = true;
+					}
 				}
             }
 		}
@@ -1063,48 +1109,43 @@ public class Alignment implements Iterable<Mapping>
 			String sourceURI = col[0];
 			//Third contains the target uri
 			String targetURI = col[2];
-			//And fifth contains the similarity
+			//Fifth contains the similarity
 			String measure = col[4];
 			//Parse it, assuming 1 if a valid measure is not found
 			double similarity = 1;
 			if(measure != null)
 			{
-				try{similarity = Double.parseDouble(measure);}
+				try
+				{
+					similarity = Double.parseDouble(measure);
+		            if(similarity < 0 || similarity > 1)
+		            	similarity = 1;
+				}
             	catch(Exception ex){/*Do nothing - use the default value*/};
             }
-            if(similarity < 0 || similarity > 1)
-            	similarity = 1;
+			//Finally, sixth column contains the type of relation
+			MappingRelation rel;
+			if(col.length > 5)
+				rel = MappingRelation.parseRelation(col[5]);
+			//For compatibility with previous tsv format without listed relation
+			else
+				rel = MappingRelation.EQUIVALENCE;
             //Get the indexes
             int sourceIndex,targetIndex;
             if(rightOrder)
             {
                 //First checking if they are terms
-				sourceIndex = source.getTermIndex(sourceURI);
-				targetIndex = target.getTermIndex(targetURI);
+				sourceIndex = source.getIndex(sourceURI);
+				targetIndex = target.getIndex(targetURI);
 				if(sourceIndex > -1 && targetIndex > -1)
-				{
-					add(sourceIndex, targetIndex, similarity);
-					continue;
-				}
-				//If not, check if they are properties
-				sourceIndex = source.getPropertyIndex(sourceURI);
-				targetIndex = target.getPropertyIndex(targetURI);
-				if(sourceIndex > -1 && targetIndex > -1)
-					addPropMapping(sourceIndex, targetIndex, similarity);
+					add(sourceIndex, targetIndex, similarity, rel);
             }
             else
             {
-				sourceIndex = source.getTermIndex(targetURI);
-				targetIndex = target.getTermIndex(sourceURI);
+				sourceIndex = source.getIndex(targetURI);
+				targetIndex = target.getIndex(sourceURI);
 				if(sourceIndex > -1 && targetIndex > -1)
-				{
-					add(sourceIndex, targetIndex, similarity);
-					continue;
-				}
-				sourceIndex = source.getPropertyIndex(targetURI);
-				targetIndex = target.getPropertyIndex(sourceURI);
-				if(sourceIndex > -1 && targetIndex > -1)
-					addPropMapping(sourceIndex, targetIndex, similarity);
+					add(sourceIndex, targetIndex, similarity, rel.inverse());
             }
 		}
 		inStream.close();
@@ -1155,8 +1196,12 @@ public class Alignment implements Iterable<Mapping>
 		{
 			Mapping mi = new Mapping(get(i));
 			Mapping mj = new Mapping(get(j));
-			termMappings.set(i,mj);
-			termMappings.set(j,mi);			
+			maps.set(i,mj);
+			maps.set(j,mi);
+			sourceMaps.add(mi.getSourceId(), mi.getTargetId(), j);
+			targetMaps.add(mi.getTargetId(), mi.getSourceId(), j);
+			sourceMaps.add(mj.getSourceId(), mj.getTargetId(), i);
+			targetMaps.add(mj.getTargetId(), mj.getSourceId(), i);
 		}
 	}
 }

@@ -103,9 +103,9 @@ public class RepairMap implements Iterable<String>
 		int id = Integer.parseInt(s.substring(1));
 		String uri;
 		if(s.startsWith("S"))
-			uri = source.getTermURI(id);
+			uri = source.getURI(id);
 		else
-			uri = target.getTermURI(id);
+			uri = target.getURI(id);
 		return uri;
 	}
 	
@@ -593,10 +593,8 @@ public class RepairMap implements Iterable<String>
         	try {
 				return createMyglobalconflictList(results,  part,  total);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         	
@@ -645,7 +643,6 @@ public class RepairMap implements Iterable<String>
 	
 	
 	/**
-	 * TODO - Mudar para a vers�o java 1.7
 	 * class - to implement the parallel version of minimalListMappings
 	 */
 	private class createGlobalConflictListParallel implements Callable<Vector<Vector<Mapping>>>

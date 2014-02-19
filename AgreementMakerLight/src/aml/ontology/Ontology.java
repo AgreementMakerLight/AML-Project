@@ -56,12 +56,12 @@ public class Ontology
 	protected String uri;
 	//The local prefix of the ontology
 	protected String localPrefix;
-	//The list of URIs of its terms (or classes)
-	protected Vector<String> termURIs;
-	//The list of term local names
-	protected Vector<String> termNames;
-	//The list of URIs of its properties
-	protected Vector<String> propertyURIs;
+	//The list of URIs of its terms and properties
+	protected Vector<String> uris;
+	//The list of term and property local names
+	protected Vector<String> names;
+	//The index that separates terms from properties
+	protected int separator;
 	//Its list of properties
 	protected PropertyList pr;
 	//Its lexicon
@@ -85,9 +85,8 @@ public class Ontology
 	public Ontology(URI path, boolean isInput, boolean owl)
 	{
 		//Step 1 - Initialize the data structures
-		termURIs = new Vector<String>(0,1);
-		termNames = new Vector<String>(0,1);
-		propertyURIs = new Vector<String>(0,1);
+		uris = new Vector<String>(0,1);
+		names = new Vector<String>(0,1);
 		pr = new PropertyList();
 		lex = new Lexicon();
 		rels = new RelationshipMap();
@@ -115,10 +114,17 @@ public class Ontology
 		else
 			localPrefix = uri;
 		
+		//List the term and property uris and local names
 		getTerms(o);
+		separator = uris.size();
 		getProperties(o);
+		//Build the Lexicon
 		getLabels(o);
 		getSynonyms(o);
+		//Extend it
+		lex.generateStopWordSynonyms();
+		lex.generateBracketSynonyms();
+		//Build the relationship map
 		if(isInput)
 		{
 			getRelationships(o);
@@ -126,12 +132,13 @@ public class Ontology
 			getIntersections(o);
 			rels.transitiveClosure();
 		}
+		//Or the reference map
 		else if(hasReferences(o))
 		{
 			refs = new ReferenceMap();
 			getReferences(o);
 		}
-		//Step 4 - Close the OntModel
+		//Close the OntModel
 		o.close();
 	}
 
@@ -144,8 +151,7 @@ public class Ontology
 	public void close()
 	{
 		uri = null;
-		termURIs = null;
-		propertyURIs = null;
+		uris = null;
 		pr = null;
 		lex = null;
 		rels = null;
@@ -162,14 +168,44 @@ public class Ontology
 	}
 	
 	/**
-	 * @param uri: the URI of the property to get the index
-	 * @return the index of the property with the given URI
+	 * @param uri: the URI of the term/property to get the index
+	 * @return the index of the term/property with the given URI
 	 */
-	public int getPropertyIndex(String uri)
+	public int getIndex(String uri)
 	{
-		return propertyURIs.indexOf(uri);
+		return uris.indexOf(uri);
 	}
 	
+	/**
+	 * @param index: the index of the term/property to get the URI
+	 * @return the localName of the term/property with the given index
+	 */
+	public String getLocalName(int index)
+	{
+		return names.get(index);
+	}
+	
+	/**
+	 * @return the list of term/property localNames of the Ontology
+	 */
+	public Vector<String> getLocalNames()
+	{
+		return names;
+	}
+	
+	/**
+	 * @param index: the index of the term/property to get the name
+	 * @return the primary name of the term/property with the given index
+	 */
+	public String getName(int index)
+	{
+		if(index < separator)
+			return getLexicon().getBestName(index);
+		else if(index < uris.size())
+			return getPropertyList().getName(index);
+		return "";
+	}
+
 	/**
 	 * @return the list of properties of the Ontology
 	 */
@@ -178,23 +214,6 @@ public class Ontology
 		return pr;
 	}
 	
-	/**
-	 * @param index: the index of the property to get the URI
-	 * @return the URI of the property with the given index
-	 */
-	public String getPropertyURI(int index)
-	{
-		return propertyURIs.get(index);
-	}
-	
-	/**
-	 * @return the list of property URIs of the Ontology
-	 */
-	public Vector<String> getPropertyURIs()
-	{
-		return propertyURIs;
-	}
-
 	/**
 	 * @return the ReferenceMap of the Ontology
 	 */
@@ -212,46 +231,20 @@ public class Ontology
 	}
 	
 	/**
-	 * @param uri: the URI of the term to get the index
-	 * @return the index of the term with the given URI
+	 * @return the list of term/property URIs of the Ontology
 	 */
-	public int getTermIndex(String uri)
+	public Vector<String> getURIs()
 	{
-		return termURIs.indexOf(uri);
+		return uris;
 	}
 	
 	/**
-	 * @param index: the index of the term to get the URI
-	 * @return the localName of the term with the given index
+	 * @param index: the index of the term/property to get the URI
+	 * @return the URI of the term/property with the given index
 	 */
-	public String getTermLocalName(int index)
+	public String getURI(int index)
 	{
-		return termNames.get(index);
-	}
-	
-	/**
-	 * @return the list of term localNames of the Ontology
-	 */
-	public Vector<String> getTermLocalNames()
-	{
-		return termNames;
-	}
-	
-	/**
-	 * @return the list of term URIs of the Ontology
-	 */
-	public Vector<String> getTermURIs()
-	{
-		return termURIs;
-	}
-	
-	/**
-	 * @param index: the index of the term to get the URI
-	 * @return the URI of the term with the given index
-	 */
-	public String getTermURI(int index)
-	{
-		return termURIs.get(index);
+		return uris.get(index);
 	}
 	
 	/**
@@ -270,13 +263,23 @@ public class Ontology
 	{
 		return u.startsWith(localPrefix);
 	}
+	
+	/**
+	 * @param index: the index of the uri in the ontology
+	 * @return whether the index corresponds to a property (true)
+	 * or a term (false)
+	 */
+	public boolean isProperty(int index)
+	{
+		return index >= separator;
+	}
 
 	/**
 	 * @return the number of properties in the Ontology
 	 */
 	public int propertyCount()
 	{
-		return propertyURIs.size();
+		return uris.size()-separator;
 	}
 
 	/**
@@ -284,7 +287,7 @@ public class Ontology
 	 */
 	public int termCount()
 	{
-		return termURIs.size();
+		return separator;
 	}
 
 //Private Methods	
@@ -303,18 +306,18 @@ public class Ontology
 			if(termUri == null || !termUri.startsWith(localPrefix))
 				continue;
 			//Add it to the list of termURIs
-			termURIs.add(termUri);
+			uris.add(termUri);
 			//Get the local name from the URI
 			int index = termUri.indexOf("#") + 1;
 			if(index == 0)
 				index = termUri.lastIndexOf("/") + 1;
 			String name = termUri.substring(index);
 			//Add it to the list of termNames
-			termNames.add(name);
+			names.add(name);
 			//If the local name is not alphanumeric, add it to the lexicon
 			if(!StringParser.isNumericId(name))
 			{
-				index = termURIs.size() - 1;
+				index = uris.size() - 1;
 				String type = "localName";
 				double weight = pr.getWeight(type);
 				lex.add(index, name, type, weight);
@@ -347,9 +350,10 @@ public class Ontology
 			//If the URI isn't local proceed to next property
 			if(!propUri.startsWith(localPrefix))
 				continue;
-			//Otherwise, add it to the propertyURIs list
-			propertyURIs.add(propUri);
-			int index = propertyURIs.size() - 1;
+			//Otherwise, add it to the uris and names lists
+			uris.add(propUri);
+			names.add(name);
+			int index = uris.size() - 1;
 			//Initialize the property
 			Property prop = new Property(index,name);
 			//Get its type(s)
@@ -413,10 +417,10 @@ public class Ontology
 		String type = "label";
 		double weight = pr.getWeight(type);
 		//For each term index
-		for(int i = 0; i < termURIs.size(); i++)
+		for(int i = 0; i < separator; i++)
 		{
 			//Get the class from the OntModel through the term uri
-			OntClass term = o.getOntClass(termURIs.get(i));
+			OntClass term = o.getOntClass(uris.get(i));
 			//Then get an iterator over the labels
 			ExtendedIterator<RDFNode> labs = term.listLabels(null);
 			//And add each one to the labels lexicon
@@ -434,10 +438,10 @@ public class Ontology
 		Set<OntProperty> ops = synProps.keySet();
 		
     	//For each term index (from 'termURIs' list)
-		for(int i = 0; i < termURIs.size(); i++)
+		for(int i = 0; i < separator; i++)
 		{
 			//Get the class from the OntModel through the term uri
-			OntClass term = o.getOntClass(termURIs.get(i));
+			OntClass term = o.getOntClass(uris.get(i));
 			//For each synonym property
 			for(OntProperty prop : ops)
 			{
@@ -479,10 +483,10 @@ public class Ontology
 	protected void getRelationships(OntModel o)
 	{
 		//For each term index (from 'termURIs' list)
-		for(int i = 0; i < termURIs.size(); i++)
+		for(int i = 0; i < separator; i++)
 		{
 			//Get the class from the OntModel through the term uri
-			OntClass term = o.getOntClass(termURIs.get(i));
+			OntClass term = o.getOntClass(uris.get(i));
 			//Then get an iterator over the labels
 			ExtendedIterator<OntClass> parents = term.listSuperClasses();
 			//And add each one to the labels lexicon
@@ -496,14 +500,14 @@ public class Ontology
 						r.getOnProperty().getLocalName().contains("part_of"))
 					{
 						String uri = r.asSomeValuesFromRestriction().getSomeValuesFrom().getURI();
-						int index = termURIs.indexOf(uri);
+						int index = uris.indexOf(uri);
 						if(index > -1)
 							rels.addPartOfEdge(i,index);							
 					}
 				}
 				else
 				{
-					int index = termURIs.indexOf(term.getURI());
+					int index = uris.indexOf(term.getURI());
 					if(index > -1)
 						rels.addIsAEdge(i,index);
 				}
@@ -515,17 +519,17 @@ public class Ontology
 	protected void getDisjoint(OntModel o)
 	{
 		//For each term index (from 'termURIs' list)
-		for(int i = 0; i < termURIs.size(); i++)
+		for(int i = 0; i < separator; i++)
 		{
 			//Get the class from the OntModel through the term uri
-			OntClass term = o.getOntClass(termURIs.get(i));
+			OntClass term = o.getOntClass(uris.get(i));
 			//Then get an iterator over the labels
 			ExtendedIterator<OntClass> disjoint = term.listDisjointWith();
 			//And add each one to the labels lexicon
 			while(disjoint.hasNext())
 			{
 				term = disjoint.next();
-				int index = termURIs.indexOf(term.getURI());
+				int index = uris.indexOf(term.getURI());
 				if(index > -1)
 					rels.addDisjoint(i,index);
 			}
@@ -536,10 +540,10 @@ public class Ontology
 	protected void getIntersections(OntModel o)
 	{
 		//For each term index (from 'terms' list)
-		for(int i = 0; i < termURIs.size(); i++)
+		for(int i = 0; i < separator; i++)
 		{
 			//Get the class from the OntModel through the term uri
-			OntClass term = o.getOntClass(termURIs.get(i));
+			OntClass term = o.getOntClass(uris.get(i));
 			//Then get an iterator over the labels
 			ExtendedIterator<OntClass> equiv = term.listEquivalentClasses();
 			//For each equivalentClass
@@ -568,7 +572,7 @@ public class Ontology
 					}
 					//Or a direct reference to a named class
 					//(in which case we can, but only if the class is listed)
-					int index = termURIs.indexOf(interClass.getURI());
+					int index = uris.indexOf(interClass.getURI());
 					if(index > -1)
 					{
 						rels.addIsAEdge(i, index);
@@ -590,10 +594,10 @@ public class Ontology
 		//Get the hasDbXRef property
 		OntProperty p = o.getOntProperty("http://www.geneontology.org/formats/oboInOwl#hasDbXref");
 		//For each term index (from 'termURIs' list)
-		for(int i = 0; i < termURIs.size(); i++)
+		for(int i = 0; i < separator; i++)
 		{
 			//Get the class from the OntModel through the term uri
-			OntClass term = o.getOntClass(termURIs.get(i));
+			OntClass term = o.getOntClass(uris.get(i));
 			//Get an iterator over the instances of that property for the term
 			StmtIterator syns = term.listProperties(p);
 			//For each such instance, process the statement

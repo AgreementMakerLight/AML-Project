@@ -58,7 +58,7 @@ public class Selector
 		//Initialize Alignment to return
 		Alignment selected = new Alignment(a.getSource(),a.getTarget());
 		//Start by boosting the reciprocal bestMatches by 10%
-		a.boostBestMatches(0.1);
+		//a.boostBestMatches(0.1);
 		//Then sort the alignment
 		a.sort();
 		//Then select Mappings in ranking order (by similarity)
@@ -89,7 +89,7 @@ public class Selector
 		//Initialize Alignment to return
 		Alignment selected = new Alignment(a.getSource(),a.getTarget());
 		//Start by boosting the reciprocal bestMatches by 10%
-		a.boostBestMatches(0.1);
+		//a.boostBestMatches(0.1);
 		//Then sort the alignment
 		a.sort();
 		//Then select Mappings in ranking order (by similarity)

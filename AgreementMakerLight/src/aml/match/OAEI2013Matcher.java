@@ -16,7 +16,7 @@
 * Note: Replace the AML Oracle with the SEALS Oracle for OAEI participation.  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-02-2014                                                            *
+* @date 12-02-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -148,7 +148,7 @@ public class OAEI2013Matcher
 		else if(Math.max(sSize, tSize) > 500)
 		{
 			size = 2;
-			threshold = 0.59;
+			threshold = 0.6;//TODO: Reevaluate this
 		}
 		else
 		{
@@ -286,11 +286,12 @@ public class OAEI2013Matcher
 		//Automatic extension-selection
 		if(sType.equals(SelectionType.STRICT))
 		{
+			//TODO: Fix the selection type
 			if(size < 3)
 				a.addAll(wm.extendAlignment(a, BASE_THRESH));
-			a = Selector.select(a, threshold, sType);
+			a = Selector.select(a, threshold, SelectionType.PERMISSIVE);
 			a.addAll(sm.extendAlignment(a,threshold));
-			a = Selector.select(a, threshold, sType);
+			a = Selector.select(a, threshold, SelectionType.PERMISSIVE);
 		}
 		else if(sType.equals(SelectionType.PERMISSIVE))
 		{
@@ -326,7 +327,7 @@ public class OAEI2013Matcher
 	{
 		long startTime = System.currentTimeMillis()/1000;
 		PropertyMatcher pm = new PropertyMatcher(useBK);
-		a.addAllPropMappings(pm.matchProperties(a, PROP_THRESH));
+		a.addAll(pm.matchProperties(a, PROP_THRESH));
 		return System.currentTimeMillis()/1000 - startTime;
 	}
 	
@@ -371,8 +372,8 @@ public class OAEI2013Matcher
 
 	private boolean mappingIsTrue(Mapping m)
 	{
-		String sourceURI = source.getTermURI(m.getSourceId());
-		String targetURI = target.getTermURI(m.getTargetId());
+		String sourceURI = source.getURI(m.getSourceId());
+		String targetURI = target.getURI(m.getTargetId());
 		return oracle.check(sourceURI,targetURI,Oracle.Relation.EQUIVALENCE);
 	}
 }

@@ -15,7 +15,7 @@
 * Mapping selection dialog box for the GUI.                                   *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-01-2014                                                            *
+* @date 12-02-2014                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -62,15 +62,14 @@ public class SelectMapping extends JDialog implements ActionListener
 		labelPanel.add(desc);
 		
 		Alignment a = AMLGUI.getAlignment();
-		int total = a.termMappingCount();
-		String[] mappings = new String[total];
-		for(int i = 0; i < total; i++)
+		String[] mappings = new String[a.size()];
+		for(int i = 0; i < mappings.length; i++)
 		{
 			Mapping m = a.get(i);
 			String map = (i+1) + " (";
-			map += a.getSource().getLexicon().getBestName(m.getSourceId());
+			map += a.getSource().getName(m.getSourceId());
 			map += " = ";
-			map += a.getTarget().getLexicon().getBestName(m.getTargetId());
+			map += a.getTarget().getName(m.getTargetId());
 			map += ")";
 			mappings[i] = map;
 		}

@@ -15,8 +15,8 @@
 * Displays the graph surrounding a Mapping in a JInternalFrame, using a       *
 * PApplet from the Gephi toolbox.                                             *
 *                                                                             *
-* @author Daniel Faria                                                        *
-* @date 06-02-2014                                                            *
+* @author Daniel Faria & Catia Pesquita                                       *
+* @date 19-02-2014                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -50,6 +50,7 @@ import org.openide.util.Lookup;
 import aml.AMLGUI;
 import aml.match.Alignment;
 import aml.match.Mapping;
+import aml.match.MatchingConfigurations.MappingRelation;
 import aml.ontology.Ontology;
 
 import processing.core.PApplet;
@@ -66,6 +67,7 @@ public class MappingViewerGephi extends JInternalFrame
 	private DirectedGraph directedGraph;
 	private Ontology source, target;
 	private HashSet<Integer> sourceNodes, targetNodes;
+	private int maxDistance;
 	private final Color BK = new Color(214,217,223);
 	
 //Constructor
@@ -114,23 +116,26 @@ public class MappingViewerGephi extends JInternalFrame
 			//And the mapping between them
 			addMapping(sId,tId);
 			//Get the maximum distance
-			int maxDistance = AMLGUI.getMaxDistance();
+			maxDistance = AMLGUI.getMaxDistance();
 			//Initialize the node sets (which don't include the starting nodes)
 			sourceNodes = new HashSet<Integer>();
 			targetNodes = new HashSet<Integer>();
 			//Add all ancestors and descendants as per the view parameters
 			if(AMLGUI.showAncestors())
 			{
-				addSourceAncestors(sId,maxDistance);
-				addTargetAncestors(tId,maxDistance);
+				addSourceAncestors(sId);
+				addTargetAncestors(tId);
 			}
 			if(AMLGUI.showDescendants())
 			{
-				addSourceDescendants(sId,maxDistance);
-				addTargetDescendants(tId,maxDistance);
+				addSourceDescendants(sId);
+				addTargetDescendants(tId);
 			}
+			//Add all additional mappings of the initial nodes
+			addOtherMappings(sId,tId);
 			//Now find if there are any mappings between the node sets and add them
 			addAllMappings();
+
 			
 			//Run YifanHuLayout for 100 passes - The layout always takes the current visible view
 			YifanHuLayout layout = new YifanHuLayout(null, new StepDisplacement(1f));
@@ -218,15 +223,57 @@ public class MappingViewerGephi extends JInternalFrame
 	{
 		Node n1 = directedGraph.getNode("NS" + sId);
 		Node n2 = directedGraph.getNode("NT" + tId);
-		Edge e1 = model.factory().newEdge(n1, n2, 3, true);
-		e1.getEdgeData().setColor(1, 1, 0);
-		directedGraph.addEdge(e1);
-		Edge e2 = model.factory().newEdge(n2, n1, 3, true);
-		e2.getEdgeData().setColor(1, 1, 0);
-		directedGraph.addEdge(e2);
+		if(directedGraph.getEdge(n1,n2) != null)
+			return;
+		MappingRelation r = AMLGUI.getAlignment().getRelationship(sId,tId);
+		if(!r.equals(MappingRelation.SUPERCLASS))
+		{
+			Edge e1 = model.factory().newEdge(n1, n2, 3, true);
+			e1.getEdgeData().setColor(1, 1, 0);
+			e1.getEdgeData().setLabel("" + AMLGUI.getAlignment().getSimilarity(sId,tId));
+			directedGraph.addEdge(e1);
+		}
+		if(!r.equals(MappingRelation.SUBCLASS))
+		{
+			Edge e2 = model.factory().newEdge(n2, n1, 3, true);
+			e2.getEdgeData().setColor(1, 1, 0);
+			if(r.equals(MappingRelation.SUPERCLASS))
+				e2.getEdgeData().setLabel("" + AMLGUI.getAlignment().getSimilarity(sId,tId));
+			directedGraph.addEdge(e2);
+		}
 	}
 	
-	private void addSourceAncestors(int id, int maxDistance)
+	private void addOtherMappings(int sId, int tId)
+	{
+		Vector<Integer> sourceMappings = AMLGUI.getAlignment().getSourceMappings(sId);
+		targetNodes.addAll(sourceMappings);
+		for(Integer i : sourceMappings)
+		{
+			if(i == tId)
+				continue;
+			addTargetNode(i,6);
+			addMapping(sId,i);
+			if(AMLGUI.showAncestors())
+				addTargetAncestors(i);
+			if(AMLGUI.showDescendants())
+				addTargetDescendants(i);
+		}
+		Vector<Integer> targetMappings = AMLGUI.getAlignment().getTargetMappings(tId);
+		sourceNodes.addAll(targetMappings);
+		for(Integer i : targetMappings)
+		{
+			if(i == sId)
+				continue;
+			addSourceNode(i,6);
+			addMapping(i,tId);
+			if(AMLGUI.showAncestors())
+				addSourceAncestors(i);
+			if(AMLGUI.showDescendants())
+				addSourceDescendants(i);
+		}
+	}
+	
+	private void addSourceAncestors(int id)
 	{
 		HashSet<Integer> ancestors = new HashSet<Integer>();
 		ancestors.add(id);
@@ -250,7 +297,7 @@ public class MappingViewerGephi extends JInternalFrame
 		}
 	}
 	
-	private void addSourceDescendants(int id, int maxDistance)
+	private void addSourceDescendants(int id)
 	{
 		HashSet<Integer> descendants = new HashSet<Integer>();
 		descendants.add(id);
@@ -289,13 +336,13 @@ public class MappingViewerGephi extends JInternalFrame
 	{
 		Node n = model.factory().newNode("NS" + id);
 		n.getNodeData().setSize(3);
-		n.getNodeData().setLabel(source.getLexicon().getBestName(id));
+		n.getNodeData().setLabel(source.getName(id));
 		n.getNodeData().setColor(1, 0, 0);
 		n.getNodeData().setSize(size);
 		directedGraph.addNode(n);
 	}
 	
-	private void addTargetAncestors(int id, int maxDistance)
+	private void addTargetAncestors(int id)
 	{
 		HashSet<Integer> ancestors = new HashSet<Integer>();
 		ancestors.add(id);
@@ -319,7 +366,7 @@ public class MappingViewerGephi extends JInternalFrame
 		}
 	}
 	
-	private void addTargetDescendants(int id, int maxDistance)
+	private void addTargetDescendants(int id)
 	{
 		HashSet<Integer> descendants = new HashSet<Integer>();
 		descendants.add(id);
@@ -358,7 +405,7 @@ public class MappingViewerGephi extends JInternalFrame
 	{
 		Node n = model.factory().newNode("NT" + id);
 		n.getNodeData().setSize(3);
-		n.getNodeData().setLabel(target.getLexicon().getBestName(id));
+		n.getNodeData().setLabel(target.getName(id));
 		n.getNodeData().setColor(0, 0, 1);
 		n.getNodeData().setSize(size);
 		directedGraph.addNode(n);

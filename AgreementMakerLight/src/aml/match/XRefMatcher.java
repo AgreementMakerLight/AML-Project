@@ -17,7 +17,7 @@
 * cross-references.                                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 12-02-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -125,7 +125,7 @@ public class XRefMatcher implements Matcher
 		Alignment a = new Alignment(o, ext);
 		ReferenceMap rm = ext.getReferenceMap();
 		Set<String> refs = rm.getReferences();
-		Vector<String> names = o.getTermLocalNames();
+		Vector<String> names = o.getLocalNames();
 		for(String r : refs)
 		{
 			int i = names.indexOf(r);

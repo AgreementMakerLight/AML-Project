@@ -12,10 +12,10 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Enumerates matching algorithms and selection types.                         *
+* Enumerates mapping relationships, matching algorithms, and selection types. *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 03-02-2014                                                            *
+* @date 12-02-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -23,6 +23,48 @@ public class MatchingConfigurations
 {
 	
 //Enumerations
+
+	/**
+	 * Lists the mapping relationships
+	 */
+	public enum MappingRelation
+	{
+    	EQUIVALENCE	("="),
+    	SUPERCLASS	(">"),
+    	SUBCLASS	("<"),
+    	OVERLAP		("^"),
+    	UNKNOWN		("?");
+    	
+    	private String representation;
+    	
+    	private MappingRelation(String rep)
+    	{
+    		representation = rep;
+    	}
+    	
+    	public MappingRelation inverse()
+    	{
+    		if(this.equals(SUBCLASS))
+    			return SUPERCLASS;
+    		else if(this.equals(SUPERCLASS))
+    			return SUBCLASS;
+    		else
+    			return this;
+    	}
+    	
+    	public String toString()
+    	{
+    		return representation;
+    	}
+    	
+		public static MappingRelation parseRelation(String relation)
+		{
+			for(MappingRelation rel : MappingRelation.values())
+				if(relation.equals(rel.toString()))
+					return rel;
+			return UNKNOWN;
+		}
+    }
 	
 	/**
 	 * Lists the Matching Algorithms
@@ -44,6 +86,14 @@ public class MatchingConfigurations
 	    {
 	    	return label;
 	    }
+	    
+		public static MatchingAlgorithm parseMatcher(String matcher)
+		{
+			for(MatchingAlgorithm m : MatchingAlgorithm.values())
+				if(matcher.equals(m.toString()))
+					return m;
+			return AML;
+		}
 	}
 	
 	/**
@@ -67,5 +117,13 @@ public class MatchingConfigurations
     	{
     		return value;
     	}
+    	
+		public static SelectionType parseSelector(String selector)
+		{
+			for(SelectionType s : SelectionType.values())
+				if(selector.equals(s.toString()))
+					return s;
+			return AUTO;
+		}
     }
 }

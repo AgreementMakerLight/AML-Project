@@ -15,7 +15,7 @@
 * Ontology opening dialog box for the GUI.                                    *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-02-2014                                                            *
+* @date 13-02-2014                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -136,7 +136,7 @@ public class OpenOntologies extends JDialog implements ActionListener
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
 				target = fc.getSelectedFile();
-				targetPath.append(target.getName());
+				targetPath.setText(target.getName());
 			}
 		}
 		else if(o == open)
@@ -152,6 +152,8 @@ public class OpenOntologies extends JDialog implements ActionListener
 				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 				return;
 			}
+			s.getLexicon().generateStopWordSynonyms();
+			s.getLexicon().generateBracketSynonyms();
 			URI targetURI = target.toURI();
 			Ontology t = null;
 			try{t = new Ontology(targetURI,true,targetFormat.getSelectedIndex() == 0);}

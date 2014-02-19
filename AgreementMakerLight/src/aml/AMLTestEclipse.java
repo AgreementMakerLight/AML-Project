@@ -15,7 +15,7 @@
 * Tests AgreementMakerLight in Eclipse, with manually configured options.     *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-01-2014                                                            *
+* @date 12-02-2014                                                            *
 ******************************************************************************/
 package aml;
 
@@ -28,7 +28,6 @@ import org.dom4j.DocumentException;
 
 import aml.match.Alignment;
 import aml.match.OAEI2013Matcher;
-import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 
 public class AMLTestEclipse
@@ -42,10 +41,10 @@ public class AMLTestEclipse
 		PropertyConfigurator.configure("log4j.properties");
 
 		//Path to input ontology files (edit manually)
-		String sourcePath = "store/3Top.rdf.xml";
-		String targetPath = "store/foursquare.rdf.xml";
+		String sourcePath = "store/anatomy/mouse.owl";
+		String targetPath = "store/anatomy/human.owl";
 		//Path to reference alignment (edit manually, or leave blank for no evaluation)
-		String referencePath = "";
+		String referencePath = "store/anatomy/reference.rdf";
 		//Path to output alignment file (edit manually, or leave left blank to not save alignment)
 		String alignPath = "";
 		//The ontologies
@@ -69,9 +68,6 @@ public class AMLTestEclipse
 		String uriString = u.toString();
 		boolean isOWL = !uriString.endsWith(".rdfs");
 		Ontology o = new Ontology(u,true,isOWL);
-		Lexicon l = o.getLexicon();
-		l.generateStopWordSynonyms();
-		l.generateBracketSynonyms();
 		long elapsedTime = System.currentTimeMillis()/1000 - startTime;
 		System.out.println(o.getURI() + " loaded in " + elapsedTime + " seconds");
 		System.out.println("Classes: " + o.termCount());		

@@ -15,7 +15,7 @@
 * Alignment search dialog box for the GUI.                                    *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-01-2014                                                            *
+* @date 19-02-2014                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -84,14 +84,14 @@ public class SearchAlignment extends JDialog implements ActionListener
 		JPanel labelPanel = new JPanel();
 		labelPanel.add(desc);
 		Alignment a = AMLGUI.getAlignment();
-		int total = a.termMappingCount();
+		int total = a.size();
 		mappings = new ArrayList<String>(total);
 		for(int i = 0; i < total; i++)
 		{
 			Mapping m = a.get(i);
-			String map = a.getSource().getLexicon().getBestName(m.getSourceId());
+			String map = a.getSource().getName(m.getSourceId());
 			map += " = ";
-			map += a.getTarget().getLexicon().getBestName(m.getTargetId());
+			map += a.getTarget().getName(m.getTargetId());
 			mappings.add(map);
 		}
 		searchField = new JTextArea(1,60);
@@ -147,7 +147,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 			//Get the entered text
 			String text = searchField.getText();
 			//Check that the user entered a valid input (at least 3 consecutive characters)
-			if(text.matches(".*[a-z]{3,}.*"))
+			if(text.matches(".*[a-zA-Z0-9]{3,}.*"))
 			{
 				//If so, clean the input
 				text = text.toLowerCase().trim();
@@ -162,8 +162,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 				//Otherwise, search for it
 				else
 				{
-					search();
-					//dialogPanel.remove(resultsPanel);
+					search(text);
 					buildResultsPanel();
 			       	dialogPanel.add(resultsPanel, "Results");
 			        cl.show(dialogPanel, "Results");
@@ -180,10 +179,8 @@ public class SearchAlignment extends JDialog implements ActionListener
 
 //Private Methods
 	
-	private void search()
+	private void search(String query)
 	{
-		String query = searchField.getText().toLowerCase();
-		
 		HashMap<String,Double> hits = new HashMap<String,Double>();
 		for(String m : mappings)
 		{

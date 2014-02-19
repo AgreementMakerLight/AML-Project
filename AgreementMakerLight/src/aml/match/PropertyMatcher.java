@@ -18,7 +18,7 @@
 * and range matches. Can use WordNet to boost the name similarity.            *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 12-02-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -208,10 +208,10 @@ public class PropertyMatcher
 	{
 		int sIndex = -1;
 		if(source.isLocal(sUri))
-			sIndex = source.getTermIndex(sUri);
+			sIndex = source.getIndex(sUri);
 		int tIndex = -1;
 		if(target.isLocal(tUri))
-			tIndex = target.getTermIndex(tUri);
+			tIndex = target.getIndex(tUri);
 		if(sIndex > -1 && tIndex > -1)
 			return (maps.containsMapping(sIndex, tIndex) ||
 					maps.containsParentMapping(sIndex, tIndex));
@@ -251,10 +251,10 @@ public class PropertyMatcher
 	{
 		int sIndex = -1;
 		if(source.isLocal(sUri))
-			sIndex = source.getTermIndex(sUri);
+			sIndex = source.getIndex(sUri);
 		int tIndex = -1;
 		if(target.isLocal(tUri))
-			tIndex = target.getTermIndex(tUri);
+			tIndex = target.getIndex(tUri);
 		if(sIndex > -1 && tIndex > -1)
 			return (maps.containsMapping(sIndex, tIndex));
 		return sUri.equals(tUri);

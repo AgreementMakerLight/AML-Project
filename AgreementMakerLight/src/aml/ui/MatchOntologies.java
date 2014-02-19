@@ -139,15 +139,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			//Set the matching algorithm
-			MatchingAlgorithm matcher = MatchingAlgorithm.AML;
-			for(MatchingAlgorithm m: MatchingAlgorithm.values())
-			{
-				if(m.toString().equals(config.getSelectedItem()))
-				{
-					matcher = m;
-					break;
-				}
-			}
+			MatchingAlgorithm matcher = MatchingAlgorithm.parseMatcher((String)config.getSelectedItem());
 			AMLGUI.setMatcher(matcher);
 			//Then set the options
 			if(matcher.equals(MatchingAlgorithm.OAEI))
@@ -155,29 +147,14 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			else if(matcher.equals(MatchingAlgorithm.AML))
 			{
 				Vector<String> selectedBK = new Vector<String>(bk.getSelectedValuesList());
-				SelectionType sType = SelectionType.AUTO;
-				for(SelectionType s: SelectionType.values())
-				{
-					if(s.toString().equals(selection1.getSelectedItem()))
-					{
-						sType = s;
-						break;
-					}
-				}
-				AMLGUI.setMatchOptions(properties.isSelected(), repair.isSelected(), selectedBK, sType, (Double)threshold1.getSelectedItem());
+				AMLGUI.setMatchOptions(properties.isSelected(), repair.isSelected(), selectedBK,
+						SelectionType.parseSelector((String)selection1.getSelectedItem()),
+						(Double)threshold1.getSelectedItem());
 			}
 			else if(matcher.equals(MatchingAlgorithm.LEXICAL))
 			{
-				SelectionType sType = SelectionType.AUTO;
-				for(SelectionType s: SelectionType.values())
-				{
-					if(s.toString().equals(selection2.getSelectedItem()))
-					{
-						sType = s;
-						break;
-					}
-				}
-				AMLGUI.setMatchOptions(sType, (Double)threshold2.getSelectedItem());
+				AMLGUI.setMatchOptions(SelectionType.parseSelector((String)selection2.getSelectedItem()),
+						(Double)threshold2.getSelectedItem());
 			}
 			//Then match the ontologies
 			AMLGUI.match();

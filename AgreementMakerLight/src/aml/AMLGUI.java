@@ -15,7 +15,7 @@
 * Runs the AgreementMakerLight Graphic User Interface.                        *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-02-2014                                                            *
+* @date 19-02-2014                                                            *
 ******************************************************************************/
 package aml;
 

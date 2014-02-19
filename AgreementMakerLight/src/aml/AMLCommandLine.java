@@ -15,7 +15,7 @@
 * Runs the OAEI2013 matcher with options input from the command line.         *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-01-2014                                                            *
+* @date 12-02-2014                                                            *
 ******************************************************************************/
 package aml;
 
@@ -26,7 +26,6 @@ import org.apache.log4j.PropertyConfigurator;
 
 import aml.match.Alignment;
 import aml.match.OAEI2013Matcher;
-import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 
 public class AMLCommandLine
@@ -148,9 +147,6 @@ public class AMLCommandLine
 		String uriString = u.toString();
 		boolean isOWL = !uriString.endsWith(".rdfs");
 		Ontology o = new Ontology(u,true,isOWL);
-		Lexicon l = o.getLexicon();
-		l.generateStopWordSynonyms();
-		l.generateBracketSynonyms();
 		long elapsedTime = System.currentTimeMillis()/1000 - startTime;
 		System.out.println(o.getURI() + " loaded in " + elapsedTime + " seconds");
 		System.out.println("Classes: " + o.termCount());		

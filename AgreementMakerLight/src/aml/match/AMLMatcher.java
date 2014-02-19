@@ -15,7 +15,7 @@
 * Customizable ensemble of matching, selection & repair algorithms.           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 03-02-2014                                                            *
+* @date 12-02-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -91,7 +91,7 @@ public class AMLMatcher implements Matcher
 		if(matchProps)
 		{
 			PropertyMatcher pm = new PropertyMatcher(bkSources.contains("WordNet"));
-			a.addAllPropMappings(pm.matchProperties(a, PROP_THRESH));
+			a.addAll(pm.matchProperties(a, PROP_THRESH));
 		}
 		if(repair)
 		{

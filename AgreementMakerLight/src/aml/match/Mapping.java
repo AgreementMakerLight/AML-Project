@@ -13,16 +13,19 @@
 *                                                                             *
 *******************************************************************************
 * A mapping between terms or properties of two Ontologies, including the      *
-* similarity between them. An element in an Alignment.                        *
+* similarity and type of relationship between them.                           *
+* An element in an Alignment.                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 19-02-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
+import aml.match.MatchingConfigurations.MappingRelation;
+
 public class Mapping implements Comparable<Mapping>
 {
-	
+
 //Attributes
 
 	//The id of the source ontology term
@@ -31,7 +34,9 @@ public class Mapping implements Comparable<Mapping>
 	private int targetId;
 	//The similarity between the terms
 	private double similarity;
-
+	//The relationship between the terms
+	private MappingRelation rel;
+	
 //Constructors
 
 	/**
@@ -43,6 +48,8 @@ public class Mapping implements Comparable<Mapping>
 	{
 		sourceId = sId;
 		targetId = tId;
+		similarity = 1.0;
+		rel = MappingRelation.EQUIVALENCE;
 	}
 	
 	/**
@@ -55,7 +62,23 @@ public class Mapping implements Comparable<Mapping>
 	{
 		sourceId = sId;
 		targetId = tId;
-		similarity = sim;
+		similarity = Math.round(sim*10000)/10000.0;
+		rel = MappingRelation.EQUIVALENCE;
+	}
+	
+	/**
+	 * Creates a mapping between sId and tId with similarity = sim
+	 * @param sId: the id of the source ontology term
+	 * @param tId: the id of the target ontology term
+	 * @param sim: the similarity between the terms
+	 * @param r: the mapping relationship between the terms
+	 */
+	public Mapping(int sId, int tId, double sim, MappingRelation r)
+	{
+		sourceId = sId;
+		targetId = tId;
+		similarity = Math.round(sim*10000)/10000.0;
+		rel = r;
 	}
 	
 	/**
@@ -67,6 +90,7 @@ public class Mapping implements Comparable<Mapping>
 		sourceId = m.sourceId;
 		targetId = m.targetId;
 		similarity = m.similarity;
+		rel = m.rel;
 	}
 
 //Public Methods
@@ -89,13 +113,21 @@ public class Mapping implements Comparable<Mapping>
 	
 	/**
 	 * Two Mappings are equal if they map the same two terms
-	 * irrespective of the similarity, which enables finding
-	 * redundant Mappings
+	 * irrespective of the similarity or relationship, which
+	 * enables finding redundant Mappings
 	 */
 	public boolean equals(Object o)
 	{
 		Mapping m = (Mapping)o;
 		return (this.sourceId == m.sourceId && this.targetId == m.targetId);
+	}
+	
+	/**
+	 * @return the mapping relation between the mapped terms
+	 */
+	public MappingRelation getRelationship()
+	{
+		return rel;
 	}
 	
 	/**
@@ -124,10 +156,19 @@ public class Mapping implements Comparable<Mapping>
 	
 	/**
 	 * Sets the similarity of the Mapping to sim
+	 * @param r: the relationship between the mapped terms
+	 */
+	public void setRelationship(MappingRelation r)
+	{
+		rel = r;
+	}
+	
+	/**
+	 * Sets the similarity of the Mapping to sim
 	 * @param sim: the similarity between the mapped terms
 	 */
 	public void setSimilarity(double sim)
 	{
-		similarity = sim;
+		similarity = Math.round(sim*10000)/10000.0;
 	}
 }
