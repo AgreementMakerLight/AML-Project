@@ -1112,7 +1112,10 @@ public class Alignment implements Iterable<Mapping>
 		boolean rightOrder = source.getURI().equals(src) && target.getURI().equals(tgt);
 		//If not and they are not reversed, we can't proceed
 		if(!rightOrder && !(source.getURI().equals(tgt) && target.getURI().equals(src)))
+		{
+			inStream.close();
 			return;
+		}
 		//Fourth line contains the headers
 		inStream.readLine();
 		//And from the fifth line forward we have mappings

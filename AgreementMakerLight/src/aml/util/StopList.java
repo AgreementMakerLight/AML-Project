@@ -46,6 +46,7 @@ public class StopList
 			String line;
 			while((line = inStream.readLine()) != null)
 				stopWords.add(line);
+			inStream.close();
 		}
 		catch(Exception e)
 		{

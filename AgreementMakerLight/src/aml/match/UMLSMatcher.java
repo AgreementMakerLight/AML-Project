@@ -66,7 +66,8 @@ public class UMLSMatcher implements Matcher
 				int id = Integer.parseInt(words[0]);
 				table.add(words[2], words[1], id);
 				ids.add(id);
-			}			
+			}
+			inStream.close();
 		}
 		catch(Exception e)
 		{
