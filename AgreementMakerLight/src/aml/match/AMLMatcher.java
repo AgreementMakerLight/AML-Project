@@ -77,7 +77,7 @@ public class AMLMatcher implements Matcher
 		//If background knowledge is on auto, call the AutoBKMatcher
 		if(bkSources != null && bkSources.size() > 0)
 		{
-			BackgrounKnowledgeMatcher bk = new BackgrounKnowledgeMatcher(bkSources, !sType.equals(SelectionType.MANY));
+			BackgroundKnowledgeMatcher bk = new BackgroundKnowledgeMatcher(bkSources, !sType.equals(SelectionType.MANY));
 			a.addAll(bk.match(source, target, thresh));
 		}
 		if(!isLarge)

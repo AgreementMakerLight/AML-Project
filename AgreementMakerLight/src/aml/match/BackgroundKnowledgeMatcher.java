@@ -30,7 +30,7 @@ import aml.ontology.Ontology;
 import aml.ontology.Uberon;
 import aml.util.MapSorter;
 
-public class BackgrounKnowledgeMatcher implements Matcher
+public class BackgroundKnowledgeMatcher implements Matcher
 {
 	
 //Attributes
@@ -46,7 +46,7 @@ public class BackgrounKnowledgeMatcher implements Matcher
 	
 //Constructor
 	
-	public BackgrounKnowledgeMatcher(Vector<String> s, boolean one)
+	public BackgroundKnowledgeMatcher(Vector<String> s, boolean one)
 	{
 		sources = s;
 		oneToOne = one;
@@ -94,7 +94,7 @@ public class BackgrounKnowledgeMatcher implements Matcher
 				else
 					gain = temp.gain(tempBase);
 				if(gain >= GAIN_THRESH)
-					selected.put(new Alignment(ext),gain);
+					selected.put(new Alignment(temp),gain);
 			}
 			//WordNet
 			else if(s.equals("WordNet"))
@@ -106,7 +106,7 @@ public class BackgrounKnowledgeMatcher implements Matcher
 				else
 					gain = temp.gain(tempBase);
 				if(gain > GAIN_THRESH)
-					selected.put(new Alignment(ext),gain);
+					selected.put(new Alignment(temp),gain);
 			}
 			//Ontologies
 			else

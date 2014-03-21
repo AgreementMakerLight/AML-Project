@@ -1005,15 +1005,29 @@ public class Alignment implements Iterable<Mapping>
 		boolean orderSet = false;
 		if(s != null && t != null)
 		{
-			orderSet = true;
-			rightOrder = (s.equals(source.getURI()) && t.equals(target.getURI()));
-			//If the order is neither right nor reversed, we can't read the alignment
-			if(!rightOrder && !s.equals(target.getURI()) && !t.equals(source.getURI()))
-				throw new DocumentException("Cannot read alignment file:" +
-						" listed ontologies do not correspond to opened ontologies.");
+			if(s.endsWith("#"))
+				s = s.substring(0,s.length()-1);
+			if(t.endsWith("#"))
+				t = t.substring(0,t.length()-1);
+			if(s.equals(source.getURI()) && t.equals(target.getURI()))
+			{
+				rightOrder = true;
+				orderSet = true;
+			}
+			else if(s.equals(target.getURI()) && t.equals(source.getURI()))
+			{
+				rightOrder = false;
+				orderSet = true;
+			}
+			else
+			{
+				/*
+				 * Do nothing and try to read alignment anyway (assume alignment file error)
+				 * Or throw exception (assume user error) if line below is uncommented
+				 */
+				//throw new DocumentException("Cannot read alignment file: listed ontologies do not correspond to opened ontologies.");
+			}
 		}
-		else
-			orderSet = false;
 		//Get an iterator over the mappings
 		Iterator<?> map = align.elementIterator("map");
 		while(map.hasNext())

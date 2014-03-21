@@ -124,19 +124,22 @@ public class XRefMatcher implements Matcher
 		//Step 1 - Do a xref match
 		Alignment a = new Alignment(o, ext);
 		ReferenceMap rm = ext.getReferenceMap();
-		Set<String> refs = rm.getReferences();
-		Vector<String> names = o.getLocalNames();
-		for(String r : refs)
+		if(rm != null)
 		{
-			int i = names.indexOf(r);
-			if(i > -1)
+			Set<String> refs = rm.getReferences();
+			Vector<String> names = o.getLocalNames();
+			for(String r : refs)
 			{
-				Vector<Integer> terms = rm.get(r);
-				//Penalize cases where multiple terms have the same xref
-				//(note that sim = 1 when the xref is unique) 
-				double sim = 1.3 - (terms.size() * 0.3);
-				for(Integer j : terms)
-					a.add(i, j, sim);
+				int i = names.indexOf(r);
+				if(i > -1)
+				{
+					Vector<Integer> terms = rm.get(r);
+					//Penalize cases where multiple terms have the same xref
+					//(note that sim = 1 when the xref is unique) 
+					double sim = 1.3 - (terms.size() * 0.3);
+					for(Integer j : terms)
+						a.add(i, j, sim);
+				}
 			}
 		}
 		
