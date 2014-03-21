@@ -1,0 +1,22 @@
+List of changes from version 1.0
+
+#src/aml/match/AMLMatcher.java
+> Updated reference to 'BackgroundKnowledgeMatcher.java' due to rename listed below
+
+#src/aml/match/Alignment.java
+> Added missing inStream.close() statement in the method 'loadMappingsTSV(String file)' when returning without completion
+> Changed method 'loadMappingsRDF(String file)' so as to not return without completion due to mismatch of the ontologies listed, as the reference alignments of the OAEI 2013 LargeBio track have mismatched ontologies
+
+#src/aml/match/BackgrounKnowledgeMatcher.java
+> Renamed class to 'BackgroundKnowledgeMatcher.java'
+
+#src/aml/match/UMLSMatcher.java
+> Added missing inStream.close() statement in the constructor 
+
+#src/aml/match/XRefMatcher.java
+> Added a null verification step in the private method 'match(Ontology o)' to account for the case of absent ReferenceMap in ontology
+
+#src/aml/util/StopList.java
+> Added missing inStream.close() statement in the constructor
+
+
