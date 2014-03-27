@@ -15,11 +15,13 @@
 * Heuristic repair algorithm that approximates the global minimum number of   *
 * removed mappings.                                                           *
 *                                                                             *
-* @author Emanuel Santos & Daniel Faria                                       *
-* @date 31-01-2014                                                            *
+* @author Emanuel Santos                                                      *
+* @date 26-03-2014                                                            *
 ******************************************************************************/
 package aml.repair;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Vector;
@@ -34,134 +36,215 @@ public class Repairer
 //Attributes
 	
 	private RepairMap repairMap;
-	private boolean computeIntersection = false;
+	private boolean computeDisjointSets = false;
 	private int searchDeepLenght = 0;
-	private int maxchecklist = 10000;
+	private int maxBlockSize = 1000000000; //number of checklist terms repaired each time.
+	private Double marginOfError = -1.0;
+	private int initialThrhold = 0;
 
 //Constructors
 
 	/**
-	 * Constructs a new GlobalRepair Object
+	 * Constructs a new Repairer Object
 	 */
 	public Repairer(){}
 	
+	/**
+	 * Constructs a new Repairer Object
+	 * @param blocksize - maximum number of terms from checklist to be considered each loop of the repair.
+	 */
+	public Repairer(int blocksize)
+	{
+		maxBlockSize = blocksize;
+	}
+	
 //Public Methods
+	
+	/**
+	 * Sets the value of margin of error
+	 * @param error -  value of the margin of error
+	 * @requires error > 0 && error <= 1
+	 */
+	public void setMarginError(Double error){
+		this.marginOfError = error;
+		this.initialThrhold = 10; //(int) Math.max(repairMap.getGlobalListConflicts().size()*0.01, 10);
+	}
+	
 	
 	/**
 	 * Returns a global repair of an alignment with a coherence check at the end.
 	 */
 	public Alignment repair(Alignment a)
 	{
-		//If the cardinality of the alignment is not 1-to-1,
-		//reduce the checklist size limit
-		double cardinality = a.cardinality();
-		if(cardinality > 1.4)
-			maxchecklist = 4000;
-		else if(cardinality > 1)
-			maxchecklist = 8000;
-		
 		Ontology source = a.getSource();
 		Ontology target = a.getTarget();
+		
+		//verify if input ontologies have disjoints restrictions
 		if(source.getRelationshipMap().disjointCount() == 0 &&
 				target.getRelationshipMap().disjointCount() == 0)
 		{
 			System.out.println("Nothing to repair - ontologies have no disjoint clauses");
 			return a;
 		}
+		
+		//creates repairMap for this repair (builts maps)
 		repairMap = new RepairMap(a);
 		
-		//number of possible non_optimal mappings deletions
-		int nr_non_optimal = 0;
-		Vector<String> checklistall = new Vector<String>(repairMap.getChecklist());
-		System.out.println("Classes to check: " + checklistall.size());
-		int part = 1;
-		int index1 = 0;
-		int index2 = Math.min(checklistall.size()-1,maxchecklist*part-1);
-		Vector<Vector<Mapping>> globalconflictList;
-		Vector<String> checklistlocal;
-
-		if(index1<=index2)
-		{
-			checklistlocal =  new Vector<String>(checklistall.subList(index1, index2));
-			repairMap.builtConflictSetsOfMappings(checklistlocal);
-		}
-		else
-			checklistlocal = new Vector<String>();
-
+		//number of possible non optimal mappings deletions
+		//int ceilingNonOptimalDeletions = 0;
 		
-		while(!checklistlocal.isEmpty() && !(globalconflictList = repairMap.getGlobalListConflicts()).isEmpty())
+		//gets checklist of terms
+		Vector<String> checkList = repairMap.getChecklist();
+		System.out.println("Classes to check: " + checkList.size());
+		
+		//setting block variables
+		int blockNumber = 1, indexStart = 0, indexEnd = Math.min(checkList.size()-1,maxBlockSize*blockNumber-1);
+		Vector<String> checkListBlock;
+		
+		//conflict sets of mappings to resolve
+		Vector<Vector<Mapping>> conflictSets;
+
+		//setting the first block of the checklist
+		if(indexStart<=indexEnd)
 		{
-			if(!globalconflictList.isEmpty())
-			{
-				Vector<Vector<Mapping>> conflictList = globalconflictList;
-				//Determine the minimal set of mappings
-				if(!conflictList.isEmpty())
-				{
-					Vector<Vector<Vector<Mapping>>> conflictListsList;
-					if(computeIntersection)
-						conflictListsList = intersectionMappings(conflictList);
-					else
-					{
-						conflictListsList = new Vector<Vector<Vector<Mapping>>>();
-						conflictListsList.add(conflictList);
-					}
-					//only for computeIntersection==true
-					int nr_total_groups = conflictListsList.size();
-					for(int ii = 0; ii<conflictListsList.size();ii++)
-					{
-						Vector<Vector<Mapping>> cc = conflictListsList.get(ii);
-						Vector<Vector<Mapping>> new_conflictslist = intersectionStrategy(cc,searchDeepLenght);
-						if(!new_conflictslist.isEmpty())
-						{
-							//if it is not empty do a intersection again to check for redundant lists.
-							if(ii>=nr_total_groups)
-								//a group that was already "divided" more than 2 times, i.e., it can be non-optimal
-								nr_non_optimal++;
-	
-							if(computeIntersection)
-							{
-								Vector<Vector<Vector<Mapping>>> ii_new = intersectionMappings(new_conflictslist);
-								conflictListsList.addAll(ii_new);
-							}
-							else
-								conflictListsList.add(new_conflictslist);
-						}
-					}
-				}
+			checkListBlock =  new Vector<String>(checkList.subList(indexStart, indexEnd+1));
+			System.out.println("Classes to check now: " + checkListBlock.size());
+			Vector<String> cancelledTerms = new Vector<String> ();
+			//builts conflicts sets given the terms in checkListBlock
+			cancelledTerms = repairMap.builtConflictingSets(checkListBlock);
+			//puts cancelled terms in the end of the checkList to be considered at the end again.
+			checkList.addAll(cancelledTerms); 
+		}
+		else{
+			checkListBlock = new Vector<String>();
+		}
+
+		//loop until every term in checklist is verified
+		while(!checkListBlock.isEmpty())
+		{
+			conflictSets = repairMap.getConflictingSets();
+			
+			//resolve conflict if they exist in this block
+			if(!conflictSets.isEmpty()){
+				//System.out.println("conflictSets: " + conflictSets.size());
+				//applies main repair heuristics
+				System.out.println("Resolving " + conflictSets.size() + " minimal conflicting sets of mappings...");
+				applyRepairHeuristics(conflictSets,initialThrhold);
+			}else{
+				System.out.println("No conflicts to resolve");
 			}
-			part++;
-			index1 = index2+1;
-			index2 = Math.min(checklistall.size()-1,maxchecklist*part-1);
-			if(index1<=index2)
+			
+			//updates block variables
+			blockNumber++;
+			indexStart = indexEnd+1;
+			indexEnd = Math.min(checkList.size()-1,maxBlockSize*blockNumber-1);
+			
+			if(indexStart<=indexEnd)
 			{
-				checklistlocal =  new Vector<String>(checklistall.subList(index1, index2));
-				repairMap.builtConflictSetsOfMappings(checklistlocal);
+				checkListBlock =  new Vector<String>(checkList.subList(indexStart, indexEnd+1));
+				System.out.println("Classes to check now: " + checkListBlock.size());
+				Vector<String> cancelledTerms = repairMap.builtConflictingSets(checkListBlock);
+				checkList.addAll(cancelledTerms);
 			}
 			else
-				checklistlocal = new Vector<String>();
+				break;
 		}//end while
 
-		System.out.println("Possible non-optimal deletions: " +  nr_non_optimal);
+		//System.out.println("Possible non-optimal deletions: " +  nr_non_optimal);
 
 		//returns the repair alignment
 		Alignment repaired = repairMap.getAlignment();
+		System.out.println("Repair finished.");
 
+		/*
+		System.out.println("Checking isCoherent");
+		if(repairMap.isCoherent()){
+			System.out.println("Is Coherent");
+		}else{
+			System.out.println("Not Coherent");
+			System.out.println("Nr Incoherent Classes:" + repairMap.listIncoherentClasses().size());
+		}
+		*/
+		
 		return repaired;
 	}
-
-//Private Methods
 	
-	private static Vector<Vector<Vector<Mapping>>> intersectionMappings(Vector<Vector<Mapping>> vvMappings)
+	
+	
+//Private Methods
+
+	/**
+	 * Main repair algorithm: applies main repair heuristic and filter.
+	 * @param current - the set os conflicts mappings to resolve
+	 * @param thrhold - value for each filter should be applied.
+	 * TODO: parallel? change recursive part.
+	 */
+	private void applyRepairHeuristics(Vector<Vector<Mapping>> conflictsets, int thrhold)
+	{
+		//if set empty then nothing to do
+		if(conflictsets.isEmpty())
+			return;
+		//
+		if(computeDisjointSets)
+		{
+			//compute disjoint sets
+			Vector<Vector<Vector<Mapping>>> current = disjointConflictSets(conflictsets);
+			//loop each joint set of conflict sets
+			for(Vector<Vector<Mapping>> cs: current)
+			{	
+				int iSize = cs.size();
+				Vector<Vector<Mapping>> result = intersectionStrategy(cs, searchDeepLenght, thrhold);
+				//if it didn't remove any mapping then thrhold must be changed
+				if(iSize == result.size())
+				{
+					thrhold = 0;
+					//verify if filter is applied
+					if(marginOfError>=0.0){
+						result = filterMarginErrorMappingLists(result, marginOfError);
+					}
+				}
+				//currently done in a recursive way
+				applyRepairHeuristics(result, thrhold);
+			}
+		}
+		else
+		{	
+			//apply heuristics until there is no conflict set to resolve.
+			while(!conflictsets.isEmpty())
+			{
+				int iSize = conflictsets.size();
+				conflictsets = intersectionStrategy(conflictsets, searchDeepLenght, thrhold);
+				//if it didn't remove any mapping then thrhold must be changed
+				if(iSize == conflictsets.size())
+				{
+					thrhold = 0;
+					//verify if filter is applied
+					if(marginOfError>=0.0)
+					{
+						conflictsets = filterMarginErrorMappingLists(conflictsets, marginOfError);
+					}
+				}
+			}
+		}
+	}
+	
+	
+	/**
+	 * Computes the disjoint set of conflicts sets of mappings (no mapping in common)
+	 * @param conflictSets : a set of conflict sets of mappings
+	 * @returns A set of disjoint sets of conflict sets (no mapping in common)
+	 */
+	private static Vector<Vector<Vector<Mapping>>> disjointConflictSets(Vector<Vector<Mapping>> conflictSets)
 	{		
-		int total = vvMappings.size();
+		int total = conflictSets.size();
 		int joined = 0;		
 		HashMap<Mapping, HashSet<Integer>> hashVSet = new HashMap<Mapping, HashSet<Integer>>();
 		Vector<Vector<Vector<Mapping>>> result = new Vector<Vector<Vector<Mapping>>>();
 		
 		//create HashMap will all intersections
-		for(int i=0;i<vvMappings.size();i++)
+		for(int i=0;i<conflictSets.size();i++)
 		{
-			Vector<Mapping> v = vvMappings.get(i);
+			Vector<Mapping> v = conflictSets.get(i);
 			for(Mapping m: v)
 			{
 				if(!hashVSet.containsKey(m))
@@ -192,7 +275,7 @@ public class Repairer
 				toCheck.remove(current);	//done, remove it
 				for(Integer vmi: vi)
 				{
-					Vector<Mapping> vm = vvMappings.get(vmi);
+					Vector<Mapping> vm = conflictSets.get(vmi);
 					if(newSet.add(vm))
 					{
 						//not contain
@@ -215,17 +298,22 @@ public class Repairer
 		return result;
 	}
 	
-	// This strategy finds the mapping that belongs to the highest number of lists and lowest similarity.
-	// If there is more than one, then it performs a deep search of maximum lenght 'deep' to check
-	// which one (2)...(deep) best alternatives for each tie mapping belongs to highest number of lists.
-	// If there still more than one, it selects the first of the list. 
-	private Vector<Vector<Mapping>> intersectionStrategy(Vector<Vector<Mapping>> vvMappings, int deep)
+	
+	/**
+	 * Main repair heuristics - Selects and deletes the mapping that belongs the highest number of conflict sets.
+	 * Deletes the conflicts sets that are resolved (i.e. that include the selected/deleted mapping)
+	 * @param conflictsets - set of conflicts sets of mappings
+	 * @param depth - extra search depth value in case of tie
+	 * @param threshold - minimum number of conflicts sets that the selected mapping must belong to.
+	 * @returns A set of conflict sets of mappings that are still unresolved.
+	 */
+	private Vector<Vector<Mapping>> intersectionStrategy(Vector<Vector<Mapping>> conflictsets, int depth, int threshold)
 	{
-		if(vvMappings.isEmpty())
-			return vvMappings;
+		if(conflictsets.isEmpty())
+			return conflictsets;
 		
 		//a copy of our input list
-		Vector<Vector<Mapping>> vmaps = new Vector<Vector<Mapping>>(vvMappings);
+		Vector<Vector<Mapping>> vmaps = new Vector<Vector<Mapping>>(conflictsets);
 		//the map that maps a mapping to the number of sets that it belongs to
 		HashMap<Mapping,Integer> count_v = new HashMap<Mapping,Integer>();
 		int max = 0; // maximum current number
@@ -276,6 +364,52 @@ public class Repairer
 			}
 		}//end for
 		
+		//System.out.println("Total keys:" + count_v.keySet().size());
+		
+		/*
+		HashMap<Integer,Integer> count_maps = new HashMap<Integer,Integer>();
+		System.out.println("Total keys:" + count_v.keySet().size());
+		for(Mapping m: count_v.keySet())
+		{	
+			int nr = count_v.get(m);
+			
+			if(count_maps.containsKey(nr)){
+				count_maps.put(nr, count_maps.get(nr)+1);
+			}else{
+				count_maps.put(nr, 1);
+			}
+		}
+		HashSet<Integer> aaa = new HashSet<Integer>(count_v.values());
+		ArrayList<Integer> bbb = new ArrayList<Integer>(aaa);
+		Collections.sort(bbb);
+		
+		for(Integer nr: bbb){
+			System.out.println(nr + "---" + count_maps.get(nr));
+		}
+		System.out.println("---------------");
+		*/
+		
+		if(max<=threshold){
+			//it stops to remove if the max is on equal or less conflict sets than loweThreshold
+			return vmaps;
+		}
+			
+		/*System.out.println("Total keys:" + count_v.keySet().size());
+		HashSet<Integer> aaa = new HashSet<Integer>(count_v.values());
+		for(Integer ii: aaa){
+			System.out.print("Number o conflitct sets:" + ii + " -- ");
+			int nr = 0;
+			
+			for(Mapping m: count_v.keySet()){
+				if(count_v.get(m) == ii){
+					nr++;
+				}
+			}
+			System.out.println(nr);
+		}
+		System.out.println("------------");
+		*/
+		
 		//if the list of 'worst' is empty then there is nothing to do
 		if(worst.isEmpty())
 				return vmaps;
@@ -283,7 +417,7 @@ public class Repairer
 		////select the mapping to deleted
 		Mapping delete = null;
 		int maxListsResolved = -1; //number of mapping lists resolved
-		if(worst.size() == 1 || max == vmaps.size() || deep == 0)
+		if(worst.size() == 1 || max == vmaps.size() || depth == 0)
 		{
 			//there is only one, there is no tie
 			delete = worst.firstElement();
@@ -297,7 +431,7 @@ public class Repairer
 				//guess wm is to delete
 				repairMap.remove(wm);
 				//get the maximum number of lists of mappings resolved ofter this remocal
-				int numberListAffected = intersectionSearch(0,deep,vmaps);
+				int numberListAffected = intersectionSearch(0,depth,vmaps);
 				
 				//is it a new maximum?
 				if(maxListsResolved<numberListAffected)
@@ -309,6 +443,7 @@ public class Repairer
 				repairMap.add(wm);
 			}
 		}
+
 		//delete the mapping selected as worst 
 		if(delete != null)
 			repairMap.remove(delete);
@@ -326,6 +461,7 @@ public class Repairer
 		return vmaps;
 	}
 	
+
 	// This strategy finds the mapping that belongs to the highest number of lists and lowest similarity.
 	private int intersectionSearch(int deep, int maxDeep, Vector<Vector<Mapping>> vvMappings)
 	{
@@ -374,6 +510,7 @@ public class Repairer
 				idx--; //it was removed
 			}
 		}
+
 		count_v.clear();
 		if(worst.isEmpty())
 			return 0;
@@ -390,4 +527,83 @@ public class Repairer
 		}
 		return maxdelete + max;
 	}
+	
+
+	//comparator that sorts the conflicts sets to filter
+    private static Comparator<Vector<Mapping>> filteringComparator = new Comparator<Vector<Mapping>>() {
+
+		public int compare(Vector<Mapping> o1,Vector<Mapping> o2) {
+			
+			Collections.sort(o1);
+			Collections.sort(o2);
+			
+			Double leasto1 = o1.get(0).getSimilarity();
+			Double leasto2 = o2.get(0).getSimilarity();
+			
+			Double diff = leasto1 - leasto2;
+			
+			if(Math.abs(diff)<0.00001){
+				return 0;
+			}else if(diff>0){
+				return -1;
+			}else{
+				return 1;
+			}
+		}
+	};
+	
+	
+	/**
+	 * Filtering heuristics - Removes all the conflict sets of mappings where its lowest confidence value mapping is lower 
+	 * than the second lowest within a confidence interval
+	 * @param conflictsets - A set of conflict sets of mappings to filter
+	 * @param confidenceinterval - value of the confidence interval.
+	 * @returns A set of filtered conflict sets. 
+	 */
+	private Vector<Vector<Mapping>> filterMarginErrorMappingLists(Vector<Vector<Mapping>> mappings, Double confidenceinterval)
+	{
+		//sorts conflict sets from the one that has the highest lowest-confidence mapping to the one that has 
+		//lowest-confidence least mapping
+		Collections.sort(mappings, filteringComparator);
+		Vector<Vector<Mapping>> filtered = new Vector<Vector<Mapping>>(1,1);
+		
+		for(Vector<Mapping> vm : mappings)
+		{
+			Collections.sort(vm);
+			Mapping lowest = vm.get(0);  //lowest-confidence mapping
+			Mapping lowest2 = vm.get(1); //second lowest-confidence mapping
+		
+			if(withinMarginError(lowest,lowest2,confidenceinterval))
+			{
+				//the lowest-confidence value is within the confidence interval
+				filtered.add(vm);
+			}else{
+				repairMap.remove(lowest);
+			}				
+		}
+		return filtered;
+	}
+	
+	
+	/**
+	 * Checks if the confidence values of the mappings are within the confidence interval
+	 * @param m1 - a mapping
+	 * @param m2 - a mapping
+	 * @param confidenceinterval : A value for the margin of error
+	 * @result true iff the similarity values of m1 and m2 are within the margin of error
+	 */
+	private boolean withinMarginError(Mapping mapping1, Mapping mapping2, Double confidenceinterval)
+	{
+		Double value1 = mapping1.getSimilarity();
+		Double value2 = mapping2.getSimilarity();
+		
+		if(value1<=value2)
+		{
+			return value1 + confidenceinterval >= value2 - confidenceinterval;
+		}else
+		{
+			return value2 + confidenceinterval >= value1 - confidenceinterval;
+		}
+	}
+	
 }
