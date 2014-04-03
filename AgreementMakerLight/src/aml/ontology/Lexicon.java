@@ -85,7 +85,7 @@ public class Lexicon
 	public void add(int term, String name, String type, String source, double weight)
 	{
 		//First ensure that the name contains letters
-		if(!name.matches(".*[a-zA-Z].*"))
+		if(name == null || !name.matches(".*[a-zA-Z].*"))
 			return;
 
 		String s;

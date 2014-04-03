@@ -1028,10 +1028,10 @@ public class RepairMap implements Iterable<String>
 					}
 					else
 					{
-						//synchronized(this){
+						synchronized(this){
 						newPath.addAll(newPathMap.get(i));
 						newPathMap.put(i, minimalConflictSets(newPath));//adds this mapping to the new path
-						//}
+						}
 						
 					}
 					
@@ -1052,9 +1052,9 @@ public class RepairMap implements Iterable<String>
 					{
 						path.addAll(confMapTerm.get(d));	
 						Vector<Vector<Mapping>> minimal = null;
-						//synchronized(this){
+						synchronized(this){
 						minimal = minimalConflictSets(path);
-						//}
+						}
 						confMapTerm.put(d, minimal);
 					}
 				}				

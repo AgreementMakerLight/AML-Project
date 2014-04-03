@@ -16,7 +16,7 @@
 * including links to the various structures that store the Ontology data.     *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 28-03-2014                                                            *
 ******************************************************************************/
 package aml.ontology;
 
@@ -70,6 +70,8 @@ public class Ontology
 	protected RelationshipMap rels;
 	//Its map of cross-references
 	protected ReferenceMap refs;
+	//Whether only local namespace terms are loaded
+	protected boolean localOnly = false;
 	
 	//Auxiliary map of synonym properties to lexicon types
 	protected HashMap<OntProperty,String> synProps;
@@ -84,16 +86,6 @@ public class Ontology
 	 */
 	public Ontology(URI path, boolean isInput, boolean owl)
 	{
-		//Step 1 - Initialize the data structures
-		uris = new Vector<String>(0,1);
-		names = new Vector<String>(0,1);
-		pr = new PropertyList();
-		lex = new Lexicon();
-		rels = new RelationshipMap();
-		refs = null;
-		synProps = new HashMap<OntProperty,String>();
-		
-		//Step 2 - Read the ontology as an OntModel
 		String uriString = path.toString();
 		OntModel o = null;
 		if(owl)
@@ -102,42 +94,8 @@ public class Ontology
 			o = ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM);
 		o.read(uriString,"RDF/XML");
 		
-		//Step 3 - Construct the Ontology object
-		uri = o.listOntologies().next().getURI();
+		init(o,isInput);
 		
-		String obo = "http://purl.obolibrary.org/obo/";
-		//If the ontology has an OBO prefix in its URI
-		if(uri.startsWith(obo))
-			//The local prefix is the OBO prefix (since the guys at OBO like doing things differently)
-			localPrefix = obo;
-		//Otherwise, the localPrefix is the uri (OWL default)
-		else
-			localPrefix = uri;
-		
-		//List the term and property uris and local names
-		getTerms(o);
-		separator = uris.size();
-		getProperties(o);
-		//Build the Lexicon
-		getLabels(o);
-		getSynonyms(o);
-		//Extend it
-		lex.generateStopWordSynonyms();
-		lex.generateBracketSynonyms();
-		//Build the relationship map
-		if(isInput)
-		{
-			getRelationships(o);
-			getDisjoint(o);
-			getIntersections(o);
-			rels.transitiveClosure();
-		}
-		//Or the reference map
-		else if(hasReferences(o))
-		{
-			refs = new ReferenceMap();
-			getReferences(o);
-		}
 		//Close the OntModel
 		o.close();
 	}
@@ -292,6 +250,54 @@ public class Ontology
 
 //Private Methods	
 
+	public void init(OntModel o, boolean isInput)
+	{
+		//Initialize the data structures
+		uris = new Vector<String>(0,1);
+		names = new Vector<String>(0,1);
+		pr = new PropertyList();
+		lex = new Lexicon();
+		rels = new RelationshipMap();
+		refs = null;
+		synProps = new HashMap<OntProperty,String>();
+		
+		//Get the local namespace
+		uri = o.listOntologies().next().getURI();
+		String obo = "http://purl.obolibrary.org/obo/";
+		//If the ontology has an OBO prefix in its URI
+		if(uri.startsWith(obo))
+			//The local prefix is the OBO prefix (since the guys at OBO like doing things differently)
+			localPrefix = obo;
+		//Otherwise, the localPrefix is the uri (OWL default)
+		else
+			localPrefix = uri;
+		
+		//List the term and property uris and local names
+		getTerms(o);
+		separator = uris.size();
+		getProperties(o);
+		//Build the Lexicon
+		getLabels(o);
+		getSynonyms(o);
+		//Extend it
+		lex.generateStopWordSynonyms();
+		lex.generateBracketSynonyms();
+		//Build the relationship map
+		if(isInput)
+		{
+			getRelationships(o);
+			getDisjoint(o);
+			getIntersections(o);
+			rels.transitiveClosure();
+		}
+		//Or the reference map
+		else if(hasReferences(o))
+		{
+			refs = new ReferenceMap();
+			getReferences(o);
+		}
+	}
+	
 	//Gets the term uris from the OntModel (and indexes them)
 	protected void getTerms(OntModel o)
 	{
@@ -303,7 +309,9 @@ public class Ontology
 			OntClass term = classes.next();
 			String termUri = term.getURI();
 			//If the URI is local
-			if(termUri == null || !termUri.startsWith(localPrefix))
+			if(termUri == null)
+				continue;
+			if(localOnly && !termUri.startsWith(localPrefix))
 				continue;
 			//Add it to the list of termURIs
 			uris.add(termUri);
@@ -485,32 +493,52 @@ public class Ontology
 		//For each term index (from 'termURIs' list)
 		for(int i = 0; i < separator; i++)
 		{
-			//Get the class from the OntModel through the term uri
-			OntClass term = o.getOntClass(uris.get(i));
-			//Then get an iterator over the labels
-			ExtendedIterator<OntClass> parents = term.listSuperClasses();
-			//And add each one to the labels lexicon
-			while(parents.hasNext())
+			try
 			{
-				term = parents.next();
-				if(term.isRestriction())
+				//Get the class from the OntModel through the term uri
+				OntClass term = o.getOntClass(uris.get(i));
+				//Then get an iterator over the labels
+				ExtendedIterator<OntClass> parents = term.listSuperClasses();
+				//And add each one to the labels lexicon
+				while(parents.hasNext())
 				{
-					Restriction r = term.asRestriction();
-					if(r.isSomeValuesFromRestriction() && 
-						r.getOnProperty().getLocalName().contains("part_of"))
+					term = parents.next();
+					if(term.isRestriction())
 					{
-						String uri = r.asSomeValuesFromRestriction().getSomeValuesFrom().getURI();
-						int index = uris.indexOf(uri);
+						Restriction r = term.asRestriction();
+						if(r.isSomeValuesFromRestriction())
+						{
+							String rName = "";
+							try
+							{
+								rName = r.getOnProperty().getLocalName();
+							}
+							catch(Exception e)
+							{
+								//Do nothing
+								System.out.println(e.getMessage());
+							}
+							if(rName.contains("part_of"))
+							{
+								String uri = r.asSomeValuesFromRestriction().getSomeValuesFrom().getURI();
+								int index = uris.indexOf(uri);
+								if(index > -1)
+									rels.addPartOfEdge(i,index);
+							}
+						}
+					}
+					else
+					{
+						int index = uris.indexOf(term.getURI());
 						if(index > -1)
-							rels.addPartOfEdge(i,index);							
+							rels.addIsAEdge(i,index);
 					}
 				}
-				else
-				{
-					int index = uris.indexOf(term.getURI());
-					if(index > -1)
-						rels.addIsAEdge(i,index);
-				}
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+				continue;
 			}
 		}
 	}
@@ -542,49 +570,57 @@ public class Ontology
 		//For each term index (from 'terms' list)
 		for(int i = 0; i < separator; i++)
 		{
-			//Get the class from the OntModel through the term uri
-			OntClass term = o.getOntClass(uris.get(i));
-			//Then get an iterator over the labels
-			ExtendedIterator<OntClass> equiv = term.listEquivalentClasses();
-			//For each equivalentClass
-			while(equiv.hasNext())
+			try
 			{
-				
-				OntClass equivTerm = equiv.next();
-				//Check if it is an intersection
-				if(!equivTerm.isIntersectionClass())
-					continue;
-				//If so, read all classes in the intersection
-				IntersectionClass equivInter = equivTerm.asIntersectionClass();
-				ExtendedIterator<? extends OntClass> inter = equivInter.listOperands();
-				HashSet<Integer> interList = new HashSet<Integer>();
-				boolean complete = true;
-				//Each class in the intersection					
-				while(inter.hasNext())
+				//Get the class from the OntModel through the term uri
+				OntClass term = o.getOntClass(uris.get(i));
+				//Then get an iterator over the labels
+				ExtendedIterator<OntClass> equiv = term.listEquivalentClasses();
+				//For each equivalentClass
+				while(equiv.hasNext())
 				{
-					OntClass interClass = (OntClass)inter.next();
-					//Should be either a restriction
-					//(in which case we can't infer an is_a relationship)
-					if(interClass.isRestriction())
-					{
-						complete = false;
+					
+					OntClass equivTerm = equiv.next();
+					//Check if it is an intersection
+					if(!equivTerm.isIntersectionClass())
 						continue;
-					}
-					//Or a direct reference to a named class
-					//(in which case we can, but only if the class is listed)
-					int index = uris.indexOf(interClass.getURI());
-					if(index > -1)
+					//If so, read all classes in the intersection
+					IntersectionClass equivInter = equivTerm.asIntersectionClass();
+					ExtendedIterator<? extends OntClass> inter = equivInter.listOperands();
+					HashSet<Integer> interList = new HashSet<Integer>();
+					boolean complete = true;
+					//Each class in the intersection					
+					while(inter.hasNext())
 					{
-						rels.addIsAEdge(i, index);
-				    	interList.add(index);
+						OntClass interClass = (OntClass)inter.next();
+						//Should be either a restriction
+						//(in which case we can't infer an is_a relationship)
+						if(interClass.isRestriction())
+						{
+							complete = false;
+							continue;
+						}
+						//Or a direct reference to a named class
+						//(in which case we can, but only if the class is listed)
+						int index = uris.indexOf(interClass.getURI());
+						if(index > -1)
+						{
+							rels.addIsAEdge(i, index);
+					    	interList.add(index);
+						}
+						else
+						    complete = false;
 					}
-					else
-					    complete = false;
+					//If all terms in the intersection are listed classes
+					//then we can add the equivalence to the RelationshipMap
+					if(complete)
+						rels.addEquivalence(interList, i);
 				}
-				//If all terms in the intersection are listed classes
-				//then we can add the equivalence to the RelationshipMap
-				if(complete)
-					rels.addEquivalence(interList, i);
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getMessage());
+				continue;
 			}
 		}
 	}
