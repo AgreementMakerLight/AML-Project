@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="src/lib/jena.jar"/>
 	<classpathentry kind="lib" path="src/lib/dom4j.jar"/>
 	<classpathentry kind="lib" path="src/lib/jaws.jar"/>
@@ -9,6 +9,5 @@
 	<classpathentry kind="lib" path="src/lib/gephi-toolkit.jar"/>
 	<classpathentry kind="lib" path="src/lib/swingx-all-1.6.4.jar"/>
 	<classpathentry kind="lib" path="src/lib/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="src/lib/owlapi-distribution-3.4.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
