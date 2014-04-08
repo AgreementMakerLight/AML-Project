@@ -16,7 +16,7 @@
 * as a Table of indexes, and including methods for input and output.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-02-2014                                                            *
+* @date 08-04-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -351,10 +351,23 @@ public class Alignment implements Iterable<Mapping>
 	 * @param sourceId: the index of the source term to check in the alignment
  	 * @param targetId: the index of the target term to check in the alignment 
 	 * @return whether the Alignment contains a Mapping for sourceId or for targetId
+	 * other than the given mapping between them
 	 */
 	public boolean containsConflict(int sourceId, int targetId)
 	{
-		return containsSource(sourceId) || containsTarget(targetId);
+		boolean check = false;
+		if(containsSource(sourceId) && containsTarget(targetId))
+		{
+			Set<Integer> sMaps = sourceMaps.keySet(sourceId);
+			Set<Integer> tMaps = targetMaps.keySet(targetId);
+			if(sMaps.size() > 1 || tMaps.size() > 1)
+				check = true;
+			else
+				check = !sMaps.contains(targetId);			
+		}
+		else if(containsSource(sourceId) || containsTarget(targetId))
+			check = true;
+		return check;
 	}
 	
 	/**
