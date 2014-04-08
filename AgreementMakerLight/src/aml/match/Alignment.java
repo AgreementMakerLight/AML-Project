@@ -478,6 +478,23 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
+	 * @param a: the Alignment to subtract from this Alignment 
+	 * @return the Alignment corresponding to the difference between this Alignment and a
+	 */
+	public Alignment difference(Alignment a)
+	{
+		//If the alignments aren't between the same ontologies, return this alignment
+		if(source != a.source || target != a.target)
+			return new Alignment(this);
+		//Otherwise, compute the intersection
+		Alignment diff = new Alignment(source,target);
+		for(Mapping m : maps)
+			if(!a.containsMapping(m))
+				diff.add(m);
+		return diff;
+	}
+	
+	/**
 	 * @param a: the reference Alignment to evaluate this Alignment 
 	 * @return the number of Mappings in this Alignment that are correct
 	 * (i.e., found in the reference Alignment)
