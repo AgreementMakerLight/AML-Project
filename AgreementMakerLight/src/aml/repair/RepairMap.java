@@ -18,7 +18,8 @@
 * by "S" and target term indexes are prepended by "T".                        *
 *                                                                             *
 * @authors Emanuel Santos & Daniel Faria                                      *
-* @date 26-03-2014                                                            *
+* @date 11-04-2014                                                            *
+* @version 1.1                                                                *
 ******************************************************************************/
 package aml.repair;
 
@@ -70,11 +71,11 @@ public class RepairMap implements Iterable<String>
 	//maximum number of Threads
 	private int maxNumberThreads = Runtime.getRuntime().availableProcessors();
 	//time out settings for threads for conflict sets search
-	private int timeOut = 3000;
+	private int timeOut = 300;
 	private TimeUnit timeUnit = TimeUnit.SECONDS;
 	
 	// HashMap that stores all terms of checklist that were already computed
-	private ConcurrentHashMap<String,HashMap<String,Vector<Vector<Mapping>>>> conflictsMapComputed = new ConcurrentHashMap<String,HashMap<String,Vector<Vector<Mapping>>>>();
+	public ConcurrentHashMap<String,HashMap<String,Vector<Vector<Mapping>>>> conflictsMapComputed = new ConcurrentHashMap<String,HashMap<String,Vector<Vector<Mapping>>>>();
 	
 	// The current set of conflicting sets of mappings (created during built)
 	private Vector<Vector<Mapping>> currentConflictSets = new Vector<Vector<Mapping>>();
@@ -296,7 +297,7 @@ public class RepairMap implements Iterable<String>
 		Vector<String> cancelledTerms = builtConflictingSetsInParallel(checklist); //parallel version
 		checklist.removeAll(cancelledTerms);
 		builtMinimalConflictMapsParallel(checklist);
-		
+				
 		return cancelledTerms;
 	}
 	
@@ -309,78 +310,65 @@ public class RepairMap implements Iterable<String>
 		//Get the RelationshipMaps
 		RelationshipMap sourceMap = source.getRelationshipMap();
 		RelationshipMap targetMap = target.getRelationshipMap();
-		
+				
 		//Build a list of source terms consisting of each mapped term
 		HashSet<Integer> sourceList = new HashSet<Integer>(align.getSources());
 		//Build a list of target terms consisting of each mapped term
 		HashSet<Integer> targetList = new HashSet<Integer>(align.getTargets());
-		//begin with source
-		int size = sourceList.size();
-		//Plus each of its Descendants that has more than one parent that doesnt have any subclass
-		//with more than one parent
+		//Plus each of its descendants that has more than one parent
 		Vector<Integer> sourceListDesc = new Vector<Integer>();
-		for(int i = 0; i < size; i++)
+		for(int i : sourceList)
 		{
-			Vector<Integer> desc = sourceMap.getDescendants(i);
+			Vector<Integer> desc = sourceMap.getDescendants(i,true);
 			for(Integer j : desc)
-				if(sourceMap.countIsAParents(j) > 1 && !sourceList.contains(j) && !sourceListDesc.contains(j))
+			{		
+				if((sourceMap.countIsAParents(j) > 1 || sourceMap.getDisjoint(j).size() > 0) &&
+						!sourceList.contains(j) && !sourceListDesc.contains(j))
 					sourceListDesc.add(j);
-		}
-		
-		
-		//Remove the Descendants that have a subclass with more than one parent
-		size = sourceListDesc.size();
+			}
+		}				
+		//Remove the descendants that have a subclass with more than one parent
+		//or a subclass that is in a Mapping
 		for(int i = 0; i < sourceListDesc.size(); i++)
 		{
 			int cls = sourceListDesc.get(i);
-			Vector<Integer> desc = sourceMap.getDescendants(cls);
-			
+			Vector<Integer> desc = sourceMap.getDescendants(cls,true);
 			for(Integer j : desc)
 			{
-				if(sourceListDesc.contains(j) || sourceList.contains(j)){
-					//it could be a superclass
-					//lets check if there is a cycle
-					if(!sourceMap.getDescendants(j).contains(i))
-					{
-						//not a cycle -- it is a superclass
-						sourceListDesc.remove(i);
-						i--;
-						break;
-					}
+				if(sourceListDesc.contains(j) || sourceList.contains(j))
+				{
+					sourceListDesc.remove(i--);
+					break;
 				}
 			}
 		}
-		//Add classes that need to be checked
-		//terms that have more than one direct parent and doesn't have any subclass with more than one parent.
-		
-		//add sourceListDesc is already checked	
+		//Add sourceListDesc to the list of classes that need to be checked
 		for(Integer i : sourceListDesc)
 			checklist.add("S" + i);
-		
-		//add sourceList with the same property
-		//We only need to add the source OR the target. we choose the smallest one.
-		if(targetList.size() >= sourceList.size())
-		{
-			for(Integer i : sourceList)
-			{	
-				Vector<Integer> desc = sourceMap.getDescendants(i);
-				boolean checkcls = true;
-				for(Integer j : desc)
+		//Go through the sourceList
+		for(Integer i : sourceList)
+		{	
+			//Exclude mapped classes that are already on the check list
+			//or that have a mapped subclass
+			Vector<Integer> desc = sourceMap.getDescendants(i,true);
+			boolean checkcls = true;
+			for(Integer j : desc)
+			{
+				if((checklist.contains("S" + j) || sourceList.contains(j)) &&
+						!sourceMap.getDescendants(j,true).contains(i))
 				{
-					if((checklist.contains("S" + j) || sourceList.contains(j)) && !sourceMap.getDescendants(j).contains(i)){
-						//it is a superclass
-						checkcls = false;
-						break;
-					}
+					//it is a superclass
+					checkcls = false;
+					break;
 				}
-				
-				if(checkcls)
-				{
-					checklist.add("S" + i);
-				}			
 			}
+			//Add all those that don't to the check list
+			if(checkcls)
+			{
+				checklist.add("S" + i);
+			}		
 		}
-		//add all Descendants to the sourceList
+		//Add all descendants to the sourceList
 		sourceList.addAll(sourceListDesc);
 		
 		//Add all disjoint clauses to the disjointMap
@@ -393,68 +381,49 @@ public class RepairMap implements Iterable<String>
 		}
 		
 		//Then repeat the process for the target Ontology
-		size = targetList.size();
-		//Plus each of its Descendants that has more than one parent that doesnt have any subclass
-		//with more than one parent
 		Vector<Integer> targetListDesc = new Vector<Integer>();
-		for(int i = 0; i < size; i++)
+		for(int i : targetList)
 		{
-			Vector<Integer> desc = targetMap.getDescendants(i);
+			Vector<Integer> desc = targetMap.getDescendants(i,true);
 			for(Integer j : desc)
-				if(targetMap.countIsAParents(j) > 1 && !targetList.contains(j) && !targetListDesc.contains(j))
+				if((targetMap.countIsAParents(j) > 1 || targetMap.getDisjoint(j).size() > 0)
+						&& !targetList.contains(j) && !targetListDesc.contains(j))
 					targetListDesc.add(j);
 		}
-		
 		for(int i = 0; i < targetListDesc.size(); i++)
 		{
 			int cls = targetListDesc.get(i);
-			Vector<Integer> desc = targetMap.getDescendants(cls);
-			
+			Vector<Integer> desc = targetMap.getDescendants(cls,true);
 			for(Integer j : desc)
 			{
-				if(targetListDesc.contains(j) || targetList.contains(j)){
-					//it could be a superclass
-					//lets check if there is a cycle
-					if(!targetMap.getDescendants(j).contains(i))
-					{
-						//not a cycle -- it is a superclass
-						targetListDesc.remove(i);
-						i--;
-						break;
-					}
+				if(targetListDesc.contains(j) || targetList.contains(j))
+				{
+					targetListDesc.remove(i--);
+					break;
 				}
 			}
 		}
 		for(Integer i : targetListDesc)
 			checklist.add("T" + i);
-		
-		//add targetList with the same property
-		//We only need to add the source OR the target. we choose the smallest one.
-		if(targetList.size() < sourceList.size())
+		for(Integer i : targetList)
 		{
-			for(Integer i : targetList)
+			Vector<Integer> desc = targetMap.getDescendants(i,true);
+			boolean checkcls = true;
+			for(Integer j : desc)
 			{
-				
-				Vector<Integer> desc = targetMap.getDescendants(i);
-				boolean checkcls = true;
-				for(Integer j : desc)
+				if((checklist.contains("T" + j) || targetList.contains(j)) &&
+						!targetMap.getDescendants(j,true).contains(i))
 				{
-					if((checklist.contains("T" + j) || targetList.contains(j)) && !targetMap.getDescendants(j).contains(i)){
-						//it is a superclass
-						checkcls = false;
-						break;
-					}
+					checkcls = false;
+					break;
 				}
-				
-				if(checkcls)
-				{
-					checklist.add("T" + i);
-				}			
 			}
+			if(checkcls)
+			{
+				checklist.add("T" + i);
+			}			
 		}
-		//add all Descendants to the targetList
 		targetList.addAll(targetListDesc);
-		
 		Set<Integer> targetDisj = targetMap.getDisjoint();
 		for(Integer i : targetDisj)
 		{
@@ -462,11 +431,6 @@ public class RepairMap implements Iterable<String>
 			for(Integer j : v)
 				disjointMap.add("T" + i, "T" + j);
 		}
-		
-		//System.out.println("INITIAL ::: ALIGN_size:" + align.size());
-		//System.out.println("INITIAL ::: Target_List_Size:" + targetList.size());
-		//System.out.println("INITIAL ::: Source_List_Size:" + sourceList.size());
-		//System.out.println("INITIAL ::: Checklist_Size:" + checklist.size());
 		
 		// checking that all target and source classes may lead to incoherence
 		// remove classes that are not subclasses of at least 2 mappings or 1 mapping and 1 disjunction.
@@ -538,10 +502,6 @@ public class RepairMap implements Iterable<String>
 			}
 		}
 		
-		//System.out.println("FINAL ::: Target_List_Size:" + targetFinalList.size());
-		//System.out.println("FINAL ::: Source_List_Size:" + sourceFinalList.size());
-		//System.out.println("FINAL ::: Checklist_Size:" + (checklist.size()-checklist_toremove.size()));
-		
 		sourceList = sourceFinalList;
 		targetList = targetFinalList;
 		checklist.removeAll(checklist_toremove);
@@ -565,9 +525,7 @@ public class RepairMap implements Iterable<String>
 				if(targetList.contains(j) || targetDisj.contains(j))
 					ancestorMap.add("T" + i, "T" + j, null);
 		}
-		
-		//System.out.println("FINAL so entre Ci::: AncestorMap:" + ancestorMap.keySet().size());
-		//System.out.println("FINAL so entre Ci::: ancestorDirectMap:" + ancestorDirectMap.keySet().size());
+
 		
 		ArrayList<String> amks = new ArrayList<String>(ancestorMap.keySet());
 		ArrayList<String> toRemove = new ArrayList<String>();
@@ -629,7 +587,8 @@ public class RepairMap implements Iterable<String>
 				ancestorMap.get(vv).remove(aa);
 			}	
 		}
-				
+
+		
 		//Include the direct/indirect ancestor information (source and target)
 		for(String si : ancestorMap.keySet())
 		{	
@@ -656,7 +615,7 @@ public class RepairMap implements Iterable<String>
 			}
 		}
 		
-		//count source and target terms
+		//Count source and target terms
 		int sourceCls = 0;
 		int targetCls = 0;
 		
@@ -668,13 +627,11 @@ public class RepairMap implements Iterable<String>
 				targetCls++;
 		}
 		
-		System.out.println("Target List Size:" + targetCls);
-		System.out.println("Source List Size:" + sourceCls);
-		System.out.println("AncestorMap:" + ancestorMap.keySet().size());
-		//System.out.println("ancestorDirectMap:" + ancestorDirectMap.keySet().size());
-		System.out.println("Checklist Size:" + (checklist.size()));
+		System.out.println("Source List Size: " + sourceCls);
+		System.out.println("Target List Size: " + targetCls);
+		System.out.println("AncestorMap: " + ancestorMap.keySet().size());
+		System.out.println("Checklist Size: " + (checklist.size()));
 	}
-	
 
 	//Methods for building all conflicting sets of mappings
 		
@@ -1217,11 +1174,14 @@ public class RepairMap implements Iterable<String>
 					//if it is a disjoint, joins their mapping paths and computes minimal sets.
 					Vector<Vector<Mapping>> joint = joinMappingPaths(conflictsMap.get(d), conflictsMap.get(d2));
 					Vector<Vector<Mapping>> minimal_joint = minimalConflictSets(joint);
+					
 					result = minimalConflictSets(minimal_joint,result);
+
+					
 				}
 			}
 		}
-		
+
 		//removes empty sets 
 		return removeNulls(result);
 	}
@@ -1298,7 +1258,8 @@ public class RepairMap implements Iterable<String>
 	{
 		//initialize variable -- getting the right block of results
 		int size = results.size();
-		Double slot = Math.max(Math.ceil(size/total),1);
+
+		Double slot = Math.max(Math.ceil(size/(1.0*total)),1);
 		Double start = part*slot;
 		Double stop = Math.min((part+1)*slot, size);
 		//result is initialize with the first set of block
@@ -1306,7 +1267,6 @@ public class RepairMap implements Iterable<String>
 		//hashmap that stores which sets does each mapping belongs to. 
 		HashMap<Mapping, HashSet<Integer>> help = new HashMap<Mapping, HashSet<Integer>>();
 		
-		//because result is initialized with first set of block
 		for(int i= start.intValue()+1; i<stop; i++)
 		{
 			result = joinMinimalConflictSets(results.get(i).get(), result, help); 

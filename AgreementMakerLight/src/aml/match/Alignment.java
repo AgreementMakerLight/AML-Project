@@ -16,7 +16,8 @@
 * as a Table of indexes, and including methods for input and output.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 08-04-2014                                                            *
+* @date 11-04-2014                                                            *
+* @version 1.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -56,9 +57,9 @@ public class Alignment implements Iterable<Mapping>
 	//Term mappings organized in list
 	private Vector<Mapping> maps;
 	//Term mappings organized by source term
-	private Table2Plus<Integer,Integer,Integer> sourceMaps;
+	private Table2Plus<Integer,Integer,Mapping> sourceMaps;
 	//Term mappings organized by target term
-	private Table2Plus<Integer,Integer,Integer> targetMaps;
+	private Table2Plus<Integer,Integer,Mapping> targetMaps;
 	
 	//Control variables
 	private int propertyMappingCount;
@@ -76,8 +77,8 @@ public class Alignment implements Iterable<Mapping>
 		source = s;
 		target = t;
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Integer>();
-		targetMaps = new Table2Plus<Integer,Integer,Integer>();
+		sourceMaps = new Table2Plus<Integer,Integer,Mapping>();
+		targetMaps = new Table2Plus<Integer,Integer,Mapping>();
 		propertyMappingCount = 0;
 		termMappingCount = 0;
 	}
@@ -94,8 +95,8 @@ public class Alignment implements Iterable<Mapping>
 		source = s;
 		target = t;
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Integer>();
-		targetMaps = new Table2Plus<Integer,Integer,Integer>();
+		sourceMaps = new Table2Plus<Integer,Integer,Mapping>();
+		targetMaps = new Table2Plus<Integer,Integer,Mapping>();
 		propertyMappingCount = 0;
 		termMappingCount = 0;		
 		if(file.endsWith(".rdf"))
@@ -113,8 +114,8 @@ public class Alignment implements Iterable<Mapping>
 		source = a.source;
 		target = a.target;
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Integer>();
-		targetMaps = new Table2Plus<Integer,Integer,Integer>();
+		sourceMaps = new Table2Plus<Integer,Integer,Mapping>();
+		targetMaps = new Table2Plus<Integer,Integer,Mapping>();
 		propertyMappingCount = 0;
 		termMappingCount = 0;
 		addAll(a);
@@ -140,8 +141,8 @@ public class Alignment implements Iterable<Mapping>
 		{
 			index = maps.size();
 			maps.add(m);
-			sourceMaps.add(sourceId, targetId, index);
-			targetMaps.add(targetId, sourceId, index);
+			sourceMaps.add(sourceId, targetId, m);
+			targetMaps.add(targetId, sourceId, m);
 			if(source.isProperty(sourceId) && target.isProperty(targetId))
 				propertyMappingCount++;
 			else
@@ -177,8 +178,8 @@ public class Alignment implements Iterable<Mapping>
 		{
 			index = maps.size();
 			maps.add(m);
-			sourceMaps.add(sourceId, targetId, index);
-			targetMaps.add(targetId, sourceId, index);
+			sourceMaps.add(sourceId, targetId, m);
+			targetMaps.add(targetId, sourceId, m);
 			if(source.isProperty(sourceId) && target.isProperty(targetId))
 				propertyMappingCount++;
 			else
@@ -351,23 +352,10 @@ public class Alignment implements Iterable<Mapping>
 	 * @param sourceId: the index of the source term to check in the alignment
  	 * @param targetId: the index of the target term to check in the alignment 
 	 * @return whether the Alignment contains a Mapping for sourceId or for targetId
-	 * other than the given mapping between them
 	 */
 	public boolean containsConflict(int sourceId, int targetId)
 	{
-		boolean check = false;
-		if(containsSource(sourceId) && containsTarget(targetId))
-		{
-			Set<Integer> sMaps = sourceMaps.keySet(sourceId);
-			Set<Integer> tMaps = targetMaps.keySet(targetId);
-			if(sMaps.size() > 1 || tMaps.size() > 1)
-				check = true;
-			else
-				check = !sMaps.contains(targetId);			
-		}
-		else if(containsSource(sourceId) || containsTarget(targetId))
-			check = true;
-		return check;
+		return containsSource(sourceId) || containsTarget(targetId);
 	}
 	
 	/**
@@ -549,12 +537,26 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param index: the index of the Mapping to return
- 	 * @return the Mapping at the input index
+	 * @param index: the index of the Mapping to return in the list of Mappings
+ 	 * @return the Mapping at the input index (note that the index will change
+ 	 * during sorting) or null if the index falls outside the list
 	 */
 	public Mapping get(int index)
 	{
+		if(index < 0 || index >= maps.size())
+			return null;
 		return maps.get(index);
+	}
+	
+	/**
+	 * @param sourceId: the index of the source term to check in the alignment
+	 * @param targetId: the index of the target term to check in the alignment
+ 	 * @return the Mapping between the source and target terms or null if no
+ 	 * such Mapping exists
+	 */
+	public Mapping get(int sourceId, int targetId)
+	{
+		return sourceMaps.get(sourceId, targetId);
 	}
 	
 	/**
@@ -681,10 +683,10 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public MappingRelation getRelationship(int sourceId, int targetId)
 	{
-		Integer index = sourceMaps.get(sourceId, targetId);
-		if(index == null)
+		Mapping m = sourceMaps.get(sourceId, targetId);
+		if(m == null)
 			return null;
-		return maps.get(index).getRelationship();
+		return m.getRelationship();
 	}
 	
 	/**
@@ -694,10 +696,10 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public double getSimilarity(int sourceId, int targetId)
 	{
-		Integer index = sourceMaps.get(sourceId, targetId);
-		if(index == null)
+		Mapping m = sourceMaps.get(sourceId, targetId);
+		if(m == null)
 			return 0.0;
-		return maps.get(index).getSimilarity();
+		return m.getSimilarity();
 	}
 	
 	/**
@@ -910,9 +912,17 @@ public class Alignment implements Iterable<Mapping>
 						"\t" + target.getURI(tId) + "\t" + target.getPropertyList().getName(tId) +
 						"\t" + m.getSimilarity() + "\t" + m.getRelationship().toString());
 			else
-				outStream.println(source.getURI(sId) + "\t" + source.getLexicon().getBestName(sId) +
-						"\t" + target.getURI(tId) + "\t" + target.getLexicon().getBestName(tId) +
-						"\t" + m.getSimilarity() + "\t" + m.getRelationship().toString());
+			{
+				String label = source.getURI(sId) + "\t" + source.getName(sId);
+				Vector<Integer> ancestors = source.getRelationshipMap().getHighLevelAncestors(sId);
+				if(ancestors != null && ancestors.size() > 0) 
+					label += " (" + source.getName(ancestors.get(0)) + ")";
+				label += "\t" + target.getURI(tId) + "\t" + target.getName(tId);
+				ancestors = target.getRelationshipMap().getHighLevelAncestors(tId);
+				if(ancestors != null && ancestors.size() > 0) 
+					label += " (" + target.getName(ancestors.get(0)) + ")";
+				outStream.println(label + "\t" + m.getSimilarity() + "\t" + m.getRelationship().toString());
+			}
 		}
 		outStream.close();
 	}
@@ -1245,10 +1255,6 @@ public class Alignment implements Iterable<Mapping>
 			Mapping mj = new Mapping(get(j));
 			maps.set(i,mj);
 			maps.set(j,mi);
-			sourceMaps.add(mi.getSourceId(), mi.getTargetId(), j);
-			targetMaps.add(mi.getTargetId(), mi.getSourceId(), j);
-			sourceMaps.add(mj.getSourceId(), mj.getTargetId(), i);
-			targetMaps.add(mj.getTargetId(), mj.getSourceId(), i);
 		}
 	}
 }

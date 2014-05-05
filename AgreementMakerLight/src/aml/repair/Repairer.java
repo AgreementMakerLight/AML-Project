@@ -16,10 +16,14 @@
 * removed mappings.                                                           *
 *                                                                             *
 * @author Emanuel Santos                                                      *
-* @date 26-03-2014                                                            *
+* @date 11-04-2014                                                            *
+* @version 1.1                                                                *
 ******************************************************************************/
 package aml.repair;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -86,7 +90,7 @@ public class Repairer
 			System.out.println("Nothing to repair - ontologies have no disjoint clauses");
 			return a;
 		}
-		
+		System.out.println("Repairing...");
 		//creates repairMap for this repair (builts maps)
 		repairMap = new RepairMap(a);
 		
@@ -124,6 +128,8 @@ public class Repairer
 		{
 			conflictSets = repairMap.getConflictingSets();
 			
+			saveConflictSetToFile(source, target, conflictSets);
+						
 			//resolve conflict if they exist in this block
 			if(!conflictSets.isEmpty()){
 				//System.out.println("conflictSets: " + conflictSets.size());
@@ -156,15 +162,19 @@ public class Repairer
 		Alignment repaired = repairMap.getAlignment();
 		System.out.println("Repair finished.");
 
-		/*
-		System.out.println("Checking isCoherent");
-		if(repairMap.isCoherent()){
-			System.out.println("Is Coherent");
-		}else{
-			System.out.println("Not Coherent");
-			System.out.println("Nr Incoherent Classes:" + repairMap.listIncoherentClasses().size());
+		System.out.println("Checking coherence");
+		if(repairMap.isCoherent())
+		{
+			System.out.println("Alignment is coherent");
 		}
-		*/
+		else
+		{
+			System.out.println("Alignment is incoherent");
+			System.out.println("Incoherent classes:" + repairMap.listIncoherentClasses().size());
+			for(String aa: repairMap.listIncoherentClasses()){
+				System.out.println(repairMap.getURI(aa));
+			}
+		}
 		
 		return repaired;
 	}
@@ -606,4 +616,30 @@ public class Repairer
 		}
 	}
 	
+	
+	private void saveConflictSetToFile(Ontology o, Ontology t, Vector<Vector<Mapping>> cs)
+	{
+		try
+		{
+			PrintWriter outF = new PrintWriter(new FileOutputStream("store/temp.txt"));
+			outF.println("-----CONFLICT SET SIZE=" + cs.size() + "-------");
+			for(int i = 0; i < cs.size(); i++)
+			{
+				outF.println("-------------CS-"+ i +"-----------------------");
+				Vector<Mapping> maps = cs.get(i);
+				for(int j = 0; j < maps.size(); j++)
+				{
+					Mapping m = maps.get(j);
+					outF.println(o.getURI(m.getSourceId()) + "  ---  " + t.getURI(m.getTargetId()));
+				}
+				outF.println("----------------------------------------");
+		
+			}
+			outF.close();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
 }
