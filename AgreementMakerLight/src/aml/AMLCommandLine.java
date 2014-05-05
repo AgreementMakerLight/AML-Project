@@ -12,10 +12,19 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Runs the OAEI2013 matcher with options input from the command line.         *
+* Runs the OAEI2013 matcher with input options from the command line.         *
+* Example 1 - Use AML in match mode and save the output alignment:            *
+* java AMLCommandLine -s store/anatomy/mouse.owl -t store/anatomy/human.owl   *
+* -o store/anatomy/alignment.rdf -m [-r -b -u]                                *
+* Example 2 - Use AML in match mode and evaluate the alignment:               *
+* java AMLCommandLine -s store/anatomy/mouse.owl -t store/anatomy/human.owl   *
+* -i store/anatomy/reference.rdf -m [-r -b -u]                                *
+* Example 3 - Use AML in repair mode and save the repaired alignment:         *
+* java AMLCommandLine -s store/anatomy/mouse.owl -t store/anatomy/human.owl   *
+* -i store/anatomy/toRepair.rdf -r -o store/anatomy/repaired.rdf              *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-02-2014                                                            *
+* @date 05-05-2014                                                            *
 ******************************************************************************/
 package aml;
 
@@ -27,6 +36,7 @@ import org.apache.log4j.PropertyConfigurator;
 import aml.match.Alignment;
 import aml.match.OAEI2013Matcher;
 import aml.ontology.Ontology;
+import aml.repair.Repairer;
 
 public class AMLCommandLine
 {
@@ -38,12 +48,11 @@ public class AMLCommandLine
 	 * @param args:
 	 * -s path_to_source_ontology
 	 * -t path_to_target_ontology
-	 * [-o ouput_path]
-	 * [-r reference_path]
-	 * [-bk] -> use all available background knowledge
-	 * [-bu] -> use all background knowledge except UMLS
-	 * [-r] -> repair final alignment
-	 * [-i] -> simulated interactive selection (requires reference alignment)
+	 * [-m 'match' mode and/or -r 'repair' mode]
+	 * [-i input_alignment_path]
+	 * [-o ouput_alignment_path]
+	 * [-b] -> use background knowledge
+	 * [-u] -> exclude UMLS
 	 */
 	public static void main(String[] args)
 	{
@@ -60,15 +69,15 @@ public class AMLCommandLine
 		//Path to input ontology files
 		String sourcePath = "";
 		String targetPath = "";
-		//Path to reference alignment (if left blank, alignment is not evaluated)
-		String referencePath = "";
+		//Path to input alignment (for evaluation / repair)
+		String inputPath = "";
 		//Path to output alignment file (if left blank, alignment is not saved)
-		String alignPath = "";
+		String outputPath = "";
 		//AgreementMakerLight settings
+		boolean match = false;
 		boolean background = false;
 		boolean ignoreUMLS = false;
 		boolean repair = false;
-		boolean interactive = false;
 		
 		for(int i = 0; i < args.length; i++)
 		{
@@ -76,21 +85,18 @@ public class AMLCommandLine
 				sourcePath = args[++i];
 			else if(args[i].equalsIgnoreCase("-t"))
 				targetPath = args[++i];
-			else if(args[i].equalsIgnoreCase("-o"))
-				alignPath = args[++i];
-			else if(args[i].equalsIgnoreCase("-r"))
-				referencePath = args[++i];
-			else if(args[i].equalsIgnoreCase("-bk"))
-				background = true;
-			else if(args[i].equalsIgnoreCase("-bu"))
-			{
-				background = true;
-				ignoreUMLS = true;
-			}
+			else if(args[i].equalsIgnoreCase("-m"))
+				match = true;
 			else if(args[i].equalsIgnoreCase("-r"))
 				repair = true;
 			else if(args[i].equalsIgnoreCase("-i"))
-				interactive = true;			
+				inputPath = args[++i];
+			else if(args[i].equalsIgnoreCase("-o"))
+				outputPath = args[++i];
+			else if(args[i].equalsIgnoreCase("-b"))
+				background = true;
+			else if(args[i].equalsIgnoreCase("-u"))
+				ignoreUMLS = true;
 		}
 		
 		if(sourcePath.equals("") || targetPath.equals(""))
@@ -100,6 +106,13 @@ public class AMLCommandLine
 			System.exit(0);
 		}
 
+		if(repair && !match && inputPath.equals(""))
+		{
+			System.out.println("Error: You must specify an input alignment file in repair mode");
+			System.out.println("See README.txt file for details on how to run AgreementMakerLight");
+			System.exit(0);
+		}
+		
 		File s = new File(sourcePath);
 		if(!s.exists())
 		{
@@ -114,26 +127,33 @@ public class AMLCommandLine
 			System.exit(0);
 		}
 
-		URI src = s.toURI();
-		URI tgt = t.toURI();
-		Ontology source = loadOntology(src);
-		Ontology target = loadOntology(tgt);
-
-		OAEI2013Matcher aml;
+		Ontology source = loadOntology(s.toURI());
+		Ontology target = loadOntology(t.toURI());
+		Alignment a = null;
 		
-		if(interactive)
-			aml = new OAEI2013Matcher(background,ignoreUMLS,repair,referencePath);
-		else
-			aml = new OAEI2013Matcher(background,ignoreUMLS,repair);
-		
-		Alignment a = aml.match(source,target);
-		
-		if(!referencePath.equals(""))
-			System.out.println(evaluate(a,referencePath));
-		
-		if(!alignPath.equals(""))
+		if(match)
 		{
-			try{a.saveRDF(alignPath);}
+			OAEI2013Matcher aml = new OAEI2013Matcher(background,ignoreUMLS,repair);
+			a = aml.match(source,target);
+			if(!inputPath.equals(""))
+				System.out.println(evaluate(a,inputPath));
+		}
+		else if(repair)
+		{
+			try
+			{
+				a = new Alignment(source, target, inputPath);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			Repairer r = new Repairer();
+			a = r.repair(a);
+		}
+		if(!outputPath.equals(""))
+		{
+			try{a.saveRDF(outputPath);}
 			catch(Exception e)
 			{
 				e.printStackTrace();
