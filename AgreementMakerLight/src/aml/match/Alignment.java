@@ -940,7 +940,8 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public void sort()
 	{
-		quickSort(0,maps.size()-1);
+		if(!isSorted())
+			quickSort(0,maps.size()-1);
 	}
 	
 	/**

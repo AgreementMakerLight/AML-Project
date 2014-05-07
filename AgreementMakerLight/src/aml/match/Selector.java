@@ -71,7 +71,7 @@ public class Selector
 			if(type.equals(SelectionType.MANY) ||
 					(type.equals(SelectionType.STRICT) && !selected.containsConflict(m)) ||
 					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(m)))
-				selected.add(m);
+				selected.add(new Mapping(m));
 		}
 		return selected;
 	}
@@ -103,7 +103,7 @@ public class Selector
 			int targetId = m.getTargetId();
 			int targetCard = selected.getTargetMappings(targetId).size();
 			if(sourceCard < cardinality && targetCard < cardinality)
-				selected.add(m);
+				selected.add(new Mapping(m));
 		}
 		return selected;
 	}
@@ -120,7 +120,7 @@ public class Selector
 		Alignment selected = new Alignment(a.getSource(),a.getTarget());
 		for(Mapping m : a)
 			if(highLevel.containsAncestralMapping(m.getSourceId(), m.getTargetId()))
-				selected.add(m);
+				selected.add(new Mapping(m));
 		return selected;
 	}
 }

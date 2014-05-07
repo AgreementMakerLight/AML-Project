@@ -102,7 +102,7 @@ public class ParametricStringMatcher implements Matcher
 		Alignment a = new Alignment(source, target);
 		for(int i = 0; i < source.termCount(); i++)
 		{
-			for(int j = 0; j < source.termCount(); j++)
+			for(int j = 0; j < target.termCount(); j++)
 			{
 				Mapping m = mapTwoTerms(i,j);
 				if(m.getSimilarity() >= thresh)
