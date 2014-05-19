@@ -71,7 +71,7 @@ public class Ontology
 	//Its map of cross-references
 	protected ReferenceMap refs;
 	//Whether only local namespace terms are loaded
-	protected boolean localOnly = false;
+	protected boolean localOnly = true;
 	
 	//Auxiliary map of synonym properties to lexicon types
 	protected HashMap<OntProperty,String> synProps;
