@@ -31,7 +31,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import aml.AMLGUI;
+import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 
@@ -54,6 +54,8 @@ public class SelectMapping extends JDialog implements ActionListener
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		this.setPreferredSize(new Dimension(700,140));
 
+		AML aml = AML.getInstance();
+		
 		JLabel desc = new JLabel("Select a Mapping from the Alignment:");
 		Font font = desc.getFont();
 		Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
@@ -61,21 +63,21 @@ public class SelectMapping extends JDialog implements ActionListener
 		JPanel labelPanel = new JPanel();
 		labelPanel.add(desc);
 		
-		Alignment a = AMLGUI.getAlignment();
+		Alignment a = AML.getInstance().getAlignment();
 		String[] mappings = new String[a.size()];
 		for(int i = 0; i < mappings.length; i++)
 		{
 			Mapping m = a.get(i);
 			String map = (i+1) + " (";
-			map += a.getSource().getName(m.getSourceId());
+			map += aml.getSource().getName(m.getSourceId());
 			map += " = ";
-			map += a.getTarget().getName(m.getTargetId());
+			map += aml.getTarget().getName(m.getTargetId());
 			map += ")";
 			mappings[i] = map;
 		}
 		mappingSelector = new JComboBox<String>(mappings);
 		mappingSelector.setPreferredSize(new Dimension(650,28));
-		mappingSelector.setSelectedIndex(AMLGUI.getCurrentIndex());
+		mappingSelector.setSelectedIndex(aml.getCurrentIndex());
 		JPanel selectionPanel = new JPanel();
 		selectionPanel.add(mappingSelector);
 		
@@ -113,7 +115,7 @@ public class SelectMapping extends JDialog implements ActionListener
 		}
 		else if(o == ok)
 		{
-			AMLGUI.goTo(mappingSelector.getSelectedIndex());
+			AML.getInstance().goTo(mappingSelector.getSelectedIndex());
 			this.dispose();
 		}
 	}

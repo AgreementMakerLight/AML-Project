@@ -12,11 +12,11 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Matches two Ontologies by finding literal full-name matches between their   *
+* Matches Ontologies by finding literal full-name matches between their       *
 * Lexicons after extension with the WordNet.                                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 01-02-2014                                                            *
+* @date 30-05-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -25,9 +25,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+import aml.AML;
 import aml.match.Matcher;
 import aml.ontology.Lexicon;
-import aml.ontology.Ontology;
 import aml.util.StringParser;
 
 import edu.smu.tspell.wordnet.Synset;
@@ -68,16 +68,28 @@ public class WordNetMatcher implements Matcher
 	@Override
 	public Alignment extendAlignment(Alignment a, double thresh)
 	{
-		Ontology source = a.getSource();
-		Ontology target = a.getTarget();
-		Alignment ext = new Alignment(source,target);
-		Lexicon ext1 = getExtensionLexicon(source.getLexicon(),thresh);
-		Lexicon ext2 = getExtensionLexicon(target.getLexicon(),thresh);
-		Vector<Mapping> maps = match(ext1, ext2, thresh);
+		Alignment ext = new Alignment();
+		AML aml = AML.getInstance();
+		Lexicon ext1 = getExtensionLexicon(aml.getSource().getLexicon(),thresh);
+		Lexicon ext2 = getExtensionLexicon(aml.getTarget().getLexicon(),thresh);
+		Alignment maps = match(ext1, ext2, thresh);
 		for(Mapping m : maps)
 			if(!a.containsConflict(m))
 				ext.add(m);
 		return ext;
+	}
+
+	/**
+	 * Extends the Lexicons of the source and target Ontologies
+	 * using WordNet
+	 * @param thresh: the minimum confidence threshold below
+	 * which synonyms will not be added to the Lexicons
+	 */
+	public void extendLexicons(double thresh)
+	{
+		AML aml = AML.getInstance();
+		extendLexicon(aml.getSource().getLexicon(),thresh);
+		extendLexicon(aml.getTarget().getLexicon(),thresh);
 	}
 	
 	/**
@@ -104,17 +116,49 @@ public class WordNetMatcher implements Matcher
 	}
 
 	@Override
-	public Alignment match(Ontology source, Ontology target, double thresh)
+	public Alignment match(double thresh)
 	{
-		Lexicon ext1 = getExtensionLexicon(source.getLexicon(),thresh);
-		Lexicon ext2 = getExtensionLexicon(target.getLexicon(),thresh);
-		Alignment a = new Alignment(source, target);
-		a.addAll(match(ext1, ext2, thresh));
-		return a;
+		AML aml = AML.getInstance();
+		Lexicon ext1 = getExtensionLexicon(aml.getSource().getLexicon(),thresh);
+		Lexicon ext2 = getExtensionLexicon(aml.getTarget().getLexicon(),thresh);
+		return match(ext1, ext2, thresh);
 	}
 	
 //Private Methods
 
+	private void extendLexicon(Lexicon l, double thresh)
+	{
+		//Get the original Lexicon names into a Vector since the
+		//Lexicon will be extended during the iteration (otherwise
+		//we'd get a concurrentModificationException)
+		Vector<String> names = new Vector<String>(l.getNames());
+		//Iterate through the original Lexicon names
+		for(String s : names)
+		{
+			//We don't match formulas to WordNet
+			if(StringParser.isFormula(s))
+				continue;
+			//Find all wordForms in WordNet for each name
+			HashSet<String> wordForms = getAllWordForms(s);
+			int size = wordForms.size();
+			if(size == 0)
+				continue;
+			double conf = CONFIDENCE - 0.01*size;
+			if(conf < thresh)
+				continue;
+			Set<Integer> terms = l.getInternalTerms(s);
+			//Add each term with the name to the extension Lexicon
+			for(Integer i : terms)
+			{
+				double weight = conf * l.getWeight(s, i);
+				if(weight < thresh)
+					continue;
+				for(String w : wordForms)
+					l.add(i, w, TYPE, SOURCE, weight);
+			}
+		}
+	}
+	
 	//Returns a copy of the given Lexicon, extended with WordNet
 	private Lexicon getExtensionLexicon(Lexicon l, double thresh)
 	{
@@ -142,16 +186,16 @@ public class WordNetMatcher implements Matcher
 				if(weight < thresh)
 					continue;
 				for(String w : wordForms)
-					ext.add(i, w, TYPE, SOURCE, weight);
+					ext.add(i, w, "en", TYPE, SOURCE, weight);
 			}
 		}
 		return ext;
 	}
 	
 	//Matches two given Lexicons (after extension with WordNet)
-	private Vector<Mapping> match(Lexicon source, Lexicon target, double thresh)
+	private Alignment match(Lexicon source, Lexicon target, double thresh)
 	{
-		Vector<Mapping> maps = new Vector<Mapping>(0,1);
+		Alignment maps = new Alignment();
 		Lexicon larger, smaller;
 		//To minimize iterations, we want to iterate through the
 		//ontology with the smallest Lexicon

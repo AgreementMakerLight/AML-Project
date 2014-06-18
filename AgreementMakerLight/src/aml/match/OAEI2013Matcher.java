@@ -16,18 +16,17 @@
 * Note: Replace the AML Oracle with the SEALS Oracle for OAEI participation.  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-02-2014                                                            *
+* @date 31-05-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
-import java.io.File;
-
-import aml.ext.AlignmentExtender;
-import aml.match.MatchingConfigurations.SelectionType;
+import aml.AML;
+import aml.AML.SelectionType;
+import aml.filter.Repairer;
+import aml.filter.Selector;
 import aml.ontology.Ontology;
-import aml.ontology.Uberon;
+import aml.ontology.URIMap;
 import aml.oracle.Oracle;
-import aml.repair.Repairer;
 
 public class OAEI2013Matcher
 {
@@ -47,7 +46,8 @@ public class OAEI2013Matcher
 	//The oracle for interactive matching
 	private Oracle oracle;
 	//The path to the Uberon ontology
-	private final String UBERON = "store/knowledge/uberon.owl";
+	private final String UBERON_ONT = "store/knowledge/uberon.owl";
+	private final String UBERON_REF = "store/knowledge/uberon.xrefs";
 	//Links to the ontologies and alignments
 	private Ontology source;
 	private Ontology target;
@@ -71,6 +71,9 @@ public class OAEI2013Matcher
 	 */
 	public OAEI2013Matcher(boolean b, boolean u, boolean r)
 	{
+		AML aml = AML.getInstance();
+		source = aml.getSource();
+		target = aml.getTarget();
 		useBK = b;
 		ignoreUMLS = u;
 		repair = r;
@@ -86,6 +89,9 @@ public class OAEI2013Matcher
 	 */
 	public OAEI2013Matcher(boolean b, boolean u, boolean r, String ref)
 	{
+		AML aml = AML.getInstance();
+		source = aml.getSource();
+		target = aml.getTarget();
 		useBK = b;
 		ignoreUMLS = u;
 		repair = r;
@@ -97,16 +103,11 @@ public class OAEI2013Matcher
 
 	/**
 	 * Matches the two give ontologies
-	 * @param s: the source ontology
-	 * @param t: the target ontology
 	 * @return the Alignment between the ontologies
 	 */
-	public Alignment match(Ontology s, Ontology t)
+	public Alignment match()
 	{
 		long time = System.currentTimeMillis()/1000;
-		source = s;
-		target = t;
-
 		System.out.println("Starting matching procedure");
 		System.out.println("Baseline matching and profiling finished in " +
 				baseMatchingAndProfiling() + " seconds");
@@ -135,11 +136,11 @@ public class OAEI2013Matcher
 		long startTime = System.currentTimeMillis()/1000;
 		//Step 1 - Compute the baseline alignment
 		LexicalMatcher lm = new LexicalMatcher(false);
-		base = lm.match(source,target,BASE_THRESH);
+		base = lm.match(BASE_THRESH);
 		a = new Alignment(base);
 		//Step 2 - Check the size category of the problem and set the threshold
-		int sSize = source.termCount();
-		int tSize = target.termCount();
+		int sSize = source.classCount();
+		int tSize = target.classCount();
 		if(Math.min(sSize,tSize) > 30000 || Math.max(sSize, tSize) > 60000)
 		{
 			size = 3;
@@ -148,7 +149,7 @@ public class OAEI2013Matcher
 		else if(Math.max(sSize, tSize) > 500)
 		{
 			size = 2;
-			threshold = 0.6;//TODO: Reevaluate this
+			threshold = 0.59;//TODO: Reevaluate this
 		}
 		else
 		{
@@ -156,7 +157,8 @@ public class OAEI2013Matcher
 			threshold = 0.6;
 		}
 		//Step 3 - Detect the selection type
-		sType = Selector.detectSelectionType(base);
+		Selector s = new Selector(base);
+		sType = s.getSelectionType();
 		//Step 4 - Check the property/class ratio
 		double sProps = source.propertyCount() * 1.0 / sSize;
 		double tProps = target.propertyCount() * 1.0 / tSize;
@@ -177,7 +179,7 @@ public class OAEI2013Matcher
 				if(!ignoreUMLS)
 				{
 					UMLSMatcher um = new UMLSMatcher();
-					umls = um.match(source, target, BASE_THRESH);
+					umls = um.match(BASE_THRESH);
 					double umlsGain = umls.gainOneToOne(base);
 					//If UMLS has high gain we use the UMLS matcher exclusively
 					if(umlsGain >= GAIN_HIGH)
@@ -190,9 +192,10 @@ public class OAEI2013Matcher
 					}
 				}			
 				//We proceed to Uberon
-				Ontology ub = new Uberon((new File(UBERON).toURI()),false,true);
+				Ontology ub = new Ontology(UBERON_ONT,false);
+				ub.getReferenceMap().extend(UBERON_REF);
 				XRefMatcher xr = new XRefMatcher(ub);
-				Alignment uberon = xr.match(source,target,BASE_THRESH);
+				Alignment uberon = xr.match(BASE_THRESH);
 				double uberonGain = uberon.gainOneToOne(base);
 				//If Uberon has a significant gain, we use it as a mediating matcher
 				if(uberonGain >= GAIN_MIN)
@@ -205,25 +208,24 @@ public class OAEI2013Matcher
 			{
 				//For medium ontologies we start with Uberon, since the cost of testing it is lower than UMLS
 				//and we will use it exclusively if we get a strong match
-				Ontology ub = new Uberon((new File(UBERON).toURI()),false,true);
+				Ontology ub = new Ontology(UBERON_ONT,false);
+				ub.getReferenceMap().extend(UBERON_REF);
 				XRefMatcher xr = new XRefMatcher(ub);
-				Alignment uberon = xr.match(source,target,BASE_THRESH);
+				Alignment uberon = xr.match(BASE_THRESH);
 				double uberonGain = uberon.gainOneToOne(base);
 				double uberonCoverage = Math.min(uberon.sourceCoverage(),uberon.targetCoverage());
 				//If Uberon has high gain and coverage, we use it for Lexicon extension and ignore other sources
 				if(uberonGain >= GAIN_HIGH && uberonCoverage >= COVERAGE)
 				{
-					AlignmentExtender ae = new AlignmentExtender();
-					ae.extendLexicon(source,xr.getSourceAlignment());
-					ae.extendLexicon(target,xr.getTargetAlignment());
-					a = lm.match(source,target,BASE_THRESH);
+					xr.extendLexicons(0.6);
+					a = lm.match(BASE_THRESH);
 					return System.currentTimeMillis()/1000 - startTime;
 				}
 				//Otherwise, we proceed to UMLS
 				if(!ignoreUMLS)
 				{
 					UMLSMatcher um = new UMLSMatcher();
-					umls = um.match(source,target,BASE_THRESH);
+					umls = um.match(BASE_THRESH);
 					double umlsGain = umls.gainOneToOne(base);
 					double umlsCoverage = Math.min(umls.sourceCoverage(),umls.targetCoverage());
 					//If UMLS has high gain and coverage, we use the UMLS matcher exclusively
@@ -243,19 +245,22 @@ public class OAEI2013Matcher
 				//we test WordNet, which computationally is the most expensive knowledge source 
 				WordNetMatcher wn = new WordNetMatcher();
 				//WordNet is less reliable, so it is used with the final threshold
-				Alignment wordNet = wn.match(source,target,threshold);
+				Alignment wordNet = wn.match(threshold);
 				double wordNetGain = wordNet.gainOneToOne(base);
 				//If WordNet has a significant gain, we use it as a mediating matcher
 				//but in extension mode and with strict selection, to avoid errors
 				if(wordNetGain >= GAIN_MIN)
-					a.addAllNonConflicting(Selector.select(wordNet, threshold, SelectionType.STRICT));
+				{
+					Selector s = new Selector(wordNet,SelectionType.STRICT);
+					a.addAllNonConflicting(s.select(threshold));
+				}
 			}
 			case 1:
 			{
 				//In the case of small ontologies, WordNet is the only source of background knowledge
 				//we test, as Uberon and UMLS are both too large for this scale 
 				WordNetMatcher wn = new WordNetMatcher();
-				Alignment wordNet = wn.match(source,target,threshold);
+				Alignment wordNet = wn.match(threshold);
 				double wordNetGain = wordNet.gainOneToOne(base);
 				double wordNetCoverage = Math.min(wordNet.sourceCoverage(),wordNet.targetCoverage());
 				//And we only use WordNet if its gain and coverage are both high (given the small
@@ -288,36 +293,41 @@ public class OAEI2013Matcher
 		{
 			//TODO: Fix the selection type
 			if(size < 3)
-				a.addAll(wm.extendAlignment(a, BASE_THRESH));
-			a = Selector.select(a, threshold, SelectionType.PERMISSIVE);
-			a.addAll(sm.extendAlignment(a,threshold));
-			a = Selector.select(a, threshold, SelectionType.PERMISSIVE);
+				a.addAllNonConflicting(wm.extendAlignment(a, BASE_THRESH));
+			a.addAllNonConflicting(sm.extendAlignment(a,threshold));
+			Selector s = new Selector(a, SelectionType.PERMISSIVE);
+			a = s.select(threshold);
 		}
 		else if(sType.equals(SelectionType.PERMISSIVE))
 		{
 			if(size == 2)
 			{
 				Alignment b = wm.extendAlignment(a, BASE_THRESH);
-				b = Selector.select(b, threshold, sType);
+				Selector s = new Selector(b, sType);
+				b = s.select(threshold);
 				a.addAllNonConflicting(b);
 				b = sm.extendAlignment(a, BASE_THRESH);
-				b = Selector.select(b, threshold, sType);
+				s = new Selector(b, sType);
+				b = s.select(threshold);
 				a.addAllNonConflicting(b);
 			}
 			else
 			{
 				if(size == 1)
 					a.addAll(wm.extendAlignment(a, BASE_THRESH));
-				a = Selector.select(a, threshold, sType);
+				Selector s = new Selector(a, sType);
+				a = s.select(threshold);
 				a.addAll(sm.extendAlignment(a,threshold));
-				a = Selector.select(a, threshold, sType);
+				s = new Selector(a, sType);
+				a = s.select(threshold);
 			}
 		}
 		else
 		{
 			if(size < 3)
 				a.addAll(wm.extendAlignment(a, BASE_THRESH));
-			a = Selector.selectCardinality(a, threshold, 6);
+			Selector s = new Selector(a, sType);
+			a = s.select(threshold, 6);
 			a.addAll(sm.extendAlignment(a, threshold));
 		}
 		return System.currentTimeMillis()/1000 - startTime;
@@ -341,9 +351,9 @@ public class OAEI2013Matcher
 	
 	private Alignment selectInteractive(Alignment maps)
 	{
-		maps = Selector.selectCardinality(maps,0.5,2);
-		Alignment b = new Alignment(source,target);
-		maps.boostBestMatches(0.1);
+		Selector s = new Selector(maps,SelectionType.MANY);
+		maps = s.select(0.5,2);
+		Alignment b = new Alignment();
 		maps.sort();
 		int trueCount = 0;
 		int falseCount = 0;
@@ -372,8 +382,9 @@ public class OAEI2013Matcher
 
 	private boolean mappingIsTrue(Mapping m)
 	{
-		String sourceURI = source.getURI(m.getSourceId());
-		String targetURI = target.getURI(m.getTargetId());
+		URIMap map = AML.getInstance().getURIMap();
+		String sourceURI = map.getURI(m.getSourceId());
+		String targetURI = map.getURI(m.getTargetId());
 		return oracle.check(sourceURI,targetURI,Oracle.Relation.EQUIVALENCE);
 	}
 }

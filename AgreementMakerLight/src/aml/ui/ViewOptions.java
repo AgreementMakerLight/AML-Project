@@ -32,7 +32,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import aml.AMLGUI;
+import aml.AML;
 
 public class ViewOptions extends JDialog implements ActionListener
 {
@@ -58,17 +58,17 @@ public class ViewOptions extends JDialog implements ActionListener
 
 		ancestors = new JCheckBox("View Ancestors");
 		ancestors.setMnemonic(KeyEvent.VK_C);
-		ancestors.setSelected(AMLGUI.showAncestors());
+		ancestors.setSelected(AML.getInstance().showAncestors());
 		descendants = new JCheckBox("View Descendants");
 		descendants.setMnemonic(KeyEvent.VK_C);
-		descendants.setSelected(AMLGUI.showDescendants());
+		descendants.setSelected(AML.getInstance().showDescendants());
 		directionPanel = new JPanel();
 		directionPanel.add(ancestors);
 		directionPanel.add(descendants);
 		
 		distanceLabel = new JLabel("Extension (edges):");
 		distanceSelector = new JComboBox<Integer>(DIST);
-		distanceSelector.setSelectedIndex(AMLGUI.getMaxDistance());
+		distanceSelector.setSelectedIndex(AML.getInstance().getMaxDistance());
         distanceSelector.addActionListener(this);
 		distancePanel = new JPanel();
 		distancePanel.add(distanceLabel);
@@ -109,7 +109,7 @@ public class ViewOptions extends JDialog implements ActionListener
 		}
 		else if(o == ok)
 		{
-			AMLGUI.setViewOptions(ancestors.isSelected(),descendants.isSelected(),
+			AML.getInstance().setViewOptions(ancestors.isSelected(),descendants.isSelected(),
 					(Integer)distanceSelector.getSelectedItem());
 			this.dispose();
 		}

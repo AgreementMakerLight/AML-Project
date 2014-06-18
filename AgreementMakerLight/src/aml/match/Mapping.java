@@ -21,7 +21,7 @@
 ******************************************************************************/
 package aml.match;
 
-import aml.match.MatchingConfigurations.MappingRelation;
+import aml.AML.MappingRelation;
 
 public class Mapping implements Comparable<Mapping>
 {

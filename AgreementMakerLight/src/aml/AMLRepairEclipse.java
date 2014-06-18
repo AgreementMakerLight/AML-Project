@@ -15,18 +15,13 @@
 * Tests AgreementMakerLight in Eclipse, in Alignment Repair mode.             *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 05-05-2014                                                            *
+* @date 06-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml;
 
-import java.io.File;
-import java.net.URI;
-
-import org.apache.log4j.PropertyConfigurator;
-
+import aml.filter.Repairer;
 import aml.match.Alignment;
-import aml.ontology.Ontology;
-import aml.repair.Repairer;
 
 public class AMLRepairEclipse
 {
@@ -35,9 +30,6 @@ public class AMLRepairEclipse
 	
 	public static void main(String[] args) throws Exception
 	{
-		//Configure log4j (writes to store/error.log)
-		PropertyConfigurator.configure("log4j.properties");
-
 		//Path to input ontology files (edit manually)
 		String sourcePath = "store/anatomy/mouse.owl";
 		String targetPath = "store/anatomy/human.owl";
@@ -47,27 +39,14 @@ public class AMLRepairEclipse
 		String repairPath = "store/anatomy/repair.rdf";
 		
 		//Open the ontologies
-		Ontology source = loadOntology(new File(sourcePath).toURI());
-		Ontology target = loadOntology(new File(targetPath).toURI());
+		AML aml = AML.getInstance();
+		aml.openOntologies(sourcePath, targetPath);
 		//Open the input alignment
-		Alignment a = new Alignment(source,target,alignPath);
+		Alignment a = new Alignment(alignPath);
 		//Repair the alignment
 		Repairer r = new Repairer();
 		Alignment b = r.repair(a);
 		//And save it
 		b.saveRDF(repairPath);
-	}
-	
-	private static Ontology loadOntology(URI u)
-	{
-		long startTime = System.currentTimeMillis()/1000;
-		String uriString = u.toString();
-		boolean isOWL = !uriString.endsWith(".rdfs");
-		Ontology o = new Ontology(u,true,isOWL);
-		long elapsedTime = System.currentTimeMillis()/1000 - startTime;
-		System.out.println(o.getURI() + " loaded in " + elapsedTime + " seconds");
-		System.out.println("Classes: " + o.termCount());		
-		System.out.println("Properties: " + o.propertyCount());
-		return o;
 	}
 }

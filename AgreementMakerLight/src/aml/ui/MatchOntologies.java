@@ -45,9 +45,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import aml.AMLGUI;
-import aml.match.MatchingConfigurations.MatchingAlgorithm;
-import aml.match.MatchingConfigurations.SelectionType;
+import aml.AML;
+import aml.AML.MatchingAlgorithm;
+import aml.AML.SelectionType;
 
 public class MatchOntologies extends JDialog implements ActionListener, ItemListener, ListSelectionListener
 {
@@ -76,15 +76,15 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 		this.setTitle("Match Ontologies");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		//Get the lists of all and selected BK sources
-		bkSources = AMLGUI.getBKSources();
-		selected = AMLGUI.getSelectedBKSources();
+		bkSources = AML.getInstance().getBKSources();
+		selected = AML.getInstance().getSelectedBKSources();
 		
 		//Matching Algorithms Panel
 		Vector<String> matchers = new Vector<String>(0,1);
 		for(MatchingAlgorithm m : MatchingAlgorithm.values())
 			matchers.add(m.toString());
 		config = new JComboBox<String>(matchers);
-		selectedMatcher = AMLGUI.getMatcher().toString();
+		selectedMatcher = AML.getInstance().getMatcher().toString();
 		config.setSelectedItem(selectedMatcher);
 		config.addActionListener(this);
 		info = new JButton("Info");
@@ -140,24 +140,24 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			//Set the matching algorithm
 			MatchingAlgorithm matcher = MatchingAlgorithm.parseMatcher((String)config.getSelectedItem());
-			AMLGUI.setMatcher(matcher);
+			AML.getInstance().setMatcher(matcher);
 			//Then set the options
 			if(matcher.equals(MatchingAlgorithm.OAEI))
-				AMLGUI.setMatchOptions(useBK.isSelected(), ignoreUMLS.isSelected(), repair.isSelected());
+				AML.getInstance().setMatchOptions(useBK.isSelected(), ignoreUMLS.isSelected(), repair.isSelected());
 			else if(matcher.equals(MatchingAlgorithm.AML))
 			{
 				Vector<String> selectedBK = new Vector<String>(bk.getSelectedValuesList());
-				AMLGUI.setMatchOptions(properties.isSelected(), repair.isSelected(), selectedBK,
+				AML.getInstance().setMatchOptions(properties.isSelected(), repair.isSelected(), selectedBK,
 						SelectionType.parseSelector((String)selection1.getSelectedItem()),
 						(Double)threshold1.getSelectedItem());
 			}
 			else if(matcher.equals(MatchingAlgorithm.LEXICAL))
 			{
-				AMLGUI.setMatchOptions(SelectionType.parseSelector((String)selection2.getSelectedItem()),
+				AML.getInstance().setMatchOptions(SelectionType.parseSelector((String)selection2.getSelectedItem()),
 						(Double)threshold2.getSelectedItem());
 			}
 			//Then match the ontologies
-			AMLGUI.match();
+			AML.getInstance().match();
 			this.dispose();
 		}
 		else if(o == config)
@@ -197,7 +197,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 		if(s.equals(MatchingAlgorithm.OAEI.toString()))
 		{
 			useBK = new JCheckBox("Use Background Knowledge");
-			useBK.setSelected(AMLGUI.useBK());
+			useBK.setSelected(AML.getInstance().useBK());
 			JPanel usePanel = new JPanel();
 			usePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 			usePanel.setPreferredSize(new Dimension(270,30));
@@ -206,7 +206,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			panel.add(usePanel);
 			
 			ignoreUMLS = new JCheckBox("Exclude UMLS");
-			ignoreUMLS.setSelected(AMLGUI.ignoreUMLS());
+			ignoreUMLS.setSelected(AML.getInstance().ignoreUMLS());
 			JPanel ignorePanel = new JPanel();
 			ignorePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 			ignorePanel.setPreferredSize(new Dimension(270,30));
@@ -215,7 +215,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			panel.add(ignorePanel);
 			
 			repair = new JCheckBox("Repair Alignment");
-	        repair.setSelected(AMLGUI.repairAlignment());
+	        repair.setSelected(AML.getInstance().repairAlignment());
 			JPanel repPanel = new JPanel();
 			repPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 			repPanel.add(repair);
@@ -224,9 +224,9 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 		else if(s.equals(MatchingAlgorithm.AML.toString()))
 		{
 			properties = new JCheckBox("Match Properties");
-			properties.setSelected(AMLGUI.matchProperties());
+			properties.setSelected(AML.getInstance().matchProperties());
 			repair = new JCheckBox("Repair Alignment");
-	        repair.setSelected(AMLGUI.repairAlignment());
+	        repair.setSelected(AML.getInstance().repairAlignment());
 			JPanel opPane = new JPanel();
 			opPane.setPreferredSize(new Dimension(270,30));
 			opPane.setMaximumSize(new Dimension(270,30));
@@ -239,7 +239,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			for(SelectionType t: SelectionType.values())
 				selectionTypes.add(t.toString());
 			selection1 = new JComboBox<String>(selectionTypes);
-			selection1.setSelectedItem(AMLGUI.getSelectionType().toString());
+			selection1.setSelectedItem(AML.getInstance().getSelectionType().toString());
 			JPanel selectionPane = new JPanel();
 			selectionPane.setPreferredSize(new Dimension(270,40));
 			selectionPane.setMaximumSize(new Dimension(270,40));
@@ -252,7 +252,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			for(int i = 50; i < 100; i++)
 				thresh.add(Double.parseDouble("0." + i));
 			threshold1 = new JComboBox<Double>(thresh);
-			threshold1.setSelectedItem(AMLGUI.getThreshold());
+			threshold1.setSelectedItem(AML.getInstance().getThreshold());
 			JPanel thresholdPane = new JPanel();
 			thresholdPane.setPreferredSize(new Dimension(270,40));
 			thresholdPane.setMaximumSize(new Dimension(270,40));
@@ -297,7 +297,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			for(SelectionType t: SelectionType.values())
 				selectionTypes.add(t.toString());
 			selection2 = new JComboBox<String>(selectionTypes);
-			selection2.setSelectedItem(AMLGUI.getSelectionType().toString());
+			selection2.setSelectedItem(AML.getInstance().getSelectionType().toString());
 			JPanel selectionPane = new JPanel();
 			selectionPane.setPreferredSize(new Dimension(270,40));
 			selectionPane.setMaximumSize(new Dimension(270,40));
@@ -310,7 +310,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			for(int i = 50; i < 100; i++)
 				thresh.add(Double.parseDouble("0." + i));
 			threshold2 = new JComboBox<Double>(thresh);
-			threshold2.setSelectedItem(AMLGUI.getThreshold());
+			threshold2.setSelectedItem(AML.getInstance().getThreshold());
 			JPanel thresholdPane = new JPanel();
 			thresholdPane.add(th);
 			thresholdPane.add(threshold2);

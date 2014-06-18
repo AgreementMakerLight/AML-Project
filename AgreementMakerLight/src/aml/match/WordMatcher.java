@@ -12,21 +12,21 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Matches two Ontologies by measuring the global word similarity between      *
-* their terms (classes), using a weighted Jaccard index.                      *
+* Matches Ontologies by measuring the global word similarity between their    *
+* classes, using a weighted Jaccard index.                                    *
 * NOTE: This matching algorithm requires O(N^2) memory in the worst case and  *
 * thus should not be used with very large Ontologies unless adequate memory   *
 * is available.                                                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 30-05-2013                                                            *
 ******************************************************************************/
 package aml.match;
 
 import java.util.Set;
 import java.util.Vector;
 
-import aml.ontology.Ontology;
+import aml.AML;
 import aml.ontology.WordLexicon;
 import aml.util.Table2Plus;
 
@@ -50,23 +50,23 @@ public class WordMatcher implements Matcher
 	@Override
 	public Alignment extendAlignment(Alignment a, double thresh)
 	{
-		Ontology source = a.getSource();
-		Ontology target = a.getTarget();
-		Alignment ext = new Alignment(source,target);
-		Vector<Integer> ignoreSources = a.getSources();
-		Vector<Integer> ignoreTargets = a.getTargets();
-		sWLex = new WordLexicon(source.getLexicon(),ignoreSources);
-		tWLex = new WordLexicon(target.getLexicon(),ignoreTargets);
+		Alignment ext = new Alignment();
+		Set<Integer> ignoreSources = a.getSources();
+		Set<Integer> ignoreTargets = a.getTargets();
+		AML aml = AML.getInstance();
+		sWLex = new WordLexicon(aml.getSource().getLexicon(),ignoreSources);
+		tWLex = new WordLexicon(aml.getTarget().getLexicon(),ignoreTargets);
 		ext.addAll(matchWordLexicons(thresh));
 		return ext;
 	}
 	
 	@Override
-	public Alignment match(Ontology source, Ontology target, double thresh)
+	public Alignment match(double thresh)
 	{
-		Alignment a = new Alignment(source, target);
-		sWLex = new WordLexicon(source.getLexicon());
-		tWLex = new WordLexicon(target.getLexicon());
+		Alignment a = new Alignment();
+		AML aml = AML.getInstance();
+		sWLex = new WordLexicon(aml.getSource().getLexicon());
+		tWLex = new WordLexicon(aml.getTarget().getLexicon());
 		a.addAll(matchWordLexicons(thresh));
 		return a;
 	}

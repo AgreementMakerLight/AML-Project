@@ -15,15 +15,17 @@
 * Customizable ensemble of matching, selection & repair algorithms.           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-02-2014                                                            *
+* @date 06-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
 import java.util.Vector;
 
-import aml.match.MatchingConfigurations.SelectionType;
-import aml.ontology.Ontology;
-import aml.repair.Repairer;
+import aml.AML;
+import aml.AML.SelectionType;
+import aml.filter.Repairer;
+import aml.filter.Selector;
 
 public class AMLMatcher implements Matcher
 {
@@ -53,8 +55,8 @@ public class AMLMatcher implements Matcher
 	@Override
 	public Alignment extendAlignment(Alignment a, double thresh)
 	{
-		Alignment b = match(a.getSource(),a.getTarget(),thresh);
-		Alignment ext = new Alignment(a.getSource(),a.getTarget());
+		Alignment b = match(thresh);
+		Alignment ext = new Alignment();
 		for(Mapping m : b)
 			if(!a.containsConflict(m))
 				ext.add(m);
@@ -62,23 +64,27 @@ public class AMLMatcher implements Matcher
 	}
 
 	@Override
-	public Alignment match(Ontology source, Ontology target, double thresh)
+	public Alignment match(double thresh)
 	{
+		AML aml = AML.getInstance();
     	//Check the size of the problem
-		int sSize = source.termCount();
-		int tSize = target.termCount();
+		int sSize = aml.getSource().classCount();
+		int tSize = aml.getTarget().classCount();
 		boolean isLarge = (Math.min(sSize,tSize) > 30000 || Math.max(sSize, tSize) > 60000);
 		//Do the lexical match
     	LexicalMatcher lm = new LexicalMatcher(false);
-		Alignment a = lm.match(source,target,BASE_THRESH);
+		Alignment a = lm.match(BASE_THRESH);
 		//If the selection is on auto, set it now
 		if(sType.equals(SelectionType.AUTO))
-			sType = Selector.detectSelectionType(a);
+		{
+			Selector s = new Selector(a);
+			sType = s.getSelectionType();
+		}
 		//If background knowledge is on auto, call the AutoBKMatcher
 		if(bkSources != null && bkSources.size() > 0)
 		{
 			BackgroundKnowledgeMatcher bk = new BackgroundKnowledgeMatcher(bkSources, !sType.equals(SelectionType.MANY));
-			a.addAll(bk.match(source, target, thresh));
+			a.addAll(bk.match(thresh));
 		}
 		if(!isLarge)
 		{
@@ -87,7 +93,8 @@ public class AMLMatcher implements Matcher
 		}
 		ParametricStringMatcher sm = new ParametricStringMatcher();
 		a.addAll(sm.extendAlignment(a, thresh));
-		a = Selector.select(a, thresh, sType);
+		Selector s = new Selector(a, sType);
+		a = s.select(thresh);
 		if(matchProps)
 		{
 			PropertyMatcher pm = new PropertyMatcher(bkSources.contains("WordNet"));

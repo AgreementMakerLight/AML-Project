@@ -16,18 +16,16 @@
 * combining the best available background knowledge sources.                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 03-02-2014                                                            *
+* @date 30-05-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
 import java.io.File;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Vector;
 
 import aml.ontology.Ontology;
-import aml.ontology.Uberon;
 import aml.util.MapSorter;
 
 public class BackgroundKnowledgeMatcher implements Matcher
@@ -61,10 +59,10 @@ public class BackgroundKnowledgeMatcher implements Matcher
 	}
 
 	@Override
-	public Alignment match(Ontology source, Ontology target, double thresh)
+	public Alignment match(double thresh)
 	{
 		LexicalMatcher lm = new LexicalMatcher(false);
-		Alignment base = lm.match(source,target,thresh);
+		Alignment base = lm.match(thresh);
 		return extendBaseline(base,thresh);
 	}
 	
@@ -73,7 +71,7 @@ public class BackgroundKnowledgeMatcher implements Matcher
 	private Alignment extendBaseline(Alignment base, double thresh)
 	{
 		//The extension alignment to return
-		Alignment ext = new Alignment(base.getSource(),base.getTarget());
+		Alignment ext = new Alignment();
 		//The map of pre-selected lexical alignments and their gains
 		HashMap<Alignment,Double> selected = new HashMap<Alignment,Double>();
 		//The baseline alignment (which will be extended during this method)
@@ -88,7 +86,7 @@ public class BackgroundKnowledgeMatcher implements Matcher
 			if(s.equals("UMLS"))
 			{
 				UMLSMatcher um = new UMLSMatcher();
-				temp = um.match(tempBase.getSource(), tempBase.getTarget(), thresh);
+				temp = um.match(thresh);
 				if(oneToOne)
 					gain = temp.gainOneToOne(tempBase);
 				else
@@ -100,7 +98,7 @@ public class BackgroundKnowledgeMatcher implements Matcher
 			else if(s.equals("WordNet"))
 			{
 				WordNetMatcher wn = new WordNetMatcher();
-				temp = wn.match(tempBase.getSource(), tempBase.getTarget(), thresh);
+				temp = wn.match(thresh);
 				if(oneToOne)
 					gain = temp.gainOneToOne(tempBase);
 				else
@@ -112,19 +110,19 @@ public class BackgroundKnowledgeMatcher implements Matcher
 			else
 			{
 				//Load the mediator ontology
-				URI uri = (new File(BK_PATH + s)).toURI();
-				Ontology mediator;
-				//Processing Uberon separately from other ontologies
-				if(s.equals("uberon.owl"))
-					mediator = new Uberon(uri,false,true);
-				else
-					mediator = new Ontology(uri,false,!s.endsWith(".rdfs"));
+				String path = BK_PATH + s;
+				Ontology mediator = new Ontology(path,false);
+				String refs = path.replace(".owl",".xrefs");
+				File f = new File(refs);
+				if(f.exists())
+					mediator.getReferenceMap().extend(refs);
+				
 				//If there are cross-references, process them
 				refGain = 0.0;
 				if(mediator.getReferenceMap().size() > 0)
 				{
 					XRefMatcher x = new XRefMatcher(mediator);
-					temp = x.match(tempBase.getSource(), tempBase.getTarget(), thresh);
+					temp = x.match(thresh);
 					if(oneToOne)
 						refGain = temp.gainOneToOne(tempBase);
 					else
@@ -134,7 +132,7 @@ public class BackgroundKnowledgeMatcher implements Matcher
 				}
 				//Then do a cross-lexical match
 				MediatingMatcher mm = new MediatingMatcher(mediator);
-				temp = mm.match(tempBase.getSource(),tempBase.getTarget(),thresh);
+				temp = mm.match(thresh);
 				if(oneToOne)
 					gain = temp.gainOneToOne(tempBase);
 				else

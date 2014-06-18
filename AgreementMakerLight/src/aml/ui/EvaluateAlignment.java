@@ -15,7 +15,7 @@
 * Alignment evaluation dialog box for the GUI.                                *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-02-2014                                                            *
+* @date 06-06-2014                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -31,8 +31,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import aml.AMLGUI;
-import aml.match.Alignment;
+import aml.AML;
 
 public class EvaluateAlignment extends JDialog implements ActionListener
 {
@@ -91,7 +90,7 @@ public class EvaluateAlignment extends JDialog implements ActionListener
 		}
 		else if(o == selectRef)
 		{
-			AlignmentFileChooser fc = AMLGUI.getAlignmentFileChooser();
+			AlignmentFileChooser fc = AML.getInstance().getAlignmentFileChooser();
 			int returnVal = fc.showOpenDialog(this);
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
@@ -102,18 +101,14 @@ public class EvaluateAlignment extends JDialog implements ActionListener
 		}
 		else if(o == evaluate)
 		{
-			Alignment r = null;
-			try{r = new Alignment(AMLGUI.getSourceOntology(),AMLGUI.getTargetOntology(),ref.getAbsolutePath());}
+			try{AML.getInstance().openReferenceAlignment(ref.getAbsolutePath());}
 			catch(Exception x)
 			{
 				JOptionPane.showMessageDialog(this, "Could not read alignment file!\n" + 
 						x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE);
 			}
-			if(r != null)
-			{
-				AMLGUI.evaluate(r);
-				this.dispose();
-			}
+			AML.getInstance().evaluate();
+			this.dispose();
 		}
 	}
 }

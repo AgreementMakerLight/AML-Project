@@ -16,14 +16,14 @@
 * PApplet from the Gephi toolbox.                                             *
 *                                                                             *
 * @author Daniel Faria & Catia Pesquita                                       *
-* @date 19-02-2014                                                            *
+* @date 06-06-2014                                                            *
 ******************************************************************************/
 package aml.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.HashSet;
-import java.util.Vector;
+import java.util.Set;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -47,12 +47,12 @@ import org.gephi.preview.types.EdgeColor;
 import org.gephi.project.api.ProjectController;
 import org.openide.util.Lookup;
 
-import aml.AMLGUI;
+import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.match.MatchingConfigurations.MappingRelation;
+import aml.AML.MappingRelation;
 import aml.ontology.Ontology;
-
+import aml.ontology.RelationshipMap;
 import processing.core.PApplet;
 
 public class MappingViewerGephi extends JInternalFrame
@@ -66,6 +66,8 @@ public class MappingViewerGephi extends JInternalFrame
 	private GraphModel model;
 	private DirectedGraph directedGraph;
 	private Ontology source, target;
+	private RelationshipMap rm;
+	private Alignment a;
 	private HashSet<Integer> sourceNodes, targetNodes;
 	private int maxDistance;
 	private final Color BK = new Color(214,217,223);
@@ -90,7 +92,7 @@ public class MappingViewerGephi extends JInternalFrame
 	public void buildGraph(int check)
 	{
 		//Check if there is a mapping to view
-		Mapping m = AMLGUI.getCurrentMapping();
+		Mapping m = AML.getInstance().getCurrentMapping();
 		if(m == null)
 			return;
 		try
@@ -104,9 +106,12 @@ public class MappingViewerGephi extends JInternalFrame
 			model = graphController.getModel();
 			directedGraph = model.getDirectedGraph();
 			
-			//Get the ontologies
-			source = AMLGUI.getSourceOntology();
-			target = AMLGUI.getTargetOntology();
+			//Get the ontologies, relationship map and alignment
+			AML aml = AML.getInstance();
+			source = aml.getSource();
+			target = aml.getTarget();
+			rm = aml.getRelationshipMap();
+			a = aml.getAlignment();
 			
 			//Add the starting source and target nodes to the graph
 			int sId = m.getSourceId();
@@ -116,17 +121,17 @@ public class MappingViewerGephi extends JInternalFrame
 			//And the mapping between them
 			addMapping(sId,tId);
 			//Get the maximum distance
-			maxDistance = AMLGUI.getMaxDistance();
+			maxDistance = aml.getMaxDistance();
 			//Initialize the node sets (which don't include the starting nodes)
 			sourceNodes = new HashSet<Integer>();
 			targetNodes = new HashSet<Integer>();
 			//Add all ancestors and descendants as per the view parameters
-			if(AMLGUI.showAncestors())
+			if(aml.showAncestors())
 			{
 				addSourceAncestors(sId);
 				addTargetAncestors(tId);
 			}
-			if(AMLGUI.showDescendants())
+			if(aml.showDescendants())
 			{
 				addSourceDescendants(sId);
 				addTargetDescendants(tId);
@@ -210,7 +215,6 @@ public class MappingViewerGephi extends JInternalFrame
 	
 	private void addAllMappings()
 	{
-		Alignment a = AMLGUI.getAlignment();
 		if(a == null)
 			return;
 		for(int i : sourceNodes)
@@ -225,12 +229,12 @@ public class MappingViewerGephi extends JInternalFrame
 		Node n2 = directedGraph.getNode("NT" + tId);
 		if(directedGraph.getEdge(n1,n2) != null)
 			return;
-		MappingRelation r = AMLGUI.getAlignment().getRelationship(sId,tId);
+		MappingRelation r = a.getRelationship(sId,tId);
 		if(!r.equals(MappingRelation.SUPERCLASS))
 		{
 			Edge e1 = model.factory().newEdge(n1, n2, 3, true);
 			e1.getEdgeData().setColor(1, 1, 0);
-			e1.getEdgeData().setLabel("" + AMLGUI.getAlignment().getSimilarity(sId,tId));
+			e1.getEdgeData().setLabel("" + a.getSimilarity(sId,tId));
 			directedGraph.addEdge(e1);
 		}
 		if(!r.equals(MappingRelation.SUBCLASS))
@@ -238,14 +242,14 @@ public class MappingViewerGephi extends JInternalFrame
 			Edge e2 = model.factory().newEdge(n2, n1, 3, true);
 			e2.getEdgeData().setColor(1, 1, 0);
 			if(r.equals(MappingRelation.SUPERCLASS))
-				e2.getEdgeData().setLabel("" + AMLGUI.getAlignment().getSimilarity(sId,tId));
+				e2.getEdgeData().setLabel("" + a.getSimilarity(sId,tId));
 			directedGraph.addEdge(e2);
 		}
 	}
 	
 	private void addOtherMappings(int sId, int tId)
 	{
-		Vector<Integer> sourceMappings = AMLGUI.getAlignment().getSourceMappings(sId);
+		Set<Integer> sourceMappings = a.getSourceMappings(sId);
 		targetNodes.addAll(sourceMappings);
 		for(Integer i : sourceMappings)
 		{
@@ -253,12 +257,12 @@ public class MappingViewerGephi extends JInternalFrame
 				continue;
 			addTargetNode(i,6);
 			addMapping(sId,i);
-			if(AMLGUI.showAncestors())
+			if(AML.getInstance().showAncestors())
 				addTargetAncestors(i);
-			if(AMLGUI.showDescendants())
+			if(AML.getInstance().showDescendants())
 				addTargetDescendants(i);
 		}
-		Vector<Integer> targetMappings = AMLGUI.getAlignment().getTargetMappings(tId);
+		Set<Integer> targetMappings = a.getTargetMappings(tId);
 		sourceNodes.addAll(targetMappings);
 		for(Integer i : targetMappings)
 		{
@@ -266,9 +270,9 @@ public class MappingViewerGephi extends JInternalFrame
 				continue;
 			addSourceNode(i,6);
 			addMapping(i,tId);
-			if(AMLGUI.showAncestors())
+			if(AML.getInstance().showAncestors())
 				addSourceAncestors(i);
-			if(AMLGUI.showDescendants())
+			if(AML.getInstance().showDescendants())
 				addSourceDescendants(i);
 		}
 	}
@@ -284,7 +288,7 @@ public class MappingViewerGephi extends JInternalFrame
 			ancestors = new HashSet<Integer>();
 			for(int j : descendants)
 			{
-				Vector<Integer> parents = source.getRelationshipMap().getParents(j);
+				Set<Integer> parents = rm.getParents(j);
 				for(int k : parents)
 				{
 					if(directedGraph.getNode("NS" + k) == null)
@@ -308,7 +312,7 @@ public class MappingViewerGephi extends JInternalFrame
 			descendants = new HashSet<Integer>();
 			for(int j : ancestors)
 			{
-				Vector<Integer> children = source.getRelationshipMap().getChildren(j);
+				Set<Integer> children = rm.getChildren(j);
 				for(int k : children)
 				{
 					if(directedGraph.getNode("NS" + k) == null)
@@ -327,8 +331,9 @@ public class MappingViewerGephi extends JInternalFrame
 		Node p = directedGraph.getNode("NS" + parent);
 		Edge e = model.factory().newEdge(c, p, 3, true);
 		e.getEdgeData().setColor(1, 0, 0);
-		if(!AMLGUI.getSourceOntology().getRelationshipMap().getType(child, parent))
-			e.getEdgeData().setLabel("part of");
+		int prop = rm.getRelationship(child, parent).getProperty();
+		if(prop > -1)
+			e.getEdgeData().setLabel(source.getName(prop));
 		directedGraph.addEdge(e);
 	}
 	
@@ -353,7 +358,7 @@ public class MappingViewerGephi extends JInternalFrame
 			ancestors = new HashSet<Integer>();
 			for(int j : descendants)
 			{
-				Vector<Integer> parents = target.getRelationshipMap().getParents(j);
+				Set<Integer> parents = rm.getParents(j);
 				for(int k : parents)
 				{
 					if(directedGraph.getNode("NT" + k) == null)
@@ -377,7 +382,7 @@ public class MappingViewerGephi extends JInternalFrame
 			descendants = new HashSet<Integer>();
 			for(int j : ancestors)
 			{
-				Vector<Integer> children = target.getRelationshipMap().getChildren(j);
+				Set<Integer> children = rm.getChildren(j);
 				for(int k : children)
 				{
 					if(directedGraph.getNode("NT" + k) == null)
@@ -396,8 +401,9 @@ public class MappingViewerGephi extends JInternalFrame
 		Node p = directedGraph.getNode("NT" + parent);
 		Edge e = model.factory().newEdge(c, p, 3, true);
 		e.getEdgeData().setColor(0, 0, 1);
-		if(!AMLGUI.getTargetOntology().getRelationshipMap().getType(child, parent))
-			e.getEdgeData().setLabel("part of");
+		int prop = rm.getRelationship(child, parent).getProperty();
+		if(prop > -1)
+			e.getEdgeData().setLabel(target.getName(prop));
 		directedGraph.addEdge(e);
 	}
 	

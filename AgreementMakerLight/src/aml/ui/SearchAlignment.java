@@ -41,7 +41,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
-import aml.AMLGUI;
+import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.util.MapSorter;
@@ -71,6 +71,8 @@ public class SearchAlignment extends JDialog implements ActionListener
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		this.setPreferredSize(new Dimension(700,140));
 
+		AML aml = AML.getInstance();
+		
 		//The containing panel
         dialogPanel = new JPanel();
         cl = new CardLayout();
@@ -83,15 +85,15 @@ public class SearchAlignment extends JDialog implements ActionListener
 		desc.setFont(boldFont);
 		JPanel labelPanel = new JPanel();
 		labelPanel.add(desc);
-		Alignment a = AMLGUI.getAlignment();
+		Alignment a = AML.getInstance().getAlignment();
 		int total = a.size();
 		mappings = new ArrayList<String>(total);
 		for(int i = 0; i < total; i++)
 		{
 			Mapping m = a.get(i);
-			String map = a.getSource().getName(m.getSourceId());
+			String map = aml.getSource().getName(m.getSourceId());
 			map += " = ";
-			map += a.getTarget().getName(m.getTargetId());
+			map += aml.getTarget().getName(m.getTargetId());
 			mappings.add(map);
 		}
 		searchField = new JTextArea(1,60);
@@ -139,7 +141,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 		}
 		else if(o == select)
 		{
-			AMLGUI.goTo(mappings.indexOf(results[mappingSelector.getSelectedIndex()]));
+			AML.getInstance().goTo(mappings.indexOf(results[mappingSelector.getSelectedIndex()]));
 			this.dispose();
 		}
 		else if(o == find)
@@ -156,7 +158,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 				int index = mappings.indexOf(text);
 				if(index > -1)
 				{
-					AMLGUI.goTo(index);
+					AML.getInstance().goTo(index);
 					this.dispose();
 				}
 				//Otherwise, search for it

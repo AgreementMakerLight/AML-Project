@@ -16,17 +16,18 @@
 * relationships and disjoint clauses.                                         *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 06-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
 
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
 import aml.util.Table2;
-import aml.util.Table2Plus;
+import aml.util.Table3;
 
 
 public class RelationshipMap
@@ -34,183 +35,157 @@ public class RelationshipMap
 	
 //Attributes
 
-	//Map between ancestor terms and their descendants
-	private Table2Plus<Integer,Integer,Relationship> descendantMap;
-	//Map between descendant terms and their ancestors
-	private Table2Plus<Integer,Integer,Relationship> ancestorMap;
-	//List of high level terms
-	private HashSet<Integer> highLevelTerms;
-	//Map between disjoint terms
+	//Set of transitive subclass properties
+	private HashSet<Integer> transitive;
+	//Map between ancestor classes and their descendants
+	private Table3<Integer,Integer,Relationship> descendantMap;
+	//Map between descendant classes and their ancestors
+	private Table3<Integer,Integer,Relationship> ancestorMap;
+	//Map between disjoint classes
 	private Table2<Integer,Integer> disjointMap;
-	//Map between terms and their intersections
-	private HashMap<Set<Integer>,Integer> equivalenceMap;
+	//List of high level classes
+	private HashSet<Integer> highLevelClasses;
 	
 //Constructors
 
 	/**
-	 * Creates a new empty RelationshipMap, initializing the storage HashMap
+	 * Creates a new empty RelationshipMap
 	 */
 	public RelationshipMap()
 	{
-		descendantMap = new Table2Plus<Integer,Integer,Relationship>();
-		ancestorMap = new Table2Plus<Integer,Integer,Relationship>();
+		transitive = new HashSet<Integer>();
+		transitive.add(-1);
+		
+		descendantMap = new Table3<Integer,Integer,Relationship>();
+		ancestorMap = new Table3<Integer,Integer,Relationship>();
 		disjointMap = new Table2<Integer,Integer>();
-		equivalenceMap = new HashMap<Set<Integer>,Integer>();
 	}
 	
-	/**
-	 * Creates a new RelationshipMap that is a copy of rm
-	 * @param rm: the RelationshipMap to copy
-	 */
-	public RelationshipMap(RelationshipMap rm)
-	{
-		descendantMap = new Table2Plus<Integer,Integer,Relationship>();
-		ancestorMap = new Table2Plus<Integer,Integer,Relationship>();
-		Set<Integer> childs = rm.ancestorMap.keySet();
-		for(Integer i : childs)
-		{
-			Set<Integer> pars = rm.ancestorMap.keySet(i);
-			for(Integer j : pars)
-			{
-				Relationship r = rm.ancestorMap.get(i,j);
-				addRelationship(i, j, r.getDistance(), r.getType());
-			}
-		}
-		disjointMap = new Table2<Integer,Integer>();
-		Set<Integer> disj = rm.disjointMap.keySet();
-		for(Integer i : disj)
-		{
-			Vector<Integer> d = rm.disjointMap.get(i);
-			for(Integer j : d)
-				addDisjoint(i, j);
-		}
-	}
-
 //Public Methods
 
 	/**
-	 * Adds a new disjoint clause between two terms if it doesn't exist
-	 * @param one: the index of the first disjoint term
-	 * @param two: the index of the second disjoint term
+	 * Adds a relationship between two classes with a given distance and type
+	 * @param child: the index of the child class
+	 * @param parent: the index of the parent class
+	 * @param distance: the distance (number of edges) between the classes
+	 * @param prop: the property in the subclass relationship
+	 * @param rest: the restriction in the subclass relationship
+	 */
+	public void addDirectRelationship(int child, int parent, int prop, boolean rest)
+	{
+		//Create the relationship
+		Relationship r = new Relationship(1,prop,rest);
+		//Then update the MultiMaps
+		descendantMap.add(parent,child,r);
+		ancestorMap.add(child,parent,r);
+	}
+	
+	/**
+	 * Adds a direct 'is_a' relationship between two classes
+	 * @param child: the index of the child class
+	 * @param parent: the index of the parent class
+	 */
+	public void addDirectSubclass(int child, int parent)
+	{
+		addDirectRelationship(child,parent,-1,false);
+	}
+	
+	/**
+	 * Adds a new disjoint clause between two classes if it doesn't exist
+	 * @param one: the index of the first disjoint class
+	 * @param two: the index of the second disjoint class
 	 */
 	public void addDisjoint(int one, int two)
 	{
-		//The disjointMap keeps disjoint clauses in both directions
-		disjointMap.add(one, two);
-		disjointMap.add(two, one);
+		if(one != two && !areDisjoint(one,two))
+		{
+			//The disjointMap keeps disjoint clauses in both directions
+			disjointMap.add(one, two);
+			disjointMap.add(two, one);
+		}
 	}
 	
 	/**
-	 * Adds a new equivalence clause between the intersection list and its equivalent term
-	 * @param interList: the list of terms that when intersected are equivalent to equiv
-	 * @param equiv: the term that is equivalent to the intersection list
+	 * Adds an equivalence relationship between two classes with a given property
+	 * @param class1: the index of the first equivalent class
+	 * @param class2: the index of the second equivalent class
+	 * @param prop: the property in the subclass relationship
+	 * @param rest: the restriction in the subclass relationship
 	 */
-	public void addEquivalence(Set<Integer> interList, int equiv)
-	{
-		equivalenceMap.put(interList,equiv);
-	}
-	
-	/**
-	 * Adds a direct 'is_a' relationship between two terms
-	 * @param child: the index of the child term
-	 * @param parent: the index of the parent term
-	 */
-	public void addIsAEdge(int child, int parent)
-	{
-		addRelationship(child,parent,1,true);
-	}
-	
-	/**
-	 * Adds a direct 'part_of' relationship between two terms
-	 * @param child: the index of the child term
-	 * @param parent: the index of the parent term
-	 */
-	public void addPartOfEdge(int child, int parent)
-	{
-		addRelationship(child,parent,1,false);
-	}
-	
-	/**
-	 * Adds a relationship between two terms with a given distance and type
-	 * @param child: the index of the child term
-	 * @param parent: the index of the parent term
-	 * @param distance: the distance (number of edges) between the terms
-	 * @param isA: the type of relationship (true if 'is_a', false if 'part_of')
-	 */
-	public void addRelationship(int child, int parent, int distance, boolean isA)
+	public void addEquivalence(int class1, int class2, int prop, boolean rest)
 	{
 		//Create the relationship
-		Relationship r = new Relationship(distance,isA);
-		//Then update the MultiMaps
-		descendantMap.addUpgrade(parent,child,r);
-		ancestorMap.addUpgrade(child,parent,r);
+		Relationship r = new Relationship(0,prop,rest);
+		//Add it to the descendant map in both directions
+		descendantMap.add(class1,class2,r);
+		//Then to the ancestor map in both directions
+		ancestorMap.add(class2,class1,r);
 	}
 	
 	/**
-	 * Adds a relationship between two terms
-	 * @param child: the index of the child term
-	 * @param parent: the index of the parent term
-	 * @param rel: the relationship between the terms
+	 * Adds an equivalence relationship between two classes
+	 * @param class1: the index of the first equivalent class
+	 * @param class2: the index of the second equivalent class
+	 */
+	public void addEquivalentClass(int class1, int class2)
+	{
+		//Create the relationship
+		Relationship r = new Relationship(0,-1,false);
+		//Add it to the ancestor map in both directions
+		descendantMap.add(class1,class2,r);
+		descendantMap.add(class2,class1,r);
+		//Then to the ancestor map in both directions
+		ancestorMap.add(class1,class2,r);
+		ancestorMap.add(class2,class1,r);
+	}
+	
+	/**
+	 * Adds a relationship between two classes with a given distance and property
+	 * @param child: the index of the child class
+	 * @param parent: the index of the parent class
+	 * @param distance: the distance (number of edges) between the classes
+	 * @param prop: the property in the subclass relationship
+	 * @param rest: the restriction in the subclass relationship
+	 */
+	public void addRelationship(int child, int parent, int distance, int prop, boolean rest)
+	{
+		//Create the relationship
+		Relationship r = new Relationship(distance,prop,rest);
+		//Then update the MultiMaps
+		descendantMap.add(parent,child,r);
+		ancestorMap.add(child,parent,r);
+	}
+	
+	/**
+	 * Adds a relationship between two classs
+	 * @param child: the index of the child class
+	 * @param parent: the index of the parent class
+	 * @param rel: the relationship between the classs
 	 */
 	public void addRelationship(int child, int parent, Relationship rel)
 	{
 		//Update the MultiMaps
-		descendantMap.addUpgrade(parent,child,rel);
-		ancestorMap.addUpgrade(child,parent,rel);
+		descendantMap.add(parent,child,rel);
+		ancestorMap.add(child,parent,rel);
 	}
 	
 	/**
-	 * Adds a relationship between two terms with transitive closure
-	 * @param child: the index of the child term
-	 * @param parent: the index of the parent term
-	 * @param rel: the relationship between the terms
-	 */
-	public void addRelationshipTransitive(int child, int parent, Relationship rel)
-	{
-		//If the terms are already related, do nothing
-		if(this.contains(child,parent))
-			return;
-		//Get all descendants of the child
-		Vector<Integer> descendants = getDescendants(child);
-		//Plus the child itself
-		descendants.add(child);
-		//Then all ancestors of the parent
-		Vector<Integer> ancestors = getAncestors(parent);
-		//Plus the parent itself
-		ancestors.add(parent);
-		
-		//For each descendant
-		for(Integer i : descendants)
-		{
-			//And each ancestor
-			for(Integer j : ancestors)
-			{
-				Relationship r = new Relationship(rel.getDistance(),rel.getType());
-				r.extendWith(getRelationship(i,child));
-				r.extendWith(getRelationship(parent,j));
-				//Then add the relationship
-				addRelationship(i, j, r);
-			}
-		}
-	}
-		
-	/**
-	 * @param one: the first term to check for disjointness
-	 * @param two: the second term to check for disjointness
+	 * @param one: the first class to check for disjointness
+	 * @param two: the second class to check for disjointness
 	 * @return whether one and two are disjoint considering transitivity
 	 */
 	public boolean areDisjoint(int one, int two)
 	{
-		//Get the transitive disjoint clauses involving term one
-		Vector<Integer> disj = getDisjointTransitive(one);
+		//Get the transitive disjoint clauses involving class one
+		Set<Integer> disj = getDisjointTransitive(one);
 		if(disj.size() > 0)
 		{
-			//Then get the list of 'is_a' ancestors of term two
-			Vector<Integer> ancs = getAncestors(two,true);
-			//Including term two itself
+			//Then get the list of superclasses of class two
+			Set<Integer> ancs = getSuperClasses(two,false);
+			//Including class two itself
 			ancs.add(two);
 		
-			//Two terms are disjoint if the list of transitive disjoint clauses
+			//Two classs are disjoint if the list of transitive disjoint clauses
 			//involving one of them contains the other or any of its 'is_a' ancestors
 			for(Integer i : ancs)
 				if(disj.contains(i))
@@ -220,42 +195,29 @@ public class RelationshipMap
 	}
 	
 	/**
-	 * @param child: the index of the child term
-	 * @param parent: the index of the parent term
+	 * @param child: the index of the child class
+	 * @param parent: the index of the parent class
 	 * @return whether the RelationshipMap contains a relationship between child and parent
 	 */
 	public boolean contains(int child, int parent)
 	{
-		return ancestorMap.contains(child,parent);
+		return descendantMap.contains(parent,child);
 	}
 	
 	/**
-	 * @param child: the index of the child term
-	 * @param parent: the index of the parent term
+	 * @param child: the index of the child class
+	 * @param parent: the index of the parent class
 	 * @return whether the RelationshipMap contains an 'is_a' relationship between child and parent
 	 */	
-	public boolean containsIsA(int child, int parent)
+	public boolean containsSubClass(int child, int parent)
 	{
-		Relationship r = new Relationship(1,true);
-		return ancestorMap.contains(child,parent,r);
-	}
-	
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the number of direct is_a parents of the given term
-	 */
-	public int countIsAParents(int term)
-	{
-		return getAncestors(term,1,true).size();
-	}
-
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the number of direct is_a parents of the given term
-	 */
-	public int countParents(int term)
-	{
-		return getAncestors(term,1).size();
+		if(!descendantMap.contains(parent,child))
+			return false;
+		Vector<Relationship> rels = descendantMap.get(parent,child);
+		for(Relationship r : rels)
+			if(r.getProperty() == -1)
+				return true;
+		return false;
 	}
 	
 	/**
@@ -269,167 +231,217 @@ public class RelationshipMap
 	}
 	
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of ancestors of the given term
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of siblings of the given class with the given property
 	 */
-	public Vector<Integer> getAncestors(int term)
+	public Set<Integer> getAllSiblings(int classId)
 	{
-		Vector<Integer> asc = new Vector<Integer>(0,1);
-		Set<Integer> c = ancestorMap.keySet(term);
-		if(c != null)
-			asc.addAll(c);
-		return asc;
+		Set<Integer> parents = getAncestors(classId,1);
+		HashSet<Integer> siblings = new HashSet<Integer>();
+		for(Integer i : parents)
+		{
+			for(Relationship r : getRelationships(classId,i))
+			{
+				Set<Integer> children = getDescendants(i,1,r.getProperty());
+				for(Integer j : children)
+					if(j != classId)
+						siblings.add(j);
+			}
+		}
+		return siblings;
 	}
 	
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @param distance: the distance between the term and its ancestors
-	 * @return the list of ancestors at the given distance from the input term
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of ancestors of the given class
 	 */
-	public Vector<Integer> getAncestors(int term, int distance)
+	public Set<Integer> getAncestors(int classId)
 	{
-		Vector<Integer> asc = new Vector<Integer>(0,1);
-		Set<Integer> c = ancestorMap.keySet(term);
-		if(c != null)
-		{
-			for(Integer i : c)
-				if(ancestorMap.get(term,i).getDistance() == distance)
+		if(ancestorMap.contains(classId))
+			return ancestorMap.keySet(classId);
+		return new HashSet<Integer>();
+	}
+	
+	/**
+	 * @param classId: the id of the class to search in the map
+	 * @param distance: the distance between the class and its ancestors
+	 * @return the list of ancestors at the given distance from the input class
+	 */
+	public Set<Integer> getAncestors(int classId, int distance)
+	{
+		HashSet<Integer> asc = new HashSet<Integer>();
+		if(!ancestorMap.contains(classId))
+			return asc;
+		for(Integer i : ancestorMap.keySet(classId))
+			for(Relationship r : ancestorMap.get(classId, i))
+				if(r.getDistance() == distance)
 					asc.add(i);
-		}
 		return asc;
 	}
 	
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @param type: the type of relationship between the term and its ancestors
-	 * @return the list of ancestors of the input term that are of the given type
+	 * @param classId: the id of the class to search in the map
+	 * @param prop: the relationship property between the class and its ancestors
+	 * @return the list of ancestors at the given distance from the input class
 	 */
-	public Vector<Integer> getAncestors(int term, boolean type)
+	public Set<Integer> getAncestorsProperty(int classId, int prop)
 	{
-		Vector<Integer> asc = new Vector<Integer>(0,1);
-		Set<Integer> c = ancestorMap.keySet(term);
-		if(c != null)
-		{
-			for(Integer i : c)
-				if(ancestorMap.get(term,i).getType() == type)
+		HashSet<Integer> asc = new HashSet<Integer>();
+		if(!ancestorMap.contains(classId))
+			return asc;
+		for(Integer i : ancestorMap.keySet(classId))
+			for(Relationship r : ancestorMap.get(classId, i))
+				if(r.getProperty() == prop)
 					asc.add(i);
-		}
 		return asc;
 	}
 	
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @param distance: the distance between the term and its ancestors
-	 * @param type: the type of relationship between the term and its ancestors
-	 * @return the list of ancestors of the input term that are at the given
-	 * distance and of the given type
+	 * @param classId: the id of the class to search in the map
+	 * @param distance: the distance between the class and its ancestors
+	 * @param prop: the relationship property between the class and its ancestors
+	 * @return the list of ancestors of the input class that are at the given
+	 * distance and with the given property
 	 */
-	public Vector<Integer> getAncestors(int term, int distance, boolean type)
+	public Set<Integer> getAncestors(int classId, int distance, int prop)
 	{
-		Vector<Integer> asc = new Vector<Integer>(0,1);
-		Set<Integer> c = ancestorMap.keySet(term);
-		if(c != null)
-		{
-			for(Integer i : c)
-				if(ancestorMap.get(term,i).getType() == type &&
-					ancestorMap.get(term,i).getDistance() == distance)
+		HashSet<Integer> asc = new HashSet<Integer>();
+		if(!ancestorMap.contains(classId))
+			return asc;
+		for(Integer i : ancestorMap.keySet(classId))
+			for(Relationship r : ancestorMap.get(classId, i))
+				if(r.getDistance() == distance && r.getProperty() == prop)
 					asc.add(i);
-		}
 		return asc;
 	}
 	
 	/**
-	 * @return the set of terms with ancestors in the map
+	 * @return the set of classes with ancestors in the map
 	 */
-	public Vector<Integer> getChildren()
+	public Set<Integer> getChildren()
 	{
-		Set<Integer> childs = ancestorMap.keySet();
-		if(childs == null)
-			return new Vector<Integer>(0,1);
-		return new Vector<Integer>(childs);
+		if(ancestorMap != null)
+			return ancestorMap.keySet();
+		return new HashSet<Integer>();
 	}
 	
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of direct children of the given term
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of direct children of the given class
 	 */
-	public Vector<Integer> getChildren(int term)
+	public Set<Integer> getChildren(int classId)
 	{
-		return getDescendants(term,1);
+		return getDescendants(classId,1);
 	}
-	
+
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of descendants of the input term
+	 * @param classes: the set the class to search in the map
+	 * @return the list of direct subclasses shared by the set of classes
 	 */
-	public Vector<Integer> getDescendants(int term)
+	public Set<Integer> getCommonSubClasses(Set<Integer> classes)
 	{
-		Vector<Integer> desc = new Vector<Integer>(0,1);
-		Set<Integer> c = descendantMap.keySet(term);
-		if(c != null)
-			desc.addAll(c);
-		return desc;
-	}
-	
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @param distance: the distance between the term and its ancestors
-	 * @return the list of descendants at the given distance from the input term
-	 */
-	public Vector<Integer> getDescendants(int term, int distance)
-	{
-		Vector<Integer> desc = new Vector<Integer>(0,1);
-		Set<Integer> c = descendantMap.keySet(term);
-		if(c != null)
+		if(classes == null || classes.size() == 0)
+			return null;
+		Iterator<Integer> it = classes.iterator();
+		Vector<Integer> subclasses = new Vector<Integer>(getSubClasses(it.next(),false));
+		while(it.hasNext())
 		{
-			for(Integer i : c)
-				if(descendantMap.get(term,i).getDistance() == distance)
-					desc.add(i);
+			HashSet<Integer> s = new HashSet<Integer>(getSubClasses(it.next(),false));
+			for(int i = 0; i < subclasses.size(); i++)
+			{
+				if(!s.contains(subclasses.get(i)))
+				{
+					subclasses.remove(i);
+					i--;
+				}
+			}
 		}
-		return desc;
-	}
-	
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @param type: the type of relationship between the term and its ancestors
-	 * @return the list of descendants of the input term that are of the given type
-	 */
-	public Vector<Integer> getDescendants(int term, boolean type)
-	{
-		Vector<Integer> desc = new Vector<Integer>(0,1);
-		Set<Integer> c = descendantMap.keySet(term);
-		if(c != null)
+		for(int i = 0; i < subclasses.size()-1; i++)
 		{
-			for(Integer i : c)
-				if(descendantMap.get(term,i).getType() == type)
-					desc.add(i);
+			for(int j = i+1; j < subclasses.size(); j++)
+			{
+				if(containsSubClass(subclasses.get(i),subclasses.get(j)))
+				{
+					subclasses.remove(i);
+					i--;
+					j--;
+				}
+				if(containsSubClass(subclasses.get(j),subclasses.get(i)))
+				{
+					subclasses.remove(j);
+					j--;
+				}
+			}
 		}
-		return desc;
+		return new HashSet<Integer>(subclasses);
 	}
 	
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @param distance: the distance between the term and its ancestors
-	 * @param type: the type of relationship between the term and its ancestors
-	 * @return the list of descendants of the input term that are at the
-	 * given distance and of the given type
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of descendants of the input class
 	 */
-	public Vector<Integer> getDescendants(int term, int distance, boolean type)
+	public Set<Integer> getDescendants(int classId)
 	{
-		Vector<Integer> desc = new Vector<Integer>(0,1);
-		Set<Integer> c = descendantMap.keySet(term);
-		if(c != null)
-		{
-			for(Integer i : c)
-				if(descendantMap.get(term,i).getType() == type &&
-					descendantMap.get(term,i).getDistance() == distance)
+		if(descendantMap.contains(classId))
+			return descendantMap.keySet(classId);
+		return new HashSet<Integer>();
+	}
+	
+	/**
+	 * @param classId: the id of the class to search in the map
+	 * @param distance: the distance between the class and its ancestors
+	 * @return the list of descendants at the given distance from the input class
+	 */
+	public Set<Integer> getDescendants(int classId, int distance)
+	{
+		HashSet<Integer> desc = new HashSet<Integer>();
+		if(!descendantMap.contains(classId))
+			return desc;
+		for(Integer i : descendantMap.keySet(classId))
+			for(Relationship r : descendantMap.get(classId, i))
+				if(r.getDistance() == distance)
 					desc.add(i);
-		}
 		return desc;
 	}
 	
 	/**
-	 * @return the set of terms that have disjoint clauses
+	 * @param classId: the id of the class to search in the map
+	 * @param prop: the relationship property between the class and its ancestors
+	 * @return the list of descendants at the given distance from the input class
+	 */
+	public Set<Integer> getDescendantsProperty(int classId, int prop)
+	{
+		HashSet<Integer> desc = new HashSet<Integer>();
+		if(!descendantMap.contains(classId))
+			return desc;
+		for(Integer i : descendantMap.keySet(classId))
+			for(Relationship r : descendantMap.get(classId, i))
+				if(r.getProperty() == prop)
+					desc.add(i);
+		return desc;
+	}
+	
+	/**
+	 * @param classId: the id of the class to search in the map
+	 * @param distance: the distance between the class and its ancestors
+	 * @param prop: the relationship property between the class and its ancestors
+	 * @return the list of descendants of the input class at the given distance
+	 * and with the given property
+	 */
+	public Set<Integer> getDescendants(int classId, int distance, int prop)
+	{
+		HashSet<Integer> desc = new HashSet<Integer>();
+		if(!descendantMap.contains(classId))
+			return desc;
+		for(Integer i : descendantMap.keySet(classId))
+			for(Relationship r : descendantMap.get(classId, i))
+				if(r.getDistance() == distance && r.getProperty() == prop)
+					desc.add(i);
+		return desc;
+	}
+	
+	/**
+	 * @return the set of classes that have disjoint clauses
 	 */
 	public Set<Integer> getDisjoint()
 	{
@@ -437,32 +449,32 @@ public class RelationshipMap
 	}
 
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of terms disjoint with the given term
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of classes disjoint with the given class
 	 */
-	public Vector<Integer> getDisjoint(int term)
+	public Set<Integer> getDisjoint(int classId)
 	{
-		//Get the disjoint clauses for the term from the disjointMap
-		Vector<Integer> disj = disjointMap.get(term);
-		//If the term has disjoint clauses, return them
+		//Get the disjoint clauses for the class from the disjointMap
+		Vector<Integer> disj = disjointMap.get(classId);
+		//If the class has disjoint clauses, return them
 		if(disj != null)
-			return disj;
+			return new HashSet<Integer>(disj);
 		//Otherwise return an empty list
-		return new Vector<Integer>(0,1);
+		return new HashSet<Integer>();
 	}
 	
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of terms disjoint with the given term
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of classes disjoint with the given class
 	 * or any of its 'is_a' ancestors
 	 */
-	public Vector<Integer> getDisjointTransitive(int term)
+	public Set<Integer> getDisjointTransitive(int classId)
 	{
-		//Get the disjoint clauses for the term
-		Vector<Integer> disj = getDisjoint(term);
-		//Then get the 'is_a' ancestors of the term
-		Vector<Integer> ancestors = getAncestors(term,true);
-		//For each ancestor
+		//Get the disjoint clauses for the class
+		Set<Integer> disj = getDisjoint(classId);
+		//Then get all superclasses of the class
+		Set<Integer> ancestors = getSuperClasses(classId,false);
+		//For each superclass
 		for(Integer i : ancestors)
 			//Add its disjoint clauses to the list
 			disj.addAll(getDisjoint(i));
@@ -470,248 +482,224 @@ public class RelationshipMap
 	}
 	
 	/**
-	 * @param child: the index of the child term
-	 * @param parent: the index of the parent term
-	 * @return the distance between the child and parent,
+	 * @param child: the index of the child class
+	 * @param parent: the index of the parent class
+	 * @return the minimal distance between the child and parent,
 	 * or 0 if child==parent, or -1 if they aren't related
 	 */
 	public int getDistance(int child, int parent)
 	{
 		if(child == parent)
 			return 0;
-		Relationship r = ancestorMap.get(child,parent);
-		if(r == null)
+		if(!ancestorMap.contains(child, parent))
 			return -1;
-		else
-			return r.getDistance();
+		Vector<Relationship> rels = ancestorMap.get(child,parent);
+		int distance = rels.get(0).getDistance();
+		for(Relationship r : rels)
+			if(r.getDistance() < distance)
+				distance = r.getDistance();
+		return distance;
 	}
 	
 	/**
-	 * @param terms: the set of terms to search in the map
-	 * @return the term that is equivalent to all terms in the given
-	 * set, or -1 if no such term exists
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of equivalences of the given class
 	 */
-	public int getEquivalence(Set<Integer> terms)
+	public Set<Integer> getEquivalences(int classId)
 	{
-		Integer i = equivalenceMap.get(terms);
-		if(i == null)
-			return -1;
-		return i;
-	}
-
-
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of high level ancestors of the given term
-	 */
-	public Vector<Integer> getHighLevelAncestors(int term)
-	{
-		if(highLevelTerms == null)
-			getHighLevelTerms();
-			
-		Vector<Integer> ancestors = getAncestors(term);
-		for(int i = 0; i < ancestors.size(); i++)
-		{	
-			if(!highLevelTerms.contains(ancestors.get(i)))
-			{
-				ancestors.remove(i);
-				i--;
-			}
-		}
-		return ancestors;
+		return getDescendants(classId, 0);
 	}
 	
 	/**
-	 * @return the set of high level terms in the ontology
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of classes equivalent to the given class
 	 */
-	public Set<Integer> getHighLevelTerms()
+	public Set<Integer> getEquivalentClasses(int classId)
 	{
-		if(highLevelTerms != null)
-			return highLevelTerms;
+		return getDescendants(classId,0,-1);
+	}
+	
+	/**
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of high level ancestors of the given class
+	 */
+	public Set<Integer> getHighLevelAncestors(int classId)
+	{
+		if(highLevelClasses == null)
+			getHighLevelClasses();
+		Set<Integer> ancestors = getAncestors(classId);
+		HashSet<Integer> highAncs = new HashSet<Integer>();
+		for(Integer i : ancestors)
+			if(highLevelClasses.contains(i))
+				highAncs.add(i);
+		return highAncs;
+	}
+	
+	/**
+	 * @return the set of high level classs in the ontology
+	 */
+	public Set<Integer> getHighLevelClasses()
+	{
+		if(highLevelClasses != null)
+			return highLevelClasses;
+		highLevelClasses = new HashSet<Integer>();
 
-		//First get the very top terms
-		Vector<Integer> top = new Vector<Integer>(0,1);
+		//First get the very top classes
+		HashSet<Integer> top = new HashSet<Integer>();
 		Set<Integer> ancestors = descendantMap.keySet();
-		//Which are terms that have descendants but not ancestors
+		//Which are classes that have children but not parents
 		for(Integer a : ancestors)
-			if(!ancestorMap.contains(a))
+			if(getParents(a).size() == 0 && getChildren(a).size() > 0)
 				top.add(a);
-		//If we have only one top level term, we go down the
-		//ontology until we reach a branching
-		while(top.size() == 1)
+		//Now we go down the ontology until we reach a significant branching
+		//for each top class
+		for(Integer a : top)
 		{
-			int root = top.get(0);
-			top = getChildren(root);
-		}
-		//We want the terms at the level below the first branching
-		highLevelTerms = new HashSet<Integer>();
-		for(Integer t : top)
-			highLevelTerms.addAll(getChildren(t));
-			
-		return highLevelTerms;
-	}
-	
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of direct is_a children of the given term
-	 */
-	public Vector<Integer> getIsAChildren(int term)
-	{
-		return getDescendants(term,1,true);
-	}
-	
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of direct is_a parents of the given term
-	 */
-	public Vector<Integer> getIsAParents(int term)
-	{
-		return getAncestors(term,1,true);
-	}
-
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of siblings of the given term
-	 */
-	public Vector<Integer> getIsASiblings(int term)
-	{
-		Vector<Integer> parents = getIsAParents(term);
-		Vector<Integer> siblings = new Vector<Integer>(0,1);
-		for(Integer i : parents)
-		{
-			Vector<Integer> children = getIsAChildren(i);
-			for(Integer j : children)
+			Set<Integer> childs = getChildren(a);
+			while(childs.size() < 3)
 			{
-				if(j != term && !siblings.contains(j))
-					siblings.add(j);
+				Set<Integer> newChilds = new HashSet<Integer>();
+				for(Integer c : childs)
+					newChilds.addAll(getChildren(c));
+				childs = newChilds;
 			}
+			highLevelClasses.addAll(childs);
 		}
-		return siblings;
+		return highLevelClasses;
 	}
 	
 	/**
-	 * @return the set of terms with ancestors in the map
+	 * @return the set of classes with ancestors in the map
 	 */
-	public Vector<Integer> getParents()
+	public Set<Integer> getParents()
 	{
-		return new Vector<Integer>(descendantMap.keySet());
+		if(descendantMap != null)
+			return descendantMap.keySet();
+		return new HashSet<Integer>();
 	}
 
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of direct parents of the given term
+	 * @param class: the id of the class to search in the map
+	 * @return the list of direct parents of the given class
 	 */
-	public Vector<Integer> getParents(int term)
+	public Set<Integer> getParents(int classId)
 	{
-		return getAncestors(term,1);
-	}
-
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of direct part_of children of the given term
-	 */
-	public Vector<Integer> getPartOfChildren(int term)
-	{
-		return getDescendants(term,1,false);
+		return getAncestors(classId,1);
 	}
 	
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of direct part_of parents of the given term
-	 */
-	public Vector<Integer> getPartOfParents(int term)
-	{
-		return getAncestors(term,1,false);
-	}
-	
-	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of siblings of the given term
-	 */
-	public Vector<Integer> getPartOfSiblings(int term)
-	{
-		Vector<Integer> parents = getPartOfParents(term);
-		Vector<Integer> siblings = new Vector<Integer>(0,1);
-		for(Integer i : parents)
-		{
-			Vector<Integer> children = getPartOfChildren(i);
-			for(Integer j : children)
-			{
-				if(j != term && !siblings.contains(j))
-					siblings.add(j);
-			}
-		}
-		return siblings;
-	}
-	
-	/**
-	 * @param child: the id of the child term to search in the map
-	 * @param parent: the id of the parent term to search in the map
-	 * @return the relationship between the two terms
+	 * @param child: the id of the child class to search in the map
+	 * @param parent: the id of the parent class to search in the map
+	 * @return the 'best' relationship between the two classes
 	 */
 	public Relationship getRelationship(int child, int parent)
+	{
+		return ancestorMap.get(child).get(parent).get(0);
+	}
+
+	/**
+	 * @param child: the id of the child class to search in the map
+	 * @param parent: the id of the parent class to search in the map
+	 * @return the relationships between the two classes
+	 */
+	public Vector<Relationship> getRelationships(int child, int parent)
 	{
 		return ancestorMap.get(child).get(parent);
 	}
 	
 	/**
-	 * @param term: the id of the term to search in the map
-	 * @return the list of siblings of the given term
+	 * @param classId: the id of the class to search in the map
+	 * @param prop: the relationship property between the class and its ancestors
+	 * @return the list of siblings of the given class with the given property
 	 */
-	public Vector<Integer> getSiblings(int term)
+	public Set<Integer> getSiblings(int classId)
 	{
-		Vector<Integer> parents = getParents(term);
-		Vector<Integer> siblings = new Vector<Integer>(0,1);
+		Set<Integer> parents = getAncestors(classId,1,-1);
+		HashSet<Integer> siblings = new HashSet<Integer>();
 		for(Integer i : parents)
 		{
-			Vector<Integer> children = getChildren(i);
+			Set<Integer> children = getDescendants(i,1,-1);
 			for(Integer j : children)
-			{
-				if(j != term && !siblings.contains(j))
+				if(j != classId)
 					siblings.add(j);
-			}
 		}
 		return siblings;
 	}
 	
 	/**
-	 * @param child: the index of the child term
-	 * @param parent: the index of the parent term
-	 * @return the type of relationship between the child and parent
-	 * true = 'is_a', false = 'part_of'
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of siblings of the given class for all
+	 * subclass relationships
 	 */
-	public Boolean getType(int child, int parent)
+	public Set<Integer> getSiblingsProperty(int classId, int prop)
 	{
-		if(child == parent)
-			return true;
-		Relationship r = ancestorMap.get(child,parent);
-		if(r == null)
-			return null;
-		else
-			return r.getType();
+		Set<Integer> parents = getAncestors(classId,1,prop);
+		HashSet<Integer> siblings = new HashSet<Integer>();
+		for(Integer i : parents)
+		{
+			Set<Integer> children = getDescendants(i,1,prop);
+			for(Integer j : children)
+				if(j != classId)
+					siblings.add(j);
+		}
+		return siblings;
 	}
 	
 	/**
-	 * @param term: the index of the term to search in the map
-	 * @return whether there is a disjoint clause associated with the term
+	 * @param classId: the id of the class to search in the map
+	 * @param direct: whether to return all subclasses or just the direct ones
+	 * @return the list of direct or indirect subclasses of the input class
 	 */
-	public boolean hasDisjoint(int term)
+	public Set<Integer> getSubClasses(int classId, boolean direct)
 	{
-		return disjointMap.contains(term);
+		if(direct)
+			return getDescendants(classId,1,-1);
+		else
+			return getDescendantsProperty(classId,-1);
+	}
+	
+	/**
+	 * @param classId: the id of the class to search in the map
+	 * @param direct: whether to return all superclasses or just the direct ones
+	 * @return the list of direct or indirect superclasses of the input class
+	 */
+	public Set<Integer> getSuperClasses(int classId, boolean direct)
+	{
+		if(direct)
+			return getAncestors(classId,1,-1);
+		else
+			return getAncestorsProperty(classId,-1);
+	}
+	
+	/**
+	 * @return the set of transitive properties
+	 */
+	public Set<Integer> getTransitiveProperties()
+	{
+		return transitive;
+	}
+	
+	/**
+	 * @param class: the index of the class to search in the map
+	 * @return whether there is a disjoint clause associated with the class
+	 */
+	public boolean hasDisjoint(int classId)
+	{
+		return disjointMap.contains(classId);
 	}
 
 	/**
-	 * @param term: the index of the term to search in the map
-	 * @return whether there is a disjoint clause associated with the term
+	 * @param classId: the index of the class to search in the map
+	 * @return whether there is a disjoint clause associated with the class
 	 * or any of its 'is_a' ancestors
 	 */
-	public boolean hasDisjointTransitive(int term)
+	public boolean hasDisjointTransitive(int classId)
 	{
-		//Get the ancestors of the term
-		Vector<Integer> ancestors = getAncestors(term,true);
+		//Get all superclasses of the class
+		Set<Integer> ancestors = getSuperClasses(classId,false);
 		//Plus the parent itself
-		ancestors.add(term);
-		//Run through the list of ancestors
+		ancestors.add(classId);
+		//Run through the list of superclasses
 		for(Integer i : ancestors)
 			//And check if any have disjoint clauses
 			if(disjointMap.contains(i))
@@ -720,13 +708,29 @@ public class RelationshipMap
 	}
 	
 	/**
-	 * @param one: the first term to check for disjointness
-	 * @param two: the second term to check for disjointness
+	 * @param one: the first class to check for disjointness
+	 * @param two: the second class to check for disjointness
 	 * @return whether there is a disjoint clause between one and two
 	 */
-	public boolean haveDisjointClause(int one, int two)
+	public boolean hasDisjointClause(int one, int two)
 	{
 		return (disjointMap.contains(one) && disjointMap.contains(one,two));
+	}
+	
+	/**
+	 * @param child: the id of the child class to search in the map
+	 * @param parent: the id of the parent class to search in the map
+	 * @param property: the id of the property between child and parent
+	 * @return whether there is a relationship between child and parent
+	 *  with the given property
+	 */
+	public boolean hasProperty(int child, int parent, int property)
+	{
+		Vector<Relationship> rels = getRelationships(child,parent);
+		for(Relationship r : rels)
+			if(r.getProperty() == property)
+				return true;
+		return false;
 	}
 	
 	/**
@@ -736,7 +740,35 @@ public class RelationshipMap
 	{
 		return ancestorMap.size();
 	}
-
+	
+	/**
+	 * @param prop: the property to set as transitive
+	 */
+	public void setTransitive(int prop)
+	{
+		transitive.add(prop);
+	}
+	
+	/**
+	 * @param classId: the id of the class to search in the map
+	 * @param direct: whether to return all subclasses or just the direct ones
+	 * @return the number of direct or indirect subclasses of the input class
+	 */
+	public int subClassCount(int classId, boolean direct)
+	{
+		return getSubClasses(classId,direct).size();
+	}
+	
+	/**
+	 * @param classId: the id of the class to search in the map
+	 * @param direct: whether to return all superclasses or just the direct ones
+	 * @return the number of direct or indirect superclasses of the input class
+	 */
+	public int superClassCount(int classId, boolean direct)
+	{
+		return getSuperClasses(classId,direct).size();
+	}
+	
 	/**
 	 * Compute the transitive closure of the RelationshipMap
 	 * by adding inherited relationships (and their distances)
@@ -751,15 +783,36 @@ public class RelationshipMap
 			lastCount = descendantMap.size();
 			for(Integer i : t)
 			{
-				Vector<Integer> childs = getChildren(i);
-				Vector<Integer> pars = getAncestors(i,distance);
+				Set<Integer> childs = getChildren(i);
+				childs.addAll(getEquivalences(i));
+				Set<Integer> pars = getAncestors(i,distance);
 				for(Integer j : pars)
 				{
-					for(Integer h : childs)
+					Vector<Relationship> rel1 = getRelationships(i,j);
+					for(int k = 0; k < rel1.size(); k++)
 					{
-						Relationship rel = new Relationship(getRelationship(i,j));
-						rel.extendWith(getRelationship(h,i));
-						addRelationship(h, j, rel);
+						Relationship r1 = rel1.get(k);
+						int p1 = r1.getProperty();
+						for(Integer h : childs)
+						{
+							Vector<Relationship> rel2 = getRelationships(h,i);
+							for(int l = 0; l < rel2.size(); l++)
+							{
+								Relationship r2 = rel2.get(l);
+								int p2 = r2.getProperty();
+								if((!transitive.contains(p2) && !transitive.contains(p1)) ||
+										(p1 != p2 && p1 != -1 && p2 != -1))
+									continue;
+								int dist = r1.getDistance() + r2.getDistance();
+								int prop;
+								if(p1 == p2 || p1 != -1)
+									prop = p1;
+								else
+									prop = p2;
+								boolean rest = r1.getRestriction() && r2.getRestriction();
+								addRelationship(h, j, dist, prop, rest);
+							}
+						}
 					}
 				}
 			}
@@ -767,19 +820,19 @@ public class RelationshipMap
 	}
 	
 	/**
-	 * @param child: the child term in the relationship
-	 * @param parent: the parent term in the relationship
+	 * @param child: the child class in the relationship
+	 * @param parent: the parent class in the relationship
 	 * @return whether adding the relationship between child and parent
 	 * to the RelationshipMap would violate a disjoint clause
 	 */
 	public boolean violatesDisjoint(int child, int parent)
 	{
 		//Get all descendants of the child
-		Vector<Integer> descendants = getDescendants(child);
+		Set<Integer> descendants = getDescendants(child);
 		//Plus the child itself
 		descendants.add(child);
 		//Then all ancestors of the parent
-		Vector<Integer> ancestors = getAncestors(parent);
+		Set<Integer> ancestors = getAncestors(parent);
 		//Plus the parent itself
 		ancestors.add(parent);
 		

@@ -12,10 +12,10 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An Ontology property which is an element of the PropertyList.               *
+* An Ontology property.                                                       *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 30-05-2013                                                            *
 ******************************************************************************/
 package aml.ontology;
 
@@ -30,19 +30,48 @@ public class Property
 	
 	private int index;
 	private String name;
-	private Vector<String> type;
+	private String type;
 	private Vector<String> domain;
 	private Vector<String> range;
+	private boolean isFunctional;
 	
 //Constructors
-	
-	public Property(int i, String n)
+
+	public Property(int i, String n, String t)
 	{
 		index = i;
 		name = StringParser.normalizeProperty(n);
-		type = new Vector<String>(0,1);
+		type = t;
 		domain = new Vector<String>(0,1);
 		range = new Vector<String>(0,1);
+		isFunctional = false;
+	}
+	
+	public Property(int i, String n, String t, boolean f)
+	{
+		index = i;
+		name = StringParser.normalizeProperty(n);
+		type = t;
+		domain = new Vector<String>(0,1);
+		range = new Vector<String>(0,1);
+		isFunctional = f;
+	}
+	
+//Public Methods
+
+	public void addDomain(String d)
+	{
+		domain.add(d);
+	}
+	
+	public void addRange(String r)
+	{
+		range.add(r);
+	}
+	
+	public Vector<String> getDomain()
+	{
+		return domain;
 	}
 	
 	public int getIndex()
@@ -55,42 +84,29 @@ public class Property
 		return name;
 	}
 	
-	public void addDomain(String d)
-	{
-		domain.add(d);
-	}
-	
-	public Vector<String> getDomain()
-	{
-		return domain;
-	}
-	
-	public void addRange(String r)
-	{
-		range.add(r);
-	}
-	
 	public Vector<String> getRange()
 	{
 		return range;
 	}
 	
-	public void addType(String t)
-	{
-		type.add(t);
-	}
-	
-	public Vector<String> getType()
+	public String getType()
 	{
 		return type;
 	}
 	
+	public boolean isFunctional()
+	{
+		return isFunctional;
+	}
+	
+	public void isFunctional(boolean f)
+	{
+		isFunctional = f;
+	}
+	
 	public String toString()
 	{
-		String s = "name: " + name;
-		s += "\ntype: ";
-		for(String t : type)
-			s += t + "; ";
+		String s = "name: " + name + "\ntype: " + type;
 		s += "\ndomain: ";
 		for(String d : domain)
 			s += d + "; ";

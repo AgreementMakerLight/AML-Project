@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.util.StopList;
+import aml.util.Table2;
 import aml.util.Table2Plus;
 import aml.util.StringParser;
 
@@ -35,10 +36,12 @@ public class Lexicon
 
 //Attributes
 	
-	//The MultiMap of names
+	//The table of names
 	private Table2Plus<String,Integer,Provenance> names;
-	//The MultiMap of terms
+	//The table of terms
 	private Table2Plus<Integer,String,Provenance> terms;
+	//The table of languages
+	private Table2<String,String> languages;
 	
 //Constructors
 
@@ -50,6 +53,7 @@ public class Lexicon
 	{
 		names = new Table2Plus<String,Integer,Provenance>();
 		terms = new Table2Plus<Integer,String,Provenance>();
+		languages = new Table2<String,String>();
 	}
 	
 	/**
@@ -60,21 +64,11 @@ public class Lexicon
 	{
 		names = new Table2Plus<String,Integer,Provenance>(l.names);
 		terms = new Table2Plus<Integer,String,Provenance>(l.terms);
+		languages = new Table2<String,String>(l.languages);
 	}
 
 //Public Methods
 
-	/**
-	 * Adds a new local entry to the Lexicon
-	 * @param term: the term to which the name belongs
-	 * @param name: the name to add to the lexicon
-	 * @param type: the type of lexical entry (localName, label, etc)
-	 */
-	public void add(int term, String name, String type, double weight)
-	{
-		add(term,name,type,"",weight);
-	}
-	
 	/**
 	 * Adds a new entry to the Lexicon
 	 * @param term: the term to which the name belongs
@@ -88,25 +82,64 @@ public class Lexicon
 		if(name == null || !name.matches(".*[a-zA-Z].*"))
 			return;
 
-		String s;
+		String s, lang;
 		Provenance p;
 
 		//Then check if it is a formula
 		if(StringParser.isFormula(name))
 		{
 			s = StringParser.normalizeFormula(name);
+			lang = "Formula";
 			p = new Provenance("Formula", source, weight);
 		}
 		//Or a normal name
 		else
 		{
 			s = StringParser.normalizeName(name);
+			lang = "en";
 			p = new Provenance(type, source, weight);
 		}
-		
-		//Then update the MultiMaps
+		//Then update the tables
 		names.addUpgrade(s,term,p);
 		terms.addUpgrade(term,s,p);
+		languages.add(name,lang);
+	}
+	
+	/**
+	 * Adds a new entry to the Lexicon
+	 * @param term: the term to which the name belongs
+	 * @param name: the name to add to the Lexicon
+	 * @param language: the language of the name
+	 * @param type: the type of lexical entry (localName, label, etc)
+	 * @param source: the source of the lexical entry (ontology URI, etc)
+	 */
+	public void add(int term, String name, String language, String type, String source, double weight)
+	{
+		//First ensure that the name contains letters
+		if(name == null || !name.matches(".*[a-zA-Z].*"))
+			return;
+
+		String s, lang;
+		Provenance p;
+
+		//Then check if it is a formula
+		if(StringParser.isFormula(name))
+		{
+			s = StringParser.normalizeFormula(name);
+			lang = "Formula";
+			p = new Provenance("Formula", source, weight);
+		}
+		//Or a normal name
+		else
+		{
+			s = StringParser.normalizeName(name);
+			lang = language;
+			p = new Provenance(type, source, weight);
+		}
+		//Then update the tables
+		names.addUpgrade(s,term,p);
+		terms.addUpgrade(term,s,p);
+		languages.add(name,lang);
 	}
 	
 	/**
@@ -348,6 +381,15 @@ public class Lexicon
 	}
 	
 	/**
+	 * @param name: the term name to search in the Lexicon
+	 * @return the list of languages declared for the name
+	 */
+	public Vector<String> getLanguages(String name)
+	{
+		return languages.get(name);
+	}
+	
+	/**
 	 * @return the set of names in the Lexicon
 	 */
 	public Set<String> getNames()
@@ -499,6 +541,15 @@ public class Lexicon
 		if(p == null)
 			return false;
 		return p.isExternal();
+	}
+	
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @return whether the name is a formula
+	 */
+	public boolean isFormula(String name)
+	{
+		return languages.get(name).equals("Formula");
 	}
 	
 	/**

@@ -15,19 +15,22 @@
 * Tests AgreementMakerLight in Eclipse, with manually configured options.     *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-02-2014                                                            *
+* @date 06-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
+import java.io.FileNotFoundException;
 
-import org.apache.log4j.PropertyConfigurator;
-import org.dom4j.DocumentException;
-
+import aml.AML.SelectionType;
+import aml.filter.Selector;
 import aml.match.Alignment;
+import aml.match.LexicalMatcher;
+import aml.match.MediatingMatcher;
 import aml.match.OAEI2013Matcher;
+import aml.match.ParametricStringMatcher;
+import aml.match.WordMatcher;
+import aml.match.XRefMatcher;
 import aml.ontology.Ontology;
 
 public class AMLTestEclipse
@@ -35,44 +38,56 @@ public class AMLTestEclipse
 
 //Main Method
 	
-	public static void main(String[] args) throws IOException, DocumentException
+	public static void main(String[] args) throws FileNotFoundException
 	{
-		//Configure log4j (writes to store/error.log)
-		PropertyConfigurator.configure("log4j.properties");
-
 		//Path to input ontology files (edit manually)
-		String sourcePath = "store/anatomy/mouse.owl";
-		String targetPath = "store/anatomy/human.owl";
+		String sourcePath = "store/largebio/oaei2013_SNOMED_small_overlapping_nci.owl";
+		String targetPath = "store/largebio/oaei2013_NCI_small_overlapping_snomed.owl";
 		//Path to reference alignment (edit manually, or leave blank for no evaluation)
-		String referencePath = "store/anatomy/reference.rdf";
+		String referencePath = "store/largebio/oaei2013_SNOMED2NCI_repaired_UMLS_mappings.rdf";
 		//Path to output alignment file (edit manually, or leave left blank to not save alignment)
-		String alignPath = "";
-		//The ontologies
-		Ontology source = loadOntology(new File(sourcePath).toURI());
-		Ontology target = loadOntology(new File(targetPath).toURI());
-		//The OAEI2013 Matcher (edit manually to use other matcher(s))
-		OAEI2013Matcher matcher = new OAEI2013Matcher(true,true,true);
-		//The alignment
-		Alignment a = matcher.match(source,target);
-		//Evaluate the alignment
-		if(!referencePath.equals(""))
-			System.out.println(evaluate(a,referencePath));
-		//And save it
-		if(!alignPath.equals(""))
-			a.saveRDF(alignPath);
-	}
-	
-	private static Ontology loadOntology(URI u)
-	{
+		String alignPath = "store/anatomy/align1.rdf";
+
+		double thresh = 0.59;
+		
 		long startTime = System.currentTimeMillis()/1000;
-		String uriString = u.toString();
-		boolean isOWL = !uriString.endsWith(".rdfs");
-		Ontology o = new Ontology(u,true,isOWL);
-		long elapsedTime = System.currentTimeMillis()/1000 - startTime;
-		System.out.println(o.getURI() + " loaded in " + elapsedTime + " seconds");
-		System.out.println("Classes: " + o.termCount());		
-		System.out.println("Properties: " + o.propertyCount());
-		return o;
+		
+		AML aml = AML.getInstance();
+		aml.openOntologies(sourcePath, targetPath);
+
+		LexicalMatcher lm = new LexicalMatcher(false);
+		Alignment a = lm.match(thresh);
+		
+		Ontology doid = new Ontology("store/knowledge/doid.owl",false);
+		MediatingMatcher mm = new MediatingMatcher(doid);
+		a.addAll(mm.match(thresh));
+		
+		Ontology ub = new Ontology("store/knowledge/uberon.owl",false);
+		mm = new MediatingMatcher(ub);
+		a.addAll(mm.match(thresh));
+
+		WordMatcher wm = new WordMatcher();
+		Alignment b = wm.match(thresh);
+		Selector s = new Selector(b, SelectionType.PERMISSIVE);
+		b = s.select(thresh);
+		a.addAllNonConflicting(b);
+				
+		ParametricStringMatcher sm = new ParametricStringMatcher();
+		b = sm.extendAlignment(a,thresh);
+		s = new Selector(b, SelectionType.PERMISSIVE);
+		b = s.select(thresh);
+		a.addAllNonConflicting(b);
+
+		System.out.println(evaluate(a,referencePath));
+		
+		
+/*
+		OAEI2013Matcher o = new OAEI2013Matcher(true,true,false);
+		Alignment a = o.match();
+		System.out.println(evaluate(a,referencePath));
+*/		
+		System.out.println("Finished in " + (System.currentTimeMillis()/1000-startTime) + " seconds");
+
 	}
 	
 	private static String evaluate(Alignment a, String referencePath)
@@ -80,7 +95,7 @@ public class AMLTestEclipse
 		Alignment ref = null;
 		try
 		{
-			ref = new Alignment(a.getSource(), a.getTarget(), referencePath);
+			ref = new Alignment(referencePath);
 		}
 		catch(Exception e)
 		{

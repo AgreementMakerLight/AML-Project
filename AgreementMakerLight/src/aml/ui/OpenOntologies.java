@@ -25,19 +25,16 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.net.URI;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import aml.AMLGUI;
-import aml.ontology.Ontology;
+import aml.AML;
 
 public class OpenOntologies extends JDialog implements ActionListener
 {
@@ -121,7 +118,7 @@ public class OpenOntologies extends JDialog implements ActionListener
 		}
 		else if(o == selectSource)
 		{
-			OntologyFileChooser fc = AMLGUI.getOntologyFileChooser();
+			OntologyFileChooser fc = AML.getInstance().getOntologyFileChooser();
 			int returnVal = fc.showOpenDialog(this);
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
@@ -131,7 +128,7 @@ public class OpenOntologies extends JDialog implements ActionListener
 		}
 		else if(o == selectTarget)
 		{
-			OntologyFileChooser fc = AMLGUI.getOntologyFileChooser();
+			OntologyFileChooser fc = AML.getInstance().getOntologyFileChooser();
 			int returnVal = fc.showOpenDialog(this);
 			if (returnVal == JFileChooser.APPROVE_OPTION)
 			{
@@ -142,35 +139,9 @@ public class OpenOntologies extends JDialog implements ActionListener
 		else if(o == open)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			URI sourceURI = source.toURI();
-			Ontology s = null;
-			try{s = new Ontology(sourceURI,true,sourceFormat.getSelectedIndex() == 0);}
-			catch(Exception x)
-			{
-				JOptionPane.showMessageDialog(this, "Could not read ontology " + source.getName() + "!\n" + 
-						x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE);
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				return;
-			}
-			s.getLexicon().generateStopWordSynonyms();
-			s.getLexicon().generateBracketSynonyms();
-			URI targetURI = target.toURI();
-			Ontology t = null;
-			try{t = new Ontology(targetURI,true,targetFormat.getSelectedIndex() == 0);}
-			catch(Exception x)
-			{
-				JOptionPane.showMessageDialog(this, "Could not read ontology " + target.getName() + "!\n" + 
-						x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE);
-				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-				return;
-			}
-			if(s != null && t != null)
-			{
-				AMLGUI.setOntologies(s,t);
-				this.dispose();
-			}
-			else
-				JOptionPane.showMessageDialog(this, "Empty ontology!", "Error", JOptionPane.ERROR_MESSAGE);
+			AML aml = AML.getInstance();
+			aml.openOntologies(source.toString(), target.toString());
+			this.dispose();
 		}
 		//Update the status of the open button
 		open.setEnabled(source != null && target != null);

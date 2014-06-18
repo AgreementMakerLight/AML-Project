@@ -24,19 +24,14 @@
 * -i store/anatomy/toRepair.rdf -r -o store/anatomy/repaired.rdf              *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 05-05-2014                                                            *
+* @date 06-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml;
 
 import java.io.File;
-import java.net.URI;
 
-import org.apache.log4j.PropertyConfigurator;
-
-import aml.match.Alignment;
-import aml.match.OAEI2013Matcher;
-import aml.ontology.Ontology;
-import aml.repair.Repairer;
+import aml.AML.MatchingAlgorithm;
 
 public class AMLCommandLine
 {
@@ -53,19 +48,10 @@ public class AMLCommandLine
 	 * [-o ouput_alignment_path]
 	 * [-b] -> use background knowledge
 	 * [-u] -> exclude UMLS
+	 * @throws Exception 
 	 */
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
-		try
-		{
-			//Configure log4j (writes to store/error.log)
-			PropertyConfigurator.configure("log4j.properties");
-		}
-		catch(Exception e)
-		{
-			System.out.println("Warning: Could not configure log4j.properties");
-			e.printStackTrace();
-		}
 		//Path to input ontology files
 		String sourcePath = "";
 		String targetPath = "";
@@ -127,76 +113,29 @@ public class AMLCommandLine
 			System.exit(0);
 		}
 
-		Ontology source = loadOntology(s.toURI());
-		Ontology target = loadOntology(t.toURI());
-		Alignment a = null;
+		AML aml = AML.getInstance();
+		aml.openOntologies(sourcePath, targetPath);
 		
 		if(match)
 		{
-			OAEI2013Matcher aml = new OAEI2013Matcher(background,ignoreUMLS,repair);
-			a = aml.match(source,target);
+			aml.setMatcher(MatchingAlgorithm.OAEI);
+			aml.setMatchOptions(background, ignoreUMLS, repair);
+			aml.match();
 			if(!inputPath.equals(""))
-				System.out.println(evaluate(a,inputPath));
+			{
+				aml.openReferenceAlignment(inputPath);
+				aml.evaluate();
+				System.out.println(aml.getEvaluation());
+			}
 		}
 		else if(repair)
 		{
-			try
-			{
-				a = new Alignment(source, target, inputPath);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-			Repairer r = new Repairer();
-			a = r.repair(a);
+			aml.openAlignment(inputPath);
+			aml.repair();
 		}
 		if(!outputPath.equals(""))
 		{
-			try{a.saveRDF(outputPath);}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
+			aml.saveAlignmentRDF(outputPath);
 		}
-	}
-	
-	private static Ontology loadOntology(URI u)
-	{
-		long startTime = System.currentTimeMillis()/1000;
-		String uriString = u.toString();
-		boolean isOWL = !uriString.endsWith(".rdfs");
-		Ontology o = new Ontology(u,true,isOWL);
-		long elapsedTime = System.currentTimeMillis()/1000 - startTime;
-		System.out.println(o.getURI() + " loaded in " + elapsedTime + " seconds");
-		System.out.println("Classes: " + o.termCount());		
-		System.out.println("Properties: " + o.propertyCount());
-		return o;
-	}
-	
-	private static String evaluate(Alignment a, String referencePath)
-	{
-		Alignment ref = null;
-		try
-		{
-			ref = new Alignment(a.getSource(), a.getTarget(), referencePath);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		int found = a.size();		
-		int correct = a.evaluate(ref);
-		int total = ref.size();
-
-		double precision = 1.0*correct/found;
-		String prc = Math.round(precision*1000)/10.0 + "%";
-		double recall = 1.0*correct/total;
-		String rec = Math.round(recall*1000)/10.0 + "%";
-		double fmeasure = 2*precision*recall/(precision+recall);
-		String fms = Math.round(fmeasure*1000)/10.0 + "%";
-		
-		return "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
-			"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
 	}
 }

@@ -27,9 +27,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import aml.AMLGUI;
+import aml.AML;
 import aml.match.Alignment;
-import aml.ontology.Ontology;
 
 public class AMLMenuBar extends JMenuBar implements ActionListener
 {
@@ -142,31 +141,26 @@ public class AMLMenuBar extends JMenuBar implements ActionListener
 		}
 		else if(o == closeO)
 		{
-			AMLGUI.closeOntologies();
+			AML.getInstance().closeOntologies();
 		}
 		else if(o == openA)
 		{
-			Ontology source = AMLGUI.getSourceOntology();
-			Ontology target = AMLGUI.getTargetOntology();
-			AlignmentFileChooser fc = AMLGUI.getAlignmentFileChooser();
+			AlignmentFileChooser fc = AML.getInstance().getAlignmentFileChooser();
 			int returnVal = fc.showOpenDialog(this);
 			if(returnVal == JFileChooser.APPROVE_OPTION)
 			{
-				Alignment a = null;
-				try{a = new Alignment(source, target, fc.getSelectedFile().getAbsolutePath());}
+				try{AML.getInstance().openAlignment(fc.getSelectedFile().getAbsolutePath());}
 				catch(Exception x)
 				{
 					JOptionPane.showMessageDialog(this, "Could not read alignment file!\n" + 
 							x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE);
 				}
-				if(a != null)
-					AMLGUI.setAlignment(a);
 			}
 		}
 		else if(o == saveA)
 		{
-			Alignment a = AMLGUI.getAlignment();
-			AlignmentFileChooser fc = AMLGUI.getAlignmentFileChooser();
+			Alignment a = AML.getInstance().getAlignment();
+			AlignmentFileChooser fc = AML.getInstance().getAlignmentFileChooser();
 			int returnVal = fc.showSaveDialog(this);
 			if(returnVal == JFileChooser.APPROVE_OPTION)
 			{
@@ -198,7 +192,7 @@ public class AMLMenuBar extends JMenuBar implements ActionListener
 		}
 		else if(o == closeA)
 		{
-			AMLGUI.closeAlignment();
+			AML.getInstance().closeAlignment();
 		}
 		else if(o == align)
 		{
@@ -210,11 +204,11 @@ public class AMLMenuBar extends JMenuBar implements ActionListener
 		}
 		else if(o == next)
 		{
-			AMLGUI.nextMapping();
+			AML.getInstance().nextMapping();
 		}
 		else if(o == previous)
 		{
-			AMLGUI.previousMapping();
+			AML.getInstance().previousMapping();
 		}
 		else if(o == goTo)
 		{
@@ -236,15 +230,15 @@ public class AMLMenuBar extends JMenuBar implements ActionListener
 	 */
 	public void refresh()
 	{
-		closeO.setEnabled(AMLGUI.hasOntologies());
-		openA.setEnabled(AMLGUI.hasOntologies());
-		closeA.setEnabled(AMLGUI.hasAlignment());
-		saveA.setEnabled(AMLGUI.hasAlignment());
-		align.setEnabled(AMLGUI.hasOntologies());
-		evaluate.setEnabled(AMLGUI.hasAlignment());
-		next.setEnabled(AMLGUI.hasAlignment());
-		previous.setEnabled(AMLGUI.hasAlignment());
-		goTo.setEnabled(AMLGUI.hasAlignment());
-		search.setEnabled(AMLGUI.hasAlignment());
+		closeO.setEnabled(AML.getInstance().hasOntologies());
+		openA.setEnabled(AML.getInstance().hasOntologies());
+		closeA.setEnabled(AML.getInstance().hasAlignment());
+		saveA.setEnabled(AML.getInstance().hasAlignment());
+		align.setEnabled(AML.getInstance().hasOntologies());
+		evaluate.setEnabled(AML.getInstance().hasAlignment());
+		next.setEnabled(AML.getInstance().hasAlignment());
+		previous.setEnabled(AML.getInstance().hasAlignment());
+		goTo.setEnabled(AML.getInstance().hasAlignment());
+		search.setEnabled(AML.getInstance().hasAlignment());
 	}
 }

@@ -12,13 +12,13 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Matching algorithm that maps the properties of two Ontologies by comparing  *
-* their names, types, domains and ranges. Requires an Alignment between the   *
-* terms (classes) of the Ontologies as input, in order to check for domain    *
-* and range matches. Can use WordNet to boost the name similarity.            *
+* Matching algorithm that maps the properties of the Ontologies by comparing  *
+* their names, types, domains and ranges. Can use an input class Alignment    *
+* to check for domain and range matches. Can use WordNet to boost the name    *
+* similarity.                                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-02-2014                                                            *
+* @date 30-05-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -28,9 +28,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
-import aml.ontology.Ontology;
+import aml.AML;
 import aml.ontology.Property;
-import aml.ontology.PropertyList;
+import aml.ontology.URIMap;
 
 public class PropertyMatcher
 {
@@ -38,8 +38,8 @@ public class PropertyMatcher
 //Attributes
 	
 	private Alignment maps;
-	private Ontology source;
-	private Ontology target;
+	private HashMap<Integer,Property> sourceProps;
+	private HashMap<Integer,Property> targetProps;
 	private HashMap<String,Double> wordEC;
 	private WordNetMatcher wn = null;
 
@@ -49,6 +49,9 @@ public class PropertyMatcher
 	{
 		if(useWordNet)
 			wn = new WordNetMatcher();
+		AML aml = AML.getInstance();
+		sourceProps = aml.getSource().getPropertyMap();
+		targetProps = aml.getTarget().getPropertyMap();
 	}
 	
 //Public Methods
@@ -59,27 +62,22 @@ public class PropertyMatcher
 	 * @param threshold: the similarity threshold for the property Mappings
 	 * @return the list of Mappings between the properties of the Ontologies
 	 */
-	public Vector<Mapping> matchProperties(Alignment a, double threshold)
+	public Alignment matchProperties(Alignment a, double threshold)
 	{
 		maps = a;
-		source = a.getSource();
-		target = a.getTarget();
 		buildWordMap();
-		Vector<Mapping> propMaps = new Vector<Mapping>(0,1);
-		PropertyList sourceProps = source.getPropertyList();
-		PropertyList targetProps = target.getPropertyList();
-		for(Property s : sourceProps)
+		Alignment propMaps = new Alignment();
+		Set<Integer> sourceKeys = sourceProps.keySet();
+		Set<Integer> targetKeys = targetProps.keySet();
+		for(Integer i : sourceKeys)
 		{
-			for(Property t : targetProps)
+			for(Integer j : targetKeys)
 			{
-				Mapping m = matchProperties(s,t);
-				if(m.getSimilarity() >= threshold)
-					propMaps.add(m);
+				double sim = matchProperties(sourceProps.get(i),targetProps.get(j));
+				if(sim >= threshold)
+					propMaps.add(new Mapping(i,j,sim));
 			}
 		}
-		maps = null;
-		source = null;
-		target = null;
 		return propMaps;
 	}
 
@@ -90,12 +88,12 @@ public class PropertyMatcher
 	{
 		wordEC = new HashMap<String,Double>();
 		int total = 0;
-		PropertyList sourceProps = source.getPropertyList();
-		for(Property s : sourceProps)
-			total += addNames(s);
-		PropertyList targetProps = target.getPropertyList();
-		for(Property t : targetProps)
-			total += addNames(t);
+		Set<Integer> sourceKeys = sourceProps.keySet();
+		for(Integer i : sourceKeys)
+			total += addNames(sourceProps.get(i));
+		Set<Integer> targetKeys = targetProps.keySet();
+		for(Integer i : targetKeys)
+			total += addNames(targetProps.get(i));
 		Set<String> words = wordEC.keySet();
 		double max = Math.log(total);
 		for(String w : words)
@@ -125,36 +123,50 @@ public class PropertyMatcher
 	}
 
 	//Matches two properties
-	private Mapping matchProperties(Property s, Property t)
+	private double matchProperties(Property s, Property t)
 	{
-		Mapping m = new Mapping(s.getIndex(),t.getIndex(),0.0);
+		double sim = 0.0;
 
-		//We should only match properties that share a type
-		Vector<String> sType = s.getType();
-		Vector<String> tType = t.getType();
-		double typeSim = jaccard(sType,tType);
-		if(typeSim < 0.5)
-			return m;
+		//We should only match properties of the same type
+		String sType = s.getType();
+		String tType = t.getType();
+		if(!sType.equals(tType))
+			return sim;
 	
-		//We should only match properties that have matching domains
-		Vector<String> sDomain = s.getDomain();
-		Vector<String> tDomain = t.getDomain();
-		if(!domainsMatch(sDomain,tDomain))
-			return m;
-		//And matching ranges
-		Vector<String> sRange = s.getRange();
-		Vector<String> tRange = t.getRange();
-		if(!rangesMatch(sRange,tRange))
-			return m;
+		//We should only match datatype and object properties that have
+		//matching domains, if we have a class alignment to check 
+		if((sType.equals("datatype") || sType.equals("object")) && maps != null)
+		{
+			Vector<String> sDomain = s.getDomain();
+			Vector<String> tDomain = t.getDomain();
+			if(!urisMatch(sDomain,tDomain))
+				return sim;
+		}
+		
+		//We should only match datatype properties that have matching ranges
+		if(sType.equals("datatype"))
+		{
+			//And matching ranges
+			Vector<String> sRange = s.getRange();
+			Vector<String> tRange = t.getRange();
+			if(!valuesMatch(sRange,tRange))
+				return sim;
+		}
+		
+		//We should only match object properties that have matching
+		//ranges, if we have a class alignment to check 
+		if(sType.equals("object") && maps != null)
+		{
+			Vector<String> sRange = s.getRange();
+			Vector<String> tRange = t.getRange();
+			if(!urisMatch(sRange,tRange))
+				return sim;
+		}
 		
 		//Finally, we compute the name similarity between the properties
 		String sName = s.getName();
 		String tName = t.getName();
-		double nameSim = nameSimilarity(sName,tName);
-		//store it
-		m.setSimilarity(nameSim);
-		//and return the Mapping
-		return m;
+		return nameSimilarity(sName,tName);
 	}
 
 	//The Jaccard similarity between two Collections of Strings
@@ -175,64 +187,56 @@ public class PropertyMatcher
 		return intersection/union;
 	}
 	
-	//Checks if two lists of property domains match (i.e., have similarity above 50%)
-	private boolean domainsMatch(Vector<String> sDomain, Vector<String> tDomain)
+	//Checks if two lists of uris match (i.e., have Jaccard similarity above 50%)
+	private boolean urisMatch(Vector<String> sURIs, Vector<String> tURIs)
 	{
-		if(sDomain.size() == 0 && tDomain.size() == 0)
+		if(sURIs.size() == 0 && tURIs.size() == 0)
 			return true;
-		if(sDomain.size() == 0 || tDomain.size() == 0)
+		if(sURIs.size() == 0 || tURIs.size() == 0)
 			return false;
-		if(sDomain.size() == 1 && tDomain.size() == 1)
-			return domainsMatch(sDomain.get(0),tDomain.get(0));
+		if(sURIs.size() == 1 && tURIs.size() == 1)
+			return urisMatch(sURIs.get(0),tURIs.get(0));
 		double matches = 0.0;
-		for(String s : sDomain)
+		for(String s : sURIs)
 		{
-			for(String t : tDomain)
+			for(String t : tURIs)
 			{
-				if(domainsMatch(s,t))
+				if(urisMatch(s,t))
 				{
 					matches++;
 					break;
 				}
 			}
 		}
-		matches /= sDomain.size()+tDomain.size()-matches;
+		matches /= sURIs.size()+tURIs.size()-matches;
 		return (matches > 0.5);
 	}
 	
-	//Checks if two domains match:
-	//->If the domains are local terms, check if they are matched in the input Alignment
-	//or if the Alignment contains a parent Mapping
-	//->Otherwise, check if they are equal
-	private boolean domainsMatch(String sUri, String tUri)
+	//Checks if two URIs match (i.e., are either equal or aligned)
+	private boolean urisMatch(String sUri, String tUri)
 	{
-		int sIndex = -1;
-		if(source.isLocal(sUri))
-			sIndex = source.getIndex(sUri);
-		int tIndex = -1;
-		if(target.isLocal(tUri))
-			tIndex = target.getIndex(tUri);
-		if(sIndex > -1 && tIndex > -1)
-			return (maps.containsMapping(sIndex, tIndex) ||
-					maps.containsParentMapping(sIndex, tIndex));
-		return sUri.equals(tUri);
+		AML aml = AML.getInstance();
+		URIMap uris = aml.getURIMap();
+		int sIndex = uris.getIndex(sUri);
+		int tIndex = uris.getIndex(tUri);
+		return (sIndex == tIndex || maps.containsMapping(sIndex, tIndex));
 	}
 
-	//Checks if two lists of property ranges match (i.e., have similarity above 50%)
-	private boolean rangesMatch(Vector<String> sRange, Vector<String> tRange)
+	//Checks if two lists of values match (i.e., have similarity above 50%)
+	private boolean valuesMatch(Vector<String> sRange, Vector<String> tRange)
 	{
 		if(sRange.size() == 0 && tRange.size() == 0)
 			return true;
 		if(sRange.size() == 0 || tRange.size() == 0)
 			return false;
 		if(sRange.size() == 1 && tRange.size() == 1)
-			return rangesMatch(sRange.get(0),tRange.get(0));
+			return sRange.get(0).equals(tRange.get(0));
 		double matches = 0.0;
 		for(String s : sRange)
 		{
 			for(String t : tRange)
 			{
-				if(rangesMatch(s,t))
+				if(s.equals(t))
 				{
 					matches++;
 					break;
@@ -241,23 +245,6 @@ public class PropertyMatcher
 		}
 		matches /= sRange.size()+tRange.size()-matches;
 		return (matches > 0.5);
-	}
-	
-	//Checks if two ranges match:
-	//->If the ranges are local terms, check if they are matched in the input Alignment
-	//(but don't check for parent Mappings as ranges should be equal, not contained)
-	//->Otherwise, check if they are equal
-	private boolean rangesMatch(String sUri, String tUri)
-	{
-		int sIndex = -1;
-		if(source.isLocal(sUri))
-			sIndex = source.getIndex(sUri);
-		int tIndex = -1;
-		if(target.isLocal(tUri))
-			tIndex = target.getIndex(tUri);
-		if(sIndex > -1 && tIndex > -1)
-			return (maps.containsMapping(sIndex, tIndex));
-		return sUri.equals(tUri);
 	}
 	
 	//Measures the name similarity between two properties using a 

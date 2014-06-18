@@ -20,6 +20,8 @@
 package aml.ontology;
 
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Set;
 import java.util.Vector;
 
@@ -84,6 +86,33 @@ public class ReferenceMap
 	public int countTerms(String ref)
 	{
 		return refTerms.entryCount(ref);
+	}
+	
+	/**
+	 * Extends this ReferenceMap with the conversions in the given xref file
+	 * @param file: the xref file containing the reference conversions
+	 */
+	public void extend(String file)
+	{
+		try
+		{
+			BufferedReader inStream = new BufferedReader(new FileReader(file));
+			String line;
+			while((line = inStream.readLine()) != null)
+			{
+				String[] words = line.split("\t");
+				if(!contains(words[0]))
+					continue;
+				Vector<Integer> terms = get(words[0]);
+				for(Integer i : terms)
+					add(i, words[1]);
+			}
+			inStream.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	/**

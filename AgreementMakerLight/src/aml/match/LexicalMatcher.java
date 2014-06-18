@@ -12,20 +12,19 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Matches two Ontologies by finding literal full-name matches between their   *
+* Matches Ontologies by finding literal full-name matches between their       *
 * Lexicons. Weighs matches according to the provenance of the names.          *
 * Ignores external Lexicon names when in internal mode.                       *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 30-05-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
 import java.util.Set;
 
+import aml.AML;
 import aml.ontology.Lexicon;
-import aml.ontology.Ontology;
-
 
 public class LexicalMatcher implements Matcher
 {
@@ -52,9 +51,7 @@ public class LexicalMatcher implements Matcher
 	@Override
 	public Alignment extendAlignment(Alignment a, double thresh)
 	{
-		Ontology source = a.getSource();
-		Ontology target = a.getTarget();
-		Alignment maps = match(source,target,thresh);
+		Alignment maps = match(thresh);
 		for(Mapping m : maps)
 			if(a.containsConflict(m))
 				maps.remove(m);
@@ -62,15 +59,27 @@ public class LexicalMatcher implements Matcher
 	}
 	
 	@Override
-	public Alignment match(Ontology source, Ontology target, double thresh)
+	public Alignment match(double thresh)
 	{
-		//Get the lexicons of both Ontologies
-		Lexicon sLex = source.getLexicon();
-		Lexicon tLex = target.getLexicon();
-		
-		//Initialize the alignment
-		Alignment maps = new Alignment(source,target);
-
+		//Get the lexicons of the source and target Ontologies
+		AML aml = AML.getInstance();
+		Lexicon sLex = aml.getSource().getLexicon();
+		Lexicon tLex = aml.getTarget().getLexicon();
+		//And match them
+		return match(sLex,tLex,thresh);
+	}
+	
+	/**
+	 * Matches two Lexicons
+	 * @param sLex: the source Lexicon to match
+	 * @param tLex: the target Lexicon to match
+	 * @param thresh: the similarity threshold
+	 * @return the Alignment between the ontologies containing
+	 * the two Lexicons
+	 */
+	public Alignment match(Lexicon sLex, Lexicon tLex, double thresh)
+	{
+		Alignment maps = new Alignment();
 		//To minimize iterations, we want to iterate through the
 		//Ontology with the smallest Lexicon
 		Lexicon larger, smaller;

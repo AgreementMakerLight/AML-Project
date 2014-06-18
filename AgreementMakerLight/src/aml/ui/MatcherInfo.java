@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import aml.match.MatchingConfigurations.MatchingAlgorithm;
+import aml.AML.MatchingAlgorithm;
 
 public class MatcherInfo extends JDialog implements ActionListener
 {

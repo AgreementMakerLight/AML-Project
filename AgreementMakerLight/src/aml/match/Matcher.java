@@ -12,15 +12,14 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A matching algorithm that maps two Ontologies, returning a new Alignment    *
-* between them, or extends a previous Alignment, returning only new Mappings. *
+* A matching algorithm that maps the source and target Ontologies, returning  *
+* an Alignment between them, or extends a previous Alignment, returning only  *
+* new Mappings.                                                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 30-05-2013                                                            *
 ******************************************************************************/
 package aml.match;
-
-import aml.ontology.Ontology;
 
 public interface Matcher
 {
@@ -39,5 +38,5 @@ public interface Matcher
 	 * @param thresh: the similarity threshold for the alignment
 	 * @return the alignment between the source and target ontologies
 	 */
-	public Alignment match(Ontology source, Ontology target, double thresh);
+	public Alignment match(double thresh);
 }

@@ -21,6 +21,7 @@
 package aml.ontology;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
@@ -36,7 +37,7 @@ public class WordLexicon
 	//A link to the original Lexicon
 	private Lexicon lex;
 	//The list of terms to ignore when building this WordLexicon
-	private Vector<Integer> ignoreList;
+	private Set<Integer> ignoreList;
 	//The list of stop words to ignore when building this WordLexicon
 	private Vector<String> stopList;
 	//The map of words and the terms they occur in
@@ -60,7 +61,7 @@ public class WordLexicon
 	public WordLexicon(Lexicon l)
 	{
 		lex = l;
-		ignoreList = new Vector<Integer>(0,1);
+		ignoreList = new HashSet<Integer>();
 		stopList = StopList.read();
 		wordTerms = new Table2<String,Integer>();
 		wordECs = new HashMap<String,Double>();
@@ -75,25 +76,7 @@ public class WordLexicon
 	 * @param l: the Lexicon from which the WordLexicon is derived
 	 * @param i: the list of terms to exclude from this WordLexicon
 	 */
-	public WordLexicon(Lexicon l, Vector<Integer> i)
-	{
-		lex = l;
-		ignoreList = i;
-		stopList = StopList.read();
-		wordTerms = new Table2<String,Integer>();
-		wordECs = new HashMap<String,Double>();
-		termWords = new Table2Plus<Integer,String,Double>();
-		termECs = new HashMap<Integer,Double>();
-		total = 0;
-		buildWordLexicon();
-	}
-
-	/**
-	 * Constructs a new WordLexicon from the given Lexicon and list of terms
-	 * @param l: the Lexicon from which the WordLexicon is derived
-	 * @param i: the list of terms to exclude from this WordLexicon
-	 */
-	public WordLexicon(Lexicon l, Set<Integer> t, Vector<Integer> i)
+	public WordLexicon(Lexicon l, Set<Integer> i)
 	{
 		lex = l;
 		ignoreList = i;

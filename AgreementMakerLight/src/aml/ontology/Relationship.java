@@ -18,7 +18,7 @@
 * 'is a' or false for 'part of').                                             *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 02-06-2014                                                            *
 ******************************************************************************/
 package aml.ontology;
 
@@ -29,20 +29,24 @@ public class Relationship implements Comparable<Relationship>
 
 	//The distance between the terms
 	private int distance;
-	//The type of relationship (true for 'is_a', false for 'part_of')
-	private boolean type;
+	//The subclass property of the relationship (-1 for 'is_a' relationships)
+	private int property;
+	//The type of restriction on the property (true for 'all values', false for 'some values')
+	private boolean restriction;
 
 //Constructors
 	
 	/**
 	 * Constructs a new Relationship with the given distance and type
 	 * @param dist: the distance in the Relationship
-	 * @param t: the type of Relationship (whether it is 'is_a' or 'part_of')
+	 * @param p: the property of the Relationship
+	 * @param r: the restriction on the property of the Relationship
 	 */
-	public Relationship(int dist, boolean t)
+	public Relationship(int dist, int p, boolean r)
 	{
 		distance = dist;
-		type = t;
+		property = p;
+		restriction = r;
 	}
 	
 	/**
@@ -53,44 +57,50 @@ public class Relationship implements Comparable<Relationship>
 	public Relationship(Relationship r)
 	{
 		distance = r.distance;
-		type = r.type;
+		property = r.property;
+		restriction = r.restriction;
 	}
 	
 //Public Methods
 
-	/**
-	 * Extends this Relationship with the given Relationship by
-	 * adding the distance and conjugating the type (thus getting
-	 * the transitive Relationship)
-	 * @param r: the Relationship to combine with this Relationship
-	 */
-	public void extendWith(Relationship r)
-	{
-		distance += r.distance;
-		type = type && r.type;
-	}
-	
 	@Override
 	/**
-	 * Relationships are compared only regarding type, with
-	 * 'is_a' being "greater" than 'part_of'
+	 * Relationships are compared with regard to property, restriction,
+	 * then distance ('is_a' relationships supersede all other properties,
+	 * then 'all values' supersede 'some values' restrictions, then if all
+	 * else is equal, distance is the tie-breaker)
 	 */
-	public int compareTo(Relationship o)
+	public int compareTo(Relationship r)
 	{
-		if(this.type && !o.type)
-			return 1;
-		if(!this.type && o.type)
-			return -1;
-		return 0;
+		int value = 0;
+		if(property == -1 && r.property == -1)
+			value = distance - r.distance;
+		else if(property == -1)
+			value = 1;
+		else if(r.property == -1)
+			value = -1;
+		else if(restriction == r.restriction)
+			value = distance - r.distance;
+		else if(restriction)
+			value = 1;
+		else if(r.restriction)
+			value = -1;
+		return value;
 	}
 	
 	/**
-	 * Two Relationships are equal if they have the same type
+	 * Two Relationships are equal if they have the same property and restriction
+	 * regardless of distance, to enable checking whether two entities are
+	 * related via a given type of relationship
 	 */
 	public boolean equals(Object o)
 	{
-		Relationship r = (Relationship)o;
-		return this.type == r.type;
+		if(o instanceof Relationship)
+		{
+			Relationship r = (Relationship)o;
+			return property == r.property && restriction == r.restriction;
+		}
+		return false;
 	}
 	
 	/**
@@ -102,28 +112,26 @@ public class Relationship implements Comparable<Relationship>
 	}
 	
 	/**
-	 * @return the type of the Relationship
+	 * @return the property of the Relationship
 	 */
-	public boolean getType()
+	public int getProperty()
 	{
-		return type;
+		return property;
 	}
 	
 	/**
-	 * Sets the distance to the given value
-	 * @param dist: the distance to set in the Relationship
+	 * @return the restriction of the Relationship
 	 */
-	public void setDistance(int dist)
+	public boolean getRestriction()
 	{
-		distance = dist;
+		return restriction;
 	}
 	
 	/**
-	 * Sets the type to the given value
-	 * @param t: the type to set in the Relationship
+	 * @return whether this Relationship is an 'is_a' relationship
 	 */
-	public void setType(boolean t)
+	public boolean isA()
 	{
-		type = t;
+		return property == -1;
 	}
 }

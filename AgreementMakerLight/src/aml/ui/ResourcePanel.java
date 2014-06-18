@@ -31,7 +31,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
-import aml.AMLGUI;
+import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.Ontology;
@@ -86,36 +86,35 @@ public class ResourcePanel extends JInternalFrame
 		{
 			doc.remove(0, doc.getLength());
 			doc.insertString(doc.getLength(), "Source Ontology: ", s);
-			Ontology source = AMLGUI.getSourceOntology();
+			Ontology source = AML.getInstance().getSource();
 			if(source == null)
 				doc.insertString(doc.getLength(), "N/A\n", def);
 			else
 			{
 				doc.insertString(doc.getLength(), source.getURI(), u);
-				String src = " (" + source.termCount() + " classes, " +	source.propertyCount() + " properties)\n";
+				String src = " (" + source.classCount() + " classes, " +	source.propertyCount() + " properties)\n";
 				doc.insertString(doc.getLength(), src, def);
 			}
 			
 			doc.insertString(doc.getLength(), "Target Ontology: ", t);
-			Ontology target = AMLGUI.getTargetOntology();
+			Ontology target = AML.getInstance().getTarget();
 			if(target == null)
 				doc.insertString(doc.getLength(), "N/A\n", def);
 			else
 			{
 				doc.insertString(doc.getLength(), target.getURI(), u);
-				String tgt = " (" + target.termCount() + " classes, " +	target.propertyCount() + " properties)\n";
+				String tgt = " (" + target.classCount() + " classes, " +	target.propertyCount() + " properties)\n";
 				doc.insertString(doc.getLength(), tgt, def);
 			}
 			
 			doc.insertString(doc.getLength(), "Alignment: ", bold);
-			Alignment a = AMLGUI.getAlignment();
+			Alignment a = AML.getInstance().getAlignment();
 			if(a == null)
 				doc.insertString(doc.getLength(), "N/A\n", def);
 			else
 			{
-				String al = a.termMappingCount() + " class mappings, " +
-						a.propertyMappingCount() + " property mappings";
-				String eval = AMLGUI.getEvaluation();
+				String al = a.size() + " mappings";
+				String eval = AML.getInstance().getEvaluation();
 				if(eval != null)
 					al += " (" + eval + ")";
 				al += "\n";
@@ -123,14 +122,14 @@ public class ResourcePanel extends JInternalFrame
 			}
 			
 			doc.insertString(doc.getLength(), "Current Mapping: ", bold);
-			Mapping m = AMLGUI.getCurrentMapping();
+			Mapping m = AML.getInstance().getCurrentMapping();
 			if(m == null)
 				doc.insertString(doc.getLength(), "N/A", def);
 			else
 			{
 				String mapDesc = source.getLexicon().getBestName(m.getSourceId()) +
 						" = " + target.getLexicon().getBestName(m.getTargetId()) +
-						" (" + (AMLGUI.getCurrentIndex()+1) + "/" + a.termMappingCount() + ")";
+						" (" + (AML.getInstance().getCurrentIndex()+1) + "/" + a.size() + ")";
 				doc.insertString(doc.getLength(), mapDesc, def);
 			}
 		}

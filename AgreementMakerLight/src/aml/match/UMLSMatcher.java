@@ -12,12 +12,12 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Matches two Ontologies by finding literal full-name matches between their   *
+* Matches Ontologies by finding literal full-name matches between their       *
 * Lexicons and the UMLS table, after identifying the most suitable UMLS data  *
 * source or using the whole table if no suitable source is identified.        *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 30-05-2013                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+import aml.AML;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.util.Table3;
@@ -88,8 +89,9 @@ public class UMLSMatcher implements Matcher
 	@Override
 	public Alignment extendAlignment(Alignment a, double thresh)
 	{
-		Ontology source = a.getSource();
-		Ontology target = a.getTarget();
+		AML aml = AML.getInstance();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
 		src = match(source);
 		tgt = match(target);
 		Alignment maps = new Alignment(a);
@@ -99,7 +101,7 @@ public class UMLSMatcher implements Matcher
 			if(a.containsSource(sourceId))
 				continue;
 			int medId = m.getTargetId();
-			Vector<Integer> matches = tgt.getTargetMappings(medId);
+			Set<Integer> matches = tgt.getTargetMappings(medId);
 			for(Integer j : matches)
 			{
 				if(a.containsTarget(j))
@@ -113,42 +115,37 @@ public class UMLSMatcher implements Matcher
 	}
 
 	/**
-	 * @return the similarity between the mediating and source ontologies
-	 * or -1.0 if MediatingMatcher has not been used to match or extendAlignment
+	 * @return the intermediate alignment between the mediating and the source ontologies
+	 * or null if MediatingMatcher has not been used to match or extendAlignment
 	 */
-	public double getSourceSimilarity()
+	public Alignment getSourceAlignment()
 	{
-		if(src == null)
-			return -1.0;
-		double inter = Math.min(src.sourceCount(),src.targetCount());
-		double union = src.getSource().termCount() + ids.size() - inter;
-		return inter/union;
+		return src;
 	}
 	
 	/**
-	 * @return the similarity between the mediating and target ontologies
-	 * or -1.0 if MediatingMatcher has not been used to match or extendAlignment
+	 * @return the intermediate alignment between the mediating and the target ontologies
+	 * or null if MediatingMatcher has not been used to match or extendAlignment
 	 */
-	public double getTargetSimilarity()
+	public Alignment getTargetAlignment()
 	{
-		if(tgt == null)
-			return -1.0;
-		double inter = Math.min(tgt.sourceCount(),tgt.targetCount());
-		double union = tgt.getSource().termCount() + ids.size() - inter;
-		return inter/union;
+		return tgt;
 	}
 	
 	@Override
-	public Alignment match(Ontology source, Ontology target, double thresh)
+	public Alignment match(double thresh)
 	{
+		AML aml = AML.getInstance();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
 		src = match(source);
 		tgt = match(target);
-		Alignment maps = new Alignment(source,target);
+		Alignment maps = new Alignment();
 		for(Mapping m : src)
 		{
 			int sourceId = m.getSourceId();
 			int medId = m.getTargetId();
-			Vector<Integer> matches = tgt.getTargetMappings(medId);
+			Set<Integer> matches = tgt.getTargetMappings(medId);
 			for(Integer j : matches)
 			{
 				double similarity = Math.min(m.getSimilarity(),
@@ -237,11 +234,11 @@ public class UMLSMatcher implements Matcher
 	
 	private Alignment match(Ontology o)
 	{
-		boolean conservative = (o.termCount() > 30000);
+		boolean conservative = (o.classCount() > 30000);
 		Lexicon l = o.getLexicon();
 		Set<String> names = l.getNames();
 		String bestSource = getBestSource(names);
-		Alignment maps = new Alignment(o,null);
+		Alignment maps = new Alignment();
 		//If there is no primary UMLS source
 		if(bestSource.equals(""))
 		{
@@ -265,9 +262,7 @@ public class UMLSMatcher implements Matcher
 		//If there is a primary UMLS source
 		else
 		{
-			//Iterate through the terms 
-			int size = o.termCount();
-			for(int i = 0; i < size; i++)
+			for(Integer i : o.getClasses())
 			{
 				HashMap<Integer,Double> hitMap = new HashMap<Integer,Double>();
 				Vector<String> termNames = l.getNames(i, "localName");

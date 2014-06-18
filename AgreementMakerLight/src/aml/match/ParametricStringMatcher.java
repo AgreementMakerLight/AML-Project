@@ -12,25 +12,24 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Matches two Ontologies by measuring the maximum String similarity between   *
-* their terms, using one of the four available String similarity measures.    *
+* Matches Ontologies by measuring the maximum String similarity between their *
+* classes, using one of the four available String similarity measures.        *
 * NOTE: This matching algorithm takes O(N^2) time, and thus should be used    *
 * only for Alignment extension whenever running time is an issue.             *
 *                                                                             *
 * @authors Daniel Faria, Cosmin Stroe                                         *
-* @date 22-10-2013                                                            *
+* @date 30-05-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
 import java.util.Set;
-import java.util.Vector;
 
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
 
+import aml.AML;
 import aml.ontology.Lexicon;
-import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.util.ISub;
 import aml.util.StringParser;
@@ -52,7 +51,12 @@ public class ParametricStringMatcher implements Matcher
 	 * Constructs a new ParametricStringMatcher with default
 	 * String similarity measure (ISub)
 	 */
-	public ParametricStringMatcher(){}
+	public ParametricStringMatcher()
+	{
+		AML aml = AML.getInstance();
+		sLex = aml.getSource().getLexicon();
+		tLex = aml.getTarget().getLexicon();
+	}
 
 	/**
 	 * Constructs a new ParametricStringMatcher with the given String similarity measure
@@ -66,6 +70,9 @@ public class ParametricStringMatcher implements Matcher
 	public ParametricStringMatcher(String m)
 	{
 		measure = m;
+		AML aml = AML.getInstance();
+		sLex = aml.getSource().getLexicon();
+		tLex = aml.getTarget().getLexicon();
 	}
 
 //Public Methods
@@ -73,10 +80,6 @@ public class ParametricStringMatcher implements Matcher
 	@Override
 	public Alignment extendAlignment(Alignment a, double thresh)
 	{	
-		Ontology source = a.getSource();
-		Ontology target = a.getTarget();
-		sLex = source.getLexicon();
-		tLex = target.getLexicon();
 		Alignment ext = extendChildrenAndParents(a,thresh);
 		Alignment aux = extendChildrenAndParents(ext,thresh);
 		int size = 0;
@@ -88,25 +91,23 @@ public class ParametricStringMatcher implements Matcher
 					ext.add(m);
 			aux = extendChildrenAndParents(aux,thresh);
 		}
-		size = Math.max(sLex.size(), tLex.size());
-		if(size <= 30000)
-			ext.addAll(extendSiblings(a,thresh));
+		ext.addAll(extendSiblings(a,thresh));
 		return ext;
 	}
 	
 	@Override
-	public Alignment match(Ontology source, Ontology target, double thresh)
+	public Alignment match(double thresh)
 	{
-		sLex = source.getLexicon();
-		tLex = target.getLexicon();
-		Alignment a = new Alignment(source, target);
-		for(int i = 0; i < source.termCount(); i++)
+		Alignment a = new Alignment();
+		Set<Integer> sources = sLex.getTerms();
+		Set<Integer> targets = tLex.getTerms();
+		for(Integer i : sources)
 		{
-			for(int j = 0; j < target.termCount(); j++)
+			for(Integer j : targets)
 			{
-				Mapping m = mapTwoTerms(i,j);
-				if(m.getSimilarity() >= thresh)
-					a.add(m);
+				double sim = mapTwoTerms(i,j);
+				if(sim >= thresh)
+					a.add(i,j,sim);
 			}
 		}
 		return a;
@@ -114,16 +115,12 @@ public class ParametricStringMatcher implements Matcher
 	
 	public Alignment rematch(Alignment a, double thresh)
 	{
-		Ontology source = a.getSource();
-		Ontology target = a.getTarget();
-		sLex = source.getLexicon();
-		tLex = target.getLexicon();
-		Alignment maps = new Alignment(source, target);
+		Alignment maps = new Alignment();
 		for(Mapping m : a)
 		{
-			Mapping newMap = mapTwoTerms(m.getSourceId(),m.getTargetId());
-			if(m.getSimilarity() >= thresh)
-				maps.add(newMap);
+			double sim = mapTwoTerms(m.getSourceId(),m.getTargetId());
+			if(sim >= thresh)
+				maps.add(m.getSourceId(),m.getTargetId(),sim);
 		}
 		return a;
 	}
@@ -132,19 +129,15 @@ public class ParametricStringMatcher implements Matcher
 	
 	private Alignment extendChildrenAndParents(Alignment a, double thresh)
 	{
-		Ontology source = a.getSource();
-		Ontology target = a.getTarget();
-		RelationshipMap sMap = source.getRelationshipMap();
-		RelationshipMap tMap = target.getRelationshipMap();
+		AML aml = AML.getInstance();
+		RelationshipMap rMap = aml.getRelationshipMap();
 		
-		Alignment maps = new Alignment(source,target);
+		Alignment maps = new Alignment();
 		for(int i = 0; i < a.size(); i++)
 		{
 			Mapping input = a.get(i);
-			Vector<Integer> sourceChildren = sMap.getChildren(input.getSourceId());
-			Vector<Integer> targetChildren = tMap.getChildren(input.getTargetId());
-			if(sourceChildren == null || targetChildren == null)
-				continue;
+			Set<Integer> sourceChildren = rMap.getChildren(input.getSourceId());
+			Set<Integer> targetChildren = rMap.getChildren(input.getTargetId());
 			for(Integer s : sourceChildren)
 			{
 				if(a.containsSource(s))
@@ -153,15 +146,13 @@ public class ParametricStringMatcher implements Matcher
 				{
 					if(a.containsTarget(t))
 						continue;
-					Mapping map = mapTwoTerms(s, t);
-					if(map.getSimilarity() >= thresh)
-						maps.add(map);
+					double sim = mapTwoTerms(s, t);
+					if(sim >= thresh)
+						maps.add(s,t,sim);
 				}
 			}
-			Vector<Integer> sourceParents = sMap.getParents(input.getSourceId());
-			Vector<Integer> targetParents = tMap.getParents(input.getTargetId());
-			if(sourceParents == null || targetParents == null)
-				continue;
+			Set<Integer> sourceParents = rMap.getParents(input.getSourceId());
+			Set<Integer> targetParents = rMap.getParents(input.getTargetId());
 			for(Integer s : sourceParents)
 			{
 				if(a.containsSource(s))
@@ -170,29 +161,27 @@ public class ParametricStringMatcher implements Matcher
 				{
 					if(a.containsTarget(t))
 						continue;
-					Mapping map = mapTwoTerms(s, t);
-					if(map.getSimilarity() >= thresh)
-						maps.add(map);
+					double sim = mapTwoTerms(s, t);
+					if(sim >= thresh)
+						maps.add(s,t,sim);
 				}
 			}
 		}
+
 		return maps;
 	}
 	
 	private Alignment extendSiblings(Alignment a, double thresh)
 	{		
-		Ontology source = a.getSource();
-		Ontology target = a.getTarget();
-		RelationshipMap sMap = source.getRelationshipMap();
-		RelationshipMap tMap = target.getRelationshipMap();
-		
-		Alignment maps = new Alignment(source,target);
+		AML aml = AML.getInstance();
+		RelationshipMap rMap = aml.getRelationshipMap();
+		Alignment maps = new Alignment();
 		for(int i = 0; i < a.size(); i++)
 		{
 			Mapping input = a.get(i);
-			Vector<Integer> sourceSiblings = sMap.getSiblings(input.getSourceId());
-			Vector<Integer> targetSiblings = tMap.getSiblings(input.getTargetId());
-			if(sourceSiblings == null || targetSiblings == null)
+			Set<Integer> sourceSiblings = rMap.getAllSiblings(input.getSourceId());
+			Set<Integer> targetSiblings = rMap.getAllSiblings(input.getTargetId());
+			if(sourceSiblings.size() > 200 || targetSiblings.size() > 200)
 				continue;
 			for(Integer s : sourceSiblings)
 			{
@@ -202,9 +191,9 @@ public class ParametricStringMatcher implements Matcher
 				{
 					if(a.containsTarget(t))
 						continue;
-					Mapping map = mapTwoTerms(s, t);
-					if(map.getSimilarity() >= thresh)
-						maps.add(map);
+					double sim = mapTwoTerms(s, t);
+					if(sim >= thresh)
+						maps.add(s,t,sim);
 				}
 			}
 		}
@@ -213,14 +202,15 @@ public class ParametricStringMatcher implements Matcher
 	
 	//Computes the maximum String similarity between two terms by doing a
 	//pairwise comparison of all their names
-	private Mapping mapTwoTerms(int sId, int tId)
+	private double mapTwoTerms(int sId, int tId)
 	{
-		//Initialize the mapping between the terms with similarity 0
-		Mapping m = new Mapping(sId,tId,0.0);
+		double maxSim = 0.0;
+		double sim, weight;
 		//Get the source and target names
 		Set<String> sourceNames = sLex.getNames(sId);
 		Set<String> targetNames = tLex.getNames(tId);
-		double weight, similarity;
+		if(sourceNames == null || targetNames == null)
+			return maxSim;
 		
 		for(String s : sourceNames)
 		{
@@ -231,13 +221,13 @@ public class ParametricStringMatcher implements Matcher
 			{
 				if(StringParser.isFormula(t))
 					continue;
-				similarity = weight * tLex.getCorrectedWeight(t, tId);
-				similarity *= stringSimilarity(s,t);
-				if(similarity > m.getSimilarity())
-					m.setSimilarity(similarity);
+				sim = weight * tLex.getCorrectedWeight(t, tId);
+				sim *= stringSimilarity(s,t);
+				if(sim > maxSim)
+					maxSim = sim;
 			}
 		}
-		return m;
+		return maxSim;
 	}
 	
 	//Gets the similarity between two Strings
