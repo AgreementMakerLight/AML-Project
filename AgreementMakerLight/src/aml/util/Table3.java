@@ -15,7 +15,8 @@
 * A table with three columns, represented by a HashMap of Table2s.            *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.util;
 
@@ -165,6 +166,30 @@ public class Table3<A,B,C extends Comparable<C>>
 		if(mapsA == null || !mapsA.contains(keyB))
 			return null;
 		return mapsA.get(keyB);
+	}
+	
+	/**
+	 * @param keyA: the first level key to search in the Table
+	 * @return the maximum value in entries with keyA
+	 */
+	public B getKeyMaximum(A keyA)
+	{
+		Table2<B,C> mapsA = multimap.get(keyA);
+		if(mapsA == null)
+			return null;
+		Vector<B> setA = new Vector<B>(mapsA.keySet());
+		B max = setA.get(0);
+		C maxVal = mapsA.get(max).get(0);
+		for(B b : setA)
+		{
+			C value = mapsA.get(b).get(0);
+			if(value.compareTo(maxVal) > 0)
+			{
+				maxVal = value;
+				max = b;
+			}
+		}
+		return max;
 	}
 	
 	/**

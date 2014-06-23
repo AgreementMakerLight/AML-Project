@@ -16,7 +16,7 @@
 * relationships and disjoint clauses.                                         *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-06-2014                                                            *
+* @date 23-06-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
@@ -44,7 +44,11 @@ public class RelationshipMap
 	//Map between disjoint classes
 	private Table2<Integer,Integer> disjointMap;
 	//List of high level classes
-	private HashSet<Integer> highLevelClasses;
+	private HashSet<Integer> highLevelClasses;	
+	//Map between properties and their parents and inverses
+	private Table2<Integer,Integer> subProp;
+	private Table2<Integer,Integer> superProp;
+	private Table2<Integer,Integer> inverseProp;
 	
 //Constructors
 
@@ -59,6 +63,10 @@ public class RelationshipMap
 		descendantMap = new Table3<Integer,Integer,Relationship>();
 		ancestorMap = new Table3<Integer,Integer,Relationship>();
 		disjointMap = new Table2<Integer,Integer>();
+		
+		subProp = new Table2<Integer,Integer>();
+		superProp = new Table2<Integer,Integer>();
+		inverseProp = new Table2<Integer,Integer>();
 	}
 	
 //Public Methods
@@ -137,6 +145,32 @@ public class RelationshipMap
 		//Then to the ancestor map in both directions
 		ancestorMap.add(class1,class2,r);
 		ancestorMap.add(class2,class1,r);
+	}
+	
+	/**
+	 * Adds a new inverse relationship between two properties if it doesn't exist
+	 * @param one: the index of the first property
+	 * @param two: the index of the second property
+	 */
+	public void addInverseProp(int one, int two)
+	{
+		if(one != two)
+		{
+			inverseProp.add(one, two);
+			inverseProp.add(two, one);
+		}
+	}
+	
+	/**
+	 * Adds a relationship between two properties
+	 * @param child: the index of the child property
+	 * @param parent: the index of the parent property
+	 */
+	public void addPropertyRel(int child, int parent)
+	{
+		//Then update the MultiMaps
+		subProp.add(parent,child);
+		superProp.add(child,parent);
 	}
 	
 	/**
@@ -569,6 +603,18 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param propId: the id of the property to search in the map
+	 * @return the list of inverse properties of the input property
+	 */
+	public Set<Integer> getInverseProperties(int propId)
+	{
+		if(inverseProp.contains(propId))
+			return new HashSet<Integer>(inverseProp.get(propId));
+		else
+			return new HashSet<Integer>();
+	}
+	
+	/**
 	 * @return the set of classes with ancestors in the map
 	 */
 	public Set<Integer> getParents()
@@ -659,6 +705,18 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param propId: the id of the property to search in the map
+	 * @return the list of sub-properties of the input property
+	 */
+	public Set<Integer> getSubProperties(int propId)
+	{
+		if(subProp.contains(propId))
+			return new HashSet<Integer>(subProp.get(propId));
+		else
+			return new HashSet<Integer>();
+	}
+	
+	/**
 	 * @param classId: the id of the class to search in the map
 	 * @param direct: whether to return all superclasses or just the direct ones
 	 * @return the list of direct or indirect superclasses of the input class
@@ -669,6 +727,18 @@ public class RelationshipMap
 			return getAncestors(classId,1,-1);
 		else
 			return getAncestorsProperty(classId,-1);
+	}
+	
+	/**
+	 * @param propId: the id of the property to search in the map
+	 * @return the list of super-properties of the input property
+	 */
+	public Set<Integer> getSuperProperties(int propId)
+	{
+		if(superProp.contains(propId))
+			return new HashSet<Integer>(superProp.get(propId));
+		else
+			return new HashSet<Integer>();
 	}
 	
 	/**

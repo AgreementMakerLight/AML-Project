@@ -16,7 +16,8 @@
 * PApplet from the Gephi toolbox.                                             *
 *                                                                             *
 * @author Daniel Faria & Catia Pesquita                                       *
-* @date 06-06-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.ui;
 

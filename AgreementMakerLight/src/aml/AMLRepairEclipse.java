@@ -15,7 +15,7 @@
 * Tests AgreementMakerLight in Eclipse, in Alignment Repair mode.             *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-06-2014                                                            *
+* @date 23-06-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml;

@@ -18,8 +18,8 @@
  * by "S" and target term indexes are prepended by "T".                        *
  *                                                                             *
  * @authors Emanuel Santos & Daniel Faria                                      *
- * @date 11-04-2014                                                            *
- * @version 1.1                                                                *
+ * @date 23-06-2014                                                            *
+ * @version 2.0                                                                *
  ******************************************************************************/
 package aml.filter;
 

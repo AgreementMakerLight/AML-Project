@@ -17,7 +17,8 @@
 * cross-references.                                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 30-05-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -173,6 +174,18 @@ public class XRefMatcher implements Matcher
 				}
 			}
 		}
-		return a;
+		//Step 2 - Do a lexical match
+		LexicalMatcher lm = new LexicalMatcher();
+		Alignment b = lm.match(o.getLexicon(),ext.getLexicon(),0.5);
+
+		//Step 3 - Compare the two
+		//If the coverage of the lexical match is at least double
+		//the coverage of the xref match (such as when there are
+		//few or no xrefs) return the lexical match
+		if(b.sourceCount() > a.sourceCount() * 2)
+			return b;
+		//Otherwise, the xref match is the preferred choice
+		else
+			return a;
 	}
 }

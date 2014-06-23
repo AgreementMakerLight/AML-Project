@@ -16,7 +16,7 @@
 * as a Table of indexes, and including methods for input and output.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-06-2014                                                            *
+* @date 23-06-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;

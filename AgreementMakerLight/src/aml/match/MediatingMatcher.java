@@ -17,7 +17,8 @@
 * LexicalMatcher.                                                             *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 30-05-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -60,7 +61,7 @@ public class MediatingMatcher implements Matcher
 		AML aml = AML.getInstance();
 		Lexicon source = aml.getSource().getLexicon();
 		Lexicon target = aml.getTarget().getLexicon();
-		LexicalMatcher lm = new LexicalMatcher(false);
+		LexicalMatcher lm = new LexicalMatcher();
 		Alignment src = lm.match(source,ext,thresh);
 		Alignment tgt = lm.match(target,ext,thresh);
 		Alignment maps = new Alignment();
@@ -92,7 +93,7 @@ public class MediatingMatcher implements Matcher
 	public void extendLexicons(double thresh)
 	{
 		AML aml = AML.getInstance();
-		LexicalMatcher lm = new LexicalMatcher(false);
+		LexicalMatcher lm = new LexicalMatcher();
 		Lexicon source = aml.getSource().getLexicon();
 		Alignment src = lm.match(source,ext,thresh);
 		for(Mapping m : src)
@@ -127,7 +128,7 @@ public class MediatingMatcher implements Matcher
 		AML aml = AML.getInstance();
 		Lexicon source = aml.getSource().getLexicon();
 		Lexicon target = aml.getTarget().getLexicon();
-		LexicalMatcher lm = new LexicalMatcher(false);
+		LexicalMatcher lm = new LexicalMatcher();
 		Alignment src = lm.match(source,ext,thresh);
 		Alignment tgt = lm.match(target,ext,thresh);
 		Alignment maps = new Alignment();

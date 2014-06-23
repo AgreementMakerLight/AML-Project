@@ -15,7 +15,8 @@
 * System-wide Alignment file chooser for the GUI.                             *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-02-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.ui;
 

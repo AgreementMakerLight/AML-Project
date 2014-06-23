@@ -12,11 +12,12 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The Lexicon of an Ontology, mapping each term (class) to its names and      *
-* synonyms. Lexical entries are weighted according to their provenance.       *
+* The Lexicon of an Ontology, mapping each class to its names and synonyms.   *
+* Lexical entries are weighted according to their provenance.                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
 
@@ -26,9 +27,9 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.util.StopList;
-import aml.util.Table2;
-import aml.util.Table2Plus;
 import aml.util.StringParser;
+import aml.util.Table2;
+import aml.util.Table3;
 
 
 public class Lexicon
@@ -37,11 +38,13 @@ public class Lexicon
 //Attributes
 	
 	//The table of names
-	private Table2Plus<String,Integer,Provenance> names;
-	//The table of terms
-	private Table2Plus<Integer,String,Provenance> terms;
-	//The table of languages
-	private Table2<String,String> languages;
+	private Table3<String,Integer,Provenance> names;
+	//The table of classes
+	private Table3<Integer,String,Provenance> classes;
+	//The language counts
+	private HashMap<String,Integer> langCount;
+	//The language names
+	private Table2<String,String> langNames;
 	
 //Constructors
 
@@ -51,9 +54,10 @@ public class Lexicon
 	 */
 	public Lexicon()
 	{
-		names = new Table2Plus<String,Integer,Provenance>();
-		terms = new Table2Plus<Integer,String,Provenance>();
-		languages = new Table2<String,String>();
+		names = new Table3<String,Integer,Provenance>();
+		classes = new Table3<Integer,String,Provenance>();
+		langCount = new HashMap<String,Integer>();
+		langNames = new Table2<String,String>();
 	}
 	
 	/**
@@ -62,21 +66,22 @@ public class Lexicon
 	 */
 	public Lexicon(Lexicon l)
 	{
-		names = new Table2Plus<String,Integer,Provenance>(l.names);
-		terms = new Table2Plus<Integer,String,Provenance>(l.terms);
-		languages = new Table2<String,String>(l.languages);
+		names = new Table3<String,Integer,Provenance>(l.names);
+		classes = new Table3<Integer,String,Provenance>(l.classes);
+		langCount = new HashMap<String,Integer>(l.langCount);
+		langNames = new Table2<String,String>(l.langNames);
 	}
 
 //Public Methods
 
 	/**
 	 * Adds a new entry to the Lexicon
-	 * @param term: the term to which the name belongs
+	 * @param classId: the class to which the name belongs
 	 * @param name: the name to add to the Lexicon
 	 * @param type: the type of lexical entry (localName, label, etc)
 	 * @param source: the source of the lexical entry (ontology URI, etc)
 	 */
-	public void add(int term, String name, String type, String source, double weight)
+	public void add(int classId, String name, String type, String source, double weight)
 	{
 		//First ensure that the name contains letters
 		if(name == null || !name.matches(".*[a-zA-Z].*"))
@@ -90,30 +95,35 @@ public class Lexicon
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = "Formula";
-			p = new Provenance("Formula", source, weight);
+			p = new Provenance("Formula", source, lang, weight);
 		}
 		//Or a normal name
 		else
 		{
 			s = StringParser.normalizeName(name);
 			lang = "en";
-			p = new Provenance(type, source, weight);
+			p = new Provenance(type, source, lang, weight);
 		}
 		//Then update the tables
-		names.addUpgrade(s,term,p);
-		terms.addUpgrade(term,s,p);
-		languages.add(name,lang);
+		names.add(s,classId,p);
+		classes.add(classId,s,p);
+		Integer i = langCount.get(lang);
+		if(i == null)
+			langCount.put(lang, 1);
+		else
+			langCount.put(lang, i+1);
+		langNames.add(lang, s);
 	}
 	
 	/**
 	 * Adds a new entry to the Lexicon
-	 * @param term: the term to which the name belongs
+	 * @param classId: the class to which the name belongs
 	 * @param name: the name to add to the Lexicon
 	 * @param language: the language of the name
 	 * @param type: the type of lexical entry (localName, label, etc)
 	 * @param source: the source of the lexical entry (ontology URI, etc)
 	 */
-	public void add(int term, String name, String language, String type, String source, double weight)
+	public void add(int classId, String name, String language, String type, String source, double weight)
 	{
 		//First ensure that the name contains letters
 		if(name == null || !name.matches(".*[a-zA-Z].*"))
@@ -127,19 +137,62 @@ public class Lexicon
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = "Formula";
-			p = new Provenance("Formula", source, weight);
+			p = new Provenance("Formula", source, lang, weight);
 		}
 		//Or a normal name
 		else
 		{
 			s = StringParser.normalizeName(name);
 			lang = language;
-			p = new Provenance(type, source, weight);
+			p = new Provenance(type, source, lang, weight);
 		}
 		//Then update the tables
-		names.addUpgrade(s,term,p);
-		terms.addUpgrade(term,s,p);
-		languages.add(name,lang);
+		names.add(s,classId,p);
+		classes.add(classId,s,p);
+		Integer i = langCount.get(lang);
+		if(i == null)
+			langCount.put(lang, 1);
+		else
+			langCount.put(lang, i+1);
+		langNames.add(lang, s);
+	}
+		
+	/**
+	 * @return the number of classes in the Lexicon
+	 */
+	public int classCount()
+	{
+		return classes.keyCount();
+	}
+	
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @return the number of classes associated with the name
+	 */
+	public int classCount(String name)
+	{
+		return names.entryCount(name);
+	}
+	
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @param type: the type to restrict the search
+	 * @return the number of classes associated with the name with the given type
+	 */
+	public int classCount(String name, String type)
+	{
+		return getClasses(name,type).size();
+	}
+	
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @param p: the provenance of the names to get from the Lexicon
+	 * @return the number of names with the same language as the
+	 * given provenance that are associated with the class
+	 */
+	public int classCount(String name, Provenance p)
+	{
+		return names.entryCount(name, p);
 	}
 	
 	/**
@@ -152,15 +205,15 @@ public class Lexicon
 	}
 	
 	/**
-	 * @param term: the term to check in the Lexicon
+	 * @param classId: the class to check in the Lexicon
 	 * @param name: the name to check in the Lexicon
-	 * @return whether the Lexicon contains the name for the term
+	 * @return whether the Lexicon contains the name for the class
 	 */
-	public boolean contains(int term, String name)
+	public boolean contains(int classId, String name)
 	{
-		return terms.contains(term) && terms.get(term).containsKey(name);
+		return classes.contains(classId) && classes.get(classId).contains(name);
 	}
-
+	
 	/**
 	 * Generates synonyms by removing within-brackets sections of names
 	 */
@@ -171,28 +224,37 @@ public class Lexicon
 		{
 			if(StringParser.isFormula(n) || !n.contains("(") || !n.contains(")"))
 				continue;
-			char[] chars = n.toCharArray();
-			String newName = "";
-			boolean copy = true;
-			for(char c : chars)
+			String newName;
+			if(n.matches("\\([^()]+\\)") || n.contains(") or ("))
+				newName = n.replaceAll("[()]", "");
+			else if(n.contains(")("))
+				continue;
+			else
 			{
-				if(c == '(')
-					copy = false;
-				if(copy)
-					newName += c;
-				if(c == ')')
-					copy = true;					
+				newName = "";
+				char[] chars = n.toCharArray();
+				boolean copy = true;
+				for(char c : chars)
+				{
+					if(c == '(')
+						copy = false;
+					if(copy)
+						newName += c;
+					if(c == ')')
+						copy = true;					
+				}
+				newName = newName.trim();
 			}
-			//Get the terms with the name
-			Vector<Integer> tr = new Vector<Integer>(getInternalTerms(n));
-			//For each term
-			for(Integer i: tr)
+			//Get the classes with the name
+			Vector<Integer> tr = new Vector<Integer>(getInternalClasses(n));
+			for(Integer i : tr)
 			{
-				//Add an entry to the Lexicon with the synonym
-				double weight = getWeight(n, i) * 0.9;
-				add(i, newName, "internalExtension", "", weight);
-			}			
-				
+				for(Provenance p : names.get(n, i))
+				{
+					double weight = p.getWeight() * 0.9;
+					add(i, newName, p.getLanguage(), "internalExtension", p.getSource(), weight);
+				}
+			}
 		}
 	}
 	
@@ -237,65 +299,61 @@ public class Lexicon
 			for(int i = start; i < end; i++)
 				newName += nameWords[i] + " ";
 			newName = newName.trim();
-			//Get the terms with the name
-			Vector<Integer> tr = new Vector<Integer>(getInternalTerms(n));
-			//For each term
-			for(Integer i: tr)
+
+			//Get the classes with the name
+			Vector<Integer> tr = new Vector<Integer>(getInternalClasses(n));
+			for(Integer i : tr)
 			{
-				//Add an entry to the Lexicon with the synonym
-				double weight = getWeight(n, i) * 0.9;
-				add(i, newName, "internalExtension", "", weight);
+				for(Provenance p : names.get(n, i))
+				{
+					double weight = p.getWeight() * 0.9;
+					add(i, newName, p.getLanguage(), "internalExtension", p.getSource(), weight);
+				}
 			}
 		}
 	}
 	
 	/**
-	 * @param term: the term to search in the Lexicon
-	 * @return the map of names and provenances for that term
-	 */
-	public HashMap<String,Provenance> get(int term)
-	{
-		return terms.get(term);
-	}
-
-	/**
 	 * @param name: the name to search in the Lexicon
-	 * @return the map of terms and provenances for that name
-	 */
-	public HashMap<Integer,Provenance> get(String name)
+	 * @param classId: the class to search in the Lexicon
+	 * @return the provenances associated with the name,class pair
+	 */	
+	public Vector<Provenance> get(String name, int classId)
 	{
-		return names.get(name);
-	}
-
-	/**
-	 * @param term: the term to search in the Lexicon
-	 * @return the name associated with the term that has the highest
-	 * provenance weight
-	 */
-	public String getBestName(int term)
-	{
-		return terms.getKeyMaximum(term);
+		if(names.contains(name, classId))
+			return names.get(name, classId);
+		return new Vector<Provenance>();
 	}
 	
 	/**
-	 * @param name: the term name to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
+	 * @return the name associated with the class that has the highest
+	 * provenance weight
+	 */
+	public String getBestName(int classId)
+	{
+		return classes.getKeyMaximum(classId);
+	}
+	
+	/**
+	 * @param name: the class name to search in the Lexicon
 	 * @param internal: whether to restrict the search to internal Lexicon entries
 	 * or consider extension entries
-	 * @return the term associated with the name that has the highest
-	 * provenance weight, or -1 if either no term or two or more such
-	 * terms are found
+	 * @return the class associated with the name that has the highest
+	 * provenance weight, or -1 if either no class or two or more such
+	 * classes are found
 	 */
-	public int getBestTerm(String name, boolean internal)
+	public int getBestClass(String name, boolean internal)
 	{
 		Set<Integer> hits;
 		if(internal)
-			hits = getInternalTerms(name);
+			hits = getInternalClasses(name);
 		else
-			hits = getTerms(name);
+			hits = getClasses(name);
 		if(hits == null)
 			return -1;
 		
-		Vector<Integer> bestTerms = new Vector<Integer>(1,1);
+		Vector<Integer> bestClasses = new Vector<Integer>(1,1);
 		double weight;
 		double maxWeight = 0.0;
 		
@@ -305,70 +363,163 @@ public class Lexicon
 			if(weight > maxWeight)
 			{
 				maxWeight = weight;
-				bestTerms = new Vector<Integer>(1,1);
-				bestTerms.add(i);
+				bestClasses = new Vector<Integer>(1,1);
+				bestClasses.add(i);
 			}
 			else if(weight == maxWeight)
 			{
-				bestTerms.add(i);
+				bestClasses.add(i);
 			}
 		}
-		if(bestTerms.size() != 1)
+		if(bestClasses.size() != 1)
 			return -1;
-		return bestTerms.get(0);
+		return bestClasses.get(0);
+	}
+	
+	
+	/**
+	 * @return the set of classes in the Lexicon
+	 */
+	public Set<Integer> getClasses()
+	{
+		return classes.keySet();
 	}
 	
 	/**
-	 * @param name: the name to search in the Lexicon
-	 * @param term: the term to search in the Lexicon
-	 * @return the weight corresponding to the provenance of the name for that term
-	 * with a correction factor depending on how many names of that provenance the
-	 * the term has
+	 * @param name: the class name to search in the Lexicon
+	 * @return the list of classes associated with the name
 	 */
-	public double getCorrectedWeight(String name, int term)
+	public Set<Integer> getClasses(String name)
 	{
-		Provenance p = names.get(name, term);
-		if(p == null)
+		return names.keySet(name);
+	}
+	
+	/**
+	 * @param name: the class name to search in the Lexicon
+	 * @param type: the type to filter the search
+	 * @return the list of classes associated with the name with the given type
+	 */
+	public Set<Integer> getClasses(String name, String type)
+	{
+		Set<Integer> hits = names.keySet(name);
+		HashSet<Integer> classesType = new HashSet<Integer>();
+		if(hits == null)
+			return classesType;
+		for(Integer i : hits)
+			for(Provenance p : names.get(name,i))
+				if(p.getType().equals(type))
+					classesType.add(i);
+		return classesType;
+	}
+	
+	/**
+	 * @param name: the class name to search in the Lexicon
+	 * @param lang: the language of the names to get from the Lexicon
+	 * @return the list of classes associated with the name with the
+	 * given language
+	 */
+	public Set<Integer> getClassesWithLanguage(String name, String lang)
+	{
+		Set<Integer> hits = names.keySet(name);
+		HashSet<Integer> classesLang = new HashSet<Integer>();
+		if(hits == null)
+			return classesLang;
+		for(Integer i : hits)
+			for(Provenance p : names.get(name,i))
+				if(p.getLanguage().equals(lang))
+					classesLang.add(i);
+		return classesLang;
+	}
+	
+	/**
+	 * @param source: the source to search in the Lexicon
+	 * @return the list of classes that have names from the given source
+	 */
+	public Vector<Integer> getClassesWithSource(String source)
+	{
+		Vector<Integer> classesWithSource = new Vector<Integer>(0,1);
+		Set<Integer> ts = classes.keySet();
+		for(Integer i : ts)
+			if(hasNameFromSource(i,source) && !classesWithSource.contains(i))
+				classesWithSource.add(i);
+		return classesWithSource;
+	}
+		
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
+	 * @return the weight corresponding to the provenance of the name for that class
+	 * with a correction factor depending on how many names of that provenance the
+	 * the class has
+	 */
+	public double getCorrectedWeight(String name, int classId)
+	{
+		if(!names.contains(name, classId))
 			return 0.0;
-		double correction = nameCount(term,p)/100.0;
+		Provenance p = names.get(name, classId).get(0);
+		double correction = nameCount(classId,p.getType())/100.0;
 		return p.getWeight() - correction;
 	}
 	
 	/**
-	 * @return the list of terms that have a name from an external source
+	 * @param name: the name to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
+	 * @param lang: the language to search in the Lexicon
+	 * @return the weight corresponding to the provenance of the name for that class
+	 * with a correction factor depending on how many names of that provenance the
+	 * the class has
 	 */
-	public Vector<Integer> getExtendedTerms()
+	public double getCorrectedWeight(String name, int classId, String lang)
 	{
-		Vector<Integer> extendedTerms = new Vector<Integer>(0,1);
-		Set<Integer> ts = terms.keySet();
-		for(Integer i : ts)
-			if(hasExternalName(i))
-				extendedTerms.add(i);
-		return extendedTerms;
+		Vector<Provenance> provs = names.get(name, classId);
+		if(provs == null)
+			return 0.0;
+		for(Provenance p : provs)
+		{
+			if(p.getLanguage().equals(lang))
+			{
+				double correction = nameCount(classId,p.getType(),p.getLanguage())/100.0;
+				return p.getWeight() - correction;
+			}
+		}
+		return 0.0;
 	}
 	
 	/**
-	 * @param term: the term to search in the Lexicon
-	 * @return the list of local names associated with the term
+	 * @return the list of classes that have a name from an external source
 	 */
-	public Set<String> getInternalNames(int term)
+	public Set<Integer> getExtendedClasses()
 	{
-		Set<String> hits = terms.keySet(term);
+		HashSet<Integer> extendedClasses = new HashSet<Integer>(0,1);
+		Set<Integer> ts = classes.keySet();
+		for(Integer i : ts)
+			if(hasExternalName(i))
+				extendedClasses.add(i);
+		return extendedClasses;
+	}
+	
+	/**
+	 * @param classId: the class to search in the Lexicon
+	 * @return the list of local names associated with the class
+	 */
+	public Set<String> getInternalNames(int classId)
+	{
+		Set<String> hits = classes.keySet(classId);
 		HashSet<String> localHits = new HashSet<String>();
 		if(hits == null)
 			return localHits;
 		for(String s : hits)
-			if(!isExternal(s,term))
+			if(!isExternal(s,classId))
 				localHits.add(s);
 		return localHits;
 	}
 	
 	/**
-	 * @param name: the term name to search in the Lexicon
-	 * @return the list of terms associated with the name from
+	 * @param name: the class name to search in the Lexicon
+	 * @return the list of classes associated with the name from
 	 * a local source
 	 */
-	public Set<Integer> getInternalTerms(String name)
+	public Set<Integer> getInternalClasses(String name)
 	{
 		Set<Integer> hits = names.keySet(name);
 		HashSet<Integer> localHits = new HashSet<Integer>();
@@ -381,12 +532,52 @@ public class Lexicon
 	}
 	
 	/**
-	 * @param name: the term name to search in the Lexicon
+	 * @param lang: the language code to search in the Lexicon
+	 * @return the number of Lexical entries with that language
+	 */
+	public Integer getLanguageCount(String lang)
+	{
+		return langCount.get(lang);
+	}
+	
+	/**
+	 * @return the set of languages in the Lexicon
+	 */
+	public Set<String> getLanguages()
+	{
+		return langCount.keySet();
+	}
+	
+	/**
+	 * @param name: the class name to search in the Lexicon
 	 * @return the list of languages declared for the name
 	 */
-	public Vector<String> getLanguages(String name)
+	public Set<String> getLanguages(String name)
 	{
-		return languages.get(name);
+		Set<Integer> hits = names.keySet(name);
+		HashSet<String> langs = new HashSet<String>();
+		if(hits == null)
+			return langs;
+		for(Integer i : hits)
+			for(Provenance p : names.get(name,i))
+				langs.add(p.getLanguage());
+		return langs;
+	}
+	
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
+	 * @return the list of languages declared for the name,class pair
+	 */
+	public Set<String> getLanguages(String name, int classId)
+	{
+		Vector<Provenance> hits = names.get(name,classId);
+		HashSet<String> langs = new HashSet<String>();
+		if(hits == null)
+			return langs;
+		for(Provenance p : hits)
+			langs.add(p.getLanguage());
+		return langs;
 	}
 	
 	/**
@@ -398,149 +589,187 @@ public class Lexicon
 	}
 
 	/**
-	 * @param term: the term to search in the Lexicon
-	 * @return the list of names associated with the term
+	 * @param classId: the class to search in the Lexicon
+	 * @return the list of names associated with the class
 	 */
-	public Set<String> getNames(int term)
+	public Set<String> getNames(int classId)
 	{
-		return terms.keySet(term);
+		return classes.keySet(classId);
+	}
+	
+	/**
+	 * @param lang: the language to search in the Lexicon
+	 * @return the list of names with the given language
+	 */
+	public Set<String> getNames(String lang)
+	{
+		HashSet<String> namesLang = new HashSet<String>();
+		if(langNames.contains(lang))
+			namesLang.addAll(langNames.get(lang));
+		return namesLang;
 	}
 
 	/**
-	 * @param term: the term to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
 	 * @param type: the type to restrict the search
-	 * @return the list of names of the given type associated with the term
+	 * @return the list of names of the given type associated with the class
 	 */
-	public Vector<String> getNames(int term, String type)
+	public Set<String> getNames(int classId, String type)
 	{
-		Provenance p = new Provenance(type, "", 1);
-		return terms.getMatchingKeys(term, p);
+		Set<String> hits = classes.keySet(classId);
+		HashSet<String> namesType = new HashSet<String>();
+		if(hits == null)
+			return namesType;
+		for(String n : hits)
+			for(Provenance p : classes.get(classId,n))
+				if(p.getType().equals(type))
+					namesType.add(n);
+		return namesType;
+	}
+	
+	/**
+	 * @param classId: the class to search in the Lexicon
+	 * @param lang: the lang of the names to get from the Lexicon
+	 * @return the names with the given language associated with the class
+	 */
+	public Set<String> getNamesWithLanguage(int classId, String lang)
+	{
+		Set<String> hits = classes.keySet(classId);
+		HashSet<String> namesLang = new HashSet<String>();
+		if(hits == null)
+			return namesLang;
+		for(String n : hits)
+			for(Provenance p : classes.get(classId,n))
+				if(p.getLanguage().equals(lang))
+					namesLang.add(n);
+		return namesLang;
 	}
 	
 	/**
 	 * @param name: the name to search in the Lexicon
-	 * @param term: the term to search in the Lexicon
-	 * @return the source of the name for that term
+	 * @param classId: the class to search in the Lexicon
+	 * @return the sources of the name for that class
 	 */
-	public String getSource(String name, int term)
+	public Set<String> getSources(String name, int classId)
 	{
-		Provenance p = names.get(name, term);
-		if(p == null)
-			return null;
-		return p.getSource();
+		Vector<Provenance> provs = names.get(name, classId);
+		HashSet<String> sources = new HashSet<String>();
+		if(provs == null)
+			return sources;
+		for(Provenance p : provs)
+			sources.add(p.getSource());
+		return sources;
 	}
-	
-	/**
-	 * @return the set of terms in the Lexicon
-	 */
-	public Set<Integer> getTerms()
-	{
-		return terms.keySet();
-	}
-	
-	/**
-	 * @param name: the term name to search in the Lexicon
-	 * @return the list of terms associated with the name
-	 */
-	public Set<Integer> getTerms(String name)
-	{
-		return names.keySet(name);
-	}
-	
-	/**
-	 * @param name: the term name to search in the Lexicon
-	 * @param type: the type to filter the search
-	 * @return the list of terms associated with the name with the given type
-	 */
-	public Vector<Integer> getTerms(String name, String type)
-	{
-		Provenance p = new Provenance(type, "", 1);
-		return names.getMatchingKeys(name, p);		
-	}
-	
-	/**
-	 * @param source: the source to search in the Lexicon
-	 * @return the list of terms that have names from the given source
-	 */
-	public Vector<Integer> getTermsWithSource(String source)
-	{
-		Vector<Integer> termsWithSource = new Vector<Integer>(0,1);
-		Set<Integer> ts = terms.keySet();
-		for(Integer i : ts)
-			if(hasNameFromSource(i,source) && !termsWithSource.contains(i))
-				termsWithSource.add(i);
-		return termsWithSource;
-	}
-		
 	/**
 	 * @param name: the name to search in the Lexicon
-	 * @param term: the term to search in the Lexicon
-	 * @return the type of the name for that term
+	 * @param classId: the class to search in the Lexicon
+	 * @return the types of the name for that class
 	 */
-	public String getType(String name, int term)
+	public Set<String> getTypes(String name, int classId)
 	{
-		Provenance p = names.get(name, term);
-		if(p == null)
-			return null;
-		return p.getType();
+		Vector<Provenance> provs = names.get(name, classId);
+		HashSet<String> types = new HashSet<String>();
+		if(provs == null)
+			return types;
+		for(Provenance p : provs)
+			types.add(p.getType());
+		return types;
 	}
 	
 	/**
 	 * @param name: the name to search in the Lexicon
-	 * @param term: the term to search in the Lexicon
-	 * @return the weight corresponding to the provenance of the name for that term
+	 * @param classId: the class to search in the Lexicon
+	 * @return the weight corresponding to the provenance of the name for that class
 	 */
-	public double getWeight(String name, int term)
+	public double getWeight(String name, int classId)
 	{
-		Provenance p = names.get(name, term);
-		if(p == null)
+		if(!names.contains(name, classId))
 			return 0.0;
+		Provenance p = names.get(name, classId).get(0);
 		return p.getWeight();
 	}
+	
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
+	 * @param lang: the language to search in the Lexicon
+	 * @return the weight corresponding to the provenance of the name for that class
+	 */
+	public double getWeight(String name, int classId, String lang)
+	{
+		if(!names.contains(name, classId))
+			return 0.0;
+		Vector<Provenance> provs = names.get(name, classId);
+		for(Provenance p : provs)
+			if(p.getLanguage().equals(lang))
+				return p.getWeight();
+		return 0.0;
+	}
 
 	/**
-	 * @param term: the term to search in the Lexicon
-	 * @return whether the term has an external name
+	 * @param classId: the class to search in the Lexicon
+	 * @return whether the class has an external name
 	 */
-	public boolean hasExternalName(int term)
+	public boolean hasExternalName(int classId)
 	{
-		Set<String> termNames = getNames(term);
-		if(termNames == null)
+		Set<String> classNames = getNames(classId);
+		if(classNames == null)
 			return false;
-		for(String n : termNames)
-			if(isExternal(n,term))
+		for(String n : classNames)
+			if(isExternal(n,classId))
 				return true;
 		return false;
 	}
 
 	/**
-	 * @param term: the term to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
 	 * @param source: the source to search in the Lexicon
-	 * @return whether the term has an external name
+	 * @return whether the class has an external name
 	 */
-	public boolean hasNameFromSource(int term, String source)
+	public boolean hasNameFromSource(int classId, String source)
 	{
-		Set<String> termNames = getNames(term);
-		if(termNames == null)
+		Set<String> classNames = getNames(classId);
+		if(classNames == null)
 			return false;
-		for(String n : termNames)
-			if(getSource(n,term).equals(source))
+		for(String n : classNames)
+			if(getSources(n,classId).contains(source))
 				return true;
 		return false;
 	}
 
 	/**
 	 * @param name: the name to search in the Lexicon
-	 * @param term: the term to search in the Lexicon
-	 * @return whether the type of the name for the term
+	 * @param classId: the class to search in the Lexicon
+	 * @return whether the type of the name for the class
 	 * is external
 	 */
-	public boolean isExternal(String name, int term)
+	public boolean isExternal(String name, int classId)
 	{
-		Provenance p = names.get(name, term);
-		if(p == null)
+		if(!names.contains(name,classId))
 			return false;
-		return p.isExternal();
+		Vector<Provenance> provs = names.get(name, classId);
+		for(Provenance p : provs)
+			if(!p.isExternal())
+				return false;
+		return true;
+	}
+	
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
+	 * @param lang: the language to search in the Lexicon
+	 * @return whether the type of the name for the class
+	 * is external
+	 */
+	public boolean isExternal(String name, int classId, String lang)
+	{
+		if(!names.contains(name,classId))
+			return false;
+		Vector<Provenance> provs = names.get(name, classId);
+		for(Provenance p : provs)
+			if(p.getLanguage().equals(lang) && p.isExternal())
+				return true;
+		return false;
 	}
 	
 	/**
@@ -549,7 +778,7 @@ public class Lexicon
 	 */
 	public boolean isFormula(String name)
 	{
-		return languages.get(name).equals("Formula");
+		return StringParser.isFormula(name);
 	}
 	
 	/**
@@ -561,33 +790,42 @@ public class Lexicon
 	}
 	
 	/**
-	 * @param term: the term to search in the Lexicon
-	 * @return the number of names associated with the term
+	 * @param classId: the class to search in the Lexicon
+	 * @return the number of names associated with the class
 	 */
-	public int nameCount(int term)
+	public int nameCount(int classId)
 	{
-		return terms.entryCount(term);
+		return classes.entryCount(classId);
 	}
 	
 	/**
-	 * @param term: the term to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
 	 * @param type: the type to restrict the search
-	 * @return the number of names of the given type associated with the term
+	 * @return the number of names of the given type associated with the class
 	 */
-	public int nameCount(int term, String type)
+	public int nameCount(int classId, String type)
 	{
-		Provenance p = new Provenance(type, "", 1);
-		return terms.entryCount(term, p);
+		return getNames(classId,type).size();
 	}
 	
 	/**
-	 * @param term: the term to search in the Lexicon
-	 * @param p: the provenance of the names to get from the Lexicon
-	 * @return the number of names of the given provenance associated with the term
+	 * @param classId: the class to search in the Lexicon
+	 * @param type: the type to restrict the search
+	 * @param lang: the language to restrict the search
+	 * @return the number of names with the given type and language
+	 * that are associated with the class
 	 */
-	public int nameCount(int term, Provenance p)
+	public int nameCount(int classId, String type, String lang)
 	{
-		return terms.entryCount(term, p);
+		Set<String> hits = classes.keySet(classId);
+		int count = 0;
+		if(hits == null)
+			return count;
+		for(String n : hits)
+			for(Provenance p : classes.get(classId,n))
+				if(p.getLanguage().equals(lang) && p.getType().equals(type))
+					count++;
+		return count;
 	}
 
 	/**
@@ -596,33 +834,5 @@ public class Lexicon
 	public int size()
 	{
 		return names.size();
-	}
-	
-	/**
-	 * @return the number of terms in the Lexicon
-	 */
-	public int termCount()
-	{
-		return terms.keyCount();
-	}
-	
-	/**
-	 * @param name: the name to search in the Lexicon
-	 * @return the number of terms associated with the name
-	 */
-	public int termCount(String name)
-	{
-		return names.entryCount(name);
-	}
-	
-	/**
-	 * @param name: the name to search in the Lexicon
-	 * @param type: the type to restrict the search
-	 * @return the number of terms associated with the name with the given type
-	 */
-	public int termCount(String name, String type)
-	{
-		Provenance p = new Provenance(type, "", 1);
-		return names.entryCount(name, p);
 	}
 }

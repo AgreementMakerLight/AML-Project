@@ -15,7 +15,8 @@
 * Emulates the SEALS Oracle from the OAEI 2013 Interactive Matching track.    *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.oracle;
 

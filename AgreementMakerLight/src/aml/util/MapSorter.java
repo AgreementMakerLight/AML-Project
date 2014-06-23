@@ -15,7 +15,8 @@
 * Sorts Maps by value rather than by key.                                     *
 *                                                                             *
 * @author Daniel Faria (adapted from Carter Page)                             *
-* @date 31-01-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.util;
 

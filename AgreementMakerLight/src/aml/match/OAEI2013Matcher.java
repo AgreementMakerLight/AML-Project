@@ -16,7 +16,8 @@
 * Note: Replace the AML Oracle with the SEALS Oracle for OAEI participation.  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-05-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -135,7 +136,7 @@ public class OAEI2013Matcher
 	{
 		long startTime = System.currentTimeMillis()/1000;
 		//Step 1 - Compute the baseline alignment
-		LexicalMatcher lm = new LexicalMatcher(false);
+		LexicalMatcher lm = new LexicalMatcher();
 		base = lm.match(BASE_THRESH);
 		a = new Alignment(base);
 		//Step 2 - Check the size category of the problem and set the threshold
@@ -170,7 +171,7 @@ public class OAEI2013Matcher
 	private long backgroundKnowledgeMatching()
 	{
 		long startTime = System.currentTimeMillis()/1000;
-		LexicalMatcher lm = new LexicalMatcher(false);
+		LexicalMatcher lm = new LexicalMatcher();
 		switch(size)
 		{
 			case 3:

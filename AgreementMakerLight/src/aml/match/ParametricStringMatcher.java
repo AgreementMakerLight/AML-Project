@@ -18,7 +18,8 @@
 * only for Alignment extension whenever running time is an issue.             *
 *                                                                             *
 * @authors Daniel Faria, Cosmin Stroe                                         *
-* @date 30-05-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -99,8 +100,8 @@ public class ParametricStringMatcher implements Matcher
 	public Alignment match(double thresh)
 	{
 		Alignment a = new Alignment();
-		Set<Integer> sources = sLex.getTerms();
-		Set<Integer> targets = tLex.getTerms();
+		Set<Integer> sources = sLex.getClasses();
+		Set<Integer> targets = tLex.getClasses();
 		for(Integer i : sources)
 		{
 			for(Integer j : targets)
@@ -204,6 +205,7 @@ public class ParametricStringMatcher implements Matcher
 	//pairwise comparison of all their names
 	private double mapTwoTerms(int sId, int tId)
 	{
+		//TODO: mapTwoTerms with language constrains
 		double maxSim = 0.0;
 		double sim, weight;
 		//Get the source and target names

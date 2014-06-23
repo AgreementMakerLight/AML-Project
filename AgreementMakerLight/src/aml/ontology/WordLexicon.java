@@ -16,7 +16,8 @@
 * used by the WordMatcher.                                                    *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
 
@@ -26,6 +27,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.util.StopList;
+import aml.util.StringParser;
 import aml.util.Table2;
 import aml.util.Table2Plus;
 
@@ -36,19 +38,21 @@ public class WordLexicon
 
 	//A link to the original Lexicon
 	private Lexicon lex;
-	//The list of terms to ignore when building this WordLexicon
+	//The list of classes to ignore when building this WordLexicon
 	private Set<Integer> ignoreList;
 	//The list of stop words to ignore when building this WordLexicon
 	private Vector<String> stopList;
-	//The map of words and the terms they occur in
-	private Table2<String,Integer> wordTerms;
+	//The language to use when building this WordLexicon
+	private String language;
+	//The map of words and the classes they occur in
+	private Table2<String,Integer> wordClasses;
 	//The map of word evidence contents
 	private HashMap<String,Double> wordECs;
-	//The map of terms and the words they contain
-	private Table2Plus<Integer,String,Double> termWords;
-	//The map of term evidence contents
-	private HashMap<Integer,Double> termECs;
-
+	//The map of classes and the words they contain
+	private Table2Plus<Integer,String,Double> classWords;
+	//The map of classId evidence contents
+	private HashMap<Integer,Double> classECs;
+	
 	//Auxiliary variable
 	private int total;
 	
@@ -62,43 +66,60 @@ public class WordLexicon
 	{
 		lex = l;
 		ignoreList = new HashSet<Integer>();
-		stopList = StopList.read();
-		wordTerms = new Table2<String,Integer>();
-		wordECs = new HashMap<String,Double>();
-		termWords = new Table2Plus<Integer,String,Double>();
-		termECs = new HashMap<Integer,Double>();
-		total = 0;
+		language = "";
 		buildWordLexicon();
 	}
 	
 	/**
-	 * Constructs a new WordLexicon from the given Lexicon and list of terms
+	 * Constructs a new WordLexicon from the given Lexicon
 	 * @param l: the Lexicon from which the WordLexicon is derived
-	 * @param i: the list of terms to exclude from this WordLexicon
+	 * @param lang: the language to use for this WordLexicon
+	 */
+	public WordLexicon(Lexicon l, String lang)
+	{
+		lex = l;
+		ignoreList = new HashSet<Integer>();
+		language = lang;
+		buildWordLexicon();
+	}
+	
+	/**
+	 * Constructs a new WordLexicon from the given Lexicon and list of classes
+	 * @param l: the Lexicon from which the WordLexicon is derived
+	 * @param i: the list of classes to exclude from this WordLexicon
 	 */
 	public WordLexicon(Lexicon l, Set<Integer> i)
 	{
 		lex = l;
 		ignoreList = i;
-		stopList = StopList.read();
-		wordTerms = new Table2<String,Integer>();
-		wordECs = new HashMap<String,Double>();
-		termWords = new Table2Plus<Integer,String,Double>();
-		termECs = new HashMap<Integer,Double>();
-		total = 0;
+		language = "";
+		buildWordLexicon();
+	}
+	
+	/**
+	 * Constructs a new WordLexicon from the given Lexicon and list of classes
+	 * @param l: the Lexicon from which the WordLexicon is derived
+	 * @param i: the list of classes to exclude from this WordLexicon
+	 * @param lang: the language to use for this WordLexicon
+	 */
+	public WordLexicon(Lexicon l, Set<Integer> i, String lang)
+	{
+		lex = l;
+		ignoreList = i;
+		language = lang;
 		buildWordLexicon();
 	}
 
 //Public Methods
 
 	/**
-	 * @param term: the term to search in the lexicon
-	 * @return the EC of the given term
+	 * @param classId: the class to search in the lexicon
+	 * @return the EC of the given class
 	 */
-	public double getEC(int term)
+	public double getEC(int classId)
 	{
-		if(termECs.containsKey(term))
-			return termECs.get(term);
+		if(classECs.containsKey(classId))
+			return classECs.get(classId);
 		return -1.0;
 	}
 
@@ -115,47 +136,47 @@ public class WordLexicon
 
 	/**
 	 * @param w: the word to search in the lexicon
-	 * @param term: the term to search in the lexicon
-	 * @return the maximum weight of the word for the term
+	 * @param classId: the class to search in the lexicon
+	 * @return the maximum weight of the word for the class
 	 */
-	public double getWeight(String w, int term)
+	public double getWeight(String w, int classId)
 	{
-		if(termWords.contains(term,w))
-			return termWords.get(term,w);
+		if(classWords.contains(classId,w))
+			return classWords.get(classId,w);
 		return -1.0;
 	}
 	
 	/**
-	 * @return the set of terms in the lexicon
+	 * @return the set of classes in the lexicon
 	 */
-	public Set<Integer> getTerms()
+	public Set<Integer> getClasses()
 	{
-		return termWords.keySet();
+		return classWords.keySet();
 	}
 
 	/**
 	 * @param w: the word to search in the lexicon
-	 * @return the list of terms with the word
+	 * @return the list of classes with the word
 	 */
-	public Vector<Integer> getTerms(String w)
+	public Vector<Integer> getClasses(String w)
 	{
-		return wordTerms.get(w);
+		return wordClasses.get(w);
 	}
-
+	
 	/**
 	 * @return the set of words in the lexicon
 	 */
 	public Set<String> getWords()
 	{
-		return wordTerms.keySet();
+		return wordClasses.keySet();
 	}
 	
 	/**
-	 * @return the set of words for the given term
+	 * @return the set of words for the given classId
 	 */
-	public Set<String> getWords(int term)
+	public Set<String> getWords(int classId)
 	{
-		return termWords.keySet(term);
+		return classWords.keySet(classId);
 	}
 	
 	/**
@@ -181,7 +202,7 @@ public class WordLexicon
 	 */
 	public int wordCount()
 	{
-		return wordTerms.keyCount();
+		return wordClasses.keyCount();
 	}
 	
 //Private methods
@@ -189,20 +210,32 @@ public class WordLexicon
 	//Builds the WordLexicon from the original Lexicon
 	private void buildWordLexicon()
 	{
-		Set<Integer> terms = lex.getTerms();
-		//For each term
-		for(Integer t: terms)
+		//Initialize the data structures
+		stopList = StopList.read();
+		wordClasses = new Table2<String,Integer>();
+		wordECs = new HashMap<String,Double>();
+		classWords = new Table2Plus<Integer,String,Double>();
+		classECs = new HashMap<Integer,Double>();
+		total = 0;
+		//Get the classes from the Lexicon
+		Set<Integer> classes = lex.getClasses();
+		//For each class
+		for(Integer c: classes)
 		{
-			if(ignoreList.contains(t))
+			if(ignoreList.contains(c))
 				continue;
 			//Get all names 
-			Set<String> names = lex.getNames(t);
+			Set<String> names;
+			if(language.equals(""))
+				names = lex.getNames(c);
+			else
+				names = lex.getNamesWithLanguage(c, language);
 			if(names == null)
 				continue;
 			//And add the words for each name 
 			for(String n: names)
-				if(!lex.getType(n, t).equals("formula"))
-					addWords(n, t);
+				if(!StringParser.isFormula(n))
+					addWords(n, c);
 		}
 		//Compute the maximum EC
 		double max = Math.log(total);
@@ -213,38 +246,40 @@ public class WordLexicon
 			//Compute and store the normalized EC
 			double ec = 1 - (Math.log(wordECs.get(w)) / max);
 			wordECs.put(w, ec);
-			//Then add it to the total EC of each term with the word
-			Vector<Integer> wTerms = getTerms(w);
-			for(Integer i : wTerms)
+			//Then add it to the total EC of each classId with the word
+			Vector<Integer> wClasses = getClasses(w);
+			for(Integer i : wClasses)
 			{
-				Double totalEC = termECs.get(i);
+				Double totalEC = classECs.get(i);
 				if(totalEC == null)
 					totalEC = ec * getWeight(w,i);
 				else
 					totalEC += ec * getWeight(w,i);
-				termECs.put(i, totalEC);
+				classECs.put(i, totalEC);
 			}
 		}
 	}
 			
-	//Adds all words for a given name and term
-	private void addWords(String name, int term)
+	//Adds all words for a given name and classId
+	private void addWords(String name, int classId)
 	{
 		String[] words = name.split(" ");
+		//if(words.length == 1)
+			//return;
 		for(String w : words)
 		{
 			String word = w.replaceAll("[()]", "");
 			if(stopList.contains(word) || word.length() < 2 || !word.matches(".*[a-zA-Z].*"))
 				continue;
-			//Update the current weight of the word for the term
-			Double weight = termWords.get(term,word);
+			//Update the current weight of the word for the classId
+			Double weight = classWords.get(classId,word);
 			if(weight == null)
-				weight = lex.getCorrectedWeight(name, term);
+				weight = lex.getCorrectedWeight(name, classId);
 			else
-				weight += lex.getCorrectedWeight(name, term);
-			//Add the word-term pair to the WordLexicon
-			wordTerms.add(word, term);
-			termWords.add(term, word, weight);
+				weight += lex.getCorrectedWeight(name, classId);
+			//Add the word-classId pair to the WordLexicon
+			wordClasses.add(word, classId);
+			classWords.add(classId, word, weight);
 			//Update the word frequency
 			Double freq = wordECs.get(word);
 			if(freq == null)

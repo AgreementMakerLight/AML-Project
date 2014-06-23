@@ -16,7 +16,8 @@
 * associated weight.                                                          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
 
@@ -27,6 +28,7 @@ public class Provenance implements Comparable<Provenance>
 
 	private String type;
 	private String source;
+	private String language;
 	private double weight;
 	
 //Constructors
@@ -35,12 +37,14 @@ public class Provenance implements Comparable<Provenance>
 	 * Constructs a new Provenance object with the given values
 	 * @param t: the type of the lexical entry (localName, label, etc)
 	 * @param s: the source of the lexical entry (ontology uri, etc)
+ 	 * @param l: the language of the lexical entry ("en", "de", "pt", etc)
 	 * @param w: the weight of the lexical entry
 	 */
-	public Provenance(String t, String s, double w)
+	public Provenance(String t, String s, String l, double w)
 	{
 		type = t;
 		source = s;
+		language = l;
 		weight = w;
 	}
 
@@ -61,13 +65,27 @@ public class Provenance implements Comparable<Provenance>
 	}
 	
 	/**
-	 * Two Provenances are "equal" if they have the same type
-	 * which enables querying by type
+	 * Two Provenance objects are "equal" if they have the same
+	 * language so that a (class,name) pair can only occur
+	 * multiple times if it comes from different languages
 	 */
 	public boolean equals(Object o)
 	{
-		Provenance p = (Provenance)o;
-		return this.type.equals(p.type);
+		if(o instanceof Provenance)
+		{
+			Provenance p = (Provenance)o;
+			return language.equals(p.language);
+		}
+		else
+			return false;
+	}
+	
+	/**
+	 * @return the language of this Provenance object
+	 */
+	public String getLanguage()
+	{
+		return language;
 	}
 
 	/**

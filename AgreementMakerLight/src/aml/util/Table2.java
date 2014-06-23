@@ -15,7 +15,8 @@
 * A table with two columns, represented by a HashMap of Vectors.              *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-10-2013                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.util;
 
@@ -60,7 +61,9 @@ public class Table2<A,B extends Comparable<B>>
 //Public Methods
 	
 	/**
-	 * Adds the value for the given key to the Table
+	 * Adds the value for the given key to the Table, or
+	 * upgrades the value if an equal value already exists
+	 * (and if compareTo and equals differ)
 	 * @param key: the key to add to the Table
 	 * @param value: the value to add to the Table
 	 */
@@ -74,13 +77,19 @@ public class Table2<A,B extends Comparable<B>>
 			multimap.put(key, list);
 			size++;
 		}
-		else if(!list.contains(value))
+		else
 		{
-			int i;
-			//This will iterate through the list and find the right place to insert the value
-			for(i = 0; i < list.size() && value.compareTo(list.get(i)) > 0; i++);
-			list.insertElementAt(value,i);
-			size++;
+			int index = list.indexOf(value);
+			boolean remove = (index > -1 && value.compareTo(list.get(index)) > 0);
+			if(remove)
+				list.remove(index);
+			if(index == -1 || remove)
+			{
+				//This will iterate through the list and find the right place to insert the value
+				for(index = 0; index < list.size() && value.compareTo(list.get(index)) > 0; index++);
+				list.insertElementAt(value,index);
+				size++;
+			}
 		}
 	}
 	

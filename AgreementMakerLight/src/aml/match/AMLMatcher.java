@@ -15,7 +15,7 @@
 * Customizable ensemble of matching, selection & repair algorithms.           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-06-2014                                                            *
+* @date 23-06-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -72,7 +72,7 @@ public class AMLMatcher implements Matcher
 		int tSize = aml.getTarget().classCount();
 		boolean isLarge = (Math.min(sSize,tSize) > 30000 || Math.max(sSize, tSize) > 60000);
 		//Do the lexical match
-    	LexicalMatcher lm = new LexicalMatcher(false);
+    	LexicalMatcher lm = new LexicalMatcher();
 		Alignment a = lm.match(BASE_THRESH);
 		//If the selection is on auto, set it now
 		if(sType.equals(SelectionType.AUTO))

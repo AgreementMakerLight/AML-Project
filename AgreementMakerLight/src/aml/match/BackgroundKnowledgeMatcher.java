@@ -16,7 +16,8 @@
 * combining the best available background knowledge sources.                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 30-05-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -61,7 +62,7 @@ public class BackgroundKnowledgeMatcher implements Matcher
 	@Override
 	public Alignment match(double thresh)
 	{
-		LexicalMatcher lm = new LexicalMatcher(false);
+		LexicalMatcher lm = new LexicalMatcher();
 		Alignment base = lm.match(thresh);
 		return extendBaseline(base,thresh);
 	}

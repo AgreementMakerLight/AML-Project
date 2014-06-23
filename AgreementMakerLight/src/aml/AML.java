@@ -18,7 +18,7 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-06-2014                                                            *
+* @date 23-06-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml;
@@ -96,7 +96,7 @@ public class AML
 	private boolean showDescendants = true;
 	
 	//Matching properties
-	private LanguageSetting lang = LanguageSetting.SINGLE;
+	private LanguageSetting lang = LanguageSetting.MULTI;
 	private MatchingAlgorithm matcher = MatchingAlgorithm.AML;
     private SelectionType sType = SelectionType.AUTO;
     private boolean useBK = false;
@@ -480,7 +480,7 @@ public class AML
     	}
     	else if(matcher.equals(MatchingAlgorithm.LEXICAL))
     	{
-    		LexicalMatcher m = new LexicalMatcher(true);
+    		LexicalMatcher m = new LexicalMatcher();
     		a = m.match(threshold);
     		Selector s = new Selector(a, sType);
     		a = s.select(threshold);

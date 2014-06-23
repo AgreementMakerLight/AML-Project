@@ -19,7 +19,8 @@
 * is available.                                                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 30-05-2013                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -94,8 +95,8 @@ public class WordMatcher implements Matcher
 		for(String s : words)
 		{
 			//Get all term indexes for the name in both ontologies
-			Vector<Integer> largerIndexes = larger.getTerms(s);
-			Vector<Integer> smallerIndexes = smaller.getTerms(s);
+			Vector<Integer> largerIndexes = larger.getClasses(s);
+			Vector<Integer> smallerIndexes = smaller.getClasses(s);
 			if(largerIndexes == null)
 				continue;
 			//Otherwise, compute the average EC

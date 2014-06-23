@@ -14,37 +14,28 @@
 *******************************************************************************
 * Matches Ontologies by finding literal full-name matches between their       *
 * Lexicons. Weighs matches according to the provenance of the names.          *
-* Ignores external Lexicon names when in internal mode.                       *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 30-05-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
 import java.util.Set;
 
 import aml.AML;
+import aml.AML.LanguageSetting;
 import aml.ontology.Lexicon;
 
 public class LexicalMatcher implements Matcher
 {
 	
-//Attributes
-	
-	//Whether to ignore external names or not
-	private boolean internal;
-	
 //Constructors
 
 	/**
-	 * Constructs a new LexicalMatcher with the given options
-	 * @param i: Whether the Matcher will be internal and ignore
-	 * external names in the Lexicon
+	 * Constructs a new LexicalMatcher
 	 */
-	public LexicalMatcher(boolean i)
-	{
-		internal = i;
-	}
+	public LexicalMatcher(){}
 	
 //Public Methods
 	
@@ -79,6 +70,7 @@ public class LexicalMatcher implements Matcher
 	 */
 	public Alignment match(Lexicon sLex, Lexicon tLex, double thresh)
 	{
+		//Initialize the alignment
 		Alignment maps = new Alignment();
 		//To minimize iterations, we want to iterate through the
 		//Ontology with the smallest Lexicon
@@ -95,55 +87,99 @@ public class LexicalMatcher implements Matcher
 			smaller = tLex;
 			larger = sLex;
 		}
-		//Get the smaller Ontology names
-		Set<String> names = smaller.getNames();
-		for(String s : names)
+		//If we have a multi-language Lexicon, we must match language by language
+		if(AML.getInstance().getLanguageSetting().equals(LanguageSetting.MULTI))
 		{
-			//Get all term indexes for the name in both ontologies
-			Set<Integer> largerIndexes;
-			Set<Integer> smallerIndexes;
-			//If in internal mode consider only terms for which the name is local
-			if(internal)
+			//Get the languages of both Lexicons
+			Set<String> sLangs = smaller.getLanguages();
+			Set<String> lLangs = larger.getLanguages();
+			//And match them language by language
+			for(String l : sLangs)
 			{
-				largerIndexes = larger.getInternalTerms(s);
-				smallerIndexes = smaller.getInternalTerms(s);
-			}
-			//Otherwise consider all terms
-			else
-			{
-				largerIndexes = larger.getTerms(s);
-				smallerIndexes = smaller.getTerms(s);
-			}
-			//If the name doesn't exist in either ontology, skip it
-			//(it may not exist in the smaller ontology when in internal mode)
-			if(largerIndexes == null || smallerIndexes == null)
-				continue;
-			//Otherwise, match all indexes
-			for(Integer i : smallerIndexes)
-			{
-				//Get the weight of the name for the term in the smaller lexicon
-				weight = smaller.getCorrectedWeight(s, i);
-				for(Integer j : largerIndexes)
+				if(!lLangs.contains(l))
+					continue;
+				//Get the smaller Ontology names for the language
+				Set<String> names = smaller.getNames(l);
+				for(String s : names)
 				{
-					//Get the weight of the name for the term in the larger lexicon
-					similarity = larger.getCorrectedWeight(s, j);
-					//Then compute the similarity, by multiplying the two weights
-					similarity *= weight;
-					//If the similarity is above threshold
-					if(similarity >= thresh)
+					//Get all term indexes for the name in both ontologies
+					Set<Integer> smallerIndexes = smaller.getClassesWithLanguage(s,l);
+					Set<Integer> largerIndexes = larger.getClassesWithLanguage(s,l);
+					//If the name doesn't exist in the larger ontology, skip it
+					if(largerIndexes == null)
+						continue;
+					//Otherwise, match all indexes
+					for(Integer i : smallerIndexes)
 					{
-						int sourceId, targetId;
-						if(sourceIsSmaller)
+						//Get the weight of the name for the term in the smaller lexicon
+						weight = smaller.getCorrectedWeight(s, i, l);//TODO: Check how best to correct weights
+						for(Integer j : largerIndexes)
 						{
-							sourceId = i;
-							targetId = j;
+							//Get the weight of the name for the term in the larger lexicon
+							similarity = larger.getCorrectedWeight(s, j, l);//TODO: Check how best to correct weights
+							//Then compute the similarity, by multiplying the two weights
+							similarity *= weight;
+							//If the similarity is above threshold
+							if(similarity >= thresh)
+							{
+								int sourceId, targetId;
+								if(sourceIsSmaller)
+								{
+									sourceId = i;
+									targetId = j;
+								}
+								else
+								{
+									sourceId = j;
+									targetId = i;
+								}
+								maps.add(sourceId, targetId, similarity);
+							}
 						}
-						else
+					}
+				}
+			}
+		}
+		//Otherwise we can just match everything
+		else
+		{
+			//Get the smaller Ontology names
+			Set<String> names = smaller.getNames();
+			for(String s : names)
+			{
+				//Get all term indexes for the name in both ontologies
+				Set<Integer> smallerIndexes = smaller.getClasses(s);
+				Set<Integer> largerIndexes = larger.getClasses(s);
+				//If the name doesn't exist in the larger ontology, skip it
+				if(largerIndexes == null)
+					continue;
+				//Otherwise, match all indexes
+				for(Integer i : smallerIndexes)
+				{
+					//Get the weight of the name for the term in the smaller lexicon
+					weight = smaller.getCorrectedWeight(s, i);
+					for(Integer j : largerIndexes)
+					{
+						//Get the weight of the name for the term in the larger lexicon
+						similarity = larger.getCorrectedWeight(s, j);
+						//Then compute the similarity, by multiplying the two weights
+						similarity *= weight;
+						//If the similarity is above threshold
+						if(similarity >= thresh)
 						{
-							sourceId = j;
-							targetId = i;
+							int sourceId, targetId;
+							if(sourceIsSmaller)
+							{
+								sourceId = i;
+								targetId = j;
+							}
+							else
+							{
+								sourceId = j;
+								targetId = i;
+							}
+							maps.add(sourceId, targetId, similarity);
 						}
-						maps.add(sourceId, targetId, similarity);
 					}
 				}
 			}

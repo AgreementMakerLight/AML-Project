@@ -15,7 +15,7 @@
 * An Ontology object, loaded using the OWL API.                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 06-06-2014                                                            *
+* @date 23-06-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
@@ -36,11 +36,13 @@ import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
 import org.semanticweb.owlapi.model.OWLDataRange;
 import org.semanticweb.owlapi.model.OWLDatatype;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
+import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
@@ -67,6 +69,8 @@ public class Ontology
 	//The OWL Ontology Manager and Data Factory
 	private OWLOntologyManager manager;
 	private OWLDataFactory factory;
+	//The entity expansion limit property
+    private final String LIMIT = "entityExpansionLimit"; 
 	//The URI of the ontology
 	private String uri;
 	//The map of class indexes <-> local names in the ontology
@@ -100,6 +104,8 @@ public class Ontology
 	 */
 	public Ontology(String path, boolean isInput)
 	{
+        //Increase the entity expansion limit to allow large ontologies
+        System.setProperty(LIMIT, "1000000");
 		//Get the AML instance
 		AML aml = AML.getInstance();
         //Get an Ontology Manager and Data Factory
@@ -120,6 +126,8 @@ public class Ontology
 		init(o,isInput);
 		//Close the OntModel
         manager.removeOntology(o);
+        //Reset the entity expansion limit
+        System.clearProperty(LIMIT);
 	}
 	
 	/**
@@ -314,7 +322,6 @@ public class Ontology
 		getClasses(o);
 		//Get the properties
 		getProperties(o,isInput);
-		//Build the Lexicon
 		//Extend the Lexicon
 		lex.generateStopWordSynonyms();
 		lex.generateBracketSynonyms();
@@ -368,7 +375,10 @@ public class Ontology
 	            		OWLLiteral val = (OWLLiteral) annotation.getValue();
 	            		name = val.getLiteral();
 	            		String lang = val.getLang();
-	            		lex.add(id, name, lang, type, "", weight);
+	            		if(lang.equals(""))
+	            			lex.add(id, name, type, "", weight);
+	            		else
+		            		lex.add(id, name, lang, type, "", weight);
 		            }
 	            	else if(annotation.getValue() instanceof IRI)
 	            	{
@@ -380,7 +390,10 @@ public class Ontology
 	                       		OWLLiteral val = (OWLLiteral) a.getValue();
 	                       		name = val.getLiteral();
 	                       		String lang = val.getLang();
-	                       		lex.add(id, name, lang, type, "", weight);
+	    	            		if(lang.equals(""))
+	    	            			lex.add(id, name, type, "", weight);
+	    	            		else
+	    		            		lex.add(id, name, lang, type, "", weight);
 	                       	}
 	            		}
 	            	}
@@ -786,7 +799,7 @@ public class Ontology
 			}
 		}
 		
-		//To finish, clean auxiliary data structures
+		//Clean auxiliary data structures
 		maxCard = null;
 		minCard = null;
 		card = null;
@@ -795,6 +808,48 @@ public class Ontology
 		dataSomeValues = null;
 		objectAllValues = null;
 		objectSomeValues = null;
+		
+		//Finally process relationships between properties
+		//Data Properties
+		Set<OWLDataProperty> dProps = o.getDataPropertiesInSignature(true);
+    	for(OWLDataProperty dp : dProps)
+    	{
+    		int propId = uris.getIndex(dp.getIRI().toString());
+    		if(propId == -1)
+    			continue;
+    		Set<OWLDataPropertyExpression> sProps = dp.getSuperProperties(o);
+			for(OWLDataPropertyExpression de : sProps)
+			{
+				OWLDataProperty sProp = de.asOWLDataProperty();
+				int sId = uris.getIndex(sProp.getIRI().toString());
+				if(sId != -1)
+					rm.addPropertyRel(propId,sId);	
+			}
+    	}
+		//Object Properties
+		Set<OWLObjectProperty> oProps = o.getObjectPropertiesInSignature(true);
+    	for(OWLObjectProperty op : oProps)
+    	{
+    		int propId = uris.getIndex(op.getIRI().toString());
+    		if(propId == -1)
+    			continue;
+    		Set<OWLObjectPropertyExpression> sProps = op.getSuperProperties(o);
+			for(OWLObjectPropertyExpression oe : sProps)
+			{
+				OWLObjectProperty sProp = oe.asOWLObjectProperty();
+				int sId = uris.getIndex(sProp.getIRI().toString());
+				if(sId != -1)
+					rm.addPropertyRel(propId,sId);	
+			}
+    		Set<OWLObjectPropertyExpression> iProps = op.getInverses(o);
+			for(OWLObjectPropertyExpression oe : iProps)
+			{
+				OWLObjectProperty iProp = oe.asOWLObjectProperty();
+				int iId = uris.getIndex(iProp.getIRI().toString());
+				if(iId != -1)
+					rm.addInverseProp(propId,iId);	
+			}
+    	}
 	}
 	
 	//Get the local name of an entity from its URI

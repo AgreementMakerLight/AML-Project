@@ -17,7 +17,7 @@
 * to extend ontology Lexicons.                                                *
 *                                                                             *
 * @authors Catia Pesquita, Daniel Faria                                       *
-* @date 06-06-2014                                                            *
+* @date 23-06-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
@@ -81,7 +81,7 @@ public class Thesaurus implements Iterable<String>
 	public void buildFrom(Ontology o)
 	{
 		Lexicon lex = o.getLexicon();
-		Set<Integer> terms = lex.getTerms();
+		Set<Integer> terms = lex.getClasses();
 		//For each term in the Lexicon
 		for(Integer i : terms)
 		{
@@ -113,7 +113,7 @@ public class Thesaurus implements Iterable<String>
 				//Otherwise, get the Thesaurus synonyms for that entry
 				Vector<String> thesEntries = get(s);
 				//For each Thesaurus synonym, create a new synonym in the Lexicon
-				Set<Integer> terms = lex.getInternalTerms(n);
+				Set<Integer> terms = lex.getInternalClasses(n);
 				for(String t: thesEntries)
 				{
 					String newName = n.replace(s,t);

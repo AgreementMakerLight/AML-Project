@@ -18,7 +18,8 @@
 * 'is a' or false for 'part of').                                             *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 02-06-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
 
@@ -100,7 +101,8 @@ public class Relationship implements Comparable<Relationship>
 			Relationship r = (Relationship)o;
 			return property == r.property && restriction == r.restriction;
 		}
-		return false;
+		else
+			return false;
 	}
 	
 	/**

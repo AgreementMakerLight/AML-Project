@@ -16,7 +16,8 @@
 * Lexicons after extension with the WordNet.                                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 30-05-2014                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -146,7 +147,7 @@ public class WordNetMatcher implements Matcher
 			double conf = CONFIDENCE - 0.01*size;
 			if(conf < thresh)
 				continue;
-			Set<Integer> terms = l.getInternalTerms(s);
+			Set<Integer> terms = l.getInternalClasses(s);
 			//Add each term with the name to the extension Lexicon
 			for(Integer i : terms)
 			{
@@ -178,7 +179,7 @@ public class WordNetMatcher implements Matcher
 			double conf = CONFIDENCE - 0.01*size;
 			if(conf < thresh)
 				continue;
-			Set<Integer> terms = l.getInternalTerms(s);
+			Set<Integer> terms = l.getInternalClasses(s);
 			//Add each term with the name to the extension Lexicon
 			for(Integer i : terms)
 			{
@@ -216,8 +217,8 @@ public class WordNetMatcher implements Matcher
 		for(String s : names)
 		{
 			//Get all term indexes for the name in both ontologies
-			Set<Integer> largerIndexes = larger.getTerms(s);
-			Set<Integer> smallerIndexes = smaller.getTerms(s);
+			Set<Integer> largerIndexes = larger.getClasses(s);
+			Set<Integer> smallerIndexes = smaller.getClasses(s);
 			if(largerIndexes == null)
 				continue;
 			//Otherwise, match all indexes
@@ -225,15 +226,15 @@ public class WordNetMatcher implements Matcher
 			{
 				//Get the weight of the name for the term in the smaller lexicon
 				weight = smaller.getCorrectedWeight(s, i);
-				String smallerSource = smaller.getSource(s, i);
+				Set<String> smallerSources = smaller.getSources(s, i);
 				for(Integer j : largerIndexes)
 				{
-					String largerSource = larger.getSource(s, j);
+					Set<String> largerSources = larger.getSources(s, j);
 					//We only consider matches involving at least one WordNet synonym
 					//and not envolving any external synonyms
-					boolean check = (smallerSource.equals(SOURCE) || largerSource.equals(SOURCE)) ||
-							(smallerSource.equals(SOURCE) && largerSource.equals("")) ||
-							(smallerSource.equals("") && largerSource.equals(SOURCE));
+					boolean check = (smallerSources.contains(SOURCE) && largerSources.contains(SOURCE)) ||
+							(smallerSources.contains(SOURCE) && largerSources.contains("")) ||
+							(smallerSources.contains("") && largerSources.contains(SOURCE));
 					if(!check)
 						continue;
 					//Get the weight of the name for the term in the larger lexicon

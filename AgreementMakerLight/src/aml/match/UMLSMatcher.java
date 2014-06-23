@@ -17,7 +17,8 @@
 * source or using the whole table if no suitable source is identified.        *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 30-05-2013                                                            *
+* @date 23-06-2014                                                            *
+* @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -26,7 +27,6 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 import aml.AML;
 import aml.ontology.Lexicon;
@@ -248,7 +248,7 @@ public class UMLSMatcher implements Matcher
 				Set<Integer> hits = getHits(s);
 				if(hits.size() == 0)
 					continue;
-				Set<Integer> terms = l.getTerms(s);
+				Set<Integer> terms = l.getClasses(s);
 				for(Integer i : terms)
 				{
 					for(Integer j : hits)
@@ -265,11 +265,12 @@ public class UMLSMatcher implements Matcher
 			for(Integer i : o.getClasses())
 			{
 				HashMap<Integer,Double> hitMap = new HashMap<Integer,Double>();
-				Vector<String> termNames = l.getNames(i, "localName");
+				Set<String> termNames = l.getNames(i, "localName");
 				if(termNames.size() == 1)
 				{
-					Set<Integer> hits = getHits(termNames.get(0),bestSource);
-					double weight = l.getCorrectedWeight(termNames.get(0), i);
+					String name = termNames.iterator().next();
+					Set<Integer> hits = getHits(name,bestSource);
+					double weight = l.getCorrectedWeight(name, i);
 					for(Integer j : hits)
 						hitMap.put(j,weight);
 				}
