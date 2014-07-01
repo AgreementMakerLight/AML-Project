@@ -28,7 +28,6 @@ import java.util.Vector;
 
 import aml.util.StopList;
 import aml.util.StringParser;
-import aml.util.Table2;
 import aml.util.Table3;
 
 
@@ -43,8 +42,6 @@ public class Lexicon
 	private Table3<Integer,String,Provenance> classes;
 	//The language counts
 	private HashMap<String,Integer> langCount;
-	//The language names
-	private Table2<String,String> langNames;
 	
 //Constructors
 
@@ -57,7 +54,6 @@ public class Lexicon
 		names = new Table3<String,Integer,Provenance>();
 		classes = new Table3<Integer,String,Provenance>();
 		langCount = new HashMap<String,Integer>();
-		langNames = new Table2<String,String>();
 	}
 	
 	/**
@@ -69,7 +65,6 @@ public class Lexicon
 		names = new Table3<String,Integer,Provenance>(l.names);
 		classes = new Table3<Integer,String,Provenance>(l.classes);
 		langCount = new HashMap<String,Integer>(l.langCount);
-		langNames = new Table2<String,String>(l.langNames);
 	}
 
 //Public Methods
@@ -112,7 +107,6 @@ public class Lexicon
 			langCount.put(lang, 1);
 		else
 			langCount.put(lang, i+1);
-		langNames.add(lang, s);
 	}
 	
 	/**
@@ -154,7 +148,6 @@ public class Lexicon
 			langCount.put(lang, 1);
 		else
 			langCount.put(lang, i+1);
-		langNames.add(lang, s);
 	}
 		
 	/**
@@ -597,18 +590,6 @@ public class Lexicon
 		return classes.keySet(classId);
 	}
 	
-	/**
-	 * @param lang: the language to search in the Lexicon
-	 * @return the list of names with the given language
-	 */
-	public Set<String> getNames(String lang)
-	{
-		HashSet<String> namesLang = new HashSet<String>();
-		if(langNames.contains(lang))
-			namesLang.addAll(langNames.get(lang));
-		return namesLang;
-	}
-
 	/**
 	 * @param classId: the class to search in the Lexicon
 	 * @param type: the type to restrict the search

@@ -90,33 +90,30 @@ public class LexicalMatcher implements Matcher
 		//If we have a multi-language Lexicon, we must match language by language
 		if(AML.getInstance().getLanguageSetting().equals(LanguageSetting.MULTI))
 		{
-			//Get the languages of both Lexicons
-			Set<String> sLangs = smaller.getLanguages();
-			Set<String> lLangs = larger.getLanguages();
-			//And match them language by language
-			for(String l : sLangs)
+			//Get the smaller Ontology names
+			Set<String> names = smaller.getNames();
+			for(String s : names)
 			{
-				if(!lLangs.contains(l))
-					continue;
-				//Get the smaller Ontology names for the language
-				Set<String> names = smaller.getNames(l);
-				for(String s : names)
+				Set<String> languages = smaller.getLanguages(s);
+				languages.addAll(larger.getLanguages(s));
+				
+				for(String l : languages)
 				{
 					//Get all term indexes for the name in both ontologies
 					Set<Integer> smallerIndexes = smaller.getClassesWithLanguage(s,l);
 					Set<Integer> largerIndexes = larger.getClassesWithLanguage(s,l);
-					//If the name doesn't exist in the larger ontology, skip it
-					if(largerIndexes == null)
+					//If the name doesn't exist in either ontology, skip it
+					if(smallerIndexes == null || largerIndexes == null)
 						continue;
 					//Otherwise, match all indexes
 					for(Integer i : smallerIndexes)
 					{
 						//Get the weight of the name for the term in the smaller lexicon
-						weight = smaller.getCorrectedWeight(s, i, l);//TODO: Check how best to correct weights
+						weight = smaller.getCorrectedWeight(s, i);
 						for(Integer j : largerIndexes)
 						{
 							//Get the weight of the name for the term in the larger lexicon
-							similarity = larger.getCorrectedWeight(s, j, l);//TODO: Check how best to correct weights
+							similarity = larger.getCorrectedWeight(s, j);
 							//Then compute the similarity, by multiplying the two weights
 							similarity *= weight;
 							//If the similarity is above threshold

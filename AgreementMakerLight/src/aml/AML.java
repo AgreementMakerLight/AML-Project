@@ -96,7 +96,7 @@ public class AML
 	private boolean showDescendants = true;
 	
 	//Matching properties
-	private LanguageSetting lang = LanguageSetting.MULTI;
+	private LanguageSetting lang = LanguageSetting.SINGLE;
 	private MatchingAlgorithm matcher = MatchingAlgorithm.AML;
     private SelectionType sType = SelectionType.AUTO;
     private boolean useBK = false;

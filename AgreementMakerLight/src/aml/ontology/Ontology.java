@@ -139,6 +139,8 @@ public class Ontology
 	 */
 	public Ontology(URI uri, boolean isInput)
 	{
+        //Increase the entity expansion limit to allow large ontologies
+        System.setProperty(LIMIT, "1000000");
 		//Get the AML instance
 		AML aml = AML.getInstance();
         //Get an Ontology Manager and Data Factory
@@ -167,6 +169,8 @@ public class Ontology
 		init(o,isInput);
 		//Close the OntModel
         manager.removeOntology(o);
+        //Reset the entity expansion limit
+        System.clearProperty(LIMIT);
 	}
 
 
@@ -279,7 +283,7 @@ public class Ontology
 	 */
 	public boolean isClass(int index)
 	{
-		return nameIndex.containsKey(index);
+		return indexName.containsKey(index);
 	}
 	
 	/**
@@ -317,7 +321,6 @@ public class Ontology
 		
 		//Get the URI of the ontology
 		uri = o.getOntologyID().getOntologyIRI().toString();
-		
 		//Get the classes and their names and synonyms
 		getClasses(o);
 		//Get the properties
@@ -337,15 +340,14 @@ public class Ontology
 		String type;
 		double weight;
 		//The label property
-		OWLAnnotationProperty label = factory
-                .getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
+		OWLAnnotationProperty label = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
 		//Get an iterator over the ontology classes
 		Set<OWLClass> classes = o.getClassesInSignature(true);
 		//Then get the URI for each class
 		for(OWLClass c : classes)
 		{
 			String classUri = c.getIRI().toString();
-			if(classUri == null)
+			if(classUri == null || classUri.endsWith("owl#Thing") || classUri.endsWith("owl:Thing"))
 				continue;
 			//Add it to the global list of URIs
 			int id = uris.addURI(classUri);

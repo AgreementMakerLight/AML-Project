@@ -27,6 +27,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -45,7 +47,6 @@ import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.util.Table2Plus;
-
 
 public class Alignment implements Iterable<Mapping>
 {
@@ -715,24 +716,6 @@ public class Alignment implements Iterable<Mapping>
 		return intersection;
 	}
 	
-	/**
-	 * @return whether this Alignment is sorted
-	 */
-	public boolean isSorted()
-	{
-		if(maps.size() == 0)
-			return true;
-		double sim = maps.get(0).getSimilarity();
-		for(Mapping m : maps)
-		{
-			if(m.getSimilarity() > sim)
-				return false;
-			else
-				sim = m.getSimilarity();
-		}
-		return true;
-	}
-	
 	@Override
 	/**
 	 * @return an Iterator over the list of class Mappings
@@ -861,8 +844,18 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public void sort()
 	{
-		if(!isSorted())
-			quickSort(0,maps.size()-1);
+		Collections.sort(maps,new Comparator<Mapping>()
+        {
+            public int compare(Mapping m1, Mapping m2)
+            {
+        		double diff = m2.getSimilarity() - m1.getSimilarity();
+        		if(diff < 0)
+        			return -1;
+        		if(diff > 0)
+        			return 1;
+        		return 0;
+            }
+        } );
 	}
 	
 	/**
@@ -1039,55 +1032,5 @@ public class Alignment implements Iterable<Mapping>
             }
 		}
 		inStream.close();
-	}
-	
-	//Recursive QuickSort implementation that does the actual sorting
-	private void quickSort(int begin, int end)
-	{
-		//If there's something to sort...
-		if (end>begin)
-    	{
-			//Initialize the auxiliary indexes
-	    	int left = begin;
-	    	int right = end;
-
-	        //Choose a pivot in the middle of the list
-	    	double pivot = get((begin+end)/2).getSimilarity();
-	    	
-			//Then place elements > pivot to the left, < pivot to the right
-	    	while(left<=right)
-	    	{
-	    		//Find the first left element that is smaller than the pivot
-	        	while(left<end && get(left).getSimilarity()>pivot)
-	        		left++;
-	        	//Find the first right element that is larger than the pivot 
-	        	while(right>begin && get(right).getSimilarity()<pivot)
-	        		right--;
-	        	//If two out-of-sort elements were found, swap them
-	        	if(left<=right) {
-	        		swap(left,right);
-	        		//Then update the indexes
-	        		left++;
-	        		right--;
-	        	}
-	      	}
-		    //Now sort each half of the list
-	      	if(begin<right)
-	      		quickSort(begin,right);
-	      	if(left<end)
-	      		quickSort(left,end);
-	    }
-	}
-
-	//Auxiliary method for sorting that swaps two Mappings in the alignment
-	private void swap (int i, int j)
-	{
-		if(i != j)
-		{
-			Mapping mi = new Mapping(get(i));
-			Mapping mj = new Mapping(get(j));
-			maps.set(i,mj);
-			maps.set(j,mi);
-		}
 	}
 }

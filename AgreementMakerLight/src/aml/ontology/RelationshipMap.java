@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
+import aml.AML;
 import aml.util.Table2;
 import aml.util.Table3;
 
@@ -570,35 +571,50 @@ public class RelationshipMap
 	}
 	
 	/**
-	 * @return the set of high level classs in the ontology
+	 * @return the set of high level classes in the ontology
 	 */
 	public Set<Integer> getHighLevelClasses()
 	{
 		if(highLevelClasses != null)
 			return highLevelClasses;
+		
 		highLevelClasses = new HashSet<Integer>();
-
+		
+		AML aml = AML.getInstance();
+		
 		//First get the very top classes
-		HashSet<Integer> top = new HashSet<Integer>();
+		HashSet<Integer> sourceTop = new HashSet<Integer>();
+		HashSet<Integer> targetTop = new HashSet<Integer>();
 		Set<Integer> ancestors = descendantMap.keySet();
 		//Which are classes that have children but not parents
 		for(Integer a : ancestors)
-			if(getParents(a).size() == 0 && getChildren(a).size() > 0)
-				top.add(a);
-		//Now we go down the ontology until we reach a significant branching
-		//for each top class
-		for(Integer a : top)
 		{
-			Set<Integer> childs = getChildren(a);
-			while(childs.size() < 3)
+			if(getParents(a).size() == 0 && getChildren(a).size() > 0)
 			{
-				Set<Integer> newChilds = new HashSet<Integer>();
-				for(Integer c : childs)
-					newChilds.addAll(getChildren(c));
-				childs = newChilds;
+				if(aml.getSource().isClass(a))
+					sourceTop.add(a);
+				if(aml.getTarget().isClass(a))
+					targetTop.add(a);
 			}
-			highLevelClasses.addAll(childs);
 		}
+		//Now we go down the ontologies until we reach a significant
+		while(sourceTop.size() < 3)
+		{
+			HashSet<Integer> newTop = new HashSet<Integer>();
+			for(Integer a : sourceTop)
+				newTop.addAll(getChildren(a));
+			sourceTop = newTop;
+		}
+		while(targetTop.size() < 3)
+		{
+			HashSet<Integer> newTop = new HashSet<Integer>();
+			for(Integer a : targetTop)
+				newTop.addAll(getChildren(a));
+			targetTop = newTop;
+		}
+		highLevelClasses.addAll(sourceTop);
+		highLevelClasses.addAll(targetTop);
+		
 		return highLevelClasses;
 	}
 	

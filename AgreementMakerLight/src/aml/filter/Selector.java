@@ -63,7 +63,6 @@ public class Selector
 	/**
 	 * Selects matches greedily in descending order of similarity to obtain
 	 * a one-to-one maximal alignment or a near one-to-one alignment
-	 * @param a: the Alignment to select
 	 * @param thresh: the minimum similarity threshold
 	 * @param s: the type of selection to carry out
 	 * @return the selected Alignment
@@ -92,7 +91,6 @@ public class Selector
 	/**
 	 * Selects matches greedily in descending order of similarity, excluding
 	 * those that exceed the desired cardinality
-	 * @param a: the Alignment to select
 	 * @param thresh: the minimum similarity threshold
 	 * @param cardinality: the maximum cardinality of the selected Alignment
 	 * @return the selected Alignment
@@ -116,22 +114,6 @@ public class Selector
 			if(sourceCard < cardinality && targetCard < cardinality)
 				selected.add(new Mapping(m));
 		}
-		return selected;
-	}
-	
-	/**
-	 * Selects matches that are subsumed by the high level Alignment
-	 * inferred from this Alignment
-	 * @param a: the Alignment to select
-	 * @return the selected Alignment
-	 */
-	public static Alignment selectHighLevel(Alignment a)
-	{
-		Alignment highLevel = a.getHighLevelAlignment(0.05);
-		Alignment selected = new Alignment();
-		for(Mapping m : a)
-			if(highLevel.containsAncestralMapping(m.getSourceId(), m.getTargetId()))
-				selected.add(new Mapping(m));
 		return selected;
 	}
 	
