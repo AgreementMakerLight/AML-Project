@@ -12,32 +12,21 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A matching algorithm that maps the source and target Ontologies, returning  *
-* an Alignment between them, or extends a previous Alignment, returning only  *
-* new Mappings.                                                               *
+* A matching algorithm that computes similarities between mapped entities in  *
+* a given Alignment and returns a new Alignment with those similarities.      *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 07-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
-public interface Matcher
+public interface Rematcher
 {
 	/**
-	 * Extends the given Alignment between the source and target Ontologies
+	 * Recomputes similarities for mappings of a given Alignment
 	 * @param a: the existing alignment
-	 * @param thresh: the similarity threshold for the extention
-	 * @return the alignment with the new mappings between the Ontologies
+	 * @return the Alignment with the new similarities
 	 */
-	public Alignment extendAlignment(Alignment a, double thresh);
-	
-	/**
-	 * Matches the source and target Ontologies, returning an Alignment between them
-	 * @param source: the source Ontology
-	 * @param target: the target Ontology
-	 * @param thresh: the similarity threshold for the alignment
-	 * @return the alignment between the source and target ontologies
-	 */
-	public Alignment match(double thresh);
+	public Alignment rematch(Alignment a);
 }

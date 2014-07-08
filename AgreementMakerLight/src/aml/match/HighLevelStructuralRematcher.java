@@ -12,28 +12,54 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A selection algorithm that reduces an Alignment to the desired cardinality. *
+* Rematches Ontologies by computing the high-level structural similarity      *
+* between their classes.                                                      *
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 07-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
-package aml.filter;
+package aml.match;
 
-import aml.match.Alignment;
-import aml.AML.SelectionType;
+import java.util.Set;
 
-public interface Selector
+import aml.AML;
+import aml.ontology.Ontology;
+import aml.ontology.RelationshipMap;
+
+public class HighLevelStructuralRematcher implements Rematcher
 {
-	/**
-	 * @return the selection type of this Selector
-	 */
-	public SelectionType getSelectionType();
-	
-	/**
-	 * Selects mappings from a given Alignment to obtain a desired cardinality
-	 * @param thresh: the minimum similarity threshold
-	 * @return the selected Alignment
-	 */
-	public Alignment select(double thresh);
+
+	@Override
+	public Alignment rematch(Alignment a)
+	{
+		AML aml = AML.getInstance();
+		Alignment maps = new Alignment();
+		Alignment high = a.getHighLevelAlignment();
+		RelationshipMap rMap = aml.getRelationshipMap();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
+		for(Mapping m : a)
+		{
+			int sId = m.getSourceId();
+			int tId = m.getTargetId();
+			if(!source.isClass(sId) || ! target.isClass(tId))
+				continue;
+			Set<Integer> sourceAncestors = rMap.getHighLevelAncestors(sId);
+			Set<Integer> targetAncestors = rMap.getHighLevelAncestors(tId);
+			double maxSim = 0;
+			for(Integer i : sourceAncestors)
+			{
+				for(Integer j : targetAncestors)
+				{
+					double sim = high.getSimilarity(i, j);
+					if(sim > maxSim)
+						maxSim = sim;
+				}
+			}
+			maps.add(sId,tId,maxSim);
+		}
+		return maps;
+	}
+
 }

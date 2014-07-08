@@ -25,7 +25,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.AML.SelectionType;
 import aml.filter.Repairer;
-import aml.filter.Selector;
+import aml.filter.RankedSelector;
 
 public class AMLMatcher implements Matcher
 {
@@ -77,7 +77,7 @@ public class AMLMatcher implements Matcher
 		//If the selection is on auto, set it now
 		if(sType.equals(SelectionType.AUTO))
 		{
-			Selector s = new Selector(a);
+			RankedSelector s = new RankedSelector(a);
 			sType = s.getSelectionType();
 		}
 		//If background knowledge is on auto, call the AutoBKMatcher
@@ -93,7 +93,7 @@ public class AMLMatcher implements Matcher
 		}
 		ParametricStringMatcher sm = new ParametricStringMatcher();
 		a.addAll(sm.extendAlignment(a, thresh));
-		Selector s = new Selector(a, sType);
+		RankedSelector s = new RankedSelector(a, sType);
 		a = s.select(thresh);
 		if(matchProps)
 		{

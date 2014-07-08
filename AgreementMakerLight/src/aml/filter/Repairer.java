@@ -43,7 +43,7 @@ public class Repairer
 	private RepairMap repairMap;
 	private boolean computeDisjointSets = false;
 	private int searchDeepLenght = 0;
-	private int maxBlockSize = 1000000000; //number of checklist terms repaired each time.
+	private int maxBlockSize = 100000; //number of checklist terms repaired each time.
 	private Double marginOfError = -1.0;
 	private int initialThrhold = 0;
 
@@ -159,7 +159,7 @@ public class Repairer
 		//returns the repair alignment
 		Alignment repaired = repairMap.getAlignment();
 		System.out.println("Repair finished.");
-
+/*
 		System.out.println("Checking coherence");
 		if(repairMap.isCoherent())
 		{
@@ -173,7 +173,7 @@ public class Repairer
 				System.out.println(AML.getInstance().getURIMap().getURI(aa));
 			}
 		}
-		
+*/		
 		return repaired;
 	}
 	
@@ -202,7 +202,7 @@ public class Repairer
 			{	
 				int iSize = cs.size();
 				Vector<Vector<Mapping>> result = intersectionStrategy(cs, searchDeepLenght, thrhold);
-				//if it didn't remove any mapping then thrhold must be changed
+				//if it didn't remove any mapping then threshold must be changed
 				if(iSize == result.size())
 				{
 					thrhold = 0;

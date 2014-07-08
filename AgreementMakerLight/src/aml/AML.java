@@ -37,7 +37,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 
 import aml.filter.Repairer;
-import aml.filter.Selector;
+import aml.filter.RankedSelector;
 import aml.match.AMLMatcher;
 import aml.match.Alignment;
 import aml.match.LexicalMatcher;
@@ -209,6 +209,7 @@ public class AML
     	AUTO ("Auto Detect"),
     	STRICT ("Strict 1-to-1"),
     	PERMISSIVE ("Permissive 1-to-1"),
+    	HYBRID ("Hybrid 1-to-1"),
     	MANY ("N-to-N");
     	
     	final String value;
@@ -482,7 +483,7 @@ public class AML
     	{
     		LexicalMatcher m = new LexicalMatcher();
     		a = m.match(threshold);
-    		Selector s = new Selector(a, sType);
+    		RankedSelector s = new RankedSelector(a, sType);
     		a = s.select(threshold);
     	}
     	if(a.size() >= 1)
@@ -659,6 +660,11 @@ public class AML
     	a.saveTSV(file);
     }
     
+	public void setAlignment(Alignment maps)
+	{
+		a = maps;
+	}
+    
 	public void setLanguageSetting(LanguageSetting l)
 	{
 		lang = l;
@@ -689,6 +695,23 @@ public class AML
 	    selectedSources = bk;
 	    sType = s;
 	    threshold = thresh;
+	}
+	
+	public SelectionType setSelectionType()
+	{
+		double cardinality = a.cardinality();
+		if(cardinality > 1.4)
+			sType = SelectionType.MANY;
+		else if(cardinality > 1.02)
+			sType = SelectionType.PERMISSIVE;
+		else
+			sType = SelectionType.STRICT;
+		return sType;
+	}
+	
+	public void setSelectionType(SelectionType s)
+	{
+		sType = s;
 	}
 	
 	public void setViewOptions(boolean a, boolean d, int m)

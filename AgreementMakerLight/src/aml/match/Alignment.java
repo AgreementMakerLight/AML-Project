@@ -207,6 +207,21 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public void addAllNonConflicting(Alignment a)
 	{
+		Vector<Mapping> nonConflicting = new Vector<Mapping>();
+		for(Mapping m : a.maps)
+			if(!this.containsConflict(m))
+				nonConflicting.add(m);
+		addAll(nonConflicting);
+	}
+	
+	/**
+	 * Adds all Mappings in a to this Alignment as long as
+	 * they don't conflict with any Mapping in a
+	 * @param a: the Alignment to add to this Alignment
+	 */
+	public void addAllOneToOne(Alignment a)
+	{
+		a.sort();
 		for(Mapping m : a.maps)
 			if(!this.containsConflict(m))
 				add(m);
@@ -547,7 +562,7 @@ public class Alignment implements Iterable<Mapping>
 	/**
 	 * @return the high level Alignment induced from this alignment 
 	 */
-	public Alignment getHighLevelAlignment(double threshold)
+	public Alignment getHighLevelAlignment()
 	{
 		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
@@ -569,7 +584,7 @@ public class Alignment implements Iterable<Mapping>
 		}
 		Alignment b = new Alignment();
 		for(Mapping m : a)
-			if(m.getSimilarity() >= threshold)
+			if(m.getSimilarity() >= 0.01)
 				b.add(m);
 		return b;
 	}
@@ -723,6 +738,31 @@ public class Alignment implements Iterable<Mapping>
 	public Iterator<Mapping> iterator()
 	{
 		return maps.iterator();
+	}
+	
+	/**
+	 * @return the maximum cardinality of this alignment
+	 */
+	public double maxCardinality()
+	{
+		double cardinality;
+		double max = 0.0;
+		
+		Set<Integer> sources = sourceMaps.keySet();
+		for(Integer i : sources)
+		{
+			cardinality = sourceMaps.keySet(i).size();
+			if(cardinality > max)
+				max = cardinality;
+		}
+		Set<Integer> targets = targetMaps.keySet();
+		for(Integer i : targets)
+		{
+			cardinality = targetMaps.keySet(i).size();
+			if(cardinality > max)
+				max = cardinality;
+		}
+		return max;		
 	}
 	
 	/**

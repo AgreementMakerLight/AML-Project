@@ -23,8 +23,9 @@ package aml.match;
 
 import aml.AML;
 import aml.AML.SelectionType;
+import aml.filter.CardinalitySelector;
 import aml.filter.Repairer;
-import aml.filter.Selector;
+import aml.filter.RankedSelector;
 import aml.ontology.Ontology;
 import aml.ontology.URIMap;
 import aml.oracle.Oracle;
@@ -158,7 +159,7 @@ public class OAEI2013Matcher
 			threshold = 0.6;
 		}
 		//Step 3 - Detect the selection type
-		Selector s = new Selector(base);
+		RankedSelector s = new RankedSelector(base);
 		sType = s.getSelectionType();
 		//Step 4 - Check the property/class ratio
 		double sProps = source.propertyCount() * 1.0 / sSize;
@@ -252,7 +253,7 @@ public class OAEI2013Matcher
 				//but in extension mode and with strict selection, to avoid errors
 				if(wordNetGain >= GAIN_MIN)
 				{
-					Selector s = new Selector(wordNet,SelectionType.STRICT);
+					RankedSelector s = new RankedSelector(wordNet,SelectionType.STRICT);
 					a.addAllNonConflicting(s.select(threshold));
 				}
 			}
@@ -296,7 +297,7 @@ public class OAEI2013Matcher
 			if(size < 3)
 				a.addAllNonConflicting(wm.extendAlignment(a, BASE_THRESH));
 			a.addAllNonConflicting(sm.extendAlignment(a,threshold));
-			Selector s = new Selector(a, SelectionType.PERMISSIVE);
+			RankedSelector s = new RankedSelector(a, SelectionType.PERMISSIVE);
 			a = s.select(threshold);
 		}
 		else if(sType.equals(SelectionType.PERMISSIVE))
@@ -304,11 +305,11 @@ public class OAEI2013Matcher
 			if(size == 2)
 			{
 				Alignment b = wm.extendAlignment(a, BASE_THRESH);
-				Selector s = new Selector(b, sType);
+				RankedSelector s = new RankedSelector(b, sType);
 				b = s.select(threshold);
 				a.addAllNonConflicting(b);
 				b = sm.extendAlignment(a, BASE_THRESH);
-				s = new Selector(b, sType);
+				s = new RankedSelector(b, sType);
 				b = s.select(threshold);
 				a.addAllNonConflicting(b);
 			}
@@ -316,10 +317,10 @@ public class OAEI2013Matcher
 			{
 				if(size == 1)
 					a.addAll(wm.extendAlignment(a, BASE_THRESH));
-				Selector s = new Selector(a, sType);
+				RankedSelector s = new RankedSelector(a, sType);
 				a = s.select(threshold);
 				a.addAll(sm.extendAlignment(a,threshold));
-				s = new Selector(a, sType);
+				s = new RankedSelector(a, sType);
 				a = s.select(threshold);
 			}
 		}
@@ -327,8 +328,8 @@ public class OAEI2013Matcher
 		{
 			if(size < 3)
 				a.addAll(wm.extendAlignment(a, BASE_THRESH));
-			Selector s = new Selector(a, sType);
-			a = s.select(threshold, 6);
+			CardinalitySelector s = new CardinalitySelector(a, 6);
+			a = s.select(threshold);
 			a.addAll(sm.extendAlignment(a, threshold));
 		}
 		return System.currentTimeMillis()/1000 - startTime;
@@ -352,8 +353,8 @@ public class OAEI2013Matcher
 	
 	private Alignment selectInteractive(Alignment maps)
 	{
-		Selector s = new Selector(maps,SelectionType.MANY);
-		maps = s.select(0.5,2);
+		CardinalitySelector s = new CardinalitySelector(maps,2);
+		maps = s.select(0.5);
 		Alignment b = new Alignment();
 		maps.sort();
 		int trueCount = 0;
