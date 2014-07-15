@@ -247,6 +247,9 @@ public class AML
 		//List the background knowledge sources
 		bkSources = listBKSources();
         selectedSources = new Vector<String>(0,1);
+        //Initialize the URIMap and RelationshipMap
+		uris = new URIMap();
+		rels = new RelationshipMap();
 	}
 
 //Public Methods
@@ -537,8 +540,6 @@ public class AML
 		if(useReasoner)
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
-		uris = new URIMap();
-		rels = new RelationshipMap();
 		source = new Ontology(src,true);
 		source.getLexicon().generateStopWordSynonyms();
 		source.getLexicon().generateBracketSynonyms();
@@ -580,8 +581,6 @@ public class AML
 		if(useReasoner)
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
-		uris = new URIMap();
-		rels = new RelationshipMap();
 		source = new Ontology(src,true);
 		source.getLexicon().generateStopWordSynonyms();
 		source.getLexicon().generateBracketSynonyms();

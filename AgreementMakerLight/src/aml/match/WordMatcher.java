@@ -19,7 +19,7 @@
 * is available.                                                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 14-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -34,11 +34,6 @@ import aml.util.Table2Plus;
 public class WordMatcher implements Matcher
 {
 
-//Attributes
-	
-	private WordLexicon sWLex;
-	private WordLexicon tWLex;
-	
 //Constructors
 	
 	/**
@@ -55,9 +50,9 @@ public class WordMatcher implements Matcher
 		Set<Integer> ignoreSources = a.getSources();
 		Set<Integer> ignoreTargets = a.getTargets();
 		AML aml = AML.getInstance();
-		sWLex = new WordLexicon(aml.getSource().getLexicon(),ignoreSources);
-		tWLex = new WordLexicon(aml.getTarget().getLexicon(),ignoreTargets);
-		ext.addAll(matchWordLexicons(thresh));
+		WordLexicon sWLex = new WordLexicon(aml.getSource().getLexicon(),ignoreSources);
+		WordLexicon tWLex = new WordLexicon(aml.getTarget().getLexicon(),ignoreTargets);
+		ext.addAll(matchWordLexicons(sWLex,tWLex,thresh));
 		return ext;
 	}
 	
@@ -66,15 +61,14 @@ public class WordMatcher implements Matcher
 	{
 		Alignment a = new Alignment();
 		AML aml = AML.getInstance();
-		sWLex = new WordLexicon(aml.getSource().getLexicon());
-		tWLex = new WordLexicon(aml.getTarget().getLexicon());
-		a.addAll(matchWordLexicons(thresh));
+		WordLexicon sWLex = new WordLexicon(aml.getSource().getLexicon());
+		WordLexicon tWLex = new WordLexicon(aml.getTarget().getLexicon());
+		a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
 		return a;
 	}
 	
-//Private Methods
-
-	private Vector<Mapping> matchWordLexicons(double thresh)
+	
+	public Alignment matchWordLexicons(WordLexicon sWLex, WordLexicon tWLex, double thresh)
 	{
 		Table2Plus<Integer,Integer,Double> maps = new Table2Plus<Integer,Integer,Double>();
 		WordLexicon larger, smaller;
@@ -129,7 +123,7 @@ public class WordMatcher implements Matcher
 			}
 		}
 		Set<Integer> sources = maps.keySet();
-		Vector<Mapping> a = new Vector<Mapping>(maps.size(),1);
+		Alignment a = new Alignment();
 		for(Integer i : sources)
 		{
 			Set<Integer> targets = maps.keySet(i);

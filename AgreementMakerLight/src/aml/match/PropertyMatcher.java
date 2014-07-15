@@ -18,12 +18,11 @@
 * similarity.                                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 14-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +31,8 @@ import java.util.Vector;
 import aml.AML;
 import aml.ontology.Property;
 import aml.ontology.URIMap;
+import aml.util.ISub;
+import aml.util.Similarity;
 
 public class PropertyMatcher
 {
@@ -41,7 +42,6 @@ public class PropertyMatcher
 	private Alignment maps;
 	private HashMap<Integer,Property> sourceProps;
 	private HashMap<Integer,Property> targetProps;
-	private HashMap<String,Double> wordEC;
 	private WordNetMatcher wn = null;
 
 //Constructors
@@ -66,7 +66,6 @@ public class PropertyMatcher
 	public Alignment matchProperties(Alignment a, double threshold)
 	{
 		maps = a;
-		buildWordMap();
 		Alignment propMaps = new Alignment();
 		Set<Integer> sourceKeys = sourceProps.keySet();
 		Set<Integer> targetKeys = targetProps.keySet();
@@ -84,45 +83,6 @@ public class PropertyMatcher
 
 //Private Methods
 	
-	//Builds the map of word evidence contents from the property names
-	private void buildWordMap()
-	{
-		wordEC = new HashMap<String,Double>();
-		int total = 0;
-		Set<Integer> sourceKeys = sourceProps.keySet();
-		for(Integer i : sourceKeys)
-			total += addNames(sourceProps.get(i));
-		Set<Integer> targetKeys = targetProps.keySet();
-		for(Integer i : targetKeys)
-			total += addNames(targetProps.get(i));
-		Set<String> words = wordEC.keySet();
-		double max = Math.log(total);
-		for(String w : words)
-		{
-			double ec = 1 - (Math.log(wordEC.get(w)) / max);
-			wordEC.put(w, ec);
-		}
-	}
-	
-	//Parses the name of a property into words and adds them to the wordEC map
-	private int addNames(Property p)
-	{
-		int total = 0;
-		String name = p.getName();
-		String[] words = name.split(" ");
-		for(String w : words)
-		{
-			Double ec = wordEC.get(w);
-			if(ec == null)
-				ec = 1.0;
-			else
-				ec++;
-			wordEC.put(w, ec);
-			total++;
-		}
-		return total;
-	}
-
 	//Matches two properties
 	private double matchProperties(Property s, Property t)
 	{
@@ -170,24 +130,6 @@ public class PropertyMatcher
 		return nameSimilarity(sName,tName);
 	}
 
-	//The Jaccard similarity between two Collections of Strings
-	private double jaccard(Collection<String> s, Collection<String> t)
-	{
-		if(s.size() == 0 && t.size() == 0)
-			return 0.0;
-		double intersection = 0.0;
-		double union = 0.0;
-		for(String st : s)
-		{
-			if(t.contains(st))
-				intersection++;
-			else
-				union++;
-		}
-		union += t.size();
-		return intersection/union;
-	}
-	
 	//Checks if two lists of uris match (i.e., have Jaccard similarity above 50%)
 	private boolean urisMatch(Vector<String> sURIs, Vector<String> tURIs)
 	{
@@ -223,7 +165,7 @@ public class PropertyMatcher
 		return (sIndex == tIndex || maps.containsMapping(sIndex, tIndex));
 	}
 
-	//Checks if two lists of values match (i.e., have similarity above 50%)
+	//Checks if two lists of values match (i.e., have Jaccard similarity above 50%)
 	private boolean valuesMatch(Vector<String> sRange, Vector<String> tRange)
 	{
 		if(sRange.size() == 0 && tRange.size() == 0)
@@ -232,24 +174,12 @@ public class PropertyMatcher
 			return false;
 		if(sRange.size() == 1 && tRange.size() == 1)
 			return sRange.get(0).equals(tRange.get(0));
-		double matches = 0.0;
-		for(String s : sRange)
-		{
-			for(String t : tRange)
-			{
-				if(s.equals(t))
-				{
-					matches++;
-					break;
-				}
-			}
-		}
-		matches /= sRange.size()+tRange.size()-matches;
-		return (matches > 0.5);
+		double sim = Similarity.jaccard(sRange,tRange);
+		return (sim > 0.5);
 	}
 	
 	//Measures the name similarity between two properties using a 
-	//weighted Jaccard index between their words
+	//Jaccard index between their words
 	//When using WordNet, the WordNet similarity is given by
 	//the Jaccard index between all WordNet synonyms, and is
 	//returned instead of the name similarity if it is higher
@@ -265,6 +195,7 @@ public class PropertyMatcher
 		for(String w : sW)
 		{
 			sWords.add(w);
+			sSyns.add(w);
 			//And compute the WordNet synonyms of each word
 			if(wn != null && w.length() > 3)
 				sSyns.addAll(wn.getAllWordForms(w));
@@ -280,31 +211,23 @@ public class PropertyMatcher
 			if(wn != null && w.length() > 3)
 				tSyns.addAll(wn.getAllWordForms(w));
 		}
-		//Compute the weighted Jaccard similarity between
-		//the words of each property name
-		double intersection = 0.0;
-		double union = 0.0;
-		for(String w : sWords)
-		{
-			if(tWords.contains(w))
-				intersection += wordEC.get(w);
-			else
-				union += wordEC.get(w);
-		}
-		for(String w : tWords)
-			union += wordEC.get(w);
-		intersection /= union;
+		//Compute the Jaccard word similarity between the properties
+		double wordSim = Similarity.jaccard(sWords,tWords)*0.9;
+		//Compute their String similarity
+		double stringSim = ISub.stringSimilarity(s,t)*0.9;
+		//Combine the two
+		double sim = 1 - ((1-wordSim) * (1-stringSim));
 		//If we're using WordNet
 		if(wn != null)
 		{
 			//Check if the WordNet similarity
-			double sim = jaccard(sSyns,tSyns) * 0.9;
+			double wordNetSim = Similarity.jaccard(sSyns,tSyns)*0.9;
 			//Is greater than the name similarity
-			if(sim > intersection)
+			if(wordNetSim > sim)
 				//And if so, return it
-				return sim;
+				sim = wordNetSim;
 		}
 		//Otherwise return the name similarity
-		return intersection;
+		return sim;
 	}
 }
