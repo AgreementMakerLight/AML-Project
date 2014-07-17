@@ -28,6 +28,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import org.semanticweb.elk.owlapi.ElkReasonerFactory;
+import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
@@ -106,11 +107,9 @@ public class Ontology
 	{
         //Increase the entity expansion limit to allow large ontologies
         System.setProperty(LIMIT, "1000000");
-		//Get the AML instance
-		AML aml = AML.getInstance();
         //Get an Ontology Manager and Data Factory
-        manager = aml.getOWLOntologyManager();
-        factory = aml.getOWLDataFactory();
+        manager = OWLManager.createOWLOntologyManager();
+        factory = manager.getOWLDataFactory();
         //Load the local ontology
         File f = new File(path);
         OWLOntology o;
@@ -141,11 +140,9 @@ public class Ontology
 	{
         //Increase the entity expansion limit to allow large ontologies
         System.setProperty(LIMIT, "1000000");
-		//Get the AML instance
-		AML aml = AML.getInstance();
         //Get an Ontology Manager and Data Factory
-        manager = aml.getOWLOntologyManager();
-        factory = aml.getOWLDataFactory();
+        manager = OWLManager.createOWLOntologyManager();
+        factory = manager.getOWLDataFactory();
         OWLOntology o;
 		try
 		{

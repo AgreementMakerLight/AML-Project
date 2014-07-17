@@ -39,8 +39,8 @@ public class OntologyFileChooser extends JFileChooser
 	{
 		super(new File("store/"));
 		setAcceptAllFileFilterUsed(false);
-		ExtensionFilter ontologies = new ExtensionFilter("Ontology Files (*.owl, *.rdf, *.rdfs, *.xml)",
-				new String[] { ".owl", ".rdf", ".rdfs", ".xml" }, true);
+		ExtensionFilter ontologies = new ExtensionFilter("Ontology Files (*.owl, *.rdf, *.rdfs, *.xml, *.obo)",
+				new String[] { ".owl", ".rdf", ".rdfs", ".xml", ".obo" }, true);
 		setFileFilter(ontologies);
 	}
 }

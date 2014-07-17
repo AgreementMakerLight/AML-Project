@@ -15,7 +15,7 @@
 * Ontology opening dialog box for the GUI.                                    *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 17-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ui;
@@ -29,7 +29,6 @@ import java.io.File;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -46,8 +45,6 @@ public class OpenOntologies extends JDialog implements ActionListener
 	private JPanel dialogPanel, sourcePanel, targetPanel, buttonPanel;
 	private JButton selectSource, selectTarget, cancel, open;
     private JTextArea sourcePath, targetPath;
-	private JComboBox<String> sourceFormat, targetFormat;
-	private final String[] FORMAT = {"OWL","RDFS"};
     private File source = null;
     private File target = null;
     
@@ -65,24 +62,18 @@ public class OpenOntologies extends JDialog implements ActionListener
 		selectSource.addActionListener(this);
 		sourcePath = new JTextArea(1,30);
 		sourcePath.setEditable(false);
-		sourceFormat = new JComboBox<String>(FORMAT);
-		sourceFormat.setSelectedIndex(0);
 		sourcePanel = new JPanel();
 		sourcePanel.add(selectSource);
 		sourcePanel.add(sourcePath);
-		sourcePanel.add(sourceFormat);
 		
 		selectTarget = new JButton("Select Target Ontology");
 		selectTarget.setPreferredSize(new Dimension(160,28));
 		selectTarget.addActionListener(this);
 		targetPath = new JTextArea(1,30);
 		targetPath.setEditable(false);
-		targetFormat = new JComboBox<String>(FORMAT);
-		targetFormat.setSelectedIndex(0);
 		targetPanel = new JPanel();
 		targetPanel.add(selectTarget);
 		targetPanel.add(targetPath);
-		targetPanel.add(targetFormat);
 
 		cancel = new JButton("Cancel");
 		cancel.setPreferredSize(new Dimension(70,28));

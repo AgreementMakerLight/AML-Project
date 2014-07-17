@@ -18,23 +18,18 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 17-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileNotFoundException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Vector;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.OWLDataFactory;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
 
 import aml.filter.Repairer;
 import aml.filter.RankedSelector;
@@ -59,9 +54,7 @@ public class AML
 	//Singleton pattern: unique instance
 	private static AML aml = new AML();
 	
-	//OWL API variables
-	private OWLOntologyManager manager;
-	private OWLDataFactory factory;
+	//Ontology variables
 	private boolean useReasoner = true;
 	
 	//Global data structures (URI map and Relationship Map)
@@ -238,9 +231,6 @@ public class AML
 	//It's private so that no other instances can be created 
 	private AML()
 	{
-        //Get an Ontology Manager and Data Factory
-        manager = OWLManager.createOWLOntologyManager();
-        factory = manager.getOWLDataFactory();
         //Initialize the lexical type weights
 		typeWeights = new HashMap<String,Double>();
 		setTypeWeights();
@@ -385,22 +375,6 @@ public class AML
     	return ofc;
     }
 
-	/**
-	 * @return the Ontology Manager
-	 */
-	public OWLOntologyManager getOWLOntologyManager()
-	{
-		return manager;
-	}
-	
-	/**
-	 * @return the OWL Data Factory
-	 */
-	public OWLDataFactory getOWLDataFactory()
-	{
-		return factory;
-	}
-	
 	/**
 	 * @return the relationship map
 	 */
@@ -574,9 +548,9 @@ public class AML
 	 * Open a pair of ontologies from the web
 	 * @param src: the URI of the source ontology
 	 * @param tgt: the URI of the target ontology
-	 * @throws OWLOntologyCreationException 
+	 * @throws Exception 
 	 */
-	public void openOntologies(URI src, URI tgt) throws OWLOntologyCreationException
+	public void openOntologies(URI src, URI tgt) throws Exception
 	{
 		if(useReasoner)
 			PropertyConfigurator.configure("log4j.properties");
@@ -649,12 +623,12 @@ public class AML
     	repairAlignment = r;
     }
     
-    public void saveAlignmentRDF(String file) throws FileNotFoundException
+    public void saveAlignmentRDF(String file) throws Exception
     {
     	a.saveRDF(file);
     }
     
-    public void saveAlignmentTSV(String file) throws FileNotFoundException
+    public void saveAlignmentTSV(String file) throws Exception
     {
     	a.saveTSV(file);
     }
