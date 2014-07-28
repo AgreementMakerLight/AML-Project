@@ -80,7 +80,7 @@ public class Lexicon
 	public void add(int classId, String name, String type, String source, double weight)
 	{
 		//First ensure that the name contains letters
-		if(name == null || !name.equals(""))
+		if(name == null || name.equals(""))
 			return;
 
 		String s, lang;
@@ -121,7 +121,7 @@ public class Lexicon
 	public void add(int classId, String name, String language, String type, String source, double weight)
 	{
 		//First ensure that the name contains letters
-		if(name == null || !name.equals(""))
+		if(name == null || name.equals(""))
 			return;
 
 		String s, lang;
