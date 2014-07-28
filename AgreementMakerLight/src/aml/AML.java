@@ -72,8 +72,9 @@ public class AML
 	
 	//Lexical types and weights
 	private final String[] LEXICAL_TYPES = {"localName", "label", "exactSynonym", "otherSynonym"};
+	private final String[] WEIRD_LANGUAGES = {"cn", "cz", "ru"};
 	private HashMap<String,Double> typeWeights;
-
+	
 	//Background knowledge path and sources
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources;
@@ -442,6 +443,14 @@ public class AML
     public boolean ignoreUMLS()
     {
     	return ignoreUMLS;
+    }
+    
+    public boolean isWeird(String lang)
+    {
+    	for(String s : WEIRD_LANGUAGES)
+    		if(lang.equals(s))
+    			return true;
+    	return false;
     }
     
     public void match()

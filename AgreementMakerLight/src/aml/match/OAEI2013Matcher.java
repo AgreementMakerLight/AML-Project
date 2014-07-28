@@ -291,7 +291,7 @@ public class OAEI2013Matcher
 			return System.currentTimeMillis()/1000 - startTime;
 		}
 		//Automatic extension-selection
-		if(sType.equals(SelectionType.STRICT))
+		else if(sType.equals(SelectionType.STRICT))
 		{
 			//TODO: Fix the selection type
 			if(size < 3)

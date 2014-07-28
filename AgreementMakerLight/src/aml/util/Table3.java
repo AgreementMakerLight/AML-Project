@@ -61,8 +61,6 @@ public class Table3<A,B,C extends Comparable<C>>
 	
 	/**
 	 * Adds the value for the given keys to the Table
-	 * If there is already a value for the given keys, the
-	 * value will be ignored
 	 * @param keyA: the first level key to add to the Table
 	 * @param keyB: the second level key to add to the Table
 	 * @param valueC: the value for the pair of keys to add to the Table

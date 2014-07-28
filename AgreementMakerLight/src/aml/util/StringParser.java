@@ -64,7 +64,8 @@ public class StringParser
 	 */
 	public static boolean isNumericId(String name)
 	{
-		return name.matches("[0-9]*") || name.matches("[a-zA-Z]+[_:]?[a-zA-Z]?[0-9]+");
+		return name.matches("[0-9]*") || name.matches("[a-zA-Z]+[_:]?[a-zA-Z]?[0-9]+")
+				 || name.matches("[a-z]{1,2}-[0-9]{3,}-[0-9]{3,}");
 	}
 
 	/**

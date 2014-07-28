@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+import aml.AML;
 import aml.util.StopList;
 import aml.util.StringParser;
 import aml.util.Table3;
@@ -79,7 +80,7 @@ public class Lexicon
 	public void add(int classId, String name, String type, String source, double weight)
 	{
 		//First ensure that the name contains letters
-		if(name == null || !name.matches(".*[a-zA-Z].*"))
+		if(name == null || !name.equals(""))
 			return;
 
 		String s, lang;
@@ -120,14 +121,20 @@ public class Lexicon
 	public void add(int classId, String name, String language, String type, String source, double weight)
 	{
 		//First ensure that the name contains letters
-		if(name == null || !name.matches(".*[a-zA-Z].*"))
+		if(name == null || !name.equals(""))
 			return;
 
 		String s, lang;
 		Provenance p;
 
+		if(AML.getInstance().isWeird(language))
+		{
+			s = StringParser.normalizeFormula(name);
+			lang = language;
+			p = new Provenance(type, source, lang, weight);
+		}
 		//Then check if it is a formula
-		if(StringParser.isFormula(name))
+		else if(StringParser.isFormula(name))
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = "Formula";

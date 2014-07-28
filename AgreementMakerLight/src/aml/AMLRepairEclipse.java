@@ -22,6 +22,8 @@ package aml;
 
 import aml.filter.Repairer;
 import aml.match.Alignment;
+import aml.match.LexicalMatcher;
+import aml.match.WordMatcher;
 
 public class AMLRepairEclipse
 {
@@ -34,7 +36,7 @@ public class AMLRepairEclipse
 		String sourcePath = "store/anatomy/mouse.owl";
 		String targetPath = "store/anatomy/human.owl";
 		//Path to input alignment file (edit manually)
-		String alignPath = "store/anatomy/reference.rdf";
+		//String alignPath = "store/anatomy/reference.rdf";
 		//Path to output repaired alignment (edit manually)
 		String repairPath = "store/anatomy/repair.rdf";
 		
@@ -42,7 +44,8 @@ public class AMLRepairEclipse
 		AML aml = AML.getInstance();
 		aml.openOntologies(sourcePath, targetPath);
 		//Open the input alignment
-		Alignment a = new Alignment(alignPath);
+		LexicalMatcher lm = new LexicalMatcher();
+		Alignment a = lm.match(0.6);
 		//Repair the alignment
 		Repairer r = new Repairer();
 		Alignment b = r.repair(a);
