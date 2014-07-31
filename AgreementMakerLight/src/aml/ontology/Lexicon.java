@@ -79,21 +79,22 @@ public class Lexicon
 	 */
 	public void add(int classId, String name, String type, String source, double weight)
 	{
-		//First ensure that the name contains letters
-		if(name == null || name.equals(""))
+		//First ensure that the name is not null or empty, and (since we're assuming that
+		//the language is English by default, ensure that it contains Latin characters)
+		if(name == null || name.equals("") || !name.matches(".*[a-zA-Z].*"))
 			return;
 
 		String s, lang;
 		Provenance p;
 
-		//Then check if it is a formula
+		//If it is a formula, parse it and label it as such
 		if(StringParser.isFormula(name))
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = "Formula";
 			p = new Provenance("Formula", source, lang, weight);
 		}
-		//Or a normal name
+		//Otherwise, parse it normally
 		else
 		{
 			s = StringParser.normalizeName(name);
@@ -120,32 +121,41 @@ public class Lexicon
 	 */
 	public void add(int classId, String name, String language, String type, String source, double weight)
 	{
-		//First ensure that the name contains letters
+		//First ensure that the name is not null or empty
 		if(name == null || name.equals(""))
 			return;
 
 		String s, lang;
 		Provenance p;
 
-		if(AML.getInstance().isWeird(language))
+		//If the name is in a language that doesn't use a Latin character set
+		//we parse it as a formula (i.e., replace only '_' with ' ')
+		if(AML.getInstance().isNonLatin(language))
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = language;
 			p = new Provenance(type, source, lang, weight);
 		}
-		//Then check if it is a formula
-		else if(StringParser.isFormula(name))
-		{
-			s = StringParser.normalizeFormula(name);
-			lang = "Formula";
-			p = new Provenance("Formula", source, lang, weight);
-		}
-		//Or a normal name
+		//Otherwise
 		else
 		{
-			s = StringParser.normalizeName(name);
-			lang = language;
-			p = new Provenance(type, source, lang, weight);
+			//If it doesn't contain Latin characters, don't add it
+			if(!name.matches(".*[a-zA-Z].*"))
+				return;
+			//If it is a formula, parse it and label it as such
+			else if(StringParser.isFormula(name))
+			{
+				s = StringParser.normalizeFormula(name);
+				lang = "Formula";
+				p = new Provenance("Formula", source, lang, weight);
+			}
+			//Otherwise, parse it normally
+			else
+			{
+				s = StringParser.normalizeName(name);
+				lang = language;
+				p = new Provenance(type, source, lang, weight);
+			}
 		}
 		//Then update the tables
 		names.add(s,classId,p);

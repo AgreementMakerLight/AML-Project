@@ -597,8 +597,26 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public int getIndex(int sourceId, int targetId)
 	{
-		Mapping m = new Mapping(sourceId,targetId,1.0);
-		return maps.indexOf(m);
+		if(sourceMaps.contains(sourceId, targetId))
+			return maps.indexOf(sourceMaps.get(sourceId, targetId));
+		else
+			return -1;
+	}
+	
+	/**
+	 * @param id1: the index of the first class
+	 * @param id2: the index of the second class
+	 * @return the index of the Mapping between the given classes in
+	 * the list of Mappings (in any order), or -1 if the Mapping doesn't exist
+	 */
+	public int getIndexBidirectional(int id1, int id2)
+	{
+		if(sourceMaps.contains(id1, id2))
+			return maps.indexOf(sourceMaps.get(id1, id2));
+		else if(targetMaps.contains(id1, id2))
+			return maps.indexOf(targetMaps.get(id1, id2));
+		else
+			return -1;
 	}
 	
 	/**

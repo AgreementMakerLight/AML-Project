@@ -72,7 +72,7 @@ public class AML
 	
 	//Lexical types and weights
 	private final String[] LEXICAL_TYPES = {"localName", "label", "exactSynonym", "otherSynonym"};
-	private final String[] WEIRD_LANGUAGES = {"cn", "cz", "ru"};
+	private final String[] NON_LATIN_LANGUAGES = {"cn", "cz", "jp", "kr", "ru"};
 	private HashMap<String,Double> typeWeights;
 	
 	//Background knowledge path and sources
@@ -445,9 +445,9 @@ public class AML
     	return ignoreUMLS;
     }
     
-    public boolean isWeird(String lang)
+    public boolean isNonLatin(String lang)
     {
-    	for(String s : WEIRD_LANGUAGES)
+    	for(String s : NON_LATIN_LANGUAGES)
     		if(lang.equals(s))
     			return true;
     	return false;
