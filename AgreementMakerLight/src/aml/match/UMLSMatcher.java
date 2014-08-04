@@ -17,7 +17,7 @@
 * source or using the whole table if no suitable source is identified.        *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -33,7 +33,7 @@ import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.util.Table3;
 
-public class UMLSMatcher implements Matcher
+public class UMLSMatcher implements PrimaryMatcher
 {
 
 //Attributes
@@ -84,34 +84,6 @@ public class UMLSMatcher implements Matcher
 	public void close()
 	{
 		table = null;
-	}
-	
-	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		AML aml = AML.getInstance();
-		Ontology source = aml.getSource();
-		Ontology target = aml.getTarget();
-		src = match(source);
-		tgt = match(target);
-		Alignment maps = new Alignment(a);
-		for(Mapping m : src)
-		{
-			int sourceId = m.getSourceId();
-			if(a.containsSource(sourceId))
-				continue;
-			int medId = m.getTargetId();
-			Set<Integer> matches = tgt.getTargetMappings(medId);
-			for(Integer j : matches)
-			{
-				if(a.containsTarget(j))
-					continue;
-				double similarity = Math.min(m.getSimilarity(),
-						tgt.getSimilarity(j, medId));
-				maps.add(new Mapping(sourceId,j,similarity));
-			}
-		}
-		return maps;
 	}
 
 	/**

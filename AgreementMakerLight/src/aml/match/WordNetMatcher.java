@@ -16,7 +16,7 @@
 * Lexicons after extension with the WordNet.                                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -27,14 +27,14 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.match.Matcher;
+import aml.match.PrimaryMatcher;
 import aml.ontology.Lexicon;
 import aml.util.StringParser;
 
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.WordNetDatabase;
 
-public class WordNetMatcher implements Matcher
+public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 {
 	
 //Attributes
@@ -67,25 +67,6 @@ public class WordNetMatcher implements Matcher
 //Public Methods
 
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		Alignment ext = new Alignment();
-		AML aml = AML.getInstance();
-		Lexicon ext1 = getExtensionLexicon(aml.getSource().getLexicon(),thresh);
-		Lexicon ext2 = getExtensionLexicon(aml.getTarget().getLexicon(),thresh);
-		Alignment maps = match(ext1, ext2, thresh);
-		for(Mapping m : maps)
-			if(!a.containsConflict(m))
-				ext.add(m);
-		return ext;
-	}
-
-	/**
-	 * Extends the Lexicons of the source and target Ontologies
-	 * using WordNet
-	 * @param thresh: the minimum confidence threshold below
-	 * which synonyms will not be added to the Lexicons
-	 */
 	public void extendLexicons(double thresh)
 	{
 		AML aml = AML.getInstance();

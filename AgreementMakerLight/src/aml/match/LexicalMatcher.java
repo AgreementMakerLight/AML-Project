@@ -27,7 +27,7 @@ import aml.AML;
 import aml.AML.LanguageSetting;
 import aml.ontology.Lexicon;
 
-public class LexicalMatcher implements Matcher
+public class LexicalMatcher implements PrimaryMatcher
 {
 	
 //Constructors
@@ -38,16 +38,6 @@ public class LexicalMatcher implements Matcher
 	public LexicalMatcher(){}
 	
 //Public Methods
-	
-	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		Alignment maps = match(thresh);
-		for(Mapping m : maps)
-			if(a.containsConflict(m))
-				maps.remove(m);
-		return maps;
-	}
 	
 	@Override
 	public Alignment match(double thresh)

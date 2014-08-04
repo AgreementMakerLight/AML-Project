@@ -19,7 +19,7 @@
 * is available.                                                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 14-07-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -31,7 +31,7 @@ import aml.AML;
 import aml.ontology.WordLexicon;
 import aml.util.Table2Plus;
 
-public class WordMatcher implements Matcher
+public class WordMatcher implements PrimaryMatcher
 {
 
 //Constructors
@@ -44,19 +44,6 @@ public class WordMatcher implements Matcher
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		Alignment ext = new Alignment();
-		Set<Integer> ignoreSources = a.getSources();
-		Set<Integer> ignoreTargets = a.getTargets();
-		AML aml = AML.getInstance();
-		WordLexicon sWLex = new WordLexicon(aml.getSource().getLexicon(),ignoreSources);
-		WordLexicon tWLex = new WordLexicon(aml.getTarget().getLexicon(),ignoreTargets);
-		ext.addAll(matchWordLexicons(sWLex,tWLex,thresh));
-		return ext;
-	}
-	
-	@Override
 	public Alignment match(double thresh)
 	{
 		Alignment a = new Alignment();
@@ -67,7 +54,14 @@ public class WordMatcher implements Matcher
 		return a;
 	}
 	
-	
+	/**
+	 * Matches two WordLexicons
+	 * @param sWLex: the source WordLexicon to match
+	 * @param tWLex: the target WordLexicon to match
+	 * @param thresh: the similarity threshold
+	 * @return the Alignment between the ontologies containing
+	 * the two WordLexicons
+	 */
 	public Alignment matchWordLexicons(WordLexicon sWLex, WordLexicon tWLex, double thresh)
 	{
 		Table2Plus<Integer,Integer,Double> maps = new Table2Plus<Integer,Integer,Double>();

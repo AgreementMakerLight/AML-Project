@@ -1,5 +1,5 @@
 /******************************************************************************
- Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,21 +12,22 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A matching algorithm that computes similarities between mapped entities in  *
-* a given Alignment and returns a new Alignment with those similarities.      *
+* A matching algorithm that maps the source and target Ontologies globally.   *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 07-07-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
-public interface Rematcher
+public interface PrimaryMatcher
 {
 	/**
-	 * Recomputes similarities for mappings of a given Alignment
-	 * @param a: the existing alignment
-	 * @return the Alignment with the new similarities
+	 * Matches the source and target Ontologies, returning an Alignment between them
+	 * @param source: the source Ontology
+	 * @param target: the target Ontology
+	 * @param thresh: the similarity threshold for the alignment
+	 * @return the alignment between the source and target ontologies
 	 */
-	public Alignment rematch(Alignment a);
+	public Alignment match(double thresh);
 }

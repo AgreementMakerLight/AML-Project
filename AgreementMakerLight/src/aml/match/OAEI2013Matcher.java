@@ -24,7 +24,7 @@ package aml.match;
 import aml.AML;
 import aml.AML.SelectionType;
 import aml.filter.CardinalitySelector;
-import aml.filter.Repairer;
+import aml.filter.RepairerOld;
 import aml.filter.RankedSelector;
 import aml.ontology.Ontology;
 import aml.ontology.URIMap;
@@ -284,7 +284,7 @@ public class OAEI2013Matcher
 		{
 			//For large problems we don't use WordMatcher due to its propensity for errors
 			if(size < 3)
-				a.addAll(wm.extendAlignment(a, BASE_THRESH));
+				a.addAll(wm.match(BASE_THRESH));
 			a = selectInteractive(a);
 			Alignment b = sm.extendAlignment(a, BASE_THRESH);
 			a.addAll(selectInteractive(b));
@@ -295,7 +295,7 @@ public class OAEI2013Matcher
 		{
 			//TODO: Fix the selection type
 			if(size < 3)
-				a.addAllNonConflicting(wm.extendAlignment(a, BASE_THRESH));
+				a.addAllNonConflicting(wm.match(BASE_THRESH));
 			a.addAllNonConflicting(sm.extendAlignment(a,threshold));
 			RankedSelector s = new RankedSelector(a, SelectionType.PERMISSIVE);
 			a = s.select(threshold);
@@ -304,7 +304,7 @@ public class OAEI2013Matcher
 		{
 			if(size == 2)
 			{
-				Alignment b = wm.extendAlignment(a, BASE_THRESH);
+				Alignment b = wm.match(BASE_THRESH);
 				RankedSelector s = new RankedSelector(b, sType);
 				b = s.select(threshold);
 				a.addAllNonConflicting(b);
@@ -316,7 +316,7 @@ public class OAEI2013Matcher
 			else
 			{
 				if(size == 1)
-					a.addAll(wm.extendAlignment(a, BASE_THRESH));
+					a.addAll(wm.match(BASE_THRESH));
 				RankedSelector s = new RankedSelector(a, sType);
 				a = s.select(threshold);
 				a.addAll(sm.extendAlignment(a,threshold));
@@ -327,7 +327,7 @@ public class OAEI2013Matcher
 		else
 		{
 			if(size < 3)
-				a.addAll(wm.extendAlignment(a, BASE_THRESH));
+				a.addAll(wm.match(BASE_THRESH));
 			CardinalitySelector s = new CardinalitySelector(a, 6);
 			a = s.select(threshold);
 			a.addAll(sm.extendAlignment(a, threshold));
@@ -346,7 +346,7 @@ public class OAEI2013Matcher
 	private long repair()
 	{
 		long startTime = System.currentTimeMillis()/1000;
-		Repairer rep = new Repairer();
+		RepairerOld rep = new RepairerOld();
 		a = rep.repair(a);
 		return System.currentTimeMillis()/1000 - startTime;
 	}

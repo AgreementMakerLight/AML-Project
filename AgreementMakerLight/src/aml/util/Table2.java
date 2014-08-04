@@ -167,6 +167,8 @@ public class Table2<A,B extends Comparable<B>>
 	 */
 	public void remove(A key)
 	{
+		if(multimap.get(key) != null)
+			size -= multimap.get(key).size();
 		multimap.remove(key);
 	}
 	
@@ -179,7 +181,10 @@ public class Table2<A,B extends Comparable<B>>
 	{
 		Vector<B> values = multimap.get(key);
 		if(values != null)
+		{
 			values.remove(value);
+			size--;
+		}
 	}
 	
 	/**

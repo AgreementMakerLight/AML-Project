@@ -14,10 +14,10 @@
 *******************************************************************************
 * Matches Ontologies by finding literal full-name matches between their       *
 * Lexicons and the Lexicon of a third mediating Ontology, by employing the    *
-* LexicalMatcher.                                                             *
+* LexicalMatcher. Extends Lexicons with synonyms from the mediating ontology. *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -26,11 +26,11 @@ import java.util.Set;
 
 import aml.AML;
 import aml.match.LexicalMatcher;
-import aml.match.Matcher;
+import aml.match.PrimaryMatcher;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 
-public class MediatingMatcher implements Matcher
+public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 {
 
 //Attributes
@@ -56,40 +56,6 @@ public class MediatingMatcher implements Matcher
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		AML aml = AML.getInstance();
-		Lexicon source = aml.getSource().getLexicon();
-		Lexicon target = aml.getTarget().getLexicon();
-		LexicalMatcher lm = new LexicalMatcher();
-		Alignment src = lm.match(source,ext,thresh);
-		Alignment tgt = lm.match(target,ext,thresh);
-		Alignment maps = new Alignment();
-		for(Mapping m : src)
-		{
-			int sourceId = m.getSourceId();
-			if(a.containsSource(sourceId))
-				continue;
-			int medId = m.getTargetId();
-			Set<Integer> matches = tgt.getTargetMappings(medId);
-			for(Integer j : matches)
-			{
-				if(a.containsTarget(j))
-					continue;
-				double similarity = Math.min(m.getSimilarity(),
-						tgt.getSimilarity(j, medId));
-				maps.add(new Mapping(sourceId,j,similarity));
-			}
-		}
-		return maps;
-	}
-	
-	/**
-	 * Extends the Lexicons of the source and target Ontologies
-	 * using WordNet
-	 * @param thresh: the minimum confidence threshold below
-	 * which synonyms will not be added to the Lexicons
-	 */
 	public void extendLexicons(double thresh)
 	{
 		AML aml = AML.getInstance();

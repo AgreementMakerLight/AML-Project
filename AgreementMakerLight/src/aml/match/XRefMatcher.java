@@ -17,7 +17,7 @@
 * cross-references.                                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -30,7 +30,7 @@ import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
 
-public class XRefMatcher implements Matcher
+public class XRefMatcher implements PrimaryMatcher, LexiconExtender
 {
 	
 //Attributes
@@ -58,39 +58,6 @@ public class XRefMatcher implements Matcher
 //Public Methods
 
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		AML aml = AML.getInstance();
-		Ontology source = aml.getSource();
-		Ontology target = aml.getSource();
-		src = match(source,thresh);
-		tgt = match(target,thresh);
-		Alignment maps = new Alignment();
-		for(Mapping m : src)
-		{
-			int sourceId = m.getSourceId();
-			if(a.containsSource(sourceId))
-				continue;
-			int medId = m.getTargetId();
-			Set<Integer> matches = tgt.getTargetMappings(medId);
-			for(Integer j : matches)
-			{
-				if(a.containsTarget(j))
-					continue;
-				double similarity = Math.min(m.getSimilarity(),
-						tgt.getSimilarity(j, medId));
-				maps.add(new Mapping(sourceId,j,similarity));
-			}
-		}
-		return maps;
-	}
-	
-	/**
-	 * Extends the Lexicons of the source and target Ontologies
-	 * using WordNet
-	 * @param thresh: the minimum confidence threshold below
-	 * which synonyms will not be added to the Lexicons
-	 */
 	public void extendLexicons(double thresh)
 	{
 		AML aml = AML.getInstance();

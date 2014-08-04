@@ -31,7 +31,7 @@ import java.util.Vector;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import aml.filter.Repairer;
+import aml.filter.RepairerOld;
 import aml.filter.RankedSelector;
 import aml.match.AMLMatcher;
 import aml.match.Alignment;
@@ -611,7 +611,7 @@ public class AML
     
     public void repair()
     {
-		Repairer r = new Repairer();
+		RepairerOld r = new RepairerOld();
 		a = r.repair(a);
     	if(a.size() >= 1)
     		currentMapping = 0;

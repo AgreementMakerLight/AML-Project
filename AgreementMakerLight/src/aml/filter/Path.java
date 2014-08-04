@@ -75,10 +75,7 @@ public class Path implements Comparable<Path>, Iterable<Integer>
 
 	public boolean contains(Path p)
 	{
-		for(Integer i : p.path)
-			if(!this.path.contains(i))
-				return false;
-		return true;
+		return path.containsAll(p.path);
 	}
 		
 	public boolean contains(int m)

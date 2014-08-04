@@ -16,7 +16,7 @@
 * combining the best available background knowledge sources.                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -29,7 +29,7 @@ import java.util.Vector;
 import aml.ontology.Ontology;
 import aml.util.MapSorter;
 
-public class BackgroundKnowledgeMatcher implements Matcher
+public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 {
 	
 //Attributes
@@ -53,12 +53,6 @@ public class BackgroundKnowledgeMatcher implements Matcher
 
 //Public Methods
 	
-	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		return extendBaseline(a,thresh);
-	}
-
 	@Override
 	public Alignment match(double thresh)
 	{

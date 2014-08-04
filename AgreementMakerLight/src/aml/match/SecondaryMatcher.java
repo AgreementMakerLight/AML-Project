@@ -12,17 +12,16 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A matching algorithm that maps the source and target Ontologies, returning  *
-* an Alignment between them, or extends a previous Alignment, returning only  *
-* new Mappings.                                                               *
+* A matching algorithm that extends a previous Alignment, returning new       *
+* Mappings between the source and target ontologies.                          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
-public interface Matcher
+public interface SecondaryMatcher
 {
 	/**
 	 * Extends the given Alignment between the source and target Ontologies
@@ -31,13 +30,4 @@ public interface Matcher
 	 * @return the alignment with the new mappings between the Ontologies
 	 */
 	public Alignment extendAlignment(Alignment a, double thresh);
-	
-	/**
-	 * Matches the source and target Ontologies, returning an Alignment between them
-	 * @param source: the source Ontology
-	 * @param target: the target Ontology
-	 * @param thresh: the similarity threshold for the alignment
-	 * @return the alignment between the source and target ontologies
-	 */
-	public Alignment match(double thresh);
 }

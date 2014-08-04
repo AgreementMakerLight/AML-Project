@@ -243,6 +243,8 @@ public class Table3<A,B,C extends Comparable<C>>
 	 */
 	public void remove(A keyA)
 	{
+		if(multimap.get(keyA) != null)
+			size -= multimap.get(keyA).size();
 		multimap.remove(keyA);
 	}
 	
@@ -255,7 +257,10 @@ public class Table3<A,B,C extends Comparable<C>>
 	{
 		Table2<B,C> maps = multimap.get(keyA);
 		if(maps != null)
+		{
+			size -= maps.get(keyB).size();
 			maps.remove(keyB);
+		}
 	}
 	
 	/**

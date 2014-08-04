@@ -15,7 +15,7 @@
 * Customizable ensemble of matching, selection & repair algorithms.           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -24,10 +24,10 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.AML.SelectionType;
-import aml.filter.Repairer;
+import aml.filter.RepairerOld;
 import aml.filter.RankedSelector;
 
-public class AMLMatcher implements Matcher
+public class AMLMatcher implements PrimaryMatcher
 {
 	
 //Attributes
@@ -51,17 +51,6 @@ public class AMLMatcher implements Matcher
 	}
 	
 //Public Methods
-
-	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		Alignment b = match(thresh);
-		Alignment ext = new Alignment();
-		for(Mapping m : b)
-			if(!a.containsConflict(m))
-				ext.add(m);
-		return ext;
-	}
 
 	@Override
 	public Alignment match(double thresh)
@@ -89,7 +78,7 @@ public class AMLMatcher implements Matcher
 		if(!isLarge)
 		{
 			WordMatcher wm = new WordMatcher();
-			a.addAll(wm.extendAlignment(a, thresh));
+			a.addAllNonConflicting(wm.match(thresh));
 		}
 		ParametricStringMatcher sm = new ParametricStringMatcher();
 		a.addAll(sm.extendAlignment(a, thresh));
@@ -102,7 +91,7 @@ public class AMLMatcher implements Matcher
 		}
 		if(repair)
 		{
-			Repairer rep = new Repairer();
+			RepairerOld rep = new RepairerOld();
 			a = rep.repair(a);
 		}
 		return a;
