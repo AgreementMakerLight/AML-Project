@@ -436,7 +436,8 @@ public class Alignment implements Iterable<Mapping>
 	{
 		int correct = 0;
 		for(Mapping m : a.maps)
-			if(this.containsMapping(m))
+			if(!m.getRelationship().equals(MappingRelation.UNKNOWN) &&
+					this.containsMapping(m))
 				correct++;
 		return correct;
 	}

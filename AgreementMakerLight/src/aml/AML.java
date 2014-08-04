@@ -477,7 +477,8 @@ public class AML
     	else
     		currentMapping = -1;
     	evaluation = null;
-    	userInterface.refresh();
+    	if(userInterface != null)
+    		userInterface.refresh();
     }
     
     public boolean matchProperties()
