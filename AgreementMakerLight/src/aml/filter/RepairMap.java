@@ -82,6 +82,7 @@ public class RepairMap
 					pw.println(uris.getURI(a.get(i).getSourceId()) + " --- " +
 							uris.getURI(a.get(i).getTargetId()));
 			}
+			pw.close();
 		}
 		catch(Exception e)
 		{
@@ -150,8 +151,6 @@ public class RepairMap
 		pathLengths.add(child, p.size(), parent);
 	}
 	
-
-
 	//Builds the checkList and descendantMap
 	private void init()
 	{
@@ -258,7 +257,7 @@ public class RepairMap
 
 		//Finally, add to the checkList all mapped classes that
 		//are involved in two mappings or have an ancestral path
-		//to a classList class, from only one of the ontologies
+		//to a classList class
 		//For each mapping
 		for(Mapping m : a)
 		{
@@ -267,9 +266,9 @@ public class RepairMap
 			boolean isRedundant = false;
 			int source = m.getSourceId();
 			int target = m.getTargetId();
-			HashSet<Integer> ancestors = new HashSet<Integer>(rels.getSubClasses(source, false));
-			ancestors.addAll(rels.getSubClasses(target, false));
-			for(Integer i : ancestors)
+			HashSet<Integer> descendants = new HashSet<Integer>(rels.getSubClasses(source, false));
+			descendants.addAll(rels.getSubClasses(target, false));
+			for(Integer i : descendants)
 			{
 				if(checkList.contains(i) || a.containsSource(i) || a.containsTarget(i))
 				{
@@ -282,48 +281,28 @@ public class RepairMap
 			//Count the mappings of both source and target classes
 			int sourceCount = a.getSourceMappings(source).size();
 			int targetCount = a.getTargetMappings(target).size();
-			//If the source class has more mappings (which implies
-			//it has at least 2) add it
-			if(sourceCount > targetCount)
-				checkList.add(source);
-			//If the opposite is true, add the target class
-			else if(targetCount > sourceCount)
-				checkList.add(target);
-			//Otherwise, check for classList ancestors
-			else
-			{
-				boolean toAdd = false;
+			//If the source class has only 1 mapping look at its ancestors
+			if(sourceCount == 1)
 				for(Integer l : rels.getSuperClasses(source, false))
-				{
 					if(classList.contains(l))
-					{
-						toAdd = true;
-						break;
-					}
-				}
-				if(toAdd)
-				{
-					checkList.add(source);
-					continue;
-				}
+						sourceCount++;
+			//And if there are multiple mappings, add the source
+			if(sourceCount > 1)
+				checkList.add(source);
+			//Do the same for the target class
+			if(targetCount == 1)
 				for(Integer l : rels.getSuperClasses(target, false))
-				{
 					if(classList.contains(l))
-					{
-						toAdd = true;
-						break;
-					}
-				}
-				if(toAdd)
-					checkList.add(target);
-			}
+						targetCount++;
+			if(targetCount > 1)
+				checkList.add(target);
 		}
 		//Now that we have the checkList, we can build the acestorMap
 		//with all relations between classes in the checkList and
 		//classes in the classList
 		for(Integer i : checkList)
 		{
-			Set<Integer> ancs = rels.getSubClasses(i,false);
+			Set<Integer> ancs = rels.getSuperClasses(i,false);
 			for(Integer j : ancs)
 				if(classList.contains(j))
 					addRelation(i, j);
@@ -407,7 +386,7 @@ public class RepairMap
 							//on the checkList
 							for(Integer m : newAncestors)
 								//Cycle check 4 (make sure mapping descendant != self)
-								if(checkList.contains(m) && m != j)
+								if(classList.contains(m) && m != j)
 									addRelation(j,m,q);
 						}
 					}
@@ -421,9 +400,21 @@ public class RepairMap
 		conflictSets = new Vector<Path>();
 		for(Integer i : checkList)
 		{
+			Vector<Integer> disj = new Vector<Integer>();
 			for(Integer j : ancestorMap.keySet(i))
+				if(rels.hasDisjoint(j))
+					disj.add(j);
+			for(int j = 0; j < disj.size()-1; j++)
 			{
-				
+				for(int k = j+1; k < disj.size(); k++)
+				{
+					if(rels.areDisjoint(disj.get(j), disj.get(k)))
+					{
+						for(Path p : ancestorMap.get(i, disj.get(j)))
+							for(Path q : ancestorMap.get(i, disj.get(k)))
+								addConflict(p,q);							
+					}
+				}
 			}
 		}
 	}
