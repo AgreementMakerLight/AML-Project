@@ -47,7 +47,7 @@ public class RepairMap
 	private HashSet<Integer> classList;
 	//The list of classes that must be checked for coherence
 	private HashSet<Integer> checkList;
-	//The minimal map of ancestor relations to classes involved disjoint clauses
+	//The minimal map of ancestor relations of checkList classes
 	private Table3<Integer,Integer,Path> ancestorMap;
 	//The length of ancestral paths (to facilitate transitive closure)
 	private Table3<Integer,Integer,Integer> pathLengths;
@@ -116,8 +116,17 @@ public class RepairMap
 	
 	private void addConflict(Path p, Path q)
 	{
+		//First combine the two paths into a single one
 		Path r = new Path(p);
-		r.addAll(q);
+		for(Integer i : q)
+		{
+			//Excluding overlapping mappings to ensure
+			//the combined path is minimal
+			if(p.contains(i))
+				r.remove(i);
+			else
+				r.add(i);
+		}
 		for(int i = 0; i < conflictSets.size(); i++)
 		{
 			Path s = conflictSets.get(i);
@@ -208,34 +217,33 @@ public class RepairMap
 					descList.add(j);
 			}
 		}
-		//Filter out redundant classes:
-		//1) Those that have a descendant in the descList
+		//Filter out classes that have a descendant in the descList
 		HashSet<Integer> toRemove = new HashSet<Integer>();
 		for(Integer i : descList)
 			for(Integer j : rels.getSubClasses(i, false))
 				if(descList.contains(j))
 					toRemove.add(i);
 		descList.removeAll(toRemove);
-		//2) Those that have the same set or a subset
-		//of classList classes in their ancestor line
+		//And those that have the same set or a subset of
+		//classList classes in their ancestor line
 		toRemove = new HashSet<Integer>();
 		Vector<Integer> desc = new Vector<Integer>();
 		Vector<Path> paths = new Vector<Path>();
 		for(Integer i : descList)
 		{
-			//a) Put the classList ancestors in a path
+			//Put the classList ancestors in a path
 			Path p = new Path();
 			for(Integer j : rels.getSuperClasses(i,false))
 				if(classList.contains(j))
 					p.add(j);
 			boolean add = true;
-			//b) Check if any of the selected classes
+			//Check if any of the selected classes
 			for(int j = 0; j < desc.size() && add; j++)
 			{
-				//i) subsumes this class (if so, skip it)
+				//subsumes this class (if so, skip it)
 				if(paths.get(j).contains(p))
 					add = false;
-				//ii) is subsumed by this class (if so,
+				//is subsumed by this class (if so,
 				//remove the latter and proceed)
 				else if(p.contains(paths.get(j)))
 				{
@@ -244,7 +252,7 @@ public class RepairMap
 					j--;
 				}
 			}
-			//c) If no redundancy was found, add the class
+			//If no redundancy was found, add the class
 			//to the list of selected classes
 			if(add)
 			{
@@ -255,14 +263,13 @@ public class RepairMap
 		//Add all selected classes to the checkList
 		checkList.addAll(desc);
 
-		//Finally, add to the checkList all mapped classes that
-		//are involved in two mappings or have an ancestral path
-		//to a classList class
-		//For each mapping
+		//Now get the list of all mapped classes that are
+		//involved in two mappings or have an ancestral
+		//path to a mapped class, from only one side
+		HashSet<Integer> mapList = new HashSet<Integer>();
 		for(Mapping m : a)
 		{
-			//Check if there is no descendant in either the
-			//checkList or the alignment (on both sides)
+			//Check if there is no descendant in the checkList
 			boolean isRedundant = false;
 			int source = m.getSourceId();
 			int target = m.getTargetId();
@@ -270,7 +277,7 @@ public class RepairMap
 			descendants.addAll(rels.getSubClasses(target, false));
 			for(Integer i : descendants)
 			{
-				if(checkList.contains(i) || a.containsSource(i) || a.containsTarget(i))
+				if(checkList.contains(i))
 				{
 					isRedundant = true;
 					break;
@@ -281,22 +288,44 @@ public class RepairMap
 			//Count the mappings of both source and target classes
 			int sourceCount = a.getSourceMappings(source).size();
 			int targetCount = a.getTargetMappings(target).size();
-			//If the source class has only 1 mapping look at its ancestors
-			if(sourceCount == 1)
-				for(Integer l : rels.getSuperClasses(source, false))
-					if(classList.contains(l))
+			//If the target class has more mappings than the source
+			//class (which implies it has at least 2 mappings) add it
+			if(targetCount > sourceCount)
+				mapList.add(target);
+			//If the opposite is true, add the target
+			else if(sourceCount > targetCount || sourceCount > 1)
+				mapList.add(source);
+			//Otherwise, check for mapped ancestors on both sides
+			else
+			{
+				for(Integer j : rels.getSuperClasses(source, false))
+					if(a.containsSource(j))
 						sourceCount++;
-			//And if there are multiple mappings, add the source
-			if(sourceCount > 1)
-				checkList.add(source);
-			//Do the same for the target class
-			if(targetCount == 1)
-				for(Integer l : rels.getSuperClasses(target, false))
-					if(classList.contains(l))
+				for(Integer j : rels.getSuperClasses(target, false))
+					if(a.containsTarget(j))
 						targetCount++;
-			if(targetCount > 1)
-				checkList.add(target);
+				if(sourceCount >= targetCount && sourceCount > 1)
+					mapList.add(source);
+				else if(targetCount > 1)
+					mapList.add(target);
+			}
 		}
+		//Filter out mapped classes that have a descendant in the mapList
+		toRemove = new HashSet<Integer>();
+		for(Integer i : mapList)
+			for(Integer j : rels.getSubClasses(i, false))
+				if(mapList.contains(j))
+					toRemove.add(i);
+		mapList.removeAll(toRemove);
+		//Filter out checkList classes that have a descendant in the mapList
+		toRemove = new HashSet<Integer>();
+		for(Integer i : checkList)
+			for(Integer j : rels.getSubClasses(i, false))
+				if(mapList.contains(j))
+					toRemove.add(i);
+		checkList.removeAll(toRemove);
+		//Finally, add the mapList to the checkList
+		checkList.addAll(mapList);
 		//Now that we have the checkList, we can build the acestorMap
 		//with all relations between classes in the checkList and
 		//classes in the classList
