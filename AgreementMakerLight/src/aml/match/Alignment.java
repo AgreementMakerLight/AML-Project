@@ -428,18 +428,43 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param a: the reference Alignment to evaluate this Alignment 
-	 * @return the number of Mappings in this Alignment that are correct
-	 * (i.e., found in the reference Alignment)
+	 * @param ref: the reference Alignment to evaluate this Alignment
+	 * @param forGUI: whether the evaluation is for display in the GUI
+	 * or for output to the console
+	 * @return the evaluation of this Alignment
 	 */
-	public int evaluate(Alignment a)
+	public String evaluate(Alignment ref, boolean forGUI)
 	{
+		int found = size();		
 		int correct = 0;
-		for(Mapping m : a.maps)
-			if(!m.getRelationship().equals(MappingRelation.UNKNOWN) &&
-					this.containsMapping(m))
-				correct++;
-		return correct;
+		int total = 0;
+		int conflict = 0;
+		for(Mapping m : maps)
+		{
+			if(ref.containsMapping(m))
+			{
+				if(ref.getRelationship(m.getSourceId(),m.getTargetId()).equals(MappingRelation.UNKNOWN))
+					conflict++;
+				else
+					correct++;
+			}
+		}
+		for(Mapping m : ref)
+			if(!m.getRelationship().equals(MappingRelation.UNKNOWN))
+				total++;
+		
+		double precision = 1.0*correct/(found-conflict);
+		String prc = Math.round(precision*1000)/10.0 + "%";
+		double recall = 1.0*correct/total;
+		String rec = Math.round(recall*1000)/10.0 + "%";
+		double fmeasure = 2*precision*recall/(precision+recall);
+		String fms = Math.round(fmeasure*1000)/10.0 + "%";
+		
+		if(forGUI)
+			return "Precision: " + prc + "; Recall: " + rec + "; F-measure: " + fms;
+		else
+			return "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
+					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
 	}
 
 	/**

@@ -123,7 +123,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 			double sim = mapTwoTerms(m.getSourceId(),m.getTargetId());
 			maps.add(m.getSourceId(),m.getTargetId(),sim);
 		}
-		return a;
+		return maps;
 	}
 	
 //Private Methods

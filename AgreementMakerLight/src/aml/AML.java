@@ -267,25 +267,12 @@ public class AML
     
 	public void evaluate()
 	{
-		int found = a.size();		
-		int correct = a.evaluate(ref);
-		int total = ref.size();
-
-		double precision = 1.0*correct/found;
-		String prc = Math.round(precision*1000)/10.0 + "%";
-		double recall = 1.0*correct/total;
-		String rec = Math.round(recall*1000)/10.0 + "%";
-		double fmeasure = 2*precision*recall/(precision+recall);
-		String fms = Math.round(fmeasure*1000)/10.0 + "%";
+		boolean gui = userInterface != null;
 		
-		if(userInterface != null)
-		{
-			evaluation = "Precision: " + prc + "; Recall: " + rec + "; F-measure: " + fms;
+		evaluation = a.evaluate(ref, gui);
+		
+		if(gui)
 			userInterface.refreshPanel();
-		}
-		else
-			evaluation = "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
-					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
 	}
     
 	public Alignment getAlignment()
