@@ -23,7 +23,8 @@ package aml.util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.Vector;
+import java.util.HashSet;
+import java.util.Set;
 
 public class StopList
 {
@@ -38,9 +39,9 @@ public class StopList
 	
 //Public Methods
 	
-	public static Vector<String> read()
+	public static Set<String> read()
 	{
-		Vector<String> stopWords = new Vector<String>(0,1);
+		HashSet<String> stopWords = new HashSet<String>();
 		try
 		{
 			BufferedReader inStream = new BufferedReader(new FileReader(file));

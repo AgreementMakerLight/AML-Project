@@ -45,11 +45,6 @@ public class CombinationSelector
 		this.aux = aux;
 		AML aml = AML.getInstance();
 		type = aml.getSelectionType();
-		if(type.equals(SelectionType.AUTO))
-		{
-			aml.setAlignment(maps);
-			type = aml.setSelectionType();
-		}
 		weight = w;
 	}
 	
@@ -58,12 +53,6 @@ public class CombinationSelector
 		this.maps = maps;
 		this.aux = aux;
 		type = s;
-		if(type.equals(SelectionType.AUTO))
-		{
-			AML aml = AML.getInstance();
-			aml.setAlignment(maps);
-			type = aml.setSelectionType();
-		}
 		weight = w;
 	}
 

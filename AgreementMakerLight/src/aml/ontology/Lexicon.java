@@ -273,7 +273,7 @@ public class Lexicon
 	 */
 	public void generateStopWordSynonyms()
 	{
-		Vector<String> stopList = StopList.read();
+		Set<String> stopList = StopList.read();
 		Vector<String> nm = new Vector<String>(names.keySet());
 		for(String n: nm)
 		{

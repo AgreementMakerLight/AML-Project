@@ -24,16 +24,26 @@
 ******************************************************************************/
 package aml.match;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
+import aml.AML.SizeCategory;
+import aml.ontology.Ontology;
+
 import aml.ontology.WordLexicon;
+import aml.util.Table2;
 import aml.util.Table2Plus;
 
 public class WordMatcher implements PrimaryMatcher
 {
 
+//Attributes
+	
+	private final int MAX_BLOCK_SIZE = 10000;
+	
 //Constructors
 	
 	/**
@@ -48,9 +58,42 @@ public class WordMatcher implements PrimaryMatcher
 	{
 		Alignment a = new Alignment();
 		AML aml = AML.getInstance();
-		WordLexicon sWLex = new WordLexicon(aml.getSource().getLexicon());
-		WordLexicon tWLex = new WordLexicon(aml.getTarget().getLexicon());
-		a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
+		if(aml.getSizeCategory().equals(SizeCategory.LARGE))
+		{
+			Iterator<Integer> sourceClasses = source.getClasses().iterator();
+			Iterator<Integer> targetClasses = target.getClasses().iterator();
+			
+			Table2<Integer,Integer> sourcesToMap = new Table2<Integer,Integer>();
+			for(int i = 0; sourceClasses.hasNext(); i++)
+				sourcesToMap.add(i/MAX_BLOCK_SIZE, sourceClasses.next());
+			
+			Table2<Integer,Integer> targetsToMap = new Table2<Integer,Integer>();
+			for(int i = 0; targetClasses.hasNext(); i++)
+				targetsToMap.add(i/MAX_BLOCK_SIZE, targetClasses.next());
+			
+			System.out.println(sourcesToMap.keyCount()*targetsToMap.keyCount());
+			int count = 0;
+			for(Integer i : sourcesToMap.keySet())
+			{
+				HashSet<Integer> sources = new HashSet<Integer>(sourcesToMap.get(i));
+				WordLexicon sWLex = new WordLexicon(source.getLexicon(),sources);
+				for(Integer j : targetsToMap.keySet())
+				{
+					HashSet<Integer> targets = new HashSet<Integer>(targetsToMap.get(j));
+					WordLexicon tWLex = new WordLexicon(target.getLexicon(),targets);
+					a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
+					System.out.println(++count);
+				}
+			}
+		}
+		else
+		{
+			WordLexicon sWLex = new WordLexicon(source.getLexicon());
+			WordLexicon tWLex = new WordLexicon(target.getLexicon());
+			a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
+		}
 		return a;
 	}
 	

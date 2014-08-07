@@ -22,7 +22,6 @@
 package aml.ontology;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
@@ -38,10 +37,10 @@ public class WordLexicon
 
 	//A link to the original Lexicon
 	private Lexicon lex;
-	//The list of classes to ignore when building this WordLexicon
-	private Set<Integer> ignoreList;
+	//The list of classes to use when building this WordLexicon
+	private Set<Integer> classList;
 	//The list of stop words to ignore when building this WordLexicon
-	private Vector<String> stopList;
+	private Set<String> stopList;
 	//The language to use when building this WordLexicon
 	private String language;
 	//The map of words and the classes they occur in
@@ -65,7 +64,7 @@ public class WordLexicon
 	public WordLexicon(Lexicon l)
 	{
 		lex = l;
-		ignoreList = new HashSet<Integer>();
+		classList = null;
 		language = "";
 		buildWordLexicon();
 	}
@@ -78,7 +77,7 @@ public class WordLexicon
 	public WordLexicon(Lexicon l, String lang)
 	{
 		lex = l;
-		ignoreList = new HashSet<Integer>();
+		classList = null;
 		language = lang;
 		buildWordLexicon();
 	}
@@ -91,7 +90,7 @@ public class WordLexicon
 	public WordLexicon(Lexicon l, Set<Integer> i)
 	{
 		lex = l;
-		ignoreList = i;
+		classList = i;
 		language = "";
 		buildWordLexicon();
 	}
@@ -105,7 +104,7 @@ public class WordLexicon
 	public WordLexicon(Lexicon l, Set<Integer> i, String lang)
 	{
 		lex = l;
-		ignoreList = i;
+		classList = i;
 		language = lang;
 		buildWordLexicon();
 	}
@@ -180,24 +179,6 @@ public class WordLexicon
 	}
 	
 	/**
-	 * @return whether the lexicon has an ignore list
-	 */
-	public boolean hasIgnoreList()
-	{
-		return ignoreList.size() > 0;
-	}
-	
-	/**
-	 * @param il: the ignore list to check in the lexicon
-	 * @return whether the lexicon has an ignore list
-	 * equal to the given list
-	 */
-	public boolean hasIgnoreList(Vector<Integer> il)
-	{
-		return ignoreList.equals(il);
-	}
-	
-	/**
 	 * @return the number of words in the lexicon
 	 */
 	public int wordCount()
@@ -222,7 +203,7 @@ public class WordLexicon
 		//For each class
 		for(Integer c: classes)
 		{
-			if(ignoreList.contains(c))
+			if(classList != null && !classList.contains(c))
 				continue;
 			//Get all names 
 			Set<String> names;

@@ -45,7 +45,7 @@ public class RelationshipMap
 	//Map between disjoint classes
 	private Table2<Integer,Integer> disjointMap;
 	//List of high level classes
-	private HashSet<Integer> highLevelClasses;	
+	private HashSet<Integer> highLevelClasses;
 	//Map between properties and their parents and inverses
 	private Table2<Integer,Integer> subProp;
 	private Table2<Integer,Integer> superProp;

@@ -237,6 +237,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			
 			JLabel card = new JLabel("Cardinality:");
 			Vector<String> selectionTypes = new Vector<String>(0,1);
+			selectionTypes.add("Auto-Detect");
 			for(SelectionType t: SelectionType.values())
 				selectionTypes.add(t.toString());
 			selection1 = new JComboBox<String>(selectionTypes);
@@ -295,6 +296,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 		{
 			JLabel card = new JLabel("Cardinality:");
 			Vector<String> selectionTypes = new Vector<String>(0,1);
+			selectionTypes.add("Auto-Detect");
 			for(SelectionType t: SelectionType.values())
 				selectionTypes.add(t.toString());
 			selection2 = new JComboBox<String>(selectionTypes);

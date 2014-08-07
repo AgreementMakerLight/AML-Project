@@ -23,7 +23,6 @@ package aml;
 import aml.filter.RepairerOld;
 import aml.match.Alignment;
 import aml.match.LexicalMatcher;
-import aml.match.WordMatcher;
 
 public class AMLRepairEclipse
 {

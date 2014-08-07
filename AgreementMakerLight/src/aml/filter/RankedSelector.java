@@ -41,23 +41,12 @@ public class RankedSelector implements Selector
 		maps = a;
 		AML aml = AML.getInstance();
 		type = aml.getSelectionType();
-		if(type.equals(SelectionType.AUTO))
-		{
-			aml.setAlignment(a);
-			type = aml.setSelectionType();
-		}
 	}
 	
 	public RankedSelector(Alignment a, SelectionType s)
 	{
 		maps = a;
 		type = s;
-		if(type.equals(SelectionType.AUTO))
-		{
-			AML aml = AML.getInstance();
-			aml.setAlignment(a);
-			type = aml.setSelectionType();
-		}
 	}
 
 //Public Methods

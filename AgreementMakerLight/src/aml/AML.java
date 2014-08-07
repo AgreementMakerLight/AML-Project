@@ -53,33 +53,26 @@ public class AML
 	
 	//Singleton pattern: unique instance
 	private static AML aml = new AML();
-	
 	//Ontology variables
 	private boolean useReasoner = true;
-	
 	//Global data structures (URI map and Relationship Map)
 	private URIMap uris;
 	private RelationshipMap rels;
-	
 	//Ontologies
 	private Ontology source;
 	private Ontology target;
-
 	//Current alignment, reference alignment and evaluation
 	private Alignment a;
 	private Alignment ref;
 	private String evaluation;
-	
 	//Lexical types and weights
 	private final String[] LEXICAL_TYPES = {"localName", "label", "exactSynonym", "otherSynonym"};
 	private final String[] NON_LATIN_LANGUAGES = {"cn", "cz", "jp", "kr", "ru"};
 	private HashMap<String,Double> typeWeights;
-	
 	//Background knowledge path and sources
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources;
     private Vector<String> selectedSources;
-    
 	//User interface and associated variables
 	private GUI userInterface;
 	private OntologyFileChooser ofc;
@@ -88,11 +81,11 @@ public class AML
 	private int maxDistance = 2;
 	private boolean showAncestors = true;
 	private boolean showDescendants = true;
-	
 	//Matching properties
-	private LanguageSetting lang = LanguageSetting.SINGLE;
+	private LanguageSetting lang;
 	private MatchingAlgorithm matcher = MatchingAlgorithm.AML;
-    private SelectionType sType = SelectionType.AUTO;
+    private SelectionType sType = SelectionType.PERMISSIVE;
+    private SizeCategory sCat;
     private boolean useBK = false;
     private boolean ignoreUMLS = true;
     private boolean repairAlignment = false;
@@ -200,8 +193,7 @@ public class AML
 	 */
     public enum SelectionType
     {
-    	AUTO ("Auto Detect"),
-    	STRICT ("Strict 1-to-1"),
+     	STRICT ("Strict 1-to-1"),
     	PERMISSIVE ("Permissive 1-to-1"),
     	HYBRID ("Hybrid 1-to-1"),
     	MANY ("N-to-N");
@@ -223,8 +215,20 @@ public class AML
 			for(SelectionType s : SelectionType.values())
 				if(selector.equals(s.toString()))
 					return s;
-			return AUTO;
+			return null;
 		}
+    }
+    
+	/**
+	 * Lists the Size Categories of an Ontology Matching problem
+	 */
+    public enum SizeCategory
+    {
+    	SMALL,
+    	MEDIUM,
+    	LARGE;
+    	
+    	SizeCategory(){}    	
     }
     
 //Constructors
@@ -381,6 +385,11 @@ public class AML
 		return sType;
 	}
 	
+	public SizeCategory getSizeCategory()
+	{
+		return sCat;
+	}
+	
 	/**
 	 * @return the source ontology
 	 */
@@ -433,6 +442,14 @@ public class AML
     }
     
     public boolean isNonLatin(String lang)
+    {
+    	for(String s : NON_LATIN_LANGUAGES)
+    		if(lang.equals(s))
+    			return true;
+    	return false;
+    }
+    
+    public boolean isLarge()
     {
     	for(String s : NON_LATIN_LANGUAGES)
     		if(lang.equals(s))
@@ -529,13 +546,19 @@ public class AML
 		System.out.println("Names: " + target.getLexicon().size());
 		System.out.println("Properties: " + target.propertyCount());
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
+		time = System.currentTimeMillis()/1000;
 		rels.transitiveClosure();
-		System.out.println("All Relationships: " + rels.relationshipCount());
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Transitive closure finished in " + time + " seconds");	
+		System.out.println("Extended Relationships: " + rels.relationshipCount());
 		System.out.println("Disjoints: " + rels.disjointCount());
     	//Reset the alignment, mapping, and evaluation
     	a = null;
     	currentMapping = -1;
     	evaluation = null;
+    	//Set the size category and language setting
+    	setSizeCategory();
+    	setLanguageSetting();
     	//Refresh the user interface
     	if(userInterface != null)
     		userInterface.refresh();
@@ -570,13 +593,19 @@ public class AML
 		System.out.println("Names: " + target.getLexicon().size());
 		System.out.println("Properties: " + target.propertyCount());
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
+		time = System.currentTimeMillis()/1000;
 		rels.transitiveClosure();
-		System.out.println("All Relationships: " + rels.relationshipCount());
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Transitive closure finished in " + time + " seconds");		
+		System.out.println("Extended Relationships: " + rels.relationshipCount());
 		System.out.println("Disjoints: " + rels.disjointCount());
     	//Reset the alignment, mapping, and evaluation
     	a = null;
     	currentMapping = -1;
     	evaluation = null;
+    	//Set the size category and language setting
+    	setSizeCategory();
+    	setLanguageSetting();
     	//Refresh the user interface
     	if(userInterface != null)
     		userInterface.refresh();
@@ -635,11 +664,6 @@ public class AML
 		a = maps;
 	}
     
-	public void setLanguageSetting(LanguageSetting l)
-	{
-		lang = l;
-	}
-    
     public void setMatcher(MatchingAlgorithm m)
 	{
 		matcher = m;
@@ -647,7 +671,10 @@ public class AML
 	
 	public void setMatchOptions(SelectionType s, double thresh)
 	{
-	    sType = s;
+		if(s == null)
+			setSelectionType();
+		else
+			sType = s;
 	    threshold = thresh;
 	}
     
@@ -663,7 +690,10 @@ public class AML
 	    matchProperties = pr;
 	    repairAlignment = re;
 	    selectedSources = bk;
-	    sType = s;
+		if(s == null)
+			setSelectionType();
+		else
+			sType = s;
 	    threshold = thresh;
 	}
 	
@@ -681,7 +711,10 @@ public class AML
 	
 	public void setSelectionType(SelectionType s)
 	{
-		sType = s;
+		if(s == null)
+			setSelectionType();
+		else
+			sType = s;
 	}
 	
 	public void setViewOptions(boolean a, boolean d, int m)
@@ -771,9 +804,79 @@ public class AML
 		sources.add("WordNet");
 		return sources;
 	}
+
+	//Computes and sets the language setting of the matching problem
+	//based on the language overlap between the input ontologies
+	private void setLanguageSetting()
+	{
+		//Get the source ontology language counts
+		HashMap<String,Integer> sLangs = new HashMap<String,Integer>();
+		int sTotal = 0;
+		double sMax = 0.0;
+		String sLang = "";
+		for(String l : source.getLexicon().getLanguages())
+		{
+			if(!l.equals("Formula"))
+			{
+				int count = source.getLexicon().getLanguageCount(l);
+				sLangs.put(l, count);
+				sTotal += count;
+				if(count > sMax)
+				{
+					sMax = count;
+					sLang = l;
+				}
+			}
+		}
+		sMax /= sTotal;
+		//Do the same for the target ontology
+		HashMap<String,Integer> tLangs = new HashMap<String,Integer>();
+		int tTotal = 0;
+		double tMax = 0.0;
+		String tLang = "";
+		for(String l : target.getLexicon().getLanguages())
+		{
+			if(!l.equals("Formula"))
+			{
+				int count = target.getLexicon().getLanguageCount(l);
+				tLangs.put(l, count);
+				tTotal += count;
+				if(count > tMax)
+				{
+					tMax = count;
+					tLang = l;
+				}
+			}
+		}
+		tMax /= (1.0*tTotal);
+		//If both ontologies have the same main language, set to single language
+		if(sLang.equals(tLang) && sMax > 0.8 && tMax > 0.8)
+			lang = LanguageSetting.SINGLE;
+		//If the main language of each ontology is not present in the other, set to translate
+		else if(!sLangs.containsKey(tLang) && !tLangs.containsKey(sLang))
+			lang = LanguageSetting.TRANSLATE;
+		//Otherwise, set to multi-language
+		else
+			lang = LanguageSetting.MULTI;
+	}
 	
-	//Computes the weights for name properties based on ranks and the interval
-	//between ranks, considering that rank 1 = 1.0
+	//Computes and sets the size category of the matching problem
+	//based on the number of classes of the input ontologies
+	private void setSizeCategory()
+	{
+		int sSize = source.classCount();
+		int tSize = target.classCount();
+		int max = Math.max(sSize, tSize);
+		if(Math.min(sSize,tSize) > 30000 || max > 60000)
+			sCat = SizeCategory.LARGE;
+		else if(max > 500)
+			sCat = SizeCategory.MEDIUM;
+		else
+			sCat = SizeCategory.SMALL;
+	}
+	
+	//Computes the weights for name properties based on ranks and the
+	//interval between ranks, considering that rank 1 = 1.0
 	private void setTypeWeights()
 	{
 		for(int i = 0; i < LEXICAL_TYPES.length; i++)
