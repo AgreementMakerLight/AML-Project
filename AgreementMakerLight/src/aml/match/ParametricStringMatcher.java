@@ -106,7 +106,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		{
 			for(Integer j : targets)
 			{
-				double sim = mapTwoTerms(i,j);
+				double sim = mapTwoClasses(i,j);
 				if(sim >= thresh)
 					a.add(i,j,sim);
 			}
@@ -120,7 +120,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
 		{
-			double sim = mapTwoTerms(m.getSourceId(),m.getTargetId());
+			double sim = mapTwoClasses(m.getSourceId(),m.getTargetId());
 			maps.add(m.getSourceId(),m.getTargetId(),sim);
 		}
 		return maps;
@@ -147,7 +147,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 				{
 					if(a.containsTarget(t))
 						continue;
-					double sim = mapTwoTerms(s, t);
+					double sim = mapTwoClasses(s, t);
 					if(sim >= thresh)
 						maps.add(s,t,sim);
 				}
@@ -162,7 +162,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 				{
 					if(a.containsTarget(t))
 						continue;
-					double sim = mapTwoTerms(s, t);
+					double sim = mapTwoClasses(s, t);
 					if(sim >= thresh)
 						maps.add(s,t,sim);
 				}
@@ -192,7 +192,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 				{
 					if(a.containsTarget(t))
 						continue;
-					double sim = mapTwoTerms(s, t);
+					double sim = mapTwoClasses(s, t);
 					if(sim >= thresh)
 						maps.add(s,t,sim);
 				}
@@ -201,11 +201,11 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		return maps;
 	}
 	
-	//Computes the maximum String similarity between two terms by doing a
+	//Computes the maximum String similarity between two Classes by doing a
 	//pairwise comparison of all their names
-	private double mapTwoTerms(int sId, int tId)
+	private double mapTwoClasses(int sId, int tId)
 	{
-		//TODO: mapTwoTerms with language constrains
+		//TODO: mapTwoClasses with language constrains
 		double maxSim = 0.0;
 		double sim, weight;
 		//Get the source and target names
