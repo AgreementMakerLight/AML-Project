@@ -73,10 +73,16 @@ public class Path implements Comparable<Path>, Iterable<Integer>
 		return path.size()-p.path.size();
 	}
 
+	/**
+	 * Tests if this path contains all elements of another
+	 * given path. Note that it deliberately does not check
+	 * the size of the paths, which therefore should be
+	 * checked beforehand.
+	 * @param p: the path to test for containment by this path
+	 * @return whether this path contains all elements of p
+	 */
 	public boolean contains(Path p)
 	{
-		if(p.size() > size())
-			return false;
 		for(Integer i : p.path)
 			if(!path.contains(i))
 				return false;
@@ -97,6 +103,24 @@ public class Path implements Comparable<Path>, Iterable<Integer>
 	public Iterator<Integer> iterator() 
 	{
 		return path.iterator();
+	}
+	
+	/**
+	 * Merges this path with another given path by
+	 * adding all distinct entries and removing all
+	 * shared entries, so as to obtain a minimal path
+	 * (i.e., this _UNION_ p - this _INTERSECTION_ p)
+	 * @param p: the path to merge with this path
+	 */
+	public void merge(Path p)
+	{
+		for(Integer i : p)
+		{
+			if(path.contains(i))
+				path.remove(i);
+			else
+				path.add(i);
+		}
 	}
 	
 	public void remove(int i)

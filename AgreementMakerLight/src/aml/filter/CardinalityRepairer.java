@@ -16,7 +16,7 @@
 * removed mappings.                                                           *
 *                                                                             *
 * @author Daniel Faria & Emanuel Santos                                       *
-* @date 01-08-2014                                                            *
+* @date 10-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.filter;
@@ -55,6 +55,10 @@ public class CardinalityRepairer implements Repairer
 	@Override
 	public Alignment repair()
 	{
+		if(conflictSets.size() == 0)
+			return new Alignment(toRepair);
+		System.out.println("Repairing alignment");
+		long time = System.currentTimeMillis()/1000;
 		HashSet<Integer> toRemove = new HashSet<Integer>();
 		while(conflictMappings.size() > 0)
 		{
@@ -68,6 +72,9 @@ public class CardinalityRepairer implements Repairer
 			if(!toRemove.contains(i))
 				repaired.add(toRepair.get(i));
 		}
+		System.out.println("Finished repair in " + 
+				(System.currentTimeMillis()/1000-time) + " seconds");
+		System.out.println("Removed " + toRemove.size() + " mappings");
 		return repaired;
 	}
 	

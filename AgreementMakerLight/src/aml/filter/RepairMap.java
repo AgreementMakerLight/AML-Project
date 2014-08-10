@@ -16,11 +16,12 @@
  * mappings from a given Alignment, which supports repair of that Alignment.   *
  *                                                                             *
  * @authors Daniel Faria & Emanuel Santos                                      *
- * @date 01-08-2014                                                            *
+ * @date 10-08-2014                                                            *
  * @version 2.0                                                                *
  ******************************************************************************/
 package aml.filter;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.HashSet;
@@ -31,7 +32,6 @@ import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.RelationshipMap;
-import aml.ontology.URIMap;
 import aml.util.Table3;
 
 public class RepairMap
@@ -51,137 +51,133 @@ public class RepairMap
 	private Table3<Integer,Integer,Path> ancestorMap;
 	//The length of ancestral paths (to facilitate transitive closure)
 	private Table3<Integer,Integer,Integer> pathLengths;
+	//The number of paths to disjoint classes
+	private int pathCount;
 	//The list of conflict sets
 	private Vector<Path> conflictSets;
 	
 //Constructors
 	
+	/**
+	 * Constructs a new RepairMap based on the RelationshipMap
+	 * and the given Alignment to repair
+	 * @param maps: the Alignment to repair
+	 */
 	public RepairMap(Alignment maps)
 	{
 		rels = AML.getInstance().getRelationshipMap();
 		a = maps;
-		long time = System.currentTimeMillis()/1000;
 		init();
-		System.out.println("Computed CheckList and DescendantMap in " + (System.currentTimeMillis()/1000-time) + " seconds");
-		System.out.println("CheckList size: " + checkList.size());
-		System.out.println("AncestorMap size: " + ancestorMap.size());
-		transitiveClosure();
-		System.out.println("Extended AncestorMap in " + (System.currentTimeMillis()/1000-time) + " seconds");
-		System.out.println("AncestorMap size: " + ancestorMap.size());
-		buildConflictSets();
-		System.out.println("Built Conflict Sets in " + (System.currentTimeMillis()/1000-time) + " seconds");
-		System.out.println("Conflict Sets: " + conflictSets.size());
-		URIMap uris = AML.getInstance().getURIMap();
-		try
-		{
-			PrintWriter pw = new PrintWriter(new FileOutputStream("store/temp2.txt"));
-			for(Path p : conflictSets)
-			{
-				pw.println("Conflict Set");
-				for(Integer i : p)
-					pw.println(uris.getURI(a.get(i).getSourceId()) + " --- " +
-							uris.getURI(a.get(i).getTargetId()));
-			}
-			pw.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 	}
 	
 //Public Methods
 	
+	/**
+	 * @return the list of conflict sets of mappings
+	 * in the form of indexes (as per the alignment
+	 * to repair)
+	 */
 	public Vector<Path> getConflictSets()
 	{
 		return conflictSets;
 	}
 	
+	/**
+	 * @param m: the Mapping to search in the RepairMap
+	 * @return the index of the Mapping in the RepairMap
+	 */
 	public int getIndex(Mapping m)
 	{
 		return a.getIndex(m.getSourceId(), m.getTargetId());
 	}
 	
+	/**
+	 * @param source: the id of the source class to search in the RepairMap
+	 * @param target: the id of the target class to search in the RepairMap
+	 * @return the index of the Mapping between source and target in
+	 * the RepairMap
+	 */
 	public int getIndex(int source, int target)
 	{
 		return a.getIndex(source, target);
 	}
 
+	/**
+	 * @param index: the index of the Mapping to get
+	 * @return the Mapping at the given index
+	 */
 	public Mapping getMapping(int index)
 	{
 		return a.get(index);
 	}
 	
+	/**
+	 * Saves the list of minimal conflict sets to a text file
+	 * @param file: the path to the file where to save
+	 * @throws FileNotFoundException if unable to create/open file
+	 */
+	public void saveConflictSets(String file) throws FileNotFoundException
+	{
+		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
+		int id = 1;
+		for(Path p : conflictSets)
+		{
+			outStream.println("Conflict Set " + id++ + ":");
+			for(Integer i : p)
+				outStream.println(a.get(i).toString());
+		}
+	}
+	
 //Private Methods
 	
-	private void addConflict(Path p, Path q)
-	{
-		//First combine the two paths into a single one
-		Path r = new Path(p);
-		for(Integer i : q)
-		{
-			//Excluding overlapping mappings to ensure
-			//the combined path is minimal
-			if(p.contains(i))
-				r.remove(i);
-			else
-				r.add(i);
-		}
-		for(int i = 0; i < conflictSets.size(); i++)
-		{
-			Path s = conflictSets.get(i);
-			if(r.contains(s))
-				return;
-			if(s.contains(r))
-			{
-				conflictSets.remove(i);
-				i--;
-			}
-		}
-		conflictSets.add(r);
-	}
-	
-	private void addRelation(int child, int parent)
-	{
-		Path p = new Path();
-		addRelation(child,parent,p);		
-	}
-	
-	private void addRelation(int child, int parent, Path p)
-	{
-		if(ancestorMap.contains(child,parent))
-		{
-			Vector<Path> paths = ancestorMap.get(child,parent);
-			for(Path q : paths)
-				if(p.contains(q))
-					return;
-		}
-		ancestorMap.add(child,parent,p);
-		pathLengths.add(child, p.size(), parent);
-	}
-	
-	//Builds the checkList and descendantMap
+	//Builds the RepairMap
 	private void init()
 	{
+		//Initialize the data structures
 		classList = new HashSet<Integer>();
 		checkList = new HashSet<Integer>();
 		ancestorMap = new Table3<Integer,Integer,Path>();
 		pathLengths = new Table3<Integer,Integer,Integer>();
-
-		//First build the classList, starting with the classes
+		conflictSets = new Vector<Path>();
+		
+		//Build the classList, starting with the classes
 		//involved in disjoint clauses
 		classList.addAll(rels.getDisjoint());
-		//If there aren't any, there is nothing to do
+		//If there aren't any, there is nothing else to do
 		if(classList.size() == 0)
+		{
+			System.out.println("Nothing to repair!");
 			return;
-		
-		//Then add all classes involved in mappings
+		}
+		//Otherwise, add all classes involved in mappings
 		classList.addAll(a.getSources());
 		classList.addAll(a.getTargets());
-
-		//Then build the checkList, starting with the descendants
-		//of classList classes that have at least 2 parents, both
-		//of which have a classList class in their ancestral line
+		//Then build the checkList
+		long time = System.currentTimeMillis()/1000;
+		buildCheckList();
+		System.out.println("Computed check list in " +
+				(System.currentTimeMillis()/1000-time) + " seconds");
+		System.out.println("Classes to check: " + checkList.size());
+		//Build the ancestorMap with transitive closure
+		time = System.currentTimeMillis()/1000;
+		buildAncestorMap();
+		System.out.println("Computed all check list paths in " +
+				(System.currentTimeMillis()/1000-time) + " seconds");
+		System.out.println("Paths to process: " + pathCount);
+		//And finally, get the list of conflict sets
+		time = System.currentTimeMillis()/1000;
+		buildConflictSets();
+		System.out.println("Computed minimal conflict sets of mappings in " +
+				(System.currentTimeMillis()/1000-time) + " seconds");
+		System.out.println("Conflict sets: " + conflictSets.size());
+	}
+	
+	//Computes the list of classes that must be checked for coherence
+	private void buildCheckList()
+	{
+		//Start with the descendants of classList classes that have
+		//at least 2 parents, both of which have a classList class
+		//in their ancestral line
 		HashSet<Integer> descList = new HashSet<Integer>();
 		for(Integer i: classList)
 		{
@@ -198,6 +194,8 @@ public class RepairMap
 				int count = 0;
 				for(Integer k : pars)
 				{
+					if(classList.contains(k))
+						count++;
 					for(Integer l : rels.getSuperClasses(k, false))
 					{
 						if(classList.contains(l))
@@ -205,8 +203,6 @@ public class RepairMap
 							count++;
 							break;
 						}
-						if(count > 1)
-							break;
 					}
 					if(count > 1)
 						break;
@@ -218,11 +214,19 @@ public class RepairMap
 			}
 		}
 		//Filter out classes that have a descendant in the descList
+		//or a mapped descendant
 		HashSet<Integer> toRemove = new HashSet<Integer>();
 		for(Integer i : descList)
+		{
 			for(Integer j : rels.getSubClasses(i, false))
-				if(descList.contains(j))
+			{
+				if(descList.contains(j) || a.containsClass(j))
+				{
 					toRemove.add(i);
+					break;
+				}
+			}
+		}
 		descList.removeAll(toRemove);
 		//And those that have the same set or a subset of
 		//classList classes in their ancestor line
@@ -262,17 +266,16 @@ public class RepairMap
 		}
 		//Add all selected classes to the checkList
 		checkList.addAll(desc);
-
 		//Now get the list of all mapped classes that are
 		//involved in two mappings or have an ancestral
 		//path to a mapped class, from only one side
 		HashSet<Integer> mapList = new HashSet<Integer>();
 		for(Mapping m : a)
 		{
-			//Check if there is no descendant in the checkList
-			boolean isRedundant = false;
 			int source = m.getSourceId();
 			int target = m.getTargetId();
+			//Check if there is no descendant in the checkList
+			boolean isRedundant = false;
 			HashSet<Integer> descendants = new HashSet<Integer>(rels.getSubClasses(source, false));
 			descendants.addAll(rels.getSubClasses(target, false));
 			for(Integer i : descendants)
@@ -304,65 +307,60 @@ public class RepairMap
 				for(Integer j : rels.getSuperClasses(target, false))
 					if(a.containsTarget(j))
 						targetCount++;
-				if(sourceCount >= targetCount && sourceCount > 1)
+				if(sourceCount > 1 && targetCount < sourceCount)
 					mapList.add(source);
 				else if(targetCount > 1)
 					mapList.add(target);
 			}
 		}
-		//Filter out mapped classes that have a descendant in the mapList
 		toRemove = new HashSet<Integer>();
 		for(Integer i : mapList)
+		{
 			for(Integer j : rels.getSubClasses(i, false))
+			{
 				if(mapList.contains(j))
+				{
 					toRemove.add(i);
+					break;
+				}
+			}
+		}
 		mapList.removeAll(toRemove);
-		//Filter out checkList classes that have a descendant in the mapList
-		toRemove = new HashSet<Integer>();
-		for(Integer i : checkList)
-			for(Integer j : rels.getSubClasses(i, false))
-				if(mapList.contains(j))
-					toRemove.add(i);
-		checkList.removeAll(toRemove);
 		//Finally, add the mapList to the checkList
 		checkList.addAll(mapList);
-		//Now that we have the checkList, we can build the acestorMap
-		//with all relations between classes in the checkList and
-		//classes in the classList
+	}
+
+	//Builds the map of ancestral relations between all classes
+	//in the checkList and all classes in the classList, with
+	//(breadth first) transitive closure
+	private void buildAncestorMap()
+	{
+		//First get the "direct" relations between checkList
+		//and classList classes, which are present in the
+		//RelationshipMap, plus the relations through direct
+		//mappings of checkList classes
 		for(Integer i : checkList)
 		{
+			//Direct relations
 			Set<Integer> ancs = rels.getSuperClasses(i,false);
 			for(Integer j : ancs)
 				if(classList.contains(j))
-					addRelation(i, j);
-		}
-	}
-	
-	//Fills in the ancestorMap by adding paths that pass through
-	//mappings doing a breadth first search
-	private void transitiveClosure()
-	{
-		//First, add paths through the direct mappings of checkList classes
-		for(Integer i : checkList)
-		{
-			//Get the mappings
+					addRelation(i, j, new Path());
+			//Mappings
 			Set<Integer> maps = a.getMappingsBidirectional(i);
-			//And for each mapping
 			for(Integer j : maps)
 			{
-				//Get its index
+				//Get both the mapping and its ancestors
 				int index = a.getIndexBidirectional(i, j);
-				//Get its ancestors
 				HashSet<Integer> newAncestors = new HashSet<Integer>(rels.getSuperClasses(j,false));
-				//Plus the mapping itself
 				newAncestors.add(j);
-				//And add them, if they are on the checkList
+				//And add them
 				for(Integer m : newAncestors)
 					if(classList.contains(m))
 						addRelation(i,m,new Path(index));
 			}
 		}
-		//Then get paths iteratively by extending paths with new
+		//Then add paths iteratively by extending paths with new
 		//mappings, stopping when the ancestorMap stops growing
 		int size = 0;
 		for(int i = 0; size < ancestorMap.size(); i++)
@@ -424,27 +422,82 @@ public class RepairMap
 		}
 	}
 	
+	//Adds a relation to the ancestorMap (and pathLengths)
+	private void addRelation(int child, int parent, Path p)
+	{
+		if(ancestorMap.contains(child,parent))
+		{
+			Vector<Path> paths = ancestorMap.get(child,parent);
+			for(Path q : paths)
+				if(p.contains(q))
+					return;
+		}
+		ancestorMap.add(child,parent,p);
+		pathLengths.add(child, p.size(), parent);
+		if(rels.hasDisjoint(parent))
+			pathCount++;
+	}
+	
+	//Builds the global minimal conflict sets for all checkList classes
 	private void buildConflictSets()
 	{
-		conflictSets = new Vector<Path>();
 		for(Integer i : checkList)
 		{
-			Vector<Integer> disj = new Vector<Integer>();
-			for(Integer j : ancestorMap.keySet(i))
-				if(rels.hasDisjoint(j))
-					disj.add(j);
-			for(int j = 0; j < disj.size()-1; j++)
+			Vector<Path> classConflicts = buildClassConflicts(i);
+			for(Path p : classConflicts)
+				addConflict(p,conflictSets);
+		}
+	}
+	
+	//Builds the minimal conflict sets for a given checkList class
+	private Vector<Path> buildClassConflicts(int classId)
+	{
+		//First get all ancestors involved in disjoint clauses
+		HashSet<Integer> disj = new HashSet<Integer>();
+		for(Integer i : ancestorMap.keySet(classId))
+			if(rels.hasDisjoint(i))
+				disj.add(i);
+		
+		//Then test each pair of ancestors for disjointness
+		Vector<Path> classConflicts = new Vector<Path>();
+		for(Integer i : disj)
+		{
+			for(Integer j : rels.getDisjoint(i))
 			{
-				for(int k = j+1; k < disj.size(); k++)
+				if(i > j || !disj.contains(j))
+					continue;
+				for(Path p : ancestorMap.get(classId, i))
 				{
-					if(rels.areDisjoint(disj.get(j), disj.get(k)))
+					for(Path q : ancestorMap.get(classId, j))
 					{
-						for(Path p : ancestorMap.get(i, disj.get(j)))
-							for(Path q : ancestorMap.get(i, disj.get(k)))
-								addConflict(p,q);							
+						Path merged = new Path(p);
+						merged.merge(q);
+						addConflict(merged, classConflicts);
 					}
 				}
 			}
 		}
+		return classConflicts;
+	}
+	
+	//Adds a path to a list of conflict sets if it is a
+	//minimal path, removing redundant paths if they exist
+	private void addConflict(Path p, Vector<Path> paths)
+	{
+		for(int i = 0; i < paths.size(); i++)
+		{
+			Path q = paths.get(i);
+			if(p.size() >= q.size())
+			{
+				if(p.contains(q))
+					return;
+			}
+			else if(q.contains(p))
+			{
+				paths.remove(i);
+				i--;
+			}
+		}
+		paths.add(p);
 	}
 }

@@ -22,7 +22,9 @@
 ******************************************************************************/
 package aml.match;
 
+import aml.AML;
 import aml.AML.MappingRelation;
+import aml.ontology.URIMap;
 
 public class Mapping implements Comparable<Mapping>
 {
@@ -171,5 +173,13 @@ public class Mapping implements Comparable<Mapping>
 	public void setSimilarity(double sim)
 	{
 		similarity = Math.round(sim*10000)/10000.0;
+	}
+	
+	@Override
+	public String toString()
+	{
+		URIMap uris = AML.getInstance().getURIMap();
+		return uris.getURI(sourceId) + " " + rel.toString() + " " +
+				uris.getURI(targetId) + " " + similarity;
 	}
 }

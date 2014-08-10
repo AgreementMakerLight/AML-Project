@@ -299,6 +299,16 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
+ 	 * @param classId: the index of the class to check in the alignment 
+	 * @return whether the Alignment contains a Mapping with that class
+	 * (either as a source or as a target class)
+	 */
+	public boolean containsClass(int classId)
+	{
+		return containsSource(classId) || containsTarget(classId);
+	}
+	
+	/**
 	 * @param sourceId: the index of the source class to check in the alignment
  	 * @param targetId: the index of the target class to check in the alignment 
 	 * @return whether the Alignment contains a Mapping for sourceId or for targetId
