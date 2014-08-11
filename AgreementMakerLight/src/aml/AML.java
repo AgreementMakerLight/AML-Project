@@ -31,7 +31,7 @@ import java.util.Vector;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import aml.filter.RepairerOld;
+import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 import aml.match.AMLMatcher;
 import aml.match.Alignment;
@@ -628,8 +628,8 @@ public class AML
     
     public void repair()
     {
-		RepairerOld r = new RepairerOld();
-		a = r.repair(a);
+		CardinalityRepairer r = new CardinalityRepairer(a);
+		a = r.repair();
     	if(a.size() >= 1)
     		currentMapping = 0;
     	else

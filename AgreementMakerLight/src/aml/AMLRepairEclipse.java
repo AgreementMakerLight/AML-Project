@@ -20,7 +20,7 @@
 ******************************************************************************/
 package aml;
 
-import aml.filter.RepairerOld;
+import aml.filter.CardinalityRepairer;
 import aml.match.Alignment;
 import aml.match.LexicalMatcher;
 
@@ -46,8 +46,8 @@ public class AMLRepairEclipse
 		LexicalMatcher lm = new LexicalMatcher();
 		Alignment a = lm.match(0.6);
 		//Repair the alignment
-		RepairerOld r = new RepairerOld();
-		Alignment b = r.repair(a);
+		CardinalityRepairer r = new CardinalityRepairer(a);
+		Alignment b = r.repair();
 		//And save it
 		b.saveRDF(repairPath);
 	}

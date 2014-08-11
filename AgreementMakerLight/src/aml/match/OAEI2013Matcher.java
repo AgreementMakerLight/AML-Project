@@ -24,7 +24,7 @@ package aml.match;
 import aml.AML;
 import aml.AML.SelectionType;
 import aml.filter.CardinalitySelector;
-import aml.filter.RepairerOld;
+import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 import aml.ontology.Ontology;
 import aml.ontology.URIMap;
@@ -346,8 +346,8 @@ public class OAEI2013Matcher
 	private long repair()
 	{
 		long startTime = System.currentTimeMillis()/1000;
-		RepairerOld rep = new RepairerOld();
-		a = rep.repair(a);
+		CardinalityRepairer rep = new CardinalityRepairer(a);
+		a = rep.repair();
 		return System.currentTimeMillis()/1000 - startTime;
 	}
 	
