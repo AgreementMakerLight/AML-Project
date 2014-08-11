@@ -151,7 +151,7 @@ public class OAEI2013Matcher
 		else if(Math.max(sSize, tSize) > 500)
 		{
 			size = 2;
-			threshold = 0.59;//TODO: Reevaluate this
+			threshold = 0.59;
 		}
 		else
 		{

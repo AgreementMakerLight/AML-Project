@@ -12,14 +12,11 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Matches Ontologies by measuring the global word similarity between their    *
-* classes, using a weighted Jaccard index.                                    *
-* NOTE: This matching algorithm requires O(N^2) memory in the worst case and  *
-* thus should not be used with very large Ontologies unless adequate memory   *
-* is available.                                                               *
+* Matches Ontologies by measuring the word similarity between their classes,  *
+* using a (weighted) Jaccard index.                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-07-2014                                                            *
+* @date 11-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -30,87 +27,204 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.AML.SizeCategory;
-import aml.ontology.Ontology;
-
+import aml.AML.WordMatchStrategy;
 import aml.ontology.WordLexicon;
+import aml.ontology.Ontology;
+import aml.util.Similarity;
 import aml.util.Table2;
-import aml.util.Table2Plus;
 
-public class WordMatcher implements PrimaryMatcher
+public class WordMatcher implements PrimaryMatcher, Rematcher
 {
 
 //Attributes
 	
 	private final int MAX_BLOCK_SIZE = 10000;
+	private WordLexicon sourceLex;
+	private WordLexicon targetLex;
+	private boolean useWeighting;
+	private WordMatchStrategy strategy;
 	
 //Constructors
 	
 	/**
-	 * Constructs a new WordMatcher
+	 * Constructs a new WordMatcher with default options
 	 */
-	public WordMatcher(){}
+	public WordMatcher()
+	{
+		AML aml = AML.getInstance();
+		sourceLex = new WordLexicon(aml.getSource().getLexicon());
+		targetLex = new WordLexicon(aml.getTarget().getLexicon());
+		useWeighting = true;
+		strategy = WordMatchStrategy.AVERAGE;
+	}
+	
+	/**
+	 * Constructs a new WordMatcher with the given options
+	 * @param w: whether to use Evidence Content weights
+	 * or perform a simple Jaccard index
+	 * @param s: the WordMatchStrategy to use
+	 */
+	public WordMatcher(boolean w, WordMatchStrategy s)
+	{
+		AML aml = AML.getInstance();
+		sourceLex = new WordLexicon(aml.getSource().getLexicon());
+		targetLex = new WordLexicon(aml.getTarget().getLexicon());
+		useWeighting = w;
+		strategy = s;
+	}
 	
 //Public Methods
 	
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running WordMatcher");
+		long time = System.currentTimeMillis()/1000;
 		Alignment a = new Alignment();
+		//Get the Ontologies
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
-		if(aml.getSizeCategory().equals(SizeCategory.LARGE))
+		//Break them into chunks according to MAX_BLACK_SIZE
+		Iterator<Integer> sourceClasses = source.getClasses().iterator();
+		Iterator<Integer> targetClasses = target.getClasses().iterator();
+		Table2<Integer,Integer> sourcesToMap = new Table2<Integer,Integer>();
+		for(int i = 0; sourceClasses.hasNext(); i++)
+			sourcesToMap.add(i/MAX_BLOCK_SIZE, sourceClasses.next());
+		Table2<Integer,Integer> targetsToMap = new Table2<Integer,Integer>();
+		for(int i = 0; targetClasses.hasNext(); i++)
+			targetsToMap.add(i/MAX_BLOCK_SIZE, targetClasses.next());
+		//Match all chunks
+		System.out.println("Blocks to match: " + sourcesToMap.keyCount()*targetsToMap.keyCount());
+		int count = 0;
+		for(Integer i : sourcesToMap.keySet())
 		{
-			Iterator<Integer> sourceClasses = source.getClasses().iterator();
-			Iterator<Integer> targetClasses = target.getClasses().iterator();
-			
-			Table2<Integer,Integer> sourcesToMap = new Table2<Integer,Integer>();
-			for(int i = 0; sourceClasses.hasNext(); i++)
-				sourcesToMap.add(i/MAX_BLOCK_SIZE, sourceClasses.next());
-			
-			Table2<Integer,Integer> targetsToMap = new Table2<Integer,Integer>();
-			for(int i = 0; targetClasses.hasNext(); i++)
-				targetsToMap.add(i/MAX_BLOCK_SIZE, targetClasses.next());
-			
-			System.out.println(sourcesToMap.keyCount()*targetsToMap.keyCount());
-			int count = 0;
-			for(Integer i : sourcesToMap.keySet())
+			HashSet<Integer> sources = new HashSet<Integer>(sourcesToMap.get(i));
+			Table2<String,Integer> sWLex = sourceLex.getWordTable(sources);
+			for(Integer j : targetsToMap.keySet())
 			{
-				HashSet<Integer> sources = new HashSet<Integer>(sourcesToMap.get(i));
-				WordLexicon sWLex = new WordLexicon(source.getLexicon(),sources);
-				for(Integer j : targetsToMap.keySet())
-				{
-					HashSet<Integer> targets = new HashSet<Integer>(targetsToMap.get(j));
-					WordLexicon tWLex = new WordLexicon(target.getLexicon(),targets);
-					a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
-					System.out.println(++count);
-				}
+				HashSet<Integer> targets = new HashSet<Integer>(targetsToMap.get(j));
+				Table2<String,Integer> tWLex = targetLex.getWordTable(targets);
+				a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
+				count++;
+				if(count%10 == 0)
+					System.out.println(count*10 + "%");
 			}
 		}
-		else
-		{
-			WordLexicon sWLex = new WordLexicon(source.getLexicon());
-			WordLexicon tWLex = new WordLexicon(target.getLexicon());
-			a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
-		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return a;
 	}
 	
-	/**
-	 * Matches two WordLexicons
-	 * @param sWLex: the source WordLexicon to match
-	 * @param tWLex: the target WordLexicon to match
-	 * @param thresh: the similarity threshold
-	 * @return the Alignment between the ontologies containing
-	 * the two WordLexicons
-	 */
-	public Alignment matchWordLexicons(WordLexicon sWLex, WordLexicon tWLex, double thresh)
+	@Override
+	public Alignment rematch(Alignment a)
 	{
-		Table2Plus<Integer,Integer,Double> maps = new Table2Plus<Integer,Integer,Double>();
-		WordLexicon larger, smaller;
-		//To minimize iterations, we want to iterate through the smallest Lexicon
-		boolean sourceIsSmaller = (sWLex.wordCount() <= tWLex.wordCount());
+		Alignment maps = new Alignment();
+		for(Mapping m : a)
+			maps.add(mapTwoClasses(m.getSourceId(),m.getTargetId()));
+		return maps;
+	}
+	
+//Private
+	
+	//Maps two classes according to the set word match strategy
+	private Mapping mapTwoClasses(int sourceId, int targetId)
+	{
+		//If the strategy is not by name, compute the class similarity
+		double classSim = 0.0;
+		if(!strategy.equals(WordMatchStrategy.BY_NAME))
+		{
+			classSim = classSimilarity(sourceId,targetId);
+			//If the class similarity is very low, return the mapping
+			//so as not to waste time computing name similarity
+			if(classSim < 0.25)
+				return new Mapping(sourceId,targetId,classSim);
+		}
+		//If the strategy is not by class, compute the name similarity
+		double nameSim = 0.0;
+		if(!strategy.equals(WordMatchStrategy.BY_CLASS))
+		{
+			//Which the maximum similarity between all names of both classes
+			double sim, weight;
+			Set<String> sourceNames = sourceLex.getNames(sourceId);
+			Set<String> targetNames = targetLex.getNames(targetId);
+			for(String s : sourceNames)
+			{
+				weight = sourceLex.getNameWeight(s,sourceId);
+				for(String t : targetNames)
+				{
+					sim = weight * targetLex.getNameWeight(t, targetId);
+					sim *= nameSimilarity(s,t);
+					if(sim > nameSim)
+						nameSim = sim;
+				}
+			}
+		}
+		//Combine the similarities according to the strategy
+		double sim = 0.0;
+		if(strategy.equals(WordMatchStrategy.BY_NAME))
+			sim = nameSim;
+		else if(strategy.equals(WordMatchStrategy.BY_CLASS))
+			sim = classSim;
+		else if(strategy.equals(WordMatchStrategy.AVERAGE))
+			sim = Math.sqrt(nameSim * classSim);
+		else if(strategy.equals(WordMatchStrategy.MAXIMUM))
+			sim = Math.max(nameSim,classSim);
+		else if(strategy.equals(WordMatchStrategy.MINIMUM))
+			sim = Math.min(nameSim,classSim);
+		//Return the mapping with the combined similarity
+		return new Mapping(sourceId,targetId,sim);
+	}
+
+	//Computes the word-based (bag-of-words) similarity between two classes
+	private double classSimilarity(int sourceId, int targetId)
+	{
+		Set<String> sourceWords = sourceLex.getWords(sourceId);
+		Set<String> targetWords = targetLex.getWords(targetId);
+		if(!useWeighting)
+			return Similarity.jaccard(sourceWords, targetWords);
+		double intersection = 0.0;
+		double union = sourceLex.getClassEC(sourceId) + 
+				targetLex.getClassEC(targetId);
+		for(String w : sourceWords)
+		{
+			double weight = sourceLex.getWordEC(w) * sourceLex.getWordWeight(w,sourceId);
+			if(targetWords.contains(w))
+				intersection += Math.sqrt(weight * targetLex.getWordEC(w) *
+						targetLex.getWordWeight(w,targetId));
+		}			
+		union -= intersection;
+		return intersection / union;
+	}
+	
+	//Computes the maximum word-based (bag-of-words) similarity between two names
+	private double nameSimilarity(String s, String t)
+	{
+		Set<String> sourceWords = sourceLex.getWords(s);
+		Set<String> targetWords = targetLex.getWords(t);
+		if(!useWeighting)
+			return Similarity.jaccard(sourceWords, targetWords);
+		double intersection = 0.0;
+		double union = sourceLex.getNameEC(s) + targetLex.getNameEC(t);
+		for(String w : sourceWords)
+			if(targetWords.contains(w))
+				intersection += Math.sqrt(sourceLex.getWordEC(w) * targetLex.getWordEC(w));
+		union -= intersection;
+		return intersection/union;
+	}
+	
+	//Matches two word tables finding all class pairs that share a word
+	//then measuring their word similarity
+	private Alignment matchWordLexicons(Table2<String,Integer> sWLex,
+			Table2<String,Integer> tWLex, double thresh)
+	{
+		//The alignment to return
+		Alignment maps = new Alignment();
+		//The list of computed mappings, to avoid repeated computations
+		Table2<Integer,Integer> computedMappings = new Table2<Integer,Integer>();
+		//To minimize iterations, we want to iterate through the smallest table
+		Table2<String,Integer> larger, smaller;
+		boolean sourceIsSmaller = (sWLex.keyCount() <= tWLex.keyCount());
 		if(sourceIsSmaller)
 		{
 			smaller = sWLex;
@@ -121,25 +235,20 @@ public class WordMatcher implements PrimaryMatcher
 			smaller = tWLex;
 			larger = sWLex;
 		}
-		//Get the smaller ontology words
-		Set<String> words = smaller.getWords();
+		//Get the smaller table's words
+		Set<String> words = smaller.keySet();
 		for(String s : words)
 		{
-			//Get all term indexes for the name in both ontologies
-			Vector<Integer> largerIndexes = larger.getClasses(s);
-			Vector<Integer> smallerIndexes = smaller.getClasses(s);
+			//Get all classes with the word in both tables
+			Vector<Integer> largerIndexes = larger.get(s);
+			Vector<Integer> smallerIndexes = smaller.get(s);
 			if(largerIndexes == null)
 				continue;
-			//Otherwise, compute the average EC
-			double smallerEc = smaller.getEC(s);
-			double largerEc = larger.getEC(s);
-			//Then match all indexes
+			//Then match all classes
 			for(Integer i : smallerIndexes)
 			{
-				double smallerSim = smallerEc * smaller.getWeight(s, i);
 				for(Integer j : largerIndexes)
 				{
-					double largerSim = largerEc * larger.getWeight(s, j);
 					int sourceId, targetId;
 					if(sourceIsSmaller)
 					{
@@ -151,27 +260,16 @@ public class WordMatcher implements PrimaryMatcher
 						sourceId = j;
 						targetId = i;
 					}
-					Double sim = maps.get(sourceId,targetId);
-					if(sim == null)
-						sim = 0.0;
-					sim += Math.sqrt(smallerSim * largerSim);
-					maps.add(sourceId,targetId,sim);
+					//Unless they have already been matched
+					if(computedMappings.contains(sourceId, targetId))
+						continue;
+					Mapping m = mapTwoClasses(sourceId,targetId);
+					computedMappings.add(sourceId,targetId);
+					if(m.getSimilarity()>=thresh)
+						maps.add(m);
 				}
 			}
 		}
-		Set<Integer> sources = maps.keySet();
-		Alignment a = new Alignment();
-		for(Integer i : sources)
-		{
-			Set<Integer> targets = maps.keySet(i);
-			for(Integer j : targets)
-			{
-				double sim = maps.get(i,j);
-				sim /= sWLex.getEC(i) + tWLex.getEC(j) - sim;
-				if(sim >= thresh)
-					a.add(new Mapping(i, j, sim));
-			}
-		}
-		return a;
+		return maps;
 	}
 }

@@ -231,6 +231,20 @@ public class AML
     	SizeCategory(){}    	
     }
     
+	/**
+	 * Lists the Word Matching strategies
+	 */
+    public enum WordMatchStrategy
+    {
+    	BY_CLASS,
+    	BY_NAME,
+    	AVERAGE,
+    	MAXIMUM,
+    	MINIMUM;
+    	
+    	WordMatchStrategy(){}    	
+    }
+    
 //Constructors
 	
 	//It's private so that no other instances can be created 
