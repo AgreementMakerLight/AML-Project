@@ -22,6 +22,7 @@
 ******************************************************************************/
 package aml.match;
 
+import java.io.File;
 import java.util.Set;
 
 import aml.AML;
@@ -51,6 +52,25 @@ public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 	{
 		ext = x.getLexicon();
 		uri = x.getURI();
+	}
+	
+	/**
+	 * Constructs a MediatingMatcher with the given external Lexicon file
+	 * @param file: the file with the external Lexicon
+	 */
+	public MediatingMatcher(String file)
+	{
+		try
+		{
+			ext = new Lexicon(file);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Unable to build lexicon: " + file);
+			e.printStackTrace();
+			ext = new Lexicon();
+		}
+		uri = (new File(file)).getName();
 	}
 
 //Public Methods

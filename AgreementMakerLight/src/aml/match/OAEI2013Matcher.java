@@ -47,7 +47,8 @@ public class OAEI2013Matcher
 	private double threshold;
 	//The oracle for interactive matching
 	private Oracle oracle;
-	//The path to the Uberon ontology
+	//The path to UMLS and Uberon
+	private final String UMLS = "store/knowledge/UMLS.lexicon";
 	private final String UBERON_ONT = "store/knowledge/uberon.owl";
 	private final String UBERON_REF = "store/knowledge/uberon.xrefs";
 	//Links to the ontologies and alignments
@@ -180,7 +181,7 @@ public class OAEI2013Matcher
 				//For large ontologies, we start with UMLS, since it is more likely to have suitable coverage
 				if(!ignoreUMLS)
 				{
-					UMLSMatcher um = new UMLSMatcher();
+					MediatingMatcher um = new MediatingMatcher(UMLS);
 					umls = um.match(BASE_THRESH);
 					double umlsGain = umls.gainOneToOne(base);
 					//If UMLS has high gain we use the UMLS matcher exclusively
@@ -226,7 +227,7 @@ public class OAEI2013Matcher
 				//Otherwise, we proceed to UMLS
 				if(!ignoreUMLS)
 				{
-					UMLSMatcher um = new UMLSMatcher();
+					MediatingMatcher um = new MediatingMatcher(UMLS);
 					umls = um.match(BASE_THRESH);
 					double umlsGain = umls.gainOneToOne(base);
 					double umlsCoverage = Math.min(umls.sourceCoverage(),umls.targetCoverage());

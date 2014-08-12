@@ -363,7 +363,9 @@ public class AML
 	 */
 	public double getLexicalWeight(String type)
 	{
-		return typeWeights.get(type);
+		if(typeWeights.containsKey(type))
+			return typeWeights.get(type);
+		return 0.8;
 	}
 	
     public MatchingAlgorithm getMatcher()

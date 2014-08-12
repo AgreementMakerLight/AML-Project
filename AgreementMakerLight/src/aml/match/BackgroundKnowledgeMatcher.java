@@ -16,7 +16,7 @@
 * combining the best available background knowledge sources.                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-07-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -74,14 +74,14 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 		//Auxiliary variables
 		Alignment temp;
 		Double gain, refGain;
-		//First go through the listed ontologies
+		//First go through the listed sources
 		for(String s : sources)
 		{
-			//UMLS
-			if(s.equals("UMLS"))
+			//Lexicon files
+			if(s.endsWith(".lexicon"))
 			{
-				UMLSMatcher um = new UMLSMatcher();
-				temp = um.match(thresh);
+				MediatingMatcher mm = new MediatingMatcher(s);
+				temp = mm.match(thresh);
 				if(oneToOne)
 					gain = temp.gainOneToOne(tempBase);
 				else
