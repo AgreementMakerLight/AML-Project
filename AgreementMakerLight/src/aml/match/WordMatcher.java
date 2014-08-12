@@ -47,19 +47,39 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	public WordMatcher()
 	{
 		AML aml = AML.getInstance();
-		sourceLex = new WordLexicon(aml.getSource().getLexicon());
-		targetLex = new WordLexicon(aml.getTarget().getLexicon());
+		sourceLex = aml.getSource().getWordLexicon();
+		targetLex = aml.getTarget().getWordLexicon();
 	}
 	
 	/**
-	 * Constructs a new WordMatcher with the given options
+	 * Constructs a new WordMatcher for the given language
+	 * @param lang: the language on which to match Ontologies
+	 */
+	public WordMatcher(String lang)
+	{
+		AML aml = AML.getInstance();
+		sourceLex = aml.getSource().getWordLexicon(lang);
+		targetLex = aml.getTarget().getWordLexicon(lang);
+	}
+	
+	/**
+	 * Constructs a new WordMatcher with the given strategy
 	 * @param s: the WordMatchStrategy to use
 	 */
 	public WordMatcher(WordMatchStrategy s)
 	{
-		AML aml = AML.getInstance();
-		sourceLex = new WordLexicon(aml.getSource().getLexicon());
-		targetLex = new WordLexicon(aml.getTarget().getLexicon());
+		this();
+		strategy = s;
+	}
+	
+	/**
+	 * Constructs a new WordMatcher for the given language
+	 * @param lang: the language on which to match Ontologies
+	 * @param s: the WordMatchStrategy to use
+	 */
+	public WordMatcher(String lang, WordMatchStrategy s)
+	{
+		this(lang);
 		strategy = s;
 	}
 	

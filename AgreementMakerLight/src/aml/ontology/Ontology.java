@@ -15,7 +15,7 @@
 * An Ontology object, loaded using the OWL API.                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
@@ -81,6 +81,8 @@ public class Ontology
 	private HashMap<Integer,Property> properties;
 	//Its lexicon
 	private Lexicon lex;
+	//Its word lexicon
+	private WordLexicon wLex;
 	//Its map of cross-references
 	private ReferenceMap refs;
 	
@@ -275,6 +277,34 @@ public class Ontology
 	}
 	
 	/**
+	 * Gets the WordLexicon of this Ontology.
+	 * Builds the WordLexicon if not previously built, or
+	 * built for a specific language
+	 * @return the WordLexicon of this Ontology
+	 */
+	public WordLexicon getWordLexicon()
+	{
+		if(wLex == null || !wLex.getLanguage().equals(""))
+			wLex = new WordLexicon(lex);
+		return wLex;
+	}
+	
+	/**
+	 * Gets the WordLexicon of this Ontology for the
+	 * specified language.
+	 * Builds the WordLexicon if not previously built, or
+	 * built for a different or unspecified language.
+	 * @param lang: the language of the WordLexicon
+	 * @return the WordLexicon of this Ontology
+	 */
+	public WordLexicon getWordLexicon(String lang)
+	{
+		if(wLex == null || !wLex.getLanguage().equals(lang))
+			wLex = new WordLexicon(lex,lang);
+		return wLex;
+	}
+	
+	/**
 	 * @param index: the index of the URI in the ontology
 	 * @return whether the index corresponds to a class
 	 */
@@ -310,6 +340,7 @@ public class Ontology
 		nameIndex = new HashMap<String,Integer>();
 		properties = new HashMap<Integer,Property>();
 		lex = new Lexicon();
+		wLex = null;
 		refs = new ReferenceMap();
 		aml = AML.getInstance();
 		useReasoner = aml.useReasoner();

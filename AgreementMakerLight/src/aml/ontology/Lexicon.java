@@ -16,11 +16,15 @@
 * Lexical entries are weighted according to their provenance.                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
 
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -66,6 +70,28 @@ public class Lexicon
 		names = new Table3List<String,Integer,Provenance>(l.names);
 		classes = new Table3List<Integer,String,Provenance>(l.classes);
 		langCount = new HashMap<String,Integer>(l.langCount);
+	}
+	
+	/**
+	 * Reads a Lexicon from a given Lexicon file
+	 * @param file: the Lexicon file
+	 */
+	public Lexicon(String file) throws Exception
+	{
+		this();
+		AML aml = AML.getInstance();
+		BufferedReader inStream = new BufferedReader(new FileReader(file));
+		String line;
+		while((line = inStream.readLine()) != null)
+		{
+			String[] lex = line.split("\t");
+			int id = Integer.parseInt(lex[0]);
+			String name = lex[1];
+			String type = lex[2];
+			double weight = aml.getLexicalWeight(type);
+			add(id,name,type,"",weight);
+		}
+		inStream.close();
 	}
 
 //Public Methods
@@ -658,6 +684,27 @@ public class Lexicon
 			sources.add(p.getSource());
 		return sources;
 	}
+	
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
+	 * @return the best type of the name for that class
+	 */
+	public String getType(String name, int classId)
+	{
+		String type = "";
+		double weight = 0.0;
+		for(Provenance p : names.get(name, classId))
+		{
+			if(p.getWeight() > weight)
+			{
+				weight = p.getWeight();
+				type = p.getType();
+			}
+		}
+		return type;
+	}
+	
 	/**
 	 * @param name: the name to search in the Lexicon
 	 * @param classId: the class to search in the Lexicon
@@ -677,14 +724,17 @@ public class Lexicon
 	/**
 	 * @param name: the name to search in the Lexicon
 	 * @param classId: the class to search in the Lexicon
-	 * @return the weight corresponding to the provenance of the name for that class
+	 * @return the best weight of the name for that class
 	 */
 	public double getWeight(String name, int classId)
 	{
 		if(!names.contains(name, classId))
 			return 0.0;
-		Provenance p = names.get(name, classId).get(0);
-		return p.getWeight();
+		double weight = 0.0;
+		for(Provenance p : names.get(name, classId))
+			if(p.getWeight() > weight)
+				weight = p.getWeight();
+		return weight;
 	}
 	
 	/**
@@ -824,6 +874,19 @@ public class Lexicon
 				if(p.getLanguage().equals(lang) && p.getType().equals(type))
 					count++;
 		return count;
+	}
+	
+	/**
+	 * Saves this Lexicon to the specified file
+	 * @param file: the file on which to save the Lexicon
+	 */
+	public void save(String file) throws Exception
+	{
+		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
+		for(Integer i : classes.keySet())
+			for(String n : classes.keySet(i))
+				outStream.println(i + "\t" + n + "\t" + getType(n,i));
+		outStream.close();
 	}
 
 	/**
