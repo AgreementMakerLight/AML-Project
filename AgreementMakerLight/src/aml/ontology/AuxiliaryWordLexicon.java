@@ -26,7 +26,7 @@ import java.util.Vector;
 
 import aml.util.StopList;
 import aml.util.StringParser;
-import aml.util.Table2;
+import aml.util.Table2List;
 
 public class AuxiliaryWordLexicon
 {
@@ -42,7 +42,7 @@ public class AuxiliaryWordLexicon
 	//The list of stop words to ignore when building this WordLexicon
 	private Set<String> stopList;
 	//The map of words and the classes they occur in
-	private Table2<String,Integer> wordClasses;
+	private Table2List<String,Integer> wordClasses;
 	
 //Constructors
 
@@ -129,7 +129,7 @@ public class AuxiliaryWordLexicon
 	{
 		//Initialize the data structures
 		stopList = StopList.read();
-		wordClasses = new Table2<String,Integer>();
+		wordClasses = new Table2List<String,Integer>();
 		//Get the classes from the Lexicon
 		Set<Integer> classes = lex.getClasses();
 		//For each class

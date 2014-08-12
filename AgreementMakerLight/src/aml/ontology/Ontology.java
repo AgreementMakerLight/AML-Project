@@ -60,7 +60,7 @@ import uk.ac.manchester.cs.owl.owlapi.OWLObjectCardinalityRestrictionImpl;
 
 import aml.AML;
 import aml.util.StringParser;
-import aml.util.Table2Plus;
+import aml.util.Table2Map;
 
 public class Ontology
 {
@@ -91,9 +91,9 @@ public class Ontology
 	private RelationshipMap rm;
 	
 	//Auxiliary data structures to capture semantic disjointness
-	private Table2Plus<Integer,Integer,Integer> maxCard, minCard, card;
-	private Table2Plus<Integer,Integer,String> dataAllValues, dataHasValue, dataSomeValues;
-	private Table2Plus<Integer,Integer,Integer> objectAllValues, objectSomeValues;
+	private Table2Map<Integer,Integer,Integer> maxCard, minCard, card;
+	private Table2Map<Integer,Integer,String> dataAllValues, dataHasValue, dataSomeValues;
+	private Table2Map<Integer,Integer,Integer> objectAllValues, objectSomeValues;
 	
 //Constructors
 
@@ -550,18 +550,18 @@ public class Ontology
 		//Auxiliary data structures to capture semantic disjointness
 		//Two classes are disjoint if they have:
 		//1) Incompatible cardinality restrictions for the same property
-		maxCard = new Table2Plus<Integer,Integer,Integer>();
-		minCard = new Table2Plus<Integer,Integer,Integer>();
-		card = new Table2Plus<Integer,Integer,Integer>();
+		maxCard = new Table2Map<Integer,Integer,Integer>();
+		minCard = new Table2Map<Integer,Integer,Integer>();
+		card = new Table2Map<Integer,Integer,Integer>();
 		//2) Different values for the same functional data property or incompatible value
 		//restrictions on the same non-functional data property
-		dataAllValues = new Table2Plus<Integer,Integer,String>();
-		dataHasValue = new Table2Plus<Integer,Integer,String>();
-		dataSomeValues = new Table2Plus<Integer,Integer,String>();
+		dataAllValues = new Table2Map<Integer,Integer,String>();
+		dataHasValue = new Table2Map<Integer,Integer,String>();
+		dataSomeValues = new Table2Map<Integer,Integer,String>();
 		//3) Disjoint classes for the same functional object property or incompatible value
 		//restrictions on disjoint classes for the same non-functional object property
-		objectAllValues = new Table2Plus<Integer,Integer,Integer>();
-		objectSomeValues = new Table2Plus<Integer,Integer,Integer>();
+		objectAllValues = new Table2Map<Integer,Integer,Integer>();
+		objectSomeValues = new Table2Map<Integer,Integer,Integer>();
 		
 		//Get an iterator over the ontology classes
 		Set<OWLClass> classes = o.getClassesInSignature(true);

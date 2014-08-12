@@ -17,7 +17,7 @@
 * source or using the whole table if no suitable source is identified.        *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-07-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -31,7 +31,7 @@ import java.util.Set;
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
-import aml.util.Table3;
+import aml.util.Table3Set;
 
 public class UMLSMatcher implements PrimaryMatcher
 {
@@ -41,7 +41,7 @@ public class UMLSMatcher implements PrimaryMatcher
 	//The path to the UMLS table
 	private final String PATH = "store/knowledge/UMLS.lexicon";
 	//The UMLS table data structure
-	private Table3<String,String,Integer> table;
+	private Table3Set<String,String,Integer> table;
 	//The set of UMLS ids
 	private HashSet<Integer> ids;
 	//Links to the intermediate alignments
@@ -55,7 +55,7 @@ public class UMLSMatcher implements PrimaryMatcher
 	 */
 	public UMLSMatcher()
 	{
-		table = new Table3<String,String,Integer>();
+		table = new Table3Set<String,String,Integer>();
 		ids = new HashSet<Integer>();
 		try
 		{

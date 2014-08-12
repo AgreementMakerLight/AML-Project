@@ -23,7 +23,6 @@
 package aml.match;
 
 import java.util.Set;
-import java.util.Vector;
 
 import aml.AML;
 import aml.ontology.Lexicon;
@@ -60,6 +59,8 @@ public class XRefMatcher implements PrimaryMatcher, LexiconExtender
 	@Override
 	public void extendLexicons(double thresh)
 	{
+		System.out.println("Extending Lexicons with Cross-Reference Matcher using " + uri);
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon x = ext.getLexicon();
 		Ontology o = aml.getSource();
@@ -96,11 +97,15 @@ public class XRefMatcher implements PrimaryMatcher, LexiconExtender
 					lex.add(m.getSourceId(), n, TYPE, uri, sim);
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 	}
 	
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running Cross-Reference Matcher using " + uri);
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
@@ -119,6 +124,8 @@ public class XRefMatcher implements PrimaryMatcher, LexiconExtender
 				maps.add(new Mapping(sourceId,j,similarity));
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 	
@@ -136,7 +143,7 @@ public class XRefMatcher implements PrimaryMatcher, LexiconExtender
 			{
 				if(names.contains(r))
 				{
-					Vector<Integer> terms = rm.get(r);
+					Set<Integer> terms = rm.get(r);
 					//Penalize cases where multiple terms have the same xref
 					//(note that sim = 1 when the xref is unique) 
 					double sim = 1.3 - (terms.size() * 0.3);

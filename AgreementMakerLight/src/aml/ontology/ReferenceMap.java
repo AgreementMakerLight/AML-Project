@@ -24,24 +24,23 @@ package aml.ontology;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Set;
-import java.util.Vector;
 
-import aml.util.Table2;
+import aml.util.Table2Set;
 
 public class ReferenceMap
 {
 	
 //Attributes
 	
-	Table2<Integer,String> termRefs;
-	Table2<String,Integer> refTerms;
+	Table2Set<Integer,String> termRefs;
+	Table2Set<String,Integer> refTerms;
 
 //Constructors
 	
 	public ReferenceMap()
 	{
-		termRefs = new Table2<Integer,String>();
-		refTerms = new Table2<String,Integer>();
+		termRefs = new Table2Set<Integer,String>();
+		refTerms = new Table2Set<String,Integer>();
 	}
 	
 //Public Methods
@@ -104,7 +103,7 @@ public class ReferenceMap
 				String[] words = line.split("\t");
 				if(!contains(words[0]))
 					continue;
-				Vector<Integer> terms = get(words[0]);
+				Set<Integer> terms = get(words[0]);
 				for(Integer i : terms)
 					add(i, words[1]);
 			}
@@ -120,7 +119,7 @@ public class ReferenceMap
 	 * @param term: the term to search in the ReferenceMap
 	 * @return the list of external references associated with the term
 	 */
-	public Vector<String> get(int term)
+	public Set<String> get(int term)
 	{
 		return termRefs.get(term);
 	}
@@ -129,7 +128,7 @@ public class ReferenceMap
 	 * @param ref: the reference to search in the ReferenceMap
 	 * @return the list of terms for that reference
 	 */
-	public Vector<Integer> get(String ref)
+	public Set<Integer> get(String ref)
 	{
 		return refTerms.get(ref);
 	}

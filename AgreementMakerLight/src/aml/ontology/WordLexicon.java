@@ -27,24 +27,29 @@ import java.util.Set;
 
 import aml.util.StopList;
 import aml.util.StringParser;
-import aml.util.Table2;
-import aml.util.Table2Plus;
+import aml.util.Table2Set;
+import aml.util.Table2Map;
+import aml.util.Table3Set;
 
 public class WordLexicon
 {
 
 //Attributes
 
+	//The maximum size of class blocks
+	private final int MAX_BLOCK_SIZE = 10000;
 	//A link to the original Lexicon
 	private Lexicon lex;
 	//The list of stop words to ignore when building this WordLexicon
-	private Set<String> stopList;
+	private Set<String> stopSet;
 	//The language to use when building this WordLexicon
 	private String language;
+	//The map of words to names, broken into chunks
+	private Table3Set<Integer,String,Integer> wordClasses;
 	//The map of classes to names
-	private Table2Plus<Integer,String,Double> classWords;
+	private Table2Map<Integer,String,Double> classWords;
 	//The map of classes to names
-	private Table2<String,String> nameWords;
+	private Table2Set<String,String> nameWords;
 	//The map of word evidence contents
 	private HashMap<String,Double> wordECs;
 	//The map of word evidence contents
@@ -82,7 +87,15 @@ public class WordLexicon
 //Public Methods
 
 	/**
-	 * @param classId: the class to search in the lexicon
+	 * @return the number of blocks in the WordLexicon
+	 */
+	public int blockCount()
+	{
+		return wordClasses.keyCount();
+	}
+	
+	/**
+	 * @param classId: the class to search in the WordLexicon
 	 * @return the EC of the given class
 	 */
 	public double getClassEC(int classId)
@@ -93,7 +106,7 @@ public class WordLexicon
 	}
 	
 	/**
-	 * @return the set of classes in the lexicon
+	 * @return the set of classes in the WordLexicon
 	 */
 	public Set<Integer> getClasses()
 	{
@@ -101,7 +114,15 @@ public class WordLexicon
 	}
 	
 	/**
-	 * @param n: the name to search in the lexicon
+	 * @return the language used to build this WordLexicon
+	 */
+	public String getLanguage()
+	{
+		return language;
+	}
+	
+	/**
+	 * @param n: the name to search in the WordLexicon
 	 * @return the EC of the given name
 	 */
 	public double getNameEC(String n)
@@ -112,7 +133,7 @@ public class WordLexicon
 	}
 	
 	/**
-	 * @return the set of names in the lexicon
+	 * @return the set of names in the WordLexicon
 	 */
 	public Set<String> getNames()
 	{
@@ -132,9 +153,9 @@ public class WordLexicon
 	}
 	
 	/**
-	 * @param name: the name to search in the lexicon
-	 * @param classId: the class to search in the lexicon
-	 * @return the weight of the name for the class in the lexicon
+	 * @param name: the name to search in the WordLexicon
+	 * @param classId: the class to search in the WordLexicon
+	 * @return the weight of the name for the class in the WordLexicon
 	 */
 	public double getNameWeight(String name, int classId)
 	{
@@ -142,7 +163,7 @@ public class WordLexicon
 	}
 	
 	/**
-	 * @param w: the word to search in the lexicon
+	 * @param w: the word to search in the WordLexicon
 	 * @return the EC of the given word
 	 */
 	public double getWordEC(String w)
@@ -173,22 +194,17 @@ public class WordLexicon
 	}
 	
 	/**
-	 * @return the table of words associated with a given set of classes
+	 * @return the table of words for a given block of classes
 	 */
-	public Table2<String,Integer> getWordTable(Set<Integer> classes)
+	public Table2Set<String,Integer> getWordTable(int block)
 	{
-		Table2<String,Integer> wordTable = new Table2<String,Integer>();
-		for(Integer i : classes)
-			if(classWords.contains(i))
-				for(String w : classWords.keySet(i))
-					wordTable.add(w,i);
-		return wordTable;
+		return wordClasses.get(block);
 	}
 	
 	/**
-	 * @param word: the word to search in the lexicon
-	 * @param classId: the class to search in the lexicon
-	 * @return the weight of the word for the class in the lexicon
+	 * @param word: the word to search in the WordLexicon
+	 * @param classId: the class to search in the WordLexicon
+	 * @return the weight of the word for the class in the WordLexicon
 	 */
 	public double getWordWeight(String word, int classId)
 	{
@@ -203,9 +219,10 @@ public class WordLexicon
 	private void init()
 	{
 		//Initialize the data structures
-		stopList = StopList.read();
-		classWords = new Table2Plus<Integer,String,Double>();
-		nameWords = new Table2<String,String>();
+		stopSet = StopList.read();
+		wordClasses = new Table3Set<Integer,String,Integer>();
+		classWords = new Table2Map<Integer,String,Double>();
+		nameWords = new Table2Set<String,String>();
 		wordECs = new HashMap<String,Double>();
 		classECs = new HashMap<Integer,Double>();
 		nameECs = new HashMap<String,Double>();
@@ -263,18 +280,22 @@ public class WordLexicon
 		for(String w : words)
 		{
 			String word = w.replaceAll("[()]", "");
-			if(stopList.contains(word) || word.length() < 2 || !word.matches(".*[a-zA-Z].*"))
+			if(stopSet.contains(word) || word.length() < 2 || !word.matches(".*[a-zA-Z].*"))
 				continue;
-			//Add the name-word pair to the WordLexicon
-			nameWords.add(name, word);
+			//Get the current block number (as determined by the number of classes)
+			int block = classWords.keySet().size()/MAX_BLOCK_SIZE;
+			//Add the block-word-class triple
+			wordClasses.add(block,word,classId);
 			//Update the current weight of the word for the classId
 			Double weight = classWords.get(classId,word);
 			if(weight == null)
 				weight = lex.getCorrectedWeight(name, classId);
 			else
 				weight += lex.getCorrectedWeight(name, classId);
-			//And add the class-word-weight trio
+			//Add the class-word-weight triple
 			classWords.add(classId, word, weight);
+			//Add the name-word pair
+			nameWords.add(name, word);
 			//Update the word frequency
 			Double freq = wordECs.get(word);
 			if(freq == null)

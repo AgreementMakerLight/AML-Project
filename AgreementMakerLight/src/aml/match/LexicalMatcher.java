@@ -16,7 +16,7 @@
 * Lexicons. Weighs matches according to the provenance of the names.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -42,12 +42,17 @@ public class LexicalMatcher implements PrimaryMatcher
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running Lexical Matcher");
+		long time = System.currentTimeMillis()/1000;
 		//Get the lexicons of the source and target Ontologies
 		AML aml = AML.getInstance();
 		Lexicon sLex = aml.getSource().getLexicon();
 		Lexicon tLex = aml.getTarget().getLexicon();
 		//And match them
-		return match(sLex,tLex,thresh);
+		Alignment a = match(sLex,tLex,thresh);
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
+		return a;
 	}
 	
 	/**
@@ -64,64 +69,43 @@ public class LexicalMatcher implements PrimaryMatcher
 		Alignment maps = new Alignment();
 		//To minimize iterations, we want to iterate through the
 		//Ontology with the smallest Lexicon
-		Lexicon larger, smaller;
 		boolean sourceIsSmaller = (sLex.nameCount() <= tLex.nameCount());
-		double weight, similarity;
+		Set<String> names;
 		if(sourceIsSmaller)
-		{
-			smaller = sLex;
-			larger = tLex;
-		}
+			names = sLex.getNames();
 		else
-		{
-			smaller = tLex;
-			larger = sLex;
-		}
+			names = tLex.getNames();
+		
 		//If we have a multi-language Lexicon, we must match language by language
 		if(AML.getInstance().getLanguageSetting().equals(LanguageSetting.MULTI))
 		{
-			//Get the smaller Ontology names
-			Set<String> names = smaller.getNames();
 			for(String s : names)
 			{
-				Set<String> languages = smaller.getLanguages(s);
-				languages.addAll(larger.getLanguages(s));
+				Set<String> languages = sLex.getLanguages(s);
+				languages.addAll(tLex.getLanguages(s));
 				
 				for(String l : languages)
 				{
 					//Get all term indexes for the name in both ontologies
-					Set<Integer> smallerIndexes = smaller.getClassesWithLanguage(s,l);
-					Set<Integer> largerIndexes = larger.getClassesWithLanguage(s,l);
+					Set<Integer> sourceIndexes = sLex.getClassesWithLanguage(s,l);
+					Set<Integer> targetIndexes = tLex.getClassesWithLanguage(s,l);
 					//If the name doesn't exist in either ontology, skip it
-					if(smallerIndexes == null || largerIndexes == null)
+					if(sourceIndexes == null || targetIndexes == null)
 						continue;
 					//Otherwise, match all indexes
-					for(Integer i : smallerIndexes)
+					for(Integer i : sourceIndexes)
 					{
 						//Get the weight of the name for the term in the smaller lexicon
-						weight = smaller.getCorrectedWeight(s, i);
-						for(Integer j : largerIndexes)
+						double weight = sLex.getCorrectedWeight(s, i);
+						for(Integer j : targetIndexes)
 						{
 							//Get the weight of the name for the term in the larger lexicon
-							similarity = larger.getCorrectedWeight(s, j);
+							double similarity = tLex.getCorrectedWeight(s, j);
 							//Then compute the similarity, by multiplying the two weights
 							similarity *= weight;
 							//If the similarity is above threshold
 							if(similarity >= thresh)
-							{
-								int sourceId, targetId;
-								if(sourceIsSmaller)
-								{
-									sourceId = i;
-									targetId = j;
-								}
-								else
-								{
-									sourceId = j;
-									targetId = i;
-								}
-								maps.add(sourceId, targetId, similarity);
-							}
+								maps.add(i, j, similarity);
 						}
 					}
 				}
@@ -130,43 +114,27 @@ public class LexicalMatcher implements PrimaryMatcher
 		//Otherwise we can just match everything
 		else
 		{
-			//Get the smaller Ontology names
-			Set<String> names = smaller.getNames();
 			for(String s : names)
 			{
-				//Get all term indexes for the name in both ontologies
-				Set<Integer> smallerIndexes = smaller.getClasses(s);
-				Set<Integer> largerIndexes = larger.getClasses(s);
-				//If the name doesn't exist in the larger ontology, skip it
-				if(largerIndexes == null)
+				Set<Integer> sourceIndexes = sLex.getClasses(s);
+				Set<Integer> targetIndexes = tLex.getClasses(s);
+				//If the name doesn't exist in either ontology, skip it
+				if(sourceIndexes == null || targetIndexes == null)
 					continue;
 				//Otherwise, match all indexes
-				for(Integer i : smallerIndexes)
+				for(Integer i : sourceIndexes)
 				{
 					//Get the weight of the name for the term in the smaller lexicon
-					weight = smaller.getCorrectedWeight(s, i);
-					for(Integer j : largerIndexes)
+					double weight = sLex.getCorrectedWeight(s, i);
+					for(Integer j : targetIndexes)
 					{
 						//Get the weight of the name for the term in the larger lexicon
-						similarity = larger.getCorrectedWeight(s, j);
+						double similarity = tLex.getCorrectedWeight(s, j);
 						//Then compute the similarity, by multiplying the two weights
 						similarity *= weight;
 						//If the similarity is above threshold
 						if(similarity >= thresh)
-						{
-							int sourceId, targetId;
-							if(sourceIsSmaller)
-							{
-								sourceId = i;
-								targetId = j;
-							}
-							else
-							{
-								sourceId = j;
-								targetId = i;
-							}
-							maps.add(sourceId, targetId, similarity);
-						}
+							maps.add(i, j, similarity);
 					}
 				}
 			}

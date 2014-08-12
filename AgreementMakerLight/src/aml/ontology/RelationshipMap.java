@@ -16,7 +16,7 @@
 * relationships and disjoint clauses.                                         *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 11-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
@@ -27,8 +27,8 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.util.Table2;
-import aml.util.Table3;
+import aml.util.Table2Set;
+import aml.util.Table3List;
 
 
 public class RelationshipMap
@@ -39,17 +39,17 @@ public class RelationshipMap
 	//Set of transitive subclass properties
 	private HashSet<Integer> transitive;
 	//Map between ancestor classes and their descendants
-	private Table3<Integer,Integer,Relationship> descendantMap;
+	private Table3List<Integer,Integer,Relationship> descendantMap;
 	//Map between descendant classes and their ancestors
-	private Table3<Integer,Integer,Relationship> ancestorMap;
+	private Table3List<Integer,Integer,Relationship> ancestorMap;
 	//Map between disjoint classes
-	private Table2<Integer,Integer> disjointMap;
+	private Table2Set<Integer,Integer> disjointMap;
 	//List of high level classes
 	private HashSet<Integer> highLevelClasses;
 	//Map between properties and their parents and inverses
-	private Table2<Integer,Integer> subProp;
-	private Table2<Integer,Integer> superProp;
-	private Table2<Integer,Integer> inverseProp;
+	private Table2Set<Integer,Integer> subProp;
+	private Table2Set<Integer,Integer> superProp;
+	private Table2Set<Integer,Integer> inverseProp;
 	
 //Constructors
 
@@ -61,13 +61,13 @@ public class RelationshipMap
 		transitive = new HashSet<Integer>();
 		transitive.add(-1);
 		
-		descendantMap = new Table3<Integer,Integer,Relationship>();
-		ancestorMap = new Table3<Integer,Integer,Relationship>();
-		disjointMap = new Table2<Integer,Integer>();
+		descendantMap = new Table3List<Integer,Integer,Relationship>();
+		ancestorMap = new Table3List<Integer,Integer,Relationship>();
+		disjointMap = new Table2Set<Integer,Integer>();
 		
-		subProp = new Table2<Integer,Integer>();
-		superProp = new Table2<Integer,Integer>();
-		inverseProp = new Table2<Integer,Integer>();
+		subProp = new Table2Set<Integer,Integer>();
+		superProp = new Table2Set<Integer,Integer>();
+		inverseProp = new Table2Set<Integer,Integer>();
 	}
 	
 //Public Methods
@@ -489,12 +489,8 @@ public class RelationshipMap
 	 */
 	public Set<Integer> getDisjoint(int classId)
 	{
-		//Get the disjoint clauses for the class from the disjointMap
-		Vector<Integer> disj = disjointMap.get(classId);
-		//If the class has disjoint clauses, return them
-		if(disj != null)
-			return new HashSet<Integer>(disj);
-		//Otherwise return an empty list
+		if(disjointMap.contains(classId))
+			return disjointMap.get(classId);
 		return new HashSet<Integer>();
 	}
 	

@@ -16,7 +16,7 @@
  * mappings from a given Alignment, which supports repair of that Alignment.   *
  *                                                                             *
  * @authors Daniel Faria & Emanuel Santos                                      *
- * @date 10-08-2014                                                            *
+ * @date 12-08-2014                                                            *
  * @version 2.0                                                                *
  ******************************************************************************/
 package aml.filter;
@@ -32,7 +32,8 @@ import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.RelationshipMap;
-import aml.util.Table3;
+import aml.util.Table3List;
+import aml.util.Table3Set;
 
 public class RepairMap
 {
@@ -48,9 +49,9 @@ public class RepairMap
 	//The list of classes that must be checked for coherence
 	private HashSet<Integer> checkList;
 	//The minimal map of ancestor relations of checkList classes
-	private Table3<Integer,Integer,Path> ancestorMap;
+	private Table3List<Integer,Integer,Path> ancestorMap;
 	//The length of ancestral paths (to facilitate transitive closure)
-	private Table3<Integer,Integer,Integer> pathLengths;
+	private Table3Set<Integer,Integer,Integer> pathLengths;
 	//The number of paths to disjoint classes
 	private int pathCount;
 	//The list of conflict sets
@@ -133,11 +134,13 @@ public class RepairMap
 	//Builds the RepairMap
 	private void init()
 	{
+		System.out.println("Building Repair Map");
+		long time = System.currentTimeMillis()/1000;
 		//Initialize the data structures
 		classList = new HashSet<Integer>();
 		checkList = new HashSet<Integer>();
-		ancestorMap = new Table3<Integer,Integer,Path>();
-		pathLengths = new Table3<Integer,Integer,Integer>();
+		ancestorMap = new Table3List<Integer,Integer,Path>();
+		pathLengths = new Table3Set<Integer,Integer,Integer>();
 		conflictSets = new Vector<Path>();
 		
 		//Build the classList, starting with the classes
@@ -153,23 +156,19 @@ public class RepairMap
 		classList.addAll(a.getSources());
 		classList.addAll(a.getTargets());
 		//Then build the checkList
-		long time = System.currentTimeMillis()/1000;
 		buildCheckList();
-		System.out.println("Computed check list in " +
-				(System.currentTimeMillis()/1000-time) + " seconds");
-		System.out.println("Classes to check: " + checkList.size());
+		System.out.println("Computed check list: " + checkList.size()
+				+ " classes to check");
 		//Build the ancestorMap with transitive closure
-		time = System.currentTimeMillis()/1000;
 		buildAncestorMap();
-		System.out.println("Computed all check list paths in " +
-				(System.currentTimeMillis()/1000-time) + " seconds");
-		System.out.println("Paths to process: " + pathCount);
+		System.out.println("Computed ancestral paths: " + pathCount +
+				" paths to process");
 		//And finally, get the list of conflict sets
-		time = System.currentTimeMillis()/1000;
 		buildConflictSets();
-		System.out.println("Computed minimal conflict sets of mappings in " +
+		System.out.println("Computed minimal conflict sets: " +
+				conflictSets.size() + " sets of mappings");
+		System.out.println("Repair Map finished in " +
 				(System.currentTimeMillis()/1000-time) + " seconds");
-		System.out.println("Conflict sets: " + conflictSets.size());
 	}
 	
 	//Computes the list of classes that must be checked for coherence

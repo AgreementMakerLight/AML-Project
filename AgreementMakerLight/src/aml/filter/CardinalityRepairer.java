@@ -25,7 +25,7 @@ import java.util.HashSet;
 import java.util.Vector;
 
 import aml.match.Alignment;
-import aml.util.Table2;
+import aml.util.Table2List;
 
 public class CardinalityRepairer implements Repairer
 {
@@ -34,8 +34,8 @@ public class CardinalityRepairer implements Repairer
 	
 	private Alignment toRepair;
 	private Vector<Path> conflictSets;
-	private Table2<Integer,Integer> conflictMappings;
-	private Table2<Integer,Integer> mappingConflicts;
+	private Table2List<Integer,Integer> conflictMappings;
+	private Table2List<Integer,Integer> mappingConflicts;
 	
 //Constructors
 
@@ -101,8 +101,8 @@ public class CardinalityRepairer implements Repairer
 	
 	private void init()
 	{
-		conflictMappings = new Table2<Integer,Integer>();
-		mappingConflicts = new Table2<Integer,Integer>();
+		conflictMappings = new Table2List<Integer,Integer>();
+		mappingConflicts = new Table2List<Integer,Integer>();
 		
 		for(int i = 0; i < conflictSets.size(); i++)
 		{

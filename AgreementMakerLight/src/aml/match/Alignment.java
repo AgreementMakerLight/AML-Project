@@ -46,7 +46,7 @@ import aml.AML.MappingRelation;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
-import aml.util.Table2Plus;
+import aml.util.Table2Map;
 
 public class Alignment implements Iterable<Mapping>
 {
@@ -56,9 +56,9 @@ public class Alignment implements Iterable<Mapping>
 	//Term mappings organized in list
 	private Vector<Mapping> maps;
 	//Term mappings organized by source class
-	private Table2Plus<Integer,Integer,Mapping> sourceMaps;
+	private Table2Map<Integer,Integer,Mapping> sourceMaps;
 	//Term mappings organized by target class
-	private Table2Plus<Integer,Integer,Mapping> targetMaps;
+	private Table2Map<Integer,Integer,Mapping> targetMaps;
 	
 //Constructors
 
@@ -68,8 +68,8 @@ public class Alignment implements Iterable<Mapping>
 	public Alignment()
 	{
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Mapping>();
-		targetMaps = new Table2Plus<Integer,Integer,Mapping>();
+		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
+		targetMaps = new Table2Map<Integer,Integer,Mapping>();
 	}
 
 	/**
@@ -79,8 +79,8 @@ public class Alignment implements Iterable<Mapping>
 	public Alignment(String file) throws Exception
 	{
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Mapping>();
-		targetMaps = new Table2Plus<Integer,Integer,Mapping>();
+		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
+		targetMaps = new Table2Map<Integer,Integer,Mapping>();
 		if(file.endsWith(".rdf"))
 			loadMappingsRDF(file);
 		else if(file.endsWith(".tsv"))
@@ -96,8 +96,8 @@ public class Alignment implements Iterable<Mapping>
 	public Alignment(Alignment a)
 	{
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Mapping>();
-		targetMaps = new Table2Plus<Integer,Integer,Mapping>();
+		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
+		targetMaps = new Table2Map<Integer,Integer,Mapping>();
 		addAll(a);
 	}
 	

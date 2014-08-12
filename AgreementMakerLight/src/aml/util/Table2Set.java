@@ -12,25 +12,25 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A table with two columns, represented by a HashMap of Vectors.              *
+* A simple table with two columns, represented by a HashMap of HashSets.      *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 11-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.util;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
-public class Table2<A,B extends Comparable<B>>
+public class Table2Set<A,B>
 {
 
 //Attributes
 	
-	private HashMap<A,Vector<B>> multimap;
+	private HashMap<A,HashSet<B>> multimap;
 	private int size;
 	
 //Constructors
@@ -38,9 +38,9 @@ public class Table2<A,B extends Comparable<B>>
 	/**
 	 * Constructs a new empty Table
 	 */
-	public Table2()
+	public Table2Set()
 	{
-		multimap = new HashMap<A,Vector<B>>();
+		multimap = new HashMap<A,HashSet<B>>();
 		size = 0;
 	}
 	
@@ -49,13 +49,13 @@ public class Table2<A,B extends Comparable<B>>
 	 * the given Table
 	 * @param m: the Table to copy
 	 */
-	public Table2(Table2<A,B> m)
+	public Table2Set(Table2Set<A,B> m)
 	{
-		multimap = new HashMap<A,Vector<B>>();
+		multimap = new HashMap<A,HashSet<B>>();
 		size = m.size;
 		Set<A> keys = m.keySet();
 		for(A a : keys)
-			multimap.put(a, new Vector<B>(m.get(a)));
+			multimap.put(a, new HashSet<B>(m.get(a)));
 	}
 
 //Public Methods
@@ -69,28 +69,16 @@ public class Table2<A,B extends Comparable<B>>
 	 */
 	public void add(A key, B value)
 	{
-		Vector<B> list = multimap.get(key);
-		if(list == null)
+		HashSet<B> set = multimap.get(key);
+		if(set == null)
 		{
-			list = new Vector<B>(0,1);
-			list.add(value);
-			multimap.put(key, list);
+			set = new HashSet<B>();
+			set.add(value);
+			multimap.put(key, set);
 			size++;
 		}
 		else
-		{
-			int index = list.indexOf(value);
-			boolean remove = (index > -1 && value.compareTo(list.get(index)) > 0);
-			if(remove)
-				list.remove(index);
-			if(index == -1 || remove)
-			{
-				//This will iterate through the list and find the right place to insert the value
-				for(index = 0; index < list.size() && value.compareTo(list.get(index)) > 0; index++);
-				list.insertElementAt(value,index);
-				size++;
-			}
-		}
+			set.add(value);
 	}
 	
 	/**
@@ -130,17 +118,17 @@ public class Table2<A,B extends Comparable<B>>
 	 */
 	public int entryCount(A key)
 	{
-		Vector<B> list = multimap.get(key);
-		if(list == null)
+		Set<B> set = multimap.get(key);
+		if(set == null)
 			return 0;
-		return list.size();
+		return set.size();
 	}
 	
 	/**
 	 * @param key: the key to search in the Table
-	 * @return the Vector with all entries for key
+	 * @return the set of all entries for key
 	 */
-	public Vector<B> get(A key)
+	public Set<B> get(A key)
 	{
 		return multimap.get(key);
 	}
@@ -179,7 +167,7 @@ public class Table2<A,B extends Comparable<B>>
 	 */
 	public void remove(A key, B value)
 	{
-		Vector<B> values = multimap.get(key);
+		Set<B> values = multimap.get(key);
 		if(values != null)
 		{
 			values.remove(value);

@@ -27,7 +27,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import aml.util.Table2Plus;
+import aml.util.Table2Map;
 
 public class Oracle
 {
@@ -56,7 +56,7 @@ public class Oracle
 	}
 	
 	//The reference alignment to use in this Oracle
-	private Table2Plus<String,String,Relation> reference;
+	private Table2Map<String,String,Relation> reference;
 
 //Constructors
 	
@@ -66,7 +66,7 @@ public class Oracle
 	 */
 	public Oracle(String file)
 	{
-		reference = new Table2Plus<String,String,Relation>();
+		reference = new Table2Map<String,String,Relation>();
 		
 		//Open the alignment file using SAXReader
 		SAXReader reader = new SAXReader();

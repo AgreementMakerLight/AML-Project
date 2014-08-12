@@ -29,7 +29,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.util.StopList;
 import aml.util.StringParser;
-import aml.util.Table3;
+import aml.util.Table3List;
 
 
 public class Lexicon
@@ -38,9 +38,9 @@ public class Lexicon
 //Attributes
 	
 	//The table of names
-	private Table3<String,Integer,Provenance> names;
+	private Table3List<String,Integer,Provenance> names;
 	//The table of classes
-	private Table3<Integer,String,Provenance> classes;
+	private Table3List<Integer,String,Provenance> classes;
 	//The language counts
 	private HashMap<String,Integer> langCount;
 	
@@ -52,8 +52,8 @@ public class Lexicon
 	 */
 	public Lexicon()
 	{
-		names = new Table3<String,Integer,Provenance>();
-		classes = new Table3<Integer,String,Provenance>();
+		names = new Table3List<String,Integer,Provenance>();
+		classes = new Table3List<Integer,String,Provenance>();
 		langCount = new HashMap<String,Integer>();
 	}
 	
@@ -63,8 +63,8 @@ public class Lexicon
 	 */
 	public Lexicon(Lexicon l)
 	{
-		names = new Table3<String,Integer,Provenance>(l.names);
-		classes = new Table3<Integer,String,Provenance>(l.classes);
+		names = new Table3List<String,Integer,Provenance>(l.names);
+		classes = new Table3List<Integer,String,Provenance>(l.classes);
 		langCount = new HashMap<String,Integer>(l.langCount);
 	}
 

@@ -13,37 +13,32 @@
 *                                                                             *
 *******************************************************************************
 * Matches Ontologies by measuring the word similarity between their classes,  *
-* using a (weighted) Jaccard index.                                           *
+* using a weighted Jaccard index.                                             *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 11-08-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
 import aml.AML.WordMatchStrategy;
 import aml.ontology.WordLexicon;
-import aml.ontology.Ontology;
-import aml.util.Similarity;
-import aml.util.Table2;
+import aml.util.Table2Map;
+import aml.util.Table2Set;
 
 public class WordMatcher implements PrimaryMatcher, Rematcher
 {
 
 //Attributes
 	
-	private final int MAX_BLOCK_SIZE = 10000;
 	private WordLexicon sourceLex;
 	private WordLexicon targetLex;
-	private boolean useWeighting;
-	private WordMatchStrategy strategy;
-	
+	private WordMatchStrategy strategy = WordMatchStrategy.AVERAGE;
+
 //Constructors
 	
 	/**
@@ -54,22 +49,17 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		AML aml = AML.getInstance();
 		sourceLex = new WordLexicon(aml.getSource().getLexicon());
 		targetLex = new WordLexicon(aml.getTarget().getLexicon());
-		useWeighting = true;
-		strategy = WordMatchStrategy.AVERAGE;
 	}
 	
 	/**
 	 * Constructs a new WordMatcher with the given options
-	 * @param w: whether to use Evidence Content weights
-	 * or perform a simple Jaccard index
 	 * @param s: the WordMatchStrategy to use
 	 */
-	public WordMatcher(boolean w, WordMatchStrategy s)
+	public WordMatcher(WordMatchStrategy s)
 	{
 		AML aml = AML.getInstance();
 		sourceLex = new WordLexicon(aml.getSource().getLexicon());
 		targetLex = new WordLexicon(aml.getTarget().getLexicon());
-		useWeighting = w;
 		strategy = s;
 	}
 	
@@ -78,38 +68,55 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	@Override
 	public Alignment match(double thresh)
 	{
-		System.out.println("Running WordMatcher");
+		System.out.println("Running Word Matcher");
 		long time = System.currentTimeMillis()/1000;
 		Alignment a = new Alignment();
-		//Get the Ontologies
-		AML aml = AML.getInstance();
-		Ontology source = aml.getSource();
-		Ontology target = aml.getTarget();
-		//Break them into chunks according to MAX_BLACK_SIZE
-		Iterator<Integer> sourceClasses = source.getClasses().iterator();
-		Iterator<Integer> targetClasses = target.getClasses().iterator();
-		Table2<Integer,Integer> sourcesToMap = new Table2<Integer,Integer>();
-		for(int i = 0; sourceClasses.hasNext(); i++)
-			sourcesToMap.add(i/MAX_BLOCK_SIZE, sourceClasses.next());
-		Table2<Integer,Integer> targetsToMap = new Table2<Integer,Integer>();
-		for(int i = 0; targetClasses.hasNext(); i++)
-			targetsToMap.add(i/MAX_BLOCK_SIZE, targetClasses.next());
-		//Match all chunks
-		System.out.println("Blocks to match: " + sourcesToMap.keyCount()*targetsToMap.keyCount());
-		int count = 0;
-		for(Integer i : sourcesToMap.keySet())
+		//If the strategy is BY_CLASS, the alignment can be computed
+		//globally. Otherwise we need to compute a preliminary
+		//alignment and then rematch according to the strategy.
+		double t;
+		if(strategy.equals(WordMatchStrategy.BY_CLASS))
+			t = thresh;
+		else
+			t = thresh * 0.5;
+		//Global matching is done by chunks so as not to overload the memory
+		System.out.println("Blocks to match: " + sourceLex.blockCount() +
+				"x" + targetLex.blockCount());
+		//Match each chunk of both WordLexicons
+		for(int i = 0; i < sourceLex.blockCount(); i++)
 		{
-			HashSet<Integer> sources = new HashSet<Integer>(sourcesToMap.get(i));
-			Table2<String,Integer> sWLex = sourceLex.getWordTable(sources);
-			for(Integer j : targetsToMap.keySet())
+			Table2Set<String,Integer> sWLex = sourceLex.getWordTable(i);
+			for(int j = 0; j < targetLex.blockCount(); j++)
 			{
-				HashSet<Integer> targets = new HashSet<Integer>(targetsToMap.get(j));
-				Table2<String,Integer> tWLex = targetLex.getWordTable(targets);
-				a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
-				count++;
-				if(count%10 == 0)
-					System.out.println(count*10 + "%");
+				Table2Set<String,Integer> tWLex = targetLex.getWordTable(j);
+				Vector<Mapping> temp = matchBlocks(sWLex,tWLex,t);
+				//If the strategy is BY_CLASS, just add the alignment
+				if(strategy.equals(WordMatchStrategy.BY_CLASS))
+					a.addAll(temp);
+				//Otherwise, update the similarity according to the strategy
+				else
+				{
+					for(Mapping m : temp)
+					{
+						//First compute the name similarity
+						double nameSim = nameSimilarity(m.getSourceId(),m.getTargetId());
+						//Then update the final similarity according to the strategy
+						double sim = m.getSimilarity();
+						if(strategy.equals(WordMatchStrategy.BY_NAME))
+							sim = nameSim;
+						else if(strategy.equals(WordMatchStrategy.AVERAGE))
+							sim = Math.sqrt(nameSim * sim);
+						else if(strategy.equals(WordMatchStrategy.MAXIMUM))
+							sim = Math.max(nameSim,sim);
+						else if(strategy.equals(WordMatchStrategy.MINIMUM))
+							sim = Math.min(nameSim,sim);
+						if(sim >= thresh)
+							a.add(m.getSourceId(),m.getTargetId(),sim);
+					}
+				}
+				System.out.print(".");
 			}
+			System.out.println();
 		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
@@ -119,15 +126,73 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	@Override
 	public Alignment rematch(Alignment a)
 	{
+		System.out.println("Running Word Matcher in rematch mode");
+		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
 			maps.add(mapTwoClasses(m.getSourceId(),m.getTargetId()));
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 	
 //Private
 	
-	//Maps two classes according to the set word match strategy
+	//Matches two WordLexicon blocks by class.
+	//Used by match() method either to compute the final BY_CLASS alignment
+	//or to compute a preliminary alignment which is then refined according
+	//to the WordMatchStrategy.
+	private Vector<Mapping> matchBlocks(Table2Set<String,Integer> sWLex,
+			Table2Set<String,Integer> tWLex, double thresh)
+	{
+		Table2Map<Integer,Integer,Double> maps = new Table2Map<Integer,Integer,Double>();
+		//To minimize iterations, we want to iterate through the smallest Lexicon
+		boolean sourceIsSmaller = (sWLex.keyCount() <= tWLex.keyCount());
+		Set<String> words;
+		if(sourceIsSmaller)
+			words = sWLex.keySet();
+		else
+			words = tWLex.keySet();
+		
+		for(String s : words)
+		{
+			Set<Integer> sourceIndexes = sWLex.get(s);
+			Set<Integer> targetIndexes = tWLex.get(s);
+			if(sourceIndexes == null || targetIndexes == null)
+				continue;
+			double ec = sourceLex.getWordEC(s) * targetLex.getWordEC(s);
+			for(Integer i : sourceIndexes)
+			{
+				double sim = ec * sourceLex.getWordWeight(s,i);
+				for(Integer j : targetIndexes)
+				{
+					double finalSim = Math.sqrt(sim * targetLex.getWordWeight(s,j));
+					Double previousSim = maps.get(i,j);
+					if(previousSim == null)
+						previousSim = 0.0;
+					finalSim += previousSim;
+					maps.add(i,j,finalSim);
+				}
+			}
+		}
+		Set<Integer> sources = maps.keySet();
+		Vector<Mapping> a = new Vector<Mapping>();
+		for(Integer i : sources)
+		{
+			Set<Integer> targets = maps.keySet(i);
+			for(Integer j : targets)
+			{
+				double sim = maps.get(i,j);
+				sim /= sourceLex.getClassEC(i) + targetLex.getClassEC(j) - sim;
+				if(sim >= thresh)
+					a.add(new Mapping(i, j, sim));
+			}
+		}
+		return a;
+	}
+	
+	//Maps two classes according to the selected strategy.
+	//Used by rematch() only.
 	private Mapping mapTwoClasses(int sourceId, int targetId)
 	{
 		//If the strategy is not by name, compute the class similarity
@@ -143,23 +208,8 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		//If the strategy is not by class, compute the name similarity
 		double nameSim = 0.0;
 		if(!strategy.equals(WordMatchStrategy.BY_CLASS))
-		{
-			//Which the maximum similarity between all names of both classes
-			double sim, weight;
-			Set<String> sourceNames = sourceLex.getNames(sourceId);
-			Set<String> targetNames = targetLex.getNames(targetId);
-			for(String s : sourceNames)
-			{
-				weight = sourceLex.getNameWeight(s,sourceId);
-				for(String t : targetNames)
-				{
-					sim = weight * targetLex.getNameWeight(t, targetId);
-					sim *= nameSimilarity(s,t);
-					if(sim > nameSim)
-						nameSim = sim;
-				}
-			}
-		}
+			nameSim = nameSimilarity(sourceId,targetId);
+		
 		//Combine the similarities according to the strategy
 		double sim = 0.0;
 		if(strategy.equals(WordMatchStrategy.BY_NAME))
@@ -176,13 +226,12 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		return new Mapping(sourceId,targetId,sim);
 	}
 
-	//Computes the word-based (bag-of-words) similarity between two classes
+	//Computes the word-based (bag-of-words) similarity between two
+	//classes, for use by rematch()
 	private double classSimilarity(int sourceId, int targetId)
 	{
 		Set<String> sourceWords = sourceLex.getWords(sourceId);
 		Set<String> targetWords = targetLex.getWords(targetId);
-		if(!useWeighting)
-			return Similarity.jaccard(sourceWords, targetWords);
 		double intersection = 0.0;
 		double union = sourceLex.getClassEC(sourceId) + 
 				targetLex.getClassEC(targetId);
@@ -197,13 +246,33 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		return intersection / union;
 	}
 	
-	//Computes the maximum word-based (bag-of-words) similarity between two names
+	//Computes the maximum word-based (bag-of-words) similarity between
+	//two classes' names, for use by both match() and rematch()
+	private double nameSimilarity(int sourceId, int targetId)
+	{
+		double nameSim = 0;
+		double sim, weight;
+		Set<String> sourceNames = sourceLex.getNames(sourceId);
+		Set<String> targetNames = targetLex.getNames(targetId);
+		for(String s : sourceNames)
+		{
+			weight = sourceLex.getNameWeight(s,sourceId);
+			for(String t : targetNames)
+			{
+				sim = weight * targetLex.getNameWeight(t, targetId);
+				sim *= nameSimilarity(s,t);
+				if(sim > nameSim)
+					nameSim = sim;
+			}
+		}
+		return nameSim;
+	}
+	
+	//Computes the word-based (bag-of-words) similarity between two names
 	private double nameSimilarity(String s, String t)
 	{
 		Set<String> sourceWords = sourceLex.getWords(s);
 		Set<String> targetWords = targetLex.getWords(t);
-		if(!useWeighting)
-			return Similarity.jaccard(sourceWords, targetWords);
 		double intersection = 0.0;
 		double union = sourceLex.getNameEC(s) + targetLex.getNameEC(t);
 		for(String w : sourceWords)
@@ -211,65 +280,5 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 				intersection += Math.sqrt(sourceLex.getWordEC(w) * targetLex.getWordEC(w));
 		union -= intersection;
 		return intersection/union;
-	}
-	
-	//Matches two word tables finding all class pairs that share a word
-	//then measuring their word similarity
-	private Alignment matchWordLexicons(Table2<String,Integer> sWLex,
-			Table2<String,Integer> tWLex, double thresh)
-	{
-		//The alignment to return
-		Alignment maps = new Alignment();
-		//The list of computed mappings, to avoid repeated computations
-		Table2<Integer,Integer> computedMappings = new Table2<Integer,Integer>();
-		//To minimize iterations, we want to iterate through the smallest table
-		Table2<String,Integer> larger, smaller;
-		boolean sourceIsSmaller = (sWLex.keyCount() <= tWLex.keyCount());
-		if(sourceIsSmaller)
-		{
-			smaller = sWLex;
-			larger = tWLex;
-		}
-		else
-		{
-			smaller = tWLex;
-			larger = sWLex;
-		}
-		//Get the smaller table's words
-		Set<String> words = smaller.keySet();
-		for(String s : words)
-		{
-			//Get all classes with the word in both tables
-			Vector<Integer> largerIndexes = larger.get(s);
-			Vector<Integer> smallerIndexes = smaller.get(s);
-			if(largerIndexes == null)
-				continue;
-			//Then match all classes
-			for(Integer i : smallerIndexes)
-			{
-				for(Integer j : largerIndexes)
-				{
-					int sourceId, targetId;
-					if(sourceIsSmaller)
-					{
-						sourceId = i;
-						targetId = j;
-					}
-					else
-					{
-						sourceId = j;
-						targetId = i;
-					}
-					//Unless they have already been matched
-					if(computedMappings.contains(sourceId, targetId))
-						continue;
-					Mapping m = mapTwoClasses(sourceId,targetId);
-					computedMappings.add(sourceId,targetId);
-					if(m.getSimilarity()>=thresh)
-						maps.add(m);
-				}
-			}
-		}
-		return maps;
 	}
 }

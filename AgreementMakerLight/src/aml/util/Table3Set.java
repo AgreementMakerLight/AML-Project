@@ -12,24 +12,24 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A table with three columns, represented by a HashMap of Table2s.            *
+* A table with three columns, represented by a HashMap of Table2Set.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 11-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.util;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
-public class Table3<A,B,C extends Comparable<C>>
+public class Table3Set<A,B,C>
 {
 
 //Attributes
 	
-	private HashMap<A,Table2<B,C>> multimap;
+	private HashMap<A,Table2Set<B,C>> multimap;
 	private int size;
 	
 //Constructors
@@ -37,9 +37,9 @@ public class Table3<A,B,C extends Comparable<C>>
 	/**
 	 * Constructs a new empty Table
 	 */
-	public Table3()
+	public Table3Set()
 	{
-		multimap = new HashMap<A,Table2<B,C>>();
+		multimap = new HashMap<A,Table2Set<B,C>>();
 		size = 0;
 	}
 	
@@ -48,13 +48,13 @@ public class Table3<A,B,C extends Comparable<C>>
 	 * the given Table
 	 * @param m: the Table to copy
 	 */
-	public Table3(Table3<A,B,C> m)
+	public Table3Set(Table3Set<A,B,C> m)
 	{
-		multimap = new HashMap<A,Table2<B,C>>();
+		multimap = new HashMap<A,Table2Set<B,C>>();
 		size = m.size;
 		Set<A> keys = m.keySet();
 		for(A a : keys)
-			multimap.put(a, new Table2<B,C>(m.get(a)));
+			multimap.put(a, new Table2Set<B,C>(m.get(a)));
 	}
 
 //Public Methods
@@ -67,10 +67,10 @@ public class Table3<A,B,C extends Comparable<C>>
 	 */
 	public void add(A keyA, B keyB, C valueC)
 	{
-		Table2<B,C> mapsA = multimap.get(keyA);
+		Table2Set<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 		{
-			mapsA = new Table2<B,C>();
+			mapsA = new Table2Set<B,C>();
 			mapsA.add(keyB, valueC);
 			multimap.put(keyA, mapsA);
 		}
@@ -119,7 +119,7 @@ public class Table3<A,B,C extends Comparable<C>>
 	 */
 	public int entryCount(A keyA)
 	{
-		Table2<B,C> mapsA = multimap.get(keyA);
+		Table2Set<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return 0;
 		return mapsA.size();
@@ -133,7 +133,7 @@ public class Table3<A,B,C extends Comparable<C>>
 	public int entryCount(A keyA, C valueC)
 	{
 		int count = 0;
-		Table2<B,C> mapsA = multimap.get(keyA);
+		Table2Set<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return count;
 		Set<B> setA = mapsA.keySet();
@@ -147,7 +147,7 @@ public class Table3<A,B,C extends Comparable<C>>
 	 * @param keyA: the first level key to search in the Table
 	 * @return the HashMap with all entries for keyA
 	 */
-	public Table2<B,C> get(A keyA)
+	public Table2Set<B,C> get(A keyA)
 	{
 		return multimap.get(keyA);
 	}
@@ -155,12 +155,12 @@ public class Table3<A,B,C extends Comparable<C>>
 	/**
 	 * @param keyA: the first level key to search in the Table
 	 * @param keyB: the second level key to search in the Table
-	 * @return the value for the entry with the two keys or null
-	 * if no such entry exists
+	 * @return the values for the entries with the two keys or null
+	 * if no such entries exist
 	 */	
-	public Vector<C> get(A keyA, B keyB)
+	public Set<C> get(A keyA, B keyB)
 	{
-		Table2<B,C> mapsA = multimap.get(keyA);
+		Table2Set<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null || !mapsA.contains(keyB))
 			return null;
 		return mapsA.get(keyB);
@@ -168,37 +168,13 @@ public class Table3<A,B,C extends Comparable<C>>
 	
 	/**
 	 * @param keyA: the first level key to search in the Table
-	 * @return the maximum value in entries with keyA
-	 */
-	public B getKeyMaximum(A keyA)
-	{
-		Table2<B,C> mapsA = multimap.get(keyA);
-		if(mapsA == null)
-			return null;
-		Vector<B> setA = new Vector<B>(mapsA.keySet());
-		B max = setA.get(0);
-		C maxVal = mapsA.get(max).get(0);
-		for(B b : setA)
-		{
-			C value = mapsA.get(b).get(0);
-			if(value.compareTo(maxVal) > 0)
-			{
-				maxVal = value;
-				max = b;
-			}
-		}
-		return max;
-	}
-	
-	/**
-	 * @param keyA: the first level key to search in the Table
 	 * @param valueC: the value to search in the Table
 	 * @return the list of second level keys in entries with keyA and valueC
 	 */	
-	public Vector<B> getMatchingKeys(A keyA, C valueC)
+	public HashSet<B> getMatchingKeys(A keyA, C valueC)
 	{
-		Vector<B> keysB = new Vector<B>(0,1);
-		Table2<B,C> mapsA = multimap.get(keyA);
+		HashSet<B> keysB = new HashSet<B>();
+		Table2Set<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return keysB;
 		Set<B> setA = mapsA.keySet();
@@ -222,7 +198,7 @@ public class Table3<A,B,C extends Comparable<C>>
 	 */
 	public Set<B> keySet(A keyA)
 	{
-		Table2<B,C> mapsA = multimap.get(keyA);
+		Table2Set<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return null;
 		return mapsA.keySet();
@@ -255,7 +231,7 @@ public class Table3<A,B,C extends Comparable<C>>
 	 */
 	public void remove(A keyA, B keyB)
 	{
-		Table2<B,C> maps = multimap.get(keyA);
+		Table2Set<B,C> maps = multimap.get(keyA);
 		if(maps != null)
 		{
 			size -= maps.get(keyB).size();
