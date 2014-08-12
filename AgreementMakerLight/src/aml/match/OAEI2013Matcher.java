@@ -28,7 +28,7 @@ import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 import aml.ontology.Ontology;
 import aml.ontology.URIMap;
-import aml.oracle.Oracle;
+import aml.util.Oracle;
 
 public class OAEI2013Matcher
 {
@@ -388,6 +388,6 @@ public class OAEI2013Matcher
 		URIMap map = AML.getInstance().getURIMap();
 		String sourceURI = map.getURI(m.getSourceId());
 		String targetURI = map.getURI(m.getTargetId());
-		return oracle.check(sourceURI,targetURI,Oracle.Relation.EQUIVALENCE);
+		return oracle.check(sourceURI,targetURI,m.getRelationship());
 	}
 }
