@@ -1,0 +1,684 @@
+coordenador do comitê de programa	Program Committee Coordinator
+usuário	user
+autor	author
+rejeição	rejection
+coordenador da conferência	Conference Coordinator
+preferência	preference
+administrador	Administrator
+área temática	thematic area
+autor não revisor	author reviewer
+resumo do artigo	Summary of the article
+versão completa de artigo	full version of article
+documento	document
+revisor	Reviewer
+revisão	review
+revisor externo	external reviewer
+artigo	Article
+comitê de programa	Program Committee
+meta revisor	meta reviewer
+conferência	Conference
+coordenador geral do evento	General Coordinator of the event
+membro participante da conferência	participant of the Conference Member
+propostas	proposals
+co autor	co author
+coordenador associado do evento	associate coordinator of the event
+aceitação	acceptance
+meta revisão	meta review
+decisão	decision
+pessoa	person
+membro do comitê de programa	Member of the program Committee
+artigo escrito	Article written
+ajustar o pedido de revisão	adjust the request for review
+pedido de revisao ajustado	request for revision set
+critérios de revisão introduzidos por	review criteria introduced by
+tem email	has email
+tem data	has a date
+leitura de artigo	reading article
+reunião virtual habilitada por	virtual meeting enabled by
+atribuição de um artigo finalizada por	an article assignment terminated by
+escrever um artigo com	write an article with
+adicionar um membro do comitê de programa	Add a member of the program Committee
+adicionado por	added by
+possui conflito de interesses	has a conflict of interest
+executar ferramentas de atribuição de artigos	perform assignment tools articles
+possui autor	has author
+revisão realizada	review carried out
+tem nome	have a name
+máximo de artigos	maximum articles
+revisões por artigo	revisions per article
+tem título	has title
+tem site	has website
+tem código do artigo	has item code
+aceita submissões impressas	accepts submissions printed
+url	url
+ferramentas de atribuição de artigos executadas por	Tools articles assignment performed by
+escrito por	written by
+permitir uma reunião virtual	allow a virtual meeting
+atribuir um revisor	assign a reviewer
+leitura realizada po um revisor	reading held po a reviewer
+membro da conferência	Member of the Conference
+iniciar pedidos de revisão	initiate requests for review
+atribuído para	assigned to
+possui um membro do comitê de programa	has a member of the program Committee
+inserir detalhes	Insert details
+envio de artigos	sending articles
+possui uma área	It has an area
+possui pedido de revisão	features request for review
+revisão final	final review
+leitura realizada por um meta revisor	reading held by a reviewer
+artigo aceito	Article accepted
+aceito por	accepted by
+membro do comite de programa	Member of the program Committee
+pedidos de revisão iniciados por	review requests initiated by
+possui decisão	own decision
+possui atribuição	has attribution
+inserir os detalhes da conferência	Enter the details of the Conference
+finalizar as atribuições dos artigos	finalize the attributions of articles
+artigo rejeitado por	Article rejected by
+atribuir um revisor externo	assign an external reviewer
+atribuído pelo administrador	assigned by the administrator
+inserir os critérios das revisões	Enter the criteria of revisions
+impressão de documentos de envio de volume de correio	printing documents from sending mail volume
+rejeitar artigo	reject Article
+mala  direta	mail merge
+marca um conflito de interesse	mark a conflict of interest
+atribuído pelo revisor	assigned by the reviewer
+definição do número máximo de artigos	setting the maximum number of articles
+possui participante da conferência	has end of Conference
+volume da conferência	Conference volume
+anúncio de conferência	Conference announcement
+participante pago antecipado	participant prepaid
+contribuinte à conferência	contributors to the Conference
+documento da conferência	document of the Conference
+especialidade de revisão	specialty review
+palestra convidada	invited lecture
+chamada para participação	call for participation
+apresentação	presentation
+resumo estendido	WIP
+participante passivo da conferência	passive participant of the Conference
+coordenador geral	General Coordinator
+participante da conferência	participant of the Conference
+contribuição escrita	written contribution
+organizador	Organizer
+contribuição aceita	contribution accepted
+participante pago atrasado	participant paid late
+contribuição submetida	contributions submitted
+contribuição de artigo completo	contribution of full article
+versão final da contribuição	the final version of the contribution
+participante registrado	participant registered
+preferência de revisão	review preference
+datas importantes	important dates
+resumo	Summary
+contribuição rejeitada	contribution rejected
+coordenador de trilha de workshop	Trail Coordinator workshop
+comitê organizador	Organizing Committee
+anais da conferência	Conference proceedings
+site da conferência	Conference Web site
+comitê	Committee
+participante ativo da conferência	active participant of the Conference
+contribuição à conferência	contribution to the Conference
+parte da conferência	part of the Conference
+editora	Publisher
+tópico	topic
+comitê diretivo	Steering Committee
+chamada de trabalhos	call for papers
+participante pago	participant paid
+primeiro autor da contribuição	first author's contribution
+membro do comitê	Member of the Committee
+contribuição revisada	revised contribution
+co autor da contribuição	co author of the contribution
+workshop	workshop
+tutorial	tutorial
+informações aos participantes	information for participants
+organizacão	Organization
+co coordenador	co coordinator
+taxa de inscrição da conferência	Conference registration fee
+trilha da conferência	Conference track
+palestrante convidado	Guest lecturer
+participante de conferência	end of Conference
+possui nome	has name
+data de submissão de resumo	date of submission of summary
+número do volume dos anais	Annals volume number
+data de publicação	date of publication
+possui primeiro nome	has first name
+data de entrega da versão final de artigo	date of delivery of the final version of article
+o site da conferencia é	the Conference site is
+data de início	start date
+dia de encerramento	closing day
+possui um email	has an email
+possui sobrenome	features surname
+localização da conferência	location of the Conference
+data de submissão de artigo completo	date of submission of full article
+especialidade do revisor	Reviewer's specialty
+possui sexo	has sex
+isbn dos anais	isbn of the annals
+possui um coordenador geral	has a General Coordinator
+pertence a um volume da conferência	belongs to a conference volume
+revisa	reviews
+possui um comitê organizador	has an organizing Committee
+possui autores	features authors
+é submetida a	is subject to
+possui um tópico ou uma contribuição submetida	has a topic or a contribution submitted
+possui um resumo	has a summary
+foi um comitê de programa de conferência	It was a Conference Program Committee
+possui uma especialidade de revisão	has a specialty review
+possui um comitê	has a Committee
+possui uma revisão	has a review
+é um tópico de partes da conferência	It's a topic of parts of the Conference
+possui uma editora	has a Publisher
+diploma de revisão	diploma review
+data de anúncio de aceitação	date of advertisement of acceptance
+possui contribuições	has contributions
+possui um comitê diretivo	has a Steering Committee
+convida co revisores	Invites co reviewers
+possui um tópico de trilha para workshop e tutorial	features a topic of trail for workshop and tutorial
+possui um co coordenador	has a co coordinator
+publica	publishes
+foi um co coordenador de	It was a co coordinator of
+é parte de volumes da conferência	is part of Conference volumes
+foi atribuída uma preferência de revisão	was assigned a preference for review
+foi um comitê de conferência	It was a Conference Committee
+foi um comitê diretivo de conferência	It was a Conference Steering Committee
+foi um membro de	was a member of
+contribui para a canferência	contributes to the canferência
+é ministrada por	is given by
+possui datas importantes	has important dates
+ministra apresentações	Minister presentations
+possui um comitê de programa	has a program Committee
+possui tutoriais	features tutorials
+convidado por	invited by
+possui partes	has parts
+pertence a uma preferência de revisão	belongs to a preference for review
+foi um coordenador geral de	was a General Coordinator
+possui uma preferência ou especialidade de revisão	has a preference or specialty review
+possui trilhas	It features tracks
+possui membros	has members
+possui um coordenador de trilha de workshop e de tutorial	has a track coordinator of workshop and tutorial
+possui uma contribuição submetida	has a restricted contribution
+pertence a revisores	belongs to reviewers
+possui workshops	features workshops
+é a primeira parte de	is the first part of
+foi um coordenador de trilha de workshop de	was a track coordinator workshop
+foi um comitê organizador de conferência	It was a Conference Organizing Committee
+viagem	trip
+efetivo participante da conferência	effective end of Conference
+pessoas	people
+banquete	Banquet
+participante	participant
+evento	event
+cientista participante da conferência	scientist participant of the Conference
+universidade	University
+artigo resumido	Article summarized
+voluntário participante da conferência	volunteer participant of the Conference
+país	such
+evento de entrega das versões finais	event of delivery of the final versions
+acadêmico participante da conferência	academic conference participant
+contribuição	contribution
+atividades do evento	event activities
+recepção	reception
+evento de revisão	review event
+submissão	submission
+evento social	social event
+revisão de resultados	review of results
+evento de inscrição dos participantes	event participants ' registration
+cidade	City
+empresa	company
+organização	Organization
+avento administrativo	administrative all-day event
+estudante participante da conferência	student participant of the Conference
+assistente	Assistant
+em paralelo com	in parallel with
+estuda em uma universidade	studying in a University
+possui tópico	has topic
+possui evento administrativo	has administrative event
+escrita por um autor	written by an author
+seguinte	following
+empregado em	employee in
+está em um país	is in a country
+escreve uma contribuição	write a contribution
+está em uma cidade	are in a city
+possui  palavra chave	has key word
+possui email	has email
+opção mínima	minimum option
+opção máxima	maximum option
+possui fone	has phone
+ùltimo dia do evento	last day of the event
+possui resumo	features summary
+possui título	has title
+possui iva	includes VAT
+dia de inicio do evento	day of start of the event
+possui título resumido	has title summed up
+local	location
+possui observação	has note
+escolha padrão	Choose default
+possui sítio	has place
+possui caixa postal	has voice mail
+possui fax	has fax
+possui rua	has Street
+inscrição antecipada de participante	advance registration of participant
+possui contato por email	has contact by email
+lida com um tópico	deals with a topic
+especialista no tópico	expert in the topic
+trabalhos avaliados	assessed work
+evento de palestra	Lecture event
+tema comunicações	communications theme
+tema comunicação sem fio	wireless communication theme
+excursão	excursion
+histórico pessoal de revisões	personal history of revisions
+apresentação de artigo	presentation of article
+tema redes de computadores óticas	theme optical computers networks
+formulário de revisão	review form
+intervalo livre	free range
+chamada	call
+tema redes de comutação	theme switching networks
+pontuação da revisão	review score
+tema redes sensores	theme sensor networks
+organização acadêmica	academic organization
+tema multimídia	Multimedia theme
+palestra de boas vindas	speech of welcome
+chamada de revisores	call for reviewers
+histórico pessoal de publicações	personal history of publications
+programa	program
+organização governamental	Government Organization
+artigo rejeitado	Article rejected
+artigo retirado	Article removed
+tema comunicação por rádio	radio communications theme
+questão numérica de revisão	numeric revision issue
+histórico pessoal	personal history
+cardápio	menu
+evento relacionado a conferência	Conference-related event
+chamada de manuscritos	call for manuscripts
+questão textual de revisão	textual revision issue
+tema sistemas operacionais	operating systems theme
+coordenador da sessão	session Coordinator
+tema teoria da comunicação	theme communication theory
+tema processamento de sinais	signal processing theme
+hospedagem	hosting
+tema desempenho	performance theme
+tema medições de redes de computadores	measurement theme of computer networks
+artigo publicado	Article published
+organização industrial	industrial organization
+tema redes de computadores	theme computer networks
+pontuação de rejeição	score of rejection
+evento de intervalo	interval event
+tema microeletrônica	theme microelectronics
+sessão da conferência	session of the Conference
+auxílio de viagem	travel aid
+evento não acadêmico	no academic event
+tema testes	theme tests
+local da conferência	the Conference venue
+tema antenas	theme antennas
+apresentador	Presenter
+intervalo	range
+informações para contato	information for contact
+pontuação de aceitação	score of acceptance
+tema gerenciamento de redes de computadores	computer network management theme
+evento de refeicao	meal event
+tema segurança	safety theme
+palestra de fechamento	closing lecture
+tema computação paralela e distribuída	parallel and distributed computing theme
+artigo original	original article
+tema criptografia	encryption theme
+local do jantar	location of dinner
+tema medicina	medical theme
+slides	slides
+tema cad	theme cad
+tema aplicações de redes de computadores	theme applications of computer networks
+intervalo para refeição	meal break
+reunião organizacional	organizational meeting
+tema arquitetura de computadores	theme computer architecture
+artigos pendentes	pending articles
+pontuação de aceitação condicional	conditional acceptance score
+questão de revisão	review issue
+evento acadêmico	academic event
+tema comunicação por satélite e espacial	satellite communication and space theme
+patrocínio	sponsorship
+tema computação móvel	mobile computing theme
+pontuação de rejeição fraca	score from weak rejection
+sala de reuniões	meeting room
+jantar da conferência	dinner of the Conference
+conferência de dois níveis	two-level Conference
+tema linhas de transmissão	theme transmission lines
+tópicos	topics
+ong	ong
+tema redes de computadores corporativas	theme corporate computer networks
+conferência de um nível	one-level Conference
+tema segurança em redes de computadores	security theme in computer networks
+é membro de	is member of
+possui documento relacionado	has related document
+participante em	participant in
+possui programa	has program
+possui chamada	has called
+possui artigo relacionado	has related article
+é revisado por	is reviewed by
+é iniciado por	is started by
+possui avaliação	features evaluation
+está revisando	is reviewing
+é tópico de	is topic of
+relacionado a evento	event-related
+é localização de	is location of
+é menu de	is menu
+é provedor de	is provider of
+possui participante	has end
+é provido por	is powered by
+inicia	starts
+é histórico de revisão de	is revision history of
+é escrito por	is written by
+pertence a evento	belongs to event
+para evento	for event
+relacionado a	related to
+relacionado a artigo	related to article
+possui menu	features menu
+possui país	own country
+possui histórico de revisão	has revision history
+possui membro	has Member
+possui moeda	has coin
+possui horário de encerramento	closing time has
+possui instruções de submissão	It has submission instructions
+prazo de inscrição na conferência	Conference sign-up deadline
+possui localização	has location
+possui horário de início	has start time
+prazo do manuscrito	manuscript deadline
+possui prazo de submissão	features submission deadline
+possui telefone	has phone
+possui último nome	has last name
+possui cidade	has city
+data de início da conferência	start date of the Conference
+possui código postal	has zip code
+possui montante de custos	has cost amount
+data de encerramento	date of closure
+possui biografia	has biography
+prazo do artigo	Article deadline
+tópico de pesquisa	Search topic
+estudante	student
+brochura de programação	programming brochure
+revisão negativa	negative review
+evento científico	scientific event
+coordenador dos workshops	Coordinator of the workshops
+artigo de demonstração de protótipo ou aplicação	Article or application prototype demonstration
+artigo de aplicação industrial	Article of industrial application
+artigo avaliado	Article evaluated
+sessão de workshop	workshop session
+editora dos anais	Publisher of annals
+agência organizadora	tour operator/service provider
+insitituto de pesquisa	Culinary Institute of research
+sessão de conferência	Conference session
+autor de artigo	author of article
+artigo de conferência	Conference article
+possível revisor	possible reviewer
+artigo atribuído para revisão	article assigned for review
+apresentação individual	individual presentation
+funcionário da agência	part of the Agency
+resumo de tutorial	tutorial summary
+sessão de posteres	posters session
+anais	anais
+anais de conferência	Conference proceedings
+banquete da conferência	Conference banquet
+resumo de palestra convidada	invited lecture summary
+versão final do artigo	final version of the article
+participante registrado tardiamente	participant registered belatedly
+sessão de demonstrações de protótipos ou aplicações	session demonstrations of prototypes or applications
+coordenador do comitê organizador	Coordinator of the Organizing Committee
+revisão positiva	positive review
+artigo submetido	article submitted
+poster	poster
+artigo de workshop	Article workshop
+palestra submetida	Lecture subject
+artigo completo	full article
+sessão de aplicações industriais	industrial applications session
+volume de vários autores	volume of various authors
+folder	folder
+revisão neutra	neutral review
+sítio	place
+trilha	Trail
+sessão	session
+instituição acadêmica	academic institution
+membro do comitê organizador	Member of the Organizing Committee
+coordenador de tutoriais	Coordinator of tutorials
+sessão técnica	technical session
+membro comite sessao	session Committee Member
+coordenador de demonstrações de aplicações ou protótipos	Coordinator of demonstrations of applications or prototypes
+viagem para a conferência	travel to the Conference
+participante registrado antecipadamente	participant registered in advance
+revisão escrita por	review written by
+possui evento	has event
+tópico abrangido por	topic covered by
+possui revisor	has reviewer
+referências	references
+possui parte	has part
+tecnicamente organiza	technically organizes
+abrange tópico	covers topic
+possui versão atualizada	has updated version
+local de	location of
+volume contém artigo	volume contains article
+cientificamente organiza	scientifically organizes
+referenciado em	referenced in
+artigo no volume	article in volume
+revisão do artigo	article review
+parte do evento	part of the event
+sediado em	Headquartered in
+possui revisão	features review
+artigo apresentado como	article presented as
+versão atualizada de	updated version of
+evento na lista	event in the list
+inverse of part of 7	inverse of part of 7
+lista evento	event list
+parte de	part of
+revisor de artigo	Article reviewer
+organizado por	organized by
+organiza	organizes
+autor de	author of
+cientificamente organizado por	scientifically organized by
+tecnicamente organizado por	technically organized by
+publicador de	Publisher of
+aeroporto da conferência	Conference Airport
+ônibus	bus
+formulário de inscrição	registration form
+atividade técnica	technical activity
+apresentador hospedado no hotel	staying at the host hotel
+taxa de inscrição para não-autor	registration fee for non-author
+profissional nao palestrante	not professional speaker
+apresentador estudante	Student presenter
+autor cd incluído nos anais	author cd included in the annals
+cheque	check
+quarto de hotel	hotel room
+salão da conferência	Conference Hall
+taxa de embarque	shipment fee
+apresentador de tutorial	tutorial presenter
+táxi	CAB
+projetor lcd	lcd projector
+membro do iasted	iasted Member
+lista de emails	mailing list
+aparelho de vídeo cassete	video cassette player
+pausa	pause
+dia da viagem	day of travel
+lista de presença	list of presence
+dias da conferência	days of the Conference
+taxa de inscrição para estudante	registration fee for students
+van	van
+estado do patrocinador	the State sponsor
+palestra do orador	speaker's lecture
+atividade	activity
+restaurante da conferência	the Conference's restaurant
+formulário de inscrição no hotel	hotel signup form
+não membro do iasted	No member of the iasted
+versão inicial	initial version
+computador	computer
+fuso horário	timezone
+breve introdução para a sessão do coordenador	brief introduction to the session Coordinator
+recusa de  artigos	refusal of articles
+carro	car
+livro dos anais	Book of annals
+cidade do apresentador	host city
+documento de pagamento	payment document
+sala da sessão	session room
+gorjeta	Tip
+delegado	delegate
+recepção de  artigos	receipt of articles
+cidade da conferência	the Conference city
+cartão	card
+taxa de inscrição para membro	registration fee for membership
+cd dos anais	cd of the proceedings
+atividade pré conferência	pre conference activity
+dia da conferência	day of the Conference
+excursão de dia inteiro	full-day excursion
+apresentação em powerpoint	powerpoint presentation
+palestrante	speaker
+coquetel de recepção	reception cocktail
+aceitação de artigos	acceptance of articles
+item	item
+taxa de inscrição para autor participante cd	registration fee for participant cd author
+publicação	publication
+simulação	simulation
+formulário	form
+taxa sobre valor adicionado	value added tax
+palestra	Lecture
+transferência bancária	wire transfer
+cidade do patrocinador	City of sponsor
+embarque	boarding
+data limite de inscrição	expiry date of registration
+atividade da conferência	Conference activity
+hotel da conferência	hotel of the Conference
+data limite de notificação de aceitação	deadline for notification of acceptance
+taxa de inscrição	registration fee
+atividade pós conferência	post conference activity
+pesquisa	Search
+data limite de submissão	deadline for submission
+apresentador da palestra plenária	plenary lecture presenter
+taxa	rate
+comissão técnica	Technical Commission
+introdução	introduction
+data limite de reserva de hotel	deadline for hotel reservation
+escritório principal	main office
+apresentador de um dia	presenter of a day
+programa social	social program
+estudante nao palestrante	No student speaker
+preço do hotel	price of hotel
+taxa de viagem extra	extra travel fee
+cartão de crédito	credit card
+ouvinte	listener
+estado do apresentador	State of the presenter
+universidade do apresentador	presenter's University
+data limite	deadline
+taxa de inscrição para autor participante livro	registration fee for participant book author
+apresentação de vídeo	video presentation
+inscrição	inscription
+excursionista da conferência	Tripper of the Conference
+discurso de boas vindas	welcome speech
+retroprojetor	overhead projector
+prédio da conferência	building of the Conference
+tempo	time
+nao palestrante	No speaker
+cidade da viagem	City trip
+formulário de informação aos autores	information form for authors
+quarto simples de hotel	single room hotel
+professor funcionário	professor employee
+carta-convite	Letter of invitation
+apresentação do orador	the speaker's presentation
+empresa patrocinadora	sponsoring company
+prédio	building
+versão final	final version
+taxa de inscrição para não-membro	registration fee for non-member
+moeda	currency
+transparências	transparencies
+modelagem	modeling
+equipamento audiovisual	audio-visual equipment
+estado da conferência	Conference State
+autor livro incluído nos anais	author book included in the annals
+veículo de transporte	transport vehicle
+palestra plenária	plenary lecture
+casa do apresentador	presenter's House
+aluguel	rent
+patrocinador	sponsor
+custo	cost
+visto	seen
+data limite para versão final artigo	deadline for final version article
+quarto duplo de hotel	Double room hotel
+estado	State
+ocupa	occupies
+envia	sends
+é pago com	is paid with
+é enviado antes	is sent before
+prepara	prepares
+va por	va by
+de	of
+é usado por	is used by
+é pago por	is paid by
+é preparado por	is prepared by
+é feito de	It is made of
+está conectado com	is connected with
+é enviado depois	is submitted after
+obtem	obtains
+é determinado por	is determined by
+fala em	speaks in
+é ocupado por	is occupied by
+assina	signs
+é feito antes	is done before
+é enviado por	is sent by
+está presente	is present
+é pago dentro	is paid within
+necessita	requires
+é projetado para	is designed for
+é assinado por	is signed by
+é pago para	is paid to
+paga	pays
+é visitado por	is visited by
+está presente dentro	is present within
+é situado dentro	is situated within
+é feito depois	is made after
+escreve	writes
+é equipado por	It is equipped for
+é usado para	is used to
+é necessário para	It is necessary to
+é feito dentro	is made within
+é dado para	is given to
+tem a quantia de	has the amount of
+feito até	done until
+prêmio  para o melhor artigo sobre uma aplicação	Prize for the best article about an application
+patrocinador prata	Silver sponsor
+exibidor	Exhibitor
+patrocinador  melhor artigo estudante	sponsor best paper Student
+taxa para patrocínio	fee for sponsorship
+patrocinador platina	Platinum sponsor
+prazo de notificação dos autores	period of notification of authors
+inscrição de membro da sigkdd	sigkdd membership registration
+prazo de submissão para resumos	submission deadline for abstracts
+prazo	deadline
+membro do comitê de programação	Member of the programming Committee
+coordenador de programa	Program Coordinator
+prêmio	Award
+inscricao de não membros	registration for non-members
+lugar	place
+inscrição de membro da sigmod	sigmod Member subscription
+comitê para o prêmio de melhor artigo	Committee for the best paper award
+prêmio  para o melhor artigo sobre pesquisa	Prize for the best research article
+patrocinador ouro	Gold sponsor
+prêmio  para o melhor artigo de estudante	Prize for the best student article
+inscrição para estudantes	registration for students
+webmaster	webmaster
+acm sigkdd	acm sigkdd
+autor de artigo de estudante	author of article from student
+patrocinador bronze	bronze sponsor
+hotel	hotel
+prazo de submissão para artigos	submission deadline for papers
+e-mail	email
+possui nacionalidade	possesses nationality
+obter prêmio	get award
+conferência realizada por	Conference held by
+pagamento de inscrição	registration payment
+apresentado por	presented by
+inscrição paga por	paid membership for
+pesquisado por	researched by
+conjunto de prazos para	set deadlines for
+possui prêmio	features award
+conferência realizada	Conference held
+conjunto de prazos	set of deadlines
+premiados por	awarded by
+notificação de autor até	author notification until
+submissão de artigo	article submission
+pode ficar em	You can stay in
+data final da conferência	end date of the Conference
+possui preço	has price
+possui nome do patrocinador	has name of sponsor
+possui nome da conferência	has the Conference name
+data	date

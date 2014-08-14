@@ -1,0 +1,668 @@
+程序委员会成员	Leden van het programma Comité
+论文全文	Volledige papieren
+非审稿人的作者	Auteur van niet-revisor
+文件	Bestand
+主席	De Voorzitter
+拒收	Weigeren
+合著者	Mede-auteur
+外部审稿人	Externe revisoren
+人员	Personeel
+大会主席	De Voorzitter van de algemene vergadering
+决定	Besluit
+作者	Auteur
+偏爱	Voorkeur
+综合审稿意见	Algemene opmerkingen
+审稿人	Revisor
+程序委员会主席	Voorzitter van het programma Comité
+论文摘要	Samenvattingen
+审稿意见	Opmerkingen
+论文	Papieren
+录用	Huren
+会议	Conferentie
+副主席	Vice-Voorzitter
+主题领域	Thematische gebieden
+程序委员会	Programma Comité
+会议成员	Leden van de conferentie
+投标	Inschrijving
+用户	Gebruiker
+管理人员	Managers op sleutelposities
+综合审稿人	Synthese reviewers
+由之打印硬拷贝邮件舱单	Trekking mailing manifesten afdrukken
+修改后投标	Herziene offerte
+标注兴趣冲突	Aantekening van belangenconflicten
+由审稿人审阅	Herzien door revisoren
+指定审稿人	Hiermee geeft u de peer reviewers
+是程序委员会成员	Leden van het programma Comité
+拒收论文	Geweigerde artikelen
+是会议成员	Zijn leden van de conferentie
+由之拒收	Door geweigerd
+开始审稿投标	Begin met het bod bekijken
+有投标	Inschrijving
+由管理人员指定	Opgegeven door de managers
+设置最多论文数	Hiermee stelt u het maximum aantal van kranten
+阅读论文	Lees het essay
+有兴趣冲突	Belangenconflict
+由之录入详情	Door het invoeren van details
+由审稿人指定	Opgegeven door de revisor
+录入会议详情	Opname details van vergaderingen
+打印硬拷贝邮件舱单	Trekking mailing manifesten afdrukken
+录入审稿标准	Manuscript vermelding normen
+运行论文分派工具	Het papier toewijzing hulpprogramma's uitvoeren
+由之启动虚拟会议	Aan het begin van de virtuele conferentie
+合著	Co-
+有会议成员	Leden van de conferentie
+撰写审稿意见	Opmerkingen
+由之撰写	Geschreven door de
+论文分派定稿	Voltooiing van de toegewezen papers
+电子信箱	E-mail
+日期	Datum
+商标统一资源定址器	Handelsmerk uniform resource locatie
+论文序号	Masterproef nummer
+接受硬拷贝投稿	Trekking inzendingen accepteren
+网站地址	Adres van website
+每篇论文审稿意见数	Elke papier-opmerkingen
+最多论文数	Maximale aantal papers
+录用论文	Aanvaarde papers
+有主题领域	Thematische gebieden
+姓名	De naam
+标题	Titel
+有作者	Er is een auteur
+论文分派工具由之运行	Papier toewijzing hulpmiddel door het uitvoeren van
+由之增补	Door bij te werken
+结束审稿	Revisie beëindigen
+撰写论文	Schrijven van papers
+分派给	Toewijzen aan
+由之录用	Door het inhuren van
+由综合审稿人审阅	Herzien van algemene revisoren
+有决定	Heeft besloten
+论文分派由之定稿	Finaliseren van het papier door toegewezen
+审稿人投标始于	Revisor bieden begint
+由之录入审稿标准	Manuscript vermelding normen
+有合著者	Mede-auteur
+启用虚拟会议	Virtuele vergaderingen inschakelen
+修改投标	Biedingen wijzigen
+增补程序委员会成员	Patch voor leden van het Comité
+投稿	Indiening
+有程序委员会成员	Een programma lid van het Comité
+有分派论文	Toegewezen proefschrift
+指定外部审稿人	Opgeven van de externe revisoren
+已注册申请人	Geregistreerde aanvragers
+与会者	Deelnemers
+被动与会者	Passieve deelnemers
+主题	Thema
+会议文件	Vergader documenten
+联合主席	Voorzitter van het gewricht
+组织	Organisatie
+会议卷册	Conferentie volumes
+被审稿件	Proef manuscript
+报告	Verslag
+会议部分	Segment
+与会者信息	Genodigden informatie
+会议申请人	Voldoen aan de aanvrager
+提前付费申请人	Betalen op voorhand aanvragers
+组织者	Organisatoren
+会议投稿人	Conferentie leverden
+摘要	Samenvatting
+指导委员会	Het Steering Committee
+委员会	Comité
+正规作者	Regelmatige auteurs
+录用稿件	Huren van sectie
+会议征稿通知	Conference call for papers
+书面投稿	Schriftelijke indiening
+会议费用	Conferentie kosten
+付费申请人	Besteed aan de aanvrager
+征集参与者通知	Verzamelen van deelnemer kennisgeving
+会议通知	Aankondiging van de vergadering
+重要日期	Belangrijke datums
+组委会	Het Organiserend Comité
+研讨会	Seminar
+会议论文集	Proceedings of the Conference
+审稿优先选择	Peer review voorkeuren
+特邀报告	Uitgenodigde gesprekken
+投稿第一作者	Eerste Auteur indiening
+征文启事	Papieren-
+会议网站	Vergadering-website
+主动与会者	Actieve deelnemers
+研讨会主席	Voorzitter van het seminar
+正规投稿	Regelmatige medewerkers
+教程	Zelfstudie
+特邀报告人	Keynote sprekers
+出版商	Uitgevers
+审稿专长	Peer review deskundigheid
+长摘要	Lange samenvatting
+投稿合作作者	Indiening auteurs
+晚付费申请人	Laattijdige betaling de aanvrager
+海报	Poster
+轨道	Nummers
+拒收稿件	Geweigerde manuscripten
+委员会成员	De leden van het Comité
+照相制版稿件	Photoengraving manuscripten
+有一个卷册	Er is een volume
+有一个电子邮箱	Hebben een elektronische postbus
+有名	Beroemde
+有一个录用通知日期	Er is een verklaring van aanvaarding
+有一个照相制版提交日期	Datum van indiening hebben een fotomechanische
+有一个发行日题	Hebben een kwestie datum probleem
+有一个名字	Een naam hebben
+有性别	Seks hebben
+有一个投稿	Hebben een indiening
+有一个委员会联合主席	Er is een co-voorzitter van een Commissie
+有一个isbn	Er is een ISBN nummer
+有一个摘要投稿日期	Een datum voor de indiening van de abstracte
+被分配给审稿参考	Manuscript is toegewezen aan de verwijzing
+有一个研讨会教程主席	Er is een seminar natuurlijk Voorzitter
+有研讨会	Seminar
+有重要日期	Belangrijke datums
+有一个结束日期	Er is een begin-en einddatum
+有一个地点	Een locatie
+有一个全文投稿日期	Een volledige tekst inzenddatum
+有一个网址	Er is een adres
+有一个度	Er is een zekere mate
+有一个专长	Hebben een expertise
+有一个开始日期	Er is een begindatum
+有姓	Voornaam
+是由之作	Van het werk
+有一个审稿意见	Er is een peer review
+有一个研讨会教程主题	Een workshop tutorial onderwerpen
+是会议卷册的一部分	Maakt deel uit van het volume van de conferentie
+曾是一个组织委员会	Vroeger een Organiserend Comité
+有一个摘要	Er is een samenvatting
+有一个程序委员会	Hebben een programma Comité
+有一个主题或者投稿	Er is een onderwerp of posting
+曾是一个成员	Gebruikt om een lid te worden
+曾是一个委员会联合主席	Gebruikt als een co-voorzitter van een Commissie
+有一个指导委员会	Er is een stuurgroep
+受邀于	Zijn uitgenodigd om te
+有一个审稿参考或者专长	Had een peer review verwijzing of expertise
+有一个组织委员会	Een Organiserend Comité
+有成员	Leden
+曾是一个指导委员会	Een Steering Committee werd
+曾是一个委员会主席	Was een voorzitter van de Commissie
+是投至	Is uitgebracht op
+属于审稿人	Behoort tot de revisoren
+评审	Beoordeling
+有轨道	Nummers
+有教程	Zelfstudie
+曾是一个研讨会主席	Was een voorzitter van het seminar
+是第一部分	Is het eerste deel van
+有一个审稿专长	Er is een peer review expertise
+属于一个会议卷册	Die behoren tot een conferentie volume
+属于一个审稿参考	Onder een peer review verwijzing
+发行	Probleem
+作报告	Een rapport maken
+曾是一个委员会	Een Comité werd
+邀请联合审稿人	Uitnodigen en gezamenlijke de revisor
+有一个委员会主席	Er is een voorzitter van de Commissie
+有部分	Sommige
+有投稿	Indiening hebben
+曾是一个程序委员会	Zodra een programma Comité
+有一个委员会	Er is een Comité
+是一个会议部分的主题	Is een onderdeel van het thema van de conferentie
+有一个出版商	Een uitgever
+旅游	Toerisme
+志愿者	Vrijwilligers
+短论文	Het korte essay
+投稿活动	Bijdrage activiteiten
+工作活动	Werkzaamheden
+参加者	Deelnemers
+招待会	Receptie
+照相制版活动	Photoengraving activiteiten
+宴会	Feestzaal
+标准	Standaard
+审稿活动	Peer review activiteiten
+审稿结果活动	Peer review resultaten van de activiteiten
+城市	Stad
+科学工作者	Wetenschappelijke werknemer
+管理活动	Beheeractiviteiten voor
+助理	Assistent
+国家	Nationale
+大学	Universiteit
+学生	Studenten
+成员	Leden
+社交活动	Sociale activiteiten
+公司	Bedrijf
+活动	Activiteiten
+报名注册活动	Registratie activiteiten
+学者	Geleerden
+开始于	Begint met
+最少选项	Minimale opties
+有传真号码	Faxnummer
+有国家	Nationale
+处理	Verwerking
+有关键词	Trefwoorden
+有街道名	Straatnaam
+平行于	Parallel aan de
+有管理活动	Beheeractiviteiten voor
+审稿	Peer reviewers
+撰写	Schreef
+专家于	Deskundigen in
+受雇于	Werkzaamheden in loondienst in de
+就学于	Studeren aan de
+联系电子信箱	Contact e-mailadres
+备注	Notities
+有电话号码	Is er een aantal
+有增值税	Belasting over de toegevoegde waarde
+最多选项	De meeste opties
+有标题	Een titel heeft
+有邮编	Postcode
+提前注册	Registreren bij voorbaat
+有简略标题	Een korte titel
+有主页	Home pagina
+结束于	Eindigt op
+场所	Plaats
+有电子信箱	E-mail
+缺省项目	Standaard project
+紧接着	Kort daarna
+有主题	Thema
+有城市	Stad
+无线通信主题	Draadloze communicatie onderwerpen
+光学计算机网络主题	Optische computer netwerken onderwerpen
+用餐地点	Eetgelegenheden
+征集手稿通知	Collectie manuscript bericht
+参与者主题	Deelnemers aan onderwerpen
+学术组织	Academische organisaties
+被评价论文	Evaluatie essay
+酒会	Cocktail receptie
+学术活动	Academische activiteiten
+并行和分布式计算主题	Parallelle en gedistribueerde gegevensverwerking onderwerpen
+信号处理主题	Signaal processing onderwerpen
+性能主题	Prestaties onderwerpen
+计算机网络安全主题	Computer netwerk beveiligingsonderwerpen
+未决定论文	In behandeling zijnde documenten
+结束报告	Einde van rapport
+卫星和空间通信主题	Ruimte en satelliet communicatie thema
+会间休息	Sessie pauze
+会议晚宴	Conferentie diner
+欢迎报告	Is ingenomen met het verslag
+撤回的论文	Trekken van papieren
+审稿级别	Peer evaluatie niveau
+会议分场会议	Conferentie breakout sessies
+计算机网络企业主题	Netwerk Enterprise thema
+计算机网络主题	Computer networking onderwerpen
+程序	Programma
+计算机网络交换机主题	Computernetwerk schakelt onderwerpen
+cad主题	CAD thema
+报告活动	Activiteitsverslag
+计算机网络管理主题	Computer netwerk beheer onderwerpen
+地点	Locatie
+个人审稿历史	Persoonlijke beoordeling geschiedenis
+无线电通信主题	Thema van de radio 's
+组织会议	Organisatie-sessie
+审稿表格	Formulier voor evaluatie van peer
+休息活动	Overige activiteiten
+医学主题	Medische onderwerpen
+餐饮场所	Eetgelegenheden
+城府组织	Geheime organisaties
+用餐活动	Dineren evenementen
+电力线传输主题	Macht lijn transmissie thema
+会议主席	De Voorzitter van de conferentie
+会议活动	Conferentie activiteiten
+计算机体系结构主题	Computer het platform onderwerpen
+弱拒收级别	Lage afwijzing niveau
+赞助	Sponsoring
+操作系统主题	Besturingssysteem thema 's
+自由活动	Gratis activiteiten
+计算机网络度量主题	Netwerk meting onderwerpen
+活跃论文	Actieve artikelen
+拒收级别	Afwijzing niveau
+接受级别	Aanvaardbaar niveau
+幻灯片集	Diareeks
+住宿地点	Plaatsen om te verblijven
+论文报告	Papier presentaties
+单级会议	Single-fase conferentie
+据用论文	Volgens de krant
+通信主题	Mededeling van de onderwerpen
+计算机网络应用主题	Netwerk toepassingen onderwerpen
+用餐休息	Maaltijd pauze
+个人发表历史	Persoonlijke geschiedenis
+会场	De locatie
+参与者	Deelnemers
+文本审稿问题	Manuscript tekst probleem
+加密主题	Coderen van onderwerpen
+计算机网络传感器主题	Netwerk sensoren thema
+测试主题	Test onderwerp
+联系信息	Contact informatie
+两级会议	Twee-niveau vergaderingen
+数字化审稿问题	Gedigitaliseerde manuscript problemen
+通信理论主题	Onderwerp van de mededeling theorieën
+非政府组织	Niet-gouvernementele organisaties
+审稿问题	Peer review kwesties
+工业组织	Industriële organisaties
+安全性主题	Beveiligingsonderwerpen
+报告人	Spreker
+个人历史	Persoonlijke geschiedenis
+分场会议主席	Voorzitter van de breakout-sessies
+密码学微电子主题	Cryptografie micro-elektronica onderwerpen
+旅行补助	Reizen subsidies
+通知	Kennisgeving
+非学术会议	Niet-academische conferenties
+出版的论文	Gepubliceerde documenten
+可接受级别	Aanvaardbaar niveau
+征集审稿人通知	Oproep voor revisoren te informeren
+游览	Tour
+技术程序委员会	Technische programma Comité
+菜单	Menu
+多媒体主题	Multimedia onderwerp
+移动计算主题	Mobiele computing onderwerpen
+有花费数目	Hebben doorgebracht
+注册到期	Registratie is verlopen
+有截稿日期	Onder een termijn
+结束日期	Einddatum
+有投稿指示	Indiening instructies hebben
+是菜单	Is het menu
+论文到期	Papieren verschuldigde
+有名称	Een naam hebben
+手稿到期	Manuscript due
+有电话	Hebben een telefoon
+有开始日期时间	Start datum tijd
+有传记	Biografie
+开始日期	Begindatum
+有结束日期时间	Eind datum/tijd
+有电子邮箱	Elektronische mailbox
+有花费货币	Verbruikte geld
+是成员	Is lid van
+是之审稿历史	Is de geschiedenis van het manuscript
+被提供	Worden aangeboden
+启动	Start
+有通知	Aankondiging
+有菜单	Met menu
+有程序	Heeft het programma
+被启动于	Werd gelanceerd in
+有相关文件	Gerelateerde bestanden
+属于活动	Op de actieve
+相关活动	Aanverwante activiteiten
+撰写自	Schrijf zelf
+是主题	Het onderwerp is
+为活动	Voor de actieve
+有相关论文	Verwante artikelen
+相关	Gerelateerde
+相关论文	Verwante documenten
+出席	Om bij te wonen
+被审稿于	"Peer review" in
+有评级	Rating
+有审稿历史	Een geschiedenis manuscripten
+是提供者	Is de leverancier
+有参与者	Deelnemers
+在此举办	Host
+有地点	Locatie
+完注册与会者	Inschrijving van deelnemers voltooien
+会议旅游	Congrestoerisme
+实用型论文	Praktische proefschrift
+教程摘要	Tutorial samenvatting
+肯定意见	Het positieve advies van
+代理工作人员	Personeel van het Agentschap
+位置	Locatie
+实用性主题分场会议	Praktische onderwerp breakout sessies
+网站	Website
+演示会	Demo
+研究主题	Onderzoekthema 's
+海报论文	Poster papers
+研究所	Instituut
+研讨会论文	Werkcollege papers
+正规分场会议	Informele breakout sessies
+论文集出版商	Procedure van de uitgevers
+中性意见	Neutraal commentaar
+教程主席	Voorzitter van de tutorial
+被审论文	Proef papers
+赞助者主席	Sponsor Voorzitter
+组织代理	Handelen
+照相制版论文	Fotozet papier
+传单	Flyer
+投稿论文	Indiening documenten
+海报展示会	Poster tentoonstelling
+否定意见	Negatieve advies
+学术机构	Academische instellingen
+分配的论文	Toegewezen proefschrift
+研讨会分场会议	Breakout sessies
+特邀报告摘要	Speciaal verslag samenvatting
+组织委员会主席	Voorzitter van het organisatie-comité
+合适的审稿人	Geschikt reviewers
+科学活动	Wetenschappelijke activiteit
+演示会主席	Voorzitter van de demo
+多作者卷册	Multi auteur volumes
+程序手册	Lastenboek
+组织委员会成员	Leden van de organisatie-Commissie
+大会分场会议	Conferentie breakout sessies
+正规论文	Regelmatige papers
+录用文章报告	Aanvaard papieren verslagen
+记录集	Recordset
+提前注册与会者	Deelnemers registreren
+论文作者	De auteurs
+演示论文	Demo papers
+会议论文	Congresbijdragen
+会议宴会	Vergader- en feestzalen
+分场会议	Breakout sessies
+个人报告	Afzonderlijke rapporten
+包括主题	Met inbegrip van thema 's
+列表活动	Lijst van activiteiten
+是更新版本	Is de bijgewerkte versie
+学术上组织	Academische organisaties
+有审稿人	Revisor
+由之组织	Door organisatie
+论文位于卷	Documenten in het volume
+审稿意见撰写于	Schriftelijk hun opmerkingen
+是之一部分	Maakt deel uit van
+所报告论文	Gemeld door papieren
+是出版商	Uitgevers
+论文报告形式	Papieren formulieren rapportage
+是论文审稿人	Is de papier-revisoren
+有更新版本	Een bijgewerkte versie
+举办于	Gehouden op de
+有活动	Activiteiten
+是子活动于	Is een kind activiteit in
+是部分于	Maakt deel uit van
+位于	Gelegen de
+技术上组织	Technische organisaties
+主题被包括于	Onderwerpen moeten worden opgenomen in
+活动列表于	Lijst van activiteiten in
+论文审稿意见	Papier-opmerkingen
+学术上由之组织	Academische organisatie
+技术上由之组织	Technisch door organisatie
+卷册包括论文	Volumes omvatten papers
+是作者	Is de auteur
+参考于	Verwijzing naar
+参考	Referentie
+有审稿意见	Opmerkingen
+鸡尾酒会	Cocktailparty
+旁听者	Toeschouwers
+支票	Selectievakje
+作者与会者光盘注册费	Auteur registratie fee van de deelnemer CD
+代表	Namens
+截稿日期	De uiterste datum van
+最后定稿	Gefinaliseerd
+报告人国家	Spreker landen
+单日报告人	Eendaagse spreker
+幻灯片报告	Dia verslag
+会议录光盘	Conferentie procedure CD
+全会讲座演讲者	Plenaire vergadering Hoorcollege luidsprekers
+报告人讲座	Spreker Hoorcollege
+录像带播放器 	Video-speler 
+初稿	Het eerste ontwerp
+货币	Valuta
+注册费	Inschrijvingskosten
+宾馆注册表	Hotel register
+时间	Tijd
+透明度	Transparantie
+拒收投稿	Geweigerde inzendingen
+会议宾馆	Conferentie Hotels
+计算机	Computer
+分场会议室	Breakout vergaderzalen
+报告人的大学	Spreker van de Universiteit
+住宾馆的报告人	Spreker van het hotel
+双人间	Tweepersoonskamer
+液晶投影机	LCD-projector
+报告人城市	Spreker stad
+汽车	Automotive
+学生演讲者	Student spreker
+会议国家	Nationale conferentie
+会议大楼	Het gebouw van de conferentie
+技术委员会	Het technisch comité
+出席记录	Record opkomst
+研究	Studie over de
+注册	Registratie
+不做报告的学生	Niet rapportage van student
+录用通知截止日期	Termijn van kennisgeving
+会议日	Dag van de vergadering
+赞助人	Patroon
+会议大厅	Conferentie zaal
+表格	Tabel
+邮件列表	Mailing lijst
+讲演者介绍	Spreker introductie
+会议餐厅	Conferentie eetkamer
+宾馆房间	Hotelkamer
+全会讲座	Plenaire lezingen
+建模	Modellering
+离开	Verlof
+视频报告	Video verslag
+会议机场	Conferentie luchthaven
+学生注册费	Student inschrijvingsgeld
+会议旅行者	Vergadering reiziger
+宾馆预定截止日期	Hotel reservering termijn
+技术活动	Technische activiteiten
+非报告人	Mensen die geen aangifte doen
+演讲者	Spreker
+赞助公司的房子	Bijdragende ondernemingen huis
+额外旅行费用	Extra reiskosten
+会员注册费	Lid registratierechten
+接收投稿	Ontvangen inzendingen
+非作者注册费	Non-Auteur inschrijvingsgeld
+信用卡	Credit card
+附加税	Extra belastingen
+旅游城市	Toeristische steden
+注册表	Register
+投影仪	Projector
+介绍	Inleiding
+班车	Shuttle
+付款文件	Het betalingsbestand
+税	Belasting
+出版物	Publicaties
+模拟	Simulatie
+旅游日	Toerisme dag
+租赁	Verhuur
+晚宴	Diner
+会议城市	Vergadering van steden
+费用	Vergoeding
+照相制版截止日期	Fotomechanische termijn
+不做报告的学者	Niet rapportage van geleerden
+学者演讲者	Geleerde spreker
+讲座	Hoorcollege
+获得会记录光盘的作者	Krijgen van een CD-r-schrijver
+注册截止日期	Sluitingsdatum voor registratie
+离境税	Vertrekbelasting
+建筑物	Gebouw
+酒电费	Wijn tarieven
+非iasted会员	IASTED leden zijn
+非会员注册费	Niet-lid registratie fee
+欢迎致词	Gastvrij adres
+视听设备	Audiovisuele apparatuur
+iasted会员	IASTED lid
+截止日期	Vervaldatum
+教程主讲人	Tutorial presentator
+卡	Kaart
+银行转帐	Bankoverschrijving
+分场会议主席的简短介绍	Korte presentatie door de Voorzitter van de breakout-sessies
+作者信息表	Auteur informatieblad
+赞助者国家	Sponsoren van de nationale
+单人间	Eenpersoonskamer
+会议日期	Vergaderdatums
+交通工具	Vervoer
+卡车	Vrachtwagen
+时区	Tijdzone
+赞助者城市	Sponsors stad
+会前活动	Voor aanvang van activiteit
+出租车	Taxi
+会议录	Congresverslagen
+获得会议录书的作者	Toegang tot congresverslagen en auteur van
+钱款	Het geld is
+作者与会者注册费	Auteur registratierechten
+项目	Project
+邀请信	Uitnodigingsbrief
+录用投稿	Werving-boeken
+主办事处	Hoofdkantoor
+全日游	Volle dagtocht
+小费	Tip
+报告人的房子	Spreker van het huis
+签证	Visum
+会后活动	Activiteiten na
+作报告于	Zoals gemeld in
+之后发送	Verzonden na
+由之参观	Door een bezoek
+由之签名	Ondertekend door de
+给	Om te geven
+占用	Duren
+由之准备	Door het opstellen van
+截至	Zoals op
+注明日期于	Datum in
+有总计	Een totaal van
+与之连接	Verbinding maken met
+经过	Na
+由之发送	Door te sturen
+由之给予	Door te geven
+被用于	Worden gebruikt om te
+之前举办	Gehouden voorafgaand aan
+需要	Noodzaak
+之前发送	Alvorens te verzenden
+获得	Toegang
+支付	Betaling
+支付于	Betalen
+由之占用	Bezet door de
+由之支付	Door betaling
+为之支付	Betalen voor
+用于	Gebruikt voor
+签名	Handtekening
+为之设计	Voor ontwerp
+由之组成	Samengesteld uit
+以之配备	Uitgerust met
+发送	Verzenden
+之后举办	Na de
+由之写	Geschreven door de
+准备	Voorbereiden
+写	Schreef
+sigmod成员注册费	SIGMOD leden registratierechten
+组织委员会	Het organisatie-comité
+非成员注册费	Niet-lid registratie fee
+sigkdd成员注册费	SIGKDD registratie lidgeld
+计算机协会知识发现和数据挖掘会议	Computer Society Conference op kennis ontdekking en datamining
+最佳学生论文奖	Best student paper award
+奖	Award
+摘要截稿日期	Abstracte termijn
+铜牌级赞助者	Bronzen niveau sponsors
+赞助者	Sponsors
+金牌纪赞助者	Gouden tijdperk sponsors
+学生论文作者	Student auteurs
+宾馆	Hotel
+网站管理员	Websitebeheerder
+参展者	Exposanten
+最佳应用论文奖	Beste toepassing papier award
+总办事处	Hoofdkantoor
+赞助费	Sponsoring vergoedingen
+全文截稿日期	Volledige tekst van de termijnen
+录用论文作者通知截止日期	Aanvaarde papier Auteur kennisgeving termijn
+最佳论文奖委员会	Best Paper Award Comité
+最佳研究论文奖	Beste onderzoek papier award
+银牌级赞助者	Zilver niveau sponsor
+听众	Het publiek
+白金级赞助者	Platinum-niveau sponsors
+最佳学生论文赞助者	Beste student paper sponsors
+直到录用通知日期	Tot kennisgeving van aanvaarding
+寻找	Op zoek naar
+获奖	De award-winnende
+付费	Betalen
+制定	Instellen
+由之付费	Betaald door de
+由之寻找	Door op zoek naar
+承办	Hosting
+制定于	Opgesteld in
+获奖于	Winnen in
+投稿截止于	Papier indiening indieningstermijn
+电子信件	E-brieven
+价格	Prijs
+会议结束日期	Vergadering einddatum
+会议名称	Vergadering naam
+赞助者名称	Sponsor naam
+可位于	Kan worden gevestigd
+颁奖给	Huidige awards
+由之承办	Gehost door de
+由之作报告	Gemeld door de het
+国籍	Nationaliteit
+会议开始日期	Conference startdatum

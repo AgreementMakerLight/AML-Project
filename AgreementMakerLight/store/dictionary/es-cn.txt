@@ -1,0 +1,666 @@
+meta revisión	目标审查
+comité de programa	程序委员会
+puja	出价
+miembro del comité de programa	程序委员会成员
+usuario	用户
+conferencia	会议
+administrador	管理员
+meta revisor	Meta 审阅者
+miembro de la conferencia	该会议的成员
+área temática	专题区
+artículo	第条
+presidente del comité de programa	程序委员会主席
+resumen del artículo	文章的摘要
+presidente	主席
+aceptar	还行
+vice presidente	副总裁
+preferencia	偏好
+presidente de la conferencia	会议主席
+autor	作者
+coautor	合著者
+decisión	决定
+documento	文档
+versión completa del artículo	这篇文章的完整版
+revisor	审阅者
+rechazar	拒绝
+autor, no revisor	作者，没有审阅者
+revisión	审查
+revisor externo	外部审查员
+persona	人
+asigna revisor externo	分配外部审查员
+es miembro del comité de programa	是委员会成员
+permite reunión virtual	允许虚拟会议
+envía el artículo	发送项目
+inicia la puja de los artículos	开始投标的文章
+asignado por el revisor	分配的审阅者
+introduce criterios de revisión	进入审查标准
+los criterios de revisión han sido introducidos por	通过介绍了审查标准
+la puja de los revisores ha sido iniciada por	从审阅者出价已经初始化
+detalles introducidos por	输入的详细信息
+asigna un número máximo de artículos a	分配给项目的最大数目
+rechazado por	被拒绝
+redacta el artículo	写篇文章
+redacta la revisión	写检讨
+asignado por el administrador	由管理员分配
+es miembro de la conferencia	是该会议的成员
+modificada por	由修改
+asignar revisor	分配审阅者
+añadido por	通过添加
+asignado a	分配给
+tiene miembro de la conferencia	有成员会议
+tiene área temática	有主题区域
+gestiona las herramientas para la asignación de artículos	它管理的工具，以便分配的项目
+la asignación de artículos ha sido finalizada por	已完成分配的文章
+tiene autor	有作者
+finaliza la asignación de artículos	结束项目的分配
+tiene puja	已出价
+leído por el meta revisor	阅读由审阅者元
+tiene decisión	决定了
+reunión virtual mediante	使用虚拟会议
+lee el artículo	读这篇文章
+las copias en papel de los manifiestos de envío han sido impresas por	航运舱单纸张副本已打印的
+rechaza el artículo	拒绝文章
+tiene coautor	合著了
+modifica la puja	修改出价
+las herramientas para la asignación de artículos han sido gestionadas por	有一直由管理的项目分配的工具
+es coautor de un artículo	是的一篇文章的作者
+url del logotipo	URL 的徽标
+acepta entregas en papel	接受交付在纸上
+url de la página web	Web 页的 URL
+título	标题
+ha sido asignado a	它已分配给
+escrito por	写的
+ha señalado conflicto de intereses	注意到的利益冲突
+tiene miembro del comité de programa	有的程序委员会成员
+tiene conflicto de intereses	有冲突的利益
+añade miembro de comité de programa	添加的程序委员会委员
+aceptado por	接受的
+copia en papel de los manifiestos de envío	从航运舱单拷贝纸
+acepta el artículo	接受第条
+finaliza revisión	结束审阅
+introduce detalles de la conferencia	输入会议详细的信息
+leído por el revisor	由作者读
+nombre	名称
+correo electrónico	电子邮件
+número máximo de artículos	最大项目数
+fecha	日期
+identificador del artículo	项目标识符
+revisiones por artículo	每篇文章的修改
+solicitud de envío de artículos	提交的请求
+contribución por escrito	在写作中的贡献
+persona que envía una contribución a la conferencia	发送到会议作出贡献的人
+actas de la conferencia	会议程序
+vicepresidente	副总裁
+contribución regular	定期的贡献
+coautor de la contribución	合作作者的贡献
+presentación	演示文稿
+información para los participantes	参与者的信息
+comité	委员会
+contribución enviada	提交的贡献
+primer autor de la contribución	第一作者的贡献
+participante de la conferencia	会议的参与者
+fechas importantes	重要日期
+comité directivo	督导委员会
+persona registrada a la conferencia	注册参加会议的人
+conferencia www	www 会议
+documento de la conferencia	会议文件
+persona que paga con retraso las tasas de la conferencia	人付滞纳金的会议
+tutorial	教程
+tema	主题
+persona que hace un pago anticipado de las tasas de la conferencia	作出预先支付了费用会议的人
+contribución aceptada	公认的贡献
+comité organizador	组织委员会
+organizador	主办单位
+editor	编辑器
+volumen de la conferencia	会议的卷
+contribución rechazada	被拒绝的贡献
+preferencia del revisor	审阅者偏好
+póster	海报
+persona que paga las tasas de la conferencia	支付会议费的人
+panel	小组
+charla invitada	邀请
+parte de la conferencia	会议的一部分
+anuncio de la conferencia	会议的公告
+organización	组织
+persona que envía una solicitud a la conferencia	将请求发送到会议的人
+contribución revisada	经修订的贡献
+tasas de la conferencia	会议订房服务
+contribución lista para su envío definitivo	准备好最后一批贡献
+solicitud de participación	参加的请求
+taller	讲习班
+participante pasivo en la conferencia	在会议中的被动参与者
+experiencia del revisor	审阅者的经验
+contribución a la conferencia	对会议的贡献
+organizador de los workshops	讲习班组织者
+resumen	概述
+resumen ampliado	扩展的概述
+participante activo en la conferencia	会议的积极参与者
+conferenciante invitado	演讲嘉宾
+era comité directivo de	是督导委员会
+tiene autores	有作者
+tiene referencias o experiencia en la revisión de artículos	你有引用或经验审查的文章
+tiene un comité	有一个委员会
+era comité organizador de	组织委员会
+tiene un tema o una contribución enviada	你有一个主题或提交的贡献
+tiene contribuciones	有的贡献
+ha presentado una contribución	他提出了一个贡献
+tiene un revisor	已审阅者
+era vicepresidente del comité de	是副主席
+era organizador de un panel de talleres de	它是一个讲习班组织者的小组
+tiene un comité organizador	有一个组织委员会
+tiene un comité directivo	有一个督导委员会
+tiene miembros	有成员
+tiene partes	有部分
+pertenece a una referencia de la revisión	它属于审查的参考
+dado por	给出了由
+problemas	问题
+tiene tema de taller-tutorial	有主题讲习班-教程
+se le ha asignado una referencia  de revisiones	您已分配的修订的引用
+es la primera parte de	是的第一部分
+pertenece a los revisores	属于审阅者
+revisiones	点评
+tiene talleres	有工作坊
+forma parte de los volúmenes de la conferencia	它是会议的一部分的容量
+invitado por	由邀请
+era comité de programa de	是程序委员会
+tiene un vicepresidente de comité	有一个委员会副主席
+enviado a	发送到
+era presidente del comité de	是的主席
+era comité de	是的委员会
+tiene un comité de programa	有一个程序委员会
+tiene tutoriales	有教程
+era miembro de	是的成员
+tiene organizador de taller-tutorial	已举办的讲习班教程
+da presentaciones	给演示文稿
+tiene un presidente de comité	有一个总统委员会
+tiene un editor	有的编辑器
+tiene experiencia en la revisión de artículos	他在文章的审查有经验
+contribuye	贡献
+corevisores invitados	邀请的 corevisores
+es tema de parte de la conferencia	这是主题的会议的一部分
+tiene nombre de pila	有的第一个名字
+tiene apellidos	有个姓
+es fecha de inicio	是开始日期
+tiene url	有的 url
+tiene fechas imprortantes	有日期 imprortantes
+pertenece al volumen de la conferencia	属于会议卷
+tiene resumen	有的简介
+tiene paneles	有电池板
+tiene correo electrónico	有的电子邮件
+tiene experiencia	有经验
+es fecha de envío de versiones definitivas de artículos	这是文章的最终版本的日期
+tiene volumen	有的体积
+tiene grado	有学位
+es fecha de envío de artículos largos	它是长文章的日期
+tiene isbn	有国际标准书号
+tiene ubicación	有的位置
+es fecha de envío de resúmenes	摘要提交日期
+es fecha de finalización	完成日期
+tiene fecha de emisión	已发行日期
+tiene género	有性别
+es fecha de aceptación del anuncio	是广告的日期
+tiene nombre	有的名字
+excursión	游览
+envío de contribuciones	提交的贡献
+proceso de revisión de resultados	审查的结果
+no miembro	非会员
+programa social	社会的程序
+artículo corto	短的文章
+asistente	助理
+socio	合作伙伴
+estudiante	学生
+becario	实习生
+envío de versión definitiva	提交的最终版本
+cena de gala	盛宴
+proceso de revisión	审查过程
+voluntario	志愿者
+recepción	接待处
+universidad	大学
+ciudad	城市
+país	国家
+contribución	贡献
+registro de participantes	与会者登记
+acontecimiento administrativo	管理事件
+acontecimiento	事件
+científico	科学家
+evento científico	科学事件
+empresa	公司
+participante	参与者
+tiene tema	有的主题
+tiene ciudad	有市
+contratado por	雇佣的
+paralelo a	平行于
+revisa	检查
+escribe	写操作
+experto en	专家
+trata de	贩卖
+tiene país	国家有
+tiene acontencimiento administrativo	有行政的事态发展
+estudia en	在研究
+sigue a	继续
+selección mínima	最小选择
+correo electrónico de contacto	联系人的电子邮件
+tiene título corto	有短标题
+selección máxima	最大选择
+finaliza en	在结束
+tiene fax	已传真
+tiene código postal	有 zip 代码
+tiene teléfono	有手机
+tiene página web	有的网站
+tiene título	有的标题
+lugar	地方
+inscripción anticipada	早起的鸟儿注册
+tiene palabra clave	已标记
+comentario	发表评论
+empieza en	在启动
+tiene calle	有街
+elección por defecto	选择默认
+tiene iva	是增值税
+convocatoria para la revisiones	修订的呼吁
+artículo retirado	撤回的条
+tema, multimedia	多媒体的问题
+artículo rechazado	退回的文章
+charla	谈话
+programa	程序
+convocatoria para la presentación de artículos	要求提交的文章
+conferencia de clausura	闭幕会议
+tema, microelectrónica	主题，微电子技术
+beca de viaje	旅行奖学金
+reunión organizativa	组织会议
+tema, seguridad	安全的话题，
+historial de publicaciones	出版物的历史
+tema, medidas de redes de computadoras	问题，计算机网络的措施
+acontecimiento académico	学术活动
+tema, comunicaciones inalámbricas	无线通信的问题，
+tema, teoría de la comunicación	主题，通信理论
+pausa para comer	暂停吃
+tema, redes de computadoras	计算机网络的主题，
+tema, comunicación por rádio	无线电通信的问题，
+pausa para tomar un café	停顿，喝杯咖啡
+comida	食品
+presidente de la sesión	届会议主席
+pregunta sobre la revisión	问及审查
+tema, redes de computadoras ópticas	主题，光计算机网络
+información de contacto	联系信息
+miembro del comité técnico del programa	技术的程序委员会成员
+tema, seguridad en las redes de computadoras	在计算机网络中的安全的话题，
+tema antennas	主题天线
+pregunta sobre la revisión numérica	被问到的数值的审查
+ratio de papers rechazados pero en el límite	比被拒绝的纸，但在极限
+lugar de reunión	会议地点
+conjunto de transparencias	透明胶片一套
+tema, empresas de reedes de computadoras	主题，计算机网络公司
+tema, sistemas operativos	主题操作系统
+alojamiento	住宿
+presentador	节目主持人
+acontecimiento no académico	非学术事件
+patrocinio	赞助
+tema, computación móvil	主题，移动计算
+tema, procesamiento de señales	主体、 信号处理
+currículum vitae	简历
+tema, conexión en las redes de computadoras	学科，与计算机网络的连接
+pausa	暂停
+menú	菜单
+ratio de revisiones	修订的比率
+ratio de aceptación	接受率
+tema, medicina	主题医学
+lugar de celebración de la conferencia	会议的地点
+organización de gobierno	政府组织
+tema, computación paralela y distribuida	主题，并行与分布式计算
+historial de revisiones	修订历史记录
+tema, solo de prueba	只有测试主题
+tema, arquitectura de computadoras	主题，计算机体系结构
+tema, sensores en las redes de computadoras	话题，在计算机网络中的传感器
+lugar de celebración de la cena	晚餐的场所
+artículo activo	活动的文章
+ratio de rechazos	不合格品的比例
+artículo aceptado	公认的文章
+tema, comunicaciones espaciales y por satélite	主题、 空间和卫星通信
+artículo pendiente	挂起的文章
+tema, comunicaciones	通讯的主题
+cena de la conferencia	大会晚宴
+convocatoria	调用
+ong	非政府组织
+tema cad	主题 cad
+conferencia de bienvenida	会议欢迎
+conferencia de un nivel	一个水平会议
+tema, transmisión mediante cable eléctrico	主题，通过电源线传输
+formulario de revisiones	点评形式
+conferencia de dos niveles	两级会议
+organización industrial	工业组织
+artículos relacionados	相关的文章
+acontecimiento social	社会事件
+tema, aplicaciones de las redes de computadoras	学科，计算机网络的应用
+organización académica	学术组织
+tema, criptografía	问题，密码学
+ratio de aceptación si hay espacio	接受如果有空间的比例
+tema, rendimiento	主题性能
+tema, gestión de redes de computadoras	计算机网络管理的问题，
+convocatoria para la presentación de manuscritos	要求提交的手稿
+artículo publicado	已发布的文章
+sesiones de la conferencia	会议届会议
+pregunta sobre la revisión textual	问及考述
+presentación de artículos	文章提交
+el artículo tiene que estar entregado antes de	该项目必须传递前
+tiene fecha límite de entrega	已截止日期
+cuesta	边坡
+tiene hora y fecha de comienzo	有开始日期和时间
+tiene hora y fecha de finalización	已完成的日期和时间
+es tema de	是的主题
+asitente a	助理
+es miembro de	是的成员
+tiene asistentes	有与会者
+pertenece al acontecimiento	属于该事件
+tiene miembro	有的成员
+proporcionado por	所提供的
+tiene ratio	具有比
+es revisado por	它是由审查
+tiene artículo relacionado	有相关的文章
+está revisando	它审查
+se relaciona con	与关联
+inicia	启动
+es ubicación de	是的位置
+es iniciado por	它是由启动
+tiene menú	有的菜单
+está escrito por	是写的
+relacionado con el artículo	相关的文章
+es menú de	是的菜单
+tiene documento relacionado	有相关的文档
+es proveedor de	是的提供商
+tiene convocatoria	已调用
+es el historial de revisiones de	是的修订历史
+para el acontecimiento	为事件
+relacionado con el acontecimiento	事件相关
+tiene historial de revisiones	有的修订历史记录
+tiene programa	有的程序
+fecha de finalización	完成日期
+el registro tiene que estar hecho antes de	前必须进行登记
+fecha de comienzo	开始日期
+el manuscrito tiene que estar entregado antes de	这份手稿必须交付前
+tiene moneda	有的货币
+tiene instrucciones de envío	已发货说明
+tiene biografía	有传
+conferencia principal	会议主要
+presidente del comité organizador	组织委员会主席
+evaluación negativa	负面评价
+agencia de organización de congresos	大会组织机构
+miembro de la organización	该组织的成员
+sesión de demostraciones	演示会话
+participante con inscripción anticipada	参加者与预先登记
+autor de la contribución	作者的贡献
+seminario	研讨会
+artículo de taller	车间条
+editor de las actas	程序编辑器
+tema de investigación	研究课题
+artículo de póster	第条海报
+participante con inscripción no anticipada	参加者与没有预先登记
+organizador de los talleres	举办讲习班
+actas	记录
+evaluación neutra	中立的评价
+miembro del comité organizador	组委会成员
+programa de mano	手程序
+resumen de tutorial	概述教程
+artículo en conferencia principal	文章中主要的会议
+folleto	小册子
+moderador de la sesión	会议主持人
+sesión de congreso	国会会议
+centro de investigación	研究中心
+organizador de la sesión de pósters	海报会议组织者
+página web	web 页
+artículo de conferencia	会议文章
+volumen de varios autores	体积的各种各样的作者
+sesión de pósters	会议海报
+evento	事件
+sesión	会议
+artículo revisado	修改后的文章
+artículo sobre demostración	文章在示范
+sesión de talleres	研讨会会议
+artículo de experiencias en la industria	文章由行业相关经验
+cosa	事
+participante del congreso	在国会的参与者
+lugar de celebración	地点
+contribución a conferencia	对会议的贡献
+resumen de conferencia invitada	被邀请的演讲的摘要
+sesión industrial	工业会议
+evaluación positiva	积极的评价
+acontecimiento científico	科学事件
+sesión de conferencia	届会议
+miembro del comité científico	科学委员会的成员
+organizador de tutorial	管理器教程
+artículo asignado a revisor	分配给审阅者的文章
+candidato a revisor	审阅者候选人
+presentación individual	个别演示文稿
+institución académica	学术机构
+versión definitiva del artículo	这篇文章的最终版本
+actas de congreso	国会诉讼
+versión actualizada de	更新的版本的
+organización científica por	通过科学组织
+artículo en actas	在诉讼程序中的文章
+parte de	一部分
+tema tratado por	题材的
+tiene evento	有事件
+es revisión de	是的审查
+referencia	参考
+revisión escrita por	审查所写
+parte de evento	事件的一部分
+tiene revisión	有审查
+artículo presentado como	文章提出了一种作为
+organiza técnicamente	从技术上讲组织
+organiza	组织
+inversa de parte de 7	反向 7 的一部分
+es revisor de artículo	是为文章审阅者
+organiza científicamente	科学地组织
+tiene parte	有的部分
+tiene versión actualizada	已更新的版本
+autor de	书的作者
+volumen contiene artículo	卷包含文章
+evento en la lista	事件列表
+presentación de artículo	演示文稿的文章
+organización técnica por	由技术组织
+referenciado en	在中引用
+tiene revisor	已审阅者
+editor de	编辑器中的
+celebrado en	在举行
+enumera eventos	列出的事件
+lugar de	地方
+organizado por	由组织
+incluye el cd de las actas para autores	它包括的改编为作者的 cd
+vehículo de transporte	运输车辆
+actividad	活动
+envío	航运
+reproductor de video casete	盒式磁带的视频播放器
+orador	演讲者
+simulando	模拟
+formulario	窗体
+formulario de registro al hotel	酒店注册表单
+fecha límite	截止日期
+cd de las actas	诉讼程序 CD
+tasas	利率
+edificio	建筑
+conferenciante	讲师
+trabajador no orador	工人不发言者
+ciudad de la conferencia	会议城市
+tarjeta de crédito	信用卡
+coctail de bienvenida	欢迎鸡尾酒
+alquilando	租房
+breve introducción al presidente de la sesión	本届会议主席简介
+incluye las el libro de las actas para autores	包括记录的书的作者
+tasas de registro para los no autores	对于非作者注册费
+día de excursión	一日游
+casa del moderador	主持人的房子
+registro	注册
+delegado	委托
+tasas de registro para los no miembros	对于非会员的注册费
+ciudad del patrocinador	赞助商的城市
+cheque	检查
+proyector lcd	液晶投影仪
+conferencia de un día de duración	一天的会议
+fecha límite de envío de propuestas	提交提案的截止日期
+conferenciante plenario	全体会议议长
+taxi	出租车
+conferencia plenaria	会议的全体会议
+transferencia bancaria	银行转帐
+estudiante no orador	学生不是扬声器
+tasas de salida	产出率
+rechazando el manuscrito	拒绝这份手稿
+recibiendo el manuscrito	收到手稿
+estado en que tiene lugar la conferencia	国家会议发生
+oyente	侦听器
+coche	汽车
+días de duración de la conferencia	会议几天
+publicación	出版物
+tasas del registro	注册费
+tasas por un viaje extra	额外旅行订房服务
+fecha límite de envío de la versión definitiva	最终版提交截止日期
+conferenciante estudiante	学生演讲者
+tasas del hotel	酒店的订房服务
+no miembro de iasted	不是会员的网路
+aceptando el manuscrito	接受这份手稿
+tasas de autor, asistente y libro	率的书，作者、 助理
+salida	输出
+documento de pago	付款单据
+formulario de registro	注册表单
+ciudad del presentador	主办城市
+fecha límite de la notificación de aceptación	接受的通知的截止日期
+proyector	投影仪
+restaurante de la conferencia	餐厅的会议
+habitación doble	双人间
+estado del moderador	主持人地位
+estado del patrocinador	赞助商的状态
+record de asistencia	记录考勤
+equipo audiovisual	视听设备
+tasas de registro par aestudiantes	注册 aestudiantes 的费用
+formulario de información sobre el autor	作者窗体的信息
+actividad técnica	技术活动
+presentación power point	电源点介绍
+presentación por vídeo	视频演示文稿
+oficina principal	主要办事处
+introducción del conferenciante	演讲者的介绍
+transparencia	透明度
+empresa del moderador	公司的主持人
+libro de las actas	诉讼程序
+carta de invitación	邀请信
+introducción	介绍
+no orador	没有扬声器
+autobús de ida y vuelta	总线的往返
+comité técnico	技术委员会
+manuscrito final	最后的手稿
+habitación de hotel	酒店房间
+habitación individual	单人房
+miembro de iasted	协会的成员
+fecha límite de reserva en el hotel	酒店预订截止日期
+tasas de registro para miembros	成员注册费
+investigación	研究
+zona horaria	时区
+impuesto sobre el valor añadido	增值税
+visa	签证
+dinero	钱
+actividad antes de la conferencia	在会议之前的活动
+excursión por la ciudad	城市旅游
+presentador durante un día	在一天的节目主持人
+lista de correos	邮件列表
+excursión de todo el día	所有一日游
+moneda	货币
+excursionista de la conferencia	徒步旅行者的会议
+propina	小贴士
+patrocinador	赞助商
+saludo de bienvenida	欢迎问候语
+sala de sesiones	会话室
+ordenador	计算机
+presentador del hotel	酒店的演示者
+tasas de autor, asistente y cd	作者、 助理率和 cd
+universidad del moderador	大学的主持人
+edificio de la conferencia	会议大楼
+fecha límite de registro	报名截止日期
+conferenciante trabajador	工人讲师
+hotel de la conferencia	会议酒店
+tarjeta	卡
+manuscrito inicial	最初的手稿
+hora	时间
+aeropuerto de la conferencia	会议机场
+orador en tutorial	教程扬声器
+modelando	建模
+estado	状态
+actividad después de la conferencia	在会议之后的活动
+furgoneta	范
+sala principal de la conferencia	大雄宝殿的会议
+fechado en	在日
+está presente	是目前
+utilizado para	用于
+hecho de	做的
+enviar	发送
+preparar	准备
+firmado por	由签署
+ocupado por	被占领
+pasar por	路过
+estar equipado por	将配有
+utilizado por	使用的
+preparado por	编写的
+tiene lugar después de	发生后
+pagado en	在支付
+estar conectado con	与连接
+firmar	标志
+pagado con	与支付
+estar designado por	由指定
+se necesita para	是所需
+enviado después de	发送后
+tiene lugar antes de	发生之前
+pagar	支付
+ocupar	处理
+está presente en	目前在
+dado a	给
+enviado por	由发送
+necesitar	需要
+tiene cantida de	有的量
+hacer hasta	使达
+enviado antes de	发送之前
+pagado por	由支付
+tiene lugar en	在发生
+visitado por	由参观
+hablar en	在发言
+dar	给
+escribir	写
+obtener	获取
+pagado para	为支付
+situado en	位于
+premio al mejor estudiante	最好的学生奖
+fecha límite de notificación al autor	向作者发出通知的日期
+patrocinador de bronce	铜牌赞助商
+tasas de registro	注册费
+premio al mejor artículo de aplicaciones	关于应用程序的最佳文件等奖
+estudiante autor del artículo	学生作者
+patrocinador de oro	黄金赞助商
+fecha límite de envío de resúmenes	摘要提交截止日期
+patrocinador del premio al mejor artículo de un estudiante	赞助商最好的纸上一名学生的奖
+acm sigkdd	Acm
+autor del artículo	文章的作者
+tasas del patrocinador	赞助商率
+patrocinador de platino	白金赞助商
+exhibidor	参展商
+registro para estudiantes	学生注册
+tasas para miembros de sigkdd	超值旗舰成员
+premio al mejor artículo de investigación	最佳的研究论文奖
+tasas para no miembros	率为非成员
+presidente del programa	程序的椅子
+patrocinador de plata	银牌赞助商
+premio	奖
+comité de concesión del premio al mejor artículo	最佳文章奖委员会
+hotel	酒店
+fecha límite de envío de artículos	文章提交截止日期
+recibido por	收到的
+buscar	找到
+enviar hasta	发送高达
+puede quedarse en	你可以留在
+presentado por	提出了一种由
+nombre del patrocinador	赞助商的名称
+principio de la conferencia	会议开始
+recibir	接收
+premiado por	被授予
+precio	价格：
+nombre de la conferencia	会议名称的
+nación	民族
+final de la conferencia	会议结束
+buscado por	寻求的
+notificación hasta el	通知
+diseñado por	由设计
+diseñar	设计

@@ -1,0 +1,716 @@
+membre du comité de programme	Člen programového výboru
+proposition	návrh
+président associé	Spolupracovník prezidenta
+utilisateur	uživatel
+acceptation	přijetí
+conférence	Konference
+décision	rozhodnutí
+thème	téma
+méta-révision	Meta revize
+préférence	předvolba
+administrateur	Správce
+président	Prezident
+révision	revize
+résumé de l'article	Shrnutí článku
+président de la conférence	Prezident konference
+personne	osoba
+rejet	odmítnutí
+document	dokument
+co-auteur	spoluautor
+relecteur	Recenzent
+auteur	autor
+président du comité de programme	Předseda programového výboru
+méta-relecteur	Meta recenzent
+relecteur externe	externí recenzent
+version complète de l'article	plná verze článku
+membre de la conférence	Člen konference
+article	Článek
+auteur qui n'est pas relecteur	autor, který není recenzenta
+comité de programme	programového výboru
+ajouté par	Přidal
+finalise la révision	dokončení revize
+outils d'attribution d'article exécutés par	článek pojmenování nástroje implementované
+attribution d'article finalisé par	článek zakončené pojmenování
+article a un auteur	Článek má autor
+critères de révision remplis par l'administrateur	revize kritéria splněna správcem
+relecteur écrit la révision	Napsal recenzent revize
+article attribué au relecteur	Článek připisovat recenzenta
+définit nombre maximum d'articles	Nastaví maximální počet položek
+co-écrire article	co-napsat článek
+administrateur rejette l'article	Správce odmítá článek
+article a une proposition	Článek má návrh
+article lu par relecteur	článek přečten recenzent
+attribue relecteur	přiřadit recenzenta
+identifier d'article	identifikovat článek
+titre	titul
+nom	Jméno
+logo url	adresa url loga
+article a un co-auteur	Článek má co-autor
+administrateur imprime publipostage	Správce tisku hromadné korespondence
+date	Datum
+nombre maximum d'articles	maximální počet položek
+courriel	e-mail
+accepte soumissions d'articles en papier	přijímá podání papíru
+url du site	Adresa URL webu
+commentaires par article	Poznámky podle článku
+révision écrite par	recenzi napsal
+proposition ajustée par	návrh upravené o
+article a une décision	Článek má rozhodnutí
+relecteur a été attribué à un papier	recenzent byl přiřazen k papíru
+ajuste proposition	upraví návrh
+proposition de révision commencé par l'administrateur	navrhovaná revize od správce
+permettre réunion virtual	Povolit virtuální setkání
+article a un thème	Článek má téma
+finalise l'attribution d'article	Dokončí přiřazení článku
+commence l'attribution d'article aux relecteurs	začíná přidělení položky recenzentů
+attribué par l'administrateur	přiřadit správce
+administrateur accepte article	Správce akceptuje článek
+article lu par meta-relecteur	článek přečten meta recenzent
+attribue relecteur externe	přiřadí externí recenzent
+relecteur lit l'article	Recenzent přečte článek
+saisi les détails de la conférence	před podrobnosti o konferenci
+détails de la conférence saisis par l'administrateur	Podrobnosti o konferenci zadané správcem
+réunion virtuelle activé par l'administrateur	virtuální setkání povolena správcem
+a conflit d'intérêt	střet zájmů
+exécute l'outils d'attribution d'article	běh v článku přejmenování nástroj
+comité de programme a membre	Člen výboru programu
+saisi les critères de la révision	před přezkum kritérií
+auteur soumet un article	autor odešle článek
+auteur écrit un article	autor napsal článek
+ajoute membre du comité de programme	Přidá člen programového výboru
+article rejeté par l'administrateur	Článek zamítnuta správcem
+attribué par le relecteur	přidělil recenzenta
+conférence a un membre	Konference má člen
+article accepté par	Článek přijat
+marque conflit d'intérêt	Mark střetu zájmů
+publipostage imprimés par	direct mail tištěný
+partie de la conférence	součástí konference
+contribution régulière (long)	pravidelný příspěvek (dlouhé)
+la conférence invitée	Konference vyzvala
+comité	Výbor
+contribuition à la conférence	contribuition konference
+tutoriel	Výukový program
+conférence www	webové konference
+track de la conférence	stopa konference
+poster	plakát
+conférencier invité	hosta
+expertise du relecteur	odborné znalosti recenzenta
+contribution acceptée	příspěvek přijat
+demandeur qui a payé les frais d'inscription	žadatel, který zaplatil poplatek za zápis
+résumé étendu	rozšířený přehled
+auteur régulier	pravidelný autor
+sujet or thème	tématu nebo téma
+contribution régulière	pravidelný příspěvek
+contribution revisée	příspěvek revidován
+editeur	Editor
+demandeur qui a payé les frais d'inscription tardive	žadatel, který zaplatil poplatek za pozdní registraci
+contribution soumise	příspěvek napsané
+organisation	Organizace
+participant passif de la conférence	pasivní účastník konference
+participant de la conférence	účastník konference
+demandeur  enregistré	žadatel registrován
+co-auteur de la contribution	co-autor příspěvku
+demandeur (inscrit) enregistré	registrované (registrované) Žadatel
+membre du comité	Člen výboru
+information aux participants	informace pro účastníky
+présentation	prezentace
+demandeur de participation dans la conférence	účast uchazeče na konferenci
+document de la conférence	dokument konference
+prèmier auteur de la contribution	Autorka příspěvku
+préférence sur la révision	předvolba revize
+contribution écrite	písemný příspěvek
+comité d'organisation	Organizační výbor
+contribution rejetée	příspěvek odmítnut
+dates importantes	důležitá data
+co-président	Spolupředseda
+actes de la conférence	konference
+contributeur de la conférence	přispěvatel do konference
+comité de pilotage	Řídící výbor
+président d'atelier track	Prezident dráhy dílna
+frais d'inscription	registrační poplatek
+annonce de la conférence	oznámení konference
+série de la conférence	přednáškový cyklus
+appel à participation	výzva k účasti
+appel à communication	výzva pro papíry
+participant actif de la conférence	aktivní účastník konference
+résumé	Shrnutí
+version finale de la contribution	Konečná verze příspěvku
+atelier	Seminář
+demandeur qui a payé les frais d'inscription precoce	žadatel, který zaplatil počátkem registrační poplatek
+organisateur	Organizátor
+a un isbn	má číslo isbn
+a sexe	sex
+a un nom	má název
+url du site web de la conférence est	Adresa URL webu konference je
+est une date de soumission de résumé	je termín pro podání abstrakt
+est une date de début	je počáteční datum
+est une date de fin	je koncové datum
+a un courriel	má e-mailu
+est une date de soumission de la version finale	je datum předložení konečné verze
+a un lieu	má místo
+a une date de publication	má datum publikace
+a le nom	jméno
+a le prénom	křestní jméno
+est une date d'annonce de l'acceptation	je oznámení o datu přijetí
+a une expertise (degré d'expertise du relecteur)	má odborné znalosti (stupeň odbornosti recenzenta)
+a un numéro de volume	má číslo svazku
+a un président d'atelier	má prezidenta workshop
+a un relecteur	má recenzent
+a un degré de préference de révision	stupeň priority revize
+est une date de soumission de la version complète	je termín pro podání plné verze
+contribue à la conférence	přispívá ke konferenci
+a une expertise de révision	má odborné znalosti k přezkoumání
+révise une contribution	upraví příspěvek
+était un co-président de comité de	byl co-předseda výboru
+a un comité de pilotage	má řídící výbor
+a un co-président de comité	byl spolupředsedou výboru
+a une référence ou une expertise de révision	má odkaz nebo recenzi odborné znalosti
+est la première partie de	je první část
+invite les co-relecteurs	Vyzývá společné kontrolory
+a des date importantes	důležité datum
+fait partie des volumes de la conférence	část svazku konference
+a un comité de programme	má program výboru
+a un sujet ou une contribution soumise	má téma nebo příspěvek předmět
+a des parties	(a) smluvních stran
+était un président de comité de	byl předsedou výboru pro
+a des contributions	(a) příspěvků
+a des tutoriels	z výukových programů
+était un comité de la conférence	byla výboru konference
+a un sujet d'atelier	má předmět workshop
+a un comité d'organisation	má organizační výbor
+a des tracks	(a) ze skladeb
+éditeur publie les actes de la conférence	Editor publikovány sborníku konference
+a soumis une contribution	odeslal příspěvek
+a un resumé	má přehled
+a des auteurs	(a) z autorů
+est presenté par	je prezentována
+a un président de comité	má předseda výboru
+était un comité d'organisation	byl organizačního výboru
+a des ateliers	dílny
+est soumis à	závisí na
+était un comité de programme	byl program výboru
+était un comité de pilotage	byl řídícím výborem
+appartiennent à un volume de la conférence	patří do svazku konference
+a des membres	Členové
+a un comité	má výbor
+invité par	na pozvání
+a été attribué à une préférence de révision	byl svěřen přednost revize
+sujet lié à une préférence du relecteur	téma vztahující se k preferenci recenzenta
+était un membre de	byl členem
+est un sujet (thème) de une partie de la conférence	je součástí konference (téma)
+donne des présentations	dává prezentace
+préférence ou expertise du relecteur	preference nebo odbornost recenzenta
+a un editeur	má Vydavatel
+était un président d'atelier de	byl prezidentem workshop
+évènement de soumission	odesílání událostí
+ville	Město
+événement de révision	Recenze událost
+université	Univerzita
+contribution	příspěvek
+banquet	Banket
+évènement	událost
+évènement d'envoi de version finale	Konečná verze poštovní událost
+participant étudiant de la conférence	účastník studentské konference
+voyage	cestování
+participant	účastník
+pays	země
+article court	krátký článek
+participant académique de la conférence	akademické účastník konference
+sujet	Předmět
+évènement de révision de résultats	událost revize výsledků
+réception	Recepce
+évènement administrative	administrativní událost
+entreprise	Společnost
+adjointe	Asistent
+participant régulier de la conférence	pravidelný účastník konference
+personne impliquée dans la conférence	někdo účastní konference
+bénévoles de la conférence	Dobrovolníci konference
+sujet (ou thème)	téma (nebo téma)
+évènement de travail	pracovníka událost
+évènement d'inscription de participants	Účastníci zápis událost
+évènement sociale	sociální událost
+chercheur	výzkumník
+a expertise sur le sujet	má odborné znalosti na toto téma
+employées par	zaměstnán
+suit	Následující
+révise	reviduje
+écrit une contribution	napsal příspěvek
+écrite par auteur	napsal autor
+traite le sujet	Předmět se zabývá
+a un titre	má nadpis
+a des mots clés	Klíčová slova
+a ville (séjour dans la ville)	Město (pobyt ve městě)
+a évènement administrative pertinent	příslušné administrativní událost
+étudie à l'université	studium na univerzitě
+a un pays	má země
+parallèlement à	Kromě
+a un sujet (thème)	má téma (téma)
+jour où l'évènement se termine	den, kdy akce končí
+choix sur le nombre maximal de l'évènement	volba na maximální počet událostí
+remarque	Poznámka:
+a une rue	má v ulici
+a une taxe sur la valeur ajoutée	má přidanou hodnotu daň
+a un courriel de contact	má kontaktní email
+a une pageweb	má webovou stránku
+a un code postal	má PSČ
+a un résumé	má přehled
+a un prénom	má křestní jméno
+a un numéro de fax	má číslo faxu
+choix par défaut du numéro d'évènement	Výchozí volba číslo události
+a un téléphone	má telefon
+jour où l'évènement commence (début de l'évènement)	Kdy událost začíná (začátek události)
+participant de la conférence a une inscription précoce	účastník konference má včasné registrace
+lieu	místo
+a un titre court	má krátký nadpis
+choix sur le nombre minimal de l'évènement	volba na minimální počet událostí
+évènement de conférence dans la conférence	událost konference konference
+sponsorisation	sponzorství
+organisation gouvernementale	vládní organizace
+thème capteurs réseaux informatiques	téma sensorové sítě
+thème réseaux informatiques optiques	téma optické sítě
+appel à révisions	výzva pro revize
+ensemble de diaporamas	vše od prezentace
+conférence de niveau unique	Jedna úroveň konference
+thème mesures dans les réseaux informatiques	téma opatření v počítačových sítích
+subventions pour le voyage	granty pro cestování
+article rejeté	Článek zamítnut
+organisation de l'académie	Organizace akademie
+thème securité dans les réseaux informatiques	bezpečnost v počítačových sítích
+appel à manuscrits	výzva pro rukopisy
+question de la révision	vydání revize
+thème informatique mobile	mobilní počítače téma
+qestion textuelle de la révision	textové revize qestion
+lieu d'hébergement	ubytování
+thèmes antennes	motivy antény
+évènement repas	událost jídla
+thème transmission courants porteurs en ligne (cpl)	téma dopravce aktuální přenosové lince (cpl)
+historique personnel de révision	osobní historie
+note d'acceptation marginale	marginální přijetí Poznámka
+thème communications sans fil	téma bezdrátové komunikace
+évènement non académique	non akademická událost
+thème gestion de réseaux informatiques	téma Správa počítačových sítí
+article retiré	Článek odstraněn
+lieu du dîner de la conférence	Večeře místa konání konference
+thème cryptographie	téma kryptografie
+thème médecine	téma medicína
+thème architecture des ordinateurs	téma architektura počítače
+article accepté	Článek přijat
+appel	volání
+réunion d'organisation	organizační schůzka
+article actif	aktivní sekce
+pause	Pauza
+excursion	exkurze
+organisation industrielle	Průmyslové organizace
+question numérique de la révision	Digitální vydání revize
+thème théorie de la communication	téma komunikační teorie
+information de contact	kontaktní informace
+historique personnel de publication	osobní historie, publikace
+pause temps libre	volný čas přestávky
+évènement lié à la conférence	událost související se konference
+auditeur	naslouchání
+présentateur (ou conférencier)	Moderátor (nebo reproduktor)
+note de rejet faible	nízké výdejky
+thème sécurité	téma bezpečnost
+thème (or sujet)	téma (nebo předmět)
+membre du tpc	Člen TPC
+thème traitement du signal	téma zpracování signálu
+pause café	přestávka na kávu
+article en attente	Článek čekající
+salle de réunion	zasedací místnost
+présentation d'article	článek přehled
+auditeur (ou participant)	Auditor (nebo účastníka)
+thème performance	téma výkon
+évènement académique	akademické událost
+article publié	Článek publikován
+thème calcul parallèle et distribué	téma paralelní a distribuované výpočty
+note d'acceptation	Poznámka o přijetí
+conférence d'accueil	Konference domácí
+thème communications	téma komunikace
+conférence de fermeture	Závěrečná konference
+thème systèmes d'exploitation	téma operační systémy
+lieu de la conférence principale	Hlavní konference místo
+président de la session	Prezident relace
+appel à communications	výzva pro papíry
+historique personnel	osobní historie
+thème réseaux informatiques	téma počítačové sítě
+thème cad	téma cad
+formulaire de révision	Zkontrolujte formulář
+note de rejet	Poznámka: odmítnutí
+thème multimédias	Multimediální téma
+pause repas	přestávka na oběd
+thème réseaux informatiques dans les entreprise	téma počítačové sítě v organizaci
+programme	Program
+menu du repas	Jídelní lístek
+dîner de la conférence	konference večeře
+conférence de deux niveau	dvě konference na úrovni
+thème satellite et les communications spatiales	téma satelitní a prostor komunikace
+thème commutation réseaux informatiques	téma přepínání počítačových sítí
+ong	Nevládní organizace
+thème communications radio	téma rádiové komunikace
+note de révision	Poznámka: revize
+thème applications réseaux	téma síťové aplikace
+présentateur	Moderátor
+session de la conférence	zasedání konference
+thème transmission courants porteurs en ligne	téma nosiči společné vysílání online
+article evalué	Článek vyhodnocuje
+thème microélectronique	téma Mikroelektronika
+thème test	téma test
+a code postal	poštovní směrovací číslo
+est présenté dans	je uveden v
+a ville	město
+a date et l'heure de début	datum a počáteční čas
+est sponsor de	je sponzorem
+a écrit l'article	napsal článek
+est menu de	je menu
+a lieu	Probíhá
+est sur l'article	je na článku
+appartient à l'événement	patří k události
+a membre	Člen
+est thème de	je téma
+est membre de	je členem
+est revisé par	je revidovat
+a programme	(a) program
+est initiée par	je iniciován
+est l'historique de révision	je Historie revizí
+a devise de coûts	motto nákladů
+a pays	země
+a nom	jméno
+est fourni par	je poskytována
+a biographie	životopis
+a document lié	odkazovaný dokument
+a nom (nom complet de la conférence)	název (úplný název konference)
+est écrit par	napsal
+a rue	ulice
+passe en révision	minulé Recenze
+a prénom	křestní jméno
+a note	Poznámka
+a téléphone	telefon
+a appel	volání
+date et l'heure limites de soumission d'articles	datum a časové limity pro odesílání článků
+a historique de révision	historický přehled
+date et l'heure limites de soumission de manuscrits	datum a časové lhůty pro předložení rukopisů
+a menu	nabídka
+a date et l'heure de la fin	datum a čas konce
+initie l'appel	iniciuje volání
+date et l'heure de la fin de la conférence	datum a čas ukončení konference
+auditeur (ou participant) à	Auditor (nebo účastníka) na
+a du montant des coûts	(a) o výši nákladů
+a sujet (ou thème)	téma (nebo téma)
+date et l'heure limites pour l'inscription à la conférence	datum a časový limit pro registraci na konferenci
+pour l'événement	pro událost
+date et l'heure de début de la conférence	datum a čas počátku konference
+relates to	se vztahuje na
+est le lieu de	je místem
+a courriel	e-mail
+a auditeur (ou participant)	posluchač (nebo účastníka)
+a des directives de soumission	(a) ze submission guidelines
+a date limite de soumission	datum termínu
+editeur des actes	Editor aktů
+participant avec inscription précoce	účastník s prvních registrací
+voyage à la conférence	cestovat do konference
+évènement scientifique	vědecký událost
+article soumis	předložený článek
+session des démonstrations	Ukázky relace
+révision neutre	neutrální revize
+relecteur possible	možné recenzent
+article de la conférence	článek konference
+thème (ou sujet) de recherche	téma (nebo subjektu) výzkum
+révision positive	pozitivní recenze
+actes	akty
+article long	dlouhý článek
+sessions des posters	plakát relace
+session	relace
+étudiant	Student
+membre du personnel de l'agence	Zaměstnanec agentury
+article poster	Článek plakát
+président du pc	Prezident PC
+conférence contribuée	Konference přispěla
+banquet de la conférence	konference banket
+résumé du tutoriel	Souhrnné informace o kurzu
+membre du comité scientifique	Člen vědeckého výboru
+session d'atelier	Workshop relace
+dépliants	letáky
+version finale de l'article	Konečná verze článku
+article attribué	Článek udělena
+thème  de recherche	téma disertační práce
+session des articles longs	relace dlouhých článků
+membre de l'oc	Členem oc
+président de session de démonstration	Prezident demonstrace relace
+article de démonstration	Článek demonstrace
+révision négative	negativní recenze
+président de l'atelier	Předseda workshopu
+président du tutoriel	Prezident v kurzu
+résumé  de la conférence invitée	pozval konference Shrnutí
+article d'atelier	Workshop článek
+agence organisatrice	pořádající agentura
+article industriel	průmyslové sekce
+volume avec plusieurs auteurs	objem s více autory
+brochure du programme	Program brožura
+session des applications industrielles	relace průmyslových aplikací
+institut de recherche	Výzkumný ústav
+site web	webové stránky
+auteur de l'article	Autor článku
+présentation individuelle	individuální prezentace
+track	stopa
+président de l'oc	Předseda oc
+institution académique	akademické instituce
+participant avec inscription tardive	účastník s pozdní registrace
+conférence invitée	pozvaní konference
+a lieu à	místo pro
+éditeur de	Redaktor
+a partie	má část
+partie de	součástí
+a évènement	na událost
+a version mise à jour	aktualizace verze
+a révision	revize
+techniquement organisé par	technicky pořádané
+inverse d'une partie de 7	Inverzní část 7
+article présenté comme	článek prezentován jako
+article dans le volume	článek v objemu
+organise	organizuje
+organise techniquement	organizuje technicky
+évènement sur la liste	událost v seznamu
+sujet couvert par	téma, které
+répertorie l'événement	seznam události
+organise scientifiquement	organizuje vědecky
+relecteur de l'article	Recenzent článku
+auteur de	autor
+organisé par	organizuje
+scientifiquement organisé par	vědecky pořádané
+version mise à jour de	aktualizovaná verze
+partie de l'événement	součástí akce
+a relecteur	recenzent
+lieu de	místo
+écrit par	napsal
+volume contient l'article	Svazek obsahuje článek
+couvre le thème (ou sujet)	zahrnuje téma (nebo předmět)
+révision de l'article	revize článku
+références	odkazy
+référencé dans	v
+activité technique	Technická činnost
+comité technique	Technický výbor
+activité de modélisation	modelování aktivity
+auteur qui recevra les actes que en format numérique	autor, který obdrží úkony pouze v digitálním formátu
+brève introduction pour le président de la session	stručný úvod pro prezidenta relace
+montant d'argent	množství peněz
+conférencier travailleur	pracovník reproduktor
+date limite pour la réservation d'hôtel	konečný termín pro rezervaci
+salle de conférence	konferenční místnost
+item (en général)	Položka (obecně)
+présentateur  qui ne présente que dans un jour	Moderátorka, která má pouze v jeden den
+état où la conférence a lieu	Stát, kde se konference koná
+conférencier qui présente un tutoriel	reproduktor, který představuje návod
+tout type de document	jakýkoli typ dokumentu
+frais d'hôtel	výdaje na Hotel
+introduction du conférencier	Úvod reproduktor
+chéque	šek
+bâtiment	budova
+chambre d'hôtel double	Hotelový pokoj Dvoulůžkový
+introduction	Úvod
+date limite	konečný termín
+taxi	taxi
+frais d'inscription pour un étudiant	registrační poplatek pro studenta
+taxe	daň
+ordinateur	počítač
+conférencier	reproduktor
+allocution de bienvenue	Vítejte Adresa
+date limite pour l'inscription	konečný termín pro registraci
+navette	Raketoplán
+banquet du dîner	banket večeře
+frais d'inscription pour un membre	registrační poplatek pro člena
+ville d'où vient le présentateur	Město odkud moderátor
+activité ayant lieu après la conférence	aktivity probíhají po konferenci
+activité ayant lieu avant la conférence	činnost se provádí před zahájením konference
+activité ayant lieu pendant la conférence	aktivity probíhají v průběhu konference
+actes en format numérique (cd)	působí v digitálním formátu (cd)
+travailleur qui n'est pas un présentateur	pracovník, který není moderátor
+frais d'inscription pour un non auteur	registrační poplatek-autor
+bureau principal	Hlavní kancelář
+départ	odjezd
+marcheur de la conférence	Walker konference
+actes en format numérique	působí v digitálním formátu
+valeur de taxe ajoutée	přidaná hodnota daně
+salle de session	společenský sál
+activité	aktivita
+voiture	auto
+virement bancaire	Bankovní převod
+cours donnée par un conférencier	kurzy u reproduktor
+transparent pour le rétroprojecteur	transparentnost pro zpětný projektor
+frais de voyage supplémentaire	Další cestovní výdaje
+visa	Víza
+activité de simulation	simulace činnosti
+van	Van
+devises	Měna
+taxe de départ	Odletová daň
+liste de diffusion	seznam adresátů
+jours de la conférence	dny konference
+paiement volontaire additionnelle	Další dobrovolné platby
+délégué (personne inscrit et qui visite la conférence)	delegát (uvedené osoby a kdo navštíví konference)
+sponsor	Sponzor
+chambre d'hôtel	pokoje
+lettre d'invitation	Zvací dopis
+chambre d'hôtel simple	jednoduché pokoje
+manuscrit initial	původní rukopis
+soumission	podání
+état du présentateur	Stav moderátorka
+séance de cours	kurz
+temps	čas
+maison des présentateurs	Domov přednášejících
+jour assigné pour un voyage	den pro cestu
+activité sociale	sociální činnost
+date limite pour la soumission	konečný termín pro podání
+étudiant qui n'est pas un présentateur	student, který není moderátor
+activité de location d'une voiture	auto pronájem aktivita
+conférencier étudiant	Studentské reproduktor
+état	Stát
+séance de cours plénière	setkání plenární kurzů
+activité de recherche	vědecko-výzkumná činnost
+frais d'inscription payés par un auteur participant pour recevoir les actes en format papier	registrační poplatky hradí zúčastněné autor přijímat dokumenty ve formátu papíru
+frais	náklady
+projecteur lcd	LCD projektor
+manuscrit final	poslední rukopis
+carte	mapa
+lecteur de cassettes vidéo	video kazetový přehrávač
+registre de participation	Registrace pro účast
+activité de refuser un manuscrit	činnost odmítnout rukopis
+inscription	registrace
+rétroprojecteur	zpětný projektor
+équipement audiovisuel	audiovizuální zařízení
+date limite pour la notification de l'acceptation	konečný termín pro oznámení o přijetí
+non membre du iasted	není členem iasted
+auteur qui recevra les actes que en format papier	autor, který obdrží úkony pouze v papíru formátu
+actes en format papier	působí ve formátu papíru
+date limite pour soumettre la version finale du manuscrit	konečný termín pro předložení konečné verze rukopisu
+présentation power point	Power point prezentace
+item	položka
+délégué	delegát
+véhicule de transport	dopravní vozidlo
+maison d'une entreprise étant un sponsor	Dům podnikání je sponzorem
+travailleur qui n'est pas un présentateur (conférencier)	pracovník, který není moderátor (reproduktor)
+activité d'acceptation d'un manuscrit	aktivita přijetí rukopisu
+carte de crédit	kreditní karta
+ville où la conférence a lieu	Město, kde se konference koná
+bâtiment de la conférence	budova konference
+formulaire	forma
+conférence d'une journéé	jeden den konference
+fuseau horaire	časové pásmo
+formulaire de renseignement sur l'auteur	informace o formuláři autor
+aéroport de la conférence	letiště konference
+présentation vidéo	video prezentace
+état du sponsor	Stát zadavatele
+restaurant de la conférence	Restaurace konference
+étudiant qui n'est pas un présentateur (conférencier)	student, který není moderátor (reproduktor)
+formulaire d'inscription à l'hôtel	hotel registrační formulář
+document de paiement	platební doklad
+non présentateur	bez předvádějícího
+membre du iasted	Členem iasted
+université d'un présentateur	Univerzita moderátorka
+présentateur de l'hôtel	moderátorka hotelu
+hôtel de la conférence	konferenční hotel
+frais d'inscription pour un non membre	registrační poplatek pro člena bez
+présentateur (ou conférencier) qui ne présente que dans un jour	Moderátor (nebo reproduktor) který má pouze v jeden den
+frais d'inscription payés par un auteur participant pour recevoir les actes en format numérique	registrační poplatky hradí zúčastněné autor přijímat dokumenty v digitálním formátu
+cocktail de réception	koktejlové recepce
+activité de réception d'un manuscrit	aktivita příjmu rukopisu
+publication	publikace
+tour de journée complète	celodenní výlet
+conférencier qui donne une conférence devant le plénum	reproduktor, který přednesl přednášku před plénu
+ville d'où vient le sponsor	Město kde pochází od sponzora
+ville qui est la destination pour un voyage	Město, které je místem pro výlet
+formulaire d'inscription à la conférence	registrační formulář konferenci
+est daté sur	je aktualizován dne
+a quantité de	v množství
+être fait jusqu'à	být provedena až do
+est utilisé pour	slouží k
+est équipé par	je vybaven
+parle à l'heure	mluví v době
+est visité par	navštěvuje
+est envoyé pour	je odeslána
+paie	Mzdy
+est occupé par	je obsazena
+a lieu dans	probíhá v
+est présent à l'heure	je přítomen v době
+envoie	odešle
+passe par	prochází
+est envoyé après	je odeslána po
+a besoin de	potřeby
+est localement situé dans	se nachází ve
+écrit	Napsal uživatel
+prépare	připravuje
+est préparé par	je připraven
+est présent à l'heure ou l'espace	je přítomen v čase nebo prostoru
+est donnée par	je dána
+est fait à partir de	je vyrobena z
+est envoyé avant	je odeslána před
+est payé en	je vyplácena
+signe	znamení
+est donnée à	je věnována
+a lieu avant	místo před
+est nécessaire pour	je vyžadován pro
+est payé avec	platí se
+occupe (réside)	zabírá (bydliště)
+est payé par	hradí
+obtient	Získá
+est utilisée par	používá
+est signé par	je podepsána
+a lieu après	probíhá po
+est conçu pour	je navržen tak, aby
+est payé pour	platí za
+donne	dává
+est connecté à	je připojen k
+conférence acm sigkdd	ACM sigkdd konference
+frais de la conférence	konferenční poplatky
+sponsor pour le meilleur article étudiant	sponzor za nejlepší studentský časopis
+prix pour le meilleur article de la conférence	Cena za nejlepší dokument konference
+frais d'incription pour les membres du sigkdd	cena registrace pro členy sigkdd
+sponsor as exposant	Sponzor jako vystavovatel
+auditeur de la conférence	Auditor konference
+hôtel	Hotel
+lieu de la conférence	místo konání konference
+sponsor silver de la conférence	stříbrný sponzor konference
+prix pour le meilleur article d'application	Cena za nejlepší článek aplikace
+frais de sponsor	sponzor poplatek
+prix pour le meilleur article étudiant	Cena za nejlepší studentský časopis
+sponsor platinum de la conférence	konference platinový sponzor
+prix pour le meilleur article recherche	Cena za nejlepší článek výzkum
+frais d'incription pour les personnes qui ne sont pas membre du sig	náklady na registraci pro osoby, které nejsou členy sig
+date limite pour soumettre les articles	konečný termín pro předkládání článků
+auteur d'article édudiant	Autor článku studenta
+comité pour choisir les meilleurs articles	Výbor pro výběr nejlepších článků
+président de programme	Program křeslo
+date limite pour notifier les authors	konečný termín pro oznámení autoři
+membre du comité d'organisation	Člen organizačního výboru
+frais d'incription pour les membres du sigmod	cena registrace pro členy sigmod
+sponsor d'or de la conférence	Zlatý sponzor konference
+auteur d'article	Autor článku
+web master	Web master
+bureau principal de la conférence	Hlavní kancelář konference
+frais d'incription pour les étudiants	náklady na registraci pro studenty
+sponsor de bronze de la conférence	bronzová konference sponzor
+organisateur de la conférence	Organizátor konference
+date limite pour la soumission de résumé	konečný termín pro zaslání abstraktů
+conférence a lieu dans la ville	Konference se koná ve městě
+a nationalité	státní příslušnost
+date du premièr jour de la conférence	datum prvního dne konference
+a nom du sponsor	jméno sponzora
+devises de les frais d'inscription	Měna registračního poplatku
+frais d'incription payés par	registrační poplatek platí
+a prix	cena
+est date sur	je datum
+a nom de la conférence	název konference
+date du dérnier jour de la conférence	Datum posledního dne, konference
+était présenté par	posílají
+présente document	Tento dokument
+prix obtenu	získaná cena
+sponsors sont appelés par	Sponzoři se nazývají
+date limite pour notifier les auteurs	termín upozornit autory
+décerné par	vydaný
+spéficie date limite	Určuje datum omezení
+paye frais d'incription	platit poplatky, registrace
+conférence organisée par	Konference pořádané
+date limite spécifiée pour	konečný termín pro
+peut rester dans	mohou zůstat v
+organise conférence	organizuje konferenci
+soumettre l'article	Odeslat článek
+a une date limite pour la soumission	má konečný termín pro podání
+appel à sponsor	výzva pro sponzora

@@ -1,0 +1,703 @@
+chairman	předseda
+person	osoba
+paper	papír
+rejection	odmítnutí
+author who is not a reviewer	autor, který není recenzent
+meta reviewer	meta recenzent
+meta review	meta Recenze
+member of program committee	člen programového výboru
+decision	rozhodnutí
+author	autor
+document	dokument
+program committee	Programový výbor
+full version of paper	plná verze papíru
+abstract of paper	abstrakt z papíru
+chair of program committee	Předseda programového výboru
+reviewer	recenzent
+conference	konference
+acceptance	přijetí
+bid	nabídka
+conference chair	Konferenční židle
+co author	co autor
+adminstrator	Správce
+subject area	oblast
+preference	předvolba
+external reviewer	externí recenzent
+associated chair	přidružené židle
+member of conference	člen konference
+user	uživatel
+review	Recenze
+has title	má titul
+reviews per paper	Recenze na papír
+details entered by	údaje o
+hardcopy of mailing manifests printed by	výtisk poštovních manifesty tištěný
+read paper	číst dokument
+written by	napsal
+set maximal number of assigned paper	nastavit maximální počet přiřazených papíru
+submit paper	Odeslat dokument
+read by meta reviewer	Přečtěte si meta recenzentem
+has member	má člen
+has name	má název
+has website at url	má internetové stránky na adrese url
+has date	má datum
+maximal number of assigned papers	maximální počet přiřazených papíry
+accepts hardcopy submissions	přijímá podání hardcopy
+has id	má id
+has logo at url	má loga na adrese url
+has email	má elektronická pošta
+review criteria entered by	přezkoumat kritéria zadaná
+mark conflict of interest	označení střetu zájmů
+accepts	přijímá
+assigned by reviewer	přiřazeno recenzentem
+start reviewer bidding	začít recenzent přihazování
+add	Přidat
+has bid	nabídku
+assign	přiřadit
+rejected by	zamítla
+co written by	co napsal
+virtual meeting enabled by	virtuální setkání ve
+co write	co psát
+added by	Přidal
+has subject area	má oblast
+paper assignment finalized by	papír přiřazení dokončena
+adjust	upravit
+assigned by admin	přiřadit admin
+end reviewing time	Ukončit revizi čas
+enter review criteria	Zadejte kritéria přezkoumání
+reject paper	odmítají papíru
+read by reviewer	Přečtěte si recenzent
+has been assigned	bylo jí přiděleno
+write paper	psát papíru
+reviewer bidding started by	recenzent nabízení založil
+run paper asignmedt tools	Spusťte nástroje pro asignmedt papíru
+accepted by	přijato od
+has conflict of interest with respect to	má střetu zájmů ve vztahu k
+assigned to	přiřazené k
+enable virtual meeting	Povolit virtuální setkání
+enter details on	Zadejte podrobnosti
+has been decided (to be accepted rejected )	bylo rozhodnuto (přijmout odmítnuté)
+print hardcopy mailing manifests	Tisk tištěné manifestů (poštovní adresa)
+write review	napsat recenzi
+paper assignment tools run by	nástroje pro přiřazení papíru provozované
+finalize paper assignment	finalizovat dokument přiřazení
+adjusted by	upraveno podle
+co chair	Co křeslo
+conference announcement	konference oznámení
+contributor for conference	Přispěvatel pro konference
+applicant for conference	žadatel o konferenci
+steering committee	Řídící výbor
+submitted contribution	odeslaný příspěvek
+participant of conference	účastník konference
+conference contribution	konferenční příspěvek
+topic	téma
+workshop	Seminář
+organizer	Organizátor
+tutorial	Výukový program
+proceedings of conference	konference
+regular contribution	pravidelný příspěvek
+call for paper	výzva pro papír
+track of conference	stopa konference
+chair of workshop track	židle workshop stopy
+active participant of conference	aktivní účastník konference
+camera ready version of contribution	kamera připravena verze příspěvku
+committee	Výbor
+presentation	prezentace
+web of conference	Web konference
+poster	plakát
+expertise of reviewer	odborné recenzenty
+conference serie	konference serie
+conference document	konference dokument
+rejected contribution	odmítnuté příspěvek
+applicant for conference who early paid conference fee	žadatel o konference, kteří včas zaplaceno vložné
+extended abstract	rozšířený abstrakt
+invited talk	pozvané přednášky
+call for participation	výzva k účasti
+publisher	Vydavatel
+information for participants	informace pro účastníky
+organization	organizace
+first author of contribution	první Autor příspěvku
+registered applicant	registrované žadatel
+applicant for conference who paid conference fee	žadatel o konferenci, který zaplatil vložné
+member of committee	člen výboru
+abstract	Abstrakt
+written contribution	písemný příspěvek
+important date	důležité datum
+invited speaker	pozvaný řečník
+reviewed contribution	revidovanou příspěvek
+fee for conference	poplatek za konferenci
+preference of reviewer	předvolba recenzenta
+applicant for conference who lately paid conference fee	žadatel o konferenci, který v poslední době zaplaceno vložné
+chair	křeslo
+co author of contribution	co autor příspěvku
+author of contribution	Autor příspěvku
+part of conference	součástí konference
+passive participant of conference	pasivní účastník konference
+accepted contribution	Přijaté příspěvky
+organizing committee	organizační výbor
+is program committee of conference	je Programový výbor konference
+submitted to	předán
+has been assigned review preference	bylo jí přiděleno přehled předvoleb
+has committee chair	má předseda výboru
+is part of conference	je součástí konference
+invites co reviewer	recenzent co zve
+program committee of conference is	Programový výbor konference je
+is the first part of	je první část
+is co chair of committee	je co předsedkyně výboru
+topic related to review preference	téma vztahující se k přezkoumání předvoleb
+preference or expertise of review is	preference nebo odborné Recenze je
+invited by reviewer	na pozvání recenzentů
+is workshop chair of	je židle workshop
+has tutorial	má návod
+has submitted contribution	odeslal příspěvek
+isbn of proceedings	ISBN řízení
+has surname	má příjmení
+published on date	den
+has first name	má křestní jméno
+date of full paper submission	Datum předložení plné papíru
+url of conference web is	Adresa URL webové konference je
+date of camera ready submission	kamera připravena podání
+terminal day	terminál den
+contributes to conference	přispívá ke konferenci
+committee of conference is	výbor konference je
+important date of conference serie	důležité datum konference serie
+publishes	publikuje
+makes presentation	dělá prezentace
+has review	má recenze
+is organizing committee of conference	je organizační výbor konference
+has topic or submission contribution	má téma nebo odeslání příspěvku
+expertise degree of reviewer	stupeň znalostí recenzenta
+degree of review preference	stupeň preference Recenze
+has e mail	má e-mailu
+has gender	má pohlaví
+date of acceptance notification	Datum přijetí oznámení
+starting date	Počáteční datum
+location of conference	umístění konference
+date of abstract submission	Datum předložení abstraktní
+volume number of proceedings	číslo řízení
+organizing committee of conference is	organizační výbor konference je
+is member of	je členem
+is committee of conference	je výbor konference
+has part	má část
+publisher of proceedings is	Vydavatel řízení je
+has abstract	má abstraktní
+is chair of committee	je předsedkyně výboru
+has track	má stopu
+has workshop chair	má židle workshop
+is steering committee of conference	je řídící výbor konference
+has committee co chair	má předseda výboru co
+has contribution	má příspěvek
+presented by	předložený
+has review expertise	má odborné znalosti, Recenze
+steering committee of conference is	Řídící výbor konference je
+has important date	má důležité datum
+has workshop topic	workshop téma
+has workshop	má dílna
+is topic of conference part	je tématem konference části
+preference or expertise of reviewer	preference nebo odborných recenzentů
+has author	má autor
+reviews contribution	Recenze příspěvku
+person involved with conference	osoba s konferencí
+event of sending camera ready version	událost odeslání camera připravena verze
+science worker	vědecký pracovník
+city	město
+student	Student
+event	událost
+contribution	příspěvek
+banquet	banket
+trip	cesta
+event of registration of participants event	událost registrace účastníků akce
+event of submission	událost odeslání
+volunteer of conference	dobrovolník konference
+administrative event	administrativní událost
+university	Univerzita
+event of reviewing results	událost kontrolou výsledků
+short paper	krátké papír
+regular participant of conference	pravidelný účastník konference
+student participant of conference	účastník studentské konference
+working event	pracovní událost
+country	země
+reception	Recepce
+social event	sociální událost
+assistent	asistent
+administrator	Správce
+company	Společnost
+event of reviewing	událost revize
+participant	účastník
+participant of conference has early registration	účastník konference má včasné registrace
+has postal code	má PSČ
+has remark	má Poznámka
+follows	Následuje
+study at university	studium na univerzitě
+has relevant administrative event	má příslušné administrativní událost
+writes contribution	píše příspěvek
+reviewes	reviewes
+written by author	napsal autor
+stay in country	zůstat v zemi
+deals with topic	zabývá se tématem
+expert on topic	expert na téma
+is parallel with	je rovnoběžná s
+stay in city	zůstat v městě
+employed by	zaměstnán
+has topic	má téma
+stay in street	zůstat v ulici
+end day of event	konečný den události
+has short title	má zkrácený název
+setting of maximal number of event	nastavení maximální počet událostí
+has fax	má fax
+event is being held at	akce se koná na
+has keywords	má klíčová slova
+has valued added tax	byla oceněna daň z přidané hodnoty
+has phone	má telefon
+has contact email	má kontaktní email
+setting of default choice of number of event	nastavení výchozí volby počet událostí
+has home page	má Domovská stránka
+starting day of event	počáteční den události
+setting of minimal number of event	stanovení minimálního počtu událostí
+ngo	NGO
+review rating	Recenze Hodnocení
+attendee	účastník
+call for reviews	výzva k Recenze
+break	přestávka
+academic organization	akademická organizace
+microelectronics topic	Mikroelektronika téma
+accepted paper	přijaté papír
+conference dinner	konference večeře
+place	místo
+computer networks sensor topic	počítačové sítě senzor téma
+single level conference	jediné úrovni konference
+computer networks management topic	téma Správa počítačové sítě
+computer networks security topic	téma bezpečnosti počítačové sítě
+mealtime	jídla
+signal processing topic	téma zpracování signálu
+menu	nabídka
+personal history	osobní historie
+government organization	vládní organizace
+computer networks measurements topic	počítačové sítě měření téma
+multimedia topic	multimediální téma
+call for manuscripts	výzva pro rukopisy
+computer networks enterprise topic	počítačové sítě organizace téma
+radio communications topic	rádiové komunikace téma
+cryptography topic	kryptografie téma
+presentation of a paper	prezentace papíru
+powerline transmission topic	elektrické přenosové téma
+published paper	publikovaná kniha
+non academic event	Neakademickými událost
+computer networks applications topic	počítačové sítě aplikace téma
+medicine topic	medicína téma
+computer architecture topic	téma architektury počítačů
+review form	Zkontrolujte formulář
+personal reviewing history	osobní Historie revizí.
+wireless communications topic	téma bezdrátové komunikace
+numerical review question	numerické hodnocení otázka
+closing talk	uzavření diskuse
+satellite and space communications topic	téma komunikační satelit a prostoru
+menu (meal)	nabídka (jídlo)
+withdrawn paper	stažené papír
+rejected paper	odmítnuté papír
+accommodation	ubytování
+personal publication history	osobní publikační historie
+pending paper	čeká na papír
+session chair	předseda
+event related to a conference	událost související s konferenci
+travel grant	cestovní grant
+member of tpc	členem tpc
+coffee break	přestávka na kávu
+computer networks topic	počítačové sítě téma
+sponsorship	sponzorství
+communication theory topic	téma teorie komunikace
+contact information	kontaktní informace
+rated paper	hodnocené papír
+computer networks optical topic	počítačové sítě, optické téma
+excursion	exkurze
+test only topic	testovat pouze téma
+antennas topic	antény téma
+cad topic	CAD téma
+academic event	akademické událost
+two level conference	dvě konference na úrovni
+presenter	moderátor
+parallel and distributed computing topic	paralelní a distribuované výpočty téma
+accept rating	přijmout Hodnocení
+industrial organization	průmyslové organizace
+programme	Program
+computer networks switching topic	počítačové sítě, přepínání téma
+conference venue	místo konání konference
+free time	volný čas
+accept if room rating	přijmout, pokud místnost Hodnocení
+call	volání
+organizational meeting	organizační schůzka
+welcome talk	úvodní řeči
+weak reject rating	slabé odmítají Hodnocení
+communications topic	téma komunikace
+performance topic	téma výkonu
+talk	hovořit
+meeting room	zasedací místnost
+meal	jídlo
+textual review question	otázka textové Recenze
+call for papers	výzva pro papíry
+mobile computing topic	mobilní výpočetní téma
+conference session	konference relace
+active paper	aktivní dokument
+slide set	sada snímků
+security topic	bezpečnostní téma
+dining place	Jídelní místo
+operating systems topic	téma operační systémy
+review question	přezkoumat otázku
+reject rating	odmítají Hodnocení
+is reviewed by	je prověřována
+is about paper	je o papíru
+is review history of	přehled historie
+has program	má program
+has attendee	má účastník
+is topic of	je téma
+is initiated by	je iniciován
+has related document	má související dokument
+has call	má volání
+has rating	má Hodnocení
+is written by	napsal
+is reviewing	je revize
+is location of	je umístění
+has location	má polohu
+has review history	má historie Recenze
+is provided by	je poskytována
+is provider of	je poskytovatelem
+is menu of	je menu
+has country	má země
+initiates	iniciuje
+attendee at	účastníka
+belongs to event	patří do události
+relates to	se vztahuje na
+is presented in	je uveden v
+conference manuscript date and time deadline	konference rukopis datum a čas, termín
+conference start date and time	konference datum a čas zahájení
+has biography	má životopis
+has amount of cost	má výši nákladů
+conference registration date and time deadline	konference přihlášek datum a čas
+has submission deadline	má konečný termín odeslání
+has street	má ulice
+has end date and time	má koncové datum a čas
+has name (full name of conference)	má název (podtitul konference)
+has currency of cost	má měnu náklady
+has start date and time	má počáteční datum a čas
+conference end date and time	konference koncové datum a čas
+has menu	má menu
+writes	Zápisy
+for event	pro událost
+conference paper date and time deadline	konference papír datum a čas, termín
+has last name	má příjmení
+has submission instructions	má podání instrukce
+has city	má město
+location	umístění
+possible reviewer	možné recenzent
+positive review	pozitivní recenze
+oc member	OC člen
+conference paper	konference papír
+industrial session	průmyslové relace
+tutorial chair	Výukový program židle
+conference banquet	konference banket
+conference trip	konference cesta
+demo chair	Ukázka židle
+research institute	Výzkumný ústav
+paper author	autor papíru
+submitted paper	předkládaného
+research topic	téma výzkumu
+scientific event	vědecký událost
+session	relace
+programme brochure	Program brožura
+camera ready paper	fotoaparát připravený papír
+proceedings	řízení
+contributed talk	přidružených řeči
+early registered participant	rané registrovaný účastník
+regular paper	běžný papír
+demo paper	demo papír
+pc member	PC člen
+workshop chair	židle workshop
+flyer	leták
+agency staff member	zaměstnanec agentury
+invited talk abstract	pozvané přednášky abstrakt
+assigned paper	přiřazené papír
+pc chair	PC křeslo
+demo session	demo session
+organising agency	organizační kancelář
+regular session	pravidelné relace
+individual presentation	individuální prezentace
+oc chair	OC křeslo
+multi author volume	autor vícesvazkového
+late registered participant	pozdní registrovaný účastník
+workshop paper	seminární prací
+neutral review	neutrální Recenze
+organisation	organizace
+track	stopa
+negative review	negativní recenze
+academic institution	akademické instituce
+poster session	Prezentace posterů
+evaluated paper	hodnocený papír
+tutorial abstract	Výukový program abstrakt
+proceedings publisher	řízení Vydavatel
+industrial paper	průmyslový papír
+web site	webové stránky
+conference proceedings	Sborník z konference
+conference participant	účastník konference
+workshop session	Workshop relace
+poster paper	plakát papír
+sc member	SC člen
+updated version of	aktualizovaná verze
+presentation of paper	prezentace z papíru
+referenced in	v
+location of	umístění
+inverse of partof 7	Inverzní část 7
+hasevent	hasevent
+covers topic	pokrývá téma
+review of paper	Recenze knihy
+scientifically organises	vědecky pořádá
+topic covered by	téma, které
+reviewer of paper	recenzent papíru
+references	odkazy
+organised by	organizuje
+has reviewer	má recenzenta
+review written by	recenzi napsal
+technically organises	technicky zajišťuje
+has updated version	aktualizoval verzi
+part of	součástí
+event on list	událost v seznamu
+held in	v
+volume contains paper	Svazek obsahuje papír
+paper in volume	papír v objemu
+author of	autor
+part of event	součástí akce
+publisher of	Vydavatel
+organises	pořádá
+scientifically organised by	vědecky organizuje
+lists event	seznamy událostí
+paper presented as	papír jako
+technically organised by	technicky organizuje
+activity taking place before conference	aktivita odehrává před konferencí
+deadline for registration	konečný termín pro registraci
+initial manuscipt	Úvodní manuscipt
+social activity	sociální činnost
+speaker who presents a tutorial	reproduktor, který představuje návod
+lecturer	odborný asistent
+tip	Tip
+powerpoint presentation	prezentace aplikace PowerPoint
+registration fee for a student	registrační poplatek pro studenta
+city where a presenter comes	město, kde přichází moderátor
+time	čas
+activity of modelling	činnost modelování
+worker lecturer	pracovníka přednášející
+welcome speech	Úvodní projev
+registration fee paid by an attending author for receiving proceedings as book	registrační poplatek platí účast autor za příjem řízení jako kniha
+conference restaurant	konference restaurace
+form	forma
+coctail reception	koktejlové recepce
+author who will receive proceedings as book	autor, který obdrží řízení jako kniha
+deadline for the hotel reservation	konečný termín pro hotel rezervace
+main office	Hlavní kancelář
+fee	poplatek
+hotel presenter	Hotel moderátorka
+full day tour	celodenní výlet
+tax	daň
+credit card	kreditní karta
+city where the conference takes place	město, kde se konference koná
+activity of simulating	aktivita simulace
+registration fee a non author	registrační poplatek bez autora
+deadline	konečný termín
+cheque	šek
+introduction	Úvod
+computer	počítač
+activity of accepting a manuscript	aktivita přijetí rukopis
+conference building	konference budova
+conference hotel	konferenční hotel
+taxi	taxi
+hotel fee	Hotel poplatek
+author who will receive proceedings as cd	autor, který obdrží řízení jako cd
+double hotel room	Dvoulůžkový pokoj
+currency	Měna
+delegate	delegát
+presenter who presents only on one day	moderátor, který představuje pouze na jeden den
+overhead projector	zpětný projektor
+invitation letter	zvací dopis
+registration fee	registrační poplatek
+city which is the location for a trip	město, které je místem pro výlet
+not member of iasted	není členem iasted
+value added tax	přidaná hodnota daně
+speaker	reproduktor
+conference hall	konferenční sál
+final manuscript	poslední rukopis
+video cassette player	video kazetový přehrávač
+university of a presenter	Univerzita moderátorka
+fee for extra trip	poplatek za další cestu
+registration fee for a member	registrační poplatek pro člena
+activity taking place after conference	aktivity probíhají po konferenci
+departure tax	Odletová daň
+item	položka
+audiovisual equipment	audiovizuální zařízení
+deadline for submiting	konečný termín pro odesláním
+member of iasted	členem iasted
+lecture	Přednáška
+one conference day	jedna konference den
+book proceeding	kniha řízení
+lcd projector	LCD projektor
+submission	podání
+activity taking place during conference	aktivity probíhají během konference
+conference hiker	konference tramp
+conference days	konference dny
+activity of refusing a manuscript	aktivita odmítnutí rukopis
+mailing list	seznam adresátů
+video presentation	video prezentace
+card	karta
+activity of receiving a manuscript	aktivita od obdržení rukopisu
+state of the sponsor	stát zadavatele
+dinner banquet	banket večeře
+research activity	vědecko-výzkumná činnost
+single hotel room	jeden hotelový pokoj
+conference airport	konference letiště
+student lecturer	studenta přednášející
+city where a presenter comes from	město kde moderátorka pochází z
+conference registration form	Přihláška na konferenci
+delegate (person registering and visiting the conference)	delegát (osoba, registraci a návštěvě konference)
+plenary lecture	Plenární přednáška
+payment document	platební doklad
+time zone	časové pásmo
+car	auto
+registration fee paid by an attending author for receiving proceedings as cd	registrační poplatek platí účast autor za příjem řízení jako cd
+van	Van
+shuttle bus	kyvadlový autobus
+item (in general)	Položka (obecně)
+state where the conference takes place	stát, kde se konference koná
+state	stát
+city where a sponzor comes from	město, kde sponzor pochází z
+technical activity	Technická činnost
+brief introduction for session chair	stručný úvod pro sezení židle
+hotel registration form	Hotel registrační formulář
+registration fee for a non member	registrační poplatek pro člena bez
+technical committee	Technický výbor
+student who is not a speaker	student, který není reproduktor
+day assigned for a trip	den pro cestu
+hotel room	Hotelový pokoj
+deadline for notification of acceptance	konečný termín pro oznámení o přijetí
+house of a presenter	dům moderátorka
+record of attendance	prezenční
+activity of renting a car	činnost pronájem auta
+listener	naslouchání
+house of a company being a sponsor	dům je sponzorem společnosti
+activity	aktivita
+non speaker	Ne reproduktor
+building	budova
+introduction of speaker	Úvod reproduktor
+any kind of document	jakýkoliv druh dokumentu
+amount of money	množství peněz
+cd proceeding	CD řízení
+departure	odjezd
+state of the presenter	stav moderátorka
+author information form	autor informační formulář
+transport vehicle	dopravní vozidlo
+sponsor	Sponzor
+worker who is not a speaker	pracovník, který není reproduktor
+deadline for submitting the camera ready script	konečný termín pro předložení camera připravena skript
+registration	registrace
+publication	publikace
+sponzorship	sponzorship
+bank transfer	bankovní převod
+viza	jejich
+lecture given by a speaker	Přednáška reproduktor
+overhead transparency	průhlednou fólii
+speaker giving a lecture in front of the plenum	reproduktor přednášet přední plénu
+city where a sponzor comes	město, kde sponzor přichází
+session room	relace místnost
+is needed for	je nezbytné pro
+goes through	prochází
+is present in time	je přítomen v čase
+is sent by	zasílá
+is connected with	je spojena s
+is occupied by	je obsazena
+obtains	Získává
+is locally situated in	se nachází ve
+pays	platí
+signs	známky
+is present in time or space	je přítomen v čase nebo prostoru
+is paid with	platí se
+speaks at time or in place	hovoří v čase nebo na místě
+is given by	je dána
+is paid in	je vyplácena
+is designed for	je určen pro
+sends	odešle
+is made from	je vyrobena z
+is prepared by	je připraven
+is equipped for	je vybaven pro
+gives	dává
+is held before	koná se před
+is signed by	je podepsána
+is used for	se používá pro
+is held after	koná se po
+needs	potřeby
+is paid by	hradí
+is visited by	navštěvuje
+occupies (lives resides)	zabírá (život je umístěn)
+is sent before	je odeslána před
+is sent after	je odeslána po
+is held in	koná se v
+is paid for	platí za
+is used by	používá
+is dated on	je aktualizován dne
+prepares	připravuje
+is given to	je věnována
+has amount of	má množství
+to be done till	Chcete-li být až
+sponzor for best student paper	sponzor za nejlepší studentský časopis
+registration fee for student	registrační poplatek pro studenta
+conference acm sigkdd	konference acm sigkdd
+author of student paper	autor studentů papíru
+gold sponzor of conference	zlatý sponzor konference
+award for conference paper	cena za příspěvek
+deadline of paper submission	konečný termín podání papíru
+member of organizing committee	člen organizačního výboru
+author of paper	autor papíru
+sponzor fee	sponzor poplatek
+sponzor	Sponzor
+registration fee for member of sigkdd	registrační poplatek pro člena sigkdd
+main office of conference	Hlavní úřad konference
+chair of conference	židle konference
+listener of conference	posluchač konference
+conference fee	Konferenční poplatek
+award for best research paper	ocenění za nejlepší výzkum papír
+award for best application paper	ocenění za nejlepší aplikace papíru
+committee for best paper awards	Výbor pro nejlepší ceny papíru
+award for best student paper	ocenění za nejlepší studentský časopis
+sponzor as exhibitor	sponzor jako vystavovatel
+program chair	Program křeslo
+registration fee for member of sigmod	registrační poplatek pro člena sigmod
+deadline of author notification	termín oznámení autor
+webmaster	webmaster
+abstrakt	Dispersed
+platinum sponzor of conference	platinový sponzor konference
+organizator of conference	Organizátor konference
+deadline of abstract submission	Uzávěrka abstrakt
+silver sponzor of conference	stříbrný sponzor konference
+bronze sponzor of conference	Bronzový sponzor konference
+registration fee for person not being member of sig	registrační poplatek pro osoby, které nejsou členem sig
+hall of conference	sál konference
+person active at conference	osoba činná na konferenci
+hotel	Hotel
+has price	má cenu
+has sponzor name	má název sponzor
+date of final day of conference	poslední den konference
+conference takes place in city	konference se koná v městě
+has name of conference	má název konference
+has nationality	má národnost
+registration fee is in currency	registrační poplatek je v měně
+has award	má cenu
+registration fee paid by	registrační poplatek platí
+set up deadline	nastavit konečný termín
+has deadline for submission	má konečný termín pro podání
+awarded by	vydaný
+sponzor are called by	sponzor se nazývají
+paid registration fee	placené registrační poplatek
+call for sponzor	výzva k sponzor
+was presented by	byl předložen
+presents document	představuje dokument
+stay in	zůstat v
+organize conference	uspořádat konferenci
+submit of paper	Odeslat z papíru
+obtained award	získaná ocenění
+set up deadline for	nastavit konečný termín pro
+conference organized by	konference pořádané
+date of starting day of conference	datum spuštění den konference

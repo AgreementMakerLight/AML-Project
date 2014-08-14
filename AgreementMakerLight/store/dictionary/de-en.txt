@@ -1,0 +1,709 @@
+person	person
+gegenstandsbereich	Scope
+gutachten	opinion
+externer gutachter	external reviewers
+akzeptanz	acceptance
+dokument	document
+konferenzbeitrag	Conference contribution
+programm-komitee	Program Committee
+präferenz	preference
+verfasser, der kein gutachter ist	writer who is no expert
+meta-gutachten	Meta - opinion
+meta-gutachten (gutachten über ein gutachten)	Meta - opinion (opinion about an opinion)
+mitverfasser	co-author
+teilnehmer einer konferenz	participants at a Conference
+gutachter	expert
+benutzer	user
+verfasser	author
+vorsitzender	Chairman
+vorsitzender der konferenz	Chairman of the Conference
+gebot	commanded
+vorsitzender des programm-komitees	Chairman of the program Committee
+meta-gutachater	Meta-gutachater
+stellvertretender vorsitz	Deputy seat in
+entscheidung	decision
+mitglied des programm-komitees	Member of the program Committee
+abstrakt eines konferenzbeitrags	Abstract of a Conference contribution
+meta-gutachater (gutachter der gutachten begutachtet)	Meta-gutachater (expert opinion which reviewed)
+zurückweisung	rejection
+vollständiger konferenzbeitrag	full conference fee
+administrator	Administrator
+konferenz	Conference
+hat details eingefügt in bezug auf	has inserted details in relation to
+hat die zuordnung der beiträge abgeschlossen	has completed the mapping of the contributions
+hat zugewiesen	has assigned to
+druckt papierausdruck des mailing-manifests	print a paper copy of the mailing manifest
+beitragszuordnungs-software ausgeführt von	running beitragszuordnungs software by
+zugewiesen zu	allocated to
+details eingefügt von	details added by
+beitragszuordnung abgeschlossen von	Post assignment completed by
+gelesen von gutachter	read by experts
+hat die beitrags-zuordnungssoftware ausgeführt	has carried out the contribution zuordnungssoftware
+hat virtuelles treffen veranlasst	meet virtual has led
+hat abgeglichen	has matched
+mitverfasst von	authored by
+hat interessenskonflikt in bezug auf	interessenskonflikt has in relation to
+abgewiesen von	rejected by
+geschrieben von	posted by
+virtuelles treffen veranlasst von	virtual meeting led by
+gelesen von meta-gutachter	read by meta reviewer
+akzeptiert von	accepted by
+ist mitglied des programm-komitees	is a member of the program Committee
+hat beitrag geschrieben	has written contribution
+hat die gebotsphase gestartet	started the bid phase
+kriterien zu gutachten eingefügt von	criteria to opinion inserted by
+hat papier abgelehnt	rejected paper
+bestimme maximale anzahl an zugewiesenen beiträgen	choose maximum number of allocated contributions
+ist entschieden worden als	It was decided as a
+steht in interessen-konflikt mit beitrag	interests conflicted with contribution
+hat webseite an url	has website at url
+hat namen	has the name
+hat datum	has date
+akzeptiert hardcopy-einsendungen	accept hardcopy\r submissions
+hat id	has id
+maximale anzahl an zugewiesenen beiträgen	maximum number of allocated contributions
+hat titel	has title
+hat email	has email
+zugewiesen von administrator	assigned by administrator
+hat mitglied	has Member
+hat logo an url	has logo url
+gutachten pro beitrag	opinion per contribution
+zugewiesen von gutachter	assigned by experts
+hat akzeptiert	has accepted
+hat papier gelesen	read paper
+hat gegenstandsbereich	has scope
+papierausdruck des mailing-manifests gedruckt von	printed hard copy of the mailing manifest by
+ist zugeordnet worden	has been ordered to
+teilnehmer von	participants from
+hat die zeit des begutachtens beendet	has finished that time of appraisal
+hat hinzugefügt	added
+abgeglichen von	matched by
+hinzugefügt von	added by
+hat teilnehmer	participant
+hat beitrag eingesendet	has contributions submitted
+hat beitrag mitverfasst	has contribution authored
+hat kriterien zu gutachten eingefügt	has added criteria to opinion
+gebotsphase gestartet von	Bid phase started by
+hat gutachten geschrieben	has written opinion
+hat gebot erhalten	has commanded get
+organisationsausschuss	Organization Committee
+herausgeber	Publisher
+konferenzankündigung	Conference announcement
+aufruf zu teilnahme	call for participation
+erweitertes abstrakt	extended abstract
+ausschuss	Committee
+geschriebener beitrag	written contribution
+internet der konferenz	Internet of Conference
+leiter der workshops	Director of the workshop
+koferenzdokument	koferenzdokument
+informationen für teilnehmer	information for participants
+präsentation	presentation
+konferenzbewerber, der die konferenzgebühr spät gezahlt hat	Conference candidate who has paid the Conference fee late
+tutorium	tutorial
+mitverfasser eines beitrags	co-author of contribution
+aktiver konferenzteilnehmer	active participants
+angenommener beitrag	presumed contribution
+organisation	Organization
+programmausschuss	Program Committee
+thema	theme
+passiver konferenzteilnehmer	passive participants
+author eines regulären beitrags	author of a regular contribution
+fachgebiet des gutachters	Area of expertise of the Verifier
+aushang	Notice Board
+eingereichter beitrag	submitted contribution
+regulärer beitrag	regular contribution
+konferenzteilnehmer, der einen beitrag geleistet hat	Conference participants, the one contribution has made
+workshop	Workshop
+eingeladener referent	invited speaker
+präferenz des gutachters	preference of the Verifier
+konferenzgebühren	Conference fees
+primärer author eines beitrags	primary author of a contribution
+stellvertretender vorsitzender	Deputy Chairman
+organisator	Organizer
+eingeladener vortrag	invited lecture
+druckfertiger beitrag	druckfertiger contribution
+fortschritte der konferenz	progress of the Conference
+konferenzreihe	Conference series
+konferenzbewerber, der die konferenzgebühr früh gezahlt hat	Conference candidate who has paid the Conference fee early
+abstrakt	Abstract
+konferenzteilnehmer	Conference participants
+wichtiges datum	important date
+konferenzbeteiligung	Conference participation
+ablauf der konferenz	expiration of the Conference
+angehörige des ausschusses	members of the Committee
+registrierter bewerber	registered applicants
+koferenzbewerber	koferenzbewerber
+abschnitte der konferenz	sections of the Conference
+konferenzbewerber, der die konferenzgebühr gezahlt hat	Conference applicants who paid the Conference fee
+steuerungsausschuss	Steering Committee
+begutachteter beitrag	refereed contribution
+aufruf für beiträge	call for contributions
+abgelehnter beitrag	rejected contribution
+datum der einreichung des abstrakts	date of submission of the abstracts
+hat e-mailadresse	has e-mail address
+ist am folgenden datum veröffentlicht worden	has been published on the following date
+hat name	has name
+datum der druckfertigen einreichung ist	the final submission date is
+ort der konferenz	place of the Conference
+grad der gutachterpräferenz	degrees the expert preference
+hat geschlecht	having sex
+hat mitglieder	has members
+hat abfolge	has sequence
+ist anfangsdatum	is start date
+anzahl der fortschritte der konferenz	number of progress the Conference
+ist eingereicht für	is submitted for
+liefert konferenzbeitrag	Conference contribution
+ausschuss der konferenz ist	Committee of the Conference is
+hat abschnitt	has cut off
+grad des fachgebiets des gutachters ist	degree of the subject matter of the Verifier is
+hat vornamen	has given name
+datum der einreichung des kompletten beitrags ist	date of filing of the complete contribution is
+isbn der fortschritte ist	ISBN which progress is
+hat nachnamen	has last name
+url der konferenz ist	the conference URL is
+ist enddatum	is end date
+datum der akzeptanz-mitteilung ist	date of the acceptance notice is
+hat fachgutachten	has expert opinion
+ist ein präferiertes thema oder fachgebiet eines gutachters	is a preferred topic or area of expertise an expert
+hat gutachten	has opinion
+ist vorsitzender des ausschusses	is Chairman of the Committee
+hat beitrag	has contribution
+ist teil der konferenzreihe	is part of the Conference series
+organisationsausschuss der konferenz ist	the Organizing Committee of the Conference is
+hat author	has author
+hält präsentation	holding presentation
+ist ausschuss der konferenz	Committee of the Conference
+hat workshop-thema	workshop theme
+ist ein präferiertes thema eines gutachters	is a preferred theme of an expert
+hat beitrag eingreicht	has contribution eingreicht
+eingeladen von gutachter	invited expert
+hat abstrakt	has abstract
+veröffentlicht	published
+hat thema oder beitrag eingereicht	subject or contributions submitted
+programmausschuss der konferenz ist	Program Committee of the Conference is
+begutachtet beitrag	public contribution
+ist steuerungsausschuss der konferenz	is the Conference Steering Committee
+ist organisationsausschuss der konferenz	is the Organizing Committee of the Conference
+ist ein wichtiges datum einer konferenzreihe	is an important date of a conference series
+verleger des konferenzfortschritts ist	Publisher of the Conference progress is
+präsentiert von	presented by
+hat eine zugewiesene gutachterpräferenz	has an assigned expert preference
+ist mitglied von	is a member of
+hat wichtiges datum	has important date
+hat tutorium	has tutorial
+präferenz oder fachgebiet des gutachters ist	preference or area of expertise of the Verifier is
+ist der erst teil von	is only part of
+lädt mitgutachter ein	with good eighth invites
+hat stellvertrenden ausschussvorsitzender	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=3722.V2_Json.Translate.23C14DC3
+ist leiter des workshops	is the Director of the workshop
+hat workshop-leitung	workshop management
+hat ausschussvorsitzender	has Chairman
+ist programmausschuss der konferenz	is the Conference Program Committee
+steuerungsausschuss der konferenz ist	Steering Committee of the Conference is
+hat workshop	has workshop
+ist stellvertretender vorsitzender des ausschusses	is Deputy Chairman of the Committee
+ist thema ein konferenzabschnittes	is a section of the Conference theme
+ereignis der begutachtung	event of review
+studentischer teilnehmer	student participants
+autor	author
+bankett	Banquet
+poster	poster
+ereignis des sendens des "camera-ready" papiers	event of the sending of the "camera ready" paper
+ereignis	event
+papier	paper
+vorsitz des programmkomitees	seat in the program Committee
+einreichung	submission
+kurzes papier	short paper
+teilnehmer	participants
+stadt	City
+empfang	reception
+regulärer teilnehmer	regular participants
+student	student
+freiwilliger	voluntary
+universität	University
+firma	company
+ereignis zur registrierung der teilnehmer	event to the registration of the participants
+mitglied	Member
+ereignis des einreichens eines papiers	event of submitting a paper
+arbeits-ereignis	employment event
+ergebnis-der-begutachtung ereignis	result of assessment event
+soziales ereignis	social event
+land	land
+administratives ereignis	Administrative event
+ausflug	excursion
+wissenschaftler	scientists
+assistent	Wizard
+mitglied des programmkomitees	Member of the program Committee
+minimale anzahl	minimum number
+endet am	ends at
+hat straße	has road
+studiert an	studied at
+hat stadt	City has
+frühzeitige registrierung	early registration
+begutachtet	examined
+folgt	follows
+fachkundig für	expert for
+schreibt	writes
+hat land	has country
+angestellt bei	hired at
+gleichzeitig mit	at the same time with
+hat postleitzahl	has zip code
+hat kurztitel	has short Titel
+hat homepage	Homepage
+hat telephonnummer	has phone number
+hat mehrwertsteuer	has value added tax
+vorgegebene anzahl	preset number
+hat kontakt-email adresse	How to contact with email address has
+hat faxnummer	has faxnummer
+findet statt an	will be held on
+maximale anzahl	maximum number
+hat stichwörter	has keywords
+startet am	starts at
+hat nachname	has last name
+hat email adresse	has email address
+hat thema	has topic
+beschäftigt sich mit	deals with
+hat anmerkung	has annotation
+hat administratives event	Administrative event
+konferenz-dinner	Conference dinner
+computernetzwerksensor-thema	computernetzwerksensor theme
+präsentation eines beitrags	presentation of a contribution
+platz	place
+sicherheits-thema	safety theme
+gutachtenbewertung	Opinion rating
+ausstehender beitrag	contribution pending
+numerische gutachtenfrage	numeric opinion question
+event im zusammenhang mit einer konferenz	event related to a Conference
+speisekarte	Menu
+multimedia-thema	multimedia topic
+trägerfrequenzanlage-thema	Carrier frequency system theme
+aufruf	call
+freie zeit	free time
+aufruf für manuskripte	call for manuscripts
+akademisches event	academic event
+persönliche historie von gutachten	personal history of opinion
+konferenzversitzender	Conference versitzender
+mikroelektronisches thema	mikroelektronisches theme
+mahlzeit	meal
+zurückgezogener beitrag	contribution withdrawn
+schwach abgelehnte bewertung	weak rejected review
+performance-thema	performance issue
+aufruf für gutachten	call for opinion
+sitzungsvorsitzender	session Chairman
+foliensatz	Foil set
+pause	break
+konferenzsitzung	Conference session
+mobiles computing-thema	mobile computing theme
+soziales event	social event
+kommunikations-thema	communication theme
+akzeptierte bewertung	accepted valuation
+mitglied von tpc	Member of tpc
+radiokommunikation-thema	Radio communication theme
+computernetzwerkanwendungen-thema	computernetzwerkanwendungen theme
+organistorische besprechung	organistorische meeting
+bewerteter beitrag	weighted contribution
+abschlussvortrag	Final presentation
+author	author
+akademische organisation	academic organization
+cad-thema	CAD theme
+essenszeit	Time to eat
+abgelehnte bewertung	rejected review
+computernetzwerkwechsel-thema	computernetzwerkwechsel theme
+präsentator	praesentator
+regierungsorganisation	Government Organization
+computernetzwerkverwaltung-thema	computernetzwerkverwaltung theme
+antennen-thema	antennas theme
+kein akademisches event	no academic event
+optische computernetzwerke-thema	optical computernetzwerke theme
+zweiebige konferenz	zweiebige Conference
+einebige konferenz	einebige Conference
+"nur tests"-thema	"just testing" theme
+kaffeepause	Coffee break
+programm	program
+industrielle organisation	Industrial Organization
+besucher	visitors
+sitzungsraum	meeting room
+nichtregierungsorganisation	Non-governmental organization
+reisesubvention	Travel subsidy
+formular für gutachten	form for opinion
+betriebssystem-thema	Operating system theme
+beitrag	contribution
+parallel und verteiltes computing-thema	parallel and distributed computing theme
+persönliche historie	personal history
+aktiver beitrag	active contribution
+kommunikationstheorie-thema	subject of communication theory
+computernetzwerkunternehmen-thema	computer network operator theme
+akzeptierter beitrag	accepted contributions
+computernetzwerke-thema	computernetzwerke theme
+medizinisches thema	medical theme
+veranstaltungsort der konferenz	from the Conference venue
+signalverarbeitung-thema	Signal processing theme
+unterkunft	accommodation
+drahtlose kommunkation-thema	wireless communications theme
+kryptographisches thema	cryptographic theme
+compututerarchitektur-thema	compututerarchitektur theme
+computernetzwerkspezifikation-thema	computernetzwerkspezifikation theme
+vortrag	Lecture
+sponsoring	sponsorship
+kontaktinformationen	Contact information
+akzeptiert, wenn spielraum vorhanden ist, bewertung	accepted if space is available, review
+computernetzwerksicherheit-thema	computernetzwerksicherheit theme
+veröffentlichter beitrag	published contributions
+wörtliche gutachtenfrage	literal opinion question
+speiseplatz	Dining room
+persönliche historie von veröffentlichungen	personal history of publications
+begrüßungsvortrag	Welcome presentation
+satelliten- und weltraumkommunikation-thema	satellite and space communications theme
+gutachtenfrage	Opinion question
+hat datum und zeit des endes	date and time of the end
+hat anweisungen für einreichungen	instructions for submissions
+hat e-mail	has e-mail
+hat besucher	visitors
+hat datum und zeit der deadline für manuskripte	date and time of the deadline for manuscripts
+hat biografie	has biography
+hat telefon	has phone
+hat datum und zeit des beginns	date and time of commencement
+hat deadline für einreichungen	is deadline for submissions
+hat kostensumme	has cost total
+hat währung der kosten	has currency the cost
+hat datum und zeit des beginns der konferenz	date and time of the beginning of the Conference
+hat datum und zeit der deadline für beiträge	date and time of the deadline for contributions
+hat datum und zeit des endes der konferenz	date and time of the end of the Conference
+hat vollständigen namen der konferenz	has the full name of the Conference
+hat datum und zeit der deadline für registrierungen	date and time of the deadline for registrations
+hat beziehung zu dokument	has relationship to document
+gehört zu event	belongs to event
+ist thema von	theme by
+ist eingeleitet von	is initiated by
+ist begutachtet von	is reviewed by
+hat bewertung	has evaluation
+ist anbieter von	provider is by
+hat programm	has program
+hat geschrieben	has written
+ist über beitrag	is about contribution
+ist geschrieben von	is written by
+hat aufruf	has call
+für event	for event
+ist gutachtenhistorie von	Report history by
+ist besucher auf	is visitors
+hat ort	has location
+bezieht sich auf	refers to
+ist menü von	menu is by
+hat gutachtenhistorie	has opinion history
+leitet ein	initiates
+ist ort von	is place of
+ist angeboten von	is offered by
+ist präsentiert in	is presented in
+hat menü	has menu
+workshop-sitzung	Workshop session
+tutoriumvorsitz	Tutorial Chair
+sitzungsvorsitz	Session chair
+forschungsinstitut	Research Institute
+event	event
+zugewiesener beitrag	assigned contribution
+organisierende agentur	organizing agency
+möglicher gutachter	potential reviewers
+wissentschaftliches event	wissentschaftliches event
+vorsitzender des programmausschusses	Chairman of the program Committee
+konferenz-beitag	Conference beitag
+mitglied des programmausschusses	Member of the Programme Committee
+konferenz-bankett	Conference banquet
+flyer	Flyer
+mitglied des steuerungsausschusses	Member of the Steering Committee
+abgelehntes beitrag	rejected contributing
+abstraktes tutorium	abstract tutorial
+beigetragener vortrag	contributed lecture
+akademische institution	academic institution
+eingeladener abstrakter vortrag	charged an abstract lecture
+demo vorstand	Demo Board
+workshop-beitrag	Workshop-contribution
+demo sitzung	demo session
+workshopvorsitz	workshopvorsitz
+individuelle präsentation	individual presentation
+konferenzreise	Conference travel
+webseite	website
+mitglied des organisationsausschusses	Member of the Organizing Committee
+konferenzfortschritte	Conference progress
+track	track
+negatives gutachten	negative opinion
+neutrales gutachten	neutral opinion
+früh registrierter teilnehmer	early registered participants
+verleger der fortschritte	Publisher which progress
+programmbroschüre	Program brochure
+agenturmitarbeiter	Agency employees
+evaluierter beitrag	evaluated contribution
+sitzung	session
+ausgehängte sitzung	After unhooking session
+ort	place
+industrieller beitrag	industrial contribution
+spät registrierter teilnehmer	late registered participants
+industrielle sitzung	industrial session
+author eines beitrags	author of a contribution
+reguläre sitzung	regular session
+positives gutachten	positive opinion
+forschungsthema	Research topic
+koferenz	koferenz
+fortschritte	progress
+multi-author volume	multi-author volume
+vorsitzender des organisationsausschusses	Chairman of the Organizing Committee
+ausgehängter beitrag	suspended from contribution
+demo beitrag	Demo contribution
+koferenzsitzung	koferenzsitzung
+event ist gelistet	event is listed
+hat teil	has participated
+gutachter des beitrags ist	review of the contribution is
+organisiert von	organized by
+referenziert	references
+ist teil von	is part of
+thema ist abgedeckt von	topic is covered by
+ist invers zu teil von 7	inverse is part of 7
+gutachten ist geschrieben von	opinion is written by
+ist gutachten des beitrags	is opinion of the contribution
+organisiert wissenschaftlich	organized scientific
+hat gutachter	has reviewer
+wissenschaftlich organisiert von	scientifically organized by
+organisiert technisch	organized technical
+reihe enhält beitrag	includes series contribution
+ort von	place of
+präsentation des beitrages	presentation of the contribution
+aktualisiert version von	updated version of
+beitrag ist teil der reihe	contribution is part of the series
+deckt thema	covers theme
+hat aktualisierte version	has updated version
+findet statt in	takes place in
+hat event	has event
+listet event auf	lists event
+wurde veröffenlicht von	was published by
+referenziert in	referenced in
+organisiert	organized
+ist teil von einem event	is part of an event
+technisch organisiert von	technically organized by
+ist author von	is author of
+beitrag wird präsentiert als	contribution will be presented as a
+zeit	time
+student, der kein redner ist	student who is not a public speaker
+registrierungsformular (konferenz)	Registration form (Conference)
+studentischer vortragender	Student lecturer
+vortragender, der ein tutorium hält	Lecturer, holds the a tutorial
+akzeptieren eines manuskripts	accept a manuscript
+konferenz-halle	Conference-Hall
+overhead-projektor	overhead projector
+video-präsentation	video presentation
+computer	computer
+powerpoint-präsentation	PowerPoint presentation
+modellierungsaktivität	Modeling activity
+kleintransporter	Retail
+örtlichkeit	location
+anmeldegebühr	registration fee
+folie	foil
+dinner-bankett	dinner banquet
+hotelgebühr	Hotel fee
+stadt, aus der ein sponzor kommt	City, a sponsor comes from the
+forschungsaktivität	Research activity
+mieten eines autos	rent a car
+folie (overhead projektor)	foil (overhead projector)
+willkommensrede	Welcome speech
+formular zur information des autors	form for the information of the author
+vortragender, der nur an einem tag redet	Lecturer, who talks only in one day
+abreise	departure
+staat des vortragenden	State of presenting
+vortrag gehalten von einem redner	lecture held by a speaker
+vortragender, der im konferenzhotel untergebracht ist	Lecturer, the in the Conference Hotel is
+sponsor	sponsor
+angestellter, der kein redner ist	employee who is not a public speaker
+angestellter vortragender	employee lecturer
+frist zur benachrichtigung der akzeptanz	deadline for notification of acceptance
+trinkgeld	Tip
+frist	deadline
+session	session
+aktivität, die nach der konferenz stattfindet	activity that takes place after the Conference
+haus einer firma, die ein sponsor ist	home to a company that is a sponsor
+cameraready-frist	cameraready - deadline
+hauptbüro	Main office
+ablehnung eines manuskripts	rejection of a manuscript
+registrierungsformular (hotel)	Registration form (hotel)
+universität eines vortragenden	University of presenting
+steuer	tax
+konferenzgebäude	Conference building
+stadt, aus der ein vortragender kommt	City, comes from the a lecturer
+staat	State
+formular	form
+anmeldegebühr für einen studenten	registration fee for a student
+stadt, die ein ausflugsziel darstellt	City, representing a destination
+frist zur hotelreservierung	deadline for the hotel reservation
+registrierung	registration
+originalversion des manuskripts	Original version of the manuscript
+registrierungsformular	Registration form
+autor, der einen tagungsband in buchform erhält	author, receiving a tagungsband in book form
+konferenztage	Conference days
+ausflugstag	Excursion day
+soziale aktivität	social activity
+simulationsaktivität	Simulation activity
+haus eines vortragenden	House of presenting
+mailingliste	company
+transportfahrzeug	Transport vehicle
+einzelzimmer	single room
+anmeldegebühr für ein nicht-mitglied	registration fee for a non-member
+stadt, in der die konferenz stattfindet	City where the Conference will be held
+vortrag im plenum	Lecture in the plenary
+endversion des manuskripts	endversion of the manuscript
+staat der konferenz	State of the Conference
+sponsorgebühr	sponsorgebuehr
+redner	speakers
+tagungsband als buch	tagungsband as book
+delegierter	delegate
+lcd-projektor	LCD projector
+aktivität, die vor der konferenz stattfindet	activity that takes place before the Conference
+taxi	taxi
+gegenstand	subject
+mitglied von iasted	Member of iasted
+kurze einführung für den session-vorsitz	brief introduction to the session-seat above
+gebühr für einen zusatzausflug	fee for one additional trip
+tagungsband als cd	tagungsband as cd
+registrierungsfrist	Registration deadline
+abreisegebühr	Departure fee
+annahme eines manuskripts	acceptance of a manuscript
+anmeldegebühr für einen autor, der den tagungsband in buchform erhält	registration fee for an author who receives the tagungsband in book form
+währung	currency
+flughafen in/am konferenzort	Airport in the Conference venue
+automobil	Automotive
+einzelner konferenztag	single conference day
+autor, der einen tagungsband als cd erhält	author, receiving a tagungsband as cd
+anmeldegebühr für ein mitglied	registration fee for a Member
+zahlungsbeleg	Proof of payment
+geldbetrag	Amount of money
+anmeldegebühr für einen autor, der den tagungsband als cd erhält	registration fee for an author, receiving the tagungsband as cd
+nicht-redner	non-speakers
+bank transfer	Bank transfer
+hotelzimmer	Hotel rooms
+videorecorder	Video recorder
+vorstellung	presentation
+vortragender	Lecturer
+anwesenheitsnachweis	Attendance sheet
+shuttle-bus	shuttle bus
+nicht-mitglied von iasted	non-member of iasted
+tagestour	Day tour
+jede art von dokument	any type of document
+mehrwertsteuer	value added tax
+zeit (zeitraum und zeitpunkt)	time (time and date)
+konferenzbesucher	Conference visitors
+kreditkarte	Credit card
+anmeldegebühr für einen nicht-autor	registration fee for a non-author
+gebühr	fee
+zuhörer	listeners
+zeitzone	Time zone
+staat des sponzors	State of sponzors
+publikation	publication
+technisches komitee	Technical Committee
+konferenzhotel	Conference Hotel
+cocktail-empfang	cocktail-reception
+doppelzimmer	Double room
+aktivität, die während der konferenz stattfindet	activity that takes place during the Conference
+einreichungsfrist	Submission deadline
+visum	Visa
+vorstellung eines redners	introduction of speaker
+technische aktivität	technical activity
+aktivität	activity
+scheck	check
+gegenstand (im allgemeinen)	subject (in General)
+gebäude	building
+audiovisuelle ausstattung	audio visual equipment
+vortragender, der im plenum redet	Lecturer, who speak in the plenary
+konferenzrestaurant	Conference restaurant
+einladungsbrief	Letter of invitation
+karte	map
+ist entworfen/bestimmt für	designed/intended for
+wird besucht von	is visited by
+wird vorbereitet von	is prepared by
+benötigt	required
+sendet	sends
+erhält	receives
+wird versendet nach	will be sent to
+unterzeichnet	signed
+muss erledigt sein bis	must be done to
+hat betrag von	has the amount of
+ist datiert auf	is dated
+spricht in (räumlich und zeitlich)	speaks in (spatial and temporal)
+wird bezahlt mit	will be paid with
+istanwesend (räumlich und zeitlich)	istanwesend (spatial and temporal)
+ist verbunden mit/bezogen auf	is connected / related to
+findet statt nach	takes place after
+wird verwendet von	is used by
+istanwesend (räumlich)	istanwesend (place)
+ist gemacht aus	is made
+bereitet vor	prepared
+wird versendet von	will be sent by
+findet statt vor	takes place before
+wird benötigt für	is required for
+ist ausgestattet mit	is equipped with
+wird verwendet für	is used for
+wird bezahlt von	will be paid by
+wird versendet vor	will be sent to
+wird gegeben/ausgeführt von	will be given/carried out by
+wird unterzeichnet von	is signed by
+bewohnt	inhabited
+wirdgegebenan	wirdgegebenan
+gibt	are
+wird bezahlt für	will be paid for
+durchgeht	goes through
+wird bezahlt in	will be paid in
+befindet sich in	located in
+wird bewohnt von	is inhabited by
+bezahlt	paid
+award für besten forschungsbeitrag	Award for best research paper
+author eines konferenzbeitrages	author a Conference contribution
+sponsorenbeitrag	sponsorenbeitrag
+konferenzsaal	Conference Hall
+ausschuss für den award des besten beitrags	Committee for the award of the best contribution
+gold sponsor der konferenz	Gold sponsor of the Conference
+sponsor als aussteller	Sponsor as an exhibitor
+deadline für eine abstrakte einreichung	deadline for the submission of an abstract
+deadline	deadline
+award für besten anwendbaren beitrag	Award for best applicable contribution
+konferenz acm sigdkdd	acm sigdkdd Conference
+bronze sponsor der konferenz	Bronze sponsor of the Conference
+registrierungskosten für mitglieder von sigmod	registration cost for sigmod members
+registrierungsgebühr	Registration fee
+konferenzgebühr	Conference fee
+organisatoren der konferenz	organizers of the Conference
+registrierungskosten für studenten	registration cost for students
+deadline für die mitteilung eines authors	deadline for the notification of authors
+eines studentischen beitrags	a student contribution
+registrierungskosten für personen, die nicht mitglied von sig sind	registration cost for people who are not members of sig
+hauptbüro der konferenz	Main Office of the Conference
+silber sponsor der konferenz	Silver sponsor of the Conference
+award für besten studentischen beitrag	Award for best student contribution
+platin sponsor der konferenz	Platinum sponsor of the Conference
+webmaster	webmaster
+award für konferenzbeitrag	Conference contribution award
+registrierungskosten für mitglieder von sigkdd	registration cost for members of sigkdd
+sponsor für besten studentischen beitrag	sponsor for best student contribution
+hörer der konferenz	listeners of the Conference
+deadline für die einreichung eines beitrags	deadline for the submission of a contribution
+programmvorsitzender	program Chairman
+hotel	Hotel
+konferenz organisiert von	Conference organized by
+deadline für authorenmitteilung	deadline for authorenmitteilung
+bleibt in	remains in
+sponsoren wurden aufgerufen von	sponsors were called by
+paid zahlt registrierungsbeitrag	pay registration post paid
+beitrag wurde eingereicht von	contribution was submitted by
+deadline festgelegt	set deadline
+präsentiert dokumente	presents documents
+hat award	Award
+aufruf von sponsoren	call of sponsors
+organisiert konferenz	organized Conference
+hat preis	has price
+ist datiert auf den	is dated on the
+registrierungsbeitrags ist in währung	is registry contribution in currency
+hat name der konferenz	name of the Conference has
+hat nationalität	has nationality
+hat sponsorenname	has sponsorenname
+datum des ersten tages der konferenz ist	date of the first day of the Conference is
+award erhalten von	received award from
+registrierungsbeitrag gezahlt von	Registry contribution paid by
+hat award erhalten von	received award from
+wurde präsentiert von	was presented by
+deadline eingerichtet für	deadline set for
+konferenz findet in folgender stadt statt	Conference will be held in the following city
+datum des letzten tages der konferenz ist	date of the last day of the Conference is

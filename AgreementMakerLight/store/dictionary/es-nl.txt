@@ -1,0 +1,666 @@
+puja	bod
+aceptar	OK
+autor	Auteur
+versión completa del artículo	volledige versie van het artikel
+meta revisión	doel beoordeling
+miembro del comité de programa	Lid van het programma Comité
+conferencia	Conferentie
+administrador	Beheerder
+miembro de la conferencia	Lid van de conferentie
+área temática	thematische gebied
+decisión	besluit
+documento	document
+revisor	Revisor
+revisor externo	externe revisor
+meta revisor	Meta revisor
+artículo	Artikel
+presidente del comité de programa	Voorzitter van het programma Comité
+resumen del artículo	Samenvatting van het artikel
+vice presidente	Vice-Voorzitter
+presidente de la conferencia	De Voorzitter van de conferentie
+coautor	mede-auteur
+autor, no revisor	Auteur, geen revisor
+comité de programa	Programma Comité
+usuario	gebruiker
+presidente	De Voorzitter
+preferencia	voorkeur
+rechazar	weigeren
+revisión	beoordeling
+persona	persoon
+asigna revisor externo	toewijzen van externe revisor
+es miembro del comité de programa	is een lid van het programma Comité
+permite reunión virtual	virtuele vergadering kunt
+envía el artículo	het item wordt verzonden
+inicia la puja de los artículos	begint het bieden van artikelen
+asignado por el revisor	toegewezen door de revisor
+introduce criterios de revisión	beoordeling criteria invoert
+los criterios de revisión han sido introducidos por	evaluatiecriteria zijn ingevoerd door
+la puja de los revisores ha sido iniciada por	biedingen van revisoren is ingeleid door
+detalles introducidos por	ingebracht door Details
+asigna un número máximo de artículos a	een maximum aantal items aan toegewezen
+rechazado por	verworpen door
+redacta el artículo	artikel schrijven
+redacta la revisión	Schrijf review
+asignado por el administrador	toegewezen door de beheerder
+es miembro de la conferencia	is een lid van de conferentie
+modificada por	gewijzigd door
+asignar revisor	revisor toewijzen
+añadido por	toegevoegd door
+asignado a	toegewezen aan
+tiene miembro de la conferencia	lid conferentie heeft
+tiene área temática	heeft onderwerpsgebied
+gestiona las herramientas para la asignación de artículos	Het beheert de tools om de toewijzing van items
+la asignación de artículos ha sido finalizada por	de toewijzing van artikelen is voltooid door
+tiene autor	heeft auteur
+finaliza la asignación de artículos	eindigt de toewijzing van items
+tiene puja	heeft geboden
+leído por el meta revisor	gelezen door revisor meta
+tiene decisión	besluit heeft
+reunión virtual mediante	met behulp van virtuele meeting
+lee el artículo	Lees het artikel
+las copias en papel de los manifiestos de envío han sido impresas por	de scheepvaart manifesten papieren exemplaren zijn afgedrukt door
+rechaza el artículo	verwerpt het artikel
+tiene coautor	heeft co-auteur
+modifica la puja	Hiermee wijzigt u het bod
+las herramientas para la asignación de artículos han sido gestionadas por	hulpprogramma's voor de toewijzing van items hebben beheerd door
+es coautor de un artículo	is co-auteur van een artikel
+url del logotipo	URL van het logo
+acepta entregas en papel	accepteert leveringen op papier
+url de la página web	URL van de webpagina
+título	titel
+ha sido asignado a	Het is toegewezen aan
+escrito por	geschreven door
+ha señalado conflicto de intereses	bekende belangenconflict
+tiene miembro del comité de programa	heeft het programma lid van het Comité
+tiene conflicto de intereses	belangenconflict heeft
+añade miembro de comité de programa	toegevoegd lid van programma Comité
+aceptado por	aanvaard door
+copia en papel de los manifiestos de envío	Kopieërpapier van scheepvaart manifesten
+acepta el artículo	accepteren van artikel
+finaliza revisión	revisie beëindigen
+introduce detalles de la conferencia	Voer de details van de conferentie
+leído por el revisor	gelezen door de auteur
+nombre	naam
+correo electrónico	E-mail
+número máximo de artículos	maximum aantal items
+fecha	datum
+identificador del artículo	item-id
+revisiones por artículo	bewerkingen per artikel
+contribución regular	regelmatige bijdrage
+participante de la conferencia	deelnemer van de conferentie
+comité directivo	Stuurgroep
+conferencia www	www conferentie
+tema	thema
+editor	Redacteur
+volumen de la conferencia	Conferentie volume
+póster	poster
+persona que paga las tasas de la conferencia	persoon die de conferentie betaald
+charla invitada	uitgenodigd
+contribución a la conferencia	bijdrage aan de conferentie
+resumen ampliado	Uitgebreid overzicht
+participante activo en la conferencia	actieve deelnemer aan de conferentie
+información para los participantes	informatie voor deelnemers
+contribución enviada	ingezonden bijdrage
+persona registrada a la conferencia	persoon geregistreerd aan de conferentie
+documento de la conferencia	Conferentie document
+organizador	Organisator
+contribución rechazada	geweigerde bijdrage
+tasas de la conferencia	de conferentie-tarieven
+contribución lista para su envío definitivo	klaar voor definitieve overbrenging bijdrage
+solicitud de participación	verzoek om deel te nemen
+taller	Workshop
+participante pasivo en la conferencia	passieve deelnemer aan de conferentie
+persona que envía una contribución a la conferencia	persoon die een bijdrage te leveren aan de conferentie stuurt
+coautor de la contribución	mede-auteur van de bijdrage
+presentación	presentatie
+comité	Comité
+fechas importantes	belangrijke datums
+comité organizador	Organisatiecomité
+parte de la conferencia	onderdeel van de conferentie
+anuncio de la conferencia	aankondiging van de conferentie
+organización	Organisatie
+persona que envía una solicitud a la conferencia	persoon die een verzoek naar de conferentie stuurt
+experiencia del revisor	ervaring van de revisor
+solicitud de envío de artículos	verzoek voor indiening
+contribución por escrito	bijdrage schriftelijk
+actas de la conferencia	werkzaamheden van de conferentie
+vicepresidente	Vice-Voorzitter
+primer autor de la contribución	eerste auteur bijdrage
+persona que paga con retraso las tasas de la conferencia	persoon betalen van achterstallige betalingen van de conferentie
+tutorial	zelfstudie
+persona que hace un pago anticipado de las tasas de la conferencia	degene die een voorschot van de kosten van de conferentie
+contribución aceptada	aanvaarde bijdrage
+preferencia del revisor	de revisor voorkeur
+panel	Deelvenster
+contribución revisada	herziene bijdrage
+organizador de los workshops	de workshops organisator
+resumen	Overzicht
+conferenciante invitado	gastspreker
+era comité directivo de	Stuurgroep van was
+tiene autores	heeft auteurs
+tiene referencias o experiencia en la revisión de artículos	u hebt referenties of ervaring in de herziening van de artikelen
+tiene un comité	heeft een Comité
+era comité organizador de	was organisatiecomité van
+tiene un tema o una contribución enviada	hebt u een thema of een ingezonden bijdrage
+tiene contribuciones	heeft bijdragen
+ha presentado una contribución	Hij heeft een bijdrage te leveren
+tiene un revisor	heeft een revisor
+era vicepresidente del comité de	was vice-voorzitter van het Comité van
+era organizador de un panel de talleres de	Het was een panel van workshops organisator van
+tiene un comité organizador	heeft een Organiserend Comité
+tiene un comité directivo	heeft een Steering Committee
+tiene miembros	leden heeft
+tiene partes	heeft de onderdelen
+pertenece a una referencia de la revisión	Het behoort tot een verwijzing van de herziening
+dado por	gegeven door
+problemas	problemen
+tiene tema de taller-tutorial	heeft thema workshop-tutorial
+se le ha asignado una referencia  de revisiones	u hebt een verwijzing van herzieningen toegewezen
+es la primera parte de	is het eerste deel van
+pertenece a los revisores	behoort tot de revisoren
+revisiones	Beoordelingen
+tiene talleres	heeft workshops
+forma parte de los volúmenes de la conferencia	Het is onderdeel van de volumes van de conferentie
+invitado por	uitgenodigd door
+era comité de programa de	was programma Comité van
+tiene un vicepresidente de comité	hebben een vice-voorzitter van de Commissie
+enviado a	verzonden naar
+era presidente del comité de	was voorzitter van het Comité van
+era comité de	Comité van was
+tiene un comité de programa	hebben een programma Comité
+tiene tutoriales	heeft tutorials
+era miembro de	was een lid van
+tiene organizador de taller-tutorial	heeft organiseren workshop-tutorial
+da presentaciones	presentaties geven
+tiene un presidente de comité	heeft een President's Committee
+tiene un editor	een redacteur heeft
+tiene experiencia en la revisión de artículos	Hij heeft ervaring in de herziening van de artikelen
+contribuye	draagt bij
+corevisores invitados	uitgenodigde corevisores
+es tema de parte de la conferencia	Het is onderdeel van het thema van de conferentie
+tiene nombre de pila	eerste naam heeft
+tiene apellidos	laatste namen hebben
+es fecha de inicio	begindatum is
+tiene url	heeft url
+tiene fechas imprortantes	datums imprortantes heeft
+pertenece al volumen de la conferencia	behoort tot het volume van de conferentie
+tiene resumen	overzicht
+tiene paneles	heeft panelen
+tiene correo electrónico	heeft e-mail
+tiene experiencia	heeft ervaring
+es fecha de envío de versiones definitivas de artículos	Het is de datum van de definitieve versies van artikelen
+tiene volumen	volume heeft
+tiene grado	heeft graad
+es fecha de envío de artículos largos	Het is de datum van lange artikelen
+tiene isbn	heeft isbn
+tiene ubicación	locatie heeft
+es fecha de envío de resúmenes	is abstract inzenddatum
+es fecha de finalización	datum van voltooiing
+tiene fecha de emisión	datum van uitgifte heeft
+tiene género	heeft het geslacht
+es fecha de aceptación del anuncio	is de datum van aanvaarding van de advertentie
+tiene nombre	naam
+envío de contribuciones	indienen van bijdragen
+ciudad	Stad
+científico	wetenschapper
+acontecimiento administrativo	Administratieve gebeurtenis
+evento científico	wetenschappelijke manifestatie
+participante	deelnemer
+cena de gala	galadiner
+país	land
+proceso de revisión de resultados	beoordeling van resultaten
+programa social	sociaal programma
+proceso de revisión	beoordelingsproces
+voluntario	vrijwilligers
+recepción	Receptie
+asistente	Assistent
+universidad	Universiteit
+contribución	bijdrage
+empresa	bedrijf
+socio	partner
+becario	Stagiair
+envío de versión definitiva	indiening van de definitieve versie
+registro de participantes	registratie van deelnemers
+no miembro	niet-lidstaten
+artículo corto	kort artikel
+estudiante	student
+acontecimiento	gebeurtenis
+excursión	excursie
+tiene tema	thema
+tiene ciudad	heeft stad
+contratado por	ingehuurd door
+paralelo a	parallel aan
+revisa	selectievakje
+escribe	schrijft
+experto en	deskundige in
+trata de	mensenhandel
+tiene país	land heeft
+tiene acontencimiento administrativo	administratieve ontwikkelingen heeft
+estudia en	studies in
+sigue a	blijft
+selección mínima	minimale selectie
+correo electrónico de contacto	contact e-mail
+tiene título corto	korte titel heeft
+selección máxima	maximale selectie
+finaliza en	eindigt op
+tiene fax	faxnummer
+tiene código postal	zip code heeft
+tiene teléfono	telefoon
+tiene página web	heeft website
+tiene título	titel heeft
+lugar	plaats
+inscripción anticipada	vroege vogel registratie
+tiene palabra clave	heeft tags
+comentario	commentaar
+empieza en	begint
+tiene calle	heeft Street
+elección por defecto	standaard kiezen
+tiene iva	BTW is
+convocatoria para la presentación de artículos	oproep tot het indienen van artikelen
+tema, seguridad	onderwerp, veiligheid
+tema, comunicaciones inalámbricas	kwestie, draadloze communicatie
+tema, redes de computadoras	thema, computernetwerken
+tema, seguridad en las redes de computadoras	onderwerp, veiligheid in computernetwerken
+patrocinio	sponsoring
+tema, procesamiento de señales	subject, signaal processing
+pausa	pauze
+cena de la conferencia	de Conferentie-diner
+acontecimiento social	sociaal evenement
+organización académica	academische organisatie
+convocatoria para la revisiones	oproep voor revisies
+tema, multimedia	kwestie, multimedia
+artículo rechazado	geweigerde artikel
+programa	programma
+tema, medidas de redes de computadoras	kwestie, maatregelen van computernetwerken
+tema, teoría de la comunicación	onderwerp, communicatietheorie
+comida	voedsel
+información de contacto	contact informatie
+tema antennas	thema antennes
+ratio de papers rechazados pero en el límite	verhouding van geweigerde papers, maar in de limiet
+alojamiento	accommodatie
+acontecimiento no académico	niet-academische gebeurtenis
+menú	menu
+tema, medicina	thema, geneeskunde
+lugar de celebración de la conferencia	locatie van de conferentie
+tema, solo de prueba	alleen proefpersoon
+tema, arquitectura de computadoras	thema, computerarchitectuur
+tema, sensores en las redes de computadoras	onderwerp, sensoren in computernetwerken
+lugar de celebración de la cena	locatie voor het diner
+conferencia de bienvenida	Conferentie Welkom
+organización industrial	industriële organisatie
+artículos relacionados	Verwante artikelen
+tema, criptografía	kwestie, Cryptografie
+tema, gestión de redes de computadoras	kwestie, beheer van computernetwerken
+convocatoria para la presentación de manuscritos	oproep tot het indienen van manuscripten
+artículo publicado	gepubliceerde artikel
+sesiones de la conferencia	zitting van de conferentie
+artículo retirado	ingetrokken artikel
+conferencia de clausura	slotconferentie
+tema, microelectrónica	onderwerp, micro-elektronica
+reunión organizativa	organisatie-vergadering
+historial de publicaciones	publicaties-geschiedenis
+acontecimiento académico	academische gebeurtenis
+pausa para comer	pauze om te eten
+pausa para tomar un café	pauze voor koffie
+tema, redes de computadoras ópticas	onderwerp, optische computernetwerken
+miembro del comité técnico del programa	Lid van het technisch Comité van het programma
+pregunta sobre la revisión numérica	gevraagd over de numerieke evaluatie
+lugar de reunión	ontmoetingsplaats
+presentador	Presentator
+ratio de revisiones	verhouding van revisies
+ratio de aceptación	aanvaarding verhouding
+tema, computación paralela y distribuida	onderwerp, parallelle en gedistribueerde gegevensverwerking
+historial de revisiones	revisiegeschiedenis
+artículo activo	Actieve artikel
+tema, comunicaciones espaciales y por satélite	thema, ruimte en satelliet communicatie
+artículo pendiente	in behandeling artikel
+tema cad	thema cad
+formulario de revisiones	overzichten van formulier
+tema, aplicaciones de las redes de computadoras	onderwerp, toepassingen van computernetwerken
+ratio de aceptación si hay espacio	verhouding van aanvaarding als er ruimte
+tema, rendimiento	thema, prestaties
+presentación de artículos	artikelen indienen
+charla	praten
+beca de viaje	Reizen beurs
+tema, comunicación por rádio	kwestie, radiocommunicatie
+presidente de la sesión	De Voorzitter van de zitting
+pregunta sobre la revisión	gevraagd over de herziening
+conjunto de transparencias	set van transparanten
+tema, empresas de reedes de computadoras	thema, computernetwerken bedrijven
+tema, sistemas operativos	onderwerp, besturingssystemen
+tema, computación móvil	thema, mobiele computing
+currículum vitae	Curriculum vitae
+tema, conexión en las redes de computadoras	onderwerp, verbinding met computernetwerken
+organización de gobierno	Organisatie van de overheid
+ratio de rechazos	verhouding van verwerpt
+artículo aceptado	aanvaarde artikel
+tema, comunicaciones	thema, communicatie
+convocatoria	oproep
+ong	NGO
+conferencia de un nivel	een niveau conferentie
+tema, transmisión mediante cable eléctrico	thema, transmissie via netsnoer
+conferencia de dos niveles	Conferentie twee-niveau
+pregunta sobre la revisión textual	gevraagd over de tekstuele review
+el artículo tiene que estar entregado antes de	het item moet worden geleverd voor
+tiene fecha límite de entrega	termijn heeft
+cuesta	helling
+tiene hora y fecha de comienzo	heeft begindatum en tijd
+tiene hora y fecha de finalización	heeft tijd en datum van voltooiing
+es tema de	is onderwerp van
+asitente a	Assistent
+es miembro de	is lid van
+tiene asistentes	genodigden hebben
+pertenece al acontecimiento	behoort tot de gebeurtenis
+tiene miembro	Lid heeft
+proporcionado por	geboden door:
+tiene ratio	heeft ratio
+es revisado por	Het wordt gecontroleerd door
+tiene artículo relacionado	gerelateerde artikel
+está revisando	Het is de herziening van
+se relaciona con	is gekoppeld
+inicia	begint
+es ubicación de	Locatie gemeente is
+es iniciado por	Het wordt geïnitieerd door
+tiene menú	menu heeft
+está escrito por	is geschreven door
+relacionado con el artículo	aan het artikel gerelateerde
+es menú de	menu van
+tiene documento relacionado	document heeft gerelateerde
+es proveedor de	is leverancier van
+tiene convocatoria	heeft call
+es el historial de revisiones de	is de Herzieningsgeschiedenis van
+para el acontecimiento	voor de gebeurtenis
+relacionado con el acontecimiento	de gebeurtenis-gerelateerde
+tiene historial de revisiones	revisiegeschiedenis hebben
+tiene programa	programma heeft
+fecha de finalización	datum van voltooiing
+el registro tiene que estar hecho antes de	de registratie moet worden gedaan voordat
+fecha de comienzo	begindatum
+el manuscrito tiene que estar entregado antes de	het manuscript moet worden geleverd voor
+tiene moneda	valuta heeft
+tiene instrucciones de envío	heeft verzendinstructies
+tiene biografía	heeft biografie
+página web	Web-pagina
+sesión de talleres	workshops sessie
+conferencia principal	Conferentie belangrijkste
+participante con inscripción no anticipada	deelnemer met geen registratie vooraf
+actas	records
+versión definitiva del artículo	definitieve versie van het artikel
+miembro de la organización	Lid van de organisatie
+agencia de organización de congresos	Congres organisatie bureau
+programa de mano	hand programma
+folleto	brochure
+artículo de conferencia	Conferentie artikel
+sesión de pósters	postersessie
+artículo revisado	herziene artikel
+artículo de experiencias en la industria	Artikel door ervaringen in de industrie
+participante del congreso	deelnemer van het Congres
+contribución a conferencia	bijdrage aan de conferentie
+sesión de conferencia	Conferentie sessie
+autor de la contribución	Auteur van de bijdrage
+miembro del comité organizador	Lid van het Organiserend Comité
+centro de investigación	Onderzoekscentrum
+evento	gebeurtenis
+sesión	sessie
+artículo sobre demostración	Artikel over demonstratie
+resumen de conferencia invitada	Samenvatting van uitgenodigde Hoorcollege
+organizador de tutorial	Organisator tutorial
+miembro del comité científico	Lid van het Wetenschappelijk Comité
+artículo asignado a revisor	artikel toegewezen naar revisor
+candidato a revisor	een revisor kandidaat
+tema de investigación	onderzoeksonderwerp
+artículo de póster	Artikel poster
+organizador de los talleres	organiseren van workshops
+sesión de congreso	zitting van het Congres
+organizador de la sesión de pósters	de organisator van de vergadering van de poster
+cosa	ding
+institución académica	academische instelling
+evaluación negativa	negatieve evaluatie
+presidente del comité organizador	Voorzitter van het Organiserend Comité
+sesión de demostraciones	demo's-sessie
+seminario	Seminar
+artículo de taller	Workshop artikel
+artículo en conferencia principal	artikel in hoofdconferentie
+evaluación positiva	positieve evaluatie
+acontecimiento científico	wetenschappelijke manifestatie
+actas de congreso	Congres procedure
+participante con inscripción anticipada	deelnemer met voorafgaande registratie
+editor de las actas	procedure Editor
+evaluación neutra	neutrale beoordeling
+resumen de tutorial	overzicht tutorial
+moderador de la sesión	sessie moderator
+volumen de varios autores	volume van diverse auteurs
+lugar de celebración	locatie
+sesión industrial	industriële sessie
+presentación individual	individuele presentatie
+versión actualizada de	bijgewerkte versie van
+organización científica por	Wetenschappelijke organisatie door
+artículo en actas	artikel in procedures
+parte de	onderdeel van
+tema tratado por	onderwerp door
+tiene evento	gebeurtenis
+es revisión de	overzicht van is
+referencia	Referentie
+revisión escrita por	beoordeling geschreven door
+parte de evento	onderdeel van evenement
+tiene revisión	herziening
+artículo presentado como	artikel gepresenteerd als
+organiza técnicamente	technisch organiseert
+organiza	organiseert
+inversa de parte de 7	omgekeerde deel van 7
+es revisor de artículo	is van een revisor voor artikel
+organiza científicamente	organiseert wetenschappelijk
+tiene parte	deel heeft
+tiene versión actualizada	heeft bijgewerkte versie
+autor de	Auteur van
+volumen contiene artículo	volume bevat artikel
+evento en la lista	lijst met gebeurtenissen
+presentación de artículo	presentatie van artikel
+organización técnica por	technische organisatie door
+referenciado en	waarnaar wordt verwezen in
+tiene revisor	revisor heeft
+editor de	Redacteur van
+celebrado en	gehouden in
+enumera eventos	lijsten gebeurtenissen
+lugar de	plaats van
+organizado por	georganiseerd door
+envío	verzending
+fecha límite	termijn
+conferenciante	Docent
+alquilando	huren
+tasas de registro para los no autores	inschrijvingskosten voor niet-auteurs
+cheque	selectievakje
+conferenciante plenario	plenaire spreker
+transferencia bancaria	Bankoverschrijving
+estudiante no orador	Student niet spreker
+actividad técnica	technische activiteit
+introducción	Inleiding
+manuscrito final	laatste manuscript
+presentador durante un día	Presentator tijdens een dag
+excursión por la ciudad	Rondleiding door de stad
+fecha límite de registro	deadline voor inschrijven
+edificio de la conferencia	het gebouw van de conferentie
+hotel de la conferencia	Conferentiehotel
+hora	tijd
+sala principal de la conferencia	Main Hall van de conferentie
+actividad	activiteit
+formulario	formulier
+edificio	gebouw
+tarjeta de crédito	creditcard
+día de excursión	dagexcursie
+rechazando el manuscrito	afwijzing van het manuscript
+estado del moderador	de moderator status
+tasas de registro par aestudiantes	vergoedingen voor registratie aestudiantes
+oficina principal	hoofdkantoor
+introducción del conferenciante	invoering van de spreker
+comité técnico	Technisch Comité
+habitación de hotel	hotelkamer
+tasas de registro para miembros	inschrijvingskosten voor leden
+sala de sesiones	sessie kamer
+ordenador	computer
+reproductor de video casete	video cassette speler
+cd de las actas	de procedure-CD
+tasas	tarieven
+trabajador no orador	werknemer niet spreker
+ciudad de la conferencia	de conferentie stad
+casa del moderador	Huis van de moderator
+proyector lcd	LCD-projector
+conferencia de un día de duración	eendaagse conferentie
+taxi	taxi
+conferencia plenaria	Conferentie plenaire vergadering
+tasas de salida	uitvoer tarieven
+tasas del registro	de registratierechten
+tasas por un viaje extra	een extra reis-tarieven
+fecha límite de envío de la versión definitiva	termijn voor indiening van de definitieve versie
+tasas de autor, asistente y libro	tarieven van boek, auteur en assistent
+documento de pago	betaling document
+no orador	Geen enkele spreker
+habitación individual	Eenpersoonskamer
+impuesto sobre el valor añadido	belasting over de toegevoegde waarde
+visa	Visum
+actividad antes de la conferencia	activiteit voorafgaand aan de conferentie
+tarjeta	kaart
+aeropuerto de la conferencia	Conferentie luchthaven
+incluye el cd de las actas para autores	Het omvat de cd van transcripties voor auteurs
+tasas de registro para los no miembros	inschrijvingskosten voor niet-leden
+habitación doble	Tweepersoonskamer
+restaurante de la conferencia	Restaurant van de conferentie
+equipo audiovisual	audiovisuele apparatuur
+formulario de información sobre el autor	informatie over de auteur-formulier
+transparencia	transparantie
+libro de las actas	de procedure
+autobús de ida y vuelta	bus van heen-en terugreis
+investigación	Onderzoek
+dinero	geld
+excursionista de la conferencia	wandelaar van de conferentie
+tasas de autor, asistente y cd	Auteur, assistent tarieven en cd
+estado	Staat
+actividad después de la conferencia	activiteit na de conferentie
+breve introducción al presidente de la sesión	korte inleiding tot de Voorzitter van de zitting
+incluye las el libro de las actas para autores	het boek van records bevat voor auteurs
+ciudad del presentador	de gaststad
+presentación power point	Power point presentatie
+miembro de iasted	Lid van iasted
+zona horaria	tijdzone
+orador en tutorial	tutorial spreker
+vehículo de transporte	vervoermiddel
+delegado	gemachtigde
+fecha límite de envío de propuestas	termijn voor indiening van voorstellen
+oyente	luisteraar
+coche	auto
+salida	uitvoer
+fecha límite de la notificación de aceptación	termijn voor de kennisgeving van aanvaarding
+proyector	projector
+record de asistencia	Record opkomst
+moneda	valuta
+propina	Tip
+saludo de bienvenida	welkomstgroet
+manuscrito inicial	eerste manuscript
+simulando	simuleren
+formulario de registro al hotel	Hotel registratieformulier
+recibiendo el manuscrito	ontvangst van het manuscript
+días de duración de la conferencia	dagen van de conferentie
+conferenciante estudiante	Student spreker
+aceptando el manuscrito	aanvaarding van het manuscript
+estado del patrocinador	Staat van de sponsor
+presentador del hotel	presentator van het hotel
+universidad del moderador	Universiteit van de toezichthouder
+conferenciante trabajador	werknemer docent
+furgoneta	Van
+orador	spreker
+coctail de bienvenida	Welkomstcocktail
+registro	registratie
+ciudad del patrocinador	Stad van sponsor
+estado en que tiene lugar la conferencia	Staat dat de conferentie plaats vindt
+publicación	publicatie
+tasas del hotel	tarieven van het hotel
+no miembro de iasted	geen lid van iasted
+formulario de registro	registratieformulier
+presentación por vídeo	presentatie video
+empresa del moderador	bedrijf van de toezichthouder
+carta de invitación	Brief van uitnodiging
+fecha límite de reserva en el hotel	termijn voor de Premiere Classe-hotel
+lista de correos	mailing lijst
+excursión de todo el día	alle dagexcursie
+patrocinador	sponsor
+modelando	modellering
+fechado en	gedateerd op
+está presente	aanwezig is
+utilizado para	gebruikt voor
+hecho de	gemaakt van
+enviar	Verzenden
+preparar	voorbereiden
+firmado por	ondertekend door
+ocupado por	bezet door
+pasar por	voorbij
+estar equipado por	worden uitgerust voor
+utilizado por	gebruikt door
+preparado por	opgesteld door
+tiene lugar después de	plaatsvindt na
+pagado en	betaald
+estar conectado con	worden aangesloten met
+firmar	teken
+pagado con	betaald met
+estar designado por	worden aangeduid met
+se necesita para	nodig is voor
+enviado después de	verzonden na
+tiene lugar antes de	vindt plaats voordat
+pagar	betalen
+ocupar	behandelen
+está presente en	is aanwezig in
+dado a	gegeven aan
+enviado por	verzonden door
+necesitar	noodzaak
+tiene cantida de	hoeveelheid
+hacer hasta	Maak tot
+enviado antes de	verzonden voordat
+pagado por	betaald door
+tiene lugar en	plaatsvindt in
+visitado por	bezocht door
+hablar en	spreken in
+dar	Om te geven
+escribir	Schrijven
+obtener	Toevoegen
+pagado para	betaald voor
+situado en	gelegen in
+fecha límite de envío de resúmenes	abstracte indieningstermijn
+patrocinador de platino	Platina sponsor
+exhibidor	Exposant
+presidente del programa	programma stoel
+patrocinador de plata	Zilveren sponsor
+tasas de registro	inschrijvingskosten
+autor del artículo	Auteur van het artikel
+tasas del patrocinador	sponsor tarieven
+registro para estudiantes	registratie voor studenten
+premio al mejor artículo de investigación	de beste onderzoek paper award
+comité de concesión del premio al mejor artículo	Comité voor de beste artikel award
+premio al mejor artículo de aplicaciones	Prijs voor de beste papieren op toepassingen
+estudiante autor del artículo	Student Auteur
+patrocinador de oro	Goud sponsor
+premio	Award
+fecha límite de envío de artículos	termijn voor indiening van artikelen
+premio al mejor estudiante	Award voor de beste leerling
+fecha límite de notificación al autor	datum van kennisgeving aan de auteur
+patrocinador de bronce	Bronze Sponsor
+patrocinador del premio al mejor artículo de un estudiante	sponsor van de prijs voor het beste papier op een student
+acm sigkdd	ACM sigkdd
+tasas para miembros de sigkdd	tarieven voor sigkdd leden
+tasas para no miembros	tarieven voor niet-leden
+hotel	Hotel
+recibido por	ontvangen door
+buscar	Zoeken naar
+enviar hasta	verzenden tot
+puede quedarse en	U kunt verblijven in
+presentado por	gepresenteerd door
+nombre del patrocinador	naam van sponsor
+principio de la conferencia	begin van de conferentie
+recibir	Ontvangen
+premiado por	toegekend door
+precio	prijs
+nombre de la conferencia	naam van de conferentie
+nación	natie
+final de la conferencia	einde van de conferentie
+buscado por	gezocht door
+notificación hasta el	kennisgeving aan de
+diseñado por	ontworpen door
+diseñar	ontwerp

@@ -1,0 +1,631 @@
+документ	dokument
+конференция	Konference
+предпочтение	předvolba
+полная версия статьи	plná verze článku
+член конференции	Člen konference
+принятие	přijetí
+решение	řešení
+отклонение	odchylka
+тематическая область	tématická oblast
+администратор	Správce
+мета-рецензия	Meta knižní recenze
+председатель конференции	Předseda konference
+рецензент	Recenzent
+рецензия	Recenze knihy
+заместитель председателя	Místopředseda
+председатель	Předseda
+автор	autor
+мета-рецензент	Meta recenzent
+член программного коммитета	jako člen programového výboru
+внешний рецензент	externí recenzent
+аннотация статьи	abstraktní článek
+лицо	osoba
+пользователь	uživatel
+статья	Článek
+ставка	míra
+соавтор	spoluautor
+председатель программного коммитета	Předseda programového výboru
+автор не являющийся рецензентом	autor není recenzent
+программный коммитет	Programový výbor
+внести критерии рецензирования	přezkoumat kritéria
+подать статью	Odeslat článek
+назначает рецензента	jmenuje recenzenta
+прочитано рецензентом	číst recenzenta
+кем разершёна виртуальная встреча	razeršëna virtuální setkání
+прочитано мета-рецензентом	Přečtěte si meta kontrolor
+кем отклонено	Kdo odmítl
+кем изменена	kdo se změnilo
+printhardcopymailingmanifests	printhardcopymailingmanifests
+кем начато размещение ставок рецензента	kdo začal, umístění sázky recenzent
+закончил рецензию	dokončení Recenze
+интернет-адрес сайта	Internetová adresa webové stránky
+адрес электронной почты	e-mailová adresa
+максимум статей	maximální články
+идентификатор статьи	ID článku
+заголовок	záhlaví
+интернет-адрес логотипа	Internetová adresa loga
+имя	jméno
+рецензенты статьи	Recenzenti v článku
+число	počet
+принимает печатные заявки	přijímá požadavky na tisk
+кем написано	po ukončení
+кем принято	Každý, kdo přijal
+внести детали конференции	k podrobnostem konference
+изменяет ставку	Změna frekvence
+отметить конфликт интересов	Poznámka: konflikt zájmů
+назначена кому	přiřazené k
+читает статью	Přečíst článek
+кем запущена программа назначения статей	Kdo je spuštěn program cíl článků
+кем добавлено	podle data přidání
+назначен рецензентом	recenzent jmenován
+назначен администратором	jmenován správcem
+разрешить виртуальную встречу	Povolit virtuální setkání
+назначает внешнего рецензента	jmenuje externí recenzent
+принимает статью	přijaté článek
+закончить назначение статей	dokončení přiřazení článků
+кем внесены детали	Kdo z podrobnosti
+пишет статью	psaní článku
+кем закончено назначение статей	Kdo dokončil přiřazení článků
+установить максимум статей	Nastavte maximální články
+написать статью в соавторстве	Napište článek spoluautorem
+добавляет члена программного коммитета	Přidá člen programového výboru
+назначена	jmenován
+конфликт интересов	střet zájmů
+кем введены критерии рецензирования	zásluhy přezkum kritérií
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+начало размещения ставок рецензента	začít sázet recenzenta
+отклоняет статью	odmítá článek
+пишет рецензию	napsat recenzi
+сборы конференции	Konferenční poplatky
+участник конференции	účastník konference
+досрочно оплативший участник	brzy nákupu strana
+организационная комиссия	Organizace představenstva
+член комиссии	Člen Komise
+активный участник конференции	aktivní účastník konference
+приглашённый доклад	Hodnocení zpráva
+поданый труд	podanyj práce
+выпуск конференции	Vydání konference
+развёрнутая аннотация	rozšířený abstrakt
+требования к рецензии	požadavky na přezkum
+стенд	budka
+документ конференции	Konference dokument
+семинар	Seminář
+труд конференции	Pracovní konference
+аннотация	Abstrakt
+письменный труд	Písemná práce
+полный труд	kompletní práce
+зарегистрированный участник	registrovaným členem
+приглашение к участию	Pozvánka pro účast
+информация для участников	informace pro účastníky
+часть конференции	součástí konference
+научный совет	Vědecká rada
+сборник трудов конференции	Sborník z konference
+организация	Organizace
+тема	téma
+секция	sekce
+комиссия	Komise
+принятый труд	dílo
+интернет адрес конференции	Internetová adresa konference
+издатель	Vydavatel
+пассивный участник конференции	pasivní účastník konference
+отрецензированнй труд	otrecenzirovannj práce
+информационное письмо	informační dopis
+заявитель конференции	žadatel konference
+председатель секции, семинара	Vedoucí sekce, seminář
+отклонённый труд	odmítnuté práce
+обучающий курс	výcvikový kurz
+объявление конференции	oznámení konference
+соавтор работы	spoluautor práce
+приглашённый докладчик	hosta
+важные даты	důležitá data
+организатор	Organizátor
+компетентность рецензии	odborné Recenze
+презентация	prezentace
+сопредседатель	Spolupředseda
+1й автор работы	první autor díla
+труд в окончательной версии	práce v konečné verzi
+лицо внесшее вклад в конференцию	osoba označení příspěvků do konference
+оплативший участник	nákup strana
+поздно оплативший участник	pozdní nakupování večírek
+труды	Trudy
+является частью выпусков конференции	je součástí problému (s) konference
+принадлежит рецензентам	vlastněný recenzentů
+части	součástí
+являлся председателем секции, семинара	působil jako předseda sekce semináře
+являлся научным советом	Vědecká rada
+авторы	Autoři
+семинары	semináře
+указано в требованиях к рецензии	podle požadavků pro recenze
+кем выполнена	kdo provádí
+являлся членом	Byl členem
+рекоммендация рецензирования или компетентность	rekommendaciâ recenzi nebo způsobilosti
+рецензирует	kritizuje
+члены	Členové
+является темой частей конференции	je téma částí konference
+являлся комиссией	byla Komise
+кем приглашён	kdo pozval
+председатель секции, семинара, обучающегокурса	Vedoucí sekce, seminář, obučaûŝegokursa
+вносит вклад	přispívá k
+рекоммендация рецензирования	rekommendaciâ Recenze
+указано в выпуске конференции	v propuštění konference
+является 1й частью	je první částí
+подан в	v
+тема секции, семинара, обучающего курса	sekce téma, seminář, školení
+обучающие курсы	školení
+издаёт	publikuje
+заместитель председателя комиссии	Místopředseda Komise
+являлся председателем комиссии	působil jako předseda Komise
+являлся организационным комитетом	byl organizačního výboru
+делает презентацию	v prezentaci
+секции	sekce
+приглашает ко-рецензентов	vás zve na recenzentů
+председатель комиссии	Předseda Komise
+являлся сопредседателем комиссии	On byl spolupředsedou Komise
+дата подачи аннотации	datum podání přehledů
+дата начала	datum zahájení
+пол	Paul
+дата окончания	Datum ukončení
+название	jméno
+дата издания	Datum vydání
+дата подачи окончательной версии статьи	datum podání konečné verze článku
+выпуск	vydání
+компетентность	kompetence
+isbn	ISBN
+место проведения	místo konání
+степень	stupeň
+интернет-адрес	Internetová adresa
+организационный комитет	Organizační výbor
+являлся программным комитетом	On byl Programový výbor
+тема или поданный труд	motiv nebo archivované práce
+дата подачи полной статьи	Datum předložení celý článek
+дата объявления о приняти	datum oznámení na příjmu
+фамилия	příjmení
+тезисы статьи	Abstrakty článků
+этап регистрации участников	fáze registrace účastníků
+член программного комитета	Člen programového výboru
+этап результатов рецензирования	výsledky přezkoumání fáze
+научный работник	AAS
+экскурсия	exkurze
+участник	strana
+этап рабочей программы	etapa pracovního programu
+председатель программного комитета	Předseda programového výboru
+тематиka	tematika
+студент	Student
+культурный этап	kulturní fáze
+страна	země
+город	Město
+административный этап	správní fáze
+этап подачи заявки	fáze podání
+учащийся	Student
+полная	plná
+труд	práce
+член	Člen
+ассистент	Asistent
+этап	fáze
+этап рецензирования	fáze revize
+этап подготовки окончательной версии	Příprava konečné verze
+банкет	Banket
+встреча	setkání
+образовательное учреждение	vzdělávací instituce
+компания	Společnost
+волонтёр	dobrovolník
+написана	napsal
+место работы	místo výkonu práce
+следует	To by mělo být
+параллельно с	souběžně s
+максимальный выбор	maximální výběr
+сокращённое название	zkrácený název
+окончание	konec
+досрочная регистрация	rané registrace
+телефон	telefon
+домашняя страница	Domovská stránka
+обучается в	Studoval
+содержит административный этап	obsahuje administrativní fázi
+адресует	adresy
+пишет	napsal
+компетентен в	příslušný v
+содержит ключевые слова	obsahuje klíčová slova
+почтовый индекс	PSČ
+ндс	DPH
+факс	Fax
+улица	Ulice
+начало	Začátek
+контактный адрес электронной почты	e-mailová adresa kontaktu
+минимальный выбор	minimální rozsah
+замечание	komentář
+выбор по умолчанию	výchozí výběr
+опубликованная статья	publikovaný článek
+негосударственная организация	non vládní organizace
+тема операционные системы	téma operačních systémů
+грант на поездку	cestovní grant
+тема радио связь	téma radiokomunikace
+тема коммутация компьютерных сетей	téma přepínání počítačových sítí
+тема коммуникации	téma komunikace
+тема сенсорные компьютерные сети	téma dotykové počítačových sítí
+местонахождение комнаты для собрания	poloha místností pro schůze
+информационнное письмо	informacionnnoe dopis
+заключительное слово	poslední slovo
+тема безопасность	téma bezpečnosti
+член tpc	Člen TPC
+академическая организация	akademická organizace
+неакадемчический этап	neakademčičeskij fáze
+производственная организация	organizace výroby
+тема криптография	téma kryptografie
+рецензионный вопрос	přezkoumat otázku
+государственная организация	Státní organizace
+этап перерыв	konec fáze
+слайды	snímky
+докладчик	Zpravodaj
+персональная история	osobní historie
+активная статья	aktivní článek
+тема передача по линиям электропередач	Elektrické přenosové téma
+тема просто тест	téma je jen test
+программа	Program
+конференц-ужин	Konference večeře
+светский раут	debakl
+тема спутниковая и космическая связь	téma satelitní a prostor komunikace
+тема управление компьютерными сетями	jste si přečetli téma Správa počítačových sítí
+оценка принять при условии	skóre k předmětu
+тема приложени компьютерных сетей	téma aplikace počítačových sítí
+двухуровневая конференция	dvou úrovni konference
+темаcad	temacad
+персональная история рецензирования	osobní historie peer review
+отозванная статья	článek stažen
+тема промышленные компьютерные сети	téma průmyslové počítačové sítě
+место проведения обеда	místo večeře
+тема компьютерные сети	téma počítačových sítí
+этап докладывания	fáze, dokonalé hlášení
+приглашение принять участие в рецензировании	výzva k účasti v recenzi
+тема мультимедиа	téma multimediální
+секция конференции	sekce konference
+принятая статья	přijato článek
+одноуровневая конференция	monistický konference
+перерыв на кофе	přestávka na kávu
+этап конференции	fáze konference
+текстовый вопрос рецензирования	text otázky hodnocení
+контактная информация	kontaktní informace
+тема медицина	téma medicíny
+численный рецензионный вопрос	číselný přehled otázka
+тема беспроводная связь	téma bezdrátové komunikace
+тема оптические компьютерные сети	téma optických sítí
+академический этап	akademické fáze
+место	místo
+свободный перерыв	volný konec
+статья ожидающая решения	Článek rozhodnutí
+оценка принять	skóre se
+тема параллельные и распределённые вычисления	téma paralelních a distribuovaných výpoctu
+тема теория коммуникаций	téma komunikační teorie
+приглашение	Pozvánka
+этап питания	napájecí fáze
+оцененные статьи	hodnocené články
+тема измерения в компьютерных сетях	téma měření v počítačových sítích
+меню	nabídka
+бланк рецензирования	Zkontrolujte formulář
+тема архитектура компьютера	téma architektury počítačů
+вступительное слово	Úvodní slovo
+тема безопасность компьютерных сетей	téma bezpečnost počítačových sítí
+тема производительность	téma výkonu
+отклонённая статья	Vyřazené článek
+тема обработка сигналов	téma zpracování signálů
+приглашение к публикации манускриптов	Pozvánka k publikování rukopisy
+персональная история статьи	osobní historie článků
+перерыв на питание	přestávka na jídlo
+место проживания	místo bydliště
+организационное собрание	Úvodní schůzka
+оценка отклонить	Hodnocení odmítnout
+доклад по статье	zpráva o článku
+место проведения конференции	místo konference
+тема мобильные вычисления	téma mobilní výpočetní techniky
+председатель секции	Šéf sekce
+спонсорство	sponzorství
+оценка рецензирования	skóre Recenze
+тема микроэлектроника	téma mikroelektroniky
+тема антенны	Téma ke stažení
+инициируется	je zahájena
+кем предоставлена	Komu dal
+дата и время начала	datum a čas zahájení
+история рецензирования	Historie Recenze
+инициирует	iniciuje
+относится к этапу	odkazuje na jevišti
+относится к	odkazuje
+отностится к статье	Užijte si článek
+является местом проведения	je místo
+связанная статья	související článek
+регистрация до	Registrace do
+статья до	článek
+последняя дата подачи заявки	termín používat
+дата и время окончания	koncové datum a čas
+манускрипт до	rukopis k
+валюта	Měna
+сумма	množství
+правила подачи заявки	prováděcí pravidla k
+биография	Životopis
+посетитель	návštěvník
+принадлежит этапу	patří do fáze
+для этапа	pro fázi
+кем написана	Co je napsáno
+кем рецензируется	Kdo je vystaven
+связанный документ	odkazovaný dokument
+предоставляет	poskytuje
+объявление	AD
+оценка	skóre
+член агенства	Členské agentury
+конференц-банкет	Konference banket
+автор статьи	Autor článku
+веб-сайт	Webové stránky
+председатель оргкомитета	Předseda organizačního výboru
+аннотация к обучающему курсу	abstraktní pro školení
+закреплённая статья	který článek
+университет	Univerzita
+полная статья	celý článek
+секция демонстраций	sekce ukázky
+статья в окончательной версии	článek v konečné verzi
+доклад	zpráva
+статья конференции	Článek konference
+поданая статья	podanaâ článek
+председатель демонстраций	Předseda demonstrace
+председатель семинаров	Předseda semináře
+индивидуальная презентация	soukromé prezentace
+научная тема	vědecké téma
+статья на семинаре	článek na semináři
+стендовая статья	Posterová sekce
+выпуск с несколькими составителями	vydání s více spisovatelů
+положительная рецензия	pozitivní recenze
+поздно зарегистрированный участник	pozdní registrovaným členem
+отрицательная рецензия	negativní recenze
+демонстрационная статья	Demo článek
+досрочно зарегистрированный участник	rané registrovaný účastník
+академический институт	Vysokoškolský ústav
+производственная секция	výrobní sekce
+обработанная статья	ošetřených článek
+рекламный листок	Leták
+потенциальный рецензент	potenciální recenzent
+организационнное агенство	organizacionnnoe agentura
+производственная статья	výrobní článek
+член оргкомитета	Člen organizačního výboru
+сборник трудов	řízení
+член научного совета	Člen vědecké rady
+светское мероприятие	sekulární událost
+секция семинаров	sekce dílny
+издатель сборника трудов	Vydavatel knihy díla
+научно-исследовательский институт	Vědeckovýzkumný ústav
+секция стендов	část porostů
+программный буклет	Programové brožury
+аннотация к приглашённому докладу	abstraktní priglašënnomu zprávy
+научное мероприятие	vědecký událost
+мероприятие	událost
+нейтральная рецензия	neutrální Recenze
+экскурсия конференции	turné konference
+часть	část
+секция полных статей	sekce plné článků
+председатель обучающих курсов	Předseda školení
+статья в выпуске	článek v tomto čísle
+кем организован	Kdo organizoval
+обновлённая версия	aktualizovaná verze
+мероприятие в списке	událost v seznamu
+содержит ссылку в	obsahuje odkaz na
+организует	organizuje
+научно организовывает	vědeckou a organizační
+инверсия часть 7	Invertovat část 7
+мероприятние	meropriâtnie
+презентация статьи	prezentace článků
+кем научно организовано	Co vědecké a organizované
+выпуск содержит статью	vydání obsahuje článek
+рецензия на статью	Book review článek
+технически организовано	technicky uspořádána
+часть мероприятия	součástí akce
+список мероприятий	seznam událostí
+адресует тему	řeší téma
+ссылается	odkazy
+рецензия написана	recenzi napsal
+технически организовывает	technicky organizuje
+статья представленная как	článek jako
+рецензент статьи	Recenzent článků
+здание	budova
+прокат	Půjčovna
+технический комитет	Technický výbor
+город спонсора	Město sponzorem
+микроавтобус	minibus
+моделирование	modelování
+доклад докладчика	zpráva zpravodaje
+чаевые	Tip
+налого на добавленную стоимость	přidaná hodnota daně
+список рассылки	seznam adresátů
+член iasted	IASTED členských
+пригласительное письмо	zvací dopis
+транспортное средство	vozidlo
+ресторан конференции	Restaurace konference
+последний срок подачи	konečný termín pro podání přihlášky
+докладчик пленарного доклада	Zpravodaj plenární zprávy
+прозрачность	průhlednost
+принятие манускрипта	přijetí rukopisu
+дом  спонсорской компании	Dům sponzora společnost
+спонсор	Sponzor
+техническое мероприятие	technické událost
+автор, книга сборника трудов включены	autor, kniha je přehled děl začleněna
+отклонение манускрипта	odmítnutí rukopisu
+чек	Kontrola
+докладчик обучающего курса	Zpravodaj výcvikového kurzu
+налог на отправление	daňové správy
+видео презентация	video prezentace
+не членский регистрационный взнос	žádný členský poplatek
+не доскладчик	Ne doskladčik
+страна докладчика	zpravodaj země
+последний срок окончательной версии манускрипта	konečný termín pro konečné verzi rukopisu
+часовой пояс	časové pásmo
+светская программа	sekulární program
+аудиовизуальное оборудование	audiovizuální zařízení
+публикация	publikace
+податель в гостинице	dárce v hotelu
+карта	mapa
+conference hiker	konference tramp
+дневной тур	odpoledne prohlídka
+последний срок бронирования гостиницы	Rezervace termínu Hotel
+автомобиль	auto
+мероприятие конференции	událost konference
+коктейль-вечеринка	koktejlový večírek
+регистрационный взнос aвтор, участник	autor registrační poplatek, vystavovatel
+ужин-банкет	večeře banket
+гостиничный регистрационный бланк	Hotel registrační formulář
+вступление	vstup
+страна конференции	země konference
+город экскурсии	okružní prohlídky města
+один день конференции	jeden den konference
+симуляция	simulace
+предмет	pohled
+работник-докладчик	pracovník zpravodaj
+здание конференции	Stavební konference
+время	čas
+регистрация	registrace
+последний срок	konečný termín pro
+исследование	studium
+аэропорт конференции	Letiště konference
+студент-докладчик	Student zpravodaj
+мероприятие до конференции	akce konference
+деньги	peníze
+краткое вступление председателя секции	krátký úvod sekce
+форма	forma
+регистрационный взнос	registrační poplatek
+взнос	příspěvek
+гостиничный номер	Hotelový pokoj
+регистрационный взнос автор, участник, книга	registrační poplatek, autor knihy, přispěvatel
+получение манускрипта	příjem rukopisu
+представление докладчика	Zobrazení předvádějícího
+даты конференции	data z konference
+один день докладчик	jeden den on
+студент-не докладчик	student není zpravodaj
+университет докладчика	Univerzitní zpravodaj
+отправление	Správa
+пленарный доклад	Plenární zpráva
+книга сборника трудов	sbírka knih díla
+пригородный автобус	příměstský autobus
+презентация powerpoint	prezentace aplikace PowerPoint
+потолочный проектор	stropní projektor
+welcome address	Úvodní projev
+дом докладчика	Dům reproduktor
+город докладчика	Zpravodaj města
+информационная форма об авторе	formulář žádosti o informace o autorovi
+работник-не докладчик	zaměstnanec není zpravodaj
+главный оффис	Hlavní kancelář
+первоначальный манускрипт	původní rukopis
+автор, диск сборника трудов включёны	autor, disk děl, včetně
+не член iasted	není členem iasted
+житкокристаллический проектор	Žitkokristalličeskij projektor
+окончательный манускрипт	konečného rukopisu
+делегат	delegát
+cтрана спонсора	země sponzor
+банковский перевод	Bankovní převod
+подача	informační kanál
+налог	daň
+диск сборника трудов	CD kompilace děl
+одноместный гостиничный номер	Jednolůžkový pokoj v hotelu
+мероприятие после конференции	událost po konferenci
+город конференции	Městské konference
+сертификат участия	osvědčení o účasti
+кредитная карта	kreditní karta
+kонференц-зал	Konferenční místnost
+гостиница конференции	Hotel konference
+не авторский регистрационный взнос	Žádný autor registrační poplatek
+проигрыватель видео кассет	video kazetový přehrávač
+последний срок регистрации	konečný termín pro registraci
+такси	taxi
+день экскурсии	celodenní výlety
+виза	Víza
+студенческий регистрационный взнос	registrační poplatek studenta
+компьютер	počítač
+гостиничный взнос	Hotel poplatek
+взнос за дополнительную поездку	poplatek za další cestu
+комната секции	místnost oddíl
+регистрационный бланк	registrační formulář
+членский регистрационный взнос	členství registrační poplatek
+последний срок уведомления о принятии	konečný termín pro oznámení o přijetí
+документ об оплате	doklad o platbě
+двуспальный гостиничный номер	Dvoulůžkový pokoj
+слушатель	naslouchání
+кем посылается	Kdo je poslal
+занимает	trvá
+связан с	je spojena s
+используется	použité
+до	až do
+запланировано на	naplánováno na
+кем подписывается	kdo souhlasí
+присутствует во время	přítomen
+получает	Získá
+производится из	vyrobeno z
+происходить после	objevit po
+посылает	odešle
+кем оплачивается	Kdo je platí
+чем оплачивается	než placené
+кем пишется	Co je napsáno
+оборудован	funkce
+оплачивает	platí
+кем посещается	kdo navštívil
+требуется для	je vyžadován pro
+используется для	slouží k
+даёт	dává
+кем используется	kdo používá
+готовит	připravuje
+кем готовится	Kdo připravuje
+находится в	je v
+кем представлен	předložený
+докладывает в	zpráva v
+где оплачивается	splatné
+кому представлен	kdo podal
+чем занимается	Co znamená
+происходить до	před
+за что оплачивается	Co je zaplaceno
+посылается после	po
+пристутствует в	pristutstvuet v
+разработан для	navržen pro
+происходит в	se vyskytuje v
+посылается до	je odeslán
+подписывает	známky
+требует	vyžaduje
+вебмастер	webmaster
+конференц-зал	Konferenční sál
+регистрация sigkdd членов	registrace členství v sigkdd
+награда	Ocenění
+платиновый спонсор	Platinový sponzor
+награда за лучшую научную статью	Ocenění za nejlepší výzkum papír
+регистрация не членов	registrace členů
+последний срок уведомления авторов	konečný termín pro oznámení autorů
+автор статьи студент	Autor článku student
+программный председатель	Program křeslo
+награда за лучшую студенческую статью	Ocenění za nejlepší studentský časopis
+программный комитет	Programový výbor
+комитет по наградам за лучшую статью	Výbor pro ocenění za nejlepší článek
+бронзовый спонсор	Bronzový sponzor
+регистация студентов	registrace studentů
+член организационного комитета	Člen organizačního výboru
+регистрация sigmod членов	registrace členů sigmod
+последний срок подачи статей	konečný termín pro podání článků
+acm sigkdd	ACM sigkdd
+награда за лучшую прикладную статью	Ocenění za nejlepší aplikované článek
+спонсорский взнос	sponzorství poplatek
+последний срок подачи аннотаций	konečný termín pro předložení přehledů
+спонсор награды за лучшую студенческую статью	sponzor ocenění za nejlepší studentský časopis
+золотой спонсор	Zlatý sponzor
+серебрянный спонсор	Stříbrný sponzor
+комитет	Výbor
+гостиница	Hotel
+экспонент	Vystavovatel
+национальность	státní příslušnost
+цена	cena
+отправить до	Odeslat do
+оплачивается	je vyplácena
+начало конференции	začátek konference
+кем разработан	kdo navrhl
+название конференции	Název konference
+окончание конференции	konec konference
+имя спонсора	jméno sponzora
+поиск	Hledat
+отправить	Odeslat
+кем найден	někdo našel
+уведомляет до	oznámí
+кем награждён	kdo získal
+поддерживается	podporováno
+платит	platí
+может остановиться в	mohou zůstat v
+поддерживает	podporuje
+презентуется	je prezentována
+дизайн	návrh

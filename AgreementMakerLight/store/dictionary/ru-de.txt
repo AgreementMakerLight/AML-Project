@@ -1,0 +1,631 @@
+документ	Dokument
+конференция	Konferenz
+предпочтение	Präferenz
+полная версия статьи	die volle Version des Artikels
+член конференции	Mitglied der Konferenz
+принятие	die Annahme des
+решение	Lösung
+отклонение	Abweichung
+тематическая область	Themenbereich
+администратор	Administrator
+мета-рецензия	Meta-Buchbesprechung
+председатель конференции	der Präsident der Konferenz
+рецензент	Rezensent
+рецензия	Buchbesprechung
+заместитель председателя	Stellvertretender Vorsitzender
+председатель	Vorsitzender
+автор	Autor
+мета-рецензент	Meta-Prüfer
+член программного коммитета	als Mitglied des Programms Ausschuss
+внешний рецензент	externer Gutachter
+аннотация статьи	abstrakt-Artikel
+лицо	Person
+пользователь	Benutzer
+статья	Artikel
+ставка	Komplettpreise
+соавтор	Co-Autor
+председатель программного коммитета	Vorsitzender des Ausschusses-Programms
+автор не являющийся рецензентом	der Autor ist kein Prüfer
+программный коммитет	Programmkomitee
+внести критерии рецензирования	Kriterien zu überprüfen
+подать статью	einen Artikel einreichen
+назначает рецензента	ernennt Prüfer
+прочитано рецензентом	Prüfer zu lesen
+кем разершёна виртуальная встреча	Razeršëna virtuelle treffen
+прочитано мета-рецензентом	Lesen der Meta-Rezensent
+кем отклонено	Wer abgelehnt wird
+кем изменена	Wer geändert
+printhardcopymailingmanifests	printhardcopymailingmanifests
+кем начато размещение ставок рецензента	Wer hat Rezensent Wetten platzieren
+закончил рецензию	fertige Bewertung
+интернет-адрес сайта	die Internetadresse der Website
+адрес электронной почты	e-Mail-Adresse
+максимум статей	maximale Artikel
+идентификатор статьи	Artikel-ID
+заголовок	Header
+интернет-адрес логотипа	die Internet-Adresse des Logos
+имя	der name
+рецензенты статьи	Bewertungen des Artikels
+число	die Anzahl der
+принимает печатные заявки	nimmt Druckaufträge
+кем написано	von geschrieben
+кем принято	jemand getroffen
+внести детали конференции	zu Informationen über die Konferenz
+изменяет ставку	Änderungsrate
+отметить конфликт интересов	Beachten Sie den Interessenkonflikt
+назначена кому	zugewiesen
+читает статью	Artikel lesen
+кем запущена программа назначения статей	Wer läuft das Programm Ziel Artikel
+кем добавлено	nach Datum hinzugefügt
+назначен рецензентом	ein Prüfer ernannt
+назначен администратором	vom Administrator ernannt
+разрешить виртуальную встречу	virtuelles Treffen zu ermöglichen
+назначает внешнего рецензента	einen externen Gutachter bestellt
+принимает статью	akzeptierten Artikel
+закончить назначение статей	die Zuordnung von Artikeln zu beenden
+кем внесены детали	Wer hat Informationen
+пишет статью	Schreiben eines Artikels
+кем закончено назначение статей	die Zuordnung eines Artikels fertig
+установить максимум статей	Legen Sie die maximale Artikel
+написать статью в соавторстве	Schreiben Sie einen Artikel, Co-Autor
+добавляет члена программного коммитета	Fügt ein Mitglied Programmkomitee
+назначена	ernannt
+конфликт интересов	Interessenkonflikt
+кем введены критерии рецензирования	angesaugte Prüfkriterien
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+начало размещения ставок рецензента	Wetten der Rezensent
+отклоняет статью	lehnt Artikel
+пишет рецензию	Bewerten Sie
+сборы конференции	Tagungsgebühren
+участник конференции	Teilnehmer der Konferenz
+досрочно оплативший участник	früh kaufen Partei
+организационная комиссия	Organisation des Vorstandes
+член комиссии	Mitglied der Kommission
+активный участник конференции	ein aktiver Teilnehmer der Konferenz
+приглашённый доклад	Gast-Bericht
+поданый труд	Podanyj Arbeit
+выпуск конференции	Release-Konferenz
+развёрнутая аннотация	Erweiterte Zusammenfassung
+требования к рецензии	Anforderungen an die Überprüfung
+стенд	Stand
+документ конференции	Konferenz-Dokument
+семинар	Seminar
+труд конференции	Arbeitskonferenz
+аннотация	Abstrakt
+письменный труд	schriftlichen Arbeit
+полный труд	Gesamtwerk
+зарегистрированный участник	registriertes Mitglied
+приглашение к участию	Einladung zur Teilnahme
+информация для участников	Informationen für Teilnehmer
+часть конференции	Teil der Konferenz
+научный совет	der Wissenschaftliche Rat
+сборник трудов конференции	Tagungsband
+организация	Organisation
+тема	Thema
+секция	Abschnitt
+комиссия	Kommission
+принятый труд	die Arbeit der
+интернет адрес конференции	die Internet-Adresse der Konferenz
+издатель	Verlag
+пассивный участник конференции	passiver Teilnehmer der Konferenz
+отрецензированнй труд	Otrecenzirovannj Arbeit
+информационное письмо	Infobrief
+заявитель конференции	Antragsteller Konferenz
+председатель секции, семинара	Leiter der Sektion, Seminar
+отклонённый труд	Abgelehnte Arbeit
+обучающий курс	Schulung
+объявление конференции	Ankündigung der Konferenz
+соавтор работы	Co-Autor der Arbeit
+приглашённый докладчик	Gastredner
+важные даты	wichtige Termine
+организатор	Veranstalter
+компетентность рецензии	Kompetenz-Bewertungen
+презентация	Präsentation
+сопредседатель	Ko-Vorsitzende
+1й автор работы	der erste Autor der Arbeit
+труд в окончательной версии	Arbeiten Sie in der finalen version
+лицо внесшее вклад в конференцию	die Person, die Kennzeichnung der Beiträge zur Konferenz
+оплативший участник	kaufende Partei
+поздно оплативший участник	spät Kauf Partei
+труды	Trudy
+является частью выпусков конференции	ist Teil des Problems (s) der Konferenz
+принадлежит рецензентам	im Besitz von Bewertungen
+части	Bestandteil der
+являлся председателем секции, семинара	war Vorsitzender des Abschnitts des Seminars
+являлся научным советом	ein wissenschaftlicher Rat
+авторы	Autoren
+семинары	Seminare
+указано в требованиях к рецензии	gemäß den Anforderungen für Bewertungen
+кем выполнена	Wer durchgeführt
+являлся членом	Er war ein Mitglied der
+рекоммендация рецензирования или компетентность	Rekommendaciâ Überprüfung oder Kompetenz
+рецензирует	kritisiert
+члены	die Mitglieder der
+является темой частей конференции	ist das Thema Ersatzteile Konferenzen
+являлся комиссией	war die Kommission
+кем приглашён	Wer eingeladen
+председатель секции, семинара, обучающегокурса	Leiter der Sektion, Seminar, obučaûŝegokursa
+вносит вклад	trägt zur
+рекоммендация рецензирования	Rekommendaciâ Überprüfung
+указано в выпуске конференции	in der Konferenz-Version angegeben
+является 1й частью	ist der 1. Teil der
+подан в	gespeichert in
+тема секции, семинара, обучающего курса	Abschnitt Thema, Seminar, Schulung
+обучающие курсы	Schulungen
+издаёт	veröffentlicht
+заместитель председателя комиссии	der stellvertretende Vorsitzende der Kommission
+являлся председателем комиссии	Vorsitzender der Kommission
+являлся организационным комитетом	wurde das Organisationskomitee
+делает презентацию	eine Präsentation
+секции	Abschnitt
+приглашает ко-рецензентов	lädt Sie zu den Bewertungen
+председатель комиссии	der Vorsitzende der Kommission
+являлся сопредседателем комиссии	Er war Co-Vorsitzender der Kommission
+дата подачи аннотации	Einreichung des abstracts
+дата начала	Startdatum
+пол	Paul
+дата окончания	End-Datum
+название	der name
+дата издания	Datum der Ausstellung
+дата подачи окончательной версии статьи	der Tag der Einreichung der endgültigen Version des Artikels
+выпуск	Problem
+компетентность	Kompetenz
+isbn	ISBN
+место проведения	Ort
+степень	der Grad der
+интернет-адрес	die Internet-Adresse der
+организационный комитет	Das Organisationskomitee
+являлся программным комитетом	Er war Programmkomitee
+тема или поданный труд	Thema oder abgelegt Arbeit
+дата подачи полной статьи	Datum der Präsentation des ganzen Artikels
+дата объявления о приняти	Datum der Ankündigung geschmiert
+фамилия	Nachname
+экскурсия	Ausflug
+участник	Partei
+тематиka	tematika
+культурный этап	die kulturelle phase
+город	Stadt
+учащийся	Student
+труд	Arbeit
+этап	Bühne
+встреча	treffen
+образовательное учреждение	Bildungseinrichtung
+компания	Firma
+тезисы статьи	Abstracts der Artikel
+этап регистрации участников	Phase der Registrierung der Teilnehmer
+член программного комитета	Mitglied des Ausschuss-Programms
+этап результатов рецензирования	Bühne-Ergebnisse überprüfen
+научный работник	AAS
+этап рабочей программы	Stufe des Arbeitsprogramms
+председатель программного комитета	der Vorsitzende des Ausschusses-Programms
+студент	Student
+страна	Land
+этап подачи заявки	Bühne-Anmeldung
+административный этап	die administrative phase
+полная	volle
+член	Mitglied
+ассистент	Assistent
+этап рецензирования	Bühne-Bewertung
+этап подготовки окончательной версии	Vorbereitung der Endversion
+банкет	Bankett
+волонтёр	Freiwillige
+написана	Geschrieben von
+место работы	Arbeitsplatz
+следует	Es sollte sein
+параллельно с	Parallel zu den
+максимальный выбор	maximale Auswahl
+сокращённое название	Kurzname
+окончание	Ende
+досрочная регистрация	Frühbucher
+телефон	Telefon
+домашняя страница	Homepage
+обучается в	Er studierte in den
+содержит административный этап	enthält die administrative Stufe
+адресует	Adressen
+пишет	schrieb
+компетентен в	kompetent in
+содержит ключевые слова	Schlüsselwörter enthält
+почтовый индекс	PLZ
+ндс	MWST
+факс	Fax
+улица	Straße
+начало	Start
+контактный адрес электронной почты	Kontakt e-Mail-Adresse
+минимальный выбор	Mindestreichweite
+замечание	Kommentar
+выбор по умолчанию	Standard-Auswahl
+опубликованная статья	veröffentlichte Artikel
+негосударственная организация	Nicht-Regierungs-Organisation
+тема операционные системы	das Thema der Betriebssysteme
+грант на поездку	Reisezuschuss
+тема радио связь	das Thema der Funkkommunikation
+тема коммутация компьютерных сетей	Thema Wechsel von Computer-Netzwerken
+тема коммуникации	das Thema der Kommunikation
+тема сенсорные компьютерные сети	das Thema der berührungsempfindlichen Computer-Netzwerke
+местонахождение комнаты для собрания	Lage der Räume für Sitzungen
+информационнное письмо	Informacionnnoe Brief
+заключительное слово	Das letzte Wort
+тема безопасность	das Thema Sicherheit
+член tpc	Mitglied des tpc
+академическая организация	Akademische Organisation
+неакадемчический этап	Neakademčičeskij Bühne
+производственная организация	Fertigungsorganisation
+тема криптография	das Thema der Kryptographie
+рецензионный вопрос	Frage zu überprüfen
+государственная организация	Staatliche Organisation
+этап перерыв	Phase-Pause
+слайды	Folien
+докладчик	Berichterstatter
+персональная история	persönliche Geschichte
+активная статья	ein aktiver Artikel
+тема передача по линиям электропередач	Powerline-Übertragung-Thema
+тема просто тест	Thema ist nur ein test
+программа	Programm
+конференц-ужин	Konferenz-dinner
+светский раут	Rout
+тема спутниковая и космическая связь	das Thema Raum und Satelliten-Kommunikation
+тема управление компьютерными сетями	Sie haben gelesen, dass das Thema Verwalten von Computernetzwerken
+оценка принять при условии	Bewertung Thema
+тема приложени компьютерных сетей	das Thema der Anwendungen von Computer-Netzwerken
+двухуровневая конференция	zwei-Ebenen-Konferenz
+темаcad	temacad
+персональная история рецензирования	persönliche Geschichte des Peer-review
+отозванная статья	genommenen Artikel
+тема промышленные компьютерные сети	das Thema der industriellen Computer-Netzwerk
+место проведения обеда	Lage von Essen
+тема компьютерные сети	das Thema von Computer-Netzwerken
+этап докладывания	Phase, perfekte Berichterstattung
+приглашение принять участие в рецензировании	Einladung zur Teilnahme an der Überprüfung
+тема мультимедиа	Thema multimedia
+секция конференции	Abschnitt Konferenz
+принятая статья	angenommenen Artikel
+одноуровневая конференция	monistisches Konferenz
+перерыв на кофе	Kaffeepause
+этап конференции	Phase der Konferenz
+текстовый вопрос рецензирования	Text Frage basierte Bewertung
+контактная информация	Kontaktinformationen
+тема медицина	das Thema der Medizin
+численный рецензионный вопрос	die numerische Bewertung-Frage
+тема беспроводная связь	das Thema der drahtlosen Kommunikation
+тема оптические компьютерные сети	das Thema der optischen Netzwerken
+академический этап	akademischen phase
+место	Ort
+свободный перерыв	Kostenlose break
+статья ожидающая решения	Artikel bis zu Entscheidung
+оценка принять	Ergebnis zu
+тема параллельные и распределённые вычисления	das Thema des parallelen und verteilten Rechnens
+тема теория коммуникаций	das Thema der Kommunikationstheorie
+приглашение	Einladung
+этап питания	die Leistungsstufe
+оцененные статьи	bewertet Artikel
+тема измерения в компьютерных сетях	das Thema der Messung in Computer-Netzwerken
+меню	Menü
+бланк рецензирования	Formulare überprüfen
+тема архитектура компьютера	das Thema der Rechnerarchitektur
+вступительное слово	ein Vorwort
+тема безопасность компьютерных сетей	das Thema des Computer-Netzwerk-Sicherheit
+тема производительность	das Thema der Leistung
+отклонённая статья	Gebrauchte Artikel
+тема обработка сигналов	das Thema der Verarbeitung von Signalen
+приглашение к публикации манускриптов	Einladung, Manuskripte zu veröffentlichen
+персональная история статьи	persönliche Geschichte Artikel
+перерыв на питание	eine Pause für Lebensmittel
+место проживания	Wohnort
+организационное собрание	Willkommenstreffen
+оценка отклонить	Bewertung der ablehnen
+доклад по статье	der Bericht über die Artikel
+место проведения конференции	Ort der Konferenz
+тема мобильные вычисления	das Thema mobile Computing
+председатель секции	Leiter der Abteilung
+спонсорство	Sponsoring
+оценка рецензирования	Ergebnis der Überprüfung
+тема микроэлектроника	das Thema der Mikroelektronik
+тема антенны	Theme zum download
+инициируется	wird eingeleitet
+кем предоставлена	die gegeben
+дата и время начала	Startdatum und Uhrzeit
+история рецензирования	Geschichte-Bewertung
+инициирует	initiiert
+относится к этапу	bezieht sich auf die Stufe der
+относится к	bezieht sich auf die
+отностится к статье	Genießen Sie den Artikel
+является местом проведения	ist die Website von der
+связанная статья	in Verbindung stehende Artikel
+регистрация до	Anmeldung zum
+статья до	Artikel zu
+последняя дата подачи заявки	Frist anwenden
+дата и время окончания	End-Datum und Uhrzeit
+манускрипт до	Manuskript
+валюта	Währung
+сумма	die Höhe der
+правила подачи заявки	Regeln für die Anwendung
+биография	Biografie
+посетитель	Besucher
+принадлежит этапу	gehört auf die Bühne
+для этапа	für phase
+кем написана	Was geschrieben steht
+кем рецензируется	Wer unterliegt einer
+связанный документ	das verknüpfte Dokument
+предоставляет	bietet
+объявление	AD
+оценка	Partitur
+конференц-банкет	Konferenz-und Veranstaltungsräume
+автор статьи	der Autor des Artikels
+председатель оргкомитета	Vorsitzender des Organisationskomitees
+закреплённая статья	welche Artikel
+полная статья	ganzen Artikel
+секция демонстраций	Abschnitt Demonstrationen
+поданая статья	Podanaâ Artikel
+председатель демонстраций	Vorsitzender der Demonstrationen
+индивидуальная презентация	Private Präsentation
+научная тема	Das wissenschaftliche Thema
+положительная рецензия	positive Bilanz
+поздно зарегистрированный участник	späten registriertes Mitglied
+демонстрационная статья	Demo-Artikel
+академический институт	Akademische Institute
+производственная секция	Produktionsabschnittes
+рекламный листок	Flyer
+организационнное агенство	Organizacionnnoe Agentur
+производственная статья	Fertigung-Artikel
+сборник трудов	Verfahren
+член научного совета	Mitglied des wissenschaftlichen Beirats
+светское мероприятие	eine weltliche Veranstaltung
+издатель сборника трудов	Verlag Buch arbeitet
+научное мероприятие	wissenschaftliche Veranstaltung
+нейтральная рецензия	neutrale Bewertung
+мероприятие	Ereignis
+экскурсия конференции	Tour der Konferenz
+часть	Teil
+секция полных статей	Abschnitt des vollständigen Artikel
+член агенства	Mitglied Agenturen
+веб-сайт	Website
+аннотация к обучающему курсу	Abstract für die Schulung
+университет	Universität
+статья в окончательной версии	Artikel in Endversion
+доклад	Bericht
+статья конференции	Artikel-Konferenz
+председатель семинаров	Vorsitzender des Seminars
+статья на семинаре	Artikel auf dem seminar
+стендовая статья	Poster-Abschnitt
+выпуск с несколькими составителями	Problem mit mehreren Autoren
+отрицательная рецензия	negative Bewertung
+досрочно зарегистрированный участник	Frühe registrierte Teilnehmer
+обработанная статья	behandelten Artikel
+потенциальный рецензент	mögliche Bearbeiter
+член оргкомитета	Mitglied des Organisationskomitees
+секция семинаров	Abschnitt Werkstätten
+программный буклет	Programmbuch
+секция стендов	Abschnitt der Stände
+научно-исследовательский институт	Wissenschaftlichen Forschungsinstitut
+аннотация к приглашённому докладу	Abstract für Priglašënnomu Bericht
+председатель обучающих курсов	der Vorsitzende des Trainings
+статья в выпуске	Artikel in dieser Ausgabe
+кем организован	Wer organisiert
+обновлённая версия	die aktualisierte version
+мероприятие в списке	das Ereignis in der Liste
+содержит ссылку в	enthält einen Verweis auf die
+организует	organisiert
+научно организовывает	die wissenschaftlichen und organisieren
+инверсия часть 7	"Umkehren" Teil 7
+мероприятние	meropriâtnie
+презентация статьи	Präsentation von Artikeln
+кем научно организовано	Was wissenschaftliche und organisiert
+выпуск содержит статью	Ausgabe enthält einen Artikel
+рецензия на статью	Buch-Review-Artikel
+технически организовано	technisch organisiert
+часть мероприятия	Teil der Veranstaltung
+список мероприятий	eine Liste der Ereignisse
+адресует тему	Adressen zum Thema
+ссылается	Referenzen
+рецензия написана	Rezension geschrieben von
+технически организовывает	technisch organisiert
+статья представленная как	Artikel, die als
+рецензент статьи	Bearbeiter von Artikeln
+город спонсора	Stadt-sponsor
+микроавтобус	Kleinbus
+чаевые	Tipp
+доклад докладчика	Bericht des Berichterstatters
+член iasted	IASTED Mitglied
+список рассылки	Mailing-Liste
+пригласительное письмо	Einladungsschreiben
+транспортное средство	Fahrzeug
+ресторан конференции	Restaurant-Konferenz
+докладчик пленарного доклада	der Berichterstatter des Plenum Berichts
+принятие манускрипта	Annahme des Manuskripts
+спонсор	Sponsor
+автор, книга сборника трудов включены	der Autor, das Buch ist ein Kompendium der Werke aufgenommen
+докладчик обучающего курса	Berichterstatter des Kurses
+чек	Überprüfen
+налог на отправление	Steuerverwaltung
+видео презентация	Video-Präsentation
+часовой пояс	TimeZone
+податель в гостинице	Geber im hotel
+карта	Karte
+дневной тур	Nachmittagstour
+коктейль-вечеринка	Cocktail-party
+ужин-банкет	Abendessen-Bankett
+гостиничный регистрационный бланк	Hotel-Anmeldeformular
+вступление	Eintrag
+страна конференции	Land Konferenz
+город экскурсии	Stadtrundfahrten
+предмет	Ansicht
+регистрация	Registrierung
+последний срок	die Frist für die
+аэропорт конференции	Airport Conference
+студент-докладчик	Schüler-reporter
+мероприятие до конференции	Ereignis-Konferenz
+деньги	Geld
+форма	Formular
+регистрационный взнос	Anmeldegebühr
+гостиничный номер	Hotelzimmer
+регистрационный взнос автор, участник, книга	Anmeldegebühr, Buchautor, Mitwirkende/r
+получение манускрипта	Erhalt des Manuskripts
+представление докладчика	Präsentationsansicht
+даты конференции	Termine der Konferenz
+студент-не докладчик	der Student ist nicht der Berichterstatter
+пленарный доклад	Plenum Bericht
+презентация powerpoint	PowerPoint-Präsentation
+потолочный проектор	Decke Projektor
+welcome address	Grußwort
+дом докладчика	Haus-Lautsprecher
+работник-не докладчик	der Mitarbeiter ist nicht der Berichterstatter
+информационная форма об авторе	Informationsanfrage über den Autor
+главный оффис	Hauptbüro
+первоначальный манускрипт	das Originalmanuskript
+автор, диск сборника трудов включёны	der Autor, eine Scheibe von Werke
+делегат	Delegieren
+cтрана спонсора	Land-sponsor
+банковский перевод	Banküberweisung
+подача	Feed
+налог	Steuer
+мероприятие после конференции	Ereignis nach der Konferenz
+город конференции	City-Konferenz
+сертификат участия	Bescheinigung über die Teilnahme
+кредитная карта	Kreditkarte
+kонференц-зал	Konferenzraum
+не авторский регистрационный взнос	Keine Anmeldegebühr Autor
+виза	Visum
+день экскурсии	Tagesausflüge
+студенческий регистрационный взнос	Die Teilnahmegebühr für Studenten
+гостиничный взнос	Hotel Gebühr
+регистрационный бланк	Anmeldeformular
+комната секции	Raumteiler
+последний срок уведомления о принятии	die Frist für die Mitteilung der Annahme
+документ об оплате	Nachweis über die Zahlung
+слушатель	Listener
+здание	Gebäude
+технический комитет	der technische Ausschuss
+прокат	Vermietung
+моделирование	Modellierung
+налого на добавленную стоимость	Mehrwert Steuer
+последний срок подачи	die Frist für die Antragstellung
+прозрачность	Transparenz
+дом  спонсорской компании	Haus-Sponsor-Unternehmen
+техническое мероприятие	Technische Veranstaltung
+отклонение манускрипта	Ablehnung des Manuskripts
+не членский регистрационный взнос	Kein Mitgliedsbeitrag
+не доскладчик	nicht doskladčik
+страна докладчика	der Land-Berichterstatter
+последний срок окончательной версии манускрипта	Frist für die Endfassung des Manuskripts
+светская программа	weltlichen Programm
+аудиовизуальное оборудование	Audiovisuelle Ausstattung
+публикация	Veröffentlichung
+conference hiker	Konferenz-Wanderer
+последний срок бронирования гостиницы	Hotel Reservierung Termin
+автомобиль	Auto
+мероприятие конференции	Ereignis Konferenz
+регистрационный взнос aвтор, участник	Autor Anmeldegebühr, die Aussteller
+один день конференции	eintägige Konferenz
+симуляция	Simulation
+работник-докладчик	Arbeitnehmer-Berichterstatter
+здание конференции	Building Conference
+время	Zeit
+исследование	Studie
+краткое вступление председателя секции	eine kurze Einführung des Abschnitts
+взнос	Beitrag
+один день докладчик	eines Tages er
+университет докладчика	Universität von Berichterstatter
+отправление	die Verwaltung des
+книга сборника трудов	Die Buchsammlung von Werken
+пригородный автобус	s-bus
+город докладчика	Stadt-reporter
+не член iasted	noch kein Mitglied bei der IEEE
+житкокристаллический проектор	Žitkokristalličeskij Projektor
+окончательный манускрипт	das endgültige Manuskript
+диск сборника трудов	CD-Compilation von Werken
+одноместный гостиничный номер	Hotel-Einzelzimmer
+гостиница конференции	Hotel Konferenz
+проигрыватель видео кассет	Video Cassette-player
+последний срок регистрации	Anmeldeschluss
+такси	Taxi
+компьютер	Computer
+взнос за дополнительную поездку	Gebühr für zusätzliche Reise
+членский регистрационный взнос	Mitgliedschaft-Anmeldegebühr
+двуспальный гостиничный номер	Doppelzimmer hotel
+кем посылается	wem
+занимает	nimmt
+связан с	zugeordnet ist
+используется	verwendet
+до	bis zu
+запланировано на	geplant für
+кем подписывается	Wer abonniert
+присутствует во время	während der
+получает	Ruft die
+производится из	hergestellt aus
+происходить после	nach dem Auftreten der
+посылает	sendet
+кем оплачивается	Wer bezahlt ist
+чем оплачивается	als bezahlt
+кем пишется	Was geschrieben steht
+оборудован	Funktionen
+оплачивает	zahlt
+кем посещается	besucht
+требуется для	ist erforderlich für
+используется для	wird verwendet, um
+даёт	gibt
+кем используется	Wer benutzt
+готовит	bereitet
+кем готовится	Wer bereitet
+находится в	ist in
+кем представлен	präsentiert von
+докладывает в	Bericht in der
+где оплачивается	wo zahlbar
+кому представлен	Wer eingereicht
+чем занимается	Was bedeutet
+происходить до	treten vor
+за что оплачивается	Was ist bezahlt
+посылается после	gesendet, nachdem die
+пристутствует в	Pristutstvuet in
+разработан для	konzipiert für
+происходит в	tritt in
+посылается до	wird gesendet, um die
+подписывает	Zeichen
+требует	erfordert
+вебмастер	Webmaster
+конференц-зал	Konferenzsaal
+регистрация sigkdd членов	SIGKDD Mitgliedschaft Anmeldung
+награда	Award
+платиновый спонсор	Platin-sponsor
+награда за лучшую научную статью	Award für die beste Forschungsarbeit
+регистрация не членов	Registrierung von Angehörigen der
+последний срок уведомления авторов	die Frist für die Benachrichtigung der Autoren
+автор статьи студент	der Autor des Artikels der Schüler
+программный председатель	Programm-Stuhl
+награда за лучшую студенческую статью	Auszeichnung für beste Studentenzeitung
+программный комитет	Programmkomitee
+комитет по наградам за лучшую статью	Ausschuss für Auszeichnungen für die besten Artikel
+бронзовый спонсор	Bronze Sponsor
+регистация студентов	Registrierung von Studenten
+член организационного комитета	Mitglied des Organisationskomitees
+регистрация sigmod членов	SIGMOD Mitglieder Registrierung
+последний срок подачи статей	die Frist für die Einreichung von Artikeln
+acm sigkdd	ACM sigkdd
+награда за лучшую прикладную статью	Award für besten angewandte Aufsatz
+спонсорский взнос	Sponsoring-Gebühr
+последний срок подачи аннотаций	die Frist für die Einreichung von abstracts
+спонсор награды за лучшую студенческую статью	Sponsor für best Student Paper award
+золотой спонсор	Gold-sponsor
+серебрянный спонсор	Silber sponsor
+комитет	Ausschuss
+гостиница	Hotel
+экспонент	Aussteller
+национальность	die Staatsangehörigkeit der
+цена	Preis
+отправить до	Senden Sie an
+оплачивается	wird bezahlt
+начало конференции	Beginn der Konferenz
+кем разработан	Wen entwickelt
+название конференции	Konferenz-Titel
+окончание конференции	Ende der Konferenz
+имя спонсора	Name des Sponsors
+поиск	Suche
+отправить	Senden
+кем найден	jemand gefunden
+уведомляет до	unterrichten die
+кем награждён	Wer vergeben
+поддерживается	unterstützt
+платит	zahlt
+может остановиться в	ausgestattet
+поддерживает	unterstützt
+презентуется	wird vorgestellt
+дизайн	Design

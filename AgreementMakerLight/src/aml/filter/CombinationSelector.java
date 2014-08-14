@@ -100,7 +100,7 @@ public class CombinationSelector
 				int sourceCard = selected.getSourceMappings(sourceId).size();
 				int targetId = n.getTargetId();
 				int targetCard = selected.getTargetMappings(targetId).size();
-				if((sourceCard < 2 && targetCard < 2 && n.getSimilarity() > 0.72) ||
+				if((sourceCard < 2 && targetCard < 2 && n.getSimilarity() > 0.75) ||
 						!selected.containsBetterMapping(m))
 					selected.add(new Mapping(n));
 			}

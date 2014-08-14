@@ -270,7 +270,6 @@ public class WordLexicon
 				ec += wordECs.get(w);
 			nameECs.put(n, ec);
 		}
-
 	}
 			
 	//Adds all words for a given name and classId

@@ -1,0 +1,669 @@
+﻿偏爱	Předvolba
+程序委员会成员	Členové programového výboru
+副主席	Místopředseda
+论文全文	Plné noviny
+综合审稿意见	Obecné poznámky
+审稿人	Recenzent
+非审稿人的作者	Autor kontrolor
+程序委员会主席	Předseda programového výboru
+文件	Soubor
+主题领域	Tematické oblasti
+主席	Prezident
+程序委员会	Programový výbor
+拒收	Odmítnout
+论文摘要	Abstrakta
+合著者	Spoluautor
+会议成员	Členové konference
+投标	Zadávací
+审稿意见	Komentáře
+决定	Rozhodnutí
+用户	Uživatel
+外部审稿人	Externí hodnotitelé
+管理人员	Řídící pracovníci
+论文	Papíry
+录用	Pronájem
+作者	Autor
+会议	Konference
+综合审稿人	Syntéza recenzentů
+人员	Personál
+由之打印硬拷贝邮件舱单	Tisknout papírové poštovní manifesty
+修改后投标	Revidované nabídky
+标注兴趣冲突	Anotace střetu zájmů
+由审稿人审阅	Hodnotil recenzentů
+指定审稿人	Určuje recenzenty peer
+是程序委员会成员	Členové programového výboru
+拒收论文	Odmítnuté papíry
+是会议成员	Jsou členy konference
+由之拒收	Tím odmítl
+开始审稿投标	BEGIN zobrazíte nabídku
+有投标	Zadávací
+由管理人员指定	Určený správce
+设置最多论文数	Nastaví maximální počet dokumentů
+阅读论文	Přečtěte si esej
+有兴趣冲突	Střet zájmů
+由之录入详情	Zadáním podrobností
+由审稿人指定	Určený recenzent
+录入会议详情	Záznam podrobných informací o schůzkách
+打印硬拷贝邮件舱单	Tisknout papírové poštovní manifesty
+录入审稿标准	Rukopis vstupní kritéria
+运行论文分派工具	Spusťte nástroje pro přiřazení papíru
+由之启动虚拟会议	Do začátku virtuální konference
+合著	Ko-
+有会议成员	Členové konference
+撰写审稿意见	Psaní poznámek
+由之撰写	Napsal
+论文分派定稿	Dokončení přiřazeného papírů
+电子信箱	E-mail
+日期	Datum
+商标统一资源定址器	Známka uniform resource umístění
+论文序号	Číslo práce
+接受硬拷贝投稿	Nepřijímá výtisk
+网站地址	Adresa webu
+每篇论文审稿意见数	Každý papír komentáře
+最多论文数	Maximální počet dokladů
+录用论文	Podle autorů
+有主题领域	Tematické oblasti
+姓名	Jméno
+标题	Titul
+有作者	Je autorem
+论文分派工具由之运行	Nástroj pro rozdělení papíru spuštěním
+由之增补	Aktualizací
+结束审稿	Ukončit revizi
+撰写论文	Dopisní papíry
+分派给	Přiřadit k
+由之录用	Tím, že najme
+由综合审稿人审阅	Přezkoumat obecné recenzenty
+有决定	Rozhodla
+论文分派由之定稿	Dokončení papíru přidělil
+审稿人投标始于	Recenzent nabízení začíná
+由之录入审稿标准	Rukopis vstupní kritéria
+有合著者	Spoluautor
+启用虚拟会议	Povolit virtuální schůzku
+修改投标	Upravit nabídky
+增补程序委员会成员	Patch pro členy výboru
+投稿	Podání
+有程序委员会成员	Program člen výboru
+有分派论文	Přiřazené práce
+指定外部审稿人	Zadejte externí hodnotitelé
+组织者	Pořadatelé
+研讨会	Seminář
+会议论文集	Konference
+会议投稿人	Konference Přispěvatelé
+摘要	Shrnutí
+指导委员会	Řídící výbor
+已注册申请人	Evidovaných uchazečů
+委员会	Výbor
+教程	Výukový program
+与会者	Účastníci
+正规作者	Pravidelné autoři
+特邀报告人	Hlavní řečníci
+审稿优先选择	Peer review předvolby
+特邀报告	Zvaných přednášek
+录用稿件	Pronájem sekce
+出版商	Vydavatelé
+审稿专长	Peer review odborné
+会议征稿通知	Conference call for papers
+被动与会者	Pasivní účastníci
+主题	Téma
+投稿第一作者	První autor podání
+长摘要	Dlouhé Shrnutí
+征文启事	Papíry-
+会议文件	Setkání dokumenty
+联合主席	Předseda kloubu
+会议网站	Setkání webové stránky
+书面投稿	Písemná podání
+主动与会者	Aktivní účastníci
+组织	Organizace
+会议费用	Náklady na konference
+会议卷册	Konference svazky
+投稿合作作者	Podání autoři
+晚付费申请人	Prodlení žalobce
+海报	Plakát
+研讨会主席	Předseda semináře
+付费申请人	Zaplatí nabízejícímu
+正规投稿	Pravidelných přispěvatelů
+被审稿件	Zkušební rukopis
+征集参与者通知	Shromažďování oznámení účastníka
+轨道	Skladby
+拒收稿件	Odmítnuté rukopisy
+报告	Zpráva
+会议部分	Segment
+会议通知	Informace o schůzce
+委员会成员	Členové výboru
+重要日期	Důležitá data
+照相制版稿件	Photoengraving rukopisy
+与会者信息	Informace o účastnících
+会议申请人	Setkání žalobce
+提前付费申请人	Platit předem uchazeči
+组委会	Organizační výbor
+有一个卷册	Je objem
+有一个电子邮箱	Mají elektronické poštovní schránky
+有名	Slavný
+有一个录用通知日期	Zde je oznámení o přijetí
+有一个照相制版提交日期	Datum podání mají fotomechanický
+有一个发行日题	Problém datum vydání
+有一个名字	Název
+有性别	Mít sex
+有一个投稿	Mít odeslání
+有一个委员会联合主席	Tam je co-předseda výboru
+有一个isbn	Je číslo ISBN
+有一个摘要投稿日期	Datum zaslání anotace příspěvku
+被分配给审稿参考	Rukopis je přiřazen k odkazu
+有一个研讨会教程主席	Seminář hřiště předseda
+有研讨会	Seminář
+有重要日期	Důležitá data
+有一个结束日期	Je koncové datum
+有一个地点	Umístění
+有一个全文投稿日期	Datum odeslání celý text
+有一个网址	Zde je adresa
+有一个度	Existuje určitá
+有一个专长	Mají odborné znalosti
+有一个开始日期	Je počáteční datum
+有姓	Křestní jméno
+是由之作	Z práce
+有一个审稿意见	Existuje vzájemné hodnocení
+有一个研讨会教程主题	Témata kurzu dílna
+是会议卷册的一部分	Je součástí svazku konference
+曾是一个组织委员会	Kdysi bývala organizačního výboru
+有一个摘要	Zde je souhrn
+有一个程序委员会	Program pro Výbor
+有一个主题或者投稿	Je téma nebo účtování
+曾是一个成员	Býval členem
+曾是一个委员会联合主席	Býval spolupředsedou výboru
+有一个指导委员会	Je řídící výbor
+受邀于	Byli pozváni na
+有一个审稿参考或者专长	Už druhé strany revidovat referenční nebo odborných znalostí
+有一个组织委员会	Organizační výbor
+有成员	Členové
+曾是一个指导委员会	Řídící výbor byl
+曾是一个委员会主席	Byl předsedou výboru
+是投至	Je přetypovat na
+属于审稿人	Patří k recenzentů
+评审	Recenze
+有轨道	Skladby
+有教程	Výukový program
+曾是一个研讨会主席	Byl předsedou semináře
+是第一部分	Je první část
+有一个审稿专长	Je peer review odborné
+属于一个会议卷册	Patřící do svazku konference
+属于一个审稿参考	Uvedením peer review
+发行	Vydání
+作报告	Zprávu
+曾是一个委员会	Výbor byl
+邀请联合审稿人	Pozvat a společných recenzenta
+有一个委员会主席	Je předseda výboru
+有部分	Některé
+有投稿	Mít odeslání
+曾是一个程序委员会	Jakmile program výboru
+有一个委员会	Je výbor
+是一个会议部分的主题	Je součástí tématu konference
+有一个出版商	Vydavatel
+旅游	Cestovní ruch
+参加者	Účastníci
+公司	Společnost
+活动	Aktivity
+招待会	Recepce
+城市	Město
+报名注册活动	Registrace aktivity
+科学工作者	Vědecký pracovník
+宴会	Banket
+大学	Univerzita
+管理活动	Řídící činnosti
+助理	Asistent
+学者	Učenci
+学生	Studenti
+标准	Standardní
+志愿者	Dobrovolníci
+审稿活动	Činnostech vzájemného hodnocení
+成员	Členové
+短论文	Krátký esej
+国家	Národní
+投稿活动	Přínos aktivity
+照相制版活动	Photoengraving aktivity
+社交活动	Společenské aktivity
+工作活动	Pracovní činnosti
+审稿结果活动	Vzájemného hodnocení výsledků činnosti
+开始于	Začíná s
+最少选项	Minimální možnosti
+有传真号码	Číslo faxu
+有国家	Národní
+处理	Zpracování
+有关键词	Klíčová slova
+有街道名	Název ulice
+平行于	Paralelně s
+有管理活动	Řídící činnosti
+审稿	Kritiků
+撰写	Napsal
+专家于	Odborníci v
+受雇于	Zaměstnáni v
+就学于	Studium na
+联系电子信箱	Kontaktní e-mailová adresa
+备注	Poznámky
+有电话号码	Je tam číslo
+有增值税	Daň z přidané hodnoty
+最多选项	Většina možností
+有标题	Má nadpis
+有邮编	PSČ
+提前注册	Registrovat předem
+有简略标题	Stručný název
+有主页	Domovská stránka
+结束于	Končí na
+场所	Místo
+有电子信箱	E-mail
+缺省项目	Výchozí projekt
+紧接着	Krátce nato
+有主题	Téma
+有城市	Město
+计算机网络主题	Počítačové sítě témata
+操作系统主题	Témata operačního systému
+自由活动	Volnočasové aktivity
+计算机网络度量主题	Síť měření témata
+程序	Program
+审稿问题	Peer review problémy
+活跃论文	Aktivní články
+计算机网络交换机主题	Počítačové sítě přepne témata
+拒收级别	Odmítnutí úroveň
+无线通信主题	Bezdrátové komunikační témata
+接受级别	Přijatelná úroveň
+cad主题	CAD téma
+报告活动	Zpráva o činnosti
+幻灯片集	Sada snímků
+计算机网络管理主题	Témata správy počítačové sítě
+工业组织	Průmyslové organizace
+住宿地点	Místa k pobytu
+安全性主题	Bezpečnostní témata
+地点	Umístění
+论文报告	Kniha prezentace
+个人审稿历史	Historie osobní Recenze
+报告人	Reproduktor
+个人历史	Osobní historie
+光学计算机网络主题	Optické počítačové sítě témata
+单级会议	Single fázi konference
+无线电通信主题	Rozhlasové motivy
+组织会议	Organizační relace
+分场会议主席	Předseda volnými relacemi
+审稿表格	Peer review form
+用餐地点	Možnosti stravování
+休息活动	Ostatní aktivity
+据用论文	Podle papíru
+密码学微电子主题	Kryptografie Mikroelektronika témata
+征集手稿通知	Kolekce rukopis oznámení
+参与者主题	Účastníci v tématech
+学术组织	Akademické organizace
+被评价论文	Hodnocení eseje
+酒会	Koktejlové recepce
+旅行补助	Cestovní granty
+通信主题	Komunikační témata
+学术活动	Akademická činnost
+医学主题	Lékařská témata
+并行和分布式计算主题	Paralelní a distribuované výpočty témata
+通知	Oznámení
+餐饮场所	Stravovacích zařízení
+信号处理主题	Vybrané stati z teorie signálu
+性能主题	Výkon témata
+非学术会议	Non akademická konference
+计算机网络应用主题	Síťové aplikace témata
+计算机网络安全主题	Témata zabezpečení počítačové sítě
+出版的论文	Publikované práce
+可接受级别	Přijatelná úroveň
+城府组织	Tajné organizace
+用餐休息	Jídlo konec
+个人发表历史	Osobní historie
+会场	Místo konání
+用餐活动	Jídelní události
+电力线传输主题	Power line přenos téma
+参与者	Účastníci
+征集审稿人通知	Výzva pro recenzenty, informovat
+未决定论文	Čekající dokumenty
+会议主席	Prezident konference
+结束报告	Konec zprávy
+会议活动	Konferenční aktivity
+文本审稿问题	Rukopis textu problém
+游览	Tour
+技术程序委员会	Technické programového výboru
+加密主题	Šifrovat témata
+计算机网络传感器主题	Téma sítě senzorů
+测试主题	Test téma
+联系信息	Kontaktní informace
+卫星和空间通信主题	Téma prostor a satelitní komunikace
+会间休息	Přerušení relace
+会议晚宴	Konference večeře
+计算机体系结构主题	Témata architektura počítače
+两级会议	Setkání dvou úrovni
+数字化审稿问题	Digitalizovaný rukopis problémy
+通信理论主题	Předmět komunikační teorií
+菜单	Nabídka
+欢迎报告	Vítá zprávu
+撤回的论文	Stáhnout papíry
+审稿级别	Peer review úroveň
+会议分场会议	Breakout zasedání
+弱拒收级别	Nízké odmítnutí úroveň
+计算机网络企业主题	Téma podnikové sítě
+多媒体主题	Multimediální téma
+赞助	Sponzorství
+非政府组织	Non vládní organizace
+移动计算主题	Mobilní výpočetní témata
+有花费数目	Strávili
+注册到期	Registrace již vypršela.
+有截稿日期	Podle konečného termínu
+结束日期	Datum ukončení
+有投稿指示	Mít podání instrukce
+是菜单	Je menu
+论文到期	Papíry kvůli
+有名称	Název
+手稿到期	Rukopis splatnosti
+有电话	Telefon
+有开始日期时间	Počáteční datum čas
+有传记	Životopis
+开始日期	Datum zahájení
+有结束日期时间	Datum a čas ukončení
+有电子邮箱	Elektronické poštovní schránka
+有花费货币	Utrácel peníze
+是成员	Je členem
+是之审稿历史	Je rukopis historie
+被提供	Jsou nabízeny
+启动	Začátek
+有通知	Oznámení
+有菜单	S menu
+有程序	Má program
+被启动于	Byla zahájena v
+有相关文件	Související soubory
+属于活动	Na aktivní
+相关活动	Související aktivity
+撰写自	Napsat vlastní
+是主题	Je to téma
+为活动	Pro aktivní
+有相关论文	Související články
+相关	Související
+相关论文	Související dokumenty
+出席	K účasti na
+被审稿于	Peer review v
+有评级	Hodnocení
+有审稿历史	Historie rukopisy
+是提供者	Je poskytovatelem
+有参与者	Mají účastníci
+在此举办	Hostitel
+有地点	Umístění
+被审论文	Zkušební papíry
+海报展示会	Plakát výstavy
+投稿论文	Odeslání dokumentů
+教程摘要	Kurz souhrn
+科学活动	Vědecká činnost
+肯定意见	Kladné stanovisko
+研究所	Institut
+海报论文	Plakát papíry
+分场会议	Breakout zasedání
+演示会主席	Předseda demo
+研讨会论文	Seminární práce
+否定意见	Negativní stanovisko
+学术机构	Akademické instituce
+赞助者主席	Sponzor předseda
+记录集	Sady záznamů
+正规分场会议	Neformální breakout zasedání
+论文集出版商	Jednání vydavatelů
+代理工作人员	Personální agentury
+组织代理	Herectví
+中性意见	Neutrální komentář
+分配的论文	Přiřazené práce
+完注册与会者	Dokončení registrace účastníků
+提前注册与会者	Registrace účastníků
+会议旅游	Konference cestovní ruch
+研讨会分场会议	Breakout zasedání
+位置	Umístění
+实用性主题分场会议	Praktické téma breakout zasedání
+教程主席	Předseda výukový program
+网站	Webové stránky
+特邀报告摘要	Zvláštní zpráva souhrn
+多作者卷册	Multi-autor svazky
+论文作者	Autoři
+演示会	Ukázka
+实用型论文	Praktická práce
+研究主题	Témata výzkumu
+组织委员会主席	Předseda organizačního výboru
+合适的审稿人	Vhodné recenzenti
+个人报告	Jednotlivé zprávy
+程序手册	Postupy manuál
+照相制版论文	Phototypesetting papír
+演示论文	Demo papíry
+传单	Leták
+组织委员会成员	Členové organizačního výboru
+会议论文	Konference papíry
+会议宴会	Schůzky a bankety
+正规论文	Pravidelné papíry
+大会分场会议	Breakout zasedání
+录用文章报告	Přijaté zprávy o papíry
+包括主题	Včetně motivů
+列表活动	Seznam aktivit
+是更新版本	Je aktualizovaná verze
+学术上组织	Akademické organizace
+有审稿人	Recenzent
+由之组织	Podle organizace
+论文位于卷	Papíry v objemu
+审稿意见撰写于	Písemné připomínky k
+是之一部分	Je součástí
+所报告论文	Ohlášené papíry
+是出版商	Vydavatelé
+论文报告形式	Papír výkazů
+是论文审稿人	Je papír recenzentů
+有更新版本	Aktualizovanou verzi
+举办于	Na
+有活动	Aktivity
+是子活动于	Je aktivita dítěte v
+是部分于	Je součástí
+位于	Nachází se v
+技术上组织	Technická organizace
+主题被包括于	Témata mají být zahrnuty do
+活动列表于	Seznam aktivit v
+论文审稿意见	Papíru komentáře
+学术上由之组织	Akademická organizace
+技术上由之组织	Technicky podle organizace
+卷册包括论文	Svazky patří papíry
+是作者	Je autorem
+参考于	Odkaz na
+参考	Referenční
+有审稿意见	Komentáře
+接收投稿	Přijaté příspěvky
+初稿	První návrh
+鸡尾酒会	Koktejlový večírek
+旁听者	Diváci
+液晶投影机	LCD projektor
+支票	Kontrola
+报告人城市	Mluvčí města
+非作者注册费	Non autor registrační poplatek
+不做报告的学者	Nenahlášení učenců
+货币	Měna
+银行转帐	Bankovní převod
+汽车	Automobilové
+学者演讲者	Učenec reproduktor
+会议旅行者	Setkání cestovatel
+分场会议主席的简短介绍	Stručná prezentace předsedy jednotlivých zasedání
+信用卡	Kreditní karta
+作者信息表	Autor informační list
+附加税	Další daně
+学生演讲者	Studentské reproduktor
+会议国家	Národní konference
+注册费	Registrační poplatky
+旅游城市	Turistická města
+会议大楼	Budova konference
+赞助者国家	Sponzor národní
+作者与会者光盘注册费	Autor registrační poplatek účastníka CD
+宾馆注册表	Hotel registr
+讲座	Přednáška
+宾馆预定截止日期	Rezervace termínu Hotel
+技术委员会	Technický výbor
+单人间	Jednolůžkový pokoj
+注册表	Registr
+代表	Jménem
+会议日期	Data schůzky
+会议餐厅	Konference jídelna
+截稿日期	Datum uzavření
+投影仪	Projektor
+获得会记录光盘的作者	CD-r Zapisovatel
+时间	Čas
+交通工具	Doprava
+介绍	Úvod
+出席记录	Rekordní návštěvnost
+宾馆房间	Hotelový pokoj
+卡车	Nákladní automobil
+最后定稿	Dokončena
+研究	Studie o
+时区	Časové pásmo
+班车	Raketoplán
+透明度	Průhlednost
+税	Daň
+付款文件	O platbu
+拒收投稿	Odmítnuté návrhy
+技术活动	Technické aktivity
+注册截止日期	Uzávěrka přihlášek
+报告人国家	Reproduktor země
+会议宾馆	Konferenční hotely
+单日报告人	Den-reproduktor
+注册	Registrace
+赞助者城市	Sponzoři města
+计算机	Počítač
+幻灯片报告	Snímek zpráva
+会前活动	Prior k aktivitě
+出租车	Taxi
+会议录	Sborník z konference
+非报告人	Lidé, kteří nemají
+出版物	Publikace
+分场会议室	Breakout zasedací místnosti
+获得会议录书的作者	Přístup ke sborníku a autor
+钱款	Peníze jsou
+离境税	Odletová daň
+报告人的大学	Mluvčí univerzity
+全会讲座	Plenární přednášky
+住宾馆的报告人	Reproduktor v hotelu
+建筑物	Budova
+会议录光盘	Konference řízení CD
+酒电费	Víno tarify
+作者与会者注册费	Autor registrační poplatky
+不做报告的学生	Nenahlášení studenta
+演讲者	Reproduktor
+非iasted会员	Jsou členové IASTED
+赞助公司的房子	Sponzorující společnosti dům
+建模	Modelování
+非会员注册费	Třetí registrační poplatek
+项目	Projekt
+邀请信	Zvací dopis
+离开	Opustit
+录用投稿	Nábor účtování
+录用通知截止日期	Termín oznámení
+赞助人	Mecenáš
+会议日	Setkání den
+主办事处	Hlavní kancelář
+模拟	Simulace
+全会讲座演讲者	Plenární přednáška reproduktory
+会议大厅	Konferenční sál
+欢迎致词	Příjemné adresa
+全日游	Celodenní výlet
+额外旅行费用	Další cestovní výdaje
+旅游日	Den turistiky
+租赁	Nájemné
+晚宴	Večeře
+报告人讲座	Přednáška reproduktoru
+会议城市	Setkání měst
+会员注册费	Členský registrační poplatky
+视听设备	Audiovizuální zařízení
+表格	Tabulka
+双人间	Dvoulůžkový pokoj
+视频报告	Video zprávy
+iasted会员	IASTED člen
+邮件列表	Seznam adresátů
+录像带播放器 	Video přehrávač 
+讲演者介绍	Reproduktor Úvod
+费用	Poplatek
+小费	Tip
+截止日期	Datum splatnosti
+教程主讲人	Výukový program moderátor
+报告人的房子	Reproduktor domu
+照相制版截止日期	Fotomechanický termín
+卡	Karta
+签证	Víza
+会后活动	Činnosti po
+会议机场	Konference Airport
+学生注册费	Student registrační poplatek
+作报告于	Jak bylo uvedeno v
+之后发送	Po
+由之参观	Hostující
+由之签名	Podepsáno
+给	Dát
+占用	Zabírají
+由之准备	Přípravou
+截至	Jako v
+注明日期于	Datum v
+有总计	Celkem
+与之连接	Spojte se s
+经过	Po
+由之发送	Zasláním
+由之给予	Tím, že
+被用于	Použít k
+之前举办	Držel před
+需要	Potřeba
+之前发送	Před odesláním
+获得	Přístup
+支付	Platba
+支付于	Platit
+由之占用	Obsazené
+由之支付	Zaplacením
+为之支付	Platit za
+用于	Pro
+签名	Podpis
+为之设计	Pro design
+由之组成	Vyrobené z
+以之配备	Vybaven
+发送	Odeslat
+之后举办	Po
+由之写	Napsal
+准备	Připravit
+写	Napsal
+赞助费	Sponzorství poplatky
+sigmod成员注册费	SIGMOD členů registrační poplatky
+宾馆	Hotel
+全文截稿日期	Plný text lhůt
+组织委员会	Organizační výbor
+赞助者	Sponzoři
+网站管理员	Správce webového serveru
+非成员注册费	Třetí registrační poplatek
+录用论文作者通知截止日期	Termín oznámení autor přijaté papíru
+sigkdd成员注册费	SIGKDD členství registrační poplatek
+参展者	Vystavovatelé
+计算机协会知识发现和数据挖掘会议	Konference společnosti počítače na získávání znalostí a dolování dat
+最佳论文奖委员会	Nejlepší Paper Award výbor
+最佳应用论文奖	Nejlepší aplikace paper award
+最佳研究论文奖	Nejlepší výzkum paper award
+银牌级赞助者	Stříbrné úrovně sponzor
+金牌纪赞助者	Zlatý věk sponzoři
+听众	Publikum
+总办事处	Centrála
+白金级赞助者	Úrovni Platinum sponzoři
+最佳学生论文奖	Nejlepší student paper award
+最佳学生论文赞助者	Nejlepší student papír sponzoři
+学生论文作者	Studentské autoři
+奖	Ocenění
+摘要截稿日期	Abstraktní termín
+铜牌级赞助者	Bronzové úrovně sponzoři
+直到录用通知日期	Až do oznámení o přijetí
+寻找	Hledáte
+获奖	Přiřknout získaní
+付费	Platit
+制定	Nastavit
+由之付费	Platí
+由之寻找	Při pohledu
+承办	Hostování
+制定于	V
+获奖于	Vítězství v
+投稿截止于	Konečný termín odeslání papíru pro
+电子信件	E-dopisy
+价格	Cena
+会议结束日期	Koncové datum schůzky
+会议名称	Název schůzky
+赞助者名称	Jméno sponzora
+可位于	Může být umístěna
+颁奖给	Současné ocenění
+由之承办	Moderuje
+由之作报告	Hlásí
+国籍	Národnost
+会议开始日期	Datum zahájení konference大会主席	Předsedy Valného shromáždění
+大会主席	Předsedy Valného shromáždění
+偏爱	Předvolba

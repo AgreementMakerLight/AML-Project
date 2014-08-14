@@ -1,0 +1,709 @@
+person	osoba
+gegenstandsbereich	Rozsah
+gutachten	názor
+externer gutachter	externí hodnotitelé
+akzeptanz	přijetí
+dokument	dokument
+konferenzbeitrag	Konferenční příspěvek
+programm-komitee	Programový výbor
+präferenz	předvolba
+verfasser, der kein gutachter ist	spisovatel, který je expert
+meta-gutachten	Meta - stanovisko
+meta-gutachten (gutachten über ein gutachten)	Meta - stanovisko (názor názor)
+mitverfasser	spoluautor
+teilnehmer einer konferenz	účastníci na konferenci
+gutachter	Expert
+benutzer	uživatel
+verfasser	autor
+vorsitzender	Předseda
+vorsitzender der konferenz	Předseda organizačního výboru konference
+gebot	velel
+vorsitzender des programm-komitees	Předseda programového výboru
+meta-gutachater	Meta-gutachater
+stellvertretender vorsitz	Křeslo náměstka v
+entscheidung	rozhodnutí
+mitglied des programm-komitees	Člen programového výboru
+abstrakt eines konferenzbeitrags	Abstrakt příspěvku konference
+meta-gutachater (gutachter der gutachten begutachtet)	Meta-gutachater (znalecký posudek, který přehlídku)
+zurückweisung	odmítnutí
+vollständiger konferenzbeitrag	kompletní konferenční poplatek
+administrator	Správce
+konferenz	Konference
+hat details eingefügt in bezug auf	vložila údaje ve vztahu k
+hat die zuordnung der beiträge abgeschlossen	dokončila mapování příspěvků
+hat zugewiesen	přiřadil k
+druckt papierausdruck des mailing-manifests	vytisknout papírovou kopii poštovní manifestu
+beitragszuordnungs-software ausgeführt von	softwarem beitragszuordnungs od
+zugewiesen zu	přidělené
+details eingefügt von	Podrobnosti přidal
+beitragszuordnung abgeschlossen von	Zaúčtovat přiřazení dokončena
+gelesen von gutachter	Přečtěte si odborníci
+hat die beitrags-zuordnungssoftware ausgeführt	uskutečnil zuordnungssoftware příspěvek
+hat virtuelles treffen veranlasst	virtuální setkání vedla
+hat abgeglichen	má uzavřeno
+mitverfasst von	autorem je
+hat interessenskonflikt in bezug auf	interessenskonflikt má ve vztahu k
+abgewiesen von	zamítla
+geschrieben von	Zaslal
+virtuelles treffen veranlasst von	virtuální setkání pod vedením
+gelesen von meta-gutachter	Přečtěte si meta recenzentem
+akzeptiert von	přijato od
+ist mitglied des programm-komitees	je členem programového výboru
+hat beitrag geschrieben	napsal příspěvek
+hat die gebotsphase gestartet	začala fáze nabídky
+kriterien zu gutachten eingefügt von	kritéria pro názor vložil
+hat papier abgelehnt	odmítnuté papír
+bestimme maximale anzahl an zugewiesenen beiträgen	Vyberte maximální počet přidělených příspěvků
+ist entschieden worden als	Bylo rozhodnuto, jako
+steht in interessen-konflikt mit beitrag	zájmy v rozporu s příspěvkem
+hat webseite an url	má internetové stránky na adrese url
+hat namen	má název
+hat datum	má datum
+akzeptiert hardcopy-einsendungen	přijmout hardcopy\r podání
+hat id	má id
+maximale anzahl an zugewiesenen beiträgen	maximální počet přidělených příspěvků
+hat titel	má titul
+hat email	má elektronická pošta
+zugewiesen von administrator	přiřadit správce
+hat mitglied	má člen
+hat logo an url	má adresa url loga
+gutachten pro beitrag	názor na příspěvek
+zugewiesen von gutachter	přidělené odborníky
+hat akzeptiert	přijal
+hat papier gelesen	číst dokument
+hat gegenstandsbereich	má rozsah
+papierausdruck des mailing-manifests gedruckt von	tištěný výtisk poštovních manifestu o
+ist zugeordnet worden	bylo nařízeno, aby
+teilnehmer von	účastníci z
+hat die zeit des begutachtens beendet	dokončil té doby hodnocení
+hat hinzugefügt	Přidáno
+abgeglichen von	odpovídající
+hinzugefügt von	Přidal
+hat teilnehmer	účastník
+hat beitrag eingesendet	má napsané příspěvky
+hat beitrag mitverfasst	je autorem příspěvku
+hat kriterien zu gutachten eingefügt	Přidal kritéria k názoru
+gebotsphase gestartet von	Fáze nabídky od
+hat gutachten geschrieben	napsal názor
+hat gebot erhalten	přikázal get
+organisationsausschuss	Organizační výbor
+herausgeber	Vydavatel
+konferenzankündigung	Konference oznámení
+aufruf zu teilnahme	výzva k účasti
+erweitertes abstrakt	rozšířený abstrakt
+ausschuss	Výbor
+geschriebener beitrag	písemný příspěvek
+internet der konferenz	Internetové konference
+leiter der workshops	Ředitel semináře
+koferenzdokument	koferenzdokument
+informationen für teilnehmer	informace pro účastníky
+präsentation	prezentace
+konferenzbewerber, der die konferenzgebühr spät gezahlt hat	Konference kandidát, který zaplatil poplatek za konferenci pozdě
+tutorium	Výukový program
+mitverfasser eines beitrags	co-autor příspěvku
+aktiver konferenzteilnehmer	aktivní účastníci
+angenommener beitrag	předpokládaný příspěvek
+organisation	Organizace
+programmausschuss	Programový výbor
+thema	téma
+passiver konferenzteilnehmer	pasivní účastníci
+author eines regulären beitrags	autor pravidelný příspěvek
+fachgebiet des gutachters	Specializace Verifier
+aushang	Vývěska
+eingereichter beitrag	odeslaný příspěvek
+regulärer beitrag	pravidelný příspěvek
+konferenzteilnehmer, der einen beitrag geleistet hat	Účastníci konference, jeden příspěvek učinila
+workshop	Seminář
+eingeladener referent	pozvaný řečník
+präferenz des gutachters	předvolba Verifier
+konferenzgebühren	Konferenční poplatky
+primärer author eines beitrags	hlavní Autor příspěvku
+stellvertretender vorsitzender	Místopředseda
+organisator	Organizátor
+eingeladener vortrag	pozvané přednášky
+druckfertiger beitrag	příspěvek druckfertiger
+fortschritte der konferenz	průběh konference
+konferenzreihe	Série konferencí
+konferenzbewerber, der die konferenzgebühr früh gezahlt hat	Konference kandidát, který zaplatil poplatek za konferenci včas
+abstrakt	Abstrakt
+konferenzteilnehmer	Účastníci konference
+wichtiges datum	důležité datum
+konferenzbeteiligung	Účast na konferenci
+ablauf der konferenz	vypršení konference
+angehörige des ausschusses	Členové výboru
+registrierter bewerber	evidovaných uchazečů
+koferenzbewerber	koferenzbewerber
+abschnitte der konferenz	sekce konference
+konferenzbewerber, der die konferenzgebühr gezahlt hat	Konference uchazeči, kteří zaplatili poplatek konference
+steuerungsausschuss	Řídící výbor
+begutachteter beitrag	recenzované příspěvky
+aufruf für beiträge	výzva k úhradě příspěvků
+abgelehnter beitrag	odmítnuté příspěvek
+datum der einreichung des abstrakts	Datum předložení Abstrakta
+hat e-mailadresse	má e-mailovou adresu
+ist am folgenden datum veröffentlicht worden	byla zveřejněna na následující den
+hat name	má název
+datum der druckfertigen einreichung ist	konečné datum
+ort der konferenz	místo konference
+grad der gutachterpräferenz	jen odborník předvoleb
+hat geschlecht	mít sex
+hat mitglieder	má členy
+hat abfolge	má posloupnost
+ist anfangsdatum	je počáteční datum
+anzahl der fortschritte der konferenz	počet pokroku konference
+ist eingereicht für	musí být předložen k
+liefert konferenzbeitrag	Konferenční příspěvek
+ausschuss der konferenz ist	Výbor konference je
+hat abschnitt	má uříznout
+grad des fachgebiets des gutachters ist	stupeň předmět Verifier je
+hat vornamen	má křestní jméno
+datum der einreichung des kompletten beitrags ist	je datum podání příspěvku kompletní
+isbn der fortschritte ist	ISBN, které pokrok je
+hat nachnamen	má příjmení
+url der konferenz ist	konference URL je
+ist enddatum	je datum ukončení
+datum der akzeptanz-mitteilung ist	je datum přijetí oznámení
+hat fachgutachten	má znalecký posudek
+ist ein präferiertes thema oder fachgebiet eines gutachters	je upřednostňovaný téma nebo specializace expert
+hat gutachten	má názor
+ist vorsitzender des ausschusses	je předsedou výboru
+hat beitrag	má příspěvek
+ist teil der konferenzreihe	je součástí série konferencí
+organisationsausschuss der konferenz ist	Organizační výbor konference je
+hat author	má autor
+hält präsentation	hospodářství prezentace
+ist ausschuss der konferenz	Výbor konference
+hat workshop-thema	Workshop téma
+ist ein präferiertes thema eines gutachters	je preferovaný motiv expert
+hat beitrag eingreicht	má příspěvek eingreicht
+eingeladen von gutachter	pozvaná
+hat abstrakt	má abstraktní
+veröffentlicht	publikované
+hat thema oder beitrag eingereicht	Předmět nebo příspěvky napsané
+programmausschuss der konferenz ist	Programový výbor konference je
+begutachtet beitrag	příspěvek z veřejných zdrojů
+ist steuerungsausschuss der konferenz	je řídící výbor konference
+ist organisationsausschuss der konferenz	je organizační výbor konference
+ist ein wichtiges datum einer konferenzreihe	je důležité datum série konferencí
+verleger des konferenzfortschritts ist	Vydavatel průběh konference je
+präsentiert von	předložený
+hat eine zugewiesene gutachterpräferenz	má přiřazené expert předvoleb
+ist mitglied von	je členem
+hat wichtiges datum	má důležité datum
+hat tutorium	má návod
+präferenz oder fachgebiet des gutachters ist	preference nebo specializace Verifier je
+ist der erst teil von	je pouze součástí
+lädt mitgutachter ein	s dobrým osmé zve
+hat stellvertrenden ausschussvorsitzender	má stellvertrenden předseda
+ist leiter des workshops	je ředitelem semináře
+hat workshop-leitung	Seminář řízení
+hat ausschussvorsitzender	má předseda
+ist programmausschuss der konferenz	je Programový výbor konference
+steuerungsausschuss der konferenz ist	Řídící výbor konference je
+hat workshop	má dílna
+ist stellvertretender vorsitzender des ausschusses	je místopředseda výboru
+ist thema ein konferenzabschnittes	je sekce konference téma
+stadt	Město
+empfang	Recepce
+regulärer teilnehmer	pravidelnými účastníky
+student	Student
+ereignis der begutachtung	událost Recenze
+universität	Univerzita
+freiwilliger	dobrovolné
+studentischer teilnehmer	Účastníci
+firma	Společnost
+ereignis zur registrierung der teilnehmer	událost, registrace účastníků
+autor	autor
+bankett	Banket
+mitglied	Člen
+ereignis des einreichens eines papiers	událost odeslání dokumentu
+ereignis des sendens des "camera-ready" papiers	událost odeslání "kamera připravena" papíru
+poster	plakát
+arbeits-ereignis	zaměstnanost událost
+ergebnis-der-begutachtung ereignis	výsledek hodnocení události
+soziales ereignis	sociální událost
+ereignis	událost
+land	pozemky
+administratives ereignis	Administrativní událost
+papier	papír
+ausflug	exkurze
+vorsitz des programmkomitees	sedadla v programu výboru
+einreichung	podání
+wissenschaftler	vědci
+kurzes papier	krátké papír
+teilnehmer	Účastníci
+assistent	Průvodce
+mitglied des programmkomitees	Člen programového výboru
+minimale anzahl	minimální počet
+endet am	končí na
+hat straße	má silnice
+studiert an	studoval na
+hat stadt	Město má
+frühzeitige registrierung	rané registrace
+begutachtet	zkoumal
+folgt	Následuje
+fachkundig für	expert pro
+schreibt	Zápisy
+hat land	má země
+angestellt bei	najala na
+gleichzeitig mit	současně s
+hat postleitzahl	má PSČ
+hat kurztitel	má krátké Titel
+hat homepage	Domovská stránka
+hat telephonnummer	má telefonní číslo
+hat mehrwertsteuer	má přidanou hodnotu daň
+vorgegebene anzahl	předvolené číslo
+hat kontakt-email adresse	Jak se kontaktovat s e-mailovou adresu má
+hat faxnummer	má faxnummer
+findet statt an	se bude konat dne
+maximale anzahl	maximální počet
+hat stichwörter	má klíčová slova
+startet am	začíná na
+hat nachname	má příjmení
+hat email adresse	má e-mailovou adresu
+hat thema	má téma
+beschäftigt sich mit	se zabývá
+hat anmerkung	má poznámku
+hat administratives event	Administrativní událost
+konferenz-dinner	Konference večeře
+computernetzwerksensor-thema	computernetzwerksensor téma
+präsentation eines beitrags	prezentace příspěvku
+platz	místo
+sicherheits-thema	bezpečnostní téma
+gutachtenbewertung	Stanovisko Hodnocení
+ausstehender beitrag	příspěvek čekající
+numerische gutachtenfrage	číselný názor otázka
+event im zusammenhang mit einer konferenz	událost související s konferenci
+speisekarte	Nabídka
+multimedia-thema	multimediální téma
+trägerfrequenzanlage-thema	Dopravce frekvence systému téma
+aufruf	volání
+freie zeit	volný čas
+aufruf für manuskripte	výzva pro rukopisy
+akademisches event	akademické událost
+persönliche historie von gutachten	osobní historie stanoviska
+konferenzversitzender	Konference versitzender
+mikroelektronisches thema	mikroelektronisches téma
+mahlzeit	jídlo
+zurückgezogener beitrag	příspěvek stažené
+schwach abgelehnte bewertung	slabé odmítl Recenze
+performance-thema	problém výkonu
+aufruf für gutachten	výzva k názoru
+sitzungsvorsitzender	zasedání předseda
+foliensatz	Fólie sada
+pause	přestávka
+konferenzsitzung	Konference relace
+mobiles computing-thema	mobilní výpočetní téma
+soziales event	sociální událost
+kommunikations-thema	téma komunikace
+akzeptierte bewertung	uznávané ocenění
+mitglied von tpc	Členem tpc
+radiokommunikation-thema	Rádiové komunikace téma
+computernetzwerkanwendungen-thema	computernetzwerkanwendungen téma
+organistorische besprechung	organistorische setkání
+bewerteter beitrag	Vážený příspěvek
+abschlussvortrag	Závěrečná prezentace
+author	autor
+akademische organisation	akademická organizace
+cad-thema	CAD téma
+essenszeit	Čas k jídlu
+abgelehnte bewertung	odmítnuté Recenze
+computernetzwerkwechsel-thema	computernetzwerkwechsel téma
+präsentator	praesentator
+regierungsorganisation	Vládní organizace
+computernetzwerkverwaltung-thema	computernetzwerkverwaltung téma
+antennen-thema	antény téma
+kein akademisches event	žádné akademické událost
+optische computernetzwerke-thema	optické computernetzwerke téma
+zweiebige konferenz	zweiebige konference
+einebige konferenz	einebige konference
+"nur tests"-thema	"jen testování" téma
+kaffeepause	Přestávka na kávu
+programm	Program
+industrielle organisation	Průmyslové organizace
+besucher	návštěvníci
+sitzungsraum	zasedací místnost
+nichtregierungsorganisation	Non vládní organizace
+reisesubvention	Cestovní dotace
+formular für gutachten	formulář pro názor
+betriebssystem-thema	Téma operačního systému
+beitrag	příspěvek
+parallel und verteiltes computing-thema	paralelní a distribuované výpočty téma
+persönliche historie	osobní historie
+aktiver beitrag	aktivní příspěvek
+kommunikationstheorie-thema	Předmět komunikační teorie
+computernetzwerkunternehmen-thema	počítačové sítě operátora téma
+akzeptierter beitrag	Přijaté příspěvky
+computernetzwerke-thema	computernetzwerke téma
+medizinisches thema	zdravotní téma
+veranstaltungsort der konferenz	od místa konání konference
+signalverarbeitung-thema	Téma zpracování signálu
+unterkunft	ubytování
+drahtlose kommunkation-thema	téma bezdrátové komunikace
+kryptographisches thema	kryptografické téma
+compututerarchitektur-thema	compututerarchitektur téma
+computernetzwerkspezifikation-thema	computernetzwerkspezifikation téma
+vortrag	Přednáška
+sponsoring	sponzorství
+kontaktinformationen	Kontaktní informace
+akzeptiert, wenn spielraum vorhanden ist, bewertung	přijato, pokud prostor je k dispozici, zkontrolujte
+computernetzwerksicherheit-thema	computernetzwerksicherheit téma
+veröffentlichter beitrag	publikované příspěvky
+wörtliche gutachtenfrage	literál názor otázka
+speiseplatz	Jídelna
+persönliche historie von veröffentlichungen	osobní historie publikací
+begrüßungsvortrag	Úvodní prezentace
+satelliten- und weltraumkommunikation-thema	téma komunikační satelit a prostoru
+gutachtenfrage	Názor otázka
+hat datum und zeit des endes	datum a čas konce
+hat anweisungen für einreichungen	Pokyny k odeslání
+hat e-mail	má e-mail
+hat besucher	návštěvníci
+hat datum und zeit der deadline für manuskripte	datum a čas, lhůty pro rukopisy
+hat biografie	má životopis
+hat telefon	má telefon
+hat datum und zeit des beginns	datum a čas zahájení
+hat deadline für einreichungen	je termín pro podání žádostí
+hat kostensumme	má náklady celkem
+hat währung der kosten	má měnu náklady
+hat datum und zeit des beginns der konferenz	datum a čas začátku konference
+hat datum und zeit der deadline für beiträge	datum a čas, lhůty pro příspěvky
+hat datum und zeit des endes der konferenz	datum a čas ukončení konference
+hat vollständigen namen der konferenz	má úplný název konference
+hat datum und zeit der deadline für registrierungen	datum a čas termínu pro registraci
+hat beziehung zu dokument	má vztah k dokumentu
+gehört zu event	patří do události
+ist thema von	téma, které
+ist eingeleitet von	je iniciován
+ist begutachtet von	je prověřována
+hat bewertung	má Hodnocení
+ist anbieter von	zprostředkovatel je
+hat programm	má program
+hat geschrieben	napsal
+ist über beitrag	je o příspěvek
+ist geschrieben von	napsal
+hat aufruf	má volání
+für event	pro událost
+ist gutachtenhistorie von	Historie sestav od
+ist besucher auf	je návštěvníků
+hat ort	má polohu
+bezieht sich auf	odkazuje na
+ist menü von	menu je podle
+hat gutachtenhistorie	má názor historie
+leitet ein	iniciuje
+ist ort von	je místem
+ist angeboten von	nabízí
+ist präsentiert in	je uveden v
+hat menü	má menu
+früh registrierter teilnehmer	rané registrovaných účastníků
+workshop-sitzung	Workshop relace
+verleger der fortschritte	Vydavatel, který pokrok
+forschungsinstitut	Výzkumný ústav
+sitzungsvorsitz	Předseda
+tutoriumvorsitz	Výukový program židle
+event	událost
+zugewiesener beitrag	přiřazené příspěvek
+organisierende agentur	pořádající agentura
+programmbroschüre	Program brožura
+möglicher gutachter	potenciální recenzenti
+wissentschaftliches event	wissentschaftliches událost
+konferenz-beitag	Konference beitag
+vorsitzender des programmausschusses	Předseda programového výboru
+mitglied des programmausschusses	Člen programového výboru
+agenturmitarbeiter	Zaměstnanci agentury
+konferenz-bankett	Konference banket
+flyer	Leták
+mitglied des steuerungsausschusses	Člen Řídícího výboru
+abgelehntes beitrag	odmítnuto, přispívá
+evaluierter beitrag	hodnocený příspěvek
+sitzung	relace
+beigetragener vortrag	přispěl přednáška
+abstraktes tutorium	abstraktní výukový program
+akademische institution	akademické instituce
+ausgehängte sitzung	Po vyvěšení relace
+ort	místo
+industrieller beitrag	průmyslový přínos
+spät registrierter teilnehmer	pozdní registrovaných účastníků
+eingeladener abstrakter vortrag	nabitá abstraktní přednáška
+industrielle sitzung	průmyslové relace
+demo vorstand	Zapůjčení demo boardu
+workshop-beitrag	Workshop příspěvek
+author eines beitrags	Autor příspěvku
+reguläre sitzung	pravidelné relace
+positives gutachten	kladné stanovisko
+demo sitzung	demo session
+forschungsthema	Téma výzkumu
+koferenz	koferenz
+workshopvorsitz	workshopvorsitz
+individuelle präsentation	individuální prezentace
+konferenzreise	Konference cestování
+multi-author volume	Multi-autor objem
+fortschritte	průběh
+webseite	webové stránky
+vorsitzender des organisationsausschusses	Předseda organizačního výboru
+ausgehängter beitrag	pozastavena z příspěvku
+mitglied des organisationsausschusses	Člen organizačního výboru
+konferenzfortschritte	Průběh konference
+demo beitrag	Demo příspěvek
+koferenzsitzung	koferenzsitzung
+track	stopa
+negatives gutachten	negativní stanovisko
+neutrales gutachten	neutrální názor
+event ist gelistet	událost je uveden
+hat teil	se účastnil
+gutachter des beitrags ist	Hodnocení příspěvku je
+organisiert von	organizuje
+referenziert	odkazy
+ist teil von	je součástí
+thema ist abgedeckt von	téma spadá do
+ist invers zu teil von 7	inverzní je součástí 7
+gutachten ist geschrieben von	písemná stanoviska
+ist gutachten des beitrags	je názor příspěvku
+organisiert wissenschaftlich	organizované vědecké
+hat gutachter	má recenzenta
+wissenschaftlich organisiert von	vědecky pořádané
+organisiert technisch	organizované technické
+reihe enhält beitrag	zahrnuje řadu příspěvek
+ort von	místo
+präsentation des beitrages	prezentace příspěvku
+aktualisiert version von	aktualizovaná verze
+beitrag ist teil der reihe	příspěvek je součástí série
+deckt thema	pokrývá téma
+hat aktualisierte version	aktualizoval verzi
+findet statt in	probíhá v
+hat event	má událost
+listet event auf	seznamy událostí
+wurde veröffenlicht von	vydalo nakladatelství
+referenziert in	v
+organisiert	organizované
+ist teil von einem event	je součástí akce
+technisch organisiert von	technicky pořádané
+ist author von	je autorem
+beitrag wird präsentiert als	příspěvek se zobrazí jako
+zeit	čas
+staat der konferenz	Stav konference
+student, der kein redner ist	student, který není veřejný mluvčí
+sponsorgebühr	sponsorgebuehr
+studentischer vortragender	Studenta přednášející
+registrierungsformular (konferenz)	Registrační formulář (konference)
+vortragender, der ein tutorium hält	Přednášející, drží kurz
+redner	reproduktory
+akzeptieren eines manuskripts	akceptovat rukopis
+konferenz-halle	Konferenční sál
+overhead-projektor	zpětný projektor
+tagungsband als buch	tagungsband jako kniha
+video-präsentation	video prezentace
+delegierter	delegát
+aktivität, die vor der konferenz stattfindet	aktivita, která se koná před zahájením konference
+lcd-projektor	LCD projektor
+computer	počítač
+taxi	taxi
+gegenstand	Předmět
+powerpoint-präsentation	Prezentace aplikace PowerPoint
+kleintransporter	Maloobchod
+modellierungsaktivität	Modelování aktivity
+mitglied von iasted	Členem iasted
+kurze einführung für den session-vorsitz	stručný úvod do session místo nahoře
+örtlichkeit	umístění
+gebühr für einen zusatzausflug	poplatek za jednu další cestu
+tagungsband als cd	tagungsband jako cd
+registrierungsfrist	Uzávěrka přihlášek
+anmeldegebühr	registrační poplatek
+abreisegebühr	Poplatek za odeslání
+folie	fólie
+dinner-bankett	banket večeře
+annahme eines manuskripts	přijetí rukopisu
+hotelgebühr	Hotel poplatek
+anmeldegebühr für einen autor, der den tagungsband in buchform erhält	registrační poplatek za autora, který obdrží tagungsband v knižní podobě
+währung	Měna
+flughafen in/am konferenzort	Letiště v místě konání konference
+automobil	Automobilové
+einzelner konferenztag	jediné konference den
+stadt, aus der ein sponzor kommt	Město, sponzora pochází z
+forschungsaktivität	Vědecko-výzkumná činnost
+mieten eines autos	půjčit auto
+folie (overhead projektor)	fólie (zpětný projektor)
+formular zur information des autors	formulář pro informace o autorovi
+willkommensrede	Úvodní projev
+vortragender, der nur an einem tag redet	Pedagogové, kteří mluví pouze za jeden den
+autor, der einen tagungsband als cd erhält	autor, příjem tagungsband jako cd
+abreise	odjezd
+staat des vortragenden	Stav prezentace
+vortrag gehalten von einem redner	Přednáška v držení reproduktor
+anmeldegebühr für ein mitglied	registrační poplatek pro člena
+zahlungsbeleg	Doklad o platbě
+geldbetrag	Množství peněz
+vortragender, der im konferenzhotel untergebracht ist	Přednášející, v hotelu konference je
+anmeldegebühr für einen autor, der den tagungsband als cd erhält	registrační poplatek pro autora, příjem tagungsband jako cd
+sponsor	Sponzor
+nicht-redner	-reproduktory
+bank transfer	Bankovní převod
+hotelzimmer	Pokoje
+videorecorder	Videorekordér
+vortragender	Odborný asistent
+vorstellung	prezentace
+angestellter, der kein redner ist	Zaměstnanec, který není veřejný mluvčí
+anwesenheitsnachweis	Evidenční a docházkový list
+shuttle-bus	kyvadlový autobus
+angestellter vortragender	zaměstnance přednášející
+nicht-mitglied von iasted	třetí iasted
+tagestour	Den prohlídka
+jede art von dokument	jakýkoli typ dokumentu
+trinkgeld	Tip
+frist zur benachrichtigung der akzeptanz	konečný termín pro oznámení o přijetí
+mehrwertsteuer	přidaná hodnota daně
+zeit (zeitraum und zeitpunkt)	čas (datum a čas)
+konferenzbesucher	Návštěvníci konference
+frist	konečný termín
+kreditkarte	Kreditní karta
+session	relace
+aktivität, die nach der konferenz stattfindet	aktivita, která se koná po konferenci
+anmeldegebühr für einen nicht-autor	registrační poplatek-autor
+haus einer firma, die ein sponsor ist	domov pro společnost, která je sponzorem
+cameraready-frist	cameraready - termín
+hauptbüro	Hlavní kancelář
+gebühr	poplatek
+ablehnung eines manuskripts	odmítnutí rukopisu
+registrierungsformular (hotel)	Registrační formulář (hotel)
+universität eines vortragenden	Univerzita prezentace
+steuer	daň
+konferenzgebäude	Konference budova
+zuhörer	posluchači
+stadt, aus der ein vortragender kommt	Město, pochází z lektorem
+zeitzone	Časové pásmo
+staat	Stát
+staat des sponzors	Stav sponzorů
+publikation	publikace
+formular	forma
+stadt, die ein ausflugsziel darstellt	Město, což představuje cíl
+anmeldegebühr für einen studenten	registrační poplatek pro studenta
+technisches komitee	Technický výbor
+frist zur hotelreservierung	konečný termín pro hotel rezervace
+registrierung	registrace
+konferenzhotel	Konferenční Hotel
+cocktail-empfang	koktejl recepce
+originalversion des manuskripts	Původní verze rukopisu
+registrierungsformular	Registrační formulář
+autor, der einen tagungsband in buchform erhält	autor, přijímání tagungsband v knižní podobě
+doppelzimmer	Dvoulůžkový pokoj
+konferenztage	Konference dny
+ausflugstag	Exkurze
+soziale aktivität	sociální činnost
+simulationsaktivität	Simulace činnosti
+haus eines vortragenden	Dům prezentace
+mailingliste	Společnost
+transportfahrzeug	Dopravní vozidlo
+aktivität, die während der konferenz stattfindet	aktivita, která se odehrává během konference
+einreichungsfrist	Konečný termín odeslání
+visum	Víza
+vorstellung eines redners	Úvod reproduktor
+einzelzimmer	Jednolůžkový pokoj
+technische aktivität	Technická činnost
+aktivität	aktivita
+scheck	Kontrola
+anmeldegebühr für ein nicht-mitglied	registrační poplatek-člen
+gegenstand (im allgemeinen)	Předmět (obecně)
+stadt, in der die konferenz stattfindet	Město, kde se bude konat konference
+gebäude	budova
+audiovisuelle ausstattung	audio-vizuální technikou
+vortragender, der im plenum redet	Pedagogové, kteří hovoří v plénu
+einladungsbrief	Zvací dopis
+konferenzrestaurant	Konference restaurace
+vortrag im plenum	Přednáška v plénu
+endversion des manuskripts	EndVersion – rukopisu
+karte	mapa
+ist entworfen/bestimmt für	navržen/určené pro
+wird besucht von	navštěvuje
+wird vorbereitet von	je připraven
+benötigt	požadováno
+sendet	odešle
+erhält	přijímá
+wird versendet nach	bude zaslána
+unterzeichnet	Podepsáno
+muss erledigt sein bis	je třeba udělat pro
+hat betrag von	má množství
+ist datiert auf	je datována
+spricht in (räumlich und zeitlich)	mluví v (prostorové a časové)
+wird bezahlt mit	bude vyplacena s
+istanwesend (räumlich und zeitlich)	istanwesend (prostorové a časové)
+ist verbunden mit/bezogen auf	je připojeno / související s
+findet statt nach	probíhá po
+wird verwendet von	používá
+istanwesend (räumlich)	istanwesend (místo)
+ist gemacht aus	je vyroben
+bereitet vor	připravené
+wird versendet von	bude odeslána
+findet statt vor	se koná před
+wird benötigt für	je vyžadován pro
+ist ausgestattet mit	je vybaven
+wird verwendet für	se používá pro
+wird bezahlt von	budou placeny
+wird versendet vor	bude zaslána
+wird gegeben/ausgeführt von	bude vzhledem/provádí
+wird unterzeichnet von	je podepsána
+bewohnt	obydlený
+wirdgegebenan	wirdgegebenan
+gibt	jsou
+wird bezahlt für	bude zaplacena
+durchgeht	prochází
+wird bezahlt in	bude vyplacena v
+befindet sich in	nachází se v
+wird bewohnt von	je obydlena
+bezahlt	placené
+award für besten forschungsbeitrag	Ocenění za nejlepší výzkum papír
+author eines konferenzbeitrages	Autor příspěvku konference
+sponsorenbeitrag	sponsorenbeitrag
+konferenzsaal	Konferenční sál
+ausschuss für den award des besten beitrags	Výbor pro udělování příspěvku nejlepší
+gold sponsor der konferenz	Zlatý sponzor konference
+sponsor als aussteller	Sponzor jako vystavovatel
+deadline für eine abstrakte einreichung	konečný termín pro odeslání abstrakt
+deadline	konečný termín
+award für besten anwendbaren beitrag	Cena za nejlepší použitelné přínos
+konferenz acm sigdkdd	ACM sigdkdd konference
+bronze sponsor der konferenz	Bronzový sponzor konference
+registrierungskosten für mitglieder von sigmod	cena registrace pro členy sigmod
+registrierungsgebühr	Registrační poplatek
+konferenzgebühr	Konferenční poplatek
+organisatoren der konferenz	Organizátoři konference
+registrierungskosten für studenten	cena registrace pro studenty
+deadline für die mitteilung eines authors	konečný termín pro oznámení autorů
+eines studentischen beitrags	studentský příspěvek
+registrierungskosten für personen, die nicht mitglied von sig sind	cena registrace pro lidi, kteří nejsou členy sig
+hauptbüro der konferenz	Hlavní kancelář konference
+silber sponsor der konferenz	Stříbrný sponzor konference
+award für besten studentischen beitrag	Ocenění za nejlepší studentský příspěvek
+platin sponsor der konferenz	Platinový sponzor konference
+webmaster	webmaster
+award für konferenzbeitrag	Konference přínos ocenění
+registrierungskosten für mitglieder von sigkdd	cena registrace pro členy sigkdd
+sponsor für besten studentischen beitrag	sponzor za nejlepší studentský příspěvek
+hörer der konferenz	posluchačů konference
+deadline für die einreichung eines beitrags	termín pro podání příspěvku
+programmvorsitzender	Program předseda
+hotel	Hotel
+konferenz organisiert von	Konference pořádané
+deadline für authorenmitteilung	konečný termín pro authorenmitteilung
+bleibt in	zůstává v
+sponsoren wurden aufgerufen von	Sponzoři byli povoláni
+paid zahlt registrierungsbeitrag	platit registrační příspěvek platí
+beitrag wurde eingereicht von	příspěvek byl předložený
+deadline festgelegt	stanoveném termínu
+präsentiert dokumente	předkládá dokumenty
+hat award	Ocenění
+aufruf von sponsoren	volání sponzorů
+organisiert konferenz	pořádané konference
+hat preis	má cenu
+ist datiert auf den	ze na
+registrierungsbeitrags ist in währung	je registr příspěvek v měně
+hat name der konferenz	název konference má
+hat nationalität	má národnost
+hat sponsorenname	má sponsorenname
+datum des ersten tages der konferenz ist	je datum prvního dne konference
+award erhalten von	obdržela ocenění od
+registrierungsbeitrag gezahlt von	Registr příspěvek poukázaný
+hat award erhalten von	obdržela ocenění od
+wurde präsentiert von	byl předložen
+deadline eingerichtet für	termín stanovený pro
+konferenz findet in folgender stadt statt	Konference se bude konat v následujících city
+datum des letzten tages der konferenz ist	Datum posledního dne konference je

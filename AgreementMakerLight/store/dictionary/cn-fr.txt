@@ -1,0 +1,668 @@
+程序委员会成员	Membres du Comité de programme
+论文全文	Textes intégraux
+非审稿人的作者	Auteur de non-examinateur
+文件	Fichier
+主席	Président
+拒收	Rejeter
+合著者	Co-auteure
+外部审稿人	Examinateurs externes
+人员	Personnel
+大会主席	Président de l'Assemblée générale
+决定	Décision
+作者	Auteur
+偏爱	Préférence
+综合审稿意见	Observations générales
+审稿人	Relecteur
+程序委员会主席	Président du Comité de programme
+论文摘要	Résumés
+审稿意见	Commentaires
+论文	Papiers
+录用	Location
+会议	Conférence
+副主席	Vice-Président de la Commission
+主题领域	Domaines thématiques
+程序委员会	Comité du programme
+会议成员	Membres de la Conférence
+投标	Appel d'offres
+用户	Utilisateur
+管理人员	Personnel de gestion
+综合审稿人	Examinateurs de synthèse
+由之打印硬拷贝邮件舱单	Imprimé manifestes d'envoi
+修改后投标	Révisé d'appel d'offres
+标注兴趣冲突	Annotation conflit d'intérêts
+由审稿人审阅	Examinés par les évaluateurs
+指定审稿人	Spécifie des réviseurs
+是程序委员会成员	Membres du Comité de programme
+拒收论文	Documents rejetés
+是会议成员	Sont membres de la Conférence
+由之拒收	Refusé par
+开始审稿投标	Commencer à examiner les soumissions
+有投标	Appel d'offres
+由管理人员指定	Spécifié par les gestionnaires
+设置最多论文数	Définit le nombre maximal de documents
+阅读论文	Lire l'essai
+有兴趣冲突	Conflits d'intérêts
+由之录入详情	En saisissant les détails
+由审稿人指定	Spécifiée par l'examinateur
+录入会议详情	Détails d'enregistrement de réunions
+打印硬拷贝邮件舱单	Imprimé manifestes d'envoi
+录入审稿标准	Critères d'inscription de manuscrit
+运行论文分派工具	Exécuter les outils d'affectation de papier
+由之启动虚拟会议	Au début de la conférence virtuelle
+合著	Co-
+有会议成员	Membres de la Conférence
+撰写审稿意见	Commentaires de l'écriture
+由之撰写	Rédigé par le
+论文分派定稿	Mise au point définitive des documents affectées
+电子信箱	Courriel
+日期	Date
+商标统一资源定址器	Emplacement de ressource uniforme de marque
+论文序号	Numéro de la thèse
+接受硬拷贝投稿	Accepter les demandes de support papier
+网站地址	Adresse du site Web
+每篇论文审稿意见数	Chaque commentaires de papier
+最多论文数	Nombre maximal de documents
+录用论文	Communications acceptées
+有主题领域	Domaines thématiques
+姓名	Le nom
+标题	Titre
+有作者	Il y a un auteur
+论文分派工具由之运行	Outil d'affectation de papier en exécutant
+由之增补	En mettant à jour
+结束审稿	Examen de fin
+撰写论文	Rédaction de documents
+分派给	Affecter à
+由之录用	En embauchant
+由综合审稿人审阅	Revu par les critiques générales
+有决定	A décidé
+论文分派由之定稿	Finalisation du document attribué par
+审稿人投标始于	Relecteur enchères commence
+由之录入审稿标准	Critères d'inscription de manuscrit
+有合著者	Co-auteure
+启用虚拟会议	Activez les réunions virtuelles
+修改投标	Modifier les offres
+增补程序委员会成员	Patch pour les membres du Comité
+投稿	Présentation
+有程序委员会成员	Un membre du Comité de programme
+有分派论文	Thèse attribuée
+指定外部审稿人	Spécifier les évaluateurs externes
+已注册申请人	Candidats inscrits
+与会者	Participants
+被动与会者	Participants passifs
+主题	Thème
+会议文件	Documents de réunions
+联合主席	Président de l'articulation
+组织	Organisation
+会议卷册	Volumes de conférence
+被审稿件	Manuscrit du procès
+报告	Rapport
+会议部分	Segment
+与会者信息	Informations du participant
+会议申请人	Le demandeur de la réunion
+提前付费申请人	Payer à l'avance les candidats
+组织者	Organisateurs
+会议投稿人	Contributeurs de la Conférence
+摘要	Résumé
+指导委员会	Le Comité directeur
+委员会	Comité
+正规作者	Auteurs réguliers
+录用稿件	Section Location
+会议征稿通知	Conference call for papers
+书面投稿	Communication écrite
+会议费用	Frais de conférence
+付费申请人	Versé à la requérante
+征集参与者通知	Collecte de notification participante
+会议通知	Avis de réunion
+重要日期	Dates importantes
+组委会	Le Comité organisateur
+研讨会	Séminaire
+会议论文集	Proceedings of the Conference
+审稿优先选择	Préférences d'examen par les pairs
+特邀报告	Conférences invitées
+投稿第一作者	Première communication de l'auteur
+征文启事	Papiers-
+会议网站	Site Web réunion
+主动与会者	Participants actifs
+研讨会主席	Président du séminaire
+正规投稿	Contributeurs réguliers
+教程	Tutoriel
+特邀报告人	Conférenciers d'honneur
+出版商	Éditeurs
+审稿专长	Expertise d'examen par les pairs
+长摘要	Résumé long
+投稿合作作者	Auteurs de soumission
+晚付费申请人	Retard de paiement la requérante
+海报	Affiche
+轨道	Titres
+拒收稿件	Manuscrits rejetés
+委员会成员	Les membres du Comité
+照相制版稿件	Manuscrits de photogravure
+有一个卷册	Il y a un volume
+有一个电子邮箱	Avoir une boîte aux lettres électronique
+有名	Célèbre
+有一个录用通知日期	Il y a une notification de l'acceptation
+有一个照相制版提交日期	Date de dépôt ont un photomécanique
+有一个发行日题	Confrontés à un problème de date de question
+有一个名字	Avoir un nom
+有性别	Avoir des relations sexuelles
+有一个投稿	Avoir une présentation
+有一个委员会联合主席	Il y a un co-président d'un Comité
+有一个isbn	Il y a un ISBN
+有一个摘要投稿日期	Une date pour la soumission des résumés
+被分配给审稿参考	Manuscrit est affectée à la référence
+有一个研讨会教程主席	Il y a un cours de séminaire Président
+有研讨会	Séminaire
+有重要日期	Dates importantes
+有一个结束日期	Il y a une date de fin
+有一个地点	Un emplacement
+有一个全文投稿日期	Une date de présentation de texte intégral
+有一个网址	Il y a une adresse
+有一个度	Il existe une certaine
+有一个专长	Avoir une expertise
+有一个开始日期	Il y a une date de début
+有姓	Prénom
+是由之作	De travail
+有一个审稿意见	Il y a un examen par les pairs
+有一个研讨会教程主题	Un tutoriel thèmes des ateliers
+是会议卷册的一部分	Fait partie du volume Conférence
+曾是一个组织委员会	L'habitude d'être un comité organisateur
+有一个摘要	Il y a un résumé
+有一个程序委员会	Un Comité de programme
+有一个主题或者投稿	Il y a un sujet ou un détachement
+曾是一个成员	L'habitude d'être un membre
+曾是一个委员会联合主席	L'habitude d'être un co-président d'un Comité
+有一个指导委员会	Il y a un Comité de pilotage
+受邀于	Ont été invités à
+有一个审稿参考或者专长	Avait un homologue revue de référence ou expertise
+有一个组织委员会	Un comité organisateur
+有成员	Membres
+曾是一个指导委员会	Un Comité de pilotage a été
+曾是一个委员会主席	A été un président de la Commission
+是投至	Est castée en
+属于审稿人	Appartient aux examinateurs
+评审	Examen
+有轨道	Titres
+有教程	Tutoriel
+曾是一个研讨会主席	A été un président du séminaire
+是第一部分	Est la première partie de
+有一个审稿专长	Il y a une expertise d'examen par les pairs
+属于一个会议卷册	Appartenance à un volume de conférence
+属于一个审稿参考	Aux termes de référence d'examen par les pairs
+发行	Question
+作报告	Faire un rapport
+曾是一个委员会	Un Comité a été
+邀请联合审稿人	Inviter et la commune de l'examinateur
+有一个委员会主席	Il y a un président de la Commission
+有部分	Certains
+有投稿	Que présentation
+曾是一个程序委员会	Une fois un programme Comité
+有一个委员会	Il existe un Comité
+是一个会议部分的主题	Fait partie du thème de la Conférence
+有一个出版商	Un éditeur
+宴会	Banquet
+标准	Norme
+审稿活动	Activités d'examen par les pairs
+审稿结果活动	Examen par les pairs des résultats des activités
+旅游	Tourisme
+城市	Ville
+科学工作者	Travailleur scientifique
+管理活动	Activités de gestion
+助理	Assistant
+志愿者	Bénévoles
+短论文	Le court essai
+国家	National
+投稿活动	Activités de la contribution
+工作活动	Activités professionnelles
+参加者	Participants
+招待会	Réception
+大学	Université
+学生	Étudiants
+成员	Membres
+照相制版活动	Activités de photogravure
+社交活动	Activités sociales
+公司	Société
+活动	Activités
+报名注册活动	Activités d'enregistrement
+学者	Savants
+开始于	Commence par
+最少选项	Options minimes
+有传真号码	Numéro de Fax
+有国家	National
+处理	Traitement
+有关键词	Mots-clés
+有街道名	Nom de la rue
+平行于	Parallèlement à la
+有管理活动	Activités de gestion
+审稿	Réviseurs
+撰写	A écrit
+专家于	Experts en
+受雇于	Employés dans le
+就学于	Etudier à la
+联系电子信箱	Adresse email de contact
+备注	Notes
+有电话号码	Y a-t-il un nombre
+有增值税	Ajout de taxe sur la valeur
+最多选项	La plupart des options
+有标题	A un titre
+有邮编	Code postal
+提前注册	S'inscrire à l'avance
+有简略标题	Un titre bref
+有主页	Page d'accueil
+结束于	Se termine à
+场所	Place
+有电子信箱	Courriel
+缺省项目	Projet par défaut
+紧接着	Peu de temps après
+有主题	Thème
+有城市	Ville
+无线通信主题	Sujets de communication sans fil
+光学计算机网络主题	Sujets de réseautage optique ordinateur
+用餐地点	Restaurants
+征集手稿通知	Avis de manuscrit de collection
+参与者主题	Participants aux sujets
+学术组织	Organisations universitaires
+被评价论文	Essai d'évaluation
+酒会	Cocktail dînatoire
+学术活动	Activités académiques
+并行和分布式计算主题	Sujets informatiques parallèles et distribués
+信号处理主题	Sujets de traitement de signal
+性能主题	Thèmes de la performance
+计算机网络安全主题	Sujets de sécurité réseau informatique
+未决定论文	Documents en attente
+结束报告	Fin du rapport
+卫星和空间通信主题	Thème de communications spatiales et satellites
+会间休息	Pause de la session
+会议晚宴	Dîner-conférence
+欢迎报告	Se félicite du rapport
+撤回的论文	Retirer les papiers
+审稿级别	Niveau d'examen par les pairs
+会议分场会议	Séances en petits groupes de conférence
+计算机网络企业主题	Thème Enterprise Network
+计算机网络主题	Sujets de gestion de réseau informatique
+程序	Programme
+计算机网络交换机主题	Commutateurs de réseau informatique sujets
+cad主题	Thème CAD
+报告活动	Rapport sur les activités
+计算机网络管理主题	Sujets de gestion réseau informatique
+地点	Emplacement
+个人审稿历史	Histoire de l'étude personnelle
+无线电通信主题	Thèmes de la radio
+组织会议	Session d'organisation
+审稿表格	Formulaire d'examen par les pairs
+休息活动	Activité reste
+医学主题	Thèmes médicaux
+餐饮场所	Restaurants
+城府组织	Organisations secrètes
+用餐活动	Repas des événements
+电力线传输主题	Thème de transmission puissance trait
+会议主席	Président de la Conférence
+会议活动	Activités de la Conférence
+计算机体系结构主题	Sujets d'architecture informatique
+弱拒收级别	Niveau de rejet faible
+赞助	Parrainage
+操作系统主题	Thèmes du système d'exploitation
+自由活动	Activités gratuites
+计算机网络度量主题	Réseau mesure sujets
+活跃论文	Articles actifs
+拒收级别	Niveau de rejet
+接受级别	Niveau acceptable
+幻灯片集	Faire glisser
+住宿地点	Endroits à rester
+论文报告	Présentations papier
+单级会议	Conférence de mono-étagé
+据用论文	Selon le document
+通信主题	Thèmes de la communication
+计算机网络应用主题	Sujets d'applications réseau
+用餐休息	Pause-repas
+个人发表历史	Antécédents personnels
+会场	Le lieu de rendez-vous
+参与者	Participants
+文本审稿问题	Problème de texte manuscrit
+加密主题	Chiffrer les sujets
+计算机网络传感器主题	Thème de capteurs réseau
+测试主题	Rubrique test
+联系信息	Informations de contact
+两级会议	Réunions au niveau des deux
+数字化审稿问题	Problèmes de manuscrits numérisés
+通信理论主题	Sujet des théories de la communication
+非政府组织	Organisations non gouvernementales
+审稿问题	Questions d'examen par les pairs
+工业组织	Organisations industrielles
+安全性主题	Thèmes de la sécurité
+报告人	Haut-parleur
+个人历史	Antécédents personnels
+分场会议主席	Président des sessions en petits groupes
+密码学微电子主题	Sujets de microélectronique de cryptographie
+旅行补助	Subventions de voyage
+通知	Notification
+非学术会议	Conférences non universitaires
+出版的论文	Articles publiés
+可接受级别	Niveau acceptable
+征集审稿人通知	Appel aux évaluateurs d'informer
+游览	Tour
+技术程序委员会	Programme technique de Comité
+菜单	Menu
+多媒体主题	Rubrique multimédia
+移动计算主题	Sujets informatiques mobiles
+有花费数目	Ont passé
+注册到期	Inscription a expiré
+有截稿日期	Sous un délai
+结束日期	Date de fin
+有投稿指示	Ont des instructions de soumission
+是菜单	Dans le menu
+论文到期	Papiers due
+有名称	Avoir un nom
+手稿到期	Manuscrit due
+有电话	Avoir un téléphone
+有开始日期时间	Date heure de début
+有传记	Biographie
+开始日期	Date de début
+有结束日期时间	Date/heure de fin
+有电子邮箱	Boîte aux lettres électronique
+有花费货币	Argent dépensé
+是成员	Est membre de
+是之审稿历史	Est l'histoire du manuscrit
+被提供	Sont offerts
+启动	Début
+有通知	Avis
+有菜单	Avec menu
+有程序	A le programme
+被启动于	A été lancé en
+有相关文件	Fichiers associés
+属于活动	Sur l'actif
+相关活动	Activités connexes
+撰写自	Écrire soi-même
+是主题	Est le sujet
+为活动	Pour les actifs
+有相关论文	Articles connexes
+相关	Associés
+相关论文	Documents connexes
+出席	Pour assister à
+被审稿于	Examen par les pairs dans
+有评级	Notation
+有审稿历史	Un manuscrits de l'histoire
+是提供者	Est le fournisseur
+有参与者	Demandez aux participants
+在此举办	Hôte
+有地点	Emplacement
+海报展示会	Exposition d'affiches
+投稿论文	Documents de présentation
+否定意见	Avis défavorable
+学术机构	Établissements d'enseignement
+分配的论文	Thèse attribuée
+完注册与会者	Terminer l'enregistrement des participants
+会议旅游	Tourisme de congrès
+研讨会分场会议	Séances en petits groupes
+特邀报告摘要	Résumé du rapport spécial
+实用型论文	Thèse pratique
+组织委员会主席	Président du Comité d'organisation
+合适的审稿人	Examinateurs appropriés
+教程摘要	Tutoriel Sommaire
+科学活动	Activité scientifique
+肯定意见	L'avis positif du
+演示会主席	Président de la démo
+代理工作人员	Personnel de l'Agence
+位置	Emplacement
+实用性主题分场会议	Séances en petits groupes rubrique pratique
+网站	Site Web
+多作者卷册	Auteurs de plusieurs volumes
+演示会	Démo
+研究主题	Thèmes de recherche
+程序手册	Manuel de procédures
+组织委员会成员	Membres du Comité d'organisation
+正规论文	Papiers réguliers
+大会分场会议	Séances en petits groupes de conférence
+录用文章报告	Accepté les documents rapports
+研究所	Institut
+海报论文	Papiers affiches
+研讨会论文	Documents de séminaire
+记录集	Jeu d'enregistrements
+正规分场会议	Séances en petits groupes informels
+论文集出版商	Procédure des éditeurs
+中性意见	Commentaire neutre
+提前注册与会者	Inscrire les participants
+教程主席	Président du tutoriel
+论文作者	Les auteurs
+演示论文	Documents de la démo
+会议论文	Comptes rendus de conférences
+会议宴会	Réunion et banquet
+被审论文	Documents du procès
+分场会议	Séances en petits groupes
+赞助者主席	Président sponsor
+组织代理	Par intérim
+个人报告	Rapports individuels
+照相制版论文	Papier de photocomposition
+传单	Flyer
+包括主题	Y compris les thèmes
+列表活动	Liste des activités
+是更新版本	Est la version mise à jour
+学术上组织	Organisations universitaires
+有审稿人	Relecteur
+由之组织	Par organisation
+论文位于卷	Papiers du volume
+审稿意见撰写于	Commentaires écrits à
+是之一部分	Fait partie de
+所报告论文	Rapporté par les journaux
+是出版商	Éditeurs
+论文报告形式	Formulaires de déclaration de papier
+是论文审稿人	Est les examinateurs de papier
+有更新版本	Une version mise à jour
+举办于	Qui s'est tenue le
+有活动	Activités
+是子活动于	Est une activité enfant
+是部分于	Fait partie de
+位于	Situé dans le
+技术上组织	Organisations techniques
+主题被包括于	Sujets à inclure dans
+活动列表于	Liste des activités en
+论文审稿意见	Commentaires de papier
+学术上由之组织	Organisation académique
+技术上由之组织	Sur le plan technique de l'Organisation
+卷册包括论文	Parmi les volumes papiers
+是作者	Est l'auteur
+参考于	Référence à
+参考	Référence
+有审稿意见	Commentaires
+鸡尾酒会	Soirée cocktail
+旁听者	Spectateurs
+支票	Vérifier
+会议旅行者	Réunion Traveler
+作者与会者光盘注册费	L'inscription du participant auteur CD
+宾馆预定截止日期	Date limite de réservation hôtel
+代表	Au nom de
+截稿日期	La date de clôture
+最后定稿	Finalisé
+技术活动	Activités techniques
+报告人国家	Pays de haut-parleur
+单日报告人	Président d'un jour
+幻灯片报告	Rapport de la diapositive
+非报告人	Personnes qui ne déclarent pas
+会议录光盘	Conference proceedings CD
+演讲者	Haut-parleur
+赞助公司的房子	Parrainage companies House
+全会讲座演讲者	Orateurs de la Conférence plénière
+额外旅行费用	Frais de voyage supplémentaires
+报告人讲座	Conférence de haut-parleur
+会员注册费	Frais d'inscription de membre
+录像带播放器 	Lecteur vidéo 
+接收投稿	A reçu des mémoires
+初稿	Le premier projet
+非作者注册费	Frais d'inscription non-auteur
+货币	Monnaie
+信用卡	Carte de crédit
+附加税	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=5217.V2_Json.Translate.2374A4A6
+注册费	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=5107.V2_Json.Translate.24064882
+旅游城市	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=6346.V2_Json.Translate.23906702
+宾馆注册表	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=5005.V2_Json.Translate.237B2B98
+注册表	Registre
+投影仪	Projecteur
+时间	Temps
+介绍	Introduction
+班车	Navette
+透明度	Transparence
+税	Impôt
+付款文件	Le fichier de paiement
+拒收投稿	Présentations refusées
+会议宾馆	Hôtels de conférence
+计算机	Ordinateur
+出版物	Publications
+分场会议室	Salles de réunions en petits groupes
+报告人的大学	Président de l'Université
+住宾馆的报告人	Enceinte de l'hôtel
+模拟	Simulation
+旅游日	Journée du tourisme
+租赁	Locations
+晚宴	Dîner
+会议城市	Réunion des villes
+双人间	Chambre double
+费用	Frais
+照相制版截止日期	Date limite photomécanique
+液晶投影机	Projecteur LCD
+报告人城市	Ville de haut-parleur
+不做报告的学者	Ne se rapportant pas des savants
+汽车	Automobile
+学者演讲者	Haut-parleur érudit
+学生演讲者	Haut-parleur de l'étudiant
+会议国家	Conférence nationale
+会议大楼	Le bâtiment des conférences
+讲座	Conférence
+技术委员会	Le Comité technique
+获得会记录光盘的作者	Obtenir un writer de CD-r
+出席记录	Record d'affluence
+研究	Etude sur la
+注册截止日期	Date limite d'inscription
+注册	Enregistrement
+离境税	Taxe de départ
+建筑物	Bâtiment
+酒电费	Tarifs vins
+不做报告的学生	Ne pas de déclaration d'étudiant
+非iasted会员	Sont membres de l'IASTED
+非会员注册费	Frais d'inscription non-membre
+录用通知截止日期	Délai de notification
+赞助人	Patron
+会议日	Jour de la réunion
+会议大厅	Salle de conférence
+欢迎致词	Allocution de bienvenue
+视听设备	Équipement audiovisuel
+表格	Table
+iasted会员	Membre de l'IASTED
+邮件列表	Liste de diffusion
+讲演者介绍	Introduction de haut-parleur
+截止日期	Date d'échéance
+教程主讲人	Tutoriel présentateur
+卡	Carte
+银行转帐	Virement bancaire
+分场会议主席的简短介绍	Brève présentation par le Président des sessions en petits groupes
+作者信息表	Fiche d'information auteur
+赞助者国家	Commanditaire national
+单人间	Chambre simple
+会议日期	Dates des réunions
+会议餐厅	Salle de conférence
+交通工具	Transport
+宾馆房间	Chambre d'hôtel
+卡车	Camion
+时区	Fuseau horaire
+赞助者城市	Ville de commanditaires
+会前活动	Avant l'activité
+出租车	Taxi
+会议录	Actes du colloque
+获得会议录书的作者	Accès aux comptes rendus de conférences et auteur de
+钱款	L'argent est
+全会讲座	Conférences plénières
+作者与会者注册费	Frais d'inscription auteur
+建模	Modélisation
+项目	Projet
+邀请信	Lettre d'invitation
+离开	Congé
+录用投稿	Recrutement-annonce
+主办事处	Bureau principal
+全日游	Excursion d'une journée complète
+视频报告	Reportage vidéo
+小费	Astuce
+报告人的房子	Président de la chambre
+签证	Visa
+会后活动	Activités après
+会议机场	Aéroport de conférence
+学生注册费	Etudiant
+作报告于	Comme indiqué dans le
+之后发送	Envoyé après
+由之参观	En visitant
+由之签名	Signée par le
+给	Donner
+占用	Relever
+由之准备	En préparant
+截至	Au
+注明日期于	Date d'entrée en
+有总计	Un total de
+与之连接	Se connecter avec
+经过	Après
+由之发送	En envoyant
+由之给予	En donnant
+被用于	Être utilisé pour
+之前举办	Tenue avant
+需要	Besoin
+之前发送	Avant d'envoyer
+获得	Accès
+支付	Paiement
+支付于	Payer
+由之占用	Occupée par les
+由之支付	Par paiement
+为之支付	Payer pour
+用于	Utilisé pour
+签名	Signature
+为之设计	Pour la conception
+由之组成	Composé de
+以之配备	Équipé
+发送	Envoyer
+之后举办	Après la
+由之写	Rédigé par le
+准备	Préparer
+写	A écrit
+sigmod成员注册费	Frais d'inscription de membres SIGMOD
+组织委员会	Le Comité d'organisation
+非成员注册费	Frais d'inscription non-membre
+sigkdd成员注册费	Frais d'inscription adhésion SIGKDD
+计算机协会知识发现和数据挖掘会议	Computer Society Conference sur la découverte de connaissance et d'exploration de données
+最佳学生论文奖	Prix du meilleur mémoire étudiant
+奖	Prix
+摘要截稿日期	Date limite des résumés
+铜牌级赞助者	Commanditaires niveau bronze
+赞助者	Commanditaires
+金牌纪赞助者	Commanditaires de l'âge d'or
+学生论文作者	Auteurs de l'étudiant
+宾馆	Hôtel
+网站管理员	Administrateur du site Web
+参展者	Lieux d'exposition
+最佳应用论文奖	Prix de la meilleure application
+总办事处	Siège social
+赞助费	Frais de parrainage
+全文截稿日期	Texte intégral des échéances
+录用论文作者通知截止日期	Délai de notification auteur papier acceptés
+最佳论文奖委员会	Best Paper Award Committee
+最佳研究论文奖	Prix de la meilleure recherche
+银牌级赞助者	Commanditaire de niveau argent
+听众	Le public
+白金级赞助者	Commanditaires niveau platine
+最佳学生论文赞助者	Meilleurs parrains de papier étudiant
+直到录用通知日期	Tant que cette notification d'acceptation
+寻找	Vous cherchez
+获奖	Le primé
+付费	Payer
+制定	Ensemble
+由之付费	Payé par le
+由之寻找	En recherchant
+承办	Hébergement
+制定于	Établi en
+获奖于	Gagnant en
+投稿截止于	Date limite de soumission de papier pour
+电子信件	E-lettres
+价格	Prix
+会议结束日期	Date de fin de séance
+会议名称	Nom de la réunion
+赞助者名称	Nom du promoteur
+可位于	Peuvent être trouvées
+颁奖给	Prix actuel à
+由之承办	Hébergé par le
+由之作报告	Rapporté par le le
+国籍	Nationalité
+会议开始日期	Date de début de conférence

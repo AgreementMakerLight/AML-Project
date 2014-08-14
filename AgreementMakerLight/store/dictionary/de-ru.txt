@@ -1,0 +1,709 @@
+verfasser, der kein gutachter ist	писатель, который является не эксперт
+meta-gutachten (gutachten über ein gutachten)	Мета - мнение (мнение о свое мнение)
+verfasser	Автор
+vorsitzender	Председатель
+vorsitzender der konferenz	Председатель Конференции
+vorsitzender des programm-komitees	Председатель Комитета программы
+meta-gutachater	Мета gutachater
+meta-gutachater (gutachter der gutachten begutachtet)	Мета gutachater (экспертное заключение, которое рассмотрено)
+zurückweisung	отказ
+vollständiger konferenzbeitrag	Полный организационный взнос
+externer gutachter	внешние отзывы
+benutzer	пользователь
+gebot	командовал
+mitglied des programm-komitees	Член Комитета программы
+person	человек
+dokument	документ
+präferenz	предпочтения
+meta-gutachten	Мета - мнение
+mitverfasser	соавтор
+konferenz	Конференция
+gegenstandsbereich	Сфера
+gutachten	мнение
+akzeptanz	признание
+konferenzbeitrag	Вклад Конференции
+programm-komitee	Программный комитет
+teilnehmer einer konferenz	Участники Конференции
+gutachter	Эксперт
+stellvertretender vorsitz	Заместитель места в
+entscheidung	решение
+abstrakt eines konferenzbeitrags	Тезисы конференции вклад
+administrator	Администратор
+hat details eingefügt in bezug auf	вставила детали в связи с
+hat die zuordnung der beiträge abgeschlossen	завершил сопоставление взносов
+hat zugewiesen	присвоен
+druckt papierausdruck des mailing-manifests	распечатать бумажную копию рассылки манифеста
+beitragszuordnungs-software ausgeführt von	запуск программного обеспечения beitragszuordnungs
+zugewiesen zu	выделять
+details eingefügt von	Добавлены подробности
+beitragszuordnung abgeschlossen von	Пост задание выполнено
+gelesen von gutachter	читать экспертов
+hat die beitrags-zuordnungssoftware ausgeführt	осуществил вклад zuordnungssoftware
+hat virtuelles treffen veranlasst	виртуальная встреча привела
+hat abgeglichen	соответствует
+mitverfasst von	автором
+hat interessenskonflikt in bezug auf	interessenskonflikt имеет по отношению к
+abgewiesen von	отклонено
+geschrieben von	Написал
+virtuelles treffen veranlasst von	виртуальное совещание во главе с
+gelesen von meta-gutachter	читать мета рецензента
+akzeptiert von	принято
+ist mitglied des programm-komitees	является членом Комитета программы
+hat beitrag geschrieben	Написал вклад
+hat die gebotsphase gestartet	Начало этапа ставка
+kriterien zu gutachten eingefügt von	критерии к мнению вставить
+hat papier abgelehnt	документ отклонен
+bestimme maximale anzahl an zugewiesenen beiträgen	Выберите максимальное количество выделенных взносов
+ist entschieden worden als	Было принято решение о том, как
+steht in interessen-konflikt mit beitrag	интересам противоречат вклад
+hat webseite an url	имеет веб-сайт по URL-адресу
+hat namen	имеет имя
+hat datum	Дата
+akzeptiert hardcopy-einsendungen	принимать представления hardcopy\r
+hat id	имеет идентификатор
+maximale anzahl an zugewiesenen beiträgen	Максимальное количество выделенных взносов
+hat titel	имеет название
+hat email	по электронной почте
+zugewiesen von administrator	назначенные администратором
+hat mitglied	имеет член
+hat logo an url	имеет логотип url
+gutachten pro beitrag	мнение на вклад
+zugewiesen von gutachter	назначенные эксперты
+hat akzeptiert	принял
+hat papier gelesen	читать документ
+hat gegenstandsbereich	областью действия
+papierausdruck des mailing-manifests gedruckt von	печатная копия рассылки манифеста
+ist zugeordnet worden	было приказано
+teilnehmer von	Участники из
+hat die zeit des begutachtens beendet	закончила это время аттестации
+hat hinzugefügt	Добавлено
+abgeglichen von	подкреплены
+hinzugefügt von	Добавил(а)
+hat teilnehmer	участник
+hat beitrag eingesendet	взносов представил
+hat beitrag mitverfasst	является автором вклад
+hat kriterien zu gutachten eingefügt	добавил критерии в мнение
+gebotsphase gestartet von	Покупка фаза, заполняя
+hat gutachten geschrieben	Написал мнение
+hat gebot erhalten	повелел get
+konferenzankündigung	Анонс конференции
+erweitertes abstrakt	Расширенный Реферат
+koferenzdokument	koferenzdokument
+präsentation	Презентация
+passiver konferenzteilnehmer	пассивные участники
+eingeladener vortrag	приглашенные лекции
+druckfertiger beitrag	вклад druckfertiger
+fortschritte der konferenz	ход Конференции
+abstrakt	Аннотация
+wichtiges datum	важная дата
+angehörige des ausschusses	члены Комитета
+koferenzbewerber	koferenzbewerber
+konferenzbewerber, der die konferenzgebühr gezahlt hat	Конференции заявителей, которые платят регистрационный взнос
+steuerungsausschuss	Руководящий комитет
+geschriebener beitrag	письменный вклад
+internet der konferenz	Интернет конференции
+leiter der workshops	Директор цеха
+mitverfasser eines beitrags	соавтор вклада
+angenommener beitrag	предполагаемый вклад
+organisation	Организации
+programmausschuss	Программный комитет
+author eines regulären beitrags	Автор регулярный взнос
+fachgebiet des gutachters	Область экспертизы проверяющий
+regulärer beitrag	регулярные взносы
+workshop	Мастерская
+präferenz des gutachters	предпочтение проверяющий
+primärer author eines beitrags	основной автор вклада
+stellvertretender vorsitzender	Заместитель Председателя
+konferenzreihe	Серия конференций
+konferenzbewerber, der die konferenzgebühr früh gezahlt hat	Конференции кандидат, оплативший регистрационный взнос рано
+ablauf der konferenz	истечения срока действия Конференции
+abschnitte der konferenz	секции конференции
+abgelehnter beitrag	Отклоненные вклад
+ausschuss	Комитет
+informationen für teilnehmer	Информация для участников
+aktiver konferenzteilnehmer	Активные участники
+eingereichter beitrag	представленные на сайте
+konferenzgebühren	Стоимость
+organisator	Организатор
+konferenzbeteiligung	Участие в Конференции
+begutachteter beitrag	реферируемые вклад
+organisationsausschuss	Комитет Организации
+herausgeber	Издатель
+aufruf zu teilnahme	призыв к участию
+konferenzbewerber, der die konferenzgebühr spät gezahlt hat	Конференции кандидат, оплативший регистрационный взнос поздно
+tutorium	Учебник
+thema	Тема
+aushang	Доска объявлений
+konferenzteilnehmer, der einen beitrag geleistet hat	Участники Конференции, сделал один вклад
+eingeladener referent	приглашался для выступлений
+konferenzteilnehmer	Участники Конференции
+registrierter bewerber	зарегистрированные кандидаты
+aufruf für beiträge	призыв внести вклад
+datum der einreichung des abstrakts	Дата подачи тезисов
+hat e-mailadresse	адрес электронной почты
+ist am folgenden datum veröffentlicht worden	была опубликована на следующие даты
+hat name	имеет имя
+datum der druckfertigen einreichung ist	Дата окончательного представления
+ort der konferenz	место проведения Конференции
+grad der gutachterpräferenz	градусов экспертов предпочтения
+hat geschlecht	сексом
+hat mitglieder	имеет членов
+hat abfolge	имеет последовательность
+ist anfangsdatum	Это Дата начала
+anzahl der fortschritte der konferenz	количество прогресса конференции
+ist eingereicht für	представлен на
+liefert konferenzbeitrag	Вклад Конференции
+ausschuss der konferenz ist	Комитет Конференции
+hat abschnitt	отрезать
+grad des fachgebiets des gutachters ist	предметом проверки является
+hat vornamen	имеет имя
+datum der einreichung des kompletten beitrags ist	Дата подачи полного вклада
+isbn der fortschritte ist	Какой прогресс ISBN
+hat nachnamen	имеет фамилию
+url der konferenz ist	Конференция является URL-адрес
+ist enddatum	-Дата окончания
+datum der akzeptanz-mitteilung ist	Дата принятия уведомления
+hat fachgutachten	Есть экспертное мнение
+ist ein präferiertes thema oder fachgebiet eines gutachters	является предпочтительной темы или области знаний эксперта
+hat gutachten	Есть мнение
+ist vorsitzender des ausschusses	является Председателем Комитета
+hat beitrag	вклад
+ist teil der konferenzreihe	является частью серии конференций
+organisationsausschuss der konferenz ist	Оргкомитет конференции
+hat author	имеет автора
+hält präsentation	проведение презентации
+ist ausschuss der konferenz	Комитет Конференции
+hat workshop-thema	Тема семинара
+ist ein präferiertes thema eines gutachters	является предпочтительной темой эксперта
+hat beitrag eingreicht	имеет вклад eingreicht
+eingeladen von gutachter	Приглашенный эксперт
+hat abstrakt	имеет абстрактный
+veröffentlicht	Опубликовано
+hat thema oder beitrag eingereicht	Тема или представленных
+programmausschuss der konferenz ist	Программный комитет Конференции является
+begutachtet beitrag	общественный вклад
+ist steuerungsausschuss der konferenz	является Руководящий комитет Конференции
+ist organisationsausschuss der konferenz	Это организационный комитет Конференции
+ist ein wichtiges datum einer konferenzreihe	Это важная дата конференции серии
+verleger des konferenzfortschritts ist	Издатель ход Конференции
+präsentiert von	представлено
+hat eine zugewiesene gutachterpräferenz	имеет назначенный эксперт предпочтения
+ist mitglied von	является членом
+hat wichtiges datum	важные даты
+hat tutorium	Учебник
+präferenz oder fachgebiet des gutachters ist	предпочтение или области знаний средства проверки
+ist der erst teil von	Это только часть
+lädt mitgutachter ein	с хорошим восьмой приглашает
+hat stellvertrenden ausschussvorsitzender	имеет stellvertrenden Председателя
+ist leiter des workshops	Директор цеха
+hat workshop-leitung	Семинар Управление
+hat ausschussvorsitzender	Председатель
+ist programmausschuss der konferenz	это программный комитет Конференции
+steuerungsausschuss der konferenz ist	Руководящий комитет Конференции
+hat workshop	мастерская
+ist stellvertretender vorsitzender des ausschusses	является заместителем Председателя Комитета
+ist thema ein konferenzabschnittes	раздел темы Конференции
+ereignis der begutachtung	событие обзора
+studentischer teilnehmer	участники студенческих
+ereignis des sendens des "camera-ready" papiers	событие отправки бумаги «камера готова»
+ereignis	события
+vorsitz des programmkomitees	место в программе Комитета
+einreichung	представление
+regulärer teilnehmer	постоянные участники
+student	студент
+firma	Компания
+mitglied	Член
+land	Земля
+ausflug	Экскурсия
+mitglied des programmkomitees	Член Комитета программы
+autor	Автор
+bankett	Banquet
+poster	Плакат
+papier	Бумага
+kurzes papier	короткие бумаги
+teilnehmer	Участники
+stadt	Город
+empfang	прием
+universität	Университет
+freiwilliger	добровольные
+ereignis zur registrierung der teilnehmer	событие для регистрации участников
+ereignis des einreichens eines papiers	событие подачи бумаги
+arbeits-ereignis	занятости событие
+ergebnis-der-begutachtung ereignis	результат оценки события
+soziales ereignis	социальные события
+administratives ereignis	Административные события
+wissenschaftler	Ученые
+assistent	Мастер
+minimale anzahl	минимальное число
+endet am	заканчивается на
+hat straße	есть дорога
+studiert an	учился в
+hat stadt	Город имеет
+frühzeitige registrierung	Ранняя регистрация
+begutachtet	рассмотрены
+folgt	следует
+fachkundig für	Эксперт
+schreibt	пишет
+hat land	страна
+angestellt bei	на работу в
+gleichzeitig mit	в то же время с
+hat postleitzahl	имеет индекс
+hat kurztitel	имеет короткий титр
+hat homepage	Главная страница
+hat telephonnummer	номер телефона
+hat mehrwertsteuer	имеет добавленную стоимость налогового
+vorgegebene anzahl	номер пресета
+hat kontakt-email adresse	Как связаться с адреса электронной почты имеет
+hat faxnummer	имеет faxnummer
+findet statt an	будет проводиться
+maximale anzahl	Максимальное число
+hat stichwörter	есть ключевые слова
+startet am	начинается с
+hat nachname	имеет фамилию
+hat email adresse	имеет адрес электронной почты
+hat thema	есть тема
+beschäftigt sich mit	сделки с
+hat anmerkung	имеет аннотацию
+hat administratives event	Административные события
+konferenz-dinner	Ужин
+computernetzwerksensor-thema	computernetzwerksensor тема
+sicherheits-thema	Тема безопасности
+ausstehender beitrag	вклад до
+numerische gutachtenfrage	числовой мнение вопрос
+speisekarte	Меню
+multimedia-thema	мультимедиа тема
+aufruf	вызов
+konferenzversitzender	Versitzender конференции
+mahlzeit	питание
+sitzungsvorsitzender	Председатель сессии
+foliensatz	Набор фольги
+mobiles computing-thema	мобильные вычислительные тема
+soziales event	социальные события
+author	Автор
+regierungsorganisation	Организации правительства
+optische computernetzwerke-thema	Оптическая computernetzwerke тема
+parallel und verteiltes computing-thema	Тема параллельных и распределенных вычислений
+persönliche historie	Личная история
+kommunikationstheorie-thema	предмет теории коммуникации
+computernetzwerkunternehmen-thema	Компьютерные сети оператора тема
+veranstaltungsort der konferenz	от места проведения Конференции
+vortrag	Лекция
+wörtliche gutachtenfrage	литерал мнение вопрос
+persönliche historie von veröffentlichungen	Личная история публикаций
+präsentation eines beitrags	Презентация вклада
+zurückgezogener beitrag	вклад выведены
+konferenzsitzung	Сессии Конференции
+akzeptierte bewertung	принятые оценки
+mitglied von tpc	Член tpc
+organistorische besprechung	organistorische совещание
+cad-thema	Тема CAD
+essenszeit	Время есть
+computernetzwerkwechsel-thema	computernetzwerkwechsel тема
+antennen-thema	Тема антенны
+zweiebige konferenz	zweiebige конференции
+nichtregierungsorganisation	Неправительственная организация
+reisesubvention	Субсидии на поездки
+betriebssystem-thema	Тема операционной системы
+computernetzwerke-thema	computernetzwerke тема
+compututerarchitektur-thema	compututerarchitektur тема
+sponsoring	Спонсорство
+kontaktinformationen	Контактная информация
+platz	место
+gutachtenbewertung	Мнение рейтинг
+freie zeit	свободное время
+akademisches event	Научные события
+persönliche historie von gutachten	Личная история мнения
+schwach abgelehnte bewertung	слабые отклонил обзор
+pause	перерыв
+abschlussvortrag	Финальная презентация
+akademische organisation	академические организации
+abgelehnte bewertung	Отклоненные обзор
+einebige konferenz	einebige Конференция
+"nur tests"-thema	«просто тестирование» тема
+programm	Программа
+industrielle organisation	Промышленные организации
+sitzungsraum	Конференц-зал
+formular für gutachten	Форма для мнение
+aktiver beitrag	активный вклад
+akzeptierter beitrag	принятых взносов
+medizinisches thema	Медицинская тема
+kryptographisches thema	криптографические тема
+computernetzwerksicherheit-thema	computernetzwerksicherheit тема
+speiseplatz	Столовая
+begrüßungsvortrag	Добро пожаловать презентация
+satelliten- und weltraumkommunikation-thema	Спутниковое и космической связи тема
+gutachtenfrage	Мнение вопрос
+event im zusammenhang mit einer konferenz	события, относящиеся к Конференции
+trägerfrequenzanlage-thema	Несущая частота системной темы
+aufruf für manuskripte	вызов для рукописей
+mikroelektronisches thema	mikroelektronisches тема
+performance-thema	проблема с производительностью
+aufruf für gutachten	вызов для мнение
+kommunikations-thema	Тема сообщения
+radiokommunikation-thema	Тема связи Радио
+computernetzwerkanwendungen-thema	computernetzwerkanwendungen тема
+bewerteter beitrag	взвешенная вклад
+präsentator	praesentator
+computernetzwerkverwaltung-thema	computernetzwerkverwaltung тема
+kein akademisches event	не научное мероприятие
+kaffeepause	Кофе-брейк
+besucher	посетителей
+beitrag	вклад
+signalverarbeitung-thema	Тема обработки сигнала
+unterkunft	Проживание
+drahtlose kommunkation-thema	Тема беспроводной связи
+computernetzwerkspezifikation-thema	computernetzwerkspezifikation тема
+akzeptiert, wenn spielraum vorhanden ist, bewertung	принято, если пространства доступен, обзор
+veröffentlichter beitrag	опубликованные материалы
+hat datum und zeit des endes	Дата и время окончания
+hat anweisungen für einreichungen	инструкции для представлений
+hat e-mail	имеет электронной почты
+hat besucher	посетителей
+hat datum und zeit der deadline für manuskripte	Дата и время крайнего срока для рукописей
+hat biografie	собственная биография
+hat telefon	есть телефон
+hat datum und zeit des beginns	Дата и время начала
+hat deadline für einreichungen	это крайний срок подачи заявок
+hat kostensumme	общей стоимости
+hat währung der kosten	имеет валюты стоимость
+hat datum und zeit des beginns der konferenz	Дата и время начала Конференции
+hat datum und zeit der deadline für beiträge	Дата и время крайнего срока для взносов
+hat datum und zeit des endes der konferenz	Дата и время окончания Конференции
+hat vollständigen namen der konferenz	имеет полное имя конференции
+hat datum und zeit der deadline für registrierungen	Дата и время крайнего срока для регистрации
+hat beziehung zu dokument	имеет отношение к документу
+gehört zu event	принадлежит к событию
+ist thema von	Тема по
+ist eingeleitet von	инициируется
+ist begutachtet von	рассматривается
+hat bewertung	имеет оценки
+ist anbieter von	поставщик является
+hat programm	имеет программу
+hat geschrieben	Написал
+ist über beitrag	о вкладе
+ist geschrieben von	написана
+hat aufruf	есть вызов
+für event	для события
+ist gutachtenhistorie von	Журнал отчета
+ist besucher auf	посетителей
+hat ort	имеет место
+bezieht sich auf	относится к
+ist menü von	меню является
+hat gutachtenhistorie	имеет мнение историю
+leitet ein	инициирует
+ist ort von	Это место
+ist angeboten von	предлагается
+ist präsentiert in	представлены в
+hat menü	меню
+tutoriumvorsitz	Учебник стул
+event	события
+zugewiesener beitrag	назначенные вклад
+organisierende agentur	Организация агентства
+konferenz-beitag	Beitag конференции
+vorsitzender des programmausschusses	Председатель Комитета программы
+mitglied des programmausschusses	Член Комитета по программе
+konferenz-bankett	Конференц банкет
+flyer	Флаер
+abgelehntes beitrag	отклонил войска
+abstraktes tutorium	Аннотация учебника
+akademische institution	научное учреждение
+eingeladener abstrakter vortrag	взимается абстрактная лекция
+workshop-beitrag	Семинар вклад
+konferenzreise	Конференция путешествия
+webseite	веб-сайт
+konferenzfortschritte	Ход Конференции
+neutrales gutachten	нейтральное мнение
+früh registrierter teilnehmer	раннее зарегистрированных участников
+programmbroschüre	Брошюра программы
+evaluierter beitrag	Оценка вклада
+sitzung	сессия
+ausgehängte sitzung	После отцепки сессии
+industrieller beitrag	промышленные вклад
+spät registrierter teilnehmer	Последние зарегистрированные участники
+reguläre sitzung	очередная сессия
+multi-author volume	объем Multi-автора
+fortschritte	прогресс
+vorsitzender des organisationsausschusses	Председатель организационного комитета
+koferenzsitzung	koferenzsitzung
+workshop-sitzung	Сессии семинара
+forschungsinstitut	Научно-исследовательский институт
+sitzungsvorsitz	Председатель сессии
+möglicher gutachter	потенциальные Отзывы
+wissentschaftliches event	wissentschaftliches событие
+mitglied des steuerungsausschusses	Член Руководящего комитета
+beigetragener vortrag	внесли лекция
+demo vorstand	Совет демо
+demo sitzung	демо сессия
+workshopvorsitz	workshopvorsitz
+individuelle präsentation	отдельные презентации
+mitglied des organisationsausschusses	Член организационного комитета
+track	трек
+negatives gutachten	негативное мнение
+verleger der fortschritte	Издатель, который прогресс
+agenturmitarbeiter	Сотрудники агентства
+ort	место
+industrielle sitzung	промышленные сессия
+author eines beitrags	Автор вклада
+positives gutachten	положительное мнение
+forschungsthema	Тема исследования
+koferenz	koferenz
+ausgehängter beitrag	отстранен от вклада
+demo beitrag	Вклад демо
+event ist gelistet	список событий
+hat teil	принимал участие
+gutachter des beitrags ist	Отзыв вклада
+organisiert von	организован
+referenziert	ссылки
+ist teil von	является частью
+thema ist abgedeckt von	тема раскрывается в
+ist invers zu teil von 7	обратное является частью 7
+gutachten ist geschrieben von	мнение написана
+ist gutachten des beitrags	Это мнение на вклад
+organisiert wissenschaftlich	организован научный
+hat gutachter	имеет рецензент
+wissenschaftlich organisiert von	научно организованный
+organisiert technisch	организован технический
+reihe enhält beitrag	включает в себя серии вклад
+ort von	место
+präsentation des beitrages	Презентация вклада
+aktualisiert version von	обновленная версия
+beitrag ist teil der reihe	вклад является частью серии
+deckt thema	охватывает темы
+hat aktualisierte version	обновил версию
+findet statt in	имеет место в
+hat event	событие
+listet event auf	списки событий
+wurde veröffenlicht von	была опубликована
+referenziert in	ссылка в
+organisiert	организован
+ist teil von einem event	является частью события
+technisch organisiert von	технически организована
+ist author von	является автором
+beitrag wird präsentiert als	вклад будет представлен в качестве
+zeit	время
+registrierungsformular (konferenz)	Регистрационная форма (конференция)
+konferenz-halle	Конференц зал
+powerpoint-präsentation	Презентация PowerPoint
+örtlichkeit	Местоположение
+folie	фольга
+folie (overhead projektor)	фольга (проектор)
+formular zur information des autors	Форма для информации автора
+willkommensrede	Приветственное слово
+vortragender, der nur an einem tag redet	Преподаватель, который говорит только в один день
+vortrag gehalten von einem redner	Лекция, удерживаемые спикера
+angestellter, der kein redner ist	сотрудник, который не является общественный спикер
+angestellter vortragender	преподаватель работника
+frist zur benachrichtigung der akzeptanz	срок для уведомления о принятии
+frist	Крайний срок
+session	сессия
+aktivität, die nach der konferenz stattfindet	деятельность, которая имеет место после Конференции
+hauptbüro	Главный офис
+konferenzgebäude	Конференционное здание
+formular	форма
+frist zur hotelreservierung	Крайний срок для бронирования отеля
+registrierung	регистрация
+mailingliste	Компания
+einzelzimmer	Одноместный номер
+anmeldegebühr für ein nicht-mitglied	Регистрационный взнос за-члена
+stadt, in der die konferenz stattfindet	Город, где будет проводиться Конференция
+vortrag im plenum	Лекция на пленарных заседаниях
+endversion des manuskripts	endversion рукописи
+staat der konferenz	Конференции
+redner	колонки
+tagungsband als buch	tagungsband как книга
+delegierter	Делегат
+taxi	такси
+gegenstand	Тема
+gebühr für einen zusatzausflug	плата за один дополнительный путешествие
+abreisegebühr	Сбор за отправление
+währung	Валюта
+automobil	Автомобильные
+zahlungsbeleg	Доказательство оплаты
+geldbetrag	Количество денег
+anmeldegebühr für einen autor, der den tagungsband als cd erhält	Регистрационный взнос за автора, получать tagungsband как cd
+nicht-redner	-Акустические системы
+bank transfer	Банковский перевод
+vortragender	Лектор
+anwesenheitsnachweis	Посещаемость лист
+shuttle-bus	автобус
+tagestour	Дневный тур
+jede art von dokument	любой тип документа
+zeit (zeitraum und zeitpunkt)	время (время и дата)
+kreditkarte	Кредитная карта
+publikation	публикации
+technisches komitee	Технический Комитет
+einreichungsfrist	Последний срок подачи заявок
+vorstellung eines redners	внедрение в спикера
+technische aktivität	техническая деятельность
+gegenstand (im allgemeinen)	Тема (в целом)
+gebäude	здание
+audiovisuelle ausstattung	аудио-визуальное оборудование
+vortragender, der im plenum redet	Преподаватель, который говорят на пленарных заседаниях
+konferenzrestaurant	Ресторан конференции
+karte	Карта
+student, der kein redner ist	студент, который не является общественный спикер
+studentischer vortragender	Преподаватель студент
+vortragender, der ein tutorium hält	Проводит преподаватель, учебник
+akzeptieren eines manuskripts	принимаем рукописи
+overhead-projektor	Оверхед-проектор
+video-präsentation	Видео-презентация
+computer	компьютер
+kleintransporter	Розничная торговля
+modellierungsaktivität	Моделирование деятельности
+anmeldegebühr	Регистрационный взнос
+dinner-bankett	ужин banquet
+hotelgebühr	Плата за отель
+stadt, aus der ein sponzor kommt	Город, спонсором происходит от
+forschungsaktivität	Научно-исследовательская деятельность
+mieten eines autos	Аренда автомобиля
+abreise	Отъезд
+staat des vortragenden	Состояние представления
+vortragender, der im konferenzhotel untergebracht ist	Преподаватель, в конференц-отель
+sponsor	Спонсор
+trinkgeld	Подсказка
+haus einer firma, die ein sponsor ist	Дом для компании, которая является спонсором
+cameraready-frist	cameraready - крайний срок
+ablehnung eines manuskripts	отказ от рукописи
+registrierungsformular (hotel)	Регистрационная форма (Гостиница)
+universität eines vortragenden	Университет представления
+steuer	налог
+stadt, aus der ein vortragender kommt	Город, происходит от лектора
+staat	Государство
+stadt, die ein ausflugsziel darstellt	Город, представляющий пункт назначения
+anmeldegebühr für einen studenten	Регистрационный взнос для студента
+originalversion des manuskripts	Оригинальная версия рукописи
+registrierungsformular	Регистрационная форма
+autor, der einen tagungsband in buchform erhält	Автор, получив tagungsband в виде книги
+konferenztage	Дни конференции
+ausflugstag	Экскурсионный день
+soziale aktivität	социальная активность
+simulationsaktivität	Моделирование деятельности
+haus eines vortragenden	Дом представления
+transportfahrzeug	Транспортное средство
+sponsorgebühr	sponsorgebuehr
+aktivität, die vor der konferenz stattfindet	деятельность, которая происходит до начала Конференции
+lcd-projektor	ЖК-проектор
+mitglied von iasted	Член iasted
+kurze einführung für den session-vorsitz	Краткое введение в сессии место выше
+tagungsband als cd	tagungsband как cd
+registrierungsfrist	Крайний срок регистрации
+annahme eines manuskripts	принятии рукописи
+anmeldegebühr für einen autor, der den tagungsband in buchform erhält	Регистрационный взнос для автора, который получает tagungsband в виде книги
+flughafen in/am konferenzort	Трансфер в место проведения Конференции
+einzelner konferenztag	один день
+autor, der einen tagungsband als cd erhält	Автор, получения tagungsband как cd
+anmeldegebühr für ein mitglied	Регистрационный взнос за членом
+hotelzimmer	Номера отеля
+videorecorder	Видеомагнитофон
+vorstellung	Презентация
+nicht-mitglied von iasted	член iasted
+mehrwertsteuer	добавленную стоимость налогового
+konferenzbesucher	Посетителей конференции
+anmeldegebühr für einen nicht-autor	Регистрационный взнос за-автор
+gebühr	плата
+zuhörer	слушателей
+zeitzone	Часовой пояс
+staat des sponzors	Состояние спонсоры
+konferenzhotel	Конференц-отель
+cocktail-empfang	коктейль прием
+doppelzimmer	Двухместный номер
+aktivität, die während der konferenz stattfindet	деятельность, которая имеет место во время конференции
+visum	Визы
+aktivität	деятельность
+scheck	проверить
+einladungsbrief	Письмо-приглашение
+ist entworfen/bestimmt für	дизайн предназначен для
+wird besucht von	посещают
+wird vorbereitet von	подготовлен
+benötigt	Обязательно
+sendet	посылает
+erhält	Получает
+wird versendet nach	будет разослан
+unterzeichnet	подписано
+muss erledigt sein bis	должно быть сделано для
+hat betrag von	есть количество
+ist datiert auf	датируется
+spricht in (räumlich und zeitlich)	говорит (пространственных и временных)
+wird bezahlt mit	будет выплачиваться с
+istanwesend (räumlich und zeitlich)	istanwesend (пространственных и временных)
+ist verbunden mit/bezogen auf	подключенное связанных с
+findet statt nach	имеет место после
+wird verwendet von	используется
+istanwesend (räumlich)	istanwesend (место)
+ist gemacht aus	производится
+bereitet vor	подготовлено
+wird versendet von	будет выслан по
+findet statt vor	происходит перед
+wird benötigt für	требуется для
+ist ausgestattet mit	оснащен
+wird verwendet für	используется для
+wird bezahlt von	будут оплачены
+wird versendet vor	будет разослан
+wird gegeben/ausgeführt von	будет, учитывая/проводимой
+wird unterzeichnet von	подписывается
+bewohnt	жилые
+wirdgegebenan	wirdgegebenan
+gibt	являются
+wird bezahlt für	будут платить за
+durchgeht	проходит через
+wird bezahlt in	будет выплачиваться в
+befindet sich in	расположен в
+wird bewohnt von	населен
+bezahlt	заплатил
+award für besten forschungsbeitrag	Премия за лучшее исследование
+ausschuss für den award des besten beitrags	Комитет по присуждению премии Лучший вклад
+gold sponsor der konferenz	Золотой спонсор конференции
+sponsor als aussteller	Спонсором в качестве экспонента
+deadline für eine abstrakte einreichung	Крайний срок подачи тезисов
+deadline	Крайний срок
+award für besten anwendbaren beitrag	Премия за лучший взносов
+registrierungsgebühr	Регистрационный взнос
+organisatoren der konferenz	Организаторы конференции
+registrierungskosten für studenten	Стоимость регистрации для студентов
+eines studentischen beitrags	Студенческий вклад
+registrierungskosten für personen, die nicht mitglied von sig sind	Стоимость регистрации для людей, которые не являются членами sig
+hauptbüro der konferenz	Главный офис конференции
+webmaster	для веб-мастеров
+deadline für die einreichung eines beitrags	Крайний срок для представления вклада
+programmvorsitzender	Программа Председатель
+author eines konferenzbeitrages	Автор вклад Конференции
+sponsorenbeitrag	sponsorenbeitrag
+konferenzsaal	Конференц-зал
+konferenz acm sigdkdd	ACM sigdkdd конференции
+bronze sponsor der konferenz	Бронзовый спонсор конференции
+registrierungskosten für mitglieder von sigmod	Стоимость регистрации для членов sigmod
+konferenzgebühr	Организационный взнос
+deadline für die mitteilung eines authors	срок для уведомления авторов
+silber sponsor der konferenz	Серебряный спонсор конференции
+award für besten studentischen beitrag	Приз за лучший студенческий вклад
+platin sponsor der konferenz	Платиновый спонсор конференции
+award für konferenzbeitrag	Награду за вклад в Конференции
+registrierungskosten für mitglieder von sigkdd	Стоимость регистрации для членов sigkdd
+sponsor für besten studentischen beitrag	Спонсор за лучший студенческий вклад
+hörer der konferenz	слушатели конференции
+hotel	Отель
+konferenz organisiert von	Конференция, организованная
+deadline für authorenmitteilung	Крайний срок для authorenmitteilung
+bleibt in	остается в
+sponsoren wurden aufgerufen von	спонсоры были вызваны
+paid zahlt registrierungsbeitrag	оплатить регистрацию пост заплатил
+beitrag wurde eingereicht von	вклад был представлен
+deadline festgelegt	установленного срока
+präsentiert dokumente	представляет документы
+hat award	Премия
+aufruf von sponsoren	вызов спонсоров
+organisiert konferenz	организованная конференция
+hat preis	имеет цену
+ist datiert auf den	от о
+registrierungsbeitrags ist in währung	реестр вклад в валюте
+hat name der konferenz	Название конференции
+hat nationalität	имеет гражданство
+hat sponsorenname	имеет sponsorenname
+datum des ersten tages der konferenz ist	Дата первого дня Конференции
+award erhalten von	получил награду от
+registrierungsbeitrag gezahlt von	Реестр взнос оплачивается
+hat award erhalten von	получил награду от
+wurde präsentiert von	был представлен
+deadline eingerichtet für	Крайний срок для
+konferenz findet in folgender stadt statt	Конференция будет проводиться в следующие города
+datum des letzten tages der konferenz ist	Дата последнего дня Конференции

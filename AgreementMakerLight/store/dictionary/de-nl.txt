@@ -1,0 +1,709 @@
+person	persoon
+dokument	document
+präferenz	voorkeur
+verfasser, der kein gutachter ist	schrijver die geen expert is
+meta-gutachten (gutachten über ein gutachten)	Meta - advies (advies over een advies)
+meta-gutachten	Meta - advies
+mitverfasser	mede-auteur
+vorsitzender	Voorzitter
+verfasser	Auteur
+vorsitzender der konferenz	Voorzitter van de conferentie
+vorsitzender des programm-komitees	Voorzitter van het programma Comité
+meta-gutachater	Meta-gutachater
+zurückweisung	afwijzing
+meta-gutachater (gutachter der gutachten begutachtet)	Meta-gutachater (expert advies die herzien)
+vollständiger konferenzbeitrag	volledige conferentie vergoeding
+konferenz	Conferentie
+gegenstandsbereich	Toepassingsgebied
+gutachten	advies
+externer gutachter	externe revisoren
+akzeptanz	aanvaarding
+konferenzbeitrag	Conferentie-bijdrage
+programm-komitee	Programma Comité
+teilnehmer einer konferenz	deelnemers aan een conferentie
+gutachter	expert
+benutzer	gebruiker
+gebot	geboden
+stellvertretender vorsitz	Plaatsvervangend zetel in
+entscheidung	besluit
+mitglied des programm-komitees	Lid van het programma Comité
+abstrakt eines konferenzbeitrags	Samenvatting van de bijdrage van een conferentie
+administrator	Beheerder
+hat details eingefügt in bezug auf	heeft ingevoegd details met betrekking tot
+hat die zuordnung der beiträge abgeschlossen	de toewijzing van de bijdragen is voltooid
+hat zugewiesen	heeft toegewezen aan
+druckt papierausdruck des mailing-manifests	afdrukken van een papieren exemplaar van de mailing manifest
+beitragszuordnungs-software ausgeführt von	lopende beitragszuordnungs software door
+zugewiesen zu	toegewezen aan
+details eingefügt von	Details toegevoegd door
+beitragszuordnung abgeschlossen von	Opdracht voltooid door post
+gelesen von gutachter	door deskundigen gelezen
+hat die beitrags-zuordnungssoftware ausgeführt	de bijdrage zuordnungssoftware heeft uitgevoerd
+hat virtuelles treffen veranlasst	Ontmoet virtuele heeft geleid
+hat abgeglichen	heeft geëvenaard
+mitverfasst von	geschreven door
+hat interessenskonflikt in bezug auf	interessenskonflikt heeft in verband met
+abgewiesen von	verworpen door
+geschrieben von	Geplaatst door
+virtuelles treffen veranlasst von	virtuele vergadering geleid door
+gelesen von meta-gutachter	gelezen door meta revisor
+akzeptiert von	aanvaard door
+ist mitglied des programm-komitees	is een lid van het programma Comité
+hat beitrag geschrieben	heeft geschreven bijdrage
+hat die gebotsphase gestartet	begon de bod-fase
+kriterien zu gutachten eingefügt von	criteria advies ingevoegd door
+hat papier abgelehnt	geweigerde papier
+bestimme maximale anzahl an zugewiesenen beiträgen	Kies maximum aantal toegewezen bijdragen
+ist entschieden worden als	Het was besloten als een
+steht in interessen-konflikt mit beitrag	belangen in strijd is met de bijdrage
+hat webseite an url	heeft website op url
+hat namen	de naam heeft
+hat datum	datum
+akzeptiert hardcopy-einsendungen	hardcopy\r inzendingen accepteren
+hat id	id heeft
+maximale anzahl an zugewiesenen beiträgen	maximum aantal toegewezen bijdragen
+hat titel	titel heeft
+hat email	heeft e-mail
+zugewiesen von administrator	toegewezen door beheerder
+hat mitglied	Lid heeft
+hat logo an url	logo url heeft
+gutachten pro beitrag	advies per bijdrage
+zugewiesen von gutachter	toegewezen door deskundigen
+hat akzeptiert	heeft aanvaard
+hat papier gelesen	lezen van papier
+hat gegenstandsbereich	toepassingsgebied heeft
+papierausdruck des mailing-manifests gedruckt von	gedrukt hard exemplaar van de mailing manifest door
+ist zugeordnet worden	is bevolen om te
+teilnehmer von	deelnemers uit
+hat die zeit des begutachtens beendet	die tijd van beoordeling is voltooid
+hat hinzugefügt	toegevoegd
+abgeglichen von	geëvenaard door
+hinzugefügt von	toegevoegd door
+hat teilnehmer	deelnemer
+hat beitrag eingesendet	heeft bijdragen ingediend
+hat beitrag mitverfasst	heeft geschreven bijdrage
+hat kriterien zu gutachten eingefügt	criteria heeft advies toegevoegd
+gebotsphase gestartet von	Bod fase gestart door
+hat gutachten geschrieben	advies heeft geschreven
+hat gebot erhalten	krijgen heeft bevolen
+konferenzankündigung	Conferentie aankondiging
+ausschuss	Comité
+erweitertes abstrakt	uitgebreide abstract
+koferenzdokument	koferenzdokument
+informationen für teilnehmer	informatie voor deelnemers
+präsentation	presentatie
+aktiver konferenzteilnehmer	actieve deelnemers
+passiver konferenzteilnehmer	passieve deelnemers
+eingereichter beitrag	ingezonden bijdrage
+konferenzgebühren	Conferentie vergoedingen
+organisator	Organisator
+druckfertiger beitrag	druckfertiger bijdrage
+eingeladener vortrag	uitgenodigde Hoorcollege
+fortschritte der konferenz	voortgang van de conferentie
+abstrakt	Abstract
+wichtiges datum	belangrijke datum
+konferenzbeteiligung	Conferentie deelname
+angehörige des ausschusses	leden van de Commissie
+koferenzbewerber	koferenzbewerber
+konferenzbewerber, der die konferenzgebühr gezahlt hat	Conferentie aanvragers die betaald van de conferentie
+steuerungsausschuss	Stuurgroep
+begutachteter beitrag	gerefereed bijdrage
+organisationsausschuss	Organisatie comité
+herausgeber	Uitgever
+aufruf zu teilnahme	oproep tot deelname
+geschriebener beitrag	schriftelijke bijdrage
+internet der konferenz	Internet van conferentie
+leiter der workshops	Directeur van de workshop
+konferenzbewerber, der die konferenzgebühr spät gezahlt hat	Conferentie kandidaat die laat de conferentie vergoeding heeft betaald
+tutorium	zelfstudie
+angenommener beitrag	vermoedelijke bijdrage
+mitverfasser eines beitrags	mede-auteur van de bijdrage van
+organisation	Organisatie
+programmausschuss	Programma Comité
+thema	thema
+author eines regulären beitrags	Auteur van een regelmatige bijdrage
+aushang	Prikbord
+fachgebiet des gutachters	Gebied van deskundigheid van de verificateur
+regulärer beitrag	regelmatige bijdrage
+konferenzteilnehmer, der einen beitrag geleistet hat	De deelnemers aan de conferentie, de één bijdrage heeft geleverd
+workshop	Workshop
+eingeladener referent	uitgenodigd spreker
+präferenz des gutachters	voorkeur van de verificateur
+primärer author eines beitrags	primaire auteur van een bijdrage
+stellvertretender vorsitzender	Vice-Voorzitter
+konferenzreihe	Conferentie serie
+konferenzbewerber, der die konferenzgebühr früh gezahlt hat	Conferentie kandidaat die vroeg de conferentie vergoeding heeft betaald
+konferenzteilnehmer	Deelnemers aan de conferentie
+ablauf der konferenz	verloop van de conferentie
+registrierter bewerber	geregistreerde aanvragers
+abschnitte der konferenz	secties van de conferentie
+aufruf für beiträge	oproep voor bijdragen
+abgelehnter beitrag	geweigerde bijdrage
+datum der einreichung des abstrakts	datum van indiening van de samenvattingen
+hat e-mailadresse	e-mailadres
+ist am folgenden datum veröffentlicht worden	is gepubliceerd op de volgende datum
+hat name	naam
+datum der druckfertigen einreichung ist	de definitieve indieningsdatum is
+ort der konferenz	plaats van de conferentie
+grad der gutachterpräferenz	gewoon de deskundige voorkeur
+hat geschlecht	seks
+hat mitglieder	leden heeft
+hat abfolge	volgorde heeft
+ist anfangsdatum	begindatum is
+anzahl der fortschritte der konferenz	aantal vooruitgang de conferentie
+ist eingereicht für	wordt ingediend voor
+liefert konferenzbeitrag	Conferentie-bijdrage
+ausschuss der konferenz ist	Comité van de conferentie is
+hat abschnitt	heeft afgesneden
+grad des fachgebiets des gutachters ist	mate van het onderwerp van de verificateur is
+hat vornamen	heeft gegeven naam
+datum der einreichung des kompletten beitrags ist	datum van indiening van de volledige bijdrage is
+isbn der fortschritte ist	ISBN welke vooruitgang is
+hat nachnamen	achternaam bevat
+url der konferenz ist	de conferentie URL is
+ist enddatum	einddatum
+datum der akzeptanz-mitteilung ist	datum van de kennisgeving van de aanvaarding is
+hat fachgutachten	deskundig advies heeft
+ist ein präferiertes thema oder fachgebiet eines gutachters	is een voorkeur onderwerp of gebied van deskundigheid een expert
+hat gutachten	advies heeft
+ist vorsitzender des ausschusses	Voorzitter van de Commissie is
+hat beitrag	bijdrage heeft
+ist teil der konferenzreihe	is onderdeel van de conferentie-serie
+organisationsausschuss der konferenz ist	het Organiserend Comité van de conferentie is
+hat author	heeft auteur
+hält präsentation	bedrijf presentatie
+ist ausschuss der konferenz	Comité van de conferentie
+hat workshop-thema	Workshop thema
+ist ein präferiertes thema eines gutachters	is een voorkeur thema van een deskundige
+hat beitrag eingreicht	bijdrage eingreicht heeft
+eingeladen von gutachter	geïnviteerde expert
+hat abstrakt	heeft abstract
+veröffentlicht	gepubliceerd
+hat thema oder beitrag eingereicht	onderwerp of voorgelegde bijdragen
+programmausschuss der konferenz ist	Comité van het programma van de conferentie is
+begutachtet beitrag	overheidsbijdrage
+ist steuerungsausschuss der konferenz	is de conferentie Steering Committee
+ist organisationsausschuss der konferenz	is het Organiserend Comité van de conferentie
+ist ein wichtiges datum einer konferenzreihe	is een belangrijke datum voor een reeks conferentie
+verleger des konferenzfortschritts ist	Uitgever van de Conferentie vooruitgang is
+präsentiert von	gepresenteerd door
+hat eine zugewiesene gutachterpräferenz	heeft een toegewezen deskundige voorkeur
+ist mitglied von	is een lid van
+hat wichtiges datum	heeft belangrijke datum
+hat tutorium	heeft tutorial
+präferenz oder fachgebiet des gutachters ist	voorkeur of het gebied van deskundigheid van de verificateur is
+ist der erst teil von	is slechts een deel van
+lädt mitgutachter ein	met goede achtste nodigt
+hat stellvertrenden ausschussvorsitzender	heeft stellvertrenden Voorzitter
+ist leiter des workshops	is de directeur van de workshop
+hat workshop-leitung	Workshop beheer
+hat ausschussvorsitzender	heeft Voorzitter
+ist programmausschuss der konferenz	de Conferentiecommissie programma is
+steuerungsausschuss der konferenz ist	Stuurgroep van de conferentie is
+hat workshop	heeft workshop
+ist stellvertretender vorsitzender des ausschusses	Vice-voorzitter van de Commissie is
+ist thema ein konferenzabschnittes	is een gedeelte van het thema van de conferentie
+ereignis der begutachtung	gebeurtenis van beoordeling
+studentischer teilnehmer	student deelnemers
+ereignis des sendens des "camera-ready" papiers	gebeurtenis van de verzending van het papier "camera klaar"
+ereignis	gebeurtenis
+vorsitz des programmkomitees	zetel in het programma Comité
+einreichung	indiening
+regulärer teilnehmer	regelmatige deelnemers
+student	student
+firma	bedrijf
+mitglied	Lid
+land	land
+ausflug	excursie
+mitglied des programmkomitees	Lid van het programma Comité
+autor	Auteur
+bankett	Feestzaal
+poster	poster
+papier	papier
+kurzes papier	korte paper
+teilnehmer	deelnemers
+stadt	Stad
+empfang	Receptie
+universität	Universiteit
+freiwilliger	vrijwillige
+ereignis zur registrierung der teilnehmer	gebeurtenis aan de registratie van de deelnemers
+ereignis des einreichens eines papiers	gebeurtenis een papier in te dienen
+arbeits-ereignis	werkgelegenheid gebeurtenis
+ergebnis-der-begutachtung ereignis	resultaat van beoordeling evenement
+soziales ereignis	sociaal evenement
+administratives ereignis	Administratieve gebeurtenis
+wissenschaftler	wetenschappers
+assistent	Wizard
+minimale anzahl	minimumaantal
+endet am	eindigt op
+hat straße	weg heeft
+studiert an	studeerde aan
+hat stadt	Stad heeft
+frühzeitige registrierung	vroege registratie
+begutachtet	onderzocht
+folgt	volgt
+fachkundig für	deskundige voor
+schreibt	schrijft
+hat land	land heeft
+angestellt bei	gehuurd op
+gleichzeitig mit	op hetzelfde moment met
+hat postleitzahl	zip code heeft
+hat kurztitel	korte Titel heeft
+hat homepage	Homepage
+hat telephonnummer	telefoonnummer heeft
+hat mehrwertsteuer	heeft toegevoegde waarde belasting
+vorgegebene anzahl	zendernummer te kiezen
+hat kontakt-email adresse	Hoe contact e-mailadres heeft
+hat faxnummer	faxnummer heeft
+findet statt an	zal worden gehouden op
+maximale anzahl	maximum aantal
+hat stichwörter	zoekwoorden heeft
+startet am	begint bij
+hat nachname	achternaam bevat
+hat email adresse	e-mailadres heeft
+hat thema	onderwerp
+beschäftigt sich mit	aanbiedingen met
+hat anmerkung	heeft aantekening
+hat administratives event	Administratieve gebeurtenis
+konferenz-dinner	Conferentie diner
+computernetzwerksensor-thema	computernetzwerksensor thema
+platz	plaats
+sicherheits-thema	veiligheid thema
+gutachtenbewertung	Advies rating
+ausstehender beitrag	bijdrage in afwachting van
+numerische gutachtenfrage	numerieke advies vraag
+speisekarte	Menu
+multimedia-thema	Multimedia onderwerp
+freie zeit	Vrije tijd
+aufruf	oproep
+akademisches event	academische gebeurtenis
+persönliche historie von gutachten	persoonlijke geschiedenis van advies
+konferenzversitzender	Conferentie versitzender
+mahlzeit	maaltijd
+schwach abgelehnte bewertung	zwakke verworpen beoordeling
+sitzungsvorsitzender	sessie Voorzitter
+foliensatz	Folie set
+pause	pauze
+mobiles computing-thema	mobiele computing thema
+soziales event	sociaal evenement
+author	Auteur
+abschlussvortrag	Eindpresentatie
+akademische organisation	academische organisatie
+abgelehnte bewertung	geweigerde beoordeling
+regierungsorganisation	Overheidsorganisatie
+optische computernetzwerke-thema	optische computernetzwerke thema
+einebige konferenz	einebige conferentie
+"nur tests"-thema	"gewoon testen" thema
+programm	programma
+industrielle organisation	Industriële organisatie
+sitzungsraum	vergaderzaal
+formular für gutachten	formulier voor advies
+parallel und verteiltes computing-thema	parallelle en gedistribueerde gegevensverwerking thema
+persönliche historie	persoonlijke geschiedenis
+aktiver beitrag	actieve bijdrage
+kommunikationstheorie-thema	onderwerp van communicatietheorie
+computernetzwerkunternehmen-thema	computer netwerk operator thema
+akzeptierter beitrag	aanvaarde bijdragen
+medizinisches thema	medische thema
+veranstaltungsort der konferenz	uit de conferentie zaal
+kryptographisches thema	cryptografische thema
+vortrag	Hoorcollege
+computernetzwerksicherheit-thema	computernetzwerksicherheit thema
+wörtliche gutachtenfrage	letterlijke advies vraag
+speiseplatz	Eetkamer
+persönliche historie von veröffentlichungen	persoonlijke geschiedenis van publicaties
+begrüßungsvortrag	Welkom presentatie
+satelliten- und weltraumkommunikation-thema	satelliet en ruimte communicatie thema
+gutachtenfrage	Advies vraag
+präsentation eines beitrags	presentatie van een bijdrage
+event im zusammenhang mit einer konferenz	gebeurtenis aan een conferentie gerelateerde
+trägerfrequenzanlage-thema	Vervoerder frequentie systeemthema
+aufruf für manuskripte	oproep voor handschriften
+mikroelektronisches thema	mikroelektronisches thema
+zurückgezogener beitrag	bijdrage ingetrokken
+performance-thema	prestatieprobleem
+aufruf für gutachten	oproep voor advies
+konferenzsitzung	Conferentie sessie
+kommunikations-thema	mededeling thema
+akzeptierte bewertung	aanvaarde waardering
+mitglied von tpc	Lid van tpc
+computernetzwerkanwendungen-thema	computernetzwerkanwendungen thema
+radiokommunikation-thema	Radio communicatie thema
+bewerteter beitrag	gewogen bijdrage
+organistorische besprechung	organistorische vergadering
+cad-thema	CAD thema
+essenszeit	Tijd om te eten
+computernetzwerkwechsel-thema	computernetzwerkwechsel thema
+präsentator	praesentator
+computernetzwerkverwaltung-thema	computernetzwerkverwaltung thema
+antennen-thema	antennes thema
+kein akademisches event	geen academische gebeurtenis
+zweiebige konferenz	zweiebige conferentie
+kaffeepause	Koffiepauze
+besucher	bezoekers
+nichtregierungsorganisation	Niet-gouvernementele organisatie
+reisesubvention	Reizen subsidies
+betriebssystem-thema	Besturingssysteem thema
+beitrag	bijdrage
+computernetzwerke-thema	computernetzwerke thema
+signalverarbeitung-thema	Signaal processing thema
+unterkunft	accommodatie
+drahtlose kommunkation-thema	draadloze communicatie thema
+compututerarchitektur-thema	compututerarchitektur thema
+computernetzwerkspezifikation-thema	computernetzwerkspezifikation thema
+sponsoring	sponsoring
+kontaktinformationen	Contact informatie
+akzeptiert, wenn spielraum vorhanden ist, bewertung	geaccepteerd als ruimte beschikbaar is, Review, test
+veröffentlichter beitrag	gepubliceerde bijdragen
+hat datum und zeit des endes	datum en tijd van het einde
+hat anweisungen für einreichungen	instructies voor inzendingen
+hat e-mail	e-mail heeft
+hat besucher	bezoekers
+hat datum und zeit der deadline für manuskripte	datum en tijd van de termijn voor manuscripten
+hat biografie	heeft biografie
+hat telefon	telefoon
+hat datum und zeit des beginns	datum en tijdstip van aanvang
+hat deadline für einreichungen	deadline voor inzendingen is
+hat kostensumme	totaal van de kosten heeft
+hat währung der kosten	heeft munt de kosten
+hat datum und zeit des beginns der konferenz	datum en tijd van het begin van de conferentie
+hat datum und zeit der deadline für beiträge	datum en tijd van de uiterste termijn voor bijdragen
+hat datum und zeit des endes der konferenz	datum en tijd van het einde van de conferentie
+hat vollständigen namen der konferenz	heeft de volledige naam van de conferentie
+hat datum und zeit der deadline für registrierungen	datum en tijd van de deadline voor registraties
+hat beziehung zu dokument	heeft relatie met document
+gehört zu event	behoort tot de gebeurtenis
+ist thema von	thema door
+ist eingeleitet von	wordt geïnitieerd door
+ist begutachtet von	wordt gecontroleerd door
+hat bewertung	evaluatie heeft
+ist anbieter von	leverancier is door
+hat programm	programma heeft
+hat geschrieben	heeft geschreven
+ist über beitrag	is over bijdrage
+ist geschrieben von	is geschreven door
+hat aufruf	heeft call
+für event	voor gebeurtenis
+ist gutachtenhistorie von	Verslag geschiedenis door
+ist besucher auf	is bezoekers
+hat ort	locatie heeft
+bezieht sich auf	verwijst naar
+ist menü von	menu is door
+hat gutachtenhistorie	heeft advies geschiedenis
+leitet ein	ingewijden
+ist ort von	plaats van is
+ist angeboten von	wordt aangeboden door
+ist präsentiert in	wordt gepresenteerd in
+hat menü	menu heeft
+tutoriumvorsitz	Tutorial stoel
+event	gebeurtenis
+zugewiesener beitrag	toegewezen bijdrage
+organisierende agentur	organiserende agentschap
+konferenz-beitag	Conferentie beitag
+vorsitzender des programmausschusses	Voorzitter van het programma Comité
+mitglied des programmausschusses	Lid van het programmacomité
+konferenz-bankett	Conferentie feestzaal
+flyer	Flyer
+abgelehntes beitrag	verworpen bij te dragen
+abstraktes tutorium	abstracte tutorial
+akademische institution	academische instelling
+eingeladener abstrakter vortrag	een abstracte lezing in rekening gebracht
+workshop-beitrag	Workshop-bijdrage
+konferenzreise	Conferentie reizen
+webseite	website
+konferenzfortschritte	Conferentie vooruitgang
+neutrales gutachten	neutraal advies
+früh registrierter teilnehmer	vroege ingeschreven deelnemers
+programmbroschüre	Programma brochure
+evaluierter beitrag	geëvalueerd bijdrage
+sitzung	sessie
+ausgehängte sitzung	Na de sessie ontkoppelen
+industrieller beitrag	industriële bijdrage
+spät registrierter teilnehmer	laat ingeschreven deelnemers
+reguläre sitzung	gewone zitting
+multi-author volume	multi auteur volume
+fortschritte	vooruitgang
+vorsitzender des organisationsausschusses	Voorzitter van het Organiserend Comité
+koferenzsitzung	koferenzsitzung
+workshop-sitzung	Workshop sessie
+forschungsinstitut	Onderzoeksinstituut
+sitzungsvorsitz	Sessie stoel
+möglicher gutachter	potentiële revisoren
+wissentschaftliches event	wissentschaftliches, gebeurtenis
+mitglied des steuerungsausschusses	Lid van het Steering Committee
+beigetragener vortrag	Hoorcollege bijgedragen
+demo vorstand	Demo bord
+demo sitzung	Demosessie
+workshopvorsitz	workshopvorsitz
+individuelle präsentation	individuele presentatie
+mitglied des organisationsausschusses	Lid van het Organiserend Comité
+track	bijhouden
+negatives gutachten	negatief advies
+verleger der fortschritte	Uitgever die vooruitgang
+agenturmitarbeiter	Bureau werknemers
+ort	plaats
+industrielle sitzung	industriële sessie
+author eines beitrags	Auteur van een bijdrage
+positives gutachten	positief advies
+forschungsthema	Onderzoeksonderwerp
+koferenz	koferenz
+ausgehängter beitrag	geschorst vanaf bijdrage
+demo beitrag	Demo bijdrage
+event ist gelistet	gebeurtenis wordt vermeld
+hat teil	heeft deelgenomen aan
+gutachter des beitrags ist	beoordeling van de bijdrage is
+organisiert von	georganiseerd door
+referenziert	verwijzingen
+ist teil von	maakt deel uit van
+thema ist abgedeckt von	onderwerp wordt gedekt door
+ist invers zu teil von 7	inverse is onderdeel van 7
+gutachten ist geschrieben von	advies is geschreven door
+ist gutachten des beitrags	advies van de bijdrage is
+organisiert wissenschaftlich	georganiseerd wetenschappelijk
+hat gutachter	revisor heeft
+wissenschaftlich organisiert von	wetenschappelijk georganiseerd door
+organisiert technisch	georganiseerd technische
+reihe enhält beitrag	serie bijdrage omvat
+ort von	plaats van
+präsentation des beitrages	presentatie van de bijdrage
+aktualisiert version von	bijgewerkte versie van
+beitrag ist teil der reihe	bijdrage is deel van de serie
+deckt thema	covers thema
+hat aktualisierte version	heeft bijgewerkte versie
+findet statt in	plaatsvindt in
+hat event	gebeurtenis
+listet event auf	lijsten gebeurtenis
+wurde veröffenlicht von	werd gepubliceerd door
+referenziert in	waarnaar wordt verwezen in
+organisiert	georganiseerd
+ist teil von einem event	deel uitmaakt van een gebeurtenis
+technisch organisiert von	technisch georganiseerd door
+ist author von	is auteur van
+beitrag wird präsentiert als	bijdrage zal worden gepresenteerd als een
+zeit	tijd
+registrierungsformular (konferenz)	Inschrijvingsformulier (conferentie)
+konferenz-halle	Congreshal
+powerpoint-präsentation	PowerPoint-presentatie
+örtlichkeit	locatie
+folie	folie
+folie (overhead projektor)	folie (overhead projector)
+formular zur information des autors	formulier voor de gegevens van de auteur
+willkommensrede	Welkomstspeech
+vortragender, der nur an einem tag redet	Docent, who writes alleen in één dag
+vortrag gehalten von einem redner	lezing gehouden door een spreker
+angestellter, der kein redner ist	werknemer die niet een spreker in het openbaar is
+angestellter vortragender	werknemer docent
+frist zur benachrichtigung der akzeptanz	termijn voor de kennisgeving van aanvaarding
+frist	termijn
+session	sessie
+aktivität, die nach der konferenz stattfindet	activiteit die na de conferentie plaatsvindt
+hauptbüro	Hoofdkantoor
+konferenzgebäude	Conferentie gebouw
+formular	formulier
+frist zur hotelreservierung	uiterste datum voor de hotelreservering
+registrierung	registratie
+mailingliste	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=6346.V2_Json.Translate.23CFAC0B
+einzelzimmer	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=6346.V2_Json.Translate.23CFAC62
+anmeldegebühr für ein nicht-mitglied	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=6346.V2_Json.Translate.23CFACCD
+stadt, in der die konferenz stattfindet	Stad waar de conferentie zal worden gehouden
+vortrag im plenum	Lezing in de plenaire vergadering
+endversion des manuskripts	endversion van het manuscript
+staat der konferenz	Staat van de conferentie
+redner	sprekers
+tagungsband als buch	tagungsband als boek
+delegierter	gemachtigde
+taxi	taxi
+gegenstand	Onderwerp
+gebühr für einen zusatzausflug	vergoeding voor een extra reis
+abreisegebühr	Vertrek vergoeding
+währung	valuta
+automobil	Automotive
+zahlungsbeleg	Bewijs van betaling
+geldbetrag	Hoeveelheid geld
+anmeldegebühr für einen autor, der den tagungsband als cd erhält	inschrijvingsgeld voor een auteur, ontvangen de tagungsband als cd
+nicht-redner	niet-luidsprekers
+bank transfer	Bankoverschrijving
+vortragender	Docent
+anwesenheitsnachweis	Aanwezigheid blad
+shuttle-bus	pendelbus
+tagestour	Dag tour
+jede art von dokument	elk type document
+zeit (zeitraum und zeitpunkt)	time (tijd en datum)
+kreditkarte	Credit card
+publikation	publicatie
+technisches komitee	Technisch Comité
+einreichungsfrist	Uiterste datum indiening
+vorstellung eines redners	invoering van de spreker
+technische aktivität	technische activiteit
+gegenstand (im allgemeinen)	onderwerp (in het algemeen)
+gebäude	gebouw
+audiovisuelle ausstattung	audio-visuele apparatuur
+vortragender, der im plenum redet	Docent, die spreken in de plenaire vergadering
+konferenzrestaurant	Conferentie restaurant
+karte	kaart
+student, der kein redner ist	student die niet een spreker in het openbaar is
+studentischer vortragender	Student-docent
+vortragender, der ein tutorium hält	Docent, houdt het een tutorial
+akzeptieren eines manuskripts	accepteren van een manuscript
+overhead-projektor	overheadprojector
+video-präsentation	video presentatie
+computer	computer
+kleintransporter	Detailhandel
+modellierungsaktivität	Modelleren van activiteit
+anmeldegebühr	inschrijvingsgeld
+dinner-bankett	diner feestzaal
+hotelgebühr	Hotel vergoeding
+stadt, aus der ein sponzor kommt	Stad, een sponsor komt uit de
+forschungsaktivität	Onderzoeksactiviteit
+mieten eines autos	huur een auto
+abreise	vertrek
+staat des vortragenden	Staat voor het presenteren van
+vortragender, der im konferenzhotel untergebracht ist	Docent, de in het conferentiehotel is
+sponsor	sponsor
+trinkgeld	Tip
+haus einer firma, die ein sponsor ist	huis aan een bedrijf dat is een sponsor
+cameraready-frist	cameraready - termijn
+ablehnung eines manuskripts	afwijzing van een manuscript
+registrierungsformular (hotel)	Inschrijvingsformulier (hotel)
+universität eines vortragenden	Universiteit van presenteren
+steuer	belasting
+stadt, aus der ein vortragender kommt	Stad, komt uit de docent
+staat	Staat
+stadt, die ein ausflugsziel darstellt	Stad, vertegenwoordigen een bestemming
+anmeldegebühr für einen studenten	inschrijvingsgeld voor een student
+originalversion des manuskripts	Oorspronkelijke versie van het manuscript
+registrierungsformular	Registratieformulier
+autor, der einen tagungsband in buchform erhält	Auteur, ontvangen een tagungsband in boekvorm
+konferenztage	Conferentie dagen
+ausflugstag	Excursie dag
+soziale aktivität	sociale activiteit
+simulationsaktivität	Simulatie activiteit
+haus eines vortragenden	Huis voor te leggen
+transportfahrzeug	Vervoermiddel
+sponsorgebühr	sponsorgebuehr
+aktivität, die vor der konferenz stattfindet	activiteit die voordat de conferentie plaatsvindt
+lcd-projektor	LCD-projector
+mitglied von iasted	Lid van iasted
+kurze einführung für den session-vorsitz	korte inleiding tot de sessie-seat hierboven
+tagungsband als cd	tagungsband als cd
+registrierungsfrist	Sluitingsdatum voor registratie
+annahme eines manuskripts	aanvaarding van een manuscript
+anmeldegebühr für einen autor, der den tagungsband in buchform erhält	inschrijvingsgeld voor een auteur die de tagungsband in boekvorm ontvangt
+flughafen in/am konferenzort	Luchthaven in de conferentie zaal
+einzelner konferenztag	één dag
+autor, der einen tagungsband als cd erhält	Auteur, ontvangen een tagungsband als cd
+anmeldegebühr für ein mitglied	inschrijvingsgeld voor een lid
+hotelzimmer	Hotelkamers
+videorecorder	Videorecorder
+vorstellung	presentatie
+nicht-mitglied von iasted	niet-lid van iasted
+mehrwertsteuer	toegevoegde waarde belasting
+konferenzbesucher	Conferentie bezoekers
+anmeldegebühr für einen nicht-autor	inschrijvingsgeld voor een niet-Auteur
+gebühr	vergoeding
+zuhörer	luisteraars
+zeitzone	Tijdzone
+staat des sponzors	Staat van sponzors
+konferenzhotel	Conferentiehotel
+cocktail-empfang	cocktail-ontvangst
+doppelzimmer	Tweepersoonskamer
+aktivität, die während der konferenz stattfindet	activiteit die tijdens de conferentie plaatsvindt
+visum	Visum
+aktivität	activiteit
+scheck	selectievakje
+einladungsbrief	Brief van uitnodiging
+ist entworfen/bestimmt für	ontworpen/bestemd voor
+wird besucht von	wordt bezocht door
+wird vorbereitet von	wordt bereid door
+benötigt	Vereist
+sendet	stuurt
+erhält	ontvangt
+wird versendet nach	wordt verzonden naar
+unterzeichnet	ondertekend
+muss erledigt sein bis	moet worden gedaan om
+hat betrag von	heeft het bedrag van de
+ist datiert auf	is gedateerd
+spricht in (räumlich und zeitlich)	spreekt in (ruimtelijke en temporele)
+wird bezahlt mit	zal worden betaald met
+istanwesend (räumlich und zeitlich)	istanwesend (ruimtelijke en temporele)
+ist verbunden mit/bezogen auf	is aangesloten / aan gerelateerde
+findet statt nach	plaatsvindt na
+wird verwendet von	wordt gebruikt door
+istanwesend (räumlich)	istanwesend (plaats)
+ist gemacht aus	wordt gemaakt
+bereitet vor	bereid
+wird versendet von	zal worden verzonden door
+findet statt vor	vindt plaats voordat
+wird benötigt für	is vereist voor
+ist ausgestattet mit	is uitgerust met
+wird verwendet für	wordt gebruikt voor
+wird bezahlt von	zal worden betaald door
+wird versendet vor	wordt verzonden naar
+wird gegeben/ausgeführt von	zal worden gegeven/uitgevoerd door
+wird unterzeichnet von	is ondertekend door
+bewohnt	bewoond
+wirdgegebenan	wirdgegebenan
+gibt	zijn
+wird bezahlt für	zal worden betaald voor
+durchgeht	gaat door
+wird bezahlt in	zal worden betaald
+befindet sich in	gelegen in
+wird bewohnt von	wordt bewoond door
+bezahlt	betaald
+award für besten forschungsbeitrag	Award voor beste onderzoek papier
+ausschuss für den award des besten beitrags	Comité voor de toekenning van de beste bijdrage
+gold sponsor der konferenz	Goud sponsor van de conferentie
+sponsor als aussteller	Sponsor als exposant
+deadline für eine abstrakte einreichung	termijn voor het indienen van een abstract
+deadline	termijn
+award für besten anwendbaren beitrag	Award voor beste toepassing bijdrage
+registrierungsgebühr	Inschrijvingsgeld
+organisatoren der konferenz	organisatoren van de conferentie
+registrierungskosten für studenten	registratie kosten voor studenten
+eines studentischen beitrags	een student bijdrage
+registrierungskosten für personen, die nicht mitglied von sig sind	registratie kosten voor mensen die niet lid zijn van sig
+hauptbüro der konferenz	Hoofdkantoor van de conferentie
+webmaster	Webmaster
+deadline für die einreichung eines beitrags	termijn voor de indiening van een bijdrage
+programmvorsitzender	Voorzitter Program
+author eines konferenzbeitrages	auteur een conferentie-bijdrage
+sponsorenbeitrag	sponsorenbeitrag
+konferenzsaal	Conferentie zaal
+konferenz acm sigdkdd	ACM sigdkdd conferentie
+bronze sponsor der konferenz	Bronze sponsor van de conferentie
+registrierungskosten für mitglieder von sigmod	registratie kosten voor sigmod leden
+konferenzgebühr	Conferentie vergoeding
+deadline für die mitteilung eines authors	uiterste datum voor de kennisgeving van auteurs
+silber sponsor der konferenz	Zilveren sponsor van de conferentie
+award für besten studentischen beitrag	Award voor beste student bijdrage
+platin sponsor der konferenz	Platina sponsor van de conferentie
+award für konferenzbeitrag	Conferentie bijdrage award
+registrierungskosten für mitglieder von sigkdd	registratie kosten voor leden van sigkdd
+sponsor für besten studentischen beitrag	sponsor voor beste student bijdrage
+hörer der konferenz	luisteraars van de conferentie
+hotel	Hotel
+konferenz organisiert von	Conferentie georganiseerd door
+deadline für authorenmitteilung	termijn voor authorenmitteilung
+bleibt in	blijft in
+sponsoren wurden aufgerufen von	sponsors werden genoemd door
+paid zahlt registrierungsbeitrag	betalen registratie post betaald
+beitrag wurde eingereicht von	bijdrage werd voorgelegd door
+deadline festgelegt	bepaalde termijn
+präsentiert dokumente	presenteert documenten
+hat award	Award
+aufruf von sponsoren	oproep van sponsors
+organisiert konferenz	georganiseerde conferentie
+hat preis	heeft prijs
+ist datiert auf den	is gedateerd op de
+registrierungsbeitrags ist in währung	register bijdrage in valuta is
+hat name der konferenz	naam van de conferentie heeft
+hat nationalität	nationaliteit heeft
+hat sponsorenname	heeft sponsorenname
+datum des ersten tages der konferenz ist	datum van de eerste dag van de conferentie is
+award erhalten von	Ontvangen award van
+registrierungsbeitrag gezahlt von	Register bijdrage betaald door
+hat award erhalten von	Ontvangen award van
+wurde präsentiert von	werd gepresenteerd door
+deadline eingerichtet für	termijn voor
+konferenz findet in folgender stadt statt	Conferentie zal worden gehouden in de volgende stad
+datum des letzten tages der konferenz ist	datum van de laatste dag van de conferentie is

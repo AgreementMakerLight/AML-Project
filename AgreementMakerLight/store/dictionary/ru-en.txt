@@ -1,0 +1,631 @@
+документ	document
+конференция	Conference
+полная версия статьи	the full version of the article
+член конференции	Member of the Conference
+принятие	the adoption of
+решение	solution
+отклонение	deviation
+администратор	Administrator
+председатель конференции	the President of the Conference
+рецензент	Reviewer
+председатель	Chairman
+автор	author
+мета-рецензент	Meta-reviewer
+член программного коммитета	as a member of the program Committee
+пользователь	user
+лицо	person
+аннотация статьи	abstract article
+соавтор	co-author
+председатель программного коммитета	Chairman of the program Committee
+автор не являющийся рецензентом	the author is not a reviewer
+программный коммитет	Program Committee
+предпочтение	preference
+тематическая область	thematic area
+мета-рецензия	Meta-book review
+рецензия	Book review
+заместитель председателя	Deputy Chairman
+внешний рецензент	external reviewer
+статья	Article
+ставка	rate
+внести критерии рецензирования	to review criteria
+подать статью	submit an article
+назначает рецензента	appoints reviewer
+прочитано рецензентом	read reviewer
+кем разершёна виртуальная встреча	by razeršëna virtual meeting
+прочитано мета-рецензентом	read the meta-reviewer
+кем отклонено	who rejected
+кем изменена	who changed
+printhardcopymailingmanifests	printhardcopymailingmanifests
+кем начато размещение ставок рецензента	who started placing bets reviewer
+закончил рецензию	finished review
+интернет-адрес сайта	the Internet address of the Web site
+адрес электронной почты	email address
+максимум статей	maximum articles
+идентификатор статьи	the article ID
+заголовок	header
+интернет-адрес логотипа	the Internet address of the logo
+имя	the name
+рецензенты статьи	reviewers of the article
+число	the number of
+принимает печатные заявки	accepts print requests
+кем написано	by written
+кем принято	anyone taken
+внести детали конференции	to make details of the Conference
+изменяет ставку	change rate
+отметить конфликт интересов	Note the conflict of interest
+назначена кому	assigned to
+читает статью	Read article
+кем запущена программа назначения статей	who is running the program destination articles
+кем добавлено	by date added
+назначен рецензентом	a reviewer appointed
+назначен администратором	appointed by the administrator
+разрешить виртуальную встречу	allow virtual meeting
+назначает внешнего рецензента	appoints an external reviewer
+принимает статью	accepted article
+закончить назначение статей	finish the assignment of articles
+кем внесены детали	who made details
+пишет статью	writing an article
+кем закончено назначение статей	who finished assigning articles
+установить максимум статей	set the maximum articles
+написать статью в соавторстве	write an article co-authored
+добавляет члена программного коммитета	Adds a Member Program Committee
+назначена	appointed
+конфликт интересов	conflict of interest
+кем введены критерии рецензирования	inducted review criteria
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+начало размещения ставок рецензента	start betting the reviewer
+отклоняет статью	rejects article
+пишет рецензию	write a review
+приглашённый доклад	Guest report
+развёрнутая аннотация	expanded abstract
+семинар	Seminar
+часть конференции	part of the Conference
+научный совет	the Scientific Council
+организация	Organization
+секция	section
+издатель	Publisher
+принятый труд	the work of
+пассивный участник конференции	passive participant of the Conference
+отрецензированнй труд	otrecenzirovannj work
+отклонённый труд	rejected labour
+объявление конференции	announcement of the Conference
+соавтор работы	co-author of work
+приглашённый докладчик	guest speaker
+сопредседатель	Co-Chair
+1й автор работы	the first author of the work
+лицо внесшее вклад в конференцию	the person marking the contributions to the Conference
+оплативший участник	buying party
+сборы конференции	Conference fees
+участник конференции	participant of the Conference
+досрочно оплативший участник	early buying party
+организационная комиссия	Organization of the Board
+активный участник конференции	an active participant of the Conference
+член комиссии	Member of the Commission
+поданый труд	podanyj work
+выпуск конференции	Release Conference
+требования к рецензии	requirements to the review
+стенд	booth
+документ конференции	Conference document
+труд конференции	Labour Conference
+аннотация	Abstract
+письменный труд	written work
+полный труд	complete work
+зарегистрированный участник	registered member
+приглашение к участию	invitation for participation
+информация для участников	information for participants
+сборник трудов конференции	Conference proceedings
+тема	theme
+комиссия	Commission
+интернет адрес конференции	the Internet address of the Conference
+информационное письмо	information letter
+заявитель конференции	applicant Conference
+председатель секции, семинара	Head of section, seminar
+обучающий курс	training course
+организатор	Organizer
+важные даты	important dates
+компетентность рецензии	expertise reviews
+презентация	presentation
+труд в окончательной версии	work in the final version
+поздно оплативший участник	late buying party
+труды	Trudy
+является частью выпусков конференции	is part of the issue (s) of the Conference
+принадлежит рецензентам	owned by reviewers
+части	part of the
+являлся председателем секции, семинара	served as Chair of the section of the seminar
+являлся научным советом	a Scientific Council
+авторы	authors
+семинары	seminars
+указано в требованиях к рецензии	specified in the requirements for reviews
+кем выполнена	who performed
+являлся членом	He was a member of the
+рекоммендация рецензирования или компетентность	rekommendaciâ review or competence
+рецензирует	criticizes
+члены	the members of the
+является темой частей конференции	is the theme parts conferences
+являлся комиссией	was the Commission
+кем приглашён	who invited
+председатель секции, семинара, обучающегокурса	Head of section, seminar, obučaûŝegokursa
+вносит вклад	contributes to
+рекоммендация рецензирования	rekommendaciâ review
+указано в выпуске конференции	indicated in the release Conference
+является 1й частью	is the 1st part of the
+подан в	filed in
+тема секции, семинара, обучающего курса	section topic, seminar, training course
+обучающие курсы	training courses
+издаёт	publishes
+заместитель председателя комиссии	the Vice-Chairman of the Commission
+являлся председателем комиссии	served as Chairman of the Commission
+являлся организационным комитетом	was the Organizing Committee
+делает презентацию	making a presentation
+секции	section
+приглашает ко-рецензентов	invites you to the reviewers
+председатель комиссии	the Chairman of the Commission
+являлся сопредседателем комиссии	He was co-Chairman of the Commission
+дата подачи аннотации	date of submission of abstracts
+дата начала	start date
+пол	Paul
+дата окончания	end date
+название	the name
+дата издания	date of issue
+дата подачи окончательной версии статьи	the filing date of the final version of the article
+выпуск	issue
+компетентность	competence
+isbn	isbn
+место проведения	venue
+степень	the degree of
+интернет-адрес	the Internet address of the
+организационный комитет	the Organizing Committee
+являлся программным комитетом	He was Program Committee
+тема или поданный труд	theme or filed work
+дата подачи полной статьи	date of presenting the full article
+дата объявления о приняти	date of announcement on the take
+фамилия	last name
+экскурсия	excursion
+участник	party
+тематиka	tematika
+культурный этап	the cultural phase
+город	City
+учащийся	student
+труд	work
+этап	stage
+встреча	meeting
+образовательное учреждение	educational institution
+компания	company
+тезисы статьи	Abstracts of the articles
+этап регистрации участников	stage of registration of participants
+член программного комитета	Member of the program Committee
+этап результатов рецензирования	stage results review
+научный работник	AAS
+этап рабочей программы	stage of the work programme
+председатель программного комитета	the Chairman of the program Committee
+студент	student
+страна	country
+этап подачи заявки	stage filing
+административный этап	the administrative phase
+полная	full
+член	Member
+ассистент	Assistant
+этап рецензирования	stage review
+этап подготовки окончательной версии	preparation of the final version
+банкет	Banquet
+волонтёр	volunteer
+написана	written by
+место работы	place of work
+следует	It should be
+параллельно с	in parallel with the
+максимальный выбор	maximum choice
+сокращённое название	short name
+окончание	end
+досрочная регистрация	early registration
+телефон	phone
+домашняя страница	home page
+обучается в	He studied in the
+содержит административный этап	contains the administrative stage
+адресует	addresses
+пишет	wrote
+компетентен в	competent in
+содержит ключевые слова	contains keywords
+почтовый индекс	Zip code
+ндс	VAT
+факс	fax
+улица	Street
+начало	Start
+контактный адрес электронной почты	contact email address
+минимальный выбор	minimum range
+замечание	comment
+выбор по умолчанию	default selection
+негосударственная организация	non-governmental organization
+тема операционные системы	the theme of operating systems
+грант на поездку	travel grant
+тема коммуникации	the theme of communication
+тема сенсорные компьютерные сети	the theme of touch-sensitive computer networks
+местонахождение комнаты для собрания	location of rooms for meetings
+информационнное письмо	informacionnnoe letter
+академическая организация	academic organization
+производственная организация	production organization
+рецензионный вопрос	review question
+слайды	slides
+докладчик	Rapporteur
+активная статья	an active article
+тема просто тест	theme is just a test
+программа	program
+светский раут	rout
+конференц-ужин	Conference dinner
+тема спутниковая и космическая связь	the theme of satellite and space communications
+тема управление компьютерными сетями	you have read the topic manage computer networks
+оценка принять при условии	score to subject
+тема приложени компьютерных сетей	the theme of applications of computer networks
+темаcad	temacad
+персональная история рецензирования	personal history of peer review
+место проведения обеда	location of dinner
+этап докладывания	phase perfect reporting
+тема мультимедиа	topic multimedia
+принятая статья	adopted article
+перерыв на кофе	coffee break
+текстовый вопрос рецензирования	text question based review
+тема беспроводная связь	the theme of wireless communication
+тема оптические компьютерные сети	the theme of optical networks
+академический этап	academic phase
+свободный перерыв	free break
+статья ожидающая решения	Article pending decision
+приглашение	invitation
+этап питания	the power stage
+тема измерения в компьютерных сетях	the topic of measurement in computer networks
+меню	menu
+тема архитектура компьютера	the theme of computer architecture
+тема безопасность компьютерных сетей	the theme of computer network security
+тема производительность	the theme of the performance
+отклонённая статья	discarded article
+тема обработка сигналов	the theme of processing of signals
+перерыв на питание	a break for food
+оценка отклонить	evaluation of reject
+доклад по статье	the report on article
+тема мобильные вычисления	the theme of mobile computing
+место проведения конференции	place of the Conference
+оценка рецензирования	score review
+тема антенны	theme download
+опубликованная статья	published article
+тема радио связь	the theme of radio communications
+тема коммутация компьютерных сетей	theme switching computer networks
+заключительное слово	the final word
+тема безопасность	the theme of security
+член tpc	Member of the tpc
+неакадемчический этап	neakademčičeskij stage
+тема криптография	the theme of cryptography
+государственная организация	State Organization
+этап перерыв	phase break
+персональная история	personal history
+тема передача по линиям электропередач	Powerline transmission theme
+двухуровневая конференция	two-level Conference
+отозванная статья	withdrawn article
+тема промышленные компьютерные сети	the theme of industrial computer network
+тема компьютерные сети	the theme of computer networks
+приглашение принять участие в рецензировании	invitation to participate in the review
+секция конференции	section Conference
+одноуровневая конференция	one-tier Conference
+этап конференции	phase of the Conference
+контактная информация	contact information
+тема медицина	the theme of medicine
+численный рецензионный вопрос	the numerical review question
+место	place
+оценка принять	score to
+тема параллельные и распределённые вычисления	the theme of parallel and distributed computing
+тема теория коммуникаций	the theme of communication theory
+оцененные статьи	rated articles
+бланк рецензирования	review form
+вступительное слово	an introductory Word
+приглашение к публикации манускриптов	invitation to publish manuscripts
+персональная история статьи	personal history articles
+место проживания	place of residence
+организационное собрание	Welcome meeting
+председатель секции	Head of section
+спонсорство	sponsorship
+тема микроэлектроника	the theme of microelectronics
+инициируется	is initiated
+кем предоставлена	whom given
+дата и время начала	start date and time
+история рецензирования	History review
+инициирует	initiates
+относится к этапу	refers to the stage of
+относится к	refers to the
+отностится к статье	enjoy the article
+является местом проведения	is the site of the
+связанная статья	related article
+регистрация до	registration to
+статья до	article to
+последняя дата подачи заявки	deadline to apply
+дата и время окончания	end date and time
+манускрипт до	manuscript to
+валюта	currency
+сумма	the amount of
+правила подачи заявки	rules for applying
+биография	Biography
+посетитель	visitor
+принадлежит этапу	belongs to the stage
+для этапа	for phase
+кем написана	What is written
+кем рецензируется	who is subjected to a
+связанный документ	the linked document
+предоставляет	provides
+объявление	Ad
+оценка	score
+конференц-банкет	Conference banquet
+автор статьи	the author of the article
+председатель оргкомитета	Chairman of the Organizing Committee
+закреплённая статья	which article
+полная статья	full article
+секция демонстраций	section demonstrations
+поданая статья	podanaâ article
+председатель демонстраций	Chairman of the demonstrations
+индивидуальная презентация	private presentation
+научная тема	the scientific theme
+положительная рецензия	positive review
+поздно зарегистрированный участник	late registered member
+демонстрационная статья	Demo article
+академический институт	academic Institute
+производственная секция	production section
+рекламный листок	Flyer
+организационнное агенство	organizacionnnoe Agency
+производственная статья	manufacturing article
+сборник трудов	proceedings
+член научного совета	Member of the Scientific Council
+светское мероприятие	a secular event
+издатель сборника трудов	Publisher Book works
+научное мероприятие	scientific event
+нейтральная рецензия	neutral review
+мероприятие	event
+экскурсия конференции	tour the Conference
+часть	part
+секция полных статей	section of full articles
+член агенства	Member agencies
+веб-сайт	Web site
+аннотация к обучающему курсу	abstract for the training course
+университет	University
+статья в окончательной версии	article in final version
+доклад	report
+статья конференции	Article Conference
+председатель семинаров	Chairman of the seminar
+статья на семинаре	article at the seminar
+стендовая статья	poster section
+выпуск с несколькими составителями	issue with multiple writers
+отрицательная рецензия	negative review
+досрочно зарегистрированный участник	early registered participant
+обработанная статья	treated article
+потенциальный рецензент	potential reviewer
+член оргкомитета	Member of the Organizing Committee
+секция семинаров	section workshops
+программный буклет	Programme booklet
+секция стендов	section of stands
+научно-исследовательский институт	Scientific Research Institute
+аннотация к приглашённому докладу	abstract for priglašënnomu report
+председатель обучающих курсов	the Chairman of training courses
+статья в выпуске	article in this issue
+кем организован	who organized
+обновлённая версия	the updated version
+мероприятие в списке	the event in the list
+содержит ссылку в	contains a reference to the
+организует	organizes
+научно организовывает	the scientific and organizing
+инверсия часть 7	Invert part 7
+мероприятние	meropriâtnie
+презентация статьи	presentation of articles
+кем научно организовано	What scientific and organized
+выпуск содержит статью	issue contains an article
+рецензия на статью	Book review article
+технически организовано	technically organized
+часть мероприятия	part of the event
+список мероприятий	a list of events
+адресует тему	addresses the topic
+ссылается	references
+рецензия написана	review written by
+технически организовывает	technically organizes
+статья представленная как	article submitted as
+рецензент статьи	Reviewer of articles
+город спонсора	City sponsor
+микроавтобус	minibus
+чаевые	Tip
+доклад докладчика	report of the rapporteur
+член iasted	iasted Member
+список рассылки	mailing list
+пригласительное письмо	invitation letter
+транспортное средство	vehicle
+ресторан конференции	Restaurant Conference
+докладчик пленарного доклада	the Rapporteur of the plenary report
+принятие манускрипта	acceptance of the manuscript
+спонсор	sponsor
+автор, книга сборника трудов включены	the author, the book is a compendium of works incorporated
+докладчик обучающего курса	Rapporteur of the training course
+чек	check
+налог на отправление	tax administration
+видео презентация	video presentation
+часовой пояс	timezone
+податель в гостинице	giver in the hotel
+карта	map
+дневной тур	afternoon tour
+коктейль-вечеринка	cocktail party
+ужин-банкет	dinner-banquet
+гостиничный регистрационный бланк	Hotel registration form
+вступление	entry
+страна конференции	country Conference
+город экскурсии	city sightseeing tours
+предмет	view
+регистрация	registration
+последний срок	the deadline for
+аэропорт конференции	Airport Conference
+студент-докладчик	student-reporter
+мероприятие до конференции	event-Conference
+деньги	money
+форма	form
+регистрационный взнос	registration fee
+гостиничный номер	hotel room
+регистрационный взнос автор, участник, книга	registration fee, book author, contributor
+получение манускрипта	receipt of the manuscript
+представление докладчика	Presenter view
+даты конференции	dates of the Conference
+студент-не докладчик	the student is not the rapporteur
+пленарный доклад	plenary report
+презентация powerpoint	powerpoint presentation
+потолочный проектор	ceiling projector
+welcome address	welcome address
+дом докладчика	House speaker
+работник-не докладчик	the employee is not the rapporteur
+информационная форма об авторе	information request form about the author
+главный оффис	main office
+первоначальный манускрипт	the original manuscript
+автор, диск сборника трудов включёны	the author, a disc of works included
+делегат	delegate
+cтрана спонсора	country sponsor
+банковский перевод	Bank transfer
+подача	feed
+налог	tax
+мероприятие после конференции	event after the Conference
+город конференции	City Conference
+сертификат участия	certificate of participation
+кредитная карта	credit card
+kонференц-зал	Conference room
+не авторский регистрационный взнос	No author registration fee
+виза	Visa
+день экскурсии	day excursions
+студенческий регистрационный взнос	the student registration fee
+гостиничный взнос	Hotel fee
+регистрационный бланк	registration form
+комната секции	room partition
+последний срок уведомления о принятии	the deadline for notification of acceptance
+документ об оплате	proof of payment
+слушатель	listener
+здание	building
+технический комитет	the Technical Committee
+прокат	rental
+моделирование	modeling
+налого на добавленную стоимость	value added tax
+последний срок подачи	the deadline for application submission
+прозрачность	transparency
+дом  спонсорской компании	House sponsor company
+техническое мероприятие	technical event
+отклонение манускрипта	rejection of the manuscript
+не членский регистрационный взнос	no membership fee
+не доскладчик	not doskladčik
+страна докладчика	the country rapporteur
+последний срок окончательной версии манускрипта	deadline for final version of the manuscript
+светская программа	secular program
+аудиовизуальное оборудование	audiovisual equipment
+публикация	publication
+conference hiker	conference hiker
+последний срок бронирования гостиницы	Hotel reservation deadline
+автомобиль	car
+мероприятие конференции	event Conference
+регистрационный взнос aвтор, участник	author registration fee, exhibitor
+один день конференции	one day Conference
+симуляция	simulation
+работник-докладчик	worker-Rapporteur
+здание конференции	Building Conference
+время	time
+исследование	study
+краткое вступление председателя секции	a brief introduction of the section
+взнос	contribution
+один день докладчик	one day he
+университет докладчика	University of Rapporteur
+отправление	the administration of
+книга сборника трудов	the book collection of works
+пригородный автобус	suburban bus
+город докладчика	City reporter
+не член iasted	not a member of the iasted
+житкокристаллический проектор	žitkokristalličeskij projector
+окончательный манускрипт	the final manuscript
+диск сборника трудов	CD compilation of works
+одноместный гостиничный номер	Hotel single room
+гостиница конференции	Hotel Conference
+проигрыватель видео кассет	video cassette player
+последний срок регистрации	the deadline for registration
+такси	taxi
+компьютер	computer
+взнос за дополнительную поездку	fee for additional trip
+членский регистрационный взнос	membership registration fee
+двуспальный гостиничный номер	Double hotel room
+кем посылается	who is sent
+занимает	takes
+связан с	is associated with
+используется	used
+до	up to
+запланировано на	scheduled for
+кем подписывается	who subscribes
+присутствует во время	present during the
+получает	Gets the
+производится из	produced from
+происходить после	occur after the
+посылает	sends
+кем оплачивается	who is paid
+чем оплачивается	than paid
+кем пишется	What is written
+оборудован	features
+оплачивает	pays
+кем посещается	who is visited
+требуется для	is required for
+используется для	is used to
+даёт	gives
+кем используется	who uses
+готовит	prepares
+кем готовится	who is preparing
+находится в	is in
+кем представлен	presented by
+докладывает в	report in the
+где оплачивается	where payable
+кому представлен	who submitted
+чем занимается	What does
+происходить до	occur before
+за что оплачивается	What is paid
+посылается после	sent after the
+пристутствует в	pristutstvuet in
+разработан для	designed for
+происходит в	occurs in
+посылается до	is sent to the
+подписывает	signs
+требует	requires
+вебмастер	webmaster
+конференц-зал	Conference Hall
+регистрация sigkdd членов	sigkdd membership registration
+награда	Award
+платиновый спонсор	Platinum sponsor
+награда за лучшую научную статью	Award for the best research paper
+регистрация не членов	registration of members of the
+последний срок уведомления авторов	the deadline for the notification of authors
+автор статьи студент	the author of the article the student
+программный председатель	program chair
+награда за лучшую студенческую статью	Award for best student paper
+программный комитет	Program Committee
+комитет по наградам за лучшую статью	Committee on awards for best article
+бронзовый спонсор	Bronze Sponsor
+регистация студентов	registration of students
+член организационного комитета	Member of the Organizing Committee
+регистрация sigmod членов	sigmod members registration
+последний срок подачи статей	the deadline for submission of articles
+acm sigkdd	acm sigkdd
+награда за лучшую прикладную статью	Award for best applied article
+спонсорский взнос	sponsorship fee
+последний срок подачи аннотаций	the deadline for submission of abstracts
+спонсор награды за лучшую студенческую статью	sponsor awards for best student paper
+золотой спонсор	Gold sponsor
+серебрянный спонсор	Silver sponsor
+комитет	Committee
+гостиница	Hotel
+экспонент	Exhibitor
+национальность	the nationality of the
+цена	price
+отправить до	send to
+оплачивается	is paid
+начало конференции	beginning of the Conference
+кем разработан	who designed
+название конференции	Conference title
+окончание конференции	end of Conference
+имя спонсора	name of sponsor
+поиск	Search
+отправить	send
+кем найден	anyone found
+уведомляет до	shall notify to the
+кем награждён	who awarded
+поддерживается	supported
+платит	pays
+может остановиться в	can stay in
+поддерживает	supports
+презентуется	is presented
+дизайн	design

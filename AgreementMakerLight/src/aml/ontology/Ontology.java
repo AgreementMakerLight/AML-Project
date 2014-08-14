@@ -15,7 +15,7 @@
 * An Ontology object, loaded using the OWL API.                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
+* @date 13-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
@@ -457,19 +457,23 @@ public class Ontology
 			//Add it to the global list of URIs
 			int id = uris.addURI(propUri);
 			String name = "";
+			String lang = "";
 			for(OWLAnnotation a : ap.getAnnotations(o,label))
             {
                	if(a.getValue() instanceof OWLLiteral)
                	{
                		OWLLiteral val = (OWLLiteral) a.getValue();
                		name = val.getLiteral();
+               		lang = val.getLang();
                		break;
                	}
             }
 			if(name.equals(""))
 				name = getLocalName(propUri);
-			//Initialize the property
-			Property prop = new Property(id,name,"annotation");
+    		if(lang.equals(""))
+    			lang = "en";
+    		//Initialize the property
+			Property prop = new Property(id,name,lang,"annotation");
 			properties.put(id,prop);
     	}
 		//Get the Data Properties
@@ -482,19 +486,23 @@ public class Ontology
  			//Add it to the global list of URIs
 			int id = uris.addURI(propUri);
 			String name = "";
+			String lang = "";
 			for(OWLAnnotation a : dp.getAnnotations(o,label))
             {
                	if(a.getValue() instanceof OWLLiteral)
                	{
                		OWLLiteral val = (OWLLiteral) a.getValue();
                		name = val.getLiteral();
+               		lang = val.getLang();
                		break;
                	}
             }
 			if(name.equals(""))
 				name = getLocalName(propUri);
+    		if(lang.equals(""))
+    			lang = "en";
 			//Initialize the property
-			Property prop = new Property(id,name,"datatype",dp.isFunctional(o));
+			Property prop = new Property(id,name,lang,"datatype",dp.isFunctional(o));
 			//Get its domain
 			Set<OWLClassExpression> domains = dp.getDomains(o);
 			for(OWLClassExpression ce : domains)
@@ -528,19 +536,23 @@ public class Ontology
 			if(op.isTransitive(o))
 				aml.getRelationshipMap().setTransitive(id);
 			String name = "";
+			String lang = "";
 			for(OWLAnnotation a : op.getAnnotations(o,label))
             {
                	if(a.getValue() instanceof OWLLiteral)
                	{
                		OWLLiteral val = (OWLLiteral) a.getValue();
                		name = val.getLiteral();
+               		lang = val.getLang();
                		break;
                	}
             }
 			if(name.equals(""))
 				name = getLocalName(propUri);
+    		if(lang.equals(""))
+    			lang = "en";
 			//Initialize the property
-			Property prop = new Property(id,name,"object",op.isFunctional(o));
+			Property prop = new Property(id,name,lang,"object",op.isFunctional(o));
 			//Get its domain
 			Set<OWLClassExpression> domains = op.getDomains(o);
 			for(OWLClassExpression ce : domains)

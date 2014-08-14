@@ -1,0 +1,709 @@
+person	personne
+dokument	document
+präferenz	préférence
+verfasser, der kein gutachter ist	écrivain qui n'est pas un expert
+meta-gutachten (gutachten über ein gutachten)	Meta - sur un avis (avis)
+meta-gutachten	Meta - avis
+mitverfasser	co-auteure
+vorsitzender	Président
+verfasser	auteur
+vorsitzender der konferenz	Président de la Conférence
+vorsitzender des programm-komitees	Président du Comité de programme
+meta-gutachater	Meta-gutachater
+zurückweisung	rejet
+meta-gutachater (gutachter der gutachten begutachtet)	Meta-gutachater (avis d'experts qui a examiné)
+vollständiger konferenzbeitrag	frais d'inscription complet
+konferenz	Conférence
+gegenstandsbereich	Champ d'application
+gutachten	avis
+externer gutachter	examinateurs externes
+akzeptanz	acceptation
+konferenzbeitrag	Contribution de la Conférence
+programm-komitee	Comité du programme
+teilnehmer einer konferenz	participants à une conférence
+gutachter	expert
+benutzer	utilisateur
+gebot	commandé
+stellvertretender vorsitz	Siège de député dans
+entscheidung	décision
+mitglied des programm-komitees	Membre du Comité de programme
+abstrakt eines konferenzbeitrags	Résumé d'une contribution de la Conférence
+administrator	Administrateur
+hat details eingefügt in bezug auf	a inséré des détails par rapport à
+hat die zuordnung der beiträge abgeschlossen	a achevé la cartographie des contributions
+hat zugewiesen	a attribué à
+druckt papierausdruck des mailing-manifests	imprimer une copie papier du manifeste postale
+beitragszuordnungs-software ausgeführt von	beitragszuordnungs logiciel de
+zugewiesen zu	attribué à
+details eingefügt von	Détails ajoutés par
+beitragszuordnung abgeschlossen von	Affectation de poste complétée par
+gelesen von gutachter	lu par des experts
+hat die beitrags-zuordnungssoftware ausgeführt	a mené la contribution zuordnungssoftware
+hat virtuelles treffen veranlasst	rencontre virtuelle a conduit
+hat abgeglichen	a égalé
+mitverfasst von	Rédigé par
+hat interessenskonflikt in bezug auf	interessenskonflikt a par rapport à
+abgewiesen von	rejetée par
+geschrieben von	Posté par
+virtuelles treffen veranlasst von	réunion virtuelle dirigée par
+gelesen von meta-gutachter	lu par l'examinateur meta
+akzeptiert von	acceptée par
+ist mitglied des programm-komitees	est membre du Comité de programme
+hat beitrag geschrieben	a contribution écrite
+hat die gebotsphase gestartet	a commencé la phase de candidature
+kriterien zu gutachten eingefügt von	critères d'avis inséré par
+hat papier abgelehnt	papier rejeté
+bestimme maximale anzahl an zugewiesenen beiträgen	Choisissez le nombre maximal de contributions allouées
+ist entschieden worden als	Il a été décidé comme un
+steht in interessen-konflikt mit beitrag	intérêts en conflit avec la contribution
+hat webseite an url	a site Web à l'url
+hat namen	a le nom
+hat datum	a la date de
+akzeptiert hardcopy-einsendungen	accepte les arguments de Hardcopy
+hat id	a id
+maximale anzahl an zugewiesenen beiträgen	nombre maximal de contributions allouées
+hat titel	a titre
+hat email	a e-mail
+zugewiesen von administrator	attribué par l'administrateur
+hat mitglied	a membre
+hat logo an url	a logo url
+gutachten pro beitrag	avis par contribution
+zugewiesen von gutachter	assignés par des experts
+hat akzeptiert	a accepté
+hat papier gelesen	lire l'article
+hat gegenstandsbereich	a champ d'application
+papierausdruck des mailing-manifests gedruckt von	papier imprimé du manifeste postale par
+ist zugeordnet worden	a reçu l'ordre de
+teilnehmer von	participants de
+hat die zeit des begutachtens beendet	a fini cette période de l'évaluation
+hat hinzugefügt	ajouté
+abgeglichen von	accompagnée d'une
+hinzugefügt von	ajouté par
+hat teilnehmer	participant
+hat beitrag eingesendet	a contributions soumises
+hat beitrag mitverfasst	est l'auteur de contribution
+hat kriterien zu gutachten eingefügt	a ajouté des critères à l'opinion
+gebotsphase gestartet von	Phase de candidature a commencé par
+hat gutachten geschrieben	a une opinion écrite
+hat gebot erhalten	Il a enjoint la get
+konferenzankündigung	Annonce de conférence
+ausschuss	Comité
+erweitertes abstrakt	résumé détaillé
+koferenzdokument	koferenzdokument
+informationen für teilnehmer	informations pour les participants
+präsentation	présentation
+aktiver konferenzteilnehmer	participants actifs
+passiver konferenzteilnehmer	participants passifs
+eingereichter beitrag	contribution soumise
+konferenzgebühren	Droits d'inscription
+organisator	Organisateur
+druckfertiger beitrag	contribution de druckfertiger
+eingeladener vortrag	Conférence invitée
+fortschritte der konferenz	progrès de la Conférence
+abstrakt	Résumé
+wichtiges datum	date importante
+konferenzbeteiligung	Participation de la Conférence
+angehörige des ausschusses	membres du Comité
+koferenzbewerber	koferenzbewerber
+konferenzbewerber, der die konferenzgebühr gezahlt hat	Demandeurs de conférence qui a payé les frais d'inscription
+steuerungsausschuss	Comité directeur
+begutachteter beitrag	contribution des
+organisationsausschuss	Comité d'organisation
+herausgeber	Editeur
+aufruf zu teilnahme	appel à participation
+geschriebener beitrag	contribution écrite
+internet der konferenz	Internet de la Conférence
+leiter der workshops	Directeur de l'atelier
+konferenzbewerber, der die konferenzgebühr spät gezahlt hat	Candidat de conférence qui a payé les frais d'inscription tardive
+tutorium	tutoriel
+angenommener beitrag	contribution présumée
+mitverfasser eines beitrags	co-auteure de la contribution
+organisation	Organisation
+programmausschuss	Comité du programme
+thema	Thème
+author eines regulären beitrags	auteur d'une contribution régulière
+aushang	Panneau d'affichage
+fachgebiet des gutachters	Domaine d'expertise du vérificateur
+regulärer beitrag	contribution régulière
+konferenzteilnehmer, der einen beitrag geleistet hat	Participants à la Conférence, la contribution a fait
+workshop	Atelier
+eingeladener referent	Conférencier invité
+präferenz des gutachters	préférence du vérificateur
+primärer author eines beitrags	auteur principal d'une contribution
+stellvertretender vorsitzender	Vice-Président
+konferenzreihe	Cycle de conférences
+konferenzbewerber, der die konferenzgebühr früh gezahlt hat	Candidat de conférence qui a payé les frais d'inscription au début
+konferenzteilnehmer	Participants à la Conférence
+ablauf der konferenz	expiration de la Conférence
+registrierter bewerber	candidats inscrits
+abschnitte der konferenz	sections de la Conférence
+aufruf für beiträge	appel à contributions
+abgelehnter beitrag	contribution rejetée
+datum der einreichung des abstrakts	Date de soumission des résumés
+hat e-mailadresse	a l'adresse de messagerie
+ist am folgenden datum veröffentlicht worden	a été publié à la date suivante
+hat name	a le nom
+datum der druckfertigen einreichung ist	la date de présentation finale
+ort der konferenz	lieu de la Conférence
+grad der gutachterpräferenz	juste la préférence expertise
+hat geschlecht	avoir des relations sexuelles
+hat mitglieder	a membres
+hat abfolge	a séquence
+ist anfangsdatum	est la date de début
+anzahl der fortschritte der konferenz	nombre de cours de la Conférence
+ist eingereicht für	est soumis à
+liefert konferenzbeitrag	Contribution de la Conférence
+ausschuss der konferenz ist	Comité de la Conférence est
+hat abschnitt	a coupé
+grad des fachgebiets des gutachters ist	degré de l'objet du vérificateur est
+hat vornamen	a nom donné
+datum der einreichung des kompletten beitrags ist	Date de dépôt de la contribution totale est
+isbn der fortschritte ist	ISBN quels progrès est
+hat nachnamen	a nom de famille
+url der konferenz ist	la Conférence de l'URL est
+ist enddatum	est la date de fin
+datum der akzeptanz-mitteilung ist	Date de l'avis d'acceptation est
+hat fachgutachten	a l'avis d'experts
+ist ein präferiertes thema oder fachgebiet eines gutachters	est un sujet préféré ou un domaine d'expertise d'un expert
+hat gutachten	a avis
+ist vorsitzender des ausschusses	est président de la Commission
+hat beitrag	a contribution
+ist teil der konferenzreihe	appartient à la série de conférences
+organisationsausschuss der konferenz ist	le Comité d'organisation de la Conférence est
+hat author	a l'auteur
+hält präsentation	présentation de l'exploitation
+ist ausschuss der konferenz	Comité de la Conférence
+hat workshop-thema	thème de l'atelier
+ist ein präferiertes thema eines gutachters	est un thème privilégié d'un expert
+hat beitrag eingreicht	a contribution eingreicht
+eingeladen von gutachter	expert invité
+hat abstrakt	a résumé
+veröffentlicht	publié
+hat thema oder beitrag eingereicht	sujet ou contributions présentées
+programmausschuss der konferenz ist	Comité de programme de la Conférence est
+begutachtet beitrag	contribution publique
+ist steuerungsausschuss der konferenz	est le Comité directeur de conférence
+ist organisationsausschuss der konferenz	est le Comité d'organisation de la Conférence
+ist ein wichtiges datum einer konferenzreihe	est une date importante d'une série de conférence
+verleger des konferenzfortschritts ist	Editeur de l'avancement de la Conférence est
+präsentiert von	présenté par
+hat eine zugewiesene gutachterpräferenz	a une préférence expertise assignée
+ist mitglied von	est membre de
+hat wichtiges datum	a date importante
+hat tutorium	a tutoriel
+präferenz oder fachgebiet des gutachters ist	préférence ou domaine d'expertise du vérificateur
+ist der erst teil von	est qu'une partie de
+lädt mitgutachter ein	avec un bon huitième invite
+hat stellvertrenden ausschussvorsitzender	a stellvertrenden Président
+ist leiter des workshops	est le directeur de l'atelier
+hat workshop-leitung	gestion de l'atelier
+hat ausschussvorsitzender	a le Président
+ist programmausschuss der konferenz	est le Comité de programme de la Conférence
+steuerungsausschuss der konferenz ist	Comité de pilotage de la Conférence est
+hat workshop	a l'atelier
+ist stellvertretender vorsitzender des ausschusses	est vice-président de la Commission
+ist thema ein konferenzabschnittes	désigne une partie du thème de la Conférence
+ereignis der begutachtung	événement de contrôle
+studentischer teilnehmer	étudiants participants
+autor	auteur
+bankett	Banquet
+poster	affiche
+ereignis des sendens des "camera-ready" papiers	événement de l'envoi du livre « appareil prêt »
+ereignis	événement
+papier	papier
+vorsitz des programmkomitees	siège au Comité de programme
+einreichung	présentation
+kurzes papier	document succinct
+teilnehmer	participants
+stadt	Ville
+empfang	réception
+regulärer teilnehmer	participants réguliers
+student	étudiant
+freiwilliger	volontaire
+universität	Université
+firma	société
+ereignis zur registrierung der teilnehmer	événement à l'enregistrement des participants
+mitglied	Membres
+ereignis des einreichens eines papiers	événement de présenter un document
+arbeits-ereignis	événement emploi
+ergebnis-der-begutachtung ereignis	résultat de l'événement de l'évaluation
+soziales ereignis	événement social
+land	Terre
+administratives ereignis	Événement administratif
+ausflug	excursion
+wissenschaftler	scientifiques
+assistent	Assistant
+mitglied des programmkomitees	Membre du Comité de programme
+minimale anzahl	nombre minimal
+endet am	se termine à
+hat straße	a la route
+studiert an	a étudié au
+hat stadt	Ville a
+frühzeitige registrierung	Date d'inscription hâtive
+begutachtet	examiné
+folgt	suit
+fachkundig für	expert pour
+schreibt	écrit
+hat land	a pays
+angestellt bei	engagé à
+gleichzeitig mit	en même temps avec
+hat postleitzahl	a code postal
+hat kurztitel	a court Titel
+hat homepage	Page d'accueil
+hat telephonnummer	a le numéro de téléphone
+hat mehrwertsteuer	a valeur ajoutée fiscale
+vorgegebene anzahl	Numéro de préréglage
+hat kontakt-email adresse	Comment entrer en contact avec l'adresse e-mail a
+hat faxnummer	a faxnummer
+findet statt an	aura lieu le
+maximale anzahl	nombre maximal
+hat stichwörter	a les mots-clés
+startet am	commence à
+hat nachname	a nom de famille
+hat email adresse	a l'adresse e-mail
+hat thema	a la rubrique
+beschäftigt sich mit	traite
+hat anmerkung	a l'annotation
+hat administratives event	Événement administratif
+konferenz-dinner	Dîner-conférence
+computernetzwerksensor-thema	Thème computernetzwerksensor
+platz	lieu
+sicherheits-thema	thème de la sécurité
+gutachtenbewertung	Note de l'opinion
+ausstehender beitrag	contribution en attendant
+numerische gutachtenfrage	question d'opinion numérique
+speisekarte	Menu
+multimedia-thema	rubrique multimédia
+freie zeit	temps libre
+aufruf	appel
+akademisches event	événement académique
+persönliche historie von gutachten	antécédents personnels d'avis
+konferenzversitzender	Conférence versitzender
+mahlzeit	repas
+schwach abgelehnte bewertung	faible a rejeté l'examen
+sitzungsvorsitzender	Président de session
+foliensatz	Ensemble de papier d'aluminium
+pause	pause
+mobiles computing-thema	Thème informatique mobile
+soziales event	événement social
+author	auteur
+abschlussvortrag	Présentation finale
+akademische organisation	Organisation académique
+abgelehnte bewertung	examen rejeté
+regierungsorganisation	Organisation du gouvernement
+optische computernetzwerke-thema	thème de l'optique computernetzwerke
+einebige konferenz	einebige Conférence
+"nur tests"-thema	Thème « quelques essais »
+programm	programme
+industrielle organisation	Organisation industrielle
+sitzungsraum	salle de réunion
+formular für gutachten	formulaire pour avis
+parallel und verteiltes computing-thema	Thème informatique parallèle et distribué
+persönliche historie	antécédents personnels
+aktiver beitrag	contribution active
+kommunikationstheorie-thema	sujet de la théorie de la communication
+computernetzwerkunternehmen-thema	thème de l'ordinateur réseau opérateur
+akzeptierter beitrag	contributions acceptées
+medizinisches thema	Thème médical
+veranstaltungsort der konferenz	site de la Conférence
+kryptographisches thema	Thème cryptographique
+vortrag	Conférence
+computernetzwerksicherheit-thema	Thème computernetzwerksicherheit
+wörtliche gutachtenfrage	question d'opinion littérale
+speiseplatz	Salle à manger
+persönliche historie von veröffentlichungen	antécédents personnels de publications
+begrüßungsvortrag	Bienvenue présentation
+satelliten- und weltraumkommunikation-thema	thème de communications par satellite et de l'espace
+gutachtenfrage	Question d'opinion
+präsentation eines beitrags	présentation d'une contribution
+event im zusammenhang mit einer konferenz	événement lié à une conférence
+trägerfrequenzanlage-thema	Thème du système fréquence porteuse
+aufruf für manuskripte	appel à manuscrits
+mikroelektronisches thema	Thème mikroelektronisches
+zurückgezogener beitrag	contribution retirée
+performance-thema	problème de performance
+aufruf für gutachten	appel pour avis
+konferenzsitzung	Session de la Conférence
+kommunikations-thema	thème de la communication
+akzeptierte bewertung	évaluation reconnus
+mitglied von tpc	Membre de PTC
+computernetzwerkanwendungen-thema	Thème computernetzwerkanwendungen
+radiokommunikation-thema	Thème de communication radio
+bewerteter beitrag	contribution pondérée
+organistorische besprechung	organistorische séance
+cad-thema	Thème CAD
+essenszeit	Temps de manger
+computernetzwerkwechsel-thema	Thème computernetzwerkwechsel
+präsentator	praesentator
+computernetzwerkverwaltung-thema	Thème computernetzwerkverwaltung
+antennen-thema	thème d'antennes
+kein akademisches event	aucun événement académique
+zweiebige konferenz	zweiebige Conférence
+kaffeepause	Pause café
+besucher	visiteurs
+nichtregierungsorganisation	Organisation non gouvernementale
+reisesubvention	Subvention de voyage
+betriebssystem-thema	Thème du système d'exploitation
+beitrag	contribution
+computernetzwerke-thema	Thème computernetzwerke
+signalverarbeitung-thema	Thème de traitement de signal
+unterkunft	Hébergement
+drahtlose kommunkation-thema	thème de communication sans fil
+compututerarchitektur-thema	Thème compututerarchitektur
+computernetzwerkspezifikation-thema	Thème computernetzwerkspezifikation
+sponsoring	parrainage
+kontaktinformationen	Informations de contact
+akzeptiert, wenn spielraum vorhanden ist, bewertung	acceptée si l'espace est disponible, revue
+veröffentlichter beitrag	contributions publiées
+hat datum und zeit des endes	Date et heure de la fin
+hat anweisungen für einreichungen	instructions pour les présentations
+hat e-mail	a e-mail
+hat besucher	visiteurs
+hat datum und zeit der deadline für manuskripte	Date et heure de la date limite pour les manuscrits
+hat biografie	a biographie
+hat telefon	a téléphone
+hat datum und zeit des beginns	Date et heure de départ
+hat deadline für einreichungen	est la date limite pour les soumissions
+hat kostensumme	a coût total
+hat währung der kosten	a monnaie le coût
+hat datum und zeit des beginns der konferenz	Date et heure du début de la Conférence
+hat datum und zeit der deadline für beiträge	Date et heure de la date limite pour les contributions
+hat datum und zeit des endes der konferenz	Date et heure de la fin de la Conférence
+hat vollständigen namen der konferenz	a le nom complet de la Conférence
+hat datum und zeit der deadline für registrierungen	Date et heure de la date limite pour les inscriptions
+hat beziehung zu dokument	a relation au document
+gehört zu event	appartient à l'événement
+ist thema von	Thème par
+ist eingeleitet von	est initiée par
+ist begutachtet von	est examinée par
+hat bewertung	a l'évaluation
+ist anbieter von	fournisseur est par
+hat programm	a programme
+hat geschrieben	a écrit
+ist über beitrag	est sur la contribution
+ist geschrieben von	est écrit par
+hat aufruf	a l'appel
+für event	pour l'événement
+ist gutachtenhistorie von	Historique de rapport par
+ist besucher auf	est visiteurs
+hat ort	a l'emplacement
+bezieht sich auf	se réfère à
+ist menü von	menu est par
+hat gutachtenhistorie	a avis histoire
+leitet ein	initiés
+ist ort von	est le lieu de
+ist angeboten von	est offert par
+ist präsentiert in	est présenté dans
+hat menü	a menu
+workshop-sitzung	Session de l'atelier
+tutoriumvorsitz	Chaise tutoriel
+sitzungsvorsitz	Président de séance
+forschungsinstitut	Institut de recherche
+event	événement
+zugewiesener beitrag	contribution attribuée
+organisierende agentur	Agence Organisatrice
+möglicher gutachter	examinateurs potentiels
+wissentschaftliches event	événement wissentschaftliches
+vorsitzender des programmausschusses	Président du Comité de programme
+konferenz-beitag	Conférence beitag
+mitglied des programmausschusses	Membre du Comité du Programme
+konferenz-bankett	Banquet de la Conférence
+flyer	Flyer
+mitglied des steuerungsausschusses	Membre du Comité directeur
+abgelehntes beitrag	rejeté contribuant
+abstraktes tutorium	tutoriel abstrait
+beigetragener vortrag	contribué Conférence
+akademische institution	établissement d'enseignement supérieur
+eingeladener abstrakter vortrag	facturé une conférence abstraite
+demo vorstand	Carte de démonstration
+workshop-beitrag	Atelier-contribution
+demo sitzung	séance de démonstration
+workshopvorsitz	workshopvorsitz
+individuelle präsentation	présentation individuelle
+konferenzreise	Voyage de conférence
+webseite	site Web
+mitglied des organisationsausschusses	Membre du Comité organisateur
+konferenzfortschritte	Progrès de la Conférence
+track	piste
+negatives gutachten	avis négatif
+neutrales gutachten	avis neutre
+früh registrierter teilnehmer	participants inscrits au début
+verleger der fortschritte	Éditeur qui évoluent
+programmbroschüre	Brochure du programme
+agenturmitarbeiter	Employés de l'Agence
+evaluierter beitrag	contribution évaluée
+sitzung	session
+ausgehängte sitzung	Après décrochage session
+ort	lieu
+industrieller beitrag	contribution industrielle
+spät registrierter teilnehmer	participants inscrits fin
+industrielle sitzung	industrielle session
+author eines beitrags	auteur d'une contribution
+reguläre sitzung	session ordinaire
+positives gutachten	avis positif
+forschungsthema	Sujet de recherche
+koferenz	koferenz
+fortschritte	progrès
+multi-author volume	multi-auteur volume
+vorsitzender des organisationsausschusses	Président du Comité organisateur
+ausgehängter beitrag	suspendu de contribution
+demo beitrag	Contribution de démo
+koferenzsitzung	koferenzsitzung
+event ist gelistet	événement est répertorié
+hat teil	a participé
+gutachter des beitrags ist	analyse de la contribution est
+organisiert von	organisé par
+referenziert	références
+ist teil von	fait partie de
+thema ist abgedeckt von	sujet est couvert par
+ist invers zu teil von 7	inverse fait partie des 7
+gutachten ist geschrieben von	Avis est rédigé par
+ist gutachten des beitrags	Avis de la contribution
+organisiert wissenschaftlich	scientifique a organisé
+hat gutachter	a l'examinateur
+wissenschaftlich organisiert von	scientifiquement organisée par
+organisiert technisch	organisé technique
+reihe enhält beitrag	inclut la contribution de la série
+ort von	lieu de
+präsentation des beitrages	présentation de la contribution
+aktualisiert version von	mise à jour de
+beitrag ist teil der reihe	contribution fait partie de la série
+deckt thema	couvre le thème
+hat aktualisierte version	a mis à jour version
+findet statt in	a lieu dans
+hat event	a événement
+listet event auf	listes événement
+wurde veröffenlicht von	a été publié par
+referenziert in	référencé dans
+organisiert	organisé
+ist teil von einem event	fait partie d'un événement
+technisch organisiert von	techniquement organisée par
+ist author von	est l'auteur de
+beitrag wird präsentiert als	contribution sera présentée comme un
+zeit	temps
+student, der kein redner ist	étudiant qui n'est pas un orateur public
+registrierungsformular (konferenz)	Formulaire d'inscription (Conférence)
+studentischer vortragender	Chargé de cours étudiant
+vortragender, der ein tutorium hält	Maître de conférences, détient l'un tutoriel
+akzeptieren eines manuskripts	accepter un manuscrit
+konferenz-halle	Salle de conférence
+overhead-projektor	rétroprojecteur
+video-präsentation	vidéo de présentation
+computer	ordinateur
+powerpoint-präsentation	Présentation PowerPoint
+modellierungsaktivität	L'activité de modélisation
+kleintransporter	Vente au détail
+örtlichkeit	emplacement
+anmeldegebühr	frais d'inscription
+folie	fleuret
+dinner-bankett	banquet de dîner
+hotelgebühr	Frais d'hôtel
+stadt, aus der ein sponzor kommt	Ville, un promoteur vient de la
+forschungsaktivität	Activité de recherche
+mieten eines autos	Location de voitures
+folie (overhead projektor)	fleuret (rétroprojecteur)
+willkommensrede	Discours de bienvenue
+formular zur information des autors	formulaire pour les informations de l'auteur
+vortragender, der nur an einem tag redet	Maître de conférences, qui parle seulement en une seule journée
+abreise	départ
+staat des vortragenden	État de présentation
+vortrag gehalten von einem redner	Conférence tenue par un haut-parleur
+vortragender, der im konferenzhotel untergebracht ist	Maître de conférences, la dans l'hôtel de conférence est
+sponsor	sponsor
+angestellter, der kein redner ist	employé-e qui n'est pas un orateur public
+angestellter vortragender	conférencier de l'employé
+frist zur benachrichtigung der akzeptanz	Date limite pour la notification d'acceptation
+trinkgeld	Astuce
+frist	Date limite
+session	session
+aktivität, die nach der konferenz stattfindet	activité a lieu après la Conférence
+haus einer firma, die ein sponsor ist	maison à une entreprise qui est un commanditaire
+cameraready-frist	photocomposition - date limite
+hauptbüro	Bureau principal
+ablehnung eines manuskripts	rejet d'un manuscrit
+registrierungsformular (hotel)	Formulaire d'inscription (hôtel)
+universität eines vortragenden	Université de présenter
+steuer	impôt
+konferenzgebäude	Bâtiment des conférences
+stadt, aus der ein vortragender kommt	Ville, vient de la maître de conférences
+staat	État
+formular	formulaire
+anmeldegebühr für einen studenten	frais d'inscription pour un étudiant
+stadt, die ein ausflugsziel darstellt	Ville, ce qui représente une destination
+frist zur hotelreservierung	Date limite pour la réservation d'hôtel
+registrierung	enregistrement
+originalversion des manuskripts	Version originale du manuscrit
+registrierungsformular	Formulaire d'inscription
+autor, der einen tagungsband in buchform erhält	auteur, recevant une tagungsband sous forme de livre
+konferenztage	Jours de la Conférence
+ausflugstag	Journée d'excursion
+soziale aktivität	activité sociale
+simulationsaktivität	Activité de simulation
+haus eines vortragenden	Maison de présenter
+mailingliste	société
+transportfahrzeug	Véhicule de transport
+einzelzimmer	chambre simple
+anmeldegebühr für ein nicht-mitglied	frais d'inscription pour un non-membre
+stadt, in der die konferenz stattfindet	Ville où se tiendra la Conférence
+vortrag im plenum	Conférence en séance plénière
+endversion des manuskripts	EndVersion du manuscrit
+staat der konferenz	Etat de la Conférence
+sponsorgebühr	sponsorgebuehr
+redner	haut-parleurs
+tagungsband als buch	tagungsband comme livre
+delegierter	délégué
+lcd-projektor	Projecteur LCD
+aktivität, die vor der konferenz stattfindet	activité qui a lieu avant la Conférence
+taxi	taxi
+gegenstand	Objet
+mitglied von iasted	Membre de l'iasted
+kurze einführung für den session-vorsitz	brève introduction à la session-siège ci-dessus
+gebühr für einen zusatzausflug	Tarif pour un voyage supplémentaire
+tagungsband als cd	tagungsband comme cd
+registrierungsfrist	Date limite d'inscription
+abreisegebühr	Frais de départ
+annahme eines manuskripts	acceptation d'un manuscrit
+anmeldegebühr für einen autor, der den tagungsband in buchform erhält	frais d'inscription pour un auteur qui reçoit le tagungsband sous forme de livre
+währung	monnaie
+flughafen in/am konferenzort	Aéroport le plus pratique dans la salle de conférence
+automobil	Automobile
+einzelner konferenztag	journée-conférence unique
+autor, der einen tagungsband als cd erhält	auteur, recevant une tagungsband comme cd
+anmeldegebühr für ein mitglied	frais d'inscription pour membre
+zahlungsbeleg	Preuve du paiement
+geldbetrag	Somme d'argent
+anmeldegebühr für einen autor, der den tagungsband als cd erhält	frais d'inscription pour un auteur, recevant le tagungsband comme cd
+nicht-redner	non-locuteurs
+bank transfer	Virement bancaire
+hotelzimmer	Chambres de l'hôtel
+videorecorder	Enregistreur vidéo
+vorstellung	présentation
+vortragender	Maître de conférences
+anwesenheitsnachweis	Feuille de présence
+shuttle-bus	bus-navette
+nicht-mitglied von iasted	non membre de l'iasted
+tagestour	Excursion d'une journée
+jede art von dokument	tout type de document
+mehrwertsteuer	valeur ajoutée fiscale
+zeit (zeitraum und zeitpunkt)	temps (heure et date)
+konferenzbesucher	Visiteurs de la Conférence
+kreditkarte	Carte de crédit
+anmeldegebühr für einen nicht-autor	frais d'inscription pour un non-auteur
+gebühr	frais
+zuhörer	auditeurs
+zeitzone	Fuseau horaire
+staat des sponzors	État des sponzors
+publikation	publication
+technisches komitee	Comité technique
+konferenzhotel	Hôtel de la Conférence
+cocktail-empfang	cocktail-réception
+doppelzimmer	Chambre double
+aktivität, die während der konferenz stattfindet	activité qui se déroule au cours de la Conférence
+einreichungsfrist	Date limite de soumission
+visum	Visa
+vorstellung eines redners	introduction du Président
+technische aktivität	activité technique
+aktivität	activité
+scheck	vérifier
+gegenstand (im allgemeinen)	objet (en général)
+gebäude	bâtiment
+audiovisuelle ausstattung	équipement audio visuel
+vortragender, der im plenum redet	Maître de conférences, qui parlent en séance plénière
+konferenzrestaurant	Restaurant de la Conférence
+einladungsbrief	Lettre d'invitation
+karte	carte
+ist entworfen/bestimmt für	conçu/destinés à
+wird besucht von	est visité par
+wird vorbereitet von	est établi par
+benötigt	Obligatoire
+sendet	envoie
+erhält	reçoit
+wird versendet nach	sera envoyé à
+unterzeichnet	signé
+muss erledigt sein bis	Il faut faire pour
+hat betrag von	a la quantité de
+ist datiert auf	est datée du
+spricht in (räumlich und zeitlich)	parle en (spatiale et temporelle)
+wird bezahlt mit	sera payé avec
+istanwesend (räumlich und zeitlich)	istanwesend (spatiale et temporelle)
+ist verbunden mit/bezogen auf	est connecté / associés à
+findet statt nach	s'effectue après
+wird verwendet von	est utilisé par
+istanwesend (räumlich)	istanwesend (lieu)
+ist gemacht aus	Il est fait
+bereitet vor	préparé
+wird versendet von	sera envoyé par
+findet statt vor	a lieu avant
+wird benötigt für	est nécessaire pour
+ist ausgestattet mit	est équipé
+wird verwendet für	est utilisé pour
+wird bezahlt von	seront payés par
+wird versendet vor	sera envoyé à
+wird gegeben/ausgeführt von	sera donné/réalisée par
+wird unterzeichnet von	est signé par
+bewohnt	habitée
+wirdgegebenan	wirdgegebenan
+gibt	sont
+wird bezahlt für	On paiera
+durchgeht	traverse
+wird bezahlt in	seront payés en
+befindet sich in	Situé à
+wird bewohnt von	est habitée par
+bezahlt	payé
+award für besten forschungsbeitrag	Award du meilleur article de recherche
+ausschuss für den award des besten beitrags	Comité pour le prix de la meilleure contribution
+gold sponsor der konferenz	Gold sponsor de la Conférence
+sponsor als aussteller	Parrainer en tant qu'exposant
+deadline für eine abstrakte einreichung	Date limite pour la soumission d'un résumé
+deadline	Date limite
+award für besten anwendbaren beitrag	Award de la meilleure contribution applicables
+registrierungsgebühr	Frais d'inscription
+organisatoren der konferenz	organisateurs de la Conférence
+registrierungskosten für studenten	coût d'inscription pour les étudiants
+eines studentischen beitrags	une contribution de l'étudiant
+registrierungskosten für personen, die nicht mitglied von sig sind	coût d'inscription pour les personnes qui ne sont pas membres du sig
+hauptbüro der konferenz	Bureau principal de la Conférence
+webmaster	Webmaster
+deadline für die einreichung eines beitrags	Date limite pour la soumission d'une contribution
+programmvorsitzender	programme Président
+author eines konferenzbeitrages	auteur d'une contribution de la Conférence
+sponsorenbeitrag	sponsorenbeitrag
+konferenzsaal	Salle de conférence
+konferenz acm sigdkdd	ACM sigdkdd Conférence
+bronze sponsor der konferenz	Bronze sponsor de la Conférence
+registrierungskosten für mitglieder von sigmod	coût d'inscription pour les membres de sigmod
+konferenzgebühr	Droit d'inscription
+deadline für die mitteilung eines authors	Date limite pour la notification des auteurs
+silber sponsor der konferenz	Silver sponsor de la Conférence
+award für besten studentischen beitrag	Award de la meilleure contribution de l'étudiant
+platin sponsor der konferenz	Commanditaire platine de la Conférence
+award für konferenzbeitrag	Prix de contribution de conférence
+registrierungskosten für mitglieder von sigkdd	coût d'inscription pour les membres de sigkdd
+sponsor für besten studentischen beitrag	commanditaire de la meilleure contribution de l'étudiant
+hörer der konferenz	auditeurs de la Conférence
+hotel	Hôtel
+konferenz organisiert von	Conférence organisée par
+deadline für authorenmitteilung	Date limite pour l'authorenmitteilung
+bleibt in	reste en
+sponsoren wurden aufgerufen von	commanditaires ont été appelés par
+paid zahlt registrierungsbeitrag	payer l'inscription post payée
+beitrag wurde eingereicht von	contribution a été soumise par
+deadline festgelegt	fixation du délai
+präsentiert dokumente	présente les documents
+hat award	Prix
+aufruf von sponsoren	appel de sponsors
+organisiert konferenz	Conférence organisée
+hat preis	a prix
+ist datiert auf den	porte la date du
+registrierungsbeitrags ist in währung	Registre contribue en monnaie
+hat name der konferenz	nom de la Conférence a
+hat nationalität	a la nationalité
+hat sponsorenname	a sponsorenname
+datum des ersten tages der konferenz ist	Date de la première journée de la Conférence est
+award erhalten von	prix reçu de
+registrierungsbeitrag gezahlt von	Cotisation générale Registre
+hat award erhalten von	prix reçu de
+wurde präsentiert von	a été présenté par
+deadline eingerichtet für	le délai fixé pour
+konferenz findet in folgender stadt statt	Conférence se tiendra dans la ville suivante
+datum des letzten tages der konferenz ist	Date de la dernière journée de la Conférence est

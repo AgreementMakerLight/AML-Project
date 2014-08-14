@@ -1,0 +1,709 @@
+person	人
+gebot	吩咐
+vorsitzender des programm-komitees	程序委员会主席
+gegenstandsbereich	范围
+gutachten	意见
+externer gutachter	外部评价员
+meta-gutachater	元-gutachater
+akzeptanz	验收
+dokument	文档
+konferenzbeitrag	会议的贡献
+stellvertretender vorsitz	在副座
+programm-komitee	程序委员会
+entscheidung	决定
+präferenz	偏好
+mitglied des programm-komitees	程序委员会成员
+abstrakt eines konferenzbeitrags	摘要的会议作出贡献
+verfasser, der kein gutachter ist	作家，他是不是专家
+zurückweisung	排斥反应
+meta-gutachten (gutachten über ein gutachten)	元-意见 （意见的看法）
+meta-gutachater (gutachter der gutachten begutachtet)	元-gutachater （专家意见进行审查）
+meta-gutachten	元-意见
+mitverfasser	合著者
+teilnehmer einer konferenz	会议的与会者
+gutachter	专家
+vollständiger konferenzbeitrag	完整的会议费
+konferenz	会议
+administrator	管理员
+benutzer	用户
+vorsitzender	主席
+verfasser	作者
+vorsitzender der konferenz	会议主席
+hat details eingefügt in bezug auf	已插入相对于细节
+hat die zuordnung der beiträge abgeschlossen	已完成贡献的映射
+hat zugewiesen	已分配给
+druckt papierausdruck des mailing-manifests	打印纸张副本邮寄清单的
+beitragszuordnungs-software ausgeführt von	通过运行 beitragszuordnungs 软件
+zugewiesen zu	分配给
+details eingefügt von	通过添加详细信息
+beitragszuordnung abgeschlossen von	岗位任务，通过完成
+gelesen von gutachter	阅读由专家
+hat die beitrags-zuordnungssoftware ausgeführt	已进行的贡献 zuordnungssoftware
+hat virtuelles treffen veranlasst	满足虚拟了
+hat abgeglichen	已匹配
+mitverfasst von	由创作
+hat interessenskonflikt in bezug auf	在 interessenskonflikt 有
+abgewiesen von	被拒绝
+geschrieben von	发表于
+virtuelles treffen veranlasst von	为首的虚拟会议
+gelesen von meta-gutachter	读元审阅者所做
+akzeptiert von	接受的
+ist mitglied des programm-komitees	是委员会成员
+hat beitrag geschrieben	写了贡献
+hat die gebotsphase gestartet	开始投标阶段
+kriterien zu gutachten eingefügt von	标准的意见由插入
+hat papier abgelehnt	被拒绝的纸
+bestimme maximale anzahl an zugewiesenen beiträgen	选择分配捐款的最大数目
+ist entschieden worden als	它被定为
+steht in interessen-konflikt mit beitrag	利益冲突与贡献
+hat webseite an url	有的网站的 url
+hat namen	具有名称
+hat datum	有的日期
+akzeptiert hardcopy-einsendungen	接受 hardcopy\r 提交
+hat id	有的 id
+maximale anzahl an zugewiesenen beiträgen	已分配捐款的最大数目
+hat titel	有的标题
+hat email	有的电子邮件
+zugewiesen von administrator	由管理员分配
+hat mitglied	有的成员
+hat logo an url	有标志的 url
+gutachten pro beitrag	每贡献的意见
+zugewiesen von gutachter	指派的专家
+hat akzeptiert	已接受
+hat papier gelesen	阅读本文
+hat gegenstandsbereich	有范围
+papierausdruck des mailing-manifests gedruckt von	通过邮寄清单的打印的硬拷贝
+ist zugeordnet worden	已订购到
+teilnehmer von	从参与者
+hat die zeit des begutachtens beendet	已完成评价的时间
+hat hinzugefügt	添加
+abgeglichen von	由匹配
+hinzugefügt von	通过添加
+hat teilnehmer	参与者
+hat beitrag eingesendet	捐款提交了吗
+hat beitrag mitverfasst	贡献撰写了吗
+hat kriterien zu gutachten eingefügt	已添加标准的意见
+gebotsphase gestartet von	投标阶段的开始
+hat gutachten geschrieben	有书面意见
+hat gebot erhalten	所吩咐 get
+organisationsausschuss	组织委员会
+herausgeber	发布者
+konferenzankündigung	会议公告
+passiver konferenzteilnehmer	被动的参与者
+aufruf zu teilnahme	号召参与。
+author eines regulären beitrags	定期作出贡献的作者
+aushang	公告板
+fachgebiet des gutachters	验证程序的专门知识领域
+eingereichter beitrag	提交的贡献
+ausschuss	委员会
+erweitertes abstrakt	扩展的抽象
+geschriebener beitrag	书面的贡献
+regulärer beitrag	定期的贡献
+konferenzteilnehmer, der einen beitrag geleistet hat	会议的参加者，已作的一个贡献，
+workshop	讲习班
+eingeladener referent	邀请的演讲者
+internet der konferenz	互联网的会议
+präferenz des gutachters	验证程序的首选项
+konferenzgebühren	会议费
+leiter der workshops	车间主任
+primärer author eines beitrags	主要作者的贡献
+koferenzdokument	koferenzdokument
+stellvertretender vorsitzender	副主席
+informationen für teilnehmer	参与者的信息
+organisator	主办单位
+präsentation	演示文稿
+druckfertiger beitrag	druckfertiger 的贡献
+eingeladener vortrag	受邀的演讲
+fortschritte der konferenz	会议的进展情况
+konferenzreihe	会议系列
+konferenzbewerber, der die konferenzgebühr früh gezahlt hat	有早支付会议费的会议候选人
+abstrakt	摘要
+konferenzteilnehmer	会议的参加者
+konferenzbewerber, der die konferenzgebühr spät gezahlt hat	已经晚了支付会议费的会议候选人
+wichtiges datum	重要日期
+konferenzbeteiligung	参加会议
+tutorium	教程
+ablauf der konferenz	会议的过期时间
+angehörige des ausschusses	委员会的成员
+angenommener beitrag	推定作出贡献
+aktiver konferenzteilnehmer	积极的参与者
+registrierter bewerber	注册的申请人
+mitverfasser eines beitrags	合作作者的贡献
+koferenzbewerber	koferenzbewerber
+organisation	组织
+programmausschuss	程序委员会
+thema	主题
+abschnitte der konferenz	部分的会议
+konferenzbewerber, der die konferenzgebühr gezahlt hat	会议申请人支付会议费
+steuerungsausschuss	督导委员会
+begutachteter beitrag	审阅的贡献
+aufruf für beiträge	捐款呼吁
+abgelehnter beitrag	被拒绝的贡献
+datum der einreichung des abstrakts	摘要提交的日期
+hat e-mailadresse	具有电子邮件地址
+ist am folgenden datum veröffentlicht worden	已经于发表了以下日期
+hat name	有的名字
+datum der druckfertigen einreichung ist	最后提交日期是
+ort der konferenz	会议的地点
+grad der gutachterpräferenz	只是专家的偏好
+hat geschlecht	做爱
+hat mitglieder	有成员
+hat abfolge	有序列
+ist anfangsdatum	是开始日期
+anzahl der fortschritte der konferenz	数量的进展会议
+ist eingereicht für	在提交
+liefert konferenzbeitrag	会议的贡献
+ausschuss der konferenz ist	会议委员会是
+hat abschnitt	切断了
+grad des fachgebiets des gutachters ist	验证程序的标的物的程度是
+hat vornamen	具有给定的名称
+datum der einreichung des kompletten beitrags ist	提交的完整的日期是贡献的
+isbn der fortschritte ist	国际标准书号的进展是
+hat nachnamen	有的姓氏
+url der konferenz ist	会议 URL 是
+ist enddatum	是结束日期
+datum der akzeptanz-mitteilung ist	接受通知的日期是
+hat fachgutachten	有专家的意见
+ist ein präferiertes thema oder fachgebiet eines gutachters	是首选的主题或专业领域的专家吗
+hat gutachten	有的观点
+ist vorsitzender des ausschusses	是委员会主席
+hat beitrag	有的贡献
+ist teil der konferenzreihe	是会议系列的一部分
+organisationsausschuss der konferenz ist	会议组委会
+hat author	有作者
+hält präsentation	控股演示文稿
+ist ausschuss der konferenz	会议委员会
+hat workshop-thema	讲习班的主题
+ist ein präferiertes thema eines gutachters	这是专家的首选的主题
+hat beitrag eingreicht	有的贡献 eingreicht
+eingeladen von gutachter	特邀的专家
+hat abstrakt	具有抽象
+veröffentlicht	出版
+hat thema oder beitrag eingereicht	主题或提交的贡献
+programmausschuss der konferenz ist	大会的程序委员会是
+begutachtet beitrag	公共的贡献
+ist steuerungsausschuss der konferenz	是会议指导委员会
+ist organisationsausschuss der konferenz	会议组委会
+ist ein wichtiges datum einer konferenzreihe	是会议的一系列重要日期
+verleger des konferenzfortschritts ist	发布者的会议取得进展
+präsentiert von	提出了一种由
+hat eine zugewiesene gutachterpräferenz	已分配的专家偏好
+ist mitglied von	是的成员
+hat wichtiges datum	有重要约会
+hat tutorium	有教程
+präferenz oder fachgebiet des gutachters ist	偏好或验证程序领域是专业的
+ist der erst teil von	只是一部分
+lädt mitgutachter ein	用好第八届邀请
+hat stellvertrenden ausschussvorsitzender	有 stellvertrenden 董事长
+ist leiter des workshops	是各车间主任
+hat workshop-leitung	车间管理
+hat ausschussvorsitzender	有主席
+ist programmausschuss der konferenz	是会议程序委员会
+steuerungsausschuss der konferenz ist	会议指导委员会是
+hat workshop	拥有车间
+ist stellvertretender vorsitzender des ausschusses	是委员会副主席
+ist thema ein konferenzabschnittes	是会议的一段
+arbeits-ereignis	就业事件
+ergebnis-der-begutachtung ereignis	评估事件的结果
+soziales ereignis	社会事件
+stadt	城市
+ereignis	事件
+land	土地
+empfang	接待处
+regulärer teilnehmer	经常参与
+student	学生
+administratives ereignis	管理事件
+ereignis der begutachtung	事件的检讨
+freiwilliger	自愿
+universität	大学
+papier	纸
+studentischer teilnehmer	学员
+ausflug	游览
+firma	公司
+ereignis zur registrierung der teilnehmer	事件的参与者注册
+autor	作者
+vorsitz des programmkomitees	坐在程序委员会
+wissenschaftler	科学家们
+einreichung	提交
+bankett	宴会
+mitglied	成员
+kurzes papier	短纸
+assistent	向导
+teilnehmer	参与者
+mitglied des programmkomitees	程序委员会成员
+ereignis des einreichens eines papiers	提交一篇论文的事件
+poster	海报
+ereignis des sendens des "camera-ready" papiers	"相机准备好了"纸的发送的事件
+minimale anzahl	最小数目
+endet am	在结束
+hat straße	有路
+studiert an	在研究了
+hat stadt	城市有
+frühzeitige registrierung	早期注册
+begutachtet	审查
+folgt	如下
+fachkundig für	专家为
+schreibt	写操作
+hat land	有的国家
+angestellt bei	在雇佣了
+gleichzeitig mit	在同一时间以
+hat postleitzahl	有 zip 代码
+hat kurztitel	有短标题
+hat homepage	主页
+hat telephonnummer	有的电话号码
+hat mehrwertsteuer	具有附加价值税
+vorgegebene anzahl	预先设置的号码
+hat kontakt-email adresse	如何联系的电子邮件地址已
+hat faxnummer	有 faxnummer
+findet statt an	将举行
+maximale anzahl	最大数量
+hat stichwörter	有关键字
+startet am	从开始
+hat nachname	有的姓氏
+hat email adresse	有的电子邮件地址
+hat thema	有主题
+beschäftigt sich mit	与交易
+hat anmerkung	有注释
+hat administratives event	管理事件
+konferenz-dinner	大会晚宴
+regierungsorganisation	政府组织
+computernetzwerksensor-thema	computernetzwerksensor 主题
+computernetzwerkverwaltung-thema	computernetzwerkverwaltung 主题
+antennen-thema	天线主题
+kein akademisches event	没有学术事件
+präsentation eines beitrags	演示文稿的贡献
+optische computernetzwerke-thema	光学 computernetzwerke 主题
+platz	地方
+einebige konferenz	einebige 会议
+zweiebige konferenz	zweiebige 会议
+"nur tests"-thema	"只是测试"主题
+sicherheits-thema	安全主题
+gutachtenbewertung	意见评级
+kaffeepause	喝杯咖啡休息
+programm	程序
+besucher	访客
+industrielle organisation	工业组织
+sitzungsraum	会议室
+ausstehender beitrag	挂起的贡献
+nichtregierungsorganisation	非政府组织
+reisesubvention	车船津贴
+numerische gutachtenfrage	数值意见问题
+formular für gutachten	征求意见的形式
+betriebssystem-thema	操作系统主题
+beitrag	贡献
+parallel und verteiltes computing-thema	并行与分布式计算的主题
+event im zusammenhang mit einer konferenz	与会议相关的事件
+speisekarte	菜单
+trägerfrequenzanlage-thema	载波频率系统主题
+multimedia-thema	多媒体主题
+freie zeit	空闲时间
+aufruf	调用
+persönliche historie	个人史
+aufruf für manuskripte	手稿的呼吁
+aktiver beitrag	作出积极贡献
+akademisches event	学术活动
+kommunikationstheorie-thema	通信理论的主题
+persönliche historie von gutachten	个人历史的观点
+computernetzwerkunternehmen-thema	计算机网络操作员主题
+mikroelektronisches thema	mikroelektronisches 主题
+konferenzversitzender	会议 versitzender
+akzeptierter beitrag	接受的捐款
+mahlzeit	餐
+computernetzwerke-thema	computernetzwerke 主题
+zurückgezogener beitrag	撤回的贡献
+schwach abgelehnte bewertung	弱拒绝审查
+medizinisches thema	医疗主题
+veranstaltungsort der konferenz	从会议地点
+performance-thema	性能问题
+signalverarbeitung-thema	信号处理主题
+unterkunft	住宿
+drahtlose kommunkation-thema	无线通信主题
+aufruf für gutachten	舆论呼吁
+kryptographisches thema	加密主题
+sitzungsvorsitzender	会议主席
+compututerarchitektur-thema	compututerarchitektur 主题
+foliensatz	铝箔集
+pause	休息
+computernetzwerkspezifikation-thema	computernetzwerkspezifikation 主题
+konferenzsitzung	届会议
+mobiles computing-thema	移动计算主题
+soziales event	社会事件
+vortrag	讲座
+sponsoring	赞助
+kontaktinformationen	联系信息
+akzeptiert, wenn spielraum vorhanden ist, bewertung	接受是否可用的空间，审查
+computernetzwerksicherheit-thema	computernetzwerksicherheit 主题
+veröffentlichter beitrag	已发布的贡献
+kommunikations-thema	通信主题
+akzeptierte bewertung	认可的评估
+wörtliche gutachtenfrage	字面意见问题
+mitglied von tpc	Tpc 的成员
+computernetzwerkanwendungen-thema	computernetzwerkanwendungen 主题
+radiokommunikation-thema	无线电通信主题
+bewerteter beitrag	加权的贡献
+organistorische besprechung	organistorische 会议
+author	作者
+abschlussvortrag	最终演示文稿
+speiseplatz	餐厅
+akademische organisation	学术组织
+persönliche historie von veröffentlichungen	个人历史的出版物
+begrüßungsvortrag	欢迎演示文稿
+cad-thema	CAD 主题
+essenszeit	吃的时间
+abgelehnte bewertung	被拒绝的审查
+computernetzwerkwechsel-thema	computernetzwerkwechsel 主题
+satelliten- und weltraumkommunikation-thema	卫星和空间通信主题
+gutachtenfrage	意见问题
+präsentator	praesentator
+hat datum und zeit des endes	结束日期和时间
+hat anweisungen für einreichungen	提交的说明
+hat e-mail	具有电子邮件
+hat besucher	访客
+hat datum und zeit der deadline für manuskripte	手稿的最后期限的日期和时间
+hat biografie	有传
+hat telefon	有手机
+hat datum und zeit des beginns	生效日期的日期和时间
+hat deadline für einreichungen	是提交的截止日期
+hat kostensumme	具有成本总额
+hat währung der kosten	有的货币成本
+hat datum und zeit des beginns der konferenz	会议开始的日期和时间
+hat datum und zeit der deadline für beiträge	日期和时间，捐款的截止日期
+hat datum und zeit des endes der konferenz	会议结束的日期和时间
+hat vollständigen namen der konferenz	有会议的完整名称
+hat datum und zeit der deadline für registrierungen	日期和时间，登记的截止日期
+hat beziehung zu dokument	有关系到文档
+gehört zu event	属于事件
+ist thema von	主题由
+ist eingeleitet von	由发起
+ist begutachtet von	由审查
+hat bewertung	有评价
+ist anbieter von	提供程序是由
+hat programm	有的程序
+hat geschrieben	写了
+ist über beitrag	是关于贡献
+ist geschrieben von	是写的
+hat aufruf	已调用
+für event	为事件
+ist gutachtenhistorie von	通过报表历史记录
+ist besucher auf	是访客
+hat ort	有的位置
+bezieht sich auf	指的是
+ist menü von	菜单是由
+hat gutachtenhistorie	有舆论历史
+leitet ein	同修
+ist ort von	是的地方
+ist angeboten von	由提供
+ist präsentiert in	提出了
+hat menü	有的菜单
+früh registrierter teilnehmer	早期注册的参与者
+workshop-beitrag	车间贡献
+author eines beitrags	作者的贡献
+reguläre sitzung	定期会议
+workshop-sitzung	研讨会会议
+tutoriumvorsitz	教程椅子
+sitzungsvorsitz	会议椅
+forschungsinstitut	研究所
+verleger der fortschritte	发布者的进步
+event	事件
+zugewiesener beitrag	已分配的贡献
+organisierende agentur	组织机构
+programmbroschüre	程序手册
+positives gutachten	积极的意见
+möglicher gutachter	审阅者
+wissentschaftliches event	wissentschaftliches 事件
+demo sitzung	演示会话
+forschungsthema	研究课题
+koferenz	koferenz
+vorsitzender des programmausschusses	程序委员会主席
+konferenz-beitag	会议 beitag
+workshopvorsitz	workshopvorsitz
+individuelle präsentation	个别演示文稿
+mitglied des programmausschusses	方案委员会的成员
+konferenzreise	会议旅游
+agenturmitarbeiter	机构员工
+fortschritte	进展
+multi-author volume	多作者卷
+konferenz-bankett	会议宴会
+flyer	传单
+webseite	网站
+mitglied des steuerungsausschusses	督导委员会的成员
+evaluierter beitrag	被评估的贡献
+abgelehntes beitrag	拒绝作出贡献
+vorsitzender des organisationsausschusses	组织委员会主席
+sitzung	会议
+ausgehängter beitrag	暂停从贡献
+mitglied des organisationsausschusses	组委会成员
+abstraktes tutorium	抽象的教程
+beigetragener vortrag	贡献讲座
+akademische institution	学术机构
+konferenzfortschritte	会议取得进展
+ausgehängte sitzung	后脱钩会议
+demo beitrag	演示的贡献
+ort	地方
+koferenzsitzung	koferenzsitzung
+industrieller beitrag	产业的贡献
+track	跟踪
+spät registrierter teilnehmer	已注册的后期参与者
+eingeladener abstrakter vortrag	被控抽象的讲座
+negatives gutachten	负面舆论
+neutrales gutachten	中立观点人
+industrielle sitzung	工业会议
+demo vorstand	演示板
+event ist gelistet	列出所事件
+hat teil	参加了
+gutachter des beitrags ist	审查是贡献的
+organisiert von	由组织
+referenziert	引用
+ist teil von	是的一部分
+thema ist abgedeckt von	通过讨论主题
+ist invers zu teil von 7	逆是 7 的一部分
+gutachten ist geschrieben von	看来是由写的。
+ist gutachten des beitrags	是所作贡献的意见
+organisiert wissenschaftlich	组织科学
+hat gutachter	已审阅者
+wissenschaftlich organisiert von	由科学组织
+organisiert technisch	组织技术
+reihe enhält beitrag	包括系列的贡献
+ort von	地方
+präsentation des beitrages	演示文稿的贡献
+aktualisiert version von	更新的版本的
+beitrag ist teil der reihe	贡献是系列的一部分
+deckt thema	涵盖的主题
+hat aktualisierte version	已更新的版本
+findet statt in	在发生
+hat event	有事件
+listet event auf	列出事件
+wurde veröffenlicht von	由出版
+referenziert in	在中引用
+organisiert	组织
+ist teil von einem event	是事件的一部分
+technisch organisiert von	从技术上讲由组织
+ist author von	是的作者
+beitrag wird präsentiert als	将作为提交的贡献
+angestellter, der kein redner ist	不是一个公众演说家的员工
+anwesenheitsnachweis	考勤表
+shuttle-bus	穿梭巴士服务
+zeit	时间
+student, der kein redner ist	学生不是一个公众演说家
+staat der konferenz	状态的会议
+sponsorgebühr	sponsorgebuehr
+angestellter vortragender	员工讲师
+nicht-mitglied von iasted	非会员协会
+registrierungsformular (konferenz)	注册表单 （会议）
+studentischer vortragender	学生讲师
+vortragender, der ein tutorium hält	讲师，持有一本教程
+tagestour	一日游
+redner	发言者
+jede art von dokument	任何类型的文档
+akzeptieren eines manuskripts	接受一份手稿
+frist zur benachrichtigung der akzeptanz	接受的通知的截止日期
+trinkgeld	小贴士
+konferenz-halle	会议大厅
+mehrwertsteuer	附加价值税
+zeit (zeitraum und zeitpunkt)	时间 （时间和日期）
+konferenzbesucher	会议访客
+overhead-projektor	投影仪
+frist	截止日期
+tagungsband als buch	作为本书的 tagungsband
+video-präsentation	视频演示文稿
+delegierter	委托
+kreditkarte	信用卡
+session	会议
+aktivität, die nach der konferenz stattfindet	会议结束后发生的活动
+lcd-projektor	液晶投影仪
+aktivität, die vor der konferenz stattfindet	在会议之前发生的活动
+anmeldegebühr für einen nicht-autor	非作者的注册费
+computer	计算机
+haus einer firma, die ein sponsor ist	一是赞助商的公司的家园
+taxi	出租车
+cameraready-frist	cameraready-截止日期
+hauptbüro	主要办事处
+gebühr	费用
+ablehnung eines manuskripts	拒绝的一份手稿
+gegenstand	主题
+registrierungsformular (hotel)	注册表单 （酒店）
+universität eines vortragenden	大学的介绍
+steuer	税收
+konferenzgebäude	会议大楼
+powerpoint-präsentation	PowerPoint 演示文稿
+modellierungsaktivität	建模活动
+kleintransporter	零售
+mitglied von iasted	协会的成员
+kurze einführung für den session-vorsitz	会话-座位以上情况简介
+stadt, aus der ein vortragender kommt	市，来自于一位讲师
+zuhörer	听众
+zeitzone	时区
+staat	状态
+staat des sponzors	Sponzors 的状态
+örtlichkeit	位置
+formular	窗体
+publikation	出版物
+anmeldegebühr für einen studenten	一名学生的注册费
+gebühr für einen zusatzausflug	一个额外的旅行费用
+stadt, die ein ausflugsziel darstellt	市，代表一个目的地
+technisches komitee	技术委员会
+tagungsband als cd	作为 cd tagungsband
+frist zur hotelreservierung	酒店预订截止日期
+konferenzhotel	会议酒店
+registrierung	注册
+registrierungsfrist	报名截止日期
+originalversion des manuskripts	原始版本的手稿
+cocktail-empfang	鸡尾酒招待会
+anmeldegebühr	注册费
+abreisegebühr	离境费
+registrierungsformular	注册表单
+folie	铝箔
+dinner-bankett	晚餐宴会
+annahme eines manuskripts	接受一份原稿
+hotelgebühr	酒店费用
+autor, der einen tagungsband in buchform erhält	作者，以书的形式接收 tagungsband
+anmeldegebühr für einen autor, der den tagungsband in buchform erhält	作者在书的形式接收 tagungsband 的注册费
+währung	货币
+flughafen in/am konferenzort	会议地点在机场
+konferenztage	会议天数
+doppelzimmer	双人间
+ausflugstag	游览一天
+soziale aktivität	社交活动
+automobil	汽车
+simulationsaktivität	模拟活动
+haus eines vortragenden	房子的呈现
+einzelner konferenztag	单一会议的一天
+mailingliste	公司
+stadt, aus der ein sponzor kommt	市赞助商来自
+transportfahrzeug	运输车辆
+forschungsaktivität	研究活动
+aktivität, die während der konferenz stattfindet	在会议期间发生的活动
+mieten eines autos	租一辆车
+folie (overhead projektor)	铝箔 （投影仪）
+willkommensrede	欢迎致辞
+formular zur information des autors	有关作者的信息的窗体
+vortragender, der nur an einem tag redet	讲师，只在一天中的说话
+einreichungsfrist	提交截止时间
+visum	签证
+autor, der einen tagungsband als cd erhält	作者，接收作为 cd tagungsband
+vorstellung eines redners	演讲者的介绍
+abreise	离境
+einzelzimmer	单人房
+staat des vortragenden	状态的呈现
+technische aktivität	技术活动
+aktivität	活动
+vortrag gehalten von einem redner	一位发言专题讲座
+scheck	检查
+anmeldegebühr für ein mitglied	会员注册费
+anmeldegebühr für ein nicht-mitglied	非会员的注册费
+zahlungsbeleg	付款证明
+gegenstand (im allgemeinen)	主题 （在一般）
+geldbetrag	多少钱
+vortragender, der im konferenzhotel untergebracht ist	讲师，在会议酒店
+stadt, in der die konferenz stattfindet	会议将在哪里举行的市
+gebäude	建筑
+anmeldegebühr für einen autor, der den tagungsband als cd erhält	一名作者，接收作为 cd tagungsband 的注册费
+audiovisuelle ausstattung	视听设备
+sponsor	赞助商
+nicht-redner	非扬声器
+bank transfer	银行转帐
+vortragender, der im plenum redet	讲师，他在全体会议发言
+hotelzimmer	酒店客房
+videorecorder	视频录像机
+konferenzrestaurant	会议餐厅
+einladungsbrief	邀请信
+vortrag im plenum	在全体会议讲座
+endversion des manuskripts	endversion 的手稿
+vorstellung	演示文稿
+vortragender	讲师
+karte	地图
+ist entworfen/bestimmt für	设计或意欲为
+wird besucht von	由参观
+wird vorbereitet von	编写的
+benötigt	必填
+sendet	发送
+erhält	接收
+wird versendet nach	将被发送到
+unterzeichnet	签署
+muss erledigt sein bis	必须做的
+hat betrag von	有的量
+ist datiert auf	被日
+spricht in (räumlich und zeitlich)	说话 （时空）
+wird bezahlt mit	将与支付
+istanwesend (räumlich und zeitlich)	istanwesend （时空）
+ist verbunden mit/bezogen auf	是连接 / 相关
+findet statt nach	发生后
+wird verwendet von	由使用
+istanwesend (räumlich)	istanwesend （的地方）
+ist gemacht aus	是由
+bereitet vor	准备
+wird versendet von	将通过发送
+findet statt vor	发生之前
+wird benötigt für	是必需的
+ist ausgestattet mit	配备
+wird verwendet für	用于
+wird bezahlt von	将由支付
+wird versendet vor	将被发送到
+wird gegeben/ausgeführt von	将给定/进行
+wird unterzeichnet von	由签署
+bewohnt	居住
+wirdgegebenan	wirdgegebenan
+gibt	都是
+wird bezahlt für	将支付的
+durchgeht	经历
+wird bezahlt in	将支付
+befindet sich in	位于
+wird bewohnt von	由居住
+bezahlt	支付
+registrierungsgebühr	注册费
+konferenzgebühr	会议费用
+award für besten forschungsbeitrag	最佳论文奖
+author eines konferenzbeitrages	作者会议的贡献
+organisatoren der konferenz	会议组织者
+deadline für die mitteilung eines authors	截止日期为作者的通知的
+registrierungskosten für studenten	学生的注册费用
+eines studentischen beitrags	学生贡献
+registrierungskosten für personen, die nicht mitglied von sig sind	注册费用的人不是 sig 的成员
+sponsorenbeitrag	sponsorenbeitrag
+hauptbüro der konferenz	会议主要办事处
+silber sponsor der konferenz	银牌赞助商的会议
+konferenzsaal	会议大厅
+ausschuss für den award des besten beitrags	最佳贡献奖委员会
+gold sponsor der konferenz	金牌赞助商的会议
+award für besten studentischen beitrag	学生的最佳贡献奖
+platin sponsor der konferenz	白金赞助商的会议
+sponsor als aussteller	作为参展商赞助
+deadline für eine abstrakte einreichung	摘要提交截止日期
+deadline	截止日期
+webmaster	网站管理员
+award für konferenzbeitrag	大会贡献奖
+registrierungskosten für mitglieder von sigkdd	注册费用为成员的旗舰
+sponsor für besten studentischen beitrag	赞助商最好的学生贡献
+award für besten anwendbaren beitrag	最佳适用贡献奖
+hörer der konferenz	侦听器的会议
+konferenz acm sigdkdd	acm sigdkdd 会议
+bronze sponsor der konferenz	铜牌赞助商的会议
+deadline für die einreichung eines beitrags	贡献的提交截止日期
+programmvorsitzender	主席的程序
+registrierungskosten für mitglieder von sigmod	注册费用为数据成员的
+hotel	酒店
+konferenz organisiert von	组织的会议
+deadline für authorenmitteilung	截止日期为 authorenmitteilung 的
+bleibt in	仍在
+sponsoren wurden aufgerufen von	所调用的提案国
+paid zahlt registrierungsbeitrag	支付登记后支付
+beitrag wurde eingereicht von	被提交的贡献
+deadline festgelegt	设定的最后期限
+präsentiert dokumente	提出了文件
+hat award	奖
+aufruf von sponsoren	赞助商的电话
+organisiert konferenz	而举办的会议
+hat preis	有的价格
+ist datiert auf den	日
+registrierungsbeitrags ist in währung	是注册表中的货币的贡献
+hat name der konferenz	会议名称的已
+hat nationalität	有国籍
+hat sponsorenname	有 sponsorenname
+datum des ersten tages der konferenz ist	会议的第一天的日期是
+award erhalten von	从收到的奖
+registrierungsbeitrag gezahlt von	注册表贡献由支付
+hat award erhalten von	从收到的奖
+wurde präsentiert von	提出了一
+deadline eingerichtet für	设定为最后期限
+konferenz findet in folgender stadt statt	在下面的城市将举行会议
+datum des letzten tages der konferenz ist	会议的最后一天的日期是

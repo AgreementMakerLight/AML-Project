@@ -1,0 +1,716 @@
+membre du comité de programme	Member of the programme Committee
+président associé	Associate President
+utilisateur	user
+thème	theme
+préférence	preference
+administrateur	Administrator
+résumé de l'article	Summary of the article
+rejet	rejection
+document	document
+relecteur	Reviewer
+auteur	author
+président du comité de programme	Chairman of the program Committee
+membre de la conférence	Member of the conference
+article	Article
+proposition	proposal
+acceptation	acceptance
+conférence	Conference
+décision	decision
+méta-révision	Meta-revision
+révision	revision
+président	President
+président de la conférence	President of the conference
+personne	person
+co-auteur	co-author
+méta-relecteur	Meta-reviewer
+relecteur externe	external reviewer
+version complète de l'article	full version of article
+auteur qui n'est pas relecteur	author who is not reviewer
+comité de programme	programme Committee
+ajouté par	added by
+finalise la révision	completes the revision
+outils d'attribution d'article exécutés par	article naming tools implemented by
+attribution d'article finalisé par	article finalized by naming
+article a un auteur	Article has an author
+critères de révision remplis par l'administrateur	revision criteria met by the administrator
+relecteur écrit la révision	Reviewer wrote the revision
+article attribué au relecteur	Article attributed to the reviewer
+définit nombre maximum d'articles	sets maximum number of items
+co-écrire article	co-write article
+administrateur rejette l'article	administrator rejects article
+article a une proposition	Article has a proposal
+article lu par relecteur	article read by reviewer
+attribue relecteur	assign reviewer
+identifier d'article	identify article
+titre	title
+nom	name
+logo url	logo url
+article a un co-auteur	Article has a co-author
+administrateur imprime publipostage	Administrator print mail merge
+date	date
+nombre maximum d'articles	maximum number of items
+courriel	e-mail
+accepte soumissions d'articles en papier	accepts paper submissions
+url du site	URL of the site
+commentaires par article	comments by article
+révision écrite par	review written by
+proposition ajustée par	proposal adjusted by
+article a une décision	Article has a decision
+relecteur a été attribué à un papier	reviewer has been assigned to a paper
+ajuste proposition	adjusts proposal
+proposition de révision commencé par l'administrateur	proposed revision started by the administrator
+permettre réunion virtual	allow virtual meeting
+article a un thème	Article has a theme
+finalise l'attribution d'article	Finalizes the assignment of article
+commence l'attribution d'article aux relecteurs	starts the allocation of item reviewers
+attribué par l'administrateur	assigned by the administrator
+administrateur accepte article	Administrator accepts article
+article lu par meta-relecteur	article read by meta-reviewer
+attribue relecteur externe	assigns external reviewer
+relecteur lit l'article	Reviewer reads the article
+saisi les détails de la conférence	before the details of the conference
+détails de la conférence saisis par l'administrateur	conference details entered by the administrator
+réunion virtuelle activé par l'administrateur	virtual meeting enabled by the administrator
+a conflit d'intérêt	a conflict of interest
+exécute l'outils d'attribution d'article	running the article renaming tool
+comité de programme a membre	Program Committee Member
+saisi les critères de la révision	before the review criteria
+auteur soumet un article	author submits an article
+auteur écrit un article	author wrote an article
+ajoute membre du comité de programme	Adds member of programme Committee
+article rejeté par l'administrateur	Article rejected by administrator
+attribué par le relecteur	assigned by the reviewer
+conférence a un membre	Conference has a Member
+article accepté par	Article accepted by
+marque conflit d'intérêt	Mark conflict of interest
+publipostage imprimés par	direct mail printed by
+la conférence invitée	the conference invited
+contribuition à la conférence	contribuition to the conference
+track de la conférence	track of the conference
+conférencier invité	guest speaker
+expertise du relecteur	expertise of the reviewer
+demandeur qui a payé les frais d'inscription	applicant who has paid the registration fee
+auteur régulier	regular author
+sujet or thème	topic or theme
+contribution régulière	regular contribution
+participant de la conférence	participant of the conference
+demandeur  enregistré	applicant registered
+co-auteur de la contribution	co-author of the contribution
+information aux participants	information to participants
+membre du comité	Member of the Committee
+document de la conférence	document of the conference
+prèmier auteur de la contribution	Prime author of the contribution
+préférence sur la révision	preference revision
+contribution écrite	written contribution
+contribution rejetée	contribution rejected
+actes de la conférence	proceedings of the conference
+président d'atelier track	President of workshop track
+annonce de la conférence	announcement of the conference
+appel à communication	call for papers
+atelier	Workshop
+demandeur qui a payé les frais d'inscription precoce	applicant who has paid the early registration fee
+partie de la conférence	part of the conference
+contribution régulière (long)	regular contribution (long)
+comité	Committee
+tutoriel	tutorial
+conférence www	www Conference
+poster	poster
+contribution acceptée	contribution accepted
+résumé étendu	extended summary
+editeur	Editor
+contribution revisée	contribution revised
+demandeur qui a payé les frais d'inscription tardive	applicant who has paid the fee for late registration
+contribution soumise	contribution submitted
+organisation	Organization
+participant passif de la conférence	passive participant of the conference
+demandeur (inscrit) enregistré	registered (registered) applicant
+présentation	presentation
+demandeur de participation dans la conférence	applicant's participation in the conference
+comité d'organisation	Organizing Committee
+co-président	Co-Chair
+dates importantes	important dates
+contributeur de la conférence	contributor to the conference
+comité de pilotage	Steering Committee
+frais d'inscription	registration fee
+série de la conférence	the lecture series
+appel à participation	call for participation
+participant actif de la conférence	active participant of the conference
+résumé	Summary
+version finale de la contribution	final version of the contribution
+organisateur	Organizer
+a un isbn	has an isbn
+a sexe	a sex
+a un nom	has a name
+url du site web de la conférence est	URL of the web site of the conference is
+est une date de soumission de résumé	is a date for submission of abstract
+est une date de début	is a start date
+est une date de fin	is an end date
+a un courriel	has an email
+est une date de soumission de la version finale	is a date for the submission of the final version
+a un lieu	has a place
+a une date de publication	has a publication date
+a le nom	the name
+a le prénom	a first name
+est une date d'annonce de l'acceptation	is an announcement of the acceptance date
+a une expertise (degré d'expertise du relecteur)	has expertise (degree of expertise of the reviewer)
+a un numéro de volume	has a volume number
+a un président d'atelier	has a president of workshop
+a un relecteur	has a reviewer
+a un degré de préference de révision	a degree of preference revision
+est une date de soumission de la version complète	is a date for the submission of the full version
+contribue à la conférence	contributes to the conference
+a une expertise de révision	has expertise to review
+révise une contribution	revises a contribution
+était un co-président de comité de	was a co-Chairman of Committee of
+a un comité de pilotage	has a Steering Committee
+a un co-président de comité	was a co-Chairman of Committee
+a une référence ou une expertise de révision	has a reference or review expertise
+est la première partie de	is the first part of
+invite les co-relecteurs	Invites co-reviewers
+a des date importantes	a important date
+fait partie des volumes de la conférence	part of the volumes of the conference
+a un comité de programme	has a programme Committee
+a un sujet ou une contribution soumise	has a topic or a subject contribution
+a des parties	(a) of the parties
+était un président de comité de	was a Chairman of Committee of
+a des contributions	(a) of the contributions
+a des tutoriels	a of the tutorials
+était un comité de la conférence	was a Committee of the conference
+a un sujet d'atelier	has a subject of workshop
+a un comité d'organisation	has an organizing Committee
+a des tracks	(a) of the tracks
+éditeur publie les actes de la conférence	Editor published the proceedings of the conference
+a soumis une contribution	has submitted a contribution
+a un resumé	has a summary
+a des auteurs	(a) of the authors
+est presenté par	is presented by
+a un président de comité	has a Committee Chair
+était un comité d'organisation	was an organizing Committee
+a des ateliers	workshops
+est soumis à	is subject to
+était un comité de programme	was a programme Committee
+était un comité de pilotage	was a Steering Committee
+appartiennent à un volume de la conférence	belong to a volume of the conference
+a des membres	Members
+a un comité	has a Committee
+invité par	invited by
+a été attribué à une préférence de révision	has been attributed to a preference of revision
+sujet lié à une préférence du relecteur	topic related to a preference of the reviewer
+était un membre de	was a member of
+est un sujet (thème) de une partie de la conférence	is a part of the conference (theme)
+donne des présentations	gives presentations
+préférence ou expertise du relecteur	preference or expertise of the reviewer
+a un editeur	has a Publisher
+était un président d'atelier de	was a president of workshop of
+évènement de soumission	event submission
+ville	City
+contribution	contribution
+banquet	Banquet
+évènement	event
+voyage	travel
+pays	country
+participant	participant
+article court	short article
+sujet	subject
+entreprise	company
+adjointe	Assistant
+personne impliquée dans la conférence	someone involved in the conference
+sujet (ou thème)	topic (or theme)
+évènement de travail	worker's event
+évènement d'inscription de participants	participants-enrollment event
+évènement sociale	social event
+événement de révision	review event
+université	University
+évènement d'envoi de version finale	final version mailing event
+participant étudiant de la conférence	participant Student Conference
+participant académique de la conférence	academic participant of the conference
+évènement de révision de résultats	event of revision of results
+réception	reception
+évènement administrative	administrative event
+participant régulier de la conférence	regular participant of the conference
+bénévoles de la conférence	Volunteers Conference
+chercheur	researcher
+a expertise sur le sujet	has expertise on the subject
+employées par	employed by
+suit	following
+révise	revises
+écrit une contribution	wrote a contribution
+écrite par auteur	written by author
+traite le sujet	deals with the subject
+a un titre	has a title
+a des mots clés	a key words
+a ville (séjour dans la ville)	a city (stay in the city)
+a évènement administrative pertinent	a relevant administrative event
+étudie à l'université	studying at University
+a un pays	has a country
+parallèlement à	In addition to
+a un sujet (thème)	has a subject (theme)
+jour où l'évènement se termine	day when the event ends
+choix sur le nombre maximal de l'évènement	choice on the maximum number of event
+remarque	Note
+a une rue	has a street
+a une taxe sur la valeur ajoutée	has a value added tax
+a un courriel de contact	has a contact email
+a une pageweb	has a Web page
+a un code postal	has a postal code
+a un résumé	has a summary
+a un prénom	has a first name
+a un numéro de fax	has a fax number
+choix par défaut du numéro d'évènement	default choice of the event number
+a un téléphone	has a phone
+jour où l'évènement commence (début de l'évènement)	When the event begins (start of the event)
+participant de la conférence a une inscription précoce	participant of the conference has an early registration
+lieu	place
+a un titre court	has a title short
+choix sur le nombre minimal de l'évènement	choice on the minimum number of event
+évènement de conférence dans la conférence	event of conference in the conference
+sponsorisation	sponsorship
+organisation gouvernementale	governmental organization
+thème capteurs réseaux informatiques	theme sensors networks
+thème réseaux informatiques optiques	theme optical networks
+appel à révisions	call for revisions
+conférence de niveau unique	single level Conference
+subventions pour le voyage	grants for travel
+thème securité dans les réseaux informatiques	security in computer networks
+appel à manuscrits	call for manuscripts
+thème informatique mobile	mobile computer theme
+qestion textuelle de la révision	textual revision qestion
+thème gestion de réseaux informatiques	theme management of computer networks
+appel	call
+article actif	active section
+pause	pause
+organisation industrielle	Industrial Organization
+thème théorie de la communication	theme communication theory
+information de contact	contact information
+historique personnel de publication	personal history of publication
+présentateur (ou conférencier)	Presenter (or speaker)
+note de rejet faible	low release note
+thème (or sujet)	topic (or subject)
+membre du tpc	Member of the tpc
+pause café	coffee break
+article en attente	Article pending
+salle de réunion	meeting room
+présentation d'article	overview article
+auditeur (ou participant)	Auditor (or participant)
+article publié	Article published
+thème calcul parallèle et distribué	theme parallel and distributed computing
+conférence d'accueil	Conference home
+thème communications	theme communications
+conférence de fermeture	closing conference
+thème systèmes d'exploitation	theme operating systems
+président de la session	President of the session
+appel à communications	call for papers
+thème réseaux informatiques	theme computer networks
+formulaire de révision	review form
+thème cad	theme cad
+thème multimédias	Multimedia theme
+dîner de la conférence	conference dinner
+thème satellite et les communications spatiales	theme satellite and space communications
+session de la conférence	session of the conference
+présentateur	Presenter
+ensemble de diaporamas	all by slideshows
+thème mesures dans les réseaux informatiques	theme measures in computer networks
+organisation de l'académie	Organization of the Academy
+article rejeté	Article rejected
+question de la révision	issue of the review
+lieu d'hébergement	accommodation
+thèmes antennes	themes antennas
+évènement repas	event meals
+thème transmission courants porteurs en ligne (cpl)	theme carrier current transmission line (cpl)
+historique personnel de révision	personal revision history
+note d'acceptation marginale	marginal acceptance note
+thème communications sans fil	theme wireless communications
+évènement non académique	non-academic event
+article retiré	Article removed
+thème cryptographie	theme Cryptography
+lieu du dîner de la conférence	dinner of the conference venue
+thème médecine	theme medicine
+thème architecture des ordinateurs	theme architecture computers
+article accepté	Article accepted
+réunion d'organisation	organizational meeting
+excursion	excursion
+question numérique de la révision	Digital issue of the review
+pause temps libre	break free time
+évènement lié à la conférence	the conference-related event
+auditeur	listener
+thème sécurité	theme security
+thème traitement du signal	theme signal processing
+thème performance	theme performance
+évènement académique	academic event
+note d'acceptation	note of acceptance
+lieu de la conférence principale	the main conference venue
+historique personnel	personal history
+note de rejet	note of rejection
+pause repas	lunch break
+thème réseaux informatiques dans les entreprise	theme computer networks in the enterprise
+menu du repas	the meal menu
+programme	program
+conférence de deux niveau	two level Conference
+thème commutation réseaux informatiques	theme switching computer networks
+ong	NGOs
+thème communications radio	theme radio communications
+note de révision	revision note
+thème applications réseaux	theme network applications
+thème transmission courants porteurs en ligne	theme porters common transmission online
+article evalué	Article evaluates
+thème microélectronique	theme microelectronics
+thème test	theme test
+a code postal	a postal code
+est présenté dans	is presented in
+a ville	a city
+a date et l'heure de début	a date and start time
+est sponsor de	is sponsor of
+a écrit l'article	wrote the article
+est menu de	is menu
+a lieu	takes place
+est sur l'article	is on article
+appartient à l'événement	belongs to the event
+a membre	a Member
+est thème de	is theme of
+est membre de	is a member of
+est revisé par	is revised by
+a programme	(a) programme
+est initiée par	is initiated by
+est l'historique de révision	is revision history
+a devise de coûts	a motto of costs
+a pays	a country
+a nom	a name
+est fourni par	is provided by
+a biographie	a biography
+a document lié	a linked document
+a nom (nom complet de la conférence)	a name (full name of the conference)
+est écrit par	is written by
+a rue	a street
+passe en révision	past review
+a prénom	a first name
+a note	a note
+a téléphone	a phone
+a appel	a call
+date et l'heure limites de soumission d'articles	date and time limits for submission of articles
+a historique de révision	a historical review
+date et l'heure limites de soumission de manuscrits	date and time limits for the submission of manuscripts
+a menu	menu
+a date et l'heure de la fin	a date and time of the end
+initie l'appel	initiates the call
+date et l'heure de la fin de la conférence	date and time of the end of the conference
+auditeur (ou participant) à	Auditor (or participant) to
+a du montant des coûts	(a) of the amount of the costs
+a sujet (ou thème)	a topic (or theme)
+date et l'heure limites pour l'inscription à la conférence	date and the time limit for registration to the conference
+pour l'événement	for the event
+date et l'heure de début de la conférence	date and time of beginning of the conference
+relates to	relates to
+est le lieu de	is the place of
+a courriel	a e-mail
+a auditeur (ou participant)	a listener (or participant)
+a des directives de soumission	(a) of the submission guidelines
+a date limite de soumission	a date deadline
+participant avec inscription précoce	participant with early registration
+voyage à la conférence	travel to the conference
+article soumis	submitted article
+révision neutre	neutral revision
+article de la conférence	the conference article
+actes	acts
+article long	long article
+sessions des posters	the poster sessions
+étudiant	student
+dépliants	flyers
+version finale de l'article	final version of the article
+article attribué	Article awarded
+thème  de recherche	research theme
+président de session de démonstration	President of demonstration session
+président du tutoriel	President of the tutorial
+article industriel	industrial section
+volume avec plusieurs auteurs	volume with multiple authors
+session des applications industrielles	session of industrial applications
+site web	web site
+institut de recherche	Research Institute
+auteur de l'article	author of the article
+track	track
+participant avec inscription tardive	participant with late registration
+conférence invitée	invited Conference
+editeur des actes	Editor of acts
+évènement scientifique	scientific event
+session des démonstrations	demos session
+relecteur possible	possible reviewer
+thème (ou sujet) de recherche	topic (or subject) research
+révision positive	positive review
+session	session
+article poster	Article poster
+membre du personnel de l'agence	Member of the staff of the Agency
+président du pc	President of the pc
+conférence contribuée	Conference contributed
+banquet de la conférence	conference banquet
+résumé du tutoriel	Summary of the tutorial
+membre du comité scientifique	Member of the Scientific Committee
+session d'atelier	Workshop session
+session des articles longs	session of long articles
+membre de l'oc	Member of the oc
+article de démonstration	Article by demonstration
+révision négative	negative review
+président de l'atelier	Chairman of the workshop
+résumé  de la conférence invitée	invited conference summary
+article d'atelier	Workshop article
+agence organisatrice	organizing agency
+brochure du programme	program brochure
+présentation individuelle	individual presentation
+président de l'oc	Chairman of the oc
+institution académique	academic institution
+a lieu à	a place to
+éditeur de	Editor of
+a partie	has part
+partie de	part of
+a évènement	a event
+a version mise à jour	a version update
+a révision	a revision
+techniquement organisé par	technically organized by
+inverse d'une partie de 7	inverse of part of 7
+article présenté comme	article presented as
+article dans le volume	article in volume
+organise	organizes
+organise techniquement	organizes technically
+évènement sur la liste	event on the list
+sujet couvert par	topic covered by
+répertorie l'événement	lists the event
+organise scientifiquement	organizes scientifically
+relecteur de l'article	Reviewer of the article
+auteur de	author of
+organisé par	organized by
+scientifiquement organisé par	scientifically organized by
+version mise à jour de	updated version of
+partie de l'événement	part of the event
+a relecteur	a reviewer
+lieu de	place of
+écrit par	written by
+volume contient l'article	volume contains article
+couvre le thème (ou sujet)	covers the topic (or subject)
+révision de l'article	revision of article
+références	references
+référencé dans	referenced in
+activité technique	technical activity
+comité technique	Technical Committee
+auteur qui recevra les actes que en format numérique	author who will receive the acts only in digital format
+activité de modélisation	modeling activity
+brève introduction pour le président de la session	brief introduction for the president of the session
+état où la conférence a lieu	State where the conference is held
+conférencier qui présente un tutoriel	speaker who presents a tutorial
+frais d'hôtel	hotel expenses
+tout type de document	any type of document
+chéque	cheque
+introduction	introduction
+chambre d'hôtel double	hotel room double
+conférencier	speaker
+ordinateur	computer
+date limite pour l'inscription	deadline for registration
+navette	Shuttle
+banquet du dîner	the dinner banquet
+frais d'inscription pour un membre	registration fee for a Member
+activité ayant lieu avant la conférence	activity to take place before the conference
+activité ayant lieu pendant la conférence	activity taking place during the conference
+actes en format numérique (cd)	acts in digital format (cd)
+travailleur qui n'est pas un présentateur	worker who is not a presenter
+bureau principal	main office
+départ	departure
+marcheur de la conférence	Walker of the conference
+salle de session	meeting hall
+actes en format numérique	acts in digital format
+activité	activity
+cours donnée par un conférencier	courses given by a speaker
+activité de simulation	simulation activity
+van	Van
+taxe de départ	departure tax
+paiement volontaire additionnelle	additional voluntary payment
+sponsor	sponsor
+chambre d'hôtel	hotel rooms
+soumission	submission
+séance de cours	course
+activité sociale	social activity
+jour assigné pour un voyage	day assigned for a trip
+conférencier étudiant	Student speaker
+état	State
+séance de cours plénière	meeting of plenary courses
+activité de recherche	research activity
+projecteur lcd	lcd projector
+carte	map
+registre de participation	Register for participation
+inscription	registration
+rétroprojecteur	overhead projector
+date limite pour la notification de l'acceptation	deadline for notification of acceptance
+auteur qui recevra les actes que en format papier	author who will receive the acts only in paper format
+date limite pour soumettre la version finale du manuscrit	deadline for submitting the final version of the manuscript
+item	item
+véhicule de transport	transport vehicle
+travailleur qui n'est pas un présentateur (conférencier)	worker who is not a presenter (speaker)
+activité d'acceptation d'un manuscrit	activity of acceptance of a manuscript
+bâtiment de la conférence	the conference building
+formulaire de renseignement sur l'auteur	information about the author form
+aéroport de la conférence	airport of the conference
+présentation vidéo	video presentation
+état du sponsor	State of the sponsor
+restaurant de la conférence	restaurant of the conference
+membre du iasted	Member of the iasted
+université d'un présentateur	University of a presenter
+hôtel de la conférence	conference hotel
+cocktail de réception	cocktail reception
+tour de journée complète	full day tour
+ville d'où vient le sponsor	City where comes from the sponsor
+ville qui est la destination pour un voyage	City that is the destination for a trip
+montant d'argent	amount of money
+conférencier travailleur	worker speaker
+date limite pour la réservation d'hôtel	deadline for hotel reservation
+salle de conférence	conference room
+item (en général)	item (in general)
+présentateur  qui ne présente que dans un jour	Presenter which has only in one day
+introduction du conférencier	introduction of speaker
+bâtiment	building
+date limite	deadline
+taxi	taxi
+frais d'inscription pour un étudiant	registration fee for a student
+taxe	tax
+allocution de bienvenue	Welcome address
+activité ayant lieu après la conférence	activity taking place after the conference
+ville d'où vient le présentateur	City whence the presenter
+frais d'inscription pour un non auteur	registration fee for a non-author
+valeur de taxe ajoutée	value added tax
+voiture	car
+virement bancaire	Bank transfer
+transparent pour le rétroprojecteur	transparency for overhead projector
+visa	Visa
+frais de voyage supplémentaire	additional travel expenses
+devises	currency
+liste de diffusion	mailing list
+jours de la conférence	days of the conference
+délégué (personne inscrit et qui visite la conférence)	delegate (person listed and who visits the conference)
+lettre d'invitation	Letter of invitation
+chambre d'hôtel simple	simple hotel rooms
+manuscrit initial	initial manuscript
+état du présentateur	State of the presenter
+temps	time
+maison des présentateurs	Home of the presenters
+date limite pour la soumission	deadline for the submission
+activité de location d'une voiture	car rental activity
+étudiant qui n'est pas un présentateur	student who is not a presenter
+frais	costs
+frais d'inscription payés par un auteur participant pour recevoir les actes en format papier	registration fees paid by a participating author to receive documents in paper format
+manuscrit final	final manuscript
+lecteur de cassettes vidéo	video cassette player
+activité de refuser un manuscrit	activity to refuse a manuscript
+équipement audiovisuel	audio-visual equipment
+non membre du iasted	not a member of the iasted
+actes en format papier	acts in paper format
+présentation power point	power point presentation
+délégué	delegate
+maison d'une entreprise étant un sponsor	House of a business being a sponsor
+carte de crédit	credit card
+ville où la conférence a lieu	City where the conference is held
+conférence d'une journéé	one day Conference
+formulaire	form
+fuseau horaire	time zone
+étudiant qui n'est pas un présentateur (conférencier)	student who is not a presenter (speaker)
+formulaire d'inscription à l'hôtel	the hotel registration form
+document de paiement	payment document
+non présentateur	non presenter
+présentateur de l'hôtel	presenter of the hotel
+frais d'inscription pour un non membre	registration fee for a non member
+présentateur (ou conférencier) qui ne présente que dans un jour	Presenter (or speaker) which has only in one day
+frais d'inscription payés par un auteur participant pour recevoir les actes en format numérique	registration fees paid by a participating author to receive documents in digital format
+activité de réception d'un manuscrit	activity of receipt of a manuscript
+publication	publication
+conférencier qui donne une conférence devant le plénum	speaker who gave a lecture before the plenum
+formulaire d'inscription à la conférence	the conference registration form
+est daté sur	is dated on
+a quantité de	a quantity of
+être fait jusqu'à	be made up to
+est utilisé pour	is used to
+est équipé par	is equipped with the
+parle à l'heure	speaks at the time
+est visité par	is visited by
+est envoyé pour	is sent to
+paie	Payroll
+est occupé par	is occupied by
+a lieu dans	takes place in
+est présent à l'heure	is present at the time
+envoie	sends
+passe par	passes through
+est envoyé après	is sent after
+a besoin de	needs of
+est localement situé dans	is locally situated in
+écrit	written
+prépare	prepares
+est préparé par	is prepared by
+est présent à l'heure ou l'espace	is present at the time or space
+est donnée par	is given by
+est fait à partir de	is made from
+est envoyé avant	is sent before
+est payé en	is paid in
+signe	sign
+est donnée à	is given to
+a lieu avant	a place before
+est nécessaire pour	is required for
+est payé avec	is paid with
+occupe (réside)	occupies (resides)
+est payé par	is paid by
+obtient	Gets
+est utilisée par	is used by
+est signé par	is signed by
+a lieu après	takes place after
+est conçu pour	is designed to
+est payé pour	is paid for
+donne	gives
+est connecté à	is connected to
+sponsor as exposant	Sponsor as exhibitor
+auditeur de la conférence	Auditor of the conference
+hôtel	Hotel
+sponsor silver de la conférence	sponsor silver of the conference
+prix pour le meilleur article d'application	Prize for the best article of application
+frais de sponsor	sponsor fee
+sponsor platinum de la conférence	the conference platinum sponsor
+prix pour le meilleur article recherche	Award for the best article research
+frais d'incription pour les personnes qui ne sont pas membre du sig	cost of registration for persons who are not members of the sig
+auteur d'article édudiant	author of article student
+comité pour choisir les meilleurs articles	Committee to select the best articles
+président de programme	program chair
+frais d'incription pour les membres du sigmod	cost of registration for the sigmod members
+sponsor d'or de la conférence	the conference Gold sponsor
+auteur d'article	author of article
+web master	Web master
+sponsor de bronze de la conférence	bronze conference sponsor
+conférence acm sigkdd	acm sigkdd Conference
+frais de la conférence	the conference fees
+sponsor pour le meilleur article étudiant	sponsor for the best student paper
+prix pour le meilleur article de la conférence	Prize for the best paper of the conference
+frais d'incription pour les membres du sigkdd	cost of registration for the sigkdd members
+lieu de la conférence	the conference venue
+prix pour le meilleur article étudiant	Prize for the best student paper
+date limite pour soumettre les articles	deadline for submitting articles
+date limite pour notifier les authors	deadline for notifying the authors
+membre du comité d'organisation	Member of the Organizing Committee
+bureau principal de la conférence	main office of the conference
+frais d'incription pour les étudiants	cost of registration for students
+organisateur de la conférence	conference organizer
+date limite pour la soumission de résumé	deadline for the abstract submission
+conférence a lieu dans la ville	Conference takes place in the city
+a nationalité	a nationality
+date du premièr jour de la conférence	date of the first day of the conference
+a nom du sponsor	a name of the sponsor
+devises de les frais d'inscription	currency of the registration fee
+frais d'incription payés par	registration fee paid by
+a prix	a price
+est date sur	is date on
+a nom de la conférence	a name of the conference
+date du dérnier jour de la conférence	date of the last day of the conference
+était présenté par	submitted by
+présente document	This document
+prix obtenu	price obtained
+sponsors sont appelés par	sponsors are called by
+date limite pour notifier les auteurs	deadline to notify authors
+décerné par	awarded by
+spéficie date limite	Specifies date limits
+paye frais d'incription	pay fees of registration
+conférence organisée par	Conference organized by
+date limite spécifiée pour	deadline specified for
+peut rester dans	can stay in
+organise conférence	organizes conference
+soumettre l'article	submit article
+a une date limite pour la soumission	has a deadline for the submission
+appel à sponsor	call for sponsor

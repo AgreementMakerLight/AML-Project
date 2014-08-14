@@ -1,0 +1,669 @@
+偏爱	Preference
+程序委员会成员	Members of the program Committee
+综合审稿意见	General comments
+论文全文	Full papers
+审稿人	Reviewer
+非审稿人的作者	Author of non-reviewer
+程序委员会主席	Chairman of the program Committee
+文件	File
+主席	President
+拒收	Reject
+论文摘要	Abstracts
+合著者	Co-author
+审稿意见	Comments
+外部审稿人	External reviewers
+论文	Papers
+录用	Hire
+会议	Conference
+人员	Personnel
+大会主席	President of the General Assembly
+副主席	Vice-Chairman
+程序委员会	Program Committee
+主题领域	Thematic areas
+null	null
+会议成员	Members of the Conference
+投标	Tender
+决定	Decision
+用户	User
+管理人员	Management personnel
+作者	Author
+综合审稿人	Synthesis reviewers
+由之打印硬拷贝邮件舱单	Print hard copy mailing manifests
+修改后投标	Revised tender
+标注兴趣冲突	Annotation conflict of interest
+由审稿人审阅	Reviewed by reviewers
+指定审稿人	Specifies the peer reviewers
+是程序委员会成员	Members of the program Committee
+拒收论文	Rejected papers
+是会议成员	Are members of the Conference
+由之拒收	By refused
+开始审稿投标	Begin to review bid
+有投标	Tender
+由管理人员指定	Specified by the managers
+设置最多论文数	Sets the maximum number of papers
+阅读论文	Read the essay
+有兴趣冲突	Conflict of interest
+由之录入详情	By inputting details
+由审稿人指定	Specified by the reviewer
+录入会议详情	Recording details of meetings
+打印硬拷贝邮件舱单	Print hard copy mailing manifests
+录入审稿标准	Manuscript entry standards
+运行论文分派工具	Run the paper assignment tools
+由之启动虚拟会议	By the start of the virtual conference
+合著	Co-
+有会议成员	Members of the Conference
+撰写审稿意见	Writing comments
+由之撰写	Written by the
+论文分派定稿	Finalization of the assigned papers
+电子信箱	E-mail
+日期	Date
+商标统一资源定址器	Trademark uniform resource location
+论文序号	Thesis number
+接受硬拷贝投稿	Accept hard copy submissions
+网站地址	Web site address
+每篇论文审稿意见数	Each paper comments
+最多论文数	Maximum number of papers
+录用论文	Accepted papers
+有主题领域	Thematic areas
+姓名	The name
+标题	Title
+有作者	There is an author
+论文分派工具由之运行	Paper allocation tool by running
+由之增补	By updating
+结束审稿	End review
+撰写论文	Writing papers
+分派给	Assign to
+由之录用	By hiring
+由综合审稿人审阅	Reviewed by General reviewers
+有决定	Has decided
+论文分派由之定稿	Finalization of the paper assigned by
+审稿人投标始于	Reviewer bidding begins
+由之录入审稿标准	Manuscript entry standards
+有合著者	Co-author
+启用虚拟会议	Enable virtual meetings
+修改投标	Modify bids
+增补程序委员会成员	Patch for Committee members
+投稿	Submission
+有程序委员会成员	A program Committee Member
+有分派论文	Assigned thesis
+指定外部审稿人	Specify the external reviewers
+研讨会	Seminar
+会议论文集	Proceedings of the Conference
+已注册申请人	Registered applicants
+与会者	Participants
+审稿优先选择	Peer review preferences
+特邀报告	Invited talks
+被动与会者	Passive participants
+主题	Theme
+投稿第一作者	First author submission
+征文启事	Papers-
+会议文件	Meeting documents
+联合主席	Chairman of the joint
+会议网站	Meeting Web site
+主动与会者	Active participants
+组织	Organization
+会议卷册	Conference volumes
+研讨会主席	Chairman of the seminar
+被审稿件	Trial manuscript
+正规投稿	Regular contributors
+报告	Report
+会议部分	Segment
+与会者信息	Attendee information
+提前付费申请人	Pay in advance applicants
+会议申请人	Meeting the applicant
+组织者	Organizers
+会议投稿人	Conference contributors
+指导委员会	The Steering Committee
+摘要	Summary
+委员会	Committee
+教程	Tutorial
+特邀报告人	Keynote speakers
+正规作者	Regular authors
+录用稿件	Hire section
+审稿专长	Peer review expertise
+出版商	Publishers
+会议征稿通知	Conference call for papers
+长摘要	Long summary
+书面投稿	Written submission
+会议费用	Conference costs
+晚付费申请人	Late payment the applicant
+投稿合作作者	Submission authors
+海报	Poster
+付费申请人	Paid to the applicant
+征集参与者通知	Collecting participant notification
+拒收稿件	Rejected manuscripts
+轨道	Tracks
+会议通知	Meeting notice
+委员会成员	The members of the Committee
+重要日期	Important dates
+照相制版稿件	Photoengraving manuscripts
+组委会	The Organizing Committee
+有一个卷册	There is a volume
+有一个电子邮箱	Have an electronic mailbox
+有名	Famous
+有一个录用通知日期	There is a notification of acceptance
+有一个照相制版提交日期	Date of filing have a photomechanical
+有一个发行日题	Have an issue date problem
+有一个名字	Have a name
+有性别	Have sex
+有一个投稿	Have a submission
+有一个委员会联合主席	There is a co-Chairman of a Committee
+有一个isbn	There is an ISBN
+有一个摘要投稿日期	A date for abstract submission
+被分配给审稿参考	Manuscript is assigned to the reference
+有一个研讨会教程主席	There is a seminar course Chairman
+有研讨会	Seminar
+有重要日期	Important dates
+有一个结束日期	There is an end date
+有一个地点	A location
+有一个全文投稿日期	A full text submission date
+有一个网址	There is an address
+有一个度	There is a degree
+有一个专长	Have an expertise
+有一个开始日期	There is a start date
+有姓	First name
+是由之作	From work
+有一个审稿意见	There is a peer review
+有一个研讨会教程主题	A workshop tutorial topics
+是会议卷册的一部分	Is part of the Conference volume
+曾是一个组织委员会	Used to be an organizing Committee
+有一个摘要	There is a summary
+有一个程序委员会	Have a program Committee
+有一个主题或者投稿	There is a topic or posting
+曾是一个成员	Used to be a Member
+曾是一个委员会联合主席	Used to be a co-Chairman of a Committee
+有一个指导委员会	There is a Steering Committee
+受邀于	Have been invited to
+有一个审稿参考或者专长	Had a peer review reference or expertise
+有一个组织委员会	An organizing Committee
+有成员	Members
+曾是一个指导委员会	A Steering Committee was
+曾是一个委员会主席	Was a Chairman of the Committee
+是投至	Is cast to
+属于审稿人	Belongs to the reviewers
+评审	Review
+有轨道	Tracks
+有教程	Tutorial
+曾是一个研讨会主席	Was a Chairman of the seminar
+是第一部分	Is the first part of
+有一个审稿专长	There is a peer review expertise
+属于一个会议卷册	Belonging to a conference volume
+属于一个审稿参考	Under a peer review reference
+发行	Issue
+作报告	Make a report
+曾是一个委员会	A Committee was
+邀请联合审稿人	Invite and joint the reviewer
+有一个委员会主席	There is a Committee Chairman
+有部分	Some
+有投稿	Have submission
+曾是一个程序委员会	Once a program Committee
+有一个委员会	There is a Committee
+是一个会议部分的主题	Is a part of the theme of the Conference
+有一个出版商	A Publisher
+宴会	Banquet
+标准	Standard
+审稿活动	Peer review activities
+审稿结果活动	Peer review results of activities
+旅游	Tourism
+城市	City
+科学工作者	Scientific worker
+管理活动	Management activities
+助理	Assistant
+志愿者	Volunteers
+短论文	The short essay
+国家	National
+投稿活动	Contribution activities
+工作活动	Work activities
+参加者	Participants
+招待会	Reception
+大学	University
+学生	Students
+成员	Members
+照相制版活动	Photoengraving activities
+社交活动	Social activities
+公司	Company
+活动	Activities
+报名注册活动	Registration activities
+学者	Scholars
+开始于	Begins with
+最少选项	Minimal options
+有传真号码	Fax number
+有国家	National
+处理	Processing
+有关键词	Keywords
+有街道名	Street name
+平行于	Parallel to the
+有管理活动	Management activities
+审稿	Peer reviewers
+撰写	Wrote
+专家于	Experts in
+受雇于	Employed in the
+就学于	Studying at the
+联系电子信箱	Contact email address
+备注	Notes
+有电话号码	Is there a number
+有增值税	Value added tax
+最多选项	Most options
+有标题	Has a title
+有邮编	Zip code
+提前注册	Register in advance
+有简略标题	A brief title
+有主页	Home page
+结束于	Ends at
+场所	Place
+有电子信箱	E-mail
+缺省项目	Default project
+紧接着	Shortly thereafter
+有主题	Theme
+有城市	City
+操作系统主题	Operating system themes
+自由活动	Free activities
+计算机网络度量主题	Network measurement topics
+活跃论文	Active articles
+拒收级别	Rejection level
+无线通信主题	Wireless communication topics
+接受级别	Acceptable level
+幻灯片集	Slide set
+住宿地点	Places to stay
+论文报告	Paper presentations
+光学计算机网络主题	Optical computer networking topics
+单级会议	Single-stage Conference
+用餐地点	Dining options
+据用论文	According to the paper
+征集手稿通知	Collection manuscript notice
+参与者主题	Participants in topics
+学术组织	Academic organizations
+酒会	Cocktail reception
+被评价论文	Evaluation essay
+学术活动	Academic activities
+通信主题	Communication topics
+并行和分布式计算主题	Parallel and distributed computing topics
+信号处理主题	Signal processing topics
+性能主题	Performance topics
+计算机网络应用主题	Network applications topics
+计算机网络安全主题	Computer network security topics
+用餐休息	Meal break
+会场	The venue
+个人发表历史	Personal history
+参与者	Participants
+未决定论文	Pending papers
+结束报告	End of report
+文本审稿问题	Manuscript text problem
+计算机网络传感器主题	Network sensors theme
+加密主题	Encrypt topics
+测试主题	Test topic
+联系信息	Contact information
+卫星和空间通信主题	Space and satellite communications theme
+会间休息	Session break
+会议晚宴	Conference dinner
+数字化审稿问题	Digitized manuscript problems
+两级会议	Two-level meetings
+通信理论主题	Subject of communication theories
+欢迎报告	Welcomes the report
+撤回的论文	Withdraw papers
+审稿级别	Peer review level
+会议分场会议	Conference breakout sessions
+计算机网络企业主题	Network Enterprise theme
+非政府组织	Non-governmental organizations
+计算机网络主题	Computer networking topics
+程序	Program
+审稿问题	Peer review issues
+计算机网络交换机主题	Computer network switches topics
+cad主题	CAD theme
+报告活动	Report on activities
+计算机网络管理主题	Computer network management topics
+工业组织	Industrial organizations
+安全性主题	Security topics
+地点	Location
+报告人	Speaker
+个人审稿历史	Personal review history
+个人历史	Personal history
+无线电通信主题	Radio themes
+组织会议	Organizational session
+分场会议主席	Chairman of the breakout sessions
+审稿表格	Peer review form
+休息活动	Rest activity
+密码学微电子主题	Cryptography microelectronics topics
+旅行补助	Travel grants
+医学主题	Medical topics
+通知	Notification
+餐饮场所	Dining establishments
+非学术会议	Non-academic conferences
+可接受级别	Acceptable level
+出版的论文	Published papers
+城府组织	Secret organizations
+电力线传输主题	Power line transmission theme
+用餐活动	Dining events
+征集审稿人通知	Call for reviewers to inform
+会议主席	President of the Conference
+会议活动	Conference activities
+游览	Tour
+技术程序委员会	Technical program Committee
+计算机体系结构主题	Computer architecture topics
+菜单	Menu
+弱拒收级别	Low rejection level
+多媒体主题	Multimedia topic
+赞助	Sponsorship
+移动计算主题	Mobile computing topics
+有花费数目	Have spent
+注册到期	Registration has expired
+有截稿日期	Under a deadline
+结束日期	End date
+有投稿指示	Have submission instructions
+是菜单	Is the menu
+论文到期	Papers due
+有名称	Have a name
+手稿到期	Manuscript due
+有电话	Have a phone
+有开始日期时间	Start date time
+有传记	Biography
+开始日期	Start date
+有结束日期时间	End date/time
+有电子邮箱	Electronic mailbox
+有花费货币	Spent money
+是成员	Is member of
+是之审稿历史	Is the manuscript history
+被提供	Are offered
+启动	Start
+有通知	Notice
+有菜单	With menu
+有程序	Has the program
+被启动于	Was launched in
+有相关文件	Related files
+属于活动	On the active
+相关活动	Related activities
+撰写自	Write self
+是主题	Is the topic
+为活动	For the active
+有相关论文	Related articles
+相关	Related
+相关论文	Related papers
+出席	To attend
+被审稿于	Peer review in
+有评级	Rating
+有审稿历史	A history manuscripts
+是提供者	Is the provider
+有参与者	Have participants
+在此举办	Host
+有地点	Location
+海报展示会	Poster exhibition
+投稿论文	Submission papers
+否定意见	Adverse opinion
+学术机构	Academic institutions
+分配的论文	Assigned thesis
+完注册与会者	Finish registration of participants
+会议旅游	Conference tourism
+研讨会分场会议	Breakout sessions
+特邀报告摘要	Special report summary
+实用型论文	Practical thesis
+组织委员会主席	Chairman of the Organizational Committee
+合适的审稿人	Suitable reviewers
+教程摘要	Tutorial summary
+科学活动	Scientific activity
+肯定意见	The positive opinion of
+演示会主席	Chairman of the demo
+代理工作人员	Agency personnel
+位置	Location
+实用性主题分场会议	Practical topic breakout sessions
+网站	Website
+多作者卷册	Multi-author volumes
+演示会	Demo
+研究主题	Research themes
+程序手册	Procedures manual
+组织委员会成员	Members of the Organizational Committee
+正规论文	Regular papers
+大会分场会议	Conference breakout sessions
+录用文章报告	Accepted papers reports
+研究所	Institute
+海报论文	Poster papers
+研讨会论文	Seminar papers
+记录集	Recordset
+正规分场会议	Informal breakout sessions
+论文集出版商	Proceedings of the publishers
+中性意见	Neutral comment
+提前注册与会者	Register participants
+教程主席	Chairman of the tutorial
+论文作者	The authors
+演示论文	Demo papers
+会议论文	Conference papers
+会议宴会	Meeting and banquet
+被审论文	Trial papers
+分场会议	Breakout sessions
+赞助者主席	Sponsor Chairman
+组织代理	Acting
+个人报告	Individual reports
+照相制版论文	Phototypesetting paper
+传单	Flyer
+包括主题	Including themes
+列表活动	List of activities
+是更新版本	Is the updated version
+学术上组织	Academic organizations
+有审稿人	Reviewer
+由之组织	By organization
+论文位于卷	Papers in the volume
+审稿意见撰写于	Written comments to
+是之一部分	Is part of
+所报告论文	Reported by papers
+是出版商	Publishers
+论文报告形式	Paper reporting forms
+是论文审稿人	Is the paper reviewers
+有更新版本	An updated version
+举办于	Held on the
+有活动	Activities
+是子活动于	Is a child activity in
+是部分于	Is part of
+位于	Located in the
+技术上组织	Technical organizations
+主题被包括于	Topics to be included in
+活动列表于	List of activities in
+论文审稿意见	Paper comments
+学术上由之组织	Academic organization
+技术上由之组织	Technically by organization
+卷册包括论文	Volumes include papers
+是作者	Is the author
+参考于	Reference to
+参考	Reference
+有审稿意见	Comments
+鸡尾酒会	Cocktail party
+旁听者	Spectators
+支票	Check
+会议旅行者	Meeting Traveler
+作者与会者光盘注册费	Author registration fee of the participant CD
+宾馆预定截止日期	Hotel reservation deadline
+代表	On behalf of
+截稿日期	The closing date of
+最后定稿	Finalized
+技术活动	Technical activities
+报告人国家	Speaker countries
+单日报告人	One-day speaker
+幻灯片报告	Slide report
+非报告人	People who do not report
+会议录光盘	Conference proceedings CD
+演讲者	Speaker
+赞助公司的房子	Sponsoring companies House
+全会讲座演讲者	Plenary lecture speakers
+额外旅行费用	Additional travel costs
+报告人讲座	Speaker lecture
+会员注册费	Member registration fees
+录像带播放器 	Video player 
+接收投稿	Received submissions
+初稿	The first draft
+非作者注册费	Non-author registration fee
+货币	Currency
+信用卡	Credit card
+附加税	Additional taxes
+注册费	Registration fees
+旅游城市	Tourist cities
+宾馆注册表	Hotel registry
+注册表	Registry
+投影仪	Projector
+时间	Time
+介绍	Introduction
+班车	Shuttle
+透明度	Transparency
+税	Tax
+付款文件	The payment file
+拒收投稿	Rejected submissions
+会议宾馆	Conference Hotels
+计算机	Computer
+出版物	Publications
+分场会议室	Breakout meeting rooms
+报告人的大学	Speaker of the University
+住宾馆的报告人	Speaker of the hotel
+模拟	Simulation
+旅游日	Tourism day
+租赁	Rentals
+晚宴	Dinner
+会议城市	Meeting of cities
+双人间	Double room
+费用	Fee
+照相制版截止日期	Photomechanical deadline
+液晶投影机	LCD projector
+报告人城市	Speaker city
+不做报告的学者	Not reporting of scholars
+汽车	Automotive
+学者演讲者	Scholar speaker
+学生演讲者	Student speaker
+会议国家	Conference national
+会议大楼	The Conference building
+讲座	Lecture
+技术委员会	The Technical Committee
+获得会记录光盘的作者	Get a CD-r writer
+出席记录	Record attendance
+研究	Study on the
+注册截止日期	Registration deadline
+注册	Registration
+离境税	Departure tax
+建筑物	Building
+酒电费	Wine tariffs
+不做报告的学生	Not reporting of student
+非iasted会员	Are IASTED members
+非会员注册费	Non-member registration fee
+录用通知截止日期	Notification deadline
+赞助人	Patron
+会议日	Meeting day
+会议大厅	Conference Hall
+欢迎致词	Welcoming address
+视听设备	Audio-visual equipment
+表格	Table
+iasted会员	IASTED Member
+邮件列表	Mailing list
+讲演者介绍	Speaker introduction
+截止日期	Due date
+教程主讲人	Tutorial presenter
+卡	Card
+银行转帐	Bank transfer
+分场会议主席的简短介绍	Brief presentation by the President of the breakout sessions
+作者信息表	Author information sheet
+赞助者国家	Sponsor the national
+单人间	Single room
+会议日期	Meeting dates
+会议餐厅	Conference dining room
+交通工具	Transport
+宾馆房间	Hotel room
+卡车	Truck
+时区	Time zone
+赞助者城市	Sponsors city
+会前活动	Prior to activity
+出租车	Taxi
+会议录	Conference proceedings
+获得会议录书的作者	Access to conference proceedings and author of
+钱款	The money is
+全会讲座	Plenary lectures
+作者与会者注册费	Author registration fees
+建模	Modeling
+项目	Project
+邀请信	Invitation letter
+离开	Leave
+录用投稿	Recruitment-posting
+主办事处	Main office
+全日游	Full day tour
+视频报告	Video report
+小费	Tip
+报告人的房子	Speaker of the House
+签证	Visa
+会后活动	Activities after
+会议机场	Conference Airport
+学生注册费	Student registration fee
+作报告于	As reported in
+之后发送	Sent after
+由之参观	By visiting
+由之签名	Signed by the
+给	To give
+占用	Take up
+由之准备	By preparing
+截至	As at
+注明日期于	Date in
+有总计	A total of
+与之连接	Connect with
+经过	After
+由之发送	By sending
+由之给予	By giving
+被用于	Be used to
+之前举办	Held prior to
+需要	Need
+之前发送	Before sending
+获得	Access
+支付	Payment
+支付于	Pay in
+由之占用	Occupied by the
+由之支付	By payment
+为之支付	Pay for
+用于	Used for
+签名	Signature
+为之设计	For design
+由之组成	Made up of
+以之配备	Equipped with
+发送	Send
+之后举办	After the
+由之写	Written by the
+准备	Prepare
+写	Wrote
+sigmod成员注册费	SIGMOD members registration fees
+宾馆	Hotel
+组织委员会	The Organizational Committee
+网站管理员	Web site administrator
+非成员注册费	Non-member registration fee
+参展者	Exhibitors
+sigkdd成员注册费	SIGKDD membership registration fee
+计算机协会知识发现和数据挖掘会议	Computer Society Conference on knowledge discovery and data mining
+最佳应用论文奖	Best application paper award
+总办事处	Head Office
+最佳学生论文奖	Best student paper award
+奖	Award
+摘要截稿日期	Abstract deadline
+铜牌级赞助者	Bronze level sponsors
+赞助费	Sponsorship fees
+全文截稿日期	Full text of deadlines
+赞助者	Sponsors
+录用论文作者通知截止日期	Accepted paper author notification deadline
+最佳论文奖委员会	Best Paper Award Committee
+最佳研究论文奖	Best research paper award
+金牌纪赞助者	Gold age sponsors
+银牌级赞助者	Silver level sponsor
+听众	The audience
+白金级赞助者	Platinum-level sponsors
+最佳学生论文赞助者	Best student paper sponsors
+学生论文作者	Student authors
+直到录用通知日期	Until notification of acceptance
+寻找	Looking for
+获奖	The award-winning
+付费	Pay
+制定	Set
+由之付费	Paid by the
+由之寻找	By looking for
+承办	Hosting
+制定于	Drawn up in
+获奖于	Winning in
+投稿截止于	Paper submission deadline for
+电子信件	E-letters
+价格	Price
+会议结束日期	Meeting end date
+会议名称	Meeting name
+赞助者名称	Sponsor name
+可位于	Can be located
+颁奖给	Present awards to
+由之承办	Hosted by the
+由之作报告	Reported by the the
+国籍	Nationality
+会议开始日期	Conference start date

@@ -1,0 +1,683 @@
+bod	nabídka
+onderwerp	téma
+auteur niet-recensent	autor non recenzent
+medevoorzitter	Spolupředseda
+conferentievoorzitter	Prezident konference
+artikel	Článek
+persoon	osoba
+volledig artikel	celý článek
+recentie	Recenze
+conferentie	Konference
+coauteur	spoluautor
+beslissing	rozhodnutí
+afwijzing	odmítnutí
+programmacommissie	Programového výboru
+conferentielid	conferentielid
+voorzitter programmacommissie	Předseda programového výboru
+gebruiker	uživatel
+programmacommissie lid	Člen výboru programu
+voorkeur	předvolba
+acceptatie	přijetí
+recensent	Recenzent
+document	dokument
+beheerder	Správce
+externe recencent	externí Amazon recenzent
+synopsis	Synopse
+auteur	autor
+metarecentie	metarecentie
+metarecensent	meta kritik
+voorzitter	Prezident
+paper id	id papíru
+datum	Datum
+gebruik artikel toewijzings tool	použít nástroj pro přidělení položky
+heeft coauteur	je spoluautorem
+heeft auteur	má autor
+hardcopy verstuurbewijs afgedrukt door	tištěné poslat důkaz tisk
+maak toewijzing artikel af	Vytvoření položky přidělení
+toegewezen door recencent	přiřazeno Amazon recenzent
+recentie bieden begonnen door	Recenze nabídka založil
+heeft belangenverstrengeling	má střety zájmů
+website url	url webové stránky
+accepteerd hardcopy submissies	přijímá podání hardcopy
+email	e-mail
+titel	titul
+logo url	adresa url loga
+naam	Jméno
+maximum aantal artikelen	maximální počet článků
+recenties per artikel	Recenze za položku
+aangepast door	upravil
+is toegekend	je udělována
+lid van conferentie	Člen konference
+schrijf recentie	napsat recenzi
+details ingevuld door	Podrobnosti o dokončena
+toekenning artikel tool gebruikt door	Ocenění článek nástroj používaný
+eindrecentie	eindrecentie
+wijs artikel af	Přejděte na článek
+markeer belangenverstrengeling	zvýraznění střety zájmů
+voeg programmacommissie lid toe	Přidat člena výboru programu
+heeft conferentielid	má conferentielid
+gelezen door reviewer	Přečtěte si recenzent
+wijs externe recencent toe	Amazon recenzent, aby ukazoval na vnější
+lid van programmacommissie	Členka programového výboru
+laat virtuele vergadering toe	Nechť virtuální setkání
+stel maximaal aantal artikelen in	nastavit maximální počet položek v
+artikel gelezen	číst článek
+toegewezen aan	přiřazené k
+geschreven door	napsal
+schrijf artikel	napsat článek
+toegevoegd door	Přidal
+wijs recencent toe	Přidat bod do Amazon recenzent
+accepteer artikel	přijmout článek
+geaccepteerd door	přijato od
+dien artikel in	Tento článek v
+heeft beslissing	rozhodnutí má
+heeft onderwerp	má předmět
+begin recentie bieden	začátek Recenze nabídka
+vul recentie criteria in	Vyplňte kritéria přezkoumání
+toekenning artikel afgemaakt door	Článek hotové ocenění
+recentie criteria ingevuld door	přezkoumat kritéria doplněno
+heeft programmacommisie lid	Člen výboru programu má
+heeft bod	nabídku
+virtuele vergadering toegelaten door	virtuální setkání povoleném
+toegewezen door beheerder	přiřadit správce
+afgewezen door	zamítla
+co-schrijf artikel	co-napsat článek
+pas bod aan	pouze nabídku na
+hardcopy verstuurbewijs	tištěné poslat důkaz
+gelezen door metarecencent	číst metarecencent
+vul conferentie details in	Úplné podrobnosti o konferenci v
+commissie	Komise
+co-voorzitter	Spolupředseda
+passieve conferentie deelnemer	účastník konference pasivní
+geregistreerde aanvrager	registrované žadatel
+poster	plakát
+drukklare contributie	Tisknutelná poplatek
+betaalde aanvrager	žadatel zaplatil
+actieve conferentie deelnemer	účastník aktivní konference
+stuurgroep	Řídící výbor
+recentie expertise	Recenze odborných
+uitgever	Vydavatel
+geschreven contributie	písemný příspěvek
+conferentie contributie	Konferenční poplatek
+commissielid	Člen výboru
+organisatie	Organizace
+conferentie bijdrager	Konference Přispěvatel
+eerste auteur	první autor
+conferentie aanvrager	žadatel konference
+lezing op uitnodiging	Přednáška na pozvání
+snelcursus	rychlokurz
+geaccepteerde contributie	přijaté poplatky
+laat betaalde aanvrager	pozdní žadatel zaplatil
+uitgenodigde spreker	pozvaný řečník
+ingediende contributie	odeslaný příspěvek
+gerecenseerde contributie	revidovanou příspěvek
+belangrijke data	důležitá data
+workshop	Seminář
+oproep inzenzingen	volání inzenzingen
+gewone contributie	pravidelný členský poplatek
+conferentie document	Konference dokument
+afgewezen contributie	odmítnuté členský poplatek
+conferentie website	Konference
+conferentiebundel	Konference svazek
+gewone auteur	pravidelný autor
+organisator	Organizátor
+vroeg betaalde aanvrager	rané žadatel zaplatil
+recentie voorkeur	Přehled předvoleb
+track-workshop voorzitter	stopa seminář prezident
+conferentie deelnemer	účastník konference
+conferentie deel	Konference
+oproep tot deelname	výzva k účasti
+organisatiecommissie	Výbor organizace
+conferentie kosten	Náklady na konference
+coauteur bijdrage	spoluautor příspěvku
+lange synopsis	dlouhé Synopse
+informatie voor deelnemers	informace pro účastníky
+track	stopa
+conferentie aankondiging	Konference oznámení
+presentatie	prezentace
+heeft een track-workshop-snelcursus onderwerp	téma skladby workshop-rychlokurz
+heeft een uitgever	má Vydavatel
+heeft een synopsis	má Synopse
+is een onderwerp van conferentie delen	tématem konference je podíl
+contribueert	přispět
+heeft snelcursussen	má snelcursussen
+heeft een commissiecovoorzitter	má co-předseda Komise
+heeft belangrijke data	má důležitá data
+was een stuurgroep van	byla řídící skupina
+geeft presentaties	dává prezentace
+uitgenodigd door	na pozvání
+recensies	Recenze
+heeft delen	má části
+was lid van	byl členem
+heeft een organisatiecommissie	má organizace výboru
+nodigt corecensenten uit	corecensenten zve od
+is een volledig artikel submissie datum	je datum konání celý článek
+heeft een graad	má titul
+heeft voornaam	má křestní jméno
+heeft sekse	má sex
+heeft achternaam	má příjmení
+heeft een email	má e-mailu
+heeft een uitgavedatum	má datum vydání
+is een datum van bekendmaking van acceptatie	Datum zveřejnění přijetí
+hoort bij een recentie referentie	patří do odkaz na recenzi
+heeft een stuurgroep	má řídící výbor
+heeft een recentie referentie of expertise	má recenze odkazu nebo odborných znalostí
+hoort bij een conferentiebundel	patří do svazku konference
+is deel van conferentiebundel	Konference je součástí svazku
+heeft tracks	má stopy
+uitgaven	výdaje
+was een track-workshop voorzitter van	byl prezidentem track-workshop
+heeft een isbn	má číslo isbn
+heeft een naam	má název
+heeft een url	má adresu url
+heeft een plaats	má místo
+is een synopsis submissie datum	je datum podání anotace
+is een begindatum	je počáteční datum
+is een datum van drukklare versie submissie	je datum předložení připravena verze pro tisk
+is een einddatum	je koncové datum
+heeft een deel	má část
+heeft een expertise	má odborné znalosti
+heeft een recentie	má recenze
+heeft auteurs	má autoři
+was een commissievoorzitter van	byl předsedou Komise
+heeft contributies	má příspěvky
+heeft leden	má členy
+heeft een track-workshop-snelcursus voorzitter	má trať workshop-rychlokurz v prezidenta
+was een commissie van	byla Komise z
+heeft een ingediende contributie	má na vyřízení členství poplatek
+was een commissiecovoorzitter van	byl spolupředsedou Komise
+heeft een commissie	má Komise
+is het eerste deel van	je první část
+was een programmacommissie van	byl program výbor z
+heeft een onderwerp of een ingediende contributie	má téma nebo odeslaný příspěvek
+heeft een programmacommissie	má programového výboru
+was een organisatiecommissie van	byla organizace Komise z
+ingediend	napsané
+hoort bij recencenten	patří do recencenten
+heeft een recentie expertise	má odborné Recenze
+is een recensie referentie toegewezen	je přiřazen odkaz na recenzi
+heeft workshops	má dílny
+heeft een commissievoorzitter	má předseda Komise
+wordt gegeven door	je dána
+universiteit	Univerzita
+bedrijf	Společnost
+administratieve gebeurtenis	Administrativní událost
+bijdrage	příspěvek
+vrijwilliger	dobrovolník
+recensieresultaat gebeurtenis	přezkoumat výsledek událost
+student	Student
+indienen gebeurtenis	Odeslat událost
+sociale gebeurtenis	sociální událost
+deelnemersregistratie gebeurtenis	událost registrace účastníků
+wetenschappelijk medewerker	Vědecký asistent
+kort artiekel	krátký článek
+receptie	Recepce
+recensie gebeurtenis	Recenze událost
+drukklaar gebeurtenis	ready-to-print událost
+land	země
+werken gebeurtenis	práce událost
+deelnemer	účastník
+banket	Banket
+gewoon	jen
+gebeurtenis	událost
+reis	cestování
+lid	Člen
+lid programmacommissie	Člen programového výboru
+assistent	Asistent
+wetenschapper	vědec
+stad	Město
+heeft webpagina	má webová stránka
+heeft btw	má DPH
+heeft stad	má město
+parallel met	paralelní k
+volgt	Následuje
+schrijft	Zápisy
+werknemer van	zaměstnanec
+heeft administratieve gebeurtenis	má administrativní událost
+heeft land	má země
+expert op het gebied van	expert v oboru
+heeft te maken met	má co do činění s
+studeert bij	studie s
+heeft korte titel	má zkrácený název
+maximum keuze	maximální výběr
+heeft postcode	má PSČ
+heeft steekwoord	má klíčové slovo
+heeft titel	má titul
+eindigt op	končí na
+opmerking	Poznámka:
+abstract	Abstrakt
+standaard keuze	Výchozí volba
+plaats	místo
+contactinformatie email	kontaktní informace e-mailem
+heeft straat	má Street
+heeft email	má elektronická pošta
+heeft fax	má fax
+minimum keuze	minimální výběr
+begint op	začíná na
+heeft telefoon	má telefon
+vroege registratie	rané registrace
+ngo	NGO
+numerieke recensievraag	numerické hodnocení otázka
+vergaderruimte plaats	zasedací místnosti umístit
+medicijnen onderwerp	téma léky
+academische gebeurtenis	akademické událost
+conferentie diner	Konference večeře
+recensie	Recenze
+eetpauze	cesta tam
+diner plaats	místo večeře
+programmacommisielid	programmacommisielid
+electriciteitsoverdracht over lijnen onderwerp	electriciteitsoverdracht o předměty
+geaccepteerd artikel	přijaté článek
+afsluitende lezing	uzavření přednáška
+recensievraag	přezkoumat otázku
+conferentieoord plaats	Konferenční centrum místo
+conferentie sessie	Konference relace
+computer netwerken metingen onderwerp	počítačové sítě měření téma
+tekstuele recensievraag	otázka textové Recenze
+draadloze communicatie ondewerp	Bezdrátová komunikace ondewerp
+persoonlijke publicatiehistorie	osobní publikační historie
+computer netwerken bedrijven onderwerp	počítačové sítě firmy předmět
+antennes onderwerp	antény téma
+toelatingswaardering	vstupné Hodnocení
+industriële organisatie	Průmyslové organizace
+computer netwerken sensoren onderwerp	počítačové sítě senzorů téma
+computer netwerken beveiliging onderwerp	téma bezpečnosti počítačové sítě
+computer netwerken optisch onderwerp	počítačové sítě, optické téma
+persoonlijke recensiehistorie	Historie osobní Recenze
+communicatie onderwerp	téma komunikace
+satelliet- en ruimtecommunicatie onderwerp	téma komunikační satelit a prostoru
+lezing gebeurtenis	čtení událost
+zwakke toelatingswaardering	slabé obliba
+vrije tijd pauze	volný konec
+computer netwerken management onderwerp	téma Správa počítačové sítě
+besturingssystemen onderwerp	téma operační systémy
+gerelateerde artikelen	související články
+niet-academische gebeurtenis	non akademická událost
+radiocommunicatie onderwerp	rádiové komunikace téma
+beveiliging onderwerp	Bezpečnostní téma
+contact informatie	kontaktní informace
+overheidsorganisatie	Vládní organizace
+slides	snímky
+computer architectuur onderwerp	Předmět Počítačové architektury
+eet gebeurtenis	jíst událost
+sessievoorzitter	relace prezident
+recensieformulier	Zkontrolujte formulář
+recensie waardering	Recenze Hodnocení
+oproep manuscripten	Call skripty
+oproep	volání
+academische organisatie	akademická organizace
+oproep artikelen	volání články
+conferentie met één recensie laag	Konference s vrstvou jedna recenze
+menu	nabídka
+conferentie met twee recensie lagen	Konference s dvěma vrstvami Recenze
+cryptografie onderwerp	Kryptografie předmět
+communicatietheorie onderwerp	Předmět teorie komunikace
+teruggetrokken artikel	článek stažen
+afwijzingswaardering	odmítnutí Hodnocení
+multimedia onderwerp	multimediální téma
+computer netwerken schakelen onderwerp	počítačové sítě vypnout téma
+artikel presentatie	Článek prezentace
+accomodatie plaats	místo ubytování
+mobiele berekening onderwerp	Téma mobilní výpočetní
+oproep recensies	volání Recenze
+reistoelage	cestovné
+prestatie onderwerp	téma výkonu
+parallelle en gedistribuëerde berekening onderwerp	paralelní výpočty a gedistribuëerde téma
+actief artikel	Aktivní článek
+sponsoring	sponzorství
+persoonlijke historie	osobní historie
+programma	Program
+accepteer als kamerwaardering	přijmout jako místnost Hodnocení
+computer netwerken onderwerp	počítačové sítě téma
+organisatievergadering	Organizace setkání
+uitgegeven artikel	publikovaný článek
+presentator	Moderátor
+nog onbeslist artikel	stále nerozhodnutá článek
+microelectronica onderwerp	Mikroelektronika, předmět
+pauze gebeurtenis	pozastavit událost
+signaalverwerking onderwerp	předmětu zpracování signálů
+afgewezen artikel	odmítnuté článek
+koffiepauze	přestávka na kávu
+conferentie gebeurtenis	Konference
+cad onderwerp	CAD téma
+welkomstlezing	Vítejte čtení
+alleen testen onderwerp	pouze Zkoušený předmět
+excursie	exkurze
+hoort bij gebeurtenis	patří do události
+is menu van	je menu
+gerelateerd aan	související s
+gerelateerd aan gebeurtenis	související s událostí
+is gerecenseerd door	je komentář od
+heeft gerelateerd artikel	má související článek
+heeft oproep	má volání
+is recensiehistorie van	je přehled historie
+geleverd door	dodané
+begint	začíná
+wordt begonnen door	je spuštěn
+heeft menu	má menu
+heeft deelnemer	účastník má
+gerelateerd tot artikel	související článek
+heeft gerelateerd document	má související dokument
+heeft waardering	oceňuje
+is aan het recenseren	přezkum
+is lid van	je členem
+is plaats van	je umístění
+heeft programma	má program
+heeft recensiegeschiedenis	má historie Recenze
+is gescheven door	napsal
+is onderwerp van	je předmětem
+voor gebeurtenis	pro událost
+is leverancier van	je dodavatelem
+deelnemer van	účastník
+begindatum	datum zahájení
+heeft naam	má název
+heeft submissie instructies	má podání instrukce
+heeft submissie deadline	má konečný termín odeslání
+heeft biografie	má životopis
+manuscript moet klaar zijn op	rukopis musí být připraven na
+heeft kosten som	má součet nákladů
+heeft begindatum/tijd	má počáteční datum a čas
+einddatum	Datum ukončení
+artikel moet klaar zijn op	článek by měl být připraven na
+heeft plaats	má místo
+heeft lid	má člen
+heeft einddatum/tijd	má datum a čas ukončení
+registratie moet klaar zijn op	registrace musí být připraven na
+heeft kosten munteenheid	má cenu měny
+pamflet	pamflet
+gewoon artikel	jen článek
+dokument	dokument
+conferentie banket	Konference banket
+positieve recensie	pozitivní recenze
+onderzoeksinstelling	výzkumné instituce
+industrie sessie	průmysl relace
+beoordeeld artikel	přezkoumat článek
+industriëel artikel	průmyslové článek
+lezing abstract	čtení abstrakt
+voorzitter workshop	Prezident dílna
+(bijgedragen) lezing	(přispěl), čtení
+staf van instelling	zaměstnanci, kterým
+deel met meerdere autheurs	sdílet s více autory
+voorzitter demonstraties	Prezident demonstrace
+voorzitter snelcursus	Prezident rychlokurz
+laat geregistreerde deelnemer	Nechť registrovaný účastník
+sessie	relace
+demonstratie artikel	Demo část
+conferentie reis	Konference cestování
+lid stuurgroep	Členem řídící skupiny
+gast spreker	hosta
+ingediend artikel	předložený článek
+programma brochure	Program brožura
+lezing	čtení
+negatieve recensie	negativní recenze
+organiserende instelling	organizace
+toegewezen artikel	přiřazené zboží
+workshop sessie	Workshop relace
+wetenschappelijke gebeurtenis	vědecký událost
+uitgever conferentiebundel	Vydavatel konference svazek
+drukklaar artikel	ready-to-print článek
+snelcursus abstract	rychlokurz v abstraktní
+neutrale recensie	neutrální Recenze
+voorzitter organisatiecommissie	Předseda organizačního výboru
+individuele presentatie	individuální prezentace
+poster artikel	plakát článek
+lid organisatiecommissie	Členské organizace Komise
+artikel auteur	Autor článku
+wetenschappelijk artikel	vědecký článek
+voorzitter sessie	Prezident relace
+gewone sessie	řádném zasedání
+website	webové stránky
+bundel	svazek
+poster sessie	Prezentace posterů
+workshop artikel	Workshop článek
+onderzoeksonderwerp	téma výzkumu
+demonstratie sessie	demonstrace relace
+vroeg geregistreerde deelnemer	rané registrovaný účastník
+mogelijke recensent	možné recenzent
+academische instelling	akademické instituce
+presentatie van artikel	prezentace článku
+deel bevat artikel	část obsahuje článek
+bevat gebeurtenis	obsahuje událost
+geciteerd door	citoval
+heeft gebeurtenis	má událost
+organiseert (technisch)	organizuje (technické)
+gehouden in	v
+georganiseerd door	organizuje
+technische organisatie door	Technická organizace
+uitgever van	Vydavatel
+gebeurtenis op lijst	událost v seznamu
+organiseert	organizuje
+artikel in deel	článek částečně
+heeft deel	má část
+inverse van deel van 7	Inverzní část 7
+organiseert (wetenschappelijk)	organizuje (vědecké)
+heeft recensent	přezkoumala
+recensie geschreven door	recenzi napsal
+heeft bijgewerkte versie	aktualizoval verzi
+recensent van artikel	Recenzent článku
+plaats van	místo
+heeft recensie	má recenze
+onderwerp behandeld door	Předmět zpracována
+bijgewerkte versie van	aktualizovaná verze
+gaat over	je o
+recensie van artikel	revize článku
+citaties	Citace
+deel van	součástí
+artikel gepresenteerd als	článek prezentován jako
+wetenschappelijke organisatie door	Vědecké organizace
+onderdeel van gebeurtenis	součástí akce
+auteur van	autor
+registratiekosten niet-auteur	registrační poplatky jsou non autor
+inschrijving	registrace
+beamer	promítačka
+overschrijving	Bankovní převod
+conferentie activiteit	Konferenční činnost
+busje	Van
+conferentie restaurant	Konference restaurace
+conferentie dagen	Konference dny
+audiovisuele uitrusting	audiovizuální zařízení
+registratiekosten lid	Členský registrační poplatek
+registratiekosten student	Student registrační poplatek
+registratiekosten aanwezige auteur boek	autor knihy současné registrační poplatek
+iasted lid	IASTED členských
+plenaire lezing	Plenární přednáška
+onderzoek	Výzkum
+video presentatie	video prezentace
+deadline	konečný termín
+cheque	šek
+computer	počítač
+sessie kamer	relace místnost
+taxi	taxi
+student lector	studentské Lektor
+coctail receptie	koktejlové recepce
+sociaal programma	sociální program
+conferentie vliegveld	Konference Airport
+simuleren	simulovat
+reisdag	den cesty
+spreker voorstellen	návrhy reproduktoru
+manuscript ontvangen	rukopisu
+registratie deadline	Uzávěrka přihlášek
+kaart	mapa
+definitief manuscript	poslední rukopis
+bewijs van aanwezigheid	důkaz o přítomnosti
+dagvullende rondleiding	jeden den turné
+betalingsdocument	platební doklad
+modelleren	modelování
+activiteit voor de conferentie	aktivita pro konference
+hotel presentator	Hotel moderátorka
+gebouw	budova
+registratiekosten niet-lid	třetí registrační poplatek
+eendaags presentator	den-moderátor
+een conferentie dag	den konference
+iasted niet-lid	IASTED non člen
+snelcursus spreker	rychlokurz v reproduktoru
+auteur conferentiebundel cd inbegrepen	autor konference svazek cd dodaného
+student niet-spreker	Student non reproduktor
+kosten voor extra reis	náklady na další cestování
+toehoorder	naslouchání
+hoofdkantoor	Centrála
+conferentiebundel cd	Konference cd svazek
+conferentiezaal	Konferenční místnost
+onderdeel	část
+tijd	čas
+publicatie	publikace
+arbeider niet-spreker	pracovník ne reproduktor
+presentator huis	Moderátor domů
+eenpersoonskamer	Jednolůžkový pokoj
+activiteit	aktivita
+hotel informatie formulier	Hotel Poptávkový formulář
+submissie	podání
+transparant	průhledná
+transport voertuig	dopravní vozidlo
+recencent	Amazon recenzent
+conferentie hotel	Konferenční hotel
+reis stad	cestování město
+sponsor	Sponzor
+korte inleiding voorzitter	stručný úvod prezident
+powerpoint presentatie	Power point prezentace
+geld	peníze
+spreker lezing	reproduktor čtení
+kosten	náklady
+auteur informatie formulier	autor informační formulář
+activiteit na de conferentie	činnost po konferenci
+belasting	daň
+technisch committee	Technický výbor
+afgevaardigde	delegát
+conferentie stad	Konference město
+auto	auto
+munteenheid	Měna
+videospeler	video přehrávač
+arbeider lector	pracovník Lektor
+sponsor stad	sponzor město
+formulier	forma
+overhead projector	zpětný projektor
+creditcard	kreditní karta
+niet-spreker	-reproduktor
+registratieformulier	registrační formulář
+manuscript accepteren	přijmout skript
+deadline aankondiging acceptatie	oznámení termínu přijetí
+inleiding	Úvod
+staat	Stát
+manuscript afwijzen	rukopis odmítnutí
+hotel kosten	Hotel náklady
+tweepersoonskamer	Dvoulůžkový pokoj
+technische activiteit	Technická činnost
+lector	Lektor
+toegevoegde waarde belasting	přidaná hodnota daně
+welkomsttoespraak	Úvodní projev
+conferentie wandelaar	Konference Walker
+sponsor staat	sponzor stát
+fooi	Tip
+auteur conferentiebundel boek inbegrepen	autor konference kniha bundle včetně
+presentator universiteit	Moderátor univerzita
+conferentie staat	Konference stát
+algemene lezing spreker	Generál přednáška reproduktor
+submissie deadline	konečný termín odeslání
+presentator staat	Presenter je
+email lijst	e-mailový seznam
+sponsor bedrijf huis	sponzor společnost domov
+conferentiebundel boek	Konference kniha bundle
+registratiekosten aanwezige auteur cd	autor registrační poplatek, použití existující cd
+spreker	reproduktor
+visum	Víza
+deadline hotel reservering	rezervace termínu hotel
+vertrek	odjezd
+conferentie gebouw	Konference budova
+huren	pronájem
+vertrekbelasting	Odletová daň
+eerste manuscript	první rukopis
+deadline drukklaar manuscript	ready-to-print rukopis termín
+pendelbus	kyvadlový autobus
+presentator stad	hostitelské město
+tijdzone	časové pásmo
+registratiekosten	registrační poplatky
+hotelkamer	Hotelový pokoj
+uitnodigingsbrief	zvací dopis
+is voorzien van	funkce
+krijgen	získat
+is ontworpen voor	je určen pro
+is verbonden met	je připojen k
+wordt betaald met	platí se
+doorgaan	pokračovat
+wordt gebruikt door	používá
+schrijven	Napsat
+voorbereiden	Příprava
+tekenen	známky
+is gelegen in	se nachází v
+is getekend door	byla podepsána
+is aanwezig	je přítomen
+wordt betaald voor	platí za
+is geschreven door	napsal
+spreken in	mluvení v
+wordt bezet door	je obsazena
+wordt gebruikt voor	se používá pro
+bezetten	zabírají
+wordt gehouden in	koná se v
+is aanwezig bij	je přítomen
+wordt gehouden na	koná se po
+wordt bezocht door	navštěvuje
+betalen	nabitá
+wordt betaald door	hradí
+wordt verzonden voor	poslal pro
+wordt gehouden voor	se koná pro
+wordt voorbereid door	je připraven
+wordt gegeven aan	je věnována
+is nodig voor	je nezbytné pro
+geven	Dej
+wordt verzonden door	zasílá
+verzenden	Odeslat
+nodig hebben	potřeba
+is gemaakt van	je vyroben z
+klaar tot	připraven k
+wordt betaald in	je vyplácena
+wordt verzonden na	je odeslána po
+is gedateerd	je datována
+heeft bedrag	má množství
+deadline inlichting auteur	termín informace autor
+prijs best studenten artikel	cena nejlepší studentské článek
+registratie geen lid	registrace není členem
+bedrag	částka
+registratie sigkdd lid	sigkdd členské registrace
+platina sponsor	Platinový sponzor
+deadline indiening artikel	konečný termín odeslání článku
+prijs best toegepast artikel	použitá cena nejlepší článek
+best studenten artikel sponsor	nejlepší studentské článek sponzor
+programmaccommissie	programmaccommissie
+prijs best onderzoeksartikel	cena nejlepší výzkum papír
+deadline indiening abstract	Uzávěrka abstrakt
+prijs	cena
+auteur van studenten artikel	Autor článku studentů
+zilver sponsor	Stříbrný sponzor
+registratie sigmod lid	sigmod členské registrace
+auteur van artikel	Autor článku
+best artikel prijzencommissie	nejlepší článek ocenění výboru
+sponsorbijdrage	sponzorství
+algemeen voorzitter	Jako prezident
+webmaster	webmaster
+acm sigkdd	ACM sigkdd
+registratie studenten	registrace studentů
+brons sponsor	Bronzový sponzor
+hotel	Hotel
+tentoonsteller	Vystavovatel
+goud sponsor	Zlatý sponzor
+betaalmiddel	způsob platby
+naam van sponsor	jméno sponzora
+naam van conferentie	název konference
+stad van conferentie	Město konference
+einde van conferentie	konec konference
+toegekend door	vydaný
+indienen tot	odesílání do
+ontworpen door	navrhl
+mag verblijven in	je dovoleno zůstat v
+verkrijgen	získání
+inlichting tot	informace k
+betaald door	placené
+ontwerp	návrh
+gepresenteerd door	předložený
+indienen	odesílání
+gehouden door	držení
+houdt	udržuje
+gezocht door	hledá
+zoeken	Hledat
+begin van conferentie	zahájení konference
+computer netwerken applicaties onderwerp	počítačové sítě aplikace téma

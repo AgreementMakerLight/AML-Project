@@ -1,0 +1,709 @@
+person	persona
+dokument	documento
+präferenz	preferencia
+verfasser, der kein gutachter ist	escritor no experto
+meta-gutachten (gutachten über ein gutachten)	Meta - (opinión sobre una opinión)
+meta-gutachten	Meta - opinión
+mitverfasser	coautor
+vorsitzender	Presidente
+verfasser	Autor
+vorsitzender der konferenz	Presidente de la Conferencia
+vorsitzender des programm-komitees	Presidente del Comité de programa
+meta-gutachater	Meta-gutachater
+zurückweisung	rechazo
+meta-gutachater (gutachter der gutachten begutachtet)	Meta-gutachater (dictamen pericial que revisado)
+vollständiger konferenzbeitrag	inscripción en plena Conferencia
+konferenz	Conferencia
+gegenstandsbereich	Ámbito de aplicación
+gutachten	opinión
+externer gutachter	revisores externos
+akzeptanz	aceptación
+konferenzbeitrag	Contribución de la Conferencia
+programm-komitee	Comité de programa
+teilnehmer einer konferenz	participantes en una conferencia
+gutachter	experto
+benutzer	usuario
+gebot	ordenado
+stellvertretender vorsitz	Asiento adjunto en
+entscheidung	decisión
+mitglied des programm-komitees	Miembro del Comité de programa
+abstrakt eines konferenzbeitrags	Resumen de una contribución de conferencia
+administrator	Administrador
+hat details eingefügt in bezug auf	ha insertado detalles en relación con
+hat die zuordnung der beiträge abgeschlossen	ha completado el mapeo de las contribuciones
+hat zugewiesen	ha asignado a
+druckt papierausdruck des mailing-manifests	imprimir una copia de la lista de correo electrónico
+beitragszuordnungs-software ausgeführt von	ejecuta el software de beitragszuordnungs por
+zugewiesen zu	asignados a
+details eingefügt von	información añadida por
+beitragszuordnung abgeschlossen von	Misión completada por correo
+gelesen von gutachter	leído por expertos
+hat die beitrags-zuordnungssoftware ausgeführt	ha llevado a cabo la contribución zuordnungssoftware
+hat virtuelles treffen veranlasst	encuentro virtual ha llevado
+hat abgeglichen	ha coincidido con
+mitverfasst von	autoría
+hat interessenskonflikt in bezug auf	interessenskonflikt tiene en relación con
+abgewiesen von	rechazado por
+geschrieben von	Publicado por
+virtuelles treffen veranlasst von	reunión virtual liderado por
+gelesen von meta-gutachter	leído por revisor meta
+akzeptiert von	aceptado por
+ist mitglied des programm-komitees	es miembro del Comité de programa
+hat beitrag geschrieben	ha escrito aporte
+hat die gebotsphase gestartet	inició la fase de licitación
+kriterien zu gutachten eingefügt von	Criterios de opinión insertada por
+hat papier abgelehnt	papel rechazado
+bestimme maximale anzahl an zugewiesenen beiträgen	Elija el número máximo de contribuciones asignadas
+ist entschieden worden als	Se decidió como un
+steht in interessen-konflikt mit beitrag	los intereses en conflicto con la contribución
+hat webseite an url	tiene página web URL
+hat namen	tiene el nombre
+hat datum	tiene fecha
+akzeptiert hardcopy-einsendungen	aceptar comunicaciones hardcopy\r
+hat id	tiene id
+maximale anzahl an zugewiesenen beiträgen	número máximo de contribuciones asignadas
+hat titel	tiene título
+hat email	cuenta de correo electrónico
+zugewiesen von administrator	asignado por el administrador
+hat mitglied	tiene un miembro
+hat logo an url	tiene logotipo url
+gutachten pro beitrag	opinión por contribución
+zugewiesen von gutachter	asignado por los expertos
+hat akzeptiert	ha aceptado
+hat papier gelesen	periódico
+hat gegenstandsbereich	tiene alcance
+papierausdruck des mailing-manifests gedruckt von	copia impresa del correo electrónico que se manifiesta por
+ist zugeordnet worden	se ha ordenado a
+teilnehmer von	participantes de
+hat die zeit des begutachtens beendet	ha terminado de aquel momento de valoración
+hat hinzugefügt	añadido
+abgeglichen von	igualada por
+hinzugefügt von	Añadida por
+hat teilnehmer	participante
+hat beitrag eingesendet	ha presentado contribuciones
+hat beitrag mitverfasst	es autor de contribución
+hat kriterien zu gutachten eingefügt	ha añadido criterios ante la opinión
+gebotsphase gestartet von	Fase de licitación Iniciado por
+hat gutachten geschrieben	ha escrito la opinión
+hat gebot erhalten	ha mandado consigue
+konferenzankündigung	Anuncio de conferencia
+ausschuss	Comité
+erweitertes abstrakt	amplio resumen
+koferenzdokument	koferenzdokument
+informationen für teilnehmer	información para los participantes
+präsentation	Presentación
+aktiver konferenzteilnehmer	participantes activos
+passiver konferenzteilnehmer	participantes pasivos
+eingereichter beitrag	Contribución presentada
+konferenzgebühren	Honorarios de la Conferencia
+organisator	Organizador
+druckfertiger beitrag	contribución de druckfertiger
+eingeladener vortrag	Conferencia
+fortschritte der konferenz	progreso de la Conferencia
+abstrakt	Resumen
+wichtiges datum	fecha importante
+konferenzbeteiligung	Participación en las conferencias
+angehörige des ausschusses	miembros del Comité
+koferenzbewerber	koferenzbewerber
+konferenzbewerber, der die konferenzgebühr gezahlt hat	Solicitantes de conferencia que pagan la tarifa de la Conferencia
+steuerungsausschuss	Comité Directivo
+begutachteter beitrag	contribución dictaminado
+organisationsausschuss	Comité Organizador
+herausgeber	Editor
+aufruf zu teilnahme	Convocatoria de participación
+geschriebener beitrag	contribución escrita
+internet der konferenz	Internet de la Conferencia
+leiter der workshops	Director del taller
+konferenzbewerber, der die konferenzgebühr spät gezahlt hat	Candidato de la Conferencia que ha pagado la tarifa de la Conferencia tarde
+tutorium	Tutorial
+angenommener beitrag	presunta contribución
+mitverfasser eines beitrags	coautor de contribución
+organisation	Organización
+programmausschuss	Comité de programa
+thema	tema
+author eines regulären beitrags	Autor de contribuciones regulares
+aushang	Tablón de anuncios
+fachgebiet des gutachters	Área de especialización del verificador
+regulärer beitrag	contribuciones regulares
+konferenzteilnehmer, der einen beitrag geleistet hat	Participantes de la Conferencia, la única contribución ha hecho
+workshop	Taller
+eingeladener referent	orador invitado
+präferenz des gutachters	preferencia del verificador
+primärer author eines beitrags	autor principal de una contribución
+stellvertretender vorsitzender	Vicepresidente
+konferenzreihe	Ciclo de conferencias
+konferenzbewerber, der die konferenzgebühr früh gezahlt hat	Candidato de la Conferencia que ha pagado la tarifa de la Conferencia temprano
+konferenzteilnehmer	Participantes de la Conferencia
+ablauf der konferenz	caducidad de la Conferencia
+registrierter bewerber	aspirantes registrados
+abschnitte der konferenz	secciones de la Conferencia
+aufruf für beiträge	Convocatoria de contribuciones
+abgelehnter beitrag	contribución rechazada
+datum der einreichung des abstrakts	fecha de presentación de los resúmenes
+hat e-mailadresse	tiene dirección de correo electrónico
+ist am folgenden datum veröffentlicht worden	se ha publicado en la siguiente fecha
+hat name	tiene nombre
+datum der druckfertigen einreichung ist	la fecha de presentación final es
+ort der konferenz	lugar de la Conferencia
+grad der gutachterpräferenz	Sólo la preferencia experta
+hat geschlecht	teniendo sexo
+hat mitglieder	tiene miembros
+hat abfolge	tiene secuencia
+ist anfangsdatum	es la fecha de inicio
+anzahl der fortschritte der konferenz	número de progreso la Conferencia
+ist eingereicht für	es presentado por
+liefert konferenzbeitrag	Contribución de la Conferencia
+ausschuss der konferenz ist	Comité de la Conferencia
+hat abschnitt	ha cortado
+grad des fachgebiets des gutachters ist	grado de la materia del verificador es
+hat vornamen	ha dado nombre
+datum der einreichung des kompletten beitrags ist	fecha de presentación de la contribución total es
+isbn der fortschritte ist	ISBN que progreso es
+hat nachnamen	tiene apellido
+url der konferenz ist	la conferencia es URL
+ist enddatum	es la fecha de finalización
+datum der akzeptanz-mitteilung ist	fecha de la notificación de aceptación
+hat fachgutachten	tiene dictamen pericial
+ist ein präferiertes thema oder fachgebiet eines gutachters	es un tema preferido o área de conocimiento experto
+hat gutachten	tiene opinión
+ist vorsitzender des ausschusses	es Presidente de la Comisión
+hat beitrag	contribución
+ist teil der konferenzreihe	es parte del ciclo de conferencias
+organisationsausschuss der konferenz ist	el Comité Organizador de la conferencia es
+hat author	tiene autor
+hält präsentation	Presentación de explotación
+ist ausschuss der konferenz	Comité de la Conferencia
+hat workshop-thema	tema del taller
+ist ein präferiertes thema eines gutachters	es un tema preferido de un experto
+hat beitrag eingreicht	tiene contribución eingreicht
+eingeladen von gutachter	experto invitado
+hat abstrakt	tiene Resumen
+veröffentlicht	Publicado
+hat thema oder beitrag eingereicht	tema o contribuciones enviadas
+programmausschuss der konferenz ist	Comité de programa de la Conferencia
+begutachtet beitrag	contribución pública
+ist steuerungsausschuss der konferenz	es el Comité de conferencia
+ist organisationsausschuss der konferenz	es el Comité Organizador de la Conferencia
+ist ein wichtiges datum einer konferenzreihe	es una fecha importante de una serie de conferencias
+verleger des konferenzfortschritts ist	Es editor de los avances de la Conferencia
+präsentiert von	presentado por
+hat eine zugewiesene gutachterpräferenz	tiene una preferencia experta asignada
+ist mitglied von	es miembro de
+hat wichtiges datum	tiene fecha importante
+hat tutorium	tiene tutorial
+präferenz oder fachgebiet des gutachters ist	preferencia o área de especialización del verificador es
+ist der erst teil von	es sólo una parte de
+lädt mitgutachter ein	con buen octavo invita
+hat stellvertrenden ausschussvorsitzender	tiene stellvertrenden Presidente
+ist leiter des workshops	es el Director del taller
+hat workshop-leitung	Taller Gestión
+hat ausschussvorsitzender	tiene Presidente
+ist programmausschuss der konferenz	el Comité de programa de conferencia
+steuerungsausschuss der konferenz ist	Comité Directivo de la conferencia es
+hat workshop	dispone de taller
+ist stellvertretender vorsitzender des ausschusses	es Vicepresidente de la Comisión
+ist thema ein konferenzabschnittes	es una sección del tema de la Conferencia
+ereignis der begutachtung	evento de revisión
+studentischer teilnehmer	estudiantes participantes
+autor	Autor
+bankett	Banquete
+poster	cartel
+ereignis des sendens des "camera-ready" papiers	caso de que el envío del documento de "cámara"
+ereignis	evento
+papier	papel
+vorsitz des programmkomitees	asiento en el Comité de programa
+einreichung	Presentación
+kurzes papier	papel corto
+teilnehmer	participantes
+stadt	Ciudad
+empfang	recepción
+regulärer teilnehmer	participantes regulares
+student	estudiante
+freiwilliger	voluntario
+universität	Universidad
+firma	empresa
+ereignis zur registrierung der teilnehmer	evento para la inscripción de los participantes
+mitglied	Miembro
+ereignis des einreichens eines papiers	evento de presentación de un documento
+arbeits-ereignis	evento de empleo
+ergebnis-der-begutachtung ereignis	resultado de prueba de evaluación
+soziales ereignis	evento social
+land	tierra
+administratives ereignis	Evento administrativo
+ausflug	excursión
+wissenschaftler	científicos
+assistent	Asistente
+mitglied des programmkomitees	Miembro del Comité de programa
+minimale anzahl	número mínimo
+endet am	termina en
+hat straße	tiene camino
+studiert an	estudió en
+hat stadt	La ciudad tiene
+frühzeitige registrierung	inscripción temprana
+begutachtet	examinado
+folgt	sigue
+fachkundig für	experto para
+schreibt	Escribe
+hat land	tiene país
+angestellt bei	contratado en
+gleichzeitig mit	al mismo tiempo con
+hat postleitzahl	tiene código postal
+hat kurztitel	tiene el título corto
+hat homepage	Página de inicio
+hat telephonnummer	tiene número de teléfono
+hat mehrwertsteuer	tiene valor agregado impuesto
+vorgegebene anzahl	número de PRESET
+hat kontakt-email adresse	Cómo entrar en contacto con la dirección de correo electrónico
+hat faxnummer	tiene fax
+findet statt an	se llevará a cabo
+maximale anzahl	número máximo
+hat stichwörter	tiene palabras clave
+startet am	se inicia en
+hat nachname	tiene apellido
+hat email adresse	tiene dirección de correo electrónico
+hat thema	tiene tema
+beschäftigt sich mit	se ocupa de
+hat anmerkung	tiene anotación
+hat administratives event	Evento administrativo
+konferenz-dinner	Cena Conferencia
+computernetzwerksensor-thema	tema computernetzwerksensor
+platz	lugar
+sicherheits-thema	tema de seguridad
+gutachtenbewertung	Calificación de opinión
+ausstehender beitrag	contribución pendiente
+numerische gutachtenfrage	pregunta de opinión numérica
+speisekarte	Menú
+multimedia-thema	tema multimedia
+freie zeit	tiempo libre
+aufruf	llamada
+akademisches event	evento académico
+persönliche historie von gutachten	antecedentes personales de opinión
+konferenzversitzender	Conferencia versitzender
+mahlzeit	comida
+schwach abgelehnte bewertung	débil rechazó revisión
+sitzungsvorsitzender	Presidente de sesión
+foliensatz	Conjunto de aluminio
+pause	descanso
+mobiles computing-thema	tema de computación móvil
+soziales event	evento social
+author	Autor
+abschlussvortrag	Presentación final
+akademische organisation	organización académica
+abgelehnte bewertung	Informe rechazado
+regierungsorganisation	Organización del gobierno
+optische computernetzwerke-thema	tema computernetzwerke óptico
+einebige konferenz	einebige Conferencia
+"nur tests"-thema	tema "sólo pruebas"
+programm	programa
+industrielle organisation	Organización industrial
+sitzungsraum	sala de reuniones
+formular für gutachten	formulario de opinión
+parallel und verteiltes computing-thema	tema cómputo paralelo y distribuido
+persönliche historie	historia personal
+aktiver beitrag	contribución activa
+kommunikationstheorie-thema	tema de la teoría de la comunicación
+computernetzwerkunternehmen-thema	tema de operador de red informática
+akzeptierter beitrag	contribuciones aceptadas
+medizinisches thema	tema médico
+veranstaltungsort der konferenz	desde el lugar de la Conferencia
+kryptographisches thema	tema criptográfico
+vortrag	Conferencia
+computernetzwerksicherheit-thema	tema computernetzwerksicherheit
+wörtliche gutachtenfrage	pregunta de opinión literal
+speiseplatz	Comedor
+persönliche historie von veröffentlichungen	historia personal de publicaciones
+begrüßungsvortrag	Presentación Bienvenido
+satelliten- und weltraumkommunikation-thema	tema de las comunicaciones vía satélite y espacio
+gutachtenfrage	Pregunta de opinión
+präsentation eines beitrags	Presentación de una contribución
+event im zusammenhang mit einer konferenz	evento relacionado con una conferencia
+trägerfrequenzanlage-thema	Tema de sistema de frecuencia de portadora
+aufruf für manuskripte	Convocatoria de manuscritos
+mikroelektronisches thema	tema mikroelektronisches
+zurückgezogener beitrag	contribución retirado
+performance-thema	problema de rendimiento
+aufruf für gutachten	Convocatoria de opinión
+konferenzsitzung	Sesión de la Conferencia
+kommunikations-thema	tema de comunicación
+akzeptierte bewertung	Valoración aceptada
+mitglied von tpc	Miembro de tpc
+computernetzwerkanwendungen-thema	tema computernetzwerkanwendungen
+radiokommunikation-thema	Tema de radio comunicación
+bewerteter beitrag	contribución ponderada
+organistorische besprechung	reunión organistorische
+cad-thema	Tema de CAD
+essenszeit	Hora de comer
+computernetzwerkwechsel-thema	tema computernetzwerkwechsel
+präsentator	praesentator
+computernetzwerkverwaltung-thema	tema computernetzwerkverwaltung
+antennen-thema	tema de antenas
+kein akademisches event	ningún evento académico
+zweiebige konferenz	zweiebige Conferencia
+kaffeepause	Coffee break
+besucher	visitantes
+nichtregierungsorganisation	Organización no gubernamental
+reisesubvention	Subvencion
+betriebssystem-thema	Tema del sistema operativo
+beitrag	contribución
+computernetzwerke-thema	tema Computernetzwerke
+signalverarbeitung-thema	Tema de procesamiento de señal
+unterkunft	alojamiento
+drahtlose kommunkation-thema	tema de las comunicaciones inalámbricas
+compututerarchitektur-thema	tema compututerarchitektur
+computernetzwerkspezifikation-thema	tema computernetzwerkspezifikation
+sponsoring	patrocinio
+kontaktinformationen	Información de contacto
+akzeptiert, wenn spielraum vorhanden ist, bewertung	aceptado si hay espacio, revisión
+veröffentlichter beitrag	contribuciones publicadas
+hat datum und zeit des endes	fecha y hora del final
+hat anweisungen für einreichungen	instrucciones para presentaciones
+hat e-mail	cuenta de correo electrónico
+hat besucher	visitantes
+hat datum und zeit der deadline für manuskripte	fecha y hora de la fecha límite para los manuscritos
+hat biografie	tiene biografía
+hat telefon	tiene teléfono
+hat datum und zeit des beginns	fecha y hora de comienzo
+hat deadline für einreichungen	es la fecha límite
+hat kostensumme	tiene costo total
+hat währung der kosten	tiene moneda el costo
+hat datum und zeit des beginns der konferenz	fecha y hora del comienzo de la Conferencia
+hat datum und zeit der deadline für beiträge	fecha y hora de la fecha límite para las contribuciones
+hat datum und zeit des endes der konferenz	fecha y hora del final de la Conferencia
+hat vollständigen namen der konferenz	tiene el nombre completo de la Conferencia
+hat datum und zeit der deadline für registrierungen	fecha y hora de la fecha límite para inscripciones
+hat beziehung zu dokument	No tiene relación al documento
+gehört zu event	pertenece al evento
+ist thema von	tema por
+ist eingeleitet von	se inicia por
+ist begutachtet von	es revisado por
+hat bewertung	tiene evaluación
+ist anbieter von	El proveedor es por
+hat programm	cuenta con programa de
+hat geschrieben	ha escrito
+ist über beitrag	se trata de contribución
+ist geschrieben von	escrito por
+hat aufruf	tiene llamada
+für event	para el evento
+ist gutachtenhistorie von	Informe historia por
+ist besucher auf	es de visitantes
+hat ort	tiene ubicación
+bezieht sich auf	se refiere a
+ist menü von	menú es por
+hat gutachtenhistorie	tiene historial de opinión
+leitet ein	inicia
+ist ort von	es lugar de
+ist angeboten von	es ofrecido por
+ist präsentiert in	se presenta en
+hat menü	menú a la carta
+workshop-sitzung	Sesión del taller
+tutoriumvorsitz	Tutorial silla
+sitzungsvorsitz	Presidente de sesión
+forschungsinstitut	Instituto de investigación
+event	evento
+zugewiesener beitrag	contribución asignado
+organisierende agentur	agencia organizadora
+möglicher gutachter	revisores potenciales
+wissentschaftliches event	evento wissentschaftliches
+vorsitzender des programmausschusses	Presidente del Comité de programa
+konferenz-beitag	Conferencia beitag
+mitglied des programmausschusses	Miembro del Comité del programa
+konferenz-bankett	Salones de conferencia
+flyer	Flyer
+mitglied des steuerungsausschusses	Miembro del Comité Directivo
+abgelehntes beitrag	rechazó contribuyendo
+abstraktes tutorium	tutorial Resumen
+beigetragener vortrag	contribuido Conferencia
+akademische institution	institución académica
+eingeladener abstrakter vortrag	cargar una clase abstracta
+demo vorstand	Demo Board
+workshop-beitrag	Taller-contribución
+demo sitzung	sesión de demostración
+workshopvorsitz	workshopvorsitz
+individuelle präsentation	presentación individual
+konferenzreise	Viajes de conferencia
+webseite	sitio web
+mitglied des organisationsausschusses	Miembro del Comité Organizador
+konferenzfortschritte	Progreso de conferencia
+track	pista
+negatives gutachten	opinión negativa
+neutrales gutachten	opinión neutral
+früh registrierter teilnehmer	primeros inscriptos
+verleger der fortschritte	Editor que progresar
+programmbroschüre	Folleto del programa
+agenturmitarbeiter	Empleados de la Agencia
+evaluierter beitrag	contribución evaluado
+sitzung	período de sesiones
+ausgehängte sitzung	Después de desganche de sesión
+ort	lugar
+industrieller beitrag	Contribución industrial
+spät registrierter teilnehmer	participantes inscritos finales
+industrielle sitzung	sesión industrial
+author eines beitrags	Autor de una contribución
+reguläre sitzung	período ordinario de sesiones
+positives gutachten	opinión positiva
+forschungsthema	Tema de investigación
+koferenz	Koferenz
+fortschritte	progreso
+multi-author volume	volumen de varios autor
+vorsitzender des organisationsausschusses	Presidente del Comité Organizador
+ausgehängter beitrag	suspendido de contribución
+demo beitrag	Contribución de demo
+koferenzsitzung	koferenzsitzung
+event ist gelistet	evento cotiza
+hat teil	ha participado
+gutachter des beitrags ist	revisión de la contribución es
+organisiert von	organizado por
+referenziert	referencias
+ist teil von	es parte de
+thema ist abgedeckt von	tema está cubierto por
+ist invers zu teil von 7	inverso es parte de 7
+gutachten ist geschrieben von	escrito por opinión
+ist gutachten des beitrags	es opinión de la contribución
+organisiert wissenschaftlich	organizado científica
+hat gutachter	tiene revisor
+wissenschaftlich organisiert von	científicamente organizado por
+organisiert technisch	organizada técnica
+reihe enhält beitrag	incluye serie contribución
+ort von	lugar de
+präsentation des beitrages	Presentación de la contribución
+aktualisiert version von	versión actualizada de
+beitrag ist teil der reihe	la contribución es parte de la serie
+deckt thema	tema cubiertas
+hat aktualisierte version	ha actualizado versión
+findet statt in	se lleva a cabo en
+hat event	tiene evento
+listet event auf	listas de eventos
+wurde veröffenlicht von	fue publicado por
+referenziert in	se hace referencia en
+organisiert	organizado
+ist teil von einem event	es parte de un evento
+technisch organisiert von	Técnicamente organizada por
+ist author von	es autor de
+beitrag wird präsentiert als	contribución se presentará como un
+zeit	tiempo
+student, der kein redner ist	estudiante que no es un orador
+registrierungsformular (konferenz)	Formulario de inscripción (Conferencia)
+studentischer vortragender	Profesor alumno
+vortragender, der ein tutorium hält	Conferenciante, sostiene el un tutorial
+akzeptieren eines manuskripts	aceptar un manuscrito
+konferenz-halle	Sala de conferencias
+overhead-projektor	retroproyector
+video-präsentation	video de presentación
+computer	computadora
+powerpoint-präsentation	Presentación de PowerPoint
+modellierungsaktivität	La actividad de modelado
+kleintransporter	Venta por menor
+örtlichkeit	Ubicación
+anmeldegebühr	cuota de inscripción
+folie	papel de aluminio
+dinner-bankett	banquete de cena
+hotelgebühr	Hotel tarifa
+stadt, aus der ein sponzor kommt	La ciudad, un patrocinador proviene de la
+forschungsaktivität	Actividad investigadora
+mieten eines autos	Alquiler de coches
+folie (overhead projektor)	hoja (proyector)
+willkommensrede	Discurso de bienvenida
+formular zur information des autors	formulario para obtener la información del autor
+vortragender, der nur an einem tag redet	Conferenciante, que habla sólo en un día
+abreise	salida
+staat des vortragenden	Estado de presentación
+vortrag gehalten von einem redner	Conferencia celebrada por un altavoz
+vortragender, der im konferenzhotel untergebracht ist	Conferenciante, el en el Hotel para conferencias
+sponsor	patrocinador
+angestellter, der kein redner ist	empleado que no es un orador
+angestellter vortragender	Profesor empleado
+frist zur benachrichtigung der akzeptanz	plazo para la notificación de aceptación
+trinkgeld	Punta
+frist	fecha límite
+session	período de sesiones
+aktivität, die nach der konferenz stattfindet	actividad que se lleva a cabo después de la Conferencia
+haus einer firma, die ein sponsor ist	casa a una empresa que es uno de los patrocinadores
+cameraready-frist	cameraready - plazo
+hauptbüro	Oficina principal
+ablehnung eines manuskripts	rechazo de un manuscrito
+registrierungsformular (hotel)	Formulario de inscripción (hotel)
+universität eines vortragenden	Universidad de presentar
+steuer	impuestos
+konferenzgebäude	Edificio de conferencias
+stadt, aus der ein vortragender kommt	Ciudad, proviene de la profesora
+staat	Estado
+formular	formulario
+anmeldegebühr für einen studenten	cuota de inscripción para un estudiante
+stadt, die ein ausflugsziel darstellt	Ciudad, que representa un destino
+frist zur hotelreservierung	fecha límite para la reserva de hotel
+registrierung	registro
+originalversion des manuskripts	Versión original del manuscrito
+registrierungsformular	Formulario de inscripción
+autor, der einen tagungsband in buchform erhält	Autor, recibiendo un tagungsband en forma de libro
+konferenztage	Días de conferencia
+ausflugstag	Día de excursión
+soziale aktivität	actividad social
+simulationsaktivität	Actividad de simulación
+haus eines vortragenden	Casa de presentar
+mailingliste	empresa
+transportfahrzeug	Vehículo de transporte
+einzelzimmer	habitación individual
+anmeldegebühr für ein nicht-mitglied	cuota de inscripción para un país no miembro
+stadt, in der die konferenz stattfindet	Ciudad donde se celebrará la Conferencia
+vortrag im plenum	En la sesión plenaria de la Conferencia
+endversion des manuskripts	endversion del manuscrito
+staat der konferenz	Estado de la Conferencia
+sponsorgebühr	sponsorgebuehr
+redner	altavoces
+tagungsband als buch	tagungsband como libro
+delegierter	Delegado
+lcd-projektor	Proyector LCD
+aktivität, die vor der konferenz stattfindet	actividad que se lleva a cabo antes de la Conferencia
+taxi	taxi
+gegenstand	Asunto
+mitglied von iasted	Miembro de duró
+kurze einführung für den session-vorsitz	breve introducción al sesión-asiento anterior
+gebühr für einen zusatzausflug	tarifa para un viaje adicional
+tagungsband als cd	tagungsband como cd
+registrierungsfrist	Fecha límite de inscripción
+abreisegebühr	Tarifa de salida
+annahme eines manuskripts	aceptación de un manuscrito
+anmeldegebühr für einen autor, der den tagungsband in buchform erhält	cuota de inscripción para un autor que recibe la tagungsband en forma de libro
+währung	moneda
+flughafen in/am konferenzort	Aeropuerto en lugar de la Conferencia
+automobil	Automotriz
+einzelner konferenztag	jornada única
+autor, der einen tagungsband als cd erhält	Autor, recibiendo un tagungsband como cd
+anmeldegebühr für ein mitglied	cuota de inscripción para miembro
+zahlungsbeleg	Comprobante de pago
+geldbetrag	Cantidad de dinero
+anmeldegebühr für einen autor, der den tagungsband als cd erhält	cuota de inscripción para un autor, recibiendo el tagungsband como cd
+nicht-redner	No-altavoces
+bank transfer	Transferencia bancaria
+hotelzimmer	Habitaciones del Hotel
+videorecorder	Grabador de vídeo
+vorstellung	Presentación
+vortragender	Profesor
+anwesenheitsnachweis	Hoja de asistencia
+shuttle-bus	servicio de autobús
+nicht-mitglied von iasted	no-miembro de duró
+tagestour	Excursión de día
+jede art von dokument	cualquier tipo de documento
+mehrwertsteuer	valor agregado impuesto
+zeit (zeitraum und zeitpunkt)	hora (hora y fecha)
+konferenzbesucher	Visitantes de la Conferencia
+kreditkarte	Tarjeta de crédito
+anmeldegebühr für einen nicht-autor	cuota de inscripción para un no-autor
+gebühr	tarifa
+zuhörer	oyentes
+zeitzone	Zona horaria
+staat des sponzors	Estado de sponzors
+publikation	publicación
+technisches komitee	Comité técnico
+konferenzhotel	Hotel de conferencias
+cocktail-empfang	Cóctel de recepción
+doppelzimmer	Habitación doble
+aktivität, die während der konferenz stattfindet	actividad que tiene lugar durante la Conferencia
+einreichungsfrist	Fecha límite de presentación
+visum	Visa
+vorstellung eines redners	introducción del altavoz
+technische aktivität	actividad técnica
+aktivität	actividad
+scheck	cheque
+gegenstand (im allgemeinen)	tema (en General)
+gebäude	edificio
+audiovisuelle ausstattung	equipo audiovisual
+vortragender, der im plenum redet	Conferenciante, que habla en la sesión plenaria
+konferenzrestaurant	Restaurante Conferencia
+einladungsbrief	Carta de invitación
+karte	mapa
+ist entworfen/bestimmt für	diseñado/destinados
+wird besucht von	es visitado por
+wird vorbereitet von	es preparado por
+benötigt	Obligatorio
+sendet	envía
+erhält	recibe
+wird versendet nach	será enviado a
+unterzeichnet	firmado
+muss erledigt sein bis	se debe hacer para
+hat betrag von	tiene la cantidad de
+ist datiert auf	tiene fecha
+spricht in (räumlich und zeitlich)	habla en (espacial y temporal)
+wird bezahlt mit	se pagarán con
+istanwesend (räumlich und zeitlich)	istanwesend (espacial y temporal)
+ist verbunden mit/bezogen auf	conectado / relacionados a
+findet statt nach	se lleva a cabo después de
+wird verwendet von	es utilizado por
+istanwesend (räumlich)	istanwesend (lugar)
+ist gemacht aus	se hace
+bereitet vor	preparado
+wird versendet von	será enviada por
+findet statt vor	se lleva a cabo antes de
+wird benötigt für	se requiere para
+ist ausgestattet mit	está equipado con
+wird verwendet für	se utiliza para
+wird bezahlt von	serán pagados por
+wird versendet vor	será enviado a
+wird gegeben/ausgeführt von	será dada/llevada a cabo por
+wird unterzeichnet von	está firmado por
+bewohnt	habitado
+wirdgegebenan	wirdgegebenan
+gibt	son
+wird bezahlt für	será pagado
+durchgeht	pasa a través de
+wird bezahlt in	se pagarán en
+befindet sich in	situado en
+wird bewohnt von	está habitada por
+bezahlt	pagado
+award für besten forschungsbeitrag	Premio al mejor trabajo de investigación
+author eines konferenzbeitrages	autor una contribución de conferencia
+sponsorenbeitrag	sponsorenbeitrag
+konferenzsaal	Sala de conferencias
+ausschuss für den award des besten beitrags	Comité para el premio de la mejor contribución
+gold sponsor der konferenz	Patrocinador de oro de la Conferencia
+sponsor als aussteller	Patrocinar como expositor
+deadline für eine abstrakte einreichung	plazo para la presentación de un Resumen
+deadline	fecha límite
+award für besten anwendbaren beitrag	Premio a la mejor contribución aplicable
+konferenz acm sigdkdd	ACM sigdkdd Conferencia
+bronze sponsor der konferenz	Bronce patrocinador de la Conferencia
+registrierungskosten für mitglieder von sigmod	costo de inscripción para miembros sigmod
+registrierungsgebühr	Cuota de inscripción
+konferenzgebühr	Tarifa de conferencia
+organisatoren der konferenz	organizadores de la Conferencia
+registrierungskosten für studenten	costo de inscripción para estudiantes
+deadline für die mitteilung eines authors	fecha límite para la notificación de autores
+eines studentischen beitrags	una contribución del estudiante
+registrierungskosten für personen, die nicht mitglied von sig sind	costo de inscripción para las personas que no son miembros del sig
+hauptbüro der konferenz	Oficina principal de la Conferencia
+silber sponsor der konferenz	Sponsor Silver de la Conferencia
+award für besten studentischen beitrag	Premio a la mejor contribución de estudiante
+platin sponsor der konferenz	Patrocinador Platinum de la Conferencia
+webmaster	webmaster
+award für konferenzbeitrag	Premio contribución Conferencia
+registrierungskosten für mitglieder von sigkdd	costo de inscripción para los miembros de sigkdd
+sponsor für besten studentischen beitrag	patrocinador para la mejor contribución de estudiante
+hörer der konferenz	oyentes de la Conferencia
+deadline für die einreichung eines beitrags	fecha límite para la presentación de una contribución
+programmvorsitzender	Presidente del programa
+hotel	Hotel
+konferenz organisiert von	Conferencia organizada por
+deadline für authorenmitteilung	fecha límite para authorenmitteilung
+bleibt in	permanece en
+sponsoren wurden aufgerufen von	patrocinadores fueron llamados por
+paid zahlt registrierungsbeitrag	pague inscripción post pagada
+beitrag wurde eingereicht von	Contribución presentada por
+deadline festgelegt	plazo establecido
+präsentiert dokumente	presenta documentos
+hat award	Premio
+aufruf von sponsoren	llamada de patrocinadores
+organisiert konferenz	Conferencia organizada
+hat preis	tiene precio
+ist datiert auf den	Está fechado en el
+registrierungsbeitrags ist in währung	es la contribución de registro en moneda
+hat name der konferenz	nombre de la Conferencia ha
+hat nationalität	tiene nacionalidad
+hat sponsorenname	tiene sponsorenname
+datum des ersten tages der konferenz ist	fecha de la primera jornada de la conferencia es
+award erhalten von	Premio recibido de
+registrierungsbeitrag gezahlt von	Contribución de registro pagado por
+hat award erhalten von	Premio recibido de
+wurde präsentiert von	fue presentado por
+deadline eingerichtet für	plazo fijado para
+konferenz findet in folgender stadt statt	Se celebrará en la ciudad siguiente
+datum des letzten tages der konferenz ist	fecha de la última jornada de la conferencia es

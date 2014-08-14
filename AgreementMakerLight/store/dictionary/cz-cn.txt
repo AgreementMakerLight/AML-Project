@@ -1,0 +1,690 @@
+řádný článek	一个合适的文章
+vyjádření zájmu	利益表达的
+předseda programového výboru	方案委员会主席
+článek	第条
+rozhodnutí	决定
+programový výbor	程序委员会
+meta-recenze	元点评
+osoba	人
+konference	会议
+dokument	文档
+recenzent	审阅者
+autor který není recenzent	作者不是审阅者
+osoba s účastí na konferenci	在会议的参与人
+přijetí	通过
+předseda	主席的
+autor	作者
+krátký článek	一篇短文
+spolupředseda	共同主持的
+člen programového výboru	方案委员会的成员
+spoluautor	合著者
+předseda konference	会议主席
+externí recenzent	外部审查员
+uživatel	用户
+recenze	点评
+zamítnutí	被拒绝
+preference	首选项
+administrátor	管理员
+meta-recenzent	元-审阅者
+předmětná oblast	有关地区的
+člen konference	该会议的成员
+přidán člen programového výboru	添加了成员的方案委员会
+odeslání článku	提交一篇文章
+má vyjádření zájmu	利益表达
+přidělen meta-recenzent recenzentovi	分配给 meta 审阅者的审阅者
+upravit vyjádření zájmu	编辑利益的表达
+článek napsal	写的文章
+přidělen recenzent administrátorovi	审阅者指派给管理员
+nástroj pro přídělení příspěvků spuštěn kým	捐款发起的 přídělení 工具
+zahájil vyjadřování zájmu recenzentů	利益表达的发起审阅者
+zamítnut kým	被拒绝
+spoluautor příspěvku	合作作者的贡献
+podrobnosti vloženy kým	输入的详细信息
+zadání kritérií recenzí kým	请输入评论的标准
+přiděleno recenzentovi	分配给审阅者
+označil konflikt zájmu	所谓的利益冲突
+článek přečten recenzentem	阅读审阅者的文章
+přidělen recenzent	分配审阅者
+dokončit přidělení příspěvků konference	要完成的对会议的贡献分配
+má člena konference	有会议的一个成员
+vyjádření zájmu upraveno	由利益表达的
+přidělení příspěvků dokončeno kým	分配完成的捐款
+má spoluautora	我的合著者
+článek přečten meta-recenzentem	读元审阅者的文章
+má rozhodnutí	决定
+má konflikt zájmu s příspěvkem	有冲突的利益与所作的贡献
+pojednává o tématu	讨论主题
+spustil přidělování článků konference	降低分配的会议文章
+napsal článek	写这篇文章
+recenze napsána kým	审查所写
+má člena programového výboru	是的方案委员会成员
+recenzuje článek	评论文章
+napsal recenzi	写了评论
+uzavřít recenzi	结束审查
+vložit podrobnosti konference	插入会议详细的信息
+umožnit virtuální schůzku konferenci	使虚拟会议会议
+akceptovány příspěvky konference pro tisk	打印会议的公认的贡献
+článek má název	这篇文章有一个名字
+má email	我的电子邮件
+článek má id	这篇文章有一个 id
+čte článek	读这篇文章
+přijato kým	谁收到了
+přidělení členů programového výboru administrátorem	分配的由管理员指导委员会成员
+zamítnul článek	退回的文章
+virtuální schůzka konference umožněna kým	虚拟会议会议使成为可能由
+vložit kritéria recenze	插入标准审查
+vyjadření zájmu spuštěno kým	vyjadření 利息由触发
+přidělen externí recenzent	分配给外部的审阅者
+brožury vytištěny kým	由印制的小册子
+tisk brožur konference	小册子印刷会议
+přijal článek	公认的文章
+přidat člena programového výboru	若要添加方案委员会的成员
+nastavil maximální počet recenzí	设置最大数量的点评
+logo konference má url	会议的标志都有一个 url
+konference má recenzí na článek	会议对文章有点评
+má jméno	我的名字
+datum konference	该会议的日期
+webová stránka konference má url	会议有一个 Web 页的 url
+kamera-ready verze příspěvku	化好妆的版本所作的贡献
+dokument konference	会议的文件
+vydavatel	发布者
+organizátor	组织者
+tutoriál	教程
+pozdně přihlášený zájemce o konferenci	在有关这次会议铅后期
+výbor	委员会
+řádný příspěvek	合适的岗位
+zvaná přednáška	受邀的演讲
+přihlášený zájemce o konferenci	在有关这次会议铅中记录
+odbornost experta	专家的专业知识
+důležité termíny	重要日期
+zamítnutý příspěvek	一个被拒绝的职位
+preference experta	专家首选项
+organizační výbor	组织委员会
+účastník konference	会议的参与者
+workshop	讲习班
+řídící výbor	管理委员会
+člen výboru	委员会的成员
+sborník konference	会议程序
+téma	主题
+přijatý příspěvek	收到的帖子
+konferenční akce	会议行动
+výzva na psaní článku	本文的写作要求
+konferenční příspěvek	会议的贡献
+zájemce o konferenci	那些对感兴趣的会议
+psaný příspěvek	书面的员额
+pasivní účastník konference	会议的被动参与者
+časně přihlášený zájemce o konferenci	在有关这次会议铅的早期
+poster	海报
+poslaný příspěvek	邮寄
+hlavní autor příspěvku	主要作者的贡献
+abstrakt	摘要
+sekce konference	节会议
+aktivní účastník konference	会议的一个积极的参与者
+webové stránky konference	会议网站
+konferenční oznámení	会议公告
+rozšířený abstrakt	扩展的抽象
+organizace	组织
+přispěvatel konference	会议参与者
+řádný autor příspěvku	适当的作者的贡献
+předseda workshopu	主席的讲习班
+informace pro účastníky	参与者的信息
+konferenční poplatky	会议费
+recenzovaný příspěvek	同行的帖子
+výzva k účasti na konferenci	参加会议的呼吁
+zvaný přednášející	被称为讲师
+registrovaný zájemce o konferenci	关于会议注册的候选人
+prezentace	演示文稿
+má tutoriál	我的教程
+být programovým výborem konference	是的编程的委员会会议，
+pozvat spolurecenzenta	邀请 spolurecenzenta
+má workshop	我的工作室
+být předsedou workshopu čeho	主席，车间，什么
+posláno kam	张贴在哪里
+má člena	是的成员
+má recenzní posudek	我的审查证明
+důležitý den konference	会议的一个重要的日子
+prezentoval	提出了一种
+být organizačním výborem konference	将会议组委会
+konference má řídicí výbor	会议指导委员会
+být výborem konference	将会议委员会
+být řídicím výborem konference	将会议指导委员会
+má předsedu workshopu	主席的讲习班
+tématem nebo odeslaným příspěvkem je	这一主题所作的贡献发送或
+přispěl konferenci	会议作出了贡献
+konference má výbor	会议委员会已
+být předsedou výboru	委员会的主席
+má téma workshopu	研讨会的主题
+recenzuje příspěvek	点评帖子
+téma sekce konference	为主题的会议科
+částí konference	会议的一部分
+má část	我的一部分
+má abstrakt	它有一种抽象
+preference nebo odbornost recenzenta	偏好或审阅者的专门知识
+téma svázané s preferovaným tématem	绑的首选主题的主题
+být členem výboru	委员会的成员
+konference má programový výbor	会议的程序委员会
+publikuje	出版
+má sekci	有一节
+má příspěvek	我的帖子
+byl přiřazen zájem recenzenta	他被分配到审阅者的利益
+preference či odbornost koho	偏好或专门知识的人
+má důležitý den	有一个重要的日子
+prezentováno kým	提出了一种由
+má odeslaný příspěvek	已发送的贡献
+má  recenzi	我的评论
+má spolupředsedu výboru	其委员会已
+první částí dokumentu	文件的第一部分
+být spolupředsedou výboru	委员会共同主席
+konference má organizační výbor	会议组委会有
+číslo svazku sborníku	卷号的会议论文集
+má název	有一个名字
+příjmení	最后的名字
+pohlaví	性别
+má autora	有的作者
+pozván recenzentem	被邀请的审阅者
+vydavatelem sborníku je	诉讼程序的发布者是
+má předsedu výboru	委员会主席
+stupeň preference recenze	程度的偏好点评
+url webových stránek konference	会议的网站的网址
+publikováno dne	张贴在
+den odeslání řádného příspěvku	日期的调度了应有的贡献
+křestní jméno	第一名
+místo konání konference	会议的地点
+počáteční den	开始的一天
+finální den	最后一天
+stupeň odbornosti recenzenta	对的审阅者的专业化程度的
+den odeslání abstraktu	抽象的发运日期的
+isbn sborníku	国际标准书号文集
+den oznámení přijetí příspěvku	通知 》 所作的贡献通过日期
+e-mail	电子邮件
+den odeslání kamera-ready verze příspěvku	化好妆版所作的贡献的发运日期的
+asistent	助理
+událost	事件
+banket	宴会
+vědecký pracovník	科学工作者
+aktivita zaslání příspěvku	发布活动
+student	学生
+aktivita recenzování výsledků	审查活动的结果
+aktivita poslání kamera-ready verze	活动的最终定稿的使命
+aktivita recenzování	活动回顾
+firma	公司
+raut	劳特
+osoba s podílem na konferenci	一个人同的会议
+výlet	旅行
+řádný účastník konference	定期会议的参与者
+pracovní aktivita	工作活动
+město	城市
+administrativní aktivita	行政活动
+účastník	参与者
+dobrovolník	志愿者
+stát	状态
+ředitel programového výboru	方案委员会主任
+aktivita registrace účastníků	与会者活动登记
+společenská událost	社会事件
+univerzita	大学
+příspěvek	发布
+studentský účastník konference	学生参与会议的人
+následuje	其次是
+studuje na univerzitě	在上大学
+sídlí v zemi	座落于全国
+recenzuje	点评
+být expertem na téma	是的主题的专家
+týká se	涉及到
+zaměstnán	就业
+sídlí ve městě	位于城市的
+byl napsán autorem	它是作者写的
+napsal příspěvek	写了一个帖子
+související administrativní aktivita	有关的行政活动
+probíhá paralelně s	发生在与平行
+událost má umístění	该事件具有位置
+sídlí v ulici	位于这条街
+obsahuje abstrakt	包含摘要
+má domovskou stránku	我的主页
+má zdanění	税收
+nastavení maximálního počtu událostí	要设置的最大数目的事件
+událost končí v den	将于一天的事件结束
+má stručný název	有一个短的名称
+klíčová slova příspěvku jsou	关键字是
+název příspěvku	申请的职位名称
+směrovací číslo	路由号码
+úvodní den události	开幕当天的事件
+má kontaktní adresu	我的联系地址
+účastník konference má včasnou registraci	会议早期注册的参与者
+křestní jméno osoby je	人的名字是
+příjmení osoby	人的姓氏
+nastavení implicitní volby počtu aktivit	设置默认选择的活动数目
+má telefon	我的电话
+nastavení minimálního počtu událostí	设置的最小数目的事件
+má fax	我的传真
+poznámka	请注意
+konferenční sekce	会议科
+stáhnutý příspěvek	已下载的帖子
+téma antén	天线的话题
+publikovaný příspěvek	发表的帖子
+země	国家
+výzva na posílání článků	发送文章所面临的挑战
+téma komunikační teorie	为主题的通信理论
+exkurze	短途旅游
+téma počítačová architektura	为主题的计算机体系结构
+výzva	面临的挑战
+místo	而不是
+téma operačních systémů	为主题的操作系统
+přestávka	休息
+hodnocení recenze	住客评论
+jídelní menu	餐厅菜单
+organizační setkání	组织会议
+hodnocení přijetí	客人收据
+konferenční událost	会议活动
+sponzorování	赞助
+program konference	该会议的程序
+recenzní formulář	审查形式
+téma mikroelektroniky	为主题的微电子
+výzva na posílání příspěvků	挑战送捐款
+komunikační téma	通信主题
+prezentace příspěvku	演示文稿的贡献
+přestávka na kávu	喝杯咖啡休息
+akademická organizace	学术组织
+téma napajení a přenosu	为主题的 napajení 和转让
+téma bezdrátové komunikace	无线通信的话题
+průmyslová organizace	工业组织
+hodnocený příspěvek	额定的帖子
+téma paralelního a distribuovaného počítačového zpracování	为主题的并行与分布式计算
+člen technického programového výboru	技术程序委员会成员
+téma satelitní a vesmírné komunikace	这一专题的卫星和空间通信
+osobní historie recenzí	个人的历史回顾
+recenzní otázka	审查的问题
+hodnocení slabé zamítnutí	弱势群体的排斥的评价
+téma podnikové počítačové sítě	为主题的企业计算机网络
+přednáška	讲座
+dvouúrovňová konference	2 级会议
+téma optické počítačové sítě	光网络的主题
+téma radiové komunikace	无线电通讯的主题
+jednoúrovňová konference	会议之一
+místo konání večeře	会场的晚餐
+recepce	接待处
+téma lékařství	为主题的医学
+hodnocení podmíněné přijetí	有条件地接受的评价
+zasedací místnost	会议室
+kontaktní informace	联系信息
+hodnocení zamítnutí	排斥反应的评价
+autor prezentující příspěvek	作者介绍所作的贡献
+místo ubytování	住宿的地方
+akceptovaný příspěvek	接受的邮政
+téma bezpečnosti	安全话题
+aktivní příspěvek	作出积极贡献
+téma počítačové sítě a přepínače	计算机网络和交换机的主题
+uzavírající přednáška	闭幕演讲
+oběd	午餐
+téma správa počítačových sítí	为主题的管理计算机网络
+neakademická událost	neakademická 事件
+téma počítačové sítě	为主题的计算机网络
+nerozhodnutý článek	未定文章
+osobní historie	个人史
+téma multimedií	多媒体的话题
+téma měření počítačových sítí	为主题的计算机网络的测量
+přestávka na jídlo	休息一会
+téma zpracování signálu	这一专题的信号处理
+cad téma	cad 主题
+osobní historie publikací	个人历史出版物
+vedoucí sekce	科科长
+téma měření výkonnosti	为主题的性能测量
+konferenční večeře	大会晚宴
+tématické okruhy	研究的领域
+vládní organizace	政府组织
+téma sensorické počítačové sítě	sensorické 计算机网络的主题
+téma bezpečnost počítačových sítí	计算机网络的安全的话题
+numerická recenzní otázka	数值评价问题
+zahajující přednáška	开展讲座
+téma počítačové sítě a aplikace	计算机网络和应用程序的主题
+téma testování	测试的主题
+téma mobilních počítačů	移动计算机的主题
+výzva na posílání recenzí	挑战发送点评
+volný čas	空闲时间
+akademická událost	学术活动
+cestovní grant	旅费资助
+nevládní organizace	非政府组织
+místo pořádání konference	而不是组织的会议
+textová recenzní otázka	文本审查问题
+téma šifrování	加密的话题
+recenze příspěvku	审查的贡献
+telefon	电话
+datum a čas zahajujícího dne konferenční události	开放的一天咖啡事件的日期和时间
+ulice	街
+částka sponzorského daru	捐赠的数量
+měna sponzorského daru	捐赠货币
+termín registrace na konferenci	会议注册的期限
+patří k události	它属于该事件
+koná se v zemi	它发生在该国
+má hodnocení	我的客人
+týká se čeho	关于
+výzva zahájena kým	由发起挑战
+termín zvěřejnění konferenčního dokumentu	会议的文件出版日期
+koná se na místě	它发生在现场
+napsal	写道：
+výzva na událost	这次活动的邀请
+je prezentován čím	什么是提出了一种
+prezentuje přijatý příspěvek	通过邮寄收到的礼物
+poskytuje sponzorování	提供赞助
+je místem konferenční události	是会议事件的地方
+má výzvu	我的挑战
+má jídelní menu	有的菜单
+je tématem čeho	主题是什么
+je recenzní historií koho	是谁的审查历史
+má program	该程序具有
+sponzorování je poskytnuto organizací	赞助是由提供的。
+má téma	我的主题
+má účastníka	有的参与者
+je členem konference	是该会议的成员
+má recenzní historii	要查看的历史记录
+účastní se	参与
+jídelní menu události	菜单事件
+je napsán autorem	它是作者写的
+je recenzí čeho	审查是什么
+zahajuje výzvu	发射所面临的挑战
+má související dokument	具有相关的文档
+datum a čas zahajujícího dne konference	会议开幕当天的日期和时间
+termín poslání příspěvku	期限特派团贡献
+instrukce poslání příspěvku	特派团的职位说明书
+biografie osoby	这本传记的人
+úplný název konference	会议的完整名称
+datum a čas závěrečného dne konferenční události	日期和时间的最后一天的会议活动
+datum a čas závěrečného dne konference	日期和时间的最后一天的会议
+termín zvěřejnění příspěvku	所作贡献的出版日期
+poštovní směrovací číslo	邮政编码
+email	电子邮件
+příspěvek na workshop	对车间的贡献
+předseda tutoriálů	主席的教程
+vybraný příspěvek	所选的后
+předseda workshopů	主席的讲习班
+industriální sekce	工业节
+účastník zaregistrovaný za pozdní vložné	主要参与者费用很晚
+výzkumné téma	研究课题
+vydavatel sborníku	发布服务器上的程序
+industriální příspěvek	工业的帖子
+zvaný řečník	被称为的扬声器
+člen organizačního výboru	组委会成员
+abstrakt tutoriálu	抽象的教程
+pracovník pořádající agentury	工人组织机构
+víceautorský svazek	víceautorský 卷
+odborná událost	专业活动
+účastník zaregistrovaný za časné vložné	参与者为早期费注册
+konferenční výlet	会议之旅
+neutrální recenze	中性点评
+předsedající sekce	总统节
+výzkumný ústav	研究所
+webová stránka	Web 页
+příspěvek na konferenci	对会议的贡献
+ohodnocený příspěvek	额定的帖子
+abstrakt zvané přednášky	一种抽象的特邀报告
+pořádající agentura	组织机构
+standardní sekce	标准节
+podaný příspěvek	以邮递方式递交
+sekce	节
+akademická instituce	学术机构
+sborník	诉讼
+člen řídícího výboru	管理委员会成员
+přednášející	讲师
+vysoká škola	高中
+předseda sekce demonstrací	主席的示范的节
+sekce workshopu	讲习班的一节
+brožura s programem	一本小册子与程序
+finální verze příspěvku	最终版本的所作的贡献
+příspěvek k posteru	这张海报的贡献
+leták	宣传单张
+příspěvek k demonstraci	示威游行的贡献
+možný recenzent	可能的审阅者
+negativní recenze	负面评论
+předseda organizačního výboru	组织委员会主席
+společenský program	社会的程序
+autor příspěvku	作者的贡献
+standardní příspěvek	标准的帖子
+sekce posterů	海报节
+pozitivní recenze	积极的评论
+sekce demonstrací	节示威
+přiřazený příspěvek	分配给该员额
+jednotlivá prezentace	个别演示文稿
+napsáno kým	由谁发布
+inverse of partof 7	逆的部分 7
+je součástí	它是的一部分
+odborně organizuje	专业组织
+odkazuje na	指的是
+má součást	是的一部分
+technicky organizováno kým	从技术上讲，举办由谁来
+pokrývá téma	涵盖的主题
+je součástí události	这是事件的一部分
+má aktualizaci	我的更新
+referuje o události	关于事件的报告
+odborně organizováno kým	由专业组织
+příspěvek ve svazku	在该卷中过帐
+událost uvedena na	在列出的事件
+je místem konání	是的场地
+má recenzenta	已审阅者
+recenzent příspěvku	审阅者的贡献
+konáse v	在 konáse
+odkazován v	引用中
+má recenzi	我的评论
+je aktualizací	是的更新
+svazek obsahuje příspěvek	该卷包含一个职位
+je autorem	他是作者
+organizuje	组织
+organizováno kým	由谁来举办
+téma pokryto čím	所涵盖的主题
+je vydavatelem	是发布服务器
+technicky organizuje	从技术上讲，组织
+obsahuje událost	包含的事件
+příspěvek prezentován jako	提出了一种作为的帖子
+představení přednášejícího	节目主持人
+bankovní převod	银行转帐
+počítač	计算机
+sponzor	赞助商
+večerní banket	晚上宴会
+účastník konference?	会议的参与者？
+sborník na cd	在 cd 上的会议论文集
+časové pásmo	时区
+technická aktivita	技术活动
+registrační poplatek pro nečlena konference	非会员对会议的注册费
+celodenní výlet	一天之旅
+platební karta	支付卡
+autor, který obdrží sborník na cd	作者，作者将收到会议论文集在 cd 上
+jednolůžkový hotelový pokoj	单人房间
+vízum	签证
+přednášející pracovník	讲师研究员
+předkonferenční aktivita	会议前活动
+neprezentující student	neprezentující 学生
+hotelová místnost	酒店的房间
+aktivita modelování	活动建模
+přednášející student	讲师、 学生
+dům sponzora	房子赞助商
+neprezentující	neprezentující
+poplatek za výlet navíc	此外，旅行费用
+kreditní karta	信用卡
+peněžní částka	现金数额
+představení	表演
+nečlen konference iasted	网路会议成员
+hotelový poplatek	酒店费用
+sponzorský dar	赞助
+auto	汽车
+neprezentující pracovník	neprezentující 工人
+město sponzora	市赞助商
+konferenční registrační formulář	会议注册表单
+daň	税收
+konferenční budova	会议大楼
+registrační poplatek autora pro obdržení tištěného sborníku	收据打印会议论文集的作者注册费
+konferenční hala	会议大厅
+město prezentujícího	市 prezentujícího
+taxi	出租车
+odjezd	离开
+registrační poplatek pro člena konference	该会议的成员在注册费
+hlavní kancelář	主要办公室
+pokonferenční aktivita	会议后活动
+přednášející tutoriálu	讲师教程
+registrační poplatek pro neautora	neautora 在注册费
+publikace	出版物
+dodávka	交货
+registrace na konferenci	会议注册费
+informační formulář pro autora	作者信息窗体
+měna	货币
+záznam účasti	记录参与
+konferenční hotel	会议酒店
+aktivita odmítnutí příspěvku	活动的贡献的拒绝
+plenární přednášející	全体会议讲师
+termín hotelové rezervace	酒店预订截止日期
+termín podání příspěvku	期限内所作的贡献
+seznam emailů	列表中的电子邮件
+přednáška přednášejícím	讲座讲师
+aktivita zamítnutí příspěvku	活动的贡献的拒绝
+šek	检查
+konferenčí město	konferenčí 市
+aktivita přijímaní příspěvku	接收活动的贡献
+dny konference	会议几天
+video prezentace	视频演示文稿
+prezentační slajdy	演示文稿幻灯片
+univerzita prezentujícího	大学的 prezentujícího
+daň z odjezdu	离境税
+budova	建筑
+aktivita	活动
+mikrobus	小巴
+registrační poplatek autora pro obdržení sborníku na cd	作者收到的会议录光盘上的注册费
+termín oznámení o přijetí	接受的期限通知
+autor, který obdrží tištěný sborník	作者，作者将收到的打印的程序
+uvodní verze příspěvku	首页版本的所作的贡献
+stručné představení vedoucímu sekce	简介头部分
+podání příspěvku	提交所作的贡献
+formulář	窗体
+posluchač	监听器
+hotelový registrační formulář	酒店注册表单
+audiovizuální vybavení	视听设备
+konferenční letiště	会议机场
+přepravní postředek	运输 postředek
+dům prezentujícího	房子 prezentujícího
+jednodenní prezentující	为期一天呈现
+poplatek	费用
+prezentující	呈现
+dvoulůžkový hotelový pokoj	酒店大床房
+konferenční den	会议的一天
+registrační poplatek pro studenta	学生在注册费
+aktivita simulace	模拟活动
+zvací dopis	邀请信
+den výletu	一天之旅
+lcd projektor	液晶投影仪
+powerpointová prezentace	PowerPoint 演示文稿
+technický výbor	技术委员会
+výletní město	邮轮城
+daň z přidané hodnoty	附加价值税
+konferenční výletník	会议旅游
+artikl	第条
+termín	期限
+registrační poplatek	注册费
+tištěný sborník	打印的程序
+konferenční restaurant	会议餐厅
+člen konference iasted	网路会议
+hotelový uvaděč	酒店接待员
+země konference	国家会议
+termín podání verze pro tisk	打印版本的提交截止日期
+země sponzora	国家赞助商
+země prezentujícího	国家 prezentujícího
+platební dokument	付款单据
+vrchní projektor	头投影仪
+konferenční aktivita	会议活动
+čas	时间
+výzkumná aktivita	研究活动
+aktivita najmutí auta	汽车租赁活动
+místnost konferenční sekce	会议房间里科
+spropitné	小贴士
+plenární přednáška	全体会议上的演讲
+uvítací proslov	欢迎致辞
+společenská aktivita	社交活动
+přehrávač videokazet	录像带的球员
+aktivita datována na datum a čas	活动日的日期和时间
+je obýván kým	它是由谁人居住
+použito kým	使用的
+podepsáno kým	由谁签署
+udělán z	制成
+využit pro	用于
+platí	适用于
+umístěno kde	位于何处
+posláno časově před	张贴在之前的时间
+je vybaven čím	它配备了
+zaujímá místo	发生
+koná se před	它发生在前
+podepisuje	由签署
+posílá	发送
+mluví kdy a kde	浅谈何时何地
+je zaplaceno kým	谁是付
+obdrží	接收
+je přítomen kdy	它是目前
+je přítomen kdy a kde	它是存在的时候和在哪里
+placeno pro co	付出为了什么
+platba proběhla kde	付款发生在哪里
+koná se kdy a kde	它发生时和在哪里
+koná se po	它发生在后
+je spojen s	它是与关联
+je přidělen komu	他被指派给
+souvisí s	有关的
+navštíveno kým	由参观
+datum termínu	期货日期
+částka peněz	多少钱
+připraveno kým	编写的
+potřebuje	需要
+posláno kým	由谁发布
+souvisí s aktivitou	与该活动相关
+posláno časově po	发送的时间后
+je připraven pro	这是准备
+připravuje artikl	准备篇文章
+placeno čím	支付
+je potřebný pro	是所需
+konference acm sigkdd	acm 会议
+termín zaslání abstraktu	摘要提交截止日期
+autor článku	文章的作者
+platinový sponzor konference	白金赞助商的会议
+ocenění za nejlepší výzkumný článek	奖为最佳的研究文章的
+termín vyrozumění autorů	期限通知的作者
+sponzor nejlepšího studentského článku	赞助商最好的学生文章
+registrační poplatek pro nečlena sig	非会员对 sig 的注册费
+registrační poplatek pro studenty	学生的注册费用
+osoba aktivní na konferenci	积极参与会议的人
+termín zaslání článku	截止日期发送文章
+registrační poplatek pro člena sigmod	注册费的数据成员
+autor studentské článku	学生文章的作者
+ocenění za článek na konferenci	会议的一篇文章奖
+hlavní kancelář konference	主要的会议办公室
+ocenění za nejlepší aplikační článek	第条的最佳应用奖
+zlatý sponzor konference	金牌赞助商的会议
+stříbrný sponzor	银牌赞助商
+sponzor se stánkem	赞助商将站
+ocenění za nejlepší studentský článek	奖最佳学生文章
+konferenční poplatek	会议费用
+správce webu	与网站管理员联系
+ogranizátor konference	ogranizátor 会议
+sponzorský poplatek	赞助费
+výbor pro udělování ocenění za nejlepší články	最佳文章奖，奖委员会
+registrační poplatek pro člena sigkdd	注册费为旗舰的成员的
+bronzový sponzor konference	铜牌赞助商的会议
+hotel	酒店
+posluchač konference	学生会议
+hledá sponzory	寻找赞助商
+stanoveny termíny pro	设定条款，对
+dokument prezentován kým	提交的文件
+konference pořádána	组织的会议
+stanoveny termíny	固定的日期
+termín pro odeslání	申请的截止日期
+pořádá konferenci	由会议的组织
+sídlí v	设在
+je stanoven na	在上确定
+jméno sponzora	赞助商的名称
+jméno konference	会议的名称
+jmenuje se	他的名字是
+národnost	国籍的
+zaplatil registrační poplatek	支付注册费
+oceněno	与授予
+má ocenění	我的奖项
+datum závěrečného dne konference	会议的最后一天的日期
+datum prvního dne konference	会议的第一天的日期
+cena	价格：
+registrační poplatek je ve měně	注册费是中的货币
+město pořádání konference	这座城市的会议
+získal ocenění	奖
+prezentace dokumentu	文档的演示文稿
+zaslání článku	发送文章
+sponzoři hledáni kým	赞助商寻找的人
+registrační poplatek zaplacen kým	已支付的注册费

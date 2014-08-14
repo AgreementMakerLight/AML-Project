@@ -15,12 +15,13 @@
 * An Ontology property.                                                       *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 13-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
 
-import java.util.Vector;
+import java.util.HashSet;
+import java.util.Set;
 
 import aml.util.StringParser;
 
@@ -31,30 +32,40 @@ public class Property
 	
 	private int index;
 	private String name;
+	private String lang;
+	private String translation;
 	private String type;
-	private Vector<String> domain;
-	private Vector<String> range;
+	private Set<String> domain;
+	private Set<String> range;
 	private boolean isFunctional;
 	
 //Constructors
 
-	public Property(int i, String n, String t)
+	public Property(int i, String n, String l, String t)
 	{
 		index = i;
-		name = StringParser.normalizeProperty(n);
+		lang = l;
+		if(!l.equals("en"))
+			name = StringParser.normalizeFormula(n);
+		else
+			name = StringParser.normalizeProperty(n);
 		type = t;
-		domain = new Vector<String>(0,1);
-		range = new Vector<String>(0,1);
+		domain = new HashSet<String>();
+		range = new HashSet<String>();
 		isFunctional = false;
 	}
 	
-	public Property(int i, String n, String t, boolean f)
+	public Property(int i, String n, String l, String t, boolean f)
 	{
 		index = i;
-		name = StringParser.normalizeProperty(n);
+		lang = l;
+		if(!l.equals("en"))
+			name = StringParser.normalizeFormula(n);
+		else
+			name = StringParser.normalizeProperty(n);
 		type = t;
-		domain = new Vector<String>(0,1);
-		range = new Vector<String>(0,1);
+		domain = new HashSet<String>();
+		range = new HashSet<String>();
 		isFunctional = f;
 	}
 	
@@ -70,7 +81,7 @@ public class Property
 		range.add(r);
 	}
 	
-	public Vector<String> getDomain()
+	public Set<String> getDomain()
 	{
 		return domain;
 	}
@@ -80,14 +91,24 @@ public class Property
 		return index;
 	}
 	
+	public String getLanguage()
+	{
+		return lang;
+	}
+	
 	public String getName()
 	{
 		return name;
 	}
 	
-	public Vector<String> getRange()
+	public Set<String> getRange()
 	{
 		return range;
+	}
+	
+	public String getTranslation()
+	{
+		return translation;
 	}
 	
 	public String getType()
@@ -105,6 +126,12 @@ public class Property
 		isFunctional = f;
 	}
 	
+	public void setTranslation(String t)
+	{
+		translation = t;
+	}
+	
+	@Override
 	public String toString()
 	{
 		String s = "name: " + name + "\ntype: " + type;

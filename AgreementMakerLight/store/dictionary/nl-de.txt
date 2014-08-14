@@ -1,0 +1,683 @@
+bod	Gebot
+onderwerp	Thema
+auteur niet-recensent	Autor nicht-Prüfer
+medevoorzitter	Ko-Vorsitzende
+conferentievoorzitter	Konferenz-Präsident
+artikel	Artikel
+persoon	Person
+volledig artikel	ganzen Artikel
+recentie	Bewertung
+conferentie	Konferenz
+coauteur	Co-Autor
+beslissing	Entscheidung
+afwijzing	Ablehnung
+programmacommissie	Programmausschuss
+conferentielid	conferentielid
+voorzitter programmacommissie	Vorsitzender Programmausschuss
+gebruiker	Benutzer
+programmacommissie lid	Program Committee Member
+voorkeur	Präferenz
+acceptatie	Akzeptanz
+recensent	Rezensent
+document	Dokument
+beheerder	Administrator
+externe recencent	externer Gutachter in Amazon
+synopsis	Übersicht
+auteur	Autor
+metarecentie	metarecentie
+metarecensent	Meta-Kritiker
+voorzitter	Präsident
+paper id	Papier-id
+datum	Datum
+gebruik artikel toewijzings tool	Verwenden Sie Element-Zuteilung-tool
+heeft coauteur	hat zusammen
+heeft auteur	hat Autor
+hardcopy verstuurbewijs afgedrukt door	Hardcopy senden Beweis gedruckt von
+maak toewijzing artikel af	Erstellen von Element-Verteilung
+toegewezen door recencent	von Amazon Bearbeiter zugewiesen
+recentie bieden begonnen door	gestartet von Test-Angebot
+heeft belangenverstrengeling	hat Interessenkonflikte
+website url	Website-url
+accepteerd hardcopy submissies	akzeptiert Hardcopy Einreichungen
+email	E-Mail
+titel	Titel
+logo url	Logo-url
+naam	Name
+maximum aantal artikelen	maximale Anzahl von Artikeln
+recenties per artikel	Bewertungen pro Stück
+aangepast door	geändert von
+is toegekend	wird verliehen
+lid van conferentie	Mitglied Konferenz
+schrijf recentie	Schreiben Bewertung
+details ingevuld door	Informationen über abgeschlossen
+toekenning artikel tool gebruikt door	Preis Artikel-Werkzeug von verwendet
+eindrecentie	eindrecentie
+wijs artikel af	zeigen Sie auf Artikel
+markeer belangenverstrengeling	Markieren Sie Interessenkonflikte
+voeg programmacommissie lid toe	Program Committee Member hinzufügen
+heeft conferentielid	hat conferentielid
+gelezen door reviewer	Lesen von Rezensenten
+wijs externe recencent toe	Amazon-Rezensent, auf externe hinzu
+lid van programmacommissie	Mitglied des Programmausschusses
+laat virtuele vergadering toe	Virtuelles treffen lassen
+stel maximaal aantal artikelen in	Legen Sie maximale Anzahl von Elementen in
+artikel gelezen	Artikel lesen
+toegewezen aan	zugewiesen
+geschreven door	Geschrieben von
+schrijf artikel	Artikel schreiben
+toegevoegd door	Hinzugefügt von
+wijs recencent toe	Amazon-Rezensent Punkt hinzufügen
+accepteer artikel	accept-Artikel
+geaccepteerd door	von akzeptiert
+dien artikel in	Dieser Artikel in
+heeft beslissing	Entscheidung hat
+heeft onderwerp	hat Betreff
+begin recentie bieden	Anfang Bewertung Angebot
+vul recentie criteria in	Prüfkriterien füllen
+toekenning artikel afgemaakt door	Artikel von award
+recentie criteria ingevuld door	Prüfkriterien von ausgefüllt
+heeft programmacommisie lid	Programm-Komitee-Mitglied hat
+heeft bod	Gebot hat
+virtuele vergadering toegelaten door	virtuelles Treffen gesetzlich
+toegewezen door beheerder	vom Administrator zugewiesen
+afgewezen door	von abgelehnt
+co-schrijf artikel	Co schreiben Artikel
+pas bod aan	nur zu bieten
+hardcopy verstuurbewijs	Hardcopy schicken
+gelezen door metarecencent	Lesen von metarecencent
+vul conferentie details in	vollständige Details zur Konferenz in
+commissie	Kommission
+co-voorzitter	Co-Präsident
+passieve conferentie deelnemer	passive Konferenzteilnehmer
+geregistreerde aanvrager	registrierte Bewerber
+poster	Poster
+drukklare contributie	Druckbare Gebühr
+betaalde aanvrager	Antragsteller bezahlt
+actieve conferentie deelnemer	aktive Konferenzteilnehmer
+stuurgroep	Lenkungsausschuss
+recentie expertise	Fachwissen zu überprüfen
+uitgever	Verlag
+geschreven contributie	schriftlichen Beitrag
+conferentie contributie	Tagungsgebühr
+commissielid	Mitglied des Ausschusses
+organisatie	Organisation
+conferentie bijdrager	Konferenz-angemeldeter Benutzer
+eerste auteur	Erstautor
+conferentie aanvrager	Antragsteller Konferenz
+lezing op uitnodiging	Vortrag auf Einladung
+snelcursus	Crash-Kurs
+geaccepteerde contributie	akzeptierte Gebühr
+laat betaalde aanvrager	verstorbene Antragsteller bezahlt
+uitgenodigde spreker	eingeladene Redner
+ingediende contributie	eingereichte Beitrag
+gerecenseerde contributie	überarbeitete Beitrag
+belangrijke data	wichtige Termine
+workshop	Workshop
+oproep inzenzingen	Aufruf inzenzingen
+gewone contributie	regelmäßigen Mitgliedsbeitrag
+conferentie document	Konferenz-Dokument
+afgewezen contributie	Abgelehnte Mitgliedsbeitrag
+conferentie website	Konferenz-website
+conferentiebundel	Konferenz-bundle
+gewone auteur	Autor mit regelmäßigen Beiträgen
+organisator	Veranstalter
+vroeg betaalde aanvrager	Frühe Bewerber bezahlt
+recentie voorkeur	Präferenz zu überprüfen
+track-workshop voorzitter	Track-Workshop-Präsident
+conferentie deelnemer	Konferenzteilnehmer
+conferentie deel	Konferenz
+oproep tot deelname	Aufruf zur Teilnahme
+organisatiecommissie	Organisationskomitee
+conferentie kosten	Konferenzkosten
+coauteur bijdrage	Co-Autor Beitrag
+lange synopsis	lange Zusammenfassung
+informatie voor deelnemers	Informationen für Teilnehmer
+track	Track
+conferentie aankondiging	Konferenzankündigung
+presentatie	Präsentation
+heeft een track-workshop-snelcursus onderwerp	hat ein Track-Workshop-Crash-Kurs-Thema
+heeft een uitgever	hat ein Verlag
+heeft een synopsis	hat eine Synopse
+is een onderwerp van conferentie delen	Aktie ist ein Thema der Konferenz
+contribueert	beitragen
+heeft snelcursussen	hat snelcursussen
+heeft een commissiecovoorzitter	hat eine Kommission Co-Vorsitzender
+heeft belangrijke data	hat wichtige Termine
+was een stuurgroep van	wurde eine Lenkungsgruppe der
+geeft presentaties	hält Vorträge
+uitgenodigd door	auf Einladung von
+recensies	Bewertungen
+heeft delen	besteht aus den Teilen
+was lid van	war Mitglied des
+heeft een organisatiecommissie	eine Organisation Committee
+nodigt corecensenten uit	Corecensenten lädt von
+is een volledig artikel submissie datum	ist ein vollständiger Artikel Eingabedatum
+heeft een graad	hat einen Abschluss
+heeft voornaam	Vorname hat
+heeft sekse	hat sex
+heeft achternaam	Nachname hat
+heeft een email	hat eine email
+heeft een uitgavedatum	hat ein Release Datum
+is een datum van bekendmaking van acceptatie	ist ein Tag der Veröffentlichung der Akzeptanz
+hoort bij een recentie referentie	gehört mit einer Referenz-Bewertung
+heeft een stuurgroep	hat ein Steering Committee
+heeft een recentie referentie of expertise	hat ein Review-Verweis oder Know-how
+hoort bij een conferentiebundel	gehört zu einem Konferenz-Bündel
+is deel van conferentiebundel	Die Konferenz ist Teil des Softwarepakets
+heeft tracks	hat Spuren
+uitgaven	Ausgaben
+was een track-workshop voorzitter van	war Bundespräsident einen Track-workshop
+heeft een isbn	hat eine isbn
+heeft een naam	hat einen Namen
+heeft een url	hat eine url
+heeft een plaats	hat einen Platz
+is een synopsis submissie datum	ist eine Synopsis Eingabedatum
+is een begindatum	ist ein Startdatum
+is een datum van drukklare versie submissie	ist ein Datum der Einreichung der Druckversion bereit
+is een einddatum	ist ein Enddatum
+heeft een deel	hat einen Teil
+heeft een expertise	hat ein Gutachten
+heeft een recentie	hat eine Überprüfung
+heeft auteurs	hat Autoren
+was een commissievoorzitter van	war Präsident der Kommission der
+heeft contributies	hat Beiträge
+heeft leden	hat Mitglieder
+heeft een track-workshop-snelcursus voorzitter	hat einen Track-Workshop-Crash-Kurs in Präsident
+was een commissie van	war eine Auftragsarbeit des
+heeft een ingediende contributie	hat einen ausstehenden Mitgliedsbeitrag
+was een commissiecovoorzitter van	war Co-Vorsitzender einer Kommission
+heeft een commissie	hat eine Kommission
+is het eerste deel van	ist der erste Teil der
+was een programmacommissie van	war ein Programm Committee der
+heeft een onderwerp of een ingediende contributie	hat ein Thema oder einen Beitrag verfasst
+heeft een programmacommissie	hat ein Ausschuss für das Programm
+was een organisatiecommissie van	war eine Kommission des
+ingediend	eingereicht
+hoort bij recencenten	gehört zur recencenten
+heeft een recentie expertise	verfügt über eine Test-expertise
+is een recensie referentie toegewezen	ein Test-Verweis ist zugewiesen
+heeft workshops	hat workshops
+heeft een commissievoorzitter	hat einen Kommissionspräsidenten
+wordt gegeven door	ist gegeben durch
+administratieve gebeurtenis	Administrative-Ereignis
+bijdrage	Beitrag
+vrijwilliger	Freiwillige
+recensieresultaat gebeurtenis	Überprüfen Sie das Ergebnis Ereignis
+indienen gebeurtenis	Veranstaltung einreichen
+kort artiekel	kurze Artikel
+recensie gebeurtenis	Überprüfen Sie das Ereignis
+werken gebeurtenis	Arbeit-Ereignis
+banket	Bankett
+stad	Stadt
+universiteit	Universität
+bedrijf	Firma
+student	Student
+sociale gebeurtenis	gesellschaftliches Ereignis
+deelnemersregistratie gebeurtenis	Teilnehmer-Registrierung-Ereignis
+wetenschappelijk medewerker	Wissenschaftlicher Assistent
+receptie	Rezeption
+drukklaar gebeurtenis	Ready-to-Print-Ereignis
+land	Land
+deelnemer	Teilnehmer
+gewoon	nur
+gebeurtenis	Ereignis
+reis	Reisen
+lid	Mitglied
+lid programmacommissie	Mitglied Programmkomitee
+assistent	Assistent
+wetenschapper	Wissenschaftler
+heeft webpagina	hat Web-Seite
+heeft btw	hat die Umsatzsteuer
+heeft stad	Stadt hat
+parallel met	Parallel zur
+volgt	folgt
+schrijft	schreibt
+werknemer van	Mitarbeiter der
+heeft administratieve gebeurtenis	hat administrative event
+heeft land	Land hat
+expert op het gebied van	Experte auf dem Gebiet der
+heeft te maken met	mit zu tun hat
+studeert bij	Studien mit
+heeft korte titel	hat kurzen Titel
+maximum keuze	maximale Auswahl
+heeft postcode	hat die Postleitzahl
+heeft steekwoord	Schlüsselwort
+heeft titel	Titel
+eindigt op	endet am
+opmerking	Hinweis
+abstract	abstrakt
+standaard keuze	Standardauswahl
+plaats	Ort
+contactinformatie email	Kontakt Informationen per e-Mail
+heeft straat	hat Straße
+heeft email	hat e-Mail
+heeft fax	Fax hat
+minimum keuze	minimale Auswahl
+begint op	beginnt am
+heeft telefoon	Telefon
+vroege registratie	Frühbucher
+ngo	NGO
+numerieke recensievraag	numerische Bewertung Frage
+vergaderruimte plaats	Tagungsräume Platz
+medicijnen onderwerp	Medikamente-Thema
+academische gebeurtenis	akademische Veranstaltung
+conferentie diner	Konferenz-dinner
+recensie	Bewertung
+eetpauze	die Reise dorthin
+diner plaats	Abendessen Platz
+programmacommisielid	programmacommisielid
+electriciteitsoverdracht over lijnen onderwerp	Electriciteitsoverdracht über Betreffzeilen
+geaccepteerd artikel	akzeptierten Artikel
+afsluitende lezing	Vortrag schließen
+recensievraag	Frage zu überprüfen
+conferentieoord plaats	Conference Center Platz
+conferentie sessie	Webkonferenz
+computer netwerken metingen onderwerp	Computer-Netzwerke-Messungen-Thema
+tekstuele recensievraag	textliche Bewertung Frage
+draadloze communicatie ondewerp	drahtlose Kommunikation-ondewerp
+persoonlijke publicatiehistorie	persönliche Publikationsgeschichte
+computer netwerken bedrijven onderwerp	Computer networking Firmen Thema
+antennes onderwerp	Antennen-Thema
+toelatingswaardering	Zulassung-Bewertung
+industriële organisatie	Industrial Organization
+computer netwerken sensoren onderwerp	Computer-Netzwerke-Sensoren-Thema
+computer netwerken beveiliging onderwerp	Computer-Netzwerke-Sicherheit-Thema
+computer netwerken optisch onderwerp	Computer-Netzwerke-optische-Thema
+persoonlijke recensiehistorie	persönliche Bewertung Geschichte
+communicatie onderwerp	Kommunikation-Thema
+satelliet- en ruimtecommunicatie onderwerp	Raum und Satelliten-Kommunikation-Thema
+lezing gebeurtenis	Lesung-Ereignis
+zwakke toelatingswaardering	schwache Zustimmung
+vrije tijd pauze	Urlauber
+computer netwerken management onderwerp	Computer-Netzwerke-Management-Thema
+besturingssystemen onderwerp	Betriebssysteme-Thema
+gerelateerde artikelen	in Verbindung stehende Artikel
+niet-academische gebeurtenis	nicht-akademischen Veranstaltung
+radiocommunicatie onderwerp	Radio-Kommunikation-Thema
+beveiliging onderwerp	Thema Sicherheit
+contact informatie	Kontaktinformationen
+overheidsorganisatie	Staatliche Organisation
+slides	Folien
+computer architectuur onderwerp	Computer-Architektur-Thema
+eet gebeurtenis	Ereignis Essen
+sessievoorzitter	Sitzung Präsident
+recensieformulier	Formulare überprüfen
+recensie waardering	Digitalkamera Test
+oproep manuscripten	Rufen Sie Skripts
+oproep	Rufen Sie
+academische organisatie	akademische organisation
+oproep artikelen	Artikel aufrufen
+conferentie met één recensie laag	Konferenz mit einer Rezension Schicht
+menu	Menü
+conferentie met twee recensie lagen	Konferenz mit zwei Test-Schichten
+cryptografie onderwerp	Kryptographie-Thema
+computer netwerken applicaties onderwerp	Computer networking Anwendungen Thema
+communicatietheorie onderwerp	Kommunikation-Theorie-Thema
+teruggetrokken artikel	genommenen Artikel
+afwijzingswaardering	Ablehnung Bewertung
+multimedia onderwerp	Multimedia-Thema
+computer netwerken schakelen onderwerp	Computer-Netzwerke deaktivieren Thema
+artikel presentatie	Artikel-Präsentation
+accomodatie plaats	Unterkunft-Platz
+mobiele berekening onderwerp	Mobile Berechnung Thema
+oproep recensies	Rufen Bewertungen auf
+reistoelage	Reisekostenvergütung
+prestatie onderwerp	Leistung-Thema
+parallelle en gedistribuëerde berekening onderwerp	parallele Berechnung und Gedistribuëerde Thema
+actief artikel	Aktive Artikel
+sponsoring	Sponsoring
+persoonlijke historie	persönliche Geschichte
+programma	Programm
+accepteer als kamerwaardering	akzeptieren als Zimmer-Bewertung
+computer netwerken onderwerp	Computer networking Thema
+organisatievergadering	Organisationstreffen
+uitgegeven artikel	veröffentlichte Artikel
+presentator	Moderator
+nog onbeslist artikel	noch unentschlossen Artikel
+microelectronica onderwerp	Mikroelektronik, Thema
+pauze gebeurtenis	Pause-Ereignis
+signaalverwerking onderwerp	Signal-Verarbeitung-Thema
+afgewezen artikel	Abgelehnte Artikel
+koffiepauze	Kaffeepause
+conferentie gebeurtenis	Konferenz
+cad onderwerp	CAD-Thema
+welkomstlezing	Willkommen lesen
+alleen testen onderwerp	nur Testperson
+excursie	Ausflug
+hoort bij gebeurtenis	gehört zur Veranstaltung
+is menu van	ist im Menü
+gerelateerd aan	mit Bezug zu
+gerelateerd aan gebeurtenis	Bezug auf event
+is gerecenseerd door	Kommentar von
+heeft gerelateerd artikel	hat ähnliche Artikel
+heeft oproep	hat der Aufruf
+is recensiehistorie van	Überprüfung der Geschichte
+geleverd door	geliefert von
+begint	beginnt
+wordt begonnen door	wird gestartet
+heeft menu	Menü
+heeft deelnemer	Teilnehmer hat
+gerelateerd tot artikel	mit Bezug zu Artikel
+heeft gerelateerd document	Dokument hat bezogen werden.
+heeft waardering	schätzt
+is aan het recenseren	die Überprüfung soll
+is lid van	ist Mitglied der
+is plaats van	befindet sich
+heeft programma	hat Programm
+heeft recensiegeschiedenis	Bewertung Geschichte
+is gescheven door	wird geschieben von
+is onderwerp van	ist das Thema der
+voor gebeurtenis	für Veranstaltung
+is leverancier van	ist ein Anbieter von
+deelnemer van	Teilnehmer des
+begindatum	Startdatum
+heeft naam	Namen hat
+heeft submissie instructies	hat Vorlage Anweisungen
+heeft submissie deadline	Einsendeschluss ist
+heeft biografie	hat Biographie
+manuscript moet klaar zijn op	Manuskript muss bereit sein.
+heeft kosten som	hat Kosten Summe
+heeft begindatum/tijd	hat Start Datum/Uhrzeit
+einddatum	End-Datum
+artikel moet klaar zijn op	Artikel sollte bereit sein.
+heeft plaats	hat Platz
+heeft lid	Mitglied
+heeft einddatum/tijd	hat Ende Datum/Uhrzeit
+registratie moet klaar zijn op	Registrierung muss bereit sein.
+heeft kosten munteenheid	Währung hat gekostet werden.
+pamflet	Broschüre
+conferentie banket	Konferenz-und Veranstaltungsräume
+onderzoeksinstelling	Forschungseinrichtung
+beoordeeld artikel	Artikel überprüft
+industrie sessie	Industrie-Sitzung
+(bijgedragen) lezing	(beigetragen) lesen
+staf van instelling	Mitarbeiter der Einstellung
+voorzitter snelcursus	Präsident-Crash-Kurs
+programma brochure	Programmbroschüre
+organiserende instelling	organisierenden institution
+toegewezen artikel	zugewiesene Element
+workshop sessie	Workshop Teil
+drukklaar artikel	Ready-to-Print-Artikel
+snelcursus abstract	Crash-Kurs in abstrakten
+poster artikel	Poster-Artikel
+lid organisatiecommissie	Mitglied Organisation Kommission
+artikel auteur	Artikel-Autor
+wetenschappelijk artikel	wissenschaftliche Artikel
+voorzitter sessie	Präsident
+bundel	Bundle
+poster sessie	Poster-session
+workshop artikel	Workshop-Artikel
+onderzoeksonderwerp	Forschungsthema
+demonstratie sessie	Demo-session
+vroeg geregistreerde deelnemer	Frühe registrierte Teilnehmer
+gewoon artikel	nur Artikel
+dokument	Dokument
+positieve recensie	positive Bilanz
+industriëel artikel	Industrielle Artikel
+lezing abstract	Lesung-abstrakt
+voorzitter workshop	Präsident-workshop
+deel met meerdere autheurs	gemeinsam mit mehreren Autoren
+voorzitter demonstraties	Präsident Demonstrationen
+laat geregistreerde deelnemer	Registrierte Teilnehmer lassen
+sessie	Sitzung
+demonstratie artikel	Demo Teil
+conferentie reis	Konferenz-Reisen
+ingediend artikel	eingereichte Artikel
+gast spreker	Gastredner
+lid stuurgroep	Mitglied der Lenkungsgruppe
+lezing	Lesen
+negatieve recensie	negative Bewertung
+wetenschappelijke gebeurtenis	wissenschaftliche Veranstaltung
+uitgever conferentiebundel	Verlag Konferenz bundle
+neutrale recensie	neutrale Bewertung
+voorzitter organisatiecommissie	Präsident Organisationskomitee
+individuele presentatie	Individuelle Präsentation
+website	Webseite
+gewone sessie	ordentlichen Sitzung
+mogelijke recensent	mögliche Bearbeiter
+academische instelling	akademische institution
+presentatie van artikel	Präsentation der Artikel
+deel bevat artikel	Teil enthält Artikel
+bevat gebeurtenis	enthält Ereignis
+geciteerd door	zitiert nach
+heeft gebeurtenis	hat event
+organiseert (technisch)	organisiert (technische)
+gehouden in	statt in
+georganiseerd door	organisiert von
+technische organisatie door	technische Organisation von
+uitgever van	Herausgeber der
+gebeurtenis op lijst	Ereignis auf Liste
+organiseert	organisiert
+artikel in deel	Artikel teilweise
+heeft deel	hat Teil
+inverse van deel van 7	Quantile Teil 7
+organiseert (wetenschappelijk)	organisiert (wissenschaftliche)
+heeft recensent	hat geprüft
+recensie geschreven door	Rezension geschrieben von
+heeft bijgewerkte versie	aktualisierte version
+recensent van artikel	Bearbeiter des Artikels
+plaats van	Erfüllungsort
+heeft recensie	hat Überprüfung
+onderwerp behandeld door	Thema behandelt, indem
+bijgewerkte versie van	aktualisierte Version des
+gaat over	geht es um
+recensie van artikel	Überprüfung der Artikel
+citaties	Zitate
+deel van	Teil des
+artikel gepresenteerd als	Artikel, die als
+wetenschappelijke organisatie door	Wissenschaftliche Organisation von
+onderdeel van gebeurtenis	Teil der Veranstaltung
+auteur van	Autor des
+beamer	Beamer
+conferentie activiteit	Konferenz-Aktivität
+conferentie restaurant	Konferenz-restaurant
+audiovisuele uitrusting	Audiovisuelle Ausstattung
+registratiekosten student	Student-Anmeldegebühr
+iasted lid	IASTED Mitglied
+cheque	Scheck
+video presentatie	Video-Präsentation
+computer	Computer
+coctail receptie	Cocktail-Empfang
+simuleren	simulieren
+reisdag	Reisetag
+bewijs van aanwezigheid	Beweis für Anwesenheit
+betalingsdocument	Zahlungsbeleg
+activiteit voor de conferentie	Tätigkeit für die Konferenz
+hotel presentator	Hotel-Moderatorin
+registratiekosten niet-lid	Nichtmitglied Anmeldegebühr
+eendaags presentator	Ein-Tages-Moderatorin
+een conferentie dag	ein Konferenztag
+snelcursus spreker	Crash-Kurs in Lautsprecher
+iasted niet-lid	IASTED Nichtmitglied
+kosten voor extra reis	Kosten für zusätzliche Reisen
+toehoorder	Listener
+conferentiebundel cd	Konferenz-cd-bundle
+tijd	Zeit
+publicatie	Veröffentlichung
+arbeider niet-spreker	Arbeitnehmer nicht-Lautsprecher
+hotel informatie formulier	Hotel-Anfrage-Formular
+transparant	transparent
+transport voertuig	Transportfahrzeug
+korte inleiding voorzitter	kurze Einführung Präsident
+sponsor	Sponsor
+powerpoint presentatie	Power Point Präsentation
+geld	Geld
+kosten	Kosten
+technisch committee	Technischer Ausschuss
+conferentie stad	Kongressstadt
+auto	Auto
+videospeler	Video-player
+arbeider lector	Arbeiter lector
+manuscript accepteren	Skript zu akzeptieren
+inleiding	Einführung
+staat	Zustand
+manuscript afwijzen	Manuskript-Ablehnung
+tweepersoonskamer	Doppelzimmer
+technische activiteit	Technische Tätigkeit
+lector	Lector
+sponsor staat	Sponsor State
+presentator universiteit	Presenter-Universität
+conferentiebundel boek	Konferenz-Buch-bundle
+sponsor bedrijf huis	Sponsor-Unternehmen-Startseite
+deadline hotel reservering	Frist-Hotelbuchung
+vertrek	Abfahrt
+huren	Verleih
+pendelbus	Shuttle-bus
+presentator stad	Host-city
+hotelkamer	Hotelzimmer
+registratiekosten niet-auteur	Anmeldegebühren sind nicht-Verfasser
+inschrijving	Registrierung
+overschrijving	Banküberweisung
+busje	Van
+conferentie dagen	Konferenztagen
+registratiekosten lid	Mitglied Anmeldegebühr
+registratiekosten aanwezige auteur boek	Autor Buch vorhanden Anmeldegebühr
+plenaire lezing	Plenarvortrag
+onderzoek	Forschung
+deadline	Frist
+sessie kamer	Sitzung Raum
+taxi	Taxi
+student lector	Studenten-Lektor
+sociaal programma	Rahmenprogramm
+conferentie vliegveld	Konferenz-Flughafen
+spreker voorstellen	Lautsprecher-Vorschläge
+registratie deadline	Anmeldeschluss
+manuscript ontvangen	Manuskript erhalten
+kaart	Karte
+definitief manuscript	endgültigen Manuskript
+dagvullende rondleiding	eintägige tour
+modelleren	Modellierung
+gebouw	Gebäude
+auteur conferentiebundel cd inbegrepen	Autor Konferenz Bundle cd enthalten
+student niet-spreker	Student nicht-Lautsprecher
+hoofdkantoor	Headoffice
+conferentiezaal	Konferenzraum
+onderdeel	Teil
+eenpersoonskamer	Einzelzimmer
+presentator huis	Moderator Startseite
+activiteit	Aktivität
+submissie	Einreichung
+recencent	Amazon-Rezensent
+conferentie hotel	Tagungshotel
+reis stad	Reisen Stadt
+spreker lezing	Lautsprecher lesen
+auteur informatie formulier	Autor Informationsformular
+activiteit na de conferentie	Aktivität nach der Konferenz
+belasting	Steuer
+afgevaardigde	Delegieren
+munteenheid	Währung
+sponsor stad	Sponsor-Stadt
+formulier	Formular
+overhead projector	Overhead-Projektor
+creditcard	Kreditkarte
+niet-spreker	nicht-Lautsprecher
+registratieformulier	Anmeldeformular
+deadline aankondiging acceptatie	Akzeptanz-Termin-Ankündigung
+hotel kosten	Hotelkosten
+toegevoegde waarde belasting	Mehrwert Steuer
+welkomsttoespraak	Begrüßungsrede
+conferentie wandelaar	Konferenz Walker
+fooi	Tipp
+auteur conferentiebundel boek inbegrepen	Autor Konferenz Buch Bundle enthalten
+conferentie staat	Konferenzstatus
+algemene lezing spreker	General Vortrag Lautsprecher
+submissie deadline	Einreichung von Beiträgen
+presentator staat	Presenter ist
+email lijst	e-Mail-Liste
+registratiekosten aanwezige auteur cd	Autor Anmeldegebühr, mit vorhandenen cd
+visum	Visum
+spreker	Lautsprecher
+conferentie gebouw	Konferenzgebäude
+vertrekbelasting	Ausreisegebühr
+eerste manuscript	erstes Manuskript
+deadline drukklaar manuscript	Ready-to-Print-Manuskript Frist
+tijdzone	Zeitzone
+registratiekosten	Anmeldegebühren
+uitnodigingsbrief	Einladungsschreiben
+is voorzien van	Funktionen
+krijgen	Erhalten
+is ontworpen voor	richtet sich an
+is verbonden met	ist mit verbunden
+wordt betaald met	wird mit bezahlt
+doorgaan	weiter
+wordt gebruikt door	wird von
+schrijven	Schreiben
+voorbereiden	Vorbereitung
+tekenen	Zeichen
+is gelegen in	befindet sich in
+is getekend door	wurde von unterzeichnet
+is aanwezig	ist vorhanden
+wordt betaald voor	ist bezahlt
+is geschreven door	wird geschieben von
+spreken in	sprechen in
+wordt bezet door	ist besetzt von
+wordt gebruikt voor	dient zur
+bezetten	besetzen
+wordt gehouden in	findet in
+is aanwezig bij	ist anwesend
+wordt gehouden na	findet nach
+wordt bezocht door	wird von besucht
+betalen	aufgeladen
+wordt betaald door	wird bezahlt
+wordt verzonden voor	zur geschickt wird
+wordt gehouden voor	findet für
+wordt voorbereid door	bereitet
+wordt gegeven aan	erhält
+is nodig voor	benötigt
+geven	Geben
+wordt verzonden door	wird gesendet
+verzenden	Senden
+nodig hebben	müssen
+is gemaakt van	besteht aus
+klaar tot	bereit
+wordt betaald in	wird jedoch in
+wordt verzonden na	erfolgt nach
+is gedateerd	ist datiert
+heeft bedrag	Betrag
+deadline inlichting auteur	Termin-Informationen-Autor
+prijs best studenten artikel	Preis best Student Artikel
+registratie geen lid	Registrierung ist kein Mitglied
+bedrag	Betrag
+registratie sigkdd lid	SIGKDD Registrierung
+platina sponsor	Platin-sponsor
+deadline indiening artikel	Artikel-Einsendeschluss
+prijs best toegepast artikel	Preis Beste angewendet-Artikel
+best studenten artikel sponsor	Best Student Artikel sponsor
+programmaccommissie	programmaccommissie
+prijs best onderzoeksartikel	Preis Beste Forschungsarbeit
+deadline indiening abstract	Deadline Abstracteinreichung
+prijs	Preis
+auteur van studenten artikel	Autor des Studenten-Artikel
+zilver sponsor	Silber sponsor
+registratie sigmod lid	SIGMOD Registrierung als Mitglied
+auteur van artikel	Autor des Artikels
+best artikel prijzencommissie	besten Artikel Awards Committee
+sponsorbijdrage	Sponsoring
+algemeen voorzitter	Generalpräsident
+webmaster	Webmaster
+acm sigkdd	ACM sigkdd
+registratie studenten	Anmeldung Schüler
+brons sponsor	Bronze sponsor
+hotel	Hotel
+tentoonsteller	Aussteller
+goud sponsor	Gold-sponsor
+betaalmiddel	Zahlungsart
+naam van sponsor	Name des Sponsors
+naam van conferentie	Name der Konferenz
+stad van conferentie	Stadt der Konferenz
+einde van conferentie	Ende der Konferenz
+toegekend door	verliehen von
+indienen tot	Vorlage zu
+ontworpen door	entworfen von
+mag verblijven in	ist erlaubt, in zu bleiben
+verkrijgen	immer
+inlichting tot	Informationen zu
+betaald door	gezahlten
+ontwerp	Design
+gepresenteerd door	präsentiert von
+indienen	einreichen
+gehouden door	Besitz
+houdt	hält
+gezocht door	gesucht von
+zoeken	Suche
+begin van conferentie	Beginn der Konferenz

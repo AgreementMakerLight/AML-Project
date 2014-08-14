@@ -1,0 +1,666 @@
+puja	bid
+aceptar	OK
+autor	author
+versión completa del artículo	full version of the article
+meta revisión	goal review
+miembro del comité de programa	Member of the program Committee
+conferencia	Conference
+administrador	Administrator
+miembro de la conferencia	Member of the Conference
+área temática	thematic area
+decisión	decision
+documento	document
+revisor	Reviewer
+revisor externo	external reviewer
+meta revisor	Meta reviewer
+artículo	Article
+presidente del comité de programa	Chairman of the program Committee
+resumen del artículo	Summary of the article
+vice presidente	Vice President
+presidente de la conferencia	President of the Conference
+coautor	co-author
+autor, no revisor	author, no reviewer
+comité de programa	Program Committee
+usuario	user
+presidente	President
+preferencia	preference
+rechazar	reject
+revisión	review
+persona	person
+asigna revisor externo	assign external reviewer
+es miembro del comité de programa	is a member of the program Committee
+permite reunión virtual	allows virtual meeting
+envía el artículo	sends the item
+inicia la puja de los artículos	starts the bidding of articles
+asignado por el revisor	assigned by the reviewer
+introduce criterios de revisión	enters review criteria
+los criterios de revisión han sido introducidos por	review criteria have been introduced by
+la puja de los revisores ha sido iniciada por	bids from reviewers has been initiated by
+detalles introducidos por	details entered by
+asigna un número máximo de artículos a	assigns a maximum number of items to
+rechazado por	rejected by
+redacta el artículo	write article
+redacta la revisión	write review
+asignado por el administrador	assigned by the administrator
+es miembro de la conferencia	is a member of the Conference
+modificada por	modified by
+asignar revisor	assign reviewer
+añadido por	added by
+asignado a	assigned to
+tiene miembro de la conferencia	has member Conference
+tiene área temática	has subject area
+gestiona las herramientas para la asignación de artículos	It manages the tools to the allocation of items
+la asignación de artículos ha sido finalizada por	the allocation of articles has been completed by
+tiene autor	has author
+finaliza la asignación de artículos	ends the allocation of items
+tiene puja	has bid
+leído por el meta revisor	read by reviewer meta
+tiene decisión	decision has
+reunión virtual mediante	using virtual meeting
+lee el artículo	read the article
+las copias en papel de los manifiestos de envío han sido impresas por	the shipping manifests paper copies have been printed by
+rechaza el artículo	rejects the article
+tiene coautor	has co-authored
+modifica la puja	modifies the bid
+las herramientas para la asignación de artículos han sido gestionadas por	tools for the allocation of items have been managed by
+es coautor de un artículo	is co-author of an article
+url del logotipo	URL of the logo
+acepta entregas en papel	accepts deliveries on paper
+url de la página web	URL of the web page
+título	title
+ha sido asignado a	It has been assigned to
+escrito por	written by
+ha señalado conflicto de intereses	noted conflict of interest
+tiene miembro del comité de programa	has the program Committee Member
+tiene conflicto de intereses	has conflict of interest
+añade miembro de comité de programa	added member of Program Committee
+aceptado por	accepted by
+copia en papel de los manifiestos de envío	copy paper from shipping manifests
+acepta el artículo	accept article
+finaliza revisión	end review
+introduce detalles de la conferencia	Enter details of the Conference
+leído por el revisor	read by the author
+nombre	name
+correo electrónico	email
+número máximo de artículos	maximum number of items
+fecha	date
+identificador del artículo	item identifier
+revisiones por artículo	revisions per article
+contribución regular	regular contribution
+participante de la conferencia	participant of the Conference
+comité directivo	Steering Committee
+conferencia www	www Conference
+tema	theme
+editor	Editor
+volumen de la conferencia	Conference volume
+póster	poster
+persona que paga las tasas de la conferencia	person who paid the Conference fees
+charla invitada	invited
+contribución a la conferencia	contribution to the Conference
+resumen ampliado	Overview extended
+participante activo en la conferencia	active participant in the Conference
+información para los participantes	information for participants
+contribución enviada	submitted contribution
+persona registrada a la conferencia	person registered to the Conference
+documento de la conferencia	Conference document
+organizador	Organizer
+contribución rechazada	rejected contribution
+tasas de la conferencia	the Conference rates
+contribución lista para su envío definitivo	ready for final shipment contribution
+solicitud de participación	request to participate
+taller	Workshop
+participante pasivo en la conferencia	passive participant in the Conference
+persona que envía una contribución a la conferencia	person who sends a contribution to the Conference
+coautor de la contribución	co-author of the contribution
+presentación	presentation
+comité	Committee
+fechas importantes	important dates
+comité organizador	Organizing Committee
+parte de la conferencia	part of the Conference
+anuncio de la conferencia	announcement of the Conference
+organización	Organization
+persona que envía una solicitud a la conferencia	person who sends a request to the Conference
+experiencia del revisor	experience of the reviewer
+solicitud de envío de artículos	request for submission
+contribución por escrito	contribution in writing
+actas de la conferencia	proceedings of the Conference
+vicepresidente	Vice President
+primer autor de la contribución	first author's contribution
+persona que paga con retraso las tasas de la conferencia	person paying late fees of the Conference
+tutorial	tutorial
+persona que hace un pago anticipado de las tasas de la conferencia	person making an advance payment of the fees of the Conference
+contribución aceptada	accepted contribution
+preferencia del revisor	the reviewer preference
+panel	Panel
+contribución revisada	revised contribution
+organizador de los workshops	the workshops Organizer
+resumen	Overview
+conferenciante invitado	guest speaker
+era comité directivo de	was Steering Committee of
+tiene autores	has authors
+tiene referencias o experiencia en la revisión de artículos	you have references or experience in the review of articles
+tiene un comité	has a Committee
+era comité organizador de	was organizing Committee of
+tiene un tema o una contribución enviada	you have a theme or a submitted contribution
+tiene contribuciones	has contributions
+ha presentado una contribución	He has presented a contribution
+tiene un revisor	has a reviewer
+era vicepresidente del comité de	was Vice-President of the Committee of
+era organizador de un panel de talleres de	It was a panel of workshops organizer of
+tiene un comité organizador	has an organizing Committee
+tiene un comité directivo	has a Steering Committee
+tiene miembros	has members
+tiene partes	has parts
+pertenece a una referencia de la revisión	It belongs to a reference of the review
+dado por	given by
+problemas	problems
+tiene tema de taller-tutorial	has theme workshop-tutorial
+se le ha asignado una referencia  de revisiones	you have been assigned a reference of revisions
+es la primera parte de	is the first part of
+pertenece a los revisores	belongs to the reviewers
+revisiones	reviews
+tiene talleres	has workshops
+forma parte de los volúmenes de la conferencia	It is part of the volumes of the Conference
+invitado por	invited by
+era comité de programa de	was Program Committee of
+tiene un vicepresidente de comité	have a Vice-Chairperson of Committee
+enviado a	sent to
+era presidente del comité de	was Chairman of the Committee of
+era comité de	was Committee of
+tiene un comité de programa	have a program Committee
+tiene tutoriales	has tutorials
+era miembro de	was a member of
+tiene organizador de taller-tutorial	has organizing workshop-tutorial
+da presentaciones	give presentations
+tiene un presidente de comité	has a President's Committee
+tiene un editor	has an editor
+tiene experiencia en la revisión de artículos	He has experience in the review of articles
+contribuye	contributes
+corevisores invitados	invited corevisores
+es tema de parte de la conferencia	It is part of the Conference theme
+tiene nombre de pila	has first name
+tiene apellidos	have last names
+es fecha de inicio	is start date
+tiene url	has url
+tiene fechas imprortantes	has dates imprortantes
+pertenece al volumen de la conferencia	belongs to the Conference volume
+tiene resumen	has overview
+tiene paneles	has panels
+tiene correo electrónico	has email
+tiene experiencia	has experience
+es fecha de envío de versiones definitivas de artículos	It is the date of final versions of articles
+tiene volumen	has volume
+tiene grado	has degree
+es fecha de envío de artículos largos	It is date of long articles
+tiene isbn	has isbn
+tiene ubicación	has location
+es fecha de envío de resúmenes	is abstract submission date
+es fecha de finalización	date of completion
+tiene fecha de emisión	has issue date
+tiene género	has gender
+es fecha de aceptación del anuncio	is the date of acceptance of the advertisement
+tiene nombre	has name
+envío de contribuciones	submit contributions
+socio	partner
+becario	Intern
+envío de versión definitiva	submission of final version
+ciudad	City
+registro de participantes	registration of participants
+acontecimiento administrativo	Administrative event
+científico	scientist
+evento científico	scientific event
+participante	participant
+no miembro	non-member
+artículo corto	short article
+estudiante	student
+cena de gala	gala dinner
+país	Maps
+acontecimiento	event
+proceso de revisión de resultados	review of results
+programa social	social program
+proceso de revisión	review process
+voluntario	volunteer
+recepción	reception
+excursión	excursion
+asistente	Assistant
+universidad	University
+contribución	contribution
+empresa	company
+tiene tema	has theme
+tiene ciudad	has city
+contratado por	hired by
+paralelo a	parallel to
+revisa	check
+escribe	writes
+experto en	expert in
+trata de	trafficking of
+tiene país	country has
+tiene acontencimiento administrativo	has administrative developments
+estudia en	studies in
+sigue a	continues to
+selección mínima	minimum selection
+correo electrónico de contacto	contact e-mail
+tiene título corto	has short title
+selección máxima	maximum selection
+finaliza en	ends in
+tiene fax	has fax
+tiene código postal	has zip code
+tiene teléfono	has phone
+tiene página web	has website
+tiene título	has title
+lugar	place
+inscripción anticipada	early bird registration
+tiene palabra clave	has tags
+comentario	comment
+empieza en	starts in
+tiene calle	has Street
+elección por defecto	choosing default
+tiene iva	is VAT
+convocatoria para la presentación de artículos	call for the submission of articles
+tema, seguridad	topic, security
+tema, comunicaciones inalámbricas	issue, wireless communications
+tema, redes de computadoras	theme, computer networks
+tema, seguridad en las redes de computadoras	topic, security in computer networks
+patrocinio	sponsorship
+tema, procesamiento de señales	subject, signal processing
+pausa	pause
+cena de la conferencia	the Conference dinner
+acontecimiento social	social event
+organización académica	academic organization
+convocatoria para la revisiones	call for revisions
+tema, multimedia	issue, multimedia
+artículo rechazado	rejected article
+programa	program
+tema, medidas de redes de computadoras	issue, measures of computer networks
+tema, teoría de la comunicación	subject, communication theory
+comida	food
+información de contacto	contact information
+tema antennas	theme antennas
+ratio de papers rechazados pero en el límite	ratio of rejected papers, but in the limit
+alojamiento	accommodation
+acontecimiento no académico	non-academic event
+menú	menu
+tema, medicina	theme, medicine
+lugar de celebración de la conferencia	venue of the Conference
+tema, solo de prueba	only test subject
+tema, arquitectura de computadoras	theme, computer architecture
+tema, sensores en las redes de computadoras	topic, sensors in computer networks
+lugar de celebración de la cena	venue for dinner
+conferencia de bienvenida	Conference welcome
+organización industrial	industrial organization
+artículos relacionados	related articles
+tema, criptografía	issue, Cryptography
+tema, gestión de redes de computadoras	issue, management of computer networks
+convocatoria para la presentación de manuscritos	call for the submission of manuscripts
+artículo publicado	published article
+sesiones de la conferencia	session of the Conference
+artículo retirado	withdrawn article
+conferencia de clausura	closing conference
+tema, microelectrónica	subject, microelectronics
+reunión organizativa	organizational meeting
+historial de publicaciones	publications history
+acontecimiento académico	academic event
+pausa para comer	pause to eat
+pausa para tomar un café	pause for coffee
+tema, redes de computadoras ópticas	subject, optical computer networks
+miembro del comité técnico del programa	Member of the Technical Committee of the program
+pregunta sobre la revisión numérica	asked about the numerical review
+lugar de reunión	meeting place
+presentador	Presenter
+ratio de revisiones	ratio of revisions
+ratio de aceptación	acceptance ratio
+tema, computación paralela y distribuida	subject, parallel and distributed computing
+historial de revisiones	revision history
+artículo activo	Active article
+tema, comunicaciones espaciales y por satélite	theme, space and satellite communications
+artículo pendiente	pending article
+tema cad	theme cad
+formulario de revisiones	reviews form
+tema, aplicaciones de las redes de computadoras	subject, applications of computer networks
+ratio de aceptación si hay espacio	ratio of acceptance if there is space
+tema, rendimiento	theme, performance
+presentación de artículos	articles submission
+charla	talk
+beca de viaje	Travel Scholarship
+tema, comunicación por rádio	issue, radio communication
+presidente de la sesión	President of the session
+pregunta sobre la revisión	asked about the review
+conjunto de transparencias	set of transparencies
+tema, empresas de reedes de computadoras	theme, computer networking companies
+tema, sistemas operativos	subject, operating systems
+tema, computación móvil	theme, mobile computing
+currículum vitae	curriculum vitae
+tema, conexión en las redes de computadoras	subject, connection to computer networks
+organización de gobierno	Organization of Government
+ratio de rechazos	ratio of rejects
+artículo aceptado	accepted article
+tema, comunicaciones	theme, communications
+convocatoria	call
+ong	NGO
+conferencia de un nivel	a level Conference
+tema, transmisión mediante cable eléctrico	theme, transmission through power cord
+conferencia de dos niveles	two-level Conference
+pregunta sobre la revisión textual	asked about the textual review
+el artículo tiene que estar entregado antes de	the item must be delivered before
+tiene fecha límite de entrega	has deadline
+cuesta	slope
+tiene hora y fecha de comienzo	has start date and time
+tiene hora y fecha de finalización	has time and date of completion
+es tema de	is subject of
+asitente a	Assistant to
+es miembro de	is member of
+tiene asistentes	have attendees
+pertenece al acontecimiento	belongs to the event
+tiene miembro	has Member
+proporcionado por	provided by
+tiene ratio	has ratio
+es revisado por	It is reviewed by
+tiene artículo relacionado	has related article
+está revisando	It is reviewing
+se relaciona con	is associated with
+inicia	starts
+es ubicación de	is location of
+es iniciado por	It is initiated by
+tiene menú	has menu
+está escrito por	is written by
+relacionado con el artículo	related to the article
+es menú de	is menu of
+tiene documento relacionado	has related document
+es proveedor de	is provider of
+tiene convocatoria	has call
+es el historial de revisiones de	is the revision history of
+para el acontecimiento	for the event
+relacionado con el acontecimiento	the event-related
+tiene historial de revisiones	have revision history
+tiene programa	has program
+fecha de finalización	date of completion
+el registro tiene que estar hecho antes de	the registration must be done before
+fecha de comienzo	start date
+el manuscrito tiene que estar entregado antes de	the manuscript must be delivered before
+tiene moneda	has currency
+tiene instrucciones de envío	has shipping instructions
+tiene biografía	has biography
+autor de la contribución	author of the contribution
+miembro del comité organizador	Member of the Organizing Committee
+centro de investigación	Research Center
+página web	web page
+evento	event
+sesión	session
+artículo sobre demostración	Article on demonstration
+sesión de talleres	workshops session
+resumen de conferencia invitada	Summary of invited lecture
+miembro del comité científico	Member of the Scientific Committee
+organizador de tutorial	Organizer tutorial
+artículo asignado a revisor	article assigned to reviewer
+candidato a revisor	a reviewer candidate
+conferencia principal	Conference main
+tema de investigación	research topic
+artículo de póster	Article poster
+participante con inscripción no anticipada	participant with no advance registration
+organizador de los talleres	organizing workshops
+actas	records
+sesión de congreso	session of Congress
+organizador de la sesión de pósters	the poster session organizer
+cosa	thing
+institución académica	academic institution
+versión definitiva del artículo	final version of the article
+presidente del comité organizador	Chairman of the Organizing Committee
+evaluación negativa	negative evaluation
+agencia de organización de congresos	Congress organisation Agency
+miembro de la organización	Member of the Organization
+sesión de demostraciones	demos session
+seminario	Seminar
+artículo de taller	Workshop article
+programa de mano	hand program
+artículo en conferencia principal	article in main Conference
+folleto	brochure
+artículo de conferencia	Conference article
+evaluación positiva	positive evaluation
+acontecimiento científico	scientific event
+actas de congreso	Congress proceedings
+participante con inscripción anticipada	participant with advance registration
+editor de las actas	proceedings Editor
+evaluación neutra	neutral evaluation
+resumen de tutorial	overview tutorial
+moderador de la sesión	session moderator
+volumen de varios autores	volume of various authors
+sesión de pósters	poster session
+artículo revisado	revised article
+artículo de experiencias en la industria	Article by experiences in the industry
+participante del congreso	participant of the Congress
+lugar de celebración	venue
+contribución a conferencia	contribution to Conference
+sesión industrial	industrial session
+sesión de conferencia	Conference session
+presentación individual	individual presentation
+versión actualizada de	updated version of
+organización científica por	Scientific Organization by
+artículo en actas	article in proceedings
+parte de	part of
+tema tratado por	subject matter by
+tiene evento	has event
+es revisión de	is review of
+referencia	reference
+revisión escrita por	review written by
+parte de evento	part of event
+tiene revisión	have review
+artículo presentado como	article presented as
+organiza técnicamente	organizes technically
+organiza	organizes
+inversa de parte de 7	reverse part of 7
+es revisor de artículo	is a reviewer for article
+organiza científicamente	organizes scientifically
+tiene parte	has part
+tiene versión actualizada	has updated version
+autor de	author of
+volumen contiene artículo	volume contains article
+evento en la lista	event list
+presentación de artículo	presentation of article
+organización técnica por	technical organization by
+referenciado en	referenced in
+tiene revisor	has reviewer
+editor de	Editor of
+celebrado en	held in
+enumera eventos	lists events
+lugar de	place of
+organizado por	organized by
+envío	shipping
+fecha límite	deadline
+conferenciante	Lecturer
+alquilando	renting
+breve introducción al presidente de la sesión	brief introduction to the President of the session
+incluye las el libro de las actas para autores	includes the book of records for authors
+tasas de registro para los no autores	registration fees for non-authors
+cheque	check
+conferenciante plenario	plenary speaker
+transferencia bancaria	Bank transfer
+estudiante no orador	Student not speaker
+ciudad del presentador	the host city
+actividad técnica	technical activity
+presentación power point	power point presentation
+introducción	introduction
+manuscrito final	final manuscript
+miembro de iasted	Member of iasted
+zona horaria	time zone
+excursión por la ciudad	City tour
+presentador durante un día	Presenter during a day
+edificio de la conferencia	the Conference building
+fecha límite de registro	deadline for registration
+hotel de la conferencia	Conference Hotel
+hora	time
+orador en tutorial	tutorial speaker
+sala principal de la conferencia	Main Hall of the Conference
+vehículo de transporte	transport vehicle
+actividad	activity
+formulario	form
+edificio	building
+tarjeta de crédito	credit card
+día de excursión	day excursion
+delegado	delegate
+fecha límite de envío de propuestas	deadline for submission of proposals
+rechazando el manuscrito	rejecting the manuscript
+oyente	listener
+coche	car
+salida	output
+fecha límite de la notificación de aceptación	deadline for notification of acceptance
+proyector	projector
+estado del moderador	the moderator status
+record de asistencia	record attendance
+tasas de registro par aestudiantes	fees for registration aestudiantes
+oficina principal	main office
+introducción del conferenciante	introduction of the speaker
+comité técnico	Technical Committee
+habitación de hotel	hotel room
+tasas de registro para miembros	registration fees for members
+moneda	currency
+propina	Tip
+saludo de bienvenida	welcome greeting
+sala de sesiones	session room
+ordenador	computer
+manuscrito inicial	initial manuscript
+reproductor de video casete	video cassette player
+simulando	simulating
+formulario de registro al hotel	Hotel registration form
+cd de las actas	the proceedings CD
+tasas	rates
+trabajador no orador	worker not speaker
+ciudad de la conferencia	the Conference city
+casa del moderador	House of the moderator
+proyector lcd	lcd projector
+conferencia de un día de duración	one-day Conference
+taxi	taxi
+conferencia plenaria	Conference plenary
+tasas de salida	output rates
+recibiendo el manuscrito	receiving the manuscript
+días de duración de la conferencia	days of the Conference
+tasas del registro	the registration fees
+tasas por un viaje extra	an extra trip rates
+fecha límite de envío de la versión definitiva	deadline for submission of the final version
+conferenciante estudiante	Student speaker
+aceptando el manuscrito	accepting the manuscript
+tasas de autor, asistente y libro	rates of book, author and Assistant
+documento de pago	payment document
+estado del patrocinador	State of the sponsor
+no orador	No speaker
+habitación individual	single room
+impuesto sobre el valor añadido	added value tax
+visa	Visa
+actividad antes de la conferencia	activity prior to the Conference
+presentador del hotel	presenter of the hotel
+universidad del moderador	University of the moderator
+conferenciante trabajador	worker lecturer
+tarjeta	card
+aeropuerto de la conferencia	Conference Airport
+furgoneta	Van
+incluye el cd de las actas para autores	It includes the cd of transcriptions for authors
+orador	speaker
+coctail de bienvenida	Welcome cocktail
+registro	registration
+tasas de registro para los no miembros	registration fees for non-members
+ciudad del patrocinador	City of sponsor
+estado en que tiene lugar la conferencia	State that the Conference takes place
+publicación	publication
+tasas del hotel	rates of the hotel
+no miembro de iasted	not member of iasted
+formulario de registro	registration form
+restaurante de la conferencia	restaurant of the Conference
+habitación doble	Double room
+equipo audiovisual	audio-visual equipment
+formulario de información sobre el autor	information about the author form
+presentación por vídeo	presentation video
+transparencia	transparency
+empresa del moderador	company of the moderator
+libro de las actas	the proceedings
+carta de invitación	Letter of invitation
+autobús de ida y vuelta	bus of round-trip
+fecha límite de reserva en el hotel	deadline for hotel booking
+investigación	Research
+dinero	money
+lista de correos	mailing list
+excursión de todo el día	all day excursion
+excursionista de la conferencia	hiker of the Conference
+patrocinador	sponsor
+tasas de autor, asistente y cd	author, Assistant rates and cd
+modelando	modeling
+estado	State
+actividad después de la conferencia	activity after the Conference
+fechado en	dated at
+está presente	is present
+utilizado para	used for
+hecho de	made of
+enviar	send
+preparar	prepare
+firmado por	signed by
+ocupado por	occupied by
+pasar por	pass by
+estar equipado por	be equipped for
+utilizado por	used by
+preparado por	prepared by
+tiene lugar después de	takes place after
+pagado en	paid in
+estar conectado con	be connected with
+firmar	sign
+pagado con	paid with
+estar designado por	be designated by
+se necesita para	is needed for
+enviado después de	sent after
+tiene lugar antes de	takes place before
+pagar	pay
+ocupar	deal with
+está presente en	is present in
+dado a	given to
+enviado por	sent by
+necesitar	need
+tiene cantida de	has amount of
+hacer hasta	make up to
+enviado antes de	sent before
+pagado por	paid by
+tiene lugar en	takes place in
+visitado por	visited by
+hablar en	speak in
+dar	To give
+escribir	To write
+obtener	get
+pagado para	paid for
+situado en	located in
+premio al mejor artículo de aplicaciones	Prize for the best paper on applications
+estudiante autor del artículo	Student author
+patrocinador de oro	Gold sponsor
+fecha límite de envío de resúmenes	deadline for abstract submission
+patrocinador de platino	Platinum sponsor
+exhibidor	Exhibitor
+presidente del programa	program chair
+patrocinador de plata	Silver sponsor
+premio	Award
+fecha límite de envío de artículos	deadline for submission of articles
+premio al mejor estudiante	Award for the best student
+fecha límite de notificación al autor	date of notification to the author
+patrocinador de bronce	Bronze Sponsor
+tasas de registro	registration fees
+patrocinador del premio al mejor artículo de un estudiante	sponsor of the prize for the best paper on a student
+acm sigkdd	ACM sigkdd
+autor del artículo	author of the article
+tasas del patrocinador	sponsor rates
+registro para estudiantes	registration for students
+tasas para miembros de sigkdd	rates for sigkdd members
+tasas para no miembros	rates for non-members
+premio al mejor artículo de investigación	the best research paper award
+comité de concesión del premio al mejor artículo	Committee for the best article award
+hotel	Hotel
+recibido por	received by
+buscar	To find
+enviar hasta	send up to
+puede quedarse en	You can stay in
+presentado por	presented by
+nombre del patrocinador	name of sponsor
+principio de la conferencia	beginning of the Conference
+recibir	receive
+premiado por	awarded by
+precio	price
+nombre de la conferencia	name of the Conference
+nación	nation
+final de la conferencia	end of the Conference
+buscado por	sought by
+notificación hasta el	notification to the
+diseñado por	designed by
+diseñar	design

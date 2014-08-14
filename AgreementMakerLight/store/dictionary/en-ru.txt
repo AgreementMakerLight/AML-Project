@@ -1,0 +1,703 @@
+person	человек
+meta review	Мета обзор
+full version of paper	Полная версия бумаги
+abstract of paper	Резюме доклада
+adminstrator	Администратор
+subject area	Предметная область
+external reviewer	внешний рецензент
+review	Обзор
+rejection	отказ
+meta reviewer	Рецензент мета
+decision	решение
+document	документ
+conference chair	Председатель Конференции
+co author	Автор Co
+preference	предпочтения
+associated chair	связанные стул
+member of program committee	Член программного комитета
+reviewer	Рецензент
+conference	Конференция
+chairman	Председатель
+paper	Бумага
+author who is not a reviewer	Автор, который не рецензента
+author	Автор
+program committee	Программный комитет
+chair of program committee	Председатель программного комитета
+acceptance	признание
+bid	ставка
+member of conference	член Конференции
+user	пользователь
+has title	имеет название
+reviews per paper	Отзывы на бумаге
+details entered by	сведения, введенные
+hardcopy of mailing manifests printed by	Отпечатано печатную копию рассылки манифесты
+read paper	читать документ
+written by	Автор
+set maximal number of assigned paper	задать максимальное количество назначенных бумаги
+submit paper	Отправить документ
+read by meta reviewer	читать мета рецензента
+has member	имеет член
+has name	имеет имя
+has website at url	имеет веб-сайт по URL-адресу
+has date	Дата
+maximal number of assigned papers	Максимальное количество установленных документов
+accepts hardcopy submissions	принимает печатных материалов
+has id	имеет идентификатор
+has logo at url	имеет логотип по URL-адресу
+has email	по электронной почте
+review criteria entered by	критерии обзора введенных
+mark conflict of interest	Марк конфликт интересов
+accepts	принимает
+assigned by reviewer	назначается рецензент
+start reviewer bidding	Начало торгов рецензент
+add	Добавить
+has bid	ставка
+assign	назначить
+rejected by	отклонено
+co written by	Co, написаны
+virtual meeting enabled by	виртуальные совещания, включаемые
+co write	записи Co
+added by	Добавил(а)
+has subject area	имеет предметной области
+paper assignment finalized by	Назначение документ доработан
+adjust	Отрегулируйте
+assigned by admin	назначен по администратора
+end reviewing time	конец анализа времени
+enter review criteria	Введите критерии обзора
+reject paper	отклонить документ
+read by reviewer	читать рецензента
+has been assigned	был назначен
+write paper	написать бумагу
+reviewer bidding started by	Рецензент торгов начал
+run paper asignmedt tools	Запуск бумажных asignmedt инструменты
+accepted by	принято
+has conflict of interest with respect to	имеет конфликт интересов в связи с
+assigned to	назначен
+enable virtual meeting	Включить виртуальное совещание
+enter details on	Введите информацию
+has been decided (to be accepted rejected )	принято решение (быть принято отклонено)
+print hardcopy mailing manifests	печать бумажных рассылки манифесты
+write review	написать обзор
+paper assignment tools run by	Бумага назначения инструменты в ведении
+finalize paper assignment	завершить назначение бумаги
+adjusted by	регулируется
+co chair	кресло Co
+invited talk	приглашенные talk
+first author of contribution	Автор первого взноса
+preference of reviewer	предпочтение рецензента
+call for paper	вызов для бумаги
+organization	Организации
+reviewed contribution	Обзор вклада
+applicant for conference who lately paid conference fee	Заявитель для Конференции, который в последнее время заработную плату конференции
+passive participant of conference	Пассивный участник конференции
+steering committee	Руководящий комитет
+active participant of conference	Активный участник конференции
+committee	Комитет
+poster	Плакат
+conference serie	Серия конференции
+conference document	документ Конференции
+publisher	Издатель
+member of committee	член Комитета
+co author of contribution	Автор Co вклада
+workshop	мастерская
+tutorial	Учебник
+camera ready version of contribution	камеры готовый вариант вклада
+extended abstract	Расширенный Реферат
+call for participation	призыв к участию
+information for participants	Информация для участников
+abstract	Аннотация
+invited speaker	приглашался для выступлений
+fee for conference	плата за конференции
+conference announcement	Анонс конференции
+applicant for conference	Заявитель для Конференции
+submitted contribution	представленные на сайте
+conference contribution	вклад Конференции
+organizer	Организатор
+proceedings of conference	Труды конференции
+track of conference	трек конференции
+rejected contribution	Отклоненные вклад
+important date	важная дата
+organizing committee	Организационный Комитет
+web of conference	веб-конференции
+written contribution	письменный вклад
+part of conference	часть конференции
+accepted contribution	принятые вклад
+contributor for conference	участник конференции
+topic	Тема
+chair of workshop track	Кафедра семинар трек
+expertise of reviewer	экспертиза рецензент
+applicant for conference who paid conference fee	Заявитель для Конференции, который заплатил Оргвзнос
+chair	стул
+participant of conference	участник конференции
+regular contribution	регулярные взносы
+presentation	Презентация
+applicant for conference who early paid conference fee	Заявитель для Конференции, которые раньше платили регистрационный взнос
+registered applicant	зарегистрированные заявителя
+author of contribution	Автор вклад
+is program committee of conference	это программный комитет Конференции
+submitted to	представлен
+has been assigned review preference	был назначен предпочтения обзор
+has committee chair	имеет Председатель Комитета
+is part of conference	является частью Конференции
+invites co reviewer	Рецензент co предлагает
+program committee of conference is	Программный комитет Конференции является
+is the first part of	Это первая часть
+is co chair of committee	является со-Председателем Комитета
+topic related to review preference	темы, связанной с рассмотрением предпочтения
+preference or expertise of review is	предпочтение или опыт обзора
+invited by reviewer	пригласил рецензента
+is workshop chair of	Это семинар кафедры
+has tutorial	Учебник
+has submitted contribution	представленные на сайте
+isbn of proceedings	ISBN разбирательства
+has surname	имеет фамилию
+published on date	Дата публикации на
+has first name	имеет имя
+date of full paper submission	Дата представления полный документ
+url of conference web is	URL-адрес веб-конференции
+date of camera ready submission	Дата готовности представления камеры
+terminal day	терминал день
+contributes to conference	вклад Конференции
+committee of conference is	Комитет Конференции
+important date of conference serie	важная дата конференции серии
+publishes	публикует
+makes presentation	делает презентацию
+has review	имеет обзор
+is organizing committee of conference	Организационный комитет Конференции
+has topic or submission contribution	Тема или представления вклад
+expertise degree of reviewer	экспертиза степени рецензента
+degree of review preference	степень предпочтения обзор
+has e mail	есть электронная почта
+has gender	имеет пола
+date of acceptance notification	Дата уведомления о принятии
+starting date	Дата начала
+location of conference	Место конференции
+date of abstract submission	Дата подачи тезисов
+volume number of proceedings	Объем количество дел
+organizing committee of conference is	Организационный комитет Конференции
+is member of	является членом
+is committee of conference	Комитет Конференции
+has part	имеет часть
+publisher of proceedings is	Издатель судопроизводства является
+has abstract	имеет абстрактный
+is chair of committee	является Председателем Комитета
+has track	имеет дорожки
+has workshop chair	Мастерская стул
+is steering committee of conference	Руководящий комитет Конференции
+has committee co chair	имеет Председатель Комитета co
+has contribution	вклад
+presented by	представлено
+has review expertise	имеет опыт обзора
+steering committee of conference is	Руководящий комитет Конференции
+has important date	важные даты
+has workshop topic	имеет тему семинара
+has workshop	мастерская
+is topic of conference part	Тема конференции часть
+preference or expertise of reviewer	предпочтения или опыт рецензента
+has author	имеет автора
+reviews contribution	вклад отзывов
+event of sending camera ready version	событие отправки камеры готова версия
+event	события
+contribution	вклад
+banquet	Banquet
+event of registration of participants event	событие регистрация участников мероприятия
+administrative event	Административные события
+event of reviewing results	событие обзора результатов
+short paper	короткие бумаги
+science worker	деятель науки
+student	студент
+volunteer of conference	Волонтер конференции
+regular participant of conference	Постоянный участник конференции
+country	страна
+trip	Путешествие
+city	город
+working event	рабочие события
+participant	участник
+social event	социальные события
+event of reviewing	событие обзора
+event of submission	событие представления
+student participant of conference	студент участник конференции
+company	Компания
+person involved with conference	лица, участвующие в Конференции
+university	Университет
+reception	прием
+assistent	Помощник
+administrator	Администратор
+participant of conference has early registration	участник конференции имеет ранняя регистрация
+has postal code	Почтовый код
+has remark	есть замечание
+follows	следует
+study at university	обучение в университете
+has relevant administrative event	имеет соответствующие административные мероприятия
+writes contribution	пишет вклад
+reviewes	смотры художественной
+written by author	Автор
+stay in country	пребывание в стране
+deals with topic	сделки с темой
+expert on topic	эксперт по теме
+is parallel with	параллельно с
+stay in city	пребывание в городе
+employed by	нанятые
+has topic	есть тема
+stay in street	остаться на улице
+end day of event	день окончания события
+has short title	имеет краткое название
+setting of maximal number of event	Установка максимального числа событий
+has fax	имеет Факс
+event is being held at	мероприятие проводится в
+has keywords	есть ключевые слова
+has valued added tax	оценила налог на добавленную стоимость
+has phone	есть телефон
+has contact email	контакт по электронной почте
+setting of default choice of number of event	Настройка по умолчанию выбор числа событий
+has home page	Домашняя страница
+starting day of event	день старта события
+setting of minimal number of event	параметр Минимальное количество событий
+ngo	НПО
+attendee	участника
+microelectronics topic	Тема микроэлектроники
+presentation of a paper	представление документа
+computer architecture topic	Тема архитектура компьютера
+personal publication history	Личная история
+coffee break	кофе-брейк
+communication theory topic	Тема теория коммуникации
+computer networks optical topic	Компьютерные сети оптических тема
+academic event	Научные события
+communications topic	Тема сообщения
+talk	Talk
+call for papers	Звонок для бумаг
+mobile computing topic	мобильные вычислительные тема
+operating systems topic	Тема операционных систем
+call for reviews	вызов для отзывов
+break	перерыв
+conference dinner	ужин
+mealtime	еды
+menu	меню
+personal history	Личная история
+computer networks measurements topic	компьютерных сетей измерений тема
+radio communications topic	Тема связи Радио
+review form	Форма обзора
+personal reviewing history	Личный обзор истории
+numerical review question	вопрос обзора численного
+satellite and space communications topic	Тема связи спутниковых и космических
+menu (meal)	меню (питание)
+withdrawn paper	выведены бумага
+accommodation	Проживание
+pending paper	ожидающие бумага
+contact information	Контактная информация
+test only topic	тест только темы
+antennas topic	Тема антенны
+cad topic	Тема CAD
+parallel and distributed computing topic	Тема параллельных и распределенных вычислений
+computer networks switching topic	Компьютерные сети, переключение темы
+welcome talk	Добро пожаловать talk
+meeting room	Конференц-зал
+conference session	сессии Конференции
+active paper	активный документ
+reject rating	отклонить рейтинг
+review rating	Обзор рейтинг
+place	место
+single level conference	Конференция одного уровня
+computer networks management topic	Тема управления компьютерных сетей
+computer networks security topic	Тема безопасности компьютерных сетей
+signal processing topic	Тема обработки сигнала
+government organization	Организации правительства
+multimedia topic	мультимедиа тема
+powerline transmission topic	Тема передачи Powerline
+non academic event	не научное мероприятие
+computer networks applications topic	Тема приложения компьютерных сетей
+wireless communications topic	Тема беспроводной связи
+closing talk	Закрытие talk
+session chair	Председатель сессии
+event related to a conference	события, относящиеся к Конференции
+travel grant	Тревел-грант
+computer networks topic	Тема компьютерных сетей
+rated paper	Рейтинг бумага
+excursion	Экскурсия
+presenter	ведущий
+industrial organization	промышленные организации
+free time	свободное время
+accept if room rating	Если номер рейтинг
+weak reject rating	слабые отклонения рейтинг
+performance topic	производительность тема
+textual review question	вопрос текстового обзора
+slide set	набор слайдов
+dining place	столовая место
+academic organization	академические организации
+accepted paper	принятые бумага
+computer networks sensor topic	Датчик тема компьютерных сетей
+call for manuscripts	вызов для рукописей
+computer networks enterprise topic	компьютерных сетей предприятия тема
+cryptography topic	Тема криптографии
+published paper	Опубликованный документ
+medicine topic	Тема медицины
+rejected paper	документ отклонен
+member of tpc	член tpc
+sponsorship	Спонсорство
+two level conference	два уровня Конференции
+accept rating	Примите рейтинг
+programme	Программа
+conference venue	место проведения Конференции
+call	вызов
+organizational meeting	организационное заседание
+meal	питание
+security topic	Тема безопасности
+review question	вопрос обзора
+is reviewed by	рассматривается
+is about paper	о бумаге
+is review history of	Обзор истории
+has program	имеет программу
+has attendee	имеет участника
+is topic of	Тема
+is initiated by	инициируется
+has related document	связанных документов
+has call	есть вызов
+has rating	имеет рейтинг
+is written by	написана
+is reviewing	пересматривает
+is location of	расположение
+has location	имеет место
+has review history	История обзор
+is provided by	обеспечивается
+is provider of	является поставщиком
+is menu of	меню
+has country	страна
+initiates	инициирует
+attendee at	участников
+belongs to event	принадлежит к событию
+relates to	относится к
+is presented in	представлены в
+conference manuscript date and time deadline	Конференции рукописи дату и время крайнего срока
+conference start date and time	Дата и время начала Конференции
+has biography	собственная биография
+has amount of cost	количество стоимость
+conference registration date and time deadline	срок Дата и время регистрации конференции
+has submission deadline	есть крайний
+has street	есть улица
+has end date and time	Дата окончания и времени
+has name (full name of conference)	имеет имя (полное название Конференции)
+has currency of cost	имеет валюты стоимости
+has start date and time	имеет дату и время начала
+conference end date and time	время и дату окончания Конференции
+has menu	меню
+writes	пишет
+for event	для события
+conference paper date and time deadline	Конференции бумаги дату и время крайнего срока
+has last name	имеет фамилию
+has submission instructions	имеет представления инструкции
+has city	город
+programme brochure	Брошюра программы
+flyer	Флаер
+oc chair	кресло OC
+negative review	отрицательный отзыв
+tutorial abstract	Учебник Реферат
+sc member	член СК
+conference banquet	конференц банкет
+invited talk abstract	приглашенные разговор Аннотация
+proceedings publisher	Издатель разбирательства
+industrial paper	промышленные бумаги
+possible reviewer	возможные рецензент
+oc member	член OC
+session	сессия
+organisation	Организация
+academic institution	научное учреждение
+evaluated paper	вычисленное бумага
+location	Местоположение
+conference trip	Конференции путешествие
+camera ready paper	камеры готовы бумага
+proceedings	разбирательства
+contributed talk	вклад ток
+regular paper	Обычная бумага
+pc member	член ПК
+organising agency	Организация агентства
+regular session	очередная сессия
+workshop session	сессии семинара
+tutorial chair	Учебник стул
+submitted paper	поступила бумага
+assigned paper	назначенные бумага
+workshop paper	Мастерская бумага
+neutral review	нейтральный отзыв
+conference participant	участник конференции
+poster paper	Бумага афишная
+conference paper	документ Конференции
+industrial session	промышленные сессия
+research topic	Тема исследования
+workshop chair	Семинар кафедры
+agency staff member	сотрудника Агентства
+pc chair	Председатель ПК
+multi author volume	Автор тома Multi
+track	трек
+positive review	положительный отзыв
+research institute	научно-исследовательский институт
+scientific event	Научные события
+early registered participant	ранние зарегистрированный участник
+demo paper	Бумага демо
+late registered participant	поздно зарегистрированный участник
+poster session	Постерная сессия
+demo chair	кресло демо
+paper author	Автор
+demo session	демо сессия
+individual presentation	отдельные презентации
+web site	веб-сайт
+conference proceedings	Труды конференции
+updated version of	обновленная версия
+presentation of paper	Презентация бумаги
+referenced in	ссылка в
+location of	расположение
+inverse of partof 7	Обратная часть 7
+hasevent	hasevent
+covers topic	охватывает темы
+review of paper	Обзор бумаги
+scientifically organises	научно организует
+topic covered by	темы, охватываемые
+reviewer of paper	Рецензент из бумаги
+references	ссылки
+organised by	организованный
+has reviewer	имеет рецензент
+review written by	Обзор написан
+technically organises	технически организует
+has updated version	обновил версию
+part of	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=3444.V2_Json.Translate.23A45C5B
+event on list	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=3444.V2_Json.Translate.23A45C9A
+held in	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=3444.V2_Json.Translate.23A45CCC
+volume contains paper	том содержит документ
+paper in volume	бумаги в объеме
+author of	Автор
+part of event	часть мероприятия
+publisher of	Издатель
+organises	организует
+scientifically organised by	научно организованная
+lists event	списки событий
+paper presented as	документ, представленный как
+technically organised by	технически организована
+social activity	социальная активность
+time	время
+activity of modelling	деятельность моделирования
+fee	плата
+hotel presenter	Ведущий отель
+activity of simulating	деятельность моделирования
+cheque	чек
+hotel fee	плата за отель
+currency	Валюта
+conference days	дни конференции
+state of the sponsor	состояние спонсора
+research activity	научно-исследовательская деятельность
+single hotel room	Однокомнатный номер
+conference airport	Аэропорт конференции
+conference registration form	бланк регистрации участника конференции
+payment document	платежный документ
+van	Ван
+item (in general)	элемент (в целом)
+technical activity	техническая деятельность
+student who is not a speaker	студент, который не является спикер
+activity of renting a car	деятельность аренды автомобиля
+activity	деятельность
+departure	Отъезд
+worker who is not a speaker	работник, который не является спикер
+deadline for the hotel reservation	Крайний срок для бронирования отеля
+full day tour	Тур на полный день
+city where the conference takes place	город, где проходит конференция
+presenter who presents only on one day	ведущий, который представляет только на один день
+value added tax	добавленную стоимость налогового
+conference hall	Конференц-зал
+dinner banquet	ужин banquet
+delegate (person registering and visiting the conference)	делегат (лицо регистрацию и посещение конференции)
+registration fee paid by an attending author for receiving proceedings as cd	Регистрационный взнос оплачивается участие автора для получения разбирательства как cd
+house of a presenter	Дом ведущий
+house of a company being a sponsor	дом компании спонсора
+building	здание
+transport vehicle	транспортное средство
+registration	регистрация
+city where a presenter comes	город, где ведущий приходит
+welcome speech	Приветственная речь
+coctail reception	коктейль-прием
+deadline	Крайний срок
+conference hotel	Конференц-отель
+conference building	конференционное здание
+taxi	такси
+final manuscript	окончательный вариант рукописи
+activity taking place after conference	деятельности после Конференции
+audiovisual equipment	аудиовизуальное оборудование
+book proceeding	Книга производства
+lcd projector	ЖК-проектор
+activity taking place during conference	действия происходят во время конференции
+activity of refusing a manuscript	деятельность отказа рукописи
+card	Карта
+car	автомобиль
+brief introduction for session chair	Краткое введение для сессии Председатель
+hotel registration form	Форма регистрации Гостиницы
+cd proceeding	производство CD
+amount of money	количество денег
+state of the presenter	состояние ведущий
+bank transfer	банковский перевод
+speaker giving a lecture in front of the plenum	спикер, давая лекции перед Пленум
+activity taking place before conference	деятельности до Конференции
+powerpoint presentation	Презентация PowerPoint
+author who will receive proceedings as book	Автор, который получит разбирательства как книга
+registration fee a non author	Регистрационный взнос не автор
+double hotel room	Двухместный номер
+delegate	Делегат
+university of a presenter	Университет, ведущий
+registration fee for a member	Регистрационный взнос за членом
+submission	представление
+city where a presenter comes from	город, где ведущий происходит от
+state	государство
+state where the conference takes place	государство, где проходит конференция
+technical committee	Технический Комитет
+deadline for submitting the camera ready script	Крайний срок подачи камеры готовый скрипт
+viza	виза
+lecture given by a speaker	лекции спикера
+session room	номер сессии
+introduction	Введение
+computer	компьютер
+registration fee	Регистрационный взнос
+city which is the location for a trip	город, который является местом для поездки
+fee for extra trip	плата за дополнительные поездки
+deadline for submiting	Крайний срок для завершения заполнения
+lecture	Лекция
+student lecturer	преподаватель студент
+shuttle bus	автобус
+hotel room	номер отеля
+sponsor	Спонсор
+city where a sponzor comes	город, где происходит sponzor
+initial manuscipt	начальный manuscipt
+lecturer	Лектор
+registration fee paid by an attending author for receiving proceedings as book	Регистрационный взнос оплачивается участие автора для получения разбирательства как книга
+conference restaurant	Ресторан конференции
+activity of accepting a manuscript	активность принятия рукописи
+author who will receive proceedings as cd	Автор, который получит разбирательства как cd
+not member of iasted	не член iasted
+item	пункт
+departure tax	Выезд налог
+one conference day	один день
+plenary lecture	пленарные лекции
+listener	слушатель
+deadline for registration	Крайний срок для регистрации
+worker lecturer	работник лектор
+main office	Главный офис
+credit card	Кредитная карта
+invitation letter	Письмо-приглашение
+video cassette player	видео магнитофон
+member of iasted	член iasted
+conference hiker	Конференция путешественников
+mailing list	список рассылки
+video presentation	Видео-презентация
+activity of receiving a manuscript	деятельность получения рукописи
+city where a sponzor comes from	город, откуда sponzor
+registration fee for a non member	Регистрационный взнос для не являющихся членами
+introduction of speaker	внедрение в спикера
+non speaker	не оратор
+speaker who presents a tutorial	спикер, который представляет учебник
+tip	Подсказка
+registration fee for a student	Регистрационный взнос для студента
+form	форма
+tax	налог
+overhead projector	Оверхед-проектор
+speaker	спикер
+time zone	Часовой пояс
+deadline for notification of acceptance	срок для уведомления о принятии
+day assigned for a trip	день, назначенный для поездки
+record of attendance	рекорд посещаемости
+any kind of document	любой вид документа
+author information form	форма информации автор
+sponzorship	спонсирования
+publication	публикации
+overhead transparency	Накладные прозрачности
+is needed for	необходима для
+goes through	проходит через
+is present in time	присутствует во время
+is sent by	Прислал
+is connected with	Это связано с
+is occupied by	занята
+obtains	Получает
+is locally situated in	локально расположен в
+pays	платит
+signs	знаки
+is present in time or space	присутствует во времени или пространстве
+is paid with	выплачивается с
+speaks at time or in place	говорит на время или на месте
+is given by	дается
+is paid in	выплачивается в
+is designed for	предназначен для
+sends	посылает
+is made from	производится из
+is prepared by	подготовлен
+is equipped for	оборудован для
+gives	дает
+is held before	проводится до
+is signed by	подписывается
+is used for	используется для
+is held after	проводится после
+needs	потребности
+is paid by	оплачивается
+is visited by	посещают
+occupies (lives resides)	занимает (жизнь проживает)
+is sent before	отправляется перед
+is sent after	отправляется после
+is held in	проводится в
+is paid for	выплачивается за
+is used by	используется
+is dated on	датировано
+prepares	готовит
+is given to	отдается
+has amount of	количество
+to be done till	чтобы быть до сих
+sponzor for best student paper	sponzor для лучших студентов бумаги
+author of student paper	Автор документа студента
+award for conference paper	Премия за документ
+chair of conference	Председатель Конференции
+listener of conference	слушатель конференции
+committee for best paper awards	Комитет для наград Лучший бумаги
+program chair	программы кафедры
+platinum sponzor of conference	Платина sponzor конференции
+organizator of conference	Организатор конференции
+silver sponzor of conference	Серебряный sponzor конференции
+registration fee for person not being member of sig	Регистрационный взнос за лицо, не являющееся членом sig
+registration fee for student	Регистрационный взнос для студентов
+conference acm sigkdd	Конференции acm sigkdd
+deadline of paper submission	Крайний срок подачи бумаги
+member of organizing committee	Член организационного комитета
+sponzor fee	sponzor плата
+main office of conference	Главный офис конференции
+conference fee	Организационный взнос
+registration fee for member of sigmod	Регистрационный взнос для членов sigmod
+deadline of author notification	срок уведомления автора
+webmaster	для веб-мастеров
+abstrakt	Abstrakt
+author of paper	Автор документа
+sponzor	sponzor
+registration fee for member of sigkdd	Регистрационный взнос для членов sigkdd
+award for best student paper	приз за лучший студенческий документ
+sponzor as exhibitor	sponzor как экспонент
+deadline of abstract submission	Крайний срок подачи тезисов
+bronze sponzor of conference	Бронзовый sponzor конференции
+gold sponzor of conference	Золотая sponzor конференции
+award for best research paper	Премия за лучшее исследование
+award for best application paper	Премия за лучшее применение бумаги
+hall of conference	зал конференции
+person active at conference	человек, активных на Конференции
+hotel	Отель
+has price	имеет цену
+has sponzor name	sponzor имя
+date of final day of conference	Дата последнего дня Конференции
+conference takes place in city	Конференция проходит в городе
+has name of conference	имеет имя конференции
+has nationality	имеет гражданство
+registration fee is in currency	Регистрационный взнос составляет в валюте
+has award	имеет награды
+registration fee paid by	Регистрационный взнос оплачивается
+set up deadline	установить крайний срок
+has deadline for submission	есть крайний срок для представления
+awarded by	награжден
+sponzor are called by	sponzor вызываются
+paid registration fee	Оплаченный регистрационный взнос
+call for sponzor	призыв sponzor
+was presented by	был представлен
+presents document	представляет документ
+stay in	проживание в
+organize conference	организовать конференцию
+submit of paper	Отправить бумаги
+obtained award	Полученные награды
+set up deadline for	установить крайний срок для
+conference organized by	Конференция, организованная
+date of starting day of conference	Дата начала день конференции

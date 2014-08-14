@@ -1,0 +1,690 @@
+programový výbor	Programma Comité
+dokument	document
+autor	de auteur van de
+administrátor	Beheerder
+článek	Artikel
+rozhodnutí	het besluit van de
+osoba	de persoon
+spoluautor	mede-auteur
+zamítnutí	de afwijzing van
+preference	voorkeuren
+meta-recenzent	Meta-revisor
+předmětná oblast	het gebied in kwestie
+řádný článek	een echt artikel
+předseda programového výboru	de Voorzitter van het programmacomité
+recenzent	Revisor
+autor který není recenzent	de auteur is niet een revisor
+osoba s účastí na konferenci	de persoon met de deelname aan de conferentie
+předseda	de Voorzitter van de
+krátký článek	een kort artikel
+externí recenzent	externe revisor
+uživatel	gebruiker
+recenze	Beoordelingen
+vyjádření zájmu	expressie van belang
+meta-recenze	Meta-beoordelingen
+konference	Conferentie
+přijetí	de aanneming van de
+spolupředseda	Co-voorzitter van de
+člen programového výboru	Lid van het programmacomité
+předseda konference	de Voorzitter van de conferentie
+člen konference	Lid van de conferentie
+přidán člen programového výboru	toegevoegd lid van het programmacomité
+odeslání článku	Submit een artikel
+má vyjádření zájmu	de expressie van belang
+přidělen meta-recenzent recenzentovi	toegewezen aan de meta-revisor revisor
+upravit vyjádření zájmu	Bewerk de expressie van belang
+článek napsal	Artikel geschreven door
+přidělen recenzent administrátorovi	de revisor is toegewezen aan de beheerder
+nástroj pro přídělení příspěvků spuštěn kým	přídělení instrument voor bijdragen gelanceerd door
+zahájil vyjadřování zájmu recenzentů	reacties van belangstellenden gelanceerd de revisoren
+zamítnut kým	verworpen door
+spoluautor příspěvku	mede-auteur van de bijdrage van
+podrobnosti vloženy kým	de gegevens ingevoerd door
+zadání kritérií recenzí kým	Voer criteria die beoordelingen
+přiděleno recenzentovi	die aan een revisor zijn toegewezen
+označil konflikt zájmu	genaamd het belangenconflict
+článek přečten recenzentem	artikel lezen revisor
+přidělen recenzent	een revisor toegewezen
+dokončit přidělení příspěvků konference	om te voltooien de verdeling van de bijdragen aan de conferentie
+má člena konference	heeft een lid van de conferentie
+vyjádření zájmu upraveno	expressie van belang door
+přidělení příspěvků dokončeno kým	de verdeling van de bijdragen die voltooid
+má spoluautora	mijn mede-auteur
+článek přečten meta-recenzentem	artikel gelezen meta-revisor
+má rozhodnutí	het besluit van de
+má konflikt zájmu s příspěvkem	heeft een belangenconflict met de bijdrage van de
+pojednává o tématu	het onderwerp bespreekt
+spustil přidělování článků konference	de toewijzing van conferentie artikelen verlaagd
+napsal článek	schreef het artikel
+recenze napsána kým	beoordeling geschreven door
+má člena programového výboru	is een lid van het programmacomité
+recenzuje článek	artikel beoordelingen
+napsal recenzi	schreef een recensie
+uzavřít recenzi	tot slot de herziening
+vložit podrobnosti konference	De details van de conferentie invoegen
+umožnit virtuální schůzku konferenci	virtuele vergaderingen conferentie inschakelen
+akceptovány příspěvky konference pro tisk	aanvaarde bijdragen van de Conferentie om af te drukken
+článek má název	het artikel heeft een naam
+má email	mijn e-mail
+článek má id	het artikel heeft een id
+čte článek	Lees het artikel
+přijato kým	Wie heeft ontvangen
+přidělení členů programového výboru administrátorem	de toewijzing van leden van het directiecomité door de beheerder
+zamítnul článek	geweigerde artikel
+virtuální schůzka konference umožněna kým	virtuele vergadering conferentie mogelijk gemaakt door
+vložit kritéria recenze	Invoegen van een herziening van de criteria
+vyjadření zájmu spuštěno kým	vyjadření belang veroorzaakt door
+přidělen externí recenzent	toegewezen aan een externe revisor
+brožury vytištěny kým	brochures gedrukt door
+tisk brožur konference	boekje afdrukken conferenties
+přijal článek	aanvaarde artikel
+přidat člena programového výboru	een lid van het Comité programma toevoegen
+nastavil maximální počet recenzí	instellen van het maximum aantal beoordelingen
+logo konference má url	het logo van de conferentie heeft een url
+konference má recenzí na článek	de conferentie heeft beoordelingen op artikel
+má jméno	mijn naam
+datum konference	de datum van de conferentie
+webová stránka konference má url	de conferentie heeft de url van een webpagina
+dokument konference	het document van de conferentie
+pozdně přihlášený zájemce o konferenci	laat in de leiding over de conferentie
+zvaná přednáška	uitgenodigde Hoorcollege
+organizační výbor	Organisatie-comité
+člen výboru	Lid van de Commissie
+přijatý příspěvek	ontvangen per post
+konferenční příspěvek	Conferentie-bijdrage
+konferenční oznámení	Conferentie aankondiging
+rozšířený abstrakt	uitgebreide abstract
+registrovaný zájemce o konferenci	geregistreerde kandidaten over de conferentie
+prezentace	presentatie
+přihlášený zájemce o konferenci	vastgelegd in de leiding over de conferentie
+zamítnutý příspěvek	een geweigerde post
+účastník konference	deelnemer van de conferentie
+sborník konference	werkzaamheden van de conferentie
+pasivní účastník konference	passieve deelnemer van de conferentie
+poslaný příspěvek	verzonden via de post
+hlavní autor příspěvku	de belangrijkste auteur van de bijdrage
+abstrakt	Abstract
+sekce konference	sectie conferentie
+kamera-ready verze příspěvku	drukklaar versie van de bijdrage
+vydavatel	Uitgever
+tutoriál	zelfstudie
+řádný příspěvek	een goede post
+odbornost experta	de expertise van de expert
+řídící výbor	het Comité van beheer
+časně přihlášený zájemce o konferenci	vroeg in de leiding over de conferentie
+poster	poster
+organizace	Organisatie
+řádný autor příspěvku	juiste Auteur bijdrage
+informace pro účastníky	informatie voor deelnemers
+konferenční poplatky	Conferentie vergoedingen
+recenzovaný příspěvek	peer post
+výzva k účasti na konferenci	oproep voor deelname aan de conferentie
+organizátor	de organisator van de
+výbor	het Comité van de
+důležité termíny	belangrijke datums
+preference experta	expert voorkeuren
+workshop	Workshop
+téma	thema
+konferenční akce	Conferentie actie
+výzva na psaní článku	oproep tot het schrijven van het artikel
+zájemce o konferenci	Wie geïnteresseerd is in de conferentie
+psaný příspěvek	geschreven bericht
+aktivní účastník konference	een actieve deelnemer van de conferentie
+webové stránky konference	website van de conferentie
+přispěvatel konference	Conferentie Inzender
+předseda workshopu	de Voorzitter van de workshop
+zvaný přednášející	genaamd de docent
+má tutoriál	mijn tutorial
+být programovým výborem konference	worden de programmering van het Comité van de conferentie
+pozvat spolurecenzenta	uitnodigen spolurecenzenta
+má workshop	mijn atelier
+být předsedou workshopu čeho	de Voorzitter van de workshop, wat
+posláno kam	waar Gepost
+má člena	is een lid van de
+má recenzní posudek	Mijn beoordeling getuigenis
+důležitý den konference	een belangrijke dag van de conferentie
+prezentoval	presenteerde de
+být organizačním výborem konference	het organisatiecomité van de conferentie worden
+konference má řídicí výbor	Conferentie Steering Committee
+být výborem konference	worden Conferentiecommissie
+být řídicím výborem konference	worden conferentie Steering Committee
+má předsedu workshopu	de Voorzitter van de workshop
+tématem nebo odeslaným příspěvkem je	het thema van de bijdrage wordt verzonden of
+přispěl konferenci	bijgedragen aan de conferentie
+konference má výbor	de Conferentiecommissie heeft
+být předsedou výboru	de Voorzitter van de Commissie worden
+má téma workshopu	het thema van de workshop
+recenzuje příspěvek	Beoordelingen post
+téma sekce konference	het thema van de conferentie-sectie
+částí konference	onderdeel van de conferentie
+má část	mijn deel van de
+má abstrakt	Het heeft een abstract
+preference nebo odbornost recenzenta	voorkeur of expertise van de revisor
+téma svázané s preferovaným tématem	thema gebonden aan het gewenste thema
+být členem výboru	een lid van de Commissie worden
+konference má programový výbor	Conferentie programma Comité
+publikuje	publiceert de
+má sekci	heeft een sectie
+má příspěvek	mijn post
+byl přiřazen zájem recenzenta	Hij werd toegewezen aan van de revisor belang
+preference či odbornost koho	voorkeur of expertise die
+má důležitý den	heeft een belangrijke dag
+prezentováno kým	gepresenteerd door
+má odeslaný příspěvek	heeft een bijdrage te leveren
+má  recenzi	Mijn review
+má spolupředsedu výboru	de Commissie heeft
+první částí dokumentu	het eerste deel van het document
+být spolupředsedou výboru	Als een co-voorzitter van de Commissie
+konference má organizační výbor	de conferentie Organiserend Comité heeft
+číslo svazku sborníku	het volumenummer van congresverslagen
+má název	heeft een naam
+příjmení	achternaam
+pohlaví	geslacht
+má autora	de auteur heeft
+pozván recenzentem	uitgenodigde revisor
+vydavatelem sborníku je	de uitgever van de procedure is
+má předsedu výboru	de Voorzitter van de Commissie
+stupeň preference recenze	de mate van voorkeur beoordelingen
+url webových stránek konference	URL van de website van de conferentie
+publikováno dne	Gepost op
+den odeslání řádného příspěvku	datum van verzending van de goede bijdrage
+křestní jméno	voornaam
+místo konání konference	de locatie van de conferentie
+počáteční den	Start van de dag
+finální den	de laatste dag
+stupeň odbornosti recenzenta	de graad van professionalisme van de revisor
+den odeslání abstraktu	datum van verzending van de abstract
+isbn sborníku	ISBN anthology
+den oznámení přijetí příspěvku	datum van kennisgeving van de aanneming van de bijdrage
+e-mail	E-mail
+den odeslání kamera-ready verze příspěvku	datum van verzending van de drukklaar versie van de bijdrage
+aktivita poslání kamera-ready verze	de activiteit van de missie van de drukklaar versie
+aktivita recenzování	activiteit beoordeling
+raut	raut
+osoba s podílem na konferenci	een persoon met een aandeel van de conferentie
+společenská událost	sociaal evenement
+událost	gebeurtenis
+banket	Feestzaal
+výlet	reis
+pracovní aktivita	werkterrein
+administrativní aktivita	administratieve activiteit
+ředitel programového výboru	de directeur van het programmacomité
+příspěvek	Verzenden
+asistent	Assistent
+aktivita zaslání příspěvku	activiteit boekt
+student	student
+aktivita recenzování výsledků	Bekijk de resultaten van de activiteit
+firma	bedrijf
+město	Stad
+dobrovolník	vrijwilligers
+aktivita registrace účastníků	activiteit registratie van deelnemers
+vědecký pracovník	wetenschappelijke werknemer
+řádný účastník konference	regelmatige deelnemer van de conferentie
+účastník	deelnemer
+stát	Staat
+univerzita	Universiteit
+studentský účastník konference	student deelnemer van de conferentie
+následuje	gevolgd door de
+studuje na univerzitě	studie aan de Universiteit
+sídlí v zemi	gelegen op het platteland
+recenzuje	Beoordelingen
+být expertem na téma	een expert op het onderwerp van
+týká se	betrekking heeft op de
+zaměstnán	in dienst
+sídlí ve městě	gelegen in de stad
+byl napsán autorem	Het werd geschreven door de auteur
+napsal příspěvek	schreef een post
+související administrativní aktivita	Verwante administratieve activiteit
+probíhá paralelně s	plaatsvindt in parallel met de
+událost má umístění	het evenement heeft de locatie
+sídlí v ulici	gelegen in de straat
+obsahuje abstrakt	bevat abstract
+má domovskou stránku	mijn home page
+má zdanění	de belasting op
+nastavení maximálního počtu událostí	instellen van het maximum aantal gebeurtenissen
+událost končí v den	het evenement eindigt op de dag
+má stručný název	heeft een korte naam
+klíčová slova příspěvku jsou	sleutelwoorden zijn
+název příspěvku	de naam van de post
+směrovací číslo	bewerkingsplannummer
+úvodní den události	openingsdag van het evenement
+má kontaktní adresu	mijn contactadres
+účastník konference má včasnou registraci	deelnemer aan de conferentie vroege registratie
+křestní jméno osoby je	de voornaam van de persoon is
+příjmení osoby	iemands achternaam
+nastavení implicitní volby počtu aktivit	instellen van de standaardkeuze van het aantal activiteiten
+má telefon	mijn telefoon
+nastavení minimálního počtu událostí	het minimale aantal gebeurtenissen instellen
+má fax	mijn fax
+poznámka	Opmerking
+téma antén	het onderwerp van antennes
+téma počítačová architektura	het thema van computerarchitectuur
+téma operačních systémů	het thema van besturingssystemen
+konferenční událost	Conferentie gebeurtenis
+výzva na posílání příspěvků	de uitdaging voor het verzenden van bijdragen
+hodnocený příspěvek	nominale post
+téma satelitní a vesmírné komunikace	het onderwerp van satelliet en ruimte communicatie
+hodnocení slabé zamítnutí	evaluatie van de afwijzing van de zwakke
+přednáška	Hoorcollege
+téma radiové komunikace	het thema van de radiocommunicatie
+místo konání večeře	de locatie van het diner
+autor prezentující příspěvek	de auteur presenteren de bijdrage
+akceptovaný příspěvek	geaccepteerde bericht
+uzavírající přednáška	Hoorcollege sluiten
+oběd	lunch
+neakademická událost	neakademická, gebeurtenis
+téma multimedií	onderwerp multimedia
+cad téma	CAD-thema
+tématické okruhy	gebied van onderzoek
+téma sensorické počítačové sítě	het thema van sensorické computernetwerken
+akademická událost	academische gebeurtenis
+textová recenzní otázka	tekst beoordeling vraag
+recenze příspěvku	beoordeling van de bijdrage
+výzva na posílání článků	de uitdaging voor het verzenden van artikelen
+téma komunikační teorie	het thema van communicatietheorie
+místo	in plaats van de
+přestávka	pauze
+jídelní menu	diner menu
+hodnocení přijetí	Gast ontvangst
+recenzní formulář	formulier voor evaluatie van
+téma mikroelektroniky	het thema van de micro-elektronica
+prezentace příspěvku	presentatie van de bijdrage
+přestávka na kávu	koffiepauze
+akademická organizace	academische organisatie
+téma optické počítačové sítě	het thema van de optische netwerk
+jednoúrovňová konference	een van de conferentie
+téma lékařství	het thema van de geneeskunde
+kontaktní informace	contact informatie
+místo ubytování	plaats van de accommodatie
+aktivní příspěvek	de actieve bijdrage
+téma počítačové sítě a přepínače	het thema van computernetwerken en schakelaars
+konferenční večeře	Conferentie diner
+numerická recenzní otázka	numerieke evaluatie vraag
+téma počítačové sítě a aplikace	het thema van computernetwerken en toepassingen
+výzva na posílání recenzí	de uitdaging voor het verzenden van beoordelingen
+cestovní grant	reisbeurs
+nevládní organizace	niet-gouvernementele organisaties
+téma šifrování	het onderwerp van codering
+konferenční sekce	Conferentie sectie
+exkurze	excursies
+sponzorování	sponsoring
+program konference	het programma van de conferentie
+komunikační téma	het thema communicatie
+průmyslová organizace	Industriële organisatie
+téma podnikové počítačové sítě	het thema van het corporate computernetwerk
+hodnocení podmíněné přijetí	evaluatie van voorwaardelijke aanvaarding
+zasedací místnost	vergaderzaal
+téma měření počítačových sítí	het thema van de meting van computernetwerken
+osobní historie publikací	persoonlijke geschiedenis publicaties
+vládní organizace	gouvernementele organisatie
+zahajující přednáška	initiatiefnemende Hoorcollege
+téma mobilních počítačů	het onderwerp van mobiele computers
+stáhnutý příspěvek	gedownloade bericht
+publikovaný příspěvek	de gepubliceerde post
+země	land
+výzva	uitdaging
+hodnocení recenze	Beoordelingen
+organizační setkání	organisatie-vergadering
+téma napajení a přenosu	het thema van napajení en overdracht
+téma bezdrátové komunikace	het onderwerp van draadloze communicatie
+téma paralelního a distribuovaného počítačového zpracování	het thema van parallelle en gedistribueerde computing
+člen technického programového výboru	Lid van het technische programma Comité
+osobní historie recenzí	persoonlijke geschiedenis beoordelingen
+recenzní otázka	Review vraag
+dvouúrovňová konference	Conferentie 2-niveau
+recepce	Receptie
+hodnocení zamítnutí	evaluatie van de afwijzing van de
+téma bezpečnosti	het onderwerp van de veiligheid
+téma správa počítačových sítí	het thema van het beheer van computernetwerken
+téma počítačové sítě	het thema van computernetwerk
+nerozhodnutý článek	onbeslist het artikel
+osobní historie	persoonlijke geschiedenis
+přestávka na jídlo	maaltijd pauze
+téma zpracování signálu	het onderwerp van signaalverwerking
+vedoucí sekce	Hoofd van de sectie
+téma měření výkonnosti	het thema van prestatiemeting
+téma bezpečnost počítačových sítí	het onderwerp van de beveiliging van computernetwerken
+téma testování	het onderwerp van het testen
+volný čas	Vrije tijd
+místo pořádání konference	in plaats van het organiseren van de conferentie
+telefon	telefoon
+datum a čas zahajujícího dne konferenční události	datum en tijdstip van de opening van de gebeurtenissen van de dag koffie
+ulice	Straat
+částka sponzorského daru	het bedrag van de donatie
+měna sponzorského daru	donatie valuta
+termín registrace na konferenci	de termijn van inschrijving voor de conferentie
+patří k události	Het behoort tot de gebeurtenis
+koná se v zemi	Het vindt plaats in het land
+má hodnocení	mijn beoordelingen
+týká se čeho	met betrekking tot
+výzva zahájena kým	de uitdaging gelanceerd door
+termín zvěřejnění konferenčního dokumentu	datum van publicatie van het document van de conferentie
+koná se na místě	Het vindt plaats ter plaatse
+napsal	schreef
+výzva na událost	uitnodiging aan de gebeurtenis
+je prezentován čím	Wat wordt gepresenteerd
+prezentuje přijatý příspěvek	geschenken ontvangen per post
+poskytuje sponzorování	biedt sponsoring
+je místem konferenční události	is de plaats van conferentie-evenementen
+má výzvu	Mijn uitdaging
+má jídelní menu	menu heeft
+je tématem čeho	Wat is het thema van
+je recenzní historií koho	is de geschiedenis van de beoordeling van die
+má program	het programma heeft
+sponzorování je poskytnuto organizací	sponsoring wordt verzorgd door
+má téma	Mijn thema
+má účastníka	de deelnemer heeft
+je členem konference	is een lid van de conferentie
+má recenzní historii	te herzien van de geschiedenis van de
+účastní se	deelnemen aan de
+jídelní menu události	menu gebeurtenissen
+je napsán autorem	Het is geschreven door de auteur
+je recenzí čeho	Wat is de review
+zahajuje výzvu	lanceert de uitdaging
+má související dokument	een verwant document heeft
+datum a čas zahajujícího dne konference	datum en tijd van de openingsdag van de conferentie
+termín poslání příspěvku	de bijdrage van de missie van de term
+instrukce poslání příspěvku	de missie van de post-instructie
+biografie osoby	de biografie van de persoon
+úplný název konference	de volledige naam van de conferentie
+datum a čas závěrečného dne konferenční události	de datum en tijd van de laatste dag van de conferentie-evenementen
+datum a čas závěrečného dne konference	de datum en tijd van de laatste dag van de conferentie
+termín zvěřejnění příspěvku	datum van bekendmaking van de bijdrage
+poštovní směrovací číslo	Postcode
+email	E-mail
+vybraný příspěvek	de geselecteerde post
+předseda workshopů	de Voorzitter van de workshops
+industriální sekce	industriële sectie
+účastník zaregistrovaný za pozdní vložné	belangrijkste deelnemer vergoeding voor late
+industriální příspěvek	de industriële post
+abstrakt tutoriálu	abstracte tutorial
+předsedající sekce	Voorzitter sectie
+ohodnocený příspěvek	nominale post
+sborník	de werkzaamheden van de
+vysoká škola	middelbare school
+předseda sekce demonstrací	de Voorzitter van de afdeling van de demonstratie
+sekce workshopu	de sectie van de workshop
+brožura s programem	een brochure met het programma
+příspěvek k demonstraci	bijdrage aan de demonstratie
+sekce posterů	poster sectie
+sekce demonstrací	sectie demonstraties
+výzkumné téma	onderzoek een onderwerp
+zvaný řečník	genaamd spreker
+výzkumný ústav	Onderzoeksinstituut
+příspěvek na konferenci	bijdrage aan de conferentie
+abstrakt zvané přednášky	een samenvatting van de uitgenodigde besprekingen
+standardní sekce	een standaardsectie
+akademická instituce	academische instelling
+přednášející	Docent
+příspěvek k posteru	bijdrage aan de poster
+leták	bijsluiter
+negativní recenze	negatieve beoordelingen
+předseda organizačního výboru	Voorzitter van het Organiserend Comité
+společenský program	sociaal programma
+pozitivní recenze	positieve beoordelingen
+předseda tutoriálů	de Voorzitter van de tutorials
+člen organizačního výboru	Lid van het Organiserend Comité
+účastník zaregistrovaný za časné vložné	de deelnemer geregistreerd voor vroegtijdige vergoeding
+konferenční výlet	Conferentie reis
+pořádající agentura	het organiserende agentschap
+sekce	sectie
+standardní příspěvek	gewone post
+přiřazený příspěvek	toegewezen aan de post
+jednotlivá prezentace	de individuele presentatie
+příspěvek na workshop	bijdrage aan de workshop
+vydavatel sborníku	de uitgever van de procedure
+pracovník pořádající agentury	werknemer organiserende agentschap
+víceautorský svazek	víceautorský volume
+odborná událost	professioneel evenement
+neutrální recenze	neutrale beoordelingen
+webová stránka	Web-pagina
+podaný příspěvek	ingediend per post
+člen řídícího výboru	Lid van het Comité van beheer
+finální verze příspěvku	de definitieve versie van de bijdrage
+možný recenzent	mogelijk revisor
+autor příspěvku	de auteur van de bijdrage
+napsáno kým	Geplaatst door die
+inverse of partof 7	de inverse van een deel van 7
+je součástí	Het is onderdeel van
+odborně organizuje	professioneel georganiseerd
+odkazuje na	verwijst naar de
+má součást	maakt deel uit van de
+technicky organizováno kým	technisch, georganiseerd door de die
+pokrývá téma	dekt het thema 's
+je součástí události	Het is onderdeel van de gebeurtenis
+má aktualizaci	Mijn update
+referuje o události	verslagen over de gebeurtenissen
+odborně organizováno kým	professioneel georganiseerd door
+příspěvek ve svazku	post in het volume
+událost uvedena na	de gebeurtenis vermeld op de
+je místem konání	is de locatie
+má recenzenta	revisor heeft
+recenzent příspěvku	Revisor bijdrage
+konáse v	konáse in
+odkazován v	waarnaar wordt verwezen in de
+má recenzi	Mijn review
+je aktualizací	is een update
+svazek obsahuje příspěvek	het volume bevat een post
+je autorem	Hij is de auteur
+organizuje	organiseert
+organizováno kým	georganiseerd door de die
+téma pokryto čím	het onderwerp aan bod door de
+je vydavatelem	de uitgever is
+technicky organizuje	technisch, organiseert
+obsahuje událost	de gebeurtenis bevat
+příspěvek prezentován jako	post gepresenteerd als
+bankovní převod	Bankoverschrijving
+poplatek za výlet navíc	Bovendien, de vergoeding van de reis
+neprezentující pracovník	neprezentující werknemer
+konferenční budova	Conferentie gebouw
+registrační poplatek pro člena konference	het inschrijvingsgeld voor een lid van de conferentie
+pokonferenční aktivita	na conferentie activiteit
+publikace	publicaties
+měna	valuta
+konferenční hotel	Conferentiehotel
+plenární přednášející	plenaire vergadering docenten
+přednáška přednášejícím	Hoorcollege docent
+šek	selectievakje
+aktivita přijímaní příspěvku	activiteit bijdrage ontvangen
+univerzita prezentujícího	Universiteit van prezentujícího
+aktivita	activiteit
+dům prezentujícího	Huis prezentujícího
+jednodenní prezentující	eendaagse presenteren
+poplatek	vergoeding
+aktivita simulace	simulatie activiteit
+zvací dopis	Brief van uitnodiging
+výletní město	Cruise de stad
+hotelový uvaděč	Hotel usher
+země konference	de land-conferenties
+termín podání verze pro tisk	uiterste datum voor indiening van gedrukte versie
+konferenční aktivita	Conferentie activiteit
+výzkumná aktivita	onderzoeksactiviteit
+spropitné	Tip
+sponzor	sponsor
+časové pásmo	timezone
+registrační poplatek pro nečlena konference	het inschrijvingsgeld voor niet-leden in de conferentie
+celodenní výlet	dagtocht
+autor, který obdrží sborník na cd	de auteur, die de Conference proceedings op cd ontvangt
+přednášející pracovník	Docent-onderzoeker
+předkonferenční aktivita	pre-conferentie activiteit
+hotelová místnost	de hotelkamer
+dům sponzora	Huis sponsor
+peněžní částka	het bedrag aan contanten
+představení	optredens
+nečlen konference iasted	een lid van de iasted conferentie
+hotelový poplatek	Hotel vergoeding
+auto	auto
+město sponzora	Stad sponsor
+konferenční hala	Conferentie zaal
+město prezentujícího	Stad prezentujícího
+registrační poplatek pro neautora	het inschrijvingsgeld voor neautora
+registrace na konferenci	registratie voor de conferentie
+informační formulář pro autora	informatieformulier voor de auteur
+aktivita zamítnutí příspěvku	de activiteit van de afwijzing van de bijdrage
+dny konference	de dagen van de conferentie
+prezentační slajdy	presentatie dia 's
+budova	gebouw
+mikrobus	minibus
+termín oznámení o přijetí	de term kennisgeving van aanvaarding
+autor, který obdrží tištěný sborník	de auteur, die de afgedrukte procedure ontvangt
+uvodní verze příspěvku	Huis versies van de bijdrage
+stručné představení vedoucímu sekce	korte inleiding tot de head-sectie
+formulář	formulier
+hotelový registrační formulář	het hotel registratieformulier
+přepravní postředek	vervoer postředek
+konferenční den	Conferentiedag
+powerpointová prezentace	PowerPoint-presentatie
+artikl	Artikel
+termín	de term
+registrační poplatek	de registratieprijs
+člen konference iasted	de iasted conferentie
+čas	tijd
+místnost konferenční sekce	Conferentie kamer sectie
+společenská aktivita	sociale activiteit
+počítač	computer
+večerní banket	's avonds feestzaal
+účastník konference?	deelnemer van de conferentie?
+sborník na cd	Congresverslagen op cd
+technická aktivita	technische activiteit
+jednolůžkový hotelový pokoj	één hotelkamer
+neprezentující student	neprezentující student
+aktivita modelování	activiteit modellering
+sponzorský dar	sponsoring
+taxi	taxi
+odjezd	het vertrek van de
+aktivita odmítnutí příspěvku	de activiteit van de afwijzing van de bijdrage
+termín hotelové rezervace	termijn voor hotelreservering
+termín podání příspěvku	de termijn van de bijdrage
+daň z odjezdu	Vertrekbelasting
+podání příspěvku	de indiening van de bijdrage van de
+posluchač	de luisteraar
+audiovizuální vybavení	audiovisuele apparatuur
+konferenční letiště	Conferentie luchthaven
+dvoulůžkový hotelový pokoj	Hotel Tweepersoonskamer
+registrační poplatek pro studenta	het inschrijvingsgeld voor de student
+lcd projektor	LCD-projector
+technický výbor	het technisch comité
+konferenční výletník	Conferentie reizen
+konferenční restaurant	Conferentie restaurant
+země prezentujícího	land prezentujícího
+vrchní projektor	hoofd projector
+plenární přednáška	plenaire vergadering Hoorcollege
+přehrávač videokazet	videoband speler
+představení přednášejícího	Toon presentator
+platební karta	betaalkaart
+vízum	Visum
+přednášející student	Docent, student
+neprezentující	neprezentující
+kreditní karta	creditcard
+konferenční registrační formulář	Conferentie registratieformulier
+daň	belasting
+registrační poplatek autora pro obdržení tištěného sborníku	Auteur inschrijvingsgeld voor de ontvangst van de afgedrukte congresverslagen
+hlavní kancelář	het hoofdkantoor
+přednášející tutoriálu	de docent tutorial
+dodávka	levering
+záznam účasti	record deelname
+seznam emailů	de lijst van e-mails
+konferenčí město	konferenčí stad
+video prezentace	video presentatie
+registrační poplatek autora pro obdržení sborníku na cd	Auteur inschrijvingsgeld voor de ontvangst van congresverslagen op cd
+prezentující	presenteren
+den výletu	dagtocht
+daň z přidané hodnoty	toegevoegde waarde belasting
+tištěný sborník	gedrukte procedure
+země sponzora	land sponsor
+platební dokument	betaling document
+aktivita najmutí auta	auto huren activiteit
+uvítací proslov	Welkomstspeech
+aktivita datována na datum a čas	activiteit gedateerd op de datum en tijd
+je obýván kým	Het wordt bewoond door de die
+použito kým	gebruikt door
+podepsáno kým	ondertekend door de die
+udělán z	gemaakt van
+využit pro	gebruikt voor de
+platí	van toepassing is
+umístěno kde	waar ligt de
+posláno časově před	Gepost in tijd vóór de
+je vybaven čím	Het is uitgerust met de
+zaujímá místo	plaatsvindt
+koná se před	Het vindt plaats vóór de
+podepisuje	ondertekend door de
+posílá	stuurt
+mluví kdy a kde	praten over waar en wanneer
+je zaplaceno kým	die wordt betaald
+obdrží	ontvangt de
+je přítomen kdy	Het is aanwezig wanneer
+je přítomen kdy a kde	Het is aanwezig wanneer en waar
+placeno pro co	betaald voor wat
+platba proběhla kde	de betaling vond plaats waar
+koná se kdy a kde	Het vindt plaats wanneer en waar
+koná se po	Het vindt plaats na de
+je spojen s	Het is gekoppeld
+je přidělen komu	Hij is toegewezen aan
+souvisí s	betrekking tot de
+navštíveno kým	bezocht door
+datum termínu	Futures datum
+částka peněz	de hoeveelheid geld
+připraveno kým	opgesteld door
+potřebuje	behoeften
+posláno kým	Geplaatst door wie
+souvisí s aktivitou	verband houden met de activiteiten
+posláno časově po	tijdstip van de verzending na
+je připraven pro	Het is klaar voor
+připravuje artikl	artikel voorbereiding
+placeno čím	betaald de
+je potřebný pro	nodig is voor
+konference acm sigkdd	ACM sigkdd conferentie
+autor článku	Auteur van het artikel
+sponzor nejlepšího studentského článku	sponsor de beste student artikel
+termín zaslání článku	de deadline voor het verzenden van artikel
+hlavní kancelář konference	het hoofdkantoor van de conferentie
+stříbrný sponzor	Zilveren sponsor
+sponzorský poplatek	sponsoring vergoeding
+posluchač konference	Student conferentie
+ocenění za nejlepší výzkumný článek	Award voor de beste onderzoeksartikel
+registrační poplatek pro studenty	het inschrijvingsgeld voor studenten
+osoba aktivní na konferenci	een persoon die actief zijn in de conferentie
+ocenění za článek na konferenci	een award voor een artikel over de conferentie
+ocenění za nejlepší aplikační článek	Award voor de beste toepassing van artikel
+zlatý sponzor konference	Goud sponsor van de conferentie
+ocenění za nejlepší studentský článek	Award voor beste student artikel
+konferenční poplatek	Conferentie vergoeding
+výbor pro udělování ocenění za nejlepší články	Comité voor de uitreiking van de prijs voor de beste artikelen
+termín zaslání abstraktu	termijn abstracte indiening
+platinový sponzor konference	Platina sponsor van de conferentie
+termín vyrozumění autorů	de term kennisgeving van auteurs
+registrační poplatek pro nečlena sig	het inschrijvingsgeld voor niet-leden in de sig
+ogranizátor konference	ogranizátor conferentie
+registrační poplatek pro člena sigkdd	het inschrijvingsgeld voor een lid van sigkdd
+bronzový sponzor konference	Bronze sponsor van de conferentie
+registrační poplatek pro člena sigmod	het inschrijvingsgeld voor een lid van de sigmod
+autor studentské článku	de auteur van het artikel van de student
+sponzor se stánkem	Sponsor zal staan
+správce webu	de beheerder van deze site
+hotel	Hotel
+hledá sponzory	op zoek naar sponsors
+stanoveny termíny pro	instellen van de voorwaarden voor de
+dokument prezentován kým	het document gepresenteerd door
+konference pořádána	Conferentie georganiseerd door
+stanoveny termíny	vaste datums
+termín pro odeslání	de deadline voor het indienen
+pořádá konferenci	georganiseerd door de Conferentie van de
+sídlí v	gehuisvest de
+je stanoven na	wordt bepaald op de
+jméno sponzora	de naam van de opdrachtgever
+jméno konference	de naam van de conferentie
+jmenuje se	zijn naam is
+národnost	de nationaliteit van de
+zaplatil registrační poplatek	Betaal het inschrijvingsgeld
+oceněno	bekroond met de
+má ocenění	Mijn Awards
+datum závěrečného dne konference	de datum van de laatste dag van de conferentie
+datum prvního dne konference	de datum van de eerste dag van de conferentie
+cena	prijs
+registrační poplatek je ve měně	het inschrijvingsgeld is, in de valuta van de
+město pořádání konference	de stad van conferenties
+získal ocenění	won de award
+prezentace dokumentu	de presentatie van het document
+zaslání článku	Stuur artikel
+sponzoři hledáni kým	zoeken naar sponsors die
+registrační poplatek zaplacen kým	de registratie taks is betaald door

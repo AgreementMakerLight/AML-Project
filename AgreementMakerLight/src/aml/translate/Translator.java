@@ -14,12 +14,13 @@
 *******************************************************************************
 * Uses Microsoft Translator to translate a name/word from one given language  *
 * to another.                                                                 *
-* NOTE: Requires that you store the Microsoft ID and Password from your       *
-* access token in the file 'store/microsoft-translator-id'. For obtaining an  *   
-* access token, see 'http://msdn.microsoft.com/en-us/library/hh454950.aspx'.  *
+* WARNING: Requires a Microsoft access token ID and Password, which are not   *
+* released with AgreementMakerLight. For obtaining a Microsoft access token   *
+* please see 'http://msdn.microsoft.com/en-us/library/hh454950.aspx', then    *
+* store the ID and Password in a file 'store/microsoft-translator-id'.        *
 *                                                                             *
 * @author Daniel Faria, Joana Pinto, Pedro do Vale                            *
-* @date 11-08-2014                                                            *
+* @date 14-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.translate;
@@ -48,7 +49,7 @@ public class Translator
 	{
 		try
 		{
-			BufferedReader inStream = new BufferedReader(new FileReader("microsoft-translator-id"));
+			BufferedReader inStream = new BufferedReader(new FileReader("store/microsoft-translator-id"));
 			String id = inStream.readLine();
 			String password = inStream.readLine();
 			Translate.setClientId(id);
@@ -101,7 +102,7 @@ public class Translator
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			System.out.println("Error: could not process translation - " + e.getMessage());
 		}
 		return translation;
 	}

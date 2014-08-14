@@ -1,0 +1,683 @@
+bod	出价
+gebruiker	用户
+onderwerp	主题
+auteur niet-recensent	审阅者作者非-
+medevoorzitter	联席主席
+programmacommissie lid	程序委员会委员
+conferentievoorzitter	会议主席
+artikel	第条
+voorkeur	偏好
+persoon	人
+volledig artikel	完整的文章
+acceptatie	验收
+recensent	审阅者
+beheerder	管理员
+document	文档
+recentie	审查
+conferentie	会议
+synopsis	简介
+coauteur	合著者
+externe recencent	外部亚马逊书评
+beslissing	决定
+afwijzing	排斥反应
+auteur	作者
+programmacommissie	方案委员会
+metarecentie	metarecentie
+metarecensent	评论家元
+conferentielid	conferentielid
+voorzitter programmacommissie	方案委员会主席
+voorzitter	主席
+paper id	文章 id
+datum	日期
+gebruik artikel toewijzings tool	使用项目配置工具
+heeft coauteur	合著了
+heeft auteur	有作者
+hardcopy verstuurbewijs afgedrukt door	硬拷贝发送由印制的证据
+maak toewijzing artikel af	创建项目分配
+toegewezen door recencent	由亚马逊审阅者分配
+recentie bieden begonnen door	审查由开始的报价
+heeft belangenverstrengeling	有的利益冲突
+website url	网站的 url
+accepteerd hardcopy submissies	接受硬拷贝意见书
+email	电子邮件
+titel	标题
+logo url	徽标的 url
+naam	名称
+maximum aantal artikelen	文章的最大数目
+recenties per artikel	每个项目的点评
+aangepast door	由修改
+is toegekend	被授予
+lid van conferentie	会议的成员
+schrijf recentie	写检讨
+details ingevuld door	由完成的详细信息
+toekenning artikel tool gebruikt door	所使用的奖文章工具
+eindrecentie	eindrecentie
+wijs artikel af	点到的文章
+markeer belangenverstrengeling	突出显示的利益冲突
+voeg programmacommissie lid toe	添加程序委员会委员
+heeft conferentielid	有 conferentielid
+gelezen door reviewer	阅读由审阅者
+wijs externe recencent toe	亚马逊的审阅者，使其指向外部
+lid van programmacommissie	方案委员会的成员
+laat virtuele vergadering toe	让虚拟会议
+stel maximaal aantal artikelen in	设置中的项目的最大数目
+artikel gelezen	阅读的文章
+toegewezen aan	分配给
+geschreven door	写的
+schrijf artikel	写篇文章
+toegevoegd door	通过添加
+wijs recencent toe	将点添加到亚马逊书评
+accepteer artikel	接受第条
+geaccepteerd door	接受的
+dien artikel in	在这篇文章
+heeft beslissing	决定了
+heeft onderwerp	主题
+begin recentie bieden	开始审查报价
+vul recentie criteria in	填写审查标准
+toekenning artikel afgemaakt door	第条成品由奖
+recentie criteria ingevuld door	审查标准由填充的
+heeft programmacommisie lid	方案委员会成员有
+heeft bod	已出价
+virtuele vergadering toegelaten door	所允许的虚拟会议
+toegewezen door beheerder	由管理员分配
+afgewezen door	被拒绝
+co-schrijf artikel	共同写篇文章
+pas bod aan	只出价到
+hardcopy verstuurbewijs	硬拷贝发送证明
+gelezen door metarecencent	由 metarecencent 读取
+vul conferentie details in	在完整的会议详细信息
+commissie	委员会
+geaccepteerde contributie	公认的费用
+laat betaalde aanvrager	逾期申请支付
+co-voorzitter	共同主席
+passieve conferentie deelnemer	被动会议的参与者
+uitgenodigde spreker	邀请的演讲者
+ingediende contributie	提交的贡献
+belangrijke data	重要日期
+gerecenseerde contributie	审查的贡献
+workshop	讲习班
+geregistreerde aanvrager	申请登记的人
+oproep inzenzingen	电话 inzenzingen
+gewone contributie	定期会员费
+conferentie document	会议文件
+afgewezen contributie	被拒绝的会员费
+conferentie website	会议网站
+conferentiebundel	会议包
+gewone auteur	定期的作者
+poster	海报
+drukklare contributie	可打印费
+betaalde aanvrager	申请人支付
+organisator	主办单位
+actieve conferentie deelnemer	活动会议的参与者
+vroeg betaalde aanvrager	早期申请人支付
+stuurgroep	督导委员会
+recentie expertise	审查专业知识
+track-workshop voorzitter	轨道研讨会主席
+recentie voorkeur	审查偏好
+uitgever	发布者
+conferentie deelnemer	会议的参与者
+conferentie deel	会议
+geschreven contributie	书面的贡献
+oproep tot deelname	号召参与。
+organisatiecommissie	组织委员会
+conferentie contributie	会议费用
+conferentie kosten	会议费用
+coauteur bijdrage	共同作者的贡献
+informatie voor deelnemers	参与者的信息
+lange synopsis	长简介
+track	跟踪
+commissielid	委员会成员
+organisatie	组织
+conferentie bijdrager	会议参与者
+eerste auteur	第一作者
+conferentie aankondiging	会议公告
+presentatie	演示文稿
+conferentie aanvrager	申请人会议
+lezing op uitnodiging	讲座邀请
+snelcursus	速成班
+heeft een track-workshop-snelcursus onderwerp	有一个轨道-车间-速成课程主题
+heeft een uitgever	有一个出版商
+heeft een synopsis	有简介
+is een onderwerp van conferentie delen	共享是会议的主题
+contribueert	贡献
+heeft snelcursussen	有 snelcursussen
+heeft een commissiecovoorzitter	有一名委员会联席主席
+heeft belangrijke data	具有重要日期
+was een stuurgroep van	督导组的
+geeft presentaties	给出了演示文稿
+uitgenodigd door	由邀请
+recensies	点评
+heeft delen	有部分
+was lid van	是的成员
+heeft een organisatiecommissie	有一个组织委员会
+nodigt corecensenten uit	corecensenten 请从
+is een volledig artikel submissie datum	是一个完整的文章提交日期
+heeft een graad	有学位
+heeft voornaam	有的第一个名字
+heeft sekse	有性
+heeft achternaam	有的姓氏
+heeft een email	有一封电子邮件
+heeft een uitgavedatum	已发布日期
+is een datum van bekendmaking van acceptatie	接受日期是发布的
+hoort bij een recentie referentie	属于审查参考
+heeft een stuurgroep	有一个督导委员会
+heeft een recentie referentie of expertise	有一个审查参考或专业知识
+hoort bij een conferentiebundel	属于一个会议包
+is deel van conferentiebundel	会议是捆绑包的一部分
+heeft tracks	有轨道
+uitgaven	支出
+was een track-workshop voorzitter van	是主席的一个轨道讲习班
+heeft een isbn	有国际标准书号
+heeft een naam	有一个名字
+heeft een url	有一个 url
+heeft een plaats	有一个地方
+is een synopsis submissie datum	是一个简介提交日期
+is een begindatum	是的开始日期
+is een datum van drukklare versie submissie	是打印就绪版本提交日期
+is een einddatum	是结束日期
+heeft een deel	有部分
+heeft een expertise	拥有专业知识
+heeft een recentie	有一个审查
+heeft auteurs	有作者
+was een commissievoorzitter van	是委员会的总统
+heeft contributies	有的贡献
+heeft leden	有成员
+heeft een track-workshop-snelcursus voorzitter	在总统有一个跟踪车间的速成班
+was een commissie van	是的一个委员会
+heeft een ingediende contributie	已挂起的会员费
+was een commissiecovoorzitter van	委员会共同主席
+heeft een commissie	有一个委员会
+is het eerste deel van	是的第一部分
+was een programmacommissie van	是一个程序委员会的
+heeft een onderwerp of een ingediende contributie	有一个话题或提交的贡献
+heeft een programmacommissie	有一个方案委员会
+was een organisatiecommissie van	是一个组织委员会的
+ingediend	提交
+hoort bij recencenten	属于 recencenten
+heeft een recentie expertise	已审查专业知识
+is een recensie referentie toegewezen	被审查的引用分配吗
+heeft workshops	有工作坊
+heeft een commissievoorzitter	有欧盟委员会主席
+wordt gegeven door	给出了由
+recensie gebeurtenis	审查事件
+universiteit	大学
+bedrijf	公司
+drukklaar gebeurtenis	准备好打印事件
+werken gebeurtenis	工作相关的活动
+land	国家
+deelnemer	参与者
+administratieve gebeurtenis	管理事件
+bijdrage	贡献
+banket	宴会
+vrijwilliger	志愿者
+recensieresultaat gebeurtenis	审查结果事件
+student	学生
+indienen gebeurtenis	提交事件
+gewoon	只是
+sociale gebeurtenis	社会事件
+deelnemersregistratie gebeurtenis	参与者注册事件
+gebeurtenis	事件
+reis	旅行
+wetenschappelijk medewerker	科学助理
+kort artiekel	短的文章
+receptie	接待处
+lid	成员
+lid programmacommissie	成员程序委员会
+assistent	助理
+wetenschapper	科学家
+stad	城市
+heeft webpagina	有的 Web 页
+heeft btw	有销售税
+heeft stad	有市
+parallel met	平行于
+volgt	如下
+schrijft	写操作
+werknemer van	员工的
+heeft administratieve gebeurtenis	有行政事件
+heeft land	有的国家
+expert op het gebied van	领域的专家
+heeft te maken met	就是要与
+studeert bij	与研究
+heeft korte titel	有短标题
+maximum keuze	最大的选择
+heeft postcode	有 zip 代码
+heeft steekwoord	关键字
+heeft titel	有的标题
+eindigt op	在结束
+opmerking	请注意
+abstract	摘要
+standaard keuze	默认选择
+plaats	地方
+contactinformatie email	联系人信息的电子邮件
+heeft straat	有街
+heeft email	有的电子邮件
+heeft fax	已传真
+minimum keuze	最小的选择
+begint op	在上启动
+heeft telefoon	有手机
+vroege registratie	早期注册
+academische organisatie	学术组织
+ngo	非政府组织
+numerieke recensievraag	数值评价问题
+vergaderruimte plaats	会议室地点
+academische gebeurtenis	学术活动
+medicijnen onderwerp	药物治疗的话题
+conferentie diner	大会晚宴
+recensie	审查
+eetpauze	这次旅行那里
+oproep artikelen	调用的文章
+conferentie met één recensie laag	上一次审查层会议
+programmacommisielid	programmacommisielid
+diner plaats	吃饭的地方
+menu	菜单
+electriciteitsoverdracht over lijnen onderwerp	electriciteitsoverdracht 关于主题行
+conferentie met twee recensie lagen	与两个审查层会议
+afsluitende lezing	闭幕演讲
+geaccepteerd artikel	公认的文章
+cryptografie onderwerp	密码学学科
+recensievraag	审查的问题
+conferentieoord plaats	会议中心的地方
+computer netwerken metingen onderwerp	计算机网络测量主题
+computer netwerken applicaties onderwerp	计算机网络的应用程序主题
+conferentie sessie	届会议
+tekstuele recensievraag	文本审查问题
+communicatietheorie onderwerp	通信理论主题
+draadloze communicatie ondewerp	无线通信 ondewerp
+teruggetrokken artikel	撤回的条
+afwijzingswaardering	拒绝评级
+persoonlijke publicatiehistorie	个人出版历史
+computer netwerken bedrijven onderwerp	计算机网络公司主题
+multimedia onderwerp	多媒体主题
+antennes onderwerp	天线的话题
+toelatingswaardering	入场评级
+industriële organisatie	工业组织
+computer netwerken schakelen onderwerp	计算机网络关闭主题
+computer netwerken sensoren onderwerp	计算机网络传感器主题
+computer netwerken beveiliging onderwerp	计算机网络安全话题
+computer netwerken optisch onderwerp	计算机网络光学主题
+persoonlijke recensiehistorie	个人检讨历史
+communicatie onderwerp	通信主题
+satelliet- en ruimtecommunicatie onderwerp	卫星和空间通信主题
+artikel presentatie	文章演示文稿
+lezing gebeurtenis	阅读事件
+vrije tijd pauze	休闲打破
+zwakke toelatingswaardering	弱批准评级
+accomodatie plaats	住宿的地方
+mobiele berekening onderwerp	移动计算主题
+reistoelage	旅行津贴
+oproep recensies	调用点评
+prestatie onderwerp	性能的主题
+besturingssystemen onderwerp	操作系统主题
+computer netwerken management onderwerp	计算机网络管理专题
+parallelle en gedistribuëerde berekening onderwerp	并行计算和 gedistribuëerde 主题
+niet-academische gebeurtenis	非学术事件
+gerelateerde artikelen	相关的文章
+actief artikel	活动的文章
+sponsoring	赞助
+persoonlijke historie	个人史
+radiocommunicatie onderwerp	无线电通信主题
+programma	程序
+beveiliging onderwerp	安全主题
+accepteer als kamerwaardering	接受作为房间评级
+contact informatie	联系信息
+overheidsorganisatie	政府组织
+slides	幻灯片
+computer netwerken onderwerp	计算机网络话题
+uitgegeven artikel	已发布的文章
+organisatievergadering	组织会议
+presentator	节目主持人
+microelectronica onderwerp	微电子、 主题
+nog onbeslist artikel	仍犹疑不决的文章
+computer architectuur onderwerp	计算机体系结构主题
+eet gebeurtenis	吃事件
+pauze gebeurtenis	暂停事件
+sessievoorzitter	会议主席
+signaalverwerking onderwerp	信号处理主题
+koffiepauze	喝杯咖啡休息
+afgewezen artikel	退回的文章
+recensieformulier	审查形式
+recensie waardering	审查评级
+oproep manuscripten	调用脚本
+conferentie gebeurtenis	会议活动
+cad onderwerp	cad 的话题
+welkomstlezing	欢迎阅读
+alleen testen onderwerp	只有测试主题
+oproep	调用
+excursie	游览
+hoort bij gebeurtenis	属于事件
+is menu van	是的菜单
+gerelateerd aan	与有关的
+gerelateerd aan gebeurtenis	与事件相关的
+is gerecenseerd door	是从的评论
+heeft gerelateerd artikel	有相关的文章
+heeft oproep	已调用
+is recensiehistorie van	是对历史的回顾
+geleverd door	通过交付
+begint	开始
+wordt begonnen door	由开始
+heeft menu	有的菜单
+heeft deelnemer	参与者都有
+gerelateerd tot artikel	相关文章
+heeft gerelateerd document	有相关的文档
+heeft waardering	赞赏
+is aan het recenseren	审查是对
+is lid van	是的成员
+is plaats van	是的位置
+heeft programma	有的程序
+heeft recensiegeschiedenis	回顾历史
+is gescheven door	是写的
+is onderwerp van	是的主题
+voor gebeurtenis	为事件
+is leverancier van	是供应商
+deelnemer van	参与者的
+begindatum	开始日期
+heeft naam	有的名字
+heeft submissie instructies	已提交说明
+heeft submissie deadline	已提交截止日期
+heeft biografie	有传
+manuscript moet klaar zijn op	手稿必须准备好对
+heeft kosten som	具有成本总和
+heeft begindatum/tijd	已开始日期/时间
+einddatum	结束日期
+artikel moet klaar zijn op	文章应该是在准备好了
+heeft plaats	有的地方
+heeft lid	有的成员
+heeft einddatum/tijd	已结束日期/时间
+registratie moet klaar zijn op	登记必须准备好对
+heeft kosten munteenheid	具有成本的货币
+ingediend artikel	提交的文章
+gast spreker	演讲嘉宾
+lid stuurgroep	督导组的成员
+programma brochure	方案小册子
+lezing	阅读
+pamflet	小册子
+negatieve recensie	负面评论
+gewoon artikel	只是文章
+dokument	多库门
+organiserende instelling	主办机构
+conferentie banket	会议宴会
+positieve recensie	积极检讨
+toegewezen artikel	分配的项
+workshop sessie	研讨会会议
+wetenschappelijke gebeurtenis	科学事件
+uitgever conferentiebundel	出版商会议束
+onderzoeksinstelling	研究机构
+beoordeeld artikel	审阅文章
+industrie sessie	行业会议
+drukklaar artikel	准备好了-打印文章
+snelcursus abstract	抽象的速成课程
+industriëel artikel	工业篇文章
+lezing abstract	阅读摘要
+neutrale recensie	中立的审查
+voorzitter workshop	总统车间
+voorzitter organisatiecommissie	组织委员会主席
+(bijgedragen) lezing	(贡献) 阅读
+individuele presentatie	个别演示文稿
+poster artikel	海报条
+lid organisatiecommissie	成员组织委员会
+staf van instelling	工作人员设置的
+deel met meerdere autheurs	与多个作者分享
+artikel auteur	文章作者
+voorzitter demonstraties	总统示威活动
+voorzitter snelcursus	总统的速成班
+laat geregistreerde deelnemer	让注册的参与者
+wetenschappelijk artikel	科学文章
+voorzitter sessie	主席会议
+website	网站
+gewone sessie	普通会议
+bundel	束
+poster sessie	会议海报
+sessie	会议
+workshop artikel	车间条
+onderzoeksonderwerp	研究课题
+demonstratie sessie	示范会话
+demonstratie artikel	演示部分
+vroeg geregistreerde deelnemer	早期注册的参与者
+mogelijke recensent	可能的审阅者
+conferentie reis	会议旅游
+academische instelling	学术机构
+presentatie van artikel	演示文稿的文章
+deel bevat artikel	部分包含文章
+bevat gebeurtenis	包含事件
+geciteerd door	被引用
+heeft gebeurtenis	有事件
+organiseert (technisch)	组织 （技术）
+gehouden in	在举行
+georganiseerd door	由组织
+technische organisatie door	由技术组织
+uitgever van	发布服务器的
+gebeurtenis op lijst	在列表中的事件
+organiseert	组织
+artikel in deel	第条部分
+heeft deel	有的部分
+inverse van deel van 7	逆的部分 7
+organiseert (wetenschappelijk)	组织 (科学)
+heeft recensent	审查了
+recensie geschreven door	审查所写
+heeft bijgewerkte versie	已更新的版本
+recensent van artikel	审阅者的文章
+plaats van	地方
+heeft recensie	已审查
+onderwerp behandeld door	主题由处理
+bijgewerkte versie van	更新的版本的
+gaat over	是关于
+recensie van artikel	第条审查
+citaties	引文
+deel van	一部分
+artikel gepresenteerd als	文章提出了一种作为
+wetenschappelijke organisatie door	通过科学组织
+onderdeel van gebeurtenis	事件的一部分
+auteur van	书的作者
+spreker lezing	说话人阅读
+registratiekosten niet-auteur	注册费是非作者
+inschrijving	注册
+kosten	成本
+beamer	投影机
+overschrijving	银行转帐
+conferentie activiteit	会议活动
+conferentie restaurant	会议餐厅
+busje	范
+auteur informatie formulier	作者信息表格
+conferentie dagen	会议天数
+audiovisuele uitrusting	视听设备
+activiteit na de conferentie	在会议之后的活动
+registratiekosten lid	会员注册费
+belasting	税收
+technisch committee	技术委员会
+afgevaardigde	委托
+registratiekosten student	学生注册费
+registratiekosten aanwezige auteur boek	作者的书目前注册费
+conferentie stad	会议城市
+iasted lid	协会成员
+plenaire lezing	全体会议上的演讲
+auto	汽车
+onderzoek	研究
+cheque	支票
+deadline	截止日期
+video presentatie	视频演示文稿
+munteenheid	货币
+computer	计算机
+sessie kamer	会话室
+taxi	出租车
+student lector	学生讲师
+sociaal programma	社会的程序
+coctail receptie	鸡尾酒招待会
+videospeler	视频播放器
+arbeider lector	工人讲师
+conferentie vliegveld	会议机场
+sponsor stad	赞助商镇
+formulier	窗体
+simuleren	模拟
+overhead projector	投影仪
+creditcard	信用卡
+niet-spreker	非扬声器
+registratieformulier	注册表单
+manuscript accepteren	脚本接受
+deadline aankondiging acceptatie	验收期限公告
+inleiding	介绍
+reisdag	一天的旅行
+staat	状态
+manuscript afwijzen	手稿被拒绝
+spreker voorstellen	演讲者的建议
+registratie deadline	报名截止日期
+hotel kosten	酒店费用
+manuscript ontvangen	收到的手稿
+kaart	地图
+tweepersoonskamer	双人间
+definitief manuscript	最后的手稿
+bewijs van aanwezigheid	存在的证明
+technische activiteit	技术活动
+dagvullende rondleiding	一天之旅
+toegevoegde waarde belasting	附加价值税
+lector	讲师
+betalingsdocument	付款单据
+modelleren	建模
+activiteit voor de conferentie	会议活动
+welkomsttoespraak	欢迎致辞
+conferentie wandelaar	会议 · 沃克
+gebouw	建筑
+hotel presentator	酒店主持人
+sponsor staat	赞助商状态
+fooi	小贴士
+auteur conferentiebundel boek inbegrepen	作者包括会议书丛
+presentator universiteit	节目主持人大学
+registratiekosten niet-lid	非会员注册费
+conferentie staat	国家会议
+eendaags presentator	为期一天的节目主持人
+algemene lezing spreker	一般演讲报告人
+een conferentie dag	一天的会议
+snelcursus spreker	扬声器的速成课程
+iasted niet-lid	网路非成员
+auteur conferentiebundel cd inbegrepen	作者包括会议包 cd
+student niet-spreker	学生非-扬声器
+submissie deadline	提交截止时间
+kosten voor extra reis	为额外的旅行费用
+toehoorder	侦听器
+hoofdkantoor	办事处主任
+conferentiebundel cd	会议 cd 包
+conferentiezaal	会议室
+presentator staat	主持人是
+onderdeel	部分
+email lijst	电子邮件名单
+tijd	时间
+conferentiebundel boek	会议的书捆
+sponsor bedrijf huis	赞助商公司首页
+publicatie	出版物
+arbeider niet-spreker	工人不是扬声器
+registratiekosten aanwezige auteur cd	作者注册费，使用现有的 cd
+visum	签证
+spreker	演讲者
+deadline hotel reservering	截止日期酒店预订
+eenpersoonskamer	单人房
+presentator huis	演示者回家
+conferentie gebouw	会议大楼
+vertrek	离境
+huren	租用
+vertrekbelasting	离境税
+activiteit	活动
+submissie	提交
+hotel informatie formulier	酒店查询表格
+transparant	透明
+transport voertuig	运输车辆
+eerste manuscript	第一份手稿
+recencent	亚马逊书评
+pendelbus	穿梭巴士服务
+deadline drukklaar manuscript	准备好打印稿件截止日期
+presentator stad	主办城市
+tijdzone	时区
+conferentie hotel	会议酒店
+reis stad	旅游城市
+registratiekosten	注册费
+korte inleiding voorzitter	简要介绍了总统
+sponsor	赞助商
+hotelkamer	酒店房间
+uitnodigingsbrief	邀请信
+powerpoint presentatie	电源点介绍
+geld	钱
+is voorzien van	功能
+krijgen	获取
+is ontworpen voor	为设计
+is verbonden met	连接到
+wordt betaald met	以支付
+doorgaan	继续
+wordt gebruikt door	由使用
+schrijven	写
+voorbereiden	准备
+tekenen	迹象
+is gelegen in	坐落在
+is getekend door	已签署的
+is aanwezig	是目前
+wordt betaald voor	支付
+is geschreven door	是写的
+spreken in	在发言
+wordt bezet door	被占领
+wordt gebruikt voor	用于
+bezetten	占据
+wordt gehouden in	在举行
+is aanwezig bij	出席
+wordt gehouden na	后举行
+wordt bezocht door	由参观
+betalen	被控
+wordt betaald door	由支付
+wordt verzonden voor	为发送
+wordt gehouden voor	为举行
+wordt voorbereid door	编写的
+wordt gegeven aan	是给
+is nodig voor	是所需
+geven	给
+wordt verzonden door	由发送
+verzenden	发送
+nodig hebben	需要
+is gemaakt van	是做的
+klaar tot	准备好
+wordt betaald in	在支付
+wordt verzonden na	发送后
+is gedateerd	被日
+heeft bedrag	有量
+registratie sigmod lid	会员注册数据
+deadline inlichting auteur	截止日期信息的作者
+prijs best studenten artikel	价格最好的学生文章
+registratie geen lid	登记不是成员
+best artikel prijzencommissie	最佳文章奖委员会
+auteur van artikel	文章的作者
+sponsorbijdrage	赞助
+bedrag	金额
+algemeen voorzitter	大会主席
+registratie sigkdd lid	旗舰会员注册
+platina sponsor	白金赞助商
+deadline indiening artikel	文章提交截止日期
+webmaster	网站管理员
+acm sigkdd	acm
+prijs best toegepast artikel	价格最好的应用文章
+best studenten artikel sponsor	最佳学生条保荐机构
+registratie studenten	注册学生
+programmaccommissie	programmaccommissie
+prijs best onderzoeksartikel	价格最好的研究论文
+deadline indiening abstract	摘要提交截止日期
+brons sponsor	铜牌赞助商
+prijs	价格：
+hotel	酒店
+tentoonsteller	参展商
+goud sponsor	黄金赞助商
+auteur van studenten artikel	学生篇文章的作者
+zilver sponsor	银牌赞助商
+betaalmiddel	付款方法
+naam van sponsor	赞助商的名称
+naam van conferentie	会议的名称
+stad van conferentie	城的会议
+einde van conferentie	会议结束
+toegekend door	被授予
+indienen tot	提交
+ontworpen door	由设计
+mag verblijven in	被允许呆在
+verkrijgen	获取
+inlichting tot	到信息
+betaald door	由支付
+ontwerp	设计
+gepresenteerd door	提出了一种由
+indienen	提交
+gehouden door	通过举行
+houdt	保持
+gezocht door	被通缉
+zoeken	搜索
+begin van conferentie	会议的开始

@@ -1,0 +1,631 @@
+документ	document
+конференция	Conferentie
+отклонение	afwijking
+администратор	Beheerder
+председатель конференции	de Voorzitter van de conferentie
+председатель	Voorzitter
+мета-рецензент	Meta-revisor
+аннотация статьи	abstracte artikel
+председатель программного коммитета	Voorzitter van het programma Comité
+автор не являющийся рецензентом	de auteur is niet een revisor
+программный коммитет	Programma Comité
+предпочтение	voorkeur
+мета-рецензия	Meta-Boekbespreking
+рецензия	Boekbespreking
+внешний рецензент	externe revisor
+статья	Artikel
+ставка	tarief
+полная версия статьи	de volledige versie van het artikel
+член конференции	Lid van de conferentie
+принятие	de aanneming van
+решение	oplossing
+рецензент	Revisor
+автор	Auteur
+член программного коммитета	Als een lid van het programma Comité
+лицо	persoon
+пользователь	gebruiker
+соавтор	mede-auteur
+тематическая область	thematische gebied
+заместитель председателя	Vice-Voorzitter
+внести критерии рецензирования	om te beoordelen van criteria
+подать статью	Submit een artikel
+назначает рецензента	benoemt revisor
+прочитано рецензентом	Lees revisor
+кем разершёна виртуальная встреча	door razeršëna virtuele vergadering
+прочитано мета-рецензентом	lezen van de meta-revisor
+кем отклонено	die verworpen
+кем изменена	die veranderd
+printhardcopymailingmanifests	printhardcopymailingmanifests
+кем начато размещение ставок рецензента	die begon weddenschappen revisor plaatsen
+закончил рецензию	afgewerkte beoordeling
+интернет-адрес сайта	het internetadres van de website
+адрес электронной почты	e-mailadres
+максимум статей	maximale artikelen
+идентификатор статьи	de artikel-ID
+заголовок	koptekst
+интернет-адрес логотипа	het Internet-adres van het logo
+имя	de naam
+рецензенты статьи	revisoren van het artikel
+число	het aantal
+принимает печатные заявки	accepteert afdrukken aanvragen
+кем написано	geschreven door
+кем принято	iedereen genomen
+внести детали конференции	om details van de conferentie te maken
+изменяет ставку	snelheid wijzigen
+отметить конфликт интересов	Opmerking het belangenconflict
+назначена кому	toegewezen aan
+читает статью	Lees artikel
+кем запущена программа назначения статей	Wie beheert de programma bestemming artikelen
+кем добавлено	door datum toegevoegd
+назначен рецензентом	een revisor benoemd
+назначен администратором	benoemd door de beheerder
+разрешить виртуальную встречу	virtuele vergadering toestaan
+назначает внешнего рецензента	benoemt een externe revisor
+принимает статью	aanvaarde artikel
+закончить назначение статей	einddatum van de toewijzing van artikelen
+кем внесены детали	Wie maakte details
+пишет статью	schrijven van een artikel
+кем закончено назначение статей	die klaar bent met het toewijzen van artikelen
+установить максимум статей	instellen van de maximale artikelen
+написать статью в соавторстве	Schrijf een artikel co-auteur
+добавляет члена программного коммитета	Voegt een lid programma Comité
+назначена	benoemd
+конфликт интересов	belangenconflict
+кем введены критерии рецензирования	opgenomen evaluatiecriteria
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+начало размещения ставок рецензента	Start de revisor wedden
+отклоняет статью	verwerpt artikel
+пишет рецензию	Schrijf een review
+семинар	Seminar
+научный совет	de wetenschappelijke Raad
+организация	Organisatie
+издатель	Uitgever
+отклонённый труд	geweigerde arbeid
+соавтор работы	mede-auteur van het werk
+сопредседатель	Co-voorzitter
+оплативший участник	kopen partij
+участник конференции	deelnemer van de conferentie
+досрочно оплативший участник	vroeg kopen partij
+выпуск конференции	Release conferentie
+аннотация	Abstract
+зарегистрированный участник	geregistreerd lid
+приглашение к участию	uitnodiging voor deelname
+информация для участников	informatie voor deelnemers
+комиссия	Commissie
+интернет адрес конференции	het internetadres van de conferentie
+заявитель конференции	aanvrager conferentie
+обучающий курс	opleiding
+важные даты	belangrijke datums
+труд в окончательной версии	werken in de definitieve versie
+поздно оплативший участник	laat kopen partij
+приглашённый доклад	Gast verslag
+развёрнутая аннотация	uitgebreide abstract
+часть конференции	onderdeel van de conferentie
+секция	sectie
+принятый труд	het werk van
+пассивный участник конференции	passieve deelnemer van de conferentie
+отрецензированнй труд	otrecenzirovannj werk
+объявление конференции	aankondiging van de conferentie
+приглашённый докладчик	gastspreker
+1й автор работы	de eerste auteur van het werk
+лицо внесшее вклад в конференцию	de markering van de bijdragen aan de conferentie persoon
+сборы конференции	Conferentie vergoedingen
+организационная комиссия	Organisatie van de Raad van bestuur
+член комиссии	Lid van de Commissie
+активный участник конференции	een actieve deelnemer van de conferentie
+поданый труд	podanyj werk
+требования к рецензии	eisen aan de herziening
+стенд	stand
+документ конференции	Conferentie document
+труд конференции	Arbeidsconferentie
+письменный труд	geschreven werk
+полный труд	voltooiing van de werkzaamheden
+сборник трудов конференции	Congresverslagen
+тема	thema
+информационное письмо	nieuwsbrief
+председатель секции, семинара	Afdelingshoofd, seminar
+организатор	Organisator
+компетентность рецензии	deskundigheid beoordelingen
+презентация	presentatie
+труды	Trudy
+является частью выпусков конференции	is onderdeel van het probleem (s) van de conferentie
+принадлежит рецензентам	eigendom van revisoren
+части	een deel van de
+являлся председателем секции, семинара	diende als voorzitter van de sectie van het seminar
+являлся научным советом	een wetenschappelijke Raad
+авторы	auteurs
+семинары	seminaries
+указано в требованиях к рецензии	opgegeven in de vereisten voor beoordelingen
+кем выполнена	Wie heeft uitgevoerd
+являлся членом	Hij was een lid van de
+рекоммендация рецензирования или компетентность	rekommendaciâ review of bevoegdheid
+рецензирует	bekritiseert
+члены	de leden van de
+является темой частей конференции	is het thema delen conferenties
+являлся комиссией	de Commissie was
+кем приглашён	Wie uitgenodigd
+председатель секции, семинара, обучающегокурса	Hoofd van de sectie, seminar, obučaûŝegokursa
+вносит вклад	draagt bij tot
+рекоммендация рецензирования	rekommendaciâ overzicht
+указано в выпуске конференции	vermeld in de release conferentie
+является 1й частью	is het eerste deel van de
+подан в	Geplaatst in
+тема секции, семинара, обучающего курса	afdeling onderwerp, seminarie, opleiding
+обучающие курсы	opleidingen
+издаёт	publiceert
+заместитель председателя комиссии	de vice-voorzitter van de Commissie
+являлся председателем комиссии	diende als voorzitter van de Commissie
+являлся организационным комитетом	was het Organiserend Comité
+делает презентацию	maken van een presentatie
+секции	sectie
+приглашает ко-рецензентов	nodigt u uit voor de revisoren
+председатель комиссии	de Voorzitter van de Commissie
+являлся сопредседателем комиссии	Hij was co-voorzitter van de Commissie
+дата подачи аннотации	datum van indiening van samenvattingen
+дата начала	begindatum
+пол	Paul
+дата окончания	einddatum
+название	de naam
+дата издания	datum van afgifte
+дата подачи окончательной версии статьи	de datum van indiening van de definitieve versie van het artikel
+выпуск	probleem
+компетентность	bevoegdheid
+isbn	ISBN
+место проведения	locatie
+степень	de mate van
+интернет-адрес	het internetadres van de
+организационный комитет	het Organiserend Comité
+являлся программным комитетом	Hij was programma Comité
+тема или поданный труд	thema of gearchiveerde werk
+дата подачи полной статьи	datum van indiening van het volledige artikel
+дата объявления о приняти	datum van aankondiging Neem op de
+фамилия	achternaam
+экскурсия	excursie
+участник	partij
+город	Stad
+этап	stadium
+образовательное учреждение	onderwijsinstelling
+этап регистрации участников	fase van de registratie van deelnemers
+этап рабочей программы	fase van het werkprogramma
+председатель программного комитета	de Voorzitter van het programma Comité
+полная	volledige
+член	Lid
+этап рецензирования	etappe-overzicht
+тематиka	tematika
+культурный этап	de culturele fase
+учащийся	student
+труд	werk
+встреча	vergadering
+компания	bedrijf
+тезисы статьи	Samenvattingen van de artikelen
+член программного комитета	Lid van het programma Comité
+этап результатов рецензирования	fase resultaten bekijken
+научный работник	AAS
+студент	student
+страна	land
+административный этап	de administratieve fase
+этап подачи заявки	fase indiening
+ассистент	Assistent
+этап подготовки окончательной версии	voorbereiding van de definitieve versie
+банкет	Feestzaal
+волонтёр	vrijwilligers
+написана	geschreven door
+место работы	plaats van het werk
+следует	Het moet
+параллельно с	parallel met de
+максимальный выбор	maximale keuze
+сокращённое название	korte naam
+окончание	einde
+досрочная регистрация	vroege registratie
+телефон	telefoon
+домашняя страница	Home pagina
+обучается в	Hij studeerde in de
+содержит административный этап	bevat de administratieve fase
+адресует	adressen
+пишет	schreef
+компетентен в	bevoegde in
+содержит ключевые слова	sleutelwoorden bevat
+почтовый индекс	Postcode
+ндс	BTW
+факс	Fax
+улица	Straat
+начало	Start
+контактный адрес электронной почты	contact e-mailadres
+минимальный выбор	minimale afstand
+замечание	commentaar
+выбор по умолчанию	standaardselectie
+негосударственная организация	niet-gouvernementele organisatie
+тема операционные системы	het thema van besturingssystemen
+грант на поездку	reisbeurs
+тема коммуникации	het thema van de mededeling
+тема сенсорные компьютерные сети	het thema van zweem-teergevoelig computernetwerken
+местонахождение комнаты для собрания	Locatie gemeente kamers voor vergaderingen
+информационнное письмо	informacionnnoe brief
+академическая организация	academische organisatie
+производственная организация	organisatie van de productie
+рецензионный вопрос	Review vraag
+слайды	dia 's
+докладчик	Rapporteur
+активная статья	een actieve artikel
+тема просто тест	thema is gewoon een test
+программа	programma
+светский раут	aftocht
+конференц-ужин	Conferentie diner
+тема спутниковая и космическая связь	het thema van satelliet en ruimte communicatie
+тема управление компьютерными сетями	u het onderwerp heb gelezen computernetwerken beheren
+оценка принять при условии	Score op onderwerp
+тема приложени компьютерных сетей	het thema van toepassingen van computernetwerken
+темаcad	temacad
+персональная история рецензирования	persoonlijke geschiedenis van "peer review"
+место проведения обеда	Locatie gemeente diner
+этап докладывания	fase perfecte rapportage
+тема мультимедиа	onderwerp multimedia
+принятая статья	artikel aangenomen
+перерыв на кофе	koffiepauze
+текстовый вопрос рецензирования	tekst vraag op basis overzicht
+тема беспроводная связь	het thema van draadloze communicatie
+тема оптические компьютерные сети	het thema van optische netwerken
+академический этап	academische fase
+свободный перерыв	gratis pauze
+статья ожидающая решения	Artikel in afwachting van besluit
+приглашение	uitnodiging
+этап питания	het werkgebied van de macht
+тема измерения в компьютерных сетях	het onderwerp van de meting in computernetwerken
+меню	menu
+тема архитектура компьютера	het thema van computerarchitectuur
+тема безопасность компьютерных сетей	het thema van de veiligheid van het netwerk van de computer
+тема производительность	het thema van de prestaties
+отклонённая статья	afgedankte artikel
+тема обработка сигналов	het thema van de verwerking van signalen
+перерыв на питание	een pauze voor de menselijke voeding
+оценка отклонить	evaluatie van afwijzen
+доклад по статье	het verslag over artikel
+тема мобильные вычисления	het thema van mobiel computergebruik
+место проведения конференции	plaats van de conferentie
+оценка рецензирования	Score van beoordeling
+тема антенны	thema downloaden
+опубликованная статья	gepubliceerde artikel
+тема радио связь	het thema van de radiocommunicatie
+тема коммутация компьютерных сетей	thema schakelen computernetwerken
+заключительное слово	het laatste woord
+тема безопасность	het thema van de veiligheid
+член tpc	Lid van de tpc
+неакадемчический этап	neakademčičeskij stadium
+тема криптография	het thema van cryptografie
+государственная организация	Staat organisatie
+этап перерыв	fase pauze
+персональная история	persoonlijke geschiedenis
+тема передача по линиям электропередач	Powerline transmissie thema
+двухуровневая конференция	Conferentie twee-niveau
+отозванная статья	ingetrokken artikel
+тема промышленные компьютерные сети	het thema van industriële computernetwerk
+тема компьютерные сети	het thema van computernetwerken
+приглашение принять участие в рецензировании	uitnodiging tot deelneming aan de herziening
+секция конференции	sectie conferentie
+одноуровневая конференция	monistisch conferentie
+этап конференции	fase van de conferentie
+контактная информация	contact informatie
+тема медицина	het thema van de geneeskunde
+численный рецензионный вопрос	de numerieke evaluatie vraag
+место	plaats
+оценка принять	Score
+тема параллельные и распределённые вычисления	het thema van parallelle en gedistribueerde computing
+тема теория коммуникаций	het thema van communicatietheorie
+оцененные статьи	nominale artikelen
+бланк рецензирования	formulier voor evaluatie van
+вступительное слово	een inleidende woord
+приглашение к публикации манускриптов	uitnodiging om te publiceren manuscripten
+персональная история статьи	persoonlijke geschiedenis artikelen
+место проживания	woonplaats
+организационное собрание	Welkom vergadering
+председатель секции	Hoofd van de sectie
+спонсорство	sponsoring
+тема микроэлектроника	het thema van de micro-elektronica
+инициируется	wordt gestart
+кем предоставлена	wie gegeven
+дата и время начала	begindatum en -tijd
+история рецензирования	Geschiedenis beoordeling
+инициирует	ingewijden
+относится к этапу	verwijst naar de fase van
+относится к	verwijst naar de
+отностится к статье	Geniet van het artikel
+является местом проведения	is de site van de
+связанная статья	gerelateerd artikel
+регистрация до	registratie te
+статья до	artikel
+последняя дата подачи заявки	termijn toe te passen
+дата и время окончания	einddatum en -tijd
+манускрипт до	manuscript te
+валюта	valuta
+сумма	het bedrag van de
+правила подачи заявки	regels voor de toepassing van
+биография	Biografie
+посетитель	bezoeker
+принадлежит этапу	behoort tot het werkgebied
+для этапа	voor fase
+кем написана	Wat is geschreven
+кем рецензируется	die is onderworpen aan een
+связанный документ	het gekoppelde document
+предоставляет	biedt
+объявление	Advertentie
+оценка	Score
+конференц-банкет	Conferentie feestzaal
+автор статьи	de auteur van het artikel
+председатель оргкомитета	Voorzitter van het Organiserend Comité
+полная статья	volledige artikel
+поданая статья	podanaâ artikel
+председатель демонстраций	Voorzitter van de demonstraties
+научная тема	de wetenschappelijke thema
+положительная рецензия	positieve recensie
+демонстрационная статья	Demo artikel
+академический институт	academische instituut
+рекламный листок	Flyer
+организационнное агенство	organizacionnnoe Agentschap
+производственная статья	productie artikel
+сборник трудов	procedure
+издатель сборника трудов	Uitgever boek werken
+научное мероприятие	wetenschappelijke manifestatie
+мероприятие	gebeurtenis
+секция полных статей	sectie van volledige artikelen
+член агенства	Lid agentschappen
+веб-сайт	Web site
+статья в окончательной версии	artikel in de definitieve versie
+доклад	verslag
+статья конференции	Artikel conferentie
+председатель семинаров	Voorzitter van het seminar
+стендовая статья	poster sectie
+потенциальный рецензент	potentiële revisor
+член оргкомитета	Lid van het Organiserend Comité
+научно-исследовательский институт	Wetenschappelijk onderzoeksinstituut
+секция стендов	sectie van stands
+закреплённая статья	welk artikel
+секция демонстраций	sectie demonstraties
+индивидуальная презентация	eigen presentatie
+поздно зарегистрированный участник	laat geregistreerd lid
+производственная секция	productie sectie
+член научного совета	Lid van de wetenschappelijke Raad
+светское мероприятие	een seculiere gebeurtenis
+нейтральная рецензия	neutrale beoordeling
+экскурсия конференции	Tour de conferentie
+часть	deel
+аннотация к обучающему курсу	abstract voor de opleiding
+университет	Universiteit
+статья на семинаре	artikel tijdens het seminar
+выпуск с несколькими составителями	probleem met meerdere schrijvers
+отрицательная рецензия	negatieve recensie
+досрочно зарегистрированный участник	vroege geregistreerde deelnemer
+обработанная статья	behandelde artikel
+секция семинаров	sectie workshops
+программный буклет	Programmaboekje
+аннотация к приглашённому докладу	abstract voor priglašënnomu verslag
+председатель обучающих курсов	de Voorzitter van opleidingen
+статья в выпуске	artikel in dit nummer
+кем организован	die georganiseerd
+обновлённая версия	de bijgewerkte versie
+мероприятие в списке	de gebeurtenis in de lijst
+содержит ссылку в	bevat een verwijzing naar de
+организует	organiseert
+научно организовывает	de wetenschappelijke en organiseren
+инверсия часть 7	Omkeren deel 7
+мероприятние	meropriâtnie
+презентация статьи	presentatie van artikelen
+кем научно организовано	Wat wetenschappelijke en georganiseerde
+выпуск содержит статью	nummer bevat een artikel
+рецензия на статью	Boek review artikel
+технически организовано	technisch georganiseerd
+часть мероприятия	deel van het evenement
+список мероприятий	een lijst van evenementen
+адресует тему	adressen van het onderwerp
+ссылается	verwijzingen
+рецензия написана	beoordeling geschreven door
+технически организовывает	technisch organiseert
+статья представленная как	artikel afkomstig als
+рецензент статьи	Revisor van artikelen
+город спонсора	Stad sponsor
+микроавтобус	minibus
+чаевые	Tip
+член iasted	iasted lid
+пригласительное письмо	uitnodigingsbrief
+ресторан конференции	Restaurant conferentie
+докладчик пленарного доклада	de Rapporteur van de plenaire vergadering verslag
+принятие манускрипта	aanvaarding van het manuscript
+спонсор	sponsor
+налог на отправление	belastingdienst
+видео презентация	video presentatie
+дневной тур	middag tour
+гостиничный регистрационный бланк	Hotel registratieformulier
+страна конференции	land conferentie
+город экскурсии	rondleidingen door de stad bezienswaardigheden
+студент-докладчик	student-reporter
+деньги	geld
+форма	formulier
+получение манускрипта	na ontvangst van het manuscript
+представление докладчика	Weergave voor presentator
+потолочный проектор	plafond projector
+welcome address	Welkomstwoord
+работник-не докладчик	de werknemer is niet de rapporteur
+главный оффис	hoofdkantoor
+первоначальный манускрипт	het originele manuscript
+автор, диск сборника трудов включёны	de auteur, een schijf van werken opgenomen
+cтрана спонсора	land sponsor
+банковский перевод	Bankoverschrijving
+подача	diervoeders
+налог	belasting
+мероприятие после конференции	gebeurtenis na de conferentie
+город конференции	Stad conferentie
+сертификат участия	certificaat van deelname
+не авторский регистрационный взнос	Geen registratiekost Auteur
+гостиничный взнос	Hotel vergoeding
+комната секции	kamer partitie
+здание	gebouw
+последний срок подачи	de termijn voor indiening van de aanvraag
+дом  спонсорской компании	Huis sponsor bedrijf
+техническое мероприятие	technische gebeurtenis
+страна докладчика	de rapporteur land
+последний срок окончательной версии манускрипта	termijn voor de definitieve versie van het manuscript
+светская программа	seculiere programma
+аудиовизуальное оборудование	audiovisuele apparatuur
+последний срок бронирования гостиницы	Hotel reservering termijn
+автомобиль	auto
+мероприятие конференции	gebeurtenis conferentie
+симуляция	simulatie
+работник-докладчик	werknemer-Rapporteur
+время	tijd
+исследование	studie
+взнос	bijdrage
+один день докладчик	één dag hij
+пригородный автобус	Suburban bus
+не член iasted	niet een lid van de iasted
+житкокристаллический проектор	Žitkokristalličeskij projector
+окончательный манускрипт	het laatste manuscript
+диск сборника трудов	CD compilatie van werken
+последний срок регистрации	de deadline voor inschrijvingen
+такси	taxi
+членский регистрационный взнос	registratie lidgeld
+двуспальный гостиничный номер	Hotel Tweepersoonskamer
+доклад докладчика	verslag van de rapporteur
+список рассылки	mailing lijst
+транспортное средство	voertuig
+автор, книга сборника трудов включены	de auteur, het boek is een compendium van werken opgenomen
+чек	selectievakje
+докладчик обучающего курса	Rapporteur voor advies van de opleiding
+часовой пояс	timezone
+податель в гостинице	gever in het hotel
+карта	kaart
+коктейль-вечеринка	cocktailparty
+ужин-банкет	diner-feestzaal
+вступление	post
+предмет	weergave
+регистрация	registratie
+последний срок	de termijn voor de
+аэропорт конференции	Luchthaven conferentie
+мероприятие до конференции	gebeurtenis-conferentie
+регистрационный взнос	inschrijvingsgeld
+гостиничный номер	hotelkamer
+регистрационный взнос автор, участник, книга	registratie fee, boek auteur, medewerker
+даты конференции	datums van de conferentie
+студент-не докладчик	de student is niet de rapporteur
+пленарный доклад	plenaire vergadering verslag
+презентация powerpoint	PowerPoint-presentatie
+дом докладчика	Huis spreker
+информационная форма об авторе	informatie aanvraagformulier over de auteur
+делегат	gemachtigde
+кредитная карта	creditcard
+kонференц-зал	Conferentieruimte
+день экскурсии	excursies van een dag
+виза	Visum
+студенческий регистрационный взнос	het inschrijvingsgeld student
+регистрационный бланк	registratieformulier
+последний срок уведомления о принятии	de termijn voor de kennisgeving van aanvaarding
+документ об оплате	bewijs van betaling
+слушатель	luisteraar
+прокат	Verhuur
+технический комитет	het technisch comité
+моделирование	modellering
+налого на добавленную стоимость	toegevoegde waarde belasting
+прозрачность	transparantie
+отклонение манускрипта	afwijzing van het manuscript
+не членский регистрационный взнос	geen lidgeld
+не доскладчик	niet doskladčik
+публикация	publicatie
+conference hiker	Conferentie wandelaar
+регистрационный взнос aвтор, участник	Auteur registratie fee, exposant
+один день конференции	eendaagse conferentie
+здание конференции	Gebouw conferentie
+краткое вступление председателя секции	een korte inleiding van de sectie
+университет докладчика	Universiteit van Rapporteur
+отправление	het beheer van
+книга сборника трудов	de boekencollectie van werken
+город докладчика	Stad verslaggever
+одноместный гостиничный номер	Hotel Eenpersoonskamer
+гостиница конференции	Hotel conferentie
+проигрыватель видео кассет	video cassette speler
+компьютер	computer
+взнос за дополнительную поездку	vergoeding voor extra reis
+кем посылается	die wordt verzonden
+занимает	neemt
+связан с	is gekoppeld
+используется	gebruikt
+до	tot
+запланировано на	gepland voor
+кем подписывается	die onderschrijft
+присутствует во время	aanwezig zijn bij de
+получает	Deze eigenschap haalt de
+производится из	vervaardigd uit
+происходить после	zich voordoen na de
+посылает	stuurt
+кем оплачивается	die wordt betaald
+чем оплачивается	dan betaald
+кем пишется	Wat is geschreven
+оборудован	functies
+оплачивает	betaalt
+кем посещается	die wordt bezocht
+требуется для	is vereist voor
+используется для	wordt gebruikt om te
+даёт	geeft
+кем используется	Wie gebruikt
+готовит	bereidt
+кем готовится	Wie bereidt
+находится в	is in
+кем представлен	gepresenteerd door
+докладывает в	verslag het
+где оплачивается	Wanneer te betalen
+кому представлен	die hebben ingediend
+чем занимается	Wat doet
+происходить до	optreden voor
+за что оплачивается	Wat is betaald
+посылается после	verzonden na de
+пристутствует в	pristutstvuet in
+разработан для	ontworpen voor
+происходит в	Deze gebeurtenis vindt plaats in
+посылается до	wordt verzonden naar de
+подписывает	tekenen
+требует	vereist
+регистрация sigkdd членов	SIGKDD lidmaatschap registratie
+награда	Award
+платиновый спонсор	Platina sponsor
+награда за лучшую научную статью	Award voor de beste onderzoek papier
+регистрация не членов	registratie van leden van de
+последний срок уведомления авторов	de termijn voor de kennisgeving van auteurs
+автор статьи студент	de auteur van het artikel de student
+программный председатель	programma stoel
+комитет по наградам за лучшую статью	Commissie awards voor beste artikel
+бронзовый спонсор	Bronze Sponsor
+регистация студентов	registratie van studenten
+регистрация sigmod членов	sigmod leden registratie
+награда за лучшую прикладную статью	Award voor beste toegepaste artikel
+последний срок подачи аннотаций	de termijn voor indiening van samenvattingen
+спонсорский взнос	sponsoring vergoeding
+золотой спонсор	Goud sponsor
+серебрянный спонсор	Zilveren sponsor
+вебмастер	Webmaster
+конференц-зал	Conferentie zaal
+награда за лучшую студенческую статью	Award voor beste student paper
+программный комитет	Programma Comité
+член организационного комитета	Lid van het Organiserend Comité
+последний срок подачи статей	de deadline voor het indienen van artikelen
+acm sigkdd	ACM sigkdd
+спонсор награды за лучшую студенческую статью	sponsor awards voor beste student paper
+комитет	Comité
+гостиница	Hotel
+экспонент	Exposant
+национальность	de nationaliteit van de
+цена	prijs
+отправить до	verzenden
+оплачивается	wordt betaald
+начало конференции	begin van de conferentie
+кем разработан	Wie ontwierp
+название конференции	Conference titel
+окончание конференции	einde van de conferentie
+имя спонсора	naam van sponsor
+поиск	Zoeken
+отправить	Verzenden
+кем найден	iedereen gevonden
+уведомляет до	deelt de
+кем награждён	die toegekend
+поддерживается	ondersteund
+платит	betaalt
+может остановиться в	kan blijven in
+поддерживает	ondersteunt
+презентуется	wordt gepresenteerd
+дизайн	ontwerp

@@ -154,9 +154,8 @@ public class Lexicon
 		String s, lang;
 		Provenance p;
 
-		//If the name is in a language that doesn't use a Latin character set
-		//we parse it as a formula (i.e., replace only '_' with ' ')
-		if(AML.getInstance().isNonLatin(language))
+		//If the name is not in english we parse it as a formula
+		if(!language.equals("en"))
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = language;

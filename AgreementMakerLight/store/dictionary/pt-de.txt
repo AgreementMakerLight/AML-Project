@@ -1,0 +1,684 @@
+comitê de programa	Programmkomitee
+coordenador do comitê de programa	Programm-Komitee-Koordinator
+meta revisor	Meta Prüfer
+coordenador geral do evento	General-Koordinator der Veranstaltung
+conferência	Konferenz
+usuário	Benutzer
+autor	Autor
+membro participante da conferência	Teilnehmer der Konferenz
+propostas	Vorschläge
+co autor	Co-Autor
+coordenador da conferência	Konferenz Koordinatorin
+rejeição	Ablehnung
+preferência	Präferenz
+coordenador associado do evento	Koordinator des Ereignisses zuordnen
+aceitação	Akzeptanz
+meta revisão	Meta-Bewertung
+administrador	Administrator
+área temática	Themenbereich
+autor não revisor	Autor-Prüfer
+decisão	Entscheidung
+versão completa de artigo	Vollversion des Artikels
+resumo do artigo	Zusammenfassung des Artikels
+pessoa	Person
+documento	Dokument
+revisor	Rezensent
+revisão	Bewertung
+membro do comitê de programa	Mitglied des Ausschuss-Programms
+revisor externo	externer Gutachter
+artigo	Artikel
+artigo escrito	Artikel geschrieben
+ajustar o pedido de revisão	Passen Sie den Antrag auf Überprüfung
+pedido de revisao ajustado	Antrag auf Revision Satz
+critérios de revisão introduzidos por	Kriterien zu überprüfen
+tem email	hat e-Mail
+tem data	hat ein date
+leitura de artigo	Artikel lesen
+reunião virtual habilitada por	virtuelles Treffen aktiviert, indem
+atribuição de um artigo finalizada por	eine Artikel-Zuordnung von beendet
+escrever um artigo com	Schreiben Sie einen Artikel mit
+adicionar um membro do comitê de programa	Hinzufügen eines Mitglieds des Programms Ausschuss
+adicionado por	Hinzugefügt von
+possui conflito de interesses	hat einen Interessenkonflikt
+executar ferramentas de atribuição de artigos	Ausführen der Zuordnung Tools Artikel
+possui autor	hat Autor
+revisão realizada	durchgeführten Überprüfung
+tem nome	haben Sie einen Namen
+máximo de artigos	maximale Artikel
+revisões por artigo	Bearbeitungen pro Artikel
+tem título	Titel
+tem site	hat website
+tem código do artigo	hat Artikelcode
+aceita submissões impressas	akzeptiert Einreichungen gedruckt
+url	URL
+ferramentas de atribuição de artigos executadas por	Werkzeuge-Artikel-Zuordnung durchgeführt von
+escrito por	Geschrieben von
+permitir uma reunião virtual	ein virtuelles Treffen zu ermöglichen
+atribuir um revisor	Zuweisen eines Bearbeiters
+leitura realizada po um revisor	Lesen statt po ein Prüfer
+membro da conferência	Mitglied der Konferenz
+iniciar pedidos de revisão	Überprüfungsanträge zu initiieren
+atribuído para	zugewiesen
+possui um membro do comitê de programa	hat ein Mitglied des Programms Ausschuss
+inserir detalhes	Einfügen von Informationen
+envio de artigos	Artikel senden
+possui uma área	Er hat eine Fläche
+possui pedido de revisão	Funktionen-Antrag auf Überprüfung
+revisão final	abschließende Überprüfung
+leitura realizada por um meta revisor	Lesung, gehalten von einem Bearbeiter
+artigo aceito	Artikel akzeptiert
+aceito por	von akzeptiert
+membro do comite de programa	Mitglied des Ausschuss-Programms
+pedidos de revisão iniciados por	Überprüfung Zugriffe initiierten
+possui decisão	eigene Entscheidung
+possui atribuição	Namensnennung hat
+inserir os detalhes da conferência	Geben Sie die Details der Konferenz
+finalizar as atribuições dos artigos	Abschließen der Zuschreibungen von Artikeln
+artigo rejeitado por	Artikel von abgelehnt
+atribuir um revisor externo	Weisen Sie eine externe Gutachter
+atribuído pelo administrador	vom Administrator zugewiesen
+inserir os critérios das revisões	Geben Sie die Kriterien von Revisionen
+impressão de documentos de envio de volume de correio	Drucken von Dokumenten vom Senden von e-Mail-Aufkommen
+rejeitar artigo	Artikel ablehnen
+mala  direta	Seriendruck
+marca um conflito de interesse	Markieren eines Interessenkonflikts
+atribuído pelo revisor	durch den Bearbeiter zugewiesen
+definição do número máximo de artigos	Festlegen der maximalen Anzahl von Artikeln
+possui participante da conferência	hat Ende der Konferenz
+volume da conferência	Tagungsband
+anúncio de conferência	Konferenzankündigung
+site da conferência	Konferenz-Website
+participante pago antecipado	prepaid-Teilnehmer
+comitê	Ausschuss
+participante ativo da conferência	aktiver Teilnehmer der Konferenz
+contribuinte à conferência	Mitwirkende zur Konferenz
+contribuição à conferência	Beitrag zur Konferenz
+documento da conferência	Dokument der Konferenz
+parte da conferência	Teil der Konferenz
+editora	Verlag
+especialidade de revisão	Spezial-Bewertung
+palestra convidada	eingeladener Vortrag
+apresentação	Präsentation
+chamada para participação	Aufruf zur Teilnahme
+resumo estendido	WIP
+tópico	Thema
+comitê diretivo	Lenkungsausschuss
+participante passivo da conferência	passiver Teilnehmer der Konferenz
+chamada de trabalhos	Call für papers
+coordenador geral	General-Koordinator
+participante pago	Teilnehmer bezahlt
+primeiro autor da contribuição	erste Autor Beitrag
+participante da conferência	Teilnehmer der Konferenz
+membro do comitê	Mitglied des Ausschusses
+contribuição revisada	überarbeiteten Beitrag
+co autor da contribuição	Co-Autor des Beitrags
+contribuição escrita	schriftlichen Beitrag
+workshop	Workshop
+tutorial	Lernprogramm
+organizador	Veranstalter
+contribuição aceita	Beitrag angenommen
+participante pago atrasado	Teilnehmer, die zu spät bezahlt
+informações aos participantes	Informationen für Teilnehmer
+contribuição submetida	eingereichten Beiträge
+organizacão	Organisation
+co coordenador	Co-Koordinator
+contribuição de artigo completo	Beitrag der ganzen Artikel
+versão final da contribuição	die endgültige Version des Beitrags
+participante registrado	Teilnehmer registriert
+taxa de inscrição da conferência	Konferenz-Anmeldegebühr
+preferência de revisão	Präferenz zu überprüfen
+datas importantes	wichtige Termine
+trilha da conferência	Konferenz-track
+resumo	Zusammenfassung
+contribuição rejeitada	Beitrag abgelehnt
+coordenador de trilha de workshop	Trail-Koordinator-workshop
+comitê organizador	Organisationskomitee
+anais da conferência	Tagungsband
+participante de conferência	Ende der Konferenz
+palestrante convidado	Gast-Dozent
+possui nome	Namen hat
+data de submissão de resumo	Zeitpunkt der Antragstellung Zusammenfassung
+número do volume dos anais	Annalen Band Nr
+data de publicação	Datum der Veröffentlichung
+possui primeiro nome	Vorname hat
+data de entrega da versão final de artigo	Liefertermin der endgültigen Version des Artikels
+o site da conferencia é	die Konferenz-Website ist
+data de início	Startdatum
+dia de encerramento	Ruhetag
+possui um email	hat eine email
+possui sobrenome	Merkmale Familienname
+localização da conferência	Ort der Konferenz
+data de submissão de artigo completo	Zeitpunkt der Einreichung des vollständigen Artikel
+especialidade do revisor	Reviewer's Spezialität
+possui sexo	hat sex
+isbn dos anais	ISBN der den Annalen
+possui um coordenador geral	hat ein General-Koordinator
+pertence a um volume da conferência	gehört zu einem Tagungsband
+revisa	Bewertungen
+possui um comitê organizador	hat ein Organisationskomitee
+possui autores	Funktionen-Autoren
+é submetida a	unterliegt
+possui um tópico ou uma contribuição submetida	hat ein Thema oder ein Beitrag eingereicht
+possui um resumo	hat eine Zusammenfassung
+foi um comitê de programa de conferência	Es war ein Konferenz-Programmkomitee
+possui uma especialidade de revisão	hat eine Spezialität-Überprüfung
+possui um comitê	hat einen Ausschuss
+possui uma revisão	hat eine Überprüfung
+é um tópico de partes da conferência	Es ist ein Thema von Teilen der Konferenz
+possui uma editora	hat ein Verlag
+diploma de revisão	Diplom-Prüfung
+data de anúncio de aceitação	Datum der Anzeige der Annahme
+possui contribuições	hat Beiträge
+possui um comitê diretivo	hat ein Steering Committee
+convida co revisores	Einladungen co Bewertungen
+possui um tópico de trilha para workshop e tutorial	verfügt über ein Thema des Trails für Workshop und tutorial
+possui um co coordenador	hat einen co-Koordinator
+publica	veröffentlicht
+foi um co coordenador de	Es war eine co-Koordinator des
+é parte de volumes da conferência	ist Teil der Konferenz-volumes
+foi atribuída uma preferência de revisão	eine Präferenz für die Überprüfung wurde zugewiesen werden.
+foi um comitê de conferência	Es war ein Vermittlungsausschuss
+foi um comitê diretivo de conferência	Es war eine Konferenz Steering Committee
+foi um membro de	war Mitglied des
+contribui para a canferência	trägt dazu bei, die canferência
+é ministrada por	ist gegeben durch
+possui datas importantes	hat wichtige Termine
+ministra apresentações	Minister-Präsentationen
+possui um comitê de programa	hat ein Programm Komitee
+possui tutoriais	Funktionen-tutorials
+convidado por	auf Einladung von
+possui partes	besteht aus den Teilen
+pertence a uma preferência de revisão	gehört zu eine Präferenz für die Überprüfung
+foi um coordenador geral de	war ein General-Koordinator
+possui uma preferência ou especialidade de revisão	hat eine Bevorzugung oder Spezial-Überprüfung
+possui trilhas	Es verfügt über Spuren
+possui membros	hat Mitglieder
+possui um coordenador de trilha de workshop e de tutorial	hat einen Track-Koordinator des Workshop und tutorial
+possui uma contribuição submetida	hat einen eingeschränkten Beitrag
+pertence a revisores	gehört zur Bewertungen
+possui workshops	Funktionen-workshops
+é a primeira parte de	ist der erste Teil der
+foi um coordenador de trilha de workshop de	war ein Track-Koordinator-workshop
+foi um comitê organizador de conferência	Es war eine Konferenz-Organisationskomitee
+viagem	Reise
+efetivo participante da conferência	facto das Ende der Konferenz
+pessoas	Menschen
+banquete	Bankett
+participante	Teilnehmer
+evento	Ereignis
+cientista participante da conferência	Wissenschaftler-Teilnehmer der Konferenz
+universidade	Universität
+artigo resumido	Artikel zusammengefasst
+voluntário participante da conferência	Freiwillige Teilnehmer der Konferenz
+país	solche
+evento de entrega das versões finais	Lieferung der endgültigen Versionen-Ereignis
+acadêmico participante da conferência	wissenschaftliche Konferenz-Teilnehmer
+contribuição	Beitrag
+atividades do evento	Ereignis-Aktivitäten
+recepção	Rezeption
+evento de revisão	Überprüfen Sie das Ereignis
+submissão	Einreichung
+evento social	gesellschaftliches Ereignis
+revisão de resultados	Überprüfung der Ergebnisse
+evento de inscrição dos participantes	Event-Teilnehmer-Registrierung
+cidade	Stadt
+empresa	Firma
+organização	Organisation
+avento administrativo	administrative ganztägiges Ereignis
+estudante participante da conferência	studentische Teilnehmer der Konferenz
+assistente	Assistent
+em paralelo com	Parallel zu
+estuda em uma universidade	Studium an einer Universität
+possui tópico	Thema hat
+possui evento administrativo	hat administrative event
+escrita por um autor	von einem Autor geschrieben
+seguinte	folgende
+empregado em	Mitarbeiter in
+está em um país	ist in einem Land
+escreve uma contribuição	Schreiben Sie einen Beitrag
+está em uma cidade	sind in einer Stadt
+possui  palavra chave	Stichwort hat
+possui email	hat e-Mail
+opção mínima	minimale option
+opção máxima	Option Maximum
+possui fone	Telefon
+ùltimo dia do evento	letzten Tag der Veranstaltung
+possui resumo	Features Übersicht
+possui título	Titel
+possui iva	inkl. MwSt.
+dia de inicio do evento	Tag der Beginn der Veranstaltung
+possui título resumido	hat Titel zusammengefasst
+local	Lage
+possui observação	Hinweis hat
+escolha padrão	Wählen Sie Standard
+possui sítio	hat Platz
+possui caixa postal	hat Voice-mail
+possui fax	Fax hat
+possui rua	hat Straße
+inscrição antecipada de participante	vorherige Anmeldung der Teilnehmer
+possui contato por email	hat Sie Kontakt per e-Mail
+lida com um tópico	befasst sich mit einem Thema
+especialista no tópico	Experte für das Thema
+evento não acadêmico	keine akademische Veranstaltung
+tema testes	Thema Prüfungen
+trabalhos avaliados	bewertete Arbeit
+local da conferência	der Konferenzort
+tema antenas	Thema Antennen
+apresentador	Moderator
+intervalo	Bereich
+informações para contato	Informationen für Kontakt
+pontuação de aceitação	Score von Akzeptanz
+evento de palestra	Vortrag-Ereignis
+tema gerenciamento de redes de computadores	Computer-Netzwerk-Management-Thema
+tema segurança	Sicherheit-Thema
+evento de refeicao	Mahlzeit-Ereignis
+tema comunicações	Kommunikation-Thema
+tema comunicação sem fio	drahtlose Kommunikation-Thema
+excursão	Ausflug
+palestra de fechamento	Vortrag schließen
+histórico pessoal de revisões	persönliche Geschichte von Revisionen
+apresentação de artigo	Präsentation der Artikel
+tema computação paralela e distribuída	parallele und verteilte IT-Thema
+tema redes de computadores óticas	Thema optische Computer Netzwerke
+artigo original	Original-Artikel
+formulário de revisão	Formulare überprüfen
+tema criptografia	Verschlüsselung-Thema
+local do jantar	Lage von Essen
+tema medicina	medizinische Thema
+intervalo livre	Freilandhaltung
+chamada	Rufen Sie
+tema redes de comutação	Thema Wechsel Netzwerke
+slides	Folien
+pontuação da revisão	Review Punktzahl
+tema redes sensores	Thema Sensornetze
+organização acadêmica	Akademische Organisation
+tema cad	Thema cad
+tema aplicações de redes de computadores	Thema Anwendungen Computer-Netzwerke
+tema multimídia	Multimedia Design
+intervalo para refeição	Mahlzeit-Pause
+palestra de boas vindas	Rede zur Begrüßung
+chamada de revisores	Aufruf für Bearbeiter
+reunião organizacional	organisatorische treffen
+tema arquitetura de computadores	Thema Computer-Architektur
+histórico pessoal de publicações	persönliche Geschichte von Publikationen
+artigos pendentes	ausstehende Artikel
+pontuação de aceitação condicional	bedingte Annahme score
+programa	Programm
+questão de revisão	Bewertung Thema
+organização governamental	Staatliche Organisation
+artigo rejeitado	Artikel abgelehnt
+evento acadêmico	akademische Veranstaltung
+tema comunicação por satélite e espacial	Satelliten-Kommunikation und Raum-Design
+artigo retirado	Artikel entfernt
+tema comunicação por rádio	Radio-Kommunikation-Thema
+questão numérica de revisão	numerische Revision Problem
+histórico pessoal	persönliche Geschichte
+cardápio	Menü
+patrocínio	Sponsoring
+evento relacionado a conferência	Konferenz-Ereignistyp
+tema computação móvel	mobile computing Thema
+chamada de manuscritos	Aufruf für Manuskripte
+pontuação de rejeição fraca	Ergebnis aus schwach Ablehnung
+sala de reuniões	Tagungsraum
+questão textual de revisão	textliche Überarbeitung Problem
+jantar da conferência	Abendessen der Konferenz
+conferência de dois níveis	zwei-Ebenen-Konferenz
+tema sistemas operacionais	Betriebssysteme-Thema
+coordenador da sessão	Sitzung Koordinator
+tema linhas de transmissão	Thema Übertragungsleitungen
+tema teoria da comunicação	Thema Kommunikationstheorie
+tema processamento de sinais	Signal-Verarbeitung-Thema
+tópicos	Themen
+ong	Ong
+hospedagem	Hosting
+tema desempenho	Leistung-Thema
+tema medições de redes de computadores	Messung Thema Computernetzwerke
+artigo publicado	Artikel veröffentlicht
+organização industrial	Industrieökonomie
+tema redes de computadores	Thema Computer-Netzwerke
+pontuação de rejeição	Score von Ablehnung
+tema redes de computadores corporativas	Thema corporate Computer-Netzwerke
+evento de intervalo	Intervall-Ereignis
+sessão da conferência	Tagung der Konferenz
+tema microeletrônica	Thema Mikroelektronik
+conferência de um nível	einstufige Konferenz
+tema segurança em redes de computadores	Thema Sicherheit in Rechnernetzen
+auxílio de viagem	Reisen Hilfe
+é membro de	ist Mitglied von
+possui documento relacionado	Dokument hat bezogen werden.
+participante em	Teilnehmer in
+possui programa	hat Programm
+possui chamada	nennt man
+possui artigo relacionado	hat ähnliche Artikel
+é revisado por	wird von überprüft
+é iniciado por	wird gestartet
+possui avaliação	Funktionen-Bewertung
+está revisando	prüft
+é tópico de	ist Thema des
+relacionado a evento	ereignisbezogene
+é localização de	befindet sich
+é menu de	Menü
+é provedor de	ist Anbieter von
+possui participante	hat Ende
+é provido por	ist powered by
+inicia	beginnt
+é histórico de revisão de	ist Revisionshistorie
+é escrito por	wird geschieben von
+pertence a evento	gehört zur Veranstaltung
+para evento	für Veranstaltung
+relacionado a	mit Bezug zu
+relacionado a artigo	mit Bezug zu Artikel
+possui menu	Funktionen im Menü
+possui país	eigenen Land
+possui histórico de revisão	hat Revisionshistorie
+possui membro	Mitglied
+possui moeda	Münze hat
+possui horário de encerramento	Schließung hat
+possui instruções de submissão	Es hat Vorlage Anweisungen
+prazo de inscrição na conferência	Konferenz Anmeldung Termin
+possui localização	Lage
+possui horário de início	hat Startzeit
+prazo do manuscrito	Manuskript-Frist
+possui prazo de submissão	Funktionen-Einsendeschluss
+possui telefone	Telefon
+possui último nome	Nachname hat
+possui cidade	Stadt hat
+data de início da conferência	Beginn der Konferenz
+possui código postal	hat die Postleitzahl
+possui montante de custos	hat Einstandsbetrag
+data de encerramento	Stichtag des Rechnungsabschlusses
+possui biografia	hat Biographie
+prazo do artigo	Artikel Frist
+tópico de pesquisa	Suchthema
+estudante	Student
+brochura de programação	Programmierung-Broschüre
+revisão negativa	negative Bewertung
+evento científico	wissenschaftliche Veranstaltung
+coordenador dos workshops	Koordinator der workshops
+artigo de demonstração de protótipo ou aplicação	Artikel bzw. Software-Prototyp-demonstration
+artigo de aplicação industrial	Artikel gewerblich anwendbar
+artigo avaliado	Artikel ausgewertet
+sessão de workshop	Workshop Teil
+editora dos anais	Herausgeber der Annalen
+agência organizadora	Tour Netzbetreiber/Service provider
+insitituto de pesquisa	Culinary Institute der Forschung
+sessão de conferência	Webkonferenz
+autor de artigo	Autor des Artikels
+artigo de conferência	Konferenz-Artikel
+possível revisor	mögliche Bearbeiter
+artigo atribuído para revisão	Artikel, die für die Bewertung zugewiesen
+apresentação individual	Individuelle Präsentation
+funcionário da agência	Teil der Agentur
+resumo de tutorial	Tutorial Übersicht
+sessão de posteres	Poster-session
+anais	Anais
+anais de conferência	Tagungsband
+banquete da conferência	Konferenz-und Veranstaltungsräume
+resumo de palestra convidada	Zusammenfassung Vortrag eingeladen
+versão final do artigo	endgültige Version des Artikels
+participante registrado tardiamente	Teilnehmer verspätet registriert
+sessão de demonstrações de protótipos ou aplicações	Sitzung Demonstrationen von Prototypen oder Anwendungen
+coordenador do comitê organizador	Koordinator des Organisationskomitees
+revisão positiva	positive Bilanz
+artigo submetido	Artikel verfasst
+poster	Poster
+artigo de workshop	Artikel-workshop
+palestra submetida	Vortrag-Thema
+artigo completo	ganzen Artikel
+sessão de aplicações industriais	industrielle Anwendungen-Sitzung
+volume de vários autores	Volumen von verschiedenen Autoren
+folder	Ordner
+revisão neutra	neutrale Bewertung
+sítio	Ort
+trilha	Trail
+sessão	Sitzung
+instituição acadêmica	akademische institution
+membro do comitê organizador	Mitglied des Organisationskomitees
+coordenador de tutoriais	Koordinator des tutorials
+sessão técnica	technische Sitzung
+membro comite sessao	Sitzung Ausschuss-Mitglied
+coordenador de demonstrações de aplicações ou protótipos	Koordinator der Demonstrationen von Anwendungen oder Prototypen
+viagem para a conferência	Reisen nach der Konferenz
+participante registrado antecipadamente	Teilnehmer im voraus registriert
+revisão escrita por	Rezension geschrieben von
+possui evento	hat event
+tópico abrangido por	Thema fallenden
+possui revisor	hat der Prüfer
+referências	Referenzen
+possui parte	hat Teil
+tecnicamente organiza	technisch organisiert
+abrange tópico	Abdeckungen-Thema
+possui versão atualizada	aktualisierte version
+local de	Lage von
+volume contém artigo	Volume enthält Artikel
+cientificamente organiza	wissenschaftlich organisiert
+referenciado em	in verwiesen wird
+artigo no volume	Artikel in Band
+revisão do artigo	Artikelübersicht
+parte do evento	Teil der Veranstaltung
+sediado em	Mit Sitz in
+possui revisão	Funktionen überprüfen
+artigo apresentado como	Artikel, die als
+versão atualizada de	aktualisierte Version des
+evento na lista	in der Liste
+inverse of part of 7	Quantile Teil 7
+lista evento	Event-Liste
+parte de	Teil des
+revisor de artigo	Artikel-Prüfer
+organizado por	organisiert von
+organiza	organisiert
+autor de	Autor des
+cientificamente organizado por	wissenschaftlich geordnet
+tecnicamente organizado por	technisch organisiert von
+publicador de	Herausgeber der
+aeroporto da conferência	Konferenz-Flughafen
+ônibus	Bus
+formulário de inscrição	Anmeldeformular
+atividade técnica	Technische Tätigkeit
+apresentador hospedado no hotel	Wohnen im Hotel host
+taxa de inscrição para não-autor	Anmeldegebühr für nicht-Verfasser
+profissional nao palestrante	nicht professioneller Lautsprecher
+apresentador estudante	Student-Moderatorin
+autor cd incluído nos anais	Autor-cd wird in den Annalen
+cheque	Überprüfen
+quarto de hotel	Hotelzimmer
+salão da conferência	Konferenzsaal
+taxa de embarque	Versandkosten
+apresentador de tutorial	Tutorial-Moderatorin
+táxi	CAB
+projetor lcd	LCD-Projektor
+membro do iasted	IASTED Mitglied
+lista de emails	Mailing-Liste
+aparelho de vídeo cassete	Video Cassette-player
+pausa	Anhalten
+dia da viagem	Tag der Reise
+lista de presença	Liste der Präsenz
+dias da conferência	Tage der Konferenz
+taxa de inscrição para estudante	Anmeldegebühr für Studenten
+van	van
+estado do patrocinador	der Staat-sponsor
+palestra do orador	Speaker's Vortrag
+atividade	Aktivität
+restaurante da conferência	die Konferenz-restaurant
+formulário de inscrição no hotel	Hotel registrieren
+não membro do iasted	Kein Mitglied der IEEE
+versão inicial	erste version
+computador	Computer
+fuso horário	TimeZone
+breve introdução para a sessão do coordenador	kurze Einführung in die Sitzung Koordinator
+recusa de  artigos	Verweigerung von Artikeln
+carro	Auto
+livro dos anais	Buch der Chronik
+cidade do apresentador	Host-city
+documento de pagamento	Zahlungsbeleg
+sala da sessão	Sitzung Raum
+gorjeta	Tipp
+delegado	Delegieren
+recepção de  artigos	Eingang der Artikel
+cidade da conferência	die Kongreßstadt
+cartão	Karte
+taxa de inscrição para membro	Anmeldegebühr für die Mitgliedschaft
+cd dos anais	CD des Verfahrens
+atividade pré conferência	Pre-Conference-Aktivität
+dia da conferência	Tag der Konferenz
+excursão de dia inteiro	Ganztagsausflug
+apresentação em powerpoint	PowerPoint-Präsentation
+palestrante	Lautsprecher
+coquetel de recepção	cocktail Empfang
+aceitação de artigos	Annahme der Artikel
+item	Element
+taxa de inscrição para autor participante cd	Anmeldegebühr für Teilnehmer cd Autor
+publicação	Veröffentlichung
+simulação	Simulation
+formulário	Formular
+taxa sobre valor adicionado	Mehrwert Steuer
+palestra	Vortrag
+transferência bancária	Überweisung
+cidade do patrocinador	Stadt des Sponsors
+embarque	Internat
+data limite de inscrição	Ablauf der Registrierung
+atividade da conferência	Konferenz-Aktivität
+hotel da conferência	Hotel der Konferenz
+data limite de notificação de aceitação	Frist für die Mitteilung der Annahme
+taxa de inscrição	Anmeldegebühr
+atividade pós conferência	Post Konferenz Aktivität
+pesquisa	Suche
+data limite de submissão	Frist für die Einreichung
+apresentador da palestra plenária	Plenarvortrag Moderator
+taxa	Komplettpreise
+comissão técnica	Technische Kommission
+introdução	Einführung
+data limite de reserva de hotel	Frist für die Hotelreservierung
+escritório principal	Hauptbüro
+apresentador de um dia	Moderator eines Tages
+programa social	Rahmenprogramm
+estudante nao palestrante	Kein Student-Lautsprecher
+preço do hotel	Preis für hotel
+taxa de viagem extra	zusätzliche Reisekosten
+cartão de crédito	Kreditkarte
+ouvinte	Listener
+estado do apresentador	Zustand des Präsentators
+universidade do apresentador	Moderatorenkoffer-Universität
+data limite	Frist
+taxa de inscrição para autor participante livro	Anmeldegebühr für Teilnehmer Buchautor
+apresentação de vídeo	Video-Präsentation
+inscrição	Inschrift
+excursionista da conferência	Tripper der Konferenz
+discurso de boas vindas	Begrüßungsrede
+retroprojetor	Overhead-Projektor
+prédio da conferência	Gebäude der Konferenz
+tempo	Zeit
+nao palestrante	Kein Lautsprecher
+cidade da viagem	Städtereise
+formulário de informação aos autores	Informationsformular für Autoren
+quarto simples de hotel	Einzelzimmer hotel
+professor funcionário	Professor Mitarbeiter
+carta-convite	Einladungsschreiben
+apresentação do orador	der Sprecher Präsentation
+empresa patrocinadora	Konzerndirektor
+prédio	Gebäude
+versão final	endgültige version
+taxa de inscrição para não-membro	Teilnahmegebühr für Nichtmitglieder
+moeda	Währung
+transparências	Folien
+modelagem	Modellierung
+equipamento audiovisual	audiovisuelle Geräte
+estado da conferência	Konferenzstatus
+autor livro incluído nos anais	Autor Buch enthalten in den Annalen
+veículo de transporte	Transportfahrzeug
+palestra plenária	Plenarvortrag
+casa do apresentador	Moderatorenkoffer-Haus
+aluguel	mieten
+patrocinador	Sponsor
+custo	Kosten
+visto	gesehen
+data limite para versão final artigo	Frist für die Endversion Artikel
+quarto duplo de hotel	Doppelzimmer hotel
+estado	Zustand
+ocupa	belegt
+envia	sendet
+é pago com	wird mit bezahlt
+é enviado antes	wird vor gesendet
+prepara	bereitet
+va por	VA von
+de	von
+é usado por	wird von
+é pago por	wird bezahlt
+é preparado por	bereitet
+é feito de	Es besteht aus
+está conectado com	ist mit verbunden
+é enviado depois	wird nach mitgeteilt
+obtem	erhält
+é determinado por	richtet sich nach
+fala em	spricht in
+é ocupado por	ist besetzt von
+assina	Zeichen
+é feito antes	erfolgt vor
+é enviado por	wird gesendet
+está presente	ist vorhanden
+é pago dentro	erfolgt innerhalb
+necessita	erfordert
+é projetado para	richtet sich an
+é assinado por	wird geschlossen
+é pago para	wird geschenkt
+paga	zahlt
+é visitado por	wird von besucht
+está presente dentro	ist in
+é situado dentro	befindet sich in
+é feito depois	erfolgt nach
+escreve	schreibt
+é equipado por	Es ist ausgestattet für
+é usado para	wird verwendet, um
+é necessário para	Es ist notwendig
+é feito dentro	erfolgt innerhalb
+é dado para	erhält
+tem a quantia de	hat die Menge an
+feito até	erst durchgeführt
+prêmio  para o melhor artigo sobre uma aplicação	Preis für den besten Artikel über eine Anwendung
+patrocinador prata	Silber sponsor
+exibidor	Aussteller
+patrocinador  melhor artigo estudante	Sponsor best Paper Student
+taxa para patrocínio	Gebühr für Sponsoring
+patrocinador platina	Platin-sponsor
+prazo de notificação dos autores	Zeitraum der Benachrichtigung der Autoren
+inscrição de membro da sigkdd	SIGKDD Mitgliedschaft Anmeldung
+prazo de submissão para resumos	Einsendeschluss für abstracts
+prazo	Frist
+membro do comitê de programação	Mitglied des Ausschusses für Programmierung
+coordenador de programa	Programm-Koordinator
+prêmio	Award
+inscricao de não membros	Registrierung für nicht-Mitglieder
+lugar	Ort
+inscrição de membro da sigmod	SIGMOD Mitgliedschaftsbeitrag
+comitê para o prêmio de melhor artigo	Ausschuss für den best Paper award
+prêmio  para o melhor artigo sobre pesquisa	Preis für den besten Artikel Forschung
+patrocinador ouro	Gold-sponsor
+prêmio  para o melhor artigo de estudante	Preis für den besten Studenten-Artikel
+inscrição para estudantes	Registrierung für Studenten
+webmaster	Webmaster
+acm sigkdd	ACM sigkdd
+autor de artigo de estudante	Autor des Artikels von Studenten
+patrocinador bronze	Bronze sponsor
+hotel	Hotel
+prazo de submissão para artigos	Einsendeschluss für Papiere
+e-mail	E-Mail
+possui nacionalidade	besitzt die Staatsangehörigkeit
+obter prêmio	-Award erhalten
+conferência realizada por	Konferenz veranstaltet von
+pagamento de inscrição	Registrierung-Zahlung
+apresentado por	präsentiert von
+inscrição paga por	die kostenpflichtige Mitgliedschaft für
+pesquisado por	recherchiert von
+conjunto de prazos para	festgelegten Fristen für die
+possui prêmio	Funktionen-award
+conferência realizada	Konferenz
+conjunto de prazos	Zeitplan
+premiados por	verliehen von
+notificação de autor até	Autor Benachrichtigung bis
+submissão de artigo	Artikel Vorlage
+pode ficar em	Du kannst in wohnen
+data final da conferência	End-Datum der Konferenz
+possui preço	hat Preis
+possui nome do patrocinador	hat der Name des Sponsors
+possui nome da conferência	hat den Konferenz-Namen
+data	Datum

@@ -1,0 +1,704 @@
+person	persona
+meta review	Informe meta
+member of program committee	miembro del Comité del programa
+full version of paper	versión completa de papel
+abstract of paper	Resumen de papel
+reviewer	revisor
+conference	Conferencia
+adminstrator	Administrador
+subject area	área temática
+external reviewer	Revisor Externo
+review	revisión
+chairman	Presidente
+paper	papel
+meta reviewer	revisor de meta
+author who is not a reviewer	autor que no sea un revisor
+rejection	rechazo
+decision	decisión
+author	Autor
+acceptance	aceptación
+bid	oferta
+co author	Co-autor
+null	null
+conference chair	Presidente de la Conferencia
+preference	preferencia
+associated chair	silla asociado
+member of conference	miembro de la Conferencia
+user	usuario
+has title	tiene título
+reviews per paper	Comentarios por papel
+details entered by	datos introducidos por
+hardcopy of mailing manifests printed by	copia impresa de los manifiestos de correo impreso por
+read paper	periódico
+written by	escrito por
+set maximal number of assigned paper	establece el número máximo de papel asignado
+submit paper	enviar artículo
+read by meta reviewer	leído por revisor meta
+has member	tiene un miembro
+has name	tiene nombre
+has website at url	tiene página web URL
+has date	tiene fecha
+maximal number of assigned papers	número máximo de papeles asignados
+accepts hardcopy submissions	acepta envíos hardcopy
+has id	tiene id
+has logo at url	tiene logo en url
+has email	cuenta de correo electrónico
+review criteria entered by	introducidos por los criterios de revisión
+mark conflict of interest	marca de conflicto de intereses
+accepts	acepta
+assigned by reviewer	asignado por el revisor
+start reviewer bidding	empezar haciendo una oferta de revisor
+add	Añadir
+has bid	ha pujado
+assign	asignar
+rejected by	rechazado por
+co written by	escrito por Co
+virtual meeting enabled by	reunión virtual habilitada por
+co write	escritura de Co
+added by	Añadida por
+has subject area	tiene área temática
+paper assignment finalized by	asignación de papel finalizada el
+adjust	ajustar
+assigned by admin	asignado por admin
+end reviewing time	revisión de tiempo final
+enter review criteria	Introduzca los criterios de revisión
+reject paper	rechazar el papel
+read by reviewer	leído por revisor
+has been assigned	se ha asignado
+write paper	papel de escribir
+reviewer bidding started by	revisor de licitación Iniciado por
+run paper asignmedt tools	ejecutar las herramientas de asignmedt de papel
+accepted by	aceptado por
+has conflict of interest with respect to	tiene conflicto de intereses con respecto a
+assigned to	asignado a
+enable virtual meeting	permitir reuniones virtuales
+enter details on	Ingrese datos en
+has been decided (to be accepted rejected )	ha decidido (ser aceptado rechazado)
+print hardcopy mailing manifests	imprimir hardcopy manifiestos de correo
+write review	escribir comentario
+paper assignment tools run by	herramientas de asignación de papel dirigidos por
+finalize paper assignment	Finalizar tarea de papel
+adjusted by	ajustado por
+conference announcement	anuncio de conferencia
+co chair	silla de Co
+contributor for conference	Colaboradora en la Conferencia
+applicant for conference	solicitante para Conferencia
+steering committee	Comité Directivo
+submitted contribution	Contribución presentada
+conference contribution	contribución de la Conferencia
+topic	tema
+organizer	Organizador
+proceedings of conference	Actas de la Conferencia
+track of conference	pista de conferencia
+chair of workshop track	silla de la pista de taller
+active participant of conference	activo participante de la Conferencia
+committee	Comité
+poster	cartel
+expertise of reviewer	Experiencia de revisor
+conference serie	serie de conferencia
+conference document	documento de la Conferencia
+rejected contribution	contribución rechazada
+invited talk	charla invitada
+publisher	Editor
+first author of contribution	primer autor de contribución
+applicant for conference who paid conference fee	solicitante de conferencia que pagaron la tarifa de conferencia
+member of committee	miembro del Comité
+important date	fecha importante
+preference of reviewer	preferencia del revisor
+chair	silla
+co author of contribution	Co-autor de contribución
+organizing committee	Comité Organizador
+participant of conference	participante de la Conferencia
+workshop	Taller
+tutorial	Tutorial
+regular contribution	contribuciones regulares
+call for paper	Convocatoria de papel
+camera ready version of contribution	versión preparada con cámara de contribución
+presentation	Presentación
+web of conference	Web de la Conferencia
+applicant for conference who early paid conference fee	solicitante de conferencia que temprano pagado la tarifa de conferencia
+extended abstract	amplio resumen
+call for participation	Convocatoria de participación
+organization	Organización
+information for participants	información para los participantes
+registered applicant	candidatos registrados
+abstract	Resumen
+written contribution	contribución escrita
+invited speaker	orador invitado
+reviewed contribution	ha comentado el aporte
+fee for conference	cuota para Conferencia
+applicant for conference who lately paid conference fee	solicitante de conferencia que últimamente pagado la tarifa de conferencia
+author of contribution	Autor de la contribución
+passive participant of conference	participante pasivo de conferencia
+part of conference	parte de la Conferencia
+accepted contribution	contribución aceptada
+is program committee of conference	Comité de programa de conferencia
+submitted to	sometido a
+has been assigned review preference	se le ha asignado preferencia revisión
+has committee chair	Presidente del Comité tiene
+is part of conference	es parte de la Conferencia
+invites co reviewer	invita a revisor co
+program committee of conference is	Comité de programa de conferencia
+is the first part of	es la primera parte de
+is co chair of committee	co presidente del Comité
+topic related to review preference	tema relacionado con la revisión de preferencia
+preference or expertise of review is	preferencia o conocimientos de revisión es
+invited by reviewer	invitado por el revisor
+is workshop chair of	es Presidente del taller del
+has tutorial	tiene tutorial
+has submitted contribution	ha presentado contribución
+isbn of proceedings	ISBN del procedimiento
+has surname	tiene apellido
+published on date	Publicado en fecha
+has first name	tiene nombre
+date of full paper submission	fecha de presentación de papel completo
+url of conference web is	URL de la web de la conferencia es
+date of camera ready submission	fecha de presentación listas de cámara
+terminal day	día terminal
+contributes to conference	contribuye a la Conferencia
+committee of conference is	Comité de conferencia
+important date of conference serie	importante fecha de la serie de conferencias
+publishes	publica
+makes presentation	hace la presentación
+has review	tiene revisión
+is organizing committee of conference	organiza Comité de conferencia
+has topic or submission contribution	contribución del tema o sumisión
+expertise degree of reviewer	grado de conocimientos de revisor
+degree of review preference	grado de preferencia de revisión
+has e mail	cuenta de correo electrónico
+has gender	tiene género
+date of acceptance notification	fecha de la notificación de aceptación
+starting date	fecha de inicio
+location of conference	Ubicación de conferencia
+date of abstract submission	fecha de envío de resúmenes
+volume number of proceedings	número del volumen de actas
+organizing committee of conference is	Comité Organizador de la conferencia es
+is member of	es miembro de
+is committee of conference	Comité de conferencia
+has part	tiene parte
+publisher of proceedings is	Es editor de los procedimientos
+has abstract	tiene Resumen
+is chair of committee	es Presidente del Comité de
+has track	cuenta con pista
+has workshop chair	Tiene silla de taller
+is steering committee of conference	es el Comité de conferencia
+has committee co chair	tiene la Presidencia del Comité de co
+has contribution	contribución
+presented by	presentado por
+has review expertise	tiene conocimientos de revisión
+steering committee of conference is	Comité Directivo de la conferencia es
+has important date	tiene fecha importante
+has workshop topic	tiene tema de taller
+has workshop	dispone de taller
+is topic of conference part	es tema de parte de la Conferencia
+preference or expertise of reviewer	preferencia o experiencia del revisor
+has author	tiene autor
+reviews contribution	Comentarios sobre el aporte
+event of sending camera ready version	evento de la versión de la cámara está lista a enviar
+city	ciudad
+event	evento
+contribution	contribución
+banquet	banquete
+event of registration of participants event	evento de registro de eventos de los participantes
+administrative event	evento administrativo
+event of reviewing results	evento de revisión de resultados
+short paper	papel corto
+working event	evento de trabajo
+participant	participante
+science worker	trabajador de ciencia
+social event	evento social
+event of reviewing	evento de revisión
+student	estudiante
+event of submission	evento de presentación
+volunteer of conference	voluntario de conferencia
+regular participant of conference	participante regular de conferencia
+student participant of conference	participante estudiante de conferencia
+country	país
+company	empresa
+person involved with conference	persona involucrada con la Conferencia
+trip	viaje
+university	Universidad
+reception	recepción
+assistent	Asistente
+administrator	Administrador
+participant of conference has early registration	participante de la Conferencia tiene inscripción temprana
+has postal code	tiene código postal
+has remark	tiene comentario
+follows	sigue
+study at university	estudiar en la Universidad
+has relevant administrative event	tiene relevante evento administrativo
+writes contribution	Escribe la contribución
+reviewes	reviewes
+written by author	escrito por el autor
+stay in country	permanecer en el país
+deals with topic	aborda el tema
+expert on topic	experto en el tema
+is parallel with	paralelo con
+stay in city	permanecer en la ciudad
+employed by	empleado por
+has topic	tiene tema
+stay in street	permanecer en la calle
+end day of event	día final del evento
+has short title	tiene título corto
+setting of maximal number of event	configuración del número máximo de eventos
+has fax	tiene fax
+event is being held at	evento se celebra en
+has keywords	tiene palabras clave
+has valued added tax	ha valorado IVA
+has phone	tiene teléfono
+has contact email	cuenta de correo electrónico de contacto
+setting of default choice of number of event	ajuste de la opción por defecto del número de eventos
+has home page	tiene página
+starting day of event	día del evento
+setting of minimal number of event	ajuste del número mínimo de evento
+ngo	ONG
+review rating	revisión de calificación
+attendee	asistentes
+microelectronics topic	tema de microelectrónica
+place	lugar
+computer networks security topic	tema de seguridad de redes de computadoras
+computer networks management topic	tema de gestión de redes computadoras
+single level conference	Conferencia de nivel único
+signal processing topic	tema de procesamiento de señal
+government organization	organización del gobierno
+multimedia topic	tema multimedia
+presentation of a paper	Presentación de un documento
+powerline transmission topic	tema de transmisión Powerline
+non academic event	evento no académica
+computer networks applications topic	tema de aplicaciones de redes computadoras
+computer architecture topic	tema de arquitectura de computadoras
+wireless communications topic	tema de las comunicaciones inalámbricas
+closing talk	charla de cierre
+personal publication history	historia de la publicación personal
+session chair	Presidente de sesión
+travel grant	Beca de viaje
+event related to a conference	evento relacionado con una conferencia
+coffee break	pausa-café
+computer networks topic	tema de las redes de computadoras
+communication theory topic	tema teoría de comunicación
+rated paper	papel nominal
+computer networks optical topic	computadora redes óptica tema
+excursion	excursión
+academic event	evento académico
+presenter	presentador
+industrial organization	organización industrial
+free time	tiempo libre
+accept if room rating	aceptar grado cuarto
+weak reject rating	débil rechazo calificación
+communications topic	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=3627.V2_Json.Translate.23DC4912
+performance topic	ArgumentException: The incoming token has expired. Get a new access token from the Authorization Server. : ID=3541.V2_Json.Translate.2446298F
+textual review question	tema de revisión textual
+talk	hablar
+call for papers	Convocatoria de ponencias
+mobile computing topic	tema de computación móvil
+slide set	conjunto de diapositivas
+dining place	comedor
+operating systems topic	tema de sistemas operativos
+call for reviews	Convocatoria para comentarios
+academic organization	organización académica
+break	descanso
+conference dinner	cena Conferencia
+accepted paper	papel aceptado
+computer networks sensor topic	tema de sensor de redes de computadora
+mealtime	hora de comer
+menu	menú
+personal history	historia personal
+computer networks measurements topic	tema de mediciones de redes computadoras
+computer networks enterprise topic	tema de computadora redes empresariales
+call for manuscripts	Convocatoria de manuscritos
+radio communications topic	tema de las comunicaciones de radio
+cryptography topic	tema de la criptografía
+published paper	artículo publicado
+medicine topic	tema de medicina
+review form	formulario de revisión
+personal reviewing history	historial de revisión
+numerical review question	tema de revisión numérica
+satellite and space communications topic	tema de las comunicaciones por satélite y espacio
+withdrawn paper	papel retirada
+menu (meal)	menú (comida)
+rejected paper	papel rechazado
+accommodation	alojamiento
+pending paper	papel pendiente
+member of tpc	miembro de tpc
+sponsorship	patrocinio
+contact information	información de contacto
+test only topic	prueba sólo tema
+antennas topic	tema de antenas
+cad topic	tema de CAD
+two level conference	Conferencia de nivel dos
+accept rating	aceptar la calificación
+parallel and distributed computing topic	tema cómputo paralelo y distribuido
+programme	programa
+conference venue	lugar de la Conferencia
+computer networks switching topic	cambiando de tema de redes de computadores
+call	llamada
+organizational meeting	reunión de organización
+welcome talk	Bienvenido a hablar
+meal	comida
+meeting room	sala de reuniones
+conference session	sesión de la Conferencia
+active paper	papel activo
+security topic	tema de seguridad
+reject rating	rechazan calificación
+review question	tema de revisión
+is reviewed by	es revisado por
+is about paper	se trata de papel
+is review history of	revisión de antecedentes de
+has program	cuenta con programa de
+has attendee	tiene asistente
+is topic of	es tema de
+is initiated by	se inicia por
+has related document	ha relacionado el documento
+has call	tiene llamada
+has rating	tiene calificación
+is written by	escrito por
+is reviewing	está revisando
+is location of	es la ubicación del
+has location	tiene ubicación
+has review history	tiene historial de revisión
+is provided by	es proporcionada por
+is provider of	es proveedor de
+is menu of	menú de
+has country	tiene país
+initiates	inicia
+attendee at	Asistente al
+belongs to event	pertenece al evento
+relates to	se refiere a
+is presented in	se presenta en
+conference manuscript date and time deadline	fecha límite de fecha y hora de manuscrito Conferencia
+conference start date and time	hora y fecha de inicio de conferencia
+has biography	tiene biografía
+has amount of cost	tiene cantidad de costo
+conference registration date and time deadline	fecha límite de fecha y hora de inscripción Conferencia
+has submission deadline	tiene fecha límite de presentación
+has street	tiene calle
+has end date and time	tiene fecha de finalización y el tiempo
+has name (full name of conference)	nombre (nombre completo de la Conferencia)
+has currency of cost	tiene moneda del coste
+has start date and time	tiene fecha de inicio y tiempo
+conference end date and time	hora y fecha de la final de conferencia
+has menu	menú a la carta
+writes	Escribe
+for event	para el evento
+conference paper date and time deadline	fecha límite de fecha y hora de papel Conferencia
+has last name	tiene apellido
+has submission instructions	tiene instrucciones de envío
+has city	tiene ciudad
+tutorial chair	Tutorial silla
+submitted paper	papel presentado
+programme brochure	Folleto del programa
+flyer	Flyer
+assigned paper	papel asignado
+oc chair	silla OC
+workshop paper	papel de taller
+neutral review	Informe neutral
+negative review	crítica negativa
+tutorial abstract	Tutorial Resumen
+conference participant	participante de la Conferencia
+poster paper	papel de cartel
+sc member	miembro de SC
+conference paper	documento de conferencia
+industrial session	sesión industrial
+conference banquet	salones de conferencia
+research topic	tema de investigación
+workshop chair	silla de taller
+agency staff member	miembro del personal de la Agencia
+invited talk abstract	Resumen de charla invitada
+pc chair	silla de PC
+multi author volume	volumen de autor multi
+track	pista
+proceedings publisher	Editor de procesos
+industrial paper	papel industrial
+possible reviewer	posible revisor
+positive review	crítica positiva
+oc member	miembro de OC
+research institute	Instituto de investigación
+scientific event	evento científico
+session	período de sesiones
+early registered participant	participante registrado temprano
+demo paper	demostración de papel
+late registered participant	participante inscrito tarde
+organisation	Organización
+academic institution	institución académica
+poster session	sesión de pósters
+evaluated paper	papel evaluado
+location	Ubicación
+conference trip	viaje de conferencia
+demo chair	silla demo
+paper author	Autor de papel
+camera ready paper	papel listo cámara
+proceedings	procedimientos
+contributed talk	charla contribuyó
+regular paper	papel normal
+pc member	miembro del Comité
+demo session	sesión de demostración
+organising agency	agencia organizadora
+regular session	período ordinario de sesiones
+individual presentation	presentación individual
+web site	sitio web
+conference proceedings	Actas de congresos
+workshop session	sesión del taller
+updated version of	versión actualizada de
+presentation of paper	Presentación de papel
+referenced in	se hace referencia en
+location of	Ubicación del
+inverse of partof 7	inverso de parte de 7
+hasevent	hasevent
+covers topic	tema cubiertas
+review of paper	Informe sobre papel
+scientifically organises	organiza científicamente
+topic covered by	tema cubierto por
+reviewer of paper	revisor de papel
+references	referencias
+organised by	organizado por
+has reviewer	tiene revisor
+review written by	Informe escrito por
+technically organises	organiza técnicamente
+has updated version	ha actualizado versión
+part of	parte de
+event on list	evento en lista
+held in	celebrada en
+volume contains paper	el volumen contiene papel
+paper in volume	papel en volumen
+author of	Autor de
+part of event	parte del evento
+publisher of	Editor de
+organises	organiza
+scientifically organised by	científicamente organizado por
+lists event	listas de eventos
+paper presented as	Ponencia presentada como
+technically organised by	Técnicamente organizada por
+social activity	actividad social
+time	tiempo
+activity of modelling	actividad de modelado
+fee	tarifa
+hotel presenter	presentador Hotel
+activity of simulating	actividad de simulación
+cheque	cheque
+introduction	Introducción
+computer	computadora
+hotel fee	Hotel tarifa
+currency	moneda
+registration fee	cuota de inscripción
+city which is the location for a trip	ciudad que es la ubicación para un viaje
+fee for extra trip	tarifa por viaje extra
+deadline for submiting	fecha límite para el envío
+lecture	Conferencia
+conference days	días de conferencia
+state of the sponsor	estado del patrocinador
+research activity	actividad investigadora
+single hotel room	habitación individual
+conference airport	Aeropuerto de conferencia
+student lecturer	profesor alumno
+conference registration form	formulario de inscripción Conferencia
+payment document	documento de pago
+van	van
+shuttle bus	servicio de autobús
+item (in general)	artículo (en general)
+technical activity	actividad técnica
+student who is not a speaker	estudiante que no es un orador
+hotel room	habitación de Hotel
+activity of renting a car	actividad de alquiler de coches
+activity	actividad
+departure	salida
+sponsor	patrocinador
+worker who is not a speaker	trabajador que no es un orador
+city where a sponzor comes	ciudad donde viene un sponzor
+initial manuscipt	manuscipt inicial
+lecturer	Profesor
+registration fee paid by an attending author for receiving proceedings as book	cuota de inscripción pagado por un autor de asistir para recibir actas como libro
+conference restaurant	Restaurante Conferencia
+deadline for the hotel reservation	fecha límite para la reserva de hotel
+full day tour	tour de día completo
+city where the conference takes place	ciudad donde realiza la Conferencia
+activity of accepting a manuscript	actividad de aceptar un manuscrito
+author who will receive proceedings as cd	autor que recibirá los procedimientos como cd
+presenter who presents only on one day	presentadora que se presenta solamente en un día
+not member of iasted	No es miembro de duró
+value added tax	valor agregado impuesto
+conference hall	sala de conferencias
+departure tax	impuesto de salida
+item	artículo
+one conference day	una jornada
+dinner banquet	banquete de cena
+delegate (person registering and visiting the conference)	Delegado (persona registrando y visitando la Conferencia)
+plenary lecture	Conferencia plenaria
+registration fee paid by an attending author for receiving proceedings as cd	cuota de inscripción pagado por un autor de asistir para recibir actas como cd
+house of a presenter	casa de un presentador
+listener	oyente
+house of a company being a sponsor	casa de una empresa ser patrocinador
+building	edificio
+transport vehicle	vehículo de transporte
+registration	registro
+deadline for registration	plazo de inscripción
+city where a presenter comes	ciudad donde viene un presentador
+worker lecturer	Profesor trabajador
+welcome speech	discurso de bienvenida
+coctail reception	recepción de Coctail
+main office	oficina principal
+credit card	tarjeta de crédito
+deadline	fecha límite
+conference building	edificio de conferencias
+conference hotel	hotel de conferencias
+taxi	taxi
+invitation letter	carta de invitación
+final manuscript	manuscrito final
+video cassette player	video cassette player
+activity taking place after conference	actividad después de conferencia
+audiovisual equipment	equipos audiovisuales
+member of iasted	miembro de duró
+book proceeding	procedimiento de libro
+lcd projector	proyector LCD
+activity taking place during conference	actividad tendrá lugar durante la Conferencia
+conference hiker	excursionista de conferencia
+activity of refusing a manuscript	actividad de rechazar un manuscrito
+mailing list	lista de correo
+video presentation	video de presentación
+card	tarjeta
+activity of receiving a manuscript	actividad de recibir un manuscrito
+car	coche
+city where a sponzor comes from	ciudad de donde proviene un sponzor
+brief introduction for session chair	breve introducción para silla de sesión
+hotel registration form	formulario de inscripción de Hotel
+registration fee for a non member	cuota de inscripción para miembro
+non speaker	altavoz no
+introduction of speaker	introducción del altavoz
+amount of money	cantidad de dinero
+cd proceeding	procedimiento de CD
+state of the presenter	estado del presentador
+bank transfer	transferencia bancaria
+speaker giving a lecture in front of the plenum	altavoz dando una conferencia ante el pleno
+activity taking place before conference	actividad tendrá lugar antes de conferencia
+speaker who presents a tutorial	altavoz que presenta un tutorial
+tip	Punta
+powerpoint presentation	Presentación de PowerPoint
+registration fee for a student	cuota de inscripción para un estudiante
+form	formulario
+author who will receive proceedings as book	autor que recibirá los procedimientos como libro
+tax	impuestos
+registration fee a non author	inscripción de un autor no
+double hotel room	Habitación doble
+delegate	Delegado
+overhead projector	retroproyector
+speaker	altavoz
+university of a presenter	Universidad de un presentador
+registration fee for a member	cuota de inscripción para miembro
+submission	Presentación
+city where a presenter comes from	ciudad de donde proviene un presentador
+time zone	zona horaria
+state where the conference takes place	estado donde realiza la Conferencia
+state	estado
+technical committee	Comité técnico
+day assigned for a trip	día asignado para un viaje
+deadline for notification of acceptance	plazo para la notificación de aceptación
+record of attendance	récord de asistencia
+any kind of document	cualquier tipo de documento
+author information form	formulario de información del autor
+deadline for submitting the camera ready script	fecha límite para la presentación de la escritura de la cámara
+publication	publicación
+sponzorship	sponzorship
+viza	Viza
+lecture given by a speaker	Conferencia impartida por un altavoz
+overhead transparency	transparencia
+session room	cuarto período de sesiones
+is needed for	es necesario para
+goes through	pasa a través de
+is present in time	está presente en el tiempo
+is sent by	es enviado por
+is connected with	está conectado con
+is occupied by	está ocupada por
+obtains	Obtiene
+is locally situated in	localmente se encuentra en
+pays	paga
+signs	signos
+is present in time or space	está presente en el tiempo o espacio
+is paid with	se paga con
+speaks at time or in place	habla en tiempo o en el lugar
+is given by	está dada por
+is paid in	se paga en
+is designed for	está diseñado para
+sends	envía
+is made from	está hecho de
+is prepared by	es preparado por
+is equipped for	está equipada para
+gives	da
+is held before	se lleva a cabo antes de
+is signed by	está firmado por
+is used for	se utiliza para
+is held after	se lleva a cabo después de
+needs	necesidades
+is paid by	es pagado por
+is visited by	es visitado por
+occupies (lives resides)	ocupa (vidas reside)
+is sent before	se envía antes
+is sent after	se envía después de
+is held in	se lleva a cabo en
+is paid for	es pagado
+is used by	es utilizado por
+is dated on	Está fechado en
+prepares	se prepara
+is given to	se da a
+has amount of	tiene cantidad de
+to be done till	ser hasta
+sponzor for best student paper	Sponzor para el mejor papel de estudiante
+author of student paper	Autor del estudiante
+award for conference paper	Premio para el papel de la Conferencia
+author of paper	Autor de papel
+sponzor	Sponzor
+registration fee for member of sigkdd	cuota de inscripción para miembros de sigkdd
+chair of conference	silla de conferencia
+listener of conference	oyente de conferencia
+award for best student paper	Premio mejor trabajo de estudiante
+committee for best paper awards	Comité de premios mejor papel
+sponzor as exhibitor	Sponzor como expositor
+program chair	silla de programa
+platinum sponzor of conference	sponzor platino de conferencia
+organizator of conference	Organizador de la Conferencia
+deadline of abstract submission	fecha límite de envío de resúmenes
+silver sponzor of conference	plata sponzor de conferencia
+bronze sponzor of conference	sponzor bronce de conferencia
+registration fee for person not being member of sig	cuota de inscripción por persona no ser miembro de sig
+registration fee for student	cuota de inscripción para estudiantes
+conference acm sigkdd	Conferencia acm sigkdd
+gold sponzor of conference	oro sponzor de conferencia
+deadline of paper submission	fecha límite de presentación de papel
+member of organizing committee	miembro del Comité Organizador
+sponzor fee	tarifa Sponzor
+main office of conference	oficina principal de la Conferencia
+conference fee	tarifa de conferencia
+award for best research paper	Premio al mejor trabajo de investigación
+award for best application paper	Premio mejor trabajo de aplicación
+registration fee for member of sigmod	cuota de inscripción para miembros del sigmod
+deadline of author notification	plazo de notificación de autor
+webmaster	webmaster
+abstrakt	ABSTRAKT
+hall of conference	sala de conferencia
+person active at conference	persona activa en conferencia
+hotel	Hotel
+has price	tiene precio
+has sponzor name	tiene nombre sponzor
+date of final day of conference	fecha del último día de conferencia
+conference takes place in city	Conferencia lleva a cabo en la ciudad
+has name of conference	tiene nombre de conferencia
+has nationality	tiene nacionalidad
+registration fee is in currency	cuota de inscripción es en moneda
+has award	tiene premio
+registration fee paid by	cuota de inscripción pagado por
+set up deadline	Configurar fecha límite
+has deadline for submission	tiene fecha límite para la presentación
+awarded by	otorgado por
+sponzor are called by	Sponzor son llamados por
+paid registration fee	pago de matrícula
+call for sponzor	Convocatoria sponzor
+was presented by	fue presentado por
+presents document	presenta documento
+stay in	permanecer en
+organize conference	organizan Conferencia
+submit of paper	presentar de papel
+obtained award	obtuvo premio
+set up deadline for	establecer fecha límite para
+conference organized by	Conferencia organizada por
+date of starting day of conference	fecha de inicio día de conferencia
+document	documento
+program committee	Comité de programa
+chair of program committee	Presidente del Comité de programa

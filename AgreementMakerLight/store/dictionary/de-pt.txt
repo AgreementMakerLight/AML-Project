@@ -1,0 +1,709 @@
+verfasser, der kein gutachter ist	escritor que não é um profissional
+meta-gutachten (gutachten über ein gutachten)	Meta - opinião (opinião sobre uma opinião)
+verfasser	autor
+vorsitzender	Presidente
+vorsitzender der konferenz	Presidente da conferência
+vorsitzender des programm-komitees	Presidente do Comité de programa
+meta-gutachater	Meta-gutachater
+meta-gutachater (gutachter der gutachten begutachtet)	Meta-gutachater (opinião de especialista que analisou)
+zurückweisung	rejeição
+vollständiger konferenzbeitrag	taxa de conferência completa
+externer gutachter	revisores externos
+benutzer	usuário
+gebot	comandou
+mitglied des programm-komitees	Membro do Comitê de programa
+person	pessoa
+dokument	documento
+präferenz	preferência
+meta-gutachten	Meta - opinião
+mitverfasser	co-autor
+konferenz	Conferência
+gegenstandsbereich	Âmbito de aplicação
+gutachten	opinião
+akzeptanz	aceitação
+konferenzbeitrag	Contribuição de conferência
+programm-komitee	Comitê de programa
+teilnehmer einer konferenz	participantes na conferência de
+gutachter	especialista em
+stellvertretender vorsitz	Assento adjunto em
+entscheidung	decisão
+abstrakt eines konferenzbeitrags	Resumo de uma contribuição de conferência
+administrator	Administrador
+hat details eingefügt in bezug auf	inseriu-se detalhes em relação a
+hat die zuordnung der beiträge abgeschlossen	foi concluído o mapeamento das contribuições
+hat zugewiesen	atribuiu-se a
+druckt papierausdruck des mailing-manifests	imprimir uma cópia em papel do manifesto de correspondência
+beitragszuordnungs-software ausgeführt von	o software de beitragszuordnungs por
+zugewiesen zu	alocados para
+details eingefügt von	detalhes adicionados por
+beitragszuordnung abgeschlossen von	Atribuição de post completada por
+gelesen von gutachter	lido por especialistas
+hat die beitrags-zuordnungssoftware ausgeführt	realizou-se a contribuição zuordnungssoftware
+hat virtuelles treffen veranlasst	encontro virtual levou
+hat abgeglichen	tem correspondido
+mitverfasst von	de autoria de
+hat interessenskonflikt in bezug auf	interessenskonflikt tem em relação a
+abgewiesen von	rejeitada pelo
+geschrieben von	Postado por
+virtuelles treffen veranlasst von	reunião virtual, liderada por
+gelesen von meta-gutachter	lido pelo revisor de meta
+akzeptiert von	aceite pela
+ist mitglied des programm-komitees	é membro do Comité de programa
+hat beitrag geschrieben	tem escrito contribuição
+hat die gebotsphase gestartet	começou a fase de licitação
+kriterien zu gutachten eingefügt von	critérios para parecer inserido por
+hat papier abgelehnt	papel rejeitado
+bestimme maximale anzahl an zugewiesenen beiträgen	escolher o número máximo de contribuições alocados
+ist entschieden worden als	Decidiu-se como um
+steht in interessen-konflikt mit beitrag	interesses em conflito com a contribuição
+hat webseite an url	tem site na url
+hat namen	tem o nome
+hat datum	tem data
+akzeptiert hardcopy-einsendungen	aceitar submissões de hardcopy\r
+hat id	Tem identificação
+maximale anzahl an zugewiesenen beiträgen	número máximo de contribuições alocados
+hat titel	tem o título
+hat email	tem e-mail
+zugewiesen von administrator	atribuído pelo administrador
+hat mitglied	tem membros
+hat logo an url	tem a url do logotipo
+gutachten pro beitrag	opinião por contribuição
+zugewiesen von gutachter	atribuído por especialistas
+hat akzeptiert	aceitou
+hat papier gelesen	ler jornal
+hat gegenstandsbereich	tem escopo
+papierausdruck des mailing-manifests gedruckt von	cópia impressa do manifesto de correspondência por
+ist zugeordnet worden	foi ordenado para
+teilnehmer von	participantes de
+hat die zeit des begutachtens beendet	concluiu-se que o tempo de avaliação
+hat hinzugefügt	adicionado
+abgeglichen von	acompanhado por
+hinzugefügt von	adicionado por
+hat teilnehmer	participante
+hat beitrag eingesendet	apresentou contribuições
+hat beitrag mitverfasst	é autor de contribuição
+hat kriterien zu gutachten eingefügt	adicionou critérios a opinião
+gebotsphase gestartet von	Fase de licitação, iniciado por
+hat gutachten geschrieben	elaborou o parecer
+hat gebot erhalten	ordenou get
+konferenzankündigung	Anúncio da conferência
+erweitertes abstrakt	resumo alargado
+koferenzdokument	koferenzdokument
+präsentation	apresentação
+passiver konferenzteilnehmer	participantes passivos
+eingeladener vortrag	palestra convidada
+druckfertiger beitrag	contribuição de druckfertiger
+fortschritte der konferenz	progresso da conferência
+abstrakt	Resumo
+wichtiges datum	data importante
+angehörige des ausschusses	Membros do Comitê
+koferenzbewerber	koferenzbewerber
+konferenzbewerber, der die konferenzgebühr gezahlt hat	Candidatos de conferência que pagaram a taxa de conferência
+steuerungsausschuss	Comitê Diretivo
+geschriebener beitrag	contribuição escrita
+internet der konferenz	Internet da conferência
+leiter der workshops	Diretor da oficina
+mitverfasser eines beitrags	co-autor de contribuição
+angenommener beitrag	suposta contribuição
+organisation	Organização
+programmausschuss	Comitê de programa
+author eines regulären beitrags	autor de uma participação regular
+fachgebiet des gutachters	Área de especialização do verificador
+regulärer beitrag	contribuição regular
+workshop	Oficina
+präferenz des gutachters	preferência do verificador
+primärer author eines beitrags	autor primário de uma contribuição
+stellvertretender vorsitzender	Vice-Presidente
+konferenzreihe	Série de conferências
+konferenzbewerber, der die konferenzgebühr früh gezahlt hat	Candidato de conferência que pagou a taxa da conferência no início
+ablauf der konferenz	expiração da conferência
+abschnitte der konferenz	seções da conferência
+abgelehnter beitrag	contribuição rejeitada
+ausschuss	Comité
+informationen für teilnehmer	informações para os participantes
+aktiver konferenzteilnehmer	participantes ativos
+eingereichter beitrag	contribuição apresentada
+konferenzgebühren	Taxas de conferência
+organisator	Organizador
+konferenzbeteiligung	Participação da conferência
+begutachteter beitrag	contribuição arbitrada
+organisationsausschuss	Comissão Organizadora
+herausgeber	Editora
+aufruf zu teilnahme	chamada para participação
+konferenzbewerber, der die konferenzgebühr spät gezahlt hat	Candidato de conferência que pagou a taxa da conferência tarde
+tutorium	tutorial
+thema	Tema
+aushang	No quadro de avisos
+konferenzteilnehmer, der einen beitrag geleistet hat	Os participantes da conferência, a contribuição de uma fez
+eingeladener referent	oradora convidada
+konferenzteilnehmer	Participantes da conferência
+registrierter bewerber	candidatos registados
+aufruf für beiträge	chamada para contribuições
+datum der einreichung des abstrakts	Data de submissão de resumos
+hat e-mailadresse	tem o endereço de email
+ist am folgenden datum veröffentlicht worden	foi publicado no dia seguinte
+hat name	tem nome
+datum der druckfertigen einreichung ist	a data final de submissão é
+ort der konferenz	local da conferência
+grad der gutachterpräferenz	graus de preferência especialista
+hat geschlecht	fazendo sexo
+hat mitglieder	tem membros
+hat abfolge	tem seqüência
+ist anfangsdatum	é a data de início
+anzahl der fortschritte der konferenz	número de andamento da conferência
+ist eingereicht für	é enviada para
+liefert konferenzbeitrag	Contribuição de conferência
+ausschuss der konferenz ist	Comitê da conferência é
+hat abschnitt	cortou
+grad des fachgebiets des gutachters ist	é o grau do assunto do verificador
+hat vornamen	tem nome
+datum der einreichung des kompletten beitrags ist	Data de depósito da contribuição completa é
+isbn der fortschritte ist	ISBN que o progresso é
+hat nachnamen	tem sobrenome
+url der konferenz ist	a conferência é URL
+ist enddatum	é a data de término
+datum der akzeptanz-mitteilung ist	data do aviso de aceitação é
+hat fachgutachten	tem opinião de especialista
+ist ein präferiertes thema oder fachgebiet eines gutachters	é um tema preferencial ou especialidade especialista
+hat gutachten	Não tem opinião
+ist vorsitzender des ausschusses	é presidente da Comissão
+hat beitrag	tem contribuição
+ist teil der konferenzreihe	é parte da série de conferências
+organisationsausschuss der konferenz ist	a Comissão organizadora da conferência é
+hat author	tem autor
+hält präsentation	apresentação de exploração
+ist ausschuss der konferenz	Comitê da conferência
+hat workshop-thema	tema de workshop
+ist ein präferiertes thema eines gutachters	é um tema preferencial de um perito
+hat beitrag eingreicht	tem eingreicht de contribuição
+eingeladen von gutachter	especialista convidada
+hat abstrakt	tem Resumo
+veröffentlicht	publicado
+hat thema oder beitrag eingereicht	assunto ou contribuições enviadas
+programmausschuss der konferenz ist	Comitê de programa da conferência é
+begutachtet beitrag	contribuição pública
+ist steuerungsausschuss der konferenz	é o Comitê de conferência
+ist organisationsausschuss der konferenz	é o comitê organizador da conferência
+ist ein wichtiges datum einer konferenzreihe	é uma data importante de uma série de conferências
+verleger des konferenzfortschritts ist	É editora do progresso conferência
+präsentiert von	apresentado por
+hat eine zugewiesene gutachterpräferenz	tem uma preferência especialista atribuída
+ist mitglied von	é membro da
+hat wichtiges datum	tem data importante
+hat tutorium	tem tutorial
+präferenz oder fachgebiet des gutachters ist	preferência ou especialidade do verificador é
+ist der erst teil von	é apenas uma parte da
+lädt mitgutachter ein	com boa oitava convida
+hat stellvertrenden ausschussvorsitzender	tem stellvertrenden Presidente
+ist leiter des workshops	é o diretor da oficina
+hat workshop-leitung	gestão de oficina
+hat ausschussvorsitzender	tem Presidente
+ist programmausschuss der konferenz	é o Comitê de programa da conferência
+steuerungsausschuss der konferenz ist	Comitê da conferência é
+hat workshop	tem oficina
+ist stellvertretender vorsitzender des ausschusses	é vice-presidente da Comissão
+ist thema ein konferenzabschnittes	é uma seção do tema da conferência
+ereignis der begutachtung	evento de revisão
+studentischer teilnehmer	participantes do estudante
+ereignis des sendens des "camera-ready" papiers	evento do envio do livro "câmera pronta"
+ereignis	evento
+vorsitz des programmkomitees	assento no Comité de programa
+einreichung	apresentação
+regulärer teilnehmer	participantes regulares
+student	estudante
+firma	empresa
+mitglied	Membros
+land	Terra
+ausflug	excursão
+mitglied des programmkomitees	Membro do Comitê de programa
+autor	autor
+bankett	Banquete
+poster	cartaz
+papier	papel
+kurzes papier	papel de curto
+teilnehmer	participantes
+stadt	Cidade
+empfang	recepção
+universität	Universidade
+freiwilliger	voluntária
+ereignis zur registrierung der teilnehmer	evento para o registo dos participantes
+ereignis des einreichens eines papiers	evento de apresentação de um documento
+arbeits-ereignis	evento de emprego
+ergebnis-der-begutachtung ereignis	resultado do evento de avaliação
+soziales ereignis	evento social
+administratives ereignis	Evento administrativo
+wissenschaftler	cientistas
+assistent	Assistente
+minimale anzahl	número mínimo
+endet am	termina em
+hat straße	tem estrada
+studiert an	estudou na
+hat stadt	Cidade tem
+frühzeitige registrierung	inscrição antecipada
+begutachtet	examinado
+folgt	segue
+fachkundig für	especialista para
+schreibt	escreve
+hat land	tem o país
+angestellt bei	contratado no
+gleichzeitig mit	ao mesmo tempo com
+hat postleitzahl	tem o código postal
+hat kurztitel	tem curta Titel
+hat homepage	Homepage
+hat telephonnummer	tem número de telefone
+hat mehrwertsteuer	tem valor adicionado fiscal
+vorgegebene anzahl	número de memória
+hat kontakt-email adresse	Tem como entrar em contato com o endereço de e-mail
+hat faxnummer	tem faxnummer
+findet statt an	será realizada em
+maximale anzahl	número máximo
+hat stichwörter	tem palavras-chave
+startet am	começa em
+hat nachname	tem sobrenome
+hat email adresse	tem o endereço de e-mail
+hat thema	tem tópico
+beschäftigt sich mit	lida com
+hat anmerkung	tem anotação
+hat administratives event	Evento administrativo
+konferenz-dinner	Jantar da conferência
+computernetzwerksensor-thema	tema de computernetzwerksensor
+platz	lugar
+sicherheits-thema	tema de segurança
+gutachtenbewertung	Classificação de opinião
+ausstehender beitrag	contribuição pendentes
+numerische gutachtenfrage	questão de opinião numérico
+speisekarte	Menu
+multimedia-thema	tópico multimídia
+freie zeit	tempo livre
+aufruf	chamada
+akademisches event	evento acadêmico
+persönliche historie von gutachten	história pessoal de opinião
+konferenzversitzender	Conferência versitzender
+mahlzeit	refeição
+schwach abgelehnte bewertung	fracos rejeitaram a revisão
+sitzungsvorsitzender	Presidente de sessão
+foliensatz	Conjunto de folha
+pause	pausa
+mobiles computing-thema	tema de computação móvel
+soziales event	evento social
+author	autor
+abschlussvortrag	Apresentação final
+akademische organisation	organização acadêmica
+abgelehnte bewertung	revisão rejeitada
+regierungsorganisation	Organização do governo
+optische computernetzwerke-thema	tema de computernetzwerke óptico
+einebige konferenz	einebige conferência
+"nur tests"-thema	tema "Só testando"
+programm	programa
+industrielle organisation	Organização industrial
+sitzungsraum	sala de reuniões
+formular für gutachten	formulário de opinião
+parallel und verteiltes computing-thema	tema de computação paralelo e distribuído
+persönliche historie	história pessoal
+aktiver beitrag	contribuição activa
+kommunikationstheorie-thema	assunto de teoria da comunicação
+computernetzwerkunternehmen-thema	tema de operador de rede de computador
+akzeptierter beitrag	aceites contribuições
+medizinisches thema	tema médico
+veranstaltungsort der konferenz	do local da conferência
+kryptographisches thema	Tema criptográfico
+vortrag	Palestra
+computernetzwerksicherheit-thema	tema de computernetzwerksicherheit
+wörtliche gutachtenfrage	questão de opinião literal
+speiseplatz	Sala de jantar
+persönliche historie von veröffentlichungen	história pessoal de publicações
+begrüßungsvortrag	Apresentação de boas-vinda
+satelliten- und weltraumkommunikation-thema	tema de comunicações por satélite e espaço
+gutachtenfrage	Questão de opinião
+präsentation eines beitrags	apresentação de uma contribuição
+event im zusammenhang mit einer konferenz	evento relacionado a uma conferência
+trägerfrequenzanlage-thema	Tema de sistema de freqüência de portador
+aufruf für manuskripte	convite à apresentação de manuscritos
+mikroelektronisches thema	tema de mikroelektronisches
+zurückgezogener beitrag	contribuição retirada
+performance-thema	problema de desempenho
+aufruf für gutachten	convite à apresentação de parecer
+konferenzsitzung	Sessão de conferência
+kommunikations-thema	tema de comunicação
+akzeptierte bewertung	AvaliaÃ § ã £ o aceito
+mitglied von tpc	Membro do tpc
+computernetzwerkanwendungen-thema	tema de computernetzwerkanwendungen
+radiokommunikation-thema	Tema de comunicação rádio
+bewerteter beitrag	contribuição ponderada
+organistorische besprechung	reunião de organistorische
+cad-thema	Tema de CAD
+essenszeit	Hora de comer
+computernetzwerkwechsel-thema	tema de computernetzwerkwechsel
+präsentator	praesentator
+computernetzwerkverwaltung-thema	tema de computernetzwerkverwaltung
+antennen-thema	tema de antenas
+kein akademisches event	nenhum evento acadêmico
+zweiebige konferenz	zweiebige conferência
+kaffeepause	Coffee-break
+besucher	visitantes
+nichtregierungsorganisation	Organização não-governamental
+reisesubvention	Subsídio de viagem
+betriebssystem-thema	Tema do sistema operacional
+beitrag	contribuição
+computernetzwerke-thema	tema de computernetzwerke
+signalverarbeitung-thema	Tema de processamento de sinal
+unterkunft	Alojamento
+drahtlose kommunkation-thema	tema de comunicações sem fio
+compututerarchitektur-thema	tema de compututerarchitektur
+computernetzwerkspezifikation-thema	tema de computernetzwerkspezifikation
+sponsoring	patrocínio
+kontaktinformationen	Informações de contato
+akzeptiert, wenn spielraum vorhanden ist, bewertung	aceita-se o espaço está disponível, revisão
+veröffentlichter beitrag	contribuições publicadas
+hat datum und zeit des endes	data e hora do fim
+hat anweisungen für einreichungen	instruções para submissões
+hat e-mail	tem e-mail
+hat besucher	visitantes
+hat datum und zeit der deadline für manuskripte	data e hora do prazo de manuscritos
+hat biografie	tem biografia
+hat telefon	tem telefone
+hat datum und zeit des beginns	data e hora de início
+hat deadline für einreichungen	é o prazo para submissões
+hat kostensumme	tem custo total
+hat währung der kosten	Tem moeda o custo
+hat datum und zeit des beginns der konferenz	data e hora do início da conferência
+hat datum und zeit der deadline für beiträge	data e hora do prazo para contribuições
+hat datum und zeit des endes der konferenz	data e hora do fim da conferência
+hat vollständigen namen der konferenz	tem o nome completo da conferência
+hat datum und zeit der deadline für registrierungen	data e hora do prazo para inscrições
+hat beziehung zu dokument	tem relação com o documento
+gehört zu event	pertence ao evento
+ist thema von	Tema por
+ist eingeleitet von	é iniciada por
+ist begutachtet von	é analisado por
+hat bewertung	tem avaliação
+ist anbieter von	provedor é por
+hat programm	tem o programa
+hat geschrieben	tem escrito
+ist über beitrag	é sobre a contribuição
+ist geschrieben von	escrito por
+hat aufruf	tem a chamada
+für event	para o evento
+ist gutachtenhistorie von	Histórico de relatório por
+ist besucher auf	é visitantes
+hat ort	tem localização
+bezieht sich auf	refere-se a
+ist menü von	menu é por
+hat gutachtenhistorie	tem história de opinião
+leitet ein	inicia
+ist ort von	é o lugar de
+ist angeboten von	é oferecido por
+ist präsentiert in	é apresentado em
+hat menü	tem menu
+tutoriumvorsitz	Tutorial cadeira
+event	evento
+zugewiesener beitrag	contribuição atribuída
+organisierende agentur	Agência Organizadora
+konferenz-beitag	Conferência beitag
+vorsitzender des programmausschusses	Presidente do Comité de programa
+mitglied des programmausschusses	Membro do Comitê de programa
+konferenz-bankett	Banquete de conferência
+flyer	Flyer
+abgelehntes beitrag	rejeitado contribuindo
+abstraktes tutorium	tutorial de abstrato
+akademische institution	instituição acadêmica
+eingeladener abstrakter vortrag	cobrado uma palestra abstrata
+workshop-beitrag	Oficina-contribuição
+konferenzreise	Viagens de conferência
+webseite	site
+konferenzfortschritte	Progresso de conferência
+neutrales gutachten	opinião neutra
+früh registrierter teilnehmer	primeiros participantes inscritos
+programmbroschüre	Folheto do programa
+evaluierter beitrag	contribuição avaliada
+sitzung	sessão
+ausgehängte sitzung	Após desengatar a sessão
+industrieller beitrag	contribuição industrial
+spät registrierter teilnehmer	tarde participantes inscritos
+reguläre sitzung	período ordinário de sessões
+multi-author volume	volume de vários autor
+fortschritte	progresso
+vorsitzender des organisationsausschusses	Presidente da Comissão Organizadora
+koferenzsitzung	koferenzsitzung
+workshop-sitzung	Sessão de oficina
+forschungsinstitut	Instituto de pesquisa
+sitzungsvorsitz	Cadeira de sessão
+möglicher gutachter	potenciais revisores
+wissentschaftliches event	evento wissentschaftliches
+mitglied des steuerungsausschusses	Membro do Comitê Diretivo
+beigetragener vortrag	contribuiu com palestra
+demo vorstand	Demo Board
+demo sitzung	sessão de demonstração
+workshopvorsitz	workshopvorsitz
+individuelle präsentation	apresentação individual
+mitglied des organisationsausschusses	Membro da Comissão Organizadora
+track	faixa
+negatives gutachten	opinião negativa
+verleger der fortschritte	Editora que progredir
+agenturmitarbeiter	Funcionários da Agência
+ort	lugar
+industrielle sitzung	sessão industrial
+author eines beitrags	autor de uma contribuição
+positives gutachten	parecer positivo
+forschungsthema	Tema de pesquisa
+koferenz	koferenz
+ausgehängter beitrag	suspenso da contribuição
+demo beitrag	Contribuição de demo
+event ist gelistet	evento está listado.
+hat teil	tem participado
+gutachter des beitrags ist	revisão da contribuição é
+organisiert von	organizado pela
+referenziert	referências
+ist teil von	é parte do
+thema ist abgedeckt von	tópico é coberto por
+ist invers zu teil von 7	inverso é parte de 7
+gutachten ist geschrieben von	escrito por opinião
+ist gutachten des beitrags	é a opinião da contribuição
+organisiert wissenschaftlich	organizado científico
+hat gutachter	tem revisor
+wissenschaftlich organisiert von	cientificamente organizado pela
+organisiert technisch	organizado técnico
+reihe enhält beitrag	inclui contribuição de série
+ort von	lugar de
+präsentation des beitrages	apresentação da contribuição
+aktualisiert version von	versão atualizada do
+beitrag ist teil der reihe	contribuição é parte da série
+deckt thema	aborda o tema
+hat aktualisierte version	tem versão atualizada
+findet statt in	tem lugar em
+hat event	tem evento
+listet event auf	lista de evento
+wurde veröffenlicht von	foi publicado pela
+referenziert in	referenciado no
+organisiert	organizado
+ist teil von einem event	é parte de um evento
+technisch organisiert von	Tecnicamente organizado pela
+ist author von	é autor de
+beitrag wird präsentiert als	contribuição será apresentada como um
+zeit	tempo
+registrierungsformular (konferenz)	Formulário de inscrição (conferência)
+konferenz-halle	Sala de conferências
+powerpoint-präsentation	Apresentação do PowerPoint
+örtlichkeit	localização
+folie	folha
+folie (overhead projektor)	folha (retroprojetor)
+formular zur information des autors	formulário para obter as informações do autor
+willkommensrede	Discurso de boas vindas
+vortragender, der nur an einem tag redet	Professor, que fala apenas em um dia
+vortrag gehalten von einem redner	palestra realizada por um alto-falante
+angestellter, der kein redner ist	funcionário que não é um orador público
+angestellter vortragender	Palestrante de empregado
+frist zur benachrichtigung der akzeptanz	prazo para notificação de aceitação
+frist	prazo final
+session	sessão
+aktivität, die nach der konferenz stattfindet	atividade que ocorre após a conferência
+hauptbüro	Escritório principal
+konferenzgebäude	Edifício de conferência
+formular	formulário
+frist zur hotelreservierung	prazo para a reserva de hotel
+registrierung	registo
+mailingliste	empresa
+einzelzimmer	quarto individual
+anmeldegebühr für ein nicht-mitglied	taxa de inscrição para um não-membro
+stadt, in der die konferenz stattfindet	Cidade onde será realizada a conferência
+vortrag im plenum	Palestra no plenário
+endversion des manuskripts	EndVersion do manuscrito
+staat der konferenz	Estado da conferência
+redner	alto-falantes
+tagungsband als buch	tagungsband como livro
+delegierter	delegado
+taxi	táxi
+gegenstand	Assunto
+gebühr für einen zusatzausflug	taxa para uma viagem adicional
+abreisegebühr	Taxa de partida
+währung	moeda
+automobil	Automotivo
+zahlungsbeleg	Comprovante de pagamento
+geldbetrag	Quantidade de dinheiro
+anmeldegebühr für einen autor, der den tagungsband als cd erhält	taxa de inscrição para um autor, recebendo o tagungsband como cd
+nicht-redner	não-falantes
+bank transfer	Transferência bancária
+vortragender	Palestrante
+anwesenheitsnachweis	Folha de presenças
+shuttle-bus	serviço de autocarro
+tagestour	Excursão de dia
+jede art von dokument	qualquer tipo de documento
+zeit (zeitraum und zeitpunkt)	tempo (hora e data)
+kreditkarte	Cartão de crédito
+publikation	publicação
+technisches komitee	Comitê Técnico
+einreichungsfrist	Submissão de trabalhos
+vorstellung eines redners	introdução do alto-falante
+technische aktivität	atividade técnica
+gegenstand (im allgemeinen)	assunto (em geral)
+gebäude	edifício
+audiovisuelle ausstattung	equipamentos audiovisuais
+vortragender, der im plenum redet	Professor, que falam em sessão plenária
+konferenzrestaurant	Restaurante de conferência
+karte	mapa
+student, der kein redner ist	estudante que não é um orador público
+studentischer vortragender	Professor estudante
+vortragender, der ein tutorium hält	Palestrante, detém a um tutorial
+akzeptieren eines manuskripts	aceitar um manuscrito
+overhead-projektor	Retroprojetor
+video-präsentation	vídeo de apresentação
+computer	computador
+kleintransporter	Varejo
+modellierungsaktivität	Atividade de modelagem
+anmeldegebühr	taxa de inscrição
+dinner-bankett	banquete de jantar
+hotelgebühr	Taxa de Hotel
+stadt, aus der ein sponzor kommt	Cidade, um patrocinador provém o
+forschungsaktivität	Actividade de investigação
+mieten eines autos	Aluguer de carros
+abreise	partida
+staat des vortragenden	Estado de apresentação
+vortragender, der im konferenzhotel untergebracht ist	Professor, do hotel de conferência é
+sponsor	patrocinador
+trinkgeld	Dica
+haus einer firma, die ein sponsor ist	casa para uma empresa que é um patrocinador
+cameraready-frist	cameraready - prazo
+ablehnung eines manuskripts	rejeição de um manuscrito
+registrierungsformular (hotel)	Formulário de inscrição (hotel)
+universität eines vortragenden	Universidade de apresentar
+steuer	fiscal
+stadt, aus der ein vortragender kommt	Cidade, vem o palestrante
+staat	Estado
+stadt, die ein ausflugsziel darstellt	Cidade, que representa um destino
+anmeldegebühr für einen studenten	taxa de inscrição para um estudante
+originalversion des manuskripts	Versão original do manuscrito
+registrierungsformular	Formulário de inscrição
+autor, der einen tagungsband in buchform erhält	autor, recebendo um tagungsband em forma de livro
+konferenztage	Dias de conferência
+ausflugstag	Dia de excursão
+soziale aktivität	atividade social
+simulationsaktivität	Atividade de simulação
+haus eines vortragenden	Casa de apresentar
+transportfahrzeug	Veículo de transporte
+sponsorgebühr	sponsorgebuehr
+aktivität, die vor der konferenz stattfindet	atividade que ocorre antes da conferência
+lcd-projektor	Projetor LCD
+mitglied von iasted	Membro da duraram
+kurze einführung für den session-vorsitz	breve introdução para a sessão-assento acima
+tagungsband als cd	tagungsband como cd
+registrierungsfrist	Prazo de registo
+annahme eines manuskripts	aceitação de um manuscrito
+anmeldegebühr für einen autor, der den tagungsband in buchform erhält	taxa de inscrição para um autor que recebe o tagungsband em forma de livro
+flughafen in/am konferenzort	Aeroporto no local da conferência
+einzelner konferenztag	dia único de conferência
+autor, der einen tagungsband als cd erhält	autor, recebendo uma tagungsband como cd
+anmeldegebühr für ein mitglied	taxa de inscrição para membro
+hotelzimmer	Quartos de Hotel
+videorecorder	Gravador de vídeo
+vorstellung	apresentação
+nicht-mitglied von iasted	Não-membro da duraram
+mehrwertsteuer	valor adicionado fiscal
+konferenzbesucher	Visitantes de conferência
+anmeldegebühr für einen nicht-autor	taxa de inscrição para um não-autor
+gebühr	taxa
+zuhörer	ouvintes
+zeitzone	Fuso horário
+staat des sponzors	Estado de sponzors
+konferenzhotel	Hotel de conferências
+cocktail-empfang	cocktail-recepção
+doppelzimmer	Quarto duplo
+aktivität, die während der konferenz stattfindet	atividade que ocorre durante a conferência
+visum	Visto
+aktivität	atividade
+scheck	seleção
+einladungsbrief	Carta-convite
+ist entworfen/bestimmt für	projetado/destinado para
+wird besucht von	é visitado por
+wird vorbereitet von	é preparado pela
+benötigt	Necessário
+sendet	envia
+erhält	recebe
+wird versendet nach	será enviado para
+unterzeichnet	assinado
+muss erledigt sein bis	deve ser feito para
+hat betrag von	tem a quantidade de
+ist datiert auf	é datado
+spricht in (räumlich und zeitlich)	fala em (espacial e temporal)
+wird bezahlt mit	será pago com
+istanwesend (räumlich und zeitlich)	istanwesend (espacial e temporal)
+ist verbunden mit/bezogen auf	é conectado / relacionados com
+findet statt nach	ocorre após a
+wird verwendet von	é usado por
+istanwesend (räumlich)	istanwesend (lugar)
+ist gemacht aus	é feita
+bereitet vor	preparado
+wird versendet von	será enviado por
+findet statt vor	ocorre antes de
+wird benötigt für	é necessário para
+ist ausgestattet mit	é equipado com
+wird verwendet für	é usado para
+wird bezahlt von	será pago pelo
+wird versendet vor	será enviado para
+wird gegeben/ausgeführt von	será dada/realizadas por
+wird unterzeichnet von	é assinado pelo
+bewohnt	habitada
+wirdgegebenan	wirdgegebenan
+gibt	são
+wird bezahlt für	será pago
+durchgeht	passa por
+wird bezahlt in	será pago
+befindet sich in	localizado em
+wird bewohnt von	é habitado por
+bezahlt	pago
+award für besten forschungsbeitrag	Prêmio de melhor trabalho de pesquisa
+ausschuss für den award des besten beitrags	Comité para o prêmio de melhor contribuição
+gold sponsor der konferenz	Patrocinador ouro da conferência
+sponsor als aussteller	Patrocinar como expositor
+deadline für eine abstrakte einreichung	prazo para a apresentação de um resumo
+deadline	prazo final
+award für besten anwendbaren beitrag	Prêmio de melhor contribuição aplicável
+registrierungsgebühr	Taxa de inscrição
+organisatoren der konferenz	organizadores da conferência
+registrierungskosten für studenten	custo de inscrição para estudantes
+eines studentischen beitrags	uma contribuição do aluno
+registrierungskosten für personen, die nicht mitglied von sig sind	custo de inscrição para as pessoas que não são membros do sig
+hauptbüro der konferenz	Escritório principal da conferência
+webmaster	webmaster
+deadline für die einreichung eines beitrags	prazo para a apresentação de uma contribuição
+programmvorsitzender	programa Presidente
+author eines konferenzbeitrages	autor de uma contribuição de conferência
+sponsorenbeitrag	sponsorenbeitrag
+konferenzsaal	Sala de conferências
+konferenz acm sigdkdd	ACM sigdkdd conferência
+bronze sponsor der konferenz	Patrocinador bronze da conferência
+registrierungskosten für mitglieder von sigmod	custo de inscrição para membros sigmod
+konferenzgebühr	Taxa de conferência
+deadline für die mitteilung eines authors	prazo para a notificação dos autores
+silber sponsor der konferenz	Patrocinador prata da conferência
+award für besten studentischen beitrag	Prêmio de melhor contribuição do estudante
+platin sponsor der konferenz	Patrocinador Platinum da conferência
+award für konferenzbeitrag	Prêmio de contribuição de conferência
+registrierungskosten für mitglieder von sigkdd	custo de inscrição para membros da sigkdd
+sponsor für besten studentischen beitrag	patrocinador para melhor contribuição do estudante
+hörer der konferenz	ouvintes da conferência
+hotel	Hotel
+konferenz organisiert von	Conferência organizada pela
+deadline für authorenmitteilung	prazo para authorenmitteilung
+bleibt in	permanece em
+sponsoren wurden aufgerufen von	patrocinadores foram chamados por
+paid zahlt registrierungsbeitrag	pagar matrícula post paga
+beitrag wurde eingereicht von	contribuição foi enviada por
+deadline festgelegt	prazo definido
+präsentiert dokumente	apresenta documentos
+hat award	Prêmio
+aufruf von sponsoren	chamada de patrocinadores
+organisiert konferenz	Conferência organizada
+hat preis	tem preço
+ist datiert auf den	é datado na
+registrierungsbeitrags ist in währung	é a contribuição do registro na moeda
+hat name der konferenz	tem o nome da conferência
+hat nationalität	tem nacionalidade
+hat sponsorenname	tem sponsorenname
+datum des ersten tages der konferenz ist	data do primeiro dia da conferência é
+award erhalten von	Prêmio recebido da
+registrierungsbeitrag gezahlt von	Contribuição do registro paga pelo
+hat award erhalten von	Prêmio recebido da
+wurde präsentiert von	foi apresentado por
+deadline eingerichtet für	prazo fixado para
+konferenz findet in folgender stadt statt	Conferência será realizada na cidade seguinte
+datum des letzten tages der konferenz ist	data do último dia da conferência é

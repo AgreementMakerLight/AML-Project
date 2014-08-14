@@ -18,7 +18,7 @@
 * similarity.                                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 14-07-2014                                                            *
+* @date 13-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -26,7 +26,6 @@ package aml.match;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 import aml.AML;
 import aml.ontology.Property;
@@ -98,8 +97,8 @@ public class PropertyMatcher
 		//matching domains, if we have a class alignment to check 
 		if((sType.equals("datatype") || sType.equals("object")) && maps != null)
 		{
-			Vector<String> sDomain = s.getDomain();
-			Vector<String> tDomain = t.getDomain();
+			Set<String> sDomain = s.getDomain();
+			Set<String> tDomain = t.getDomain();
 			if(!urisMatch(sDomain,tDomain))
 				return sim;
 		}
@@ -108,8 +107,8 @@ public class PropertyMatcher
 		if(sType.equals("datatype"))
 		{
 			//And matching ranges
-			Vector<String> sRange = s.getRange();
-			Vector<String> tRange = t.getRange();
+			Set<String> sRange = s.getRange();
+			Set<String> tRange = t.getRange();
 			if(!valuesMatch(sRange,tRange))
 				return sim;
 		}
@@ -118,8 +117,8 @@ public class PropertyMatcher
 		//ranges, if we have a class alignment to check 
 		if(sType.equals("object") && maps != null)
 		{
-			Vector<String> sRange = s.getRange();
-			Vector<String> tRange = t.getRange();
+			Set<String> sRange = s.getRange();
+			Set<String> tRange = t.getRange();
 			if(!urisMatch(sRange,tRange))
 				return sim;
 		}
@@ -131,14 +130,12 @@ public class PropertyMatcher
 	}
 
 	//Checks if two lists of uris match (i.e., have Jaccard similarity above 50%)
-	private boolean urisMatch(Vector<String> sURIs, Vector<String> tURIs)
+	private boolean urisMatch(Set<String> sURIs, Set<String> tURIs)
 	{
 		if(sURIs.size() == 0 && tURIs.size() == 0)
 			return true;
 		if(sURIs.size() == 0 || tURIs.size() == 0)
 			return false;
-		if(sURIs.size() == 1 && tURIs.size() == 1)
-			return urisMatch(sURIs.get(0),tURIs.get(0));
 		double matches = 0.0;
 		for(String s : sURIs)
 		{
@@ -166,14 +163,12 @@ public class PropertyMatcher
 	}
 
 	//Checks if two lists of values match (i.e., have Jaccard similarity above 50%)
-	private boolean valuesMatch(Vector<String> sRange, Vector<String> tRange)
+	private boolean valuesMatch(Set<String> sRange, Set<String> tRange)
 	{
 		if(sRange.size() == 0 && tRange.size() == 0)
 			return true;
 		if(sRange.size() == 0 || tRange.size() == 0)
 			return false;
-		if(sRange.size() == 1 && tRange.size() == 1)
-			return sRange.get(0).equals(tRange.get(0));
 		double sim = Similarity.jaccard(sRange,tRange);
 		return (sim > 0.5);
 	}

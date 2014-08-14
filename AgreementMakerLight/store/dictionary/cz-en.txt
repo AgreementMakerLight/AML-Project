@@ -1,0 +1,690 @@
+řádný článek	a proper article
+předseda programového výboru	the Chairman of the Programme Committee
+programový výbor	Program Committee
+autor který není recenzent	the author is not a reviewer
+recenzent	Reviewer
+dokument	document
+osoba s účastí na konferenci	the person with the participation at the Conference
+předseda	the President of the
+autor	the author of the
+krátký článek	a short article
+externí recenzent	external reviewer
+uživatel	user
+recenze	reviews
+administrátor	Administrator
+vyjádření zájmu	expression of interest
+článek	Article
+rozhodnutí	the decision of the
+meta-recenze	meta-reviews
+osoba	the person
+konference	Conference
+přijetí	the adoption of the
+spolupředseda	Co-Chair of the
+člen programového výboru	Member of the Programme Committee
+předseda konference	the President of the Conference
+spoluautor	co-author
+zamítnutí	the rejection of
+preference	preferences
+meta-recenzent	meta-reviewer
+předmětná oblast	the area in question
+člen konference	Member of the Conference
+přidán člen programového výboru	added member of the Programme Committee
+odeslání článku	submit an article
+má vyjádření zájmu	the expression of interest
+přidělen meta-recenzent recenzentovi	assigned to the meta-reviewer reviewer
+upravit vyjádření zájmu	Edit the expression of interest
+článek napsal	Article written by
+přidělen recenzent administrátorovi	the reviewer is assigned to the administrator
+nástroj pro přídělení příspěvků spuštěn kým	přídělení tool for contributions launched by
+zahájil vyjadřování zájmu recenzentů	expression of interest launched the reviewers
+zamítnut kým	rejected by
+spoluautor příspěvku	co-author of contribution
+podrobnosti vloženy kým	the details entered by
+zadání kritérií recenzí kým	Enter criteria who reviews
+přiděleno recenzentovi	assigned to a reviewer
+označil konflikt zájmu	called the conflict of interest
+článek přečten recenzentem	article read reviewer
+přidělen recenzent	assigned a reviewer
+dokončit přidělení příspěvků konference	to complete the allocation of contributions to the Conference
+má člena konference	has a member of the Conference
+vyjádření zájmu upraveno	expression of interest by
+přidělení příspěvků dokončeno kým	the allocation of contributions who completed
+má spoluautora	my co-author
+článek přečten meta-recenzentem	article read meta-reviewer
+má rozhodnutí	the decision of the
+má konflikt zájmu s příspěvkem	has a conflict of interest with the contribution of the
+pojednává o tématu	discusses the topic
+spustil přidělování článků konference	lowered the allocation of Conference articles
+napsal článek	wrote the article
+recenze napsána kým	review written by
+má člena programového výboru	is a member of the Programme Committee
+recenzuje článek	reviews article
+napsal recenzi	wrote a review
+uzavřít recenzi	to conclude the review
+vložit podrobnosti konference	Insert the details of the Conference
+umožnit virtuální schůzku konferenci	enable virtual meetings conference
+akceptovány příspěvky konference pro tisk	accepted contributions of the Conference for print
+článek má název	the article has a name
+má email	my email
+článek má id	the article has an id
+čte článek	read the article
+přijato kým	who received
+přidělení členů programového výboru administrátorem	the allocation of members of the Steering Committee by the administrator
+zamítnul článek	rejected article
+virtuální schůzka konference umožněna kým	virtual meeting Conference made possible by
+vložit kritéria recenze	Insert a criteria review
+vyjadření zájmu spuštěno kým	vyjadření interest triggered by
+přidělen externí recenzent	assigned to an external reviewer
+brožury vytištěny kým	brochures printed by
+tisk brožur konference	booklet printing conferences
+přijal článek	accepted article
+přidat člena programového výboru	to add a member of the Programme Committee
+nastavil maximální počet recenzí	set the maximum number of reviews
+logo konference má url	the logo of the Conference has a url
+konference má recenzí na článek	the Conference has reviews on article
+má jméno	my name
+datum konference	the date of the Conference
+webová stránka konference má url	the Conference has a Web page url
+kamera-ready verze příspěvku	camera-ready version of the contribution
+dokument konference	the document of the Conference
+vydavatel	Publisher
+tutoriál	tutorial
+pozdně přihlášený zájemce o konferenci	late in the lead about the Conference
+řádný příspěvek	a proper post
+zvaná přednáška	invited lecture
+odbornost experta	the expertise of the expert
+organizační výbor	Organizational Committee
+člen výboru	Member of the Committee
+řídící výbor	the Management Committee
+přijatý příspěvek	received by post
+konferenční příspěvek	Conference contribution
+časně přihlášený zájemce o konferenci	early in the lead about the Conference
+poster	poster
+konferenční oznámení	Conference announcement
+rozšířený abstrakt	extended abstract
+organizace	Organization
+řádný autor příspěvku	proper author contribution
+informace pro účastníky	information for participants
+konferenční poplatky	Conference fees
+recenzovaný příspěvek	peer post
+registrovaný zájemce o konferenci	registered candidates about the Conference
+výzva k účasti na konferenci	call for participation at the Conference
+prezentace	presentation
+organizátor	the organizer of the
+výbor	the Committee of the
+přihlášený zájemce o konferenci	logged in the lead about the Conference
+důležité termíny	important dates
+zamítnutý příspěvek	a rejected post
+preference experta	expert preferences
+účastník konference	participant of the Conference
+workshop	workshop
+téma	theme
+sborník konference	proceedings of the Conference
+výzva na psaní článku	call for article writing
+konferenční akce	Conference action
+zájemce o konferenci	those interested in the Conference
+pasivní účastník konference	passive participant of the Conference
+psaný příspěvek	written post
+poslaný příspěvek	sent by post
+hlavní autor příspěvku	the main author of the contribution
+abstrakt	Abstract
+sekce konference	section Conference
+aktivní účastník konference	an active participant of the Conference
+webové stránky konference	website of the Conference
+přispěvatel konference	Conference contributor
+předseda workshopu	the Chairman of the workshop
+zvaný přednášející	called the lecturer
+má tutoriál	my tutorial
+být programovým výborem konference	be the programming Committee of the Conference
+pozvat spolurecenzenta	invite spolurecenzenta
+má workshop	my workshop
+být předsedou workshopu čeho	be the Chairman of the workshop, what
+posláno kam	posted where
+má člena	is a member of the
+má recenzní posudek	My review testimonial
+důležitý den konference	an important day of the Conference
+prezentoval	presented the
+být organizačním výborem konference	be the Organising Committee of the Conference
+konference má řídicí výbor	Conference Steering Committee
+být výborem konference	be Conference Committee
+být řídicím výborem konference	be Conference Steering Committee
+má předsedu workshopu	the Chairman of the workshop
+tématem nebo odeslaným příspěvkem je	the theme of the contribution is sent or
+přispěl konferenci	contributed to the Conference
+konference má výbor	the Conference Committee has
+být předsedou výboru	be the Chairman of the Committee
+má téma workshopu	the theme of the workshop
+recenzuje příspěvek	reviews post
+téma sekce konference	the theme of the Conference section
+částí konference	part of the Conference
+má část	my part of the
+má abstrakt	It has an abstract
+preference nebo odbornost recenzenta	preference or expertise of the reviewer
+téma svázané s preferovaným tématem	theme tied to the preferred theme
+být členem výboru	be a member of the Committee
+konference má programový výbor	Conference Program Committee
+publikuje	publishes the
+má sekci	has a section
+má příspěvek	my post
+byl přiřazen zájem recenzenta	He was assigned to the reviewer's interest
+preference či odbornost koho	preference or expertise who
+má důležitý den	has an important day
+prezentováno kým	presented by
+má odeslaný příspěvek	has sent a contribution
+má  recenzi	My review
+má spolupředsedu výboru	its Committee has
+první částí dokumentu	the first part of the document
+být spolupředsedou výboru	to be a co-Chairman of the Committee
+konference má organizační výbor	the Conference Organizing Committee has
+číslo svazku sborníku	the volume number of conference proceedings
+má název	has a name
+příjmení	last name
+pohlaví	sex
+má autora	has the author
+pozván recenzentem	invited reviewer
+vydavatelem sborníku je	the Publisher of the proceedings is
+má předsedu výboru	the Chairman of the Committee
+stupeň preference recenze	the degree of preference reviews
+url webových stránek konference	url of the website of the Conference
+publikováno dne	posted on
+den odeslání řádného příspěvku	date of dispatch of the proper contribution
+křestní jméno	first name
+místo konání konference	the venue of the Conference
+počáteční den	start day
+finální den	the final day
+stupeň odbornosti recenzenta	the degree of professionalism of the reviewer
+den odeslání abstraktu	date of dispatch of the abstract
+isbn sborníku	isbn anthology
+den oznámení přijetí příspěvku	date of notification of the adoption of the contribution
+e-mail	email
+den odeslání kamera-ready verze příspěvku	date of dispatch of the camera-ready version of the contribution
+asistent	Assistant
+aktivita zaslání příspěvku	post activity
+student	student
+aktivita recenzování výsledků	review the results of the activity
+aktivita poslání kamera-ready verze	the activity of the Mission of the camera-ready version
+aktivita recenzování	activity review
+firma	company
+raut	raut
+osoba s podílem na konferenci	a person with a share of the Conference
+město	City
+dobrovolník	volunteer
+aktivita registrace účastníků	activity registration of participants
+společenská událost	social event
+událost	event
+banket	Banquet
+vědecký pracovník	scientific worker
+pracovní aktivita	work activity
+řádný účastník konference	regular participant of the Conference
+výlet	trip
+administrativní aktivita	administrative activity
+účastník	participant
+stát	State
+ředitel programového výboru	the Director of the Programme Committee
+univerzita	University
+příspěvek	post
+studentský účastník konference	student participant of the Conference
+následuje	followed by the
+studuje na univerzitě	studying at the University
+sídlí v zemi	located in the country
+recenzuje	reviews
+být expertem na téma	be an expert on the topic of
+týká se	relates to the
+zaměstnán	employed
+sídlí ve městě	located in the city of
+byl napsán autorem	It was written by the author
+napsal příspěvek	wrote a post
+související administrativní aktivita	related administrative activity
+probíhá paralelně s	takes place in parallel with the
+událost má umístění	the event has the location
+sídlí v ulici	located in the street
+obsahuje abstrakt	contains abstract
+má domovskou stránku	my home page
+má zdanění	the taxation
+nastavení maximálního počtu událostí	to set the maximum number of events
+událost končí v den	the event ends on the day
+má stručný název	has a short name
+klíčová slova příspěvku jsou	keywords are
+název příspěvku	the name of the post
+směrovací číslo	routing number
+úvodní den události	opening day of the event
+má kontaktní adresu	my contact address
+účastník konference má včasnou registraci	participant of the Conference early registration
+křestní jméno osoby je	the first name of the person is
+příjmení osoby	person's last name
+nastavení implicitní volby počtu aktivit	setting the default choice of the number of activities
+má telefon	my phone
+nastavení minimálního počtu událostí	set the minimum number of events
+má fax	my fax
+poznámka	Note
+konferenční sekce	Conference section
+téma antén	the topic of antennas
+exkurze	excursions
+téma počítačová architektura	the theme of computer architecture
+téma operačních systémů	the theme of operating systems
+konferenční událost	Conference event
+sponzorování	sponsorship
+program konference	the program of the Conference
+výzva na posílání příspěvků	the challenge to send contributions
+komunikační téma	the communications theme
+hodnocený příspěvek	rated post
+průmyslová organizace	Industrial Organization
+téma satelitní a vesmírné komunikace	the topic of satellite and space communications
+hodnocení slabé zamítnutí	evaluation of the rejection of the weak
+téma podnikové počítačové sítě	the theme of the corporate computer network
+přednáška	Lecture
+téma radiové komunikace	the theme of radio communications
+místo konání večeře	the venue of the dinner
+zasedací místnost	meeting room
+hodnocení podmíněné přijetí	evaluation of conditional acceptance
+autor prezentující příspěvek	the author presenting the contribution
+akceptovaný příspěvek	accepted post
+uzavírající přednáška	closing lecture
+oběd	lunch
+neakademická událost	neakademická event
+téma multimedií	topic multimedia
+téma měření počítačových sítí	the theme of the measurement of computer networks
+cad téma	cad theme
+osobní historie publikací	personal history publications
+tématické okruhy	fields of research
+vládní organizace	governmental organization
+téma sensorické počítačové sítě	the theme of sensorické computer networks
+zahajující přednáška	initiating lecture
+téma mobilních počítačů	the topic of mobile computers
+akademická událost	academic event
+textová recenzní otázka	text review question
+recenze příspěvku	review of the contribution
+stáhnutý příspěvek	downloaded post
+publikovaný příspěvek	the published post
+téma komunikační teorie	the theme of communication theory
+výzva na posílání článků	the challenge for sending articles
+země	country
+výzva	challenge
+místo	instead of the
+přestávka	break
+jídelní menu	dining menu
+hodnocení recenze	Guest reviews
+organizační setkání	organizational meeting
+hodnocení přijetí	Guest receipt
+recenzní formulář	review form
+téma mikroelektroniky	the theme of microelectronics
+přestávka na kávu	coffee break
+prezentace příspěvku	presentation of the contribution
+téma napajení a přenosu	the theme of napajení and transfer
+akademická organizace	academic organization
+téma bezdrátové komunikace	the topic of wireless communication
+téma paralelního a distribuovaného počítačového zpracování	the theme of parallel and distributed computing
+člen technického programového výboru	Member of the technical program Committee
+osobní historie recenzí	personal history reviews
+recenzní otázka	review question
+dvouúrovňová konference	2-level Conference
+téma optické počítačové sítě	the theme of the optical network
+jednoúrovňová konference	one of the Conference
+téma lékařství	the theme of medicine
+recepce	reception
+hodnocení zamítnutí	evaluation of the rejection of the
+kontaktní informace	contact information
+místo ubytování	place of accommodation
+téma počítačové sítě a přepínače	the theme of computer networks and switches
+aktivní příspěvek	the active contribution
+téma bezpečnosti	the topic of safety
+téma správa počítačových sítí	the theme of managing computer networks
+téma počítačové sítě	the theme of computer network
+nerozhodnutý článek	undecided the article
+osobní historie	personal history
+přestávka na jídlo	meal break
+téma zpracování signálu	the topic of signal processing
+vedoucí sekce	Head of section
+téma měření výkonnosti	the theme of performance measurement
+konferenční večeře	Conference dinner
+téma bezpečnost počítačových sítí	the topic of the security of computer networks
+numerická recenzní otázka	numerical review question
+téma počítačové sítě a aplikace	the theme of computer networks and applications
+téma testování	the topic of testing
+výzva na posílání recenzí	the challenge to send reviews
+volný čas	free time
+cestovní grant	travel grant
+nevládní organizace	non-governmental organizations
+místo pořádání konference	instead of organizing the Conference
+téma šifrování	the topic of encryption
+telefon	phone
+datum a čas zahajujícího dne konferenční události	date and time of opening the day coffee events
+ulice	Street
+částka sponzorského daru	the amount of the donation
+měna sponzorského daru	donation currency
+termín registrace na konferenci	the term of registration for the Conference
+patří k události	It belongs to the event
+koná se v zemi	It takes place in the country
+má hodnocení	my guest
+týká se čeho	regarding
+výzva zahájena kým	the challenge launched by
+termín zvěřejnění konferenčního dokumentu	date of publication of the Conference document
+koná se na místě	It takes place on the spot
+napsal	wrote
+výzva na událost	invitation to the event
+je prezentován čím	What is presented
+prezentuje přijatý příspěvek	presents received by post
+poskytuje sponzorování	provides sponsorship
+je místem konferenční události	is the place of Conference events
+má výzvu	My challenge
+má jídelní menu	has menu
+je tématem čeho	What is the theme of
+je recenzní historií koho	is the review history of who
+má program	the program has
+sponzorování je poskytnuto organizací	sponsorship is provided by
+má téma	My theme
+má účastníka	has the participant
+je členem konference	is a member of the Conference
+má recenzní historii	to review the history of the
+účastní se	participate in the
+jídelní menu události	menu events
+je napsán autorem	It is written by the author
+je recenzí čeho	What is review
+zahajuje výzvu	launches the challenge
+má související dokument	has a related document
+datum a čas zahajujícího dne konference	date and time of opening day of the Conference
+termín poslání příspěvku	the term mission contribution
+instrukce poslání příspěvku	the Mission of the post instruction
+biografie osoby	the biography of the person
+úplný název konference	the full name of the Conference
+datum a čas závěrečného dne konferenční události	the date and time of the final day of the Conference events
+datum a čas závěrečného dne konference	the date and time of the final day of the Conference
+termín zvěřejnění příspěvku	date of publication of the contribution
+poštovní směrovací číslo	postal code
+email	email
+vybraný příspěvek	the selected post
+předseda tutoriálů	the President of the tutorials
+industriální sekce	industrial section
+předseda workshopů	the President of the workshops
+účastník zaregistrovaný za pozdní vložné	principal participant fee for late
+industriální příspěvek	the industrial post
+člen organizačního výboru	Member of the Organizing Committee
+abstrakt tutoriálu	abstract tutorial
+účastník zaregistrovaný za časné vložné	the participant registered for early fee
+konferenční výlet	Conference trip
+předsedající sekce	President section
+ohodnocený příspěvek	rated post
+pořádající agentura	the organizing agency
+sekce	section
+sborník	the proceedings of the
+vysoká škola	high school
+předseda sekce demonstrací	the President of the section of the demonstration
+sekce workshopu	the section of the workshop
+brožura s programem	a brochure with the program
+příspěvek k demonstraci	contribution to the demonstration
+standardní příspěvek	standard post
+sekce posterů	poster section
+sekce demonstrací	section demonstrations
+přiřazený příspěvek	assigned to the post
+jednotlivá prezentace	the individual presentation
+příspěvek na workshop	contribution to the workshop
+vydavatel sborníku	the Publisher of the proceedings
+výzkumné téma	research a topic
+zvaný řečník	called speaker
+pracovník pořádající agentury	worker organizing agency
+víceautorský svazek	víceautorský volume
+odborná událost	professional event
+neutrální recenze	neutral reviews
+příspěvek na konferenci	contribution to the Conference
+webová stránka	Web page
+výzkumný ústav	Research Institute
+abstrakt zvané přednášky	an abstract of invited talks
+standardní sekce	a standard section
+podaný příspěvek	submitted by post
+akademická instituce	academic institution
+člen řídícího výboru	Member of the Management Committee
+přednášející	Lecturer
+finální verze příspěvku	the final version of the contribution
+příspěvek k posteru	contribution to the poster
+leták	leaflet
+možný recenzent	possible reviewer
+předseda organizačního výboru	Chairman of the Organizing Committee
+negativní recenze	negative reviews
+společenský program	social program
+autor příspěvku	the author of the contribution
+pozitivní recenze	positive reviews
+napsáno kým	posted by who
+inverse of partof 7	inverse of partof 7
+je součástí	It is part of
+odborně organizuje	professionally organized
+odkazuje na	refers to the
+má součást	is part of the
+technicky organizováno kým	technically, organised by the who
+pokrývá téma	covers the topic
+je součástí události	It is part of the event
+má aktualizaci	My update
+referuje o události	reports on the events
+odborně organizováno kým	professionally organised by
+příspěvek ve svazku	post in the volume
+událost uvedena na	the event listed on the
+je místem konání	is the venue
+má recenzenta	has reviewer
+recenzent příspěvku	Reviewer contribution
+konáse v	konáse in
+odkazován v	referenced in the
+má recenzi	My review
+je aktualizací	is an update
+svazek obsahuje příspěvek	the volume contains a post
+je autorem	He is the author
+organizuje	organizes
+organizováno kým	organised by the who
+téma pokryto čím	the topic covered by the
+je vydavatelem	is the Publisher
+technicky organizuje	technically, organizes
+obsahuje událost	contains the event
+příspěvek prezentován jako	post presented as
+bankovní převod	Bank transfer
+počítač	computer
+večerní banket	evening banquet
+účastník konference?	participant of the Conference?
+sborník na cd	Conference proceedings on cd
+technická aktivita	technical activity
+jednolůžkový hotelový pokoj	single hotel room
+aktivita modelování	activity modeling
+neprezentující student	neprezentující student
+poplatek za výlet navíc	In addition, the trip fee
+sponzorský dar	sponsorship
+neprezentující pracovník	neprezentující worker
+konferenční budova	Conference building
+taxi	taxi
+registrační poplatek pro člena konference	the registration fee for a member of the Conference
+odjezd	the departure of the
+pokonferenční aktivita	post-conference activity
+publikace	publications
+měna	currency
+konferenční hotel	Conference hotel
+aktivita odmítnutí příspěvku	the activity of the rejection of the contribution
+plenární přednášející	plenary lecturers
+termín hotelové rezervace	deadline for hotel reservation
+termín podání příspěvku	the term of the contribution
+přednáška přednášejícím	Lecture lecturer
+šek	check
+aktivita přijímaní příspěvku	receive activity contribution
+daň z odjezdu	departure tax
+univerzita prezentujícího	University of prezentujícího
+aktivita	activity
+podání příspěvku	the submission of the contribution of the
+posluchač	the listener
+konferenční letiště	Conference Airport
+audiovizuální vybavení	audiovisual equipment
+poplatek	fee
+jednodenní prezentující	one-day presenting
+dům prezentujícího	House prezentujícího
+dvoulůžkový hotelový pokoj	Double hotel room
+registrační poplatek pro studenta	the registration fee for the student
+aktivita simulace	simulation activity
+zvací dopis	Letter of invitation
+lcd projektor	lcd projector
+technický výbor	the Technical Committee
+výletní město	Cruise the city
+konferenční výletník	Conference trips
+konferenční restaurant	Conference restaurant
+země konference	the country conferences
+hotelový uvaděč	Hotel usher
+termín podání verze pro tisk	deadline for submission of print version
+země prezentujícího	country prezentujícího
+vrchní projektor	head projector
+konferenční aktivita	Conference activity
+výzkumná aktivita	research activity
+spropitné	Tip
+plenární přednáška	plenary lecture
+přehrávač videokazet	videotape player
+představení přednášejícího	Show Presenter
+sponzor	sponsor
+časové pásmo	timezone
+registrační poplatek pro nečlena konference	the registration fee for non-members towards the Conference
+celodenní výlet	day trip
+platební karta	payment card
+autor, který obdrží sborník na cd	the author, who will receive the Conference proceedings on cd
+přednášející pracovník	Lecturer researcher
+vízum	Visa
+předkonferenční aktivita	pre-conference activity
+hotelová místnost	the hotel's room
+dům sponzora	House sponsor
+přednášející student	Lecturer, student
+neprezentující	neprezentující
+kreditní karta	credit card
+peněžní částka	the amount of cash
+nečlen konference iasted	a member of the iasted Conference
+představení	performances
+auto	car
+hotelový poplatek	Hotel fee
+konferenční registrační formulář	Conference registration form
+město sponzora	City sponsor
+daň	tax
+konferenční hala	Conference Hall
+registrační poplatek autora pro obdržení tištěného sborníku	author registration fee for receipt of the printed Conference proceedings
+město prezentujícího	City prezentujícího
+hlavní kancelář	the main office
+přednášející tutoriálu	the lecturer tutorial
+registrační poplatek pro neautora	the registration fee for neautora
+dodávka	delivery
+registrace na konferenci	registration for the Conference
+informační formulář pro autora	information form for the author
+záznam účasti	record participation
+aktivita zamítnutí příspěvku	the activity of the rejection of the contribution
+seznam emailů	the list of emails
+konferenčí město	konferenčí city
+dny konference	the days of the Conference
+video prezentace	video presentation
+prezentační slajdy	presentation slides
+budova	building
+mikrobus	minibus
+registrační poplatek autora pro obdržení sborníku na cd	author registration fee for receipt of conference proceedings on cd
+termín oznámení o přijetí	the term notification of acceptance
+autor, který obdrží tištěný sborník	the author, who will receive the printed proceedings
+uvodní verze příspěvku	Home versions of the contribution
+stručné představení vedoucímu sekce	brief introduction to the head section
+formulář	form
+hotelový registrační formulář	the hotel registration form
+přepravní postředek	transport postředek
+prezentující	presenting
+konferenční den	Conference day
+den výletu	day trip
+powerpointová prezentace	PowerPoint presentation
+daň z přidané hodnoty	value added tax
+artikl	Article
+termín	the term
+registrační poplatek	the registration fee
+tištěný sborník	printed proceedings
+člen konference iasted	the iasted Conference
+země sponzora	country sponsor
+platební dokument	payment document
+čas	time
+místnost konferenční sekce	Conference Room section
+aktivita najmutí auta	car hire activity
+uvítací proslov	welcome speech
+společenská aktivita	social activity
+aktivita datována na datum a čas	activity dated on the date and time
+je obýván kým	It is inhabited by the who
+použito kým	used by
+podepsáno kým	signed by the who
+udělán z	made from
+využit pro	used for the
+platí	applies
+umístěno kde	located where the
+posláno časově před	posted in time before the
+je vybaven čím	It is equipped with the
+zaujímá místo	takes place
+koná se před	It takes place before the
+podepisuje	signed by the
+posílá	sends
+mluví kdy a kde	talking about when and where
+je zaplaceno kým	who is paid
+obdrží	receives the
+je přítomen kdy	It is present when
+je přítomen kdy a kde	It is present when and where
+placeno pro co	paid for what
+platba proběhla kde	the payment took place where
+koná se kdy a kde	It takes place when and where
+koná se po	It takes place after the
+je spojen s	It is associated with
+je přidělen komu	He is assigned to
+souvisí s	related to the
+navštíveno kým	visited by
+datum termínu	futures date
+částka peněz	the amount of money
+připraveno kým	prepared by
+potřebuje	needs
+posláno kým	posted by whom
+souvisí s aktivitou	related to the activity
+posláno časově po	sent time after
+je připraven pro	It is ready for
+připravuje artikl	preparing article
+placeno čím	paid the
+je potřebný pro	is needed for
+konference acm sigkdd	acm sigkdd Conference
+termín zaslání abstraktu	deadline abstract submission
+autor článku	author of the article
+platinový sponzor konference	Platinum sponsor of the Conference
+termín vyrozumění autorů	the term notification of authors
+sponzor nejlepšího studentského článku	sponsor the best student article
+registrační poplatek pro nečlena sig	the registration fee for non-members towards the sig
+termín zaslání článku	the deadline to send article
+hlavní kancelář konference	the main Office of the Conference
+stříbrný sponzor	Silver sponsor
+ogranizátor konference	ogranizátor Conference
+sponzorský poplatek	sponsorship fee
+registrační poplatek pro člena sigkdd	the registration fee for a member of sigkdd
+bronzový sponzor konference	Bronze sponsor of the Conference
+posluchač konference	Student Conference
+ocenění za nejlepší výzkumný článek	Award for the best research article
+registrační poplatek pro studenty	the registration fee for students
+osoba aktivní na konferenci	a person active in the Conference
+registrační poplatek pro člena sigmod	the registration fee for a member of the sigmod
+autor studentské článku	the author of the student article
+ocenění za článek na konferenci	an award for an article on the Conference
+ocenění za nejlepší aplikační článek	Award for the best application of article
+zlatý sponzor konference	Gold sponsor of the Conference
+sponzor se stánkem	Sponsor will stand
+ocenění za nejlepší studentský článek	Award for best student article
+konferenční poplatek	Conference fee
+správce webu	the site administrator
+výbor pro udělování ocenění za nejlepší články	Committee for the award of the prize for the best articles
+hotel	hotel
+hledá sponzory	looking for sponsors
+stanoveny termíny pro	set the terms for the
+dokument prezentován kým	the document presented by
+konference pořádána	Conference organized by
+stanoveny termíny	fixed dates
+termín pro odeslání	the deadline for submitting
+pořádá konferenci	organized by the Conference of the
+sídlí v	housed in the
+je stanoven na	is determined on the
+jméno sponzora	the name of the sponsor
+jméno konference	the name of the Conference
+jmenuje se	his name is
+národnost	the nationality of the
+zaplatil registrační poplatek	pay the registration fee
+oceněno	awarded with the
+má ocenění	My Awards
+datum závěrečného dne konference	the date of the final day of the Conference
+datum prvního dne konference	the date of the first day of the Conference
+cena	price
+registrační poplatek je ve měně	the registration fee is, in the currency of the
+město pořádání konference	the city of conferences
+získal ocenění	won the award
+prezentace dokumentu	the presentation of the document
+zaslání článku	send article
+sponzoři hledáni kým	search for sponsors who
+registrační poplatek zaplacen kým	the registration fee has been paid by

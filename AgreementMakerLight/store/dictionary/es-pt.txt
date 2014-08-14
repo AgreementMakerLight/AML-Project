@@ -1,0 +1,666 @@
+puja	oferta
+aceptar	Razoável
+autor	autor
+versión completa del artículo	versão completa do artigo
+meta revisión	revisão do objetivo
+miembro del comité de programa	Membro do Comitê de programa
+conferencia	Conferência
+administrador	Administrador
+miembro de la conferencia	Membro da conferência
+área temática	área temática
+decisión	decisão
+documento	documento
+revisor	Revisor
+revisor externo	revisor externo
+meta revisor	Revisor de meta
+artículo	Artigo
+presidente del comité de programa	Presidente do Comité de programa
+resumen del artículo	Resumo do artigo
+vice presidente	Vice-Presidente
+presidente de la conferencia	Presidente da conferência
+coautor	co-autor
+autor, no revisor	autor, nenhum revisor
+comité de programa	Comitê de programa
+usuario	usuário
+presidente	Presidente
+preferencia	preferência
+rechazar	rejeitar
+revisión	revisão
+persona	pessoa
+asigna revisor externo	atribuir revisor externo
+es miembro del comité de programa	é membro do Comité de programa
+permite reunión virtual	permite encontro virtual
+envía el artículo	envia o item
+inicia la puja de los artículos	começa a licitação de artigos
+asignado por el revisor	atribuído pelo revisor
+introduce criterios de revisión	entra em critérios de avaliação
+los criterios de revisión han sido introducidos por	critérios de avaliação foram introduzidos por
+la puja de los revisores ha sido iniciada por	Iniciado por lances de revisores
+detalles introducidos por	detalhes inseridos pelo
+asigna un número máximo de artículos a	atribui um número máximo de itens a
+rechazado por	rejeitada pelo
+redacta el artículo	escrever artigo
+redacta la revisión	escrever comentário
+asignado por el administrador	atribuído pelo administrador
+es miembro de la conferencia	é membro da conferência
+modificada por	modificado por
+asignar revisor	atribuir o revisor
+añadido por	adicionado por
+asignado a	atribuído a
+tiene miembro de la conferencia	tem membro conferência
+tiene área temática	tem uma área de assunto
+gestiona las herramientas para la asignación de artículos	Ele gerencia as ferramentas necessárias para a alocação de itens
+la asignación de artículos ha sido finalizada por	a atribuição dos artigos foi concluída pela
+tiene autor	tem autor
+finaliza la asignación de artículos	termina a alocação de itens
+tiene puja	tem oferta
+leído por el meta revisor	lido pelo revisor meta
+tiene decisión	decisão tem
+reunión virtual mediante	usando a reunião virtual
+lee el artículo	Leia o artigo
+las copias en papel de los manifiestos de envío han sido impresas por	os transporte manifestos papel exemplares foram impressos por
+rechaza el artículo	rejeita o artigo
+tiene coautor	é co-autor
+modifica la puja	modifica a oferta
+las herramientas para la asignación de artículos han sido gestionadas por	ferramentas para a alocação de itens foram gerenciadas por
+es coautor de un artículo	é co-autor de um artigo
+url del logotipo	URL do logotipo
+acepta entregas en papel	Aceita entregas em papel
+url de la página web	URL da página da web
+título	título
+ha sido asignado a	Ele tem sido atribuído a
+escrito por	escrito por
+ha señalado conflicto de intereses	notável conflito de interesses
+tiene miembro del comité de programa	tem o membro do Comitê de programa
+tiene conflicto de intereses	tem conflito de interesses
+añade miembro de comité de programa	Adicionado membro do Comitê de programa
+aceptado por	aceite pela
+copia en papel de los manifiestos de envío	papel de cópia de manifestos de transporte
+acepta el artículo	aceitar o artigo
+finaliza revisión	revisão final
+introduce detalles de la conferencia	Insira os detalhes da conferência
+leído por el revisor	ler pelo autor
+nombre	nome
+correo electrónico	Email
+número máximo de artículos	número máximo de itens
+fecha	Data
+identificador del artículo	identificador do item
+revisiones por artículo	revisões por artigo
+contribución regular	contribuição regular
+participante de la conferencia	participante da conferência
+conferencia www	www conferência
+tema	Tema
+editor	Editor
+volumen de la conferencia	Volume de conferência
+participante activo en la conferencia	participante ativo na conferência
+resumen ampliado	Resumo estendido
+persona registrada a la conferencia	pessoa registada para a conferência
+documento de la conferencia	Documento da conferência
+taller	Oficina
+participante pasivo en la conferencia	participante passiva na conferência
+presentación	apresentação
+coautor de la contribución	co-autor da contribuição
+fechas importantes	datas importantes
+comité organizador	Comissão Organizadora
+parte de la conferencia	parte da conferência
+anuncio de la conferencia	anúncio da conferência
+organización	Organização
+persona que envía una solicitud a la conferencia	pessoa que envia uma solicitação para a conferência
+experiencia del revisor	experiência do revisor
+solicitud de envío de artículos	pedido de submissão
+contribución por escrito	contribuição por escrito
+actas de la conferencia	Atas da conferência
+primer autor de la contribución	contribuição do primeiro autor
+tutorial	tutorial
+persona que hace un pago anticipado de las tasas de la conferencia	pessoa que faz um pagamento antecipado das taxas da conferência
+panel	Painel
+conferenciante invitado	orador convidado
+comité directivo	Comitê Diretivo
+póster	cartaz
+persona que paga las tasas de la conferencia	pessoa que paga as taxas de conferência
+charla invitada	convidado
+contribución a la conferencia	contributo para a conferência
+información para los participantes	informações para os participantes
+contribución enviada	contribuição apresentada
+organizador	Organizador
+contribución rechazada	contribuição rejeitada
+tasas de la conferencia	as taxas de conferência
+contribución lista para su envío definitivo	Pronto para contribuição final da expedição
+solicitud de participación	pedido de participação
+persona que envía una contribución a la conferencia	pessoa que envia uma contribuição para a conferência
+comité	Comité
+vicepresidente	Vice-Presidente
+persona que paga con retraso las tasas de la conferencia	pessoa pagando taxas atrasadas da conferência
+contribución aceptada	aceita contribuição
+preferencia del revisor	a preferência de revisor
+contribución revisada	contribuição revisada
+organizador de los workshops	as oficinas organizador
+resumen	Visão geral
+era comité directivo de	foi o Comitê Diretivo de
+tiene autores	tem autores
+tiene referencias o experiencia en la revisión de artículos	Você tem referências ou experiência em revisão de artigos
+tiene un comité	tem um Comitê
+era comité organizador de	estava organizando o Comitê de
+tiene un tema o una contribución enviada	Você tem um tema ou uma contribuição apresentada
+tiene contribuciones	tem contribuições
+ha presentado una contribución	Ele tem apresentado uma contribuição
+tiene un revisor	tem um revisor
+era vicepresidente del comité de	foi vice-presidente do Comité de
+era organizador de un panel de talleres de	Era um painel de organizador de oficinas de
+tiene un comité organizador	tem um comitê organizador
+tiene un comité directivo	tem um Comitê
+tiene miembros	tem membros
+tiene partes	tem partes
+pertenece a una referencia de la revisión	Pertence a uma referência da revisão
+dado por	dada por
+problemas	problemas
+tiene tema de taller-tutorial	tem tema oficina-tutorial
+se le ha asignado una referencia  de revisiones	Você tem sido atribuída uma referência de revisões
+es la primera parte de	é a primeira parte do
+pertenece a los revisores	pertence os revisores
+revisiones	Comentários
+tiene talleres	tem oficinas
+forma parte de los volúmenes de la conferencia	É parte dos volumes da conferência
+invitado por	convidado por
+era comité de programa de	Comitê de programa de
+tiene un vicepresidente de comité	tem um vice-presidente da Comissão
+enviado a	enviado para
+era presidente del comité de	foi presidente da Comissão de
+era comité de	foi o Comité de
+tiene un comité de programa	tem um Comitê de programa
+tiene tutoriales	tem tutoriais
+era miembro de	foi um dos
+tiene organizador de taller-tutorial	tem de organizar a oficina-tutorial
+da presentaciones	apresentações
+tiene un presidente de comité	tem Comité de um Presidente
+tiene un editor	tem um editor
+tiene experiencia en la revisión de artículos	Tem experiência na revisão de artigos
+contribuye	contribui
+corevisores invitados	corevisores convidados
+es tema de parte de la conferencia	É parte do tema da conferência
+tiene nombre de pila	tem o primeiro nome
+tiene apellidos	têm sobrenomes
+es fecha de inicio	é a data de início
+tiene url	tem a url
+tiene fechas imprortantes	tem datas imprortantes
+pertenece al volumen de la conferencia	pertence ao volume de conferência
+tiene resumen	Visão geral
+tiene paneles	tem painéis
+tiene correo electrónico	tem e-mail
+tiene experiencia	tem experiência
+es fecha de envío de versiones definitivas de artículos	É o encontro das versões finais dos artigos
+tiene volumen	tem volume
+tiene grado	tem grau
+es fecha de envío de artículos largos	É o encontro de artigos longos
+tiene isbn	tem isbn
+tiene ubicación	tem localização
+es fecha de envío de resúmenes	é a data de apresentação do Resumo
+es fecha de finalización	Data de conclusão
+tiene fecha de emisión	tem a data de emissão
+tiene género	tem sexo
+es fecha de aceptación del anuncio	é a data de aceitação da publicidade
+tiene nombre	tem nome
+envío de contribuciones	apresentar contribuições
+ciudad	Cidade
+científico	cientista
+acontecimiento administrativo	Evento administrativo
+evento científico	evento científico
+participante	participante
+cena de gala	jantar de gala
+país	país
+proceso de revisión de resultados	avaliação dos resultados
+programa social	programa social
+proceso de revisión	processo de revisão
+voluntario	voluntário
+recepción	recepção
+asistente	Assistente
+universidad	Universidade
+contribución	contribuição
+empresa	empresa
+socio	parceiro
+becario	Estagiário
+envío de versión definitiva	submissão da versão final
+registro de participantes	registo dos participantes
+no miembro	Não-membro
+artículo corto	artigo curto
+estudiante	estudante
+acontecimiento	evento
+excursión	excursão
+tiene tema	tem tema
+tiene ciudad	tem a cidade
+contratado por	contratado pela
+paralelo a	paralelo ao
+revisa	seleção
+escribe	escreve
+experto en	especialista em
+trata de	tráfico de
+tiene país	país tem
+tiene acontencimiento administrativo	tem evolução administrativa
+estudia en	estudos em
+sigue a	continua a
+selección mínima	seleção mínima
+correo electrónico de contacto	email para contato
+tiene título corto	tem um título curto
+selección máxima	seleção máxima
+finaliza en	termina em
+tiene fax	tem fax
+tiene código postal	tem o código postal
+tiene teléfono	tem telefone
+tiene página web	tem site
+tiene título	tem o título
+lugar	lugar
+inscripción anticipada	inscrição antecipada
+tiene palabra clave	tem tags
+comentario	Comentário
+empieza en	começa em
+tiene calle	tem Street
+elección por defecto	escolher o padrão
+tiene iva	é o IVA
+convocatoria para la presentación de artículos	chamada para a submissão de artigos
+tema, seguridad	tópico, segurança
+tema, comunicaciones inalámbricas	questão, comunicações sem fio
+tema, redes de computadoras	tema, redes de computadores
+tema, seguridad en las redes de computadoras	tópico, segurança em redes de computadores
+patrocinio	patrocínio
+tema, procesamiento de señales	processamento de sinal, sujeito
+pausa	pausa
+cena de la conferencia	o jantar da conferência
+acontecimiento social	evento social
+organización académica	organização acadêmica
+convocatoria para la revisiones	chamada para revisões
+tema, multimedia	questão, multimídia
+artículo rechazado	artigo rejeitado
+programa	programa
+tema, medidas de redes de computadoras	questão, medidas de redes de computadores
+tema, teoría de la comunicación	assunto, teoria da comunicação
+comida	comida
+información de contacto	informações de contato
+tema antennas	antenas de tema
+ratio de papers rechazados pero en el límite	relação de documentos rejeitados, mas no limite
+alojamiento	Alojamento
+acontecimiento no académico	evento não-acadêmicos
+menú	menu
+tema, medicina	tema, medicina
+lugar de celebración de la conferencia	local da conferência
+tema, solo de prueba	Só assunto de teste
+tema, arquitectura de computadoras	tema, arquitetura de computadores
+tema, sensores en las redes de computadoras	tópico, sensores em redes de computadores
+lugar de celebración de la cena	local para jantar
+conferencia de bienvenida	Conferência de boas-vinda
+organización industrial	organização industrial
+artículos relacionados	artigos relacionados
+tema, criptografía	questão, criptografia
+tema, gestión de redes de computadoras	questão, gestão de redes de computadores
+convocatoria para la presentación de manuscritos	convocatória para a apresentação dos manuscritos
+artículo publicado	artigo publicado
+sesiones de la conferencia	sessão da conferência
+artículo retirado	artigo retirado
+conferencia de clausura	Conferência de encerramento
+tema, microelectrónica	assunto, microeletrônica
+reunión organizativa	reunião organizacional
+historial de publicaciones	Histórico de publicações
+acontecimiento académico	evento acadêmico
+pausa para comer	pausa para comer
+pausa para tomar un café	pausa para café
+tema, redes de computadoras ópticas	assunto, redes de computadores ópticos
+miembro del comité técnico del programa	Membro do comitê técnico do programa
+pregunta sobre la revisión numérica	perguntado sobre a avaliação numérica
+lugar de reunión	local de encontro
+presentador	Apresentador
+ratio de revisiones	relação das revisões
+ratio de aceptación	taxa de aceitação
+tema, computación paralela y distribuida	assunto, paralelo e distribuído de computação
+historial de revisiones	Histórico de revisão
+artículo activo	Artigo activo
+tema, comunicaciones espaciales y por satélite	tema, o espaço e o satélite de comunicações
+artículo pendiente	artigo pendente
+tema cad	cad de tema
+formulario de revisiones	formulário de comentários
+tema, aplicaciones de las redes de computadoras	assunto, aplicações de redes de computadores
+ratio de aceptación si hay espacio	relação de aceitação se houver espaço
+tema, rendimiento	tema, desempenho
+presentación de artículos	submissão de artigos
+charla	falar
+beca de viaje	Bolsa de viagem
+tema, comunicación por rádio	questão, rádio comunicação
+presidente de la sesión	Presidente da sessão
+pregunta sobre la revisión	questionado sobre a revisão
+conjunto de transparencias	conjunto de transparências
+tema, empresas de reedes de computadoras	tema, as empresas de redes de computadores
+tema, sistemas operativos	assunto, sistemas operacionais
+tema, computación móvil	tema, mobile computing
+currículum vitae	curriculum vitae
+tema, conexión en las redes de computadoras	assunto, conexão a redes de computador
+organización de gobierno	Organização do governo
+ratio de rechazos	relação de rejeitos
+artículo aceptado	artigo aceito
+tema, comunicaciones	tema, comunicações
+convocatoria	chamada
+ong	ONG
+conferencia de un nivel	um nível de conferência
+tema, transmisión mediante cable eléctrico	tema, transmissão através do cabo de alimentação
+conferencia de dos niveles	Conferência de dois níveis
+pregunta sobre la revisión textual	questionado sobre a revisão textual
+el artículo tiene que estar entregado antes de	o item deve ser entregue antes
+tiene fecha límite de entrega	tem prazo
+cuesta	inclinação
+tiene hora y fecha de comienzo	tem a data de início e hora
+tiene hora y fecha de finalización	tem a hora e a data de conclusão
+es tema de	é assunto de
+asitente a	Assistente para
+es miembro de	é membro da
+tiene asistentes	tem participantes
+pertenece al acontecimiento	pertence ao evento
+tiene miembro	tem membros
+proporcionado por	fornecido por
+tiene ratio	tem relação
+es revisado por	É comentado por
+tiene artículo relacionado	Tem artigo relacionadas
+está revisando	Ele está revendo
+se relaciona con	é associado com
+inicia	começa
+es ubicación de	é o local de
+es iniciado por	É iniciado por
+tiene menú	tem menu
+está escrito por	escrito por
+relacionado con el artículo	relacionados ao artigo
+es menú de	é o menu de
+tiene documento relacionado	tem relacionados ao documento
+es proveedor de	é o provedor de
+tiene convocatoria	tem a chamada
+es el historial de revisiones de	é o histórico de revisão de
+para el acontecimiento	para o evento
+relacionado con el acontecimiento	o evento-relacionados
+tiene historial de revisiones	tem histórico de revisão
+tiene programa	tem o programa
+fecha de finalización	Data de conclusão
+el registro tiene que estar hecho antes de	o registo deve ser feito antes
+fecha de comienzo	Data de início
+el manuscrito tiene que estar entregado antes de	o manuscrito deve ser entregue antes
+tiene moneda	Tem moeda
+tiene instrucciones de envío	tem instruções de envio
+tiene biografía	tem biografia
+página web	página da Web
+sesión de talleres	sessão de oficinas
+conferencia principal	Conferência principal
+participante con inscripción no anticipada	participante com nenhuma inscrição antecipada
+actas	registros
+versión definitiva del artículo	versão final do artigo
+miembro de la organización	Membro da organização
+agencia de organización de congresos	Organização do Congresso Agência
+programa de mano	programa de mão
+folleto	brochura
+artículo de conferencia	Artigo de conferência
+sesión de pósters	sessão pôster
+artículo revisado	artigo de revista
+artículo de experiencias en la industria	Artigo por experiências na indústria
+participante del congreso	participante do Congresso
+contribución a conferencia	contribuição para a conferência
+sesión de conferencia	Sessão de conferência
+autor de la contribución	autor da contribuição
+miembro del comité organizador	Membro da Comissão Organizadora
+centro de investigación	Centro de pesquisa
+evento	evento
+sesión	sessão
+artículo sobre demostración	Artigo na demonstração
+resumen de conferencia invitada	Resumo da palestra de convidado
+organizador de tutorial	Tutorial do organizador
+miembro del comité científico	Membro do Comitê Científico
+artículo asignado a revisor	artigo atribuído ao revisor
+candidato a revisor	um candidato de revisor
+tema de investigación	tema de pesquisa
+artículo de póster	Cartaz do artigo
+organizador de los talleres	organizar workshops
+sesión de congreso	sessão do Congresso
+organizador de la sesión de pósters	o organizador da sessão pôster
+cosa	coisa
+institución académica	instituição acadêmica
+evaluación negativa	avaliação negativa
+presidente del comité organizador	Presidente da Comissão Organizadora
+sesión de demostraciones	sessão de demos
+seminario	Seminário
+artículo de taller	Artigo de oficina
+artículo en conferencia principal	artigo na conferência principal
+evaluación positiva	avaliação positiva
+acontecimiento científico	evento científico
+actas de congreso	Processo do Congresso
+participante con inscripción anticipada	participante com inscrição antecipada
+editor de las actas	Editor de procedimentos
+evaluación neutra	avaliação neutra
+resumen de tutorial	tutorial de visão geral
+moderador de la sesión	moderador da sessão
+volumen de varios autores	volume de vários autores
+lugar de celebración	local de encontro
+sesión industrial	sessão industrial
+presentación individual	apresentação individual
+versión actualizada de	versão atualizada do
+organización científica por	Organização científica por
+artículo en actas	artigo no processo
+parte de	parte do
+tema tratado por	assunto por
+tiene evento	tem evento
+es revisión de	é a revisão de
+referencia	referência
+revisión escrita por	Resenha escrita por
+parte de evento	parte do evento
+tiene revisión	tem revisão
+artículo presentado como	artigo apresentado como
+organiza técnicamente	organiza tecnicamente
+organiza	organiza
+inversa de parte de 7	reverter parte de 7
+es revisor de artículo	é um revisor de artigo
+organiza científicamente	organiza cientificamente
+tiene parte	tem parte
+tiene versión actualizada	tem versão atualizada
+autor de	autor de
+volumen contiene artículo	volume contém artigo
+evento en la lista	lista de eventos
+presentación de artículo	apresentação do artigo
+organización técnica por	organização técnica por
+referenciado en	referenciado no
+tiene revisor	tem revisor
+editor de	Editor de
+celebrado en	realizada em
+enumera eventos	listas de eventos
+lugar de	lugar de
+organizado por	organizado pela
+envío	do transporte
+fecha límite	prazo final
+conferenciante	Palestrante
+alquilando	alugando
+tasas de registro para los no autores	taxas de inscrição para não-autores
+cheque	seleção
+conferenciante plenario	alto-falante plenária
+transferencia bancaria	Transferência bancária
+estudiante no orador	Estudante não alto-falante
+actividad técnica	atividade técnica
+introducción	introdução
+manuscrito final	manuscrito final
+presentador durante un día	Apresentador durante um dia
+excursión por la ciudad	Passeio pela cidade
+fecha límite de registro	prazo para inscrição
+edificio de la conferencia	o edifício de conferência
+hotel de la conferencia	Hotel de conferências
+hora	tempo
+sala principal de la conferencia	Salão principal da conferência
+actividad	atividade
+formulario	formulário
+edificio	edifício
+tarjeta de crédito	cartão de crédito
+día de excursión	excursão de um dia
+rechazando el manuscrito	rejeitando o manuscrito
+estado del moderador	o estatuto de moderador
+tasas de registro par aestudiantes	taxas de inscrição aestudiantes
+oficina principal	escritório principal
+introducción del conferenciante	introdução do alto-falante
+comité técnico	Comitê Técnico
+habitación de hotel	quarto de Hotel
+tasas de registro para miembros	taxas de inscrição para membros
+sala de sesiones	sala de sessão
+ordenador	computador
+reproductor de video casete	leitor de vídeo cassete
+cd de las actas	o CD de processos
+tasas	Taxas
+trabajador no orador	trabalhador não alto-falante
+ciudad de la conferencia	a cidade de conferência
+casa del moderador	Casa do moderador
+proyector lcd	projetor LCD
+conferencia de un día de duración	Conferência de um dia
+taxi	táxi
+conferencia plenaria	Conferência plenária
+tasas de salida	taxas de saída
+tasas del registro	as taxas de inscrição
+tasas por un viaje extra	taxas uma viagem extra
+fecha límite de envío de la versión definitiva	prazo para apresentação da versão final
+tasas de autor, asistente y libro	taxas do livro, o autor e o assistente
+documento de pago	documento de pagamento
+no orador	Nenhum alto-falante
+habitación individual	quarto individual
+impuesto sobre el valor añadido	imposto sobre o valor acrescentado
+visa	Visto
+actividad antes de la conferencia	atividade antes da conferência
+tarjeta	cartão
+aeropuerto de la conferencia	Aeroporto de conferência
+incluye el cd de las actas para autores	Inclui o cd de transcrições para os autores
+tasas de registro para los no miembros	taxas de inscrição para não-membros
+habitación doble	Quarto duplo
+restaurante de la conferencia	restaurante da conferência
+equipo audiovisual	equipamento audiovisual
+formulario de información sobre el autor	informações sobre a forma de autor
+transparencia	transparência
+libro de las actas	no processo
+autobús de ida y vuelta	ônibus de ida e volta
+investigación	Pesquisa
+dinero	dinheiro
+excursionista de la conferencia	Caminhante da conferência
+tasas de autor, asistente y cd	autor, as taxas de assistente e cd
+estado	Estado
+actividad después de la conferencia	atividade após a conferência
+breve introducción al presidente de la sesión	breve introdução ao Presidente da sessão
+incluye las el libro de las actas para autores	inclui o livro de registros para autores
+ciudad del presentador	a cidade-sede
+presentación power point	apresentação em power point
+miembro de iasted	Membro da duraram
+zona horaria	fuso horário
+orador en tutorial	alto-falante tutorial
+vehículo de transporte	veículo de transporte
+delegado	delegado
+fecha límite de envío de propuestas	prazo para apresentação de propostas
+oyente	ouvinte
+coche	carro
+salida	saída
+fecha límite de la notificación de aceptación	prazo para notificação de aceitação
+proyector	projetor
+record de asistencia	recorde de público
+moneda	moeda
+propina	Dica
+saludo de bienvenida	saudação de boas-vinda
+manuscrito inicial	manuscrito inicial
+simulando	simulando
+formulario de registro al hotel	Formulário de registo de Hotel
+recibiendo el manuscrito	receber o manuscrito
+días de duración de la conferencia	dias da conferência
+conferenciante estudiante	Alto-falante estudante
+aceptando el manuscrito	aceitando o manuscrito
+estado del patrocinador	Estado do patrocinador
+presentador del hotel	apresentador do hotel
+universidad del moderador	Universidade do moderador
+conferenciante trabajador	conferencista do trabalhador
+furgoneta	Van
+orador	alto-falante
+coctail de bienvenida	Coquetel de boas vindas
+registro	registo
+ciudad del patrocinador	Cidade de patrocinador
+estado en que tiene lugar la conferencia	Afirmar que a conferência se realiza
+publicación	publicação
+tasas del hotel	tarifas do hotel
+no miembro de iasted	Não é membro de duraram
+formulario de registro	formulário de inscrição
+presentación por vídeo	vídeo de apresentação
+empresa del moderador	companhia do moderador
+carta de invitación	Carta-convite
+fecha límite de reserva en el hotel	prazo para reserva de hotel
+lista de correos	lista de discussão
+excursión de todo el día	excursão de dia todo
+patrocinador	patrocinador
+modelando	modelagem
+fechado en	datada em
+está presente	está presente
+utilizado para	usado para
+hecho de	feito de
+enviar	Enviar
+preparar	Prepare-se
+firmado por	assinado por
+ocupado por	ocupada por
+pasar por	passar
+estar equipado por	estar equipados para
+utilizado por	usado por
+preparado por	preparado por
+tiene lugar después de	ocorre após a
+pagado en	pago em
+estar conectado con	ser conectado com
+firmar	sinal
+pagado con	pago com
+estar designado por	ser designado pelo
+se necesita para	é necessário para
+enviado después de	enviado após
+tiene lugar antes de	ocorre antes de
+pagar	pagar
+ocupar	lidar com
+está presente en	está presente em
+dado a	dada a
+enviado por	enviado por
+necesitar	necessidade
+tiene cantida de	tem a quantidade de
+hacer hasta	fazer até ao
+enviado antes de	enviou antes
+pagado por	pago pelo
+tiene lugar en	tem lugar em
+visitado por	visitado por
+hablar en	falar em
+dar	Dar
+escribir	Escrever
+obtener	Obter
+pagado para	pago
+situado en	localizado em
+fecha límite de envío de resúmenes	prazo para submissão de resumo
+patrocinador de platino	Patrocinador Platinum
+exhibidor	Expositor
+presidente del programa	cadeira do programa
+patrocinador de plata	Patrocinador prata
+tasas de registro	taxas de inscrição
+autor del artículo	autor do artigo
+tasas del patrocinador	taxas de patrocinador
+registro para estudiantes	inscrições para estudantes
+premio al mejor artículo de investigación	o prêmio de melhor artigo pesquisa
+comité de concesión del premio al mejor artículo	Comité para o prêmio de melhor artigo
+premio al mejor artículo de aplicaciones	Prémio para o melhor livro sobre aplicações
+estudiante autor del artículo	Autor de estudante
+patrocinador de oro	Patrocinador ouro
+premio	Prêmio
+fecha límite de envío de artículos	prazo para submissão de artigos
+premio al mejor estudiante	Prêmio para o melhor aluno
+fecha límite de notificación al autor	Data de notificação para o autor
+patrocinador de bronce	Patrocinador bronze
+patrocinador del premio al mejor artículo de un estudiante	patrocinador do prémio para o melhor livro sobre um estudante
+acm sigkdd	ACM sigkdd
+tasas para miembros de sigkdd	preços para sigkdd Membros
+tasas para no miembros	taxas para não-membros
+hotel	Hotel
+recibido por	recebido por
+buscar	Achar
+enviar hasta	Enviar até
+puede quedarse en	Você pode ficar em
+presentado por	apresentado por
+nombre del patrocinador	nome do patrocinador
+principio de la conferencia	início da conferência
+recibir	receber
+premiado por	concedido pela
+precio	preço
+nombre de la conferencia	nome da conferência
+nación	nação
+final de la conferencia	final da conferência
+buscado por	procurado por
+notificación hasta el	notificação para o
+diseñado por	desenhado por
+diseñar	Design

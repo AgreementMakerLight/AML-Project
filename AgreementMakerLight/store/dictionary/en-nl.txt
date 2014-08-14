@@ -1,0 +1,703 @@
+person	persoon
+meta review	Meta-overzicht
+full version of paper	volledige versie van papier
+abstract of paper	samenvatting van papier
+adminstrator	adminstrator
+subject area	Onderwerpsgebied
+external reviewer	externe revisor
+review	beoordeling
+rejection	afwijzing
+meta reviewer	Meta revisor
+decision	besluit
+document	document
+conference chair	conferentiestoel
+co author	co auteur
+preference	voorkeur
+associated chair	bijbehorende stoel
+member of program committee	lid van het programma Comité
+reviewer	revisor
+conference	Conferentie
+chairman	Voorzitter
+paper	papier
+author who is not a reviewer	Auteur die niet een revisor is
+author	Auteur
+program committee	programma Comité
+chair of program committee	stoel van programma Comité
+acceptance	aanvaarding
+bid	bod
+member of conference	lid van de conferentie
+user	gebruiker
+has title	titel heeft
+reviews per paper	Beoordelingen per papier
+details entered by	ingebracht door Details
+hardcopy of mailing manifests printed by	hardcopy van mailing manifesten gedrukt door
+read paper	lezen van papier
+written by	geschreven door
+set maximal number of assigned paper	maximale aantal toegewezen papier instellen
+submit paper	document voorleggen
+read by meta reviewer	gelezen door meta revisor
+has member	lid heeft
+has name	naam
+has website at url	heeft website op url
+has date	datum
+maximal number of assigned papers	maximale aantal toegewezen papers
+accepts hardcopy submissions	accepteert hardcopy inzendingen
+has id	id heeft
+has logo at url	heeft logo op url
+has email	heeft e-mail
+review criteria entered by	ingebracht door criteria herzien
+mark conflict of interest	Mark belangenconflict
+accepts	accepteert
+assigned by reviewer	toegewezen door de revisor
+start reviewer bidding	Start revisor bieden
+add	toevoegen
+has bid	heeft geboden
+assign	toewijzen
+rejected by	verworpen door
+co written by	geschreven door co
+virtual meeting enabled by	virtuele vergadering ingeschakeld door
+co write	Co schrijven
+added by	toegevoegd door
+has subject area	heeft onderwerpsgebied
+paper assignment finalized by	papier toewijzing door gebeëindigd
+adjust	aanpassen
+assigned by admin	toegewezen door admin
+end reviewing time	Redigeren eindtijd
+enter review criteria	beoordeling criteria invoeren
+reject paper	verwerpen papier
+read by reviewer	gelezen door de revisor
+has been assigned	is toegekend
+write paper	papier schrijven
+reviewer bidding started by	revisor bieden gestart door
+run paper asignmedt tools	papier asignmedt hulpprogramma's uitvoeren
+accepted by	aanvaard door
+has conflict of interest with respect to	belangenconflict met betrekking tot heeft
+assigned to	toegewezen aan
+enable virtual meeting	virtuele vergadering inschakelen
+enter details on	Geef details op
+has been decided (to be accepted rejected )	is vastgesteld (om te worden goedgekeurd afgewezen)
+print hardcopy mailing manifests	hardcopy mailing manifesten afdrukken
+write review	Schrijf review
+paper assignment tools run by	papier toewijzing's uitgevoerd door
+finalize paper assignment	finaliseren papier toewijzing
+adjusted by	aangepast door
+co chair	co-voorzitter
+conference announcement	Conferentie aankondiging
+applicant for conference	aanvrager voor conferentie
+submitted contribution	ingezonden bijdrage
+conference contribution	Conferentie-bijdrage
+organizer	organisator
+proceedings of conference	werkzaamheden van de conferentie
+track of conference	spoor van conferentie
+rejected contribution	geweigerde bijdrage
+invited talk	uitgenodigde talk
+first author of contribution	eerste auteur van bijdrage
+important date	belangrijke datum
+preference of reviewer	voorkeur van revisor
+organizing committee	organisatiecomité
+call for paper	oproep voor papier
+web of conference	Web van conferentie
+organization	organisatie
+written contribution	schriftelijke bijdrage
+reviewed contribution	herziene bijdrage
+applicant for conference who lately paid conference fee	kandidaat voor de conferentie die de laatste tijd betaald conferentie
+part of conference	deel van de conferentie
+passive participant of conference	passieve deelnemer van conferentie
+accepted contribution	aanvaarde bijdrage
+contributor for conference	Inzender voor conferentie
+steering committee	stuurgroep
+topic	onderwerp
+chair of workshop track	stoel van workshop track
+active participant of conference	actieve deelnemer van de conferentie
+committee	Comité
+poster	poster
+expertise of reviewer	expertise van de revisor
+conference serie	Conferentie serie
+conference document	Conferentie document
+publisher	Uitgever
+applicant for conference who paid conference fee	kandidaat voor de conferentie die conferentie vergoeding betaald
+member of committee	lid van de Commissie
+chair	stoel
+co author of contribution	co auteur van bijdrage
+participant of conference	deelnemer aan de conferentie
+workshop	Workshop
+tutorial	zelfstudie
+regular contribution	regelmatige bijdrage
+camera ready version of contribution	camera klaar versie van bijdrage
+presentation	presentatie
+applicant for conference who early paid conference fee	kandidaat voor de conferentie die vroeg conferentie betaald
+extended abstract	uitgebreide abstract
+call for participation	oproep tot deelname
+information for participants	informatie voor deelnemers
+registered applicant	geregistreerde aanvrager
+abstract	abstract
+invited speaker	uitgenodigd spreker
+fee for conference	vergoeding voor conferentie
+author of contribution	Auteur van de bijdrage van
+is program committee of conference	programma Comité van conferentie is
+submitted to	voorgelegd aan
+has been assigned review preference	beoordeling voorkeur is toegewezen
+has committee chair	heeft de Voorzitter van Commissie
+is part of conference	maakt deel uit van de conferentie
+invites co reviewer	nodigt co revisor
+program committee of conference is	programma Comite van conferentie is
+is the first part of	is het eerste deel van
+is co chair of committee	is co-voorzitter van de Commissie
+topic related to review preference	onderwerp met betrekking tot het bekijken van voorkeur
+preference or expertise of review is	voorkeur of expertise van herziening is
+invited by reviewer	uitgenodigd door de revisor
+is workshop chair of	workshop voorzitter van
+has tutorial	heeft tutorial
+has submitted contribution	bijdrage heeft verzonden
+isbn of proceedings	ISBN van procedures
+has surname	achternaam heeft
+published on date	gepubliceerd op datum
+has first name	eerste naam heeft
+date of full paper submission	datum van indiening van de volledige papier
+url of conference web is	URL van de web conferentie is
+date of camera ready submission	datum van camera klaar indiening
+terminal day	Terminal dag
+contributes to conference	draagt bij tot de conferentie
+committee of conference is	Comité van conferentie is
+important date of conference serie	belangrijke datum van conferentie serie
+publishes	publiceert
+makes presentation	presentatie maakt
+has review	heeft review
+is organizing committee of conference	Comité van conferentie organiseert
+has topic or submission contribution	onderwerp of indiening bijdrage heeft
+expertise degree of reviewer	mate van deskundigheid van revisor
+degree of review preference	mate van beoordeling voorkeur
+has e mail	heeft e mail
+has gender	heeft het geslacht
+date of acceptance notification	datum van kennisgeving van de aanvaarding
+starting date	begindatum
+location of conference	locatie van de conferentie
+date of abstract submission	datum van indiening van de abstracte
+volume number of proceedings	volumenummer van de procedure
+organizing committee of conference is	Organiserend Comité van conferentie is
+is member of	is lid van
+is committee of conference	Comité van conferentie is
+has part	deel heeft
+publisher of proceedings is	Uitgever van procedure is
+has abstract	heeft abstract
+is chair of committee	Voorzitter van de Commissie
+has track	tracks
+has workshop chair	workshop stoel heeft
+is steering committee of conference	Stuurcomité van conferentie is
+has committee co chair	heeft Commissievoorzitter co
+has contribution	bijdrage heeft
+presented by	gepresenteerd door
+has review expertise	heeft beoordeling expertise
+steering committee of conference is	Stuurcomité van conferentie is
+has important date	heeft belangrijke datum
+has workshop topic	workshop onderwerp heeft
+has workshop	heeft workshop
+is topic of conference part	is onderwerp van conferentie deel
+preference or expertise of reviewer	voorkeur of expertise van revisor
+has author	heeft auteur
+reviews contribution	Beoordelingen bijdrage
+event of sending camera ready version	gebeurtenis voor het verzenden van camera klaar versie
+city	stad
+event	gebeurtenis
+contribution	bijdrage
+banquet	feestzaal
+event of registration of participants event	in geval van registratie van deelnemers evenement
+administrative event	administratieve gebeurtenis
+event of reviewing results	gebeurtenis van de herziening van de resultaten
+short paper	korte paper
+working event	werken-gebeurtenis
+participant	deelnemer
+science worker	wetenschap werknemer
+social event	sociaal evenement
+event of reviewing	gebeurtenis van de herziening van
+student	student
+event of submission	gebeurtenis na indiening
+volunteer of conference	Vrijwilliger van conferentie
+regular participant of conference	regelmatige deelnemer van conferentie
+student participant of conference	student deelnemer van conferentie
+country	land
+company	bedrijf
+person involved with conference	betrokkene met conferentie
+trip	reis
+university	Universiteit
+reception	Receptie
+assistent	assistent
+administrator	beheerder
+participant of conference has early registration	deelnemer aan de conferentie heeft vroege registratie
+has postal code	heeft postcode
+has remark	Opmerking heeft
+follows	volgt
+study at university	studeren aan de Universiteit van
+has relevant administrative event	relevante administratieve gebeurtenis heeft
+writes contribution	bijdrage schrijft
+reviewes	reviewes
+written by author	geschreven door auteur
+stay in country	verblijf in land
+deals with topic	zich bezighoudt met onderwerp
+expert on topic	expert op het onderwerp
+is parallel with	evenwijdig is aan
+stay in city	verblijf in de stad
+employed by	in dienst van
+has topic	onderwerp
+stay in street	verblijf in straat
+end day of event	einde dag van evenement
+has short title	korte titel heeft
+setting of maximal number of event	de vaststelling van maximale aantal gebeurtenis
+has fax	faxnummer
+event is being held at	evenement wordt gehouden in
+has keywords	zoekwoorden heeft
+has valued added tax	heeft belasting over de toegevoegde waarde
+has phone	telefoon
+has contact email	heeft contact e-mail
+setting of default choice of number of event	instelling van standaardkeuze van aantal gebeurtenis
+has home page	introductiepagina
+starting day of event	begindag van evenement
+setting of minimal number of event	instelling van minimale aantal gebeurtenis
+ngo	NGO
+attendee	genodigde
+microelectronics topic	onderwerp van de micro-elektronica
+presentation of a paper	presentatie van een paper
+computer architecture topic	computer het platform onderwerp
+personal publication history	persoonlijke Publicatiegeschiedenis
+coffee break	koffiepauze
+communication theory topic	communicatie theorie onderwerp
+computer networks optical topic	computer netwerken optische onderwerp
+academic event	academische gebeurtenis
+communications topic	communicatie onderwerp
+talk	praten
+call for papers	oproep voor papers
+mobile computing topic	mobiele computing onderwerp
+operating systems topic	besturingssystemen onderwerp
+call for reviews	oproep voor beoordelingen
+break	pauze
+conference dinner	Conferentie diner
+mealtime	maaltijd
+menu	menu
+personal history	persoonlijke geschiedenis
+computer networks measurements topic	computer netwerken metingen onderwerp
+radio communications topic	radio communicatie onderwerp
+review form	formulier voor evaluatie van
+personal reviewing history	persoonlijke herziening geschiedenis
+numerical review question	numerieke evaluatie vraag
+satellite and space communications topic	satelliet en ruimte communicatie onderwerp
+menu (meal)	menu (maaltijd)
+withdrawn paper	ingetrokken papier
+accommodation	accommodatie
+pending paper	in behandeling papier
+contact information	contact informatie
+test only topic	testen alleen onderwerp
+antennas topic	antennes onderwerp
+cad topic	CAD-onderwerp
+parallel and distributed computing topic	parallelle en gedistribueerde gegevensverwerking onderwerp
+computer networks switching topic	computer netwerken switch onderwerp
+welcome talk	Welkom talk
+meeting room	vergaderzaal
+conference session	Conferentie sessie
+active paper	actieve papier
+reject rating	verwerpen rating
+review rating	Review beoordeling
+place	plaats
+single level conference	één niveau conferentie
+computer networks management topic	computer netwerken beheer onderwerp
+computer networks security topic	computer netwerken veiligheid onderwerp
+signal processing topic	signaal processing onderwerp
+government organization	overheidsorganisatie
+multimedia topic	Multimedia onderwerp
+powerline transmission topic	Powerline transmissie onderwerp
+non academic event	niet-academische gebeurtenis
+computer networks applications topic	computer netwerken toepassingen onderwerp
+wireless communications topic	draadloze communicatie onderwerp
+closing talk	sluiten talk
+session chair	sessie stoel
+event related to a conference	gebeurtenis aan een conferentie gerelateerde
+travel grant	reisbeurs
+computer networks topic	computer netwerken onderwerp
+rated paper	nominale papier
+excursion	excursie
+presenter	presentator
+industrial organization	industriële organisatie
+free time	Vrije tijd
+accept if room rating	accepteren als kamer rating
+weak reject rating	zwakke verwerpen rating
+performance topic	prestaties onderwerp
+textual review question	tekstuele beoordeling vraag
+slide set	diareeks
+dining place	dineren plaats
+academic organization	academische organisatie
+accepted paper	aanvaarde papier
+computer networks sensor topic	computer netwerken sensor onderwerp
+call for manuscripts	oproep voor handschriften
+computer networks enterprise topic	computer netwerken onderneming onderwerp
+cryptography topic	Cryptografie onderwerp
+published paper	gepubliceerde papier
+medicine topic	geneeskunde onderwerp
+rejected paper	geweigerde papier
+member of tpc	lid van tpc
+sponsorship	sponsoring
+two level conference	twee niveau conferentie
+accept rating	accepteren rating
+programme	programma
+conference venue	Conferentie zaal
+call	oproep
+organizational meeting	organisatie-vergadering
+meal	maaltijd
+security topic	veiligheid onderwerp
+review question	Review vraag
+is reviewed by	wordt gecontroleerd door
+is about paper	is over papier
+is review history of	is beoordeling geschiedenis van
+has program	programma heeft
+has attendee	deelnemer heeft
+is topic of	is onderwerp van
+is initiated by	wordt geïnitieerd door
+has related document	document heeft gerelateerde
+has call	heeft call
+has rating	classificatie
+is written by	is geschreven door
+is reviewing	is de herziening van
+is location of	Locatie gemeente is
+has location	locatie heeft
+has review history	heeft herziening geschiedenis
+is provided by	wordt geleverd door
+is provider of	is leverancier van
+is menu of	menu van
+has country	land heeft
+initiates	ingewijden
+attendee at	deelnemer aan
+belongs to event	behoort tot de gebeurtenis
+relates to	betrekking heeft op
+is presented in	wordt gepresenteerd in
+conference manuscript date and time deadline	Conferentie manuscript datum en tijd termijn
+conference start date and time	Conferentie startdatum en tijd
+has biography	heeft biografie
+has amount of cost	bedrag van de kosten heeft
+conference registration date and time deadline	Conferentie registratietermijn datum en tijd
+has submission deadline	heeft indiening deadline
+has street	heeft street
+has end date and time	heeft einddatum en tijd
+has name (full name of conference)	naam (volledige naam van conferentie)
+has currency of cost	is valuta van kosten
+has start date and time	heeft begindatum en tijd
+conference end date and time	Conferentie einddatum en tijd
+has menu	menu heeft
+writes	schrijft
+for event	voor gebeurtenis
+conference paper date and time deadline	Conferentie papier datum en tijd termijn
+has last name	achternaam bevat
+has submission instructions	heeft indiening instructies
+has city	heeft stad
+tutorial chair	tutorial stoel
+submitted paper	ingediende papieren
+programme brochure	programmabrochure
+flyer	Flyer
+assigned paper	toegewezen papier
+oc chair	OC stoel
+workshop paper	Workshop papier
+neutral review	neutrale beoordeling
+negative review	negatieve recensie
+tutorial abstract	tutorial abstract
+conference participant	Conferentie deelnemer
+poster paper	posterpapier
+sc member	SC lid
+conference paper	Conferentie papier
+industrial session	industriële sessie
+conference banquet	Conferentie feestzaal
+research topic	onderzoeksonderwerp
+workshop chair	Workshop stoel
+agency staff member	Agentschap personeelslid
+invited talk abstract	uitgenodigde praten abstract
+pc chair	PC stoel
+multi author volume	multi auteur volume
+track	bijhouden
+proceedings publisher	procedure Uitgever
+industrial paper	industriële papier
+possible reviewer	mogelijk revisor
+positive review	positieve recensie
+oc member	OC lid
+research institute	onderzoeksinstituut
+scientific event	wetenschappelijke manifestatie
+session	sessie
+early registered participant	vroege geregistreerde deelnemer
+demo paper	Demo papier
+late registered participant	laat geregistreerde deelnemer
+organisation	organisatie
+academic institution	academische instelling
+poster session	postersessie
+evaluated paper	beoordeeld op papier
+location	locatie
+conference trip	Conferentie reis
+demo chair	Demo stoel
+paper author	papier Auteur
+camera ready paper	camera klaar papier
+proceedings	procedure
+contributed talk	bijgedragen talk
+regular paper	normaal papier
+pc member	PC lid
+demo session	Demosessie
+organising agency	organiseren bureau
+regular session	gewone zitting
+individual presentation	individuele presentatie
+web site	Web site
+conference proceedings	congresverslagen
+workshop session	Workshop sessie
+updated version of	bijgewerkte versie van
+presentation of paper	presentatie van paper
+referenced in	waarnaar wordt verwezen in
+location of	locatie van
+inverse of partof 7	de inverse van een deel van 7
+hasevent	hasevent
+covers topic	dekt deze thema 's
+review of paper	overzicht van papier
+scientifically organises	wetenschappelijk organiseert
+topic covered by	onderwerp vallende
+reviewer of paper	revisor van papier
+references	verwijzingen
+organised by	georganiseerd door
+has reviewer	revisor heeft
+review written by	beoordeling geschreven door
+technically organises	technisch organiseert
+has updated version	heeft bijgewerkte versie
+part of	onderdeel van
+event on list	gebeurtenis op lijst
+held in	gehouden in
+volume contains paper	volume bevat papier
+paper in volume	papier in volume
+author of	Auteur van
+part of event	onderdeel van evenement
+publisher of	Uitgever van
+organises	organiseert
+scientifically organised by	wetenschappelijk georganiseerd door
+lists event	lijsten gebeurtenis
+paper presented as	Paper gepresenteerd als
+technically organised by	technisch georganiseerd door
+social activity	sociale activiteit
+time	tijd
+activity of modelling	activiteit van de modellering
+fee	vergoeding
+hotel presenter	Hotel presentator
+activity of simulating	activiteit simuleren
+cheque	cheque
+introduction	Inleiding
+computer	computer
+hotel fee	Hotel vergoeding
+currency	valuta
+registration fee	inschrijvingsgeld
+city which is the location for a trip	stad die de locatie voor een reis is
+fee for extra trip	vergoeding voor extra reis
+deadline for submiting	termijn voor submiting
+lecture	Hoorcollege
+conference days	Conferentie dagen
+state of the sponsor	staat van de sponsor
+research activity	onderzoeksactiviteit
+single hotel room	één hotelkamer
+conference airport	Conferentie luchthaven
+student lecturer	Student-docent
+conference registration form	Conferentie registratieformulier
+payment document	betaling document
+van	van
+shuttle bus	pendelbus
+item (in general)	item (in het algemeen)
+technical activity	technische activiteit
+student who is not a speaker	student die niet een spreker is
+hotel room	hotelkamer
+activity of renting a car	activiteit van het huren van een auto
+activity	activiteit
+departure	vertrek
+sponsor	sponsor
+worker who is not a speaker	werknemer die niet een spreker is
+city where a sponzor comes	stad waar een sponzor komt
+initial manuscipt	aanvankelijke manuscipt
+lecturer	docent
+registration fee paid by an attending author for receiving proceedings as book	registratie fee betaald door een auteur aanwezig voor het ontvangen van procedures als boek
+conference restaurant	Conferentie restaurant
+deadline for the hotel reservation	uiterste datum voor de hotelreservering
+full day tour	volle dagtocht
+city where the conference takes place	stad waar de conferentie plaatsvindt
+activity of accepting a manuscript	activiteit van het accepteren van een manuscript
+author who will receive proceedings as cd	Auteur die procedure als cd ontvangt
+presenter who presents only on one day	presentator die slechts op één dag presenteert
+not member of iasted	geen lid van iasted
+value added tax	toegevoegde waarde belasting
+conference hall	conferentiezaal
+departure tax	Vertrekbelasting
+item	item
+one conference day	één conferentiedag
+dinner banquet	diner feestzaal
+delegate (person registering and visiting the conference)	gemachtigde (persoon registreren en het bezoeken van de conferentie)
+plenary lecture	plenaire vergadering Hoorcollege
+registration fee paid by an attending author for receiving proceedings as cd	registratie fee betaald door een auteur aanwezig voor het ontvangen van procedures als cd
+house of a presenter	Huis van een presentator
+listener	luisteraar
+house of a company being a sponsor	Huis van een bedrijf dat een sponsor
+building	gebouw
+transport vehicle	vervoermiddel
+registration	registratie
+deadline for registration	deadline voor inschrijven
+city where a presenter comes	stad waar een presentator komt
+worker lecturer	werknemer docent
+welcome speech	Welkomstspeech
+coctail reception	coctail Receptie
+main office	hoofdkantoor
+credit card	creditcard
+deadline	termijn
+conference building	Conferentie gebouw
+conference hotel	conferentiehotel
+taxi	taxi
+invitation letter	uitnodigingsbrief
+final manuscript	laatste manuscript
+video cassette player	video cassette speler
+activity taking place after conference	activiteit die plaatsvindt na de conferentie
+audiovisual equipment	audiovisuele apparatuur
+member of iasted	lid van iasted
+book proceeding	boek procedure
+lcd projector	LCD-projector
+activity taking place during conference	activiteit die plaatsvindt tijdens de conferentie
+conference hiker	Conferentie wandelaar
+activity of refusing a manuscript	activiteit van weigering van een manuscript
+mailing list	mailing lijst
+video presentation	video presentatie
+card	kaart
+activity of receiving a manuscript	activiteit na ontvangst van een manuscript
+car	auto
+city where a sponzor comes from	stad waar een sponzor komt uit
+brief introduction for session chair	korte inleiding voor sessie stoel
+hotel registration form	Hotel registratieformulier
+registration fee for a non member	inschrijvingsgeld voor een derde
+non speaker	niet spreker
+introduction of speaker	invoering van de spreker
+amount of money	hoeveelheid geld
+cd proceeding	CD procedure
+state of the presenter	staat van de presentator
+bank transfer	bankoverschrijving
+speaker giving a lecture in front of the plenum	spreker geeft een lezing voor de plenaire vergadering
+activity taking place before conference	activiteit die plaatsvindt voordat de conferentie
+speaker who presents a tutorial	spreker die een tutorial presenteert
+tip	Tip
+powerpoint presentation	PowerPoint-presentatie
+registration fee for a student	inschrijvingsgeld voor een student
+form	formulier
+author who will receive proceedings as book	Auteur die procedure als boek ontvangt
+tax	belasting
+registration fee a non author	registratie fee een niet Auteur
+double hotel room	dubbele hotelkamer
+delegate	gemachtigde
+overhead projector	overheadprojector
+speaker	spreker
+university of a presenter	Universiteit van een presentator
+registration fee for a member	inschrijvingsgeld voor een lid
+submission	indiening
+city where a presenter comes from	stad waar een presentator vandaan komt
+time zone	tijdzone
+state where the conference takes place	staat waar de conferentie plaatsvindt
+state	staat
+technical committee	Technisch Comité
+day assigned for a trip	dag toegewezen voor een reis
+deadline for notification of acceptance	termijn voor de kennisgeving van aanvaarding
+record of attendance	presentielijst
+any kind of document	elke vorm van document
+author information form	Auteur informatieformulier
+deadline for submitting the camera ready script	termijn voor de indiening van de camera klaar script
+publication	publicatie
+sponzorship	sponzorship
+viza	viza
+lecture given by a speaker	lezing gegeven door een spreker
+overhead transparency	overheadtransparanten
+session room	sessie kamer
+is needed for	nodig is voor
+goes through	gaat door
+is present in time	is aanwezig in de tijd
+is sent by	wordt verzonden door
+is connected with	is verbonden met
+is occupied by	is bezet door
+obtains	verkrijgt
+is locally situated in	lokaal is gelegen in
+pays	betaalt
+signs	tekenen
+is present in time or space	in tijd of ruimte aanwezig is
+is paid with	wordt betaald met
+speaks at time or in place	spreekt op tijd of op plaats
+is given by	wordt gegeven door
+is paid in	wordt betaald
+is designed for	is ontworpen voor
+sends	stuurt
+is made from	is gemaakt van
+is prepared by	wordt bereid door
+is equipped for	is uitgerust voor
+gives	geeft
+is held before	wordt gehouden alvorens
+is signed by	is ondertekend door
+is used for	wordt gebruikt voor
+is held after	na wordt gehouden
+needs	behoeften
+is paid by	wordt betaald door
+is visited by	wordt bezocht door
+occupies (lives resides)	bezet (leven woont)
+is sent before	wordt verzonden voordat
+is sent after	wordt verzonden na
+is held in	wordt gehouden in
+is paid for	wordt betaald voor
+is used by	wordt gebruikt door
+is dated on	is gedateerd op
+prepares	bereidt
+is given to	wordt gegeven aan
+has amount of	hoeveelheid
+to be done till	om te worden tot
+sponzor for best student paper	sponzor voor de beste student paper
+author of student paper	Auteur van student papier
+award for conference paper	Award voor conferentie papier
+chair of conference	Voorzitter van de conferentie
+listener of conference	luisteraar van conferentie
+committee for best paper awards	Comité voor beste papier awards
+program chair	programma stoel
+platinum sponzor of conference	platina sponzor van conferentie
+organizator of conference	organizator van conferentie
+silver sponzor of conference	Zilveren sponzor van conferentie
+registration fee for person not being member of sig	inschrijvingsgeld voor persoon niet wordt lid van sig
+registration fee for student	inschrijvingsgeld voor student
+conference acm sigkdd	Conferentie acm sigkdd
+deadline of paper submission	termijn voor indiening van papier
+member of organizing committee	lid van het organisatiecomité
+sponzor fee	sponzor vergoeding
+main office of conference	hoofdkantoor van conferentie
+conference fee	Conferentie vergoeding
+registration fee for member of sigmod	inschrijvingsgeld voor lid van sigmod
+deadline of author notification	termijn van kennisgeving van de auteur
+webmaster	Webmaster
+abstrakt	abstrakt
+author of paper	Auteur van document
+sponzor	sponzor
+registration fee for member of sigkdd	inschrijvingsgeld voor lid van sigkdd
+award for best student paper	Award voor beste student paper
+sponzor as exhibitor	sponzor als exposant
+deadline of abstract submission	termijn van abstracte indiening
+bronze sponzor of conference	bronzen sponzor van conferentie
+gold sponzor of conference	Gouden sponzor van conferentie
+award for best research paper	Award voor beste onderzoek papier
+award for best application paper	Award voor beste toepassing papier
+hall of conference	zaal van de conferentie
+person active at conference	persoon die op de Conferentie actief
+hotel	Hotel
+has price	heeft prijs
+has sponzor name	sponzor naam heeft
+date of final day of conference	datum van de laatste dag van de conferentie
+conference takes place in city	conferentie vindt plaats in stad
+has name of conference	naam van conferentie heeft
+has nationality	nationaliteit heeft
+registration fee is in currency	registratie fee is gesteld in valuta
+has award	heeft award
+registration fee paid by	registratie fee betaald door
+set up deadline	uiterste datum instellen
+has deadline for submission	uiterste datum voor indiening is
+awarded by	toegekend door
+sponzor are called by	sponzor worden genoemd door
+paid registration fee	betaalde inschrijvingsgeld
+call for sponzor	oproep voor sponzor
+was presented by	werd gepresenteerd door
+presents document	Hiermee geeft u document
+stay in	verblijf in
+organize conference	conferentie organiseren
+submit of paper	indienen van papier
+obtained award	behaalde award
+set up deadline for	termijn voor het instellen
+conference organized by	conferentie georganiseerd door
+date of starting day of conference	datum van het starten van de dag van de conferentie

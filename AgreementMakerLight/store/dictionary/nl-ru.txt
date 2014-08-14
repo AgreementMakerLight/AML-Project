@@ -1,0 +1,683 @@
+onderwerp	Тема
+coauteur	соавтор
+programmacommissie	Программный комитет
+conferentielid	conferentielid
+document	документ
+metarecensent	критик мета
+bod	ставка
+medevoorzitter	Сопредседатель
+persoon	человек
+recentie	Обзор
+beheerder	Администратор
+externe recencent	внешний рецензент Амазонки
+synopsis	Краткий обзор
+conferentievoorzitter	Председатель Конференции
+beslissing	решение
+voorzitter programmacommissie	Председатель Комитета по программе
+gebruiker	пользователь
+acceptatie	признание
+recensent	Рецензент
+auteur	Автор
+voorzitter	Президент
+auteur niet-recensent	Автор не рецензент
+artikel	Статьи
+volledig artikel	полный текст статьи
+conferentie	Конференция
+afwijzing	отказ
+programmacommissie lid	Член Комитета программы
+voorkeur	предпочтения
+metarecentie	metarecentie
+paper id	id бумаги
+datum	Дата
+gebruik artikel toewijzings tool	Используйте инструмент Выделение элемента
+heeft coauteur	является соавтором
+heeft auteur	имеет автора
+hardcopy verstuurbewijs afgedrukt door	печатный отправить свидетельства напечатаны
+maak toewijzing artikel af	Создайте элемент распределения
+toegewezen door recencent	присвоенный Амазонки рецензента
+recentie bieden begonnen door	Обзор предложение, заполняя
+heeft belangenverstrengeling	есть конфликты интересов
+website url	URL-адрес веб-сайта
+accepteerd hardcopy submissies	принимает печатных материалов
+email	Отправить по электронной почте
+titel	Название
+logo url	логотип URL-адрес
+naam	имя
+maximum aantal artikelen	Максимальное количество статей
+recenties per artikel	Отзывы за единицу
+aangepast door	изменена
+is toegekend	награжден
+lid van conferentie	Член Конференции
+schrijf recentie	написать обзор
+details ingevuld door	детали дополнена
+toekenning artikel tool gebruikt door	Премия статья инструмент используется
+eindrecentie	eindrecentie
+wijs artikel af	пункт статьи
+markeer belangenverstrengeling	выделить конфликты интересов
+voeg programmacommissie lid toe	Добавление члена Комитета программы
+heeft conferentielid	имеет conferentielid
+gelezen door reviewer	читать рецензента
+wijs externe recencent toe	Амазонки рецензента, чтобы указать внешний
+lid van programmacommissie	Член Комитета по программе
+laat virtuele vergadering toe	Пусть виртуальные совещания
+stel maximaal aantal artikelen in	задать максимальное число элементов в
+artikel gelezen	читать статью
+toegewezen aan	назначен
+geschreven door	Автор
+schrijf artikel	написать статью
+toegevoegd door	Добавил(а)
+wijs recencent toe	Добавить точку Амазонки рецензента
+accepteer artikel	принять статью
+geaccepteerd door	принято
+dien artikel in	Эта статья в
+heeft beslissing	решение имеет
+heeft onderwerp	есть тема
+begin recentie bieden	Начало обзора предложение
+vul recentie criteria in	Заполните критерии обзора
+toekenning artikel afgemaakt door	Статья закончилась премии
+recentie criteria ingevuld door	критерии обзора заполняется
+heeft programmacommisie lid	Член Комитета программа имеет
+heeft bod	ставка
+virtuele vergadering toegelaten door	виртуальные совещания, допускаемых
+toegewezen door beheerder	назначенные администратором
+afgewezen door	отклонено
+co-schrijf artikel	Сопредседатель записи статьи
+pas bod aan	только ставка на
+hardcopy verstuurbewijs	печатный отправить доказательство
+gelezen door metarecencent	читать metarecencent
+vul conferentie details in	Полная подробная информация о конференции в
+commissie	Комиссия
+passieve conferentie deelnemer	участник конференции пассивные
+geregistreerde aanvrager	зарегистрированные заявителя
+uitgever	Издатель
+laat betaalde aanvrager	конце заявитель заплатил
+gewone contributie	регулярный членский взнос
+afgewezen contributie	Отклоненные членский взнос
+track-workshop voorzitter	трек-мастер-класс президента
+coauteur bijdrage	соавтор вклад
+lange synopsis	длинные Синопсис
+informatie voor deelnemers	Информация для участников
+conferentie aankondiging	Анонс конференции
+poster	Плакат
+drukklare contributie	печатные платы
+commissielid	Член Комитета
+conferentie aanvrager	заявитель конференции
+ingediende contributie	представленные на сайте
+gerecenseerde contributie	Обзор вклада
+workshop	мастерская
+oproep inzenzingen	Звоните inzenzingen
+conferentie document	Документ Конференции
+vroeg betaalde aanvrager	ранние заявитель заплатил
+recentie voorkeur	Обзор предпочтения
+conferentie deelnemer	участник конференции
+organisatiecommissie	Организационный Комитет
+conferentie kosten	Расходы на конференционное обслуживание
+betaalde aanvrager	заявитель заплатил
+actieve conferentie deelnemer	участник активной конференции
+organisatie	Организации
+conferentie bijdrager	Участник конференции
+eerste auteur	Первый автор
+lezing op uitnodiging	Лекция по приглашению
+snelcursus	Интенсивный курс
+geaccepteerde contributie	принятые плата
+belangrijke data	важные даты
+organisator	Организатор
+oproep tot deelname	призыв к участию
+track	трек
+presentatie	Презентация
+co-voorzitter	Сопредседатель
+stuurgroep	Руководящий комитет
+recentie expertise	Обзор опыта
+geschreven contributie	письменный вклад
+conferentie contributie	Организационный взнос
+uitgenodigde spreker	приглашался для выступлений
+conferentie website	Веб-сайт конференции
+conferentiebundel	Пакет Конференции
+gewone auteur	регулярный автор
+conferentie deel	Конференция
+heeft een track-workshop-snelcursus onderwerp	есть темы, трек мастерская интенсивный курс
+heeft een uitgever	имеет издателя
+heeft een synopsis	имеет краткий обзор
+is een onderwerp van conferentie delen	доля является темой конференции
+contribueert	способствовать
+heeft snelcursussen	имеет snelcursussen
+heeft een commissiecovoorzitter	имеет Сопредседатель Комиссии
+heeft belangrijke data	имеет важные даты
+was een stuurgroep van	был руководящей группы
+geeft presentaties	дает презентации
+uitgenodigd door	приглашен
+recensies	Отзывы
+heeft delen	частей
+was lid van	был членом
+heeft een organisatiecommissie	имеет Организации Комитет
+nodigt corecensenten uit	corecensenten приглашает
+is een volledig artikel submissie datum	полный текст статьи Дата представления
+heeft een graad	имеет степень
+heeft voornaam	имеет имя
+heeft sekse	секс
+heeft achternaam	имеет фамилию
+heeft een email	имеет электронное
+heeft een uitgavedatum	Дата выпуска
+is een datum van bekendmaking van acceptatie	Дата публикации о принятии
+hoort bij een recentie referentie	принадлежит к ссылке Обзор
+heeft een stuurgroep	имеет Руководящий комитет
+heeft een recentie referentie of expertise	имеется обзор ссылку или опыт
+hoort bij een conferentiebundel	принадлежит к Конференции пучок
+is deel van conferentiebundel	Конференция является частью комплекта
+heeft tracks	треков
+uitgaven	расходы
+was een track-workshop voorzitter van	был президентом трек мастерская
+heeft een isbn	имеет isbn
+heeft een naam	имеет имя
+heeft een url	имеет URL-адрес
+heeft een plaats	имеет место
+is een synopsis submissie datum	Дата представления резюме
+is een begindatum	Это Дата начала
+is een datum van drukklare versie submissie	Дата печати готовый вариант представления
+is een einddatum	Это Дата окончания
+heeft een deel	имеет часть
+heeft een expertise	обладает опытом
+heeft een recentie	имеет обзор
+heeft auteurs	имеет авторов
+was een commissievoorzitter van	был Председателем Комиссии
+heeft contributies	имеет вклад
+heeft leden	имеет членов
+heeft een track-workshop-snelcursus voorzitter	имеет трек мастерская интенсивный курс в президента
+was een commissie van	была создана Комиссия по
+heeft een ingediende contributie	имеет отложенный членский взнос
+was een commissiecovoorzitter van	был сопредседателем Комиссии
+heeft een commissie	имеется Комиссия
+is het eerste deel van	Это первая часть
+was een programmacommissie van	Программа Комитета по
+heeft een onderwerp of een ingediende contributie	имеет тему или представленных вклад
+heeft een programmacommissie	имеет программный комитет
+was een organisatiecommissie van	Организация Комиссии по
+ingediend	представленный
+hoort bij recencenten	принадлежит к recencenten
+heeft een recentie expertise	имеет опыт обзора
+is een recensie referentie toegewezen	назначается ли ссылку на обзор
+heeft workshops	имеет семинары
+heeft een commissievoorzitter	имеет Председатель Комиссии
+wordt gegeven door	дается
+bijdrage	вклад
+vrijwilliger	добровольцев
+recensieresultaat gebeurtenis	Просмотрите результат события
+indienen gebeurtenis	Добавить событие
+universiteit	Университет
+student	студент
+sociale gebeurtenis	социальные события
+wetenschappelijk medewerker	Научный ассистент
+receptie	прием
+land	страна
+reis	путешествия
+lid programmacommissie	Член программного комитета
+administratieve gebeurtenis	Административные события
+kort artiekel	короткая статья
+recensie gebeurtenis	Обзор событий
+werken gebeurtenis	работа событие
+banket	Banquet
+stad	Город
+bedrijf	Компания
+deelnemersregistratie gebeurtenis	Участники регистрации событий
+drukklaar gebeurtenis	события ready-to-print
+deelnemer	участник
+gewoon	просто
+gebeurtenis	события
+lid	Член
+assistent	Помощник
+wetenschapper	ученый
+heeft webpagina	имеет веб-страницы
+heeft btw	есть налог с продаж
+heeft stad	город
+parallel met	параллельно
+volgt	следует
+schrijft	пишет
+werknemer van	сотрудник
+heeft administratieve gebeurtenis	имеет административных событий
+heeft land	страна
+expert op het gebied van	эксперт в области
+heeft te maken met	связано с
+studeert bij	исследования с
+heeft korte titel	имеет краткое название
+maximum keuze	максимальный выбор
+heeft postcode	имеет индекс
+heeft steekwoord	имеет ключевое слово
+heeft titel	имеет название
+eindigt op	заканчивается на
+opmerking	Примечание
+abstract	Аннотация
+standaard keuze	Выбор по умолчанию
+plaats	место
+contactinformatie email	Контактная информация Электронная почта
+heeft straat	есть улица
+heeft email	по электронной почте
+heeft fax	имеет Факс
+minimum keuze	Минимальный выбор
+begint op	начинается на
+heeft telefoon	есть телефон
+vroege registratie	Ранняя регистрация
+ngo	НПО
+recensievraag	вопрос обзора
+tekstuele recensievraag	вопрос текстового обзора
+computer netwerken bedrijven onderwerp	Компьютерные сети компании Тема
+toelatingswaardering	Прием рейтинг
+industriële organisatie	Промышленные организации
+computer netwerken sensoren onderwerp	датчики тема компьютерных сетей
+computer netwerken beveiliging onderwerp	Тема безопасности компьютерных сетей
+persoonlijke recensiehistorie	Личный обзор истории
+communicatie onderwerp	Тема сообщения
+zwakke toelatingswaardering	слабый рейтинг
+gerelateerde artikelen	связанные статьи
+niet-academische gebeurtenis	Неакадемические событие
+overheidsorganisatie	Организации правительства
+recensie waardering	Обзор рейтинг
+oproep manuscripten	Вызов скрипты
+menu	меню
+communicatietheorie onderwerp	предмет теории коммуникации
+actief artikel	Активная статья
+persoonlijke historie	Личная история
+uitgegeven artikel	опубликованные статьи
+presentator	Ведущий
+nog onbeslist artikel	Статья еще не определилась
+pauze gebeurtenis	Пауза событие
+afgewezen artikel	Отклоненные статьи
+medicijnen onderwerp	Тема лекарства
+electriciteitsoverdracht over lijnen onderwerp	electriciteitsoverdracht о сюжетные линии
+geaccepteerd artikel	принятые статьи
+conferentieoord plaats	Конференц-центр место
+satelliet- en ruimtecommunicatie onderwerp	Тема связи спутниковых и космических
+besturingssystemen onderwerp	Тема операционных систем
+contact informatie	Контактная информация
+conferentie met één recensie laag	Конференция с слой один обзор
+cryptografie onderwerp	Тема криптографии
+multimedia onderwerp	мультимедиа тема
+computer netwerken schakelen onderwerp	Компьютерные сети выключить тему
+prestatie onderwerp	производительность тема
+sponsoring	Спонсорство
+accepteer als kamerwaardering	принимать как номер рейтинг
+signaalverwerking onderwerp	Тема обработки сигнала
+koffiepauze	кофе-брейк
+conferentie gebeurtenis	Конференции события
+alleen testen onderwerp	только испытуемого
+numerieke recensievraag	вопрос обзора численного
+conferentie diner	Ужин
+recensie	Обзор
+afsluitende lezing	Закрытие лекция
+conferentie sessie	Сессии Конференции
+computer netwerken metingen onderwerp	компьютерных сетей измерений тема
+draadloze communicatie ondewerp	ondewerp беспроводной связи
+persoonlijke publicatiehistorie	Личная история
+antennes onderwerp	Тема антенны
+computer netwerken optisch onderwerp	Компьютерные сети оптических тема
+vrije tijd pauze	перерыв для отдыха
+computer netwerken management onderwerp	Тема управления компьютерных сетей
+radiocommunicatie onderwerp	Тема связи Радио
+beveiliging onderwerp	Тема безопасности
+computer architectuur onderwerp	Тема архитектура компьютера
+oproep artikelen	вызов статей
+conferentie met twee recensie lagen	Конференция с двумя слоями обзор
+teruggetrokken artikel	изъяты статьи
+artikel presentatie	Статья презентация
+accomodatie plaats	место размещения
+oproep recensies	вызов Отзывы
+organisatievergadering	Организация совещания
+microelectronica onderwerp	Микроэлектроники, тема
+welkomstlezing	Добро пожаловать читать
+vergaderruimte plaats	Конференц-залы место
+academische gebeurtenis	Научные события
+eetpauze	Путешествие там
+diner plaats	ужин место
+programmacommisielid	programmacommisielid
+lezing gebeurtenis	Чтение событий
+slides	слайды
+eet gebeurtenis	есть событие
+sessievoorzitter	Председатель сессии
+recensieformulier	Форма обзора
+oproep	вызов
+academische organisatie	академические организации
+computer netwerken applicaties onderwerp	Компьютерные сетевые приложения тема
+afwijzingswaardering	неприятие рейтинг
+mobiele berekening onderwerp	Тема мобильных вычислений
+reistoelage	Командировочные расходы
+parallelle en gedistribuëerde berekening onderwerp	Параллельные вычисления и gedistribuëerde темы
+programma	Программа
+computer netwerken onderwerp	Компьютерные сети тема
+cad onderwerp	Тема CAD
+excursie	Экскурсия
+hoort bij gebeurtenis	принадлежит к событию
+is menu van	меню
+gerelateerd aan	связанные с
+gerelateerd aan gebeurtenis	связанные с событием
+is gerecenseerd door	Комментарий от-
+heeft gerelateerd artikel	имеет связанные статьи
+heeft oproep	есть вызов
+is recensiehistorie van	— Обзор истории
+geleverd door	выступил
+begint	начинается
+wordt begonnen door	начинается с
+heeft menu	меню
+heeft deelnemer	участник имеет
+gerelateerd tot artikel	связанные статьи
+heeft gerelateerd document	связанных документов
+heeft waardering	ценит
+is aan het recenseren	Этот обзор
+is lid van	является членом
+is plaats van	расположение
+heeft programma	имеет программу
+heeft recensiegeschiedenis	История обзор
+is gescheven door	написана
+is onderwerp van	является предметом
+voor gebeurtenis	для события
+is leverancier van	является поставщиком
+deelnemer van	участник
+begindatum	Дата начала
+heeft naam	имеет имя
+heeft submissie instructies	имеет представления инструкции
+heeft submissie deadline	есть крайний
+heeft biografie	собственная биография
+manuscript moet klaar zijn op	Рукопись должна быть готова на
+heeft kosten som	есть сумма расходов
+heeft begindatum/tijd	имеет начало Дата и время
+einddatum	Дата окончания
+artikel moet klaar zijn op	Статья должна быть готова на
+heeft plaats	имеет место
+heeft lid	имеет член
+heeft einddatum/tijd	имеет окончания даты и времени
+registratie moet klaar zijn op	регистрация должна быть готова на
+heeft kosten munteenheid	стоимость валюты
+conferentie banket	Конференц банкет
+industrie sessie	сессия промышленности
+voorzitter snelcursus	Президент краш курс
+organiserende instelling	Организация учреждение
+toegewezen artikel	назначенный пункт
+workshop sessie	сессии семинара
+drukklaar artikel	готовые к печати статьи
+artikel auteur	Автор статьи
+wetenschappelijk artikel	научные статьи
+bundel	расслоение
+workshop artikel	Мастерская статьи
+onderzoeksonderwerp	Тема исследования
+demonstratie sessie	демонстрационные сессии
+dokument	идентификационного
+positieve recensie	положительный отзыв
+conferentie reis	Конференция путешествия
+lid stuurgroep	Член Руководящей группы
+lezing	чтение
+voorzitter organisatiecommissie	Председатель организационного комитета
+individuele presentatie	отдельные презентации
+gewone sessie	очередная сессия
+mogelijke recensent	возможные рецензент
+pamflet	Брошюра
+onderzoeksinstelling	научно-исследовательское учреждение
+beoordeeld artikel	Обзор статьи
+(bijgedragen) lezing	(внесли) читать
+staf van instelling	Сотрудники настройки
+programma brochure	Брошюра программы
+snelcursus abstract	Интенсивный курс в резюме
+poster artikel	Плакат статьи
+lid organisatiecommissie	Член Комиссии Организации
+voorzitter sessie	Председатель сессии
+poster sessie	Постерная сессия
+vroeg geregistreerde deelnemer	ранние зарегистрированный участник
+gewoon artikel	просто статьи
+industriëel artikel	промышленные статьи
+lezing abstract	читать Реферат
+voorzitter workshop	Президент мастерская
+deel met meerdere autheurs	поделиться с несколькими авторами
+voorzitter demonstraties	Президент демонстрации
+laat geregistreerde deelnemer	Пусть зарегистрированный участник
+sessie	сессия
+demonstratie artikel	Часть демо
+gast spreker	гость
+ingediend artikel	Представленная статья
+negatieve recensie	отрицательный отзыв
+wetenschappelijke gebeurtenis	Научные события
+uitgever conferentiebundel	Издатель конференции расслоение
+neutrale recensie	нейтральный отзыв
+website	веб-сайт
+academische instelling	научное учреждение
+presentatie van artikel	представление статьи
+deel bevat artikel	часть содержит статьи
+bevat gebeurtenis	содержит событие
+geciteerd door	процитировано
+heeft gebeurtenis	событие
+organiseert (technisch)	организует (технический)
+gehouden in	в
+georganiseerd door	организован
+technische organisatie door	техническая организация
+uitgever van	Издатель
+gebeurtenis op lijst	событие в списке
+organiseert	организует
+artikel in deel	Статья в части
+heeft deel	имеет часть
+inverse van deel van 7	Обратная часть 7
+organiseert (wetenschappelijk)	организует (научное)
+heeft recensent	провела обзор
+recensie geschreven door	Обзор написан
+heeft bijgewerkte versie	обновил версию
+recensent van artikel	Рецензент статьи
+plaats van	место
+heeft recensie	имеет обзор
+onderwerp behandeld door	Тема обрабатывается
+bijgewerkte versie van	обновленная версия
+gaat over	о
+recensie van artikel	Обзор статьи
+citaties	цитаты
+deel van	часть
+artikel gepresenteerd als	Статья представлена как
+wetenschappelijke organisatie door	Научная организация
+onderdeel van gebeurtenis	часть мероприятия
+auteur van	Автор
+conferentie activiteit	Деятельность Конференции
+conferentie restaurant	Ресторан конференции
+cheque	чек
+coctail receptie	коктейль-прием
+simuleren	имитировать
+reisdag	день поездки
+eendaags presentator	один день ведущий
+een conferentie dag	день конференции
+iasted niet-lid	iasted-нечленов
+toehoorder	слушатель
+tijd	время
+publicatie	публикации
+transparant	прозрачный
+transport voertuig	транспортное средство
+korte inleiding voorzitter	Краткое введение президента
+kosten	стоимость
+technisch committee	Технический Комитет
+conferentie stad	Конференции город
+auto	автомобиль
+manuscript afwijzen	Рукопись отказ
+tweepersoonskamer	Двухместный номер
+technische activiteit	техническая деятельность
+deadline hotel reservering	Крайний срок бронирования
+vertrek	Отъезд
+huren	Аренда
+pendelbus	автобус
+inschrijving	регистрация
+overschrijving	Банковский перевод
+registratiekosten lid	Член регистрационный взнос
+registratiekosten aanwezige auteur boek	Автор книги настоящий регистрационный взнос
+onderzoek	Исследования
+deadline	Крайний срок
+sessie kamer	номер сессии
+taxi	такси
+sociaal programma	Социальная программа
+conferentie vliegveld	Аэропорт конференции
+spreker voorstellen	Динамика предложения
+manuscript ontvangen	рукопись получила
+dagvullende rondleiding	один день тура
+gebouw	здание
+auteur conferentiebundel cd inbegrepen	Автор конференции комплекта cd включен
+eenpersoonskamer	Одноместный номер
+activiteit	деятельность
+submissie	представление
+recencent	Амазонки рецензента
+reis stad	туристические города
+spreker lezing	спикер чтения
+afgevaardigde	Делегат
+registratieformulier	Регистрационная форма
+deadline aankondiging acceptatie	принятие срок объявления
+toegevoegde waarde belasting	добавленную стоимость налогового
+welkomsttoespraak	Приветственная речь
+conferentie wandelaar	Конференции Уокер
+auteur conferentiebundel boek inbegrepen	Автор конференции книга комплекта включены
+conferentie staat	Состояние Конференции
+submissie deadline	Последний срок подачи заявок
+email lijst	список адресов электронной почты
+registratiekosten aanwezige auteur cd	Автор регистрационный взнос, с использованием существующих cd
+conferentie gebouw	Конференционное здание
+deadline drukklaar manuscript	готовые к печати рукопись срок
+beamer	Бимер
+audiovisuele uitrusting	аудиовизуальное оборудование
+registratiekosten student	студент регистрационный взнос
+iasted lid	iasted член
+video presentatie	Видео-презентация
+computer	компьютер
+bewijs van aanwezigheid	Доказательство присутствия
+betalingsdocument	платежный документ
+activiteit voor de conferentie	деятельность Конференции
+hotel presentator	Ведущий отель
+registratiekosten niet-lid	не являющиеся членами регистрационный взнос
+snelcursus spreker	Интенсивный курс в динамик
+kosten voor extra reis	Стоимость на дополнительные поездки
+conferentiebundel cd	Конференция cd пакет
+arbeider niet-spreker	работник не спикер
+hotel informatie formulier	Отель форма запроса
+sponsor	Спонсор
+powerpoint presentatie	презентации Power point
+geld	деньги
+videospeler	видео плеер
+arbeider lector	работник лектора
+manuscript accepteren	принять сценарий
+inleiding	Введение
+staat	Государство
+lector	Лектор
+sponsor staat	Спонсор государство
+presentator universiteit	Ведущий университет
+sponsor bedrijf huis	спонсор компания Главная
+conferentiebundel boek	Конференция книга bundle
+presentator stad	город пребывания
+hotelkamer	номер отеля
+registratiekosten niet-auteur	Регистрационный взнос не автор
+busje	Ван
+conferentie dagen	Дни конференции
+plenaire lezing	пленарные лекции
+student lector	студента лектор
+registratie deadline	Крайний срок регистрации
+kaart	Карта
+definitief manuscript	окончательный вариант рукописи
+modelleren	моделирование
+student niet-spreker	студент не спикер
+hoofdkantoor	Головной офис
+conferentiezaal	Конференц-зал
+onderdeel	часть
+presentator huis	Ведущий дома
+conferentie hotel	Конференц-отель
+auteur informatie formulier	форма информации автор
+activiteit na de conferentie	деятельность после Конференции
+belasting	налог
+munteenheid	Валюта
+sponsor stad	Спонсор город
+formulier	форма
+overhead projector	Оверхед-проектор
+creditcard	Кредитная карта
+niet-spreker	-спикер
+hotel kosten	Отель по цене
+fooi	Подсказка
+algemene lezing spreker	Лекция общего спикера
+presentator staat	Ведущий
+spreker	спикер
+visum	Визы
+vertrekbelasting	Выезд налог
+eerste manuscript	первая рукопись
+tijdzone	Часовой пояс
+registratiekosten	регистрационные сборы
+uitnodigingsbrief	Письмо-приглашение
+is voorzien van	особенности
+krijgen	Получить
+is ontworpen voor	предназначен для
+is verbonden met	подключен к
+wordt betaald met	выплачивается с
+doorgaan	продолжить
+wordt gebruikt door	используется
+schrijven	Написать
+voorbereiden	подготовка
+tekenen	знаки
+is gelegen in	расположен в
+is getekend door	было подписано
+is aanwezig	присутствует
+wordt betaald voor	выплачивается за
+is geschreven door	написана
+spreken in	выступая в
+wordt bezet door	занята
+wordt gebruikt voor	используется для
+bezetten	занимают
+wordt gehouden in	проводится в
+is aanwezig bij	присутствует на
+wordt gehouden na	проводится после
+wordt bezocht door	посещают
+betalen	взимается
+wordt betaald door	оплачивается
+wordt verzonden voor	отправляется для
+wordt gehouden voor	проводится для
+wordt voorbereid door	подготовлен
+wordt gegeven aan	отдается
+is nodig voor	необходима для
+geven	дать
+wordt verzonden door	Прислал
+verzenden	Отправить
+nodig hebben	необходимость
+is gemaakt van	изготовлен из
+klaar tot	готов к
+wordt betaald in	выплачивается в
+wordt verzonden na	отправляется после
+is gedateerd	датируется
+heeft bedrag	имеет размер
+registratie geen lid	регистрация не является членом
+bedrag	сумма
+prijs best toegepast artikel	Цена лучших применяется статья
+deadline indiening abstract	Крайний срок подачи тезисов
+zilver sponsor	Серебряный спонсор
+best artikel prijzencommissie	Лучшие статьи награды Комитета
+webmaster	для веб-мастеров
+registratie studenten	регистрация студентов
+goud sponsor	Золотой спонсор
+deadline inlichting auteur	Автор информации срок
+prijs best studenten artikel	Цена лучшие студенческие статьи
+registratie sigkdd lid	sigkdd регистрация
+platina sponsor	Платиновый спонсор
+deadline indiening artikel	Крайний срок подачи статьи
+best studenten artikel sponsor	лучшие студенческие статьи спонсора
+programmaccommissie	programmaccommissie
+prijs best onderzoeksartikel	Цена лучших научно-исследовательскую работу
+prijs	Цена
+auteur van studenten artikel	Автор статьи студентов
+registratie sigmod lid	SIGMOD регистрация члена
+auteur van artikel	Автор статьи
+sponsorbijdrage	Спонсорство
+algemeen voorzitter	Председателя Генеральной
+acm sigkdd	ACM sigkdd
+brons sponsor	Бронзовый спонсор
+hotel	Отель
+tentoonsteller	Экспонента
+betaalmiddel	способ оплаты
+naam van sponsor	имя спонсора
+naam van conferentie	Название конференции
+stad van conferentie	Городская конференция
+einde van conferentie	конец конференции
+toegekend door	награжден
+indienen tot	представление
+ontworpen door	Дизайн
+mag verblijven in	разрешено остаться в
+verkrijgen	получение
+inlichting tot	Информация для
+betaald door	оплачены
+ontwerp	Дизайн
+gepresenteerd door	представлено
+indienen	представления
+gehouden door	проведенные
+houdt	держит
+gezocht door	Разыскивается
+zoeken	Поиск
+begin van conferentie	Начало конференции

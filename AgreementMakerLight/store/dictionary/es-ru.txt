@@ -1,0 +1,666 @@
+aceptar	Хорошо
+versión completa del artículo	Полная версия статьи
+miembro del comité de programa	Член Комитета программы
+conferencia	Конференция
+área temática	Тематическая область
+decisión	решение
+documento	документ
+revisor externo	внешний рецензент
+presidente del comité de programa	Председатель Комитета программы
+artículo	Статьи
+resumen del artículo	Резюме статьи
+coautor	соавтор
+autor, no revisor	Автор, не рецензента
+usuario	пользователь
+revisión	Обзор
+persona	человек
+puja	ставка
+autor	Автор
+meta revisión	Цель обзора
+administrador	Администратор
+miembro de la conferencia	Член Конференции
+revisor	Рецензент
+meta revisor	Рецензент мета
+vice presidente	Вице-президент
+presidente de la conferencia	Председатель Конференции
+comité de programa	Программный комитет
+presidente	Президент
+preferencia	предпочтения
+rechazar	отклонить
+asigna revisor externo	назначить внешнего рецензента
+es miembro del comité de programa	является членом Комитета программы
+permite reunión virtual	позволяет виртуальной встречи
+envía el artículo	отправляет элемент
+inicia la puja de los artículos	начинает торги статей
+asignado por el revisor	назначается рецензент
+introduce criterios de revisión	вводит критерии обзора
+los criterios de revisión han sido introducidos por	были введены критерии обзора
+la puja de los revisores ha sido iniciada por	заявки от рецензентов был инициирован
+detalles introducidos por	сведения, введенные
+asigna un número máximo de artículos a	Присваивает максимальное количество элементов для
+rechazado por	отклонено
+redacta el artículo	написать статью
+redacta la revisión	написать обзор
+asignado por el administrador	назначенные администратором
+es miembro de la conferencia	является членом Конференции
+modificada por	изменена
+asignar revisor	Назначение рецензента
+añadido por	Добавил(а)
+asignado a	назначен
+tiene miembro de la conferencia	имеет член Конференции
+tiene área temática	имеет предметной области
+gestiona las herramientas para la asignación de artículos	Он управляет инструменты для распределения пунктов
+la asignación de artículos ha sido finalizada por	Распределение статей был завершен
+tiene autor	имеет автора
+finaliza la asignación de artículos	заканчивается распределение пунктов
+tiene puja	ставка
+leído por el meta revisor	читать рецензенту мета
+tiene decisión	решение имеет
+reunión virtual mediante	с помощью виртуальной встречи
+lee el artículo	читать статью
+las copias en papel de los manifiestos de envío han sido impresas por	доставки манифесты бумажных копий были напечатаны на
+rechaza el artículo	отвергает статьи
+tiene coautor	является соавтором
+modifica la puja	изменяет ставки
+las herramientas para la asignación de artículos han sido gestionadas por	инструменты для распределения пунктов удалось
+es coautor de un artículo	является соавтором статьи
+url del logotipo	URL-адрес логотипа
+acepta entregas en papel	принимает поставки на бумаге
+url de la página web	URL-адрес веб-страницы
+título	Название
+ha sido asignado a	Он был назначен
+escrito por	Автор
+ha señalado conflicto de intereses	отметил конфликт интересов
+tiene miembro del comité de programa	имеет программу члена Комитета
+tiene conflicto de intereses	имеет конфликт интересов
+añade miembro de comité de programa	добавлен член программного комитета
+aceptado por	принято
+copia en papel de los manifiestos de envío	Копировальная бумага от судоходства манифесты
+acepta el artículo	принять статью
+finaliza revisión	конец обзор
+introduce detalles de la conferencia	Введите сведения о Конференции
+leído por el revisor	читать автора
+nombre	имя
+correo electrónico	Отправить по электронной почте
+número máximo de artículos	Максимальное число элементов
+fecha	Дата
+identificador del artículo	Идентификатор элемента
+revisiones por artículo	изменений на статью
+contribución regular	регулярные взносы
+participante de la conferencia	участник конференции
+conferencia www	www конференции
+tema	Тема
+editor	Редактор
+volumen de la conferencia	Объем конференции
+participante activo en la conferencia	активное участие в Конференции
+resumen ampliado	Расширенный обзор
+persona registrada a la conferencia	человек, зарегистрированных на Конференции
+documento de la conferencia	Документ Конференции
+taller	Мастерская
+participante pasivo en la conferencia	Пассивный участник конференции
+presentación	Презентация
+coautor de la contribución	соавтор вклада
+fechas importantes	важные даты
+comité organizador	Организационный Комитет
+parte de la conferencia	часть конференции
+anuncio de la conferencia	объявление о Конференции
+organización	Организации
+persona que envía una solicitud a la conferencia	лицо, которое посылает запрос на Конференции
+experiencia del revisor	опыт рецензента
+solicitud de envío de artículos	запрос для представления
+contribución por escrito	вклад в письменной форме
+actas de la conferencia	Труды конференции
+primer autor de la contribución	вклад первого автора
+tutorial	Учебник
+persona que hace un pago anticipado de las tasas de la conferencia	лицо, делая предоплату пошлин конференции
+panel	Группа
+conferenciante invitado	гость
+comité directivo	Руководящий комитет
+póster	Плакат
+persona que paga las tasas de la conferencia	лицо, пошлины конференции
+charla invitada	пригласил
+contribución a la conferencia	вклад в конференцию
+información para los participantes	Информация для участников
+contribución enviada	представленные на сайте
+organizador	Организатор
+contribución rechazada	Отклоненные вклад
+tasas de la conferencia	Конференция цены
+contribución lista para su envío definitivo	готов для окончательного отгрузки вклад
+solicitud de participación	запрос на участие
+persona que envía una contribución a la conferencia	лицо, которое отправляет вклада Конференции
+comité	Комитет
+vicepresidente	Вице-президент
+persona que paga con retraso las tasas de la conferencia	человек платить за просрочку платежа конференции
+contribución aceptada	принятые вклад
+preferencia del revisor	Рецензент предпочтения
+contribución revisada	пересмотренный вклад
+organizador de los workshops	Организатор семинаров
+resumen	Обзор
+era comité directivo de	был Руководящего комитета
+tiene autores	имеет авторов
+tiene referencias o experiencia en la revisión de artículos	у вас есть ссылки или опыт в обзор статей
+tiene un comité	имеется Комитет
+era comité organizador de	Организационный Комитет
+tiene un tema o una contribución enviada	у вас есть тема или представленных вклад
+tiene contribuciones	имеет вклад
+ha presentado una contribución	Он представил свой вклад
+tiene un revisor	имеет рецензент
+era vicepresidente del comité de	был заместителем Председателя Комитета по
+era organizador de un panel de talleres de	Это была группа Организатор семинаров
+tiene un comité organizador	имеет организационный комитет
+tiene un comité directivo	имеет Руководящий комитет
+tiene miembros	имеет членов
+tiene partes	частей
+pertenece a una referencia de la revisión	Он принадлежит к ссылке обзора
+dado por	предоставленные
+problemas	проблемы
+tiene tema de taller-tutorial	Тема семинара-учебник
+se le ha asignado una referencia  de revisiones	Вы были назначены ссылку изменения
+es la primera parte de	Это первая часть
+pertenece a los revisores	принадлежит к Отзывы
+revisiones	Отзывы
+tiene talleres	имеет семинары
+forma parte de los volúmenes de la conferencia	Она является частью тома конференции
+invitado por	приглашен
+era comité de programa de	был программный комитет
+tiene un vicepresidente de comité	у заместителя Председателя Комитета
+enviado a	отправлено в
+era presidente del comité de	был Председателем Комитета по
+era comité de	был Комитет
+tiene un comité de programa	Программа Комитета
+tiene tutoriales	имеет учебники
+era miembro de	был членом
+tiene organizador de taller-tutorial	имеет организацию семинара учебник
+da presentaciones	проведении презентаций
+tiene un presidente de comité	имеет Председателя Комитета
+tiene un editor	имеет редактор
+tiene experiencia en la revisión de artículos	Он имеет опыт в проведении обзора статей
+contribuye	способствует
+corevisores invitados	приглашенные corevisores
+es tema de parte de la conferencia	Она является частью темы Конференции
+tiene nombre de pila	имеет имя
+tiene apellidos	фамилии
+es fecha de inicio	Это Дата начала
+tiene url	URL-адрес
+tiene fechas imprortantes	имеет даты imprortantes
+pertenece al volumen de la conferencia	принадлежит к Конференции тома
+tiene resumen	имеет обзор
+tiene paneles	имеет панели
+tiene correo electrónico	по электронной почте
+tiene experiencia	имеет опыт работы
+es fecha de envío de versiones definitivas de artículos	Это Дата окончательной версии статей
+tiene volumen	имеет объем
+tiene grado	имеет степень
+es fecha de envío de artículos largos	Это дата длинных статей
+tiene isbn	имеет isbn
+tiene ubicación	имеет место
+es fecha de envío de resúmenes	Дата подачи тезисов
+es fecha de finalización	Дата завершения
+tiene fecha de emisión	есть дата выдачи
+tiene género	имеет пола
+es fecha de aceptación del anuncio	является дата признания рекламы
+tiene nombre	имеет имя
+envío de contribuciones	представить материалы
+ciudad	Город
+científico	ученый
+acontecimiento administrativo	Административные события
+evento científico	Научные события
+participante	участник
+cena de gala	торжественный ужин
+país	страна
+proceso de revisión de resultados	Обзор результатов
+programa social	Социальная программа
+proceso de revisión	процесс обзора
+voluntario	добровольцев
+recepción	прием
+asistente	Помощник
+universidad	Университет
+contribución	вклад
+empresa	Компания
+socio	партнер
+becario	Стажер
+envío de versión definitiva	представление окончательного варианта
+registro de participantes	Регистрация участников
+no miembro	-член
+artículo corto	короткая статья
+estudiante	студент
+acontecimiento	события
+excursión	Экскурсия
+tiene tema	есть тема
+tiene ciudad	город
+contratado por	нанятый
+paralelo a	параллельно
+revisa	проверить
+escribe	пишет
+experto en	эксперт в области
+trata de	торговля
+tiene país	страна имеет
+tiene acontencimiento administrativo	имеет административных событий
+estudia en	исследования в
+sigue a	продолжает
+selección mínima	Минимальный выбор
+correo electrónico de contacto	контакт по электронной почте
+tiene título corto	имеет краткое название
+selección máxima	максимальный выбор
+finaliza en	заканчивается в
+tiene fax	имеет Факс
+tiene código postal	имеет индекс
+tiene teléfono	есть телефон
+tiene página web	имеет веб-сайт
+tiene título	имеет название
+lugar	место
+inscripción anticipada	early bird регистрация
+tiene palabra clave	Теги
+comentario	Комментарий
+empieza en	начинается в
+tiene calle	есть улица
+elección por defecto	Выбор по умолчанию
+tiene iva	НДС
+convocatoria para la presentación de artículos	вызов для представления статей
+tema, seguridad	Тема, безопасность
+tema, comunicaciones inalámbricas	выпуск, беспроводная связь
+tema, redes de computadoras	Тема, компьютерные сети
+tema, seguridad en las redes de computadoras	Тема безопасности в компьютерных сетях
+patrocinio	Спонсорство
+tema, procesamiento de señales	Тема, сигнальной обработки
+pausa	Пауза
+cena de la conferencia	Конференционный банкет
+acontecimiento social	социальные события
+organización académica	академические организации
+convocatoria para la revisiones	вызов для изменения
+tema, multimedia	выпуск, мультимедиа
+artículo rechazado	Отклоненные статьи
+programa	Программа
+tema, medidas de redes de computadoras	выпуск, меры компьютерных сетей
+tema, teoría de la comunicación	предмет теории коммуникации
+comida	питание
+información de contacto	Контактная информация
+tema antennas	Тема антенны
+ratio de papers rechazados pero en el límite	соотношение отклоненных документов, но в предел
+alojamiento	Проживание
+acontecimiento no académico	Неакадемические событие
+menú	меню
+tema, medicina	Тема, медицина
+lugar de celebración de la conferencia	место проведения Конференции
+tema, solo de prueba	только испытуемого
+tema, arquitectura de computadoras	Тема, архитектура компьютеров
+tema, sensores en las redes de computadoras	Тема, датчики в компьютерных сетях
+lugar de celebración de la cena	место для ужина
+conferencia de bienvenida	Конференция Добро
+organización industrial	промышленные организации
+artículos relacionados	связанные статьи
+tema, criptografía	выпуск, криптография
+tema, gestión de redes de computadoras	выпуск, управления компьютерных сетей
+convocatoria para la presentación de manuscritos	вызов для представления рукописей
+artículo publicado	опубликованные статьи
+sesiones de la conferencia	сессии Конференции
+artículo retirado	изъяты статьи
+conferencia de clausura	Закрытие Конференции
+tema, microelectrónica	Тема, микроэлектроника
+reunión organizativa	организационное заседание
+historial de publicaciones	История публикаций
+acontecimiento académico	Научные события
+pausa para comer	Пауза есть
+pausa para tomar un café	Пауза для кофе
+tema, redes de computadoras ópticas	Тема, оптические компьютерные сети
+miembro del comité técnico del programa	Член технического комитета программы
+pregunta sobre la revisión numérica	спросил о численных обзор
+lugar de reunión	место встречи
+presentador	Ведущий
+ratio de revisiones	отношение изменения
+ratio de aceptación	коэффициент принятия
+tema, computación paralela y distribuida	Тема, параллельных и распределенных вычислений
+historial de revisiones	История изменений
+artículo activo	Активная статья
+tema, comunicaciones espaciales y por satélite	Тема, космической и спутниковой связи
+artículo pendiente	до статьи
+tema cad	Тема cad
+formulario de revisiones	Форма отзывов
+tema, aplicaciones de las redes de computadoras	темы, приложения, компьютерных сетей
+ratio de aceptación si hay espacio	коэффициент принятия если есть пространство
+tema, rendimiento	Тема, производительность
+presentación de artículos	представление статьи
+charla	Talk
+beca de viaje	Путешествий стипендию
+tema, comunicación por rádio	выпуск, радиосвязь
+presidente de la sesión	Председатель сессии
+pregunta sobre la revisión	спросил о Обзор
+conjunto de transparencias	набор прозрачных пленок
+tema, empresas de reedes de computadoras	Тема, компьютерных сетевых компаний
+tema, sistemas operativos	Тема, операционные системы
+tema, computación móvil	Тема, мобильные вычисления
+currículum vitae	Биографические данные
+tema, conexión en las redes de computadoras	Тема, подключение к компьютерным сетям
+organización de gobierno	Организации правительства
+ratio de rechazos	соотношение отвергает
+artículo aceptado	принятые статьи
+tema, comunicaciones	Тема, коммуникации
+convocatoria	вызов
+ong	НПО
+conferencia de un nivel	уровень Конференции
+tema, transmisión mediante cable eléctrico	Тема, передачи через кабель питания
+conferencia de dos niveles	два уровня Конференции
+pregunta sobre la revisión textual	спросил о текстового обзора
+el artículo tiene que estar entregado antes de	элемент должен быть доставлен до
+tiene fecha límite de entrega	имеет срок
+cuesta	склон
+tiene hora y fecha de comienzo	имеет дату и время начала
+tiene hora y fecha de finalización	время и Дата завершения
+es tema de	является предметом
+asitente a	Помощник
+es miembro de	является членом
+tiene asistentes	у посетителей
+pertenece al acontecimiento	принадлежит к событию
+tiene miembro	имеет член
+proporcionado por	предоставляемые
+tiene ratio	имеет коэффициент
+es revisado por	Это рассматривается
+tiene artículo relacionado	имеет связанные статьи
+está revisando	Она изучает
+se relaciona con	связанные с
+inicia	начинается
+es ubicación de	расположение
+es iniciado por	Он инициируется
+tiene menú	меню
+está escrito por	написана
+relacionado con el artículo	связанные статьи
+es menú de	меню
+tiene documento relacionado	связанных документов
+es proveedor de	является поставщиком
+tiene convocatoria	есть вызов
+es el historial de revisiones de	История редакции
+para el acontecimiento	для события
+relacionado con el acontecimiento	связанные события
+tiene historial de revisiones	есть история правок
+tiene programa	имеет программу
+fecha de finalización	Дата завершения
+el registro tiene que estar hecho antes de	регистрация должна быть произведена до
+fecha de comienzo	Дата начала
+el manuscrito tiene que estar entregado antes de	рукописи должны быть доставлены раньше
+tiene moneda	имеет валюты
+tiene instrucciones de envío	есть инструкции по транспортировке
+tiene biografía	собственная биография
+página web	веб-страница
+sesión de talleres	сессия семинаров
+conferencia principal	Основные конференции
+participante con inscripción no anticipada	участник без предварительной регистрации
+actas	записи
+versión definitiva del artículo	окончательный вариант статьи
+miembro de la organización	Член Организации
+agencia de organización de congresos	Конгресс Организации агентства
+programa de mano	Программа ручной
+folleto	Брошюра
+artículo de conferencia	Конференции статьи
+sesión de pósters	Постерная сессия
+artículo revisado	пересмотренная статья
+artículo de experiencias en la industria	Статья опыт в промышленности
+participante del congreso	участник Конгресса
+contribución a conferencia	вклад Конференции
+sesión de conferencia	Сессии Конференции
+autor de la contribución	Автор вклад
+miembro del comité organizador	Член организационного комитета
+centro de investigación	Научно-исследовательский центр
+evento	события
+sesión	сессия
+artículo sobre demostración	Статья на демонстрации
+resumen de conferencia invitada	Резюме лекции приглашенных
+organizador de tutorial	Организатор учебник
+miembro del comité científico	Член научного комитета
+artículo asignado a revisor	Статья назначен рецензент
+candidato a revisor	Рецензент кандидат
+tema de investigación	Тема исследования
+artículo de póster	Статья плакат
+organizador de los talleres	Организация семинаров
+sesión de congreso	сессия Конгресса
+organizador de la sesión de pósters	Организатор сессии плакат
+cosa	вещь
+institución académica	научное учреждение
+evaluación negativa	отрицательная оценка
+presidente del comité organizador	Председатель организационного комитета
+sesión de demostraciones	демо сессия
+seminario	Семинар
+artículo de taller	Мастерская статьи
+artículo en conferencia principal	Статья в основной Конференции
+evaluación positiva	положительная оценка
+acontecimiento científico	Научные события
+actas de congreso	Материалов Конгресса
+participante con inscripción anticipada	участник с предварительной регистрации
+editor de las actas	Производство редактор
+evaluación neutra	нейтральная оценка
+resumen de tutorial	Обзор учебник
+moderador de la sesión	Модератор сессии
+volumen de varios autores	объем различных авторов
+lugar de celebración	место проведения
+sesión industrial	промышленные сессия
+presentación individual	отдельные презентации
+versión actualizada de	обновленная версия
+organización científica por	Научная организация
+artículo en actas	Статья в разбирательстве
+parte de	часть
+tema tratado por	предмет
+tiene evento	событие
+es revisión de	Обзор
+referencia	Ссылка
+revisión escrita por	Обзор написан
+parte de evento	часть мероприятия
+tiene revisión	Обзор
+artículo presentado como	Статья представлена как
+organiza técnicamente	организует технически
+organiza	организует
+inversa de parte de 7	Обратный часть 7
+es revisor de artículo	является составителем обзоров для статьи
+organiza científicamente	организует научно
+tiene parte	имеет часть
+tiene versión actualizada	обновил версию
+autor de	Автор
+volumen contiene artículo	том содержит статьи
+evento en la lista	список событий
+presentación de artículo	представление статьи
+organización técnica por	техническая организация
+referenciado en	ссылка в
+tiene revisor	имеет рецензент
+editor de	Редактор
+celebrado en	в
+enumera eventos	списки событий
+lugar de	место
+organizado por	организован
+envío	Доставка
+fecha límite	Крайний срок
+conferenciante	Лектор
+alquilando	Аренда
+tasas de registro para los no autores	Регистрационный взнос для non авторы
+cheque	проверить
+conferenciante plenario	пленарное заседание докладчик
+transferencia bancaria	Банковский перевод
+estudiante no orador	Студент не спикер
+actividad técnica	техническая деятельность
+introducción	Введение
+manuscrito final	окончательный вариант рукописи
+presentador durante un día	Ведущий в день
+excursión por la ciudad	Экскурсия по городу
+fecha límite de registro	Крайний срок для регистрации
+edificio de la conferencia	здания для конференций
+hotel de la conferencia	Конференц-отель
+hora	время
+sala principal de la conferencia	Главный зал конференции
+actividad	деятельность
+formulario	форма
+edificio	здание
+tarjeta de crédito	Кредитная карта
+día de excursión	дневная экскурсия
+rechazando el manuscrito	отвергая рукопись
+estado del moderador	Статус модератора
+tasas de registro par aestudiantes	плата за регистрацию aestudiantes
+oficina principal	Главный офис
+introducción del conferenciante	внедрение в спикера
+comité técnico	Технический Комитет
+habitación de hotel	номер отеля
+tasas de registro para miembros	Регистрационный взнос для членов
+sala de sesiones	номер сессии
+ordenador	компьютер
+reproductor de video casete	видео магнитофон
+cd de las actas	производство CD
+tasas	Тарифы
+trabajador no orador	работник не спикер
+ciudad de la conferencia	на Конференции город
+casa del moderador	Дом Модератор
+proyector lcd	ЖК-проектор
+conferencia de un día de duración	Однодневная конференция
+taxi	такси
+conferencia plenaria	Пленарном заседании Конференции
+tasas de salida	темпы вывода
+tasas del registro	Регистрационный взнос
+tasas por un viaje extra	дополнительные поездки цены
+fecha límite de envío de la versión definitiva	Крайний срок для представления окончательного варианта
+tasas de autor, asistente y libro	книги, автора и помощник
+documento de pago	платежный документ
+no orador	Не оратор
+habitación individual	Одноместный номер
+impuesto sobre el valor añadido	налог на добавленную стоимость
+visa	Визы
+actividad antes de la conferencia	деятельность до Конференции
+tarjeta	Карта
+aeropuerto de la conferencia	Аэропорт конференции
+incluye el cd de las actas para autores	Она включает в себя cd транскрипции для авторов
+tasas de registro para los no miembros	регистрационные сборы для не членов
+habitación doble	Двухместный номер
+restaurante de la conferencia	Ресторан конференции
+equipo audiovisual	аудиовизуальное оборудование
+formulario de información sobre el autor	Информация о форме автор
+transparencia	прозрачность
+libro de las actas	разбирательства
+autobús de ida y vuelta	автобус туда и обратно
+investigación	Исследования
+dinero	деньги
+excursionista de la conferencia	туристы конференции
+tasas de autor, asistente y cd	Автор, помощник ставки и cd
+estado	Государство
+actividad después de la conferencia	деятельность после Конференции
+breve introducción al presidente de la sesión	Краткое введение в Председателя сессии
+incluye las el libro de las actas para autores	включает в себя книгу рекордов для авторов
+ciudad del presentador	город-хозяин
+presentación power point	презентации Power point
+miembro de iasted	Член iasted
+zona horaria	Часовой пояс
+orador en tutorial	Учебник динамик
+vehículo de transporte	транспортное средство
+delegado	Делегат
+fecha límite de envío de propuestas	Крайний срок для представления предложений
+oyente	слушатель
+coche	автомобиль
+salida	выход
+fecha límite de la notificación de aceptación	срок для уведомления о принятии
+proyector	проектор
+record de asistencia	рекорд посещаемости
+moneda	Валюта
+propina	Подсказка
+saludo de bienvenida	Приветствие
+manuscrito inicial	первоначальный манускрипт
+simulando	Имитация
+formulario de registro al hotel	Форма регистрации Гостиницы
+recibiendo el manuscrito	получение рукопись
+días de duración de la conferencia	дни конференции
+conferenciante estudiante	Студент динамик
+aceptando el manuscrito	принимая рукопись
+estado del patrocinador	Состояние спонсора
+presentador del hotel	Ведущий отель
+universidad del moderador	Университет Модератор
+conferenciante trabajador	работник лектор
+furgoneta	Ван
+orador	спикер
+coctail de bienvenida	Приветственный коктейль
+registro	регистрация
+ciudad del patrocinador	Город спонсора
+estado en que tiene lugar la conferencia	Заявить, что Конференция проходит
+publicación	публикации
+tasas del hotel	Цены отеля
+no miembro de iasted	не член iasted
+formulario de registro	Регистрационная форма
+presentación por vídeo	видео презентации
+empresa del moderador	Компания Модератор
+carta de invitación	Письмо-приглашение
+fecha límite de reserva en el hotel	Крайний срок бронирования отелей
+lista de correos	список рассылки
+excursión de todo el día	Все экскурсии
+patrocinador	Спонсор
+modelando	моделирование
+fechado en	от на
+está presente	присутствует
+utilizado para	используется для
+hecho de	изготовлены из
+enviar	Отправить
+preparar	подготовить
+firmado por	подписано
+ocupado por	оккупирована
+pasar por	пройти мимо
+estar equipado por	быть оборудованы для
+utilizado por	используется
+preparado por	подготовленный
+tiene lugar después de	имеет место после
+pagado en	выплачивается в
+estar conectado con	быть связаны с
+firmar	знак
+pagado con	заплатил с
+estar designado por	быть назначен
+se necesita para	необходима для
+enviado después de	После
+tiene lugar antes de	происходит перед
+pagar	оплатить
+ocupar	дело с
+está presente en	присутствует в
+dado a	для
+enviado por	Прислал
+necesitar	необходимость
+tiene cantida de	количество
+hacer hasta	сделать до
+enviado antes de	Отправлено до
+pagado por	оплачены
+tiene lugar en	имеет место в
+visitado por	посетил
+hablar en	говорят в
+dar	Давать
+escribir	Написать
+obtener	Получить
+pagado para	заплатил за
+situado en	расположен в
+fecha límite de envío de resúmenes	Крайний срок подачи тезисов
+patrocinador de platino	Платиновый спонсор
+exhibidor	Экспонента
+presidente del programa	программы кафедры
+patrocinador de plata	Серебряный спонсор
+tasas de registro	регистрационные сборы
+autor del artículo	Автор статьи
+tasas del patrocinador	Спонсор ставки
+registro para estudiantes	Регистрация для студентов
+premio al mejor artículo de investigación	приз за лучший научно-исследовательский документ
+comité de concesión del premio al mejor artículo	Комитет по премии Лучшие статьи
+premio al mejor artículo de aplicaciones	Приз за лучший доклад на приложения
+estudiante autor del artículo	Автор студент
+patrocinador de oro	Золотой спонсор
+premio	Премия
+fecha límite de envío de artículos	Крайний срок подачи статей
+premio al mejor estudiante	Премия за лучший студент
+fecha límite de notificación al autor	Дата уведомления автора
+patrocinador de bronce	Бронзовый спонсор
+patrocinador del premio al mejor artículo de un estudiante	Спонсор приза за лучший доклад на студента
+acm sigkdd	ACM sigkdd
+tasas para miembros de sigkdd	Тарифы для членов sigkdd
+tasas para no miembros	Тарифы для не членов
+hotel	Отель
+recibido por	полученные
+buscar	Найти
+enviar hasta	отправить до
+puede quedarse en	Вы можете остановиться в
+presentado por	представлено
+nombre del patrocinador	имя спонсора
+principio de la conferencia	Начало конференции
+recibir	получить
+premiado por	награжден
+precio	Цена
+nombre de la conferencia	Название конференции
+nación	нация
+final de la conferencia	конец конференции
+buscado por	Разыскивается
+notificación hasta el	уведомление
+diseñado por	Дизайн
+diseñar	Дизайн

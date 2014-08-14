@@ -18,7 +18,7 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 17-07-2014                                                            *
+* @date 13-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml;
@@ -67,7 +67,6 @@ public class AML
 	private String evaluation;
 	//Lexical types and weights
 	private final String[] LEXICAL_TYPES = {"localName", "label", "exactSynonym", "otherSynonym"};
-	private final String[] NON_LATIN_LANGUAGES = {"cn", "cz", "jp", "kr", "ru"};
 	private HashMap<String,Double> typeWeights;
 	//Background knowledge path and sources
 	private final String BK_PATH = "store/knowledge/";
@@ -455,22 +454,6 @@ public class AML
     public boolean ignoreUMLS()
     {
     	return ignoreUMLS;
-    }
-    
-    public boolean isNonLatin(String lang)
-    {
-    	for(String s : NON_LATIN_LANGUAGES)
-    		if(lang.equals(s))
-    			return true;
-    	return false;
-    }
-    
-    public boolean isLarge()
-    {
-    	for(String s : NON_LATIN_LANGUAGES)
-    		if(lang.equals(s))
-    			return true;
-    	return false;
     }
     
     public void match()

@@ -89,7 +89,7 @@ public class RankedSelector implements Selector
 				int sourceCard = selected.getSourceMappings(sourceId).size();
 				int targetId = m.getTargetId();
 				int targetCard = selected.getTargetMappings(targetId).size();
-				if((sourceCard < 2 && targetCard < 2 && m.getSimilarity() > 0.72) ||
+				if((sourceCard < 2 && targetCard < 2 && m.getSimilarity() > 0.75) ||
 						!selected.containsBetterMapping(m))
 					selected.add(new Mapping(m));
 			}
