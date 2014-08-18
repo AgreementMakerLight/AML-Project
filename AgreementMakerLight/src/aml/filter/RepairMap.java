@@ -127,6 +127,7 @@ public class RepairMap
 			for(Integer i : p)
 				outStream.println(a.get(i).toString());
 		}
+		outStream.close();
 	}
 	
 //Private Methods
