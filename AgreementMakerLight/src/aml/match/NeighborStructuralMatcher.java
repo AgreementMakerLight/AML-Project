@@ -95,6 +95,7 @@ public class NeighborStructuralMatcher implements SecondaryMatcher, Rematcher
 	@Override
 	public Alignment rematch(Alignment a)
 	{
+		input = a;
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
 		{
