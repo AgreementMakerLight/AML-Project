@@ -21,6 +21,7 @@
 ******************************************************************************/
 package aml.match;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
@@ -81,8 +82,10 @@ public class LexicalMatcher implements PrimaryMatcher
 		{
 			for(String s : names)
 			{
-				Set<String> languages = sLex.getLanguages(s);
-				languages.addAll(tLex.getLanguages(s));
+				HashSet<String> languages = new HashSet<String>();
+				for(String l : sLex.getLanguages(s))
+					if(tLex.getLanguages().contains(l))
+						languages.add(l);
 				
 				for(String l : languages)
 				{

@@ -491,9 +491,17 @@ public class Lexicon
 	{
 		if(!names.contains(name, classId))
 			return 0.0;
-		Provenance p = names.get(name, classId).get(0);
-		double correction = nameCount(classId,p.getType())/100.0;
-		return p.getWeight() - correction;
+		double weight = 0.0;
+		double correction = 0.0;
+		for(Provenance p : names.get(name, classId))
+		{
+			if(p.getWeight() > weight)
+			{
+				weight = p.getWeight();
+				correction = nameCount(classId,p.getType())/100.0;
+			}
+		}
+		return weight - correction;
 	}
 	
 	/**

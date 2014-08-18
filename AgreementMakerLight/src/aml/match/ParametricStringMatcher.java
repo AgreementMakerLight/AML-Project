@@ -23,12 +23,12 @@
 ******************************************************************************/
 package aml.match;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
-
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.ontology.RelationshipMap;
@@ -205,7 +205,6 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	//pairwise comparison of all their names
 	private double mapTwoClasses(int sId, int tId)
 	{
-		//TODO: mapTwoClasses with language constrains
 		double maxSim = 0.0;
 		double sim, weight;
 		//Get the source and target names
@@ -218,15 +217,26 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		{
 			if(StringParser.isFormula(s))
 				continue;
-			weight = sLex.getCorrectedWeight(s, sId);
-			for(String t : targetNames)
+			
+			HashSet<String> languages = new HashSet<String>();
+			for(String l : sLex.getLanguages(s))
+				if(tLex.getLanguages().contains(l))
+					languages.add(l);
+			
+			for(String l : languages)
 			{
-				if(StringParser.isFormula(t))
-					continue;
-				sim = weight * tLex.getCorrectedWeight(t, tId);
-				sim *= stringSimilarity(s,t);
-				if(sim > maxSim)
-					maxSim = sim;
+				weight = sLex.getCorrectedWeight(s, sId, l);
+				
+				for(String t : targetNames)
+				{
+					if(StringParser.isFormula(t))
+						continue;
+					sim = weight * tLex.getCorrectedWeight(t, tId, l);
+					
+					sim *= stringSimilarity(s,t);
+					if(sim > maxSim)
+						maxSim = sim;
+				}
 			}
 		}
 		return maxSim;
