@@ -103,7 +103,6 @@ public class Ontology
 	 * Constructs an Ontology from file 
 	 * @param path: the path to the input Ontology file
 	 * @param isInput: whether the ontology is an input ontology or an external ontology
-	 * @throws OWLOntologyCreationException 
 	 */
 	public Ontology(String path, boolean isInput)
 	{
@@ -136,7 +135,6 @@ public class Ontology
 	 * @param uri: the URI of the input Ontology
 	 * @param isInput: whether the ontology is an input ontology or
 	 * an external ontology
-	 * @throws OWLOntologyCreationException 
 	 */
 	public Ontology(URI uri, boolean isInput)
 	{

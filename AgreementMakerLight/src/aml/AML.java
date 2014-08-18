@@ -255,9 +255,6 @@ public class AML
 		//List the background knowledge sources
 		bkSources = listBKSources();
         selectedSources = new Vector<String>(0,1);
-        //Initialize the URIMap and RelationshipMap
-		uris = new URIMap();
-		rels = new RelationshipMap();
 	}
 
 //Public Methods
@@ -520,10 +517,12 @@ public class AML
 	 * Open a pair of local ontologies
 	 * @param src: the path to the source ontology
 	 * @param tgt: the path to the target ontology
-	 * @throws OWLOntologyCreationException 
 	 */
 	public void openOntologies(String src, String tgt)
 	{
+        //Initialize the URIMap and RelationshipMap
+		uris = new URIMap();
+		rels = new RelationshipMap();
 		if(useReasoner)
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
@@ -567,10 +566,12 @@ public class AML
 	 * Open a pair of ontologies from the web
 	 * @param src: the URI of the source ontology
 	 * @param tgt: the URI of the target ontology
-	 * @throws Exception 
 	 */
-	public void openOntologies(URI src, URI tgt) throws Exception
+	public void openOntologies(URI src, URI tgt)
 	{
+        //Initialize the URIMap and RelationshipMap
+		uris = new URIMap();
+		rels = new RelationshipMap();
 		if(useReasoner)
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
