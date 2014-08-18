@@ -43,6 +43,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	//Links to the source and target Lexicons
 	private Lexicon sLex;
 	private Lexicon tLex;
+	private HashSet<String> languages;
 	private String measure = "ISub";
 	private final double CORRECTION = 0.8;
 
@@ -57,6 +58,10 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		AML aml = AML.getInstance();
 		sLex = aml.getSource().getLexicon();
 		tLex = aml.getTarget().getLexicon();
+		languages = new HashSet<String>();
+		for(String l : sLex.getLanguages())
+			if(tLex.getLanguages().contains(l))
+				languages.add(l);
 	}
 
 	/**
@@ -70,10 +75,8 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	 */
 	public ParametricStringMatcher(String m)
 	{
+		this();
 		measure = m;
-		AML aml = AML.getInstance();
-		sLex = aml.getSource().getLexicon();
-		tLex = aml.getTarget().getLexicon();
 	}
 
 //Public Methods
@@ -207,24 +210,18 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	{
 		double maxSim = 0.0;
 		double sim, weight;
-		//Get the source and target names
-		Set<String> sourceNames = sLex.getNames(sId);
-		Set<String> targetNames = tLex.getNames(tId);
-		if(sourceNames == null || targetNames == null)
-			return maxSim;
-		
-		for(String s : sourceNames)
+
+		for(String l : languages)
 		{
-			if(StringParser.isFormula(s))
+			Set<String> sourceNames = sLex.getNames(sId,l);
+			Set<String> targetNames = tLex.getNames(tId,l);
+			if(sourceNames == null || targetNames == null)
 				continue;
-			
-			HashSet<String> languages = new HashSet<String>();
-			for(String l : sLex.getLanguages(s))
-				if(tLex.getLanguages().contains(l))
-					languages.add(l);
-			
-			for(String l : languages)
+		
+			for(String s : sourceNames)
 			{
+				if(StringParser.isFormula(s))
+					continue;
 				weight = sLex.getCorrectedWeight(s, sId, l);
 				
 				for(String t : targetNames)
