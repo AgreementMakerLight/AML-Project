@@ -46,8 +46,8 @@ public class AMLRepairEclipse
 		LexicalMatcher lm = new LexicalMatcher();
 		Alignment a = lm.match(0.6);
 		//Repair the alignment
-		CardinalityRepairer r = new CardinalityRepairer(a);
-		Alignment b = r.repair();
+		CardinalityRepairer r = new CardinalityRepairer();
+		Alignment b = r.repair(a);
 		//And save it
 		b.saveRDF(repairPath);
 	}

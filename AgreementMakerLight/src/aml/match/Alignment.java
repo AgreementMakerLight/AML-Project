@@ -78,9 +78,7 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public Alignment(String file) throws Exception
 	{
-		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
-		targetMaps = new Table2Map<Integer,Integer,Mapping>();
+		this();
 		if(file.endsWith(".rdf"))
 			loadMappingsRDF(file);
 		else if(file.endsWith(".tsv"))
@@ -95,9 +93,7 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public Alignment(Alignment a)
 	{
-		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
-		targetMaps = new Table2Map<Integer,Integer,Mapping>();
+		this();
 		addAll(a);
 	}
 	

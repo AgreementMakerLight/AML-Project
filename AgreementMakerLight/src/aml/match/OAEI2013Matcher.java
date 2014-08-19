@@ -160,8 +160,7 @@ public class OAEI2013Matcher
 			threshold = 0.6;
 		}
 		//Step 3 - Detect the selection type
-		RankedSelector s = new RankedSelector(base);
-		sType = s.getSelectionType();
+		sType = AML.getInstance().getSelectionType();
 		//Step 4 - Check the property/class ratio
 		double sProps = source.propertyCount() * 1.0 / sSize;
 		double tProps = target.propertyCount() * 1.0 / tSize;
@@ -253,10 +252,7 @@ public class OAEI2013Matcher
 				//If WordNet has a significant gain, we use it as a mediating matcher
 				//but in extension mode and with strict selection, to avoid errors
 				if(wordNetGain >= GAIN_MIN)
-				{
-					RankedSelector s = new RankedSelector(wordNet,SelectionType.STRICT);
-					a.addAllNonConflicting(s.select(threshold));
-				}
+					a.addAllOneToOne(wordNet);
 			}
 			case 1:
 			{
@@ -298,39 +294,39 @@ public class OAEI2013Matcher
 			if(size < 3)
 				a.addAllNonConflicting(wm.match(BASE_THRESH));
 			a.addAllNonConflicting(sm.extendAlignment(a,threshold));
-			RankedSelector s = new RankedSelector(a, SelectionType.PERMISSIVE);
-			a = s.select(threshold);
+			RankedSelector s = new RankedSelector(SelectionType.PERMISSIVE);
+			a = s.select(a, threshold);
 		}
 		else if(sType.equals(SelectionType.PERMISSIVE))
 		{
 			if(size == 2)
 			{
 				Alignment b = wm.match(BASE_THRESH);
-				RankedSelector s = new RankedSelector(b, sType);
-				b = s.select(threshold);
+				RankedSelector s = new RankedSelector(sType);
+				b = s.select(b, threshold);
 				a.addAllNonConflicting(b);
 				b = sm.extendAlignment(a, BASE_THRESH);
-				s = new RankedSelector(b, sType);
-				b = s.select(threshold);
+				s = new RankedSelector(sType);
+				b = s.select(b, threshold);
 				a.addAllNonConflicting(b);
 			}
 			else
 			{
 				if(size == 1)
 					a.addAll(wm.match(BASE_THRESH));
-				RankedSelector s = new RankedSelector(a, sType);
-				a = s.select(threshold);
+				RankedSelector s = new RankedSelector(sType);
+				a = s.select(a, threshold);
 				a.addAll(sm.extendAlignment(a,threshold));
-				s = new RankedSelector(a, sType);
-				a = s.select(threshold);
+				s = new RankedSelector(sType);
+				a = s.select(a, threshold);
 			}
 		}
 		else
 		{
 			if(size < 3)
 				a.addAll(wm.match(BASE_THRESH));
-			CardinalitySelector s = new CardinalitySelector(a, 6);
-			a = s.select(threshold);
+			CardinalitySelector s = new CardinalitySelector(6);
+			a = s.select(a, threshold);
 			a.addAll(sm.extendAlignment(a, threshold));
 		}
 		return System.currentTimeMillis()/1000 - startTime;
@@ -347,15 +343,15 @@ public class OAEI2013Matcher
 	private long repair()
 	{
 		long startTime = System.currentTimeMillis()/1000;
-		CardinalityRepairer rep = new CardinalityRepairer(a);
-		a = rep.repair();
+		CardinalityRepairer rep = new CardinalityRepairer();
+		a = rep.repair(a);
 		return System.currentTimeMillis()/1000 - startTime;
 	}
 	
 	private Alignment selectInteractive(Alignment maps)
 	{
-		CardinalitySelector s = new CardinalitySelector(maps,2);
-		maps = s.select(0.5);
+		CardinalitySelector s = new CardinalitySelector(2);
+		maps = s.select(maps,0.5);
 		Alignment b = new Alignment();
 		maps.sort();
 		int trueCount = 0;

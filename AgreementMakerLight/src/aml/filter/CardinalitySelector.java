@@ -22,54 +22,32 @@ package aml.filter;
 
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.AML.SelectionType;
 
 public class CardinalitySelector implements Selector
 {
 	
 //Attributes
 	
-	private Alignment maps;
-	private SelectionType type;
 	private int cardinality;
 	
 //Constructors
 		
-	public CardinalitySelector(Alignment a, int card)
+	public CardinalitySelector(int card)
 	{
-		maps = a;
 		cardinality = card;
-		if(card == 1)
-			type = SelectionType.STRICT;
-		else
-			type = SelectionType.MANY;
 	}
 
 //Public Methods
 	
-	/**
-	 * @return the selection type of this Selector
-	 */
-	public SelectionType getSelectionType()
-	{
-		return type;
-	}
-	
-	/**
-	 * Selects matches greedily in descending order of similarity to obtain
-	 * a one-to-one maximal alignment or a near one-to-one alignment
-	 * @param thresh: the minimum similarity threshold
-	 * @param s: the type of selection to carry out
-	 * @return the selected Alignment
-	 */
-	public Alignment select(double thresh)
+	@Override
+	public Alignment select(Alignment a, double thresh)
 	{
 		//Initialize Alignment to return
 		Alignment selected = new Alignment();
 		//Then sort the alignment
-		maps.sort();
+		a.sort();
 		//Then select Mappings in ranking order (by similarity)
-		for(Mapping m : maps)
+		for(Mapping m : a)
 		{
 			//If a Mapping has similarity below the threshold, end the loop
 			if(m.getSimilarity() < thresh)

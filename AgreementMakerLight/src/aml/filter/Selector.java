@@ -21,19 +21,14 @@
 package aml.filter;
 
 import aml.match.Alignment;
-import aml.AML.SelectionType;
 
 public interface Selector
 {
 	/**
-	 * @return the selection type of this Selector
-	 */
-	public SelectionType getSelectionType();
-	
-	/**
 	 * Selects mappings from a given Alignment to obtain a desired cardinality
+	 * @param a: the Alignment to select
 	 * @param thresh: the minimum similarity threshold
 	 * @return the selected Alignment
 	 */
-	public Alignment select(double thresh);
+	public Alignment select(Alignment a, double thresh);
 }

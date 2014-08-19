@@ -469,8 +469,8 @@ public class AML
     	{
     		LexicalMatcher m = new LexicalMatcher();
     		a = m.match(threshold);
-    		RankedSelector s = new RankedSelector(a, sType);
-    		a = s.select(threshold);
+    		RankedSelector s = new RankedSelector(sType);
+    		a = s.select(a, threshold);
     	}
     	if(a.size() >= 1)
     		currentMapping = 0;
@@ -628,8 +628,8 @@ public class AML
     
     public void repair()
     {
-		CardinalityRepairer r = new CardinalityRepairer(a);
-		a = r.repair();
+		CardinalityRepairer r = new CardinalityRepairer();
+		a = r.repair(a);
     	if(a.size() >= 1)
     		currentMapping = 0;
     	else

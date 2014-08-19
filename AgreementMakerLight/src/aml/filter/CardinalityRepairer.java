@@ -42,19 +42,17 @@ public class CardinalityRepairer implements Repairer
 	/**
 	 * Constructs a new CardinalityRepairer
 	 */
-	public CardinalityRepairer(Alignment a)
+	public CardinalityRepairer(){}
+	
+//Public Methods
+	
+	@Override
+	public Alignment repair(Alignment a)
 	{
 		toRepair = a;
 		RepairMap rMap = new RepairMap(a);
 		conflictSets = rMap.getConflictSets();
 		init();
-	}
-	
-//Public Methods
-	
-	@Override
-	public Alignment repair()
-	{
 		if(conflictSets.size() == 0)
 			return new Alignment(toRepair);
 		System.out.println("Repairing alignment");

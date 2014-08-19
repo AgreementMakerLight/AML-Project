@@ -593,7 +593,7 @@ public class RelationshipMap
 					targetTop.add(a);
 			}
 		}
-		//Now we go down the ontologies until we reach a significant
+		//Now we go down the ontologies until we reach a significant branching
 		while(sourceTop.size() < 3)
 		{
 			HashSet<Integer> newTop = new HashSet<Integer>();

@@ -31,49 +31,32 @@ public class RankedSelector implements Selector
 	
 //Attributes
 	
-	private Alignment maps;
 	private SelectionType type;
 	
 //Constructors
 	
-	public RankedSelector(Alignment a)
+	public RankedSelector()
 	{
-		maps = a;
 		AML aml = AML.getInstance();
 		type = aml.getSelectionType();
 	}
 	
-	public RankedSelector(Alignment a, SelectionType s)
+	public RankedSelector(SelectionType s)
 	{
-		maps = a;
 		type = s;
 	}
 
 //Public Methods
 	
-	/**
-	 * @return the selection type of this Selector
-	 */
-	public SelectionType getSelectionType()
-	{
-		return type;
-	}
-	
-	/**
-	 * Selects matches greedily in descending order of similarity to obtain
-	 * a one-to-one maximal alignment or a near one-to-one alignment
-	 * @param thresh: the minimum similarity threshold
-	 * @param s: the type of selection to carry out
-	 * @return the selected Alignment
-	 */
-	public Alignment select(double thresh)
+	@Override
+	public Alignment select(Alignment a, double thresh)
 	{
 		//Initialize Alignment to return
 		Alignment selected = new Alignment();
 		//Then sort the alignment
-		maps.sort();
+		a.sort();
 		//Then select Mappings in ranking order (by similarity)
-		for(Mapping m : maps)
+		for(Mapping m : a)
 		{
 			//If a Mapping has similarity below the threshold, end the loop
 			if(m.getSimilarity() < thresh)

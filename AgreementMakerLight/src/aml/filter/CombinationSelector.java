@@ -27,30 +27,27 @@ import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.AML.SelectionType;
 
-public class CombinationSelector
+public class CombinationSelector implements Selector
 {
 	
 //Attributes
 	
-	private Alignment maps;
 	private Alignment aux;
 	private SelectionType type;
 	private double weight;
 	
 //Constructors
 	
-	public CombinationSelector(Alignment maps, Alignment aux, double w)
+	public CombinationSelector(Alignment aux, double w)
 	{
-		this.maps = maps;
 		this.aux = aux;
 		AML aml = AML.getInstance();
 		type = aml.getSelectionType();
 		weight = w;
 	}
 	
-	public CombinationSelector(Alignment maps, Alignment aux, SelectionType s, double w)
+	public CombinationSelector(Alignment aux, SelectionType s, double w)
 	{
-		this.maps = maps;
 		this.aux = aux;
 		type = s;
 		weight = w;
@@ -72,10 +69,10 @@ public class CombinationSelector
 	 * @param thresh: the minimum similarity threshold
 	 * @return the selected Alignment
 	 */
-	public Alignment select(double thresh)
+	public Alignment select(Alignment a, double thresh)
 	{
 		Alignment combined = new Alignment();
-		for(Mapping m : maps)
+		for(Mapping m : a)
 		{
 			int sId = m.getSourceId();
 			int tId = m.getTargetId();
@@ -87,7 +84,7 @@ public class CombinationSelector
 		Alignment selected = new Alignment();
 		for(Mapping m : combined)
 		{
-			Mapping n = maps.get(m.getSourceId(), m.getTargetId());
+			Mapping n = a.get(m.getSourceId(), m.getTargetId());
 			if(n.getSimilarity() < thresh)
 				continue;
 			if(type.equals(SelectionType.MANY) ||

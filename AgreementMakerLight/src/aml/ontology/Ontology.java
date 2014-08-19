@@ -85,6 +85,8 @@ public class Ontology
 	private WordLexicon wLex;
 	//Its map of cross-references
 	private ReferenceMap refs;
+	//Its set of obsolete classes
+	private HashSet<Integer> obsolete;
 	
 	//Global variables data structures
 	private AML aml;
@@ -313,6 +315,15 @@ public class Ontology
 	
 	/**
 	 * @param index: the index of the URI in the ontology
+	 * @return whether the index corresponds to an obsolete class
+	 */
+	public boolean isObsoleteClass(int index)
+	{
+		return obsolete.contains(index);
+	}
+	
+	/**
+	 * @param index: the index of the URI in the ontology
 	 * @return whether the index corresponds to a property
 	 */
 	public boolean isProperty(int index)
@@ -344,6 +355,7 @@ public class Ontology
 		useReasoner = aml.useReasoner();
 		uris = aml.getURIMap();
 		rm = aml.getRelationshipMap();
+		obsolete = new HashSet<Integer>();
 		
 		//Get the URI of the ontology
 		uri = o.getOntologyID().getOntologyIRI().toString();
@@ -434,6 +446,18 @@ public class Ontology
 					String xRef = val.getLiteral();
 					if(!xRef.startsWith("http"))
 						refs.add(id,xRef.replace(':','_'));
+            	}
+            	//Deprecated classes are flagged as obsolete
+            	else if(propUri.endsWith("deprecated") &&
+            			annotation.getValue() instanceof OWLLiteral)
+            	{
+            		OWLLiteral val = (OWLLiteral) annotation.getValue();
+            		if(val.isBoolean())
+            		{
+            			boolean deprecated = val.parseBoolean();
+            			if(deprecated)
+            				obsolete.add(id);
+            		}
             	}
 	        }
 		}
@@ -623,7 +647,14 @@ public class Ontology
 				{
 					parent = uris.getIndex(par.getIRI().toString());
 					if(parent > -1)
+					{
 						rm.addDirectSubclass(child, parent);
+						String name = indexName.get(parent);
+						if(name.contains("Obsolete") || name.contains("obsolete") ||
+								name.contains("Retired") || name.contains ("retired") ||
+								name.contains("Deprecated") || name.contains("deprecated"))
+							obsolete.add(child);
+					}
 				}
 				//Get its equivalent classes using the reasoner
 				Node<OWLClass> equivs = reasoner.getEquivalentClasses(c);
@@ -918,6 +949,11 @@ public class Ontology
 					rm.addDirectSubclass(parent, child);
 				else
 					rm.addDirectSubclass(child, parent);
+				String name = indexName.get(parent);
+				if(name.contains("Obsolete") || name.contains("obsolete") ||
+						name.contains("Retired") || name.contains ("retired") ||
+						name.contains("Deprecated") || name.contains("deprecated"))
+					obsolete.add(child);
 			}
 			else
 				rm.addEquivalentClass(child, parent);

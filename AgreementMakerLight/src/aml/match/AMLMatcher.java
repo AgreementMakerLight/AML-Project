@@ -76,8 +76,8 @@ public class AMLMatcher implements PrimaryMatcher
 		}
 		ParametricStringMatcher sm = new ParametricStringMatcher();
 		a.addAll(sm.extendAlignment(a, thresh));
-		RankedSelector s = new RankedSelector(a, sType);
-		a = s.select(thresh);
+		RankedSelector s = new RankedSelector(sType);
+		a = s.select(a, thresh);
 		if(matchProps)
 		{
 			PropertyMatcher pm = new PropertyMatcher(bkSources.contains("WordNet"));
@@ -85,8 +85,8 @@ public class AMLMatcher implements PrimaryMatcher
 		}
 		if(repair)
 		{
-			CardinalityRepairer rep = new CardinalityRepairer(a);
-			a = rep.repair();
+			CardinalityRepairer rep = new CardinalityRepairer();
+			a = rep.repair(a);
 		}
 		return a;
 	}

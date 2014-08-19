@@ -27,7 +27,8 @@ public interface Repairer
 {
 	/**
 	 * Repairs a given Alignment to obtain a (more) coherent Alignment
+	 * @param a: the Alignment to repair
 	 * @return the repaired Alignment
 	 */
-	public Alignment repair();
+	public Alignment repair(Alignment a);
 }
