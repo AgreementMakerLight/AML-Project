@@ -26,6 +26,7 @@
 package aml.translate;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
 
@@ -47,21 +48,32 @@ public class Translator
 	 */
 	public Translator()
 	{
-		try
+		File f = new File("store/microsoft-translator-id");
+		if(f.exists())
 		{
-			BufferedReader inStream = new BufferedReader(new FileReader("store/microsoft-translator-id"));
-			String id = inStream.readLine();
-			String password = inStream.readLine();
-			Translate.setClientId(id);
-			Translate.setClientSecret(password);
-			authenticated = true;
+			try
+			{
+				BufferedReader inStream = new BufferedReader(new FileReader(f));
+				String id = inStream.readLine();
+				String password = inStream.readLine();
+				Translate.setClientId(id);
+				Translate.setClientSecret(password);
+				authenticated = true;
+				inStream.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("Error: could not authenticate Microsoft Translator!");
+				System.out.println(e.getMessage());
+				authenticated = false;
+			}
 		}
-		catch(Exception e)
+		else
 		{
 			System.out.println("Error: could not authenticate Microsoft Translator!");
-			e.printStackTrace();
 			authenticated = false;
 		}
+		
 		lang = new HashMap<String,Language>();
 		lang.put("cn", Language.CHINESE_SIMPLIFIED);
 		lang.put("cz", Language.CZECH);

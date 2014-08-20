@@ -12,11 +12,12 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Selection algorithm that reduces an Alignment to the desired cardinality    *
-* making use of an auxiliary Alignment to weigh in its similarities.          *
+* Selection algorithm that reduces an Alignment to the desired cardinality by *
+* performing ranked selection according to the ranking in a given auxiliary   *
+* Alignment.                                                                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 07-07-2014                                                            *
+* @date 20-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.filter;
@@ -27,66 +28,41 @@ import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.AML.SelectionType;
 
-public class CombinationSelector implements Selector
+public class RankedCoSelector implements Selector
 {
 	
 //Attributes
 	
 	private Alignment aux;
 	private SelectionType type;
-	private double weight;
 	
 //Constructors
 	
-	public CombinationSelector(Alignment aux, double w)
+	public RankedCoSelector(Alignment aux)
 	{
 		this.aux = aux;
-		AML aml = AML.getInstance();
-		type = aml.getSelectionType();
-		weight = w;
+		type = AML.getInstance().getSelectionType();
 	}
 	
-	public CombinationSelector(Alignment aux, SelectionType s, double w)
+	public RankedCoSelector(Alignment aux, SelectionType s)
 	{
 		this.aux = aux;
 		type = s;
-		weight = w;
 	}
 
 //Public Methods
 	
-	/**
-	 * @return the selection type of this Selector
-	 */
-	public SelectionType getSelectionType()
-	{
-		return type;
-	}
-	
-	/**
-	 * Selects mappings based on the combined similarity of
-	 * the maps Alignment plus the aux Alignment
-	 * @param thresh: the minimum similarity threshold
-	 * @return the selected Alignment
-	 */
+	@Override
 	public Alignment select(Alignment a, double thresh)
 	{
-		Alignment combined = new Alignment();
-		for(Mapping m : a)
-		{
-			int sId = m.getSourceId();
-			int tId = m.getTargetId();
-			double sim1 = m.getSimilarity();
-			double sim2 = aux.getSimilarity(sId, tId);
-			combined.add(sId,tId,(sim1*weight)+(sim2*(1-weight)));
-		}
-		combined.sort();
+		aux.sort();
 		Alignment selected = new Alignment();
-		for(Mapping m : combined)
+		for(Mapping m : aux)
 		{
-			Mapping n = a.get(m.getSourceId(), m.getTargetId());
-			if(n.getSimilarity() < thresh)
+			double sim = a.getSimilarity(m.getSourceId(), m.getTargetId());
+			if(sim < thresh)
 				continue;
+			Mapping n = new Mapping(m.getSourceId(), m.getTargetId(), sim);
 			if(type.equals(SelectionType.MANY) ||
 					(type.equals(SelectionType.STRICT) && !selected.containsConflict(n)) ||
 					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(n)))
@@ -98,7 +74,7 @@ public class CombinationSelector implements Selector
 				int targetId = n.getTargetId();
 				int targetCard = selected.getTargetMappings(targetId).size();
 				if((sourceCard < 2 && targetCard < 2 && n.getSimilarity() > 0.75) ||
-						!selected.containsBetterMapping(m))
+						!selected.containsBetterMapping(n))
 					selected.add(new Mapping(n));
 			}
 		}

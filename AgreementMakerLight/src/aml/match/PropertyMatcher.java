@@ -17,8 +17,8 @@
 * to check for domain and range matches. Can use WordNet to boost the name    *
 * similarity.                                                                 *
 *                                                                             *
-* @author Daniel Faria                                                        *
-* @date 13-08-2014                                                            *
+* @author Daniel Faria, Catarina Martins                                      *
+* @date 20-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -124,9 +124,7 @@ public class PropertyMatcher
 		}
 		
 		//Finally, we compute the name similarity between the properties
-		String sName = s.getName();
-		String tName = t.getName();
-		return nameSimilarity(sName,tName);
+		return nameSimilarity(s,t);
 	}
 
 	//Checks if two lists of uris match (i.e., have Jaccard similarity above 50%)
@@ -178,51 +176,70 @@ public class PropertyMatcher
 	//When using WordNet, the WordNet similarity is given by
 	//the Jaccard index between all WordNet synonyms, and is
 	//returned instead of the name similarity if it is higher
-	private double nameSimilarity(String s, String t)
+	private double nameSimilarity(Property s, Property t)
 	{
-		//If the names are exactly equal, the similarity is 1
-		if(s.equals(t))
+		String sourceName = s.getName();
+		String targetName = t.getName();
+		
+		String sourceTrans = s.getTranslation();
+		String targetTrans = t.getTranslation();
+		
+		if(sourceName.equals(targetName) ||
+				sourceTrans.equals(targetName) ||
+				sourceName.equals(targetTrans))
 			return 1.0;
+		
+		double sim1 = nameSimilarity(sourceName,targetName, wn != null);
+		
+		double sim2 = 0.0;
+		if(!sourceTrans.equals(""))
+			sim2 = nameSimilarity(sourceTrans,targetName, wn != null);
+		if(!targetTrans.equals(""))
+			sim2 = Math.max(sim2,nameSimilarity(sourceName,targetTrans, wn != null));
+		
+		return Math.max(sim1,sim2);
+	}
+				
+	private double nameSimilarity(String n1, String n2, boolean useWordNet)
+	{
 		//Split the source name into words
-		String[] sW = s.split(" ");
+		String[] sW = n1.split(" ");
 		HashSet<String> sWords = new HashSet<String>();
 		HashSet<String> sSyns = new HashSet<String>();
+		//Split the target name into words
+		String[] tW = n2.split(" ");
+		HashSet<String> tWords = new HashSet<String>();
+		HashSet<String> tSyns = new HashSet<String>();
+
 		for(String w : sW)
 		{
 			sWords.add(w);
 			sSyns.add(w);
 			//And compute the WordNet synonyms of each word
-			if(wn != null && w.length() > 3)
+			if(useWordNet && w.length() > 3)
 				sSyns.addAll(wn.getAllWordForms(w));
 		}
-		//Split the target name into words
-		String[] tW = t.split(" ");
-		HashSet<String> tWords = new HashSet<String>();
-		HashSet<String> tSyns = new HashSet<String>();
+		
 		for(String w : tW)
 		{
 			tWords.add(w);
 			//And compute the WordNet synonyms of each word
-			if(wn != null && w.length() > 3)
+			if(useWordNet && w.length() > 3)
 				tSyns.addAll(wn.getAllWordForms(w));
 		}
+		
 		//Compute the Jaccard word similarity between the properties
 		double wordSim = Similarity.jaccard(sWords,tWords)*0.9;
-		//Compute their String similarity
-		double stringSim = ISub.stringSimilarity(s,t)*0.9;
+		//and the String similarity
+		double simString =  ISub.stringSimilarity(n1,n2)*0.9;
 		//Combine the two
-		double sim = 1 - ((1-wordSim) * (1-stringSim));
-		//If we're using WordNet
-		if(wn != null)
-		{
-			//Check if the WordNet similarity
-			double wordNetSim = Similarity.jaccard(sSyns,tSyns)*0.9;
-			//Is greater than the name similarity
-			if(wordNetSim > sim)
-				//And if so, return it
-				sim = wordNetSim;
-		}
-		//Otherwise return the name similarity
+		double sim = 1 - ((1-wordSim) * (1-simString));
+		//Check if the WordNet similarity
+		double wordNetSim = Similarity.jaccard(sSyns,tSyns)*0.9;
+		//Is greater than the name similarity
+		if(wordNetSim > sim)
+			//And if so, return it
+			sim = wordNetSim;
 		return sim;
 	}
 }

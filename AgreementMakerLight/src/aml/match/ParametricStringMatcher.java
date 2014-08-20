@@ -47,7 +47,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	private LanguageSetting lSet;
 	private HashSet<String> languages;
 	private String measure = "ISub";
-	private final double CORRECTION = 0.8;
+	private final double CORRECTION = 0.80;
 
 //Constructors
 	

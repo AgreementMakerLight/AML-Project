@@ -26,11 +26,12 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.AML.WordMatchStrategy;
+import aml.ontology.RelationshipMap;
 import aml.ontology.WordLexicon;
 import aml.util.Table2Map;
 import aml.util.Table2Set;
 
-public class WordMatcher implements PrimaryMatcher, Rematcher
+public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 {
 
 //Attributes
@@ -84,6 +85,24 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	}
 	
 //Public Methods
+	
+	@Override
+	public Alignment extendAlignment(Alignment a, double thresh)
+	{
+		Alignment ext = extendChildrenAndParents(a,thresh);
+		Alignment aux = extendChildrenAndParents(ext,thresh);
+		int size = 0;
+		for(int i = 0; i < 10 && ext.size() > size; i++)
+		{
+			size = ext.size();
+			for(Mapping m : aux)
+				if(!a.containsConflict(m))
+					ext.add(m);
+			aux = extendChildrenAndParents(aux,thresh);
+		}
+		ext.addAll(extendSiblings(a,thresh));
+		return ext;
+	}
 	
 	@Override
 	public Alignment match(double thresh)
@@ -157,6 +176,99 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	}
 	
 //Private
+	
+	//Computes the word-based (bag-of-words) similarity between two
+	//classes, for use by rematch()
+	private double classSimilarity(int sourceId, int targetId)
+	{
+		Set<String> sourceWords = sourceLex.getWords(sourceId);
+		Set<String> targetWords = targetLex.getWords(targetId);
+		double intersection = 0.0;
+		double union = sourceLex.getClassEC(sourceId) + 
+				targetLex.getClassEC(targetId);
+		for(String w : sourceWords)
+		{
+			double weight = sourceLex.getWordEC(w) * sourceLex.getWordWeight(w,sourceId);
+			if(targetWords.contains(w))
+				intersection += Math.sqrt(weight * targetLex.getWordEC(w) *
+						targetLex.getWordWeight(w,targetId));
+		}			
+		union -= intersection;
+		return intersection / union;
+	}
+	
+	private Alignment extendChildrenAndParents(Alignment a, double thresh)
+	{
+		AML aml = AML.getInstance();
+		RelationshipMap rels = aml.getRelationshipMap();
+		
+		Alignment maps = new Alignment();
+		for(int i = 0; i < a.size(); i++)
+		{
+			Mapping input = a.get(i);
+			Set<Integer> sourceChildren = rels.getChildren(input.getSourceId());
+			Set<Integer> targetChildren = rels.getChildren(input.getTargetId());
+			for(Integer s : sourceChildren)
+			{
+				if(a.containsSource(s))
+					continue;
+				for(Integer t : targetChildren)
+				{
+					if(a.containsTarget(t))
+						continue;
+					Mapping m = mapTwoClasses(s, t);
+					if(m.getSimilarity() >= thresh)
+						maps.add(m);
+				}
+			}
+			Set<Integer> sourceParents = rels.getParents(input.getSourceId());
+			Set<Integer> targetParents = rels.getParents(input.getTargetId());
+			for(Integer s : sourceParents)
+			{
+				if(a.containsSource(s))
+					continue;
+				for(Integer t : targetParents)
+				{
+					if(a.containsTarget(t))
+						continue;
+					Mapping m = mapTwoClasses(s, t);
+					if(m.getSimilarity() >= thresh)
+						maps.add(m);
+				}
+			}
+		}
+
+		return maps;
+	}
+	
+	private Alignment extendSiblings(Alignment a, double thresh)
+	{		
+		AML aml = AML.getInstance();
+		RelationshipMap rels = aml.getRelationshipMap();
+		Alignment maps = new Alignment();
+		for(int i = 0; i < a.size(); i++)
+		{
+			Mapping input = a.get(i);
+			Set<Integer> sourceSiblings = rels.getAllSiblings(input.getSourceId());
+			Set<Integer> targetSiblings = rels.getAllSiblings(input.getTargetId());
+			if(sourceSiblings.size() > 200 || targetSiblings.size() > 200)
+				continue;
+			for(Integer s : sourceSiblings)
+			{
+				if(a.containsSource(s))
+					continue;
+				for(Integer t : targetSiblings)
+				{
+					if(a.containsTarget(t))
+						continue;
+					Mapping m = mapTwoClasses(s, t);
+					if(m.getSimilarity() >= thresh)
+						maps.add(m);
+				}
+			}
+		}
+		return maps;
+	}
 	
 	//Matches two WordLexicon blocks by class.
 	//Used by match() method either to compute the final BY_CLASS alignment
@@ -246,25 +358,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		return new Mapping(sourceId,targetId,sim);
 	}
 
-	//Computes the word-based (bag-of-words) similarity between two
-	//classes, for use by rematch()
-	private double classSimilarity(int sourceId, int targetId)
-	{
-		Set<String> sourceWords = sourceLex.getWords(sourceId);
-		Set<String> targetWords = targetLex.getWords(targetId);
-		double intersection = 0.0;
-		double union = sourceLex.getClassEC(sourceId) + 
-				targetLex.getClassEC(targetId);
-		for(String w : sourceWords)
-		{
-			double weight = sourceLex.getWordEC(w) * sourceLex.getWordWeight(w,sourceId);
-			if(targetWords.contains(w))
-				intersection += Math.sqrt(weight * targetLex.getWordEC(w) *
-						targetLex.getWordWeight(w,targetId));
-		}			
-		union -= intersection;
-		return intersection / union;
-	}
+
 	
 	//Computes the maximum word-based (bag-of-words) similarity between
 	//two classes' names, for use by both match() and rematch()

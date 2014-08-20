@@ -663,6 +663,63 @@ public class AML
 	{
 		a = maps;
 	}
+	
+	/**
+	 * 	Computes and sets the language setting of the matching problem
+	 *  based on the language overlap between the input ontologies
+	 */
+	public void setLanguageSetting()
+	{
+		//Get the source ontology language counts
+		HashMap<String,Integer> sLangs = new HashMap<String,Integer>();
+		int sTotal = 0;
+		double sMax = 0.0;
+		String sLang = "";
+		for(String l : source.getLexicon().getLanguages())
+		{
+			if(!l.equals("Formula"))
+			{
+				int count = source.getLexicon().getLanguageCount(l);
+				sLangs.put(l, count);
+				sTotal += count;
+				if(count > sMax)
+				{
+					sMax = count;
+					sLang = l;
+				}
+			}
+		}
+		sMax /= sTotal;
+		//Do the same for the target ontology
+		HashMap<String,Integer> tLangs = new HashMap<String,Integer>();
+		int tTotal = 0;
+		double tMax = 0.0;
+		String tLang = "";
+		for(String l : target.getLexicon().getLanguages())
+		{
+			if(!l.equals("Formula"))
+			{
+				int count = target.getLexicon().getLanguageCount(l);
+				tLangs.put(l, count);
+				tTotal += count;
+				if(count > tMax)
+				{
+					tMax = count;
+					tLang = l;
+				}
+			}
+		}
+		tMax /= (1.0*tTotal);
+		//If both ontologies have the same main language, set to single language
+		if(sLang.equals(tLang) && sMax > 0.8 && tMax > 0.8)
+			lang = LanguageSetting.SINGLE;
+		//If the main language of each ontology is not present in the other, set to translate
+		else if(!sLangs.containsKey(tLang) && !tLangs.containsKey(sLang))
+			lang = LanguageSetting.TRANSLATE;
+		//Otherwise, set to multi-language
+		else
+			lang = LanguageSetting.MULTI;
+	}
     
     public void setMatcher(MatchingAlgorithm m)
 	{
@@ -805,61 +862,6 @@ public class AML
 		return sources;
 	}
 
-	//Computes and sets the language setting of the matching problem
-	//based on the language overlap between the input ontologies
-	private void setLanguageSetting()
-	{
-		//Get the source ontology language counts
-		HashMap<String,Integer> sLangs = new HashMap<String,Integer>();
-		int sTotal = 0;
-		double sMax = 0.0;
-		String sLang = "";
-		for(String l : source.getLexicon().getLanguages())
-		{
-			if(!l.equals("Formula"))
-			{
-				int count = source.getLexicon().getLanguageCount(l);
-				sLangs.put(l, count);
-				sTotal += count;
-				if(count > sMax)
-				{
-					sMax = count;
-					sLang = l;
-				}
-			}
-		}
-		sMax /= sTotal;
-		//Do the same for the target ontology
-		HashMap<String,Integer> tLangs = new HashMap<String,Integer>();
-		int tTotal = 0;
-		double tMax = 0.0;
-		String tLang = "";
-		for(String l : target.getLexicon().getLanguages())
-		{
-			if(!l.equals("Formula"))
-			{
-				int count = target.getLexicon().getLanguageCount(l);
-				tLangs.put(l, count);
-				tTotal += count;
-				if(count > tMax)
-				{
-					tMax = count;
-					tLang = l;
-				}
-			}
-		}
-		tMax /= (1.0*tTotal);
-		//If both ontologies have the same main language, set to single language
-		if(sLang.equals(tLang) && sMax > 0.8 && tMax > 0.8)
-			lang = LanguageSetting.SINGLE;
-		//If the main language of each ontology is not present in the other, set to translate
-		else if(!sLangs.containsKey(tLang) && !tLangs.containsKey(sLang))
-			lang = LanguageSetting.TRANSLATE;
-		//Otherwise, set to multi-language
-		else
-			lang = LanguageSetting.MULTI;
-	}
-	
 	//Computes and sets the size category of the matching problem
 	//based on the number of classes of the input ontologies
 	private void setSizeCategory()

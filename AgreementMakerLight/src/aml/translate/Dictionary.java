@@ -34,6 +34,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 
+
+import aml.AML;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.Property;
@@ -143,8 +145,12 @@ public class Dictionary
 				for(Integer i : l.getClassesWithLanguage(n,sourceLang))
 					l.add(i, trans, TYPE, targetLang, SOURCE, l.getWeight(n, i)*CONFIDENCE);
 		}
-		try	{ outStream.close(); }
-		catch(IOException e) {/*Do nothing*/}
+		if(outStream != null)
+		{
+			try	{ outStream.close(); }
+			catch(IOException e) {/*Do nothing*/}
+		}
+		AML.getInstance().setLanguageSetting();
 	}
 	
 	/**
@@ -201,8 +207,11 @@ public class Dictionary
 			if(!trans.equals(""))
 				p.setTranslation(trans);
 		}
-		try	{ outStream.close(); }
-		catch(IOException e) {/*Do nothing*/}
+		if(outStream != null)
+		{
+			try	{ outStream.close(); }
+			catch(IOException e) {/*Do nothing*/}
+		}
 	}
 	
 //Private methods
@@ -230,6 +239,7 @@ public class Dictionary
 				dictionary.put(words[0], words[1]);
 			}
 			haveDictionary = true;
+			inStream.close();
 		}
 		//This will happen if the dictionary file was not created yet,
 		//in which case we'll be in translator mode only
