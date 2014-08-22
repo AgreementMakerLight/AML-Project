@@ -25,7 +25,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.AML.LanguageSetting;
+import aml.enumeration.LanguageSetting;
 import aml.ontology.Lexicon;
 import aml.util.StringParser;
 

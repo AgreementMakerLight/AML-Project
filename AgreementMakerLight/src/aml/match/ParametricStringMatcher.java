@@ -30,7 +30,7 @@ import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
 import aml.AML;
-import aml.AML.LanguageSetting;
+import aml.enumeration.LanguageSetting;
 import aml.ontology.Lexicon;
 import aml.ontology.RelationshipMap;
 import aml.util.ISub;

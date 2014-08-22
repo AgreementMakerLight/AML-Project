@@ -51,7 +51,7 @@ import org.openide.util.Lookup;
 import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.AML.MappingRelation;
+import aml.enumeration.MappingRelation;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import processing.core.PApplet;

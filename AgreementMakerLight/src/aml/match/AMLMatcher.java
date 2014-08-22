@@ -23,7 +23,7 @@ package aml.match;
 import java.util.Vector;
 
 import aml.AML;
-import aml.AML.SelectionType;
+import aml.enumeration.SelectionType;
 import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 

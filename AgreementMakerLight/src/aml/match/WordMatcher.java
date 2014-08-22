@@ -16,7 +16,7 @@
 * using a weighted Jaccard index.                                             *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
+* @date 22-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -25,7 +25,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.AML.WordMatchStrategy;
+import aml.enumeration.WordMatchStrategy;
 import aml.ontology.RelationshipMap;
 import aml.ontology.WordLexicon;
 import aml.util.Table2Map;

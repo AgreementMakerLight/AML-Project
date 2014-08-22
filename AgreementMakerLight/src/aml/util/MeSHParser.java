@@ -16,7 +16,7 @@
 * WARNING: Requires the MeSH xml and dtd files, which are not released with   *
 * AgreementMakerLight                                                         * 
 *                                                                             *
-* @author Daniel Faria, Cláudia Duarte                                        *
+* @author Daniel Faria, Clï¿½udia Duarte                                        *
 * @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
@@ -30,6 +30,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import aml.enumeration.LexicalType;
 import aml.ontology.Lexicon;
 
 public class MeSHParser
@@ -55,11 +56,11 @@ public class MeSHParser
 				Element c = (Element)conc.next();
 				String conceptName = c.element("ConceptName").elementText("String");
 				concepts.add(conceptName);
-				lexicon.add(index, conceptName, "label", "", 0.90);
+				lexicon.add(index, conceptName, LexicalType.LABEL, "", 0.90);
 				
 				String casN1Name = c.elementText("CASN1Name");
 				if(casN1Name != null)
-					lexicon.add(index, casN1Name, "exactSynonym", "", 0.85);
+					lexicon.add(index, casN1Name, LexicalType.FORMULA, "", 0.85);
 					
 				Element termList = c.element("TermList");
 				Iterator<?> terms = termList.elementIterator("Term");
@@ -68,7 +69,7 @@ public class MeSHParser
 					Element t = (Element)terms.next();
 					String termName = t.elementText("String");
 					if(!conceptName.equals(termName))
-						lexicon.add(index, termName, "exactSynonym", "", 0.85);
+						lexicon.add(index, termName, LexicalType.EXACT_SYNONYM, "", 0.85);
 				}
 				index++;
 			}

@@ -22,11 +22,9 @@
 ******************************************************************************/
 package aml.filter;
 
-
-import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.AML.SelectionType;
+import aml.enumeration.SelectionType;
 
 public class RankedCoSelector implements Selector
 {
@@ -41,7 +39,7 @@ public class RankedCoSelector implements Selector
 	public RankedCoSelector(Alignment aux)
 	{
 		this.aux = aux;
-		type = AML.getInstance().getSelectionType();
+		type = SelectionType.getSelectionType(aux);
 	}
 	
 	public RankedCoSelector(Alignment aux, SelectionType s)

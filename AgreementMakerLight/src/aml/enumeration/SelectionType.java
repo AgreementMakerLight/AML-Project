@@ -12,44 +12,53 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Parses the UMLS MRCONSO.RRF file into a Lexicon.                            *
-* WARNING: Requires the UMLS MRCONSO.RRF file, which is not released with     *
-* AgreementMakerLight                                                         * 
+* Lists the Selection Types.                                                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
+* @date 22-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
-package aml.util;
+package aml.enumeration;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import aml.match.Alignment;
 
-import aml.enumeration.LexicalType;
-import aml.ontology.Lexicon;
-
-public class UMLSParser
+public enum SelectionType
 {
-	public static void main(String[] args) throws Exception
+   	STRICT ("Strict 1-to-1"),
+   	PERMISSIVE ("Permissive 1-to-1"),
+   	HYBRID ("Hybrid 1-to-1"),
+   	MANY ("N-to-N");
+	    	
+   	final String value;
+    	
+   	SelectionType(String s)
+   	{
+   		value = s;
+   	}
+	    	
+   	public String toString()
+   	{
+   		return value;
+   	}
+   	
+	public static SelectionType getSelectionType(Alignment a)
 	{
-		Table2Set<Integer,String> termSources = new Table2Set<Integer,String>();
-		Lexicon lexicon = new Lexicon();
-		
-		BufferedReader inStream = new BufferedReader(new FileReader("store/knowledge/MRCONSO.RRF"));
-		String line;
-		while((line = inStream.readLine()) != null)
-		{
-			String[] cols = line.split("\\|");
-			int id = Integer.parseInt(cols[0].substring(1));
-			String source = cols[11];
-			String name = cols[14];
-			LexicalType type = LexicalType.LABEL;
-			if(termSources.contains(id, source))
-				type = LexicalType.EXACT_SYNONYM;
-			double weight = type.getDefaultWeight();
-			lexicon.add(id,name,type,source,weight);
-		}
-		inStream.close();
-		lexicon.save("store/knowledge/UMLS.lexicon");
+		double cardinality = a.cardinality();
+		if(cardinality > 1.4)
+			return SelectionType.MANY;
+		else if(cardinality > 1.1)
+			return SelectionType.HYBRID;
+		else if(cardinality > 1.02)
+			return SelectionType.PERMISSIVE;
+		else
+			return SelectionType.STRICT;
+	}
+	    	
+	public static SelectionType parseSelector(String selector)
+	{
+		for(SelectionType s : SelectionType.values())
+			if(selector.equals(s.toString()))
+				return s;
+		return null;
 	}
 }

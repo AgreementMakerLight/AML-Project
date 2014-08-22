@@ -23,8 +23,7 @@ package aml.filter;
 
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.AML;
-import aml.AML.SelectionType;
+import aml.enumeration.SelectionType;
 
 public class RankedSelector implements Selector
 {
@@ -37,8 +36,7 @@ public class RankedSelector implements Selector
 	
 	public RankedSelector()
 	{
-		AML aml = AML.getInstance();
-		type = aml.getSelectionType();
+		type = null;
 	}
 	
 	public RankedSelector(SelectionType s)
@@ -51,6 +49,8 @@ public class RankedSelector implements Selector
 	@Override
 	public Alignment select(Alignment a, double thresh)
 	{
+		if(type == null)
+			type = SelectionType.getSelectionType(a);
 		//Initialize Alignment to return
 		Alignment selected = new Alignment();
 		//Then sort the alignment

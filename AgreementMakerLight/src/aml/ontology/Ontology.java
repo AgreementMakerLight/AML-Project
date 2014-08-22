@@ -57,8 +57,8 @@ import uk.ac.manchester.cs.owl.owlapi.OWLDataCardinalityRestrictionImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataHasValueImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataSomeValuesFromImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLObjectCardinalityRestrictionImpl;
-
 import aml.AML;
+import aml.enumeration.LexicalType;
 import aml.util.StringParser;
 import aml.util.Table2Map;
 
@@ -375,7 +375,7 @@ public class Ontology
 	private void getClasses(OWLOntology o)
 	{
 		//The Lexical type and weight
-		String type;
+		LexicalType type;
 		double weight;
 		//The label property
 		OWLAnnotationProperty label = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
@@ -397,28 +397,27 @@ public class Ontology
 			//If the local name is not an alphanumeric code, add it to the lexicon
 			if(!StringParser.isNumericId(name))
 			{
-				type = "localName";
-				weight = aml.getLexicalWeight(type);
-				lex.add(id, name, type, "", weight);
+				type = LexicalType.LOCAL_NAME;
+				weight = type.getDefaultWeight();
+				lex.add(id, name, "en", type, "", weight);
 			}
 			//Now get the class's annotations
             for(OWLAnnotation annotation : c.getAnnotations(o))
             {
             	//Labels and synonyms go to the Lexicon
             	String propUri = annotation.getProperty().getIRI().toString();
-            	type = aml.getLexicalType(propUri);
-            	if(!type.equals(""))
+            	type = LexicalType.getLexicalType(propUri);
+            	if(type != null)
             	{
-	            	weight = aml.getLexicalWeight(type);
+	            	weight = type.getDefaultWeight();
 	            	if(annotation.getValue() instanceof OWLLiteral)
 	            	{
 	            		OWLLiteral val = (OWLLiteral) annotation.getValue();
 	            		name = val.getLiteral();
 	            		String lang = val.getLang();
 	            		if(lang.equals(""))
-	            			lex.add(id, name, type, "", weight);
-	            		else
-		            		lex.add(id, name, lang, type, "", weight);
+	            			lang = "en";
+	            		lex.add(id, name, lang, type, "", weight);
 		            }
 	            	else if(annotation.getValue() instanceof IRI)
 	            	{
@@ -431,9 +430,8 @@ public class Ontology
 	                       		name = val.getLiteral();
 	                       		String lang = val.getLang();
 	    	            		if(lang.equals(""))
-	    	            			lex.add(id, name, type, "", weight);
-	    	            		else
-	    		            		lex.add(id, name, lang, type, "", weight);
+	    	            			lang = "en";
+    		            		lex.add(id, name, lang, type, "", weight);
 	                       	}
 	            		}
 	            	}

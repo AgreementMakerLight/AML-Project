@@ -22,7 +22,7 @@
 package aml.match;
 
 import aml.AML;
-import aml.AML.SelectionType;
+import aml.enumeration.SelectionType;
 import aml.filter.CardinalitySelector;
 import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;

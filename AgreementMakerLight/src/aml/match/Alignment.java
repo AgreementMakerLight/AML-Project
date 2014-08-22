@@ -42,7 +42,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
-import aml.AML.MappingRelation;
+import aml.enumeration.MappingRelation;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;

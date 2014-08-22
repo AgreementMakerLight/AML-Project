@@ -26,11 +26,14 @@ package aml;
 import java.io.File;
 import java.io.FileFilter;
 import java.net.URI;
-import java.util.HashMap;
 import java.util.Vector;
 
 import org.apache.log4j.PropertyConfigurator;
 
+import aml.enumeration.LanguageSetting;
+import aml.enumeration.MatchingAlgorithm;
+import aml.enumeration.SelectionType;
+import aml.enumeration.SizeCategory;
 import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 import aml.match.AMLMatcher;
@@ -65,9 +68,6 @@ public class AML
 	private Alignment a;
 	private Alignment ref;
 	private String evaluation;
-	//Lexical types and weights
-	private final String[] LEXICAL_TYPES = {"localName", "label", "exactSynonym", "otherSynonym"};
-	private HashMap<String,Double> typeWeights;
 	//Background knowledge path and sources
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources;
@@ -91,167 +91,11 @@ public class AML
     private boolean matchProperties = false;
 	private double threshold = 0.6;
 	
-//Enumerations
-
-	/**
-	 * Lists the Language Settings
-	 */
-	public enum LanguageSetting
-	{
-	    SINGLE ("Single-Language Ontologies"),
-	    MULTI ("Multi-Language Ontologies"),
-	    TRANSLATE ("Different-Language Ontologies");
-	    
-	    String label;
-	    
-	    LanguageSetting(String s)
-	    {
-	    	label = s;
-	    }
-	    
-	    public String toString()
-	    {
-	    	return label;
-	    }
-	}
-	
-	/**
-	 * Lists the mapping relationships
-	 */
-	public enum MappingRelation
-	{
-    	EQUIVALENCE	("="),
-    	SUPERCLASS	(">"),
-    	SUBCLASS	("<"),
-    	OVERLAP		("^"),
-    	UNKNOWN		("?");
-    	
-    	private String representation;
-    	
-    	private MappingRelation(String rep)
-    	{
-    		representation = rep;
-    	}
-    	
-    	public MappingRelation inverse()
-    	{
-    		if(this.equals(SUBCLASS))
-    			return SUPERCLASS;
-    		else if(this.equals(SUPERCLASS))
-    			return SUBCLASS;
-    		else
-    			return this;
-    	}
-    	
-    	public String toString()
-    	{
-    		return representation;
-    	}
-    	
-		public static MappingRelation parseRelation(String relation)
-		{
-			for(MappingRelation rel : MappingRelation.values())
-				if(relation.equals(rel.toString()))
-					return rel;
-			return UNKNOWN;
-		}
-    }
-	
-	/**
-	 * Lists the Matching Algorithms
-	 */
-	public enum MatchingAlgorithm
-	{
-	    AML ("AML Matcher"),
-	    OAEI ("OAEI2013 Matcher"),
-	    LEXICAL ("Lexical Matcher");
-	    
-	    String label;
-	    
-	    MatchingAlgorithm(String s)
-	    {
-	    	label = s;
-	    }
-	    
-	    public String toString()
-	    {
-	    	return label;
-	    }
-	    
-		public static MatchingAlgorithm parseMatcher(String matcher)
-		{
-			for(MatchingAlgorithm m : MatchingAlgorithm.values())
-				if(matcher.equals(m.toString()))
-					return m;
-			return AML;
-		}
-	}
-	
-	/**
-	 * Lists the Selection Types
-	 */
-    public enum SelectionType
-    {
-     	STRICT ("Strict 1-to-1"),
-    	PERMISSIVE ("Permissive 1-to-1"),
-    	HYBRID ("Hybrid 1-to-1"),
-    	MANY ("N-to-N");
-    	
-    	final String value;
-    	
-    	SelectionType(String s)
-    	{
-    		value = s;
-    	}
-    	
-    	public String toString()
-    	{
-    		return value;
-    	}
-    	
-		public static SelectionType parseSelector(String selector)
-		{
-			for(SelectionType s : SelectionType.values())
-				if(selector.equals(s.toString()))
-					return s;
-			return null;
-		}
-    }
-    
-	/**
-	 * Lists the Size Categories of an Ontology Matching problem
-	 */
-    public enum SizeCategory
-    {
-    	SMALL,
-    	MEDIUM,
-    	LARGE;
-    	
-    	SizeCategory(){}    	
-    }
-    
-	/**
-	 * Lists the Word Matching strategies
-	 */
-    public enum WordMatchStrategy
-    {
-    	BY_CLASS,
-    	BY_NAME,
-    	AVERAGE,
-    	MAXIMUM,
-    	MINIMUM;
-    	
-    	WordMatchStrategy(){}    	
-    }
-    
 //Constructors
 	
 	//It's private so that no other instances can be created 
 	private AML()
 	{
-        //Initialize the lexical type weights
-		typeWeights = new HashMap<String,Double>();
-		setTypeWeights();
 		//List the background knowledge sources
 		bkSources = listBKSources();
         selectedSources = new Vector<String>(0,1);
@@ -333,35 +177,6 @@ public class AML
 	public LanguageSetting getLanguageSetting()
 	{
 		return lang;
-	}
-	
-	/**
-	 * @param prop: the URI of the property
-	 * @return the default lexical type for that property
-	 */
-	public String getLexicalType(String prop)
-	{
-		if(prop.endsWith("label") || prop.endsWith("prefLabel"))
-			return "label";
-		if(prop.endsWith("altLabel") || prop.endsWith("hasExactSynonym") ||
-				prop.endsWith("FULL_SYN") || prop.endsWith("alternative_term"))
-			return "exactSynonym";
-		if(prop.endsWith("hasBroadSynonym") || prop.endsWith("hasNarrowSynonym"))
-			return "";
-		if(prop.contains("synonym") || prop.contains("Synonym") || prop.contains("SYN"))
-			return "otherSynonym";
-		return "";
-	}
-	
-	/**
-	 * @param type: the lexical type to weight
-	 * @return the default weight of that lexical type
-	 */
-	public double getLexicalWeight(String type)
-	{
-		if(typeWeights.containsKey(type))
-			return typeWeights.get(type);
-		return 0.8;
 	}
 	
     public MatchingAlgorithm getMatcher()
@@ -662,55 +477,7 @@ public class AML
 	 */
 	public void setLanguageSetting()
 	{
-		//Get the source ontology language counts
-		HashMap<String,Integer> sLangs = new HashMap<String,Integer>();
-		int sTotal = 0;
-		double sMax = 0.0;
-		String sLang = "";
-		for(String l : source.getLexicon().getLanguages())
-		{
-			if(!l.equals("Formula"))
-			{
-				int count = source.getLexicon().getLanguageCount(l);
-				sLangs.put(l, count);
-				sTotal += count;
-				if(count > sMax)
-				{
-					sMax = count;
-					sLang = l;
-				}
-			}
-		}
-		sMax /= sTotal;
-		//Do the same for the target ontology
-		HashMap<String,Integer> tLangs = new HashMap<String,Integer>();
-		int tTotal = 0;
-		double tMax = 0.0;
-		String tLang = "";
-		for(String l : target.getLexicon().getLanguages())
-		{
-			if(!l.equals("Formula"))
-			{
-				int count = target.getLexicon().getLanguageCount(l);
-				tLangs.put(l, count);
-				tTotal += count;
-				if(count > tMax)
-				{
-					tMax = count;
-					tLang = l;
-				}
-			}
-		}
-		tMax /= (1.0*tTotal);
-		//If both ontologies have the same main language, set to single language
-		if(sLang.equals(tLang) && sMax > 0.8 && tMax > 0.8)
-			lang = LanguageSetting.SINGLE;
-		//If the main language of each ontology is not present in the other, set to translate
-		else if(!sLangs.containsKey(tLang) && !tLangs.containsKey(sLang))
-			lang = LanguageSetting.TRANSLATE;
-		//Otherwise, set to multi-language
-		else
-			lang = LanguageSetting.MULTI;
+		lang = LanguageSetting.getLanguageSetting(source, target);
 	}
     
     public void setMatcher(MatchingAlgorithm m)
@@ -720,10 +487,7 @@ public class AML
 	
 	public void setMatchOptions(SelectionType s, double thresh)
 	{
-		if(s == null)
-			setSelectionType();
-		else
-			sType = s;
+		sType = s;
 	    threshold = thresh;
 	}
     
@@ -739,29 +503,14 @@ public class AML
 	    matchProperties = pr;
 	    repairAlignment = re;
 	    selectedSources = bk;
-		if(s == null)
-			setSelectionType();
-		else
-			sType = s;
+		sType = s;
 	    threshold = thresh;
-	}
-	
-	public SelectionType setSelectionType()
-	{
-		double cardinality = a.cardinality();
-		if(cardinality > 1.4)
-			sType = SelectionType.MANY;
-		else if(cardinality > 1.02)
-			sType = SelectionType.PERMISSIVE;
-		else
-			sType = SelectionType.STRICT;
-		return sType;
 	}
 	
 	public void setSelectionType(SelectionType s)
 	{
 		if(s == null)
-			setSelectionType();
+			sType = SelectionType.getSelectionType(a);
 		else
 			sType = s;
 	}
@@ -867,16 +616,5 @@ public class AML
 			sCat = SizeCategory.MEDIUM;
 		else
 			sCat = SizeCategory.SMALL;
-	}
-	
-	//Computes the weights for name properties based on ranks and the
-	//interval between ranks, considering that rank 1 = 1.0
-	private void setTypeWeights()
-	{
-		for(int i = 0; i < LEXICAL_TYPES.length; i++)
-		{
-			double weight = 1.0 - (0.05 * i);
-			typeWeights.put(LEXICAL_TYPES[i], weight);
-		}
 	}
 }

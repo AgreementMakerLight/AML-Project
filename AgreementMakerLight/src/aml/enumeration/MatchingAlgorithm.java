@@ -12,44 +12,37 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Parses the UMLS MRCONSO.RRF file into a Lexicon.                            *
-* WARNING: Requires the UMLS MRCONSO.RRF file, which is not released with     *
-* AgreementMakerLight                                                         * 
+* Lists the Matching Algorithms available for the user interface.             *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
+* @date 22-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
-package aml.util;
+package aml.enumeration;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-import aml.enumeration.LexicalType;
-import aml.ontology.Lexicon;
-
-public class UMLSParser
+public enum MatchingAlgorithm
 {
-	public static void main(String[] args) throws Exception
+    AML ("AML Matcher"),
+    OAEI ("OAEI2013 Matcher"),
+    LEXICAL ("Lexical Matcher");
+    
+    String label;
+    
+    MatchingAlgorithm(String s)
+    {
+    	label = s;
+    }
+    
+    public String toString()
+    {
+    	return label;
+    }
+	    
+	public static MatchingAlgorithm parseMatcher(String matcher)
 	{
-		Table2Set<Integer,String> termSources = new Table2Set<Integer,String>();
-		Lexicon lexicon = new Lexicon();
-		
-		BufferedReader inStream = new BufferedReader(new FileReader("store/knowledge/MRCONSO.RRF"));
-		String line;
-		while((line = inStream.readLine()) != null)
-		{
-			String[] cols = line.split("\\|");
-			int id = Integer.parseInt(cols[0].substring(1));
-			String source = cols[11];
-			String name = cols[14];
-			LexicalType type = LexicalType.LABEL;
-			if(termSources.contains(id, source))
-				type = LexicalType.EXACT_SYNONYM;
-			double weight = type.getDefaultWeight();
-			lexicon.add(id,name,type,source,weight);
-		}
-		inStream.close();
-		lexicon.save("store/knowledge/UMLS.lexicon");
+		for(MatchingAlgorithm m : MatchingAlgorithm.values())
+			if(matcher.equals(m.toString()))
+				return m;
+		return AML;
 	}
 }

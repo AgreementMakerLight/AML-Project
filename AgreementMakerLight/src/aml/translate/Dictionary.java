@@ -35,7 +35,9 @@ import java.util.HashSet;
 
 
 
+
 import aml.AML;
+import aml.enumeration.LexicalType;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.Property;
@@ -57,7 +59,7 @@ public class Dictionary
 	//The translator
 	private Translator translator;
 	//The attributes for Lexicon extension
-	private final String TYPE = "translation";
+	private final LexicalType TYPE = LexicalType.EXTERNAL_MATCH;
 	private final String SOURCE = "ms-translator";
 	private final double CONFIDENCE = 0.95;
 	//The control variables
@@ -143,7 +145,7 @@ public class Dictionary
 			//If we have a translation, extend the Lexicon with it
 			if(!trans.equals(""))
 				for(Integer i : l.getClassesWithLanguage(n,sourceLang))
-					l.add(i, trans, TYPE, targetLang, SOURCE, l.getWeight(n, i)*CONFIDENCE);
+					l.add(i, trans, targetLang, TYPE, SOURCE, l.getWeight(n, i)*CONFIDENCE);
 		}
 		if(outStream != null)
 		{

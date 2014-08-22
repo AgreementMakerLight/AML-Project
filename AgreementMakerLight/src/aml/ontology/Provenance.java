@@ -21,12 +21,14 @@
 ******************************************************************************/
 package aml.ontology;
 
+import aml.enumeration.LexicalType;
+
 public class Provenance implements Comparable<Provenance>
 {
 
 //Attributes
 
-	private String type;
+	private LexicalType type;
 	private String source;
 	private String language;
 	private double weight;
@@ -40,7 +42,7 @@ public class Provenance implements Comparable<Provenance>
  	 * @param l: the language of the lexical entry ("en", "de", "pt", etc)
 	 * @param w: the weight of the lexical entry
 	 */
-	public Provenance(String t, String s, String l, double w)
+	public Provenance(LexicalType t, String s, String l, double w)
 	{
 		type = t;
 		source = s;
@@ -99,7 +101,7 @@ public class Provenance implements Comparable<Provenance>
 	/**
 	 * @return the type of this Provenance
 	 */
-	public String getType()
+	public LexicalType getType()
 	{
 		return type;
 	}

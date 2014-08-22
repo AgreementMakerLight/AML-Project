@@ -30,7 +30,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
-import aml.AML;
+import aml.enumeration.LexicalType;
 import aml.util.StopList;
 import aml.util.StringParser;
 import aml.util.Table3List;
@@ -79,7 +79,6 @@ public class Lexicon
 	public Lexicon(String file) throws Exception
 	{
 		this();
-		AML aml = AML.getInstance();
 		BufferedReader inStream = new BufferedReader(new FileReader(file));
 		String line;
 		while((line = inStream.readLine()) != null)
@@ -87,8 +86,8 @@ public class Lexicon
 			String[] lex = line.split("\t");
 			int id = Integer.parseInt(lex[0]);
 			String name = lex[1];
-			String type = lex[2];
-			double weight = aml.getLexicalWeight(type);
+			LexicalType type = LexicalType.parseLexicalType(lex[2]);
+			double weight = type.getDefaultWeight();
 			add(id,name,type,"",weight);
 		}
 		inStream.close();
@@ -103,7 +102,7 @@ public class Lexicon
 	 * @param type: the type of lexical entry (localName, label, etc)
 	 * @param source: the source of the lexical entry (ontology URI, etc)
 	 */
-	public void add(int classId, String name, String type, String source, double weight)
+	public void add(int classId, String name, LexicalType type, String source, double weight)
 	{
 		//First ensure that the name is not null or empty, and (since we're assuming that
 		//the language is English by default, ensure that it contains Latin characters)
@@ -118,7 +117,7 @@ public class Lexicon
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = "Formula";
-			p = new Provenance("Formula", source, lang, weight);
+			p = new Provenance(LexicalType.FORMULA, source, lang, weight);
 		}
 		//Otherwise, parse it normally
 		else
@@ -145,7 +144,7 @@ public class Lexicon
 	 * @param type: the type of lexical entry (localName, label, etc)
 	 * @param source: the source of the lexical entry (ontology URI, etc)
 	 */
-	public void add(int classId, String name, String language, String type, String source, double weight)
+	public void add(int classId, String name, String language, LexicalType type, String source, double weight)
 	{
 		//First ensure that the name is not null or empty
 		if(name == null || name.equals(""))
@@ -172,7 +171,7 @@ public class Lexicon
 			{
 				s = StringParser.normalizeFormula(name);
 				lang = "Formula";
-				p = new Provenance("Formula", source, lang, weight);
+				p = new Provenance(LexicalType.FORMULA, source, lang, weight);
 			}
 			//Otherwise, parse it normally
 			else
@@ -311,7 +310,7 @@ public class Lexicon
 			Vector<Integer> tr = new Vector<Integer>(getInternalClasses(n));
 			for(Integer i : tr)
 				for(Provenance p : names.get(n, i))
-					add(i, newName, p.getLanguage(), "internalExtension",
+					add(i, newName, p.getLanguage(), LexicalType.INTERNAL_SYNONYM,
 							p.getSource(), weight*p.getWeight());
 		}
 	}
@@ -365,7 +364,7 @@ public class Lexicon
 				for(Provenance p : names.get(n, i))
 				{
 					double weight = p.getWeight() * 0.9;
-					add(i, newName, p.getLanguage(), "internalExtension", p.getSource(), weight);
+					add(i, newName, p.getLanguage(), LexicalType.INTERNAL_SYNONYM, p.getSource(), weight);
 				}
 			}
 		}
@@ -668,7 +667,7 @@ public class Lexicon
 	 * @param type: the type to restrict the search
 	 * @return the list of names of the given type associated with the class
 	 */
-	public Set<String> getNames(int classId, String type)
+	public Set<String> getNames(int classId, LexicalType type)
 	{
 		Set<String> hits = classes.keySet(classId);
 		HashSet<String> namesType = new HashSet<String>();
@@ -720,9 +719,9 @@ public class Lexicon
 	 * @param classId: the class to search in the Lexicon
 	 * @return the best type of the name for that class
 	 */
-	public String getType(String name, int classId)
+	public LexicalType getType(String name, int classId)
 	{
-		String type = "";
+		LexicalType type = null;
 		double weight = 0.0;
 		for(Provenance p : names.get(name, classId))
 		{
@@ -740,10 +739,10 @@ public class Lexicon
 	 * @param classId: the class to search in the Lexicon
 	 * @return the types of the name for that class
 	 */
-	public Set<String> getTypes(String name, int classId)
+	public Set<LexicalType> getTypes(String name, int classId)
 	{
 		Vector<Provenance> provs = names.get(name, classId);
-		HashSet<String> types = new HashSet<String>();
+		HashSet<LexicalType> types = new HashSet<LexicalType>();
 		if(provs == null)
 			return types;
 		for(Provenance p : provs)
@@ -881,7 +880,7 @@ public class Lexicon
 	 * @param type: the type to restrict the search
 	 * @return the number of names of the given type associated with the class
 	 */
-	public int nameCount(int classId, String type)
+	public int nameCount(int classId, LexicalType type)
 	{
 		return getNames(classId,type).size();
 	}
@@ -893,7 +892,7 @@ public class Lexicon
 	 * @return the number of names with the given type and language
 	 * that are associated with the class
 	 */
-	public int nameCount(int classId, String type, String lang)
+	public int nameCount(int classId, LexicalType type, String lang)
 	{
 		Set<String> hits = classes.keySet(classId);
 		int count = 0;
