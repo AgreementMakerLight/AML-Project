@@ -77,20 +77,12 @@ public class IntermediateStructuralMatcher implements SecondaryMatcher, Rematche
 	{
 		if(!source.isClass(sId) || ! target.isClass(tId))
 			return 0.0;
-		Set<Integer> sourceParents = rels.getSuperClasses(sId,false);
-		Set<Integer> targetParents = rels.getSuperClasses(tId,false);
-		double union = 0.0;
+		Set<Integer> sourceParents = rels.getSuperClasses(sId,true);
+		Set<Integer> targetParents = rels.getSuperClasses(tId,true);
 		double sim = 0.0;
 		for(Integer i : sourceParents)
-		{
 			for(Integer j : targetParents)
-			{
-				if(input.containsMapping(i,j))
-					sim += 2 / (rels.getDistance(sId,i) + rels.getDistance(tId, j));
-				else
-					union += 2 / (rels.getDistance(sId,i) + rels.getDistance(tId, j));
-			}
-		}
-		return sim/(sim+union);
+				sim += input.getSimilarity(i,j);
+		return sim/Math.min(sourceParents.size(),targetParents.size());
 	}
 }

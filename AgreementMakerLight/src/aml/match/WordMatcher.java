@@ -358,8 +358,6 @@ public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 		return new Mapping(sourceId,targetId,sim);
 	}
 
-
-	
 	//Computes the maximum word-based (bag-of-words) similarity between
 	//two classes' names, for use by both match() and rematch()
 	private double nameSimilarity(int sourceId, int targetId)

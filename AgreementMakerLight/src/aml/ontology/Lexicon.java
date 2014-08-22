@@ -250,9 +250,29 @@ public class Lexicon
 	}
 	
 	/**
-	 * Generates synonyms by removing within-brackets sections of names
+	 * @param classId: the class to check in the Lexicon
+	 * @return whether the Lexicon contains a name for the class
+	 * other than a small formula (i.e., < 10 characters)
 	 */
-	public void generateBracketSynonyms()
+	public boolean containsNonSmallFormula(int classId)
+	{
+		if(!classes.contains(classId))
+			return false;
+		for(String n : classes.keySet(classId))
+		{
+			if(n.length() >= 10)
+				return true;
+			for(Provenance p : classes.get(classId,n))
+				if(!p.getType().equals("Formula"))
+					return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Generates synonyms by removing within-parenthesis sections of names
+	 */
+	public void generateParenthesisSynonyms()
 	{
 		Vector<String> nm = new Vector<String>(names.keySet());
 		for(String n: nm)
@@ -260,8 +280,12 @@ public class Lexicon
 			if(StringParser.isFormula(n) || !n.contains("(") || !n.contains(")"))
 				continue;
 			String newName;
+			double weight = 0.0;
 			if(n.matches("\\([^()]+\\)") || n.contains(") or ("))
+			{
 				newName = n.replaceAll("[()]", "");
+				weight = 1.0;
+			}
 			else if(n.contains(")("))
 				continue;
 			else
@@ -279,17 +303,16 @@ public class Lexicon
 						copy = true;					
 				}
 				newName = newName.trim();
+				weight = Math.sqrt(newName.length() * 1.0 / n.length());
 			}
+			if(newName.equals(""))
+				continue;
 			//Get the classes with the name
 			Vector<Integer> tr = new Vector<Integer>(getInternalClasses(n));
 			for(Integer i : tr)
-			{
 				for(Provenance p : names.get(n, i))
-				{
-					double weight = p.getWeight() * 0.9;
-					add(i, newName, p.getLanguage(), "internalExtension", p.getSource(), weight);
-				}
-			}
+					add(i, newName, p.getLanguage(), "internalExtension",
+							p.getSource(), weight*p.getWeight());
 		}
 	}
 	

@@ -527,8 +527,6 @@ public class AML
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
 		source = new Ontology(src,true);
-		source.getLexicon().generateStopWordSynonyms();
-		source.getLexicon().generateBracketSynonyms();
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.classCount());	
@@ -536,8 +534,6 @@ public class AML
 		System.out.println("Properties: " + source.propertyCount());
 		time = System.currentTimeMillis()/1000;
 		target = new Ontology(tgt,true);
-		target.getLexicon().generateStopWordSynonyms();
-		target.getLexicon().generateBracketSynonyms();
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.classCount());
@@ -576,8 +572,6 @@ public class AML
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
 		source = new Ontology(src,true);
-		source.getLexicon().generateStopWordSynonyms();
-		source.getLexicon().generateBracketSynonyms();
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.classCount());	
@@ -585,8 +579,6 @@ public class AML
 		System.out.println("Properties: " + source.propertyCount());
 		time = System.currentTimeMillis()/1000;
 		target = new Ontology(tgt,true);
-		target.getLexicon().generateStopWordSynonyms();
-		target.getLexicon().generateBracketSynonyms();
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.classCount());

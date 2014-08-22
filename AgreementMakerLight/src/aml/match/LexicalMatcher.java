@@ -27,6 +27,7 @@ import java.util.Set;
 import aml.AML;
 import aml.AML.LanguageSetting;
 import aml.ontology.Lexicon;
+import aml.util.StringParser;
 
 public class LexicalMatcher implements PrimaryMatcher
 {
@@ -119,6 +120,7 @@ public class LexicalMatcher implements PrimaryMatcher
 		{
 			for(String s : names)
 			{
+				boolean isSmallFormula = StringParser.isFormula(s) && s.length() < 10;
 				Set<Integer> sourceIndexes = sLex.getClasses(s);
 				Set<Integer> targetIndexes = tLex.getClasses(s);
 				//If the name doesn't exist in either ontology, skip it
@@ -127,10 +129,14 @@ public class LexicalMatcher implements PrimaryMatcher
 				//Otherwise, match all indexes
 				for(Integer i : sourceIndexes)
 				{
+					if(isSmallFormula && sLex.containsNonSmallFormula(i))
+						continue;
 					//Get the weight of the name for the term in the smaller lexicon
 					double weight = sLex.getCorrectedWeight(s, i);
 					for(Integer j : targetIndexes)
 					{
+						if(isSmallFormula && tLex.containsNonSmallFormula(j))
+							continue;
 						//Get the weight of the name for the term in the larger lexicon
 						double similarity = tLex.getCorrectedWeight(s, j);
 						//Then compute the similarity, by multiplying the two weights

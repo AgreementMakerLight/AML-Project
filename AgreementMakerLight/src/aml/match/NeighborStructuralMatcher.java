@@ -37,6 +37,8 @@ public class NeighborStructuralMatcher implements SecondaryMatcher, Rematcher
 	private Ontology source;
 	private Ontology target;
 	private Alignment input;
+	private boolean min;
+	private boolean direct;
 	
 //Constructors
 	
@@ -46,6 +48,18 @@ public class NeighborStructuralMatcher implements SecondaryMatcher, Rematcher
 		rels = aml.getRelationshipMap();
 		source = aml.getSource();
 		target = aml.getTarget();
+		min = true;
+		direct = true;
+	}
+	
+	public NeighborStructuralMatcher(boolean min, boolean direct)
+	{
+		AML aml = AML.getInstance();
+		rels = aml.getRelationshipMap();
+		source = aml.getSource();
+		target = aml.getTarget();
+		this.min = min;
+		this.direct = direct;
 	}
 	
 //Public Methods
@@ -112,22 +126,37 @@ public class NeighborStructuralMatcher implements SecondaryMatcher, Rematcher
 	{
 		if(!source.isClass(sId) || ! target.isClass(tId))
 			return 0.0;
-		Set<Integer> sourceParents = rels.getSuperClasses(sId,false);
-		Set<Integer> targetParents = rels.getSuperClasses(tId,false);
-		Set<Integer> sourceChildren = rels.getSubClasses(sId,false);
-		Set<Integer> targetChildren = rels.getSubClasses(tId,false);
+		Set<Integer> sourceParents = rels.getSuperClasses(sId,direct);
+		Set<Integer> targetParents = rels.getSuperClasses(tId,direct);
+		Set<Integer> sourceChildren = rels.getSubClasses(sId,direct);
+		Set<Integer> targetChildren = rels.getSubClasses(tId,direct);
 		double parentSim = 0.0;
+		double parentTotal = 0.0;
 		double childrenSim = 0.0;
+		double childrenTotal = 0.0;
 		for(Integer i : sourceParents)
+		{
+			parentTotal += 0.5 / Math.sqrt(rels.getDistance(sId,i));
 			for(Integer j : targetParents)
-				if(input.containsMapping(i,j))
-					parentSim += 2*input.getSimilarity(i,j) / (rels.getDistance(sId,i) + rels.getDistance(tId, j));
-		parentSim /= Math.min(sourceParents.size(), targetParents.size());
+				parentTotal += input.getSimilarity(i,j) /
+					Math.sqrt((rels.getDistance(sId,i) + rels.getDistance(tId, j))*0.5);
+		}
+		for(Integer i : targetParents)
+			parentTotal += 0.5 / Math.sqrt(rels.getDistance(tId,i));
+		parentSim /= parentTotal;
 		for(Integer i : sourceChildren)
+		{
+			childrenTotal += 0.5 / Math.sqrt(rels.getDistance(i,sId));
 			for(Integer j : targetChildren)
-				if(input.containsMapping(i,j))
-					childrenSim += 2*input.getSimilarity(i,j) / (rels.getDistance(i,sId) + rels.getDistance(j,tId));
-		childrenSim /= Math.min(sourceChildren.size(), targetChildren.size());
-		return Math.min(parentSim,childrenSim);
+				childrenSim += input.getSimilarity(i,j) /
+					Math.sqrt((rels.getDistance(i,sId) + rels.getDistance(j,tId))*0.5);
+		}
+		for(Integer i : targetChildren)
+			childrenTotal += 0.5 / Math.sqrt(rels.getDistance(i,tId));
+		childrenSim /= childrenTotal;
+		if(min)
+			return Math.min(parentSim,childrenSim);
+		else
+			return Math.max(parentSim,childrenSim);
 	}
 }

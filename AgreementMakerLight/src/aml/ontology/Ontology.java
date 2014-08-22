@@ -365,7 +365,7 @@ public class Ontology
 		getProperties(o,isInput);
 		//Extend the Lexicon
 		lex.generateStopWordSynonyms();
-		lex.generateBracketSynonyms();
+		lex.generateParenthesisSynonyms();
 		//Build the relationship map
 		if(isInput)
 			getRelationships(o);

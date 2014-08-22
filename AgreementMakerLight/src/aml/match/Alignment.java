@@ -425,7 +425,6 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public Alignment difference(Alignment a)
 	{
-		//Otherwise, compute the intersection
 		Alignment diff = new Alignment();
 		for(Mapping m : maps)
 			if(!a.containsMapping(m))
@@ -968,20 +967,6 @@ public class Alignment implements Iterable<Mapping>
 			count += aml.getSource().propertyCount();
 		coverage /= count;
 		return coverage;
-	}
-	
-	/**
-	 * @param a: the Alignment to subtract from this Alignment 
-	 * @return the Alignment containing all mappings in this that aren't in a
-	 */
-	public Alignment subtract(Alignment a)
-	{
-		//Otherwise, compute the difference
-		Alignment difference = new Alignment();
-		for(Mapping m : maps)
-			if(!a.containsMapping(m))
-				difference.add(m);
-		return difference;
 	}
 	
 	/**
