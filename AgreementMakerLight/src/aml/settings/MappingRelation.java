@@ -12,21 +12,49 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Lists the WordMatcher strategy options.                                     *
+* Lists the Mapping relationships.                                            *
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 22-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
-package aml.enumeration;
+package aml.settings;
 
-public enum WordMatchStrategy
+public enum MappingRelation
 {
-	BY_CLASS,
-	BY_NAME,
-	AVERAGE,
-	MAXIMUM,
-	MINIMUM;
+	EQUIVALENCE	("="),
+	SUPERCLASS	(">"),
+	SUBCLASS	("<"),
+	OVERLAP		("^"),
+	UNKNOWN		("?");
+    	
+	private String representation;
 	
-	WordMatchStrategy(){}
+	private MappingRelation(String rep)
+	{
+		representation = rep;
+	}
+    	
+	public MappingRelation inverse()
+	{
+		if(this.equals(SUBCLASS))
+			return SUPERCLASS;
+		else if(this.equals(SUPERCLASS))
+			return SUBCLASS;
+		else
+			return this;
+	}
+    	
+	public String toString()
+	{
+		return representation;
+	}
+	
+	public static MappingRelation parseRelation(String relation)
+	{
+		for(MappingRelation rel : MappingRelation.values())
+			if(relation.equals(rel.toString()))
+				return rel;
+		return UNKNOWN;
+	}
 }

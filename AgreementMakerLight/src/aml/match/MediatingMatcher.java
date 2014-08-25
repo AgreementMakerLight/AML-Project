@@ -26,11 +26,11 @@ import java.io.File;
 import java.util.Set;
 
 import aml.AML;
-import aml.enumeration.LexicalType;
 import aml.match.LexicalMatcher;
 import aml.match.PrimaryMatcher;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
+import aml.settings.LexicalType;
 
 public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 {

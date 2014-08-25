@@ -51,9 +51,9 @@ import org.openide.util.Lookup;
 import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.enumeration.MappingRelation;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
+import aml.settings.MappingRelation;
 import processing.core.PApplet;
 
 public class MappingViewerGephi extends JInternalFrame

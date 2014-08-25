@@ -58,7 +58,7 @@ import uk.ac.manchester.cs.owl.owlapi.OWLDataHasValueImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataSomeValuesFromImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLObjectCardinalityRestrictionImpl;
 import aml.AML;
-import aml.enumeration.LexicalType;
+import aml.settings.LexicalType;
 import aml.util.StringParser;
 import aml.util.Table2Map;
 

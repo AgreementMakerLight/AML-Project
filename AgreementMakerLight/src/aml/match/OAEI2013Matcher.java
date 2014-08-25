@@ -22,12 +22,12 @@
 package aml.match;
 
 import aml.AML;
-import aml.enumeration.SelectionType;
 import aml.filter.CardinalitySelector;
 import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 import aml.ontology.Ontology;
 import aml.ontology.URIMap;
+import aml.settings.SelectionType;
 import aml.util.Oracle;
 
 public class OAEI2013Matcher

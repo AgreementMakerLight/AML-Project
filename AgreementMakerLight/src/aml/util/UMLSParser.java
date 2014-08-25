@@ -25,8 +25,8 @@ package aml.util;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import aml.enumeration.LexicalType;
 import aml.ontology.Lexicon;
+import aml.settings.LexicalType;
 
 public class UMLSParser
 {

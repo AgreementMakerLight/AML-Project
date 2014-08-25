@@ -37,10 +37,10 @@ import java.util.HashSet;
 
 
 import aml.AML;
-import aml.enumeration.LexicalType;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.Property;
+import aml.settings.LexicalType;
 
 public class Dictionary
 {

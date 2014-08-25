@@ -30,10 +30,6 @@ import java.util.Vector;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import aml.enumeration.LanguageSetting;
-import aml.enumeration.MatchingAlgorithm;
-import aml.enumeration.SelectionType;
-import aml.enumeration.SizeCategory;
 import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 import aml.match.AMLMatcher;
@@ -44,6 +40,10 @@ import aml.match.OAEI2013Matcher;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
+import aml.settings.LanguageSetting;
+import aml.settings.MatchingAlgorithm;
+import aml.settings.SelectionType;
+import aml.settings.SizeCategory;
 import aml.ui.AlignmentFileChooser;
 import aml.ui.GUI;
 import aml.ui.OntologyFileChooser;

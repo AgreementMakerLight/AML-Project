@@ -20,7 +20,7 @@
 ******************************************************************************/
 package aml;
 
-import aml.enumeration.MatchingAlgorithm;
+import aml.settings.MatchingAlgorithm;
 
 public class AMLTestEclipse
 {

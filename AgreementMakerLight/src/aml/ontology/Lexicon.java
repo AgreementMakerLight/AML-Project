@@ -30,7 +30,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
-import aml.enumeration.LexicalType;
+import aml.settings.LexicalType;
 import aml.util.StopList;
 import aml.util.StringParser;
 import aml.util.Table3List;

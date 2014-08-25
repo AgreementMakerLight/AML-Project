@@ -30,8 +30,8 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import aml.enumeration.LexicalType;
 import aml.ontology.Lexicon;
+import aml.settings.LexicalType;
 
 public class MeSHParser
 {

@@ -25,9 +25,9 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.enumeration.WordMatchStrategy;
 import aml.ontology.RelationshipMap;
 import aml.ontology.WordLexicon;
+import aml.settings.WordMatchStrategy;
 import aml.util.Table2Map;
 import aml.util.Table2Set;
 

@@ -25,10 +25,10 @@ package aml.match;
 import java.util.Set;
 
 import aml.AML;
-import aml.enumeration.LexicalType;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
+import aml.settings.LexicalType;
 
 public class XRefMatcher implements PrimaryMatcher, LexiconExtender
 {

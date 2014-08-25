@@ -18,7 +18,7 @@
 * @date 22-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
-package aml.enumeration;
+package aml.settings;
 
 import java.util.HashMap;
 

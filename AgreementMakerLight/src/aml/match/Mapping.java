@@ -23,8 +23,8 @@
 package aml.match;
 
 import aml.AML;
-import aml.enumeration.MappingRelation;
 import aml.ontology.URIMap;
+import aml.settings.MappingRelation;
 
 public class Mapping implements Comparable<Mapping>
 {

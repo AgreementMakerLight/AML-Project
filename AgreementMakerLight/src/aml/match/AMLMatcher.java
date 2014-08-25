@@ -23,9 +23,9 @@ package aml.match;
 import java.util.Vector;
 
 import aml.AML;
-import aml.enumeration.SelectionType;
 import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
+import aml.settings.SelectionType;
 
 public class AMLMatcher implements PrimaryMatcher
 {

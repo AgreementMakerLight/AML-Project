@@ -27,9 +27,9 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.enumeration.LexicalType;
 import aml.match.PrimaryMatcher;
 import aml.ontology.Lexicon;
+import aml.settings.LexicalType;
 import aml.util.StringParser;
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.WordNetDatabase;

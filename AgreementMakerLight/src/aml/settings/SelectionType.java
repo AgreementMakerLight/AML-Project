@@ -12,19 +12,53 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Lists the size category of the ontology matching problem.                   *
+* Lists the Selection Types.                                                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 22-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
-package aml.enumeration;
+package aml.settings;
 
-public enum SizeCategory
+import aml.match.Alignment;
+
+public enum SelectionType
 {
-	SMALL,
-	MEDIUM,
-	LARGE;
-	
-	SizeCategory(){}    	
+   	STRICT ("Strict 1-to-1"),
+   	PERMISSIVE ("Permissive 1-to-1"),
+   	HYBRID ("Hybrid 1-to-1"),
+   	MANY ("N-to-N");
+	    	
+   	final String value;
+    	
+   	SelectionType(String s)
+   	{
+   		value = s;
+   	}
+	    	
+   	public String toString()
+   	{
+   		return value;
+   	}
+   	
+	public static SelectionType getSelectionType(Alignment a)
+	{
+		double cardinality = a.cardinality();
+		if(cardinality > 1.4)
+			return SelectionType.MANY;
+		else if(cardinality > 1.1)
+			return SelectionType.HYBRID;
+		else if(cardinality > 1.02)
+			return SelectionType.PERMISSIVE;
+		else
+			return SelectionType.STRICT;
+	}
+	    	
+	public static SelectionType parseSelector(String selector)
+	{
+		for(SelectionType s : SelectionType.values())
+			if(selector.equals(s.toString()))
+				return s;
+		return null;
+	}
 }

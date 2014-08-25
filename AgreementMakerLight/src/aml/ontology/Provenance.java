@@ -21,7 +21,7 @@
 ******************************************************************************/
 package aml.ontology;
 
-import aml.enumeration.LexicalType;
+import aml.settings.LexicalType;
 
 public class Provenance implements Comparable<Provenance>
 {

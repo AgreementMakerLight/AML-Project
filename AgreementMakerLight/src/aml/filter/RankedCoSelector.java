@@ -24,7 +24,7 @@ package aml.filter;
 
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.enumeration.SelectionType;
+import aml.settings.SelectionType;
 
 public class RankedCoSelector implements Selector
 {

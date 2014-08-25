@@ -25,8 +25,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.enumeration.LanguageSetting;
 import aml.ontology.Lexicon;
+import aml.settings.LanguageSetting;
 import aml.util.StringParser;
 
 public class LexicalMatcher implements PrimaryMatcher

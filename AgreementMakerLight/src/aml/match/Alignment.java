@@ -42,10 +42,10 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
-import aml.enumeration.MappingRelation;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
+import aml.settings.MappingRelation;
 import aml.util.Table2Map;
 
 public class Alignment implements Iterable<Mapping>

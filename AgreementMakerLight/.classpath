@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="src/lib/log4j.jar"/>
 	<classpathentry kind="lib" path="src/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="src/lib/microsoft-translator.jar"/>
+	<classpathentry kind="lib" path="src/lib/commons-math3-3.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

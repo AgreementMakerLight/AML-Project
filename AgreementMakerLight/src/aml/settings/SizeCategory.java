@@ -12,49 +12,19 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Lists the Mapping relationships.                                            *
+* Lists the size category of the ontology matching problem.                   *
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 22-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
-package aml.enumeration;
+package aml.settings;
 
-public enum MappingRelation
+public enum SizeCategory
 {
-	EQUIVALENCE	("="),
-	SUPERCLASS	(">"),
-	SUBCLASS	("<"),
-	OVERLAP		("^"),
-	UNKNOWN		("?");
-    	
-	private String representation;
+	SMALL,
+	MEDIUM,
+	LARGE;
 	
-	private MappingRelation(String rep)
-	{
-		representation = rep;
-	}
-    	
-	public MappingRelation inverse()
-	{
-		if(this.equals(SUBCLASS))
-			return SUPERCLASS;
-		else if(this.equals(SUPERCLASS))
-			return SUBCLASS;
-		else
-			return this;
-	}
-    	
-	public String toString()
-	{
-		return representation;
-	}
-	
-	public static MappingRelation parseRelation(String relation)
-	{
-		for(MappingRelation rel : MappingRelation.values())
-			if(relation.equals(rel.toString()))
-				return rel;
-		return UNKNOWN;
-	}
+	SizeCategory(){}    	
 }

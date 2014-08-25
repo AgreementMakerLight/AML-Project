@@ -34,7 +34,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import aml.enumeration.MatchingAlgorithm;
+import aml.settings.MatchingAlgorithm;
 
 public class MatcherInfo extends JDialog implements ActionListener
 {
