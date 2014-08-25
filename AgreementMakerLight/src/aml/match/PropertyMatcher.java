@@ -29,9 +29,11 @@ import java.util.Set;
 
 import aml.AML;
 import aml.ontology.Property;
+import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.util.ISub;
 import aml.util.Similarity;
+import aml.util.StopList;
 
 public class PropertyMatcher
 {
@@ -42,6 +44,7 @@ public class PropertyMatcher
 	private HashMap<Integer,Property> sourceProps;
 	private HashMap<Integer,Property> targetProps;
 	private WordNetMatcher wn = null;
+	private Set<String> stopSet;
 
 //Constructors
 	
@@ -52,6 +55,7 @@ public class PropertyMatcher
 		AML aml = AML.getInstance();
 		sourceProps = aml.getSource().getPropertyMap();
 		targetProps = aml.getTarget().getPropertyMap();
+		stopSet = StopList.read();
 	}
 	
 //Public Methods
@@ -150,14 +154,34 @@ public class PropertyMatcher
 		return (matches > 0.5);
 	}
 	
-	//Checks if two URIs match (i.e., are either equal or aligned)
+	//Checks if two URIs match (i.e., are either equal, aligned
+	//or one is aligned to the parent of the other)
 	private boolean urisMatch(String sUri, String tUri)
 	{
 		AML aml = AML.getInstance();
 		URIMap uris = aml.getURIMap();
+		RelationshipMap rm = aml.getRelationshipMap();
 		int sIndex = uris.getIndex(sUri);
 		int tIndex = uris.getIndex(tUri);
-		return (sIndex == tIndex || maps.containsMapping(sIndex, tIndex));
+
+		if(sIndex == tIndex || maps.containsMapping(sIndex, tIndex))
+	    	return true;
+		
+		Set<Integer> sParent= rm.getParents(sIndex);
+		if(sParent.size()==1)
+		{
+			int spId = sParent.iterator().next();
+			if(maps.containsMapping(spId, tIndex))
+				return true;
+		}
+		Set<Integer> tParent= rm.getParents(tIndex);
+		if(tParent.size()==1)
+		{
+			int tpId=tParent.iterator().next();
+			if(maps.containsMapping(sIndex, tpId))
+				return true;
+		}
+		return false;
 	}
 
 	//Checks if two lists of values match (i.e., have Jaccard similarity above 50%)
@@ -180,6 +204,13 @@ public class PropertyMatcher
 	{
 		String sourceName = s.getName();
 		String targetName = t.getName();
+		
+		String newSourceName = removeStopWords(sourceName);
+		if(!newSourceName.equals(""))
+			sourceName = newSourceName;
+		String newTargetName = removeStopWords(targetName);
+		if(!newTargetName.equals(""))
+			targetName = newTargetName;
 		
 		String sourceTrans = s.getTranslation();
 		String targetTrans = t.getTranslation();
@@ -241,5 +272,15 @@ public class PropertyMatcher
 			//And if so, return it
 			sim = wordNetSim;
 		return sim;
+	}
+	
+	private String removeStopWords(String name)
+	{
+		String newName = "";
+		String[] words = newName.split(" ");
+		for(String w : words)
+			if(!stopSet.contains(w))
+				newName += w + " ";
+		return newName.trim();
 	}
 }

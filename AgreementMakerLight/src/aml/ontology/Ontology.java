@@ -119,6 +119,7 @@ public class Ontology
 		try
 		{
 			o = manager.loadOntologyFromOntologyDocument(f);
+			uri = f.getAbsolutePath();
 		}
 		catch (OWLOntologyCreationException e)
 		{
@@ -159,6 +160,7 @@ public class Ontology
 				IRI i = IRI.create(uri);
 				o = manager.loadOntology(i);
 			}
+	        this.uri = uri.toString(); 
 		}
 		catch (OWLOntologyCreationException e)
 		{
@@ -357,8 +359,9 @@ public class Ontology
 		rm = aml.getRelationshipMap();
 		obsolete = new HashSet<Integer>();
 		
-		//Get the URI of the ontology
-		uri = o.getOntologyID().getOntologyIRI().toString();
+		//Update the URI of the ontology (if it lists one)
+		if(o.getOntologyID().getOntologyIRI() != null)
+			uri = o.getOntologyID().getOntologyIRI().toString();
 		//Get the classes and their names and synonyms
 		getClasses(o);
 		//Get the properties

@@ -23,12 +23,11 @@ package aml.filter;
 
 import java.util.Set;
 
-import org.apache.commons.math3.stat.descriptive.moment.Variance;
-
 import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.URIMap;
+import aml.settings.SelectionType;
 import aml.util.Oracle;
 
 public class InteractiveSelector implements Selector
@@ -45,6 +44,8 @@ public class InteractiveSelector implements Selector
 	private double[] previousSignatureVector;
 	private int previousFeedback;
 	private boolean previousAgreement;
+	private int trueCount;
+	private int falseCount;
 	
 //Constructors
 	
@@ -59,17 +60,29 @@ public class InteractiveSelector implements Selector
 	
 //Public Methods
 	
+	public int negativeInteractions()
+	{
+		return falseCount;
+	}
+	
+	public int positiveInteractions()
+	{
+		return trueCount;
+	}	
+	
 	@Override
 	public Alignment select(Alignment a, double thresh)
 	{
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Performing Interactive Selection");
-		URIMap map = AML.getInstance().getURIMap();
-		CardinalitySelector s = new CardinalitySelector(2);
-		Alignment maps = s.select(a,0.3);
+		AML aml = AML.getInstance();
+		URIMap map = aml.getURIMap();
+		
+		RankedSelector s = new RankedSelector(SelectionType.STRICT);
+		Alignment maps = s.select(a,thresh);
 		Alignment selected = new Alignment();
-		int trueCount = 0;
-		int falseCount = 0;
+		trueCount = 0;
+		falseCount = 0;
 		for(Mapping m : maps)
 		{
 			double sim = m.getSimilarity();
@@ -96,7 +109,7 @@ public class InteractiveSelector implements Selector
 				}
 
 			}
-			if(falseCount > a.size() * 0.5)
+			if(falseCount > a.size() * 0.35)
 				break;
 		}
 		time = System.currentTimeMillis()/1000 - time;
@@ -118,10 +131,9 @@ public class InteractiveSelector implements Selector
 		for(Alignment a : aligns)
 			signatureVector[index++] = a.getSimilarity(sourceId,targetId);
 		
-		Variance v = new Variance();
-		double variance = v.evaluate(signatureVector);
+		double variance = variance(signatureVector);
 
-		if(variance < 0.041)
+		if(variance < 0.04)
 		{
 			previousAgreement = false;
 			previousFeedback = 0;
@@ -130,7 +142,6 @@ public class InteractiveSelector implements Selector
 		}
 		else if(previousAgreement == true && previousFeedback == -1 &&
 					previousSignatureVector == signatureVector)
-					//vectorsMatch(previousSignatureVector,signatureVector))
 		{
 			previousAgreement = true;
 			previousFeedback = -1;
@@ -144,15 +155,8 @@ public class InteractiveSelector implements Selector
 			return true;
 		}
 	}
-
-	private boolean vectorsMatch(double[] v1, double[] v2)
-	{
-		for(int i = 0; i < v1.length; i++)
-			if(Math.round(v1[i]*100) != Math.round(v2[i]*100))
-				return false;
-		return true;
-	}
 	
+	//Measures the variance between elements of an array
 	private double variance(double[] v)
 	{
 		double average = 0.0;
@@ -162,6 +166,6 @@ public class InteractiveSelector implements Selector
 		double variance = 0.0;
 		for(double d : v)
 			variance += Math.pow(d - average,2);
-		return variance;
+		return variance / (v.length - 1);
 	}
 }

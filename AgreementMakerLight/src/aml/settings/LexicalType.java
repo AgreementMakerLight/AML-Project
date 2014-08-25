@@ -57,12 +57,13 @@ public enum LexicalType
 	{
 		if(prop.endsWith("label") || prop.endsWith("prefLabel"))
 			return LABEL;
-		if(prop.endsWith("altLabel") || prop.endsWith("hasExactSynonym") ||
-				prop.endsWith("FULL_SYN") || prop.endsWith("alternative_term"))
+		if(prop.endsWith("hasExactSynonym") || prop.endsWith("FULL_SYN") ||
+				prop.endsWith("alternative_term"))
 			return EXACT_SYNONYM;
 		if(prop.endsWith("hasBroadSynonym") || prop.endsWith("hasNarrowSynonym"))
 			return null;
-		if(prop.contains("synonym") || prop.contains("Synonym") || prop.contains("SYN"))
+		if(prop.endsWith("altLabel") || prop.contains("synonym") ||
+				prop.contains("Synonym") || prop.contains("SYN"))
 			return OTHER_SYNONYM;
 		return null;
 	}

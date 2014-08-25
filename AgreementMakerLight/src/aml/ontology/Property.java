@@ -53,6 +53,7 @@ public class Property
 		domain = new HashSet<String>();
 		range = new HashSet<String>();
 		isFunctional = false;
+		translation = "";
 	}
 	
 	public Property(int i, String n, String l, String t, boolean f)
@@ -67,6 +68,7 @@ public class Property
 		domain = new HashSet<String>();
 		range = new HashSet<String>();
 		isFunctional = f;
+		translation = "";
 	}
 	
 //Public Methods
