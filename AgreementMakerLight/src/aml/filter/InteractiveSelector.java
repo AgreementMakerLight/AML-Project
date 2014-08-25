@@ -86,7 +86,7 @@ public class InteractiveSelector implements Selector
 		for(Mapping m : maps)
 		{
 			double sim = m.getSimilarity();
-			if(sim >= 0.7 && !selected.containsConflict(m))
+			if(sim >= 0.7)
 				selected.add(m);
 			else
 			{
