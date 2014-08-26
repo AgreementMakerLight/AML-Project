@@ -14,8 +14,9 @@
 *******************************************************************************
 * Matches Ontologies by measuring the maximum String similarity between their *
 * classes, using one of the four available String similarity measures.        *
-* NOTE: This matching algorithm takes O(N^2) time, and thus should be used    *
-* only for Alignment extension whenever running time is an issue.             *
+*                                                                             *
+* WARNING: This matching algorithm takes O(N^2) time, and thus should be used *
+* either to match small ontologies or as a SecondaryMatcher.                  *
 *                                                                             *
 * @authors Daniel Faria, Cosmin Stroe                                         *
 * @date 31-07-2014                                                            *

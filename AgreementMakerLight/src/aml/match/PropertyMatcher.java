@@ -41,6 +41,7 @@ public class PropertyMatcher
 //Attributes
 	
 	private Alignment maps;
+	private AML aml;
 	private HashMap<Integer,Property> sourceProps;
 	private HashMap<Integer,Property> targetProps;
 	private WordNetMatcher wn = null;
@@ -52,7 +53,7 @@ public class PropertyMatcher
 	{
 		if(useWordNet)
 			wn = new WordNetMatcher();
-		AML aml = AML.getInstance();
+		aml = AML.getInstance();
 		sourceProps = aml.getSource().getPropertyMap();
 		targetProps = aml.getTarget().getPropertyMap();
 		stopSet = StopList.read();
@@ -89,7 +90,7 @@ public class PropertyMatcher
 	//Matches two properties
 	private double matchProperties(Property s, Property t)
 	{
-		double sim = 0.0;
+		double sim = 0.0d;
 
 		//We should only match properties of the same type
 		String sType = s.getType();
@@ -97,37 +98,31 @@ public class PropertyMatcher
 		if(!sType.equals(tType))
 			return sim;
 	
-		//We should only match datatype and object properties that have
-		//matching domains, if we have a class alignment to check 
-		if((sType.equals("datatype") || sType.equals("object")) && maps != null)
+		//We should only match datatype properties that have matching domains and ranges
+		if(sType.equals("datatype"))
 		{
 			Set<String> sDomain = s.getDomain();
 			Set<String> tDomain = t.getDomain();
 			if(!urisMatch(sDomain,tDomain))
 				return sim;
-		}
-		
-		//We should only match datatype properties that have matching ranges
-		if(sType.equals("datatype"))
-		{
-			//And matching ranges
 			Set<String> sRange = s.getRange();
 			Set<String> tRange = t.getRange();
 			if(!valuesMatch(sRange,tRange))
 				return sim;
 		}
-		
-		//We should only match object properties that have matching
-		//ranges, if we have a class alignment to check 
-		if(sType.equals("object") && maps != null)
+		//We should only match object properties that have matching domains and ranges
+		else if(sType.equals("object"))
 		{
+			Set<String> sDomain = s.getDomain();
+			Set<String> tDomain = t.getDomain();
+			if(!urisMatch(sDomain,tDomain))
+				return sim;
 			Set<String> sRange = s.getRange();
 			Set<String> tRange = t.getRange();
 			if(!urisMatch(sRange,tRange))
 				return sim;
 		}
-		
-		//Finally, we compute the name similarity between the properties
+		//If they do, we can compute the name similarity between the properties
 		return nameSimilarity(s,t);
 	}
 
@@ -158,7 +153,6 @@ public class PropertyMatcher
 	//or one is aligned to the parent of the other)
 	private boolean urisMatch(String sUri, String tUri)
 	{
-		AML aml = AML.getInstance();
 		URIMap uris = aml.getURIMap();
 		RelationshipMap rm = aml.getRelationshipMap();
 		int sIndex = uris.getIndex(sUri);
@@ -206,26 +200,26 @@ public class PropertyMatcher
 		String targetName = t.getName();
 		
 		String newSourceName = removeStopWords(sourceName);
-		if(!newSourceName.equals(""))
+		if(!newSourceName.isEmpty())
 			sourceName = newSourceName;
 		String newTargetName = removeStopWords(targetName);
-		if(!newTargetName.equals(""))
+		if(!newTargetName.isEmpty())
 			targetName = newTargetName;
 		
 		String sourceTrans = s.getTranslation();
 		String targetTrans = t.getTranslation();
 		
 		if(sourceName.equals(targetName) ||
-				sourceTrans.equals(targetName) ||
-				sourceName.equals(targetTrans))
+				(!sourceTrans.isEmpty() && sourceTrans.equals(targetName)) ||
+				(!targetTrans.isEmpty() && sourceName.equals(targetTrans)))
 			return 1.0;
 		
 		double sim1 = nameSimilarity(sourceName,targetName, wn != null);
 		
 		double sim2 = 0.0;
-		if(!sourceTrans.equals(""))
+		if(!sourceTrans.isEmpty())
 			sim2 = nameSimilarity(sourceTrans,targetName, wn != null);
-		if(!targetTrans.equals(""))
+		if(!targetTrans.isEmpty())
 			sim2 = Math.max(sim2,nameSimilarity(sourceName,targetTrans, wn != null));
 		
 		return Math.max(sim1,sim2);
@@ -237,11 +231,6 @@ public class PropertyMatcher
 		String[] sW = n1.split(" ");
 		HashSet<String> sWords = new HashSet<String>();
 		HashSet<String> sSyns = new HashSet<String>();
-		//Split the target name into words
-		String[] tW = n2.split(" ");
-		HashSet<String> tWords = new HashSet<String>();
-		HashSet<String> tSyns = new HashSet<String>();
-
 		for(String w : sW)
 		{
 			sWords.add(w);
@@ -250,10 +239,14 @@ public class PropertyMatcher
 			if(useWordNet && w.length() > 3)
 				sSyns.addAll(wn.getAllWordForms(w));
 		}
-		
+		//Split the target name into words
+		String[] tW = n2.split(" ");
+		HashSet<String> tWords = new HashSet<String>();
+		HashSet<String> tSyns = new HashSet<String>();		
 		for(String w : tW)
 		{
 			tWords.add(w);
+			tSyns.add(w);
 			//And compute the WordNet synonyms of each word
 			if(useWordNet && w.length() > 3)
 				tSyns.addAll(wn.getAllWordForms(w));
@@ -265,19 +258,22 @@ public class PropertyMatcher
 		double simString =  ISub.stringSimilarity(n1,n2)*0.9;
 		//Combine the two
 		double sim = 1 - ((1-wordSim) * (1-simString));
-		//Check if the WordNet similarity
-		double wordNetSim = Similarity.jaccard(sSyns,tSyns)*0.9;
-		//Is greater than the name similarity
-		if(wordNetSim > sim)
-			//And if so, return it
-			sim = wordNetSim;
+		if(useWordNet)
+		{
+			//Check if the WordNet similarity
+			double wordNetSim = Similarity.jaccard(sSyns,tSyns)*0.9;
+			//Is greater than the name similarity
+			if(wordNetSim > sim)
+				//And if so, return it
+				sim = wordNetSim;
+		}
 		return sim;
 	}
 	
 	private String removeStopWords(String name)
 	{
 		String newName = "";
-		String[] words = newName.split(" ");
+		String[] words = name.split(" ");
 		for(String w : words)
 			if(!stopSet.contains(w))
 				newName += w + " ";
