@@ -42,7 +42,7 @@ public class AMLTestEclipse
 		aml.openOntologies(sourcePath, targetPath);
 		
 		//Set the matching algorithm
-		aml.setMatcher(MatchingAlgorithm.OAEI);
+		aml.setMatcher(MatchingAlgorithm.AUTOMATIC);
 		
 		aml.match();
 		

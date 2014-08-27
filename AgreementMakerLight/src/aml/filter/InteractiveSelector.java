@@ -27,7 +27,6 @@ import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.URIMap;
-import aml.settings.SelectionType;
 import aml.util.Oracle;
 
 public class InteractiveSelector implements Selector
@@ -44,8 +43,6 @@ public class InteractiveSelector implements Selector
 	private double[] previousSignatureVector;
 	private int previousFeedback;
 	private boolean previousAgreement;
-	private int trueCount;
-	private int falseCount;
 	
 //Constructors
 	
@@ -60,16 +57,6 @@ public class InteractiveSelector implements Selector
 	
 //Public Methods
 	
-	public int negativeInteractions()
-	{
-		return falseCount;
-	}
-	
-	public int positiveInteractions()
-	{
-		return trueCount;
-	}	
-	
 	@Override
 	public Alignment select(Alignment a, double thresh)
 	{
@@ -78,12 +65,9 @@ public class InteractiveSelector implements Selector
 		AML aml = AML.getInstance();
 		URIMap map = aml.getURIMap();
 		
-		RankedSelector s = new RankedSelector(SelectionType.STRICT);
-		Alignment maps = s.select(a,thresh);
 		Alignment selected = new Alignment();
-		trueCount = 0;
-		falseCount = 0;
-		for(Mapping m : maps)
+		int falseCount = 0;
+		for(Mapping m : a)
 		{
 			double sim = m.getSimilarity();
 			if(sim >= 0.7)
@@ -98,7 +82,6 @@ public class InteractiveSelector implements Selector
 					if(oracle.check(sourceURI,targetURI,m.getRelationship()))
 					{
 						selected.add(m);
-						trueCount++;
 						previousFeedback=1;
 					}
 					else
@@ -114,9 +97,6 @@ public class InteractiveSelector implements Selector
 		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
-		System.out.println("Total Oracle Input: " + (trueCount+falseCount) +
-				"; Positive Oracle Input: " + trueCount);
-
 		return selected;
 	}
 	

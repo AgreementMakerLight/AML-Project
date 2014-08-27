@@ -35,7 +35,7 @@ import aml.util.ISub;
 import aml.util.Similarity;
 import aml.util.StopList;
 
-public class PropertyMatcher
+public class PropertyMatcher implements SecondaryMatcher
 {
 	
 //Attributes
@@ -61,13 +61,8 @@ public class PropertyMatcher
 	
 //Public Methods
 	
-	/**
-	 * Maps the properties of two Ontologies given their term Alignment
-	 * @param a: the term Alignment between the Ontologies
-	 * @param threshold: the similarity threshold for the property Mappings
-	 * @return the list of Mappings between the properties of the Ontologies
-	 */
-	public Alignment matchProperties(Alignment a, double threshold)
+	@Override
+	public Alignment extendAlignment(Alignment a, double threshold)
 	{
 		maps = a;
 		Alignment propMaps = new Alignment();

@@ -33,6 +33,8 @@ public class Oracle
 	
 	//The reference alignment to use in this Oracle
 	private Alignment reference;
+	private int trueCount;
+	private int falseCount;
 
 //Constructors
 	
@@ -40,16 +42,11 @@ public class Oracle
 	 * Builds an alignment oracle from the given reference alignment file
 	 * @param file: the path to the reference alignment to use in this oracle
 	 */
-	public Oracle(String file)
+	public Oracle(Alignment ref)
 	{
-		try
-		{
-			reference = new Alignment(file);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+		reference = ref;
+		trueCount = 0;
+		falseCount = 0;
 	}
 	
 //Public Methods
@@ -67,9 +64,24 @@ public class Oracle
 		URIMap uris = AML.getInstance().getURIMap();
 		int id1 = uris.getIndex(uri1);
 		int id2 = uris.getIndex(uri2);
-		return (reference.containsMapping(id1, id2) &&
+		boolean check = (reference.containsMapping(id1, id2) &&
 				reference.getRelationship(id1, id2).equals(r)) ||
 				(reference.containsMapping(id2, id1) &&
 				reference.getRelationship(id1, id2).equals(r.inverse()));
+		if(check)
+			trueCount++;
+		else
+			falseCount++;
+		return check;
 	}
+	
+	public int negativeInteractions()
+	{
+		return falseCount;
+	}
+	
+	public int positiveInteractions()
+	{
+		return trueCount;
+	}	
 }

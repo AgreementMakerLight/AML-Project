@@ -24,7 +24,6 @@ import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -58,7 +57,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 	private static final long serialVersionUID = -5425591078861331349L;
 	private JComboBox<String> config;
 	private JButton cancel, match, info;
-    private JCheckBox useBK, ignoreUMLS, repair, properties, allBK;
+    private JCheckBox repair, properties, allBK;
     private JComboBox<String> selection1, selection2;
     private JComboBox<Double> threshold1, threshold2;
     private JList<String> bk;
@@ -143,9 +142,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 			MatchingAlgorithm matcher = MatchingAlgorithm.parseMatcher((String)config.getSelectedItem());
 			AML.getInstance().setMatcher(matcher);
 			//Then set the options
-			if(matcher.equals(MatchingAlgorithm.OAEI))
-				AML.getInstance().setMatchOptions(useBK.isSelected(), ignoreUMLS.isSelected(), repair.isSelected());
-			else if(matcher.equals(MatchingAlgorithm.AML))
+			if(matcher.equals(MatchingAlgorithm.MANUAL))
 			{
 				Vector<String> selectedBK = new Vector<String>(bk.getSelectedValuesList());
 				AML.getInstance().setMatchOptions(properties.isSelected(), repair.isSelected(), selectedBK,
@@ -195,34 +192,7 @@ public class MatchOntologies extends JDialog implements ActionListener, ItemList
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		
-		if(s.equals(MatchingAlgorithm.OAEI.toString()))
-		{
-			useBK = new JCheckBox("Use Background Knowledge");
-			useBK.setSelected(AML.getInstance().useBK());
-			JPanel usePanel = new JPanel();
-			usePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-			usePanel.setPreferredSize(new Dimension(270,30));
-			usePanel.setMaximumSize(new Dimension(270,30));
-			usePanel.add(useBK);
-			panel.add(usePanel);
-			
-			ignoreUMLS = new JCheckBox("Exclude UMLS");
-			ignoreUMLS.setSelected(AML.getInstance().ignoreUMLS());
-			JPanel ignorePanel = new JPanel();
-			ignorePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-			ignorePanel.setPreferredSize(new Dimension(270,30));
-			ignorePanel.setMaximumSize(new Dimension(270,30));
-			ignorePanel.add(ignoreUMLS);
-			panel.add(ignorePanel);
-			
-			repair = new JCheckBox("Repair Alignment");
-	        repair.setSelected(AML.getInstance().repairAlignment());
-			JPanel repPanel = new JPanel();
-			repPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-			repPanel.add(repair);
-			panel.add(repPanel);
-		}
-		else if(s.equals(MatchingAlgorithm.AML.toString()))
+		if(s.equals(MatchingAlgorithm.MANUAL.toString()))
 		{
 			properties = new JCheckBox("Match Properties");
 			properties.setSelected(AML.getInstance().matchProperties());

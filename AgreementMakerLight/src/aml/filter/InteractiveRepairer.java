@@ -41,8 +41,6 @@ public class InteractiveRepairer implements Repairer
 	private HashSet<Integer> correct;
 	private Table2List<Integer,Integer> conflictMappings;
 	private Table2List<Integer,Integer> mappingConflicts;
-	private int trueCount;
-	private int falseCount;
 	
 //Constructors
 
@@ -55,16 +53,6 @@ public class InteractiveRepairer implements Repairer
 	}
 	
 //Public Methods
-	
-	public int negativeInteractions()
-	{
-		return falseCount;
-	}
-	
-	public int positiveInteractions()
-	{
-		return trueCount;
-	}	
 	
 	@Override
 	public Alignment repair(Alignment a)
@@ -87,13 +75,9 @@ public class InteractiveRepairer implements Repairer
 			String targetURI = map.getURI(toRepair.get(worstMapping).getTargetId());
 
 			if(oracle.check(sourceURI,targetURI,toRepair.get(worstMapping).getRelationship()))
-			{
-				trueCount++;
 				correct.add(worstMapping);
-			}
 			else
 			{
-				falseCount++;
 				toRemove.add(worstMapping);
 				remove(worstMapping);
 			}
@@ -136,8 +120,6 @@ public class InteractiveRepairer implements Repairer
 	
 	private void init()
 	{
-		trueCount = 0;
-		falseCount = 0;
 		conflictMappings = new Table2List<Integer,Integer>();
 		mappingConflicts = new Table2List<Integer,Integer>();
 		correct = new HashSet<Integer>();

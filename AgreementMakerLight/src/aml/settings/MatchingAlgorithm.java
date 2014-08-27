@@ -22,8 +22,8 @@ package aml.settings;
 
 public enum MatchingAlgorithm
 {
-    AML ("AML Matcher"),
-    OAEI ("OAEI2013 Matcher"),
+    MANUAL ("Manually Configurable Matcher"),
+    AUTOMATIC ("Automatically Configured Matcher"),
     LEXICAL ("Lexical Matcher");
     
     String label;
@@ -43,6 +43,6 @@ public enum MatchingAlgorithm
 		for(MatchingAlgorithm m : MatchingAlgorithm.values())
 			if(matcher.equals(m.toString()))
 				return m;
-		return AML;
+		return AUTOMATIC;
 	}
 }

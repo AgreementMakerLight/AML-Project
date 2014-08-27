@@ -75,25 +75,21 @@ public class MatcherInfo extends JDialog implements ActionListener
 	private String getInfo(String m)
 	{
 		String details = "";
-		if(m.equals(MatchingAlgorithm.AML.toString()))
-			details = "AML Matcher is an ensemble of lexical and string matching algorithms\n" +
-					  "analogous to the OAEI 2013 Matcher, but manually configurable.\n" +
-					  "In addition to the listed options, you can use additional sources of\n" +
-					  "background knowledge by placing them in \"./store/knowledge/\".\n" +
-					  "It may take several minutes to run for large ontologies, particularly if\n" +
-					  "repair is selected and/or WordNet is used as background knowledge.";
-		else if(m.equals(MatchingAlgorithm.OAEI.toString()))
-			details = "OAEI 2013 Matcher is an ensemble of lexical and string matching\n" +
-					  "algorithms used by AgreementMakerLight in OAEI 2013.\n" +
-					  "It performs automatic threshold, cardinality, and background\n" +
-					  "knowledge (when on) selection, testing Uberon, WordNet and\n" +
-					  "UMLS (unless excluded) as background knowledge sources.\n" +
+		if(m.equals(MatchingAlgorithm.MANUAL.toString()))
+			details = "This is an ensemble of matching algorithms that can be configured\n" +
+					  "manually. In addition to the listed options, you can use additional\n" +
+					  "sources of background knowledge (either ontologies or .lexicon files)\n" +
+					  "by placing them in the directory: \"./store/knowledge/\".\n" +
+					  "It may take several minutes to run for large ontologies, particularly\n" +
+					  "if repair is selected and/or WordNet is used as background knowledge.";
+		else if(m.equals(MatchingAlgorithm.AUTOMATIC.toString()))
+			details = "This is an ensemble of matching algorithms that is configured for\n" +
+					  "automated use (e.g., for the OAEI).\n" +
 					  "It may take several minutes to run for large ontologies, particularly\n" +
 					  "if repair is selected.";
 		else if(m.equals(MatchingAlgorithm.LEXICAL.toString()))
-			details = "Lexical Matcher is a very efficient and generally precise name and\n" +
-					  "synonym matching algorithm, which runs in a few seconds for even\n" +
-					  "very large ontologies.";
+			details = "This is a very efficient and generally precise name and synonym\n" +
+					  "matcher, which runs in a few seconds for even very large ontologies.";
 		return details;
 	}
 

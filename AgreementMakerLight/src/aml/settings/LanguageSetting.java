@@ -22,6 +22,7 @@ package aml.settings;
 
 import java.util.HashMap;
 
+import aml.AML;
 import aml.ontology.Ontology;
 
 public enum LanguageSetting
@@ -40,12 +41,11 @@ public enum LanguageSetting
 	/**
 	 * 	Computes and returns the language setting of the matching problem
 	 *  based on the language overlap between the input ontologies
-	 *  @param source: the source Ontology
-	 *  @param target: the target Ontology
 	 */
-	public static LanguageSetting getLanguageSetting(Ontology source, Ontology target)
+	public static LanguageSetting getLanguageSetting()
 	{
-		//Get the source ontology language counts
+		Ontology source = AML.getInstance().getSource();
+		Ontology target = AML.getInstance().getTarget();
 		HashMap<String,Integer> sLangs = new HashMap<String,Integer>();
 		int sTotal = 0;
 		double sMax = 0.0;
@@ -87,13 +87,13 @@ public enum LanguageSetting
 		tMax /= (1.0*tTotal);
 		//If both ontologies have the same main language, setting is single language
 		if(sLang.equals(tLang) && sMax > 0.8 && tMax > 0.8)
-			return LanguageSetting.SINGLE;
+			return SINGLE;
 		//If the main language of each ontology is not present in the other, setting is translate
 		else if(!sLangs.containsKey(tLang) && !tLangs.containsKey(sLang))
-			return LanguageSetting.TRANSLATE;
+			return TRANSLATE;
 		//Otherwise, setting is multi-language
 		else
-			return LanguageSetting.MULTI;
+			return MULTI;
 	}
     
     public String toString()

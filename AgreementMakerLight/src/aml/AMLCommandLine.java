@@ -15,16 +15,16 @@
 * Runs the OAEI2013 matcher with input options from the command line.         *
 * Example 1 - Use AML in match mode and save the output alignment:            *
 * java AMLCommandLine -s store/anatomy/mouse.owl -t store/anatomy/human.owl   *
-* -o store/anatomy/alignment.rdf -m [-r -b -u]                                *
+* -o store/anatomy/alignment.rdf -m                                           *
 * Example 2 - Use AML in match mode and evaluate the alignment:               *
 * java AMLCommandLine -s store/anatomy/mouse.owl -t store/anatomy/human.owl   *
-* -i store/anatomy/reference.rdf -m [-r -b -u]                                *
+* -i store/anatomy/reference.rdf -m                                           *
 * Example 3 - Use AML in repair mode and save the repaired alignment:         *
 * java AMLCommandLine -s store/anatomy/mouse.owl -t store/anatomy/human.owl   *
 * -i store/anatomy/toRepair.rdf -r -o store/anatomy/repaired.rdf              *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 27-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml;
@@ -46,8 +46,6 @@ public class AMLCommandLine
 	 * [-m 'match' mode and/or -r 'repair' mode]
 	 * [-i input_alignment_path]
 	 * [-o ouput_alignment_path]
-	 * [-b] -> use background knowledge
-	 * [-u] -> exclude UMLS
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception
@@ -61,8 +59,6 @@ public class AMLCommandLine
 		String outputPath = "";
 		//AgreementMakerLight settings
 		boolean match = false;
-		boolean background = false;
-		boolean ignoreUMLS = false;
 		boolean repair = false;
 		
 		for(int i = 0; i < args.length; i++)
@@ -79,10 +75,6 @@ public class AMLCommandLine
 				inputPath = args[++i];
 			else if(args[i].equalsIgnoreCase("-o"))
 				outputPath = args[++i];
-			else if(args[i].equalsIgnoreCase("-b"))
-				background = true;
-			else if(args[i].equalsIgnoreCase("-u"))
-				ignoreUMLS = true;
 		}
 		
 		if(sourcePath.equals("") || targetPath.equals(""))
@@ -118,8 +110,7 @@ public class AMLCommandLine
 		
 		if(match)
 		{
-			aml.setMatcher(MatchingAlgorithm.OAEI);
-			aml.setMatchOptions(background, ignoreUMLS, repair);
+			aml.setMatcher(MatchingAlgorithm.AUTOMATIC);
 			aml.match();
 			if(!inputPath.equals(""))
 			{
