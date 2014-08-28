@@ -34,8 +34,6 @@ public class InteractiveSelector implements Selector
 	
 //Attributes
 	
-	//The oracle used for simulated user feedback
-	private Oracle oracle;
 	//The alignments used as support to decide
 	//whether to ask for user feedback
 	private Set<Alignment> aligns;
@@ -46,9 +44,8 @@ public class InteractiveSelector implements Selector
 	
 //Constructors
 	
-	public InteractiveSelector(Oracle o, Set<Alignment> a)
+	public InteractiveSelector(Set<Alignment> a)
 	{
-		oracle = o;
 		aligns = a;
 		previousSignatureVector = new double[aligns.size()];
 		previousFeedback = 0;
@@ -79,7 +76,7 @@ public class InteractiveSelector implements Selector
 
 				if(disagreement(m.getSourceId(),m.getTargetId()))
 				{
-					if(oracle.check(sourceURI,targetURI,m.getRelationship()))
+					if(Oracle.check(sourceURI,targetURI,m.getRelationship()))
 					{
 						selected.add(m);
 						previousFeedback=1;

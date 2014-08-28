@@ -154,8 +154,12 @@ public class RepairMap
 			return;
 		}
 		//Otherwise, add all classes involved in mappings
-		classList.addAll(a.getSources());
-		classList.addAll(a.getTargets());
+		for(Integer i : a.getSources())
+			if(AML.getInstance().getSource().isClass(i))
+				classList.add(i);
+		for(Integer i : a.getTargets())
+			if(AML.getInstance().getTarget().isClass(i))
+				classList.add(i);
 		//Then build the checkList
 		buildCheckList();
 		System.out.println("Computed check list: " + checkList.size()

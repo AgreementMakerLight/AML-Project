@@ -702,3 +702,25 @@ date of starting day of conference	fecha de inicio día de conferencia
 document	documento
 program committee	Comité de programa
 chair of program committee	Presidente del Comité de programa
+active participant	participante activo
+announcement	anuncio
+serie	serie
+passive participant	participante pasivo
+person involved	persona involucrada
+student participant	participante del estudiante
+regular participant	participante regular
+airport	Aeropuerto
+activity taking place after	llevando a cabo después de la actividad
+days	días
+hall	Hall
+hiker	excursionista
+registration form	formulario de inscripción
+activity taking place before	actividad tendrá lugar antes de
+activity taking place during	llevando a cabo durante la actividad
+restaurant	Restaurante
+gold sponzor	sponzor oro
+platinum sponzor	sponzor platino
+silver sponzor	sponzor plata
+person active	persona activa
+acm sigkdd	ACM sigkdd
+bronze sponzor	bronce sponzor

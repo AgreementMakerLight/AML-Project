@@ -630,3 +630,4 @@ acm sigkdd	ACM sigkdd
 научная тема	el tema científico
 положительная рецензия	crítica positiva
 поздно зарегистрированный участник	último miembro registrado
+hiker	excursionista

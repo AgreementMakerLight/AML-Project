@@ -12,10 +12,11 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Emulates the SEALS Oracle from the OAEI Interactive Matching track.         *
+* Emulates the SEALS Oracle class from the OAEI Interactive Matching track.   *
+* To use for testing purposes only.                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
+* @date 28-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.util;
@@ -32,34 +33,25 @@ public class Oracle
 //Attributes	
 	
 	//The reference alignment to use in this Oracle
-	private Alignment reference;
-	private int trueCount;
-	private int falseCount;
+	private static Alignment reference;
+	private static int trueCount;
+	private static int falseCount;
 
 //Constructors
 	
-	/**
-	 * Builds an alignment oracle from the given reference alignment file
-	 * @param file: the path to the reference alignment to use in this oracle
-	 */
-	public Oracle(Alignment ref)
-	{
-		reference = ref;
-		trueCount = 0;
-		falseCount = 0;
-	}
+	private Oracle(){}
 	
 //Public Methods
-	
+
 	/**
 	 * Checks if a given mapping exists in the reference alignment
 	 * @param uri1: the URI of the first mapped entity
 	 * @param uri2: the URI of the second mapped entity
 	 * @param r: the Relation between the first and second entities
 	 * @return whether the reference alignment contains a mapping between uri1 and uri2
-	 * with Relation r or a mapping between uri2 and uri1 with the inverse Relation
+	 * with MappingRelation r or a mapping between uri2 and uri1 with the inverse Relation
 	 */
-	public boolean check(String uri1, String uri2, MappingRelation r)
+	public static boolean check(String uri1, String uri2, MappingRelation r)
 	{
 		URIMap uris = AML.getInstance().getURIMap();
 		int id1 = uris.getIndex(uri1);
@@ -75,12 +67,29 @@ public class Oracle
 		return check;
 	}
 	
-	public int negativeInteractions()
+	public static void close()
+	{
+		reference = null;
+	}
+	
+	public static boolean isInteractive()
+	{
+		return reference != null;
+	}
+	
+	public static void makeOracle(Alignment ref)
+	{
+		reference = ref;
+		trueCount = 0;
+		falseCount = 0;
+	}
+	
+	public static int negativeInteractions()
 	{
 		return falseCount;
 	}
 	
-	public int positiveInteractions()
+	public static int positiveInteractions()
 	{
 		return trueCount;
 	}	

@@ -18,7 +18,7 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 13-08-2014                                                            *
+* @date 28-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml;
@@ -51,7 +51,6 @@ import aml.ui.AlignmentFileChooser;
 import aml.ui.GUI;
 import aml.ui.OntologyFileChooser;
 import aml.util.ExtensionFilter;
-import aml.util.Oracle;
 
 public class AML
 {
@@ -71,8 +70,6 @@ public class AML
 	private Alignment a;
 	private Alignment ref;
 	private String evaluation;
-	private Oracle o;
-	private boolean interactive;
 	//Background knowledge path and sources
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources;
@@ -95,11 +92,7 @@ public class AML
     private boolean repairAlignment = false;
     private boolean matchProperties = false;
 	private double threshold;
-	private final double BASE_THRESH = 0.6;
-	private final double INTER_MOD = -0.3;
-	private final double MULTI_MOD = 0.05;
-	private final double TRANS_MOD = -0.15;
-	private final double SIZE_MOD = 0.1;
+
 	
 //Constructors
 	
@@ -144,12 +137,13 @@ public class AML
     		userInterface.refresh();
     }
     
-	public void evaluate()
+	public String evaluate()
 	{
 		boolean gui = userInterface != null;
 		evaluation = a.evaluate(ref, gui);
 		if(gui)
 			userInterface.refreshPanel();
+		return evaluation;
 	}
     
 	public Alignment getAlignment()
@@ -193,11 +187,6 @@ public class AML
     public MatchingAlgorithm getMatcher()
     {
     	return matcher;
-    }
-    
-    public Oracle getOracle()
-    {
-    	return o;
     }
     
     public Alignment getReferenceAlignment()
@@ -252,27 +241,6 @@ public class AML
 		return uris;
 	}
 	
-	public boolean isInteractive()
-	{
-		return interactive;
-	}
-	
-	public void makeOracle()
-	{
-		if(ref != null)
-		{
-			o = new Oracle(ref);
-			interactive = true;
-			setDefaultThreshold();
-		}
-		else
-		{
-			o = null;
-			interactive = false;
-			setDefaultThreshold();
-		}
-	}
-	
     public void match()
     {
     	if(matcher.equals(MatchingAlgorithm.MANUAL))
@@ -282,8 +250,7 @@ public class AML
     	}
     	else if(matcher.equals(MatchingAlgorithm.AUTOMATIC))
     	{
-    		AutomaticMatcher m = new AutomaticMatcher();
-    		a = m.match();
+    		a = AutomaticMatcher.match();
     	}
     	else if(matcher.equals(MatchingAlgorithm.LEXICAL))
     	{
@@ -370,7 +337,6 @@ public class AML
 		for(String s : source.getLexicon().getLanguages())
 			if(target.getLexicon().getLanguages().contains(s) && !s.equalsIgnoreCase("formula"))
 				languages.add(s);
-		setDefaultThreshold();
     	//Refresh the user interface
     	if(userInterface != null)
     		userInterface.refresh();
@@ -420,7 +386,6 @@ public class AML
 		for(String s : source.getLexicon().getLanguages())
 			if(target.getLexicon().getLanguages().contains(s) && !s.equalsIgnoreCase("formula"))
 				languages.add(s);
-		setDefaultThreshold();
     	//Refresh the user interface
     	if(userInterface != null)
     		userInterface.refresh();
@@ -503,8 +468,12 @@ public class AML
 		Set<String> tLangs = target.getLexicon().getLanguages();
 		for(String l1 : sLangs)
 		{
+			if(l1.equalsIgnoreCase("Formula"))
+				continue;
 			for(String l2 : tLangs)
 			{
+				if(l2.equalsIgnoreCase("Formula"))
+					continue;
 				if(!l1.equals(l2))
 				{
 					Dictionary d = new Dictionary(l1,l2);
@@ -681,19 +650,4 @@ public class AML
             }
         });
 	}
-	
-//Private Methods
-	
-    public void setDefaultThreshold()
-    {
-    	threshold = BASE_THRESH;
-    	if(isInteractive())
-    		threshold += INTER_MOD;
-    	if(size.equals(SizeCategory.HUGE))
-    		threshold += SIZE_MOD;
-    	if(lang.equals(LanguageSetting.TRANSLATE))
-    		threshold += TRANS_MOD;
-    	else if(lang.equals(LanguageSetting.MULTI))
-    		threshold += MULTI_MOD;
-    }
 }

@@ -701,3 +701,25 @@ obtained award	získaná ocenění
 set up deadline for	nastavit konečný termín pro
 conference organized by	konference pořádané
 date of starting day of conference	datum spuštění den konference
+active participant	aktivní účastník
+announcement	oznámení
+serie	Serie
+passive participant	pasivní účastník
+person involved	osoba
+student participant	studentské účastník
+regular participant	pravidelný účastník
+airport	letiště
+activity taking place after	aktivity probíhají po
+days	dny
+hall	hala
+hiker	tramp
+registration form	registrační formulář
+activity taking place before	aktivita odehrává před
+activity taking place during	činností odehrávajících se během
+restaurant	Restaurace
+gold sponzor	zlatý sponzor
+platinum sponzor	platinový sponzor
+silver sponzor	stříbrný sponzor
+person active	osoba činná
+acm sigkdd	ACM sigkdd
+bronze sponzor	Bronzový sponzor

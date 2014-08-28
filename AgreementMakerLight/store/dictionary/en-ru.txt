@@ -701,3 +701,25 @@ obtained award	Полученные награды
 set up deadline for	установить крайний срок для
 conference organized by	Конференция, организованная
 date of starting day of conference	Дата начала день конференции
+active participant	Активный участник
+announcement	объявление
+serie	Серия
+passive participant	Пассивный участник
+person involved	лица, участвующие
+student participant	участник студенческих
+regular participant	Постоянный участник
+airport	Аэропорт
+activity taking place after	действия происходят
+days	дней
+hall	Холл
+hiker	Турист
+registration form	Регистрационная форма
+activity taking place before	деятельности до
+activity taking place during	действия происходят во время
+restaurant	Ресторан
+gold sponzor	Золотой sponzor
+platinum sponzor	Платина sponzor
+silver sponzor	Серебряные sponzor
+person active	человек активный
+acm sigkdd	ACM sigkdd
+bronze sponzor	Бронза sponzor

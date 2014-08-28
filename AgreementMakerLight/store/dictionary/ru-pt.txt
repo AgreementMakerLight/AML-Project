@@ -629,3 +629,4 @@ acm sigkdd	ACM sigkdd
 поддерживает	suporta
 презентуется	é apresentado
 дизайн	Design
+hiker	alpinista

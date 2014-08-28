@@ -629,3 +629,4 @@ acm sigkdd	ACM sigkdd
 поддерживает	podporuje
 презентуется	je prezentována
 дизайн	návrh
+hiker	tramp

@@ -629,3 +629,4 @@ acm sigkdd	ACM sigkdd
 поддерживает	prend en charge
 презентуется	est présenté
 дизайн	conception
+hiker	randonneur

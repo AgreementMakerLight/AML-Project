@@ -701,3 +701,25 @@ obtained award	behaalde award
 set up deadline for	termijn voor het instellen
 conference organized by	conferentie georganiseerd door
 date of starting day of conference	datum van het starten van de dag van de conferentie
+active participant	actieve deelnemer
+announcement	aankondiging
+serie	serie
+passive participant	passieve deelnemer
+person involved	betrokken persoon
+student participant	student deelnemer
+regular participant	regelmatige deelnemer
+airport	Luchthaven
+activity taking place after	activiteit die plaatsvindt na
+days	dagen
+hall	Hall
+hiker	wandelaar
+registration form	registratieformulier
+activity taking place before	activiteit die plaatsvindt voordat
+activity taking place during	activiteit die plaatsvindt tijdens
+restaurant	Restaurant
+gold sponzor	Gouden sponzor
+platinum sponzor	platina sponzor
+silver sponzor	Zilveren sponzor
+person active	actieve persoon
+acm sigkdd	ACM sigkdd
+bronze sponzor	bronzen sponzor

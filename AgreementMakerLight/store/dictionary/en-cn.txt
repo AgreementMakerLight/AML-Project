@@ -701,3 +701,25 @@ obtained award	获得奖项
 set up deadline for	设置截止日期
 conference organized by	组织的会议
 date of starting day of conference	开始一天的会议的日期
+active participant	积极的参与者
+announcement	公告
+serie	意甲联赛
+passive participant	被动的参与者
+person involved	牵涉的人
+student participant	学生的参与者
+regular participant	经常参与者
+airport	机场
+activity taking place after	活动发生
+days	天
+hall	大厅
+hiker	徒步旅行者
+registration form	注册表单
+activity taking place before	活动发生之前
+activity taking place during	活动期间发生
+restaurant	餐厅
+gold sponzor	金 sponzor
+platinum sponzor	白金 sponzor
+silver sponzor	银 sponzor
+person active	积极的人
+acm sigkdd	acm
+bronze sponzor	青铜 sponzor

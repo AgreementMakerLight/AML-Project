@@ -629,3 +629,4 @@ acm sigkdd	ACM sigkdd
 поддерживает	ondersteunt
 презентуется	wordt gepresenteerd
 дизайн	ontwerp
+hiker	wandelaar

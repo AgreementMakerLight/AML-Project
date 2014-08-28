@@ -701,3 +701,25 @@ obtained award	obtenu le prix
 set up deadline for	mettre en place la date limite pour
 conference organized by	Conférence organisée par
 date of starting day of conference	Date de début de journée de conférence
+active participant	participant actif
+announcement	annonce
+serie	Serie
+passive participant	participant passif
+person involved	personne impliquée
+student participant	participant de l'étudiant
+regular participant	participant régulier
+airport	Aéroport
+activity taking place after	activité qui aura lieu
+days	jours
+hall	Hall
+hiker	randonneur
+registration form	formulaire d'inscription
+activity taking place before	activité qui se déroulent avant
+activity taking place during	activité qui se déroulent au cours de
+restaurant	restaurant
+gold sponzor	sponzor or
+platinum sponzor	platine sponzor
+silver sponzor	sponzor argent
+person active	personne active
+acm sigkdd	ACM sigkdd
+bronze sponzor	sponzor bronze

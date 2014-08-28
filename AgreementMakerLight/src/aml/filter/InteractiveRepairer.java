@@ -35,7 +35,6 @@ public class InteractiveRepairer implements Repairer
 	
 //Attributes
 	
-	private Oracle oracle;
 	private Alignment toRepair;
 	private Vector<Path> conflictSets;
 	private HashSet<Integer> correct;
@@ -47,10 +46,7 @@ public class InteractiveRepairer implements Repairer
 	/**
 	 * Constructs a new InteractiveRepairer
 	 */
-	public InteractiveRepairer(Oracle o)
-	{
-		oracle = o;
-	}
+	public InteractiveRepairer(){}
 	
 //Public Methods
 	
@@ -74,7 +70,7 @@ public class InteractiveRepairer implements Repairer
 			String sourceURI = map.getURI(toRepair.get(worstMapping).getSourceId());
 			String targetURI = map.getURI(toRepair.get(worstMapping).getTargetId());
 
-			if(oracle.check(sourceURI,targetURI,toRepair.get(worstMapping).getRelationship()))
+			if(Oracle.check(sourceURI,targetURI,toRepair.get(worstMapping).getRelationship()))
 				correct.add(worstMapping);
 			else
 			{

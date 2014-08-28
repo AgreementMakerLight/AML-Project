@@ -35,6 +35,7 @@ import aml.filter.Repairer;
 import aml.settings.LanguageSetting;
 import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
+import aml.util.Oracle;
 
 public class AutomaticMatcher
 {
@@ -42,40 +43,51 @@ public class AutomaticMatcher
 //Attributes
 
 	//Link to the AML class
-	private AML aml;
+	private static AML aml;
 	//Settings
-	private boolean isInteractive;
-	private double thresh;
-	private double psmThresh;
-	private SizeCategory size;
-	private LanguageSetting lang;
-	private final String BK_PATH = "store/knowledge/";
-	private Alignment a;
-	private Alignment lex;
-	private Set<Alignment> alignSet;
+	private static boolean isInteractive;
+	private static SizeCategory size;
+	private static LanguageSetting lang;
+	//BackgroundKnowledge path
+	private static final String BK_PATH = "store/knowledge/";
+	//Thresholds
+	private static double thresh;
+	private static double psmThresh;
+	private static double wnThresh;
+	private static final double BASE_THRESH = 0.6;
+	private static final double HIGH_GAIN_THRESH = 0.25;
+	private static final double MIN_GAIN_THRESH = 0.02;
+	//And their modifiers
+	private static final double INTER_MOD = -0.3;
+	private static final double MULTI_MOD = 0.05;
+	private static final double TRANS_MOD = -0.15;
+	private static final double SIZE_MOD = 0.1;
+	//Alignments
+	private static Alignment a;
+	private static Alignment lex;
+	private static Set<Alignment> alignSet;
 	
 //Constructors	
 	
-	public AutomaticMatcher()
-	{
-		aml = AML.getInstance();
-		size = aml.getSizeCategory();
-		lang = aml.getLanguageSetting();
-		thresh = aml.getThreshold();
-		if(lang.equals(LanguageSetting.TRANSLATE))
-			psmThresh = thresh;
-		else
-			psmThresh = 0.7;
-		isInteractive = aml.isInteractive();
-	}
+	private AutomaticMatcher(){}
 	
 //Public Methods
 
-	public Alignment match()
+	public static Alignment match()
 	{
+		//Get the AML instance
+		aml = AML.getInstance();
+		//And the size and language configuration
+		size = aml.getSizeCategory();
+		lang = aml.getLanguageSetting();
+		//Check if the task is interactive
+		isInteractive = Oracle.isInteractive();
 		if(isInteractive)
 			alignSet = new HashSet<Alignment>();
+		//Initialize the alignment
 		a = new Alignment();
+		//And start the matching procedure
+		setThresholds();
 		translate();
 		lexicalMatch();
 		bkMatch();
@@ -90,8 +102,31 @@ public class AutomaticMatcher
 		
 //Private Methods
 
-	//Step 0 - Translate
-	private void translate()
+	//Step 1 - Set Threshold
+    public static void setThresholds()
+    {
+    	thresh = BASE_THRESH;
+		psmThresh = 0.7;
+		wnThresh = 0.1;
+
+    	if(isInteractive)
+    	{
+    		thresh += INTER_MOD;
+			wnThresh = 0.04;
+    	}
+    	if(size.equals(SizeCategory.HUGE))
+    		thresh += SIZE_MOD;
+    	if(lang.equals(LanguageSetting.TRANSLATE))
+    	{
+    		thresh += TRANS_MOD;
+			psmThresh = thresh;
+    	}
+    	else if(lang.equals(LanguageSetting.MULTI))
+    		thresh += MULTI_MOD;
+    }
+    
+	//Step 2 - Translate
+	private static void translate()
 	{
 		if(lang.equals(LanguageSetting.TRANSLATE))
 		{
@@ -100,72 +135,82 @@ public class AutomaticMatcher
 		}
 	}
 	
-	//Step 1 - Lexical Match
-	private void lexicalMatch()
+	//Step 3 - Lexical Match
+	private static void lexicalMatch()
 	{
 		LexicalMatcher lm = new LexicalMatcher();
 		lex = lm.match(thresh);
 		a.addAll(lex);
 	}
 
-	//Step 2 - Background Knowledge Match
-	private void bkMatch()
+	//Step 4 - Background Knowledge Match
+	private static void bkMatch()
 	{
 		//Only if the task is single-language
 		if(!lang.equals(LanguageSetting.SINGLE))
 			return;
-		
 		//We use only WordNet for very small ontologies
 		if(size.equals(SizeCategory.SMALL))
 		{
 			WordNetMatcher wn = new WordNetMatcher();
 			Alignment wordNet = wn.match(thresh);
-			double gain = wordNet.gainOneToOne(lex);
+			//Deciding whether to use it based on its coverage of the input ontologies
+			//(as we expect a high gain if the coverage is high given that WordNet will
+			//generate numerous synonyms)
 			double coverage = Math.min(wordNet.sourceCoverage(),wordNet.targetCoverage());
-			if(isInteractive)
-			{
-				alignSet.add(wordNet);
-				if(gain >= 0.1 && coverage >= 0.07)
-					a.addAllOneToOne(wordNet);
-			}
-			else if(gain >= 0.15 && coverage >= 0.08)
+			if(coverage >= wnThresh)
 				a.addAllOneToOne(wordNet);
-			return;
+			//Regardless of coverage, the WordNet alignment is used as an auxiliary
+			//alignment in interactive selection
+			if(isInteractive)
+				alignSet.add(wordNet);
 		}
-		//We test all sources other than WordNet for larger ontologies
-		Vector<String> bkSources = new Vector<String>();
-		bkSources.addAll(aml.getBKSources());
-		bkSources.remove("WordNet");
-		for(String bk : bkSources)
+		else
 		{
-			if(bk.endsWith(".lexicon"))
+			//We test all sources for larger ontologies
+			Vector<String> bkSources = new Vector<String>();
+			bkSources.addAll(aml.getBKSources());
+			//Except WordNet which is not only slow but also error prone
+			bkSources.remove("WordNet");
+			for(String bk : bkSources)
 			{
-				MediatingMatcher mm = new MediatingMatcher(BK_PATH + bk);
-				Alignment med = mm.match(thresh);
-				double gain = med.gain(lex);
-				if(gain >= 0.02)
-					a.addAll(med);
-			}
-			else
-			{
-				aml.openBKOntology(bk);
-				XRefMatcher xr = new XRefMatcher(aml.getBKOntology());
-				Alignment ref = xr.match(thresh);
-				double gain = ref.gain(lex);
-				if(gain >= 0.25)
+				//In the case of BK Lexicons and Ontologies, we decide whether to use them
+				//based on their mapping gain (over the direct Lexical alignment)
+				if(bk.endsWith(".lexicon"))
 				{
-					xr.extendLexicons(thresh);
-					LexicalMatcher lm = new LexicalMatcher();
-					a.addAll(lm.match(thresh));
+					MediatingMatcher mm = new MediatingMatcher(BK_PATH + bk);
+					Alignment med = mm.match(thresh);
+					double gain = med.gain(lex);
+					if(gain >= MIN_GAIN_THRESH)
+						a.addAll(med);
 				}
-				else if(gain > 0.02)
-					a.addAll(ref);					
+				else
+				{
+					aml.openBKOntology(bk);
+					XRefMatcher xr = new XRefMatcher(aml.getBKOntology());
+					Alignment ref = xr.match(thresh);
+					double gain = ref.gain(lex);
+					//In the case of Ontologies, if the mapping gain is very high, we can
+					//use them for Lexical Extension, which will effectively enable Word-
+					//and String-Matching with the BK Ontologies' names
+					if(gain >= HIGH_GAIN_THRESH)
+					{
+						xr.extendLexicons(thresh);
+						//If that is the case, we must compute a new Lexical alignment
+						//after the extension
+						LexicalMatcher lm = new LexicalMatcher();
+						a.addAll(lm.match(thresh));
+					}
+					//Otherwise, we add the BK alignment as normal
+					else if(gain >= MIN_GAIN_THRESH)
+						a.addAll(ref);					
+				}
 			}
 		}
 	}
 	
-	//Step 3 - Word Match
-	private void wordMatch()
+	//Step 5 - Word Match
+	private static void wordMatch()
 	{
 		//Only if the task is not huge
 		if(size.equals(SizeCategory.HUGE))
@@ -190,25 +235,29 @@ public class AutomaticMatcher
 		a.addAllOneToOne(word);
 	}
 	
-	//Step 4 - String Match
-	private void stringMatch()
+	//Step 6 - String Match
+	private static void stringMatch()
 	{
 		ParametricStringMatcher psm = new ParametricStringMatcher();
 		//If the task is small, we can use the PSM in match mode
 		if(size.equals(SizeCategory.SMALL))
 		{
 			a.addAllOneToOne(psm.match(psmThresh));
-			//And the MultiWordMatcher as well
-			MultiWordMatcher mwm = new MultiWordMatcher();
-			a.addAllOneToOne(mwm.match(thresh));
+			//And if the task is single-language we can use the
+			//MultiWordMatcher as well (which uses WordNet)
+			if(lang.equals(LanguageSetting.SINGLE))
+			{
+				MultiWordMatcher mwm = new MultiWordMatcher();
+				a.addAllOneToOne(mwm.match(thresh));
+			}
 		}
 		//Otherwise we use it in extendAlignment mode
 		else
 			a.addAllOneToOne(psm.extendAlignment(a,thresh));
 	}	
 	
-	//Step 5 - Structural Match
-	private void structuralMatch()
+	//Step 7 - Structural Match
+	private static void structuralMatch()
 	{
 		//Only if the size is small or medium
 		if(size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM))
@@ -220,19 +269,10 @@ public class AutomaticMatcher
 		}		
 	}
 	
-	//Step 6 - Property Match
-	private void propertyMatch()
-	{
-		double sourceRatio = aml.getSource().propertyCount() * 1.0 / aml.getSource().classCount();
-		double targetRatio = aml.getTarget().propertyCount() * 1.0 / aml.getTarget().classCount();
-		if(sourceRatio < 0.05 && targetRatio < 0.05)
-			return;
-		PropertyMatcher pm = new PropertyMatcher(true);
-		a.addAllOneToOne(pm.extendAlignment(a, thresh));
-	}
+
 	
-	//Step 7 - Selection
-	private void selection()
+	//Step 9 - Selection
+	private static void selection()
 	{
 		if(size.equals(SizeCategory.SMALL))
 		{
@@ -270,19 +310,30 @@ public class AutomaticMatcher
 		if(isInteractive)
 		{
 			alignSet.add(a);
-			InteractiveSelector is = new InteractiveSelector(aml.getOracle(),alignSet);
+			InteractiveSelector is = new InteractiveSelector(alignSet);
 			a = is.select(a, thresh);
 		}
 	}
 	
-	//Step 8 - Repair
-	private void repair()
+	//Step 10 - Repair
+	private static void repair()
 	{
 		Repairer r;
 		if(isInteractive)
-			r = new InteractiveRepairer(aml.getOracle());
+			r = new InteractiveRepairer();
 		else
 			r = new CardinalityRepairer();
 		a = r.repair(a);
+	}
+	
+	//Step 8 - Property Match
+	private static void propertyMatch()
+	{
+		double sourceRatio = aml.getSource().propertyCount() * 1.0 / aml.getSource().classCount();
+		double targetRatio = aml.getTarget().propertyCount() * 1.0 / aml.getTarget().classCount();
+		if(sourceRatio < 0.05 && targetRatio < 0.05)
+			return;
+		PropertyMatcher pm = new PropertyMatcher(true);
+		a.addAllOneToOne(pm.extendAlignment(a, thresh));
 	}
 }

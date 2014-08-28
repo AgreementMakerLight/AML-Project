@@ -701,3 +701,25 @@ obtained award	erhielt Auszeichnung
 set up deadline for	richten Sie die Frist für die
 conference organized by	Konferenz organisiert von
 date of starting day of conference	Datum Tag der Konferenz zu starten
+active participant	aktiver Teilnehmer
+announcement	Ankündigung
+serie	Serie
+passive participant	passiver Teilnehmer
+person involved	beteiligten Personen
+student participant	studentische Teilnehmer
+regular participant	regelmäßiger Teilnehmer
+airport	Flughafen
+activity taking place after	Aktivitäten nach
+days	Tage
+hall	Halle
+hiker	Wanderer
+registration form	Anmeldeformular
+activity taking place before	Aktivität, die vor
+activity taking place during	Aktivität stattfindet, während
+restaurant	Restaurant
+gold sponzor	Gold sponzor
+platinum sponzor	Platin sponzor
+silver sponzor	Silber sponzor
+person active	Person aktiv
+acm sigkdd	ACM sigkdd
+bronze sponzor	Bronze sponzor

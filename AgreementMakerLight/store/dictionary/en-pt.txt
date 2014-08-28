@@ -701,3 +701,25 @@ obtained award	obteve o prêmio
 set up deadline for	configurar o prazo para
 conference organized by	conferência organizada pela
 date of starting day of conference	Data de partida dia da conferência
+active participant	participante ativo
+announcement	anúncio
+serie	Serie
+passive participant	participante passivo
+person involved	pessoa envolvida
+student participant	participante estudante
+regular participant	participante regular
+airport	Aeroporto
+activity taking place after	atividade ocorrendo
+days	dias
+hall	Hall
+hiker	alpinista
+registration form	formulário de inscrição
+activity taking place before	atividade ocorrendo antes
+activity taking place during	atividade ocorrendo durante
+restaurant	restaurante
+gold sponzor	sponzor ouro
+platinum sponzor	platina sponzor
+silver sponzor	prata sponzor
+person active	pessoa ativa
+acm sigkdd	ACM sigkdd
+bronze sponzor	bronze sponzor
