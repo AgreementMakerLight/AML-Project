@@ -25,36 +25,21 @@
 ******************************************************************************/
 package aml.match;
 
-import java.io.File;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.ontology.WordLexicon;
 import aml.util.StopList;
-import edu.cmu.lti.jawjaw.pobj.POS;
-import edu.cmu.lti.lexical_db.ILexicalDatabase;
-import edu.cmu.lti.lexical_db.NictWordNet;
-import edu.cmu.lti.lexical_db.data.Concept;
-import edu.cmu.lti.ws4j.RelatednessCalculator;
-import edu.cmu.lti.ws4j.impl.WuPalmer;
-import edu.smu.tspell.wordnet.NounSynset;
-import edu.smu.tspell.wordnet.Synset;
-import edu.smu.tspell.wordnet.SynsetType;
-import edu.smu.tspell.wordnet.WordNetDatabase;
+import aml.util.WordNet;
 
 public class MultiWordMatcher implements PrimaryMatcher
 {
 	
 //Attributes
 	
-	//WordNet-related variables
-	private WordNetDatabase wordNet;
-	private final String PATH = "store/knowledge/wordnet/";
-	private ILexicalDatabase db;		
-	private RelatednessCalculator wup;
+	private WordNet wn;
 	//The set of stop words
 	private Set<String> stopset;
 
@@ -62,11 +47,7 @@ public class MultiWordMatcher implements PrimaryMatcher
 	
 	public MultiWordMatcher()
 	{
-		String path = new File(PATH).getAbsolutePath();
-		System.setProperty("wordnet.database.dir", path);
-		wordNet = WordNetDatabase.getFileInstance();
-		db = new NictWordNet();
-		wup = new WuPalmer(db);
+		wn = new WordNet();
 		stopset=StopList.read();
 	}
 
@@ -116,7 +97,7 @@ public class MultiWordMatcher implements PrimaryMatcher
 					}
 					if(sourceWLex.getWordEC(sw) < 0.75 && targetWLex.getWordEC(tw) < 0.75)
 					{
-						double score = wuPalmerScore(sw,tw);
+						double score = wn.wuPalmerScore(sw,tw);
 						if(score > 0.5)
 							sim+=0.5;
 					}
@@ -144,51 +125,8 @@ public class MultiWordMatcher implements PrimaryMatcher
 	
 	private HashSet<String> getAllWordForms(String s)
 	{
-		HashSet<String> wordForms = new HashSet<String>();
-		
-		Synset[] synsets = wordNet.getSynsets(s, SynsetType.NOUN); 
-		for(Synset ss : synsets )
-		{ 
-			NounSynset ns = (NounSynset)ss; 
-			NounSynset[] hypernyms = ns.getHypernyms();
-			for(NounSynset hs : hypernyms)
-			{
-		    	String[] wf = hs.getWordForms();
-		    	for(String w : wf)
-		    		if(!w.contains(" ") && !w.contains("-"))
-		    			wordForms.add(w.toLowerCase());
-		    }
-		}		
-		//Look for the name on WordNet
-		synsets = wordNet.getSynsets(s);
-		//For each Synset found
-		for(Synset ss : synsets)
-		{
-			//Get the WordForms
-			String[] words = ss.getWordForms();
-			//And add each one to the Lexicon
-			for(String w : words)
-				if(!w.contains(" ") && !w.contains("-"))
-					wordForms.add(w.toLowerCase());
-		}
+		HashSet<String> wordForms = wn.getAllWordForms(s);
+		wordForms.addAll(wn.getHypernyms(s));
 		return wordForms;
-	}
-
-	private double wuPalmerScore(String src, String trg)
-	{
-		double maxScore = 0.0;
-	    List<Concept> synsets1 = (List<Concept>)db.getAllConcepts(src,POS.n.name());
-	    List<Concept> synsets2 = (List<Concept>)db.getAllConcepts(trg,POS.n.name());
-
-	    for(Concept synset1: synsets1)
-	    {
-	    	for (Concept synset2: synsets2)
-	        {
-	            double score = wup.calcRelatednessOfSynset(synset1, synset2).getScore();
-	            if (score > maxScore) 
-	                maxScore = score;
-	        }
-	    }
-		return maxScore;
 	}
 }

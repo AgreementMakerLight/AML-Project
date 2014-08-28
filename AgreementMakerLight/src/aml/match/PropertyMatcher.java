@@ -34,6 +34,7 @@ import aml.ontology.URIMap;
 import aml.util.ISub;
 import aml.util.Similarity;
 import aml.util.StopList;
+import aml.util.WordNet;
 
 public class PropertyMatcher implements SecondaryMatcher
 {
@@ -44,7 +45,7 @@ public class PropertyMatcher implements SecondaryMatcher
 	private AML aml;
 	private HashMap<Integer,Property> sourceProps;
 	private HashMap<Integer,Property> targetProps;
-	private WordNetMatcher wn = null;
+	private WordNet wn = null;
 	private Set<String> stopSet;
 
 //Constructors
@@ -52,7 +53,7 @@ public class PropertyMatcher implements SecondaryMatcher
 	public PropertyMatcher(boolean useWordNet)
 	{
 		if(useWordNet)
-			wn = new WordNetMatcher();
+			wn = new WordNet();
 		aml = AML.getInstance();
 		sourceProps = aml.getSource().getPropertyMap();
 		targetProps = aml.getTarget().getPropertyMap();

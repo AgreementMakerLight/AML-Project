@@ -6,12 +6,11 @@
 	<classpathentry kind="lib" path="src/lib/jaws.jar"/>
 	<classpathentry kind="lib" path="src/lib/simmetrics.jar"/>
 	<classpathentry kind="lib" path="src/lib/gephi-toolkit.jar"/>
-	<classpathentry kind="lib" path="src/lib/swingx-all-1.6.4.jar"/>
 	<classpathentry kind="lib" path="src/lib/elk.jar"/>
 	<classpathentry kind="lib" path="src/lib/owlapi.jar"/>
 	<classpathentry kind="lib" path="src/lib/log4j.jar"/>
-	<classpathentry kind="lib" path="src/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="src/lib/microsoft-translator.jar"/>
-	<classpathentry kind="lib" path="src/lib/ws4j-1.0.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/swingx-all-1.6.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
