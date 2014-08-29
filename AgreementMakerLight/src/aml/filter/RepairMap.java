@@ -24,9 +24,15 @@ package aml.filter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Vector;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import aml.AML;
 import aml.match.Alignment;
@@ -56,6 +62,8 @@ public class RepairMap
 	private int pathCount;
 	//The list of conflict sets
 	private Vector<Path> conflictSets;
+	//The available CPU threads
+	private int threads;
 	
 //Constructors
 	
@@ -66,6 +74,7 @@ public class RepairMap
 	 */
 	public RepairMap(Alignment maps)
 	{
+		threads = Runtime.getRuntime().availableProcessors();
 		rels = AML.getInstance().getRelationshipMap();
 		a = maps;
 		init();
@@ -445,11 +454,52 @@ public class RepairMap
 	//Builds the global minimal conflict sets for all checkList classes
 	private void buildConflictSets()
 	{
-		for(Integer i : checkList)
+		//If there is only one CPU thread available, then process in series
+		if(threads == 1)
 		{
-			Vector<Path> classConflicts = buildClassConflicts(i);
-			for(Path p : classConflicts)
-				addConflict(p,conflictSets);
+			//For each checkList class
+			for(Integer i : checkList)
+			{
+				//Get its minimized conflicts
+				Vector<Path> classConflicts = buildClassConflicts(i);
+				//And add them to the conflictSets, minimizing upon addition
+				for(Path p : classConflicts)
+					addConflict(p,conflictSets);
+			}
+		}
+		//Otherwise process in parallel
+		else
+		{
+			//Create a task for each checkList class
+			ArrayList<ClassConflicts> tasks = new ArrayList<ClassConflicts>();
+			for(Integer i : checkList)
+				tasks.add(new ClassConflicts(i));
+			//Then execute all tasks using the available threads
+	        List<Future<Vector<Path>>> results;
+			ExecutorService exec = Executors.newFixedThreadPool(threads);
+			try
+			{
+				results = exec.invokeAll(tasks);
+			}
+			catch (InterruptedException e)
+			{
+				e.printStackTrace();
+		        results = new ArrayList<Future<Vector<Path>>>();
+			}
+			exec.shutdown();
+			//Finally, combine all minimal conflict sets in series
+			for(Future<Vector<Path>> conf : results)
+			{
+				try
+				{
+					for(Path p : conf.get())
+						addConflict(p,conflictSets);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
@@ -503,5 +553,22 @@ public class RepairMap
 			}
 		}
 		paths.add(p);
+	}
+	
+	//Callable class for computing minimal conflict sets
+	private class ClassConflicts implements Callable<Vector<Path>>
+	{
+		private int term;
+		
+		ClassConflicts(int t)
+	    {
+	        term = t;
+	    }
+	        
+	    @Override
+	    public Vector<Path> call()
+	    {
+       		return buildClassConflicts(term);
+        }
 	}
 }

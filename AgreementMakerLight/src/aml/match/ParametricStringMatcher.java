@@ -24,8 +24,14 @@
 ******************************************************************************/
 package aml.match;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
@@ -36,19 +42,26 @@ import aml.ontology.RelationshipMap;
 import aml.settings.LanguageSetting;
 import aml.util.ISub;
 import aml.util.StringParser;
+import aml.util.Table2Set;
 
 public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematcher
 {
 
 //Attributes
 
-	//Links to the source and target Lexicons
+	//Links to the AML class and to the source and target Lexicons
+	private AML aml;
 	private Lexicon sLex;
 	private Lexicon tLex;
+	//Language setting and languages
 	private LanguageSetting lSet;
 	private HashSet<String> languages;
+	//Similarity measure
 	private String measure = "ISub";
+	//Correction factor
 	private final double CORRECTION = 0.80;
+	//The available CPU threads
+	private int threads;
 
 //Constructors
 	
@@ -58,7 +71,8 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	 */
 	public ParametricStringMatcher()
 	{
-		AML aml = AML.getInstance();
+		threads = Runtime.getRuntime().availableProcessors();
+		aml = AML.getInstance();
 		sLex = aml.getSource().getLexicon();
 		tLex = aml.getTarget().getLexicon();
 		lSet = AML.getInstance().getLanguageSetting();
@@ -93,9 +107,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Matching Children & Parents");
 		Alignment ext = extendChildrenAndParents(a,thresh);
-		System.out.print(".");
 		Alignment aux = extendChildrenAndParents(ext,thresh);
-		System.out.print(".");
 		int size = 0;
 		for(int i = 0; i < 10 && ext.size() > size; i++)
 		{
@@ -104,9 +116,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 				if(!a.containsConflict(m))
 					ext.add(m);
 			aux = extendChildrenAndParents(aux,thresh);
-			System.out.print(".");
 		}
-		System.out.println();
 		System.out.println("Matching Siblings");
 		ext.addAll(extendSiblings(a,thresh));
 		time = System.currentTimeMillis()/1000 - time;
@@ -119,29 +129,13 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	{
 		System.out.println("Running String Matcher");
 		long time = System.currentTimeMillis()/1000;
-		Alignment a = new Alignment();
 		Set<Integer> sources = sLex.getClasses();
 		Set<Integer> targets = tLex.getClasses();
-		int total = sources.size() * targets.size();
-		int count = 0;
-		int percent = 0;
+		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(Integer i : sources)
-		{
 			for(Integer j : targets)
-			{
-				double sim = mapTwoClasses(i,j);
-				if(sim >= thresh)
-					a.add(i,j,sim);
-				count++;
-				int newPercent = count*100/total;
-				if(newPercent > percent && newPercent%10 == 0)
-				{
-					System.out.print(".");
-					percent = newPercent;
-				}
-			}
-		}
-		System.out.println();
+				toMap.add(i,j);
+		Alignment a = mapInParallel(toMap,thresh);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
@@ -150,7 +144,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	@Override
 	public Alignment rematch(Alignment a)
 	{
-		System.out.println("Computing Neighbor Similarity");
+		System.out.println("Computing String Similarity");
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
@@ -167,10 +161,8 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	
 	private Alignment extendChildrenAndParents(Alignment a, double thresh)
 	{
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
-		
-		Alignment maps = new Alignment();
+		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(int i = 0; i < a.size(); i++)
 		{
 			Mapping input = a.get(i);
@@ -182,11 +174,8 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 					continue;
 				for(Integer t : targetChildren)
 				{
-					if(a.containsTarget(t))
-						continue;
-					double sim = mapTwoClasses(s, t);
-					if(sim >= thresh)
-						maps.add(s,t,sim);
+					if(!a.containsTarget(t))
+						toMap.add(s,t);
 				}
 			}
 			Set<Integer> sourceParents = rels.getParents(input.getSourceId());
@@ -197,24 +186,18 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 					continue;
 				for(Integer t : targetParents)
 				{
-					if(a.containsTarget(t))
-						continue;
-					double sim = mapTwoClasses(s, t);
-					if(sim >= thresh)
-						maps.add(s,t,sim);
+					if(!a.containsTarget(t))
+						toMap.add(s, t);
 				}
 			}
 		}
-
-		return maps;
+		return mapInParallel(toMap,thresh);
 	}
 	
 	private Alignment extendSiblings(Alignment a, double thresh)
 	{		
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
-		Alignment maps = new Alignment();
-		int percent = 0;
+		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(int i = 0; i < a.size(); i++)
 		{
 			Mapping input = a.get(i);
@@ -228,21 +211,47 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 					continue;
 				for(Integer t : targetSiblings)
 				{
-					if(a.containsTarget(t))
-						continue;
-					double sim = mapTwoClasses(s, t);
-					if(sim >= thresh)
-						maps.add(s,t,sim);
+					if(!a.containsTarget(t))
+						toMap.add(s, t);
 				}
 			}
-			int newPercent = (i+1)*100/a.size();
-			if(newPercent > percent && newPercent%10 == 0)
+		}
+		return mapInParallel(toMap,thresh);
+	}
+	
+	//Maps a table of classes in parallel, using all available threads
+	private Alignment mapInParallel(Table2Set<Integer,Integer> toMap, double thresh)
+	{
+		Alignment maps = new Alignment();
+		ArrayList<MappingTask> tasks = new ArrayList<MappingTask>();
+		for(Integer i : toMap.keySet())
+			for(Integer j : toMap.get(i))
+				tasks.add(new MappingTask(i,j));
+        List<Future<Mapping>> results;
+		ExecutorService exec = Executors.newFixedThreadPool(threads);
+		try
+		{
+			results = exec.invokeAll(tasks);
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+	        results = new ArrayList<Future<Mapping>>();
+		}
+		exec.shutdown();
+		for(Future<Mapping> fm : results)
+		{
+			try
 			{
-				System.out.print(".");
-				percent = newPercent;
+				Mapping m = fm.get();
+				if(m.getSimilarity() >= thresh)
+					maps.add(m);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
 			}
 		}
-		System.out.println();
 		return maps;
 	}
 	
@@ -329,5 +338,24 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		}
 		sim *= CORRECTION;
 		return sim;
+	}
+	
+	//Callable class for mapping two classes
+	private class MappingTask implements Callable<Mapping>
+	{
+		private int source;
+		private int target;
+		
+		MappingTask(int s, int t)
+	    {
+			source = s;
+	        target = t;
+	    }
+	        
+	    @Override
+	    public Mapping call()
+	    {
+       		return new Mapping(source,target,mapTwoClasses(source,target));
+        }
 	}
 }
