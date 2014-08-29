@@ -61,7 +61,7 @@ public class InteractiveRepairer implements Repairer
 		init();
 		if(conflictSets.size() == 0)
 			return new Alignment(toRepair);
-		System.out.println("Repairing alignment");
+		System.out.println("Repairing Alignment Interactively");
 		long time = System.currentTimeMillis()/1000;
 		HashSet<Integer> toRemove = new HashSet<Integer>();
 		while(conflictMappings.size() > 0)
@@ -86,7 +86,7 @@ public class InteractiveRepairer implements Repairer
 			if(!toRemove.contains(i))
 				repaired.add(toRepair.get(i));
 		}
-		System.out.println("Finished repair in " + 
+		System.out.println("Finished Repair in " + 
 				(System.currentTimeMillis()/1000-time) + " seconds");
 		System.out.println("Removed " + toRemove.size() + " mappings");
 		return repaired;

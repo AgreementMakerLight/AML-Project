@@ -89,8 +89,13 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	@Override
 	public Alignment extendAlignment(Alignment a, double thresh)
 	{	
+		System.out.println("Extending Alignment with String Matcher");
+		long time = System.currentTimeMillis()/1000;
+		System.out.println("Matching Children & Parents");
 		Alignment ext = extendChildrenAndParents(a,thresh);
+		System.out.print(".");
 		Alignment aux = extendChildrenAndParents(ext,thresh);
+		System.out.print(".");
 		int size = 0;
 		for(int i = 0; i < 10 && ext.size() > size; i++)
 		{
@@ -99,17 +104,27 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 				if(!a.containsConflict(m))
 					ext.add(m);
 			aux = extendChildrenAndParents(aux,thresh);
+			System.out.print(".");
 		}
+		System.out.println();
+		System.out.println("Matching Siblings");
 		ext.addAll(extendSiblings(a,thresh));
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return ext;
 	}
 	
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running String Matcher");
+		long time = System.currentTimeMillis()/1000;
 		Alignment a = new Alignment();
 		Set<Integer> sources = sLex.getClasses();
 		Set<Integer> targets = tLex.getClasses();
+		int total = sources.size() * targets.size();
+		int count = 0;
+		int percent = 0;
 		for(Integer i : sources)
 		{
 			for(Integer j : targets)
@@ -117,20 +132,34 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 				double sim = mapTwoClasses(i,j);
 				if(sim >= thresh)
 					a.add(i,j,sim);
+				count++;
+				int newPercent = count*100/total;
+				if(newPercent > percent && newPercent%10 == 0)
+				{
+					System.out.print(".");
+					percent = newPercent;
+				}
 			}
 		}
+		System.out.println();
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return a;
 	}
 	
 	@Override
 	public Alignment rematch(Alignment a)
 	{
+		System.out.println("Computing Neighbor Similarity");
+		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
 		{
 			double sim = mapTwoClasses(m.getSourceId(),m.getTargetId());
 			maps.add(m.getSourceId(),m.getTargetId(),sim);
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 	
@@ -185,6 +214,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
 		Alignment maps = new Alignment();
+		int percent = 0;
 		for(int i = 0; i < a.size(); i++)
 		{
 			Mapping input = a.get(i);
@@ -205,7 +235,14 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 						maps.add(s,t,sim);
 				}
 			}
+			int newPercent = (i+1)*100/a.size();
+			if(newPercent > percent && newPercent%10 == 0)
+			{
+				System.out.print(".");
+				percent = newPercent;
+			}
 		}
+		System.out.println();
 		return maps;
 	}
 	

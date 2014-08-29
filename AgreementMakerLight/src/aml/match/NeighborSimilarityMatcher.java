@@ -67,6 +67,8 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	@Override
 	public Alignment extendAlignment(Alignment a, double thresh)
 	{
+		System.out.println("Extending Alignment with Neighbor Similarity Matcher");
+		long time = System.currentTimeMillis()/1000;
 		input = a;
 		Alignment maps = new Alignment();
 		for(int i = 0; i < input.size(); i++)
@@ -103,12 +105,16 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 				}
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 
 	@Override
 	public Alignment rematch(Alignment a)
 	{
+		System.out.println("Computing Neighbor Similarity");
+		long time = System.currentTimeMillis()/1000;
 		input = a;
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
@@ -117,6 +123,8 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 			int tId = m.getTargetId();
 			maps.add(sId,tId,mapTwoTerms(sId,tId));
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 	

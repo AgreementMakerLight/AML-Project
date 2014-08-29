@@ -25,13 +25,12 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.ontology.RelationshipMap;
 import aml.ontology.WordLexicon;
 import aml.settings.WordMatchStrategy;
 import aml.util.Table2Map;
 import aml.util.Table2Set;
 
-public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
+public class WordMatcher implements PrimaryMatcher, Rematcher
 {
 
 //Attributes
@@ -39,6 +38,7 @@ public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 	private WordLexicon sourceLex;
 	private WordLexicon targetLex;
 	private WordMatchStrategy strategy = WordMatchStrategy.AVERAGE;
+	private String language;
 
 //Constructors
 	
@@ -50,6 +50,7 @@ public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 		AML aml = AML.getInstance();
 		sourceLex = aml.getSource().getWordLexicon();
 		targetLex = aml.getTarget().getWordLexicon();
+		language = "";
 	}
 	
 	/**
@@ -61,6 +62,7 @@ public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 		AML aml = AML.getInstance();
 		sourceLex = aml.getSource().getWordLexicon(lang);
 		targetLex = aml.getTarget().getWordLexicon(lang);
+		language = lang;
 	}
 	
 	/**
@@ -87,27 +89,11 @@ public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		Alignment ext = extendChildrenAndParents(a,thresh);
-		Alignment aux = extendChildrenAndParents(ext,thresh);
-		int size = 0;
-		for(int i = 0; i < 10 && ext.size() > size; i++)
-		{
-			size = ext.size();
-			for(Mapping m : aux)
-				if(!a.containsConflict(m))
-					ext.add(m);
-			aux = extendChildrenAndParents(aux,thresh);
-		}
-		ext.addAll(extendSiblings(a,thresh));
-		return ext;
-	}
-	
-	@Override
 	public Alignment match(double thresh)
 	{
 		System.out.println("Running Word Matcher");
+		if(!language.isEmpty())
+			System.out.println("Language: " + language);
 		long time = System.currentTimeMillis()/1000;
 		Alignment a = new Alignment();
 		//If the strategy is BY_CLASS, the alignment can be computed
@@ -165,7 +151,7 @@ public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 	@Override
 	public Alignment rematch(Alignment a)
 	{
-		System.out.println("Running Word Matcher in rematch mode");
+		System.out.println("Computing Word Similarity");
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
@@ -195,79 +181,6 @@ public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 		}			
 		union -= intersection;
 		return intersection / union;
-	}
-	
-	private Alignment extendChildrenAndParents(Alignment a, double thresh)
-	{
-		AML aml = AML.getInstance();
-		RelationshipMap rels = aml.getRelationshipMap();
-		
-		Alignment maps = new Alignment();
-		for(int i = 0; i < a.size(); i++)
-		{
-			Mapping input = a.get(i);
-			Set<Integer> sourceChildren = rels.getChildren(input.getSourceId());
-			Set<Integer> targetChildren = rels.getChildren(input.getTargetId());
-			for(Integer s : sourceChildren)
-			{
-				if(a.containsSource(s))
-					continue;
-				for(Integer t : targetChildren)
-				{
-					if(a.containsTarget(t))
-						continue;
-					Mapping m = mapTwoClasses(s, t);
-					if(m.getSimilarity() >= thresh)
-						maps.add(m);
-				}
-			}
-			Set<Integer> sourceParents = rels.getParents(input.getSourceId());
-			Set<Integer> targetParents = rels.getParents(input.getTargetId());
-			for(Integer s : sourceParents)
-			{
-				if(a.containsSource(s))
-					continue;
-				for(Integer t : targetParents)
-				{
-					if(a.containsTarget(t))
-						continue;
-					Mapping m = mapTwoClasses(s, t);
-					if(m.getSimilarity() >= thresh)
-						maps.add(m);
-				}
-			}
-		}
-
-		return maps;
-	}
-	
-	private Alignment extendSiblings(Alignment a, double thresh)
-	{		
-		AML aml = AML.getInstance();
-		RelationshipMap rels = aml.getRelationshipMap();
-		Alignment maps = new Alignment();
-		for(int i = 0; i < a.size(); i++)
-		{
-			Mapping input = a.get(i);
-			Set<Integer> sourceSiblings = rels.getAllSiblings(input.getSourceId());
-			Set<Integer> targetSiblings = rels.getAllSiblings(input.getTargetId());
-			if(sourceSiblings.size() > 200 || targetSiblings.size() > 200)
-				continue;
-			for(Integer s : sourceSiblings)
-			{
-				if(a.containsSource(s))
-					continue;
-				for(Integer t : targetSiblings)
-				{
-					if(a.containsTarget(t))
-						continue;
-					Mapping m = mapTwoClasses(s, t);
-					if(m.getSimilarity() >= thresh)
-						maps.add(m);
-				}
-			}
-		}
-		return maps;
 	}
 	
 	//Matches two WordLexicon blocks by class.

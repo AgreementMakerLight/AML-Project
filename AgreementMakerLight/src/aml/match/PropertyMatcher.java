@@ -65,6 +65,8 @@ public class PropertyMatcher implements SecondaryMatcher
 	@Override
 	public Alignment extendAlignment(Alignment a, double threshold)
 	{
+		System.out.println("Extending Alignment with Property Matcher");
+		long time = System.currentTimeMillis()/1000;
 		maps = a;
 		Alignment propMaps = new Alignment();
 		Set<Integer> sourceKeys = sourceProps.keySet();
@@ -78,6 +80,8 @@ public class PropertyMatcher implements SecondaryMatcher
 					propMaps.add(new Mapping(i,j,sim));
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return propMaps;
 	}
 

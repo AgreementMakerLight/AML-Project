@@ -49,6 +49,8 @@ public class RankedSelector implements Selector
 	@Override
 	public Alignment select(Alignment a, double thresh)
 	{
+		System.out.println("Performing Ranked Selection");
+		long time = System.currentTimeMillis()/1000;
 		if(type == null)
 			type = SelectionType.getSelectionType(a);
 		//Initialize Alignment to return
@@ -77,6 +79,7 @@ public class RankedSelector implements Selector
 					selected.add(new Mapping(m));
 			}
 		}
+		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 		return selected;
 	}
 }

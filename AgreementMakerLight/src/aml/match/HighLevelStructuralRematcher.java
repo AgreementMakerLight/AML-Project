@@ -33,6 +33,8 @@ public class HighLevelStructuralRematcher implements Rematcher
 	@Override
 	public Alignment rematch(Alignment a)
 	{
+		System.out.println("Computing High-Level Structure Overlap");
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Alignment maps = new Alignment();
 		Alignment high = a.getHighLevelAlignment();
@@ -59,7 +61,8 @@ public class HighLevelStructuralRematcher implements Rematcher
 			}
 			maps.add(sId,tId,maxSim);
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
-
 }

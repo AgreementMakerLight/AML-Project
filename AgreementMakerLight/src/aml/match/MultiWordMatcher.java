@@ -56,6 +56,8 @@ public class MultiWordMatcher implements PrimaryMatcher
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running Multi-Word Matcher");
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon sourceLex = aml.getSource().getLexicon();
 		Lexicon targetLex = aml.getTarget().getLexicon();
@@ -118,6 +120,8 @@ public class MultiWordMatcher implements PrimaryMatcher
 				}
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 

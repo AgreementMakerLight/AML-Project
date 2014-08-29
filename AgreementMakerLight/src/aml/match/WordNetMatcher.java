@@ -61,18 +61,27 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 	@Override
 	public void extendLexicons(double thresh)
 	{
+		System.out.println("Extending Lexicons with WordNet Matcher");
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		extendLexicon(aml.getSource().getLexicon(),thresh);
 		extendLexicon(aml.getTarget().getLexicon(),thresh);
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 	}
 	
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running WordNet Matcher");
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon ext1 = getExtensionLexicon(aml.getSource().getLexicon(),thresh);
 		Lexicon ext2 = getExtensionLexicon(aml.getTarget().getLexicon(),thresh);
-		return match(ext1, ext2, thresh);
+		Alignment a = match(ext1, ext2, thresh);
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
+		return a;
 	}
 	
 //Private Methods

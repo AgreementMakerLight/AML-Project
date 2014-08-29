@@ -53,6 +53,8 @@ public class RankedCoSelector implements Selector
 	@Override
 	public Alignment select(Alignment a, double thresh)
 	{
+		System.out.println("Performing Ranked Co-Selection");
+		long time = System.currentTimeMillis()/1000;
 		aux.sort();
 		Alignment selected = new Alignment();
 		for(Mapping m : aux)
@@ -76,6 +78,7 @@ public class RankedCoSelector implements Selector
 					selected.add(new Mapping(n));
 			}
 		}
+		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 		return selected;
 	}
 }
