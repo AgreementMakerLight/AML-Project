@@ -1048,13 +1048,6 @@ public class Alignment implements Iterable<Mapping>
 				else
 					add(targetIndex, sourceIndex, similarity, rel);
             }
-			else
-			{
-				if(sourceIndex == -1)
-					System.out.println(sourceURI);
-				if(targetIndex == -1)
-					System.out.println(targetURI);
-			}
 		}
 	}
 	
