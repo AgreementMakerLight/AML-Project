@@ -131,11 +131,14 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		long time = System.currentTimeMillis()/1000;
 		Set<Integer> sources = sLex.getClasses();
 		Set<Integer> targets = tLex.getClasses();
-		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+		Alignment a = new Alignment();
 		for(Integer i : sources)
+		{
+			Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 			for(Integer j : targets)
 				toMap.add(i,j);
-		Alignment a = mapInParallel(toMap,thresh);
+			a.addAll(mapInParallel(toMap,thresh));
+		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
