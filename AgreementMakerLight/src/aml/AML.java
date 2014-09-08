@@ -454,6 +454,12 @@ public class AML
 	    threshold = thresh;
 	}
 	
+	public void setOntologies(Ontology s, Ontology t)
+	{
+		source = s;
+		target = t;
+	}
+	
 	public void setSelectionType(SelectionType s)
 	{
 		if(s == null)

@@ -12,7 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A table with two columns, represented by a HashMap of sorted Vectors.       *
+* A table with two columns, represented by a HashMap of Vectors.              *
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 11-08-2014                                                            *
@@ -80,15 +80,15 @@ public class Table2List<A,B extends Comparable<B>>
 		else
 		{
 			int index = list.indexOf(value);
-			boolean remove = (index > -1 && value.compareTo(list.get(index)) > 0);
-			if(remove)
-				list.remove(index);
-			if(index == -1 || remove)
+			if(index == -1)
 			{
-				//This will iterate through the list and find the right place to insert the value
-				for(index = 0; index < list.size() && value.compareTo(list.get(index)) > 0; index++);
-				list.insertElementAt(value,index);
+				list.add(value);
 				size++;
+			}
+			else if(value.compareTo(list.get(index)) > 0)
+			{
+				list.remove(index);
+				list.add(value);
 			}
 		}
 	}

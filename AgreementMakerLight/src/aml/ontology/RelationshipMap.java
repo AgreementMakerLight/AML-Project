@@ -652,7 +652,13 @@ public class RelationshipMap
 	 */
 	public Relationship getRelationship(int child, int parent)
 	{
-		return ancestorMap.get(child).get(parent).get(0);
+		if(!ancestorMap.contains(child, parent))
+			return null;
+		Relationship rel = ancestorMap.get(child).get(parent).get(0);
+		for(Relationship r : ancestorMap.get(child).get(parent))
+			if(r.compareTo(rel) > 0)
+				rel = r;
+		return rel;
 	}
 
 	/**

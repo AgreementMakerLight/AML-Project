@@ -16,7 +16,7 @@
  * mappings from a given Alignment, which supports repair of that Alignment.   *
  *                                                                             *
  * @authors Daniel Faria & Emanuel Santos                                      *
- * @date 12-08-2014                                                            *
+ * @date 03-09-2014                                                            *
  * @version 2.0                                                                *
  ******************************************************************************/
 package aml.filter;
@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,11 +36,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import aml.AML;
+import aml.util.Table3List;
+import aml.util.Table3Set;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.RelationshipMap;
-import aml.util.Table3List;
-import aml.util.Table3Set;
 
 public class RepairMap
 {
@@ -487,19 +488,25 @@ public class RepairMap
 		        results = new ArrayList<Future<Vector<Path>>>();
 			}
 			exec.shutdown();
-			//Finally, combine all minimal conflict sets in series
+			//Finally, combine all minimal class conflict sets
+			Vector<Path> allConflicts = new Vector<Path>();
 			for(Future<Vector<Path>> conf : results)
 			{
 				try
 				{
 					for(Path p : conf.get())
-						addConflict(p,conflictSets);
+						allConflicts.add(p);
 				}
 				catch(Exception e)
 				{
 					e.printStackTrace();
 				}
 			}
+			//Sort them
+			Collections.sort(allConflicts);
+			//And turn them into the final minimal list of conflict sets
+			for(Path p : allConflicts)
+				addConflict(p,conflictSets);
 		}
 	}
 	
@@ -526,32 +533,29 @@ public class RepairMap
 					{
 						Path merged = new Path(p);
 						merged.merge(q);
-						addConflict(merged, classConflicts);
+						//Adding the merged path to the list of classConflicts
+						classConflicts.add(merged);
 					}
 				}
 			}
 		}
-		return classConflicts;
+		//Then sort that list
+		Collections.sort(classConflicts);
+		//And turn it into a minimal list
+		Vector<Path> minimalConflicts = new Vector<Path>();
+		for(Path p : classConflicts)
+			addConflict(p, minimalConflicts);
+		return minimalConflicts;
 	}
 	
-	//Adds a path to a list of conflict sets if it is a
-	//minimal path, removing redundant paths if they exist
+	//Adds a path to a list of conflict sets if it is a minimal path
+	//(this only results in a minimal list of paths if paths are added
+	//in order, after sorting)
 	private void addConflict(Path p, Vector<Path> paths)
 	{
-		for(int i = 0; i < paths.size(); i++)
-		{
-			Path q = paths.get(i);
-			if(p.size() >= q.size())
-			{
-				if(p.contains(q))
-					return;
-			}
-			else if(q.contains(p))
-			{
-				paths.remove(i);
-				i--;
-			}
-		}
+		for(Path q : paths)
+			if(p.contains(q))
+				return;
 		paths.add(p);
 	}
 	

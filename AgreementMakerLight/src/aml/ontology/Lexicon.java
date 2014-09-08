@@ -30,10 +30,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+import aml.util.Table3List;
 import aml.settings.LexicalType;
 import aml.util.StopList;
 import aml.util.StringParser;
-import aml.util.Table3List;
 
 
 public class Lexicon
@@ -389,7 +389,21 @@ public class Lexicon
 	 */
 	public String getBestName(int classId)
 	{
-		return classes.getKeyMaximum(classId);
+		Set<String> hits = getInternalNames(classId);
+		String bestName = "";
+		double weight;
+		double maxWeight = 0.0;
+		
+		for(String n : hits)
+		{
+			weight = getWeight(n,classId);
+			if(weight > maxWeight)
+			{
+				maxWeight = weight;
+				bestName = n;
+			}
+		}
+		return bestName;
 	}
 	
 	/**

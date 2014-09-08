@@ -168,30 +168,6 @@ public class Table3List<A,B,C extends Comparable<C>>
 	
 	/**
 	 * @param keyA: the first level key to search in the Table
-	 * @return the maximum value in entries with keyA
-	 */
-	public B getKeyMaximum(A keyA)
-	{
-		Table2List<B,C> mapsA = multimap.get(keyA);
-		if(mapsA == null)
-			return null;
-		Vector<B> setA = new Vector<B>(mapsA.keySet());
-		B max = setA.get(0);
-		C maxVal = mapsA.get(max).get(0);
-		for(B b : setA)
-		{
-			C value = mapsA.get(b).get(0);
-			if(value.compareTo(maxVal) > 0)
-			{
-				maxVal = value;
-				max = b;
-			}
-		}
-		return max;
-	}
-	
-	/**
-	 * @param keyA: the first level key to search in the Table
 	 * @param valueC: the value to search in the Table
 	 * @return the list of second level keys in entries with keyA and valueC
 	 */	
