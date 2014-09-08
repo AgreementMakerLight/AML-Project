@@ -99,6 +99,8 @@ public class AML
 	//It's private so that no other instances can be created 
 	private AML()
 	{
+		uris = new URIMap();
+		rels = new RelationshipMap();
 		bkSources = new Vector<String>();
 		File ontRoot = new File(BK_PATH);
 		FileFilter ont = new ExtensionFilter("Ontology Files (*.owl, *.rdf, *.rdfs, *.xml)",
@@ -458,6 +460,13 @@ public class AML
 	{
 		source = s;
 		target = t;
+    	//Set the size category and language setting
+    	size = SizeCategory.getSizeCategory();
+    	lang = LanguageSetting.getLanguageSetting();
+		languages = new HashSet<String>();
+		for(String l : source.getLexicon().getLanguages())
+			if(target.getLexicon().getLanguages().contains(l) && !l.equalsIgnoreCase("formula"))
+				languages.add(l);
 	}
 	
 	public void setSelectionType(SelectionType s)

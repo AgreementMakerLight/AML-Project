@@ -73,26 +73,26 @@ public class Ontology
 	//The entity expansion limit property
     private final String LIMIT = "entityExpansionLimit"; 
 	//The URI of the ontology
-	private String uri;
+	protected String uri;
 	//The map of class indexes <-> local names in the ontology
-	private HashMap<Integer,String> indexName;
-	private HashMap<String,Integer> nameIndex;
+	protected HashMap<Integer,String> indexName;
+	protected HashMap<String,Integer> nameIndex;
 	//The map of indexes -> properties in the ontology
-	private HashMap<Integer,Property> properties;
+	protected HashMap<Integer,Property> properties;
 	//Its lexicon
-	private Lexicon lex;
+	protected Lexicon lex;
 	//Its word lexicon
-	private WordLexicon wLex;
+	protected WordLexicon wLex;
 	//Its map of cross-references
-	private ReferenceMap refs;
+	protected ReferenceMap refs;
 	//Its set of obsolete classes
-	private HashSet<Integer> obsolete;
+	protected HashSet<Integer> obsolete;
 	
 	//Global variables data structures
 	private AML aml;
 	private boolean useReasoner;
-	private URIMap uris;
-	private RelationshipMap rm;
+	protected URIMap uris;
+	protected RelationshipMap rm;
 	
 	//Auxiliary data structures to capture semantic disjointness
 	private Table2Map<Integer,Integer,Integer> maxCard, minCard, card;
