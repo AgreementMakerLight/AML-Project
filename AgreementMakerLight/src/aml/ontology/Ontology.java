@@ -102,12 +102,32 @@ public class Ontology
 //Constructors
 
 	/**
+	 * Constructs an empty ontology
+	 */
+	public Ontology()
+	{
+		//Initialize the data structures
+		indexName = new HashMap<Integer,String>();
+		nameIndex = new HashMap<String,Integer>();
+		properties = new HashMap<Integer,Property>();
+		lex = new Lexicon();
+		wLex = null;
+		refs = new ReferenceMap();
+		aml = AML.getInstance();
+		useReasoner = aml.useReasoner();
+		uris = aml.getURIMap();
+		rm = aml.getRelationshipMap();
+		obsolete = new HashSet<Integer>();
+	}
+	
+	/**
 	 * Constructs an Ontology from file 
 	 * @param path: the path to the input Ontology file
 	 * @param isInput: whether the ontology is an input ontology or an external ontology
 	 */
 	public Ontology(String path, boolean isInput)
 	{
+		this();
         //Increase the entity expansion limit to allow large ontologies
         System.setProperty(LIMIT, "1000000");
         //Get an Ontology Manager and Data Factory
@@ -125,7 +145,7 @@ public class Ontology
 		{
 			e.printStackTrace();
 			return;
-		}	
+		}
 		init(o,isInput);
 		//Close the OntModel
         manager.removeOntology(o);
@@ -141,6 +161,7 @@ public class Ontology
 	 */
 	public Ontology(URI uri, boolean isInput)
 	{
+		this();
         //Increase the entity expansion limit to allow large ontologies
         System.setProperty(LIMIT, "1000000");
         //Get an Ontology Manager and Data Factory
@@ -346,19 +367,6 @@ public class Ontology
 	//Builds the ontology data structures
 	private void init(OWLOntology o, boolean isInput)
 	{
-		//Initialize the data structures
-		indexName = new HashMap<Integer,String>();
-		nameIndex = new HashMap<String,Integer>();
-		properties = new HashMap<Integer,Property>();
-		lex = new Lexicon();
-		wLex = null;
-		refs = new ReferenceMap();
-		aml = AML.getInstance();
-		useReasoner = aml.useReasoner();
-		uris = aml.getURIMap();
-		rm = aml.getRelationshipMap();
-		obsolete = new HashSet<Integer>();
-		
 		//Update the URI of the ontology (if it lists one)
 		if(o.getOntologyID().getOntologyIRI() != null)
 			uri = o.getOntologyID().getOntologyIRI().toString();
