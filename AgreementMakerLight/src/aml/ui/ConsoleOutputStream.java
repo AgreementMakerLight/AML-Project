@@ -12,39 +12,44 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Lists the WordMatcher strategy options.                                     *
+* Output stream supporting the Console.                                       *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 11-09-2014                                                            *
+* @date 29-09-2014                                                            *
 * @version 2.1                                                                *
 ******************************************************************************/
-package aml.settings;
+package aml.ui;
 
-public enum WordMatchStrategy
+import java.io.IOException;
+import java.io.OutputStream;
+
+import javax.swing.JTextArea;
+
+public class ConsoleOutputStream extends OutputStream
 {
-	BY_CLASS ("By_Class"),
-	BY_NAME ("By_Name"),
-	AVERAGE ("Average"),
-	MAXIMUM ("Maximum"),
-	MINIMUM ("Minimum");
+	private JTextArea console;
 	
-	String label;
-	
-	WordMatchStrategy(String s)
-    {
-    	label = s;
-    }
-	
-	public static WordMatchStrategy parseStrategy(String strat)
+	public ConsoleOutputStream(JTextArea t)
 	{
-		for(WordMatchStrategy s : WordMatchStrategy.values())
-			if(strat.equalsIgnoreCase(s.toString()))
-				return s;
-		return null;
+		super();
+		console = t;
 	}
 	
-    public String toString()
+    @Override
+    public void write(int b) throws IOException
     {
-    	return label;
-	}
+    	console.append(String.valueOf((char) b));
+    }
+	    
+    @Override
+    public void write(byte[] b, int off, int len) throws IOException
+    {
+    	console.append(new String(b, off, len));
+    }
+	 
+    @Override
+    public void write(byte[] b) throws IOException
+    {
+    	write(b, 0, b.length);
+    }
 }

@@ -21,7 +21,7 @@
 *                                                                             *
 * @author Daniel Faria, Joana Pinto, Pedro do Vale                            *
 * @date 14-08-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.translate;
 

@@ -16,8 +16,8 @@
 * their classes.                                                              *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-07-2014                                                            *
-* @version 2.0                                                                *
+* @date 10-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -26,6 +26,7 @@ import java.util.Set;
 import aml.AML;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
+import aml.settings.NeighborSimilarityStrategy;
 
 public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 {
@@ -37,7 +38,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	private Ontology source;
 	private Ontology target;
 	private Alignment input;
-	private boolean min;
+	private NeighborSimilarityStrategy strat;
 	private boolean direct;
 	
 //Constructors
@@ -48,17 +49,14 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		rels = aml.getRelationshipMap();
 		source = aml.getSource();
 		target = aml.getTarget();
-		min = true;
+		strat = NeighborSimilarityStrategy.MINIMUM;
 		direct = true;
 	}
 	
-	public NeighborSimilarityMatcher(boolean min, boolean direct)
+	public NeighborSimilarityMatcher(NeighborSimilarityStrategy s, boolean direct)
 	{
-		AML aml = AML.getInstance();
-		rels = aml.getRelationshipMap();
-		source = aml.getSource();
-		target = aml.getTarget();
-		this.min = min;
+		this();
+		strat = s;
 		this.direct = direct;
 	}
 	
@@ -128,6 +126,8 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		return maps;
 	}
 	
+//Private Methods
+	
 	//Computes the neighbor structural similarity between two terms by
 	//checking for mappings between all their ancestors and descendants
 	private double mapTwoTerms(int sId, int tId)
@@ -142,29 +142,41 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		double parentTotal = 0.0;
 		double childrenSim = 0.0;
 		double childrenTotal = 0.0;
-		for(Integer i : sourceParents)
+		if(!strat.equals(NeighborSimilarityStrategy.DESCENDANTS))
 		{
-			parentTotal += 0.5 / Math.sqrt(rels.getDistance(sId,i));
-			for(Integer j : targetParents)
-				parentTotal += input.getSimilarity(i,j) /
-					Math.sqrt((rels.getDistance(sId,i) + rels.getDistance(tId, j))*0.5);
+			for(Integer i : sourceParents)
+			{
+				parentTotal += 0.5 / Math.sqrt(rels.getDistance(sId,i));
+				for(Integer j : targetParents)
+					parentTotal += input.getSimilarity(i,j) /
+						Math.sqrt((rels.getDistance(sId,i) + rels.getDistance(tId, j))*0.5);
+			}
+			for(Integer i : targetParents)
+				parentTotal += 0.5 / Math.sqrt(rels.getDistance(tId,i));
+			parentSim /= parentTotal;
 		}
-		for(Integer i : targetParents)
-			parentTotal += 0.5 / Math.sqrt(rels.getDistance(tId,i));
-		parentSim /= parentTotal;
-		for(Integer i : sourceChildren)
+		if(!strat.equals(NeighborSimilarityStrategy.ANCESTORS))
 		{
-			childrenTotal += 0.5 / Math.sqrt(rels.getDistance(i,sId));
-			for(Integer j : targetChildren)
-				childrenSim += input.getSimilarity(i,j) /
-					Math.sqrt((rels.getDistance(i,sId) + rels.getDistance(j,tId))*0.5);
+			for(Integer i : sourceChildren)
+			{
+				childrenTotal += 0.5 / Math.sqrt(rels.getDistance(i,sId));
+				for(Integer j : targetChildren)
+					childrenSim += input.getSimilarity(i,j) /
+						Math.sqrt((rels.getDistance(i,sId) + rels.getDistance(j,tId))*0.5);
+			}
+			for(Integer i : targetChildren)
+				childrenTotal += 0.5 / Math.sqrt(rels.getDistance(i,tId));
+			childrenSim /= childrenTotal;
 		}
-		for(Integer i : targetChildren)
-			childrenTotal += 0.5 / Math.sqrt(rels.getDistance(i,tId));
-		childrenSim /= childrenTotal;
-		if(min)
+		if(strat.equals(NeighborSimilarityStrategy.ANCESTORS))
+			return parentSim;
+		else if(strat.equals(NeighborSimilarityStrategy.DESCENDANTS))
+			return childrenSim;
+		else if(strat.equals(NeighborSimilarityStrategy.MINIMUM))
 			return Math.min(parentSim,childrenSim);
-		else
+		else if(strat.equals(NeighborSimilarityStrategy.MAXIMUM))
 			return Math.max(parentSim,childrenSim);
+		else
+			return (parentSim + childrenSim)*0.5;
 	}
 }

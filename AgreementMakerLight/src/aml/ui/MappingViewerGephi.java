@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria & Catia Pesquita                                       *
 * @date 23-06-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.ui;
 

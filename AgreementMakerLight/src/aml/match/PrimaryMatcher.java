@@ -15,8 +15,8 @@
 * A matching algorithm that maps the source and target Ontologies globally.   *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-07-2014                                                            *
-* @version 2.0                                                                *
+* @date 10-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 

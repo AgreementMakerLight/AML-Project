@@ -15,8 +15,8 @@
 * Visualization options dialog box for the GUI.                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
-* @version 2.0                                                                *
+* @date 29-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.ui;
 
@@ -25,6 +25,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -34,6 +36,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import aml.AML;
+import aml.settings.LanguageSetting;
 
 public class ViewOptions extends JDialog implements ActionListener
 {
@@ -41,9 +44,11 @@ public class ViewOptions extends JDialog implements ActionListener
 //Attributes
 	
 	private static final long serialVersionUID = -3900206021275961468L;
-	private JPanel dialogPanel, directionPanel, distancePanel, buttonPanel;
+	private AML aml;
+	private JPanel dialogPanel, languagePanel, directionPanel, distancePanel, buttonPanel;
 	private JButton cancel, ok;
-	private JLabel distanceLabel;
+	private JLabel languageLabel, distanceLabel;
+	private JComboBox<String> languageSelector;
 	private JComboBox<Integer> distanceSelector;
 	private JCheckBox ancestors, descendants;
 	private final Integer[] DIST = {0,1,2,3,4,5};
@@ -53,9 +58,18 @@ public class ViewOptions extends JDialog implements ActionListener
 	public ViewOptions()
 	{
 		super();
+		aml = AML.getInstance();
 		
 		this.setTitle("Visualization Options");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+		
+		languageLabel = new JLabel("Label Language:");
+		Vector<String> languages = new Vector<String>(aml.getLanguages());
+		languageSelector = new JComboBox<String>(languages);
+		languageSelector.setSelectedItem(aml.getLabelLanguage());
+		languagePanel = new JPanel();
+		languagePanel.add(languageLabel);
+		languagePanel.add(languageSelector);
 
 		ancestors = new JCheckBox("View Ancestors");
 		ancestors.setMnemonic(KeyEvent.VK_C);
@@ -86,8 +100,10 @@ public class ViewOptions extends JDialog implements ActionListener
 		buttonPanel.add(ok);
 		
 		dialogPanel = new JPanel();
-		dialogPanel.setPreferredSize(new Dimension(300,120));
+		dialogPanel.setPreferredSize(new Dimension(300,150));
 		dialogPanel.setLayout(new BoxLayout(dialogPanel, BoxLayout.PAGE_AXIS));
+		if(!aml.getLanguageSetting().equals(LanguageSetting.SINGLE))
+			dialogPanel.add(languagePanel);
 		dialogPanel.add(directionPanel);
 		dialogPanel.add(distancePanel);
 		dialogPanel.add(buttonPanel);
@@ -110,8 +126,10 @@ public class ViewOptions extends JDialog implements ActionListener
 		}
 		else if(o == ok)
 		{
-			AML.getInstance().setViewOptions(ancestors.isSelected(),descendants.isSelected(),
+			aml.setViewOptions(ancestors.isSelected(),descendants.isSelected(),
 					(Integer)distanceSelector.getSelectedItem());
+			if(!aml.getLanguageSetting().equals(LanguageSetting.SINGLE))
+				aml.setLabelLanguage((String)languageSelector.getSelectedItem());
 			this.dispose();
 		}
 	}

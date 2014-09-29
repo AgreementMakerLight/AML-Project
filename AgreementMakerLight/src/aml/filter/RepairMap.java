@@ -17,7 +17,7 @@
  *                                                                             *
  * @authors Daniel Faria & Emanuel Santos                                      *
  * @date 03-09-2014                                                            *
- * @version 2.0                                                                *
+ * @version 2.1                                                                *
  ******************************************************************************/
 package aml.filter;
 

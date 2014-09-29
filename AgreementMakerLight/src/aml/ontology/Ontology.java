@@ -124,8 +124,9 @@ public class Ontology
 	 * Constructs an Ontology from file 
 	 * @param path: the path to the input Ontology file
 	 * @param isInput: whether the ontology is an input ontology or an external ontology
+	 * @throws OWLOntologyCreationException 
 	 */
-	public Ontology(String path, boolean isInput)
+	public Ontology(String path, boolean isInput) throws OWLOntologyCreationException
 	{
 		this();
         //Increase the entity expansion limit to allow large ontologies
@@ -136,16 +137,8 @@ public class Ontology
         //Load the local ontology
         File f = new File(path);
         OWLOntology o;
-		try
-		{
-			o = manager.loadOntologyFromOntologyDocument(f);
-			uri = f.getAbsolutePath();
-		}
-		catch (OWLOntologyCreationException e)
-		{
-			e.printStackTrace();
-			return;
-		}
+		o = manager.loadOntologyFromOntologyDocument(f);
+		uri = f.getAbsolutePath();
 		init(o,isInput);
 		//Close the OntModel
         manager.removeOntology(o);
@@ -158,8 +151,9 @@ public class Ontology
 	 * @param uri: the URI of the input Ontology
 	 * @param isInput: whether the ontology is an input ontology or
 	 * an external ontology
+	 * @throws OWLOntologyCreationException 
 	 */
-	public Ontology(URI uri, boolean isInput)
+	public Ontology(URI uri, boolean isInput) throws OWLOntologyCreationException
 	{
 		this();
         //Increase the entity expansion limit to allow large ontologies
@@ -168,26 +162,18 @@ public class Ontology
         manager = OWLManager.createOWLOntologyManager();
         factory = manager.getOWLDataFactory();
         OWLOntology o;
-		try
+        //Check if the URI is local
+        if(uri.toString().startsWith("file:"))
 		{
-	        //Check if the URI is local
-	        if(uri.toString().startsWith("file:"))
-			{
-				File f = new File(uri);
-				o = manager.loadOntologyFromOntologyDocument(f);
-			}
-			else
-			{
-				IRI i = IRI.create(uri);
-				o = manager.loadOntology(i);
-			}
-	        this.uri = uri.toString(); 
+			File f = new File(uri);
+			o = manager.loadOntologyFromOntologyDocument(f);
 		}
-		catch (OWLOntologyCreationException e)
+		else
 		{
-			e.printStackTrace();
-			return;
-		}		
+			IRI i = IRI.create(uri);
+			o = manager.loadOntology(i);
+		}
+        this.uri = uri.toString(); 
 		init(o,isInput);
 		//Close the OntModel
         manager.removeOntology(o);

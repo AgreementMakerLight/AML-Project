@@ -17,8 +17,8 @@
 * cross-references.                                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-07-2014                                                            *
-* @version 2.0                                                                *
+* @date 18-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -30,7 +30,7 @@ import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
 import aml.settings.LexicalType;
 
-public class XRefMatcher implements PrimaryMatcher, LexiconExtender
+public class XRefMatcher extends LexicalMatcher implements LexiconExtender
 {
 	
 //Attributes
@@ -160,8 +160,7 @@ public class XRefMatcher implements PrimaryMatcher, LexiconExtender
 			}
 		}
 		//Step 2 - Do a lexical match
-		LexicalMatcher lm = new LexicalMatcher();
-		Alignment b = lm.match(o.getLexicon(),ext.getLexicon(),thresh);
+		Alignment b = match(o.getLexicon(),ext.getLexicon(),thresh,true);
 		
 		//Step 3 - Compare the two
 		//If the coverage of the lexical match is at least double

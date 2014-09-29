@@ -16,18 +16,17 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 22-08-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.settings;
 
-import aml.match.Alignment;
+import aml.AML;
 
 public enum SelectionType
 {
-   	STRICT ("Strict 1-to-1"),
-   	PERMISSIVE ("Permissive 1-to-1"),
-   	HYBRID ("Hybrid 1-to-1"),
-   	MANY ("N-to-N");
+   	STRICT ("Strict"),
+   	PERMISSIVE ("Permissive"),
+   	HYBRID ("Hybrid");
 	    	
    	final String value;
     	
@@ -41,23 +40,21 @@ public enum SelectionType
    		return value;
    	}
    	
-	public static SelectionType getSelectionType(Alignment a)
+	public static SelectionType getSelectionType()
 	{
-		double cardinality = a.cardinality();
-		if(cardinality > 1.4)
-			return SelectionType.MANY;
-		else if(cardinality > 1.1)
-			return SelectionType.HYBRID;
-		else if(cardinality > 1.02)
+		SizeCategory size = AML.getInstance().getSizeCategory();
+		if(size.equals(SizeCategory.SMALL))
+			return SelectionType.STRICT;
+		else if(size.equals(SizeCategory.MEDIUM))
 			return SelectionType.PERMISSIVE;
 		else
-			return SelectionType.STRICT;
+			return SelectionType.HYBRID;
 	}
 	    	
 	public static SelectionType parseSelector(String selector)
 	{
 		for(SelectionType s : SelectionType.values())
-			if(selector.equals(s.toString()))
+			if(selector.equalsIgnoreCase(s.toString()))
 				return s;
 		return null;
 	}

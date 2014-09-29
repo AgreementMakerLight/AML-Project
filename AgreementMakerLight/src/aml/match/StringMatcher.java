@@ -19,13 +19,12 @@
 * either to match small ontologies or as a SecondaryMatcher.                  *
 *                                                                             *
 * @authors Daniel Faria, Cosmin Stroe                                         *
-* @date 31-07-2014                                                            *
-* @version 2.0                                                                *
+* @date 10-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -40,11 +39,12 @@ import aml.AML;
 import aml.ontology.Lexicon;
 import aml.ontology.RelationshipMap;
 import aml.settings.LanguageSetting;
+import aml.settings.StringSimMeasure;
 import aml.util.ISub;
 import aml.util.StringParser;
 import aml.util.Table2Set;
 
-public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematcher
+public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematcher
 {
 
 //Attributes
@@ -55,9 +55,9 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	private Lexicon tLex;
 	//Language setting and languages
 	private LanguageSetting lSet;
-	private HashSet<String> languages;
+	private Set<String> languages;
 	//Similarity measure
-	private String measure = "ISub";
+	private StringSimMeasure measure;
 	//Correction factor
 	private final double CORRECTION = 0.80;
 	//The available CPU threads
@@ -69,30 +69,22 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	 * Constructs a new ParametricStringMatcher with default
 	 * String similarity measure (ISub)
 	 */
-	public ParametricStringMatcher()
+	public StringMatcher()
 	{
 		threads = Runtime.getRuntime().availableProcessors();
 		aml = AML.getInstance();
 		sLex = aml.getSource().getLexicon();
 		tLex = aml.getTarget().getLexicon();
 		lSet = AML.getInstance().getLanguageSetting();
-		languages = new HashSet<String>();
-		if(lSet.equals(LanguageSetting.MULTI))
-			for(String l : sLex.getLanguages())
-				if(tLex.getLanguages().contains(l))
-					languages.add(l);
+		languages = aml.getLanguages();
+		measure = StringSimMeasure.ISUB;
 	}
 
 	/**
 	 * Constructs a new ParametricStringMatcher with the given String similarity measure
-	 * @args m: the String similarity measure {
-	 * 		ISub - the ISub measure from Falcon-AO
-	 * 		Edit - the Levenshtein Edit Distance measure
-	 *		JW - the Jaro Winkler measure
-	 *		QGram - the Q-Gram measure
-	 * }
+	 * @args m: the string similarity measure
 	 */
-	public ParametricStringMatcher(String m)
+	public StringMatcher(StringSimMeasure m)
 	{
 		this();
 		measure = m;
@@ -143,7 +135,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		System.out.println("Finished in " + time + " seconds");
 		return a;
 	}
-	
+		
 	@Override
 	public Alignment rematch(Alignment a)
 	{
@@ -322,19 +314,19 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	private double stringSimilarity(String s, String t)
 	{
 		double sim = 0.0;
-		if(measure.equals("ISub"))
+		if(measure.equals(StringSimMeasure.ISUB))
 			sim = ISub.stringSimilarity(s,t);
-		else if(measure.equals("Edit"))
+		else if(measure.equals(StringSimMeasure.EDIT))
 		{
 			Levenshtein lv = new Levenshtein();
 			sim = lv.getSimilarity(s, t);
 		}
-		else if(measure.equals("JW"))
+		else if(measure.equals(StringSimMeasure.JW))
 		{
 			JaroWinkler jv = new JaroWinkler();
 			sim = jv.getSimilarity(s, t);
 		}
-		else if(measure.equals("QGram"))
+		else if(measure.equals(StringSimMeasure.QGRAM))
 		{
 			QGramsDistance q = new QGramsDistance();
 			sim = q.getSimilarity(s, t);

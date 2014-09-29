@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 07-07-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.filter;
 
@@ -52,7 +52,7 @@ public class RankedSelector implements Selector
 		System.out.println("Performing Ranked Selection");
 		long time = System.currentTimeMillis()/1000;
 		if(type == null)
-			type = SelectionType.getSelectionType(a);
+			type = SelectionType.getSelectionType();
 		//Initialize Alignment to return
 		Alignment selected = new Alignment();
 		//Then sort the alignment
@@ -64,8 +64,7 @@ public class RankedSelector implements Selector
 			if(m.getSimilarity() < thresh)
 				break;
 			//Otherwise, add it if it obeys the rules for the chosen SelectionType
-			if(type.equals(SelectionType.MANY) ||
-					(type.equals(SelectionType.STRICT) && !selected.containsConflict(m)) ||
+			if((type.equals(SelectionType.STRICT) && !selected.containsConflict(m)) ||
 					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(m)))
 				selected.add(new Mapping(m));
 			else if(type.equals(SelectionType.HYBRID))

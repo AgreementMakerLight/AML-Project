@@ -12,14 +12,13 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Matching algorithm that maps the properties of the Ontologies by comparing  *
-* their names, types, domains and ranges. Can use an input class Alignment    *
-* to check for domain and range matches. Can use WordNet to boost the name    *
-* similarity.                                                                 *
+* Matching algorithm that maps Ontology properties by comparing their names,  *
+* types, domains and ranges. Can use an input class Alignment to check for    *
+* domain and range matches. Can use WordNet to boost the name similarity.     *
 *                                                                             *
-* @author Daniel Faria, Catarina Martins                                      *
-* @date 20-08-2014                                                            *
-* @version 2.0                                                                *
+* @author Daniel Faria                                                        *
+* @date 10-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 

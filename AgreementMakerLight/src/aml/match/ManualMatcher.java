@@ -15,8 +15,8 @@
 * Customizable ensemble of matching, selection & repair algorithms.           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-07-2014                                                            *
-* @version 2.0                                                                *
+* @date 12-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -24,69 +24,121 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.filter.CardinalityRepairer;
+import aml.filter.ObsoleteRepairer;
+import aml.filter.RankedCoSelector;
 import aml.filter.RankedSelector;
+import aml.filter.Repairer;
+import aml.settings.LanguageSetting;
+import aml.settings.MatchStep;
+import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
+import aml.settings.WordMatchStrategy;
 
-public class ManualMatcher implements PrimaryMatcher
+public class ManualMatcher
 {
-	
-//Attributes
-
-	//Settings
-	private Vector<String> bkSources;
-	private SelectionType sType;
-	private boolean matchProps, repair;
-	//Parameter thresholds
-	private final double BASE_THRESH = 0.5;
-	private final double PROP_THRESH = 0.45;
 	
 //Constructors	
 	
-	public ManualMatcher(Vector<String> bk, SelectionType s, boolean mProp, boolean rep)
-	{
-		bkSources = bk;
-		sType = s;
-		matchProps = mProp;
-		repair = rep;
-	}
+	private ManualMatcher(){}
 	
 //Public Methods
 
-	@Override
-	public Alignment match(double thresh)
+	public static Alignment match()
 	{
+		//Get the AML instance and settings
 		AML aml = AML.getInstance();
-    	//Check the size of the problem
-		int sSize = aml.getSource().classCount();
-		int tSize = aml.getTarget().classCount();
-		boolean isLarge = (Math.min(sSize,tSize) > 30000 || Math.max(sSize, tSize) > 60000);
-		//Do the lexical match
-    	LexicalMatcher lm = new LexicalMatcher();
-		Alignment a = lm.match(BASE_THRESH);
-		//If background knowledge is on auto, call the AutoBKMatcher
-		if(bkSources != null && bkSources.size() > 0)
+		Vector<MatchStep> steps = aml.getSelectedSteps();
+		double thresh = aml.getThreshold();
+		
+		//Initialize the alignment
+		Alignment a = new Alignment();
+		
+		//Start the matching procedure
+		if(steps.contains(MatchStep.TRANSLATE))
+			aml.translateOntologies();
+		if(steps.contains(MatchStep.BK))
 		{
-			BackgroundKnowledgeMatcher bk = new BackgroundKnowledgeMatcher(bkSources, !sType.equals(SelectionType.MANY));
-			a.addAll(bk.match(thresh));
+			BackgroundKnowledgeMatcher bk = new BackgroundKnowledgeMatcher();
+			a = bk.match(thresh);
 		}
-		if(!isLarge)
+		else
 		{
-			WordMatcher wm = new WordMatcher();
-			a.addAllNonConflicting(wm.match(thresh));
+			LexicalMatcher lm = new LexicalMatcher();
+			a = lm.match(thresh);
 		}
-		ParametricStringMatcher sm = new ParametricStringMatcher();
-		a.addAll(sm.extendAlignment(a, thresh));
-		RankedSelector s = new RankedSelector(sType);
-		a = s.select(a, thresh);
-		if(matchProps)
+		if(steps.contains(MatchStep.WORD))
 		{
-			PropertyMatcher pm = new PropertyMatcher(bkSources.contains("WordNet"));
-			a.addAll(pm.extendAlignment(a, PROP_THRESH));
+			WordMatchStrategy wms = aml.getWordMatchStrategy();
+			if(aml.getLanguageSetting().equals(LanguageSetting.SINGLE))
+			{
+				WordMatcher wm = new WordMatcher(wms);
+				a.addAllOneToOne(wm.match(thresh));
+			}
+			else
+			{
+				Alignment word = new Alignment();
+				for(String l : aml.getLanguages())
+				{
+					WordMatcher wm = new WordMatcher(l,wms);
+					word.addAll(wm.match(thresh));
+				}
+				a.addAllOneToOne(word);
+			}
 		}
-		if(repair)
+		if(steps.contains(MatchStep.STRING))
 		{
-			CardinalityRepairer rep = new CardinalityRepairer();
-			a = rep.repair(a);
+			StringMatcher sm = new StringMatcher(aml.getStringSimMeasure());
+			if(aml.primaryStringMatcher())
+				a.addAllOneToOne(sm.match(thresh));
+			else
+				a.addAllOneToOne(sm.extendAlignment(a, thresh));
+		}
+		if(steps.contains(MatchStep.STRUCT))
+		{
+			NeighborSimilarityMatcher nsm = new NeighborSimilarityMatcher(
+					aml.getNeighborSimilarityStrategy(),aml.directNeighbors());
+			a.addAllOneToOne(nsm.extendAlignment(a,thresh));
+		}
+		if(steps.contains(MatchStep.PROPERTY))
+		{
+			PropertyMatcher pm = new PropertyMatcher(true);
+			a.addAllOneToOne(pm.extendAlignment(a, thresh));
+		}
+		if(steps.contains(MatchStep.SELECT))
+		{
+			if(aml.removeObsolete())
+			{
+				ObsoleteRepairer or = new ObsoleteRepairer();
+				a = or.repair(a);
+			}
+			SelectionType sType = aml.getSelectionType();
+			if(aml.structuralSelection())
+			{
+				BlockRematcher br = new BlockRematcher();
+				Alignment b = br.rematch(a);
+				NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(
+						NeighborSimilarityStrategy.MAXIMUM,true);
+				Alignment c = nb.rematch(a);
+				b = LWC.combine(b, c, 0.75);
+				b = LWC.combine(a, b, 0.8);
+			
+				RankedSelector rs = new RankedSelector(sType);
+				b = rs.select(b, thresh-0.05);
+					
+				RankedCoSelector s = new RankedCoSelector(b, sType);
+				a = s.select(a, thresh);
+				
+			}
+			else
+			{
+				RankedSelector rs = new RankedSelector(sType);
+				a = rs.select(a, thresh);
+			}
+		}
+		if(steps.contains(MatchStep.REPAIR))
+		{
+			Repairer r = new CardinalityRepairer();
+			a = r.repair(a);
 		}
 		return a;
 	}

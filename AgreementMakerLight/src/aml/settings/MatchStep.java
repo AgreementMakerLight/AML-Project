@@ -12,39 +12,42 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Lists the WordMatcher strategy options.                                     *
+* Lists the Match Steps.                                                      *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 11-09-2014                                                            *
+* @date 13-09-2014                                                            *
 * @version 2.1                                                                *
 ******************************************************************************/
 package aml.settings;
 
-public enum WordMatchStrategy
+public enum MatchStep
 {
-	BY_CLASS ("By_Class"),
-	BY_NAME ("By_Name"),
-	AVERAGE ("Average"),
-	MAXIMUM ("Maximum"),
-	MINIMUM ("Minimum");
-	
-	String label;
-	
-	WordMatchStrategy(String s)
-    {
-    	label = s;
-    }
-	
-	public static WordMatchStrategy parseStrategy(String strat)
+   	TRANSLATE ("Translator"),
+   	BK ("BK Matcher"),
+   	WORD ("Word Matcher"),
+   	STRING ("String Matcher"),
+   	STRUCT ("Structural Matcher"),
+   	PROPERTY ("Property Matcher"),
+   	SELECT ("Selector"),
+   	REPAIR ("Repairer");
+	    	
+   	final String value;
+    	
+   	MatchStep(String s)
+   	{
+   		value = s;
+   	}
+	    	
+   	public String toString()
+   	{
+   		return value;
+   	}
+   	
+	public static MatchStep parseStep(String step)
 	{
-		for(WordMatchStrategy s : WordMatchStrategy.values())
-			if(strat.equalsIgnoreCase(s.toString()))
+		for(MatchStep s : MatchStep.values())
+			if(step.equalsIgnoreCase(s.toString()))
 				return s;
 		return null;
-	}
-	
-    public String toString()
-    {
-    	return label;
 	}
 }

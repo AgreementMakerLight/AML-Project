@@ -12,7 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Lists the WordMatcher strategy options.                                     *
+* Lists the string similarity measures available for the StringMatcher.       *
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 11-09-2014                                                            *
@@ -20,25 +20,24 @@
 ******************************************************************************/
 package aml.settings;
 
-public enum WordMatchStrategy
+public enum StringSimMeasure
 {
-	BY_CLASS ("By_Class"),
-	BY_NAME ("By_Name"),
-	AVERAGE ("Average"),
-	MAXIMUM ("Maximum"),
-	MINIMUM ("Minimum");
+	ISUB ("ISub"),
+	EDIT ("Levenstein"),
+	JW ("Jaro-Winkler"),
+	QGRAM ("Q-gram");
 	
 	String label;
 	
-	WordMatchStrategy(String s)
+	StringSimMeasure(String s)
     {
     	label = s;
     }
 	
-	public static WordMatchStrategy parseStrategy(String strat)
+	public static StringSimMeasure parseMeasure(String m)
 	{
-		for(WordMatchStrategy s : WordMatchStrategy.values())
-			if(strat.equalsIgnoreCase(s.toString()))
+		for(StringSimMeasure s : StringSimMeasure.values())
+			if(m.equalsIgnoreCase(s.toString()))
 				return s;
 		return null;
 	}

@@ -14,14 +14,14 @@
 *******************************************************************************
 * Matches Ontologies by finding partial matches between their names with      *
 * either 2 or 3 words. It checks whether the words are equal, synonyms in     *
-* WordNet, or have a high Wu Palmer score.                                    *
+* WordNet, or have a high Wu-Palmer score.                                    *
 *                                                                             *
 * WARNING: This matching algorithm takes O(N^2) time, and thus should be used *
 * only to match small ontologies.                                             *
 *                                                                             *
 * @author Amruta Nanavaty, Daniel Faria                                       *
-* @date 26-08-2014                                                            *
-* @version 2.0                                                                *
+* @date 10-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 

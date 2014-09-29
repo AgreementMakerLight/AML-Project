@@ -16,8 +16,8 @@
 * Lexicons. Weighs matches according to the provenance of the names.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
-* @version 2.0                                                                *
+* @date 10-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -34,9 +34,6 @@ public class LexicalMatcher implements PrimaryMatcher
 	
 //Constructors
 
-	/**
-	 * Constructs a new LexicalMatcher
-	 */
 	public LexicalMatcher(){}
 	
 //Public Methods
@@ -51,24 +48,19 @@ public class LexicalMatcher implements PrimaryMatcher
 		Lexicon sLex = aml.getSource().getLexicon();
 		Lexicon tLex = aml.getTarget().getLexicon();
 		//And match them
-		Alignment a = match(sLex,tLex,thresh);
+		Alignment a = match(sLex,tLex,thresh,false);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
 	}
 	
-	/**
-	 * Matches two Lexicons
-	 * @param sLex: the source Lexicon to match
-	 * @param tLex: the target Lexicon to match
-	 * @param thresh: the similarity threshold
-	 * @return the Alignment between the ontologies containing
-	 * the two Lexicons
-	 */
-	public Alignment match(Lexicon sLex, Lexicon tLex, double thresh)
+//Private Methods
+	
+	// Matches two Lexicons
+	protected Alignment match(Lexicon sLex, Lexicon tLex, double thresh, boolean internal)
 	{
 		//Initialize the alignment
-		Alignment maps = new Alignment();
+		Alignment maps = new Alignment(internal);
 		//To minimize iterations, we want to iterate through the
 		//Ontology with the smallest Lexicon
 		boolean sourceIsSmaller = (sLex.nameCount() <= tLex.nameCount());

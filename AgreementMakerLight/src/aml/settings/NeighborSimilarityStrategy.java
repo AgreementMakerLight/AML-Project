@@ -12,37 +12,39 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Lists the Matching Algorithms available for the user interface.             *
+* Lists the NeighborSimilarityMatcher strategy options.                       *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-08-2014                                                            *
-* @version 2.0                                                                *
+* @date 11-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.settings;
 
-public enum MatchingAlgorithm
+public enum NeighborSimilarityStrategy
 {
-    MANUAL ("Manually Configurable Matcher"),
-    AUTOMATIC ("Automatically Configured Matcher"),
-    LEXICAL ("Lexical Matcher");
-    
-    String label;
-    
-    MatchingAlgorithm(String s)
+	ANCESTORS ("Ancestors"),
+	DESCENDANTS ("Descendants"),
+	AVERAGE ("Average"),
+	MAXIMUM ("Maximum"),
+	MINIMUM ("Minimum");
+	
+	String label;
+	
+	NeighborSimilarityStrategy(String s)
     {
     	label = s;
     }
-    
+	
+	public static NeighborSimilarityStrategy parseStrategy(String strat)
+	{
+		for(NeighborSimilarityStrategy s : NeighborSimilarityStrategy.values())
+			if(strat.equalsIgnoreCase(s.toString()))
+				return s;
+		return null;
+	}
+	
     public String toString()
     {
     	return label;
-    }
-	    
-	public static MatchingAlgorithm parseMatcher(String matcher)
-	{
-		for(MatchingAlgorithm m : MatchingAlgorithm.values())
-			if(matcher.equals(m.toString()))
-				return m;
-		return AUTOMATIC;
 	}
 }

@@ -16,8 +16,8 @@
 * as a Table of indexes, and including methods for input and output.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
-* @version 2.0                                                                *
+* @date 12-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -59,6 +59,8 @@ public class Alignment implements Iterable<Mapping>
 	private Table2Map<Integer,Integer,Mapping> sourceMaps;
 	//Term mappings organized by target class
 	private Table2Map<Integer,Integer,Mapping> targetMaps;
+	//
+	private boolean internal;
 	
 //Constructors
 
@@ -70,6 +72,18 @@ public class Alignment implements Iterable<Mapping>
 		maps = new Vector<Mapping>(0,1);
 		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
 		targetMaps = new Table2Map<Integer,Integer,Mapping>();
+		internal = false;
+	}
+
+	/**
+	 * Creates a new empty Alignment
+	 */
+	public Alignment(boolean internal)
+	{
+		maps = new Vector<Mapping>(0,1);
+		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
+		targetMaps = new Table2Map<Integer,Integer,Mapping>();
+		this.internal = internal;
 	}
 
 	/**
@@ -109,8 +123,9 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public void add(int sourceId, int targetId, double sim)
 	{
-		//We can't have a mapping between entities with the same URI
-		if(sourceId == targetId)
+		//Unless the alignment is internal, we can't have a mapping
+		//between entities with the same id (which corresponds to URI)
+		if(!internal && sourceId == targetId)
 			return;
 		//Construct the Mapping
 		Mapping m = new Mapping(sourceId, targetId, sim, MappingRelation.EQUIVALENCE);
@@ -779,7 +794,7 @@ public class Alignment implements Iterable<Mapping>
 				intersection.add(m);
 		return intersection;
 	}
-	
+
 	@Override
 	/**
 	 * @return an Iterator over the list of class Mappings
@@ -963,8 +978,6 @@ public class Alignment implements Iterable<Mapping>
 		AML aml = AML.getInstance();
 		double coverage = sourceMaps.keyCount();
 		int count = aml.getSource().classCount();
-		if(aml.matchProperties())
-			count += aml.getSource().propertyCount();
 		coverage /= count;
 		return coverage;
 	}
@@ -985,8 +998,6 @@ public class Alignment implements Iterable<Mapping>
 		AML aml = AML.getInstance();
 		double coverage = targetMaps.keyCount();
 		int count = aml.getTarget().classCount();
-		if(aml.matchProperties())
-			count += aml.getTarget().propertyCount();
 		coverage /= count;
 		return coverage;
 	}

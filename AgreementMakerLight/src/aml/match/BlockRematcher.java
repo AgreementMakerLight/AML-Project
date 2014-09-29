@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 07-07-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -27,9 +27,24 @@ import aml.AML;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 
-public class HighLevelStructuralRematcher implements Rematcher
+public class BlockRematcher implements Rematcher
 {
-
+	
+//Constructors
+	
+	public BlockRematcher(){}
+	
+//Public Methods
+	
+	public static String description()
+	{
+		return "This rematching algorithm infers a block alignment\n" +
+			   "by looking at the overlap between the descendants\n" +
+			   "of high-level classes in the input alignment. It\n" +
+			   "then defines similarity between two classes as\n" +
+			   "the highest overlap between their blocks.";
+	}
+	
 	@Override
 	public Alignment rematch(Alignment a)
 	{

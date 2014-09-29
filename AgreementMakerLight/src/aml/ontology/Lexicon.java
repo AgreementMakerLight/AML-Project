@@ -30,6 +30,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+import aml.AML;
 import aml.util.Table3List;
 import aml.settings.LexicalType;
 import aml.util.StopList;
@@ -109,21 +110,20 @@ public class Lexicon
 		if(name == null || name.equals("") || !name.matches(".*[a-zA-Z].*"))
 			return;
 
-		String s, lang;
+		String s;
+		String lang = "en";
 		Provenance p;
 
 		//If it is a formula, parse it and label it as such
 		if(StringParser.isFormula(name))
 		{
 			s = StringParser.normalizeFormula(name);
-			lang = "Formula";
 			p = new Provenance(LexicalType.FORMULA, source, lang, weight);
 		}
 		//Otherwise, parse it normally
 		else
 		{
 			s = StringParser.normalizeName(name);
-			lang = "en";
 			p = new Provenance(type, source, lang, weight);
 		}
 		//Then update the tables
@@ -150,15 +150,14 @@ public class Lexicon
 		if(name == null || name.equals(""))
 			return;
 
-		String s, lang;
+		String s;
 		Provenance p;
 
 		//If the name is not in english we parse it as a formula
 		if(!language.equals("en"))
 		{
 			s = StringParser.normalizeFormula(name);
-			lang = language;
-			p = new Provenance(type, source, lang, weight);
+			p = new Provenance(type, source, language, weight);
 		}
 		//Otherwise
 		else
@@ -170,25 +169,23 @@ public class Lexicon
 			else if(StringParser.isFormula(name))
 			{
 				s = StringParser.normalizeFormula(name);
-				lang = "Formula";
-				p = new Provenance(LexicalType.FORMULA, source, lang, weight);
+				p = new Provenance(LexicalType.FORMULA, source, language, weight);
 			}
 			//Otherwise, parse it normally
 			else
 			{
 				s = StringParser.normalizeName(name);
-				lang = language;
-				p = new Provenance(type, source, lang, weight);
+				p = new Provenance(type, source, language, weight);
 			}
 		}
 		//Then update the tables
 		names.add(s,classId,p);
 		classes.add(classId,s,p);
-		Integer i = langCount.get(lang);
+		Integer i = langCount.get(language);
 		if(i == null)
-			langCount.put(lang, 1);
+			langCount.put(language, 1);
 		else
-			langCount.put(lang, i+1);
+			langCount.put(language, i+1);
 	}
 		
 	/**
@@ -262,7 +259,7 @@ public class Lexicon
 			if(n.length() >= 10)
 				return true;
 			for(Provenance p : classes.get(classId,n))
-				if(!p.getType().equals("Formula"))
+				if(!p.getType().equals(LexicalType.FORMULA))
 					return true;
 		}
 		return false;
@@ -389,7 +386,9 @@ public class Lexicon
 	 */
 	public String getBestName(int classId)
 	{
-		Set<String> hits = getInternalNames(classId);
+		Set<String> hits = getNamesWithLanguage(classId, AML.getInstance().getLabelLanguage());
+		if(hits.size() == 0)
+			hits = getInternalNames(classId);
 		String bestName = "";
 		double weight;
 		double maxWeight = 0.0;

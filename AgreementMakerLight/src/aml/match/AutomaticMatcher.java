@@ -16,13 +16,15 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 27-08-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
+
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
 import aml.filter.CardinalityRepairer;
@@ -33,6 +35,8 @@ import aml.filter.RankedCoSelector;
 import aml.filter.RankedSelector;
 import aml.filter.Repairer;
 import aml.settings.LanguageSetting;
+import aml.settings.MatchStep;
+import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
 import aml.util.Oracle;
@@ -48,6 +52,7 @@ public class AutomaticMatcher
 	private static boolean isInteractive;
 	private static SizeCategory size;
 	private static LanguageSetting lang;
+	private static SelectionType sType;
 	//BackgroundKnowledge path
 	private static final String BK_PATH = "store/knowledge/";
 	//Thresholds
@@ -80,6 +85,7 @@ public class AutomaticMatcher
 		//And the size and language configuration
 		size = aml.getSizeCategory();
 		lang = aml.getLanguageSetting();
+		sType = aml.getSelectionType();
 		//Check if the task is interactive
 		isInteractive = Oracle.isInteractive();
 		if(isInteractive)
@@ -87,14 +93,19 @@ public class AutomaticMatcher
 		//Initialize the alignment
 		a = new Alignment();
 		//And start the matching procedure
+		Vector<MatchStep> selectedSteps = aml.getSelectedSteps();
 		setThresholds();
-		translate();
+		if(selectedSteps.contains(MatchStep.TRANSLATE))
+			translate();
 		lexicalMatch();
 		bkMatch();
-		wordMatch();
+		if(selectedSteps.contains(MatchStep.WORD))
+			wordMatch();
 		stringMatch();
-		structuralMatch();
-		propertyMatch();
+		if(selectedSteps.contains(MatchStep.STRUCT))
+			structuralMatch();
+		if(selectedSteps.contains(MatchStep.PROPERTY))
+			propertyMatch();
 		selection();
 		repair();
 		return a;
@@ -128,11 +139,8 @@ public class AutomaticMatcher
 	//Step 2 - Translate
 	private static void translate()
 	{
-		if(lang.equals(LanguageSetting.TRANSLATE))
-		{
-			aml.translateOntologies();
-			lang = aml.getLanguageSetting();
-		}
+		aml.translateOntologies();
+		lang = aml.getLanguageSetting();
 	}
 	
 	//Step 3 - Lexical Match
@@ -186,7 +194,16 @@ public class AutomaticMatcher
 				}
 				else
 				{
-					aml.openBKOntology(bk);
+					try
+					{
+						aml.openBKOntology(bk);
+					}
+					catch(OWLOntologyCreationException e)
+					{
+						System.out.println("WARNING: Could not open ontology " + bk);
+						System.out.println(e.getMessage());
+						continue;
+					}
 					XRefMatcher xr = new XRefMatcher(aml.getBKOntology());
 					Alignment ref = xr.match(thresh);
 					double gain = ref.gain(lex);
@@ -212,10 +229,6 @@ public class AutomaticMatcher
 	//Step 5 - Word Match
 	private static void wordMatch()
 	{
-		//Only if the task is not huge
-		if(size.equals(SizeCategory.HUGE))
-			return;
-		
 		Alignment word = new Alignment();
 		if(lang.equals(LanguageSetting.SINGLE))
 		{
@@ -238,9 +251,9 @@ public class AutomaticMatcher
 	//Step 6 - String Match
 	private static void stringMatch()
 	{
-		ParametricStringMatcher psm = new ParametricStringMatcher();
+		StringMatcher psm = new StringMatcher();
 		//If the task is small, we can use the PSM in match mode
-		if(size.equals(SizeCategory.SMALL))
+		if(aml.primaryStringMatcher())
 		{
 			a.addAllOneToOne(psm.match(psmThresh));
 			//And if the task is single-language we can use the
@@ -259,53 +272,46 @@ public class AutomaticMatcher
 	//Step 7 - Structural Match
 	private static void structuralMatch()
 	{
-		//Only if the size is small or medium
-		if(size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM))
-		{
-			NeighborSimilarityMatcher nsm = new NeighborSimilarityMatcher(false,false);
-			if(isInteractive)
-				alignSet.add(nsm.rematch(a));
-			a.addAllOneToOne(nsm.extendAlignment(a,thresh));
-		}		
+		NeighborSimilarityMatcher nsm = new NeighborSimilarityMatcher(
+				NeighborSimilarityStrategy.MAXIMUM,false);
+		if(isInteractive)
+			alignSet.add(nsm.rematch(a));
+		a.addAllOneToOne(nsm.extendAlignment(a,thresh));
 	}
 	
-
+	//Step 8 - Property Match
+	private static void propertyMatch()
+	{
+		PropertyMatcher pm = new PropertyMatcher(true);
+		a.addAllOneToOne(pm.extendAlignment(a, thresh));
+	}
 	
 	//Step 9 - Selection
 	private static void selection()
 	{
-		if(size.equals(SizeCategory.SMALL))
-		{
-			RankedSelector rs = new RankedSelector(SelectionType.STRICT);
-			a = rs.select(a, thresh);
-		}
-		else if(size.equals(SizeCategory.MEDIUM))
-		{
-			RankedSelector rs = new RankedSelector(SelectionType.PERMISSIVE);
-			a = rs.select(a, thresh);
-		}
-		else if(size.equals(SizeCategory.LARGE))
-		{
-			RankedSelector rs = new RankedSelector(SelectionType.HYBRID);
-			a = rs.select(a, thresh);
-		}
-		else
+		if(aml.structuralSelection())
 		{
 			ObsoleteRepairer or = new ObsoleteRepairer();
 			a = or.repair(a);
 				
-			HighLevelStructuralRematcher hl = new HighLevelStructuralRematcher();
+			BlockRematcher hl = new BlockRematcher();
 			Alignment b = hl.rematch(a);
-			NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(false,true);
+			NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(
+					NeighborSimilarityStrategy.MAXIMUM,true);
 			Alignment c = nb.rematch(a);
 			b = LWC.combine(b, c, 0.75);
 			b = LWC.combine(a, b, 0.8);
 		
-			RankedSelector rs = new RankedSelector(SelectionType.HYBRID);
+			RankedSelector rs = new RankedSelector(sType);
 			b = rs.select(b, thresh-0.05);
 				
-			RankedCoSelector s = new RankedCoSelector(b, SelectionType.HYBRID);
+			RankedCoSelector s = new RankedCoSelector(b, sType);
 			a = s.select(a, thresh);
+		}
+		else
+		{
+			RankedSelector rs = new RankedSelector(sType);
+			a = rs.select(a, thresh);
 		}
 		if(isInteractive)
 		{
@@ -324,16 +330,5 @@ public class AutomaticMatcher
 		else
 			r = new CardinalityRepairer();
 		a = r.repair(a);
-	}
-	
-	//Step 8 - Property Match
-	private static void propertyMatch()
-	{
-		double sourceRatio = aml.getSource().propertyCount() * 1.0 / aml.getSource().classCount();
-		double targetRatio = aml.getTarget().propertyCount() * 1.0 / aml.getTarget().classCount();
-		if(sourceRatio < 0.05 && targetRatio < 0.05)
-			return;
-		PropertyMatcher pm = new PropertyMatcher(true);
-		a.addAllOneToOne(pm.extendAlignment(a, thresh));
 	}
 }

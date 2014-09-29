@@ -15,8 +15,8 @@
 * Menu bar for the GUI.                                                       *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
-* @version 2.0                                                                *
+* @date 29-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.ui;
 
@@ -31,16 +31,19 @@ import javax.swing.JOptionPane;
 import aml.AML;
 import aml.match.Alignment;
 
-public class AMLMenuBar extends JMenuBar implements ActionListener
+public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 {
 	
 //Attributes
 	
 	private static final long serialVersionUID = 4336946114423673015L;
-    private JMenu file, match, view;
-    private JMenuItem openO, closeO, openA, closeA, saveA, exit;
-    private JMenuItem align, evaluate;
+	private AML aml;
+	private Console c;
+    private JMenu ontologies, alignment, view;
+    private JMenuItem openO, closeO, matchAuto, matchManual;
+    private JMenuItem openA, closeA, saveA, repair, evaluate;
     private JMenuItem next, previous, goTo, search, options;
+    private boolean match;
     
 //Constructors
     
@@ -50,51 +53,57 @@ public class AMLMenuBar extends JMenuBar implements ActionListener
     public AMLMenuBar()
     {
     	super();
-        
-    	//File Menu
-    	file = new JMenu();
-        file.setText("File");
+        aml = AML.getInstance();
+    	
+    	//Ontologies Menu
+    	ontologies = new JMenu();
+        ontologies.setText("Ontologies");
         openO = new JMenuItem();
         openO.setText("Open Ontologies");
         openO.addActionListener(this);
-        file.add(openO);
+        ontologies.add(openO);
         closeO = new JMenuItem();
         closeO.setText("Close Ontologies");
         closeO.addActionListener(this);
-        file.add(closeO);
-        file.addSeparator();
+        ontologies.add(closeO);
+        ontologies.addSeparator();
+        matchAuto = new JMenuItem();
+        matchAuto.setText("Automatic Match");
+        matchAuto.addActionListener(this);
+        ontologies.add(matchAuto);
+        matchManual = new JMenuItem();
+        matchManual.setText("Custom Match");
+        matchManual.addActionListener(this);
+        ontologies.add(matchManual);
+        add(ontologies);
+
+        //Match Menu
+        alignment = new JMenu();
+        alignment.setText("Alignment");
         openA = new JMenuItem();
         openA.setText("Open Alignment");
         openA.addActionListener(this);
-        file.add(openA);
-        closeA = new JMenuItem();
-        closeA.setText("Close Alignment");
-        closeA.addActionListener(this);
-        file.add(closeA);
+        alignment.add(openA);
         saveA = new JMenuItem();
         saveA.setText("Save Alignment");
         saveA.addActionListener(this);
-        file.add(saveA);
-        file.addSeparator();
-        exit = new JMenuItem();
-        exit.setText("Exit");
-        exit.addActionListener(this);
-        file.add(exit);
-        add(file);
-        
-        //Match Menu
-        match = new JMenu();
-        match.setText("Match");
-        align = new JMenuItem();
-        align.setText("Match Ontologies");
-        align.addActionListener(this);
-        match.add(align);
+        alignment.add(saveA);
+        closeA = new JMenuItem();
+        closeA.setText("Close Alignment");
+        closeA.addActionListener(this);
+        alignment.add(closeA);
+        alignment.addSeparator();
+        repair = new JMenuItem();
+        repair.setText("Repair Alignment");
+        repair.addActionListener(this);
+        alignment.add(repair);
+        alignment.addSeparator();
         evaluate = new JMenuItem();
         evaluate.setText("Evaluate Alignment");
         evaluate.addActionListener(this);
-        match.add(evaluate);
-        add(match);
-        
+        alignment.add(evaluate);
+        add(alignment);
+                
     	//View Menu
     	view = new JMenu();
         view.setText("View");
@@ -131,19 +140,27 @@ public class AMLMenuBar extends JMenuBar implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		Object o = e.getSource();
-		
-		if(o == exit)
-		{
-			System.exit(0);
-		}
-		else if(o == openO)
+		//Ontology Options
+		if(o == openO)
 		{
 			new OpenOntologies();
 		}
 		else if(o == closeO)
 		{
-			AML.getInstance().closeOntologies();
+			aml.closeOntologies();
 		}
+		else if(o == matchAuto)
+		{
+			c = new Console();
+			new Thread(c).start();
+			match = true;
+			new Thread(this).start();
+		}
+		else if(o == matchManual)
+		{
+			new MatchOptions();
+		}
+		//Alignment Options
 		else if(o == openA)
 		{
 			AlignmentFileChooser fc = AML.getInstance().getAlignmentFileChooser();
@@ -193,23 +210,26 @@ public class AMLMenuBar extends JMenuBar implements ActionListener
 		}
 		else if(o == closeA)
 		{
-			AML.getInstance().closeAlignment();
+			aml.closeAlignment();
 		}
-		else if(o == align)
+		else if(o == repair)
 		{
-			new MatchOntologies();
+			c = new Console();
+			match = false;
+			new Thread(this).start();
 		}
 		else if(o == evaluate)
 		{
 			new EvaluateAlignment();
 		}
+		//View Options
 		else if(o == next)
 		{
-			AML.getInstance().nextMapping();
+			aml.nextMapping();
 		}
 		else if(o == previous)
 		{
-			AML.getInstance().previousMapping();
+			aml.previousMapping();
 		}
 		else if(o == goTo)
 		{
@@ -231,15 +251,46 @@ public class AMLMenuBar extends JMenuBar implements ActionListener
 	 */
 	public void refresh()
 	{
-		closeO.setEnabled(AML.getInstance().hasOntologies());
-		openA.setEnabled(AML.getInstance().hasOntologies());
-		closeA.setEnabled(AML.getInstance().hasAlignment());
-		saveA.setEnabled(AML.getInstance().hasAlignment());
-		align.setEnabled(AML.getInstance().hasOntologies());
-		evaluate.setEnabled(AML.getInstance().hasAlignment());
-		next.setEnabled(AML.getInstance().hasAlignment());
-		previous.setEnabled(AML.getInstance().hasAlignment());
-		goTo.setEnabled(AML.getInstance().hasAlignment());
-		search.setEnabled(AML.getInstance().hasAlignment());
+		closeO.setEnabled(aml.hasOntologies());
+		matchAuto.setEnabled(aml.hasOntologies());
+		matchManual.setEnabled(aml.hasOntologies());
+		openA.setEnabled(aml.hasOntologies());
+		closeA.setEnabled(aml.hasAlignment());
+		saveA.setEnabled(aml.hasAlignment());
+		repair.setEnabled(aml.hasAlignment());
+		evaluate.setEnabled(aml.hasAlignment());
+		next.setEnabled(aml.hasAlignment());
+		previous.setEnabled(aml.hasAlignment());
+		goTo.setEnabled(aml.hasAlignment());
+		search.setEnabled(aml.hasAlignment());
+		options.setEnabled(aml.hasOntologies());
+	}
+
+	@Override
+	public void run()
+	{
+		if(match)
+		{
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch (InterruptedException e)
+			{
+				//Do nothing
+			}
+			aml.matchAuto();
+		}
+		else
+			aml.repair();
+		try
+		{
+			Thread.sleep(1500);
+		}
+		catch (InterruptedException e)
+		{
+			//Do nothing
+		}
+		c.finish();
 	}
 }

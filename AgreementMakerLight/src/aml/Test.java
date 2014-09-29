@@ -12,19 +12,17 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Tests AgreementMakerLight in Eclipse, in Alignment Repair mode.             *
+* Test-runs AgreementMakerLight in Eclipse.                                   *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
-* @version 2.0                                                                *
+* @date 13-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml;
 
-import aml.filter.CardinalityRepairer;
 import aml.match.Alignment;
-import aml.match.LexicalMatcher;
 
-public class AMLRepairEclipse
+public class Test
 {
 
 //Main Method
@@ -32,23 +30,27 @@ public class AMLRepairEclipse
 	public static void main(String[] args) throws Exception
 	{
 		//Path to input ontology files (edit manually)
-		String sourcePath = "store/anatomy/mouse.owl";
-		String targetPath = "store/anatomy/human.owl";
-		//Path to input alignment file (edit manually)
-		//String alignPath = "store/anatomy/reference.rdf";
-		//Path to output repaired alignment (edit manually)
-		String repairPath = "store/anatomy/repair.rdf";
+		String sourcePath = "store/largebio/oaei2013_FMA_small_overlapping_nci.owl";
+		String targetPath = "store/largebio/oaei2013_NCI_small_overlapping_fma.owl";
+		String referencePath = "store/largebio/oaei2013_FMA2NCI_repaired_UMLS_mappings.rdf";
+		//Path to save output alignment (edit manually, or leave blank for no evaluation)
+		String outputPath = "";
 		
-		//Open the ontologies
+		
 		AML aml = AML.getInstance();
 		aml.openOntologies(sourcePath, targetPath);
-		//Open the input alignment
-		LexicalMatcher lm = new LexicalMatcher();
-		Alignment a = lm.match(0.6);
-		//Repair the alignment
-		CardinalityRepairer r = new CardinalityRepairer();
-		Alignment b = r.repair(a);
-		//And save it
-		b.saveRDF(repairPath);
+		//aml.matchAuto();
+		
+		if(!referencePath.equals(""))
+		{
+			aml.openReferenceAlignment(referencePath);
+			Alignment a = aml.getReferenceAlignment();
+			a.getHighLevelAlignment().saveTSV("store/align.txt");
+			
+			//aml.evaluate();
+			//System.out.println(aml.getEvaluation());
+		}
+		if(!outputPath.equals(""))
+			aml.saveAlignmentRDF(outputPath);
 	}
 }

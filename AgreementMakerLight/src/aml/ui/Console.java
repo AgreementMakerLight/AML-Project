@@ -12,47 +12,55 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Tests AgreementMakerLight in Eclipse, with manually configured options.     *
+* Java console for the GUI.                                                   *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
-* @version 2.0                                                                *
+* @date 29-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
-package aml;
+package aml.ui;
 
-import aml.settings.MatchingAlgorithm;
+import java.awt.Cursor;
+import java.awt.Dialog;
+import java.io.PrintStream;
 
-public class AMLTestEclipse
+import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+
+public class Console extends JDialog implements Runnable
 {
-
-//Main Method
+	private static final long serialVersionUID = 8550240765482376323L;
+	private JTextArea console;
 	
-	public static void main(String[] args) throws Exception
+	public Console()
 	{
-		//Path to input ontology files (edit manually)
-		String sourcePath = "store/anatomy/mouse.owl";
-		String targetPath = "store/anatomy/human.owl";
-		//Path to reference alignment (edit manually, or leave blank for no evaluation)
-		String referencePath = "store/anatomy/reference.rdf";
-		//Path to save output alignment (edit manually, or leave blank for no evaluation)
-		String outputPath = "";
-		
-		
-		AML aml = AML.getInstance();
-		aml.openOntologies(sourcePath, targetPath);
-		
-		//Set the matching algorithm
-		aml.setMatcher(MatchingAlgorithm.AUTOMATIC);
-		
-		aml.match();
-		
-		if(!referencePath.equals(""))
-		{
-			aml.openReferenceAlignment(referencePath);
-			aml.evaluate();
-			System.out.println(aml.getEvaluation());
-		}
-		if(!outputPath.equals(""))
-			aml.saveAlignmentRDF(outputPath);
+		super();
+		this.setTitle("Console");
+		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+		console = new JTextArea(25,50);
+		console.setEditable(false);
+		ConsoleOutputStream out = new ConsoleOutputStream(console);
+       	System.setOut(new PrintStream(out, true));
+       	System.setErr(new PrintStream(out, true));		
+        JScrollPane scroll = new JScrollPane(console,
+        		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        add(scroll);
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        this.pack();
+    }
+	
+	public void finish()
+	{
+		this.setVisible(false);
+		this.dispose();
+	}
+
+	@Override
+	public void run()
+	{
+		this.setVisible(true);
 	}
 }

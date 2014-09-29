@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria, Joana Pinto, Pedro do Vale                            *
 * @date 13-08-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.translate;
 
@@ -41,6 +41,7 @@ import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.Property;
 import aml.settings.LexicalType;
+import aml.util.StringParser;
 
 public class Dictionary
 {
@@ -120,7 +121,7 @@ public class Dictionary
 		for(String n : names)
 		{
 			//Check if they are in the source language
-			if(!l.getLanguages(n).contains(sourceLang) || n.equals("null"))
+			if(!l.getLanguages(n).contains(sourceLang) || n.equals("null") || StringParser.isFormula(n))
 				continue;
 			String trans = "";
 			//If the dictionary contains the name, get the translation

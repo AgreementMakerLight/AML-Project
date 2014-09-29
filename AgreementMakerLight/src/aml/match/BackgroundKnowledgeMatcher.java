@@ -12,21 +12,27 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Automatic background knowledge matcher which builds an alignment by         *
-* combining the best available background knowledge sources.                  *
+* Matching algorithm that tests all available background knowledge sources,   *
+* using either the MediatingMatcher, the WordNetMatcher, or the XRefMatcher,  *
+* as appropriate. It combines the alignment obtained with the suitable        *
+* background knowledge sources with the direct Lexical alignment.             *
+* NOTE: Running this matcher makes running the LexicalMatcher or any of the   *
+* Matchers mentioned above redundant.                                         *      
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
-* @version 2.0                                                                *
+* @date 10-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Vector;
 
-import aml.ontology.Ontology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+
+import aml.AML;
+import aml.settings.SelectionType;
 import aml.util.MapSorter;
 
 public class BackgroundKnowledgeMatcher implements PrimaryMatcher
@@ -36,129 +42,107 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 
 	//The path to the background knowledge sources
 	private final String BK_PATH = "store/knowledge/";
+	private AML aml;
 	//The minimum gain threshold
 	private final double GAIN_THRESH = 0.02;
-	//Whether to do selection or not
+	//Whether to use 1-to-1 gain or global gain
 	private boolean oneToOne;
 	//The list of ontologies available as background knowledge
 	private Vector<String> sources;
 	
 //Constructor
 	
-	public BackgroundKnowledgeMatcher(Vector<String> s, boolean one)
+	public BackgroundKnowledgeMatcher()
 	{
-		sources = s;
-		oneToOne = one;
+		aml = AML.getInstance();
+		sources = aml.getSelectedBKSources();
+		oneToOne = !aml.getSelectionType().equals(SelectionType.HYBRID);
 	}
 
 //Public Methods
 	
+	public static String description()
+	{
+		return "This matching algorithm tests all pre-selected\n" +
+			   "background knowledge sources, selecting those\n" +
+			   "that are suitable for the matching task, and\n" +
+			   "combining the mappings obtained with them all.\n" +
+			   "It finds literal full-name matches, or when\n" +
+			   "available, cross-reference matches.";
+	}
+	
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running Background Knowledge Matcher");
+		long time = System.currentTimeMillis()/1000;
 		LexicalMatcher lm = new LexicalMatcher();
+		//The baseline alignment
 		Alignment base = lm.match(thresh);
-		return extendBaseline(base,thresh);
-	}
-	
-//Private Methods
-	
-	private Alignment extendBaseline(Alignment base, double thresh)
-	{
-		//The extension alignment to return
-		Alignment ext = new Alignment();
+		//The alignment to return
+		//(note that if no background knowledge sources are selected
+		//this matcher will return the baseline Lexical alignment)
+		Alignment a = new Alignment(base);
 		//The map of pre-selected lexical alignments and their gains
 		HashMap<Alignment,Double> selected = new HashMap<Alignment,Double>();
-		//The baseline alignment (which will be extended during this method)
-		Alignment tempBase = new Alignment(base);
 		//Auxiliary variables
 		Alignment temp;
-		Double gain, refGain;
+		Double gain;
+		
 		//First go through the listed sources
 		for(String s : sources)
 		{
+			System.out.println("Testing " + s);
 			//Lexicon files
 			if(s.endsWith(".lexicon"))
 			{
-				MediatingMatcher mm = new MediatingMatcher(s);
+				MediatingMatcher mm = new MediatingMatcher(BK_PATH + s);
 				temp = mm.match(thresh);
-				if(oneToOne)
-					gain = temp.gainOneToOne(tempBase);
-				else
-					gain = temp.gain(tempBase);
-				if(gain >= GAIN_THRESH)
-					selected.put(new Alignment(temp),gain);
 			}
 			//WordNet
 			else if(s.equals("WordNet"))
 			{
 				WordNetMatcher wn = new WordNetMatcher();
 				temp = wn.match(thresh);
-				if(oneToOne)
-					gain = temp.gainOneToOne(tempBase);
-				else
-					gain = temp.gain(tempBase);
-				if(gain > GAIN_THRESH)
-					selected.put(new Alignment(temp),gain);
 			}
 			//Ontologies
 			else
 			{
-				//Load the mediator ontology
-				String path = BK_PATH + s;
-				Ontology mediator = new Ontology(path,false);
-				String refs = path.replace(".owl",".xrefs");
-				File f = new File(refs);
-				if(f.exists())
-					mediator.getReferenceMap().extend(refs);
-				
-				//If there are cross-references, process them
-				refGain = 0.0;
-				if(mediator.getReferenceMap().size() > 0)
+				try
 				{
-					XRefMatcher x = new XRefMatcher(mediator);
-					temp = x.match(thresh);
-					if(oneToOne)
-						refGain = temp.gainOneToOne(tempBase);
-					else
-						refGain = temp.gain(tempBase);
-					//We always add cross-reference matches, regardless of gain
-					ext.addAll(temp);
+					aml.openBKOntology(s);
 				}
-				//Then do a cross-lexical match
-				MediatingMatcher mm = new MediatingMatcher(mediator);
-				temp = mm.match(thresh);
-				if(oneToOne)
-					gain = temp.gainOneToOne(tempBase);
-				else
-					gain = temp.gain(tempBase);
-				//We select this alignment if the gain is above threshold
-				//and at least double that of the cross-reference match
-				if(gain >= GAIN_THRESH && gain >= 2 * refGain)
-					selected.put(new Alignment(temp), gain);
-				//And finally close the mediator ontology
-				mediator.close();
+				catch(OWLOntologyCreationException e)
+				{
+					System.out.println("WARNING: Could not open ontology " + s);
+					System.out.println(e.getMessage());
+					continue;
+				}
+				XRefMatcher x = new XRefMatcher(aml.getBKOntology());
+				temp = x.match(thresh);
 			}
+			if(oneToOne)
+				gain = temp.gainOneToOne(base);
+			else
+				gain = temp.gain(base);
+			if(gain >= GAIN_THRESH)
+				selected.put(new Alignment(temp),gain);
 		}
-		//Update the baseline by adding the cross-reference matches
-		tempBase.addAll(ext);
+		System.out.println("Sorting and selecting background knowledge sources");
 		//Get the set of background knowledge alignments sorted by gain
 		Set<Alignment> orderedSelection = MapSorter.sortDescending(selected).keySet();
 		//And reevaluate them
-		for(Alignment a : orderedSelection)
+		for(Alignment s : orderedSelection)
 		{
 			if(oneToOne)
-				gain = a.gainOneToOne(tempBase);
+				gain = s.gainOneToOne(a);
 			else
-				gain = a.gain(tempBase);
-			if(gain > GAIN_THRESH)
-			{
-				//Adding those selected to the extension alignment
-				ext.addAll(a);
-				//And updating the baseline accordingly
-				tempBase.addAll(a);
-			}
+				gain = s.gain(a);
+			if(gain >= GAIN_THRESH)
+				a.addAll(s);
 		}
-		return ext;
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
+		return a;
 	}
 }

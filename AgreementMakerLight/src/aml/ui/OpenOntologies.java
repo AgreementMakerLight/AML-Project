@@ -15,12 +15,11 @@
 * Ontology opening dialog box for the GUI.                                    *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 17-07-2014                                                            *
-* @version 2.0                                                                *
+* @date 29-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.ui;
 
-import java.awt.Cursor;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -34,14 +33,18 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+
 import aml.AML;
 
-public class OpenOntologies extends JDialog implements ActionListener
+public class OpenOntologies extends JDialog implements ActionListener, Runnable
 {
 
 //Attributes
 	
 	private static final long serialVersionUID = -3900206021275961468L;
+	private AML aml;
+	private Console c;
 	private JPanel dialogPanel, sourcePanel, targetPanel, buttonPanel;
 	private JButton selectSource, selectTarget, cancel, open;
     private JTextArea sourcePath, targetPath;
@@ -53,12 +56,12 @@ public class OpenOntologies extends JDialog implements ActionListener
 	public OpenOntologies()
 	{
 		super();
-		
+		aml = AML.getInstance();
 		this.setTitle("Open Ontologies");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
 		selectSource = new JButton("Select Source Ontology");
-		selectSource.setPreferredSize(new Dimension(160,28));
+		selectSource.setMinimumSize(new Dimension(160,28));
 		selectSource.addActionListener(this);
 		sourcePath = new JTextArea(1,30);
 		sourcePath.setEditable(false);
@@ -67,7 +70,7 @@ public class OpenOntologies extends JDialog implements ActionListener
 		sourcePanel.add(sourcePath);
 		
 		selectTarget = new JButton("Select Target Ontology");
-		selectTarget.setPreferredSize(new Dimension(160,28));
+		selectTarget.setMinimumSize(new Dimension(160,28));
 		selectTarget.addActionListener(this);
 		targetPath = new JTextArea(1,30);
 		targetPath.setEditable(false);
@@ -130,12 +133,35 @@ public class OpenOntologies extends JDialog implements ActionListener
 		}
 		else if(o == open)
 		{
-			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			AML aml = AML.getInstance();
-			aml.openOntologies(source.toString(), target.toString());
-			this.dispose();
+			c = new Console();
+			new Thread(c).start();
+			new Thread(this).start();
 		}
 		//Update the status of the open button
 		open.setEnabled(source != null && target != null);
+	}
+
+	@Override
+	public void run()
+	{
+		try
+		{
+			aml.openOntologies(source.toString(), target.toString());
+		}
+		catch (OWLOntologyCreationException e)
+		{
+			System.out.println("ERROR: Could not open ontologies!");
+			e.printStackTrace();
+		}
+		try
+		{
+			Thread.sleep(2000);
+		}
+		catch(InterruptedException e)
+		{
+			//Do nothing
+		}
+		c.finish();
+		dispose();
 	}
 }

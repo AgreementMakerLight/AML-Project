@@ -17,8 +17,8 @@
 * LexicalMatcher. Extends Lexicons with synonyms from the mediating ontology. *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
-* @version 2.0                                                                *
+* @date 18-09-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -26,13 +26,11 @@ import java.io.File;
 import java.util.Set;
 
 import aml.AML;
-import aml.match.LexicalMatcher;
-import aml.match.PrimaryMatcher;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.settings.LexicalType;
 
-public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
+public class MediatingMatcher extends LexicalMatcher implements LexiconExtender
 {
 
 //Attributes
@@ -82,9 +80,8 @@ public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 		System.out.println("Extending Lexicons with Mediating Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		LexicalMatcher lm = new LexicalMatcher();
 		Lexicon source = aml.getSource().getLexicon();
-		Alignment src = lm.match(source,ext,thresh);
+		Alignment src = match(source,ext,thresh,true);
 		for(Mapping m : src)
 		{
 			int t = m.getTargetId();
@@ -97,7 +94,7 @@ public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 			}
 		}
 		Lexicon target = aml.getTarget().getLexicon();
-		Alignment tgt = lm.match(target,ext,thresh);
+		Alignment tgt = match(target,ext,thresh,true);
 		for(Mapping m : tgt)
 		{
 			int t = m.getTargetId();
@@ -121,9 +118,8 @@ public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 		AML aml = AML.getInstance();
 		Lexicon source = aml.getSource().getLexicon();
 		Lexicon target = aml.getTarget().getLexicon();
-		LexicalMatcher lm = new LexicalMatcher();
-		Alignment src = lm.match(source,ext,thresh);
-		Alignment tgt = lm.match(target,ext,thresh);
+		Alignment src = match(source,ext,thresh,true);
+		Alignment tgt = match(target,ext,thresh,true);
 		Alignment maps = new Alignment();
 		for(Mapping m : src)
 		{

@@ -16,7 +16,7 @@
 *                                                                             *
 * @author Catarina Martins, Daniel Faria                                     *
 * @date 19-08-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -42,22 +42,20 @@ public class LWC
 	{
 		Alignment combine = new Alignment();
 	
-		for (Mapping m: a)
+		for(Mapping m: a)
 		{
 			double similarity = m.getSimilarity()*weight + 
 					b.getSimilarity(m.getSourceId(), m.getTargetId())*(1-weight);
 			combine.add(m.getSourceId(), m.getTargetId(), similarity);
 		}
-		
-		for (Mapping m : b)
+		for(Mapping m : b)
 		{
-			if (!a.containsMapping(m))
+			if(!a.containsMapping(m))
 			{
 				double similarity = m.getSimilarity()*(1-weight);
 				combine.add(m.getSourceId(), m.getTargetId(), similarity);
 			}
 		}
-		
 		return combine;
 	}	
 }

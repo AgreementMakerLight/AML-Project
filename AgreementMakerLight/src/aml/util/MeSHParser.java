@@ -16,9 +16,9 @@
 * WARNING: Requires the MeSH xml and dtd files, which are not released with   *
 * AgreementMakerLight                                                         * 
 *                                                                             *
-* @author Daniel Faria, Clï¿½udia Duarte                                        *
+* @author Daniel Faria, Cláudia Duarte                                        *
 * @date 12-08-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.util;
 

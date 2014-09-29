@@ -18,7 +18,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 20-08-2014                                                            *
-* @version 2.0                                                                *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml.filter;
 
@@ -39,7 +39,7 @@ public class RankedCoSelector implements Selector
 	public RankedCoSelector(Alignment aux)
 	{
 		this.aux = aux;
-		type = SelectionType.getSelectionType(aux);
+		type = SelectionType.getSelectionType();
 	}
 	
 	public RankedCoSelector(Alignment aux, SelectionType s)
@@ -63,8 +63,7 @@ public class RankedCoSelector implements Selector
 			if(sim < thresh)
 				continue;
 			Mapping n = new Mapping(m.getSourceId(), m.getTargetId(), sim);
-			if(type.equals(SelectionType.MANY) ||
-					(type.equals(SelectionType.STRICT) && !selected.containsConflict(n)) ||
+			if((type.equals(SelectionType.STRICT) && !selected.containsConflict(n)) ||
 					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(n)))
 				selected.add(new Mapping(n));
 			else if(type.equals(SelectionType.HYBRID))
