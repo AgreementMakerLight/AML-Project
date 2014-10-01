@@ -15,7 +15,7 @@
 * An Ontology object, loaded using the OWL API.                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 13-08-2014                                                            *
+* @date 01-10-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
@@ -398,8 +398,12 @@ public class Ontology
 				weight = type.getDefaultWeight();
 				lex.add(id, name, "en", type, "", weight);
 			}
-			//Now get the class's annotations
-            for(OWLAnnotation annotation : c.getAnnotations(o))
+
+			//Now get the class's annotations (including imports)
+			Set<OWLAnnotation> annots = c.getAnnotations(o);
+			for(OWLOntology ont : o.getDirectImports())
+				annots.addAll(c.getAnnotations(ont));
+            for(OWLAnnotation annotation : annots)
             {
             	//Labels and synonyms go to the Lexicon
             	String propUri = annotation.getProperty().getIRI().toString();
