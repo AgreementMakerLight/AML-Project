@@ -147,15 +147,17 @@ public class OpenOntologies extends JDialog implements ActionListener, Runnable
 		try
 		{
 			aml.openOntologies(source.toString(), target.toString());
+			Audio.finished();
 		}
 		catch (OWLOntologyCreationException e)
 		{
 			System.out.println("ERROR: Could not open ontologies!");
+			Audio.error();
 			e.printStackTrace();
 		}
 		try
 		{
-			Thread.sleep(2000);
+			Thread.sleep(1500);
 		}
 		catch(InterruptedException e)
 		{

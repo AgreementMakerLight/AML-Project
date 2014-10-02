@@ -12,62 +12,68 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Java console for the GUI.                                                   *
+* Audio player for the GUI.                                                   *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 29-09-2014                                                            *
+* @date 02-10-2014                                                            *
 * @version 2.1                                                                *
 ******************************************************************************/
 package aml.ui;
 
-import java.awt.Cursor;
-import java.awt.Dialog;
-import java.io.PrintStream;
+import java.io.File;
 
-import javax.swing.JDialog;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
-
-public class Console extends JDialog implements Runnable
+public class Audio
 {
 	
 //Attributes
 	
-	private static final long serialVersionUID = 8550240765482376323L;
-	private JTextArea console;
+	private static String error = "store/audio/error.wav";
+	private static String finished = "store/audio/finished.wav";
+	private static String notification = "store/audio/notification.wav";
 	
 //Constructors
 	
-	public Console()
-	{
-		super();
-		this.setTitle("Console");
-		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-		console = new JTextArea(25,50);
-		console.setEditable(false);
-		ConsoleOutputStream out = new ConsoleOutputStream(console);
-       	System.setOut(new PrintStream(out, true));
-       	System.setErr(new PrintStream(out, true));		
-        JScrollPane scroll = new JScrollPane(console,
-        		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        add(scroll);
-        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        this.pack();
-    }
+	private Audio(){}
 	
 //Public Methods
 	
-	public void finish()
+	public static void error()
 	{
-		this.setVisible(false);
-		this.dispose();
+		play(error);
 	}
-
-	@Override
-	public void run()
+	
+	public static void finished()
 	{
-		this.setVisible(true);
+		play(finished);
+	}
+	
+	public static void notification()
+	{
+		play(notification);
+	}
+	
+//Private Methods
+	
+	private static void play(String file)
+	{
+		File f = new File(file);
+		if(f.canRead())
+		{
+			try
+			{
+				Clip clip = AudioSystem.getClip();
+				AudioInputStream inputStream = AudioSystem.getAudioInputStream(f);
+				clip.open(inputStream);
+				clip.start();
+			}
+			catch(Exception e)
+			{
+				//Do nothing
+			}
+		}
 	}
 }

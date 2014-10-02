@@ -283,6 +283,7 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 		}
 		else
 			aml.repair();
+		Audio.finished();
 		try
 		{
 			Thread.sleep(1500);

@@ -206,6 +206,7 @@ public class MatchOptions extends JDialog implements ActionListener, ItemListene
 			//Do nothing
 		}
 		aml.matchManual();
+		Audio.finished();
 		try
 		{
 			Thread.sleep(1500);
