@@ -82,7 +82,7 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		
 		//Set the title and modality
 		this.setTitle("Configure Matching Steps");
-		this.setModalityType(Dialog.ModalityType.MODELESS);
+		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		
 		steps = new Vector<String>(s);
 		steps.remove(MatchStep.TRANSLATE.toString());

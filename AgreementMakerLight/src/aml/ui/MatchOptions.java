@@ -82,7 +82,7 @@ public class MatchOptions extends JDialog implements ActionListener, ItemListene
 
 		//Set the title and modality
 		this.setTitle("Match Options");
-		this.setModalityType(Dialog.ModalityType.MODELESS);
+		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
