@@ -15,7 +15,7 @@
 * An Ontology object, loaded using the OWL API.                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 01-10-2014                                                            *
+* @date 02-10-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
@@ -667,16 +667,22 @@ public class Ontology
 			
 			//Get the subclass expressions to capture and add relationships
 			Set<OWLClassExpression> superClasses = c.getSuperClasses(o);
+			for(OWLOntology ont : o.getDirectImports())
+				superClasses.addAll(c.getSuperClasses(ont));
 			for(OWLClassExpression e : superClasses)
 				addRelationship(o,c,e,true,false);
 			
 			//Get the equivalence expressions to capture and add relationships
 			Set<OWLClassExpression> equivClasses = c.getEquivalentClasses(o);
+			for(OWLOntology ont : o.getDirectImports())
+				equivClasses.addAll(c.getEquivalentClasses(ont));
 			for(OWLClassExpression e : equivClasses)
 				addRelationship(o,c,e,false,false);
 			
 			//Get the syntactic disjoints
 			Set<OWLClassExpression> disjClasses = c.getDisjointClasses(o);
+			for(OWLOntology ont : o.getDirectImports())
+				disjClasses.addAll(c.getDisjointClasses(ont));
 			//For each expression
 			for(OWLClassExpression dClass : disjClasses)
 			{
