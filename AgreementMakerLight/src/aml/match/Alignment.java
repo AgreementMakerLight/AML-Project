@@ -59,8 +59,10 @@ public class Alignment implements Iterable<Mapping>
 	private Table2Map<Integer,Integer,Mapping> sourceMaps;
 	//Term mappings organized by target class
 	private Table2Map<Integer,Integer,Mapping> targetMaps;
-	//
+	//Whether the Alignment is internal
 	private boolean internal;
+	//Link to the URIMap
+	private URIMap uris;
 	
 //Constructors
 
@@ -72,6 +74,7 @@ public class Alignment implements Iterable<Mapping>
 		maps = new Vector<Mapping>(0,1);
 		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
 		targetMaps = new Table2Map<Integer,Integer,Mapping>();
+		uris = AML.getInstance().getURIMap();
 		internal = false;
 	}
 
@@ -83,6 +86,7 @@ public class Alignment implements Iterable<Mapping>
 		maps = new Vector<Mapping>(0,1);
 		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
 		targetMaps = new Table2Map<Integer,Integer,Mapping>();
+		uris = AML.getInstance().getURIMap();
 		this.internal = internal;
 	}
 
@@ -159,7 +163,7 @@ public class Alignment implements Iterable<Mapping>
 	public void add(int sourceId, int targetId, double sim, MappingRelation r)
 	{
 		//We can't have a mapping between entities with the same URI
-		if(sourceId == targetId)
+		if(!internal && sourceId == targetId)
 			return;
 		//Construct the Mapping
 		Mapping m = new Mapping(sourceId, targetId, sim, r);
@@ -179,6 +183,47 @@ public class Alignment implements Iterable<Mapping>
 			if(!m.getRelationship().equals(r))
 				m.setRelationship(r);		
 		}
+	}
+	
+	/**
+	 * Adds a new Mapping to the alignment if it is non-redundant
+	 * Otherwise, updates the similarity of the already present Mapping
+	 * to the maximum similarity of the two redundant Mappings
+	 * @param sourceURI: the URI of the source class to add to the alignment
+	 * @param targetURI: the URI of the target class to add to the alignment
+	 * @param sim: the similarity between the classes
+	 */
+	public void add(String sourceURI, String targetURI, double sim)
+	{
+		int sourceId = uris.getIndex(sourceURI);
+		int targetId = uris.getIndex(targetURI);
+		if(sourceId == -1 || targetId == -1)
+			return;
+		if(sourceId < targetId)
+			add(sourceId,targetId,sim);
+		else
+			add(targetId,sourceId,sim);
+	}
+	
+	/**
+	 * Adds a new Mapping to the alignment if it is non-redundant
+	 * Otherwise, updates the similarity of the already present Mapping
+	 * to the maximum similarity of the two redundant Mappings
+	 * @param sourceURI: the URI of the source class to add to the alignment
+	 * @param targetURI: the URI of the target class to add to the alignment
+	 * @param sim: the similarity between the classes
+	 * @param r: the mapping relationship between the classes
+	 */
+	public void add(String sourceURI, String targetURI, double sim, MappingRelation r)
+	{
+		int sourceId = uris.getIndex(sourceURI);
+		int targetId = uris.getIndex(targetURI);
+		if(sourceId == -1 || targetId == -1)
+			return;
+		if(sourceId < targetId)
+			add(sourceId,targetId,sim,r);
+		else
+			add(targetId,sourceId,sim,r);
 	}
 	
 	/**
@@ -874,7 +919,6 @@ public class Alignment implements Iterable<Mapping>
 		AML aml = AML.getInstance();
 		String sourceURI = aml.getSource().getURI();
 		String targetURI = aml.getTarget().getURI();
-		URIMap uris = aml.getURIMap();
 		
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		outStream.println("<?xml version='1.0' encoding='utf-8'?>");
@@ -1006,9 +1050,6 @@ public class Alignment implements Iterable<Mapping>
 
 	private void loadMappingsRDF(String file) throws DocumentException
 	{
-		AML aml = AML.getInstance();
-		URIMap uris = aml.getURIMap();
-		
 		//Open the alignment file using SAXReader
 		SAXReader reader = new SAXReader();
 		File f = new File(file);
@@ -1048,25 +1089,12 @@ public class Alignment implements Iterable<Mapping>
             if(r == null)
             	r = "?";
             MappingRelation rel = MappingRelation.parseRelation(StringEscapeUtils.unescapeXml(r));
-			//Check if the URIs are listed in the URI map 
-			int sourceIndex = uris.getIndex(sourceURI);
-			int targetIndex = uris.getIndex(targetURI);
-			//If they are, add the mapping to the maps and proceed to next mapping
-			if(sourceIndex > -1 && targetIndex > -1)
-			{
-				if(sourceIndex < targetIndex)
-					add(sourceIndex, targetIndex, similarity, rel);
-				else
-					add(targetIndex, sourceIndex, similarity, rel);
-            }
+			add(sourceURI, targetURI, similarity, rel);
 		}
 	}
 	
 	private void loadMappingsTSV(String file) throws Exception
 	{
-		AML aml = AML.getInstance();
-		URIMap uris = aml.getURIMap();
-		
 		BufferedReader inStream = new BufferedReader(new FileReader(file));
 		//First line contains the reference to AML
 		inStream.readLine();
@@ -1106,16 +1134,7 @@ public class Alignment implements Iterable<Mapping>
 			//For compatibility with previous tsv format without listed relation
 			else
 				rel = MappingRelation.EQUIVALENCE;
-            //Get the indexes
-			int sourceIndex = uris.getIndex(sourceURI);
-			int targetIndex = uris.getIndex(targetURI);
-			if(sourceIndex > -1 && targetIndex > -1)
-			{
-				if(sourceIndex < targetIndex)
-					add(sourceIndex, targetIndex, similarity, rel);
-				else
-					add(targetIndex, sourceIndex, similarity, rel);
-            }
+			add(sourceURI, targetURI, similarity, rel);
 		}
 		inStream.close();
 	}
