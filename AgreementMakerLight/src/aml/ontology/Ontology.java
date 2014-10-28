@@ -180,7 +180,18 @@ public class Ontology
         //Reset the entity expansion limit
         System.clearProperty(LIMIT);
 	}
-
+	
+	/**
+	 * Constructs an Ontology from an OWLOntology
+	 * @param o: the OWLOntology to use
+	 * @param isInput: whether the ontology is an input ontology or
+	 * an external ontology
+	 */
+	public Ontology(OWLOntology o, boolean isInput)
+	{
+		this();
+		init(o,isInput);
+	}
 
 //Public Methods
 
