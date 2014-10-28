@@ -148,6 +148,14 @@ public class Mapping implements Comparable<Mapping>
 	{
 		return sourceId;
 	}
+	
+	/**
+	 * @return the URI of the source term
+	 */
+	public String getSourceURI()
+	{
+		return AML.getInstance().getURIMap().getURI(sourceId);
+	}
 
 	/**
 	 * @return the id of the target term
@@ -157,6 +165,14 @@ public class Mapping implements Comparable<Mapping>
 		return targetId;
 	}
 	
+	/**
+	 * @return the URI of the target term
+	 */
+	public String getTargetURI()
+	{
+		return AML.getInstance().getURIMap().getURI(targetId);
+	}
+
 	/**
 	 * Sets the similarity of the Mapping to sim
 	 * @param r: the relationship between the mapped terms
