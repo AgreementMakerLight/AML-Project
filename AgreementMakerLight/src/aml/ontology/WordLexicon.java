@@ -44,17 +44,19 @@ public class WordLexicon
 	private Set<String> stopSet;
 	//The language to use when building this WordLexicon
 	private String language;
-	//The map of words to names, broken into chunks
+	//The map of blocks (Integer) to words (String) to classes (Integer)
 	private Table3Set<Integer,String,Integer> wordClasses;
-	//The map of classes to names
+	//The map of classes (Integer) to words (String) with weights (Double)
 	private Table2Map<Integer,String,Double> classWords;
-	//The map of classes to names
+	//The map of names (String) to words (String)
 	private Table2Set<String,String> nameWords;
-	//The map of word evidence contents
+	//The map of word (String) evidence contents (Double)
 	private HashMap<String,Double> wordECs;
-	//The map of word evidence contents
+	//The map of class (Integer) total evidence contents (Double), which is the
+	//sum of evidence contents of all its words (multiplied by frequency)
 	private HashMap<Integer,Double> classECs;
-	//The map of word evidence contents
+	//The map of name (String) evidence contents (Double), which is the sum
+	//of evidence contents of all its words (multiplied by frequency)
 	private HashMap<String,Double> nameECs;
 	//Auxiliary count of words entered into the WordLexicon
 	private int total;

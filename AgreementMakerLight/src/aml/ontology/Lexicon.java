@@ -42,9 +42,9 @@ public class Lexicon
 
 //Attributes
 	
-	//The table of names
+	//The map of names (String) to class indexes (Integer)
 	private Table3List<String,Integer,Provenance> names;
-	//The table of classes
+	//The map of class indexes (Integer) to names (String)
 	private Table3List<Integer,String,Provenance> classes;
 	//The language counts
 	private HashMap<String,Integer> langCount;

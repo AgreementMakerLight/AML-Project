@@ -55,9 +55,9 @@ public class Alignment implements Iterable<Mapping>
 
 	//Term mappings organized in list
 	private Vector<Mapping> maps;
-	//Term mappings organized by source class
+	//Term mappings organized by source class (Source Id, Target Id, Mapping)
 	private Table2Map<Integer,Integer,Mapping> sourceMaps;
-	//Term mappings organized by target class
+	//Term mappings organized by target class (Target Id, Source Id, Mapping)
 	private Table2Map<Integer,Integer,Mapping> targetMaps;
 	//Whether the Alignment is internal
 	private boolean internal;
@@ -199,6 +199,7 @@ public class Alignment implements Iterable<Mapping>
 		int targetId = uris.getIndex(targetURI);
 		if(sourceId == -1 || targetId == -1)
 			return;
+		//TODO: Remove this and implement reverse loading
 		if(sourceId < targetId)
 			add(sourceId,targetId,sim);
 		else
@@ -651,7 +652,9 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @return the high level Alignment induced from this alignment 
+	 * @return the high level Alignment induced from this alignment
+	 * (the similarity between high level classes is given by the
+	 * fraction of classes in this alignment that are their descendents)
 	 */
 	public Alignment getHighLevelAlignment()
 	{

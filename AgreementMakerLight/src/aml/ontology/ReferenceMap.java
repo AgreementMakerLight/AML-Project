@@ -32,6 +32,7 @@ public class ReferenceMap
 	
 //Attributes
 	
+	//The table of classes (Integer) <-> cross-reference URIs (String)
 	Table2Set<Integer,String> termRefs;
 	Table2Set<String,Integer> refTerms;
 

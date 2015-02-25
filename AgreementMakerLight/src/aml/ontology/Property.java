@@ -31,11 +31,11 @@ public class Property
 //Attributes
 	
 	private int index;
-	private String name;
+	private String name;//TODO: Put property names in Lexicon
 	private String lang;
 	private String translation;
 	private String type;
-	private Set<String> domain;
+	private Set<String> domain; //TODO: Switch to numeric indexes
 	private Set<String> range;
 	private boolean isFunctional;
 	

@@ -24,12 +24,16 @@ package aml.ontology;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * The global map of URIs and numeric indexes in the source and target ontologies.
+ */
+
 public class URIMap
 {
 
 //Attributes
 	
-	//The index <-> URI maps of ontology entities 
+	//The numeric index (Integer) <-> URI (String) maps of ontology entities 
 	private HashMap<Integer,String> indexURI;
 	private HashMap<String,Integer> URIindex;
 	//The total number of stored URIs

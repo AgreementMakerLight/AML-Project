@@ -74,7 +74,7 @@ public class Ontology
     private final String LIMIT = "entityExpansionLimit"; 
 	//The URI of the ontology
 	protected String uri;
-	//The map of class indexes <-> local names in the ontology
+	//The map of class indexes (Integer) <-> local names (String) in the ontology
 	protected HashMap<Integer,String> indexName;
 	protected HashMap<String,Integer> nameIndex;
 	//The map of indexes -> properties in the ontology

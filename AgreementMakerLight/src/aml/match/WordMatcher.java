@@ -110,9 +110,11 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		//Match each chunk of both WordLexicons
 		for(int i = 0; i < sourceLex.blockCount(); i++)
 		{
+			//The word table (words->String, class indexes->Integer) for the current block
 			Table2Set<String,Integer> sWLex = sourceLex.getWordTable(i);
 			for(int j = 0; j < targetLex.blockCount(); j++)
 			{
+				//The word table (words->String, class indexes->Integer) for the current block
 				Table2Set<String,Integer> tWLex = targetLex.getWordTable(j);
 				Vector<Mapping> temp = matchBlocks(sWLex,tWLex,t);
 				//If the strategy is BY_CLASS, just add the alignment

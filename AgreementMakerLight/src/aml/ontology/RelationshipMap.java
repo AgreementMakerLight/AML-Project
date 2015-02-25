@@ -38,11 +38,12 @@ public class RelationshipMap
 
 	//Set of transitive subclass properties
 	private HashSet<Integer> transitive;
-	//Map between ancestor classes and their descendants
+	//Map between ancestor classes and their descendants (with transitive closure)
 	private Table3List<Integer,Integer,Relationship> descendantMap;
-	//Map between descendant classes and their ancestors
+	//Map between descendant classes and their ancestors (with transitive closure)
 	private Table3List<Integer,Integer,Relationship> ancestorMap;
-	//Map between disjoint classes
+	//TODO: Add option to not do transitive closure for internal AML use
+	//Map between disjoint classes (direct only)
 	private Table2Set<Integer,Integer> disjointMap;
 	//List of high level classes
 	private HashSet<Integer> highLevelClasses;
@@ -583,6 +584,7 @@ public class RelationshipMap
 		HashSet<Integer> targetTop = new HashSet<Integer>();
 		Set<Integer> ancestors = descendantMap.keySet();
 		//Which are classes that have children but not parents
+		//NOTE: This may not work out well if the ontologies are not is_a complete
 		for(Integer a : ancestors)
 		{
 			if(getParents(a).size() == 0 && getChildren(a).size() > 0)
@@ -888,6 +890,8 @@ public class RelationshipMap
 							{
 								Relationship r2 = rel2.get(l);
 								int p2 = r2.getProperty();
+								//We only do transitive closure if the property is the same (and transitive)
+								//for two relationships or one of the properties is 'is_a' (-1)
 								if((!transitive.contains(p2) && !transitive.contains(p1)) ||
 										(p1 != p2 && p1 != -1 && p2 != -1))
 									continue;

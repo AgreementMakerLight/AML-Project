@@ -35,7 +35,7 @@ public class Thesaurus implements Iterable<String>
 	
 //Attributes
 	
-	//The Thesaurus
+	//The Thesaurus of synonym words (String,String)
 	public Table2List<String,String> thesaurus;
 	//The confidence factor of this LexiconExtender
 	private final double CONFIDENCE = 0.9;

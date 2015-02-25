@@ -58,7 +58,8 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 	private Set<String> languages;
 	//Similarity measure
 	private StringSimMeasure measure;
-	//Correction factor
+	//Correction factor (to make string similarity values comparable to word similarity values
+	//and thus enable their combination and proper selection; 0.8 is optimized for the ISub measure)
 	private final double CORRECTION = 0.80;
 	//The available CPU threads
 	private int threads;

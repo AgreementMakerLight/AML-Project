@@ -50,7 +50,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		source = aml.getSource();
 		target = aml.getTarget();
 		strat = NeighborSimilarityStrategy.MINIMUM;
-		direct = true;
+		direct = true; //TODO: Update this from class AML
 	}
 	
 	public NeighborSimilarityMatcher(NeighborSimilarityStrategy s, boolean direct)

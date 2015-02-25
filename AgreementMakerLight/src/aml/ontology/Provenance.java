@@ -28,9 +28,14 @@ public class Provenance implements Comparable<Provenance>
 
 //Attributes
 
+	//The lexical type of the name for the class (see aml.settings.LexicalType)
 	private LexicalType type;
+	//The source of the name for the class ("" if it is the ontology that lists
+	//the class, or an ontology URI/name if it is an external resource - e.g. other ontology, wordnet)
 	private String source;
 	private String language;
+	//The weight of the name for the class (according to aml.settings.LexicalType, or in case of
+	//lexical extension, based on the match similarity)
 	private double weight;
 	
 //Constructors

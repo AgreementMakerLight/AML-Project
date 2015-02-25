@@ -56,8 +56,10 @@ public class RepairMap
 	//The list of classes that must be checked for coherence
 	private HashSet<Integer> checkList;
 	//The minimal map of ancestor relations of checkList classes
+	//(checkList class Id, classList class Id, Path)
 	private Table3List<Integer,Integer,Path> ancestorMap;
-	//The length of ancestral paths (to facilitate transitive closure)
+	//The length of ancestral paths to facilitate transitive closure
+	//(checklist class Id, Path length, classList class Id)
 	private Table3Set<Integer,Integer,Integer> pathLengths;
 	//The number of paths to disjoint classes
 	private int pathCount;

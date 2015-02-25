@@ -64,7 +64,7 @@ public class AML
 	//The ontology and alignment data structures
 	private URIMap uris;
 	private RelationshipMap rels;
-	private Ontology source;
+	private Ontology source; //TODO: Use list of Ontology to enable threesome
 	private Ontology target;
 	private Ontology bk;
 	private Alignment a;
@@ -73,7 +73,7 @@ public class AML
 	//General matching settings
 	private boolean useReasoner = true;
 	private final String BK_PATH = "store/knowledge/";
-	private Vector<String> bkSources;
+	private Vector<String> bkSources; //The list of files under the BK_PATH
     private LanguageSetting lang;
     private String language;
 	private SizeCategory size;
@@ -82,10 +82,10 @@ public class AML
 	//Manual matching settings
 	private double threshold = 0.6;
     private Vector<MatchStep> selectedSteps;
-    private Vector<String> selectedSources;
+    private Vector<String> selectedSources; //The selected files under the BK_PATH
     private WordMatchStrategy wms;
     private StringSimMeasure ssm;
-    private boolean primaryStringMatcher;
+    private boolean primaryStringMatcher; //Whether to use the String Matcher globally (TRUE) or locally (FALSE)
     private NeighborSimilarityStrategy nss;
     private boolean directNeighbors;
     private boolean removeObsolete;
