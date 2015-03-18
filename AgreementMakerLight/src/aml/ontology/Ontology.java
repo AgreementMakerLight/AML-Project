@@ -854,6 +854,7 @@ public class Ontology
 						rm.addDisjoint(cl.get(i), cl.get(j));
 				}
 			}
+		
 			Set<Integer> sv = objectSomeValues.keySet(prop);
 			if(sv == null)
 				continue;
@@ -873,7 +874,11 @@ public class Ontology
 		{
 			if(!properties.get(prop).isFunctional())
 				continue;
-			Vector<Integer> cl = new Vector<Integer>(objectSomeValues.keySet(prop));
+			Set<Integer> sv = objectSomeValues.keySet(prop);
+			if(sv == null)
+				continue;
+			Vector<Integer> cl = new Vector<Integer>(sv);
+			
 			for(int i = 0; i < cl.size() - 1; i++)
 			{
 				int c1 = objectSomeValues.get(prop, cl.get(i));

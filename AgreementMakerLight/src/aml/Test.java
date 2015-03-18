@@ -30,17 +30,18 @@ public class Test
 	public static void main(String[] args) throws Exception
 	{
 		//Path to input ontology files (edit manually)
-		String sourcePath = "store/largebio/oaei2013_FMA_small_overlapping_nci.owl";
-		String targetPath = "store/largebio/oaei2013_NCI_small_overlapping_fma.owl";
-		String referencePath = "store/largebio/oaei2013_FMA2NCI_repaired_UMLS_mappings.rdf";
+		String sourcePath = "";
+		String targetPath = "";
+		String referencePath = "";
 		//Path to save output alignment (edit manually, or leave blank for no evaluation)
 		String outputPath = "";
 		
 		
 		AML aml = AML.getInstance();
 		aml.openOntologies(sourcePath, targetPath);
-		//aml.matchAuto();
+		aml.matchAuto();
 		
+		System.out.println(aml.getAlignment().size());
 		if(!referencePath.equals(""))
 		{
 			aml.openReferenceAlignment(referencePath);
