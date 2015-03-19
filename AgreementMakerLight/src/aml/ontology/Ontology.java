@@ -412,7 +412,7 @@ public class Ontology
 
 			//Now get the class's annotations (including imports)
 			Set<OWLAnnotation> annots = c.getAnnotations(o);
-			for(OWLOntology ont : o.getDirectImports())
+			for(OWLOntology ont : o.getImports())
 				annots.addAll(c.getAnnotations(ont));
             for(OWLAnnotation annotation : annots)
             {
