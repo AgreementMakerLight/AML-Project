@@ -148,7 +148,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 			{
 				parentTotal += 0.5 / Math.sqrt(rels.getDistance(sId,i));
 				for(Integer j : targetParents)
-					parentTotal += input.getSimilarity(i,j) /
+					parentSim += input.getSimilarity(i,j) /
 						Math.sqrt((rels.getDistance(sId,i) + rels.getDistance(tId, j))*0.5);
 			}
 			for(Integer i : targetParents)
