@@ -59,6 +59,7 @@ import uk.ac.manchester.cs.owl.owlapi.OWLDataSomeValuesFromImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLObjectCardinalityRestrictionImpl;
 import aml.AML;
 import aml.settings.LexicalType;
+import aml.settings.PropertyType;
 import aml.util.StringParser;
 import aml.util.Table2Map;
 
@@ -505,7 +506,7 @@ public class Ontology
     		if(lang.equals(""))
     			lang = "en";
     		//Initialize the property
-			Property prop = new Property(id,name,lang,"annotation");
+			Property prop = new Property(id,name,lang,PropertyType.ANNOTATION);
 			properties.put(id,prop);
     	}
 		//Get the Data Properties
@@ -534,7 +535,7 @@ public class Ontology
     		if(lang.equals(""))
     			lang = "en";
 			//Initialize the property
-			Property prop = new Property(id,name,lang,"datatype",dp.isFunctional(o));
+			Property prop = new Property(id,name,lang,PropertyType.DATA,dp.isFunctional(o));
 			//Get its domain
 			Set<OWLClassExpression> domains = dp.getDomains(o);
 			for(OWLClassExpression ce : domains)
@@ -584,7 +585,7 @@ public class Ontology
     		if(lang.equals(""))
     			lang = "en";
 			//Initialize the property
-			Property prop = new Property(id,name,lang,"object",op.isFunctional(o));
+			Property prop = new Property(id,name,lang,PropertyType.OBJECT,op.isFunctional(o));
 			//Get its domain
 			Set<OWLClassExpression> domains = op.getDomains(o);
 			for(OWLClassExpression ce : domains)

@@ -23,6 +23,7 @@ package aml.ontology;
 import java.util.HashSet;
 import java.util.Set;
 
+import aml.settings.PropertyType;
 import aml.util.StringParser;
 
 public class Property
@@ -31,17 +32,17 @@ public class Property
 //Attributes
 	
 	private int index;
-	private String name;//TODO: Put property names in Lexicon
+	private String name; //TODO: Put property names in Lexicon
 	private String lang;
 	private String translation;
-	private String type;
+	private PropertyType type;
 	private Set<String> domain; //TODO: Switch to numeric indexes
 	private Set<String> range;
 	private boolean isFunctional;
 	
 //Constructors
 
-	public Property(int i, String n, String l, String t)
+	public Property(int i, String n, String l, PropertyType t)
 	{
 		index = i;
 		lang = l;
@@ -56,7 +57,7 @@ public class Property
 		translation = "";
 	}
 	
-	public Property(int i, String n, String l, String t, boolean f)
+	public Property(int i, String n, String l, PropertyType t, boolean f)
 	{
 		index = i;
 		lang = l;
@@ -113,7 +114,7 @@ public class Property
 		return translation;
 	}
 	
-	public String getType()
+	public PropertyType getType()
 	{
 		return type;
 	}
@@ -136,7 +137,7 @@ public class Property
 	@Override
 	public String toString()
 	{
-		String s = "name: " + name + "\ntype: " + type;
+		String s = "name: " + name + "\ntype: " + type.toString();
 		s += "\ndomain: ";
 		for(String d : domain)
 			s += d + "; ";
