@@ -30,6 +30,7 @@ import aml.AML;
 import aml.ontology.Property;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
+import aml.settings.PropertyType;
 import aml.util.ISub;
 import aml.util.Similarity;
 import aml.util.StopList;
@@ -92,8 +93,8 @@ public class PropertyMatcher implements SecondaryMatcher
 		double sim = 0.0d;
 
 		//We should only match properties of the same type
-		String sType = s.getType();
-		String tType = t.getType();
+		PropertyType sType = s.getType();
+		PropertyType tType = t.getType();
 		if(!sType.equals(tType))
 			return sim;
 	
