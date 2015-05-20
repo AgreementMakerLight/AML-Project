@@ -16,7 +16,7 @@
 * PApplet from the Gephi toolbox.                                             *
 *                                                                             *
 * @author Daniel Faria & Catia Pesquita                                       *
-* @date 23-06-2014                                                            *
+* @date 20-05-2015                                                            *
 * @version 2.1                                                                *
 ******************************************************************************/
 package aml.ui;
@@ -77,7 +77,7 @@ public class MappingViewerGephi extends JInternalFrame
 	
 	public MappingViewerGephi(Dimension max, Dimension min)
 	{
-		super("Mapping Viewer",false,false,false,false);
+		super("Mapping Viewer (Gephi Toolkit)",false,false,false,false);
 		//Set the size
 		this.setMaximumSize(max);
 		this.setPreferredSize(min);

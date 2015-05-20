@@ -15,7 +15,7 @@
 * AgreementMakerLight Graphic User Interface.                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 20-05-2015                                                            *
 * @version 2.1                                                                *
 ******************************************************************************/
 package aml.ui;
@@ -25,8 +25,10 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Insets;
 
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 
 public class GUI extends JFrame
 {
@@ -38,6 +40,9 @@ public class GUI extends JFrame
 	private JDesktopPane desktop;
 	private ResourcePanel resourcePanel;
 	private MappingViewerGephi mappingViewer;
+	private	AlignmentReviewer alignReviewer;
+	private JTabbedPane tabbedPane;
+	private JButton cancel;
 	private Dimension panelMin, panelMax, viewerMin, viewerMax;
 	
 //Constructors
@@ -58,16 +63,16 @@ public class GUI extends JFrame
 		Dimension screenSize = env.getMaximumWindowBounds().getSize();
 		//Get the insets (shouldn't be necessary, but just in case)
 		Insets insets = this.getInsets();
-		int w = insets.left + insets.right;
+		int w = insets.left + insets.right + 10;
 		int h = insets.top + insets.bottom;
 		//Determine width and height of the panels
 		int width = screenSize.width - w;
 		int panel = 105;
-		int viewer = screenSize.height - h - panel - (2*amlMenuBar.getPreferredSize().height);
+		int viewer = screenSize.height - h - panel - (4*amlMenuBar.getPreferredSize().height);
 		//Set their dimensions
 		panelMin = new Dimension(width - 20, panel);
 		panelMax = new Dimension(width, panel);
-		viewerMin = new Dimension(width - 20, viewer - 20);
+		viewerMin = new Dimension(width, viewer);
 		viewerMax = new Dimension(width, viewer);
 		//Create the resource panel
 		resourcePanel = new ResourcePanel(panelMax,panelMin);
@@ -75,13 +80,17 @@ public class GUI extends JFrame
 		desktop.add(resourcePanel,BorderLayout.NORTH);
 		//Create the mapping viewer
 		mappingViewer = new MappingViewerGephi(viewerMax,viewerMin);
-    	//mappingViewer.setBounds(0, panelHeight, width, viewerHeight);
-		desktop.add(mappingViewer,BorderLayout.CENTER);
-		mappingViewer.moveToFront();
-		
+		tabbedPane = new JTabbedPane();
+        tabbedPane.addTab("Mapping Viewer", mappingViewer);
+        alignReviewer = new AlignmentReviewer(viewerMax,viewerMin);
+    	tabbedPane.addTab("Alignment Reviewer",alignReviewer);
+        cancel = new JButton("Cancel");
+		cancel.setPreferredSize(new Dimension(70,28));
+
+		desktop.add(tabbedPane);
 		setContentPane(desktop);
 
-		pack();
+		this.pack();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
     }
@@ -91,20 +100,19 @@ public class GUI extends JFrame
     public void refresh()
     {
     	amlMenuBar.refresh();
-    	refreshPanel();
-    	refreshGraph();
+    	resourcePanel.refresh();
+    	tabbedPane.removeAll();
+    	mappingViewer = new MappingViewerGephi(viewerMax,viewerMin);
+        tabbedPane.addTab("Mapping Viewer", mappingViewer);
+        alignReviewer = new AlignmentReviewer(viewerMax,viewerMin);
+    	tabbedPane.addTab("Alignment Reviewer",alignReviewer);
+    	this.pack();
+    	setExtendedState(JFrame.MAXIMIZED_BOTH);
+    	setVisible(true);
     }
     
-    public void refreshGraph()
-    {
-    	mappingViewer.dispose();
-    	mappingViewer = new MappingViewerGephi(viewerMax,viewerMin);
-    	desktop.add(mappingViewer,BorderLayout.CENTER);
-    	mappingViewer.moveToFront();
-    }
-
     public void refreshPanel()
     {
     	resourcePanel.refresh();
-    }
+    }    
 }

@@ -41,7 +41,7 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 	private Console c;
     private JMenu ontologies, alignment, view;
     private JMenuItem openO, closeO, matchAuto, matchManual;
-    private JMenuItem openA, closeA, saveA, repair, evaluate;
+    private JMenuItem openA, closeA, saveA, add, repair, evaluate;
     private JMenuItem next, previous, goTo, search, options;
     private boolean match;
     
@@ -76,8 +76,8 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
         matchManual.addActionListener(this);
         ontologies.add(matchManual);
         add(ontologies);
-
-        //Match Menu
+        
+        //Alignment Menu
         alignment = new JMenu();
         alignment.setText("Alignment");
         openA = new JMenuItem();
@@ -93,6 +93,11 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
         closeA.addActionListener(this);
         alignment.add(closeA);
         alignment.addSeparator();
+        //add = new JMenuItem();
+        //add.setText("Add Mapping");
+        //add.addActionListener(this);
+        //alignment.add(add);
+        //alignment.addSeparator();
         repair = new JMenuItem();
         repair.setText("Repair Alignment");
         repair.addActionListener(this);
@@ -212,6 +217,10 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 		{
 			aml.closeAlignment();
 		}
+		else if(o == add)
+		{
+			new AddMapping();
+		}
 		else if(o == repair)
 		{
 			c = new Console();
@@ -257,6 +266,7 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 		openA.setEnabled(aml.hasOntologies());
 		closeA.setEnabled(aml.hasAlignment());
 		saveA.setEnabled(aml.hasAlignment());
+		//add.setEnabled(aml.hasAlignment());
 		repair.setEnabled(aml.hasAlignment());
 		evaluate.setEnabled(aml.hasAlignment());
 		next.setEnabled(aml.hasAlignment());
@@ -283,7 +293,6 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 		}
 		else
 			aml.repair();
-		Audio.finished();
 		try
 		{
 			Thread.sleep(1500);
