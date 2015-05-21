@@ -339,8 +339,7 @@ public class AML
 	public void goTo(int index)
     {
    		currentMapping = index;
-   		userInterface.refreshPanel();
-   		userInterface.refreshGraph();
+   		userInterface.refresh();
     }
     
     public boolean hasAlignment()
@@ -383,8 +382,7 @@ public class AML
     		currentMapping = 0;
     	else
     		currentMapping++;
-		userInterface.refreshPanel();
-		userInterface.refreshGraph();
+		userInterface.refresh();
     }
     
     public void openAlignment(String path) throws Exception
@@ -506,8 +504,7 @@ public class AML
     		currentMapping = a.size()-1;
     	else
     		currentMapping--;
-		userInterface.refreshPanel();
-		userInterface.refreshGraph();
+		userInterface.refresh();
     }
     
     public boolean primaryStringMatcher()
@@ -634,7 +631,7 @@ public class AML
 		showAncestors = a;
 		showDescendants = d;
 		maxDistance = m;
-		userInterface.refreshGraph();
+		userInterface.refresh();
 	}
 	
 	public void setWordMatchStrategy(WordMatchStrategy wms)
