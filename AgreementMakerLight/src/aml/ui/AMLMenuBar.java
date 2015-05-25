@@ -219,7 +219,7 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 		}
 		else if(o == add)
 		{
-			new AddMapping();
+			//new AddMapping();
 		}
 		else if(o == repair)
 		{
