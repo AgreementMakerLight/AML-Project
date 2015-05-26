@@ -146,26 +146,26 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		{
 			for(Integer i : sourceParents)
 			{
-				parentTotal += 0.5 / Math.sqrt(rels.getDistance(sId,i));
+				parentTotal += 0.5 / rels.getDistance(sId,i);
 				for(Integer j : targetParents)
 					parentSim += input.getSimilarity(i,j) /
-						Math.sqrt((rels.getDistance(sId,i) + rels.getDistance(tId, j))*0.5);
+						Math.sqrt(rels.getDistance(sId,i) * rels.getDistance(tId, j));
 			}
 			for(Integer i : targetParents)
-				parentTotal += 0.5 / Math.sqrt(rels.getDistance(tId,i));
+				parentTotal += 0.5 / rels.getDistance(tId,i);
 			parentSim /= parentTotal;
 		}
 		if(!strat.equals(NeighborSimilarityStrategy.ANCESTORS))
 		{
 			for(Integer i : sourceChildren)
 			{
-				childrenTotal += 0.5 / Math.sqrt(rels.getDistance(i,sId));
+				childrenTotal += 0.5 / rels.getDistance(i,sId);
 				for(Integer j : targetChildren)
 					childrenSim += input.getSimilarity(i,j) /
-						Math.sqrt((rels.getDistance(i,sId) + rels.getDistance(j,tId))*0.5);
+						Math.sqrt(rels.getDistance(i,sId) * rels.getDistance(j,tId));
 			}
 			for(Integer i : targetChildren)
-				childrenTotal += 0.5 / Math.sqrt(rels.getDistance(i,tId));
+				childrenTotal += 0.5 / rels.getDistance(i,tId);
 			childrenSim /= childrenTotal;
 		}
 		if(strat.equals(NeighborSimilarityStrategy.ANCESTORS))
