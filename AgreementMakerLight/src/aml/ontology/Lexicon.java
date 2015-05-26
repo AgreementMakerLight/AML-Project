@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,12 +12,11 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The Lexicon of an Ontology, mapping each class to its names and synonyms.   *
-* Lexical entries are weighted according to their provenance.                 *
+* The Lexicon of an Ontology, mapping each class and property to its names    *
+* and synonyms. Lexical entries are weighted according to their provenance.   *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
-* @version 2.0                                                                *
+* @date 26-05-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
@@ -43,9 +42,11 @@ public class Lexicon
 //Attributes
 	
 	//The map of names (String) to class indexes (Integer)
-	private Table3List<String,Integer,Provenance> names;
+	private Table3List<String,Integer,Provenance> classNames;
 	//The map of class indexes (Integer) to names (String)
-	private Table3List<Integer,String,Provenance> classes;
+	private Table3List<Integer,String,Provenance> nameClasses;
+	//The map of property indexes (Integer) to names (String)
+	private Table3List<Integer,String,Provenance> nameProperties;
 	//The language counts
 	private HashMap<String,Integer> langCount;
 	
@@ -57,8 +58,9 @@ public class Lexicon
 	 */
 	public Lexicon()
 	{
-		names = new Table3List<String,Integer,Provenance>();
-		classes = new Table3List<Integer,String,Provenance>();
+		classNames = new Table3List<String,Integer,Provenance>();
+		nameClasses = new Table3List<Integer,String,Provenance>();
+		nameProperties = new Table3List<Integer,String,Provenance>();
 		langCount = new HashMap<String,Integer>();
 	}
 	
@@ -68,8 +70,9 @@ public class Lexicon
 	 */
 	public Lexicon(Lexicon l)
 	{
-		names = new Table3List<String,Integer,Provenance>(l.names);
-		classes = new Table3List<Integer,String,Provenance>(l.classes);
+		classNames = new Table3List<String,Integer,Provenance>(l.classNames);
+		nameClasses = new Table3List<Integer,String,Provenance>(l.nameClasses);
+		nameProperties = new Table3List<Integer,String,Provenance>(l.nameProperties);
 		langCount = new HashMap<String,Integer>(l.langCount);
 	}
 	
@@ -89,7 +92,7 @@ public class Lexicon
 			String name = lex[1];
 			LexicalType type = LexicalType.parseLexicalType(lex[2]);
 			double weight = type.getDefaultWeight();
-			add(id,name,type,"",weight);
+			addClass(id,name,type,"",weight);
 		}
 		inStream.close();
 	}
@@ -103,7 +106,7 @@ public class Lexicon
 	 * @param type: the type of lexical entry (localName, label, etc)
 	 * @param source: the source of the lexical entry (ontology URI, etc)
 	 */
-	public void add(int classId, String name, LexicalType type, String source, double weight)
+	public void addClass(int classId, String name, LexicalType type, String source, double weight)
 	{
 		//First ensure that the name is not null or empty, and (since we're assuming that
 		//the language is English by default, ensure that it contains Latin characters)
@@ -127,8 +130,8 @@ public class Lexicon
 			p = new Provenance(type, source, lang, weight);
 		}
 		//Then update the tables
-		names.add(s,classId,p);
-		classes.add(classId,s,p);
+		classNames.add(s,classId,p);
+		nameClasses.add(classId,s,p);
 		Integer i = langCount.get(lang);
 		if(i == null)
 			langCount.put(lang, 1);
@@ -144,7 +147,7 @@ public class Lexicon
 	 * @param type: the type of lexical entry (localName, label, etc)
 	 * @param source: the source of the lexical entry (ontology URI, etc)
 	 */
-	public void add(int classId, String name, String language, LexicalType type, String source, double weight)
+	public void addClass(int classId, String name, String language, LexicalType type, String source, double weight)
 	{
 		//First ensure that the name is not null or empty
 		if(name == null || name.equals(""))
@@ -179,8 +182,73 @@ public class Lexicon
 			}
 		}
 		//Then update the tables
-		names.add(s,classId,p);
-		classes.add(classId,s,p);
+		classNames.add(s,classId,p);
+		nameClasses.add(classId,s,p);
+		Integer i = langCount.get(language);
+		if(i == null)
+			langCount.put(language, 1);
+		else
+			langCount.put(language, i+1);
+	}
+	
+	/**
+	 * Adds a new entry to the Lexicon
+	 * @param propId: the property to which the name belongs
+	 * @param name: the name to add to the Lexicon
+	 * @param type: the type of lexical entry (localName, label, etc)
+	 * @param source: the source of the lexical entry (ontology URI, etc)
+	 */
+	public void addProperty(int propId, String name, LexicalType type, String source, double weight)
+	{
+		//First ensure that the name is not null or empty, and (since we're assuming that
+		//the language is English by default, ensure that it contains Latin characters)
+		if(name == null || name.equals("") || !name.matches(".*[a-zA-Z].*"))
+			return;
+
+		String s = StringParser.normalizeProperty(name);
+		String lang = "en";
+		Provenance p = new Provenance(type, source, lang, weight);
+		
+		//Then update the tables
+		nameProperties.add(propId,s,p);
+		Integer i = langCount.get(lang);
+		if(i == null)
+			langCount.put(lang, 1);
+		else
+			langCount.put(lang, i+1);
+	}
+	
+	/**
+	 * Adds a new entry to the Lexicon
+	 * @param propId: the property to which the name belongs
+	 * @param name: the name to add to the Lexicon
+	 * @param language: the language of the name
+	 * @param type: the type of lexical entry (localName, label, etc)
+	 * @param source: the source of the lexical entry (ontology URI, etc)
+	 */
+	public void addProperty(int propId, String name, String language, LexicalType type, String source, double weight)
+	{
+		//First ensure that the name is not null or empty
+		if(name == null || name.equals(""))
+			return;
+
+		String s;
+		Provenance p;
+
+		//If the name is not in english we parse it as a formula
+		if(!language.equals("en"))
+		{
+			s = StringParser.normalizeFormula(name);
+			p = new Provenance(type, source, language, weight);
+		}
+		//Otherwise
+		else
+		{
+			s = StringParser.normalizeProperty(name);
+			p = new Provenance(type, source, language, weight);
+		}
+		//Then update the tables
+		nameProperties.add(propId,s,p);
 		Integer i = langCount.get(language);
 		if(i == null)
 			langCount.put(language, 1);
@@ -193,7 +261,7 @@ public class Lexicon
 	 */
 	public int classCount()
 	{
-		return classes.keyCount();
+		return nameClasses.keyCount();
 	}
 	
 	/**
@@ -202,7 +270,7 @@ public class Lexicon
 	 */
 	public int classCount(String name)
 	{
-		return names.entryCount(name);
+		return classNames.entryCount(name);
 	}
 	
 	/**
@@ -223,26 +291,37 @@ public class Lexicon
 	 */
 	public int classCount(String name, Provenance p)
 	{
-		return names.entryCount(name, p);
+		return classNames.entryCount(name, p);
 	}
 	
 	/**
 	 * @param name: the name to check in the Lexicon
-	 * @return whether the Lexicon contains the name
+	 * @return whether a class in the Lexicon contains the name
 	 */
 	public boolean contains(String name)
 	{
-		return names.contains(name);
+		return classNames.contains(name);
 	}
 	
 	/**
-	 * @param classId: the class to check in the Lexicon
+	 * @param entityId: the entity to check in the Lexicon
 	 * @param name: the name to check in the Lexicon
-	 * @return whether the Lexicon contains the name for the class
+	 * @return whether the Lexicon contains the name for the entity
+	 * (class or property)
 	 */
-	public boolean contains(int classId, String name)
+	public boolean contains(int entityId, String name)
 	{
-		return classes.contains(classId) && classes.get(classId).contains(name);
+		return (nameClasses.contains(entityId) && nameClasses.get(entityId).contains(name)) ||
+				(nameProperties.contains(entityId) && nameProperties.get(entityId).contains(name));
+	}
+	
+	/**
+	 * @param lang the language to search in the Lexicon
+	 * @return whether the Lexicon contains names with the given language
+	 */
+	public boolean containsLanguage(String lang)
+	{
+		return langCount.containsKey(lang);
 	}
 	
 	/**
@@ -252,13 +331,13 @@ public class Lexicon
 	 */
 	public boolean containsNonSmallFormula(int classId)
 	{
-		if(!classes.contains(classId))
+		if(!nameClasses.contains(classId))
 			return false;
-		for(String n : classes.keySet(classId))
+		for(String n : nameClasses.keySet(classId))
 		{
 			if(n.length() >= 10)
 				return true;
-			for(Provenance p : classes.get(classId,n))
+			for(Provenance p : nameClasses.get(classId,n))
 				if(!p.getType().equals(LexicalType.FORMULA))
 					return true;
 		}
@@ -270,7 +349,7 @@ public class Lexicon
 	 */
 	public void generateParenthesisSynonyms()
 	{
-		Vector<String> nm = new Vector<String>(names.keySet());
+		Vector<String> nm = new Vector<String>(classNames.keySet());
 		for(String n: nm)
 		{
 			if(StringParser.isFormula(n) || !n.contains("(") || !n.contains(")"))
@@ -306,19 +385,19 @@ public class Lexicon
 			//Get the classes with the name
 			Vector<Integer> tr = new Vector<Integer>(getInternalClasses(n));
 			for(Integer i : tr)
-				for(Provenance p : names.get(n, i))
-					add(i, newName, p.getLanguage(), LexicalType.INTERNAL_SYNONYM,
+				for(Provenance p : classNames.get(n, i))
+					addClass(i, newName, p.getLanguage(), LexicalType.INTERNAL_SYNONYM,
 							p.getSource(), weight*p.getWeight());
 		}
 	}
 	
 	/**
-	 * Generates synonyms by removing leading and trailing stop words from names
+	 * Generates synonyms by removing leading and trailing stop words from class names
 	 */
 	public void generateStopWordSynonyms()
 	{
 		Set<String> stopList = StopList.read();
-		Vector<String> nm = new Vector<String>(names.keySet());
+		Vector<String> nm = new Vector<String>(classNames.keySet());
 		for(String n: nm)
 		{
 			if(StringParser.isFormula(n))
@@ -358,10 +437,10 @@ public class Lexicon
 			Vector<Integer> tr = new Vector<Integer>(getInternalClasses(n));
 			for(Integer i : tr)
 			{
-				for(Provenance p : names.get(n, i))
+				for(Provenance p : classNames.get(n, i))
 				{
 					double weight = p.getWeight() * 0.9;
-					add(i, newName, p.getLanguage(), LexicalType.INTERNAL_SYNONYM, p.getSource(), weight);
+					addClass(i, newName, p.getLanguage(), LexicalType.INTERNAL_SYNONYM, p.getSource(), weight);
 				}
 			}
 		}
@@ -369,33 +448,35 @@ public class Lexicon
 	
 	/**
 	 * @param name: the name to search in the Lexicon
-	 * @param classId: the class to search in the Lexicon
-	 * @return the provenances associated with the name,class pair
+	 * @param entityId: the entity to search in the Lexicon
+	 * @return the provenances associated with the name,entity pair
 	 */	
-	public Vector<Provenance> get(String name, int classId)
+	public Vector<Provenance> get(String name, int entityId)
 	{
-		if(names.contains(name, classId))
-			return names.get(name, classId);
+		if(classNames.contains(name, entityId))
+			return classNames.get(name, entityId);
+		if(nameProperties.contains(entityId,name))
+			return nameProperties.get(entityId, name);
 		return new Vector<Provenance>();
 	}
 	
 	/**
-	 * @param classId: the class to search in the Lexicon
+	 * @param entityId: the entity (class or property) to search in the Lexicon
 	 * @return the name associated with the class that has the highest
 	 * provenance weight
 	 */
-	public String getBestName(int classId)
+	public String getBestName(int entityId)
 	{
-		Set<String> hits = getNamesWithLanguage(classId, AML.getInstance().getLabelLanguage());
+		Set<String> hits = getNamesWithLanguage(entityId, AML.getInstance().getLabelLanguage());
 		if(hits.size() == 0)
-			hits = getInternalNames(classId);
+			hits = getInternalNames(entityId);
 		String bestName = "";
 		double weight;
 		double maxWeight = 0.0;
 		
 		for(String n : hits)
 		{
-			weight = getWeight(n,classId);
+			weight = getWeight(n,entityId);
 			if(weight > maxWeight)
 			{
 				maxWeight = weight;
@@ -452,7 +533,7 @@ public class Lexicon
 	 */
 	public Set<Integer> getClasses()
 	{
-		return classes.keySet();
+		return nameClasses.keySet();
 	}
 	
 	/**
@@ -461,7 +542,7 @@ public class Lexicon
 	 */
 	public Set<Integer> getClasses(String name)
 	{
-		return names.keySet(name);
+		return classNames.keySet(name);
 	}
 	
 	/**
@@ -471,12 +552,12 @@ public class Lexicon
 	 */
 	public Set<Integer> getClasses(String name, String type)
 	{
-		Set<Integer> hits = names.keySet(name);
+		Set<Integer> hits = classNames.keySet(name);
 		HashSet<Integer> classesType = new HashSet<Integer>();
 		if(hits == null)
 			return classesType;
 		for(Integer i : hits)
-			for(Provenance p : names.get(name,i))
+			for(Provenance p : classNames.get(name,i))
 				if(p.getType().equals(type))
 					classesType.add(i);
 		return classesType;
@@ -490,12 +571,12 @@ public class Lexicon
 	 */
 	public Set<Integer> getClassesWithLanguage(String name, String lang)
 	{
-		Set<Integer> hits = names.keySet(name);
+		Set<Integer> hits = classNames.keySet(name);
 		HashSet<Integer> classesLang = new HashSet<Integer>();
 		if(hits == null)
 			return classesLang;
 		for(Integer i : hits)
-			for(Provenance p : names.get(name,i))
+			for(Provenance p : classNames.get(name,i))
 				if(p.getLanguage().equals(lang))
 					classesLang.add(i);
 		return classesLang;
@@ -508,7 +589,7 @@ public class Lexicon
 	public Vector<Integer> getClassesWithSource(String source)
 	{
 		Vector<Integer> classesWithSource = new Vector<Integer>(0,1);
-		Set<Integer> ts = classes.keySet();
+		Set<Integer> ts = nameClasses.keySet();
 		for(Integer i : ts)
 			if(hasNameFromSource(i,source) && !classesWithSource.contains(i))
 				classesWithSource.add(i);
@@ -524,11 +605,11 @@ public class Lexicon
 	 */
 	public double getCorrectedWeight(String name, int classId)
 	{
-		if(!names.contains(name, classId))
+		if(!classNames.contains(name, classId))
 			return 0.0;
 		double weight = 0.0;
 		double correction = 0.0;
-		for(Provenance p : names.get(name, classId))
+		for(Provenance p : classNames.get(name, classId))
 		{
 			if(p.getWeight() > weight)
 			{
@@ -549,7 +630,7 @@ public class Lexicon
 	 */
 	public double getCorrectedWeight(String name, int classId, String lang)
 	{
-		Vector<Provenance> provs = names.get(name, classId);
+		Vector<Provenance> provs = classNames.get(name, classId);
 		if(provs == null)
 			return 0.0;
 		for(Provenance p : provs)
@@ -569,7 +650,7 @@ public class Lexicon
 	public Set<Integer> getExtendedClasses()
 	{
 		HashSet<Integer> extendedClasses = new HashSet<Integer>(0,1);
-		Set<Integer> ts = classes.keySet();
+		Set<Integer> ts = nameClasses.keySet();
 		for(Integer i : ts)
 			if(hasExternalName(i))
 				extendedClasses.add(i);
@@ -577,18 +658,26 @@ public class Lexicon
 	}
 	
 	/**
-	 * @param classId: the class to search in the Lexicon
+	 * @param entityId: the entity (class or property) to search in the Lexicon
 	 * @return the list of local names associated with the class
 	 */
-	public Set<String> getInternalNames(int classId)
+	public Set<String> getInternalNames(int entityId)
 	{
-		Set<String> hits = classes.keySet(classId);
 		HashSet<String> localHits = new HashSet<String>();
-		if(hits == null)
-			return localHits;
-		for(String s : hits)
-			if(!isExternal(s,classId))
-				localHits.add(s);
+		if(nameClasses.contains(entityId))
+		{
+			Set<String> hits = nameClasses.keySet(entityId);
+			for(String s : hits)
+				if(!isExternal(s,entityId))
+					localHits.add(s);
+		}
+		else if(nameProperties.contains(entityId))
+		{
+			Set<String> hits = nameProperties.keySet(entityId);
+			for(String s : hits)
+				if(!isExternal(s,entityId))
+					localHits.add(s);
+		}
 		return localHits;
 	}
 	
@@ -599,7 +688,7 @@ public class Lexicon
 	 */
 	public Set<Integer> getInternalClasses(String name)
 	{
-		Set<Integer> hits = names.keySet(name);
+		Set<Integer> hits = classNames.keySet(name);
 		HashSet<Integer> localHits = new HashSet<Integer>();
 		if(hits == null)
 			return localHits;
@@ -632,12 +721,12 @@ public class Lexicon
 	 */
 	public Set<String> getLanguages(String name)
 	{
-		Set<Integer> hits = names.keySet(name);
+		Set<Integer> hits = classNames.keySet(name);
 		HashSet<String> langs = new HashSet<String>();
 		if(hits == null)
 			return langs;
 		for(Integer i : hits)
-			for(Provenance p : names.get(name,i))
+			for(Provenance p : classNames.get(name,i))
 				langs.add(p.getLanguage());
 		return langs;
 	}
@@ -649,7 +738,7 @@ public class Lexicon
 	 */
 	public Set<String> getLanguages(String name, int classId)
 	{
-		Vector<Provenance> hits = names.get(name,classId);
+		Vector<Provenance> hits = classNames.get(name,classId);
 		HashSet<String> langs = new HashSet<String>();
 		if(hits == null)
 			return langs;
@@ -659,56 +748,84 @@ public class Lexicon
 	}
 	
 	/**
-	 * @return the set of names in the Lexicon
+	 * @return the set of class names in the Lexicon
 	 */
 	public Set<String> getNames()
 	{
-		return names.keySet();
+		return classNames.keySet();
 	}
 
 	/**
-	 * @param classId: the class to search in the Lexicon
-	 * @return the list of names associated with the class
+	 * @param entityId: the entity (class or property) to search in the Lexicon
+	 * @return the list of names associated with the entity
 	 */
-	public Set<String> getNames(int classId)
+	public Set<String> getNames(int entityId)
 	{
-		return classes.keySet(classId);
+		if(nameClasses.contains(entityId))
+			return nameClasses.keySet(entityId);
+		if(nameProperties.contains(entityId))
+			return nameProperties.keySet(entityId);
+		return new HashSet<String>();
 	}
 	
 	/**
-	 * @param classId: the class to search in the Lexicon
+	 * @param entityId: the entity (class or property) to search in the Lexicon
 	 * @param type: the type to restrict the search
-	 * @return the list of names of the given type associated with the class
+	 * @return the list of names of the given type associated with the entity
 	 */
-	public Set<String> getNames(int classId, LexicalType type)
+	public Set<String> getNames(int entityId, LexicalType type)
 	{
-		Set<String> hits = classes.keySet(classId);
 		HashSet<String> namesType = new HashSet<String>();
-		if(hits == null)
-			return namesType;
-		for(String n : hits)
-			for(Provenance p : classes.get(classId,n))
-				if(p.getType().equals(type))
-					namesType.add(n);
+		if(nameClasses.contains(entityId))
+		{
+			for(String n : nameClasses.keySet(entityId))
+				for(Provenance p : nameClasses.get(entityId,n))
+					if(p.getType().equals(type))
+						namesType.add(n);
+		}
+		else if(nameProperties.contains(entityId))
+		{
+			for(String n : nameProperties.keySet(entityId))
+				for(Provenance p : nameProperties.get(entityId,n))
+					if(p.getType().equals(type))
+						namesType.add(n);
+
+		}
 		return namesType;
 	}
 	
 	/**
-	 * @param classId: the class to search in the Lexicon
+	 * @param entityId: the entity (class or property) to search in the Lexicon
 	 * @param lang: the lang of the names to get from the Lexicon
-	 * @return the names with the given language associated with the class
+	 * @return the names with the given language associated with the entity
 	 */
-	public Set<String> getNamesWithLanguage(int classId, String lang)
+	public Set<String> getNamesWithLanguage(int entityId, String lang)
 	{
-		Set<String> hits = classes.keySet(classId);
 		HashSet<String> namesLang = new HashSet<String>();
-		if(hits == null)
-			return namesLang;
-		for(String n : hits)
-			for(Provenance p : classes.get(classId,n))
-				if(p.getLanguage().equals(lang))
-					namesLang.add(n);
+		if(nameClasses.contains(entityId))
+		{
+			for(String n : nameClasses.keySet(entityId))
+				for(Provenance p : nameClasses.get(entityId,n))
+					if(p.getLanguage().equals(lang))
+						namesLang.add(n);
+		}
+		else if(nameProperties.contains(entityId))
+		{
+			for(String n : nameProperties.keySet(entityId))
+				for(Provenance p : nameProperties.get(entityId,n))
+					if(p.getLanguage().equals(lang))
+						namesLang.add(n);
+
+		}
 		return namesLang;
+	}
+	
+	/**
+	 * @return the set of properties in this Lexicon
+	 */
+	public Set<Integer> getProperties()
+	{
+		return nameProperties.keySet();
 	}
 	
 	/**
@@ -718,7 +835,7 @@ public class Lexicon
 	 */
 	public Set<String> getSources(String name, int classId)
 	{
-		Vector<Provenance> provs = names.get(name, classId);
+		Vector<Provenance> provs = classNames.get(name, classId);
 		HashSet<String> sources = new HashSet<String>();
 		if(provs == null)
 			return sources;
@@ -736,7 +853,7 @@ public class Lexicon
 	{
 		LexicalType type = null;
 		double weight = 0.0;
-		for(Provenance p : names.get(name, classId))
+		for(Provenance p : classNames.get(name, classId))
 		{
 			if(p.getWeight() > weight)
 			{
@@ -754,7 +871,7 @@ public class Lexicon
 	 */
 	public Set<LexicalType> getTypes(String name, int classId)
 	{
-		Vector<Provenance> provs = names.get(name, classId);
+		Vector<Provenance> provs = classNames.get(name, classId);
 		HashSet<LexicalType> types = new HashSet<LexicalType>();
 		if(provs == null)
 			return types;
@@ -770,10 +887,10 @@ public class Lexicon
 	 */
 	public double getWeight(String name, int classId)
 	{
-		if(!names.contains(name, classId))
+		if(!classNames.contains(name, classId))
 			return 0.0;
 		double weight = 0.0;
-		for(Provenance p : names.get(name, classId))
+		for(Provenance p : classNames.get(name, classId))
 			if(p.getWeight() > weight)
 				weight = p.getWeight();
 		return weight;
@@ -787,9 +904,9 @@ public class Lexicon
 	 */
 	public double getWeight(String name, int classId, String lang)
 	{
-		if(!names.contains(name, classId))
+		if(!classNames.contains(name, classId))
 			return 0.0;
-		Vector<Provenance> provs = names.get(name, classId);
+		Vector<Provenance> provs = classNames.get(name, classId);
 		for(Provenance p : provs)
 			if(p.getLanguage().equals(lang))
 				return p.getWeight();
@@ -835,9 +952,9 @@ public class Lexicon
 	 */
 	public boolean isExternal(String name, int classId)
 	{
-		if(!names.contains(name,classId))
+		if(!classNames.contains(name,classId))
 			return false;
-		Vector<Provenance> provs = names.get(name, classId);
+		Vector<Provenance> provs = classNames.get(name, classId);
 		for(Provenance p : provs)
 			if(!p.isExternal())
 				return false;
@@ -853,9 +970,9 @@ public class Lexicon
 	 */
 	public boolean isExternal(String name, int classId, String lang)
 	{
-		if(!names.contains(name,classId))
+		if(!classNames.contains(name,classId))
 			return false;
-		Vector<Provenance> provs = names.get(name, classId);
+		Vector<Provenance> provs = classNames.get(name, classId);
 		for(Provenance p : provs)
 			if(p.getLanguage().equals(lang) && p.isExternal())
 				return true;
@@ -876,7 +993,7 @@ public class Lexicon
 	 */
 	public int nameCount()
 	{
-		return names.keyCount();
+		return classNames.keyCount();
 	}
 	
 	/**
@@ -885,7 +1002,7 @@ public class Lexicon
 	 */
 	public int nameCount(int classId)
 	{
-		return classes.entryCount(classId);
+		return nameClasses.entryCount(classId);
 	}
 	
 	/**
@@ -907,15 +1024,23 @@ public class Lexicon
 	 */
 	public int nameCount(int classId, LexicalType type, String lang)
 	{
-		Set<String> hits = classes.keySet(classId);
+		Set<String> hits = nameClasses.keySet(classId);
 		int count = 0;
 		if(hits == null)
 			return count;
 		for(String n : hits)
-			for(Provenance p : classes.get(classId,n))
+			for(Provenance p : nameClasses.get(classId,n))
 				if(p.getLanguage().equals(lang) && p.getType().equals(type))
 					count++;
 		return count;
+	}
+	
+	/**
+	 * @return the number of properties in the Lexicon
+	 */
+	public int propertyCount()
+	{
+		return nameProperties.keyCount();
 	}
 	
 	/**
@@ -925,17 +1050,17 @@ public class Lexicon
 	public void save(String file) throws Exception
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		for(Integer i : classes.keySet())
-			for(String n : classes.keySet(i))
+		for(Integer i : nameClasses.keySet())
+			for(String n : nameClasses.keySet(i))
 				outStream.println(i + "\t" + n + "\t" + getType(n,i));
 		outStream.close();
 	}
 
 	/**
-	 * @return the number of entries in the Lexicon
+	 * @return the number of class name entries in the Lexicon
 	 */
 	public int size()
 	{
-		return names.size();
+		return classNames.size();
 	}
 }
