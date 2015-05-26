@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,20 +12,21 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The global map of URIs and numeric indexes in the source and target         *
+* The global map of URIs, numeric indexes, and entity types in the opened     *
 * ontologies.                                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
-* @version 2.0                                                                *
+* @date 21-05-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
 import java.util.HashMap;
 import java.util.Set;
 
+import aml.settings.EntityType;
+
 /**
- * The global map of URIs and numeric indexes in the source and target ontologies.
+ * The global map of URIs, numeric indexes, and entity types in the open ontologies.
  */
 
 public class URIMap
@@ -36,6 +37,8 @@ public class URIMap
 	//The numeric index (Integer) <-> URI (String) maps of ontology entities 
 	private HashMap<Integer,String> indexURI;
 	private HashMap<String,Integer> URIindex;
+	//The numeric index (Integer) -> EntityType map of ontology entities 
+	private HashMap<Integer,EntityType> indexType;
 	//The total number of stored URIs
 	private int size;
 	
@@ -45,6 +48,7 @@ public class URIMap
 	{
 		indexURI = new HashMap<Integer,String>();
 		URIindex = new HashMap<String,Integer>();
+		indexType = new HashMap<Integer,EntityType>();
 		size = 0;
 	}
 	
@@ -54,7 +58,7 @@ public class URIMap
 	 * @param uri: the URI to add to AML
 	 * @return the index of the added URI
 	 */
-	public int addURI(String uri)
+	public int addURI(String uri, EntityType t)
 	{
 		if(URIindex.containsKey(uri))
 			return URIindex.get(uri);
@@ -64,6 +68,7 @@ public class URIMap
 			Integer i = new Integer(size);
 			indexURI.put(i,uri);
 			URIindex.put(uri,i);
+			indexType.put(i, t);
 			return size;
 		}
 	}
@@ -89,6 +94,15 @@ public class URIMap
 	}
 	
 	/**
+	 * @param index: the index of the Ontology entity
+	 * @return the EntityType of the input index
+	 */
+	public EntityType getType(int index)
+	{
+		return indexType.get(index);
+	}
+	
+	/**
 	 * @param index: the index to search in AML
 	 * @return the URI of the input index
 	 */
@@ -106,6 +120,26 @@ public class URIMap
 	public Set<String> getURIS()
 	{
 		return URIindex.keySet();
+	}
+	
+	/**
+	 * @param index: the index of the Ontology entity
+	 * @return whether the entity is a Class
+	 */
+	public boolean isClass(int index)
+	{
+		return indexType.get(index).equals(EntityType.CLASS);
+	}
+	
+	/**
+	 * @param index: the index of the Ontology entity
+	 * @return whether the entity is a Property
+	 */
+	public boolean isProperty(int index)
+	{
+		return indexType.get(index).equals(EntityType.ANNOTATION) ||
+				indexType.get(index).equals(EntityType.DATA) ||
+				indexType.get(index).equals(EntityType.OBJECT);
 	}
 	
 	/**
