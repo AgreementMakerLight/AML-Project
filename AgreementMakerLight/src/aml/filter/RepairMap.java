@@ -1,24 +1,23 @@
-/*******************************************************************************
- * Copyright 2013-2013 LASIGE                                                  *
- *                                                                             *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
- * not use this file except in compliance with the License. You may obtain a   *
- * copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
- *                                                                             *
- * Unless required by applicable law or agreed to in writing, software         *
- * distributed under the License is distributed on an "AS IS" BASIS,           *
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
- * See the License for the specific language governing permissions and         *
- * limitations under the License.                                              *
- *                                                                             *
- *******************************************************************************
- * Map of extended relationships of classes involved in disjoint clauses with  *
- * mappings from a given Alignment, which supports repair of that Alignment.   *
- *                                                                             *
- * @authors Daniel Faria & Emanuel Santos                                      *
- * @date 03-09-2014                                                            *
- * @version 2.1                                                                *
- ******************************************************************************/
+/******************************************************************************
+* Copyright 2013-2015 LASIGE                                                  *
+*                                                                             *
+* Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+* not use this file except in compliance with the License. You may obtain a   *
+* copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+*                                                                             *
+* Unless required by applicable law or agreed to in writing, software         *
+* distributed under the License is distributed on an "AS IS" BASIS,           *
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+* See the License for the specific language governing permissions and         *
+* limitations under the License.                                              *
+*                                                                             *
+*******************************************************************************
+* Map of extended relationships of classes involved in disjoint clauses with  *
+* mappings from a given Alignment, which supports repair of that Alignment.   *
+*                                                                             *
+* @authors Daniel Faria & Emanuel Santos                                      *
+* @date 21-05-2015                                                            *
+******************************************************************************/
 package aml.filter;
 
 import java.io.FileNotFoundException;
@@ -167,10 +166,10 @@ public class RepairMap
 		}
 		//Otherwise, add all classes involved in mappings
 		for(Integer i : a.getSources())
-			if(AML.getInstance().getSource().isClass(i))
+			if(AML.getInstance().getURIMap().isClass(i))
 				classList.add(i);
 		for(Integer i : a.getTargets())
-			if(AML.getInstance().getTarget().isClass(i))
+			if(AML.getInstance().getURIMap().isClass(i))
 				classList.add(i);
 		//Then build the checkList
 		buildCheckList();

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -19,8 +19,7 @@
 * either to match small ontologies or as a SecondaryMatcher.                  *
 *                                                                             *
 * @authors Daniel Faria, Cosmin Stroe                                         *
-* @date 10-09-2014                                                            *
-* @version 2.1                                                                *
+* @date 26-05-2015                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -37,6 +36,7 @@ import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
 import aml.AML;
 import aml.ontology.Lexicon;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.settings.LanguageSetting;
 import aml.settings.StringSimMeasure;
@@ -51,6 +51,8 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 
 	//Links to the AML class and to the source and target Lexicons
 	private AML aml;
+	private Ontology source;
+	private Ontology target;
 	private Lexicon sLex;
 	private Lexicon tLex;
 	//Language setting and languages
@@ -74,8 +76,10 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 	{
 		threads = Runtime.getRuntime().availableProcessors();
 		aml = AML.getInstance();
-		sLex = aml.getSource().getLexicon();
-		tLex = aml.getTarget().getLexicon();
+		source = aml.getSource();
+		target = aml.getTarget();
+		sLex = source.getLexicon();
+		tLex = target.getLexicon();
 		lSet = AML.getInstance().getLanguageSetting();
 		languages = aml.getLanguages();
 		measure = StringSimMeasure.ISUB;
@@ -145,7 +149,7 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
 		{
-			double sim = mapTwoClasses(m.getSourceId(),m.getTargetId());
+			double sim = mapTwoEntities(m.getSourceId(),m.getTargetId());
 			maps.add(m.getSourceId(),m.getTargetId(),sim);
 		}
 		time = System.currentTimeMillis()/1000 - time;
@@ -162,11 +166,13 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 		for(int i = 0; i < a.size(); i++)
 		{
 			Mapping input = a.get(i);
+			if(!aml.getURIMap().isClass(input.getSourceId()))
+				continue;
 			Set<Integer> sourceChildren = rels.getChildren(input.getSourceId());
 			Set<Integer> targetChildren = rels.getChildren(input.getTargetId());
 			for(Integer s : sourceChildren)
 			{
-				if(a.containsSource(s))
+				if(a.containsSource(s) || !aml.getURIMap().isClass(s))
 					continue;
 				for(Integer t : targetChildren)
 				{
@@ -197,6 +203,8 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 		for(int i = 0; i < a.size(); i++)
 		{
 			Mapping input = a.get(i);
+			if(!aml.getURIMap().isClass(input.getSourceId()))
+				continue;
 			Set<Integer> sourceSiblings = rels.getAllSiblings(input.getSourceId());
 			Set<Integer> targetSiblings = rels.getAllSiblings(input.getTargetId());
 			if(sourceSiblings.size() > 200 || targetSiblings.size() > 200)
@@ -253,7 +261,7 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 	
 	//Computes the maximum String similarity between two Classes by doing a
 	//pairwise comparison of all their names
-	private double mapTwoClasses(int sId, int tId)
+	private double mapTwoEntities(int sId, int tId)
 	{
 		double maxSim = 0.0;
 		double sim, weight;
@@ -351,7 +359,7 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 	    @Override
 	    public Mapping call()
 	    {
-       		return new Mapping(source,target,mapTwoClasses(source,target));
+       		return new Mapping(source,target,mapTwoEntities(source,target));
         }
 	}
 }

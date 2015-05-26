@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -18,7 +18,6 @@
 *                                                                             *
 * @authors Catia Pesquita, Daniel Faria                                       *
 * @date 23-06-2014                                                            *
-* @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
 
@@ -121,7 +120,7 @@ public class Thesaurus implements Iterable<String>
 					for(Integer i: terms)
 					{
 						double weight = lex.getWeight(n,i) * CONFIDENCE;
-						lex.add(i, newName, TYPE, "", weight);
+						lex.addClass(i, newName, TYPE, "", weight);
 					}
 				}
 			}

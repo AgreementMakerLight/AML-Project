@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -18,7 +18,6 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 18-09-2014                                                            *
-* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -80,7 +79,7 @@ public class XRefMatcher extends LexicalMatcher implements LexiconExtender
 			{
 				double sim = m.getSimilarity() * x.getWeight(n, t);
 				if(sim >= thresh)
-					lex.add(m.getSourceId(), n, TYPE, uri, sim);
+					lex.addClass(m.getSourceId(), n, TYPE, uri, sim);
 			}
 		}
 		o = aml.getTarget();
@@ -97,7 +96,7 @@ public class XRefMatcher extends LexicalMatcher implements LexiconExtender
 			{
 				double sim = m.getSimilarity() * x.getWeight(n, t);
 				if(sim >= thresh)
-					lex.add(m.getSourceId(), n, TYPE, uri, sim);
+					lex.addClass(m.getSourceId(), n, TYPE, uri, sim);
 			}
 		}
 		time = System.currentTimeMillis()/1000 - time;

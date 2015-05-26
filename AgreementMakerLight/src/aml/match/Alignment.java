@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,8 +16,7 @@
 * as a Table of indexes, and including methods for input and output.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-09-2014                                                            *
-* @version 2.1                                                                *
+* @date 26-05-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -61,6 +60,8 @@ public class Alignment implements Iterable<Mapping>
 	private Table2Map<Integer,Integer,Mapping> targetMaps;
 	//Whether the Alignment is internal
 	private boolean internal;
+	//Link to AML
+	private AML aml;
 	//Link to the URIMap
 	private URIMap uris;
 	
@@ -74,7 +75,8 @@ public class Alignment implements Iterable<Mapping>
 		maps = new Vector<Mapping>(0,1);
 		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
 		targetMaps = new Table2Map<Integer,Integer,Mapping>();
-		uris = AML.getInstance().getURIMap();
+		aml = AML.getInstance();
+		uris = aml.getURIMap();
 		internal = false;
 	}
 
@@ -86,7 +88,8 @@ public class Alignment implements Iterable<Mapping>
 		maps = new Vector<Mapping>(0,1);
 		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
 		targetMaps = new Table2Map<Integer,Integer,Mapping>();
-		uris = AML.getInstance().getURIMap();
+		aml = AML.getInstance();
+		uris = aml.getURIMap();
 		this.internal = internal;
 	}
 
@@ -129,8 +132,9 @@ public class Alignment implements Iterable<Mapping>
 	{
 		//Unless the alignment is internal, we can't have a mapping
 		//between entities with the same id (which corresponds to URI)
-		if(!internal && sourceId == targetId)
+		if(!internal && (sourceId == targetId))
 			return;
+		
 		//Construct the Mapping
 		Mapping m = new Mapping(sourceId, targetId, sim, MappingRelation.EQUIVALENCE);
 		//If it isn't listed yet, add it
@@ -162,9 +166,11 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public void add(int sourceId, int targetId, double sim, MappingRelation r)
 	{
-		//We can't have a mapping between entities with the same URI
-		if(!internal && sourceId == targetId)
+		//Unless the alignment is internal, we can't have a mapping
+		//between entities with the same id (which corresponds to URI)
+		if(!internal && (sourceId == targetId))
 			return;
+		
 		//Construct the Mapping
 		Mapping m = new Mapping(sourceId, targetId, sim, r);
 		//If it isn't listed yet, add it
@@ -195,15 +201,14 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public void add(String sourceURI, String targetURI, double sim)
 	{
-		int sourceId = uris.getIndex(sourceURI);
-		int targetId = uris.getIndex(targetURI);
-		if(sourceId == -1 || targetId == -1)
+		int id1 = uris.getIndex(sourceURI);
+		int id2 = uris.getIndex(targetURI);
+		if(id1 == -1 || id2 == -1)
 			return;
-		//TODO: Remove this and implement reverse loading
-		if(sourceId < targetId)
-			add(sourceId,targetId,sim);
-		else
-			add(targetId,sourceId,sim);
+		if(aml.getSource().contains(id1) && aml.getTarget().contains(id2))
+			add(id1,id2,sim);
+		else if(aml.getSource().contains(id2) && aml.getTarget().contains(id1))
+			add(id2,id1,sim);
 	}
 	
 	/**
@@ -217,14 +222,14 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public void add(String sourceURI, String targetURI, double sim, MappingRelation r)
 	{
-		int sourceId = uris.getIndex(sourceURI);
-		int targetId = uris.getIndex(targetURI);
-		if(sourceId == -1 || targetId == -1)
+		int id1 = uris.getIndex(sourceURI);
+		int id2 = uris.getIndex(targetURI);
+		if(id1 == -1 || id2 == -1)
 			return;
-		if(sourceId < targetId)
-			add(sourceId,targetId,sim,r);
-		else
-			add(targetId,sourceId,sim,r);
+		if(aml.getSource().contains(id1) && aml.getTarget().contains(id2))
+			add(id1,id2,sim,r);
+		else if(aml.getSource().contains(id2) && aml.getTarget().contains(id1))
+			add(id2,id1,sim,r);
 	}
 	
 	/**

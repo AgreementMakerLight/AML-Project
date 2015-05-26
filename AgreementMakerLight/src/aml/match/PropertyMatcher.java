@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -17,20 +17,23 @@
 * domain and range matches. Can use WordNet to boost the name similarity.     *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 10-09-2014                                                            *
-* @version 2.1                                                                *
+* @date 26-05-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
 import aml.AML;
-import aml.ontology.Property;
+import aml.match.Alignment;
+import aml.match.Mapping;
+import aml.match.SecondaryMatcher;
+import aml.ontology.DataProperty;
+import aml.ontology.ObjectProperty;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
-import aml.ontology.URIMap;
-import aml.settings.PropertyType;
+import aml.settings.EntityType;
 import aml.util.ISub;
 import aml.util.Similarity;
 import aml.util.StopList;
@@ -43,11 +46,11 @@ public class PropertyMatcher implements SecondaryMatcher
 	
 	private Alignment maps;
 	private AML aml;
-	private HashMap<Integer,Property> sourceProps;
-	private HashMap<Integer,Property> targetProps;
+	private Ontology source;
+	private Ontology target;
 	private WordNet wn = null;
-	private Set<String> stopSet;
-
+	private Set<String> stopList;
+	
 //Constructors
 	
 	public PropertyMatcher(boolean useWordNet)
@@ -55,9 +58,9 @@ public class PropertyMatcher implements SecondaryMatcher
 		if(useWordNet)
 			wn = new WordNet();
 		aml = AML.getInstance();
-		sourceProps = aml.getSource().getPropertyMap();
-		targetProps = aml.getTarget().getPropertyMap();
-		stopSet = StopList.read();
+		source = aml.getSource();
+		target = aml.getTarget();
+		stopList = StopList.read();
 	}
 	
 //Public Methods
@@ -69,13 +72,38 @@ public class PropertyMatcher implements SecondaryMatcher
 		long time = System.currentTimeMillis()/1000;
 		maps = a;
 		Alignment propMaps = new Alignment();
-		Set<Integer> sourceKeys = sourceProps.keySet();
-		Set<Integer> targetKeys = targetProps.keySet();
+		//Map annotation properties
+		Vector<Integer> sourceKeys = source.getIndexes(EntityType.ANNOTATION);
+		Vector<Integer> targetKeys = target.getIndexes(EntityType.ANNOTATION);
 		for(Integer i : sourceKeys)
 		{
 			for(Integer j : targetKeys)
 			{
-				double sim = matchProperties(sourceProps.get(i),targetProps.get(j));
+				double sim = matchProperties(i,j,EntityType.ANNOTATION);
+				if(sim >= threshold)
+					propMaps.add(new Mapping(i,j,sim));
+			}
+		}
+		//Map data properties
+		sourceKeys = source.getIndexes(EntityType.DATA);
+		targetKeys = target.getIndexes(EntityType.DATA);
+		for(Integer i : sourceKeys)
+		{
+			for(Integer j : targetKeys)
+			{
+				double sim = matchProperties(i,j,EntityType.DATA);
+				if(sim >= threshold)
+					propMaps.add(new Mapping(i,j,sim));
+			}
+		}
+		//Map object properties
+		sourceKeys = source.getIndexes(EntityType.OBJECT);
+		targetKeys = target.getIndexes(EntityType.OBJECT);
+		for(Integer i : sourceKeys)
+		{
+			for(Integer j : targetKeys)
+			{
+				double sim = matchProperties(i,j,EntityType.OBJECT);
 				if(sim >= threshold)
 					propMaps.add(new Mapping(i,j,sim));
 			}
@@ -87,76 +115,34 @@ public class PropertyMatcher implements SecondaryMatcher
 
 //Private Methods
 	
-	//Matches two properties
-	private double matchProperties(Property s, Property t)
+	//Checks if two lists of ids match (i.e., have Jaccard similarity above 50%)
+	private boolean idsMatch(Set<Integer> sIds, Set<Integer> tIds)
 	{
-		double sim = 0.0d;
-
-		//We should only match properties of the same type
-		PropertyType sType = s.getType();
-		PropertyType tType = t.getType();
-		if(!sType.equals(tType))
-			return sim;
-	
-		//We should only match datatype properties that have matching domains and ranges
-		if(sType.equals("datatype"))
-		{
-			Set<String> sDomain = s.getDomain();
-			Set<String> tDomain = t.getDomain();
-			if(!urisMatch(sDomain,tDomain))
-				return sim;
-			Set<String> sRange = s.getRange();
-			Set<String> tRange = t.getRange();
-			if(!valuesMatch(sRange,tRange))
-				return sim;
-		}
-		//We should only match object properties that have matching domains and ranges
-		else if(sType.equals("object"))
-		{
-			Set<String> sDomain = s.getDomain();
-			Set<String> tDomain = t.getDomain();
-			if(!urisMatch(sDomain,tDomain))
-				return sim;
-			Set<String> sRange = s.getRange();
-			Set<String> tRange = t.getRange();
-			if(!urisMatch(sRange,tRange))
-				return sim;
-		}
-		//If they do, we can compute the name similarity between the properties
-		return nameSimilarity(s,t);
-	}
-
-	//Checks if two lists of uris match (i.e., have Jaccard similarity above 50%)
-	private boolean urisMatch(Set<String> sURIs, Set<String> tURIs)
-	{
-		if(sURIs.size() == 0 && tURIs.size() == 0)
+		if(sIds.size() == 0 && tIds.size() == 0)
 			return true;
-		if(sURIs.size() == 0 || tURIs.size() == 0)
+		if(sIds.size() == 0 || tIds.size() == 0)
 			return false;
 		double matches = 0.0;
-		for(String s : sURIs)
+		for(Integer i : sIds)
 		{
-			for(String t : tURIs)
+			for(Integer j : tIds)
 			{
-				if(urisMatch(s,t))
+				if(idsMatch(i,j))
 				{
 					matches++;
 					break;
 				}
 			}
 		}
-		matches /= sURIs.size()+tURIs.size()-matches;
+		matches /= sIds.size()+tIds.size()-matches;
 		return (matches > 0.5);
 	}
 	
-	//Checks if two URIs match (i.e., are either equal, aligned
+	//Checks if two ids match (i.e., are either equal, aligned
 	//or one is aligned to the parent of the other)
-	private boolean urisMatch(String sUri, String tUri)
+	private boolean idsMatch(int sIndex, int tIndex)
 	{
-		URIMap uris = aml.getURIMap();
 		RelationshipMap rm = aml.getRelationshipMap();
-		int sIndex = uris.getIndex(sUri);
-		int tIndex = uris.getIndex(tUri);
 
 		if(sIndex == tIndex || maps.containsMapping(sIndex, tIndex))
 	    	return true;
@@ -177,56 +163,106 @@ public class PropertyMatcher implements SecondaryMatcher
 		}
 		return false;
 	}
-
-	//Checks if two lists of values match (i.e., have Jaccard similarity above 50%)
-	private boolean valuesMatch(Set<String> sRange, Set<String> tRange)
-	{
-		if(sRange.size() == 0 && tRange.size() == 0)
-			return true;
-		if(sRange.size() == 0 || tRange.size() == 0)
-			return false;
-		double sim = Similarity.jaccard(sRange,tRange);
-		return (sim > 0.5);
-	}
 	
-	//Measures the name similarity between two properties using a 
-	//Jaccard index between their words
-	//When using WordNet, the WordNet similarity is given by
-	//the Jaccard index between all WordNet synonyms, and is
-	//returned instead of the name similarity if it is higher
-	private double nameSimilarity(Property s, Property t)
+	//Matches two annotation properties
+	private double matchProperties(int sourceId, int targetId, EntityType e)
 	{
-		String sourceName = s.getName();
-		String targetName = t.getName();
-		
-		String newSourceName = removeStopWords(sourceName);
-		if(!newSourceName.isEmpty())
-			sourceName = newSourceName;
-		String newTargetName = removeStopWords(targetName);
-		if(!newTargetName.isEmpty())
-			targetName = newTargetName;
-		
-		String sourceTrans = s.getTranslation();
-		String targetTrans = t.getTranslation();
-		
-		if(sourceName.equals(targetName) ||
-				(!sourceTrans.isEmpty() && sourceTrans.equals(targetName)) ||
-				(!targetTrans.isEmpty() && sourceName.equals(targetTrans)))
-			return 1.0;
-		
-		double sim1 = nameSimilarity(sourceName,targetName, wn != null);
-		
-		double sim2 = 0.0;
-		if(!sourceTrans.isEmpty())
-			sim2 = nameSimilarity(sourceTrans,targetName, wn != null);
-		if(!targetTrans.isEmpty())
-			sim2 = Math.max(sim2,nameSimilarity(sourceName,targetTrans, wn != null));
-		
-		return Math.max(sim1,sim2);
+		double sim = 0.0d;
+
+		//We should only match datatype properties that have matching domains and ranges
+		if(e.equals(EntityType.DATA))
+		{
+			DataProperty sProp = (DataProperty)source.getEntity(sourceId);
+			DataProperty tProp = (DataProperty)target.getEntity(targetId);
+			Set<Integer> sDomain = sProp.getDomain();
+			Set<Integer> tDomain = tProp.getDomain();
+			if(!idsMatch(sDomain,tDomain))
+				return sim;
+			Set<String> sRange = sProp.getRange();
+			Set<String> tRange = tProp.getRange();
+			if(!valuesMatch(sRange,tRange))
+				return sim;
+		}
+		//We should only match object properties that have matching domains and ranges
+		else if(e.equals(EntityType.OBJECT))
+		{
+			ObjectProperty sProp = (ObjectProperty)source.getEntity(sourceId);
+			ObjectProperty tProp = (ObjectProperty)target.getEntity(targetId);
+			Set<Integer> sDomain = sProp.getDomain();
+			Set<Integer> tDomain = tProp.getDomain();
+			if(!idsMatch(sDomain,tDomain))
+				return sim;
+			Set<Integer> sRange = sProp.getRange();
+			Set<Integer> tRange = tProp.getRange();
+			if(!idsMatch(sRange,tRange))
+				return sim;
+		}
+		//If they do, we can compute the name similarity between the properties
+		return nameSimilarity(sourceId,targetId);
 	}
-				
+
+	//Measures the name similarity between two properties, given by the
+	//maximum similarity between their names
+	private double nameSimilarity(int s, int t)
+	{
+		Set<String> sourceNames = source.getLexicon().getNames(s);
+		Set<String> targetNames = target.getLexicon().getNames(t);
+		for(String sName : sourceNames)
+			for(String tName : targetNames)
+				if(sName.equals(tName))
+					return 1.0;
+
+		Set<String> sourceNamesFixed = new HashSet<String>();
+		for(String n : sourceNames)
+		{
+			String newName = "";
+			String[] words = n.split(" ");
+			for(String w : words)
+			if(!stopList.contains(w))
+				newName += w + " ";
+			newName = newName.trim();
+			if(newName.length() > 0)
+				sourceNamesFixed.add(newName);
+			else
+				sourceNamesFixed.add(n);
+		}
+		Set<String> targetNamesFixed = new HashSet<String>();
+		for(String n : targetNames)
+		{
+			String newName = "";
+			String[] words = n.split(" ");
+			for(String w : words)
+			if(!stopList.contains(w))
+				newName += w + " ";
+			newName = newName.trim();
+			if(newName.length() > 0)
+				targetNamesFixed.add(newName);
+			else
+				targetNamesFixed.add(n);
+		}
+		double sim = 0.0;
+		for(String sName : sourceNamesFixed)
+		{
+			for(String tName : targetNamesFixed)
+			{
+				double newSim = nameSimilarity(sName,tName,wn != null);
+				if(newSim > sim)
+					sim = newSim;
+			}
+		}
+		return sim;
+	}
+			
+	//Computes the similarity between two property names using a Jaccard
+	//index between their words. When using WordNet, the WordNet similarity
+	//is given by the Jaccard index between all WordNet synonyms, and is
+	//returned instead of the name similarity if it is higher
 	private double nameSimilarity(String n1, String n2, boolean useWordNet)
 	{
+		//Check if the names are equal
+		if(n1.equals(n2))
+			return 1.0;
+		
 		//Split the source name into words
 		String[] sW = n1.split(" ");
 		HashSet<String> sWords = new HashSet<String>();
@@ -239,6 +275,7 @@ public class PropertyMatcher implements SecondaryMatcher
 			if(useWordNet && w.length() > 3)
 				sSyns.addAll(wn.getAllWordForms(w));
 		}
+		
 		//Split the target name into words
 		String[] tW = n2.split(" ");
 		HashSet<String> tWords = new HashSet<String>();
@@ -269,14 +306,15 @@ public class PropertyMatcher implements SecondaryMatcher
 		}
 		return sim;
 	}
-	
-	private String removeStopWords(String name)
+
+	//Checks if two lists of values match (i.e., have Jaccard similarity above 50%)
+	private boolean valuesMatch(Set<String> sRange, Set<String> tRange)
 	{
-		String newName = "";
-		String[] words = name.split(" ");
-		for(String w : words)
-			if(!stopSet.contains(w))
-				newName += w + " ";
-		return newName.trim();
+		if(sRange.size() == 0 && tRange.size() == 0)
+			return true;
+		if(sRange.size() == 0 || tRange.size() == 0)
+			return false;
+		double sim = Similarity.jaccard(sRange,tRange);
+		return (sim > 0.5);
 	}
 }

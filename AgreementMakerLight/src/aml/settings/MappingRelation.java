@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -15,24 +15,30 @@
 * Lists the Mapping relationships.                                            *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-08-2014                                                            *
-* @version 2.1                                                                *
+* @date 26-05-2015                                                            *
 ******************************************************************************/
 package aml.settings;
 
 public enum MappingRelation
 {
-	EQUIVALENCE	("="),
-	SUPERCLASS	(">"),
-	SUBCLASS	("<"),
-	OVERLAP		("^"),
-	UNKNOWN		("?");
+	EQUIVALENCE	("=","equivalence"),
+	SUPERCLASS	(">","superclass"),
+	SUBCLASS	("<","subclass"),
+	OVERLAP		("^","overlap"),
+	UNKNOWN		("?","unknown");
     	
 	private String representation;
+	private String label;
 	
-	private MappingRelation(String rep)
+	private MappingRelation(String rep, String l)
 	{
 		representation = rep;
+		label = l;
+	}
+	
+	public String getLabel()
+	{
+		return label;
 	}
     	
 	public MappingRelation inverse()
@@ -52,9 +58,18 @@ public enum MappingRelation
 	
 	public static MappingRelation parseRelation(String relation)
 	{
-		for(MappingRelation rel : MappingRelation.values())
-			if(relation.equals(rel.toString()))
-				return rel;
+		if(relation.length() == 1)
+		{
+			for(MappingRelation rel : MappingRelation.values())
+				if(relation.equals(rel.toString()))
+					return rel;
+		}
+		else
+		{
+			for(MappingRelation rel : MappingRelation.values())
+				if(relation.equals(rel.getLabel()))
+					return rel;
+		}
 		return UNKNOWN;
 	}
 }

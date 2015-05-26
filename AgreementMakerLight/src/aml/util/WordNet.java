@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,8 +16,7 @@
 * computing Wu-Palmer similarity between two words.                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 28-08-2014                                                            *
-* @version 2.1                                                                *
+* @date 26-05-2015                                                            *
 ******************************************************************************/
 package aml.util;
 
@@ -101,8 +100,12 @@ public class WordNet
 	{
 		if(s.equals(t))
 			return 1.0;
-		for(Synset ss : wordNet.getSynsets(s, SynsetType.NOUN))
-			for(Synset ts : wordNet.getSynsets(t, SynsetType.NOUN))
+		Synset[] sources = wordNet.getSynsets(s, SynsetType.NOUN);
+		Synset[] targets = wordNet.getSynsets(t, SynsetType.NOUN);
+		if(sources.length == 0 || targets.length == 0)
+			return 0.0;
+		for(Synset ss : sources)
+			for(Synset ts : targets)
 				if(ss.equals(ts))
 					return 1.0;
 		return getLowestCommonAncestor(s,t)*2.0/

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,15 +16,13 @@
 * between their classes.                                                      *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 07-07-2014                                                            *
-* @version 2.1                                                                *
+* @date 25-05-2015                                                            *
 ******************************************************************************/
 package aml.match;
 
 import java.util.Set;
 
 import aml.AML;
-import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 
 public class BlockRematcher implements Rematcher
@@ -54,14 +52,15 @@ public class BlockRematcher implements Rematcher
 		Alignment maps = new Alignment();
 		Alignment high = a.getHighLevelAlignment();
 		RelationshipMap rMap = aml.getRelationshipMap();
-		Ontology source = aml.getSource();
-		Ontology target = aml.getTarget();
 		for(Mapping m : a)
 		{
 			int sId = m.getSourceId();
 			int tId = m.getTargetId();
-			if(!source.isClass(sId) || ! target.isClass(tId))
+			if(!aml.getURIMap().isClass(sId))
+			{
+				maps.add(m);
 				continue;
+			}
 			Set<Integer> sourceAncestors = rMap.getHighLevelAncestors(sId);
 			Set<Integer> targetAncestors = rMap.getHighLevelAncestors(tId);
 			double maxSim = 0;

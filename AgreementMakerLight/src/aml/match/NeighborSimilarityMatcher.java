@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,15 +16,13 @@
 * their classes.                                                              *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 10-09-2014                                                            *
-* @version 2.1                                                                *
+* @date 25-05-2015                                                            *
 ******************************************************************************/
 package aml.match;
 
 import java.util.Set;
 
 import aml.AML;
-import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.settings.NeighborSimilarityStrategy;
 
@@ -34,9 +32,8 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 //Attributes
 	
 	//Links to ontology data structures
+	private AML aml;
 	private RelationshipMap rels;
-	private Ontology source;
-	private Ontology target;
 	private Alignment input;
 	private NeighborSimilarityStrategy strat;
 	private boolean direct;
@@ -45,12 +42,10 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	
 	public NeighborSimilarityMatcher()
 	{
-		AML aml = AML.getInstance();
+		aml = AML.getInstance();
 		rels = aml.getRelationshipMap();
-		source = aml.getSource();
-		target = aml.getTarget();
 		strat = NeighborSimilarityStrategy.MINIMUM;
-		direct = true; //TODO: Update this from class AML
+		direct = aml.directNeighbors();
 	}
 	
 	public NeighborSimilarityMatcher(NeighborSimilarityStrategy s, boolean direct)
@@ -72,6 +67,8 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		for(int i = 0; i < input.size(); i++)
 		{
 			Mapping m = input.get(i);
+			if(!aml.getURIMap().isClass(m.getSourceId()))
+				continue;
 			Set<Integer> sourceSubClasses = rels.getSubClasses(m.getSourceId(),true);
 			Set<Integer> targetSubClasses = rels.getSubClasses(m.getTargetId(),true);
 			for(Integer s : sourceSubClasses)
@@ -119,7 +116,12 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		{
 			int sId = m.getSourceId();
 			int tId = m.getTargetId();
-			maps.add(sId,tId,mapTwoTerms(sId,tId));
+			//If the mapping is not a class mapping, we can't compute
+			//its similarity, so we add it as is
+			if(!aml.getURIMap().isClass(sId))
+				maps.add(m);
+			else
+				maps.add(sId,tId,mapTwoTerms(sId,tId));
 		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
@@ -132,8 +134,6 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	//checking for mappings between all their ancestors and descendants
 	private double mapTwoTerms(int sId, int tId)
 	{
-		if(!source.isClass(sId) || ! target.isClass(tId))
-			return 0.0;
 		Set<Integer> sourceParents = rels.getSuperClasses(sId,direct);
 		Set<Integer> targetParents = rels.getSuperClasses(tId,direct);
 		Set<Integer> sourceChildren = rels.getSubClasses(sId,direct);

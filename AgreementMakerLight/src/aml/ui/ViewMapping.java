@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2013 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,7 +16,6 @@
 *                                                                             *
 * @author Daniel Faria & Catarina Martins                                     *
 * @date 20-05-2015                                                            *
-* @version 2.1                                                                *
 ******************************************************************************/
 package aml.ui;
  
@@ -42,12 +41,14 @@ import javax.swing.border.EmptyBorder;
 
 import aml.AML;
 import aml.match.Mapping;
+import aml.ontology.DataProperty;
 import aml.ontology.Lexicon;
+import aml.ontology.ObjectProperty;
 import aml.ontology.Ontology;
-import aml.ontology.Property;
+import aml.ontology.Entity;
 import aml.ontology.RelationshipMap;
 import aml.settings.LexicalType;
-import aml.settings.PropertyType;
+import aml.settings.EntityType;
  
 
 public class ViewMapping extends JDialog implements ItemListener, ActionListener
@@ -87,18 +88,18 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 		panel.setBorder(new EmptyBorder(4,4,4,4));
 		
 		//Type
+		EntityType t = aml.getURIMap().getType(sourceId);
         JLabel type = new JLabel();
 		Font font =  type.getFont();
 		boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
 		type.setFont(boldFont);
+		type.setText("Type: " + t + " Mapping");
+		JPanel title = new JPanel();
+		title.add(type);
+		panel.add(title);
 
-		if(source.isClass(m.getSourceId()))
+		if(t.equals(EntityType.CLASS))
 		{
-			type.setText("Type: Class Mapping");
-			JPanel title = new JPanel();
-			title.add(type);
-			panel.add(title);
-			
 			//Info Selection
 			Vector<String> types = new Vector<String>(2);
 	        String[] typeStrings = {LEXICINFO, STRUCTINFO};
@@ -133,7 +134,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			for(String s : names)
 				lab += s + "; ";
 			if(names.size() == 0)
-				lab += "None";
+				lab += "N/A";
 			else
 				lab = lab.substring(0, lab.length()-2);
 	        JLabel labelS = new JLabel(lab);
@@ -192,7 +193,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			for(String s : names)
 				lab += s + "; ";
 			if(names.size() == 0)
-				lab += "None";
+				lab += "N/A";
 			else
 				lab = lab.substring(0, lab.length()-2);
 	        JLabel labelT = new JLabel(lab);
@@ -248,7 +249,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			for(Integer i : directSetSource)
 				lab += source.getName(i) + "; ";
 			if(directSetSource.size() == 0)
-				lab += "None";
+				lab += "N/A";
 			else
 				lab = lab.substring(0, lab.length()-2);
 			JLabel directS = new JLabel(lab);
@@ -258,7 +259,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			for(Integer i : highSetSource)
 				lab += source.getName(i) + "; ";
 			if(highSetSource.size() == 0)
-				lab += "None";
+				lab += "N/A";
 			else
 				lab = lab.substring(0, lab.length()-2);
 			JLabel highS = new JLabel(lab);
@@ -268,7 +269,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			for(Integer i : disjointSetSource)
 				lab += source.getName(i) + "; ";
 			if(disjointSetSource.size() == 0)
-				lab += "None";
+				lab += "N/A";
 			else
 				lab = lab.substring(0, lab.length()-2);
 			JLabel disjointsS = new JLabel(lab);
@@ -293,7 +294,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			for(Integer i : directSetTarget)
 				lab += target.getName(i) + "; ";
 			if(directSetTarget.size() == 0)
-				lab += "None";
+				lab += "N/A";
 			else
 				lab = lab.substring(0, lab.length()-2);
 			JLabel directT = new JLabel(lab);
@@ -303,7 +304,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			for(Integer i : highSetTarget)
 				lab += target.getName(i) + "; ";
 			if(highSetTarget.size() == 0)
-				lab += "None";
+				lab += "N/A";
 			else
 				lab = lab.substring(0, lab.length()-2);
 			JLabel highT = new JLabel(lab);
@@ -313,7 +314,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			for(Integer i : disjointSetTarget)
 				lab += target.getName(i) + "; ";
 			if(disjointSetTarget.size() == 0)
-				lab += "None";
+				lab += "N/A";
 			else
 				lab = lab.substring(0, lab.length()-2);
 			JLabel disjointsT = new JLabel(lab);
@@ -333,14 +334,8 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 		}
 		else
 		{
-			Property pSource = source.getPropertyMap().get(sourceId);
-			Property pTarget = target.getPropertyMap().get(targetId);
-			PropertyType t = pSource.getType();
-
-			type.setText("Type: " + t + " Mapping");
-			JPanel title = new JPanel();
-			title.add(type);
-			panel.add(title);
+			Entity pSource = source.getEntity(sourceId);
+			Entity pTarget = target.getEntity(targetId);
 
 			//For the Source Ontology
 	        JLabel sourceO = new JLabel("Source Property:");
@@ -351,34 +346,67 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			
 			JPanel sourcePanel = new JPanel(new GridLayout(0,1));
 			
-			JLabel nameS = new JLabel("Name: " + pSource.getName());
+			JLabel nameS = new JLabel("Name: " + source.getName(sourceId));
 			sourcePanel.add(nameS);
 			
-			if(!type.equals(PropertyType.ANNOTATION))
+			if(t.equals(EntityType.OBJECT))
 			{
-				Set<String> domainSetSource = pSource.getDomain();
-				String domainLabelSource = "Domain: ";
-				for(String s : domainSetSource)
-					domainLabelSource += s + "; ";
-				domainLabelSource = domainLabelSource.substring(0, domainLabelSource.length()-2);
-				JLabel domainS = new JLabel(domainLabelSource);
+				Set<Integer> domain = ((ObjectProperty)pSource).getDomain();
+				String lab = "Domain: ";
+				for(Integer i : domain)
+					lab += source.getName(i) + "; ";
+				if(domain.size() > 0)
+					lab = lab.substring(0, lab.length()-2);
+				else
+					lab += "N/A";
+				JLabel domainS = new JLabel(lab);
 				sourcePanel.add(domainS);
 				
-				Set<String> rangeSetSource = pSource.getRange();
-				String rangeLabelSource = "Range: ";
-				for(String s : rangeSetSource)
-					rangeLabelSource += s + "; ";
-				rangeLabelSource = rangeLabelSource.substring(0, rangeLabelSource.length()-2);
-				JLabel rangeS = new JLabel(rangeLabelSource);
+				Set<Integer> range = ((ObjectProperty)pSource).getRange();
+				lab = "Range: ";
+				for(Integer i : range)
+					lab += source.getName(i) + "; ";
+				if(range.size() > 0)
+					lab = lab.substring(0, lab.length()-2);
+				else
+					lab += "N/A";
+				JLabel rangeS = new JLabel(lab);
 				sourcePanel.add(rangeS);
+				if(((ObjectProperty)pSource).isFunctional())
+				{
+					JLabel funS = new JLabel("Functional Property");
+					sourcePanel.add(funS);
+				}
 			}
-			
-			if(pSource.isFunctional())
+			else if(t.equals(EntityType.DATA))
 			{
-				JLabel funS = new JLabel("Functional Property");
-				sourcePanel.add(funS);
+				Set<Integer> domain = ((DataProperty)pSource).getDomain();
+				String lab = "Domain: ";
+				for(Integer i : domain)
+					lab += source.getName(i) + "; ";
+				if(domain.size() > 0)
+					lab = lab.substring(0, lab.length()-2);
+				else
+					lab += "N/A";
+				JLabel domainS = new JLabel(lab);
+				sourcePanel.add(domainS);
+				
+				Set<String> range = ((DataProperty)pSource).getRange();
+				lab = "Range: ";
+				for(String s : range)
+					lab += s + "; ";
+				if(range.size() > 0)
+					lab = lab.substring(0, lab.length()-2);
+				else
+					lab += "N/A";
+				JLabel rangeS = new JLabel(lab);
+				sourcePanel.add(rangeS);
+				if(((DataProperty)pSource).isFunctional())
+				{
+					JLabel funS = new JLabel("Functional Property");
+					sourcePanel.add(funS);
+				}
 			}
-			
 			panel.add(sourcePanel);
 
 			//For the Target Ontology
@@ -390,34 +418,67 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			
 			JPanel targetPanel = new JPanel(new GridLayout(0,1));
 			
-			JLabel nameT = new JLabel("Name: " + pTarget.getName());
+			JLabel nameT = new JLabel("Name: " + target.getName(targetId));
 			targetPanel.add(nameT);
 			
-			if(!type.equals(PropertyType.ANNOTATION))
+			if(t.equals(EntityType.OBJECT))
 			{
-				Set<String> domainSetTarget = pTarget.getDomain();
-				String domainLabelTarget = "Domain: ";
-				for(String s : domainSetTarget)
-					domainLabelTarget += s + "; ";
-				domainLabelTarget = domainLabelTarget.substring(0, domainLabelTarget.length()-2);
-				JLabel domainT = new JLabel(domainLabelTarget);
+				Set<Integer> domain = ((ObjectProperty)pTarget).getDomain();
+				String lab = "Domain: ";
+				for(Integer i : domain)
+					lab += target.getName(i) + "; ";
+				if(domain.size() > 0)
+					lab = lab.substring(0, lab.length()-2);
+				else
+					lab += "N/A";
+				JLabel domainT = new JLabel(lab);
 				targetPanel.add(domainT);
 				
-				Set<String> rangeSetTarget = pTarget.getRange();
-				String rangeLabelTarget = "Range: ";
-				for(String s : rangeSetTarget)
-					rangeLabelTarget += s + "; ";
-				rangeLabelTarget = rangeLabelTarget.substring(0, rangeLabelTarget.length()-2);
-				JLabel rangeT = new JLabel(rangeLabelTarget);
+				Set<Integer> range = ((ObjectProperty)pTarget).getRange();
+				lab = "Range: ";
+				for(Integer i : range)
+					lab += target.getName(i) + "; ";
+				if(range.size() > 0)
+					lab = lab.substring(0, lab.length()-2);
+				else
+					lab += "N/A";
+				JLabel rangeT = new JLabel(lab);
 				targetPanel.add(rangeT);
+				if(((ObjectProperty)pTarget).isFunctional())
+				{
+					JLabel funS = new JLabel("Functional Property");
+					targetPanel.add(funS);
+				}
 			}
-			
-			if(pTarget.isFunctional())
+			else if(t.equals(EntityType.DATA))
 			{
-				JLabel funT = new JLabel("Functional Property");
-				targetPanel.add(funT);
+				Set<Integer> domain = ((DataProperty)pTarget).getDomain();
+				String lab = "Domain: ";
+				for(Integer i : domain)
+					lab += target.getName(i) + "; ";
+				if(domain.size() > 0)
+					lab = lab.substring(0, lab.length()-2);
+				else
+					lab += "N/A";
+				JLabel domainT = new JLabel(lab);
+				targetPanel.add(domainT);
+				
+				Set<String> range = ((DataProperty)pTarget).getRange();
+				lab = "Range: ";
+				for(String s : range)
+					lab += s + "; ";
+				if(range.size() > 0)
+					lab = lab.substring(0, lab.length()-2);
+				else
+					lab += "N/A";
+				JLabel rangeT = new JLabel(lab);
+				targetPanel.add(rangeT);
+				if(((DataProperty)pTarget).isFunctional())
+				{
+					JLabel funS = new JLabel("Functional Property");
+					targetPanel.add(funS);
+				}
 			}
-			
 			panel.add(targetPanel);
 		}
 		

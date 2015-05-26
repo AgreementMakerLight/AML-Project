@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2004-2014 by the National and Technical University of Athens      *
+* Copyright 2004-2015 by the National and Technical University of Athens      *
 *                                                                             *
 * This program is free software: you can redistribute it and/or modify it     *
 * under the terms of the GNU Lesser General Public License as published by    *

@@ -90,7 +90,7 @@ public class MediatingMatcher extends LexicalMatcher implements LexiconExtender
 			{
 				double sim = m.getSimilarity() * ext.getWeight(n, t);
 				if(sim >= thresh)
-					source.add(m.getSourceId(), n, TYPE, uri, sim);
+					source.addClass(m.getSourceId(), n, TYPE, uri, sim);
 			}
 		}
 		Lexicon target = aml.getTarget().getLexicon();
@@ -103,7 +103,7 @@ public class MediatingMatcher extends LexicalMatcher implements LexiconExtender
 			{
 				double sim = m.getSimilarity() * ext.getWeight(n, t);
 				if(sim >= thresh)
-					target.add(m.getSourceId(), n, TYPE, uri, sim);
+					target.addClass(m.getSourceId(), n, TYPE, uri, sim);
 			}
 		}
 		time = System.currentTimeMillis()/1000 - time;

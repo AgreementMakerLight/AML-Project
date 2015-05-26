@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,7 +16,6 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 * @date 27-08-2014                                                            *
-* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 
@@ -273,7 +272,7 @@ public class AutomaticMatcher
 	private static void structuralMatch()
 	{
 		NeighborSimilarityMatcher nsm = new NeighborSimilarityMatcher(
-				NeighborSimilarityStrategy.MAXIMUM,false);
+				NeighborSimilarityStrategy.AVERAGE,false);
 		if(isInteractive)
 			alignSet.add(nsm.rematch(a));
 		a.addAllOneToOne(nsm.extendAlignment(a,thresh));

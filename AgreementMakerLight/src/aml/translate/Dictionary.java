@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,8 +16,7 @@
 * from one given language to another.                                         *
 *                                                                             *
 * @author Daniel Faria, Joana Pinto, Pedro do Vale                            *
-* @date 13-08-2014                                                            *
-* @version 2.1                                                                *
+* @date 26-05-2014                                                            *
 ******************************************************************************/
 package aml.translate;
 
@@ -33,13 +32,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.HashSet;
 
-
-
-
 import aml.AML;
 import aml.ontology.Lexicon;
-import aml.ontology.Ontology;
-import aml.ontology.Property;
 import aml.settings.LexicalType;
 import aml.util.StringParser;
 
@@ -116,7 +110,7 @@ public class Dictionary
 						e.getMessage());
 			}
 		}
-		//Get the Lexicon's names
+		//Get the Lexicon's class names
 		HashSet<String> names = new HashSet<String>(l.getNames());
 		for(String n : names)
 		{
@@ -145,7 +139,42 @@ public class Dictionary
 			//If we have a translation, extend the Lexicon with it
 			if(!trans.equals(""))
 				for(Integer i : l.getClassesWithLanguage(n,sourceLang))
-					l.add(i, trans, targetLang, TYPE, SOURCE, l.getWeight(n, i));
+					l.addClass(i, trans, targetLang, TYPE, SOURCE, l.getWeight(n, i));
+		}
+		//Get the Lexicon's properties
+		HashSet<Integer> props = new HashSet<Integer>(l.getProperties());
+		for(int i : props)
+		{
+			//Get each property's names
+			HashSet<String> pNames = new HashSet<String>(l.getNamesWithLanguage(i, sourceLang));
+			//And translate them
+			for(String n : pNames)
+			{
+				if(n.equals("null") || StringParser.isFormula(n))
+					continue;
+				String trans = "";
+				//If the dictionary contains the name, get the translation
+				if(dictionary.containsKey(n))
+				{
+					trans = dictionary.get(n);
+				}
+				//Otherwise use the translator to make the translation
+				else if(useTranslator)
+				{
+					System.out.println("Not found: " + n);
+					trans = translator.translate(n, sourceLang, targetLang);
+					if(trans.startsWith("ArgumentException"))
+						continue;
+					//Update the dictionary
+					dictionary.put(n, trans);
+					//Update the dictionary file
+					try { outStream.write(n + "\t" + trans + "\n");	}
+					catch(IOException e) {/*Do nothing*/}
+				}
+				//If we have a translation, extend the Lexicon with it
+				if(!trans.equals(""))
+					l.addProperty(i, trans, targetLang, TYPE, SOURCE, l.getWeight(n, i));
+			}
 		}
 		if(outStream != null)
 		{
@@ -153,67 +182,6 @@ public class Dictionary
 			catch(IOException e) {/*Do nothing*/}
 		}
 		AML.getInstance().setLanguageSetting();
-	}
-	
-	/**
-	 * Translates the properties of a given Ontology
-	 * @param o: the Ontology with the properties to translate
-	 */
-	public void translateProperties(Ontology o)
-	{
-		//Initialize the file writer
-		BufferedWriter outStream = null;
-		//If we can use the Translator, we'll want to save
-		//the new translations to the dictionary file
-		if(useTranslator)
-		{
-			try
-			{
-				outStream = new BufferedWriter(new OutputStreamWriter(
-				        new FileOutputStream(file,true), "UTF8"));
-			}
-			catch(IOException e)
-			{
-				System.out.println("Unable to save translations to file: " +
-						e.getMessage());
-			}
-		}
-		//Get the Ontology's properties
-		HashMap<Integer,Property> props = o.getPropertyMap();
-		for(Integer i : props.keySet())
-		{
-			Property p = props.get(i);
-			if(p.getType().equals("annotation"))
-				continue;
-			String n = p.getName();
-			String trans = "";
-			//If the dictionary contains the name, get the translation
-			if(dictionary.containsKey(n))
-			{
-				trans = dictionary.get(n);
-			}
-			//Otherwise use the translator to make the translation
-			else if(useTranslator)
-			{
-				System.out.println("Not found: " + n);
-				trans = translator.translate(n, sourceLang, targetLang);
-				if(trans.startsWith("ArgumentException"))
-					continue;
-				//Update the dictionary
-				dictionary.put(n, trans);
-				//Update the dictionary file
-				try { outStream.write(n + "\t" + trans + "\n");	}
-				catch(IOException e) {/*Do nothing*/}
-			}
-			//If we have a translation, extend the Property with it
-			if(!trans.equals(""))
-				p.setTranslation(trans);
-		}
-		if(outStream != null)
-		{
-			try	{ outStream.close(); }
-			catch(IOException e) {/*Do nothing*/}
-		}
 	}
 	
 //Private methods

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,8 +16,7 @@
 * relationships and disjoint clauses.                                         *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 11-08-2014                                                            *
-* @version 2.0                                                                *
+* @date 21-05-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
@@ -589,9 +588,9 @@ public class RelationshipMap
 		{
 			if(getParents(a).size() == 0 && getChildren(a).size() > 0)
 			{
-				if(aml.getSource().isClass(a))
+				if(aml.getSource().contains(a))
 					sourceTop.add(a);
-				if(aml.getTarget().isClass(a))
+				if(aml.getTarget().contains(a))
 					targetTop.add(a);
 			}
 		}

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -18,8 +18,7 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 29-09-2014                                                            *
-* @version 2.1                                                                *
+* @date 26-05-2015                                                            *
 ******************************************************************************/
 package aml;
 
@@ -41,6 +40,7 @@ import aml.match.AutomaticMatcher;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
+import aml.settings.EntityType;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
@@ -64,7 +64,7 @@ public class AML
 	//The ontology and alignment data structures
 	private URIMap uris;
 	private RelationshipMap rels;
-	private Ontology source; //TODO: Use list of Ontology to enable threesome
+	private Ontology source;
 	private Ontology target;
 	private Ontology bk;
 	private Alignment a;
@@ -75,7 +75,6 @@ public class AML
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
     private LanguageSetting lang;
-    private String language;
 	private SizeCategory size;
 	private Set<String> languages;
     private SelectionType sType;
@@ -87,7 +86,7 @@ public class AML
     private StringSimMeasure ssm;
     private boolean primaryStringMatcher; //Whether to use the String Matcher globally (TRUE) or locally (FALSE)
     private NeighborSimilarityStrategy nss;
-    private boolean directNeighbors;
+    private boolean directNeighbors = true;
     private boolean removeObsolete;
     private boolean structuralSelection;    
 	//User interface and settings
@@ -98,6 +97,7 @@ public class AML
 	private int maxDistance = 2;
 	private boolean showAncestors = true;
 	private boolean showDescendants = true;
+    private String language;
 	
 //Constructors
 	
@@ -111,6 +111,9 @@ public class AML
 
 //Public Methods
 
+	/**
+	 * Closes the active alignment (GUI)
+	 */
 	public void closeAlignment()
     {
     	a = null;
@@ -119,6 +122,9 @@ public class AML
     		userInterface.refresh();
     }
     
+	/**
+	 * Closes the active ontology pair (GUI)
+	 */
     public void closeOntologies()
     {
     	source = null;
@@ -131,6 +137,9 @@ public class AML
     		userInterface.refresh();
     }
     
+    /**
+     * Sets up the default matching configuration for the ontologies
+     */
     public void defaultConfig()
     {
 		File ontRoot = new File(BK_PATH);
@@ -189,11 +198,18 @@ public class AML
 		structuralSelection = size.equals(SizeCategory.HUGE);		
     }
     
+    /**
+     * @return whether to use direct neighbors only in the NeighborSimilarityMatcher
+     */
 	public boolean directNeighbors()
 	{
 		return directNeighbors;
 	}
 
+	/**
+	 * @return the evaluation of the current alignment using a reference alignment,
+	 * in String form
+	 */
 	public String evaluate()
 	{
 		boolean gui = userInterface != null;
@@ -203,31 +219,49 @@ public class AML
 		return evaluation;
 	}
     
+	/**
+	 * @return the current alignment
+	 */
 	public Alignment getAlignment()
     {
     	return a;
     }
 	
+	/**
+	 * @return the file chooser for alignment files
+	 */
     public AlignmentFileChooser getAlignmentFileChooser()
     {
     	return afc;
     }
     
+    /**
+     * @return the current background knowledge ontology
+     */
 	public Ontology getBKOntology()
 	{
 		return bk;
 	}
 
+	/**
+	 * @return the available background knowledge sources
+	 */
 	public Vector<String> getBKSources()
 	{
 		return bkSources;
 	}
-
+	
+	/**
+	 * @return the index of the current mapping in the current alignment
+	 */
 	public int getCurrentIndex()
     {
    		return currentMapping;
     }
     
+	/**
+	 * @return the current mapping
+	 */
     public Mapping getCurrentMapping()
     {
     	if(currentMapping == -1)
@@ -236,122 +270,216 @@ public class AML
     		return a.get(currentMapping);
     }
 	
+    /**
+     * @return the evaluation of the current alignment
+     */
     public String getEvaluation()
     {
     	return evaluation;
     }
 
+    /**
+     * @return this (single) instance of the AML class
+     */
 	public static AML getInstance()
 	{
 		return aml;
 	}
 	
+	/**
+	 * @return the preferred language for entity names
+	 */
     public String getLabelLanguage()
     {
 		return language;
 	}
 
+    /**
+     * @return the languages of entity names in the current ontology pair
+     */
 	public Set<String> getLanguages()
 	{
 		return languages;
 	}
-	
+
+	/**
+     * @return the active LanguageSetting
+     */
 	public LanguageSetting getLanguageSetting()
 	{
 		return lang;
 	}
-	
+
+	/**
+     * @return the maximum edge-distance to plot in the Mapping Viewer
+     */
 	public int getMaxDistance()
     {
 		return maxDistance;
 	}
     
+	/**
+     * @return the active NeighborSimilarityStrategy 
+     */
     public NeighborSimilarityStrategy getNeighborSimilarityStrategy()
     {
 		return nss;
 	}
 
+	/**
+     * @return the file chooser for ontology files 
+     */
 	public OntologyFileChooser getOntologyFileChooser()
     {
     	return ofc;
     }
 
+	/**
+	 * @return the current reference alignment
+	 */
 	public Alignment getReferenceAlignment()
     {
     	return ref;
     }
     
+	/**
+	 * @return the RelationshipMap
+	 */
 	public RelationshipMap getRelationshipMap()
 	{
 		return rels;
 	}
 	
+	/**
+	 * @return the selected background knowledge sources
+	 */
 	public Vector<String> getSelectedBKSources()
 	{
 		return selectedSources;
 	}
 
+	/**
+	 * @return the selected matching steps
+	 */
 	public Vector<MatchStep> getSelectedSteps()
 	{
 		return selectedSteps;
 	}
-
+	
+	/**
+	 * @return the active SelectionType
+	 */
 	public SelectionType getSelectionType()
 	{
 		return sType;
 	}
 	
+	/**
+	 * @return the SizeCategory of the current ontology pair
+	 */
 	public SizeCategory getSizeCategory()
 	{
 		return size;
 	}
 	
+	/**
+	 * @return the current source ontology
+	 */
 	public Ontology getSource()
 	{
 		return source;
 	}
 	
+	/**
+	 * @return the active StringSimMeasure
+	 */
 	public StringSimMeasure getStringSimMeasure()
 	{
 		return ssm;
 	}
 
+	/**
+	 * @return the current target ontology
+	 */
 	public Ontology getTarget()
 	{
 		return target;
 	}
     
+	/**
+	 * @return the active similarity threshold
+	 */
 	public double getThreshold()
     {
     	return threshold;
     }
     
+	/**
+	 * @return the URIMap
+	 */
 	public URIMap getURIMap()
 	{
 		return uris;
 	}
 	
+	/**
+	 * @return the active WordMatchStrategy
+	 */
     public WordMatchStrategy getWordMatchStrategy()
     {
 		return wms;
 	}
 
+	/**
+	 * @param index: the index of the mapping to plot
+	 * Plots the mapping at the selected index
+	 */
 	public void goTo(int index)
     {
    		currentMapping = index;
    		userInterface.refresh();
     }
     
+	/**
+	 * @return whether there is a non-empty active alignment
+	 */
     public boolean hasAlignment()
     {
     	return a != null && a.size() > 0;
     }
     
+    /**
+     * @return whether there are classes in both active ontologies
+     */
+    public boolean hasClasses()
+    {
+    	return hasOntologies() &&
+    		source.contains(EntityType.CLASS) && target.contains(EntityType.CLASS);
+    }
+    
+    /**
+     * @return whether there is an active pair of ontologies
+     */
     public boolean hasOntologies()
     {
     	return source != null && target != null;
     }
+    
+    /**
+     * @return whether there are properties of corresponding types in both
+     * active ontologies
+     */
+    public boolean hasProperties()
+    {
+    	return hasOntologies() &&
+   			((source.contains(EntityType.ANNOTATION) && target.contains(EntityType.ANNOTATION)) ||
+   			(source.contains(EntityType.DATA) && target.contains(EntityType.DATA)) ||
+   			(source.contains(EntityType.OBJECT) && target.contains(EntityType.OBJECT)));
+    }
 	
+    /**
+     * Matches the active ontologies using the default configuration
+     */
     public void matchAuto()
     {
    		a = AutomaticMatcher.match();
@@ -364,6 +492,9 @@ public class AML
     		userInterface.refresh();
     }
 
+    /**
+     * Matches the active ontologies using manual configurations
+     */
     public void matchManual()
     {
    		a = ManualMatcher.match();
@@ -564,7 +695,7 @@ public class AML
 	{
 		lang = LanguageSetting.getLanguageSetting();
 	}
-	
+
 	public void setNeighborSimilarityStrategy(NeighborSimilarityStrategy nss)
 	{
 		this.nss = nss;
@@ -697,10 +828,8 @@ public class AML
 				{
 					Dictionary d = new Dictionary(l1,l2);
 					d.translateLexicon(source.getLexicon());
-					d.translateProperties(source);
 					d = new Dictionary(l2,l1);
 					d.translateLexicon(target.getLexicon());
-					d.translateProperties(target);
 				}
 			}
 		}
