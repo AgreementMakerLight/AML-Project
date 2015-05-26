@@ -882,17 +882,24 @@ public class Lexicon
 	
 	/**
 	 * @param name: the name to search in the Lexicon
-	 * @param classId: the class to search in the Lexicon
-	 * @return the best weight of the name for that class
+	 * @param entityId: the entity to search in the Lexicon
+	 * @return the best weight of the name for that entity
 	 */
-	public double getWeight(String name, int classId)
+	public double getWeight(String name, int entityId)
 	{
-		if(!classNames.contains(name, classId))
-			return 0.0;
 		double weight = 0.0;
-		for(Provenance p : classNames.get(name, classId))
-			if(p.getWeight() > weight)
-				weight = p.getWeight();
+		if(nameClasses.contains(entityId,name))
+		{
+			for(Provenance p : nameClasses.get(entityId,name))
+				if(p.getWeight() > weight)
+					weight = p.getWeight();
+		}
+		else if(nameProperties.contains(entityId,name))
+		{
+			for(Provenance p : nameProperties.get(entityId,name))
+				if(p.getWeight() > weight)
+					weight = p.getWeight();
+		}
 		return weight;
 	}
 	
@@ -946,19 +953,29 @@ public class Lexicon
 
 	/**
 	 * @param name: the name to search in the Lexicon
-	 * @param classId: the class to search in the Lexicon
-	 * @return whether the type of the name for the class
+	 * @param entityId: the entity to search in the Lexicon
+	 * @return whether the type of the name for the entity
 	 * is external
 	 */
-	public boolean isExternal(String name, int classId)
+	public boolean isExternal(String name, int entityId)
 	{
-		if(!classNames.contains(name,classId))
-			return false;
-		Vector<Provenance> provs = classNames.get(name, classId);
-		for(Provenance p : provs)
-			if(!p.isExternal())
-				return false;
-		return true;
+		if(nameClasses.contains(entityId,name))
+		{
+			Vector<Provenance> provs = nameClasses.get(entityId, name);
+			for(Provenance p : provs)
+				if(!p.isExternal())
+					return false;
+			return true;
+		}
+		else if(nameProperties.contains(entityId,name))
+		{
+			Vector<Provenance> provs = nameProperties.get(entityId, name);
+			for(Provenance p : provs)
+				if(!p.isExternal())
+					return false;
+			return true;
+		}
+		return false;
 	}
 	
 	/**
