@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2015 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,23 +12,25 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Lists the types of ontology properties.                                     *
+* Lists the types of ontology entities (class, instance, and the different    *
+* properties).                                                                *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 20-05-2010                                                            *
-* @version 2.1                                                                *
+* @date 21-05-2010                                                            *
 ******************************************************************************/
 package aml.settings;
 
-public enum PropertyType
+public enum EntityType
 {
+	CLASS ("Class"),
+	INSTANCE ("Instance"),
     DATA ("Data Property"),
     OBJECT ("Object Property"),
     ANNOTATION ("Annotation Property");
     
     String label;
     
-    PropertyType(String s)
+    EntityType(String s)
     {
     	label = s;
     }
