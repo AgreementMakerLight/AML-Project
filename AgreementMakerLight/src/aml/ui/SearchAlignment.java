@@ -196,8 +196,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 
 	private Double similarity(String mapping, String query)
 	{
-		String m = mapping.replace(query, "");
-		return 1.0*(mapping.length()-m.length())/mapping.length();
+		return 1.0*query.length()/mapping.length();
 	}
 	
 	private void buildResultsPanel()
