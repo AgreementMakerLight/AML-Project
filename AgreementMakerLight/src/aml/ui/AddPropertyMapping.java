@@ -72,8 +72,7 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 		annotSource = source.getIndexes(EntityType.ANNOTATION);
 		annotTarget = target.getIndexes(EntityType.ANNOTATION);
 		boolean annotP = annotSource.size() > 0 && annotTarget.size() > 0;
-		
-		
+				
 		//Set the title
 		this.setTitle("Add Property Mapping");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -252,7 +251,8 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			}
 			else
 			{
-				aml.getAlignment().add(sourceId,targetId,1.0);
+				aml.getAlignment().add(sourceId,targetId,1.0,
+						MappingRelation.parseRelation((String)rels.getSelectedItem()));
 				aml.refreshGUI();
 			}
 			this.dispose();
