@@ -52,7 +52,7 @@ public class AlignmentReviewer extends JInternalFrame implements ActionListener
 	private Vector<JCheckBox> check;
 	private Vector<JButton> details;
 	private Vector<String> mappings;
-	private JButton remove;
+	private JButton remove, addClass, addProp;
 	private JPanel panel, buttonPanel, dialogPanel;
 	private JScrollPane scrollPane;
 
@@ -101,8 +101,16 @@ public class AlignmentReviewer extends JInternalFrame implements ActionListener
 			remove = new JButton("Remove Selected Mappings");
 			remove.setPreferredSize(new Dimension(200,28));
 			remove.addActionListener(this);
+			addClass = new JButton("Add Class Mapping");
+			addClass.setPreferredSize(new Dimension(200,28));
+			addClass.addActionListener(this);
+			addProp = new JButton("Add Property Mapping");
+			addProp.setPreferredSize(new Dimension(200,28));
+			addProp.addActionListener(this);
 			buttonPanel = new JPanel(new FlowLayout());
 			buttonPanel.add(remove);
+			buttonPanel.add(addClass);
+			buttonPanel.add(addProp);
 
 			dialogPanel.add(scrollPane);
 			dialogPanel.add(buttonPanel);
@@ -130,7 +138,15 @@ public class AlignmentReviewer extends JInternalFrame implements ActionListener
 					a.remove(m);
 				}
 			}
-			aml.refreshGUI();
+			aml.goTo(0);
+		}
+		else if(b == addClass)
+		{
+			new AddClassMapping();
+		}
+		else if(b == addProp)
+		{
+			new AddPropertyMapping();
 		}
 		if(index > -1)
 		{
