@@ -13,9 +13,9 @@
 *                                                                             *
 *******************************************************************************
 * A table with two columns, represented by a HashMap of Vectors.              *
+* Adapted from AgreementMakerLight.                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 11-08-2014                                                            *
 ******************************************************************************/
 package aml.util;
 
@@ -69,21 +69,19 @@ public class Table2List<A,B extends Comparable<B>>
 	public void add(A key, B value)
 	{
 		Vector<B> list = multimap.get(key);
+		if(!contains(key,value))
+			size++;
 		if(list == null)
 		{
 			list = new Vector<B>(0,1);
 			list.add(value);
 			multimap.put(key, list);
-			size++;
 		}
 		else
 		{
 			int index = list.indexOf(value);
 			if(index == -1)
-			{
 				list.add(value);
-				size++;
-			}
 			else if(value.compareTo(list.get(index)) > 0)
 			{
 				list.remove(index);

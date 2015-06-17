@@ -61,23 +61,23 @@ public class Table2Set<A,B>
 	
 	/**
 	 * Adds the value for the given key to the Table, or
-	 * upgrades the value if an equal value already exists
-	 * (and if compareTo and equals differ)
+	 * updates the value if an equal value already exists
 	 * @param key: the key to add to the Table
 	 * @param value: the value to add to the Table
 	 */
 	public void add(A key, B value)
 	{
 		HashSet<B> set = multimap.get(key);
+		if(!contains(key,value))
+			size++;
 		if(set == null)
 		{
 			set = new HashSet<B>();
 			set.add(value);
 			multimap.put(key, set);
-			size++;
 		}
-		else
-			set.add(value);
+		else 
+			set.add(value);	
 	}
 	
 	/**

@@ -67,6 +67,8 @@ public class Table3Set<A,B,C>
 	public void add(A keyA, B keyB, C valueC)
 	{
 		Table2Set<B,C> mapsA = multimap.get(keyA);
+		if(!contains(keyA,keyB,valueC))
+			size++;
 		if(mapsA == null)
 		{
 			mapsA = new Table2Set<B,C>();
@@ -75,7 +77,6 @@ public class Table3Set<A,B,C>
 		}
 		else
 			mapsA.add(keyB, valueC);
-		size++;
 	}
 	
 	/**

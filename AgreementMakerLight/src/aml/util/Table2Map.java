@@ -70,17 +70,13 @@ public class Table2Map<A,B,C extends Comparable<C>>
 	public void add(A keyA, B keyB, C valueC)
 	{
 		HashMap<B,C> mapsA = multimap.get(keyA);
+		if(!contains(keyA,keyB))
+			size++;
 		if(mapsA == null)
 		{
 			mapsA = new HashMap<B,C>();
 			mapsA.put(keyB, valueC);
 			multimap.put(keyA, mapsA);
-			size++;
-		}
-		else if(!mapsA.containsKey(keyB))
-		{
-			mapsA.put(keyB, valueC);
-			size++;
 		}
 		else
 			mapsA.put(keyB, valueC);

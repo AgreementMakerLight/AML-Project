@@ -13,9 +13,9 @@
 *                                                                             *
 *******************************************************************************
 * A table with three columns, represented by a HashMap of Table2List.         *
+* Adapted from AgreementMakerLight.                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 11-08-2014                                                            *
 ******************************************************************************/
 package aml.util;
 
@@ -67,6 +67,8 @@ public class Table3List<A,B,C extends Comparable<C>>
 	public void add(A keyA, B keyB, C valueC)
 	{
 		Table2List<B,C> mapsA = multimap.get(keyA);
+		if(!contains(keyA,keyB,valueC))
+			size++;
 		if(mapsA == null)
 		{
 			mapsA = new Table2List<B,C>();
@@ -75,7 +77,6 @@ public class Table3List<A,B,C extends Comparable<C>>
 		}
 		else
 			mapsA.add(keyB, valueC);
-		size++;
 	}
 	
 	/**
