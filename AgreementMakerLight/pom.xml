@@ -1,0 +1,128 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>aml</groupId>
+  <artifactId>aml</artifactId>
+  <packaging>jar</packaging>
+  <version>2.1-SNAPSHOT</version>
+
+  <name>AgreementMakerLight</name>
+  <url>http://somer.fc.ul.pt/aml.php</url>
+
+  <repositories>
+    <repository>
+      <id>gephi-nexus</id>
+      <name>Gephi Releases</name>
+      <url>http://nexus.gephi.org/nexus/content/repositories/releases</url>
+    </repository>
+    <repository>
+      <id>ironiacorp</id>
+      <url>http://www.ironiacorp.com/repo/maven2</url>
+    </repository>
+    <repository>
+      <id>msel.releases</id>
+      <name>Johns Hopkins Sheridan Libraries Maven 2 Repository</name>
+      <url>http://maven.mse.jhu.edu/m2repository</url>
+      <releases>
+        <enabled>true</enabled>
+        <checksumPolicy>fail</checksumPolicy>
+      </releases>
+    </repository>
+  </repositories>
+
+  <build>
+    <sourceDirectory>${basedir}/src</sourceDirectory>
+  
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+              <!-- Additional configuration. -->
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>aml.Main</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.semanticweb.elk</groupId>
+      <artifactId>elk-owlapi-standalone</artifactId>
+      <version>0.4.1</version>
+      <classifier>bin</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.gephi</groupId>
+      <artifactId>gephi-toolkit</artifactId>
+      <version>0.8.2</version>
+    </dependency>
+    <dependency>
+      <groupId>edu.smu.tspell.wordnet</groupId>
+      <artifactId>jaws</artifactId>
+      <version>1.3.3</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+    <dependency>
+      <groupId>com.memetix</groupId>
+      <artifactId>microsoft-translator-java-api</artifactId>
+      <version>0.6.2</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>net.sourceforge.owlapi</groupId>
+      <artifactId>owlapi-distribution</artifactId>
+      <version>3.4.10</version>
+    </dependency>
+    <dependency>
+      <groupId>uk.ac.shef.wit</groupId>
+      <artifactId>simmetrics</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.swinglabs.swingx</groupId>
+      <artifactId>swingx-all</artifactId>
+      <version>1.6.4</version>
+    </dependency>
+  </dependencies>
+</project>
