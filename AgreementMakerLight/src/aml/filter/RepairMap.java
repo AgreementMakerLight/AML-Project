@@ -211,12 +211,15 @@ public class RepairMap
 				{
 					if(classList.contains(k))
 						count++;
-					for(Integer l : rels.getSuperClasses(k, false))
+					else
 					{
-						if(classList.contains(l))
+						for(Integer l : rels.getSuperClasses(k, false))
 						{
-							count++;
-							break;
+							if(classList.contains(l))
+							{
+								count++;
+								break;
+							}
 						}
 					}
 					if(count > 1)
