@@ -292,7 +292,7 @@ public class Main
 			String line;
 			while((line=in.readLine()) != null)
 			{
-				if(line.startsWith("#"))
+				if(line.startsWith("#") || line.isEmpty())
 					continue;
 				String[] option = line.split("=");
 				option[0] = option[0].trim();
@@ -385,7 +385,7 @@ public class Main
 		catch(Exception e)
 		{
 			System.out.println("Error: Could not read config file");
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			System.out.println("Matching will proceed with default configuration");
 			aml.defaultConfig();
 		}
