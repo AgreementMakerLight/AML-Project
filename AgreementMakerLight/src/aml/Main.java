@@ -25,7 +25,7 @@
 * -i store/anatomy/toRepair.rdf -r -o store/anatomy/repaired.rdf              *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 29-09-2014                                                            *
+* @date 09-07-2015                                                            *
 ******************************************************************************/
 package aml;
 
@@ -83,41 +83,57 @@ public class Main
 			//Read the arguments
 			for(int i = 0; i < args.length; i++)
 			{
-				if(args[i].equalsIgnoreCase("-s"))
-					sourcePath = args[++i];
-				else if(args[i].equalsIgnoreCase("-t"))
-					targetPath = args[++i];
-				else if(args[i].equalsIgnoreCase("-i"))
-					inputPath = args[++i];
-				else if(args[i].equalsIgnoreCase("-o"))
-					outputPath = args[++i];
-				else if(args[i].equalsIgnoreCase("-a"))
-					mode = "auto";
-				else if(args[i].equalsIgnoreCase("-m"))
+				if(args[i].equalsIgnoreCase("-h") || args[i].equalsIgnoreCase("--help"))
 				{
-					if(mode.isEmpty())
-						mode = "manual";
+					printHelpMessage();
+					System.exit(0);
 				}
-				else if(args[i].equalsIgnoreCase("-r"))
+				else if((args[i].equalsIgnoreCase("-s") || args[i].equalsIgnoreCase("--source")) && i+1 < args.length)
+					sourcePath = args[++i];
+				else if((args[i].equalsIgnoreCase("-t") || args[i].equalsIgnoreCase("--target")) && i+1 < args.length)
+					targetPath = args[++i];
+				else if((args[i].equalsIgnoreCase("-i") || args[i].equalsIgnoreCase("--input")) && i+1 < args.length)
+					inputPath = args[++i];
+				else if((args[i].equalsIgnoreCase("-o") || args[i].equalsIgnoreCase("--output")) && i+1 < args.length)
+					outputPath = args[++i];
+				else if(args[i].equalsIgnoreCase("-a") || args[i].equalsIgnoreCase("--auto"))
+					mode = "auto";
+				else if(args[i].equalsIgnoreCase("-m") || args[i].equalsIgnoreCase("--manual"))
+				{
+					if(mode.equals("auto"))
+						mode = "manual";
+					else
+					{
+						System.out.println("ERROR: You must specify a single mode for running AgreementMakerLight");
+						System.out.println("Use -h or --help for instructions on how to run AgreementMakerLight");
+						System.exit(1);						
+					}
+				}
+				else if(args[i].equalsIgnoreCase("-r") || args[i].equalsIgnoreCase("--repair"))
 				{
 					if(mode.isEmpty())
 						mode = "repair";
+					else
+					{
+						System.out.println("ERROR: You must specify a single mode for running AgreementMakerLight");
+						System.out.println("Use -h or --help for instructions on how to run AgreementMakerLight");
+						System.exit(1);						
+					}
 				}
 			}
-		
 			//Check that the necessary arguments are given and that the files can be found
 			if(mode.isEmpty())
 			{
 				System.out.println("ERROR: You must specify a mode for running AgreementMakerLight");
-				System.out.println("See README.txt file for details");
-				System.exit(0);
+				System.out.println("Use -h or --help for instructions on how to run AgreementMakerLight");
+				System.exit(1);
 			}
 			//Input ontologies are necessary in all modes
 			if(sourcePath.equals("") || targetPath.equals(""))
 			{
 				System.out.println("ERROR: You must specify a source ontology and a target ontology");
-				System.out.println("See README.txt file for details");
-				System.exit(0);
+				System.out.println("Use -h or --help for instructions on how to run AgreementMakerLight");
+				System.exit(1);
 			}
 			else
 			{
@@ -125,13 +141,13 @@ public class Main
 				if(!s.canRead())
 				{
 					System.out.println("ERROR: Source ontology file not found");
-					System.exit(0);
+					System.exit(1);
 				}
 				File t = new File(targetPath);
 				if(!t.canRead())
 				{
 					System.out.println("ERROR: Target ontology file not found");
-					System.exit(0);
+					System.exit(1);
 				}
 			}
 			//An input alignment is necessary in repair mode
@@ -140,8 +156,8 @@ public class Main
 				if(inputPath.equals(""))
 				{
 					System.out.println("ERROR: You must specify an input alignment file in repair mode");
-					System.out.println("See README.txt file for details");
-					System.exit(0);
+					System.out.println("Use -h or --help for instructions on how to run AgreementMakerLight");
+					System.exit(1);
 				}
 				else
 				{
@@ -150,7 +166,7 @@ public class Main
 					if(!r.canRead())
 					{
 						System.out.println("Error: Input alignment file not found");
-						System.exit(0);
+						System.exit(1);
 					}
 				}
 			}
@@ -164,7 +180,7 @@ public class Main
 			{
 				System.out.println("Error: Could not open ontologies");				
 				e.printStackTrace();
-				System.exit(0);
+				System.exit(1);
 			}
 			//Proceed according to the run mode
 			if(mode.equals("repair"))
@@ -177,7 +193,7 @@ public class Main
 				{
 					System.out.println("Error: Could not open input alignment");	
 					e.printStackTrace();
-					System.exit(0);
+					System.exit(1);
 				}
 				aml.repair();
 			}
@@ -201,7 +217,7 @@ public class Main
 					{
 						System.out.println("Error: Could not open input alignment");	
 						e.printStackTrace();
-						System.exit(0);
+						System.exit(1);
 					}
 					aml.evaluate();
 					System.out.println(aml.getEvaluation());
@@ -225,6 +241,42 @@ public class Main
 
 //Private Methods
 	
+	private static void printHelpMessage()
+	{
+		System.out.println(" ______________________________________________________________");
+		System.out.println("/                                                              \\");
+		System.out.println("|                 AML (AgreementMakerLight)                    |");
+		System.out.println("|                  Demo GUI / CLI version                      |");
+		System.out.println("|                Copyright 2013-2015 LASIGE                    |");
+		System.out.println("|                                                              |");
+		System.out.println("|                      AML GUI USAGE:                          |");
+		System.out.println("| Double-clicking the AgreementMakerLight.jar file or calling  |");
+		System.out.println("| it without any arguments (java -jar AgreementMakerLight.jar) |");
+		System.out.println("| will start the GUI.                                          |");
+		System.out.println("|                                                              |");
+		System.out.println("|                      AML CLI USAGE:                          |");
+		System.out.println("| java -jar AgreementMakerLight.jar OPTIONS                    |");
+		System.out.println("|                                                              |");
+		System.out.println("| The options are:                                             |");
+		System.out.println("|  -s (--source) 'path_to_source_ontology'                     |");
+		System.out.println("|  -t (--target) 'path_to_target_ontology'                     |");
+		System.out.println("|  -i (--input)	'path_to_input_alignment'                      |");
+		System.out.println("|               (mandatory in repair mode, where it will be    |");
+		System.out.println("|               the alignment to repair; optional in match     |");
+		System.out.println("|               mode, where it will be used as the reference   |");
+		System.out.println("|               alignment, to evaluate the match result)       |");
+		System.out.println("|  -o (--output) 'path_to_ouput_alignment'                     |");
+		System.out.println("|               (if you want to save the resulting alignment)  |");
+		System.out.println("|  -a (--auto) -> automatic match mode                         |");
+		System.out.println("|   OR                                                         |");
+		System.out.println("|  -m (--manual) -> manual match mode (you can configure the   |");
+		System.out.println("|                   matcher in the store/config.ini file)      |");
+		System.out.println("|   OR                                                         |");
+		System.out.println("|  -r (--repair) -> repair alignment mode                      |");
+		System.out.println("|                                                              |");
+		System.out.println("\\______________________________________________________________/");
+	}
+
 	private static void readConfigFile()
 	{
 		File conf = new File(CONFIG);
