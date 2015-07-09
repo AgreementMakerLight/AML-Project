@@ -1,7 +1,7 @@
  ______________________________________________________________
 /                                                              \
 |         AML (AgreementMakerLight) Eclipse Project            |
-|                Copyright 2013-2013 LASIGE                    |
+|                Copyright 2013-2015 LASIGE                    |
 |                                                              |
 |  This product includes software developed at LASIGE by the   |
 |  SOMER team (http://somer.fc.ul.pt) in collaboration with    |
