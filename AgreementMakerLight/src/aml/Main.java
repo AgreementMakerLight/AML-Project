@@ -100,7 +100,7 @@ public class Main
 					mode = "auto";
 				else if(args[i].equalsIgnoreCase("-m") || args[i].equalsIgnoreCase("--manual"))
 				{
-					if(mode.equals("auto"))
+					if(mode.isEmpty())
 						mode = "manual";
 					else
 					{
