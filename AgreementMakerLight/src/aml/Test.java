@@ -15,11 +15,9 @@
 * Test-runs AgreementMakerLight in Eclipse.                                   *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 13-09-2014                                                            *
+* @date 10-07-2015                                                            *
 ******************************************************************************/
 package aml;
-
-import aml.match.Alignment;
 
 public class Test
 {
@@ -40,15 +38,12 @@ public class Test
 		aml.openOntologies(sourcePath, targetPath);
 		aml.matchAuto();
 		
-		System.out.println(aml.getAlignment().size());
 		if(!referencePath.equals(""))
 		{
 			aml.openReferenceAlignment(referencePath);
-			Alignment a = aml.getReferenceAlignment();
-			a.getHighLevelAlignment().saveTSV("store/align.txt");
-			
-			//aml.evaluate();
-			//System.out.println(aml.getEvaluation());
+			aml.getReferenceAlignment();
+			aml.evaluate();
+			System.out.println(aml.getEvaluation());
 		}
 		if(!outputPath.equals(""))
 			aml.saveAlignmentRDF(outputPath);
