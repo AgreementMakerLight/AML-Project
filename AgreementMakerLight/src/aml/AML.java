@@ -818,8 +818,8 @@ public class AML
 
 	public void translateOntologies()
 	{
-		Set<String> sLangs = source.getLexicon().getLanguages();
-		Set<String> tLangs = target.getLexicon().getLanguages();
+		Vector<String> sLangs = new Vector<String>(source.getLexicon().getLanguages());
+		Vector<String> tLangs = new Vector<String>(target.getLexicon().getLanguages());
 		for(String l1 : sLangs)
 		{
 			for(String l2 : tLangs)
