@@ -545,7 +545,7 @@ public class Ontology
             			lang = "en";
     				type = LexicalType.LABEL;
     				weight = type.getDefaultWeight();
-    				lex.addProperty(id, name, "en", type, "", weight);
+    				lex.addProperty(id, name, lang, type, "", weight);
                	}
             }
     	}
@@ -584,7 +584,7 @@ public class Ontology
             			lang = "en";
     				type = LexicalType.LABEL;
     				weight = type.getDefaultWeight();
-    				lex.addProperty(id, name, "en", type, "", weight);
+    				lex.addProperty(id, name, lang, type, "", weight);
                	}
             }
 			//Initialize the property
@@ -647,7 +647,7 @@ public class Ontology
             			lang = "en";
     				type = LexicalType.LABEL;
     				weight = type.getDefaultWeight();
-    				lex.addProperty(id, name, "en", type, "", weight);
+    				lex.addProperty(id, name, lang, type, "", weight);
                	}
             }
 			//Initialize the property
