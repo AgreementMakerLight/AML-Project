@@ -60,8 +60,10 @@ public class Alignment implements Iterable<Mapping>
 	private Table2Map<Integer,Integer,Mapping> targetMaps;
 	//Whether the Alignment is internal
 	private boolean internal;
-	//Link to AML
+	//Link to AML and the Ontologies
 	private AML aml;
+	private Ontology source;
+	private Ontology target;
 	//Link to the URIMap
 	private URIMap uris;
 	
@@ -76,6 +78,8 @@ public class Alignment implements Iterable<Mapping>
 		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
 		targetMaps = new Table2Map<Integer,Integer,Mapping>();
 		aml = AML.getInstance();
+		source = aml.getSource();
+		target = aml.getTarget();
 		uris = aml.getURIMap();
 		internal = false;
 	}
@@ -109,7 +113,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * Creates a new Alignment that is a copy of the input alignment
+	 * Creates a new Alignment that is a copy of the input Alignment
 	 * @param a: the Alignment to copy
 	 */
 	public Alignment(Alignment a)
@@ -121,54 +125,34 @@ public class Alignment implements Iterable<Mapping>
 //Public Methods
 
 	/**
-	 * Adds a new Mapping to the alignment if it is non-redundant
+	 * Adds a new Mapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
 	 * to the maximum similarity of the two redundant Mappings
-	 * @param sourceId: the index of the source class to add to the alignment
-	 * @param targetId: the index of the target class to add to the alignment
+	 * @param sourceId: the index of the source class to add to the Alignment
+	 * @param targetId: the index of the target class to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 */
 	public void add(int sourceId, int targetId, double sim)
 	{
-		//Unless the alignment is internal, we can't have a mapping
-		//between entities with the same id (which corresponds to URI)
-		if(!internal && (sourceId == targetId))
-			return;
-		
-		//Construct the Mapping
-		Mapping m = new Mapping(sourceId, targetId, sim, MappingRelation.EQUIVALENCE);
-		//If it isn't listed yet, add it
-		if(!sourceMaps.contains(sourceId,targetId))
-		{
-			maps.add(m);
-			sourceMaps.add(sourceId, targetId, m);
-			targetMaps.add(targetId, sourceId, m);
-		}
-		//Otherwise update the similarity
-		else
-		{
-			m = sourceMaps.get(sourceId,targetId);
-			if(m.getSimilarity() < sim)
-				m.setSimilarity(sim);
-			if(!m.getRelationship().equals(MappingRelation.EQUIVALENCE))
-				m.setRelationship(MappingRelation.EQUIVALENCE);		
-		}
+		add(sourceId,targetId,sim,MappingRelation.EQUIVALENCE);
 	}
 	
 	/**
-	 * Adds a new Mapping to the alignment if it is non-redundant
+	 * Adds a new Mapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
 	 * to the maximum similarity of the two redundant Mappings
-	 * @param sourceId: the index of the source class to add to the alignment
-	 * @param targetId: the index of the target class to add to the alignment
+	 * @param sourceId: the index of the source class to add to the Alignment
+	 * @param targetId: the index of the target class to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 * @param r: the mapping relationship between the classes
 	 */
 	public void add(int sourceId, int targetId, double sim, MappingRelation r)
 	{
-		//Unless the alignment is internal, we can't have a mapping
-		//between entities with the same id (which corresponds to URI)
-		if(!internal && (sourceId == targetId))
+		//Unless the Alignment is internal, we can't have a mapping
+		//involving entities that exist in both ontologies (they are
+		//the same entity, and therefore shouldn't map with other
+		//entities in either ontology)
+		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
 			return;
 		
 		//Construct the Mapping
@@ -192,31 +176,24 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * Adds a new Mapping to the alignment if it is non-redundant
+	 * Adds a new Mapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
 	 * to the maximum similarity of the two redundant Mappings
-	 * @param sourceURI: the URI of the source class to add to the alignment
-	 * @param targetURI: the URI of the target class to add to the alignment
+	 * @param sourceURI: the URI of the source class to add to the Alignment
+	 * @param targetURI: the URI of the target class to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 */
 	public void add(String sourceURI, String targetURI, double sim)
 	{
-		int id1 = uris.getIndex(sourceURI);
-		int id2 = uris.getIndex(targetURI);
-		if(id1 == -1 || id2 == -1)
-			return;
-		if(aml.getSource().contains(id1) && aml.getTarget().contains(id2))
-			add(id1,id2,sim);
-		else if(aml.getSource().contains(id2) && aml.getTarget().contains(id1))
-			add(id2,id1,sim);
+		add(sourceURI,targetURI,sim,MappingRelation.EQUIVALENCE);
 	}
 	
 	/**
-	 * Adds a new Mapping to the alignment if it is non-redundant
+	 * Adds a new Mapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
 	 * to the maximum similarity of the two redundant Mappings
-	 * @param sourceURI: the URI of the source class to add to the alignment
-	 * @param targetURI: the URI of the target class to add to the alignment
+	 * @param sourceURI: the URI of the source class to add to the Alignment
+	 * @param targetURI: the URI of the target class to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 * @param r: the mapping relationship between the classes
 	 */
@@ -233,10 +210,10 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * Adds a clone of the given Mapping to the alignment if it is non-redundant
+	 * Adds a clone of the given Mapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
 	 * to the maximum similarity of the two redundant Mappings
-	 * @param m: the Mapping to add to the alignment
+	 * @param m: the Mapping to add to the Alignment
 	 */
 	public void add(Mapping m)
 	{
@@ -290,7 +267,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @return the average cardinality of this alignment
+	 * @return the average cardinality of this Alignment
 	 */
 	public double cardinality()
 	{
@@ -309,9 +286,32 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
- 	 * @param targetId: the index of the target class to check in the alignment 
-	 * @return whether the alignment contains a Mapping that is ancestral to the given pair of classes
+	 * @param sourceId: the index of the source class to check in the Alignment
+ 	 * @param targetId: the index of the target class to check in the Alignment
+ 	 * @param r: the MappingRelation to check in the Alignment
+	 * @return whether the Alignment contains a Mapping between sourceId and targetId
+	 * with relationship r
+	 */
+	public boolean contains(int sourceId, int targetId, MappingRelation r)
+	{
+		return sourceMaps.contains(sourceId, targetId) &&
+				getRelationship(sourceId,targetId).equals(r);
+	}
+
+	/**
+	 * @param m: the Mapping to check in the Alignment
+	 * @return whether the Alignment contains a Mapping equivalent to m
+	 * including the relationship
+	 */
+	public boolean contains(Mapping m)
+	{
+		return contains(m.getSourceId(), m.getTargetId(), m.getRelationship());
+	}
+	
+	/**
+	 * @param sourceId: the index of the source class to check in the Alignment
+ 	 * @param targetId: the index of the target class to check in the Alignment 
+	 * @return whether the Alignment contains a Mapping that is ancestral to the given pair of classes
 	 * (i.e. includes one ancestor of sourceId and one ancestor of targetId)
 	 */
 	public boolean containsAncestralMapping(int sourceId, int targetId)
@@ -333,7 +333,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 
 	/**
- 	 * @param m: the Mapping to check in the alignment 
+ 	 * @param m: the Mapping to check in the Alignment 
 	 * @return whether the Alignment contains a Mapping that conflicts with the given
 	 * Mapping and has a higher similarity
 	 */
@@ -361,7 +361,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
- 	 * @param classId: the index of the class to check in the alignment 
+ 	 * @param classId: the index of the class to check in the Alignment 
 	 * @return whether the Alignment contains a Mapping with that class
 	 * (either as a source or as a target class)
 	 */
@@ -371,8 +371,8 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
- 	 * @param targetId: the index of the target class to check in the alignment 
+	 * @param sourceId: the index of the source class to check in the Alignment
+ 	 * @param targetId: the index of the target class to check in the Alignment 
 	 * @return whether the Alignment contains a Mapping for sourceId or for targetId
 	 */
 	public boolean containsConflict(int sourceId, int targetId)
@@ -381,7 +381,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
- 	 * @param m: the Mapping to check in the alignment 
+ 	 * @param m: the Mapping to check in the Alignment 
 	 * @return whether the Alignment contains a Mapping involving either class in m
 	 */
 	public boolean containsConflict(Mapping m)
@@ -390,9 +390,9 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
- 	 * @param targetId: the index of the target class to check in the alignment 
-	 * @return whether the alignment contains a Mapping that is descendant of the given pair of classes
+	 * @param sourceId: the index of the source class to check in the Alignment
+ 	 * @param targetId: the index of the target class to check in the Alignment 
+	 * @return whether the Alignment contains a Mapping that is descendant of the given pair of classes
 	 * (i.e. includes one descendant of sourceId and one descendant of targetId)
 	 */
 	public boolean containsDescendantMapping(int sourceId, int targetId)
@@ -414,8 +414,8 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
-	 * @param targetId: the index of the target class to check in the alignment
+	 * @param sourceId: the index of the source class to check in the Alignment
+	 * @param targetId: the index of the target class to check in the Alignment
 	 * @return whether the Alignment contains a Mapping between sourceId and targetId
 	 */
 	public boolean containsMapping(int sourceId, int targetId)
@@ -424,8 +424,9 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param m: the Mapping to check in the alignment
-	 * @return whether the Alignment contains a Mapping equivalent to m
+	 * @param m: the Mapping to check in the Alignment
+	 * @return whether the Alignment contains a Mapping with the same sourceId
+	 * and targetId as m (regardless of the mapping relation)
 	 */
 	public boolean containsMapping(Mapping m)
 	{
@@ -433,7 +434,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param lm: the List of Mapping to check in the alignment
+	 * @param lm: the List of Mapping to check in the Alignment
 	 * @return whether the Alignment contains all the Mapping listed in m
 	 */
 	public boolean containsMappings(List<Mapping> lm)
@@ -445,9 +446,9 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
- 	 * @param targetId: the index of the target class to check in the alignment 
-	 * @return whether the alignment contains a Mapping that is parent to the
+	 * @param sourceId: the index of the source class to check in the Alignment
+ 	 * @param targetId: the index of the target class to check in the Alignment 
+	 * @return whether the Alignment contains a Mapping that is parent to the
 	 * given pair of classes on one side only
 	 */
 	public boolean containsParentMapping(int sourceId, int targetId)
@@ -468,7 +469,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
+	 * @param sourceId: the index of the source class to check in the Alignment
  	 * @return whether the Alignment contains a Mapping for sourceId
 	 */
 	public boolean containsSource(int sourceId)
@@ -477,7 +478,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 
 	/**
-	 * @param targetId: the index of the target class to check in the alignment
+	 * @param targetId: the index of the target class to check in the Alignment
  	 * @return whether the Alignment contains a Mapping for targetId
 	 */
 	public boolean containsTarget(int targetId)
@@ -508,21 +509,18 @@ public class Alignment implements Iterable<Mapping>
 	{
 		int found = size();		
 		int correct = 0;
-		int total = 0;
+		int total = ref.size();
 		int conflict = 0;
 		for(Mapping m : maps)
 		{
-			if(ref.containsMapping(m))
-			{
-				if(ref.getRelationship(m.getSourceId(),m.getTargetId()).equals(MappingRelation.UNKNOWN))
-					conflict++;
-				else
-					correct++;
-			}
+			if(ref.contains(m))
+				correct++;
+			else if(ref.contains(m.getSourceId(),m.getTargetId(),MappingRelation.UNKNOWN))
+				conflict++;
 		}
 		for(Mapping m : ref)
-			if(!m.getRelationship().equals(MappingRelation.UNKNOWN))
-				total++;
+			if(m.getRelationship().equals(MappingRelation.UNKNOWN))
+				total--;
 		
 		double precision = 1.0*correct/(found-conflict);
 		String prc = Math.round(precision*1000)/10.0 + "%";
@@ -588,8 +586,8 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
-	 * @param targetId: the index of the target class to check in the alignment
+	 * @param sourceId: the index of the source class to check in the Alignment
+	 * @param targetId: the index of the target class to check in the Alignment
  	 * @return the Mapping between the source and target classes or null if no
  	 * such Mapping exists
 	 */
@@ -599,8 +597,8 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param id1: the index of the first class to check in the alignment
-	 * @param targetId: the index of the second class to check in the alignment
+	 * @param id1: the index of the first class to check in the Alignment
+	 * @param targetId: the index of the second class to check in the Alignment
  	 * @return the Mapping between the classes or null if no such Mapping exists
  	 * in either direction
 	 */
@@ -615,7 +613,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
+	 * @param sourceId: the index of the source class to check in the Alignment
  	 * @return the index of the target class that best matches source
 	 */
 	public int getBestSourceMatch(int sourceId)
@@ -636,7 +634,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 
 	/**
-	 * @param targetId: the index of the target class to check in the alignment
+	 * @param targetId: the index of the target class to check in the Alignment
  	 * @return the index of the source class that best matches target
 	 */
 	public int getBestTargetMatch(int targetId)
@@ -657,9 +655,9 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @return the high level Alignment induced from this alignment
+	 * @return the high level Alignment induced from this Alignment
 	 * (the similarity between high level classes is given by the
-	 * fraction of classes in this alignment that are their descendents)
+	 * fraction of classes in this Alignment that are their descendents)
 	 */
 	public Alignment getHighLevelAlignment()
 	{
@@ -719,7 +717,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param id: the index of the class to check in the alignment
+	 * @param id: the index of the class to check in the Alignment
  	 * @return the list of all classes mapped to the given class
 	 */
 	public Set<Integer> getMappingsBidirectional(int id)
@@ -733,7 +731,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
+	 * @param sourceId: the index of the source class to check in the Alignment
  	 * @return the index of the target class that best matches source
 	 */
 	public double getMaxSourceSim(int sourceId)
@@ -750,7 +748,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 
 	/**
-	 * @param targetId: the index of the target class to check in the alignment
+	 * @param targetId: the index of the target class to check in the Alignment
  	 * @return the index of the source class that best matches target
 	 */
 	public double getMaxTargetSim(int targetId)
@@ -767,8 +765,8 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class in the alignment
-	 * @param targetId: the index of the target class in the alignment
+	 * @param sourceId: the index of the source class in the Alignment
+	 * @param targetId: the index of the target class in the Alignment
 	 * @return the mapping relationship between source and target
 	 */
 	public MappingRelation getRelationship(int sourceId, int targetId)
@@ -780,8 +778,8 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class in the alignment
-	 * @param targetId: the index of the target class in the alignment
+	 * @param sourceId: the index of the source class in the Alignment
+	 * @param targetId: the index of the target class in the Alignment
 	 * @return the similarity between source and target
 	 */
 	public double getSimilarity(int sourceId, int targetId)
@@ -793,7 +791,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param sourceId: the index of the source class to check in the alignment
+	 * @param sourceId: the index of the source class to check in the Alignment
  	 * @return the list of all target classes mapped to the source class
 	 */
 	public Set<Integer> getSourceMappings(int sourceId)
@@ -814,7 +812,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param targetId: the index of the target class to check in the alignment
+	 * @param targetId: the index of the target class to check in the Alignment
  	 * @return the list of all source classes mapped to the target class
 	 */
 	public Set<Integer> getTargetMappings(int targetId)
@@ -858,7 +856,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @return the maximum cardinality of this alignment
+	 * @return the maximum cardinality of this Alignment
 	 */
 	public double maxCardinality()
 	{
@@ -909,7 +907,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * Removes a list of Mappings from the alignment.
+	 * Removes a list of Mappings from the Alignment.
 	 * @param maps: the list of Mappings to remove to this Alignment
 	 */
 	public void removeAll(List<Mapping> maps)
@@ -919,7 +917,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 
 	/**
-	 * Saves the alignment into an .rdf file in OAEI format
+	 * Saves the Alignment into an .rdf file in OAEI format
 	 * @param file: the output file
 	 */
 	public void saveRDF(String file) throws FileNotFoundException
@@ -965,7 +963,7 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * Saves the alignment into a .tsv file in AML format
+	 * Saves the Alignment into a .tsv file in AML format
 	 * @param file: the output file
 	 */
 	public void saveTSV(String file) throws FileNotFoundException
@@ -1058,7 +1056,7 @@ public class Alignment implements Iterable<Mapping>
 
 	private void loadMappingsRDF(String file) throws DocumentException
 	{
-		//Open the alignment file using SAXReader
+		//Open the Alignment file using SAXReader
 		SAXReader reader = new SAXReader();
 		File f = new File(file);
 
