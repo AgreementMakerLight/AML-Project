@@ -75,7 +75,7 @@ public class InteractiveSelector implements Selector
 
 				if(disagreement(m.getSourceId(),m.getTargetId()))
 				{
-					if(Oracle.check(sourceURI,targetURI,m.getRelationship()))
+					if(Oracle.check(sourceURI,targetURI,m.getRelationship().toString()))
 					{
 						selected.add(m);
 						previousFeedback=1;

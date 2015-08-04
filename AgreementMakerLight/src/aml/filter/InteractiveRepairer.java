@@ -69,7 +69,7 @@ public class InteractiveRepairer implements Repairer
 			String sourceURI = map.getURI(toRepair.get(worstMapping).getSourceId());
 			String targetURI = map.getURI(toRepair.get(worstMapping).getTargetId());
 
-			if(Oracle.check(sourceURI,targetURI,toRepair.get(worstMapping).getRelationship()))
+			if(Oracle.check(sourceURI,targetURI,toRepair.get(worstMapping).getRelationship().toString()))
 				correct.add(worstMapping);
 			else
 			{
