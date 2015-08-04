@@ -33,8 +33,9 @@ public class Oracle
 	
 	//The reference alignment to use in this Oracle
 	private static Alignment reference;
-	private static int trueCount;
-	private static int falseCount;
+	private static double error;
+	private static Table2Map<Integer,Integer,MappingRelation> positive;
+	private static Table2Map<Integer,Integer,MappingRelation> negative;
 
 //Constructors
 	
@@ -46,29 +47,44 @@ public class Oracle
 	 * Checks if a given mapping exists in the reference alignment
 	 * @param uri1: the URI of the first mapped entity
 	 * @param uri2: the URI of the second mapped entity
-	 * @param r: the Relation between the first and second entities
+	 * @param rel: the Relation between the first and second entities
 	 * @return whether the reference alignment contains a mapping between uri1 and uri2
-	 * with MappingRelation r or a mapping between uri2 and uri1 with the inverse Relation
+	 * with relation rel or a mapping between uri2 and uri1 with the inverse relation
 	 */
-	public static boolean check(String uri1, String uri2, MappingRelation r)
+	public static boolean check(String uri1, String uri2, String rel)
 	{
+		MappingRelation r = MappingRelation.parseRelation(rel);
 		URIMap uris = AML.getInstance().getURIMap();
 		int id1 = uris.getIndex(uri1);
 		int id2 = uris.getIndex(uri2);
-		boolean check = (reference.containsMapping(id1, id2) &&
-				reference.getRelationship(id1, id2).equals(r)) ||
-				(reference.containsMapping(id2, id1) &&
-				reference.getRelationship(id1, id2).equals(r.inverse()));
-		if(check)
-			trueCount++;
+		//If the query was already done, return the result
+		if(positive.contains(id1, id2, r))
+			return true;
+		if(negative.contains(id1, id2, r))
+			return false;
+		//Otherwise, if the mapping between uri1 and uri2 is 'unknown' in the
+		//reference alignment return true by default, but do not store it or
+		//count it as a query (it will also not count in the evaluation)
+		if((reference.contains(id1, id2, MappingRelation.UNKNOWN)))
+			return true;
+		//Check if the query is present in the reference alignment
+		boolean classification = reference.contains(id1, id2, r);
+		//Reverse the classification with probability given by the error
+		if(Math.random() < error)
+			classification = !classification;
+		//Store the request
+		if(classification)
+			positive.add(id1, id2, r);
 		else
-			falseCount++;
-		return check;
+			negative.add(id1, id2, r);
+		return classification;
 	}
 	
 	public static void close()
 	{
 		reference = null;
+		positive = null;
+		negative = null;
 	}
 	
 	public static boolean isInteractive()
@@ -76,20 +92,21 @@ public class Oracle
 		return reference != null;
 	}
 	
-	public static void makeOracle(Alignment ref)
+	public static void makeOracle(Alignment ref, double err)
 	{
 		reference = ref;
-		trueCount = 0;
-		falseCount = 0;
+		error = err;
+		positive = new Table2Map<Integer,Integer,MappingRelation>();
+		negative = new Table2Map<Integer,Integer,MappingRelation>();
 	}
 	
 	public static int negativeInteractions()
 	{
-		return falseCount;
+		return negative.size();
 	}
 	
 	public static int positiveInteractions()
 	{
-		return trueCount;
+		return positive.size();
 	}	
 }
