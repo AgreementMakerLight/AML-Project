@@ -93,6 +93,9 @@ public class Alignment implements Iterable<Mapping>
 		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
 		targetMaps = new Table2Map<Integer,Integer,Mapping>();
 		aml = AML.getInstance();
+		if(!internal)
+			source = aml.getSource();
+			target = aml.getTarget();
 		uris = aml.getURIMap();
 		this.internal = internal;
 	}
