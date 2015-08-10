@@ -490,6 +490,18 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
+ 	 * @return the number of conflict mappings in this alignment
+	 */
+	public int countConflicts()
+	{
+		int count = 0;
+		for(Mapping m : maps)
+			if(m.getRelationship().equals(MappingRelation.UNKNOWN))
+				count++;
+		return count;
+	}
+	
+	/**
 	 * @param a: the Alignment to subtract from this Alignment 
 	 * @return the Alignment corresponding to the difference between this Alignment and a
 	 */
@@ -497,7 +509,7 @@ public class Alignment implements Iterable<Mapping>
 	{
 		Alignment diff = new Alignment();
 		for(Mapping m : maps)
-			if(!a.containsMapping(m))
+			if(!a.contains(m))
 				diff.add(m);
 		return diff;
 	}
@@ -506,37 +518,19 @@ public class Alignment implements Iterable<Mapping>
 	 * @param ref: the reference Alignment to evaluate this Alignment
 	 * @param forGUI: whether the evaluation is for display in the GUI
 	 * or for output to the console
-	 * @return the evaluation of this Alignment
+	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
-	public String evaluate(Alignment ref, boolean forGUI)
+	public int[] evaluate(Alignment ref)
 	{
-		int found = size();		
-		int correct = 0;
-		int total = ref.size();
-		int conflict = 0;
+		int[] count = new int[2];
 		for(Mapping m : maps)
 		{
 			if(ref.contains(m))
-				correct++;
+				count[0]++;
 			else if(ref.contains(m.getSourceId(),m.getTargetId(),MappingRelation.UNKNOWN))
-				conflict++;
+				count[1]++;
 		}
-		for(Mapping m : ref)
-			if(m.getRelationship().equals(MappingRelation.UNKNOWN))
-				total--;
-		
-		double precision = 1.0*correct/(found-conflict);
-		String prc = Math.round(precision*1000)/10.0 + "%";
-		double recall = 1.0*correct/total;
-		String rec = Math.round(recall*1000)/10.0 + "%";
-		double fmeasure = 2*precision*recall/(precision+recall);
-		String fms = Math.round(fmeasure*1000)/10.0 + "%";
-		
-		if(forGUI)
-			return "Precision: " + prc + "; Recall: " + rec + "; F-measure: " + fms;
-		else
-			return "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
-					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
+		return count;
 	}
 
 	/**
@@ -844,7 +838,7 @@ public class Alignment implements Iterable<Mapping>
 		//Otherwise, compute the intersection
 		Alignment intersection = new Alignment();
 		for(Mapping m : maps)
-			if(a.containsMapping(m))
+			if(a.contains(m))
 				intersection.add(m);
 		return intersection;
 	}
