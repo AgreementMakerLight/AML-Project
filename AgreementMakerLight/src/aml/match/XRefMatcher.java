@@ -113,7 +113,7 @@ public class XRefMatcher extends LexicalMatcher implements LexiconExtender
 		Ontology target = aml.getTarget();
 		src = match(source,thresh);
 		tgt = match(target,thresh);
-		Alignment maps = new Alignment();
+		Alignment maps = new Alignment(true);
 		for(Mapping m : src)
 		{
 			int sourceId = m.getSourceId();
@@ -137,7 +137,7 @@ public class XRefMatcher extends LexicalMatcher implements LexiconExtender
 	
 	private Alignment match(Ontology o, double thresh)
 	{
-		Alignment a = new Alignment();
+		Alignment a = new Alignment(true);
 		ReferenceMap rm = ext.getReferenceMap();
 		if(rm != null)
 		{
