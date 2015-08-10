@@ -69,7 +69,11 @@ public class AML
 	private Ontology bk;
 	private Alignment a;
 	private Alignment ref;
+	//Evaluation parameters
 	private String evaluation;
+	private double precision;
+	private double recall;
+	private double fMeasure;
 	//General matching settings
 	private boolean useReasoner = true;
 	private final String BK_PATH = "store/knowledge/";
@@ -207,16 +211,31 @@ public class AML
 	}
 
 	/**
-	 * @return the evaluation of the current alignment using a reference alignment,
-	 * in String form
+	 * Evaluates the current alignment using the reference alignment
 	 */
-	public String evaluate()
+	public void evaluate()
 	{
 		boolean gui = userInterface != null;
-		evaluation = a.evaluate(ref, gui);
+		int[] eval = a.evaluate(ref); 
+		int found = a.size() - eval[1];
+		int correct = eval[0];
+		int total = ref.size() - ref.countConflicts();
+		
+		precision = 1.0*correct/found;
+		String prc = Math.round(precision*1000)/10.0 + "%";
+		recall = 1.0*correct/total;
+		String rec = Math.round(recall*1000)/10.0 + "%";
+		fMeasure = 2*precision*recall/(precision+recall);
+		String fms = Math.round(fMeasure*1000)/10.0 + "%";
+		
 		if(gui)
+		{
+			evaluation = "Precision: " + prc + "; Recall: " + rec + "; F-measure: " + fms;
 			userInterface.refreshPanel();
-		return evaluation;
+		}
+		else
+			evaluation = "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
+					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
 	}
     
 	/**
