@@ -15,7 +15,7 @@
 * Displays the detailed information about a mapping.                          *
 *                                                                             *
 * @author Daniel Faria & Catarina Martins                                     *
-* @date 20-05-2015                                                            *
+* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml.ui;
  
@@ -44,9 +44,9 @@ import aml.match.Mapping;
 import aml.ontology.DataProperty;
 import aml.ontology.Lexicon;
 import aml.ontology.ObjectProperty;
-import aml.ontology.Ontology;
-import aml.ontology.Entity;
+import aml.ontology.Ontology2Match;
 import aml.ontology.RelationshipMap;
+import aml.ontology.URIMap;
 import aml.settings.LexicalType;
 import aml.settings.EntityType;
  
@@ -56,7 +56,8 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 	
 	private static final long serialVersionUID = 4516245633857479148L;
 	private AML aml;
-	private Ontology source, target;
+	private URIMap uris;
+	private Ontology2Match source, target;
 	private Mapping m;
 	private int currentMapping;
 	private RelationshipMap rm;
@@ -72,6 +73,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
         this.setMinimumSize(new Dimension(400,this.getHeight()));
         
         aml = AML.getInstance();
+        uris = aml.getURIMap();
         source = aml.getSource();
         target = aml.getTarget();
         rm = aml.getRelationshipMap();
@@ -88,7 +90,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 		panel.setBorder(new EmptyBorder(4,4,4,4));
 		
 		//Type
-		EntityType t = aml.getURIMap().getType(sourceId);
+		EntityType t = uris.getType(sourceId);
         JLabel type = new JLabel();
 		Font font =  type.getFont();
 		boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
@@ -126,7 +128,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			
 			JPanel sLex = new JPanel(new GridLayout(0,1));
 	        JLabel localNameS = new JLabel("Local Name: " +
-	        		source.getLocalName(sourceId));
+	        		uris.getLocalName(sourceId));
 	        sLex.add(localNameS);
 	        
 	        String lab = "Label(s): ";
@@ -185,7 +187,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			
 			JPanel tLex = new JPanel(new GridLayout(0,1));
 	        JLabel localNameT = new JLabel("Local Name: " +
-	        		target.getLocalName(targetId));
+	        		uris.getLocalName(targetId));
 	        tLex.add(localNameT);
 	        
 	        lab = "Label(s): ";
@@ -334,9 +336,6 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 		}
 		else
 		{
-			Entity pSource = source.getEntity(sourceId);
-			Entity pTarget = target.getEntity(targetId);
-
 			//For the Source Ontology
 	        JLabel sourceO = new JLabel("Source Property:");
 			sourceO.setFont(boldFont);
@@ -351,7 +350,8 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			
 			if(t.equals(EntityType.OBJECT))
 			{
-				Set<Integer> domain = ((ObjectProperty)pSource).getDomain();
+				ObjectProperty pSource = source.getObjectProperty(sourceId);
+				Set<Integer> domain = pSource.getDomain();
 				String lab = "Domain: ";
 				for(Integer i : domain)
 					lab += source.getName(i) + "; ";
@@ -362,7 +362,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 				JLabel domainS = new JLabel(lab);
 				sourcePanel.add(domainS);
 				
-				Set<Integer> range = ((ObjectProperty)pSource).getRange();
+				Set<Integer> range = pSource.getRange();
 				lab = "Range: ";
 				for(Integer i : range)
 					lab += source.getName(i) + "; ";
@@ -372,7 +372,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 					lab += "N/A";
 				JLabel rangeS = new JLabel(lab);
 				sourcePanel.add(rangeS);
-				if(((ObjectProperty)pSource).isFunctional())
+				if(pSource.isFunctional())
 				{
 					JLabel funS = new JLabel("Functional Property");
 					sourcePanel.add(funS);
@@ -380,7 +380,8 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			}
 			else if(t.equals(EntityType.DATA))
 			{
-				Set<Integer> domain = ((DataProperty)pSource).getDomain();
+				DataProperty pSource = source.getDataProperty(sourceId);
+				Set<Integer> domain = pSource.getDomain();
 				String lab = "Domain: ";
 				for(Integer i : domain)
 					lab += source.getName(i) + "; ";
@@ -391,7 +392,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 				JLabel domainS = new JLabel(lab);
 				sourcePanel.add(domainS);
 				
-				Set<String> range = ((DataProperty)pSource).getRange();
+				Set<String> range = pSource.getRange();
 				lab = "Range: ";
 				for(String s : range)
 					lab += s + "; ";
@@ -401,7 +402,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 					lab += "N/A";
 				JLabel rangeS = new JLabel(lab);
 				sourcePanel.add(rangeS);
-				if(((DataProperty)pSource).isFunctional())
+				if(pSource.isFunctional())
 				{
 					JLabel funS = new JLabel("Functional Property");
 					sourcePanel.add(funS);
@@ -423,7 +424,8 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			
 			if(t.equals(EntityType.OBJECT))
 			{
-				Set<Integer> domain = ((ObjectProperty)pTarget).getDomain();
+				ObjectProperty pTarget = target.getObjectProperty(targetId);
+				Set<Integer> domain = pTarget.getDomain();
 				String lab = "Domain: ";
 				for(Integer i : domain)
 					lab += target.getName(i) + "; ";
@@ -434,7 +436,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 				JLabel domainT = new JLabel(lab);
 				targetPanel.add(domainT);
 				
-				Set<Integer> range = ((ObjectProperty)pTarget).getRange();
+				Set<Integer> range = pTarget.getRange();
 				lab = "Range: ";
 				for(Integer i : range)
 					lab += target.getName(i) + "; ";
@@ -444,7 +446,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 					lab += "N/A";
 				JLabel rangeT = new JLabel(lab);
 				targetPanel.add(rangeT);
-				if(((ObjectProperty)pTarget).isFunctional())
+				if(pTarget.isFunctional())
 				{
 					JLabel funS = new JLabel("Functional Property");
 					targetPanel.add(funS);
@@ -452,7 +454,8 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 			}
 			else if(t.equals(EntityType.DATA))
 			{
-				Set<Integer> domain = ((DataProperty)pTarget).getDomain();
+				DataProperty pTarget = target.getDataProperty(targetId);
+				Set<Integer> domain = pTarget.getDomain();
 				String lab = "Domain: ";
 				for(Integer i : domain)
 					lab += target.getName(i) + "; ";
@@ -463,7 +466,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 				JLabel domainT = new JLabel(lab);
 				targetPanel.add(domainT);
 				
-				Set<String> range = ((DataProperty)pTarget).getRange();
+				Set<String> range = pTarget.getRange();
 				lab = "Range: ";
 				for(String s : range)
 					lab += s + "; ";
@@ -473,7 +476,7 @@ public class ViewMapping extends JDialog implements ItemListener, ActionListener
 					lab += "N/A";
 				JLabel rangeT = new JLabel(lab);
 				targetPanel.add(rangeT);
-				if(((DataProperty)pTarget).isFunctional())
+				if(pTarget.isFunctional())
 				{
 					JLabel funS = new JLabel("Functional Property");
 					targetPanel.add(funS);

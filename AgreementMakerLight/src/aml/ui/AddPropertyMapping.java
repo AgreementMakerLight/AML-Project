@@ -15,7 +15,7 @@
 * Property Mapping addition dialog box for the GUI.                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 26-05-2015                                                            *
+* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -35,7 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import aml.AML;
-import aml.ontology.Ontology;
+import aml.ontology.Ontology2Match;
 import aml.settings.EntityType;
 import aml.settings.MappingRelation;
 
@@ -47,9 +47,9 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 	private static final long serialVersionUID = -7201206021275961468L;
     private AML aml;
 	private JButton cancel, add;
-	private JComboBox<String> propTypes, annotS, annotT, dataS, dataT, objectS, objectT, rels;
-	private Vector<Integer> annotSource, annotTarget, dataSource, dataTarget, objectSource, objectTarget;
-    private JPanel dialogPanel, headerPanel, selectionPanel, annotPanel, dataPanel, objectPanel, relationPanel, buttonPanel;
+	private JComboBox<String> propTypes, dataS, dataT, objectS, objectT, rels;
+	private Vector<Integer> dataSource, dataTarget, objectSource, objectTarget;
+    private JPanel dialogPanel, headerPanel, selectionPanel, dataPanel, objectPanel, relationPanel, buttonPanel;
     private CardLayout cl;
 	
 //Constructor
@@ -60,18 +60,15 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 		
 		//Get the AML instance and the ontologies
 		aml = AML.getInstance();
-		Ontology source = aml.getSource();
-		Ontology target = aml.getTarget();
+		Ontology2Match source = aml.getSource();
+		Ontology2Match target = aml.getTarget();
 		//Get the lists of properties from the ontologies
-		objectSource = source.getIndexes(EntityType.OBJECT);
-		objectTarget = target.getIndexes(EntityType.OBJECT);
+		objectSource = new Vector<Integer>(source.getObjectProperties());
+		objectTarget = new Vector<Integer>(target.getObjectProperties());
 		boolean objectP = objectSource.size() > 0 && objectTarget.size() > 0;
-		dataSource = source.getIndexes(EntityType.DATA);
-		dataTarget = target.getIndexes(EntityType.DATA);
+		dataSource = new Vector<Integer>(source.getDataProperties());
+		dataTarget = new Vector<Integer>(target.getDataProperties());
 		boolean dataP = dataSource.size() > 0 && dataTarget.size() > 0;
-		annotSource = source.getIndexes(EntityType.ANNOTATION);
-		annotTarget = target.getIndexes(EntityType.ANNOTATION);
-		boolean annotP = annotSource.size() > 0 && annotTarget.size() > 0;
 				
 		//Set the title
 		this.setTitle("Add Property Mapping");
@@ -85,8 +82,6 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			types.add(EntityType.OBJECT.toString()); 
 		if(dataP)
 			types.add(EntityType.DATA.toString()); 
-		if(annotP)
-			types.add(EntityType.ANNOTATION.toString());
 		propTypes = new JComboBox<String>(types);
 		propTypes.addActionListener(this);
 		//Setup the header panel
@@ -147,29 +142,6 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			dataPanel.add(dtp);
 	      	selectionPanel.add(dataPanel,EntityType.DATA.toString());
         }
-		//Annotation Properties
-        if(annotP)
-        {
-			String[] as = new String[annotSource.size()];
-			for(int i = 0; i < as.length; i++)
-				as[i] = source.getName(annotSource.get(i));
-			annotS = new JComboBox<String>(as);
-			JPanel asp = new JPanel();
-			asp.setBorder(new TitledBorder("Source Ontology Property"));
-			asp.add(annotS);
-			String[] at = new String[annotTarget.size()];
-			for(int i = 0; i < at.length; i++)
-				at[i] = target.getName(annotTarget.get(i));
-			annotT = new JComboBox<String>(at);
-			JPanel atp = new JPanel();
-			atp.setBorder(new TitledBorder("Target Ontology Property"));
-			atp.add(annotT);
-			annotPanel = new JPanel();
-			annotPanel.setLayout(new BoxLayout(annotPanel, BoxLayout.PAGE_AXIS));
-			annotPanel.add(asp);
-			annotPanel.add(atp);
-	       	selectionPanel.add(annotPanel,EntityType.ANNOTATION.toString());
-        }
         //Start in the first panel
        	cl.first(selectionPanel);
        	
@@ -224,15 +196,10 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 				sourceId = objectSource.get(objectS.getSelectedIndex());
 				targetId = objectTarget.get(objectT.getSelectedIndex());
 			}
-			else if(propTypes.getSelectedItem().equals(EntityType.DATA.toString()))
+			else
 			{
 				sourceId = dataSource.get(dataS.getSelectedIndex());
 				targetId = dataTarget.get(dataT.getSelectedIndex());
-			}
-			else
-			{
-				sourceId = annotSource.get(annotS.getSelectedIndex());
-				targetId = annotTarget.get(annotT.getSelectedIndex());
 			}
 			if(sourceId == targetId)
 			{

@@ -34,7 +34,7 @@ import javax.swing.text.StyledDocument;
 import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.ontology.Ontology;
+import aml.ontology.Ontology2Match;
 
 public class ResourcePanel extends JInternalFrame
 {
@@ -86,24 +86,28 @@ public class ResourcePanel extends JInternalFrame
 		{
 			doc.remove(0, doc.getLength());
 			doc.insertString(doc.getLength(), "Source Ontology: ", s);
-			Ontology source = AML.getInstance().getSource();
+			Ontology2Match source = AML.getInstance().getSource();
 			if(source == null)
 				doc.insertString(doc.getLength(), "N/A\n", def);
 			else
 			{
 				doc.insertString(doc.getLength(), source.getURI(), u);
-				String src = " (" + source.classCount() + " classes, " +	source.propertyCount() + " properties)\n";
+				String src = " (" + source.classCount() + " classes, " +
+						(source.dataPropertyCount()+source.objectPropertyCount()) +
+						" properties)\n";
 				doc.insertString(doc.getLength(), src, def);
 			}
 			
 			doc.insertString(doc.getLength(), "Target Ontology: ", t);
-			Ontology target = AML.getInstance().getTarget();
+			Ontology2Match target = AML.getInstance().getTarget();
 			if(target == null)
 				doc.insertString(doc.getLength(), "N/A\n", def);
 			else
 			{
 				doc.insertString(doc.getLength(), target.getURI(), u);
-				String tgt = " (" + target.classCount() + " classes, " +	target.propertyCount() + " properties)\n";
+				String tgt = " (" + target.classCount() + " classes, " +
+						(target.dataPropertyCount()+target.objectPropertyCount()) +
+						" properties)\n";
 				doc.insertString(doc.getLength(), tgt, def);
 			}
 			
