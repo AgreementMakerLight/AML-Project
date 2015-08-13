@@ -17,13 +17,12 @@
 * domain and range matches. Can use WordNet to boost the name similarity.     *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 26-05-2014                                                            *
+* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml.match;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 import aml.AML;
 import aml.match.Alignment;
@@ -31,7 +30,7 @@ import aml.match.Mapping;
 import aml.match.SecondaryMatcher;
 import aml.ontology.DataProperty;
 import aml.ontology.ObjectProperty;
-import aml.ontology.Ontology;
+import aml.ontology.Ontology2Match;
 import aml.ontology.RelationshipMap;
 import aml.settings.EntityType;
 import aml.util.ISub;
@@ -46,8 +45,8 @@ public class PropertyMatcher implements SecondaryMatcher
 	
 	private Alignment maps;
 	private AML aml;
-	private Ontology source;
-	private Ontology target;
+	private Ontology2Match source;
+	private Ontology2Match target;
 	private WordNet wn = null;
 	private Set<String> stopList;
 	
@@ -72,21 +71,9 @@ public class PropertyMatcher implements SecondaryMatcher
 		long time = System.currentTimeMillis()/1000;
 		maps = a;
 		Alignment propMaps = new Alignment();
-		//Map annotation properties
-		Vector<Integer> sourceKeys = source.getIndexes(EntityType.ANNOTATION);
-		Vector<Integer> targetKeys = target.getIndexes(EntityType.ANNOTATION);
-		for(Integer i : sourceKeys)
-		{
-			for(Integer j : targetKeys)
-			{
-				double sim = matchProperties(i,j,EntityType.ANNOTATION);
-				if(sim >= threshold)
-					propMaps.add(new Mapping(i,j,sim));
-			}
-		}
 		//Map data properties
-		sourceKeys = source.getIndexes(EntityType.DATA);
-		targetKeys = target.getIndexes(EntityType.DATA);
+		Set<Integer> sourceKeys = source.getDataProperties();
+		Set<Integer> targetKeys = target.getDataProperties();
 		for(Integer i : sourceKeys)
 		{
 			for(Integer j : targetKeys)
@@ -97,8 +84,8 @@ public class PropertyMatcher implements SecondaryMatcher
 			}
 		}
 		//Map object properties
-		sourceKeys = source.getIndexes(EntityType.OBJECT);
-		targetKeys = target.getIndexes(EntityType.OBJECT);
+		sourceKeys = source.getObjectProperties();
+		targetKeys = target.getObjectProperties();
 		for(Integer i : sourceKeys)
 		{
 			for(Integer j : targetKeys)
@@ -172,8 +159,8 @@ public class PropertyMatcher implements SecondaryMatcher
 		//We should only match datatype properties that have matching domains and ranges
 		if(e.equals(EntityType.DATA))
 		{
-			DataProperty sProp = (DataProperty)source.getEntity(sourceId);
-			DataProperty tProp = (DataProperty)target.getEntity(targetId);
+			DataProperty sProp = source.getDataProperty(sourceId);
+			DataProperty tProp = target.getDataProperty(targetId);
 			Set<Integer> sDomain = sProp.getDomain();
 			Set<Integer> tDomain = tProp.getDomain();
 			if(!idsMatch(sDomain,tDomain))
@@ -186,8 +173,8 @@ public class PropertyMatcher implements SecondaryMatcher
 		//We should only match object properties that have matching domains and ranges
 		else if(e.equals(EntityType.OBJECT))
 		{
-			ObjectProperty sProp = (ObjectProperty)source.getEntity(sourceId);
-			ObjectProperty tProp = (ObjectProperty)target.getEntity(targetId);
+			ObjectProperty sProp = source.getObjectProperty(sourceId);
+			ObjectProperty tProp = target.getObjectProperty(targetId);
 			Set<Integer> sDomain = sProp.getDomain();
 			Set<Integer> tDomain = tProp.getDomain();
 			if(!idsMatch(sDomain,tDomain))

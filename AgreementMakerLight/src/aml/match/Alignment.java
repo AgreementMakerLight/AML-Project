@@ -41,7 +41,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
-import aml.ontology.Ontology;
+import aml.ontology.Ontology2Match;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.settings.MappingRelation;
@@ -62,8 +62,8 @@ public class Alignment implements Iterable<Mapping>
 	private boolean internal;
 	//Link to AML and the Ontologies
 	private AML aml;
-	private Ontology source;
-	private Ontology target;
+	private Ontology2Match source;
+	private Ontology2Match target;
 	//Link to the URIMap
 	private URIMap uris;
 	
@@ -966,8 +966,6 @@ public class Alignment implements Iterable<Mapping>
 	public void saveTSV(String file) throws FileNotFoundException
 	{
 		AML aml = AML.getInstance();
-		Ontology source = aml.getSource();
-		Ontology target = aml.getTarget();
 		URIMap uris = aml.getURIMap();
 		
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
