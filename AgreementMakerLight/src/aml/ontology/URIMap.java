@@ -16,7 +16,7 @@
 * ontologies.                                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 21-05-2015                                                            *
+* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
@@ -93,6 +93,21 @@ public class URIMap
 		return indexURI.keySet();
 	}
 	
+	/**
+	 * @param index: the index of the entity to get the name
+	 * @return the local name of the entity with the given index
+	 */
+	public String getLocalName(int index)
+	{
+		String uri = indexURI.get(index);
+		if(uri == null)
+			return null;
+		int i = uri.indexOf("#") + 1;
+		if(i == 0)
+			i = uri.lastIndexOf("/") + 1;
+		return uri.substring(i);
+	}
+
 	/**
 	 * @param index: the index of the Ontology entity
 	 * @return the EntityType of the input index

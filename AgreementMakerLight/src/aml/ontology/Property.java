@@ -12,33 +12,52 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A basic Ontology entity, represented by its local name.                     *
-* Classes and Annotation Properties can use this class directly; Data and     *
-* Object Properties should use the corresponding subclasses.                  *
+* An Ontology Property, which can either be a Data or an Object property.     *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 21-05-2015                                                            *
+* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
-public class Entity
+import java.util.HashSet;
+import java.util.Set;
+
+public class Property
 {
 	
 //Attributes
 	
-	private String name;
+	private Set<Integer> domain;
+	private boolean isFunctional;
+
 	
 //Constructors
 
-	public Entity(String n)
+	public Property()
 	{
-		name = n;
+		domain = new HashSet<Integer>();
+		isFunctional = false;
 	}
 	
 //Public Methods
 
-	public String getName()
+	public void addDomain(Integer i)
 	{
-		return name;
+		domain.add(i);
+	}
+	
+	public Set<Integer> getDomain()
+	{
+		return domain;
+	}
+		
+	public boolean isFunctional()
+	{
+		return isFunctional;
+	}
+	
+	public void isFunctional(boolean f)
+	{
+		isFunctional = f;
 	}
 }

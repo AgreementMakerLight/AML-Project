@@ -16,7 +16,7 @@
 * relationships and disjoint clauses.                                         *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 21-05-2015                                                            *
+* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
@@ -41,7 +41,6 @@ public class RelationshipMap
 	private Table3List<Integer,Integer,Relationship> descendantMap;
 	//Map between descendant classes and their ancestors (with transitive closure)
 	private Table3List<Integer,Integer,Relationship> ancestorMap;
-	//TODO: Add option to not do transitive closure for internal AML use
 	//Map between disjoint classes (direct only)
 	private Table2Set<Integer,Integer> disjointMap;
 	//List of high level classes
@@ -588,9 +587,9 @@ public class RelationshipMap
 		{
 			if(getParents(a).size() == 0 && getChildren(a).size() > 0)
 			{
-				if(aml.getSource().contains(a))
+				if(aml.getSource().containsClass(a))
 					sourceTop.add(a);
-				if(aml.getTarget().contains(a))
+				if(aml.getTarget().containsClass(a))
 					targetTop.add(a);
 			}
 		}

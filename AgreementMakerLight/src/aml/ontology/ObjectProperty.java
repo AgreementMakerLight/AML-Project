@@ -15,67 +15,37 @@
 * An Ontology Object Property Entity.                                         *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 21-05-2015                                                            *
+* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class ObjectProperty extends Entity
+public class ObjectProperty extends Property
 {
 	
 //Attributes
 	
-	private Set<Integer> domain;
 	private Set<Integer> range;
-	private boolean isFunctional;
 	
 //Constructors
 
-	public ObjectProperty(String n)
+	public ObjectProperty()
 	{
-		super(n);
-		domain = new HashSet<Integer>();
+		super();
 		range = new HashSet<Integer>();
-		isFunctional = false;
-	}
-	
-	public ObjectProperty(String n, boolean f)
-	{
-		this(n);
-		isFunctional = f;
 	}
 	
 //Public Methods
 
-	public void addDomain(Integer i)
-	{
-		domain.add(i);
-	}
-	
 	public void addRange(Integer i)
 	{
 		range.add(i);
 	}
 	
-	public Set<Integer> getDomain()
-	{
-		return domain;
-	}
-		
 	public Set<Integer> getRange()
 	{
 		return range;
-	}
-	
-	public boolean isFunctional()
-	{
-		return isFunctional;
-	}
-	
-	public void isFunctional(boolean f)
-	{
-		isFunctional = f;
 	}
 }

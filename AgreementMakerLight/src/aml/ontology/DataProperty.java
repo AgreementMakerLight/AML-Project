@@ -15,67 +15,37 @@
 * An Ontology Data Property Entity.                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 21-05-2015                                                            *
+* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class DataProperty extends Entity
+public class DataProperty extends Property
 {
 	
 //Attributes
 	
-	private Set<Integer> domain;
 	private Set<String> range;
-	private boolean isFunctional;
 	
 //Constructors
 
-	public DataProperty(String n)
+	public DataProperty()
 	{
-		super(n);
-		domain = new HashSet<Integer>();
+		super();
 		range = new HashSet<String>();
-		isFunctional = false;
-	}
-	
-	public DataProperty(String n, boolean f)
-	{
-		this(n);
-		isFunctional = f;
 	}
 	
 //Public Methods
 
-	public void addDomain(Integer i)
-	{
-		domain.add(i);
-	}
-	
 	public void addRange(String s)
 	{
 		range.add(s);
 	}
 	
-	public Set<Integer> getDomain()
-	{
-		return domain;
-	}
-		
 	public Set<String> getRange()
 	{
 		return range;
-	}
-	
-	public boolean isFunctional()
-	{
-		return isFunctional;
-	}
-	
-	public void isFunctional(boolean f)
-	{
-		isFunctional = f;
 	}
 }
