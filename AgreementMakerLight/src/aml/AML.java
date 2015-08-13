@@ -18,7 +18,7 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 26-05-2015                                                            *
+* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml;
 
@@ -37,10 +37,10 @@ import aml.match.ManualMatcher;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.match.AutomaticMatcher;
-import aml.ontology.Ontology;
+import aml.ontology.BKOntology;
+import aml.ontology.Ontology2Match;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
-import aml.settings.EntityType;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
@@ -64,9 +64,9 @@ public class AML
 	//The ontology and alignment data structures
 	private URIMap uris;
 	private RelationshipMap rels;
-	private Ontology source;
-	private Ontology target;
-	private Ontology bk;
+	private Ontology2Match source;
+	private Ontology2Match target;
+	private BKOntology bk;
 	private Alignment a;
 	private Alignment ref;
 	//Evaluation parameters
@@ -186,8 +186,8 @@ public class AML
 		selectedSteps.add(MatchStep.STRING);
 		if(size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM))
 			selectedSteps.add(MatchStep.STRUCT);
-		double sourceRatio = source.propertyCount() * 1.0 / source.classCount();
-		double targetRatio = target.propertyCount() * 1.0 / target.classCount();
+		double sourceRatio = (source.dataPropertyCount() + source.objectPropertyCount()) * 1.0 / source.classCount();
+		double targetRatio = (target.dataPropertyCount() + target.objectPropertyCount()) * 1.0 / target.classCount();
 		if(sourceRatio >= 0.05 && targetRatio >= 0.05)
 			selectedSteps.add(MatchStep.PROPERTY);
 		selectedSteps.add(MatchStep.SELECT);
@@ -257,7 +257,7 @@ public class AML
     /**
      * @return the current background knowledge ontology
      */
-	public Ontology getBKOntology()
+	public BKOntology getBKOntology()
 	{
 		return bk;
 	}
@@ -404,7 +404,7 @@ public class AML
 	/**
 	 * @return the current source ontology
 	 */
-	public Ontology getSource()
+	public Ontology2Match getSource()
 	{
 		return source;
 	}
@@ -420,7 +420,7 @@ public class AML
 	/**
 	 * @return the current target ontology
 	 */
-	public Ontology getTarget()
+	public Ontology2Match getTarget()
 	{
 		return target;
 	}
@@ -473,7 +473,7 @@ public class AML
     public boolean hasClasses()
     {
     	return hasOntologies() &&
-    		source.contains(EntityType.CLASS) && target.contains(EntityType.CLASS);
+    		source.classCount() > 0 && target.classCount() > 0;
     }
     
     /**
@@ -491,9 +491,8 @@ public class AML
     public boolean hasProperties()
     {
     	return hasOntologies() &&
-   			((source.contains(EntityType.ANNOTATION) && target.contains(EntityType.ANNOTATION)) ||
-   			(source.contains(EntityType.DATA) && target.contains(EntityType.DATA)) ||
-   			(source.contains(EntityType.OBJECT) && target.contains(EntityType.OBJECT)));
+   			((source.dataPropertyCount() > 0 && target.dataPropertyCount() > 0) ||
+   			(source.objectPropertyCount() > 0 && target.objectPropertyCount() > 0));
     }
 	
     /**
@@ -550,11 +549,9 @@ public class AML
 	public void openBKOntology(String name) throws OWLOntologyCreationException
 	{
 		long time = System.currentTimeMillis()/1000;
-		bk = new Ontology(BK_PATH + name,false);
-		String refName = name.substring(0,name.lastIndexOf(".")) + ".xrefs";
-		File f = new File(BK_PATH + refName);
-		if(f.exists())
-			bk.getReferenceMap().extend(BK_PATH + refName);
+		if(bk != null)
+			bk.close();
+		bk = new BKOntology(BK_PATH + name);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(bk.getURI() + " loaded in " + time + " seconds");
 	}
@@ -568,20 +565,20 @@ public class AML
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = new Ontology(src,true);
+		source = new Ontology2Match(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.classCount());	
 		System.out.println("Names: " + source.getLexicon().size());
-		System.out.println("Properties: " + source.propertyCount());
+		System.out.println("Properties: " + (source.dataPropertyCount()+source.objectPropertyCount()));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
-		target = new Ontology(tgt,true);
+		target = new Ontology2Match(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.classCount());
 		System.out.println("Names: " + target.getLexicon().size());
-		System.out.println("Properties: " + target.propertyCount());
+		System.out.println("Properties: " + (target.dataPropertyCount()+target.objectPropertyCount()));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Running transitive closure on RelationshipMap");
@@ -610,26 +607,26 @@ public class AML
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = new Ontology(src,true);
+		source = new Ontology2Match(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.classCount());	
 		System.out.println("Names: " + source.getLexicon().size());
-		System.out.println("Properties: " + source.propertyCount());
+		System.out.println("Properties: " + (source.dataPropertyCount()+source.objectPropertyCount()));
 		time = System.currentTimeMillis()/1000;
-		System.out.println("Loading target ontology");	
-		target = new Ontology(tgt,true);
+		System.out.println("Loading target ontology");
+		target = new Ontology2Match(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.classCount());
 		System.out.println("Names: " + target.getLexicon().size());
-		System.out.println("Properties: " + target.propertyCount());
+		System.out.println("Properties: " + (target.dataPropertyCount()+target.objectPropertyCount()));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
-		System.out.println("Running transitive closure on RelationshipMap");	
+		System.out.println("Running transitive closure on RelationshipMap");
 		rels.transitiveClosure();
 		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Transitive closure finished in " + time + " seconds");		
+		System.out.println("Transitive closure finished in " + time + " seconds");	
 		System.out.println("Extended Relationships: " + rels.relationshipCount());
 		System.out.println("Disjoints: " + rels.disjointCount());
     	//Reset the alignment, mapping, and evaluation
@@ -720,7 +717,7 @@ public class AML
 		this.nss = nss;
 	}
 
-	public void setOntologies(Ontology s, Ontology t)
+	public void setOntologies(Ontology2Match s, Ontology2Match t)
 	{
 		source = s;
 		target = t;

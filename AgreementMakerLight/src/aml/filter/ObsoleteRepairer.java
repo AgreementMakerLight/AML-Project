@@ -23,15 +23,15 @@ package aml.filter;
 import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.ontology.Ontology;
+import aml.ontology.Ontology2Match;
 
 public class ObsoleteRepairer implements Repairer
 {
 	@Override
 	public Alignment repair(Alignment a)
 	{
-		Ontology source = AML.getInstance().getSource();
-		Ontology target = AML.getInstance().getTarget();
+		Ontology2Match source = AML.getInstance().getSource();
+		Ontology2Match target = AML.getInstance().getTarget();
 		
 		Alignment selected = new Alignment();
 		for(Mapping m : a)
