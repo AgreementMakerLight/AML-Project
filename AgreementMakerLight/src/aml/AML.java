@@ -90,7 +90,7 @@ public class AML
     private StringSimMeasure ssm;
     private boolean primaryStringMatcher; //Whether to use the String Matcher globally (TRUE) or locally (FALSE)
     private NeighborSimilarityStrategy nss;
-    private boolean directNeighbors = true;
+    private boolean directNeighbors = false;
     private boolean removeObsolete;
     private boolean structuralSelection;    
 	//User interface and settings
@@ -180,7 +180,8 @@ public class AML
 		selectedSteps = new Vector<MatchStep>();
 		if(lang.equals(LanguageSetting.TRANSLATE))
 			selectedSteps.add(MatchStep.TRANSLATE);
-		selectedSteps.add(MatchStep.BK);
+		if(lang.equals(LanguageSetting.SINGLE))
+			selectedSteps.add(MatchStep.BK);
 		if(!size.equals(SizeCategory.HUGE))
 			selectedSteps.add(MatchStep.WORD);
 		selectedSteps.add(MatchStep.STRING);
@@ -195,7 +196,7 @@ public class AML
 		wms = WordMatchStrategy.AVERAGE;
 		ssm = StringSimMeasure.ISUB;
 		primaryStringMatcher = size.equals(SizeCategory.SMALL);
-		nss = NeighborSimilarityStrategy.MINIMUM;
+		nss = NeighborSimilarityStrategy.DESCENDANTS;
 		directNeighbors = false;
 		sType = SelectionType.getSelectionType();
 		removeObsolete = size.equals(SizeCategory.HUGE);
