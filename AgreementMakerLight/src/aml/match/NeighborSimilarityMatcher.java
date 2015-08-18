@@ -16,15 +16,22 @@
 * their classes.                                                              *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 25-05-2015                                                            *
+* @date 18-08-2015                                                            *
 ******************************************************************************/
 package aml.match;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import aml.AML;
 import aml.ontology.RelationshipMap;
 import aml.settings.NeighborSimilarityStrategy;
+import aml.util.Table2Set;
 
 public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 {
@@ -37,6 +44,8 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	private Alignment input;
 	private NeighborSimilarityStrategy strat;
 	private boolean direct;
+	//The available CPU threads
+	private int threads;
 	
 //Constructors
 	
@@ -46,6 +55,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		rels = aml.getRelationshipMap();
 		strat = NeighborSimilarityStrategy.MINIMUM;
 		direct = aml.directNeighbors();
+		threads = Runtime.getRuntime().availableProcessors();
 	}
 	
 	public NeighborSimilarityMatcher(NeighborSimilarityStrategy s, boolean direct)
@@ -63,7 +73,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		System.out.println("Extending Alignment with Neighbor Similarity Matcher");
 		long time = System.currentTimeMillis()/1000;
 		input = a;
-		Alignment maps = new Alignment();
+		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(int i = 0; i < input.size(); i++)
 		{
 			Mapping m = input.get(i);
@@ -73,33 +83,30 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 			Set<Integer> targetSubClasses = rels.getSubClasses(m.getTargetId(),true);
 			for(Integer s : sourceSubClasses)
 			{
-				if(input.containsSource(s) || maps.containsSource(s))
+				if(input.containsSource(s))
 					continue;
 				for(Integer t : targetSubClasses)
 				{
-					if(input.containsTarget(t) || maps.containsTarget(t))
+					if(input.containsTarget(t))
 						continue;
-					double sim = mapTwoTerms(s, t);
-					if(sim >= thresh)
-						maps.add(s,t,sim);
+					toMap.add(s, t);
 				}
 			}
 			Set<Integer> sourceSuperClasses = rels.getSuperClasses(m.getSourceId(),true);
 			Set<Integer> targetSuperClasses = rels.getSuperClasses(m.getTargetId(),true);
 			for(Integer s : sourceSuperClasses)
 			{
-				if(input.containsSource(s) || maps.containsSource(s))
+				if(input.containsSource(s))
 					continue;
 				for(Integer t : targetSuperClasses)
 				{
-					if(input.containsTarget(t) || maps.containsTarget(t))
+					if(input.containsTarget(t))
 						continue;
-					double sim = mapTwoTerms(s, t);
-					if(sim >= thresh)
-						maps.add(s,t,sim);
-				}
+					toMap.add(s, t);
+				}				
 			}
 		}
+		Alignment maps = mapInParallel(toMap,thresh);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
@@ -112,6 +119,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		long time = System.currentTimeMillis()/1000;
 		input = a;
 		Alignment maps = new Alignment();
+		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(Mapping m : a)
 		{
 			int sId = m.getSourceId();
@@ -121,8 +129,9 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 			if(!aml.getURIMap().isClass(sId))
 				maps.add(m);
 			else
-				maps.add(sId,tId,mapTwoTerms(sId,tId));
+				toMap.add(sId, tId);
 		}
+		maps.addAll(mapInParallel(toMap,0.0));
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
@@ -130,20 +139,53 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	
 //Private Methods
 	
+	//Maps a table of classes in parallel, using all available threads
+	private Alignment mapInParallel(Table2Set<Integer,Integer> toMap, double thresh)
+	{
+		Alignment maps = new Alignment();
+		ArrayList<MappingTask> tasks = new ArrayList<MappingTask>();
+		for(Integer i : toMap.keySet())
+			for(Integer j : toMap.get(i))
+				tasks.add(new MappingTask(i,j));
+        List<Future<Mapping>> results;
+		ExecutorService exec = Executors.newFixedThreadPool(threads);
+		try
+		{
+			results = exec.invokeAll(tasks);
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+	        results = new ArrayList<Future<Mapping>>();
+		}
+		exec.shutdown();
+		for(Future<Mapping> fm : results)
+		{
+			try
+			{
+				Mapping m = fm.get();
+				if(m.getSimilarity() >= thresh)
+					maps.add(m);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return maps;
+	}
+	
 	//Computes the neighbor structural similarity between two terms by
 	//checking for mappings between all their ancestors and descendants
 	private double mapTwoTerms(int sId, int tId)
 	{
-		Set<Integer> sourceParents = rels.getSuperClasses(sId,direct);
-		Set<Integer> targetParents = rels.getSuperClasses(tId,direct);
-		Set<Integer> sourceChildren = rels.getSubClasses(sId,direct);
-		Set<Integer> targetChildren = rels.getSubClasses(tId,direct);
 		double parentSim = 0.0;
-		double parentTotal = 0.0;
 		double childrenSim = 0.0;
-		double childrenTotal = 0.0;
 		if(!strat.equals(NeighborSimilarityStrategy.DESCENDANTS))
 		{
+			double parentTotal = 0.0;
+			Set<Integer> sourceParents = rels.getSuperClasses(sId,direct);
+			Set<Integer> targetParents = rels.getSuperClasses(tId,direct);
 			for(Integer i : sourceParents)
 			{
 				parentTotal += 0.5 / rels.getDistance(sId,i);
@@ -157,6 +199,9 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		}
 		if(!strat.equals(NeighborSimilarityStrategy.ANCESTORS))
 		{
+			double childrenTotal = 0.0;
+			Set<Integer> sourceChildren = rels.getSubClasses(sId,direct);
+			Set<Integer> targetChildren = rels.getSubClasses(tId,direct);
 			for(Integer i : sourceChildren)
 			{
 				childrenTotal += 0.5 / rels.getDistance(i,sId);
@@ -178,5 +223,24 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 			return Math.max(parentSim,childrenSim);
 		else
 			return (parentSim + childrenSim)*0.5;
+	}
+	
+	//Callable class for mapping two classes
+	private class MappingTask implements Callable<Mapping>
+	{
+		private int source;
+		private int target;
+		
+		MappingTask(int s, int t)
+	    {
+			source = s;
+	        target = t;
+	    }
+	        
+	    @Override
+	    public Mapping call()
+	    {
+       		return new Mapping(source,target,mapTwoTerms(source,target));
+        }
 	}
 }
