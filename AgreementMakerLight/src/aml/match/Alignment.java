@@ -26,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -47,7 +48,7 @@ import aml.ontology.URIMap;
 import aml.settings.MappingRelation;
 import aml.util.Table2Map;
 
-public class Alignment implements Iterable<Mapping>
+public class Alignment implements Collection<Mapping>
 {
 
 //Attributes
@@ -116,10 +117,10 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * Creates a new Alignment that is a copy of the input Alignment
-	 * @param a: the Alignment to copy
+	 * Creates a new Alignment that contains the input collection of mappings
+	 * @param a: the collection of mappings to include in this Alignment
 	 */
-	public Alignment(Alignment a)
+	public Alignment(Collection<Mapping> a)
 	{
 		this();
 		addAll(a);
@@ -149,14 +150,14 @@ public class Alignment implements Iterable<Mapping>
 	 * @param sim: the similarity between the classes
 	 * @param r: the mapping relationship between the classes
 	 */
-	public void add(int sourceId, int targetId, double sim, MappingRelation r)
+	public boolean add(int sourceId, int targetId, double sim, MappingRelation r)
 	{
 		//Unless the Alignment is internal, we can't have a mapping
 		//involving entities that exist in both ontologies (they are
 		//the same entity, and therefore shouldn't map with other
 		//entities in either ontology)
 		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
-			return;
+			return false;
 		
 		//Construct the Mapping
 		Mapping m = new Mapping(sourceId, targetId, sim, r);
@@ -166,15 +167,24 @@ public class Alignment implements Iterable<Mapping>
 			maps.add(m);
 			sourceMaps.add(sourceId, targetId, m);
 			targetMaps.add(targetId, sourceId, m);
+			return true;
 		}
 		//Otherwise update the similarity
 		else
 		{
 			m = sourceMaps.get(sourceId,targetId);
+			boolean check = false;
 			if(m.getSimilarity() < sim)
+			{
 				m.setSimilarity(sim);
+				check = true;
+			}
 			if(!m.getRelationship().equals(r))
-				m.setRelationship(r);		
+			{
+				m.setRelationship(r);
+				check = true;
+			}
+			return check;
 		}
 	}
 	
@@ -186,9 +196,9 @@ public class Alignment implements Iterable<Mapping>
 	 * @param targetURI: the URI of the target class to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 */
-	public void add(String sourceURI, String targetURI, double sim)
+	public boolean add(String sourceURI, String targetURI, double sim)
 	{
-		add(sourceURI,targetURI,sim,MappingRelation.EQUIVALENCE);
+		return add(sourceURI,targetURI,sim,MappingRelation.EQUIVALENCE);
 	}
 	
 	/**
@@ -200,46 +210,32 @@ public class Alignment implements Iterable<Mapping>
 	 * @param sim: the similarity between the classes
 	 * @param r: the mapping relationship between the classes
 	 */
-	public void add(String sourceURI, String targetURI, double sim, MappingRelation r)
+	public boolean add(String sourceURI, String targetURI, double sim, MappingRelation r)
 	{
 		int id1 = uris.getIndex(sourceURI);
 		int id2 = uris.getIndex(targetURI);
 		if(id1 == -1 || id2 == -1)
-			return;
+			return false;
 		if(aml.getSource().contains(id1) && aml.getTarget().contains(id2))
-			add(id1,id2,sim,r);
+			return add(id1,id2,sim,r);
 		else if(aml.getSource().contains(id2) && aml.getTarget().contains(id1))
-			add(id2,id1,sim,r);
+			return add(id2,id1,sim,r);
+		return false;
 	}
 	
-	/**
-	 * Adds a clone of the given Mapping to the Alignment if it is non-redundant
-	 * Otherwise, updates the similarity of the already present Mapping
-	 * to the maximum similarity of the two redundant Mappings
-	 * @param m: the Mapping to add to the Alignment
-	 */
-	public void add(Mapping m)
+	@Override
+	public boolean add(Mapping m)
 	{
-		add(m.getSourceId(), m.getTargetId(), m.getSimilarity(), m.getRelationship());
+		return add(m.getSourceId(), m.getTargetId(), m.getSimilarity(), m.getRelationship());
 	}
 
-	/**
-	 * Adds all Mappings in a to this Alignment
-	 * @param a: the Alignment to add to this Alignment
-	 */
-	public void addAll(Alignment a)
+	@Override
+	public boolean addAll(Collection<? extends Mapping> a)
 	{
-		addAll(a.maps);
-	}
-	
-	/**
-	 * Adds all Mappings in the given list to this Alignment
-	 * @param maps: the list of Mappings to add to this Alignment
-	 */
-	public void addAll(List<Mapping> maps)
-	{
-		for(Mapping m : maps)
-			add(m);
+		boolean check = false;
+		for(Mapping m : a)
+			check = add(m) || check;
+		return check;
 	}
 	
 	/**
@@ -288,6 +284,14 @@ public class Alignment implements Iterable<Mapping>
 		return cardinality;		
 	}
 	
+	@Override
+	public void clear()
+	{
+		maps = new Vector<Mapping>(0,1);
+		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
+		targetMaps = new Table2Map<Integer,Integer,Mapping>();		
+	}
+	
 	/**
 	 * @param sourceId: the index of the source class to check in the Alignment
  	 * @param targetId: the index of the target class to check in the Alignment
@@ -301,14 +305,20 @@ public class Alignment implements Iterable<Mapping>
 				getRelationship(sourceId,targetId).equals(r);
 	}
 
-	/**
-	 * @param m: the Mapping to check in the Alignment
-	 * @return whether the Alignment contains a Mapping equivalent to m
-	 * including the relationship
-	 */
-	public boolean contains(Mapping m)
+	@Override
+	public boolean contains(Object o)
 	{
-		return contains(m.getSourceId(), m.getTargetId(), m.getRelationship());
+		return o instanceof Mapping && contains(((Mapping)o).getSourceId(),
+				((Mapping)o).getTargetId(), ((Mapping)o).getRelationship());
+	}
+	
+	@Override
+	public boolean containsAll(Collection<?> c)
+	{
+		for(Object o : c)
+			if(!contains(o))
+				return false;
+		return true;
 	}
 	
 	/**
@@ -512,6 +522,12 @@ public class Alignment implements Iterable<Mapping>
 			if(!a.contains(m))
 				diff.add(m);
 		return diff;
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		return o instanceof Alignment && containsAll((Alignment)o);
 	}
 	
 	/**
@@ -829,6 +845,12 @@ public class Alignment implements Iterable<Mapping>
 		return tMaps;
 	}
 
+	@Override
+	public int hashCode()
+	{
+		return maps.hashCode();
+	}
+	
 	/**
 	 * @param a: the Alignment to intersect with this Alignment 
 	 * @return the Alignment corresponding to the intersection between this Alignment and a
@@ -842,11 +864,14 @@ public class Alignment implements Iterable<Mapping>
 				intersection.add(m);
 		return intersection;
 	}
-
+	
 	@Override
-	/**
-	 * @return an Iterator over the list of class Mappings
-	 */
+	public boolean isEmpty()
+	{
+		return maps.isEmpty();
+	}
+	
+	@Override
 	public Iterator<Mapping> iterator()
 	{
 		return maps.iterator();
@@ -877,17 +902,21 @@ public class Alignment implements Iterable<Mapping>
 		return max;		
 	}
 	
-	/**
-	 * Removes the given Mapping from the Alignment
-	 * @param m: the Mapping to remove from the Alignment
-	 */
-	public void remove(Mapping m)
+	@Override
+	public boolean remove(Object o)
 	{
-		int sourceId = m.getSourceId();
-		int targetId = m.getTargetId();
-		sourceMaps.remove(sourceId, targetId);
-		targetMaps.remove(targetId, sourceId);
-		maps.remove(m);
+		if(o instanceof Mapping && contains(o))
+		{
+			Mapping m = (Mapping)o;
+			int sourceId = m.getSourceId();
+			int targetId = m.getTargetId();
+			sourceMaps.remove(sourceId, targetId);
+			targetMaps.remove(targetId, sourceId);
+			maps.remove(m);
+			return true;
+		}
+		else
+			return false;
 	}
 	
 	/**
@@ -895,22 +924,29 @@ public class Alignment implements Iterable<Mapping>
 	 * @param sourceId: the source class to remove from the Alignment
 	 * @param targetId: the target class to remove from the Alignment
 	 */
-	public void remove(int sourceId, int targetId)
+	public boolean remove(int sourceId, int targetId)
 	{
 		Mapping m = new Mapping(sourceId, targetId, 1.0);
-		sourceMaps.remove(sourceId, targetId);
-		targetMaps.remove(targetId, sourceId);
-		maps.remove(m);
+		return remove(m);
 	}
 	
-	/**
-	 * Removes a list of Mappings from the Alignment.
-	 * @param maps: the list of Mappings to remove to this Alignment
-	 */
-	public void removeAll(List<Mapping> maps)
+	@Override
+	public boolean removeAll(Collection<?> c)
 	{
-		for(Mapping m : maps)
-			remove(m);
+		boolean check = false;
+		for(Object o : c)
+			check = remove(o) || check;
+		return check;
+	}
+	
+	@Override
+	public boolean retainAll(Collection<?> c)
+	{
+		boolean check = false;
+		for(Mapping m : this)
+			if(!c.contains(m))
+				check = remove(m) || check;
+		return check;
 	}
 
 	/**
@@ -980,9 +1016,7 @@ public class Alignment implements Iterable<Mapping>
 		outStream.close();
 	}
 
-	/**
-	 * @return the number of Mappings in this Alignment
-	 */
+	@Override
 	public int size()
 	{
 		return maps.size();
@@ -1045,6 +1079,18 @@ public class Alignment implements Iterable<Mapping>
 		int count = aml.getTarget().classCount();
 		coverage /= count;
 		return coverage;
+	}
+	
+	@Override
+	public Object[] toArray()
+	{
+		return maps.toArray();
+	}
+	
+	@Override
+	public <T> T[] toArray(T[] a)
+	{
+		return maps.toArray(a);
 	}
 	
 //Private Methods
