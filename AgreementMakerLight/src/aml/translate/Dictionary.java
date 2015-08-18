@@ -35,7 +35,6 @@ import java.util.HashSet;
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.settings.LexicalType;
-import aml.util.StringParser;
 
 public class Dictionary
 {
@@ -115,7 +114,7 @@ public class Dictionary
 		for(String n : names)
 		{
 			//Check if they are in the source language
-			if(!l.getLanguages(n).contains(sourceLang) || n.equals("null") || StringParser.isFormula(n))
+			if(!l.getLanguages(n).contains(sourceLang) || n.equals("null"))
 				continue;
 			String trans = "";
 			//If the dictionary contains the name, get the translation
@@ -150,7 +149,7 @@ public class Dictionary
 			//And translate them
 			for(String n : pNames)
 			{
-				if(n.equals("null") || StringParser.isFormula(n))
+				if(n.equals("null"))
 					continue;
 				String trans = "";
 				//If the dictionary contains the name, get the translation
@@ -162,7 +161,7 @@ public class Dictionary
 				else if(useTranslator)
 				{
 					System.out.println("Not found: " + n);
-					trans = translator.translate(n, sourceLang, targetLang);
+					//trans = translator.translate(n, sourceLang, targetLang);
 					if(trans.startsWith("ArgumentException"))
 						continue;
 					//Update the dictionary
