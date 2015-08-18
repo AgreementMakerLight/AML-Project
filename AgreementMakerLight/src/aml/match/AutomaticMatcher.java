@@ -19,8 +19,6 @@
 ******************************************************************************/
 package aml.match;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Vector;
 
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -69,7 +67,6 @@ public class AutomaticMatcher
 	//Alignments
 	private static Alignment a;
 	private static Alignment lex;
-	private static Set<Alignment> alignSet;
 	
 //Constructors	
 	
@@ -87,8 +84,6 @@ public class AutomaticMatcher
 		sType = aml.getSelectionType();
 		//Check if the task is interactive
 		isInteractive = Oracle.isInteractive();
-		if(isInteractive)
-			alignSet = new HashSet<Alignment>();
 		//Initialize the alignment
 		a = new Alignment();
 		//And start the matching procedure
@@ -97,10 +92,12 @@ public class AutomaticMatcher
 		if(selectedSteps.contains(MatchStep.TRANSLATE))
 			translate();
 		lexicalMatch();
-		bkMatch();
+		if(selectedSteps.contains(MatchStep.BK))
+			bkMatch();
 		if(selectedSteps.contains(MatchStep.WORD))
 			wordMatch();
-		stringMatch();
+		if(selectedSteps.contains(MatchStep.STRING))
+			stringMatch();
 		if(selectedSteps.contains(MatchStep.STRUCT))
 			structuralMatch();
 		if(selectedSteps.contains(MatchStep.PROPERTY))
@@ -153,9 +150,6 @@ public class AutomaticMatcher
 	//Step 4 - Background Knowledge Match
 	private static void bkMatch()
 	{
-		//Only if the task is single-language
-		if(!lang.equals(LanguageSetting.SINGLE))
-			return;
 		//We use only WordNet for very small ontologies
 		if(size.equals(SizeCategory.SMALL))
 		{
@@ -167,10 +161,6 @@ public class AutomaticMatcher
 			double coverage = Math.min(wordNet.sourceCoverage(),wordNet.targetCoverage());
 			if(coverage >= wnThresh)
 				a.addAllOneToOne(wordNet);
-			//Regardless of coverage, the WordNet alignment is used as an auxiliary
-			//alignment in interactive selection
-			if(isInteractive)
-				alignSet.add(wordNet);
 		}
 		else
 		{
@@ -242,8 +232,6 @@ public class AutomaticMatcher
 				word.addAll(wm.match(thresh));
 			}
 		}
-		if(isInteractive)
-			alignSet.add(word);
 		a.addAllOneToOne(word);
 	}
 	
@@ -272,9 +260,7 @@ public class AutomaticMatcher
 	private static void structuralMatch()
 	{
 		NeighborSimilarityMatcher nsm = new NeighborSimilarityMatcher(
-				NeighborSimilarityStrategy.AVERAGE,false);
-		if(isInteractive)
-			alignSet.add(nsm.rematch(a));
+				aml.getNeighborSimilarityStrategy(),aml.directNeighbors());
 		a.addAllOneToOne(nsm.extendAlignment(a,thresh));
 	}
 	
@@ -307,26 +293,26 @@ public class AutomaticMatcher
 			RankedCoSelector s = new RankedCoSelector(b, sType);
 			a = s.select(a, thresh);
 		}
-		else
+		else if(!isInteractive)
 		{
 			RankedSelector rs = new RankedSelector(sType);
 			a = rs.select(a, thresh);
 		}
 		if(isInteractive)
 		{
-			alignSet.add(a);
-			InteractiveSelector is = new InteractiveSelector(alignSet);
+			InteractiveSelector is = new InteractiveSelector();
 			a = is.select(a, thresh);
 		}
+
 	}
 	
 	//Step 10 - Repair
 	private static void repair()
 	{
 		Repairer r;
-		if(isInteractive)
-			r = new InteractiveRepairer();
-		else
+		//if(isInteractive)
+			//r = new InteractiveRepairer();
+		//else
 			r = new CardinalityRepairer();
 		a = r.repair(a);
 	}
