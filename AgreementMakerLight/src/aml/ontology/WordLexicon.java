@@ -24,8 +24,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import aml.settings.LexicalType;
 import aml.util.StopList;
-import aml.util.StringParser;
 import aml.util.Table2Set;
 import aml.util.Table2Map;
 import aml.util.Table3Set;
@@ -243,7 +243,7 @@ public class WordLexicon
 				continue;
 			//And add the words for each name 
 			for(String n: names)
-				if(!StringParser.isFormula(n))
+				if(!lex.getTypes(n,c).contains(LexicalType.FORMULA))
 					addWords(n, c);
 		}
 		//Compute the maximum EC

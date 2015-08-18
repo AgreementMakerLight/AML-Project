@@ -39,9 +39,9 @@ import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.settings.LanguageSetting;
+import aml.settings.LexicalType;
 import aml.settings.StringSimMeasure;
 import aml.util.ISub;
-import aml.util.StringParser;
 import aml.util.Table2Set;
 
 public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematcher
@@ -277,13 +277,13 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 			
 				for(String s : sourceNames)
 				{
-					if(StringParser.isFormula(s))
+					if(sLex.getTypes(s,sId).contains(LexicalType.FORMULA))
 						continue;
 					weight = sLex.getCorrectedWeight(s, sId, l);
 					
 					for(String t : targetNames)
 					{
-						if(StringParser.isFormula(t))
+						if(tLex.getTypes(t,tId).contains(LexicalType.FORMULA))
 							continue;
 						sim = weight * tLex.getCorrectedWeight(t, tId, l);
 						sim *= stringSimilarity(s,t);
@@ -301,13 +301,13 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 				return maxSim;
 			for(String s : sourceNames)
 			{
-				if(StringParser.isFormula(s))
+				if(sLex.getTypes(s,sId).contains(LexicalType.FORMULA))
 					continue;
 				weight = sLex.getCorrectedWeight(s, sId);
 				
 				for(String t : targetNames)
 				{
-					if(StringParser.isFormula(t))
+					if(tLex.getTypes(t,tId).contains(LexicalType.FORMULA))
 						continue;
 					sim = weight * tLex.getCorrectedWeight(t, tId);
 					sim *= stringSimilarity(s,t);
