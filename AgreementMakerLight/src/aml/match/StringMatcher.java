@@ -19,7 +19,7 @@
 * either to match small ontologies or as a SecondaryMatcher.                  *
 *                                                                             *
 * @authors Daniel Faria, Cosmin Stroe                                         *
-* @date 26-05-2015                                                            *
+* @date 18-08-2015                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -147,11 +147,12 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 		System.out.println("Computing String Similarity");
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
+		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(Mapping m : a)
 		{
-			double sim = mapTwoEntities(m.getSourceId(),m.getTargetId());
-			maps.add(m.getSourceId(),m.getTargetId(),sim);
+			toMap.add(m.getSourceId(),m.getTargetId());
 		}
+		maps.addAll(mapInParallel(toMap,0.0));
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
