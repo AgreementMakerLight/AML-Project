@@ -253,6 +253,8 @@ public class AutomaticMatcher
 			{
 				MultiWordMatcher mwm = new MultiWordMatcher();
 				a.addAllOneToOne(mwm.match(thresh));
+				AcronymMatcher am = new AcronymMatcher();
+				a.addAllOneToOne(am.match(thresh));
 			}
 		}
 		//Otherwise we use it in extendAlignment mode
