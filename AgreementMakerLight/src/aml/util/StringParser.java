@@ -121,7 +121,9 @@ public class StringParser
 	{
 		//First replace codes with their word equivalents 
 		String parsed = name.replace("&amp","and");
-		//Then replace all non-word characters with white spaces
+		//Remove dashes
+		parsed = parsed.replaceAll("-","");
+		//Then replace all other non-word characters with white spaces
 		//except for apostrophes and brackets
 		parsed = parsed.replaceAll(" *[^a-zA-Z0-9'()] *"," ");
 		
