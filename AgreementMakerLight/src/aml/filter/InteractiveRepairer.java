@@ -25,8 +25,7 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.match.Alignment;
-import aml.ontology.URIMap;
-import aml.util.Oracle;
+import aml.util.InteractionManager;
 import aml.util.Table2List;
 
 public class InteractiveRepairer implements Repairer
@@ -34,6 +33,7 @@ public class InteractiveRepairer implements Repairer
 	
 //Attributes
 	
+	private InteractionManager im;
 	private Alignment toRepair;
 	private Vector<Path> conflictSets;
 	private HashSet<Integer> correct;
@@ -54,7 +54,7 @@ public class InteractiveRepairer implements Repairer
 	{
 		toRepair = a;
 		AML aml = AML.getInstance();
-		URIMap map = aml.getURIMap();
+		im = aml.getInteractionManager();
 		RepairMap rMap = new RepairMap(a);
 		conflictSets = rMap.getConflictSets();
 		init();
@@ -66,10 +66,8 @@ public class InteractiveRepairer implements Repairer
 		while(conflictMappings.size() > 0)
 		{
 			int worstMapping = getWorstMapping();
-			String sourceURI = map.getURI(toRepair.get(worstMapping).getSourceId());
-			String targetURI = map.getURI(toRepair.get(worstMapping).getTargetId());
 
-			if(Oracle.check(sourceURI,targetURI,toRepair.get(worstMapping).getRelationship().toString()))
+			if(im.check(toRepair.get(worstMapping)))
 				correct.add(worstMapping);
 			else
 			{

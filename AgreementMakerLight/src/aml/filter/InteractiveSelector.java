@@ -12,11 +12,11 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Selector that uses (simulated) user interaction (from the Oracle) to help   *
-* perform 1-to-1 selection.                                                   *
+* Selector that uses (simulated) user interaction (through the Interaction    *
+* Manager) to help perform alignment selection.                               *
 *                                                                             *
-* @author Aynaz Taheri, Daniel Faria                                          *
-* @date 23-08-2014                                                            *
+* @author Daniel Faria, Aynaz Taheri                                          *
+* @date 19-08-2015                                                            *
 ******************************************************************************/
 package aml.filter;
 
@@ -30,17 +30,18 @@ import aml.match.NeighborSimilarityMatcher;
 import aml.match.Rematcher;
 import aml.match.StringMatcher;
 import aml.match.WordMatcher;
-import aml.ontology.URIMap;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SizeCategory;
 import aml.settings.WordMatchStrategy;
-import aml.util.Oracle;
+import aml.util.InteractionManager;
 
 public class InteractiveSelector implements Selector
 {
 	
 //Attributes
 	
+	//Interaction manager
+	private InteractionManager im;
 	//Selection thresholds
 	private final double HIGH_THRESH = 0.7;
 	private final double AVERAGE_THRESH = 0.2;
@@ -54,7 +55,9 @@ public class InteractiveSelector implements Selector
 	
 	public InteractiveSelector()
 	{
-		size = AML.getInstance().getSizeCategory();
+		AML aml = AML.getInstance();
+		im = aml.getInteractionManager();
+		size = aml.getSizeCategory();
 		//Construct the list of auxiliary (re)matchers, which will be used
 		//to compute auxiliary alignments used for interactive selection
 		auxMatchers = new Vector<Rematcher>();
@@ -83,9 +86,7 @@ public class InteractiveSelector implements Selector
 		a.sort();
 		//2) Initialize the final alignment
 		Alignment selected = new Alignment();
-		//3) Get the URIMap to convert ids to URIs
-		URIMap map = AML.getInstance().getURIMap();
-		//4) Start the query count and set the query limit
+		//3) Start the query count and set the query limit
 		int queryCount = 0;
 		int queryLimit;
 		if(size.equals(SizeCategory.SMALL))
@@ -96,7 +97,7 @@ public class InteractiveSelector implements Selector
 			//For larger ontologies, we allow queries covering only 20% of the mappings
 			//in the input alignment (though again 5% is reserved for interactive repair)
 			queryLimit = (int)Math.round(a.size()*0.15);
-		//5) Start the consecutive negative count and set the limit
+		//4) Start the consecutive negative count and set the limit
 		int consecutiveNegativeCount = 0;
 		boolean updated = false;
 		int consecutiveNegativeLimit;
@@ -104,7 +105,7 @@ public class InteractiveSelector implements Selector
 			consecutiveNegativeLimit = 5;
 		else
 			consecutiveNegativeLimit = 10;
-		//6) Compute auxiliary alignments
+		//5) Compute auxiliary alignments
 		auxAlignments = new Vector<Alignment>();
 		for(Rematcher r : auxMatchers)
 			auxAlignments.add(r.rematch(a));
@@ -115,8 +116,6 @@ public class InteractiveSelector implements Selector
 			//Get the ids and URIs
 			int sourceId = m.getSourceId();
 			int targetId = m.getTargetId();
-			String sourceURI = map.getURI(sourceId);
-			String targetURI = map.getURI(targetId);
 			double finalSim = m.getSimilarity();
 			//Compute the auxiliary parameters
 			double maxSim = 0.0;
@@ -142,7 +141,7 @@ public class InteractiveSelector implements Selector
 				{
 					if(queryCount < queryLimit)
 					{
-						check = Oracle.check(sourceURI,targetURI,m.getRelationship().toString());
+						check = im.check(m);
 						queryCount++;
 					}
 					else
@@ -157,7 +156,7 @@ public class InteractiveSelector implements Selector
 					if(support > 1 && average > AVERAGE_THRESH &&
 							!selected.containsConflict(m))
 					{
-						check = Oracle.check(sourceURI,targetURI,m.getRelationship().toString());
+						check = im.check(m);
 						//Update the query count
 						queryCount++;
 						//Update the consecutive negative query count

@@ -53,6 +53,7 @@ import aml.ui.AlignmentFileChooser;
 import aml.ui.GUI;
 import aml.ui.OntologyFileChooser;
 import aml.util.ExtensionFilter;
+import aml.util.InteractionManager;
 
 public class AML
 {
@@ -69,6 +70,9 @@ public class AML
 	private BKOntology bk;
 	private Alignment a;
 	private Alignment ref;
+	//The user interaction manager
+	//(for handling simulated interactions)
+	private InteractionManager im;
 	//Evaluation parameters
 	private String evaluation;
 	private double precision;
@@ -306,6 +310,11 @@ public class AML
 		return aml;
 	}
 	
+	public InteractionManager getInteractionManager()
+	{
+		return im;
+	}
+	
 	/**
 	 * @return the preferred language for entity names
 	 */
@@ -501,6 +510,7 @@ public class AML
      */
     public void matchAuto()
     {
+    	im = new InteractionManager();
    		a = AutomaticMatcher.match();
     	if(a.size() >= 1)
     		currentMapping = 0;

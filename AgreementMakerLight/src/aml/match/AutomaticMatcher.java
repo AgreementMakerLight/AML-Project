@@ -36,7 +36,7 @@ import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
-import aml.util.Oracle;
+import aml.util.InteractionManager;
 
 public class AutomaticMatcher
 {
@@ -45,6 +45,8 @@ public class AutomaticMatcher
 
 	//Link to the AML class
 	private static AML aml;
+	//Interaction manager
+	private static InteractionManager im;
 	//Settings
 	private static boolean isInteractive;
 	private static SizeCategory size;
@@ -78,12 +80,14 @@ public class AutomaticMatcher
 	{
 		//Get the AML instance
 		aml = AML.getInstance();
+		//The interaction manager
+		im = aml.getInteractionManager();
+		isInteractive = im.isInteractive();
 		//And the size and language configuration
 		size = aml.getSizeCategory();
 		lang = aml.getLanguageSetting();
 		sType = aml.getSelectionType();
-		//Check if the task is interactive
-		isInteractive = Oracle.isInteractive();
+		
 		//Initialize the alignment
 		a = new Alignment();
 		//And start the matching procedure
