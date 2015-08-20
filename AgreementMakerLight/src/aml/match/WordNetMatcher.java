@@ -97,12 +97,30 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 			//We don't match formulas to WordNet
 			if(StringParser.isFormula(s))
 				continue;
-			//Find all wordForms in WordNet for each name
-			HashSet<String> wordForms = wn.getAllWordForms(s);
-			int size = wordForms.size();
-			if(size == 0)
+			//Find all wordForms in WordNet for each full name
+			HashSet<String> wordForms = wn.getAllNounWordForms(s);
+			//If there aren't any, break the name into words
+			//(if it is a multi-word name) and look for wordForms
+			//of each word
+			if(wordForms.size() == 0 && s.contains(" "))
+			{
+				String[] words = s.split(" ");
+				for(String w : words)
+				{
+					if(w.length() < 3)
+						continue;
+					HashSet<String> wf = wn.getAllNounWordForms(w);
+					if(wf.size() == 0)
+						continue;
+					for(String f : wf)
+						if(!f.contains(" "))
+							wordForms.add(s.replace(w, f));
+				}
+			}
+			//If there are still no wordForms, proceed to next name
+			if(wordForms.size() == 0)
 				continue;
-			double conf = CONFIDENCE - 0.01*size;
+			double conf = CONFIDENCE - 0.01*wordForms.size();
 			if(conf < thresh)
 				continue;
 			Set<Integer> terms = l.getInternalClasses(s);
@@ -130,11 +148,29 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 			if(StringParser.isFormula(s))
 				continue;
 			//Find all wordForms in WordNet for each name
-			HashSet<String> wordForms = wn.getAllWordForms(s);
-			int size = wordForms.size();
-			if(size == 0)
+			HashSet<String> wordForms = wn.getAllNounWordForms(s);
+			//If there aren't any, break the name into words
+			//(if it is a multi-word name) and look for wordForms
+			//of each word
+			if(wordForms.size() == 0 && s.contains(" "))
+			{
+				String[] words = s.split(" ");
+				for(String w : words)
+				{
+					if(w.length() < 3)
+						continue;
+					HashSet<String> wf = wn.getAllNounWordForms(w);
+					if(wf.size() == 0)
+						continue;
+					for(String f : wf)
+						if(!f.contains(" "))
+							wordForms.add(s.replace(w, f));
+				}
+			}
+			//If there are still no wordForms, proceed to next name
+			if(wordForms.size() == 0)
 				continue;
-			double conf = CONFIDENCE - 0.01*size;
+			double conf = CONFIDENCE - 0.01*wordForms.size();
 			if(conf < thresh)
 				continue;
 			Set<Integer> terms = l.getInternalClasses(s);
