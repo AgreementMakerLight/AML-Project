@@ -35,7 +35,6 @@ import aml.ontology.RelationshipMap;
 import aml.settings.EntityType;
 import aml.util.ISub;
 import aml.util.Similarity;
-import aml.util.StopList;
 import aml.util.WordNet;
 
 public class PropertyMatcher implements SecondaryMatcher
@@ -48,7 +47,6 @@ public class PropertyMatcher implements SecondaryMatcher
 	private Ontology2Match source;
 	private Ontology2Match target;
 	private WordNet wn = null;
-	private Set<String> stopList;
 	
 //Constructors
 	
@@ -59,7 +57,6 @@ public class PropertyMatcher implements SecondaryMatcher
 		aml = AML.getInstance();
 		source = aml.getSource();
 		target = aml.getTarget();
-		stopList = StopList.read();
 	}
 	
 //Public Methods
@@ -199,38 +196,10 @@ public class PropertyMatcher implements SecondaryMatcher
 				if(sName.equals(tName))
 					return 1.0;
 
-		Set<String> sourceNamesFixed = new HashSet<String>();
-		for(String n : sourceNames)
-		{
-			String newName = "";
-			String[] words = n.split(" ");
-			for(String w : words)
-			if(!stopList.contains(w))
-				newName += w + " ";
-			newName = newName.trim();
-			if(newName.length() > 0)
-				sourceNamesFixed.add(newName);
-			else
-				sourceNamesFixed.add(n);
-		}
-		Set<String> targetNamesFixed = new HashSet<String>();
-		for(String n : targetNames)
-		{
-			String newName = "";
-			String[] words = n.split(" ");
-			for(String w : words)
-			if(!stopList.contains(w))
-				newName += w + " ";
-			newName = newName.trim();
-			if(newName.length() > 0)
-				targetNamesFixed.add(newName);
-			else
-				targetNamesFixed.add(n);
-		}
 		double sim = 0.0;
-		for(String sName : sourceNamesFixed)
+		for(String sName : sourceNames)
 		{
-			for(String tName : targetNamesFixed)
+			for(String tName : targetNames)
 			{
 				double newSim = nameSimilarity(sName,tName,wn != null);
 				if(newSim > sim)
@@ -259,8 +228,8 @@ public class PropertyMatcher implements SecondaryMatcher
 			sWords.add(w);
 			sSyns.add(w);
 			//And compute the WordNet synonyms of each word
-			if(useWordNet && w.length() > 3)
-				sSyns.addAll(wn.getAllWordForms(w));
+			if(useWordNet && w.length() > 2)
+				sSyns.addAll(wn.getAllNounWordForms(w));
 		}
 		
 		//Split the target name into words
@@ -279,13 +248,13 @@ public class PropertyMatcher implements SecondaryMatcher
 		//Compute the Jaccard word similarity between the properties
 		double wordSim = Similarity.jaccard(sWords,tWords)*0.9;
 		//and the String similarity
-		double simString =  ISub.stringSimilarity(n1,n2)*0.9;
+		double simString = ISub.stringSimilarity(n1,n2)*0.9;
 		//Combine the two
 		double sim = 1 - ((1-wordSim) * (1-simString));
 		if(useWordNet)
 		{
 			//Check if the WordNet similarity
-			double wordNetSim = Similarity.jaccard(sSyns,tSyns)*0.9;
+			double wordNetSim = Similarity.jaccard(sSyns,tSyns);
 			//Is greater than the name similarity
 			if(wordNetSim > sim)
 				//And if so, return it

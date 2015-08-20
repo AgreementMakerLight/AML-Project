@@ -396,7 +396,9 @@ public class Lexicon
 	 */
 	public void generateStopWordSynonyms()
 	{
+		//Read the stop list
 		Set<String> stopList = StopList.read();
+		//Process classes
 		Vector<String> nm = new Vector<String>(classNames.keySet());
 		for(String n: nm)
 		{
@@ -441,6 +443,27 @@ public class Lexicon
 				{
 					double weight = p.getWeight() * 0.9;
 					addClass(i, newName, p.getLanguage(), LexicalType.INTERNAL_SYNONYM, p.getSource(), weight);
+				}
+			}
+		}
+		//Process properties
+		for(Integer i : nameProperties.keySet())
+		{
+			nm = new Vector<String>(nameProperties.keySet(i));
+			for(String n: nm)
+			{	
+				//Build a synonym by removing all stopWords
+				String[] nameWords = n.split(" ");
+				String newName = "";
+				for(String w : nameWords)
+					if(!stopList.contains(w))
+						newName += w + " ";
+				newName = newName.trim();
+
+				for(Provenance p : nameProperties.get(i, n))
+				{
+					double weight = p.getWeight() * 0.9;
+					addProperty(i, newName, p.getLanguage(), LexicalType.INTERNAL_SYNONYM, p.getSource(), weight);
 				}
 			}
 		}
