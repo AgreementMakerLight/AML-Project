@@ -53,6 +53,28 @@ public class WordNet
 
 	/**
 	 * @param s: the String to search in WordNet
+	 * @return the set of noun word forms for the given String
+	 */
+	public HashSet<String> getAllNounWordForms(String s)
+	{
+		HashSet<String> wordForms = new HashSet<String>();
+
+		//Look for the name on WordNet
+		Synset[] synsets = wordNet.getSynsets(s,SynsetType.NOUN);
+		//For each Synset found
+		for(Synset ss : synsets)
+		{
+			//Get the WordForms
+			String[] words = ss.getWordForms();
+			for(String w : words)
+				if(!w.trim().equals(""))
+					wordForms.add(w);
+		}
+		return wordForms;
+	}
+	
+	/**
+	 * @param s: the String to search in WordNet
 	 * @return the set of word forms for the given String
 	 */
 	public HashSet<String> getAllWordForms(String s)
@@ -96,6 +118,12 @@ public class WordNet
 		return wordForms;
 	}
 	
+	/**
+	 * Computes the Wu-Palmer score between two terms
+	 * @param s: the source term
+	 * @param t: the target term
+	 * @return the Wu-Palmer score between s and t
+	 */
 	public double wuPalmerScore(String s, String t)
 	{
 		if(s.equals(t))
