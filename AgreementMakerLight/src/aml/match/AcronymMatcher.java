@@ -68,6 +68,7 @@ public class AcronymMatcher implements PrimaryMatcher
 					for(String word : tgtWords)
 						longer.add(word);
 				}
+				int total = longer.size();
 				//Check if they have shared words, and remove them
 				for(int i = 0; i < shorter.size(); i++)
 				{
@@ -75,7 +76,7 @@ public class AcronymMatcher implements PrimaryMatcher
 					if(longer.remove(word))
 					{
 						shorter.remove(i--);
-						sim += 1.0 / longer.size();
+						sim += 1.0;
 					}
 				}
 				//We test for accronyms if the shorter name has exactly one word left after the removal step
@@ -93,12 +94,13 @@ public class AcronymMatcher implements PrimaryMatcher
 					String word = longer.get(i);
 					match = word.startsWith(acronym.substring(i,i+1));
 					if(match)
-						sim += 0.6 / longer.size();
+						sim += 0.5;
 					else
 						break;
 				}
 				if(!match)
 					continue;
+				sim /= total;
 				if(sim >= thresh)
 					for(int sourceId : sourceLex.getClasses(sName))
 						for(int targetId : targetLex.getClasses(tName))
