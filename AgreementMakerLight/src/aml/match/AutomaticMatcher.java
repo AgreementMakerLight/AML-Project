@@ -24,8 +24,8 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
-import aml.filter.CardinalityRepairer;
-import aml.filter.InteractiveRepairer;
+import aml.filter.SemanticRepairer;
+import aml.filter.InteractiveSemanticRepairer;
 import aml.filter.InteractiveSelector;
 import aml.filter.ObsoleteRepairer;
 import aml.filter.RankedCoSelector;
@@ -106,6 +106,20 @@ public class AutomaticMatcher
 			structuralMatch();
 		if(selectedSteps.contains(MatchStep.PROPERTY))
 			propertyMatch();
+		//Set the interaction limit
+		if(isInteractive)
+		{
+			int limit;
+			//For small ontologies 50% of the alignment
+			if(size.equals(SizeCategory.SMALL))
+				limit = (int)Math.round(a.size()*0.5);
+			//Otherwise, 20% of the alignment
+			else
+				limit = (int)Math.round(a.size()*0.2);
+			im.setLimit(limit);
+			System.out.println(a.size() + " - " + limit);
+		}
+		//Perform selection and repair
 		selection();
 		repair();
 		return a;
@@ -316,10 +330,10 @@ public class AutomaticMatcher
 	private static void repair()
 	{
 		Repairer r;
-		//if(isInteractive)
-			//r = new InteractiveRepairer();
-		//else
-			r = new CardinalityRepairer();
+		if(isInteractive && (size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM)))
+			r = new InteractiveSemanticRepairer();
+		else
+			r = new SemanticRepairer();
 		a = r.repair(a);
 	}
 }

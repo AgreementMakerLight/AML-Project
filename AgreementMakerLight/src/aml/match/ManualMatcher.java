@@ -22,7 +22,7 @@ package aml.match;
 import java.util.Vector;
 
 import aml.AML;
-import aml.filter.CardinalityRepairer;
+import aml.filter.SemanticRepairer;
 import aml.filter.ObsoleteRepairer;
 import aml.filter.RankedCoSelector;
 import aml.filter.RankedSelector;
@@ -136,7 +136,7 @@ public class ManualMatcher
 		}
 		if(steps.contains(MatchStep.REPAIR))
 		{
-			Repairer r = new CardinalityRepairer();
+			Repairer r = new SemanticRepairer();
 			a = r.repair(a);
 		}
 		return a;
