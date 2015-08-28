@@ -26,7 +26,7 @@ import java.util.Vector;
 import aml.match.Alignment;
 import aml.util.Table2List;
 
-public class CardinalityRepairer implements Repairer
+public class SemanticRepairer implements Repairer
 {
 	
 //Attributes
@@ -41,7 +41,7 @@ public class CardinalityRepairer implements Repairer
 	/**
 	 * Constructs a new CardinalityRepairer
 	 */
-	public CardinalityRepairer(){}
+	public SemanticRepairer(){}
 	
 //Public Methods
 	

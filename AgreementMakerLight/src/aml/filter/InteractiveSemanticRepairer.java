@@ -28,7 +28,7 @@ import aml.match.Alignment;
 import aml.util.InteractionManager;
 import aml.util.Table2List;
 
-public class InteractiveRepairer implements Repairer
+public class InteractiveSemanticRepairer implements Repairer
 {
 	
 //Attributes
@@ -45,7 +45,7 @@ public class InteractiveRepairer implements Repairer
 	/**
 	 * Constructs a new InteractiveRepairer
 	 */
-	public InteractiveRepairer(){}
+	public InteractiveSemanticRepairer(){}
 	
 //Public Methods
 	
@@ -66,7 +66,8 @@ public class InteractiveRepairer implements Repairer
 		while(conflictMappings.size() > 0)
 		{
 			int worstMapping = getWorstMapping();
-
+			if(worstMapping == -1)
+				break;
 			if(im.check(toRepair.get(worstMapping)))
 				correct.add(worstMapping);
 			else
@@ -74,8 +75,6 @@ public class InteractiveRepairer implements Repairer
 				toRemove.add(worstMapping);
 				remove(worstMapping);
 			}
-			if(correct.containsAll(conflictMappings.keySet()))
-				break;
 		}
 		Alignment repaired = new Alignment();
 		for(int i = 0; i < toRepair.size(); i++)
