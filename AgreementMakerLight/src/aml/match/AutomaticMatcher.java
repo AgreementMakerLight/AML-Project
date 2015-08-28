@@ -117,7 +117,6 @@ public class AutomaticMatcher
 			else
 				limit = (int)Math.round(a.size()*0.2);
 			im.setLimit(limit);
-			System.out.println(a.size() + " - " + limit);
 		}
 		//Perform selection and repair
 		selection();

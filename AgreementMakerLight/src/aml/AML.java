@@ -32,7 +32,7 @@ import java.util.Vector;
 import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
-import aml.filter.CardinalityRepairer;
+import aml.filter.SemanticRepairer;
 import aml.match.ManualMatcher;
 import aml.match.Alignment;
 import aml.match.Mapping;
@@ -682,7 +682,7 @@ public class AML
 
 	public void repair()
     {
-		CardinalityRepairer r = new CardinalityRepairer();
+		SemanticRepairer r = new SemanticRepairer();
 		a = r.repair(a);
     	if(a.size() >= 1)
     		currentMapping = 0;

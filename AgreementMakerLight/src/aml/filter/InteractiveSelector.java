@@ -86,17 +86,15 @@ public class InteractiveSelector implements Selector
 		a.sort();
 		//2) Initialize the final alignment
 		Alignment selected = new Alignment();
-		//3) Start the query count and set the query limit
-		int queryCount = 0;
+		//3) Set the query limit (which is a share of the global limit)
 		int queryLimit;
 		if(size.equals(SizeCategory.SMALL))
-			//For small ontologies, we allow queries covering up to half the mappings
-			//in the input alignment (though 5% is reserved for interactive repair)
-			queryLimit = (int)Math.round(a.size()*0.45);
+			//For small ontologies, most of the limit is used in selection
+			//(as there is not much need for repair)
+			queryLimit = (int)Math.round(im.getLimit()*0.9);
 		else
-			//For larger ontologies, we allow queries covering only 20% of the mappings
-			//in the input alignment (though again 5% is reserved for interactive repair)
-			queryLimit = (int)Math.round(a.size()*0.15);
+			//For larger ontologies, we reserve a bit more of the limit for repair
+			queryLimit = (int)Math.round(im.getLimit()*0.75);
 		//4) Start the consecutive negative count and set the limit
 		int consecutiveNegativeCount = 0;
 		boolean updated = false;
@@ -124,11 +122,14 @@ public class InteractiveSelector implements Selector
 			for(int i = 0; i < auxAlignments.size(); i++)
 			{
 				double sim = auxAlignments.get(i).getSimilarity(sourceId, targetId);
+				//All auxiliary alignments count for the max
 				if(sim > maxSim)
 					maxSim = sim;
-				if(sim > 0)
+				//Block rematcher doesn't count towards the support
+				if(i != 4 && sim > 0)
 					support++;
-				if(i < 3)
+				//NSM Ancestors doesn't count towards the average
+				if(i != 3)
 					average += sim;
 			}
 			average /= 4;
@@ -139,11 +140,8 @@ public class InteractiveSelector implements Selector
 				check = true;
 				if(support < 2 || selected.containsConflict(m))
 				{
-					if(queryCount < queryLimit)
-					{
+					if(im.queryCount() < queryLimit)
 						check = im.check(m);
-						queryCount++;
-					}
 					else
 						check = false;
 				}
@@ -151,14 +149,12 @@ public class InteractiveSelector implements Selector
 			else if(finalSim >= lowThresh || maxSim >= lowThresh)
 			{
 				check = false;
-				if(queryCount < queryLimit)
+				if(im.queryCount() < queryLimit)
 				{
 					if(support > 1 && average > AVERAGE_THRESH &&
 							!selected.containsConflict(m))
 					{
 						check = im.check(m);
-						//Update the query count
-						queryCount++;
 						//Update the consecutive negative query count
 						if(check)
 							consecutiveNegativeCount = 0;
