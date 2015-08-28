@@ -682,3 +682,4 @@ possui preço	heeft prijs
 possui nome do patrocinador	naam van sponsor heeft
 possui nome da conferência	naam van de vergadering heeft
 data	datum
+finalizar atribuições dos artigos	beëindigen van toewijzingen van artikelen

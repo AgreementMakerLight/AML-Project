@@ -707,3 +707,18 @@ wurde präsentiert von	byl předložen
 deadline eingerichtet für	termín stanovený pro
 konferenz findet in folgender stadt statt	Konference se bude konat v následujících city
 datum des letzten tages der konferenz ist	Datum posledního dne konference je
+hat webseite url	má adresa url webové stránky
+maximale anzahl zugewiesenen beiträgen	maximální počet přidělených příspěvků
+hat logo url	má adresa url loga
+hat details eingefügt bezug auf	Podrobnosti o přidali odkaz na
+hat interessenskonflikt bezug auf	má interessenskonflikt odkaz na
+steht interessen-konflikt mit beitrag	se zájmy konfliktu s příspěvkem
+bestimme maximale anzahl zugewiesenen beiträgen	Vyberte maximální počet přidělených příspěvků
+findet statt	Probíhá
+studiert	studoval
+wird bezahlt	bude vyplacena
+befindet sich	nachází se
+spricht (räumlich und zeitlich)	mluví (prostorové a časové)
+registrierungsbeitrags ist währung	Měna je registr příspěvek
+konferenz findet folgender stadt statt	Konference se bude konat následující město
+bleibt	zůstává

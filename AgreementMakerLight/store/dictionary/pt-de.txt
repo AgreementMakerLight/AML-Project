@@ -682,3 +682,4 @@ possui preço	hat Preis
 possui nome do patrocinador	hat der Name des Sponsors
 possui nome da conferência	hat den Konferenz-Namen
 data	Datum
+finalizar atribuições dos artigos	Zuordnung von Artikeln zu beenden

@@ -723,3 +723,126 @@ silver sponzor	Silber sponzor
 person active	Person aktiv
 acm sigkdd	ACM sigkdd
 bronze sponzor	Bronze sponzor
+expertise degree reviewer	Kompetenz-Grad-Prüfer
+volume number proceedings	Band Nummer Verfahren
+date abstract submission	Datum-Abstracteinreichung
+date acceptance notification	Datum-Akzeptanz-Benachrichtigung
+degree review preference	Grad-Überprüfung-Präferenz
+has topic submission contribution	hat Thema Unterwerfung Beitrag
+is organizing committee	Organisationskomitee ist
+contributes	trägt
+important date serie	wichtiges Datum serie
+date full paper submission	Datum volle Papier Vorlage
+date cameraready submission	Datum Cameraready Einreichung
+date of cameraready submission	Cameraready Abgabe
+isbn proceedings	ISBN-Verfahren
+published date	Veröffentlichungsdatum
+url web is	Web-URL ist
+is workshop chair	ist Workshop chair
+is program committee	Programmkomitee ist
+topic related review preference	Thema mit Bezug Bewertung Präferenz
+is cochair committee	ist Mitvorsitzender Ausschuss
+is cochair of committee	ist Mitvorsitzender des Ausschusses
+invited reviewer	eingeladenen Überprüfer
+preference expertise review is	Präferenz Fachwissen Review ist
+program committee is	Programmkomitee ist
+invites coreviewer	lädt coreviewer
+committee is	Ausschuss ist
+submitted	eingereicht
+is part	ist Teil
+is topic part	Thema gehört
+preference expertise reviewer	Präferenz Fachwissen Rezensent
+steering committee is	Lenkungsausschuss ist
+has committee cochair	hat der Ausschuss cochair
+is steering committee	ist der Lenkungsausschuss
+presented	dargestellt
+is chair committee	Vorsitzende Ausschuss ist
+is first part	ist der erster Teil
+is committee	Ausschuss ist
+publisher proceedings is	Verleger-Verfahren ist
+is member	ist Mitglied
+organizing committee is	Organisationskomitee ist
+maximal number assigned papers	maximale Anzahl Papiere zugewiesen
+has website url	Website-Url hat
+details entered	Angaben
+written	geschrieben
+has logo url	Logo-Url hat
+hardcopy mailing manifests printed	Hardcopy Adressetiketten Manifeste gedruckt
+set maximal number assigned paper	festgelegte maximale Anzahl zugewiesen Papier
+virtual meeting enabled	virtuelles Treffen aktiviert
+cowritten	Denkmal
+cowritten by	Denkmal von
+rejected	abgelehnt
+read metareviewer	Metareviewer lesen
+read by metareviewer	Lesen von metareviewer
+member	Mitglied
+added	hinzugefügt
+cowrite	cowrite
+mark conflict interest	Mark Interessenkonflikt
+review criteria entered	Überprüfen der eingegebenen Kriterien
+paper assignment finalized	Papier-Zuordnung abgeschlossen
+assigned reviewer	zugewiesene Bearbeiter
+accepted	angenommen
+reviewer bidding started	Rezensent Ausschreibung gestartet
+assigned	zugewiesen
+has conflict interest respect	Konflikt Respekt Interesse
+assigned admin	zugewiesene admin
+read reviewer	Gutachter zu lesen
+paper assignment tools run	Papier-Aufgabentools ausführen
+adjusted	angepasst
+member program committee	Mitglied Programmkomitee
+enter details	Geben Sie details
+event is being held	Veranstaltung findet statt
+participant has early registration	Teilnehmer hat Frühbucher
+setting default choice number event	Wahl-Nummer Standardereignis festlegen
+starting day event	Start-Tages-Veranstaltung
+setting minimal number event	minimale Anzahl Ereignis festlegen
+is parallel	Parallel
+stay city	Stadt zu bleiben
+employed	Beschäftigte
+written author	schriftliche Autor
+stay country	Land zu bleiben
+deals topic	Angebote-Thema
+expert topic	Experten-Thema
+setting maximal number event	Festlegen der maximalen Anzahl Ereignis
+stay street	Straße zu bleiben
+end day event	Ende-Tages-Veranstaltung
+study university	Universität zu studieren
+is paid	wird bezahlt
+is designed	dient der
+speaks time place	spricht Mal Platz
+is given	ist gegeben
+is present time space	ist der heutigen Zeit-Raum
+is locally situated	lokal liegt
+is occupied	ist besetzt
+is connected	verbunden ist
+is sent	wird gesendet
+is present time	heutigen Zeit ist
+is needed	ist erforderlich
+is visited	wird besucht
+is written	wird geschrieben
+has amount	hat Betrag
+be done till	werden till
+is dated	ist datiert
+is prepared	ist bereit
+is equipped	ist ausgestattet
+is made	erfolgt
+is signed	wird unterzeichnet
+is used	wird verwendet
+is held	findet statt
+date starting day	Datum Anfangstag
+registration fee paid	Anmeldegebühr bezahlt
+deadline author notification	Benachrichtigung der Endtermin-Autor
+setup deadline	Einrichtung-Frist
+has deadline submission	Frist Einreichung
+awarded	ausgezeichnet
+sponzor are called	Sponzor heißen
+was presented	wurde vorgestellt
+date final day	Datum-Finaltag
+takes place city	findet Stadt
+registration fee is currency	Anmeldegebühr ist Währung
+call sponzor	Rufen Sie sponzor
+setup deadline for	Einrichtung-Frist für die
+organized	organisiert
+stay	Aufenthalt
+organize	organisieren

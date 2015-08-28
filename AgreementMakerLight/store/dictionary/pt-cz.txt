@@ -682,3 +682,4 @@ possui preço	má cenu
 possui nome do patrocinador	má jméno sponzora
 possui nome da conferência	má název konference
 data	Datum
+finalizar atribuições dos artigos	Zrušit přiřazení článků

@@ -723,3 +723,126 @@ silver sponzor	银 sponzor
 person active	积极的人
 acm sigkdd	acm
 bronze sponzor	青铜 sponzor
+expertise degree reviewer	专业知识程度审阅者
+volume number proceedings	卷数诉讼
+date abstract submission	日期摘要提交
+date acceptance notification	日期验收通知
+degree review preference	度审查偏好
+has topic submission contribution	有题目提交贡献
+is organizing committee	是组委会
+contributes	贡献
+important date serie	重要日期意甲
+date full paper submission	日期的论文全文提交
+date cameraready submission	日期 cameraready 提交
+date of cameraready submission	cameraready 提交的日期
+isbn proceedings	国际标准书号诉讼
+published date	出版的日期
+url web is	url web 是
+is workshop chair	车间的椅子
+is program committee	是程序委员会
+topic related review preference	主题相关审查偏好
+is cochair committee	是孙振宇委员会
+is cochair of committee	是委员会孙振宇
+invited reviewer	被邀请的审阅者
+preference expertise review is	偏好专长审查是
+program committee is	程序委员会
+invites coreviewer	请 coreviewer
+committee is	委员会是
+submitted	提交
+is part	是一部分
+is topic part	是主题的一部分
+preference expertise reviewer	偏好专长审阅者
+steering committee is	指导委员会
+has committee cochair	有委员会 cochair
+is steering committee	指导委员会
+presented	提出了一种
+is chair committee	是委员会主席
+is first part	是第一部分
+is committee	是委员会
+publisher proceedings is	发布服务器程序是
+is member	是成员
+organizing committee is	组织委员会
+maximal number assigned papers	指定的论文的最大数目
+has website url	有的网站的 url
+details entered	输入详细信息
+written	写
+has logo url	有标志的 url
+hardcopy mailing manifests printed	打印的硬拷贝邮寄清单
+set maximal number assigned paper	设置最大编号纸
+virtual meeting enabled	启用虚拟会议
+cowritten	cowritten
+cowritten by	由 cowritten
+rejected	拒绝
+read metareviewer	阅读 metareviewer
+read by metareviewer	由 metareviewer 读取
+member	成员
+added	添加
+cowrite	cowrite
+mark conflict interest	马克利益冲突
+review criteria entered	输入的审查标准
+paper assignment finalized	最后定稿的论文作业
+assigned reviewer	分配的审阅者
+accepted	接受
+reviewer bidding started	审阅者投标开始
+assigned	分配
+has conflict interest respect	有冲突的利益尊重
+assigned admin	分配的管理
+read reviewer	阅读审阅者
+paper assignment tools run	论文作业工具运行
+adjusted	调整
+member program committee	程序委员会成员
+enter details	输入详细信息
+event is being held	事件被关押
+participant has early registration	参加者有早期注册
+setting default choice number event	设置默认选择号码事件
+starting day event	开始一天的事件
+setting minimal number event	设置最小号码事件
+is parallel	平行
+stay city	留城
+employed	就业
+written author	写的作者
+stay country	保持国家
+deals topic	交易主题
+expert topic	专家主题
+setting maximal number event	设置最大号码事件
+stay street	呆在街头
+end day event	结束一天事件
+study university	研究大学
+is paid	支付
+is designed	被设计
+speaks time place	讲话的时间地点
+is given	给出了
+is present time space	是当前时间空间
+is locally situated	位于本地
+is occupied	被占领
+is connected	连接
+is sent	发送
+is present time	是当前时间
+is needed	被需要
+is visited	访问
+is written	是写
+has amount	有量
+be done till	可等到
+is dated	被日
+is prepared	被准备
+is equipped	装备
+is made	是由
+is signed	签署
+is used	使用
+is held	是举行
+date starting day	日期起始日
+registration fee paid	支付的注册费
+deadline author notification	截止日期作者通知
+setup deadline	设置截止日期
+has deadline submission	已截止日期提交
+awarded	授予
+sponzor are called	sponzor 被称为
+was presented	提出了一种
+date final day	日期的最后一天
+takes place city	发生市
+registration fee is currency	注册费是货币
+call sponzor	电话 sponzor
+setup deadline for	安装程序的最后期限
+organized	组织
+stay	住宿
+organize	组织

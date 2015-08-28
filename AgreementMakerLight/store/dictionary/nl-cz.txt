@@ -681,3 +681,14 @@ gezocht door	hledá
 zoeken	Hledat
 begin van conferentie	zahájení konference
 computer netwerken applicaties onderwerp	počítačové sítě aplikace téma
+heeft een recentie referentie expertise	má odborné znalosti referenční Recenze
+heeft een onderwerp een ingediende contributie	má téma odeslaný příspěvek
+stel maximaal aantal artikelen	nastavit maximální počet článků
+vul recentie criteria	vyplnit přezkum kritérií
+dien artikel	Odeslat článek
+vul conferentie details	Úplné podrobnosti o konferenci
+spreken	mluvit
+is gelegen	se nachází
+wordt betaald	je vyplácena
+wordt gehouden	se koná
+mag verblijven	je dovoleno zůstat

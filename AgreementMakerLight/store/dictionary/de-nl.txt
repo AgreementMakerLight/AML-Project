@@ -707,3 +707,18 @@ wurde präsentiert von	werd gepresenteerd door
 deadline eingerichtet für	termijn voor
 konferenz findet in folgender stadt statt	Conferentie zal worden gehouden in de volgende stad
 datum des letzten tages der konferenz ist	datum van de laatste dag van de conferentie is
+hat webseite url	url webpagina heeft
+maximale anzahl zugewiesenen beiträgen	maximum aantal toegewezen bijdragen
+hat logo url	logo url heeft
+hat details eingefügt bezug auf	Details op een verwijzing toegevoegd
+hat interessenskonflikt bezug auf	interessenskonflikt referentie heeft op
+steht interessen-konflikt mit beitrag	zijn belangen conflict met bijdrage
+bestimme maximale anzahl zugewiesenen beiträgen	Kies nummer toegewezen maximumbijdragen
+findet statt	plaatsvindt
+studiert	studeerde
+wird bezahlt	wordt uitbetaald
+befindet sich	gelegen
+spricht (räumlich und zeitlich)	spreekt (ruimtelijke en temporele)
+registrierungsbeitrags ist währung	valuta is register bijdrage
+konferenz findet folgender stadt statt	Conferentie zal worden gehouden de volgende stad
+bleibt	blijft

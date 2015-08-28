@@ -681,3 +681,14 @@ houdt	garde
 gezocht door	recherché par
 zoeken	Rechercher
 begin van conferentie	début de la Conférence
+heeft een recentie referentie expertise	possède une expertise de référence d'examen
+heeft een onderwerp een ingediende contributie	a un sujet une contribution soumise
+stel maximaal aantal artikelen	définir un nombre maximal d'articles
+vul recentie criteria	remplir les critères d'examen
+dien artikel	soumettre article
+vul conferentie details	tous les détails de la Conférence
+spreken	prendre la parole
+is gelegen	se trouve
+wordt betaald	est payé
+wordt gehouden	est tenue
+mag verblijven	est autorisé à rester

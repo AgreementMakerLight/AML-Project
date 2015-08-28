@@ -707,3 +707,18 @@ wurde präsentiert von	foi apresentado por
 deadline eingerichtet für	prazo fixado para
 konferenz findet in folgender stadt statt	Conferência será realizada na cidade seguinte
 datum des letzten tages der konferenz ist	data do último dia da conferência é
+hat webseite url	tem a url da página da Web
+maximale anzahl zugewiesenen beiträgen	número máximo alocado contribuições
+hat logo url	tem a url do logotipo
+hat details eingefügt bezug auf	detalhes adicionou uma referência na
+hat interessenskonflikt bezug auf	tem referência de interessenskonflikt em
+steht interessen-konflikt mit beitrag	são interesses conflito com contribuição
+bestimme maximale anzahl zugewiesenen beiträgen	Escolha o máximos números alocadas contribuições
+findet statt	tem lugar
+studiert	estudou
+wird bezahlt	será pago
+befindet sich	localizado
+spricht (räumlich und zeitlich)	Fala (espacial e temporal)
+registrierungsbeitrags ist währung	moeda é a contribuição do registro
+konferenz findet folgender stadt statt	Conferência será realizada na cidade seguinte
+bleibt	continua a ser

@@ -681,3 +681,14 @@ houdt	mantém
 gezocht door	procurado pela
 zoeken	Pesquisa
 begin van conferentie	início da conferência
+stel maximaal aantal artikelen	definir o número máximo de artigos
+vul recentie criteria	preencher os critérios de avaliação
+dien artikel	Enviar artigo
+vul conferentie details	detalhes completos da conferência
+heeft een recentie referentie expertise	tem uma experiência de referência revisão
+heeft een onderwerp een ingediende contributie	tem um tópico um contributo enviado
+spreken	Fala
+is gelegen	está localizado
+wordt betaald	é pago
+wordt gehouden	realiza-se
+mag verblijven	é permitido ficar

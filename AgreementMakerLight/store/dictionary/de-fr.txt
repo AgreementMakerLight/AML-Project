@@ -707,3 +707,18 @@ wurde präsentiert von	a été présenté par
 deadline eingerichtet für	le délai fixé pour
 konferenz findet in folgender stadt statt	Conférence se tiendra dans la ville suivante
 datum des letzten tages der konferenz ist	Date de la dernière journée de la Conférence est
+hat webseite url	url de la page Web est
+maximale anzahl zugewiesenen beiträgen	nombre maximal alloué des contributions
+hat logo url	a logo url
+hat details eingefügt bezug auf	les détails ajoutés une référence sur
+hat interessenskonflikt bezug auf	a référence interessenskonflikt sur
+steht interessen-konflikt mit beitrag	intérêts sont a conflit avec contribution
+bestimme maximale anzahl zugewiesenen beiträgen	choisir le nombre maximum des cotisations allouées
+findet statt	a lieu
+studiert	a étudié
+wird bezahlt	seront payés
+befindet sich	Situé
+spricht (räumlich und zeitlich)	parle (spatiale et temporelle)
+registrierungsbeitrags ist währung	la monnaie est la contribution de Registre
+konferenz findet folgender stadt statt	Conférence se tiendra la ville suivante
+bleibt	reste

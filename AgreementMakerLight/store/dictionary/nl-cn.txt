@@ -681,3 +681,14 @@ houdt	保持
 gezocht door	被通缉
 zoeken	搜索
 begin van conferentie	会议的开始
+heeft een recentie referentie expertise	已审查参考专业知识
+heeft een onderwerp een ingediende contributie	有一个主题提交的贡献
+stel maximaal aantal artikelen	设置文章的最大数目
+vul recentie criteria	填充审查标准
+dien artikel	提交文章
+vul conferentie details	完整的会议详细信息
+spreken	发言
+is gelegen	位于
+wordt betaald	支付
+wordt gehouden	是举行
+mag verblijven	获准逗留

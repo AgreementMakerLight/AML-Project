@@ -681,3 +681,14 @@ gezocht door	wanted by
 zoeken	Search
 begin van conferentie	start of Conference
 belangrijke data	important dates
+heeft een recentie referentie expertise	has a review reference expertise
+heeft een onderwerp een ingediende contributie	has a topic a submitted contribution
+stel maximaal aantal artikelen	set maximum number of articles
+vul recentie criteria	fill review criteria
+dien artikel	submit article
+vul conferentie details	complete Conference details
+spreken	speak
+is gelegen	is located
+wordt betaald	is paid
+wordt gehouden	is held
+mag verblijven	is allowed to stay

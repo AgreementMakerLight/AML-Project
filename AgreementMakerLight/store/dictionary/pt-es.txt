@@ -682,3 +682,4 @@ possui preço	tiene precio
 possui nome do patrocinador	tiene el nombre del patrocinador
 possui nome da conferência	tiene el nombre de conferencia
 data	fecha
+finalizar atribuições dos artigos	terminar las asignaciones de los artículos

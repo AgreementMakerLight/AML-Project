@@ -723,3 +723,126 @@ silver sponzor	sponzor argent
 person active	personne active
 acm sigkdd	ACM sigkdd
 bronze sponzor	sponzor bronze
+maximal number assigned papers	nombre maximal assigné des papiers
+has website url	a l'url du site Web
+details entered	données saisies
+written	écrit
+has logo url	a logo url
+hardcopy mailing manifests printed	manifestes d'envoi sur papier imprimés
+set maximal number assigned paper	nombre maximal défini assigné papier
+virtual meeting enabled	réunion virtuelle activée
+cowritten	coécrit
+cowritten by	coécrit par
+rejected	a rejeté
+read metareviewer	lire metareviewer
+read by metareviewer	lu par metareviewer
+member	membres
+added	ajouté
+cowrite	cowrite
+mark conflict interest	marque de conflit intérêts
+review criteria entered	examen des critères d'entrée
+paper assignment finalized	affectation de document finalisée
+assigned reviewer	évaluateur assigné
+accepted	accepté
+reviewer bidding started	examinateur d'appel d'offres lancé
+assigned	assignés
+has conflict interest respect	a conflit intérêt respect
+assigned admin	admin assigné
+read reviewer	lire la critique
+paper assignment tools run	exécutent des outils de devoirs de papier
+adjusted	ajusté
+member program committee	Comité de programme de membre
+enter details	entrer dans les détails
+expertise degree reviewer	examinateur de degré d'expertise
+volume number proceedings	procédure numéro de volume
+date abstract submission	soumission des résumés date
+date acceptance notification	notification d'acceptation date
+degree review preference	diplôme examen préférence
+has topic submission contribution	rubrique Présentation contribue
+is organizing committee	est le Comité d'organisation
+contributes	contribue
+important date serie	date importante serie
+date full paper submission	Date de la présentation papier complet
+date cameraready submission	Date de la présentation photocomposition
+date of cameraready submission	Date de soumission de la photocomposition
+isbn proceedings	procédure d'ISBN
+published date	date de publication
+url web is	web URL est
+is workshop chair	est président de l'atelier
+is program committee	est le Comité du programme
+topic related review preference	sujet lié examen préférence
+is cochair committee	est co-Président Comité
+is cochair of committee	est co-président du Comité
+invited reviewer	examinateur a invité
+preference expertise review is	examen de compétences de préférence est
+program committee is	Comité de programme est
+invites coreviewer	invite coreviewer
+committee is	Comité est
+submitted	soumis
+is part	appartient à
+is topic part	fait partie de la rubrique
+preference expertise reviewer	relecteur de préférence expertise
+steering committee is	Comité de pilotage est
+has committee cochair	a Comité coprésident
+is steering committee	est le Comité directeur
+presented	présenté
+is chair committee	est président du Comité
+is first part	est la première partie
+is committee	est le Comité
+publisher proceedings is	procédures d'éditeur est
+is member	est membre
+organizing committee is	Comité d'organisation est
+event is being held	événement se tiendra
+participant has early registration	participant a inscription anticipée
+setting default choice number event	la définition par défaut choix numéro événement
+starting day event	départ de la journée
+setting minimal number event	définition d'événement nombre minimal
+is parallel	est parallèle
+stay city	ville de séjour
+employed	employé
+written author	auteur écrit
+stay country	pays de séjour
+deals topic	porte sur le sujet
+expert topic	rubrique expertise
+setting maximal number event	définition d'événement nombre maximal
+stay street	souhaitez-vous rue
+end day event	Journée de la fin
+study university	étude de l'Université
+is paid	est payé
+is designed	est conçu
+speaks time place	parle d'heure lieu
+is given	est donné
+is present time space	est à présent temps d'espace
+is locally situated	se trouve localement
+is occupied	est occupé
+is connected	est connecté
+is sent	est envoyé
+is present time	est le temps présent
+is needed	est nécessaire
+is visited	est visitée
+is written	est écrit
+has amount	a quantité
+be done till	être jusqu'à
+is dated	est datée du
+is prepared	est préparée
+is equipped	est équipé
+is made	Il est fait
+is signed	est signé
+is used	est utilisé
+is held	est tenue
+date starting day	date jour départ
+registration fee paid	frais d'inscription payés
+deadline author notification	notification d'auteur date limite
+setup deadline	Date limite d'installation
+has deadline submission	a la demande de délai
+awarded	décerné
+sponzor are called	sponzor sont appelés
+was presented	a été présenté
+date final day	date jour final
+takes place city	a lieu ville
+registration fee is currency	frais d'inscription sont monnaie
+call sponzor	appel sponzor
+setup deadline for	Date limite d'installation pour
+organized	organisé
+stay	séjour à :
+organize	organiser

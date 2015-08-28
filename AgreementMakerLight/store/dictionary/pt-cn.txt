@@ -682,3 +682,4 @@ possui preço	有的价格
 possui nome do patrocinador	有赞助商的名称
 possui nome da conferência	会议名称
 data	日期
+finalizar atribuições dos artigos	终止任务的文章

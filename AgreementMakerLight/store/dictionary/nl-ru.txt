@@ -681,3 +681,14 @@ houdt	держит
 gezocht door	Разыскивается
 zoeken	Поиск
 begin van conferentie	Начало конференции
+stel maximaal aantal artikelen	задать максимальное количество статей
+vul recentie criteria	критерии обзора заливки
+dien artikel	Отправить статью
+vul conferentie details	Полная подробная информация о Конференции
+heeft een recentie referentie expertise	имеет опыт ведения обзор
+heeft een onderwerp een ingediende contributie	есть темы, представленные вклад
+spreken	говорят
+is gelegen	расположен
+wordt betaald	выплачивается
+wordt gehouden	проводится
+mag verblijven	разрешено остаться

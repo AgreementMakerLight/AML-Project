@@ -682,3 +682,4 @@ possui preço	a prix
 possui nome do patrocinador	a nom du promoteur
 possui nome da conferência	a le nom de conférence
 data	Date
+finalizar atribuições dos artigos	résilier les affectations des articles

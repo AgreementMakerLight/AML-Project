@@ -682,3 +682,4 @@ possui preço	имеет цену
 possui nome do patrocinador	имеет имя спонсора
 possui nome da conferência	имеет имя конференции
 data	Дата
+finalizar atribuições dos artigos	прекратить назначений статей

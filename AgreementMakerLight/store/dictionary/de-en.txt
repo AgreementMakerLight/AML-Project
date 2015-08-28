@@ -707,3 +707,18 @@ wurde präsentiert von	was presented by
 deadline eingerichtet für	deadline set for
 konferenz findet in folgender stadt statt	Conference will be held in the following city
 datum des letzten tages der konferenz ist	date of the last day of the Conference is
+hat webseite url	has Web page url
+maximale anzahl zugewiesenen beiträgen	maximum number allocated contributions
+hat logo url	has logo url
+hat details eingefügt bezug auf	details added a reference on
+hat interessenskonflikt bezug auf	has interessenskonflikt reference on
+steht interessen-konflikt mit beitrag	is interests conflict with contribution
+bestimme maximale anzahl zugewiesenen beiträgen	choose maximum number allocated contributions
+findet statt	takes place
+studiert	studied
+wird bezahlt	will be paid
+befindet sich	located
+spricht (räumlich und zeitlich)	speaks (spatial and temporal)
+registrierungsbeitrags ist währung	currency is registry contribution
+konferenz findet folgender stadt statt	Conference will be held the following city
+bleibt	remains

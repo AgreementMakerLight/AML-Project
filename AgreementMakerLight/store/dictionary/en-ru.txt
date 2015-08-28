@@ -723,3 +723,126 @@ silver sponzor	Серебряные sponzor
 person active	человек активный
 acm sigkdd	ACM sigkdd
 bronze sponzor	Бронза sponzor
+maximal number assigned papers	Максимальное число назначенных документы
+has website url	URL-адрес веб-сайта
+details entered	детали вошел
+written	Автор
+has logo url	имеет логотип url
+hardcopy mailing manifests printed	печатный рассылки печатных манифесты
+set maximal number assigned paper	задать максимальное число назначенных бумаги
+virtual meeting enabled	виртуальные совещания включен
+cowritten	cowritten
+cowritten by	cowritten
+rejected	отклонено
+read metareviewer	читать metareviewer
+read by metareviewer	читать metareviewer
+member	член
+added	Добавлено
+cowrite	cowrite
+mark conflict interest	Марк конфликта интересов
+review criteria entered	критерии обзора вступил
+paper assignment finalized	Бумага назначения завершена
+assigned reviewer	назначенный рецензент
+accepted	принято
+reviewer bidding started	Начало торгов рецензент
+assigned	назначен
+has conflict interest respect	конфликт интересов уважения
+assigned admin	назначенный администратор
+read reviewer	читать рецензент
+paper assignment tools run	Бумага назначение средства запуска
+adjusted	скорректированы
+member program committee	Член программного комитета
+enter details	Введите детали
+expertise degree reviewer	экспертиза степени рецензент
+volume number proceedings	объем номер дела
+date abstract submission	Дата подачи тезисов
+date acceptance notification	Дата уведомления о принятии
+degree review preference	обзор степени предпочтения
+has topic submission contribution	Тема представления вклад
+is organizing committee	Организационный Комитет
+contributes	способствует
+important date serie	важные даты серия
+date full paper submission	полный документ Дата представления
+date cameraready submission	Дата представления cameraready
+date of cameraready submission	Дата представления cameraready
+isbn proceedings	ISBN разбирательства
+published date	Дата публикации
+url web is	URL-адрес веб-
+is workshop chair	Кресло рабочее совещание
+is program committee	это программный комитет
+topic related review preference	темы, связанные предпочтения обзор
+is cochair committee	cochair Комитет
+is cochair of committee	Это cochair Комитета
+invited reviewer	приглашенные рецензент
+preference expertise review is	Обзор опыта предпочтения
+program committee is	Программный комитет является
+invites coreviewer	предлагает coreviewer
+committee is	Комитет
+submitted	представленный
+is part	Это часть
+is topic part	часть темы
+preference expertise reviewer	предпочтение опыт рецензент
+steering committee is	Руководящий комитет
+has committee cochair	Комитет cochair
+is steering committee	Руководящий комитет
+presented	представлен
+is chair committee	– Председатель Комитета
+is first part	Это первая часть
+is committee	Комитет
+publisher proceedings is	Издатель разбирательство
+is member	является членом
+organizing committee is	Организационный Комитет
+event is being held	событие проводится
+participant has early registration	участник имеет ранняя регистрация
+setting default choice number event	Настройка по умолчанию выбор номер события
+starting day event	Начиная день события
+setting minimal number event	Установка минимального числа событий
+is parallel	параллельно
+stay city	город проживания
+employed	занято
+written author	письменные автор
+stay country	Страна проживания
+deals topic	предложения темы
+expert topic	Эксперт тема
+setting maximal number event	Параметр Максимальное число событий
+stay street	Оставайтесь улица
+end day event	конец день события
+study university	Исследование университета
+is paid	выплачивается
+is designed	разработан
+speaks time place	говорит время место
+is given	Дана
+is present time space	настоящее время пространство
+is locally situated	расположен локально
+is occupied	занято
+is connected	подключен
+is sent	Отправлено
+is present time	настоящее время
+is needed	необходима
+is visited	посетил
+is written	написано
+has amount	имеет размер
+be done till	быть по
+is dated	датирован
+is prepared	готовится
+is equipped	оснащен
+is made	производится
+is signed	подписано
+is used	используется
+is held	проводится
+date starting day	Дата первого дня
+registration fee paid	Регистрационный взнос выплачивается
+deadline author notification	срок уведомления автора
+setup deadline	Крайний срок установки
+has deadline submission	есть крайний срок представления
+awarded	награжден
+sponzor are called	называются sponzor
+was presented	был представлен
+date final day	последний день Дата
+takes place city	имеет место города
+registration fee is currency	Регистрационный взнос – Валюта
+call sponzor	Звоните sponzor
+setup deadline for	срок установки
+organized	организован
+stay	пребывания
+organize	организовать

@@ -723,3 +723,126 @@ silver sponzor	stříbrný sponzor
 person active	osoba činná
 acm sigkdd	ACM sigkdd
 bronze sponzor	Bronzový sponzor
+expertise degree reviewer	recenzent stupeň znalosti
+volume number proceedings	číslo řízení hlasitosti
+date abstract submission	Datum abstrakt
+date acceptance notification	Datum přijetí oznámení
+degree review preference	stupeň hodnocení předvolba
+has topic submission contribution	má téma odeslání příspěvku
+is organizing committee	je organizační výbor
+contributes	přispívá
+important date serie	důležité datum serie
+date full paper submission	Datum odeslání plnou papíru
+date cameraready submission	Datum odeslání cameraready
+date of cameraready submission	Datum předložení cameraready
+isbn proceedings	ISBN řízení
+published date	publikovaná data
+url web is	Adresa URL webu je
+is workshop chair	je židle workshop
+is program committee	je Programový výbor
+topic related review preference	téma týkající se přezkumu předvoleb
+is cochair committee	je předsednictví výboru
+is cochair of committee	je předsednictví výboru
+invited reviewer	pozvaných recenzentů
+preference expertise review is	přednost odborné Recenze je
+program committee is	Programový výbor je
+invites coreviewer	vyzývá coreviewer
+committee is	Výbor je
+submitted	napsané
+is part	je součástí
+is topic part	je téma
+preference expertise reviewer	předvolba odborných recenzentů
+steering committee is	Řídící výbor je
+has committee cochair	má výbor cochair
+is steering committee	je řídící výbor
+presented	prezentovány
+is chair committee	je předsedkyně výboru
+is first part	je první část
+is committee	je výbor
+publisher proceedings is	aplikace Publisher řízení je
+is member	je členem
+organizing committee is	organizační výbor je
+maximal number assigned papers	maximální číslo přiřazené papíry
+has website url	má adresa url webové stránky
+details entered	údaje z
+written	Napsal uživatel
+has logo url	má adresa url loga
+hardcopy mailing manifests printed	výtisk poštovních manifesty tisku
+set maximal number assigned paper	nastavit maximální číslo přiřazené papíru
+virtual meeting enabled	virtuální setkání povoleno
+cowritten	cowritten
+cowritten by	cowritten od
+rejected	odmítnuto
+read metareviewer	Přečtěte si metareviewer
+read by metareviewer	číst metareviewer
+member	člen
+added	Přidáno
+cowrite	cowrite
+mark conflict interest	označení střetu zájmů
+review criteria entered	přezkoumat kritéria zadaná
+paper assignment finalized	papíru přiřazení dokončena
+assigned reviewer	přiřazené recenzentovi
+accepted	přijato
+reviewer bidding started	recenzent nabízení začal
+assigned	přiřazené
+has conflict interest respect	má konflikt zájmu respekt
+assigned admin	přiřazené admin
+read reviewer	Přečtěte si recenzent
+paper assignment tools run	spuštění nástroje pro přiřazení papíru
+adjusted	upraveno
+member program committee	člen programového výboru
+enter details	Zadejte podrobnosti
+event is being held	akce se koná
+participant has early registration	účastník má včasné registrace
+setting default choice number event	nastavení výchozí volbou číslo události
+starting day event	počáteční celodenní zvláštní událost
+setting minimal number event	nastavení minimální počet událost
+is parallel	je rovnoběžná
+stay city	zůstat město
+employed	zaměstnání
+written author	Písemná autor
+stay country	zůstat země
+deals topic	téma se zabývá
+expert topic	odborné téma
+setting maximal number event	nastavení maximální počet událost
+stay street	zůstat ulice
+end day event	konec celodenní zvláštní událost
+study university	Studie univerzity
+is paid	je vyplácena
+is designed	je navržen tak
+speaks time place	mluví čas místo
+is given	je uveden
+is present time space	současné době prostor
+is locally situated	nachází se místně
+is occupied	je obsazeno
+is connected	je připojen
+is sent	je odeslána
+is present time	je současné době
+is needed	je zapotřebí
+is visited	je navštívil
+is written	je napsán
+has amount	má množství
+be done till	být až do
+is dated	je datována
+is prepared	je připraven
+is equipped	je vybaven
+is made	je vyroben
+is signed	je podepsána
+is used	používá se
+is held	se koná
+date starting day	Počáteční datum den
+registration fee paid	registrační poplatek platí
+deadline author notification	termín oznámení autor
+setup deadline	termín instalace
+has deadline submission	má konečný termín odeslání
+awarded	ocenění
+sponzor are called	sponzor se nazývají
+was presented	byl předložen
+date final day	Datum poslední den
+takes place city	město se odehrává
+registration fee is currency	registrační poplatek je měna
+call sponzor	volání sponzor
+setup deadline for	termín instalace
+organized	organizoval
+stay	zůstat
+organize	uspořádat

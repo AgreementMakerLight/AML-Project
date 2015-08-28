@@ -707,3 +707,18 @@ wurde präsentiert von	fue presentado por
 deadline eingerichtet für	plazo fijado para
 konferenz findet in folgender stadt statt	Se celebrará en la ciudad siguiente
 datum des letzten tages der konferenz ist	fecha de la última jornada de la conferencia es
+hat webseite url	tiene página Web url
+maximale anzahl zugewiesenen beiträgen	número máximo asignado contribuciones
+hat logo url	tiene logo url
+hat details eingefügt bezug auf	detalles agregar una referencia en
+hat interessenskonflikt bezug auf	tiene referencia interessenskonflikt
+steht interessen-konflikt mit beitrag	es intereses conflicto con contribución
+bestimme maximale anzahl zugewiesenen beiträgen	elegir las contribuciones asignadas números máximas
+findet statt	se lleva a cabo
+studiert	estudió
+wird bezahlt	se pagará
+befindet sich	situado
+spricht (räumlich und zeitlich)	habla (espacial y temporal)
+registrierungsbeitrags ist währung	la moneda es contribución de registro
+konferenz findet folgender stadt statt	Conferencia será la siguiente ciudad
+bleibt	sigue siendo

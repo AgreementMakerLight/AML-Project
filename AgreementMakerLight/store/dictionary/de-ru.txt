@@ -707,3 +707,18 @@ wurde präsentiert von	был представлен
 deadline eingerichtet für	Крайний срок для
 konferenz findet in folgender stadt statt	Конференция будет проводиться в следующие города
 datum des letzten tages der konferenz ist	Дата последнего дня Конференции
+hat webseite url	URL-адрес веб-страницы
+maximale anzahl zugewiesenen beiträgen	Максимальное число выделенных взносов
+hat logo url	имеет логотип url
+hat details eingefügt bezug auf	Подробнее добавил ссылку на
+hat interessenskonflikt bezug auf	имеет interessenskonflikt ссылку
+steht interessen-konflikt mit beitrag	это интересы конфликт с вкладом
+bestimme maximale anzahl zugewiesenen beiträgen	Выберите максимальное число выделенных взносов
+findet statt	имеет место
+studiert	изучал
+wird bezahlt	будут выплачиваться
+befindet sich	расположен
+spricht (räumlich und zeitlich)	говорит (пространственных и временных)
+registrierungsbeitrags ist währung	Валюта является вкладом реестра
+konferenz findet folgender stadt statt	Конференция будет проходить в следующие города
+bleibt	остается

@@ -723,3 +723,126 @@ silver sponzor	Zilveren sponzor
 person active	actieve persoon
 acm sigkdd	ACM sigkdd
 bronze sponzor	bronzen sponzor
+maximal number assigned papers	maximale aantal toegewezen papers
+has website url	website url heeft
+details entered	gegevens ingevoerd
+written	geschreven
+has logo url	logo url heeft
+hardcopy mailing manifests printed	mailing manifesten hardcopy afgedrukt
+set maximal number assigned paper	ingestelde maximale nummer van papier
+virtual meeting enabled	virtuele vergadering ingeschakeld
+cowritten	nieuwe
+cowritten by	door nieuwe
+rejected	verworpen
+read metareviewer	Lees metareviewer
+read by metareviewer	gelezen door metareviewer
+member	lid
+added	toegevoegd
+cowrite	cowrite
+mark conflict interest	Mark belangenconflicten
+review criteria entered	beoordeling criteria ingevoerd
+paper assignment finalized	papier toewijzing afgerond
+assigned reviewer	toegewezen revisor
+accepted	geaccepteerd
+reviewer bidding started	revisor bieden gestarte
+assigned	toegewezen
+has conflict interest respect	conflict respecteert belang
+assigned admin	toegewezen admin
+read reviewer	Lees revisor
+paper assignment tools run	papier toewijzing's uitgevoerd
+adjusted	aangepast
+member program committee	lid programma Comité
+enter details	Geef details
+expertise degree reviewer	deskundigheid graad revisor
+volume number proceedings	volume nummer procedure
+date abstract submission	abstracte datum indiening
+date acceptance notification	datum aanvaarding kennisgeving
+degree review preference	mate beoordeling voorkeur
+has topic submission contribution	onderwerp indiening bijdrage heeft
+is organizing committee	Organiserend Comité is
+contributes	draagt bij
+important date serie	belangrijke datum serie
+date full paper submission	datum artikel indiening
+date cameraready submission	datum cameraready indiening
+date of cameraready submission	datum van indiening van de cameraready
+isbn proceedings	ISBN procedure
+published date	Publicatiedatum
+url web is	URL web is
+is workshop chair	workshop stoel
+is program committee	programma Comité is
+topic related review preference	onderwerp gerelateerde beoordeling voorkeur
+is cochair committee	cochair Commissie
+is cochair of committee	is cochair van de Commissie
+invited reviewer	uitgenodigde revisor
+preference expertise review is	voorkeur deskundigheid herziening is
+program committee is	programma Comité is
+invites coreviewer	nodigt coreviewer
+committee is	Comité is
+submitted	ingediend
+is part	maakt deel uit
+is topic part	onderwerp behoort
+preference expertise reviewer	voorkeur deskundigheid revisor
+steering committee is	Stuurgroep is
+has committee cochair	heeft de Commissie cochair
+is steering committee	Stuurgroep is
+presented	gepresenteerd
+is chair committee	Voorzitter Commissie
+is first part	is eerste deel
+is committee	is de Commissie
+publisher proceedings is	Uitgever procedure is
+is member	is lid
+organizing committee is	Organiserend Comité is
+event is being held	gebeurtenis wordt gehouden
+participant has early registration	deelnemer heeft vroege registratie
+setting default choice number event	instelling standaardgebeurtenis keuze nummer
+starting day event	Start dagen durende evenement
+setting minimal number event	minimale aantal gebeurtenis instellen
+is parallel	is parallel
+stay city	blijven stad
+employed	in dienst
+written author	schriftelijke Auteur
+stay country	land blijven
+deals topic	aanbiedingen onderwerp
+expert topic	deskundige onderwerp
+setting maximal number event	maximale aantal gebeurtenis instellen
+stay street	blijven straat
+end day event	einde dagen durende evenement
+study university	Studie Universiteit
+is paid	wordt betaald
+is designed	is ontworpen
+speaks time place	tijd plaats spreekt
+is given	wordt gegeven
+is present time space	huidige tijd ruimte is
+is locally situated	lokaal ligt
+is occupied	is bezet
+is connected	is aangesloten
+is sent	wordt verzonden
+is present time	is dit moment
+is needed	nodig is
+is visited	wordt bezocht
+is written	is geschreven
+has amount	bedrag heeft
+be done till	worden tot
+is dated	is gedateerd
+is prepared	is bereid
+is equipped	is uitgerust
+is made	wordt gemaakt
+is signed	is ondertekend
+is used	wordt gebruikt
+is held	wordt gehouden
+date starting day	datum begindag
+registration fee paid	inschrijfgeld betaald
+deadline author notification	termijn Auteur kennisgeving
+setup deadline	Setup termijn
+has deadline submission	uiterste datum indiening heeft
+awarded	toegekend
+sponzor are called	sponzor heten
+was presented	werd gepresenteerd
+date final day	datum laatste dag
+takes place city	plaatsvindt stad
+registration fee is currency	registratie fee is valuta
+call sponzor	Bel sponzor
+setup deadline for	Setup indieningstermijn
+organized	georganiseerd
+stay	verblijf
+organize	organiseren

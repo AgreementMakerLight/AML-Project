@@ -707,3 +707,18 @@ wurde präsentiert von	提出了一
 deadline eingerichtet für	设定为最后期限
 konferenz findet in folgender stadt statt	在下面的城市将举行会议
 datum des letzten tages der konferenz ist	会议的最后一天的日期是
+hat webseite url	有的 Web 页的 url
+maximale anzahl zugewiesenen beiträgen	已分配捐款的最大数量
+hat logo url	有标志的 url
+hat details eingefügt bezug auf	细节上添加了一个引用
+hat interessenskonflikt bezug auf	对 interessenskonflikt 的引用
+steht interessen-konflikt mit beitrag	利益冲突与贡献吗?
+bestimme maximale anzahl zugewiesenen beiträgen	选择最大编号分配的捐款
+findet statt	发生
+studiert	研究
+wird bezahlt	将支付
+befindet sich	位于
+spricht (räumlich und zeitlich)	讲话 (时空)
+registrierungsbeitrags ist währung	货币是注册表的贡献
+konferenz findet folgender stadt statt	会议将举行以下城市
+bleibt	仍然是

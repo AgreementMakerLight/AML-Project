@@ -681,3 +681,14 @@ houdt	mantiene
 gezocht door	buscado por
 zoeken	Búsqueda de
 begin van conferentie	Inicio de conferencia
+heeft een recentie referentie expertise	tiene una experiencia de referencia informe
+heeft een onderwerp een ingediende contributie	tiene un tema una contribución presentada
+stel maximaal aantal artikelen	establecer número máximo de artículos
+vul recentie criteria	llenar criterios de revisión
+dien artikel	enviar artículo
+vul conferentie details	detalles de la Conferencia completas
+spreken	hablar
+is gelegen	se encuentra
+wordt betaald	se paga
+wordt gehouden	se lleva a cabo
+mag verblijven	se les permite permanecer
