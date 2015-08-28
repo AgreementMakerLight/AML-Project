@@ -40,6 +40,8 @@ public class InteractionManager
 	private Alignment positive;
 	//The alignment built from the negative queries
 	private Alignment negative;
+	//The query limit
+	private int limit;
 	//Whether user interaction is available
 	private boolean isInteractive;
 	//The URI map used to convert ids to URIs for
@@ -57,6 +59,7 @@ public class InteractionManager
 	{
 		positive = new Alignment();
 		negative = new Alignment();
+		limit = 0;
 		isInteractive = Oracle.isInteractive();
 		uris = AML.getInstance().getURIMap();
 	}
@@ -74,7 +77,7 @@ public class InteractionManager
 	public boolean check(Mapping m)
 	{
 		boolean check = positive.contains(m);
-		if(!check && !negative.contains(m) && isInteractive())
+		if(!check && !negative.contains(m) && isInteractive() && positive.size()+negative.size() < limit)
 		{
 			check = Oracle.check(uris.getURI(m.getSourceId()),
 				uris.getURI(m.getTargetId()), m.getRelationship().toString());
@@ -87,10 +90,35 @@ public class InteractionManager
 	}
 
 	/**
+	 * @return the query limit
+	 */
+	public int getLimit()
+	{
+		return limit;
+	}
+
+	/**
 	 * @return whether user interaction is available
 	 */
 	public boolean isInteractive()
 	{
 		return isInteractive;
+	}
+	
+	/**
+	 * @return the current query count
+	 */
+	public int queryCount()
+	{
+		return positive.size()+negative.size();
+	}
+	
+	/**
+	 * Sets the query limit
+	 * @param limit: the limit to set
+	 */
+	public void setLimit(int limit)
+	{
+		this.limit = limit;
 	}
 }
