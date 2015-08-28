@@ -161,7 +161,7 @@ public class Dictionary
 				else if(useTranslator)
 				{
 					System.out.println("Not found: " + n);
-					//trans = translator.translate(n, sourceLang, targetLang);
+					trans = translator.translate(n, sourceLang, targetLang);
 					if(trans.startsWith("ArgumentException"))
 						continue;
 					//Update the dictionary
