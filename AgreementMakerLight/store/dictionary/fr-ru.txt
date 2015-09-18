@@ -714,3 +714,315 @@ organise conférence	организует конференцию
 soumettre l'article	Отправить статью
 a une date limite pour la soumission	срок для представления
 appel à sponsor	вызов для спонсора
+président de conférence	Председатель Конференции
+rapport d'examen	экспертизы
+thématique	Тема
+président de comité de programme	Председатель программного комитета
+président adjoint de conférence	Заместитель Председателя Конференции
+méta-rapport d'examen	Мета-раппорт для обзора
+résumé d'article	Обзор статьи
+membre de conférence	Члены Конференции
+membre de comité de programme	Член Комитета программы
+version complète d'article	Полная версия статьи
+proposition de relecture	предложение для воспроизведения
+nombre de rapports d'examen par article	количество докладов по статье
+url du logo	URL-адрес логотипа
+accepte les soumissions d'articles au format papier	принимает документы в бумажном виде
+identifiant de l'article	Идентификатор статьи
+l'attribution de propositions aux relecteurs est initialisée par	Выделение предложений рецензентам инициализируется
+ajuste la proposition de relecture	Настройка воспроизведения предложение
+imprime les courriers de la manifestation	Печать письма события
+a pour co-auteur	для соавтор
+est ajusté par	регулируется
+a pour thématique	Тема
+met en place la réunion virtuelle	настраивает виртуальные встречи
+est lu par le méta-relecteur	читается мета рецензент
+affecte le rôle de relecteur externe à	влияет на роль внешнего рецензента
+a pour décision	для принятия решения
+a été associé à	связан с
+finalise l'attribution d'articles	Завершает назначение статей
+initialise l'attribution de propositions aux relecteurs de	Инициализирует распределение предложений рецензентам
+lit l'article	кровати статьи
+a pour membre du comité de programme	членом программы Комитета по
+exécute les outils d'attribution d'articles de	Запуск именования инструменты из блогов
+est affecté par l'administrateur	назначается администратором
+accepte l'article	принять статью
+les détails sont saisis par	данные вводятся
+saisit les détails de la conférence	захватывает подробные сведения о Конференции
+soumet l'article	Отправить статью
+saisit les critères d'évaluation de	захватывает критерии оценки
+signale un conflit d'intérêt pour	Указывает на конфликт интересов для
+les exemplaires papier des courriers de la manifestation imprimés par	печатные экземпляры напечатаны событий электронной почты
+écrit l'article	Написал статью
+la réunion virtuelle activée par	виртуальные совещания, активизируемые
+a un conflit d'intérêt à propos de	имеется конфликт интересов в связи с
+a pour membre de conférence	для членов Конференции
+est accepté par	принимается
+a pour auteur	был автором
+l'attribution des articles finalisée par	Распределение статей подготовлен
+les outils d'attribution d'articles sont exécutés par	распределение средств элементы выполняются путем
+est rejeté par	отвергается
+est affecté par le relecteur	пострадавших от рецензента
+écrit le rapport d'examen	доклад письменного экзамена
+les critères d'évaluation sont remplis par	критерии оценки заполнены
+rejette l'article	отвергает статьи
+a pour proposition de relecture	предложение для воспроизведения
+définit le nombre maximum d'articles de	Задает максимальное количество элементов
+co-écrit l'article	соавтором статьи
+est ajouté par	добавляется в
+finalise le processus de relecture	Завершает процесс обзора
+est lu par le relecteur	читается рецензент
+affecte le rôle de relecteur à	влияет на роль рецензенту
+est assigné à	присваивается
+premier auteur de contribution	Первый автор вклад
+personne qui a payé les frais d'inscription en avance	лицо, которое авансом регистрационный взнос
+co-auteur de contribution	соавтор вклад
+date importante	важные даты
+contributeur de conférence	участник конференции
+annonce de conférence	Анонс конференции
+expertise de relecteur	Рецензент экспертиза
+contribution relue	вклад воспроизвести
+personne qui a demandé à participer à une conférence	лицо, которое применяет для участия в Конференции
+participant actif de conférence	Активный участник конференции
+préférence de relecteur	предпочтение рецензента
+membre de comité	Член Комитета
+président de session d'atelier	Председатель сессии семинара
+candidat enregistré	зарегистрированный кандидат
+participant de conférence	участник конференции
+personne qui a payé les frais d'inscription tardivement	человек, кто заплатил регистрационные сборы поздно
+partie de conférence	частью Конференции
+présentation de conférencier invité	Ключевая презентация
+volume de conférence	объем конференции
+contribution ordinaire	регулярные взносы
+auteur ordinaire	регулярного автора
+document de conférence	документ Конференции
+contribution de conférence	вклад Конференции
+version finale de contribution	окончательный вариант вклада
+personne qui a payé les frais d'inscription	человек, кто заплатил регистрационный взнос
+participant passif de conférence	Пассивный участник конференции
+actes de conférence	Труды конференции
+est la date de fin	Дата окончания
+a pour courriel	для электронной почты
+est la date de soumission de résumé	Дата подачи тезисов
+est la date de début	Начальная дата
+a pour date de publication	Дата публикации
+a pour nom	для имени
+est la date de soumission de la version finale	Дата представления окончательного варианта
+a pour lieu	место для
+a pour url	для URL-адреса
+a pour genre	для вида
+a pour isbn	для isbn
+appartient au relecteur	принадлежит к рецензент
+fait la présentation	сделал презентацию
+a été un président d'atelier de	был президентом мастерской
+a pour éditeur	для издателя
+appartient à une préférence du relecteur	принадлежит к предпочтение рецензента
+a été attribué à une préférence de relecture	была вручена предпочтение корректуры
+est une thématique d'une partie de la conférence	является частью темы Конференции
+a été un membre de	был членом
+est la date de notification de l'acceptation	Дата уведомления о принятии
+a pour prénom	для первого имени
+a pour volume	для тома
+a pour expertise	для специалистов
+a pour relecteur	оппонентом для
+a pour président d'atelier	для Председателя рабочего совещания
+est la date de soumission de la version complète	Дата представления полной версии
+a pour degré	для степени
+est dispensé par	обеспечивается
+a été un comité d'organisation de	был организационный комитет
+a pour président de comité	был Председателем Комитета
+publie	публикует
+a pour session	для сессии
+a pour résumé	для резюме
+a pour soumission	для представления
+a pour membre	для членов
+a pour comité	для Комитета
+est invité par	предлагается
+a pour atelier	для мастерской
+a été un comité de programme de	Программа Комитета по
+a été un comité de pilotage de	был Руководящий комитет
+a pour co-président de comité	Сопредседатель Комитета
+a pour comité de pilotage	Руководящий комитет по
+a pour préférence ou pour expertise	предпочтение или опыта
+a pour date importante	важные даты
+invite le co-relecteur	Предлагает совместное рецензент
+a pour comité de programme	Программа Комитета
+fait partie du volume de conférence	часть объема конференции
+a été un président de comité de	был Председателем Комитета по
+a pour contributions	для взносов
+a pour thématique ou pour soumission	Тема или для представления
+a pour partie	для части
+a pour sujet d'atelier	темой семинара
+a pour comité d'organisation	для организационного комитета
+a pour tutoriel	Учебник
+a été un comité de	был в Комитет
+contribue	способствует
+a pour expertise de relecteur	Имеет опыт рецензент
+évalue	оценивает
+a été un co-président de comité de	был сопредседателем Комитета по
+scientifique	ученый
+bénévole	добровольцев
+evénement de relecture	Воспроизведение событий
+événement de travail	события рабочего
+universitaire	Университет
+participant ordinaire	регулярный участник
+evénement	события
+evénement d'envoi de version finale	окончательный вариант рассылки событий
+evénement d'évaluation des résultats	Оценка результатов событий
+evénement social	социальные мероприятия
+etudiant	студент
+evénement de soumission	для передачи событий
+membre	Член
+evénement d'inscription des participants	регистрация событий участников
+adjoint	Помощник
+evénement administratif	Административные события
+choix par défaut	Выбор по умолчанию
+a pour téléphone	для телефона
+a pour numéro de fax	для номера факса
+choix max	Выбор Макс
+se termine en	заканчивается на
+a pour titre court	Краткое название
+choix min	Выбор мин
+inscription anticipée	Ранняя регистрация
+a pour titre	за титул
+a pour page web	для веб-страницы
+a pour code postal	Почтовый код
+étudie à	учился в
+a pour pays	для стран
+se déroule en parallèle de	работает параллельно с
+est employé par	используется
+est expert sur	является экспертом по
+a pour rue	для улицы
+a pour tva	для НДС
+courriel de contact	Контактный e-mail
+a pour mot clé	для ключевого слова
+a pour ville	для города
+a pour événement administratif	для административных событий
+traite de	резервирование
+commence en	начинается
+étudiant non orateur	студент не спикер
+état d'un présentateur	Государство ведущий
+minibus	Микроавтобус
+orateur	спикер
+conférence d'une journée	один день конференции
+brève introduction de président de session	Краткое введение Председателя сессии
+hôtel d'une conférence	Конференц-отель
+orateur d'un tutoriel	Учебник спикер
+état d'une conférence	Государство конференции
+recherche	Исследования
+date limite de soumission	Крайний срок для представления
+formulaire d'information sur un auteur	Автор формы информации
+argent	деньги
+frais d'inscription d'auteur participant pour les actes au format papier	Автор, участие для действия в бумаги регистрационный взнос
+maison de présentateur	Презентатор дома
+ville de sponsor	Город спонсора
+frais d'inscription d'auteur participant pour les actes sur support numérique	Регистрация авторского права для действия на цифровых средств массовой информации
+acceptation de manuscrit	принятие рукописи
+frais d'inscription d'auteur	Автор регистрационный взнос
+université de présentateur	Университет ведущий
+jour de voyage	день поездки
+chèque	чек
+ville de présentateur	Город ведущий
+frais d'inscription de non membre	не являющиеся членами регистрационный взнос
+auteur ayant les actes sur support numérique	Автор, который действует на цифровых средств массовой информации
+date limite de dépôt de version finale de manuscrit	Крайний срок для представления окончательный вариант рукописи
+travailleur non orateur	работник не спикер
+actes en support numérique	акты в цифровом формате
+date limite d'inscription	Крайний срок регистрации
+frais d'inscription de membre	Регистрационный взнос члена
+date limite de notification d'acceptation	Крайний срок для уведомления о принятии
+auteur ayant les actes au format papier	Автор, который действует в бумажном формате
+représentant	Представитель
+réception de manuscrit	получения рукописи
+programme social	Социальная программа
+location	Прокат
+maître d'hôtel	Мэтр Гостиницы Дизайн отель
+conférence plénière	пленарные лекции
+visite guidée d'une journée complète	Экскурсия в день полный
+membre d'iasted	iasted член
+aéroport de conférence	Конференции-аэропорт
+activité ayant lieu avant une conférence	деятельность провести до Конференции
+date limite de réservation d'hôtel	Крайний срок бронирования
+refus de manuscrit	отказ от рукописи
+taxe sur la valeur ajoutée	налог на добавленную стоимость
+activité ayant lieu pendant une conférence	действие происходит во время конференции
+monnaie	Валюта
+non orateur	Не спикер
+dîner de gala	праздничный ужин
+frais d'inscription d'étudiant	студент регистрационный взнос
+orateur de conférence plénière	пленарное заседание докладчик
+non membre d'iasted	не является членом iasted
+guide d'excursion de conférence	Гид по Конференции
+ville de conférence	Город конференции
+maison de société de sponsor	Дом компании спонсора
+formulaire d'inscription	Регистрационная форма
+introduction d'un orateur	Введение-спикера
+présentateur salarié	самозанятое лицо ведущий
+simulation	моделирование
+activité ayant lieu après une conférence	деятельности после Конференции
+bâtiment de conférence	конференционное здание
+transparent	прозрачный
+formulaire de réservation de chambre d'hôtel	Форма бронирования номер Гостиницы
+état d'un sponsor	Государство спонсора
+pourboire	Подсказка
+restaurant d'une conférence	Ресторан конференции
+jour de conférence	день конференции
+président de session	Председатель сессии
+présentateur étudiant	Презентатор студента
+modélisation	моделирование
+présentation d'accueil	Главная Обзор
+présentation d'orateur	презентации спикер
+ville d'excursion	Город, экскурсии
+orateur pendant une journée	динамик один день
+est utilisé par	используется
+occupe	занимает
+est envoyé par	Отправлено
+parle à	говорит
+est daté du	dated от
+est fait jusqu'à	состоит
+est donné à	отдается
+est payé à	выплачивается
+est présent à	присутствует на
+est donné par	задается
+est situé dans	расположен в
+est présent	присутствует
+notification jusqu'à	уведомления
+sponsor de bronze	Бронзовый спонсор
+exposant	Экспонента
+frais d'inscription de non-membre	не являющиеся членами регистрационный взнос
+date limite pour soumettre un résumé	Крайний срок представить тезисы
+sponsor d'argent	Серебряный спонсор
+comité de sélection de meilleurs articles	Комитет по отбору лучших блогов
+prix	Цена
+sponsor de meilleur article étudiant	авторов лучших студенческих бумаги
+date limite pour soumettre un article	Крайний срок представить статью
+webmestre	для веб-мастеров
+sponsor d'or	Золотой спонсор
+auteur d'article étudiant	Автор студенческих секции
+frais d'inscription de membre de sigkdd	sigkdd член регистрационный взнос
+prix de meilleur article de recherche	Лучшая бумага исследования
+prix de meilleur article étudiant	Лучшая Студенческая премия бумаги
+frais d'inscription de membre de sigmod	SIGMOD член регистрационный взнос
+président général	Президент генерал
+prix de meilleur article d'application	Лучшая бумага приложения
+sponsor de platine	Платиновый спонсор
+membre de comité d'organisation	Член организационного комитета
+ville de la conférence	Город конференции
+début de la conférence	Начало конференции
+nationalité	гражданство
+décerne	Награды
+définit	Наборы
+est décerné par	вручается
+est présenté par	представлен
+présente	Подарки
+soumet	представляет
+nom de la conférence	Название конференции
+fin de la conférence	конце конференции
+nom du sponsor	имя спонсора
+est démarché par	Это кратко рассматриваются в
+paye	оплатить
+est organisé par	организован
+est soumis jusqu'à	объектом
+démarche	подход
+est défini par	определяется
+peut rester sur	можно остановиться

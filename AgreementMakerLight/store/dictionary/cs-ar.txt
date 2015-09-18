@@ -1,0 +1,487 @@
+kamera-ready verze příspěvku	نسخة جاهزة للتصوير من مساهمة
+dokument konference	وثيقة المؤتمر
+vydavatel	الناشر
+programový výbor	لجنة البرنامج
+organizátor	المنظم
+tutoriál	البرنامج التعليمي
+pozdně přihlášený zájemce o konferenci	عميل متوقع أواخر على الذين تم تسجيل دخوله إلى المؤتمر
+výbor	اللجنة
+řádný příspěvek	وظيفة عادية
+zvaná přednáška	محاضرة المدعوين
+přihlášený zájemce o konferenci	تسجيل في الصدارة عن المؤتمر
+odbornost experta	الخبرة الفنية للخبراء
+důležité termíny	التواريخ الهامة
+spoluautor příspěvku	شارك في تأليف مساهمة
+zamítnutý příspěvek	وظيفة المرفوضة
+preference experta	تفضيلات الخبراء
+organizační výbor	اللجنة التنظيمية
+recenzent	المراجع
+účastník konference	مشارك المؤتمر
+workshop	ورشة عمل
+řídící výbor	لجنة الإدارة
+člen výboru	عضو في اللجنة
+předseda	الرئيس
+sborník konference	وقائع المؤتمر
+téma	الموضوع
+přijatý příspěvek	بعد تلقي
+konferenční akce	عمل المؤتمر
+výzva na psaní článku	الكلمة لكتابة المقالة
+recenze	ملاحظات
+konferenční příspěvek	مساهمة المؤتمر
+zájemce o konferenci	يؤدي المؤتمر
+psaný příspěvek	وظيفة كتابية
+pasivní účastník konference	مشارك السلبي من المؤتمر
+časně přihlášený zájemce o konferenci	مبكرا للمؤتمر الذي قام بتسجيل الدخول
+poster	ملصق
+poslaný příspěvek	أرسلت بالبريد
+hlavní autor příspěvku	المؤلف الرئيسي لمساهمة
+článek	المادة
+abstrakt	خلاصة
+sekce konference	قسم المؤتمر
+osoba	الشخص
+konference	المؤتمر
+aktivní účastník konference	مشاركة نشطة في المؤتمر
+webové stránky konference	الموقع الإلكتروني للمؤتمر
+konferenční oznámení	إعلان مؤتمر
+rozšířený abstrakt	الخلاصة الموسعة
+organizace	المنظمة
+přispěvatel konference	مؤتمر المساهم
+řádný autor příspěvku	مساهمة مقدم البلاغ الصحيح
+spolupředseda	الرئيس المشارك
+předseda workshopu	رئيس حلقة العمل
+informace pro účastníky	معلومات للمشاركين
+konferenční poplatky	رسوم المؤتمر
+recenzovaný příspěvek	أي مساهمة لاستعراض الأقران
+výzva k účasti na konferenci	دعوة للمشاركة في المؤتمر
+zvaný přednášející	ودعا المحاضر
+registrovaný zájemce o konferenci	المرشحين المسجلين للمؤتمر
+prezentace	العرض التقديمي
+email	البريد الإلكتروني
+den oznámení přijetí příspěvku	يوم الإشعار باستلام مساهمة
+isbn sborníku	وقائع المؤتمر ISBN
+den odeslání řádného příspěvku	تاريخ إرسال مساهمة السليم
+publikováno dne	نشرت في
+url webových stránek konference	عنوان URL للموقع الإلكتروني للمؤتمر
+stupeň preference recenze	درجة التفضيل ملاحظات
+finální den	اليوم الأخير
+den odeslání abstraktu	تاريخ إرسال الملخص
+stupeň odbornosti recenzenta	مستوى خبرة المراجع
+den odeslání kamera-ready verze příspěvku	تاريخ إرسال النسخة جاهزة للتصوير من مساهمة
+má odeslaný příspěvek	وقد أرسلت
+pozván recenzentem	دعت المراجع
+má autora	وقد صاحب البلاغ
+má předsedu výboru	وقد رئيس اللجنة
+být spolupředsedou výboru	أن يكون رئيس المشارك للجنة
+prezentováno kým	قدمها منهم
+má důležitý den	وقد يوم مهم
+má  recenzi	استعراض بلدي
+příjmení	الاسم الأخير
+křestní jméno	الاسم الأول
+místo konání konference	مكان انعقاد المؤتمر
+počáteční den	تبدأ اليوم
+vydavatelem sborníku je	الناشر للإجراءات
+má název	باسم
+číslo svazku sborníku	رقم وحدة التخزين لوقائع المؤتمر
+pohlaví	الجنس
+byl přiřazen zájem recenzenta	تم تعيينه لمصلحة المراجع
+má téma workshopu	وقد موضوع حلقة العمل
+má sekci	وقد قسم
+preference či odbornost koho	تفضيل أو خبرة منظمة الصحة العالمية
+recenzuje příspěvek	الوظيفة ملاحظات
+má část	يحتوي جزء
+být předsedou výboru	أن رئيس اللجنة
+téma sekce konference	موضوع المؤتمر
+první částí dokumentu	الجزء الأول من الوثيقة
+být členem výboru	أن يكون عضوا في اللجنة
+konference má organizační výbor	وقد قامت "لجنة تنظيم المؤتمر"
+má spolupředsedu výboru	وليس لدى اللجنة،
+konference má programový výbor	وقد قامت "لجنة برنامج المؤتمر"
+má příspěvek	منصبي
+téma svázané s preferovaným tématem	ربط موضوع التخصص المفضل
+publikuje	وتنشر
+pozvat spolurecenzenta	دعوة سبولوريسينزينتا
+být programovým výborem konference	يمكن برمجة "مؤتمر اللجنة"
+být předsedou workshopu čeho	أن ما هو رئيس حلقة العمل
+má workshop	ورشة عمل بلدي
+přispěl konferenci	ساهم في المؤتمر
+tématem nebo odeslaným příspěvkem je	الموضوع أو مساهمة المرسلة
+má tutoriál	البرنامج التعليمي الخاص بي
+konference má výbor	وقد قامت "لجنة المؤتمر"
+být výborem konference	تكون "لجنة المؤتمر"
+konference má řídicí výbor	وقد المؤتمر لجنة التوجيهية
+má předsedu workshopu	وقد رئيس حلقة العمل
+být řídicím výborem konference	تكون "اللجنة التوجيهية للمؤتمر"
+preference nebo odbornost recenzenta	تفضيل أو الخبرة للمراجع
+částí konference	جزء من المؤتمر
+prezentoval	قدم
+má abstrakt	وقد مجردة
+být organizačním výborem konference	أن "اللجنة المنظمة" للمؤتمر
+posláno kam	نشرت فيها
+má člena	عضو
+má recenzní posudek	شهادة مراجعة بلدي
+důležitý den konference	يوم مهم للمؤتمر
+řádný článek	مادة السليم
+vyjádření zájmu	التعبير عن الاهتمام
+předseda programového výboru	رئيس لجنة البرنامج
+rozhodnutí	القرار الذي اتخذته
+meta-recenze	ميتا-ملاحظات
+dokument	الوثيقة
+autor který není recenzent	صاحب البلاغ ليست مراجع
+osoba s účastí na konferenci	الشخص الذي يشارك في المؤتمر
+přijetí	اعتماد
+autor	صاحب البلاغ من
+krátký článek	مقالة قصيرة
+člen programového výboru	عضو في لجنة البرنامج
+spoluautor	شارك في تأليف
+předseda konference	رئيس المؤتمر
+externí recenzent	المراجع الخارجية
+uživatel	المستخدم
+zamítnutí	الرفض
+preference	تفضيلات
+administrátor	مدير البرنامج
+meta-recenzent	ميتا-المراجع
+předmětná oblast	المجال
+logo konference má url	شعار المؤتمر يحتوي على url
+nastavil maximální počet recenzí	تعيين الحد الأقصى لعدد من ملاحظات
+konference má recenzí na článek	المؤتمر له ملاحظات على المادة
+má jméno	اسمي
+datum konference	تاريخ المؤتمر
+webová stránka konference má url	المؤتمر بعنوان url صفحة ويب
+článek má název	المقال يحتوي على اسم
+akceptovány příspěvky konference pro tisk	المساهمات المقبولة لمؤتمر للطباعة
+článek má id	هذه المادة قد معرف
+má email	البريد الإلكتروني الخاص بي
+přijato kým	تلقت منظمة الصحة العالمية
+čte článek	قراءة المقال
+zamítnul článek	المادة المرفوضة
+přidělení členů programového výboru administrátorem	توزيع أعضاء مدير "لجنة البرنامج"
+vložit kritéria recenze	استعراض معايير إدراج
+virtuální schůzka konference umožněna kým	اجتماع ظاهري المؤتمر الذي أصبح ممكناً منهم
+přidělen externí recenzent	تم تعيينها إلى مراجع الخارجية
+vyjadření zájmu spuštěno kým	vyjadření الفوائد الناجمة عن منظمة الصحة العالمية
+brožury vytištěny kým	الكتيبات المطبوعة من قبل الذين
+tisk brožur konference	المؤتمرات طباعة كتيب
+přijal článek	المادة مقبولة
+přidat člena programového výboru	لإضافة عضو "لجنة البرنامج"
+má rozhodnutí	قرار
+článek přečten meta-recenzentem	قراءة المادة الوصفية-المراجع
+má spoluautora	شارك في تأليف كتاب
+přidělení příspěvků dokončeno kým	تخصيص المساهمات الذين أتموا
+napsal článek	وكتب المقال
+spustil přidělování článků konference	خفض توزيع مواد المؤتمر
+pojednává o tématu	يناقش هذا الموضوع
+má konflikt zájmu s příspěvkem	وقد تضارب في المصالح مع المساهمة
+napsal recenzi	استعراض خطية
+recenzuje článek	المادة ملاحظات
+má člena programového výboru	عضو لجنة البرنامج
+recenze napsána kým	ملاحظات كتبها منهم
+článek napsal	المقال الذي كتبه
+upravit vyjádření zájmu	تحرير التعبير عن الاهتمام
+nástroj pro přídělení příspěvků spuštěn kým	أداة přídělení للاشتراكات التي أطلقها بعضهم
+přidělen recenzent administrátorovi	مدير المراجع المعينة
+uzavřít recenzi	إغلاق استعراض
+vložit podrobnosti konference	إدراج تفاصيل المؤتمر
+umožnit virtuální schůzku konferenci	تمكين المؤتمر من الاجتماعات الافتراضية
+přiděleno recenzentovi	تعيين إلى مراجع
+zadání kritérií recenzí kým	أدخل ملاحظات معايير منظمة الصحة العالمية
+článek přečten recenzentem	المادة قراءة المراجع
+označil konflikt zájmu	ودعا تضارب في المصالح
+zamítnut kým	ورفضت الجهة
+zahájil vyjadřování zájmu recenzentů	بدأ التعبير عن اهتمام المراجعين
+podrobnosti vloženy kým	تفاصيل إدخالها بواسطة منهم
+má vyjádření zájmu	بي التعبير عن الاهتمام
+přidělen meta-recenzent recenzentovi	تعيين إلى المراجع ميتا-المراجع
+přidán člen programového výboru	وأضاف عضو "لجنة البرنامج"
+odeslání článku	إرسال مقالة
+přidělen recenzent	تعيين المراجع
+dokončit přidělení příspěvků konference	استكمال تخصيص المساهمات المقدمة إلى المؤتمر
+má člena konference	وقد عضوا في المؤتمر
+vyjádření zájmu upraveno	تمثيل مصالح المنظمة
+člen konference	المؤتمر
+asistent	مساعد
+událost	الحدث
+banket	اجتماعات ولائم
+vědecký pracovník	عامل العلمية
+aktivita zaslání příspěvku	آخر نشاط
+student	طالب
+aktivita recenzování výsledků	استعراض نتائج النشاط
+aktivita poslání kamera-ready verze	نشاط البعثة النسخة جاهزة للتصوير
+aktivita recenzování	استعراض النشاط
+firma	الشركة
+raut	روت
+osoba s podílem na konferenci	شخص مع حصة من المؤتمر
+výlet	رحلة
+řádný účastník konference	مؤتمر الحزب العادي
+pracovní aktivita	نشاط العمل
+město	مدينة
+administrativní aktivita	النشاط الإداري
+účastník	مشارك
+dobrovolník	المتطوعين
+stát	الدولة
+ředitel programového výboru	مدير لجنة البرنامج
+aktivita registrace účastníků	تسجيل النشاط
+společenská událost	الأحداث الاجتماعية
+univerzita	جامعة
+příspěvek	وظيفة
+studentský účastník konference	الطلاب المشاركين في المؤتمر
+křestní jméno osoby je	الاسم الأول للشخص
+příjmení osoby	اسم العائلة للشخص
+poznámka	ملاحظة
+účastník konference má včasnou registraci	مشارك في المؤتمر التسجيل المبكر
+nastavení minimálního počtu událostí	تعيين الحد الأدنى لعدد من الأحداث
+má fax	جهاز فاكس
+název příspěvku	اسم الوظيفة
+má telefon	هاتفي
+událost má umístění	يحتوي الحدث الموقع
+sídlí v ulici	تقع في الشارع
+má zdanění	وقد فرض الضرائب
+obsahuje abstrakt	يحتوي على خلاصة
+nastavení maximálního počtu událostí	لتعيين الحد الأقصى لعدد الأحداث
+nastavení implicitní volby počtu aktivit	تعيين الخيار الافتراضي للعدد الأنشطة
+má domovskou stránku	صفحتي الرئيسية
+související administrativní aktivita	الأنشطة الإدارية ذات الصلة
+probíhá paralelně s	تجري بالتوازي مع
+týká se	وهذا يشير إلى
+zaměstnán	يعمل
+sídlí ve městě	يوجد في المدينة
+byl napsán autorem	كتبه صاحب البلاغ
+studuje na univerzitě	يدرسون في الجامعة
+klíčová slova příspěvku jsou	الكلمات الأساسية
+má stručný název	اسم قصير
+událost končí v den	ينتهي الحدث في اليوم
+má kontaktní adresu	بلدي عنوان الاتصال
+úvodní den události	يوم افتتاح هذا الحدث
+směrovací číslo	رقم المسار
+napsal příspěvek	وكتب عن وظيفة
+následuje	وفيما يلي
+být expertem na téma	أن يكون خبيراً في موضوع
+recenzuje	ملاحظات
+sídlí v zemi	الموجودة في البلد
+představení přednášejícího	مقدمة رئيس
+bankovní převod	التحويل المصرفي
+počítač	جهاز الكمبيوتر
+sponzor	الراعي
+večerní banket	اجتماعات ولائم المساء
+účastník konference?	مشارك المؤتمر؟
+sborník na cd	وقائع المؤتمر في مؤتمر نزع السلاح
+časové pásmo	المنطقة الزمنية
+země	البلد
+technická aktivita	النشاط التقني
+registrační poplatek pro nečlena konference	رسوم التسجيل لغير الأعضاء نحو المؤتمر
+místo	المكان
+celodenní výlet	رحلة يوميا
+platební karta	بطاقة الدفع
+autor, který obdrží sborník na cd	صاحب البلاغ، الذي سيتلقى وقائع المؤتمر في مؤتمر نزع السلاح
+jednolůžkový hotelový pokoj	غرفة في فندق واحد
+vízum	فيزا
+přednášející pracovník	أستاذ باحث
+předkonferenční aktivita	النشاط السابق للمؤتمر
+neprezentující student	طالب neprezentující
+hotelová místnost	الغرفة في الفندق
+aktivita modelování	نمذجة النشاط
+přednášející student	محاضرة الطالب
+dům sponzora	راعية البيت
+neprezentující	neprezentující
+poplatek za výlet navíc	وبالإضافة إلى ذلك، أن رسوم الرحلة
+kreditní karta	بطاقة الائتمان
+peněžní částka	المبلغ من المال
+představení	العروض
+nečlen konference iasted	عضو إياستيد المؤتمر
+hotelový poplatek	رسوم الفندق
+sponzorský dar	رعاية
+auto	سيارات
+neprezentující pracovník	عامل neprezentující
+město sponzora	مدينة الراعي
+konferenční registrační formulář	استمارة تسجيل المؤتمر
+daň	الضرائب
+konferenční budova	مبنى المؤتمرات
+registrační poplatek autora pro obdržení tištěného sborníku	رسوم التسجيل لمقدم البلاغ للحصول على وقائع المؤتمر المطبوعة
+konferenční hala	قاعة المؤتمرات
+město prezentujícího	مدينة prezentujícího
+taxi	سيارة أجرة
+odjezd	الرحيل
+registrační poplatek pro člena konference	رسوم التسجيل لعضو المؤتمر
+hlavní kancelář	المكتب الرئيسي
+pokonferenční aktivita	نشاط ما بعد المؤتمر
+sekce	قسم
+přednášející tutoriálu	محاضر تعليمي
+registrační poplatek pro neautora	رسوم التسجيل نيوتورا
+publikace	المنشورات
+dodávka	التسليم
+registrace na konferenci	التسجيل للمؤتمر
+přestávka na kávu	استراحة
+informační formulář pro autora	نموذج معلومات عن مقدم البلاغ
+měna	تحويل العملات
+termín registrace na konferenci	مدة التسجيل للمؤتمر
+záznam účasti	مشاركة سجل
+konferenční hotel	فندق المؤتمر
+aktivita odmítnutí příspěvku	نشاط رفض مساهمة
+plenární přednášející	المحاضرات العامة
+termín hotelové rezervace	الموعد النهائي لحجز الفندق
+termín podání příspěvku	مدة تقديم مساهمة
+seznam emailů	قائمة رسائل البريد الإلكتروني
+přednáška přednášejícím	محاضرة محاضرة
+aktivita zamítnutí příspěvku	نشاط رفض مساهمة
+šek	تحقق
+konferenčí město	مدينة konferenčí
+aktivita přijímaní příspěvku	تلقي مساهمة النشاط
+dny konference	أيام مؤتمر
+přednáška	محاضرة
+video prezentace	عرض الفيديو
+prezentační slajdy	شرائح العرض التقديمي
+univerzita prezentujícího	جامعة prezentujícího
+daň z odjezdu	ضريبة المغادرة
+budova	بناء
+aktivita	النشاط
+mikrobus	حافلة صغيرة
+registrační poplatek autora pro obdržení sborníku na cd	رسوم التسجيل لمقدم البلاغ للحصول على وقائع المؤتمر في مؤتمر نزع السلاح
+termín oznámení o přijetí	مدة الإخطار بالقبول
+autor, který obdrží tištěný sborník	صاحب البلاغ، الذي سيتلقى الدعوى مطبوعة
+uvodní verze příspěvku	الإصدارات الرئيسية لمساهمة
+stručné představení vedoucímu sekce	مقدمة موجزة لرئيس القسم
+podání příspěvku	تقديم المساهمة
+formulář	النموذج
+recepce	الاستقبال
+posluchač	وحدة الإصغاء
+hotelový registrační formulář	نموذج التسجيل في الفندق
+audiovizuální vybavení	المعدات السمعية والبصرية
+konferenční letiště	مطار المؤتمر
+přepravní postředek	postředek النقل
+dům prezentujícího	بيت prezentujícího
+jednodenní prezentující	عرض يوم واحد
+poplatek	رسوم
+prezentující	عرض
+dvoulůžkový hotelový pokoj	الفندق غرفة مزدوجة
+konferenční den	اليوم المؤتمر
+registrační poplatek pro studenta	رسوم التسجيل للطالب
+aktivita simulace	نشاط المحاكاة
+zvací dopis	رسالة دعوة
+den výletu	رحلة يوميا
+lcd projektor	جهاز عرض LCD
+powerpointová prezentace	عرض تقديمي ل PowerPoint
+technický výbor	اللجنة الفنية
+výletní město	كروز في مدينة
+daň z přidané hodnoty	القيمة المضافة ضريبة
+konferenční výletník	رحلات المؤتمر
+artikl	المادة
+přednášející	محاضر
+termín	مصطلح
+registrační poplatek	رسوم التسجيل
+tištěný sborník	إجراءات المطبوعة
+konferenční restaurant	مطعم المؤتمر
+člen konference iasted	إياستيد المؤتمر
+vedoucí sekce	رئيس قسم
+hotelový uvaděč	حاجب الفندق
+země konference	المؤتمرات القطرية
+termín podání verze pro tisk	مدة إيداع النسخة المطبوعة
+země sponzora	البلد الراعي
+země prezentujícího	prezentujícího البلد
+platební dokument	وثيقة الدفع
+vrchní projektor	جهاز الإسقاط العلوي
+finální verze příspěvku	النسخة النهائية من مساهمة
+konferenční aktivita	نشاط المؤتمر
+čas	الوقت
+výzkumná aktivita	النشاط البحثي
+aktivita najmutí auta	نشاط تأجير السيارات
+místnost konferenční sekce	قسم غرفة المؤتمرات
+spropitné	تلميح
+plenární přednáška	محاضرة عامة
+uvítací proslov	كلمة الترحيب
+společenská aktivita	النشاط الاجتماعي
+přehrávač videokazet	مشغل أشرطة الفيديو
+koná se po	يحدث
+zaujímá místo	يأخذ مكان
+je přítomen kdy a kde	أنها موجودة متى وأين
+platba proběhla kde	الدفع جرت فيها
+je zaplaceno kým	الذي يدفع
+napsáno kým	نشرت منظمة الصحة العالمية
+koná se před	فإنه يأخذ مكان قبل
+posílá	يرسل
+koná se kdy a kde	فإنه يأخذ مكان متى وأين
+je vybaven čím	وهي مجهزة
+je přítomen kdy	أنها موجودة عند
+placeno pro co	تدفع لما
+mluví kdy a kde	الكلام متى وأين
+napsal	وكتب
+podepisuje	وقعه
+připravuje artikl	إعداد المادة
+souvisí s	تتصل
+navštíveno kým	وزار قبل منهم
+je spojen s	هو المقترنة
+je přidělen komu	الذي تم تعيينه
+připraveno kým	استعداد منظمة الصحة العالمية
+datum termínu	تاريخ العمليات الآجلة
+částka peněz	المبلغ من المال
+aktivita datována na datum a čas	النشاط المؤرخة في التاريخ والوقت
+udělán z	مصنوعة من
+obdrží	وتتلقى
+použito kým	المستخدمة من قبل الذين
+podepsáno kým	وقعت منظمة الصحة العالمية
+posláno časově před	أرسلت قبل وقت
+je obýván kým	كان يسكنها منظمة الصحة العالمية
+platí	وينطبق
+umístěno kde	الموقع حيث
+souvisí s aktivitou	ذات الصلة بالنشاط
+využit pro	تستخدم
+potřebuje	الاحتياجات
+posláno časově po	وقت الإرسال بعد
+placeno čím	تدفع
+posláno kým	أرسلت بواسطة منهم
+je připraven pro	جاهز
+je potřebný pro	مطلوب من أجل
+konference acm sigkdd	سيجكد acm المؤتمر
+termín zaslání abstraktu	الموعد النهائي لتقديم الملخصات
+autor článku	صاحب البلاغ من المادة
+platinový sponzor konference	الراعي البلاتيني للمؤتمر
+ocenění za nejlepší výzkumný článek	جائزة لأفضل مادة للبحث
+termín vyrozumění autorů	مدة الإخطار بالمؤلفين
+sponzor nejlepšího studentského článku	ترعى هذه المادة الطالب أفضل
+registrační poplatek pro nečlena sig	رسوم التسجيل لغير الأعضاء نحو سيج
+člen organizačního výboru	عضو اللجنة المنظمة
+registrační poplatek pro studenty	رسوم التسجيل للطلاب
+osoba aktivní na konferenci	شخص نشط في المؤتمر
+termín zaslání článku	المدة من إرسال المقال
+registrační poplatek pro člena sigmod	رسوم التسجيل لعضو سيجمود
+autor studentské článku	كاتب المقال الطالب
+ocenění za článek na konferenci	جائزة مقالة عن المؤتمر
+hlavní kancelář konference	المكتب الرئيسي للمؤتمر
+ocenění za nejlepší aplikační článek	جائزة لأفضل تطبيق للمادة
+zlatý sponzor konference	الراعي الذهبي لمؤتمر
+stříbrný sponzor	الراعي الفضي
+sponzor se stánkem	وسوف يقف الراعي
+ocenění za nejlepší studentský článek	جائزة لأفضل طالب المادة
+konferenční poplatek	رسوم المؤتمر
+správce webu	المسؤول عن الموقع
+ogranizátor konference	ogranizátor المؤتمر
+sponzorský poplatek	رسوم الرعاية
+výbor pro udělování ocenění za nejlepší články	اللجنة لمنح الجائزة لأفضل المقالات
+registrační poplatek pro člena sigkdd	رسوم التسجيل لعضو سيجكد
+bronzový sponzor konference	برونزية في رعاية المؤتمر
+hotel	الفندق
+posluchač konference	المستمع المؤتمر
+město pořádání konference	مدينة المؤتمرات
+registrační poplatek je ve měně	رسوم التسجيل، في العملة
+datum prvního dne konference	تاريخ اليوم الأول من المؤتمر
+cena	السعر
+má ocenění	بلدي جوائز
+hledá sponzory	تبحث عن مقدمي مشروع القرار
+stanoveny termíny pro	تعيين شروط
+dokument prezentován kým	الوثيقة التي قدمها منهم
+konference pořádána	المؤتمر الذي نظمته
+stanoveny termíny	مواعيد ثابتة
+termín pro odeslání	الموعد النهائي لتقديم
+pořádá konferenci	ونظمت المؤتمر
+datum závěrečného dne konference	تاريخ اليوم الأخير من المؤتمر
+je stanoven na	عازمة على
+jméno sponzora	اسم الكفيل
+jméno konference	اسم المؤتمر
+jmenuje se	اسمه
+národnost	الجنسية
+zaplatil registrační poplatek	دفع رسوم التسجيل
+oceněno	حصل
+zaslání článku	إرسال المقالة
+získal ocenění	فاز بجائزة
+sídlí v	يسكنون في
+sponzoři hledáni kým	البحث عن مقدمي مشروع القرار الذي
+registrační poplatek zaplacen kým	دفع رسوم التسجيل قبل منهم
+prezentace dokumentu	عرض المستند

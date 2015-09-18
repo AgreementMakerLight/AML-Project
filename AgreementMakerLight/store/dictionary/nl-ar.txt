@@ -1,0 +1,490 @@
+commissie	لجنة
+geaccepteerde contributie	رسوم المقبولة
+onderwerp	الموضوع
+artikel	المادة
+persoon	الشخص
+laat betaalde aanvrager	مقدم الطلب تأخر دفع
+recentie	استعراض
+co-voorzitter	الرئيس المشارك
+conferentie	المؤتمر
+passieve conferentie deelnemer	مشارك مؤتمر السلبي
+uitgenodigde spreker	متكلم مدعو
+ingediende contributie	مساهمة مقدم
+belangrijke data	التواريخ الهامة
+gerecenseerde contributie	استعراض مساهمة
+workshop	ورشة عمل
+programmacommissie	لجنة البرنامج
+geregistreerde aanvrager	مقدم الطلب المسجل
+oproep inzenzingen	استدعاء إينزينزينجين
+gewone contributie	رسوم العضوية العادية
+conferentie document	وثيقة المؤتمر
+afgewezen contributie	رسوم العضوية المرفوضة
+conferentie website	الموقع الإلكتروني للمؤتمر
+conferentiebundel	حزمة المؤتمر
+gewone auteur	كاتب العادية
+poster	ملصق
+drukklare contributie	رسوم قابلة للطباعة
+betaalde aanvrager	يدفع مقدم الطلب
+organisator	منظم
+actieve conferentie deelnemer	مشارك نشط في المؤتمر
+vroeg betaalde aanvrager	مقدم الطلب المبكر المدفوعة
+stuurgroep	اللجنة التوجيهية
+recentie expertise	استعراض الخبرة
+track-workshop voorzitter	المسار-ورشة عمل الرئيس
+recentie voorkeur	استعراض الأفضلية
+recensent	المراجع
+uitgever	الناشر
+conferentie deelnemer	مشارك في المؤتمر
+conferentie deel	المؤتمر
+geschreven contributie	مساهمة كتابية
+oproep tot deelname	دعوة للمشاركة
+organisatiecommissie	اللجنة المنظمة
+conferentie contributie	رسوم المؤتمر
+conferentie kosten	تكاليف المؤتمر
+synopsis	خلاصة
+coauteur bijdrage	مساهمة المؤلف المشارك
+informatie voor deelnemers	معلومات للمشاركين
+lange synopsis	ملخص طويل
+track	المسار
+commissielid	عضو اللجنة
+organisatie	المنظمة
+conferentie bijdrager	مؤتمر المساهم
+eerste auteur	الكاتب الأول
+conferentie aankondiging	إعلان مؤتمر
+presentatie	العرض التقديمي
+conferentie aanvrager	طالب المؤتمر
+lezing op uitnodiging	محاضرة عن دعوة
+snelcursus	دورة مكثفة
+voorzitter	الرئيس
+is een datum van drukklare versie submissie	تاريخ تقديم نسخة جاهزة للطباعة
+heeft een expertise	لديه خبرة
+heeft een deel	يحتوي على جزء
+heeft een plaats	مكان
+heeft een url	يحتوي على url
+is een begindatum	تاريخ بدء
+is een synopsis submissie datum	تاريخ تقديم خلاصة
+heeft een uitgavedatum	تاريخ الإصدار
+heeft een naam	يحتوي على اسم
+heeft een isbn	وقد isbn
+is een einddatum	تاريخ انتهاء
+heeft een recentie referentie expertise	خبرة مرجع استعراض
+heeft een recentie referentie of expertise	يحتوي على مرجع استعراض أو الخبرة
+heeft tracks	المسارات
+is deel van conferentiebundel	جزء من حزمة المؤتمر
+was een track-workshop voorzitter van	وكان مسار-رئيسا لحلقة العمل
+heeft belangrijke data	تواريخ هامة
+heeft een stuurgroep	مجموعة التوجيه
+hoort bij een recentie referentie	ينتمي إلى مرجع استعراض
+hoort bij een conferentiebundel	ينتمي إلى مجموعة المؤتمر
+heeft voornaam	الاسم الأول
+heeft een email	برسالة بريد إلكتروني
+heeft achternaam	الاسم الأخير
+is een datum van bekendmaking van acceptatie	تاريخ النشر للقبول
+uitgaven	النفقات
+heeft een graad	حاصل على درجة
+is een volledig artikel submissie datum	تاريخ تقديم المقالة بالكامل
+heeft sekse	وقد الجنس
+heeft delen	وقد قطع
+recensies	ملاحظات
+heeft een organisatiecommissie	وقد منظمة اللجنة
+was lid van	وكان عضوا في
+was een stuurgroep van	وكان فريق توجيهي من
+was een commissie van	تم إنشاء لجنة من
+uitgenodigd door	ودعا قبل
+geeft presentaties	يعطي العروض التقديمية
+contribueert	المساهمة
+is een onderwerp van conferentie delen	موضوع نصيب المؤتمر
+heeft een commissiecovoorzitter	وقد رئيس المشارك اللجنة
+heeft snelcursussen	وقد سنيلكورسوسين
+heeft een track-workshop-snelcursus onderwerp	وقد موضوع المسار-ورشة عمل--تحطم دورة
+nodigt corecensenten uit	وتدعو كوريسينسينتين من
+heeft een synopsis	وقد نبذة مختصرة
+heeft een uitgever	وقد ناشر
+heeft een commissievoorzitter	رئيس اللجنة
+heeft workshops	وقد عقد حلقات عمل
+heeft auteurs	وقد المؤلف
+wordt gegeven door	وترد عليه
+hoort bij recencenten	ينتمي إلى ريسينسينتين
+ingediend	مقدم
+is een recensie referentie toegewezen	يتم تعيين إشارة استعراض
+heeft een recentie expertise	خبرة الاستعراض
+heeft een onderwerp een ingediende contributie	وقد موضوع مساهمة في المقدمة
+heeft een onderwerp of een ingediende contributie	موضوع أو مساهمة في المقدمة
+was een programmacommissie van	وكان برنامج اللجنة من
+was een organisatiecommissie van	كانت اللجنة منظمة من
+heeft een programmacommissie	لجنة البرنامج
+was een commissiecovoorzitter van	وكان الرئيس المشارك للجنة
+heeft een ingediende contributie	وقد رسم عضوية معلقة
+is het eerste deel van	هو الجزء الأول من
+heeft een commissie	لجنة
+heeft leden	أعضاء
+heeft een recentie	وقد استعراض
+heeft contributies	اشتراكات
+was een commissievoorzitter van	وكان رئيسا للجنة
+heeft een track-workshop-snelcursus voorzitter	وقد دورة مكثفة-المسار--ورشة عمل في الرئيس
+bod	محاولة
+gebruiker	المستخدم
+auteur niet-recensent	البلاغ-المراجع
+medevoorzitter	الرئيس المشارك
+programmacommissie lid	عضو لجنة البرنامج
+conferentievoorzitter	رئيس المؤتمر
+voorkeur	الأفضلية
+volledig artikel	المادة كاملة
+acceptatie	قبول
+document	الوثيقة
+beheerder	مدير البرنامج
+coauteur	شارك في تأليف
+externe recencent	المراجع الخارجي في الأمازون
+beslissing	قرار
+afwijzing	رفض
+auteur	كاتب
+metarecentie	ميتاريسينتي
+metarecensent	الناقد ميتا
+conferentielid	كونفيرينتيليد
+voorzitter programmacommissie	رئيس لجنة البرنامج
+datum	تاريخ
+paper id	معرف ورقة
+titel	العنوان
+email	البريد الإلكتروني
+accepteerd hardcopy submissies	قبول الطلبات مطبوعة
+website url	عنوان الموقع
+recenties per artikel	ملاحظات كل بند
+maximum aantal artikelen	الحد الأقصى لعدد من المواد
+naam	الاسم
+logo url	عنوان الشعار
+hardcopy verstuurbewijs afgedrukt door	إرسال نسخة مطبوعة الأدلة المطبوعة من قبل
+heeft auteur	وقد صاحب البلاغ
+heeft coauteur	وقد تأليفه
+gebruik artikel toewijzings tool	استخدام أداة تخصيص البند
+heeft belangenverstrengeling	وقد تضارب المصالح
+recentie bieden begonnen door	عرض استعراض الكاتب
+toegewezen door recencent	تعيين المراجع الأمازون
+maak toewijzing artikel af	إنشاء تخصيص البند
+gelezen door reviewer	قراءة المراجع
+heeft conferentielid	وقد كونفيرينتيليد
+voeg programmacommissie lid toe	إضافة عضو لجنة البرنامج
+markeer belangenverstrengeling	تسليط الضوء على تضارب في المصالح
+stel maximaal aantal artikelen in	تعيين الحد الأقصى لعدد العناصر في
+stel maximaal aantal artikelen	تعيين الحد الأقصى لعدد من المواد
+laat virtuele vergadering toe	واسمحوا اجتماع ظاهري
+lid van programmacommissie	عضو في لجنة البرنامج
+wijs externe recencent toe	المراجع الأمازون، للإشارة إلى الخارجية
+schrijf recentie	اكتب مراجعة
+lid van conferentie	عضو في المؤتمر
+is toegekend	يتم منح
+aangepast door	تعديل بواسطة
+wijs artikel af	أشر إلى المادة
+eindrecentie	ايندريسينتي
+toekenning artikel tool gebruikt door	جائزة المقالة أداة يستخدمها
+details ingevuld door	أكمل التفاصيل من قبل
+begin recentie bieden	بداية استعراض العرض
+heeft onderwerp	بهذا الموضوع
+heeft beslissing	قرار
+dien artikel in	هذه المادة في
+dien artikel	تقديم المادة
+heeft programmacommisie lid	عضو لجنة برنامج
+recentie criteria ingevuld door	استعراض المعايير التي يشغلها
+toekenning artikel afgemaakt door	المادة تنتهي بجائزة
+vul recentie criteria in	ملء معايير المراجعة
+vul recentie criteria	ملء معايير المراجعة
+schrijf artikel	كتابة المقالة
+geschreven door	كتب بواسطة
+toegewezen aan	تعيين إلى
+artikel gelezen	قراءة المادة
+geaccepteerd door	التي قبلتها
+accepteer artikel	تقبل المادة
+wijs recencent toe	أشر إلى إضافة مراجع الأمازون
+toegevoegd door	أضيفت من قبل
+co-schrijf artikel	المادة الكتابة المشارك
+afgewezen door	رفض من قبل
+toegewezen door beheerder	المعينة من قبل مسؤول
+virtuele vergadering toegelaten door	اجتماع ظاهري يسمح به
+vul conferentie details	إكمال تفاصيل المؤتمر
+vul conferentie details in	تفاصيل المؤتمر كاملة في
+gelezen door metarecencent	قراءة بواسطة ميتاريسينسينت
+hardcopy verstuurbewijs	إرسال نسخة مطبوعة الإثبات
+pas bod aan	محاولة فقط
+heeft bod	وقد عرض
+recensie gebeurtenis	استعراض الأحداث
+universiteit	جامعة
+bedrijf	الشركة
+drukklaar gebeurtenis	جاهز لطباعة الحدث
+werken gebeurtenis	يعمل الحدث
+land	البلد
+deelnemer	مشارك
+administratieve gebeurtenis	الأحداث الإدارية
+bijdrage	مساهمة
+banket	اجتماعات ولائم
+vrijwilliger	المتطوعين
+recensieresultaat gebeurtenis	استعراض نتيجة الحدث
+student	طالب
+indienen gebeurtenis	يقدم الحدث
+gewoon	فقط
+sociale gebeurtenis	الأحداث الاجتماعية
+deelnemersregistratie gebeurtenis	حدث تسجيل المشاركين
+gebeurtenis	الحدث
+reis	السفر
+wetenschappelijk medewerker	المساعد العلمي
+kort artiekel	مقالة قصيرة
+receptie	الاستقبال
+lid	الأعضاء
+lid programmacommissie	عضو لجنة البرنامج
+assistent	مساعد
+wetenschapper	عالم
+stad	مدينة
+heeft fax	وقد فاكس
+contactinformatie email	معلومات جهة اتصال البريد الإلكتروني
+heeft titel	لها عنوان
+heeft email	وقد أرسل
+plaats	المكان
+eindigt op	وينتهي في
+standaard keuze	الخيار الافتراضي
+heeft webpagina	يحتوي على صفحة ويب
+heeft btw	لقد ضريبة المبيعات
+begint op	ويبدأ في
+vroege registratie	التسجيل المبكر
+minimum keuze	خيار الحد الأدنى
+heeft straat	بالشارع
+heeft telefoon	وقد الهاتف
+studeert bij	دراسات مع
+heeft administratieve gebeurtenis	وقد حدث الإدارية
+heeft land	قد بلد
+expert op het gebied van	خبير في مجال
+parallel met	جنبا إلى جنب مع
+abstract	خلاصة
+opmerking	ملاحظة
+heeft korte titel	عنوان قصير
+maximum keuze	خيار الحد الأقصى
+heeft postcode	وقد الرمز البريدي
+heeft steekwoord	وقد الكلمة
+heeft te maken met	له علاقة مع
+heeft stad	وقد المدينة
+werknemer van	موظف
+schrijft	يكتب
+volgt	يتبع
+spreker lezing	المتكلم القراءة
+registratiekosten niet-auteur	رسوم التسجيل غير البلاغ
+inschrijving	التسجيل
+kosten	التكلفة
+beamer	متعاطي المخدرات
+overschrijving	التحويل المصرفي
+conferentie activiteit	نشاط المؤتمر
+conferentie restaurant	مطعم المؤتمر
+busje	فإن
+auteur informatie formulier	نموذج معلومات الكاتب
+conferentie dagen	أيام المؤتمر
+audiovisuele uitrusting	المعدات السمعية والبصرية
+activiteit na de conferentie	النشاط بعد المؤتمر
+registratiekosten lid	رسوم تسجيل الأعضاء
+belasting	الضرائب
+technisch committee	اللجنة الفنية
+afgevaardigde	مندوب
+registratiekosten student	الطالب رسوم التسجيل
+registratiekosten aanwezige auteur boek	مؤلف كتاب رسوم التسجيل الحالي
+conferentie stad	مدينة المؤتمر
+iasted lid	إياستيد الأعضاء
+plenaire lezing	محاضرة عامة
+auto	سيارات
+onderzoek	البحوث
+cheque	شيك
+deadline	الموعد النهائي
+video presentatie	عرض الفيديو
+munteenheid	تحويل العملات
+computer	جهاز الكمبيوتر
+sessie kamer	غرفة الدورة
+taxi	سيارة أجرة
+student lector	الطالب قارئاً
+sociaal programma	البرنامج الاجتماعي
+coctail receptie	استقبال كوكتيل
+videospeler	مشغل الفيديو
+arbeider lector	عامل قارئاً
+conferentie vliegveld	مطار المؤتمر
+sponsor stad	مدينة الراعي
+formulier	النموذج
+simuleren	محاكاة
+overhead projector	عرض ضوئي
+creditcard	بطاقة الائتمان
+niet-spreker	غير المتكلم
+registratieformulier	نموذج التسجيل
+manuscript accepteren	يقبل البرنامج النصي
+deadline aankondiging acceptatie	الموعد النهائي للإعلان عن قبول
+inleiding	مقدمة
+reisdag	يوم السفر
+staat	الدولة
+sessie	الدورة
+manuscript afwijzen	رفض مخطوط
+spreker voorstellen	مقترحات المتكلم
+registratie deadline	آخر موعد للتسجيل
+hotel kosten	تكاليف الفندق
+manuscript ontvangen	مخطوطة وردت
+kaart	خريطة
+tweepersoonskamer	غرفة مزدوجة
+definitief manuscript	المخطوط النهائي
+bewijs van aanwezigheid	دليل على وجود
+technische activiteit	النشاط التقني
+dagvullende rondleiding	جولة يوم واحد
+toegevoegde waarde belasting	القيمة المضافة ضريبة
+lector	قارئاً
+betalingsdocument	وثيقة الدفع
+modelleren	النمذجة
+activiteit voor de conferentie	النشاط للمؤتمر
+welkomsttoespraak	كلمة الترحيب
+conferentie wandelaar	المؤتمر ووكر
+gebouw	بناء
+hotel presentator	فندق مقدم العرض
+sponsor staat	ترعى الدولة
+fooi	تلميح
+auteur conferentiebundel boek inbegrepen	الكاتب مؤتمر الكتاب حزمة شملت
+lezing	قراءة
+presentator universiteit	جامعة مقدم العرض
+registratiekosten niet-lid	رسوم التسجيل غير الأعضاء
+conferentie staat	مؤتمر الدول
+eendaags presentator	مقدم يوم واحد
+algemene lezing spreker	المتكلم المحاضرات العامة
+een conferentie dag	يوم المؤتمر
+snelcursus spreker	دورة مكثفة في اللغة
+iasted niet-lid	غير إياستيد عضو
+auteur conferentiebundel cd inbegrepen	المؤلف المؤتمر حزمة القرص المضغوط المرفق
+student niet-spreker	الطالب غير-المتكلم
+submissie deadline	آخر موعد للتقديم
+kosten voor extra reis	تكاليف السفر الإضافية
+toehoorder	وحدة إصغاء
+sponsoring	رعاية
+hoofdkantoor	رئيس مكتب
+conferentiebundel cd	المؤتمر حزمة القرص المضغوط
+conferentiezaal	غرفة الاجتماعات
+presentator staat	مقدم العرض
+onderdeel	جزء
+email lijst	قائمة البريد الإلكتروني
+tijd	الوقت
+conferentiebundel boek	مؤتمر كتاب حزمة
+sponsor bedrijf huis	الصفحة الرئيسية الشركة الراعية
+publicatie	منشور
+arbeider niet-spreker	عامل عدم سماعة
+registratiekosten aanwezige auteur cd	كاتب تسجيل رسوم هذا مؤتمر نزع السلاح
+visum	فيزا
+spreker	المتكلم
+deadline hotel reservering	الموعد النهائي للحجز الفندقي
+eenpersoonskamer	غرفة مفردة
+presentator huis	مقدم المنزل
+conferentie gebouw	مبنى المؤتمرات
+vertrek	رحيل
+huren	استئجار
+vertrekbelasting	ضريبة المغادرة
+activiteit	النشاط
+submissie	تقديم
+hotel informatie formulier	نموذج معلومات الفندق
+transparant	شفافة
+transport voertuig	مركبة النقل
+eerste manuscript	المخطوطة الأولى
+recencent	المراجع الأمازون
+pendelbus	حافلة مكوكية
+deadline drukklaar manuscript	الموعد النهائي لمخطوطة جاهزة للطباعة
+presentator stad	المدينة المضيفة
+sessievoorzitter	الدورة الرئيس
+tijdzone	المنطقة الزمنية
+conferentie hotel	فندق المؤتمر
+koffiepauze	استراحة
+reis stad	مدينة السفر
+registratiekosten	رسوم التسجيل
+korte inleiding voorzitter	عرض موجز الرئيس
+sponsor	الراعي
+hotelkamer	غرفة في فندق
+uitnodigingsbrief	رسالة دعوة
+powerpoint presentatie	باور بوينت
+geld	المال
+spreken in	تحدث في
+spreken	الكلام
+tekenen	علامات
+wordt betaald voor	ويدفع عن
+is geschreven door	هو مكتوب من قبل
+is gelegen in	ويقع في
+is gelegen	ويقع
+doorgaan	مواصلة
+voorbereiden	إعداد
+is getekend door	وقد وقع عليها
+wordt gebruikt door	يستخدم من قبل
+krijgen	الحصول على
+wordt betaald met	وتدفع مع
+schrijven	يكتب
+is ontworpen voor	تم تصميمه
+is voorzien van	ميزات
+is verbonden met	متصل
+is gemaakt van	وتتكون من
+wordt voorbereid door	وقد أعدت
+wordt gegeven aan	وترد إلى
+is nodig voor	مطلوب من أجل
+geven	إعطاء
+wordt betaald	ويدفع
+wordt betaald in	وتدفع
+wordt verzonden na	يتم إرسالها بعد
+is gedateerd	تاريخ
+heeft bedrag	وقد قدر
+klaar tot	مستعدة
+wordt gehouden in	ويقام في
+wordt gehouden	ويقام
+is aanwezig	موجود
+wordt gebruikt voor	يستخدم من أجل
+bezetten	تحتل
+wordt bezocht door	زار من قبل
+wordt bezet door	ويشغل
+is aanwezig bij	موجود في
+wordt gehouden na	ويقام بعد
+wordt gehouden voor	ويقام على
+wordt betaald door	وتدفع
+wordt verzonden voor	يتم إرسال
+wordt verzonden door	يتم إرسالها بواسطة
+betalen	دفع
+nodig hebben	تحتاج إلى
+verzenden	إرسال
+registratie sigmod lid	سيجمود تسجيل الأعضاء
+gast spreker	ضيف
+deadline inlichting auteur	الموعد النهائي لمعلومات الكاتب
+recensie	استعراض
+prijs best studenten artikel	المادة الطالب أفضل الأسعار
+registratie geen lid	التسجيل ليس عضوا
+best artikel prijzencommissie	المادة أفضل "لجنة جوائز"
+auteur van artikel	كاتب المقال
+sponsorbijdrage	رعاية
+bedrag	المبلغ
+algemeen voorzitter	الرئيس العام
+registratie sigkdd lid	سيجكد تسجيل الأعضاء
+platina sponsor	الراعي البلاتيني
+deadline indiening artikel	الموعد النهائي لتقديم المادة
+webmaster	المسؤول عن الموقع
+acm sigkdd	سيجكد ACM
+prijs best toegepast artikel	المادة أفضل الأسعار المطبقة
+best studenten artikel sponsor	أفضل مقدمي المادة الطالب
+lid organisatiecommissie	عضو اللجنة المنظمة
+registratie studenten	تسجيل الطلاب
+programmaccommissie	بروجرامماككوميسي
+prijs best onderzoeksartikel	ورقة بحثية أفضل الأسعار
+deadline indiening abstract	الموعد النهائي لتقديم الملخصات
+brons sponsor	الراعي البرونزي
+prijs	الأسعار
+hotel	الفندق
+tentoonsteller	العارضين
+goud sponsor	الراعي الذهبي
+auteur van studenten artikel	كاتب المقال الطلاب
+zilver sponsor	الراعي الفضي
+begin van conferentie	بدء المؤتمر
+betaalmiddel	طريقة الدفع
+ontworpen door	صممه
+mag verblijven in	يتم السماح بالبقاء في
+mag verblijven	يتم السماح بالبقاء
+verkrijgen	الحصول على
+inlichting tot	معلومات إلى
+indienen	تقديم
+gepresenteerd door	المقدم من
+ontwerp	التصميم
+naam van sponsor	اسم الراعي
+naam van conferentie	اسم المؤتمر
+stad van conferentie	المدينة للمؤتمر
+einde van conferentie	نهاية المؤتمر
+toegekend door	التي تمنحها
+indienen tot	إرسال إلى
+houdt	يبقى
+betaald door	التي يدفعها
+gezocht door	المطلوبين من قبل
+zoeken	البحث عن
+gehouden door	وعقد قبل

@@ -722,3 +722,9 @@ spricht (räumlich und zeitlich)	mluví (prostorové a časové)
 registrierungsbeitrags ist währung	Měna je registr příspěvek
 konferenz findet folgender stadt statt	Konference se bude konat následující město
 bleibt	zůstává
+erweitertes zusammenfassung	rozšířený přehled
+zusammenfassung	Shrnutí
+datum der einreichung des zusammenfassungen	datum podání přehledů
+hat zusammenfassung	má přehled
+zusammenfassung eines konferenzbeitrags	Shrnutí konferenčního příspěvku
+deadline für die einreichung der zusammenfassung	termín pro podání přehledu

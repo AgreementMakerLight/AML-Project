@@ -683,3 +683,10 @@ possui nome do patrocinador	有赞助商的名称
 possui nome da conferência	会议名称
 data	日期
 finalizar atribuições dos artigos	终止任务的文章
+contribui para a conferência	有助于会议
+versão completa do artigo	完整版的文章
+leitura realizada por um revisor	阅读由审阅者
+possui co-autor	它还与他人合著
+dia de início do evento	活动开始的一天
+último dia do evento	最后一天的事件
+email	电子邮件

@@ -683,3 +683,10 @@ possui nome do patrocinador	hat der Name des Sponsors
 possui nome da conferência	hat den Konferenz-Namen
 data	Datum
 finalizar atribuições dos artigos	Zuordnung von Artikeln zu beenden
+contribui para a conferência	trägt zur Konferenz
+versão completa do artigo	Vollversion des Artikels
+leitura realizada por um revisor	Lesung, gehalten von einem Bearbeiter
+possui co-autor	Es ist Co-Autor
+dia de início do evento	Tag der Beginn der Veranstaltung
+último dia do evento	letzten Tag der Veranstaltung
+email	E-Mail

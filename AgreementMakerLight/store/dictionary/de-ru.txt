@@ -722,3 +722,9 @@ spricht (räumlich und zeitlich)	говорит (пространственны�
 registrierungsbeitrags ist währung	Валюта является вкладом реестра
 konferenz findet folgender stadt statt	Конференция будет проходить в следующие города
 bleibt	остается
+zusammenfassung eines konferenzbeitrags	Резюме вклада Конференции
+erweitertes zusammenfassung	Расширенное резюме
+zusammenfassung	Резюме
+datum der einreichung des zusammenfassungen	Дата подачи резюме
+hat zusammenfassung	имеет резюме
+deadline für die einreichung der zusammenfassung	Крайний срок подачи резюме

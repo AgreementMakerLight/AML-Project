@@ -1,0 +1,466 @@
+premier auteur de contribution	مساهمة البلاغ الأول
+personne qui a payé les frais d'inscription en avance	الشخص الذي قام دفع رسوم التسجيل مسبقاً
+comité d'organisation	تنظيم اللجنة
+contribution écrite	مساهمة كتابية
+co-auteur de contribution	شارك في تأليف مساهمة
+thématique	الموضوع
+contribution rejetée	مساهمة رفض
+date importante	موعد هام
+comité	اللجنة
+contributeur de conférence	مؤتمر المساهم
+annonce de conférence	إعلان مؤتمر
+conférence	المؤتمر
+expertise de relecteur	خبرة المراجع
+co-président	الرئيس المشارك
+contribution relue	مساهمة ردها
+tutoriel	البرنامج التعليمي
+personne qui a demandé à participer à une conférence	شخص الذين قد تقدموا بطلبات للمشاركة في مؤتمر
+conférence www	www المؤتمر
+participant actif de conférence	مشاركة نشطة في المؤتمر
+préférence de relecteur	الأفضلية للمراجع
+comité de pilotage	اللجنة التوجيهية
+membre de comité	عضو اللجنة
+session	الدورة
+président de session d'atelier	رئيس ورشة عمل الدورة
+poster	ملصق
+président	الرئيس
+conférencier invité	ضيف
+frais d'inscription	رسوم التسجيل
+appel à participation	دعوة للمشاركة
+candidat enregistré	مرشح مسجل
+contribution acceptée	مساهمة مقبولة
+appel à communication	دعوة لتقديم أوراق
+résumé étendu	ملخص الموسعة
+personne	الشخص
+participant de conférence	مشارك مؤتمر
+rapport d'examen	تقرير الفحص
+personne qui a payé les frais d'inscription tardivement	الشخص الذي قد دفع رسوم التسجيل المتأخر
+partie de conférence	جزء من المؤتمر
+editeur	محرر
+présentation de conférencier invité	العرض الرئيسي
+volume de conférence	حجم المؤتمر
+relecteur	المراجع
+résumé	ملخص
+contribution ordinaire	مساهمة منتظمة
+auteur ordinaire	كاتب العادية
+atelier	ورشة عمل
+document de conférence	ورقة المؤتمر
+contribution soumise	مساهمة مقدم
+contribution de conférence	مساهمة المؤتمر
+version finale de contribution	الصيغة النهائية لمساهمة
+personne qui a payé les frais d'inscription	الشخص الذي قد دفع رسوم التسجيل
+information aux participants	معلومات للمشاركين
+article	المادة
+organisateur	منظم
+participant passif de conférence	مشارك السلبي من المؤتمر
+présentation	العرض التقديمي
+actes de conférence	وقائع المؤتمر
+comité de programme	لجنة البرامج
+a pour isbn	أجل isbn
+est la date de fin	هو تاريخ انتهاء
+a pour courriel	للبريد الإلكتروني
+est la date de soumission de résumé	هو تاريخ لتقديم خلاصة
+est la date de début	هو تاريخ البدء
+a pour date de publication	تاريخ النشر
+a pour nom	لاسم
+est la date de soumission de la version finale	هو تاريخ تقديم النسخة النهائية
+a pour url	لعنوان url
+a pour genre	لنوع
+fait la présentation	قدم العرض التقديمي
+a été un président d'atelier de	وكان رئيسا لحلقة العمل
+a pour éditeur	للناشر
+a pour relecteur	مراجع
+a été attribué à une préférence de relecture	وقد منحت إلى تفضيل لتصحيح التجارب المطبعية
+est une thématique d'une partie de la conférence	جزء من موضوع المؤتمر
+a été un membre de	وقد كان عضوا في
+appartient au relecteur	ينتمي إلى المراجع
+a pour prénom	للاسم الأول
+a pour volume	لوحدة التخزين
+a pour expertise	لخبرة
+a pour lieu	مكان
+a pour président d'atelier	لرئيس حلقة العمل
+est la date de soumission de la version complète	هو تاريخ تقديم النسخة الكاملة
+a pour degré	لدرجة
+est la date de notification de l'acceptation	هو تاريخ الإشعار بالقبول
+a pour président de comité	وقد "رئيس اللجنة"
+est dispensé par	يتم توفيرها من قبل
+est soumis à	هو رهنا
+a été un comité d'organisation de	وكانت لجنة تنظيمية من
+a pour soumission	أجل تقديم
+publie	وتنشر
+a pour auteur	وقد صاحب البلاغ
+a pour résumé	لملخص
+est invité par	بدعوة من
+appartiennent à un volume de la conférence	تنتمي إلى وحدة تخزين للمؤتمر
+appartient à une préférence du relecteur	ينتمي إلى تفضيل من المراجع
+a pour comité	للجنة
+a été un comité de pilotage de	وكانت لجنة توجيهية من
+a pour atelier	لحلقة العمل
+a pour membre	للأعضاء
+a été un comité de programme de	وقد تم وضع برنامج اللجنة من
+a pour comité de pilotage	تشكيل لجنة توجيهية
+a pour comité de programme	برنامج اللجنة
+a pour préférence ou pour expertise	تفضيل أو الخبرة
+a pour co-président de comité	رئيس المشارك للجنة
+invite le co-relecteur	تدعو المراجع المشارك
+a pour thématique ou pour soumission	سمة أو لتقديم
+fait partie du volume de conférence	جزء من وحدة التخزين للمؤتمر
+a pour date importante	للتواريخ الهامة
+a pour contributions	للمساهمات
+a pour tutoriel	لتعليمي
+a pour partie	لجزء
+a été un président de comité de	وكان "رئيس لجنة" مؤلفة من
+a pour comité d'organisation	للجنة التنظيمية
+a pour session	للدورة
+a été un comité de	وكانت لجنة من
+a pour sujet d'atelier	وقد موضوعا لحلقة العمل
+a été un co-président de comité de	لقد كان رئيس المشارك للجنة
+est la première partie de	هو الجزء الأول من
+contribue	وتساهم
+a pour expertise de relecteur	لديه خبرة المراجع
+évalue	يقيم
+président de conférence	لرئيس المؤتمر
+rejet	رفض
+président de comité de programme	رئيس لجنة البرنامج
+président adjoint de conférence	نائب رئيس المؤتمر
+co-auteur	شارك في تأليف
+document	الوثيقة
+utilisateur	المستخدم
+méta-rapport d'examen	ميتا-علاقة لاستعراض
+auteur	كاتب
+acceptation	قبول
+résumé d'article	ملخص للمادة
+méta-relecteur	ميتا-المراجع
+membre de conférence	مؤتمر الأعضاء
+décision	قرار
+relecteur externe	المراجع الخارجية
+membre de comité de programme	عضو في برنامج اللجنة
+version complète d'article	النسخة الكاملة من المادة
+préférence	الأفضلية
+administrateur	مدير البرنامج
+proposition de relecture	اقتراح لإعادة
+auteur qui n'est pas relecteur	الكاتب الذي لا المراجع
+url du site	عنوان URL للموقع
+nombre de rapports d'examen par article	عدد من التقارير بموجب المادة
+url du logo	عنوان URL للشعار
+nom	الاسم
+accepte les soumissions d'articles au format papier	تقبل الطلبات في شكل ورقة
+courriel	البريد الإلكتروني
+nombre maximum d'articles	الحد الأقصى لعدد العناصر
+date	تاريخ
+titre	العنوان
+identifiant de l'article	معرف المقالة
+l'attribution de propositions aux relecteurs est initialisée par	تتم تهيئة توزيع مقترحات للمراجعين قبل
+ajuste la proposition de relecture	يضبط على اقتراح إعادة
+imprime les courriers de la manifestation	طباعة رسائل الحدث
+a pour co-auteur	للمؤلف المشارك
+est ajusté par	يتم تعديل من قبل
+est écrit par	هو مكتوب من قبل
+a pour thématique	موضوع
+met en place la réunion virtuelle	يقوم بإعداد اجتماع ظاهري
+est lu par le méta-relecteur	للقراءة قبل ميتا-المراجع
+affecte le rôle de relecteur externe à	يؤثر على دور المراجع الخارجي
+a pour décision	لمقرر
+a été associé à	ارتبط
+finalise l'attribution d'articles	اللمسات الأخيرة على إحالة المواد
+initialise l'attribution de propositions aux relecteurs de	تهيئة توزيع مقترحات للمراجعين من
+lit l'article	المادة سرير
+a pour membre du comité de programme	عضو في لجنة البرنامج ل
+exécute les outils d'attribution d'articles de	تشغيل مدونات بتسمية الأدوات من
+est affecté par l'administrateur	يتم تعيينه من قبل المسؤول
+accepte l'article	تقبل المادة
+les détails sont saisis par	يتم إدخال التفاصيل قبل
+saisit les détails de la conférence	يلتقط تفاصيل المؤتمر
+soumet l'article	تقديم المادة
+saisit les critères d'évaluation de	يلتقط بمعايير التقييم
+signale un conflit d'intérêt pour	ويشير إلى وجود تضارب في المصالح
+les exemplaires papier des courriers de la manifestation imprimés par	طباعة نسخ مطبوعة من قبل الحدث رسائل البريد الإلكتروني
+écrit l'article	وكتب المقال
+ajoute membre du comité de programme	ويضيف عضو في برنامج اللجنة
+la réunion virtuelle activée par	الاجتماع الظاهرية التي يوفرها
+a un conflit d'intérêt à propos de	وقد تضارب في المصالح فيما يتعلق بما يلي:
+a pour membre de conférence	لعضو المؤتمر
+est accepté par	تم قبولها بواسطة
+l'attribution des articles finalisée par	توزيع المواد في صيغتها النهائية بحلول
+les outils d'attribution d'articles sont exécutés par	توزيع أدوات عناصر يتم تنفيذها بواسطة
+est rejeté par	هو رفض من قبل
+est affecté par le relecteur	ويتأثر بالمراجع
+écrit le rapport d'examen	تقرير الامتحان التحريري
+les critères d'évaluation sont remplis par	معايير التقييم التي تمتلئ بها
+rejette l'article	وترفض المادة
+a pour proposition de relecture	اقتراح لإعادة
+définit le nombre maximum d'articles de	تعيين الحد الأقصى لعدد من البنود
+co-écrit l'article	المادة التي شارك في تأليفها
+est ajouté par	يتم إضافتها بواسطة
+finalise le processus de relecture	اللمسات الأخيرة في عملية الاستعراض
+est lu par le relecteur	للقراءة من المراجع
+affecte le rôle de relecteur à	يؤثر على دور المراجع إلى
+est assigné à	يتم تعيين إلى
+scientifique	عالم
+bénévole	المتطوعين
+evénement de relecture	تكرار الحدث
+ville	مدينة
+événement de travail	الحدث للعمال
+réception	الاستقبال
+université	جامعة
+entreprise	الشركة
+contribution	مساهمة
+banquet	اجتماعات ولائم
+universitaire	جامعة
+participant ordinaire	مشارك منتظم
+evénement	الحدث
+organisation	المنظمة
+evénement d'envoi de version finale	الحدث البريدي النسخة النهائية
+evénement d'évaluation des résultats	تقييم نتائج الحدث
+evénement social	الأحداث الاجتماعية
+voyage	السفر
+etudiant	طالب
+pays	البلد
+participant	مشارك
+article court	مقالة قصيرة
+evénement de soumission	تقديم الحدث
+membre	الأعضاء
+evénement d'inscription des participants	تسجيل المشاركين في الحدث
+adjoint	مساعد
+evénement administratif	الأحداث الإدارية
+commence en	ويبدأ
+lieu	المكان
+a pour titre court	عنوان قصير
+a pour titre	لعنوان
+inscription anticipée	التسجيل المبكر
+a pour code postal	للرمز البريدي
+a pour événement administratif	للأحداث الإدارية
+étudie à	درس في
+a pour pays	النسبة للبلدان
+se déroule en parallèle de	يعمل في نفس الوقت من
+est employé par	يستخدم من قبل
+est expert sur	وخبير في
+a pour rue	للشارع
+a pour tva	لضريبة القيمة المضافة
+courriel de contact	الاتصال بالبريد الإلكتروني
+a pour mot clé	لرئيسية
+a pour ville	لمدينة
+traite de	العروض الخاصة
+écrit	كتب
+suit	التالية
+étudiant non orateur	الطالب غير-المتكلم
+activité technique	النشاط التقني
+comité technique	اللجنة الفنية
+pause café	استراحة
+état d'un présentateur	الدولة لمقدم العرض
+temps	الوقت
+sponsorisation	رعاية
+minibus	حافلة صغيرة
+orateur	المتكلم
+conférence d'une journée	يوم واحد من المؤتمر
+salle de conférence	غرفة الاجتماعات
+brève introduction de président de session	مقدمة موجزة لرئيس الدورة
+hôtel d'une conférence	فندق المؤتمر
+orateur d'un tutoriel	رئيس المجلس التعليمي
+état d'une conférence	الدولة لعقد مؤتمر
+recherche	البحوث
+date limite de soumission	الموعد النهائي لتقديم
+formulaire d'information sur un auteur	نموذج معلومات الكاتب
+état	الدولة
+frais d'hôtel	نفقات الفندق
+argent	المال
+frais d'inscription d'auteur participant pour les actes au format papier	الكاتب المشاركة للأعمال في ورقة رسم التسجيل
+bâtiment	بناء
+maison de présentateur	مقدم المنزل
+frais	التكاليف
+ville de sponsor	مدينة الراعي
+introduction	مقدمة
+projecteur lcd	جهاز عرض lcd
+chambre d'hôtel double	الفندق غرفة مزدوجة
+frais d'inscription d'auteur participant pour les actes sur support numérique	تسجيل حقوق التأليف والنشر للأعمال على الوسائط الرقمية
+date limite	الموعد النهائي
+taxi	سيارة أجرة
+manuscrit final	المخطوط النهائي
+acceptation de manuscrit	قبول المخطوطة
+frais d'inscription d'auteur	رسوم تسجيل البلاغ
+université de présentateur	جامعة لمقدم العرض
+carte	خريطة
+taxe	الضرائب
+ordinateur	جهاز الكمبيوتر
+registre de participation	التسجيل للمشاركة
+lecteur de cassettes vidéo	مشغل كاسيت فيديو
+jour de voyage	يوم السفر
+chèque	شيك
+ville de présentateur	المدينة لمقدم العرض
+navette	المكوك
+inscription	التسجيل
+rétroprojecteur	عرض ضوئي
+frais d'inscription de non membre	رسوم التسجيل غير الأعضاء
+équipement audiovisuel	المعدات السمعية والبصرية
+auteur ayant les actes sur support numérique	الكاتب الذي يعمل في وسائل الإعلام الرقمية
+date limite de dépôt de version finale de manuscrit	الموعد النهائي لتقديم النسخة النهائية من المخطوطات
+travailleur non orateur	عامل لا المتكلم
+actes en format papier	الأعمال في شكل ورقة
+actes en support numérique	الأعمال في شكل رقمي
+date limite d'inscription	آخر موعد للتسجيل
+présentation power point	باور بوينت
+frais d'inscription de membre	رسوم تسجيل الأعضاء
+item	البند
+date limite de notification d'acceptation	آخر موعد للإشعار بالقبول
+auteur ayant les actes au format papier	الكاتب الذي يتصرف في شكل ورقة
+représentant	الممثل
+réception de manuscrit	استلام مخطوط
+véhicule de transport	مركبة النقل
+programme social	البرنامج الاجتماعي
+location	تأجير
+maître d'hôtel	D'hotel ميتر
+conférence plénière	محاضرة عامة
+visite guidée d'une journée complète	الجولات المصحوبة بمرشدين يوم كامل
+membre d'iasted	إياستيد الأعضاء
+carte de crédit	بطاقة الائتمان
+aéroport de conférence	مطار المؤتمر
+activité ayant lieu avant une conférence	النشاط قبل عقد مؤتمر
+bureau principal	المكتب الرئيسي
+départ	رحيل
+date limite de réservation d'hôtel	الموعد النهائي للحجز الفندقي
+formulaire	النموذج
+salle de session	قاعة الاجتماع
+refus de manuscrit	رفض مخطوط
+taxe sur la valeur ajoutée	ضريبة القيمة المضافة
+activité ayant lieu pendant une conférence	النشاط تحدث خلال مؤتمر
+monnaie	تحويل العملات
+activité	النشاط
+non orateur	لا متكلم
+voiture	سيارات
+fuseau horaire	المنطقة الزمنية
+dîner de gala	حفل العشاء
+virement bancaire	التحويل المصرفي
+frais d'inscription d'étudiant	رسوم تسجيل الطلاب
+orateur de conférence plénière	الجلسة العامة المتحدث
+non membre d'iasted	لست عضوا إياستيد
+présentation vidéo	عرض الفيديو
+visa	فيزا
+frais de voyage supplémentaire	نفقات السفر الإضافية
+guide d'excursion de conférence	مرشد سياحي في المؤتمر
+ville de conférence	المدينة للمؤتمر
+taxe de départ	ضريبة المغادرة
+maison de société de sponsor	بيت شركة الراعية
+formulaire d'inscription	نموذج التسجيل
+introduction d'un orateur	مقدمة من رئيس المجلس
+présentateur salarié	مقدم شخص يعملون لحسابهم الخاص
+simulation	المحاكاة
+activité ayant lieu après une conférence	النشاط التي تجري بعد عقد مؤتمر
+auditeur	وحدة إصغاء
+document de paiement	وثيقة الدفع
+liste de diffusion	القائمة البريدية
+bâtiment de conférence	مبنى المؤتمرات
+transparent	شفافة
+formulaire de réservation de chambre d'hôtel	استمارة حجز غرفة الفندق
+état d'un sponsor	الدولة من تقديمه
+pourboire	تلميح
+restaurant d'une conférence	مطعم مؤتمر
+jour de conférence	يوم من أيام المؤتمر
+cocktail de réception	استقبال كوكتيل
+sponsor	الراعي
+président de session	رئيس الدورة
+présentateur	مقدم
+chambre d'hôtel	غرفة في فندق
+lettre d'invitation	رسالة دعوة
+publication	منشور
+présentateur étudiant	مقدم الطالب
+modélisation	النمذجة
+présentation d'accueil	نظرة عامة على الصفحة الرئيسية
+chambre d'hôtel simple	غرف الفندق البسيطة
+manuscrit initial	المخطوطة الأولى
+présentation d'orateur	عرض المتكلم
+ville d'excursion	مدينة رحلة
+orateur pendant une journée	المتكلم يوم واحد
+soumission	تقديم
+est nécessaire pour	مطلوب من أجل
+est donné à	وترد إلى
+a lieu avant	مكان قبل
+est payé par	وتدفع
+obtient	يحصل على
+est payé avec	وتدفع مع
+occupe	ويحتل
+a lieu après	تجري بعد
+est conçu pour	ويهدف إلى
+est utilisé par	يستخدم من قبل
+est signé par	تم توقيعه من قبل
+donne	يعطي
+est payé pour	ويدفع عن
+est connecté à	متصل
+paie	كشوف المرتبات
+est occupé par	ويشغل
+a lieu dans	يأخذ مكان في
+est équipé par	مجهزة
+est utilisé pour	يستخدم
+est visité par	زار من قبل
+parle à	ويتحدث إلى
+a quantité de	كمية من
+est daté du	تاريخ من
+est fait jusqu'à	ويتكون
+est payé à	وتدفع إلى
+signe	تسجيل الدخول
+est préparé par	وقد أعدت
+est envoyé avant	يتم إرسالها من قبل
+est donné par	وترد عليه
+est présent à	موجود في
+a besoin de	الاحتياجات من
+est fait à partir de	وهي مصنوعة من
+est situé dans	ويقع في
+est présent	موجود
+prépare	وتعد
+passe par	يمر عبر
+envoie	يرسل
+est envoyé par	يتم إرسالها بواسطة
+est envoyé après	يتم إرسالها بعد
+conférence acm sigkdd	سيجكد acm المؤتمر
+notification jusqu'à	إعلام إلى
+sponsor de bronze	الراعي البرونزي
+président de programme	رئيس البرنامج
+exposant	العارضين
+frais d'inscription de non-membre	رسوم التسجيل غير الأعضاء
+date limite pour soumettre un résumé	الموعد النهائي لتقديم خلاصة
+sponsor d'argent	الراعي الفضي
+comité de sélection de meilleurs articles	اللجنة المعنية باختيار أفضل المدونات
+prix	الأسعار
+auteur d'article	كاتب المقال
+sponsor de meilleur article étudiant	الراعي لورقة الطالب أفضل
+date limite pour soumettre un article	الموعد النهائي تقديم المادة
+hôtel	الفندق
+webmestre	المسؤول عن الموقع
+sponsor d'or	الراعي الذهبي
+auteur d'article étudiant	صاحب البلاغ قسم الطلاب
+frais d'inscription de membre de sigkdd	رسوم تسجيل الأعضاء سيجكد
+prix de meilleur article de recherche	بجائزة أفضل ورقة بحثية
+prix de meilleur article étudiant	بجائزة أفضل ورقة الطالب
+frais d'inscription de membre de sigmod	سيجمود الأعضاء رسم التسجيل
+président général	الرئيس الجنرال
+frais de sponsor	رسوم الراعي
+prix de meilleur article d'application	جائزة لأفضل تطبيق ورقة
+sponsor de platine	الراعي البلاتيني
+membre de comité d'organisation	عضو في اللجنة التنظيمية
+nationalité	الجنسية
+ville de la conférence	المدينة للمؤتمر
+décerne	الجوائز
+début de la conférence	بداية المؤتمر
+est démarché par	هو أسدي من
+définit	مجموعات
+est décerné par	ويقوم بمنح
+est présenté par	ويرد فيه
+présente	ويعرض
+soumet	وتقدم
+nom de la conférence	اسم المؤتمر
+fin de la conférence	نهاية المؤتمر
+nom du sponsor	اسم الراعي
+est organisé par	وينظم
+est soumis jusqu'à	هو رهنا
+démarche	النهج
+organise	ينظم
+est défini par	يتم تعريف بواسطة
+peut rester sur	يمكن أن يبقى على
+paye	دفع
+a pour numéro de fax	لرقم الفاكس
+choix par défaut	الخيار الافتراضي
+a pour téléphone	للهاتف
+a pour page web	لصفحة ويب
+choix min	اختيار دقيقة
+choix max	خيار الحد الأقصى
+remarque	ملاحظة
+se termine en	وينتهي في

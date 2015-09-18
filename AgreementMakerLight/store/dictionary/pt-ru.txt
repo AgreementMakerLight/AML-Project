@@ -683,3 +683,10 @@ possui nome do patrocinador	имеет имя спонсора
 possui nome da conferência	имеет имя конференции
 data	Дата
 finalizar atribuições dos artigos	прекратить назначений статей
+versão completa do artigo	Полная версия статьи
+leitura realizada por um revisor	чтение, удерживаемые рецензент
+possui co-autor	Он является соавтором
+contribui para a conferência	вклад Конференции
+dia de início do evento	день начала события
+último dia do evento	последний день мероприятия
+email	Отправить по электронной почте

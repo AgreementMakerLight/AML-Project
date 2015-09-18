@@ -683,3 +683,10 @@ possui nome do patrocinador	naam van sponsor heeft
 possui nome da conferência	naam van de vergadering heeft
 data	datum
 finalizar atribuições dos artigos	beëindigen van toewijzingen van artikelen
+contribui para a conferência	draagt bij tot de conferentie
+versão completa do artigo	volledige versie van artikel
+leitura realizada por um revisor	lezing gehouden door een revisor
+possui co-autor	Het heeft co-auteur
+dia de início do evento	dag van de aanvang van het evenement
+último dia do evento	laatste dag van het evenement
+email	E-mail

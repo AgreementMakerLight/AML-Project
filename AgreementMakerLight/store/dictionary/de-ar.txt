@@ -1,0 +1,521 @@
+person	الشخص
+organisationsausschuss	اللجنة المنظمة
+herausgeber	الناشر
+konferenzankündigung	إعلان مؤتمر
+passiver konferenzteilnehmer	المشاركون السلبي
+gutachten	الرأي
+aufruf zu teilnahme	دعوة للمشاركة
+author eines regulären beitrags	مؤلف مساهمات منتظمة
+aushang	إشعار المجلس
+fachgebiet des gutachters	مجال الخبرة الفنية للمدقق
+eingereichter beitrag	مساهمة مقدم
+ausschuss	اللجنة
+geschriebener beitrag	مساهمة كتابية
+regulärer beitrag	مساهمة منتظمة
+konferenzbeitrag	مساهمة المؤتمر
+konferenzteilnehmer, der einen beitrag geleistet hat	المشاركون في المؤتمر، قدمت مساهمة واحدة
+workshop	ورشة عمل
+eingeladener referent	متكلم مدعو
+internet der konferenz	شبكة الإنترنت للمؤتمر
+präferenz des gutachters	الأفضلية للمدقق
+konferenzgebühren	رسوم المؤتمر
+leiter der workshops	مدير حلقة العمل
+primärer author eines beitrags	المؤلف الأساسي لمساهمة
+erweitertes zusammenfassung	ملخص الموسعة
+gutachter	الخبراء
+koferenzdokument	كوفيرينزدوكومينت
+zusammenfassung	ملخص
+stellvertretender vorsitzender	نائب الرئيس:
+informationen für teilnehmer	معلومات للمشاركين
+organisator	منظم
+vorsitzender	الرئيس:
+präsentation	العرض التقديمي
+druckfertiger beitrag	مساهمة دروكفيرتيجير
+eingeladener vortrag	محاضرة المدعوين
+fortschritte der konferenz	التقدم المحرز في المؤتمر
+konferenzreihe	سلسلة المؤتمرات
+konferenzbewerber, der die konferenzgebühr früh gezahlt hat	مرشح المؤتمر الذين قد دفعوا رسوم المؤتمر مبكرا
+konferenzteilnehmer	المشاركون في المؤتمر
+konferenzbewerber, der die konferenzgebühr spät gezahlt hat	مرشح المؤتمر الذين قد دفعوا رسوم المؤتمر أواخر
+wichtiges datum	موعد هام
+konferenzbeteiligung	المشاركة في المؤتمرات
+tutorium	البرنامج التعليمي
+ablauf der konferenz	انتهاء المؤتمر
+angehörige des ausschusses	أعضاء اللجنة
+angenommener beitrag	مساهمة المفترضة
+aktiver konferenzteilnehmer	مشاركة نشطة
+registrierter bewerber	مقدمو الطلبات المسجلة
+mitverfasser eines beitrags	شارك في تأليف مساهمة
+koferenzbewerber	كوفيرينزبيويربير
+organisation	المنظمة
+programmausschuss	لجنة البرنامج
+thema	الموضوع
+abschnitte der konferenz	مقاطع من المؤتمر
+konferenzbewerber, der die konferenzgebühr gezahlt hat	مرشح المؤتمر الذي قد دفع رسوم المؤتمر
+konferenz	المؤتمر
+steuerungsausschuss	اللجنة التوجيهية
+begutachteter beitrag	مساهمة أدار
+aufruf für beiträge	نداء لتقديم تبرعات
+abgelehnter beitrag	مساهمة المرفوضة
+hat name	باسم
+datum der druckfertigen einreichung ist	تاريخ تقديم جاهزة للطباعة
+ort der konferenz	مكان انعقاد المؤتمر
+grad der gutachterpräferenz	مجرد تفضيل الخبراء
+hat geschlecht	وقد الجنس
+isbn der fortschritte ist	ISBN التقدم الذي
+datum der einreichung des kompletten beitrags ist	تاريخ إيداع مساهمة كاملة
+hat vornamen	باسم معين
+datum der einreichung des zusammenfassungen	موعد تقديم الملخصات
+hat e-mailadresse	يحتوي عنوان البريد الإلكتروني
+ist am folgenden datum veröffentlicht worden	وقد صدرت في التاريخ التالي
+liefert konferenzbeitrag	مساهمة المؤتمر
+ausschuss der konferenz ist	وتشعر اللجنة المؤتمر
+hat abschnitt	وقد قطع
+hat mitglieder	أعضاء
+hält präsentation	إجراء عرض تقديمي
+ist ein präferiertes thema eines gutachters	موضوع مفضل لخبير
+hat workshop-thema	موضوع حلقة العمل
+ist eingereicht für	ويقدم
+url der konferenz ist	عنوان المؤتمر
+ist enddatum	تاريخ انتهاء
+datum der akzeptanz-mitteilung ist	تاريخ الإشعار بالقبول
+grad des fachgebiets des gutachters ist	درجة من موضوع المدقق
+hat abfolge	وقد تسلسل
+ist anfangsdatum	تاريخ بدء
+anzahl der fortschritte der konferenz	عدد إحراز تقدم المؤتمر
+hat nachnamen	الاسم الأخير
+hat author	وقد صاحب البلاغ
+hat beitrag	مساهمة
+ist ein präferiertes thema oder fachgebiet eines gutachters	الموضوع المفضل أو مجال من مجالات الخبرة خبير
+organisationsausschuss der konferenz ist	اللجنة المنظمة للمؤتمر
+präferenz oder fachgebiet des gutachters ist	تفضيل أو مجال من مجالات الخبرة للمدقق
+hat stellvertrenden ausschussvorsitzender	وقد ستيلفيرتريندين رئيس
+ist teil der konferenzreihe	جزء من سلسلة المؤتمرات
+ist der erst teil von	هو الجزء الوحيد من
+veröffentlicht	ونشرت
+hat beitrag eingreicht	وقد اينجريتشت مساهمة
+ist ausschuss der konferenz	لجنة المؤتمر
+hat zusammenfassung	وقد ملخص
+ist vorsitzender des ausschusses	وهو رئيس اللجنة
+hat fachgutachten	وقد رأي الخبراء
+eingeladen von gutachter	الخبراء المدعوون
+hat gutachten	وقد رأي
+steuerungsausschuss der konferenz ist	اللجنة التوجيهية للمؤتمر
+begutachtet beitrag	مساهمة عامة
+ist stellvertretender vorsitzender des ausschusses	وهو نائب رئيس اللجنة
+hat workshop	وقد ورشة عمل
+programmausschuss der konferenz ist	وتشعر اللجنة برنامج المؤتمر
+verleger des konferenzfortschritts ist	الناشر للتقدم المؤتمر
+ist steuerungsausschuss der konferenz	هو "مؤتمر اللجنة التوجيهية"
+hat thema oder beitrag eingereicht	قدم الموضوع أو التبرعات
+ist ein wichtiges datum einer konferenzreihe	موعد مهم في سلسلة المؤتمرات
+hat wichtiges datum	لديه موعد هام
+präsentiert von	المقدم من
+ist organisationsausschuss der konferenz	من "اللجنة المنظمة" للمؤتمر
+ist mitglied von	عضو في
+lädt mitgutachter ein	مع جيدة تدعو الثامنة
+hat tutorium	وقد تعليمي
+hat eine zugewiesene gutachterpräferenz	وقد تفضيل خبراء المخصصة
+ist programmausschuss der konferenz	هو "لجنة برنامج المؤتمر"
+ist thema ein konferenzabschnittes	عبارة عن مقطع من موضوع المؤتمر
+ist leiter des workshops	وهو مدير حلقة العمل
+hat workshop-leitung	إدارة ورشة عمل
+hat ausschussvorsitzender	وقد الرئيس
+gebot	قاد
+vorsitzender des programm-komitees	رئيس لجنة البرنامج
+gegenstandsbereich	مجال الموضوع
+externer gutachter	المراجعين الخارجيين
+meta-gutachater	ميتا-جوتاتشاتير
+zusammenfassung eines konferenzbeitrags	ملخص مساهمة في المؤتمر
+akzeptanz	قبول
+dokument	الوثيقة
+stellvertretender vorsitz	مقعد نائب في
+programm-komitee	لجنة البرنامج
+entscheidung	قرار
+präferenz	الأفضلية
+mitglied des programm-komitees	عضو في برنامج اللجنة
+verfasser, der kein gutachter ist	الكاتب الذي أي خبير
+zurückweisung	رفض
+meta-gutachten (gutachten über ein gutachten)	ميتا-الرأي (الرأي على رأي)
+meta-gutachater (gutachter der gutachten begutachtet)	ميتا-جوتاتشاتير (استعرض الرأي خبير)
+meta-gutachten	ميتا-الرأي
+mitverfasser	شارك في تأليف
+teilnehmer einer konferenz	المشاركون في مؤتمر
+vollständiger konferenzbeitrag	رسوم المؤتمر كامل
+administrator	مدير البرنامج
+benutzer	المستخدم
+verfasser	كاتب
+vorsitzender der konferenz	رئيس المؤتمر
+akzeptiert hardcopy-einsendungen	قبول الطلبات hardcopy\r
+hat datum	تاريخ
+hat titel	لها عنوان
+hat email	وقد أرسل
+hat webseite url	وقد عنوان url لصفحة ويب
+hat webseite an url	له موقع على شبكة الإنترنت على عنوان url
+hat namen	باسم
+hat logo an url	يحتوي URL شعار
+hat logo url	يحتوي url شعار
+gutachten pro beitrag	رأي كل مساهمة
+hat id	معرف
+maximale anzahl zugewiesenen beiträgen	الحد الأقصى لعدد المساهمات المخصصة
+maximale anzahl an zugewiesenen beiträgen	الحد الأقصى لعدد المساهمات المخصصة
+hat akzeptiert	وقد قبلت
+hat papier gelesen	قراءة ورقة
+zugewiesen von administrator	المعينة من قبل مسؤول
+hat mitglied	وقد الأعضاء
+teilnehmer von	المشاركون من
+ist zugeordnet worden	وقد صدرت الأوامر إلى
+hat zugewiesen	وقد تم تعيينها إلى
+zugewiesen von gutachter	تعيين خبراء
+abgeglichen von	تقابلها
+hinzugefügt von	أضيفت من قبل
+hat gegenstandsbereich	نطاق
+papierausdruck des mailing-manifests gedruckt von	المطبوعة نسخة مطبوعة من بيان البريدية التي
+hat beitrag mitverfasst	قام بتأليف مساهمة
+hat kriterien zu gutachten eingefügt	وقد أضاف معايير للرأي
+hat die zeit des begutachtens beendet	وقد انتهى ذلك الوقت لتقييم
+hat hinzugefügt	وأضاف
+hat gutachten geschrieben	وقد كتب الرأي
+hat gebot erhalten	وقد قاد الحصول على
+hat teilnehmer	مشارك
+hat beitrag eingesendet	وقدمت مساهمات
+zugewiesen zu	تخصيص
+beitragszuordnungs-software ausgeführt von	تشغيل البرمجيات بيتراجسزوردنونجس
+gebotsphase gestartet von	المرحلة محاولة الكاتب
+geschrieben von	أرسلت بواسطة
+druckt papierausdruck des mailing-manifests	طباعة نسخة ورقية من بيان بريدية
+mitverfasst von	تأليف
+hat interessenskonflikt bezug auf	يحتوي مرجع إينتيريسينسكونفليكت
+hat interessenskonflikt in bezug auf	وقد إينتيريسينسكونفليكت
+details eingefügt von	التفاصيل التي أضيفت من قبل
+beitragszuordnung abgeschlossen von	التعيين بعد الانتهاء من
+hat details eingefügt in bezug auf	وقد أضيف تفاصيل بشأن
+hat details eingefügt bezug auf	إضافة تفاصيل مرجع في
+hat die zuordnung der beiträge abgeschlossen	وقد أكملت رسم خرائط للمساهمات
+hat virtuelles treffen veranlasst	وقد أدى لقاء الظاهري
+hat abgeglichen	وقد تطابق
+hat die gebotsphase gestartet	وبدأ في مرحلة العطاء
+hat beitrag geschrieben	وقد كتب مساهمة
+abgewiesen von	رفض من قبل
+gelesen von gutachter	قراءة بواسطة خبراء
+hat die beitrags-zuordnungssoftware ausgeführt	وقد نفذت زوردنونجسوفتواري مساهمة
+akzeptiert von	التي قبلتها
+ist mitglied des programm-komitees	عضو في لجنة البرنامج
+bestimme maximale anzahl an zugewiesenen beiträgen	اختر الحد الأقصى لعدد المساهمات المخصصة
+bestimme maximale anzahl zugewiesenen beiträgen	اختر الحد الأقصى عدد المساهمات المخصصة
+ist entschieden worden als	وقد تقرر
+kriterien zu gutachten eingefügt von	المعايير لإدراجه من قبل الرأي
+hat papier abgelehnt	ورقة المرفوضة
+virtuelles treffen veranlasst von	رئاسة الاجتماع الظاهري
+gelesen von meta-gutachter	قراءة المراجع الفوقية
+steht in interessen-konflikt mit beitrag	تعارض مصالح مع مساهمة
+steht interessen-konflikt mit beitrag	تعارض مصالح مع مساهمة
+arbeits-ereignis	الحدث العمالة
+ergebnis-der-begutachtung ereignis	نتيجة لتقييم الأحداث
+soziales ereignis	الأحداث الاجتماعية
+stadt	مدينة
+ereignis	الحدث
+land	الأرض
+empfang	الاستقبال
+regulärer teilnehmer	المشاركون العادية
+student	طالب
+administratives ereignis	الأحداث الإدارية
+ereignis der begutachtung	الحدث للاستعراض
+freiwilliger	التبرعات
+universität	جامعة
+papier	ورقة
+studentischer teilnehmer	طالب المشاركون
+ausflug	رحلة
+firma	الشركة
+ereignis zur registrierung der teilnehmer	الحدث بتسجيل المشاركين
+autor	كاتب
+vorsitz des programmkomitees	مقعد في برنامج اللجنة
+wissenschaftler	العلماء
+einreichung	تقديم
+bankett	اجتماعات ولائم
+mitglied	الأعضاء
+kurzes papier	ورقة قصيرة
+assistent	معالج
+teilnehmer	المشاركون
+mitglied des programmkomitees	عضو في برنامج اللجنة
+ereignis des einreichens eines papiers	الحدث لتقديم ورقة
+poster	ملصق
+ereignis des sendens des "camera-ready" papiers	الحدث لإرسال هذه الورقة "الكاميرا جاهزة"
+hat stichwörter	تحتوي على كلمات رئيسية
+vorgegebene anzahl	رقم مسبقاً
+findet statt	يأخذ مكان
+findet statt an	سوف تعقد
+startet am	يبدأ من
+maximale anzahl	الحد الأقصى لعدد
+hat email adresse	يحتوي عنوان البريد الإلكتروني
+hat homepage	بالصفحة الرئيسية
+hat anmerkung	وقد شرح
+hat postleitzahl	وقد الرمز البريدي
+hat telephonnummer	رقم الهاتف
+hat kontakt-email adresse	يحتوي عنوان البريد الإلكتروني جهة الاتصال
+hat kurztitel	وقد تيتيل قصيرة
+hat mehrwertsteuer	وقد القيمة المضافة ضريبة
+hat faxnummer	وقد فاكسنومير
+studiert	درس
+studiert an	درس في
+schreibt	يكتب
+fachkundig für	خبير
+folgt	يتبع
+begutachtet	درس
+gleichzeitig mit	وفي الوقت نفسه مع
+angestellt bei	استأجرت في
+hat nachname	الاسم الأخير
+hat straße	وقد الطريق
+endet am	وينتهي في
+minimale anzahl	الحد الأدنى لعدد
+frühzeitige registrierung	التسجيل المبكر
+hat stadt	المدينة
+hat administratives event	الأحداث الإدارية
+beschäftigt sich mit	يتعامل مع
+hat thema	وقد الموضوع
+hat land	قد بلد
+angestellter, der kein redner ist	الموظف الذي ليس اللغة العامة
+anwesenheitsnachweis	ورقة الحضور
+shuttle-bus	حافلة مكوكية
+zeit	الوقت
+student, der kein redner ist	الطلاب الذين ليس اللغة العامة
+staat der konferenz	الدولة للمؤتمر
+sponsorgebühr	سبونسورجيبويهر
+angestellter vortragender	محاضر الموظف
+sitzungsvorsitz	رئيس الجلسة
+nicht-mitglied von iasted	غير عضو إياستيد
+registrierungsformular (konferenz)	استمارة التسجيل (المؤتمر)
+studentischer vortragender	محاضرة الطالب
+vortragender, der ein tutorium hält	محاضر، يحمل برنامج تعليمي
+tagestour	جولة اليوم
+redner	مكبرات الصوت
+jede art von dokument	أي نوع من المستندات
+akzeptieren eines manuskripts	تقبل مخطوطة
+frist zur benachrichtigung der akzeptanz	آخر موعد للإشعار بالقبول
+trinkgeld	تلميح
+konferenz-halle	قاعة المؤتمرات
+kaffeepause	استراحة
+mehrwertsteuer	القيمة المضافة ضريبة
+zeit (zeitraum und zeitpunkt)	الوقت (الوقت والتاريخ)
+konferenzbesucher	مؤتمر الزائرين
+overhead-projektor	عرض ضوئي
+sitzungsraum	غرفة الاجتماع
+frist	الموعد النهائي
+tagungsband als buch	تاجونجسباند ككتاب
+video-präsentation	عرض الفيديو
+delegierter	مندوب
+kreditkarte	بطاقة الائتمان
+session	الدورة
+aktivität, die nach der konferenz stattfindet	النشاط الذي يحدث بعد المؤتمر
+lcd-projektor	جهاز عرض LCD
+aktivität, die vor der konferenz stattfindet	النشاط الذي يحدث قبل انعقاد المؤتمر
+anmeldegebühr für einen nicht-autor	رسوم التسجيل لغير كاتب
+computer	جهاز الكمبيوتر
+haus einer firma, die ein sponsor ist	الصفحة الرئيسية لشركة التي يتم تقديمه
+taxi	سيارة أجرة
+cameraready-frist	كاميراريدي--الموعد النهائي
+hauptbüro	المكتب الرئيسي
+gebühr	رسوم
+ablehnung eines manuskripts	رفض مخطوط
+gegenstand	هذا الموضوع
+registrierungsformular (hotel)	استمارة التسجيل (فندق)
+universität eines vortragenden	جامعة لتقديم
+steuer	الضرائب
+konferenzgebäude	مبنى المؤتمرات
+powerpoint-präsentation	عرض تقديمي ل PowerPoint
+modellierungsaktivität	النشاط النمذجة
+kleintransporter	البيع بالتجزئة
+mitglied von iasted	عضو في إياستيد
+kurze einführung für den session-vorsitz	مقدمة موجزة للدورة-المقعد إلى الأمام
+stadt, aus der ein vortragender kommt	المدينة، يأتي من محاضر
+zuhörer	المستمعين
+zeitzone	المنطقة الزمنية
+staat	الدولة
+staat des sponzors	الدولة سبونزورس
+örtlichkeit	موقع
+formular	النموذج
+publikation	منشور
+anmeldegebühr für einen studenten	رسوم التسجيل للطالب
+gebühr für einen zusatzausflug	رسوم لرحلة إضافية واحدة
+stadt, die ein ausflugsziel darstellt	المدينة، الذي يمثل وجهة
+technisches komitee	اللجنة الفنية
+tagungsband als cd	تاجونجسباند كمؤتمر نزع السلاح
+frist zur hotelreservierung	الموعد النهائي للحجز الفندقي
+konferenzhotel	فندق المؤتمر
+registrierung	التسجيل
+registrierungsfrist	آخر موعد للتسجيل
+originalversion des manuskripts	النسخة الأصلية من المخطوطة
+cocktail-empfang	كوكتيل والاستقبال
+anmeldegebühr	رسوم التسجيل
+abreisegebühr	رسوم المغادرة
+registrierungsformular	نموذج التسجيل
+folie	إحباط
+dinner-bankett	العشاء
+annahme eines manuskripts	قبول مخطوطة
+hotelgebühr	رسوم الفندق
+autor, der einen tagungsband in buchform erhält	الكاتب الذي يحصل تاجونجسباند في شكل كتاب
+anmeldegebühr für einen autor, der den tagungsband in buchform erhält	رسوم التسجيل لمؤلف الذي يحصل تاجونجسباند في شكل كتاب
+währung	تحويل العملات
+flughafen in/am konferenzort	مطار في مكان انعقاد المؤتمر
+konferenztage	أيام المؤتمر
+doppelzimmer	غرفة مزدوجة
+ausflugstag	اليوم رحلة
+soziale aktivität	النشاط الاجتماعي
+automobil	السيارات
+simulationsaktivität	نشاط المحاكاة
+haus eines vortragenden	دار عرض
+vortrag	محاضرة
+einzelner konferenztag	يوم واحد من المؤتمر
+mailingliste	ميلينجليست
+stadt, aus der ein sponzor kommt	المدينة، مقدمي يأتي من
+transportfahrzeug	مركبة النقل
+forschungsaktivität	النشاط البحثي
+aktivität, die während der konferenz stattfindet	النشاط الذي يحدث أثناء المؤتمر
+mieten eines autos	لتأجير السيارات
+folie (overhead projektor)	إحباط (علوي)
+willkommensrede	كلمة الترحيب
+formular zur information des autors	نموذج للمعلومات من مقدم البلاغ
+vortragender, der nur an einem tag redet	محاضر، الذي يتحدث في يوم واحد فقط
+einreichungsfrist	آخر موعد للتقديم
+visum	فيزا
+autor, der einen tagungsband als cd erhält	صاحب البلاغ، تلقي تاجونجسباند كمؤتمر نزع السلاح
+vorstellung eines redners	مقدمة رئيس
+abreise	رحيل
+einzelzimmer	غرفة مفردة
+staat des vortragenden	الدولة تقديم
+technische aktivität	النشاط التقني
+aktivität	النشاط
+vortrag gehalten von einem redner	محاضرة عقدتها المتكلم
+scheck	تحقق
+anmeldegebühr für ein mitglied	رسوم التسجيل لعضو
+anmeldegebühr für ein nicht-mitglied	رسوم التسجيل لغير الأعضاء
+zahlungsbeleg	إثبات الدفع
+gegenstand (im allgemeinen)	الموضوع (بشكل عام)
+geldbetrag	مبلغ من المال
+vortragender, der im konferenzhotel untergebracht ist	محاضر، في المؤتمر يقع
+stadt, in der die konferenz stattfindet	المدينة حيث يعقد المؤتمر
+gebäude	بناء
+anmeldegebühr für einen autor, der den tagungsband als cd erhält	رسوم التسجيل لمؤلف، تلقي تاجونجسباند كمؤتمر نزع السلاح
+audiovisuelle ausstattung	المعدات السمعية والبصرية
+sponsor	الراعي
+nicht-redner	غير المتكلمين
+bank transfer	التحويل المصرفي
+vortragender, der im plenum redet	محاضر، الذين يتحدثون في الجلسات العامة
+hotelzimmer	غرف الفندق
+videorecorder	مسجل فيديو
+konferenzrestaurant	مطعم المؤتمر
+einladungsbrief	رسالة دعوة
+vortrag im plenum	محاضرة في الجلسة العامة
+endversion des manuskripts	اندفيرسيون المخطوطة
+vorstellung	العرض التقديمي
+vortragender	محاضر
+karte	خريطة
+wird bezahlt für	سيتم دفع
+wird verwendet von	يستخدم من قبل
+gibt	هي
+befindet sich in	يقع في
+befindet sich	الموقع
+wird bewohnt von	يسكنها
+durchgeht	وغني عن طريق
+wird bezahlt in	وسوف تدفع
+wird bezahlt	وسيولى
+wird versendet vor	سيتم إرسال إلى
+wird gegeben/ausgeführt von	وسيكون النظر/التي تقوم بها
+bezahlt	تدفع
+wird bezahlt von	وسوف تدفعها
+wirdgegebenan	ويردجيجيبينان
+wird unterzeichnet von	تم توقيعه من قبل
+bewohnt	مأهولة بالسكان
+ist entworfen/bestimmt für	تصميم/المقصود
+benötigt	مطلوب
+wird vorbereitet von	وقد أعدت
+erhält	ويتلقى
+sendet	يرسل
+unterzeichnet	توقيع
+wird versendet nach	سيتم إرسال إلى
+hat betrag von	يحتوي الكمية من
+muss erledigt sein bis	ويجب أن يتم على
+ist datiert auf	حتى تاريخ
+ist verbunden mit/bezogen auf	هو صلة/تتصل
+findet statt in	يأخذ مكان في
+ist geschrieben von	هو مكتوب من قبل
+findet statt nach	تجري بعد
+spricht in (räumlich und zeitlich)	ويتحدث في (المكانية والزمانية)
+spricht (räumlich und zeitlich)	ويتحدث (المكانية والزمانية)
+istanwesend (räumlich und zeitlich)	إيستانويسيند (المكانية والزمانية)
+ist ausgestattet mit	مجهزة
+wird bezahlt mit	وسيولى مع
+findet statt vor	يأخذ مكان قبل
+wird verwendet für	يستخدم من أجل
+bereitet vor	أعد
+wird benötigt für	مطلوب من أجل
+istanwesend (räumlich)	إيستانويسيند (المكان)
+wird versendet von	سيتم إرسال
+wird besucht von	زار من قبل
+ist gemacht aus	يتم إجراء
+registrierungsgebühr	رسوم التسجيل
+konferenzgebühr	رسوم المؤتمر
+award für besten forschungsbeitrag	جائزة أفضل ورقة بحثية
+author eines konferenzbeitrages	الكاتب مساهمة في المؤتمر
+organisatoren der konferenz	منظمو المؤتمر
+deadline für die mitteilung eines authors	آخر موعد للأخطار بالمؤلفين
+registrierungskosten für studenten	تكلفة التسجيل للطلاب
+eines studentischen beitrags	مساهمة الطلاب
+platz	المكان
+registrierungskosten für personen, die nicht mitglied von sig sind	تكلفة التسجيل للناس الذين ليسوا أعضاء في سيج
+sponsorenbeitrag	سبونسورينبيتراج
+hauptbüro der konferenz	المكتب الرئيسي للمؤتمر
+silber sponsor der konferenz	الراعي الفضي للمؤتمر
+konferenzsaal	قاعة المؤتمرات
+deadline für die einreichung der zusammenfassung	الموعد النهائي لتقديم موجز
+ausschuss für den award des besten beitrags	اللجنة المعنية بجائزة أفضل مساهمة
+gold sponsor der konferenz	الراعي الذهبي لمؤتمر
+award für besten studentischen beitrag	جائزة لأفضل طالب مساهمة
+platin sponsor der konferenz	الراعي البلاتيني للمؤتمر
+sponsor als aussteller	معرض الراعي
+mitglied des programmausschusses	عضو في لجنة البرنامج
+deadline	الموعد النهائي
+webmaster	المسؤول عن الموقع
+beitrag	مساهمة
+award für konferenzbeitrag	جائزة للمؤتمر ورقة
+registrierungskosten für mitglieder von sigkdd	تكلفة التسجيل لأعضاء سيجكد
+mitglied des organisationsausschusses	عضو اللجنة المنظمة
+sponsor für besten studentischen beitrag	في تقديم أفضل إسهام الطالب
+author	كاتب
+award für besten anwendbaren beitrag	جائزة لأفضل مساهمة المطبقة
+hörer der konferenz	المستمعين للمؤتمر
+konferenz acm sigdkdd	سيجدكد acm المؤتمر
+bronze sponsor der konferenz	برونزية في رعاية المؤتمر
+deadline für die einreichung eines beitrags	الموعد النهائي لتقديم مساهمة
+programmvorsitzender	برنامج الرئيس
+registrierungskosten für mitglieder von sigmod	تكلفة التسجيل لأعضاء سيجمود
+hotel	الفندق
+datum des ersten tages der konferenz ist	تاريخ اليوم الأول من المؤتمر
+hat nationalität	وقد الجنسية
+hat sponsorenname	وقد سبونسورينامي
+registrierungsbeitrags ist in währung	مساهمة التسجيل في العملة
+registrierungsbeitrags ist währung	العملة مساهمة التسجيل
+hat name der konferenz	باسم المؤتمر
+hat award erhalten von	الجائزة التي تلقاها
+registrierungsbeitrag gezahlt von	التسجيل المساهمة التي تدفعها
+award erhalten von	حصل على جائزة من
+paid zahlt registrierungsbeitrag	دفع التسجيل المدفوعة مسبقاً
+beitrag wurde eingereicht von	وقدمت مساهمة
+deadline festgelegt	الموعد
+präsentiert dokumente	ويعرض الوثائق
+konferenz organisiert von	المؤتمر الذي نظمته
+ist datiert auf den	هو تاريخ
+hat preis	وقد ثمن
+datum des letzten tages der konferenz ist	تاريخ اليوم الأخير من المؤتمر
+konferenz findet in folgender stadt statt	وسوف يعقد المؤتمر في المدينة التالية
+konferenz findet folgender stadt statt	وسوف يعقد مؤتمر المدينة التالية
+deadline eingerichtet für	الموعد النهائي
+wurde präsentiert von	وقدم
+hat award	جائزة
+sponsoren wurden aufgerufen von	تم استدعاء مقدمي مشروع القرار
+bleibt	ويظل
+bleibt in	لا يزال في
+deadline für authorenmitteilung	الموعد النهائي أوثورينميتيلونج
+organisiert konferenz	مؤتمر المنظمة
+hat deadline für einreichungen	هو الموعد النهائي لتقديم الطلبات
+aufruf von sponsoren	دعوة لمقدمي مشروع القرار

@@ -714,3 +714,315 @@ organise conférence	conferentie organiseert
 soumettre l'article	artikel indienen
 a une date limite pour la soumission	heeft een termijn voor de indiening
 appel à sponsor	oproep voor sponsor
+président de conférence	De Voorzitter van de conferentie
+rapport d'examen	onderzoeksrapport
+thématique	thema
+président de comité de programme	Stoel van programma Comité
+président adjoint de conférence	Plaatsvervangend conferentiestoel
+méta-rapport d'examen	Meta-RapPort te herzien
+résumé d'article	Samenvatting van het artikel
+membre de conférence	Lid conferentie
+membre de comité de programme	Lid van het programmacomité
+version complète d'article	volledige versie van artikel
+proposition de relecture	voorstel voor replay
+nombre de rapports d'examen par article	aantal verslagen door artikel
+url du logo	URL van het logo
+accepte les soumissions d'articles au format papier	accepteert inzendingen op papier
+identifiant de l'article	id van het artikel
+l'attribution de propositions aux relecteurs est initialisée par	de toewijzing van voorstellen revisoren wordt geïnitialiseerd door
+ajuste la proposition de relecture	Hiermee past u de replay voorstel
+imprime les courriers de la manifestation	de letters van de gebeurtenis Afdrukken
+a pour co-auteur	een voor mede-auteur
+est ajusté par	is aangepast door
+a pour thématique	een thema
+met en place la réunion virtuelle	de virtuele vergadering stelt
+est lu par le méta-relecteur	wordt gelezen door de meta-revisor
+affecte le rôle de relecteur externe à	is van invloed op de rol van externe revisor
+a pour décision	een voor besluit
+a été associé à	is gekoppeld
+finalise l'attribution d'articles	Beëindigt de toewijzing van artikelen
+initialise l'attribution de propositions aux relecteurs de	Initialiseert de toewijzing van voorstellen revisoren van
+lit l'article	bed artikel
+a pour membre du comité de programme	een lid van het programma Comité voor
+exécute les outils d'attribution d'articles de	uitvoeren van blogs naamgeving van hulpprogramma's van
+est affecté par l'administrateur	door de beheerder is toegewezen
+accepte l'article	accepteren van artikel
+les détails sont saisis par	de details zijn ingevoerd door
+saisit les détails de la conférence	vangt de details van de conferentie
+soumet l'article	artikel indienen
+saisit les critères d'évaluation de	vangt de beoordelingscriteria van
+signale un conflit d'intérêt pour	geeft aan dat een conflict van belang voor
+les exemplaires papier des courriers de la manifestation imprimés par	de papieren exemplaren van gedrukt door de gebeurtenis e-mails
+écrit l'article	schreef het artikel
+la réunion virtuelle activée par	de virtuele vergadering ingeschakeld door
+a un conflit d'intérêt à propos de	heeft een belangenconflict met betrekking tot
+a pour membre de conférence	een voor lid conferentie
+est accepté par	wordt aanvaard door
+a pour auteur	de auteur heeft
+l'attribution des articles finalisée par	de toewijzing van artikelen door gebeëindigd
+les outils d'attribution d'articles sont exécutés par	toewijzing voor objecten tools worden uitgevoerd door
+est rejeté par	is geweigerd door
+est affecté par le relecteur	wordt beïnvloed door de revisor
+écrit le rapport d'examen	schriftelijk examen verslag
+les critères d'évaluation sont remplis par	de evaluatiecriteria worden opgevuld door
+rejette l'article	verwerpt artikel
+a pour proposition de relecture	een voorstel voor replay
+définit le nombre maximum d'articles de	Hiermee stelt u het maximum aantal items van
+co-écrit l'article	mede geschreven artikel
+est ajouté par	wordt toegevoegd door
+finalise le processus de relecture	Beëindigt het beoordelingsproces
+est lu par le relecteur	wordt gelezen door de revisor
+affecte le rôle de relecteur à	is van invloed op de rol van de revisor in
+est assigné à	wordt toegewezen aan
+premier auteur de contribution	eerste blogauteur bijdrage
+personne qui a payé les frais d'inscription en avance	persoon die de registratieprijs van tevoren heeft betaald
+co-auteur de contribution	mede-auteur van de bijdrage van
+date importante	belangrijke datum
+contributeur de conférence	Conferentie Inzender
+annonce de conférence	Conferentie aankondiging
+expertise de relecteur	Revisor expertise
+contribution relue	bijdrage overgespeeld
+personne qui a demandé à participer à une conférence	degene die heeft verzocht om deel te nemen aan een conferentie
+participant actif de conférence	actieve deelnemer van de conferentie
+préférence de relecteur	voorkeur van revisor
+membre de comité	Lid van de Commissie
+président de session d'atelier	De Voorzitter van de workshop zitting
+candidat enregistré	geregistreerde kandidaat
+participant de conférence	deelnemer aan de conferentie
+personne qui a payé les frais d'inscription tardivement	persoon die de registratierechten laat heeft betaald
+partie de conférence	deel van de conferentie
+présentation de conférencier invité	Keynote-presentatie
+volume de conférence	Conferentie volume
+contribution ordinaire	regelmatige bijdrage
+auteur ordinaire	regelmatige Auteur
+document de conférence	Conferentie papier
+contribution de conférence	Conferentie-bijdrage
+version finale de contribution	definitieve versie van de bijdrage van
+personne qui a payé les frais d'inscription	persoon die de registratievergoeding heeft betaald
+participant passif de conférence	passieve deelnemer van conferentie
+actes de conférence	werkzaamheden van de conferentie
+est la date de fin	is de einddatum
+a pour courriel	een voor e-mail
+est la date de soumission de résumé	is de datum voor de indiening van abstract
+est la date de début	is de begindatum
+a pour date de publication	een datum van publicatie
+a pour nom	een voor naam
+est la date de soumission de la version finale	is de datum van indiening van de definitieve versie
+a pour lieu	een plek voor
+a pour url	een voor url
+a pour genre	een voor de soort
+a pour isbn	een voor isbn
+appartient au relecteur	behoort tot de revisor
+fait la présentation	gemaakt van de presentatie
+a été un président d'atelier de	een voorzitter van atelier van
+a pour éditeur	een voor Publisher
+appartient à une préférence du relecteur	behoort tot een voorkeur van de revisor
+a été attribué à une préférence de relecture	heeft werd toegekend aan een voorkeur van proeflezen
+est une thématique d'une partie de la conférence	is een onderdeel van het thema van de conferentie
+a été un membre de	heeft deel uitgemaakt van
+est la date de notification de l'acceptation	is de datum van kennisgeving van aanvaarding
+a pour prénom	een voor de voornaam
+a pour volume	een voor volume
+a pour expertise	een voor expertise
+a pour relecteur	een revisor voor
+a pour président d'atelier	een voor het presidentschap van workshop
+est la date de soumission de la version complète	is de datum van indiening van de volledige versie
+a pour degré	een zekere
+est dispensé par	wordt verzorgd door
+a été un comité d'organisation de	is een Organiserend Comité van
+a pour président de comité	heeft de Voorzitter van de Commissie
+publie	publiceert
+a pour session	een voor sessie
+a pour résumé	een voor samenvatting
+a pour soumission	een voor de indiening
+a pour membre	een lid
+a pour comité	een voor de Commissie
+est invité par	wordt verzocht door
+a pour atelier	een voor werkplaats
+a été un comité de programme de	een programmacomité is geweest van
+a été un comité de pilotage de	een stuurgroep van is geweest
+a pour co-président de comité	een co-voorzitter van de Commissie
+a pour comité de pilotage	een stuurgroep voor
+a pour préférence ou pour expertise	een voorkeur of expertise
+a pour date importante	een voor belangrijke data
+invite le co-relecteur	Verzoekt de co revisor
+a pour comité de programme	heeft het programma Comité
+fait partie du volume de conférence	deel van de conferentie
+a été un président de comité de	is een voorzitter van het Comité van
+a pour contributions	een voor bijdragen
+a pour thématique ou pour soumission	een thema of voor indiening
+a pour partie	een voor een deel
+a pour sujet d'atelier	het onderwerp van workshop heeft
+a pour comité d'organisation	een voor het organisatiecomité
+a pour tutoriel	een voor zelfstudie
+a été un comité de	is een Comité van
+contribue	draagt bij
+a pour expertise de relecteur	Revisor deskundigheid heeft
+évalue	resulteert in
+a été un co-président de comité de	is een co-voorzitter van het Comité van
+scientifique	wetenschapper
+bénévole	vrijwilligers
+evénement de relecture	Replay gebeurtenis
+événement de travail	werknemer gebeurtenis
+universitaire	Universiteit
+participant ordinaire	regelmatige deelnemer
+evénement	gebeurtenis
+evénement d'envoi de version finale	definitieve versie mailing gebeurtenis
+evénement d'évaluation des résultats	Event-evaluatie van resultaten
+evénement social	sociaal evenement
+etudiant	student
+evénement de soumission	gebeurtenis indiening
+membre	Lid
+evénement d'inscription des participants	gebeurtenis inschrijving van deelnemers
+adjoint	Assistent
+evénement administratif	Administratieve gebeurtenis
+choix par défaut	standaardkeuze
+a pour téléphone	een voor telefoon
+a pour numéro de fax	een voor faxnummer
+choix max	keuze max
+se termine en	eindigt op
+a pour titre court	een korte titel
+choix min	keuze min
+inscription anticipée	vroege registratie
+a pour titre	een voor de titel
+a pour page web	een voor webpagina's
+a pour code postal	een voor postcode
+étudie à	studeerde aan
+a pour pays	een voor landen
+se déroule en parallèle de	loopt parallel uit
+est employé par	wordt gebruikt door
+est expert sur	is een expert op
+a pour rue	een voor straat
+a pour tva	een BTW-
+courriel de contact	contact e-mail
+a pour mot clé	een voor zoekwoord
+a pour ville	een voor stad
+a pour événement administratif	een voor administratieve evenement
+traite de	aanbiedingen
+commence en	begint
+étudiant non orateur	student niet-luidspreker
+état d'un présentateur	Staat van een presentator
+minibus	minibus
+orateur	spreker
+conférence d'une journée	eendaagse conferentie
+brève introduction de président de session	korte inleiding van de Voorzitter van de zitting
+hôtel d'une conférence	een conferentiehotel
+orateur d'un tutoriel	een tutorial spreker
+état d'une conférence	Staat voor een conferentie
+recherche	Onderzoek
+date limite de soumission	uiterste termijn voor indiening
+formulaire d'information sur un auteur	een auteur informatieformulier
+argent	geld
+frais d'inscription d'auteur participant pour les actes au format papier	Auteur deel te nemen van de besluiten die in de inschrijvingsprijs papier
+maison de présentateur	Presentator thuis
+ville de sponsor	Stad van sponsor
+frais d'inscription d'auteur participant pour les actes sur support numérique	registratie van het auteursrecht voor teksten op digitale media
+acceptation de manuscrit	aanvaarding van manuscript
+frais d'inscription d'auteur	Auteur inschrijvingsgeld
+université de présentateur	Universiteit van presentator
+jour de voyage	dag van de reis
+chèque	cheque
+ville de présentateur	Stad van presentator
+frais d'inscription de non membre	niet-lid registratie fee
+auteur ayant les actes sur support numérique	Auteur die op digitale media handelt
+date limite de dépôt de version finale de manuscrit	termijn voor indiening van de definitieve versie van manuscript
+travailleur non orateur	werknemer niet spreker
+actes en support numérique	handelingen in digitaal formaat
+date limite d'inscription	sluitingsdatum voor registratie
+frais d'inscription de membre	Lid registratie fee
+date limite de notification d'acceptation	termijn voor de kennisgeving van aanvaarding
+auteur ayant les actes au format papier	Auteur die in papierformaat handelt
+représentant	vertegenwoordiger
+réception de manuscrit	ontvangst van manuscript
+programme social	sociaal programma
+location	Verhuur
+maître d'hôtel	Maître d'hotel
+conférence plénière	plenaire vergadering Hoorcollege
+visite guidée d'une journée complète	rondleiding door een dag vol
+membre d'iasted	iasted lid
+aéroport de conférence	Conferentie luchthaven
+activité ayant lieu avant une conférence	activiteit plaatsvinden voordat een conferentie
+date limite de réservation d'hôtel	termijn voor hotelreservering
+refus de manuscrit	weigering van manuscript
+taxe sur la valeur ajoutée	belasting over de toegevoegde waarde
+activité ayant lieu pendant une conférence	activiteit die plaatsvindt tijdens een conferentie
+monnaie	valuta
+non orateur	Geen enkele spreker
+dîner de gala	galadiner
+frais d'inscription d'étudiant	student inschrijvingsgeld
+orateur de conférence plénière	plenaire spreker
+non membre d'iasted	niet een lid van iasted
+guide d'excursion de conférence	Conferentie gids
+ville de conférence	Stad van conferentie
+maison de société de sponsor	Huis van sponsor bedrijf
+formulaire d'inscription	registratieformulier
+introduction d'un orateur	invoering van een spreker
+présentateur salarié	niet in loondienst presentator
+simulation	simulatie
+activité ayant lieu après une conférence	activiteit die plaatsvindt na een conferentie
+bâtiment de conférence	Conferentie gebouw
+transparent	transparante
+formulaire de réservation de chambre d'hôtel	Hotel kamer reserveringsformulier
+état d'un sponsor	Staat van een sponsor
+pourboire	Tip
+restaurant d'une conférence	Restaurant van een conferentie
+jour de conférence	dag van de conferentie
+président de session	Voorzitter van de zitting
+présentateur étudiant	Student presentator
+modélisation	modellering
+présentation d'accueil	Home Overzicht
+présentation d'orateur	spreker presentatie
+ville d'excursion	Stad van excursie
+orateur pendant une journée	spreker een dag
+est utilisé par	wordt gebruikt door
+occupe	in beslag neemt
+est envoyé par	wordt verzonden door
+parle à	spreekt tot
+est daté du	is gedateerd op uit
+est fait jusqu'à	is samengesteld
+est donné à	wordt gegeven aan
+est payé à	wordt besteed aan
+est présent à	is aanwezig op
+est donné par	wordt gegeven door
+est situé dans	is gelegen in
+est présent	aanwezig is
+notification jusqu'à	kennisgeving aan
+sponsor de bronze	bronze sponsor
+exposant	Exposant
+frais d'inscription de non-membre	niet-lid registratie fee
+date limite pour soumettre un résumé	uiterste termijn voor het indienen van een abstract
+sponsor d'argent	Zilveren sponsor
+comité de sélection de meilleurs articles	Commissie selectie van beste blogs
+prix	prijs
+sponsor de meilleur article étudiant	sponsor van de beste student paper
+date limite pour soumettre un article	uiterste termijn voor het indienen van een artikel
+webmestre	Webmaster
+sponsor d'or	Goud sponsor
+auteur d'article étudiant	Auteur van student sectie
+frais d'inscription de membre de sigkdd	SIGKDD lid registratie fee
+prix de meilleur article de recherche	beste onderzoek papier award
+prix de meilleur article étudiant	best student paper award
+frais d'inscription de membre de sigmod	sigmod lid registratie fee
+président général	President generaal
+prix de meilleur article d'application	beste toepassing papier award
+sponsor de platine	Platina sponsor
+membre de comité d'organisation	Lid van het organisatiecomité
+ville de la conférence	Stad van de conferentie
+début de la conférence	begin van de conferentie
+nationalité	nationaliteit
+décerne	Awards
+définit	sets
+est décerné par	wordt toegekend door
+est présenté par	wordt gepresenteerd door
+présente	presenteert
+soumet	indient
+nom de la conférence	naam van de conferentie
+fin de la conférence	einde van de conferentie
+nom du sponsor	naam van sponsor
+est démarché par	wordt gepleit door
+paye	betalen
+est organisé par	wordt georganiseerd door
+est soumis jusqu'à	is onderworpen aan
+démarche	aanpak
+est défini par	wordt gedefinieerd door
+peut rester sur	kan blijven op

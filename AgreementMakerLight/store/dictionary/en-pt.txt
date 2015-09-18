@@ -846,3 +846,5 @@ setup deadline for	prazo de instalação para
 organized	organizado
 stay	estadia
 organize	organizar
+assistant	Assistente
+reviews	Comentários

@@ -683,3 +683,10 @@ possui nome do patrocinador	tiene el nombre del patrocinador
 possui nome da conferência	tiene el nombre de conferencia
 data	fecha
 finalizar atribuições dos artigos	terminar las asignaciones de los artículos
+contribui para a conferência	contribuye a la Conferencia
+versão completa do artigo	versión completa del artículo
+leitura realizada por um revisor	lectura de un revisor
+possui co-autor	Es coautor
+dia de início do evento	día de inicio del evento
+último dia do evento	último día del evento
+email	Correo electrónico

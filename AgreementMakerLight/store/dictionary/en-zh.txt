@@ -846,3 +846,5 @@ setup deadline for	安装程序的最后期限
 organized	组织
 stay	住宿
 organize	组织
+assistant	助理
+reviews	点评

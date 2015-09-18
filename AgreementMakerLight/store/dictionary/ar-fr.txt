@@ -1,0 +1,510 @@
+ملخص البحث	Résumé de recherche
+الكاتب المشترك	Coauteur
+مشرف	Admin
+رئيس	Le Président de la
+عضو المؤتمر	Conférence de membre
+البحث	Recherche
+وثيقة	Document
+الكاتب 	Écrivain 
+شخص	Gens
+عضو في اللجنة العلمية	Membre du Comité scientifique
+رئيس المرتبطة	Le Président des associés
+رئيس اللجنة العلمية	Président du Comité scientifique
+مؤتمر	Conférence
+أفضلية	Préférence
+مراجعة فوقية	Revue instantanée
+المراجع	Références
+القبول	Admission
+المراجع الفوقي	Meta-références
+موضوع المحور	Axe du sujet
+الكاتب، الذي ليس المراجع	L'auteur, qui n'est pas fait référence
+رئيس المؤتمر	Le Président de la Conférence
+المستخدم	Utilisateur
+مزايدة	Vente aux enchères
+لاشيء	Rien
+الرفض	Rejet
+لجنة العلمية	Comité scientifique
+قرار	Résolution
+مراجعة	Examen
+النسخة الكاملة من البحث	La version complète de la recherche
+المراجع خارجي	Références externes
+لديه عنوان	A titre
+لديه اسم	A un nom
+لديه التاريخ	A histoire
+لديه موقع على رابط	Il a un lien de site Web
+تقبل نسخة المرسلات	Accepter les messages CC
+العدد الأقصى من الابحاث المسندة	Le nombre maximal des cessions de recherches
+لديه الشعار في رابط	A le lien du logo
+مراجعة/تعليقات لكل بحث	Révision/commentaires pour chaque recherche
+لديه معرف	A l'ID
+لديه عضو	A membre
+قبوله من قبل	Acceptée par
+قبوله من قبل 	Acceptée par 
+لديه بريد الكتروني	A e-mail
+يقبل	Accepte
+إدخال التفاصيل حول	Entrez les détails sur le
+علامة تضارب المصالح	La balise de conflits d'intérêts
+مشترك في الكتابة	Écriture partagée
+تمكين الاجتماع الظاهري	Activez la réunion virtuelle
+يضيف	Ajoute
+كتابة البحث	Recherche d'écriture
+يعيين	Ensembles de
+معايير مراجعة أدخلت من قبل	Révision de normes introduite par le
+(... ،تم تقرير (ليكون مقبول، مرفوض	(... Le rapport (pour être acceptés, rejetés
+أضافته من قبل	Ajouté par
+كتابته من قبل	Rédigé par
+استكمال احالة البحث	Recherche d'orientation complet
+احالة أدوات البحث مشغل من قبل	Outils de moteur de recherche de référence de
+بدء تقديم العطاءات المراجع	Commencer à enchérir références
+لديه مزايدة	A offert
+ارسال البحث	Envoyer la recherche
+لديه تضارب في المصالح مع احترام	A un conflit d'intérêts dans le respect
+تم تعيين	A-t-il été réglé
+رفض من قبل	Rejetée par
+تفاصيل مدخلة من قبل	Les données saisies par
+كاتب مشترك من قبل	Coauteur
+بدأ تقديم العطاءات المراجع من قبل	Renvois d'appel d'offres lancé par le
+بدأ تقديم العطاءات المراجع من قبل 	Renvois d'appel d'offres lancé par le 
+نسخة من البريد الالكتروني للمظاهرات مطبوعة من قبل	Une copie de l'e-mail imprimé par manifestations
+تحديد مجموعة عدد أقصى من الابحاث المسندة 	Sélectionnez le nombre maximal de cessions de recherches 
+تحديد مجموعة عدد أقصى من الابحاث المسندة	Sélectionnez le nombre maximal de cessions de recherches
+قراءته من قبل مراجع	Lu par références
+تشغيل أدوات احالة البحث	Outils de recherche de référence
+تشغيل أدوات احالة البحث  	Outils de recherche de référence  
+قراءته من قبل مراجع الفوقي	Lu par meta-références
+المراجعة كتابية	Examen écrit
+تعيينه من قبل مشرف 	Assignés par admin 
+تعيينه من قبل مشرف	Assignés par admin
+ضبط	Ajuster
+اجتماع الظاهري ممكن من قبل	La réunion virtuelle est possible par
+قراءة البحث	Lire la recherche
+إدخال معايير المراجعة	Entrez les critères d'examen
+تعيين من اجل	Néc
+احالة البحث منتهي من قبل	Orientation recherche terminée par
+لديه موضوع المحور	A le moyeu de la rubrique
+تعديله من قبل	Modifié par
+بحث مرفوض	Recherche est refusé
+وقت إنتهاء مراجعة	L'heure de la fin de la révision
+مسند من قبل مراجع	Repose-pieds par des références
+طباعة نسخة من البريد الالكتروني للمظاهرات	Imprimer une copie de l'e-mail pour les démonstrations
+تاريخ مهم	L'histoire est important
+وثيقة المؤتمر	Document de conférence
+معلومات للمشاركين	Informations pour les participants
+مساهمة مرفوضة	La contribution est rejetée
+إعلان المؤتمر	Déclaration de la Conférence
+مساهمة مرسلة	La contribution envoyée
+الرئيس المشترك	Président de commune
+منظم	Organisateur
+عضو  في اللجنة	Membre de la Commission
+طلب مقدم للمؤتمر	Demande de conférence
+افضلية المراجع	Référence sur les préférences
+مشارك السلبي في المؤتمر	Participants à la Conférence
+رئيس مسار ورشة العمل	Le chef de l'atelier de chemin
+المنظمة	Organisation
+العرض التقديمي	Présentation
+نسخة جاهزة للتصوير مساهمة	Entrée caméra copie
+مقدم الطلب مسجل	Déposant est inscrit
+طلب مقدم للمؤتمر الذين دفعوا رسوم المؤتمر	Demande de droits d'inscription payés Conférence
+دعت الحديث	Conférencière invitée
+الدعوة لتقديم الأبحاث	Appel pour la recherche
+مسار المؤتمر	Conférence de chemin
+اللجنة التوجيهية	Le Comité directeur
+ملخص موسع	Un résumé étendu
+مساهمة منتظمة	Contribution régulière
+الناشر	Editeur
+مساهمة مقبولة	Contribution acceptable
+المؤتمر	Conférence
+البرنامج التعليمي	Tutorial
+رسوم من اجل المؤتمر	Frais pour la Conférence
+خبرة المراجع	Références de l'expérience
+مساهمة للمؤتمر	Contribution à la Conférence
+اللجنة المنظمة	Comité d'organisation
+ورشة عمل	Atelier
+المؤلف الأول للمساهمة	Le premier auteur à contribuer à
+اللجنة	Comité
+الكاتب المشرك في المساهمة	Commun collaborateur
+المشارك في المؤتمر	Participant à la Conférence
+اللجنة العلمية	Le Comité scientifique
+الملخص	TS
+طلب مقدم للمؤتمر الذي دفع مؤخرا رسوم المؤتمر	Une demande au Congrès, qui a récemment versé des droits d'inscription
+مساهمة خطية	Une contribution écrite
+مساهمة مراجعة	Vérification des contributions
+متحدث المدعو	Conférencier invité
+جزء من المؤتمر	Partie de la Conférence
+مساهمة المؤتمر	Contribution de la Conférence
+الموضوع	Rubrique
+سلسله المؤتمر	Série de conférences
+كاتب المساهمة	Collaborateur
+مقدم الطلب المؤتمر الذي دفع في وقت مبكر رسوم المؤتمر	Conférence de demandeur qui a incité les premiers frais de congrès
+شبكة الإنترنت العنكبوتية للمؤتمر	Spider Web Conférence
+دعوة للمشاركة	Invitation à participer
+ملصق	Affiche
+محضر المؤتمر	Compte-rendu de la Conférence
+مشارك ايجابي في المؤتمر	Un positif participant à la Conférence
+لديه اللقب	A titre
+تاريخ ارسال البحث كامل	La date de l'envoi le look
+اليوم محطة	Aujourd'hui la station
+لديه الجنس	A des relations sexuelles
+موقع المؤتمر	Site de la Conférence
+ موقع شبكة الإنترنت العنكبوتية للمؤتمرهو	 Spider Web site llmo'tmerho
+موقع شبكة الإنترنت العنكبوتية للمؤتمرهو	Spider Web site llmo'tmerho
+درجة خبرة المراجع	Degré expérience références
+isbn محضر	Le procès-verbal de l'isbn
+لديه الاسم الأول	A un prénom
+رقم حجم المحضر	Numéro enregistrement de volume
+انها اللجنة العلمية للمؤتمر	C'est le Comité scientifique
+لديه البرنامج التعليمي	Il a tutoriel
+لجنة المؤتمر هي	La Commission de la Conférence est
+لديه جزء	A part
+لديه تاريخ مهم	A une date importante
+لديه موضوع ورشة عمل	A l'objet de l'atelier
+مدعو من المراجع	Examinateur a invité
+تاريخ ارسال الملخصات	Date de soumission des résumés
+درجة تفضيل مراجعة	Le degré de révision de préférence
+تاريخ الارسال بعد إجراء التعديل	Date d'envoi après re-dimensionnement
+تاريخ البداية	Date de début
+تاريخ إخطار القبول	La date de la notification d'acceptation
+نشرت بتاريخ	Posté le
+لديه رئيس اللجنة	A le Président de la Commission
+يساهم في المؤتمر	Participant à la Conférence
+لديه رئيس مشترك لللجنة	A un président de Comité conjoint
+لديه الكاتب	A l'auteur
+هو الرئيس المشترك للجنة	Président de la Commission mixte
+مساهمة المراجعة	Vérification des contributions
+يجعل العرض التقديمي	Présentation de la fabrication
+هي لجنة المؤتمر	Sont CANC
+مرسلة إلى	Envoyé à
+لديه ملخص	A résumé
+اللجنة المنظمة للمؤتمر هي	Le Comité organisateur de la Conférence
+اللجنة التوجيهية للمؤتمر	Comité de pilotage de la Conférence
+ينشر	Publié
+لديه مراجعة	A l'examen
+مقدم من قبل	Soumis par
+تم تسنيد افضلية المراجعة	Vérification de la titrisation est la priorité
+اللجنة المنظمة للمؤتمر	Le Comité organisateur de la Conférence
+لديه مساهمة	A une contribution
+لديه موضوع أو مساهمة مرسلة	A le sujet ou les contributions envoyées par
+يدعو المراجع المشترك	Appels à des références communes
+هو عضو في	Il est membre de la
+لديه رئيس ورشة عمل	A le Président de l'atelier
+موضوع هو جزء من مؤتمر	Le sujet fait partie de la Conférence
+لديه ورشة عمل	Il dispose d'un atelier
+تاريخ مهم من سلسلة المؤتمر	Date de la série de conférences
+لديه مساهمة مرسلة	Il a envoyé la contribution
+موضوع مرتبط بافضلية المراجعة	Sujet associé à la revue prioritaire
+لديه خبرة المراجعة	Expérience d'audit
+افضلية أو خبرة المراجعة هي	Vérification de préférence ou expérience
+هو الجزء الأول من	Est la première partie de la
+انه رئيس ورشة عمل ل	Il a été président de l'atelier
+لديه المسار	A un chemin d'accès
+منشر المحضر هو	Rack disque de séchage est
+هو رئيس الجنة	Est à la tête du paradis
+الجنة العلمية للمؤتمرهي	Llmo'tmerhi de Comité scientifique
+أفضلية أو خبرة المراجع	Références de préférence ou expérience
+اللجنة التوجيهية للمؤتمر هي	Le Comité directeur de la Conférence est
+الجامعة	Université
+مشارك	Participant
+الحدث	Événement
+رحلة	Voyage
+حدث تسجيل الحدث المشاركين	Participants événement de journal des événements
+حدث عملي	Mon événement
+مساهمة	Contribution
+المشرف	Admin
+منظمة	Organisation
+حدث إرسال نسخة بعد اجراء التعديل جاهزة للتصوير	Copier les événements après re-dimensionnement prêt pour la photographie
+شخص مشارك مع المؤتمر	Les gens associent la Conférence
+الشركة	Compagnie
+طالب	Student
+المساعد	Plugin
+المدينة	Ville
+حدث المراجعة	Événement d'audit
+حدث نتائج المراجعة 	Résultats de la vérification événement 
+الكاتب	Écrivain
+مأدبة	Banquet
+الحدث الإداري	Événement administratif
+بحث قصير	Une petite recherche
+عامل العلم	Travailleur de la science
+حدث الارسال	Proposez des événements
+بحث	Recherche
+مشارك منتظم في المؤتمر	Participant régulier en conférence
+متطوع في المؤتمر	Conférence de bénévolat
+الحدث الاجتماعي	Événement social
+لاشيئ	Rien
+طالب مشارك في المؤتمر	Étudiants participant à la Conférence
+بلد	Pays
+استقبال	Réception
+رئيس اللجنة الغلمية	Le Président de la Commission alghalmih
+المشارك في المؤتمر لديه التسجيل مبكر	Inscription au début de la Conférence a
+لديه الرمز البريدي	Il a un code postal
+تحديد أقل عدد من الحدث	Déterminer le nombre minimal d'événement
+بدء يوم الحدث	Date de début de l'événement
+لديه الفاكس	A un fax
+لديه ملاحظة	A une note
+لديه قيمة ضريبة مضافة	A une valeur ajoutée fiscale
+تحديد العدد الأقصى من الحدث	Spécifier le nombre maximal d'événements
+البقاء في الشارع	Rester sur la rue
+لديه الهاتف	A téléphone
+لديه الصفحة الرئيسية	A la maison
+لديه كلمات البحث	A une recherche par mot-clé
+بتوازي مع	En parallèle avec le
+دراسة في الجامعة	Une étude à l'Université
+لديه الحدث الإداري ذات الصلة	Possède un événement administratif connexe
+كتب من قبل الكاتب	Livres par auteur
+المراجعين	Examinateurs
+متستخدمة من قبل	Par mtstkhdmh
+البقاء في البلد	Rester dans le pays
+يتعامل مع الموضوع	Traitant du sujet
+لديه عنوان قصير	A une URL courte
+لديه عنوان 	A titre 
+لديه اتصال البريد الإلكتروني	A une adresse de courriel
+انتهاء يوم الحدث	La fin de la journée de l'événement
+حدث يقام في	Événement a lieu à
+تحديد عدد الخيار الافتراضي من الحدث	Sélectionnez le numéro de l'option par défaut de l'événement
+تحديد عدد الخيار الافتراضي من الحدث 	Sélectionnez le numéro de l'option par défaut de l'événement 
+خبير في الموضوع	Un expert en la matière
+يتبع	Suivez
+لديه موضوع	A sujet
+البقاء في المدينة	Séjour dans la ville
+يكتب المساهمة	Écrire une contribution
+مقدمة موجزة لرئيس الجلسة	Brève introduction du modérateur
+بيت المقدم	Le colonel House
+منزل شركة كونها الراعي	Accueil société faisant un berger
+دولة المقدم	L'état fourni
+ليس عضوا في iasted	Pas encore membre de l'iasted
+طالب  غير متحدث	Haut-parleur de non-étudiants
+غرفة الجلسة	Salle de réunion
+المدينة حيث ينعقد المؤتمر	La ville où la Conférence
+المستمع	Écouteur
+مقدمة	Introduction
+رئيس الجلسة	Chaise
+سيارات الأجرة	Taxis
+الموعد النهائي لتقديم النصي الكاميرا جاهزة	La date limite de soumission du script prêt de caméra
+العامل الغير المتحدث	Haut-parleur de non-travail
+أيام المؤتمر	Jours de la Conférence
+ كوكتيل الاستقبال 	 Cocktail dînatoire 
+جهاز عرض الإسقاط الضوئي شاشات الكريستال السائل	Optique de projection projecteur LCD
+غرف الفندق المفردة	Chambres simples
+وثيقة الدفع	Document de paiement
+الحاسوب	Ordinateur
+اللجنة التقنية	Le Comité technique
+نشاط	Activité
+رسم لرحلة اضافية	Tarif pour un vol supplémentaire
+الموعد النهائي لحجز الفنادق	Date limite de réservation d'hôtel
+رسوم التسجيل للعضو	Frais d'inscription pour les membres
+طالب المحاضر	Dossiers des étudiants
+ضريبة المغادرة	Taxe de départ
+النشاط البحثي	Activité de recherche
+قيمة المضافة للضرائب	Ajout de taxe sur la valeur
+الصك	Instrument
+كتابر المحضر	Dossier Ktaber
+الارسال	Émetteur
+جلسة	Session
+سيارة	Voiture
+المؤلف الذي سيستلم إجراءات وكتاب	L'auteur recevra le livre de procédure
+جولة ليوم كامل	Excursion d'une journée complète
+جهاز عرض ضوئي	Projecteur
+مقدمة المتحدث	Introduction de haut-parleur
+نشر	D'édition
+تحويل مصرفي	Virement bancaire
+المعدات السمعية والبصرية	Équipement audio visuel
+المتحدث الذي يقدم البرنامج التعليمي	L'orateur propose tutoriel
+العامل المحاضر	Documents de travail
+آخر موعد لإخطار القبول	La date limite pour la notification d'acceptation
+آخر موعد للتسجيل	Date limite d'inscription
+الشفافية العامة	Transparence publique
+بطاقة الائتمان	Carte de crédit
+رسوم التسجيل مدفوعة من قبل الكاتب الحاضر من اجل استلام محضر الابحاث على شكل كتاب	Frais d'inscription versés par l'auteur pour recevoir le procès-verbal de la recherche sous forme de livre
+مبنى المؤتمرات	Bâtiment des conférences
+المدينة حيث يأتي منها الراعي	La ville où le berger vient de
+قاعة المؤتمر	Salle de conférence
+نشاط المحاكاة	Activité de simulation
+نشاط القبول مخطوطة	Activité d'acceptation manuscrit
+نشاط يحدث خلال المؤتمر	L'activité se produit lors de la Conférence
+رسوم التسجيل للطالب	Frais d'inscription pour les étudiants
+نشاط استلام مخطوطة	L'activité réception du manuscrit
+المبنى	Bâtiment
+رسوم	Frais
+الدولة حيث ينعقد المؤتمر	État où la Conférence
+رسوم التسجيل	Frais d'inscription
+النشاط الاجتماعي	Activité sociale
+فندق المقدم	Hôtel fourni
+مبلغ من المال	Le montant d'argent
+رسالة الدعوة	Lettre d'invitation
+الدولة	État
+البند (بشكل عام)	Point (en général)
+محاضرة العامة	Conférence publique
+مؤتمر في يوم واحد  	Conférence en une seule journée  
+متنزه المؤتمر	Le parc de la Conférence
+محاضرة	Conférence
+محاضر	Maître de conférences
+نشاط رفض مخطوطة	Rejeter activement un manuscrit
+رسوم التسجيل لغير عضو	Frais d'inscription non-membre
+فندق المؤتمر	Conférence de l'hôtel
+المدينة حيث يأتي منها المقدم	La ville où le présentateur vient de
+اليوم المسندة من أجل رحلة	La journée assignée pour voyage
+الدولة الراعي	État Berger
+تأشيرة	Visa
+استمارة التسجيل المؤتمر	Formulaire d'inscription
+استراحة القهوة	Pause café
+استمارة المعلومات الكاتب	Formulaire d'information sur l'écrivain
+غيض	Astuce
+المقدم الذي يقدم فقط في يوم واحد	Fait valoir que seulement dans un jour
+آخر موعد	Date limite
+مركبة النقل	ATV
+شاحنة صغيرة	Petit camion
+محاضرة ملقاة من قبل متحدث	Conférence sous évaluée avec haut-parleur
+غرف الفندق المزدوجة	Chambres pour deux personnes
+استمارة	Formulaire de demande
+قرص المتابعة	Le disque de suivi
+نشاط يجري قبل مؤتمر	Activités menées par le
+العملة	Devise
+مطارالمؤتمر	Mtaralmo'tmer
+آخر موعد للارسال	La date limite pour l'envoi
+الساعة	À
+جامعة المقدم	L'Université a fait valoir
+الرعاية	Soins
+عرض باور بوينت	Présentation PowerPoint
+الكاتب الذي سيستلم محضر الابحاث على شكل قرص	L'écrivain qui recevront des minutes de recherche sur un
+الراعي	Berger
+بطاقة	Carte
+مأدبة عشاء	Dîner
+حافلات مكوكية	Bus-navettes
+قائمة البريد الالكتروني	Liste d'email
+الضرائب	Taxes
+عضو في iasted	Membre de l'iasted
+رسوم التسجيل من غير الكاتب	Frais d'inscription de non-écrivain
+مطعم المؤتمر	Conférence de restaurant
+فندق استمارة التسجيل	Formulaire d'inscription hôtel
+التسجيل	Enregistrement
+كلمة ترحيبية	Bienvenue
+منطقة زمنية	Fuseau horaire
+مكان	Place
+غرفة الفندق	Chambre d'hôtel
+سجل الحضور	Record d'affluence
+نشاط النمذجة	Modélisation de l'activité
+أي نوع من وثيقة	Tout type de document
+المتحدث إعطاء محاضرة أمام الكنيست	Haut-parleur pour donner une conférence devant la Knesset
+رسوم التسجيل مدفوعة من قبل الكاتب الحاضر مقابل استلام محضر الابحاث على شكل قرص	Frais d'inscription versés par l'auteur contre récepteur d'enregistrement de la recherche sous la forme d'un disque
+غير المتحدث	Mais le Président
+المتحدث	Haut-parleur
+المدينة التي هي مكان من أجل الرحلة	La ville est l'endroit pour le voyage
+النشاط الفني	Activité artistique
+مغادرة	Congé
+رسوم فندق	Frais d'hôtel
+المخطوطة الأولية  	Manuscrit initial  
+نشاط يجري بعد مؤتمر	Activité menée après la Conférence
+(مندوب (شخص يسجيل ويزور المؤتمر	(Délégué (ysgil et visite de la Conférence
+نشاط تأجير سيارة	Activité de location de voiture
+المخطوط النهائي	Le manuscrit final
+مشغل شريط فيديو 	Lecteur vidéo 
+ الفيديوعرض التقديمي	 Présentation de Alvidioard
+المكتب الرئيسي	Bureau principal
+تستعد / يعد	Gears est
+يعطي	Donner
+يحتاج	Besoins
+يحصل 	Obtient 
+يحصل	Obtient
+تم انعقاده في	Elle s'est tenue à
+(يشغل (يعيش، يقيم	(En cours d'exécution (live,
+تم إرساله قبل	Envoyé par
+تم استخدامه من اجل	Il est utilisé pour
+تم كتابته من قبل	Posté par
+تم دفعه مع	Payé avec
+تم إرساله بعد	Envoyé après
+يرسل	Envoyer
+تم اعطاءه من قبل	Est donnée par
+تم دفعه من اجل	Versée à
+تم توقيعه من قبل	Signé par
+تم إرساله من قبل	Envoyé par
+تم اعطاءه ل/ من اجل	A donné pour/à
+تم زيارته من قبل	Visité par
+يمر عبر	Traverse
+تم تصميمه من اجل	Est conçu pour
+تم انعقاده قبل	Il a été jugé par
+يدفع	Payer
+تم بتاريخ	Sur
+يتعين القيام به حتى	Pour le faire
+لديه قدر من	A certains
+تم صنعه من	Il est fait de
+تم اعداده من قبل	Préparé par
+تم تشغيله من قبل	Il est géré par
+تم تشغيله من قبل 	Il est géré par 
+تم دفعه في	Payé en
+تم تجهيزه من اجل	Équipé pour
+يوقع	Signe
+يتحدث في وقت أو في مكان	Prenant la parole au moment ou lieu
+تم استخدامه من قبل	A été utilisé par
+تم حاجة من اجل	Est nécessaire pour
+يكتب	Écrire
+تم ارتباطه مع	Été associée
+يقع محليا في	Situé localement en
+تم انعقاده بعد	Il a eu lieu après la
+موجود في زمان أو مكان	Il existe dans le temps ou de lieu
+تم دفعه من قبل	Payé par
+موجود في الوقت	Il existe dans le temps
+الراعي البلاتيني للمؤتمر	Commanditaire Platine de la Conférence
+كاتب البحث طالب  	Écrivain de recherche étudiant  
+الراعي كمقدم	Parrainer un fournisseur
+عضو اللجنة العلمية	Membre du Comité scientifique
+آخر موعد لتسليم ملخصات الأبحاث	Date limite de remise des résumés
+المكتب الرئيسي للمؤتمر	Bureau principal de la Conférence
+مكان انعقاد المؤتمر	Lieu de la Conférence
+أفضل بحث تطبيقي	Meilleure recherche appliquée
+منظمي المؤتمر	Organisateurs de la Conférence
+اللجنة التحضيرية	Le Comité préparatoire
+الوثيقة	Document
+sig رسوم التسجيل للاشخاص الذين ليسوا أعضاء	Frais d'inscription de SIG pour les personnes qui ne sont pas membres
+الفندق	Hôtel
+جائزة لأفضل مقالة في المؤتمر	Award du meilleur article à la Conférence
+sigkdd رسوم التسجيل لأعضاء	SIGKDD frais d'inscription pour les membres
+لجنة لاختيار أفضل البحوث	Le Comité de sélectionner la meilleure recherche
+الراعي البرونزي للمؤتمر	Bronze sponsors de la Conférence
+sigmod رسوم التسجيل لأعضاء	SIGMOD frais d'inscription pour les membres
+المسؤول عن الموقع	Webmaster
+عضو اللجنة التحضيرية	Membre du Comité préparatoire
+الراعي لأفضل بحث طالب	Sponsor de la meilleur étudiant de recherche
+رسوم التسجيل لطالب	Frais d'inscription pour les étudiants
+المؤتمر acm sigkdd	ACM sigkdd Conference
+رسوم المؤتمر	Droits d'inscription
+مراجع الحسابات المؤتمر	Conférence de l'auditeur
+المحاضر المدعو	Comptes rendus d'invité
+الراعى الفضى للمؤتمر	Silver sponsor de la Conférence
+كاتب	Écrivain
+رسوم الرعاة	Droits d'auteurs
+آخر موعد للإخطار الباحثين	La date limite pour la notification des chercheurs
+مستمع المؤتمر	Une conférence
+مدير المؤتمر	Gestionnaire de la Conférence
+لجان المؤتمر	Commissions de la Conférence
+الراعي الذهبي للمؤتمر	Gold sponsor de la Conférence
+ آخر موعد لإرسال البحوث 	 La date limite pour le dépôt de recherche 
+جائزة لأفضل مقالة بحث	Prix pour la meilleure recherche d'article
+الرعاة	Bergers
+جائزة أفضل بحث لطالب	Bourse de recherche
+كاتب البحث	Recherche par auteur
+لديه اسم المؤتمر	A le nom de la Conférence
+مؤرخ على	Daté sur
+لديه الجنسية	A des relations sexuelles
+رسوم التسجيل هي بالعملة	Les frais d'inscription sont en monnaie
+مؤتمر عقد في مدينة	Une conférence qui s'est tenue dans la ville
+يمكن البقاء في	Vous pouvez séjourner dans
+التي تمنحها	Décerné par
+رسوم التسجيل المدفوعة من قبل	Frais d'inscription versés par
+دفع رسوم التسجيل	Paiement des frais d'inscription
+قد قدم من جانب	A été présenté par
+إرسال البحث	Envoyer la recherche
+آخر موعد المحدد من اجل	La date limite fixée pour
+موعد أول يوم من المؤتمر	La date de la première journée de la Conférence
+لديه السعر	A un prix
+لديه اسم الراعي	A le nom du parrain
+موعد اليوم الأخير من المؤتمر	Date de la dernière journée de la Conférence
+تنظيم المؤتمر	L'organisation de la Conférence
+مؤتمر منظم من قبل	Conférence organisée par
+لديه جائزة	A le prix
+الدعوة من اجل الراعي	Appel à sponsor
+جائزة متحصل عليها	Prix acquisition
+لديه آخر موعد لإرسال	A la date limite pour la soumission
+الرعاة مدعوين من قبل	Invité par les auteurs
+تحديد آخر موعد	Spécifiez la date de la dernière
+ تحديد آخر موعد	 Spécifiez la date de la dernière
+ يقدم الوثيقة	 Soumettre un document
+يقدم الوثيقة	Soumettre un document

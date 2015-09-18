@@ -683,3 +683,10 @@ possui nome do patrocinador	má jméno sponzora
 possui nome da conferência	má název konference
 data	Datum
 finalizar atribuições dos artigos	Zrušit přiřazení článků
+contribui para a conferência	přispívá ke konferenci
+versão completa do artigo	plná verze článku
+leitura realizada por um revisor	čtení držení recenzent
+possui co-autor	Je spoluautorem
+dia de início do evento	den začátku události
+último dia do evento	poslední den akce
+email	e-mail

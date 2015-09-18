@@ -714,3 +714,315 @@ soumettre l'article	enviar artículo
 a une date limite pour la soumission	dispone de un plazo para la presentación
 appel à sponsor	Convocatoria de patrocinador
 employées par	empleado por
+premier auteur de contribution	contribución del primer autor
+personne qui a payé les frais d'inscription en avance	persona que ha pagado la cuota de inscripción por adelantado
+co-auteur de contribution	coautor de la contribución
+thématique	tema
+date importante	fecha importante
+contributeur de conférence	Colaborador de la Conferencia
+annonce de conférence	Anuncio de conferencia
+expertise de relecteur	Experiencia del revisor
+contribution relue	contribución reproducido
+personne qui a demandé à participer à une conférence	persona que ha solicitado participar en una conferencia
+participant actif de conférence	activo participante de la Conferencia
+préférence de relecteur	preferencia de revisor
+membre de comité	Miembro del Comité de
+président de session d'atelier	Presidente de sesión del taller
+candidat enregistré	candidato registrado
+participant de conférence	participante de conferencia
+rapport d'examen	Informe de examen
+personne qui a payé les frais d'inscription tardivement	persona que ha pagado la cuota de inscripción tardía
+partie de conférence	parte de la Conferencia
+présentation de conférencier invité	Presentación de Keynote
+volume de conférence	volumen de la Conferencia
+contribution ordinaire	contribución regular
+auteur ordinaire	autor regular
+document de conférence	documento de conferencia
+contribution de conférence	contribución de la Conferencia
+version finale de contribution	versión final de la contribución
+personne qui a payé les frais d'inscription	persona que ha pagado la cuota de inscripción
+participant passif de conférence	participante pasivo de conferencia
+actes de conférence	Actas de conferencia
+est la date de fin	es la fecha final
+a pour courriel	una para el correo electrónico
+est la date de soumission de résumé	es la fecha de presentación de Resumen
+est la date de début	es la fecha de inicio
+a pour date de publication	fecha de publicación
+a pour nom	un nombre de
+est la date de soumission de la version finale	es la fecha de presentación de la versión final
+a pour lieu	un lugar para
+a pour url	una URL
+a pour genre	una de tipo
+a pour isbn	una de isbn
+appartient au relecteur	pertenece al revisor
+fait la présentation	hizo la presentación
+a été un président d'atelier de	ha sido Presidente del taller de
+a pour éditeur	un editor
+appartient à une préférence du relecteur	pertenece a una preferencia del revisor
+a été attribué à une préférence de relecture	se otorgó a una preferencia de corrección
+est une thématique d'une partie de la conférence	participa en el tema de la Conferencia
+a été un membre de	ha sido un miembro de
+est la date de notification de l'acceptation	es la fecha de notificación de aceptación
+a pour prénom	una para el nombre
+a pour volume	una para el volumen
+a pour expertise	una experiencia de
+a pour relecteur	un revisor de
+a pour président d'atelier	un Presidente de taller
+est la date de soumission de la version complète	es la fecha de presentación de la versión completa
+a pour degré	un grado
+est dispensé par	es proporcionado por
+a pour auteur	tiene el autor
+a été un comité d'organisation de	ha sido un Comité de organización de
+a pour président de comité	tiene el Presidente de la Comisión
+publie	publica
+a pour session	un período de sesiones
+a pour résumé	un resumen
+a pour soumission	una para la presentación
+a pour membre	una para el miembro
+a pour comité	un Comité de
+est invité par	es invitado por
+a pour atelier	un taller de
+a été un comité de programme de	ha sido un programa de Comité de
+a été un comité de pilotage de	ha sido un Comité de
+a pour co-président de comité	Copresidente del Comité de
+a pour comité de pilotage	un Comité Directivo para
+a pour préférence ou pour expertise	una preferencia o experiencia
+a pour date importante	una de las fechas importantes
+invite le co-relecteur	Invita el revisor Co
+a pour comité de programme	tiene el programa, el Comité
+fait partie du volume de conférence	parte del volumen de la Conferencia
+a été un président de comité de	ha sido un Presidente de la Comisión de
+a pour contributions	una de las contribuciones
+a pour thématique ou pour soumission	un tema o para la presentación
+a pour partie	una por parte
+a pour sujet d'atelier	tiene el tema del taller
+a pour comité d'organisation	una para el Comité Organizador
+a pour tutoriel	un tutorial
+a été un comité de	ha sido un Comité de
+contribue	contribuye
+a pour expertise de relecteur	Tiene conocimientos de revisor
+évalue	evalúa
+a été un co-président de comité de	ha sido co-presidente del Comité de
+président de conférence	Presidente de conferencia
+président de comité de programme	Presidente del Comité de programa
+président adjoint de conférence	Diputado Presidente de la Conferencia
+méta-rapport d'examen	Meta-RapPort para revisar
+résumé d'article	Resumen de artículo
+membre de conférence	Conferencia de miembros
+membre de comité de programme	Miembro de la Comisión de programa
+version complète d'article	versión completa del artículo
+proposition de relecture	propuesta para la reproducción
+nombre de rapports d'examen par article	número de informes en el artículo
+url du logo	URL del logotipo
+accepte les soumissions d'articles au format papier	acepta las presentaciones en formato de papel
+identifiant de l'article	identificador del artículo
+l'attribution de propositions aux relecteurs est initialisée par	la asignación de propuestas a los revisores es inicializada por
+ajuste la proposition de relecture	Ajusta la propuesta de replay
+imprime les courriers de la manifestation	imprime las letras del evento
+a pour co-auteur	una para uno de los autores
+est ajusté par	se ajusta por
+a pour thématique	un tema
+met en place la réunion virtuelle	configura la reunión virtual
+est lu par le méta-relecteur	es leído por el meta-revisor
+affecte le rôle de relecteur externe à	afecta a la función de revisor externo
+a pour décision	una decisión
+a été associé à	se ha asociado
+finalise l'attribution d'articles	Finaliza la asignación de los artículos
+initialise l'attribution de propositions aux relecteurs de	Inicializa la asignación de propuestas a los revisores de
+lit l'article	artículo de cama
+a pour membre du comité de programme	miembro del Comité de programa para
+exécute les outils d'attribution d'articles de	funcionamiento de nombres de herramientas de los blogs
+est affecté par l'administrateur	es asignado por el administrador
+accepte l'article	aceptar el artículo
+les détails sont saisis par	los datos son introducidos por
+saisit les détails de la conférence	captura los detalles de la Conferencia
+soumet l'article	enviar artículo
+saisit les critères d'évaluation de	captura los criterios de evaluación de
+signale un conflit d'intérêt pour	indica un conflicto de intereses para
+les exemplaires papier des courriers de la manifestation imprimés par	las copias del impreso por los mensajes de evento
+écrit l'article	escribió el artículo
+la réunion virtuelle activée par	la reunión virtual habilitada por
+a un conflit d'intérêt à propos de	tiene un conflicto de intereses con respecto a
+a pour membre de conférence	una conferencia de miembros
+est accepté par	es aceptado por
+l'attribution des articles finalisée par	la asignación de artículos por
+les outils d'attribution d'articles sont exécutés par	asignación de herramientas de elementos son ejecutados por
+est rejeté par	es rechazado por
+est affecté par le relecteur	se ve afectado por el revisor
+écrit le rapport d'examen	Informe de examen escrito
+les critères d'évaluation sont remplis par	los criterios de evaluación son llenados por
+rejette l'article	rechaza artículo
+a pour proposition de relecture	una propuesta para la reproducción
+définit le nombre maximum d'articles de	establece el número máximo de elementos de
+co-écrit l'article	coautor artículo
+est ajouté par	se agrega por
+finalise le processus de relecture	Finaliza el proceso de revisión
+est lu par le relecteur	es leído por el revisor
+affecte le rôle de relecteur à	afecta a la función de revisor de
+est assigné à	se asigna a
+scientifique	científico de la
+bénévole	Voluntariado
+evénement de relecture	Evento de reproducción
+événement de travail	evento del trabajador
+universitaire	Universidad
+participant ordinaire	participante regular
+evénement	evento
+evénement d'envoi de version finale	eventos correo electrónico versión final
+evénement d'évaluation des résultats	evaluación del evento de resultados
+evénement social	evento social
+etudiant	estudiante
+evénement de soumission	Presentación del evento
+membre	Miembro
+evénement d'inscription des participants	registro de evento de participantes
+adjoint	Asistente
+evénement administratif	Evento administrativo
+choix par défaut	opción por defecto
+a pour téléphone	una para el teléfono
+a pour numéro de fax	un número de fax
+choix max	máximo de opción
+se termine en	termina en
+a pour titre court	un título corto
+choix min	opción mínima
+inscription anticipée	inscripción temprana
+a pour titre	un título
+a pour page web	una página web
+a pour code postal	un código postal
+étudie à	estudió en la
+a pour pays	una para los países
+se déroule en parallèle de	se ejecuta en paralelo de
+est employé par	es utilizado por
+est expert sur	es un experto en
+a pour rue	una calle
+a pour tva	un IVA
+courriel de contact	correo electrónico de contacto
+a pour mot clé	una palabra clave
+a pour ville	una para la ciudad
+a pour événement administratif	un evento administrativo
+traite de	Ofertas
+commence en	se inicia en
+étudiant non orateur	estudiante no-altavoz
+état d'un présentateur	Estado de un presentador
+minibus	minibús
+orateur	altavoz
+conférence d'une journée	un día de conferencia
+brève introduction de président de session	breve introducción del Presidente de sesión
+hôtel d'une conférence	un hotel para conferencias
+orateur d'un tutoriel	un altavoz tutorial
+état d'une conférence	Estado de una conferencia
+recherche	Investigación
+date limite de soumission	fecha límite de presentación
+formulaire d'information sur un auteur	un formulario de información del autor
+argent	dinero
+frais d'inscription d'auteur participant pour les actes au format papier	autor participando de actos en la cuota de inscripción de papel
+maison de présentateur	Casa de la presentadora
+ville de sponsor	Ciudad de patrocinador
+frais d'inscription d'auteur participant pour les actes sur support numérique	registro de derechos de autor de los actos en los medios digitales
+acceptation de manuscrit	aceptación de manuscrito
+frais d'inscription d'auteur	cuota de inscripción del autor
+auteur ayant les actes sur support numérique	autor que actúa en medios digitales
+date limite de dépôt de version finale de manuscrit	plazo de presentación de la versión final del manuscrito
+travailleur non orateur	trabajador no altavoz
+actes en support numérique	actúa en formato digital
+date limite d'inscription	fecha límite de inscripción
+frais d'inscription de membre	Cuota de inscripción de miembros
+date limite de notification d'acceptation	fecha límite para la notificación de aceptación
+auteur ayant les actes au format papier	autor que actúa en formato papel
+représentant	Representante
+réception de manuscrit	recepción del manuscrito
+programme social	programa social
+location	Alquiler
+maître d'hôtel	Maestro d'hotel
+conférence plénière	Conferencia plenaria
+visite guidée d'une journée complète	visita guiada al día completo
+membre d'iasted	IASTED miembro
+aéroport de conférence	Aeropuerto de conferencia
+activité ayant lieu avant une conférence	actividad que tendrá lugar antes de una conferencia
+date limite de réservation d'hôtel	fecha límite para reserva de hotel
+refus de manuscrit	rechazo del manuscrito
+taxe sur la valeur ajoutée	impuesto al valor agregado
+activité ayant lieu pendant une conférence	actividad durante una conferencia de
+monnaie	moneda
+non orateur	Ningún orador
+dîner de gala	cena de gala
+frais d'inscription d'étudiant	cuota de inscripción de estudiante
+orateur de conférence plénière	altavoz Plenario
+non membre d'iasted	no es miembro de iasted
+guide d'excursion de conférence	Guía de conferencia
+ville de conférence	Ciudad de conferencia
+maison de société de sponsor	Casa de empresa patrocinadora
+formulaire d'inscription	formulario de inscripción
+introduction d'un orateur	introducción de un altavoz
+présentateur salarié	presentador trabajador por cuenta propia
+simulation	simulación
+activité ayant lieu après une conférence	actividad después de una conferencia
+bâtiment de conférence	edificio Conferencia
+transparent	transparente
+formulaire de réservation de chambre d'hôtel	formulario de reserva de habitación de Hotel
+état d'un sponsor	Estado de un patrocinador
+pourboire	Punta
+restaurant d'une conférence	restaurante de una conferencia
+jour de conférence	día de conferencia
+président de session	Presidente de sesión
+présentateur étudiant	Presentador de estudiante
+modélisation	modelado
+présentation d'accueil	Resumen Inicio
+présentation d'orateur	presentación de altavoz
+ville d'excursion	Ciudad de excursión
+orateur pendant une journée	altavoz de un día
+est utilisé par	es utilizado por
+occupe	ocupa
+est envoyé par	es enviado por
+parle à	habla a
+est daté du	es de fecha
+est fait jusqu'à	está compuesto por
+est donné à	se da a
+est payé à	se presta a
+est présent à	está presente en
+est donné par	está dada por
+est situé dans	se encuentra en
+est présent	está presente
+notification jusqu'à	notificación a
+sponsor de bronze	patrocinador bronce
+exposant	Expositor
+frais d'inscription de non-membre	cuota de inscripción de terceros
+date limite pour soumettre un résumé	fecha límite para presentar un resumen
+sponsor d'argent	Patrocinador plata
+comité de sélection de meilleurs articles	Comisión de selección de los mejores blogs
+prix	precio
+sponsor de meilleur article étudiant	patrocinador del mejor trabajo de estudiante
+date limite pour soumettre un article	fecha límite para presentar un artículo
+webmestre	webmaster
+sponsor d'or	Patrocinador Oro
+auteur d'article étudiant	autor de la sección de estudiantes
+frais d'inscription de membre de sigkdd	cuota de inscripción de miembros de ESTYLF08
+prix de meilleur article de recherche	Premio a la mejor investigación
+prix de meilleur article étudiant	Premio a la mejor estudiante
+frais d'inscription de membre de sigmod	cuota de inscripción de miembros SIGMOD
+président général	Presidente general
+prix de meilleur article d'application	Premio a la mejor aplicación
+sponsor de platine	Patrocinador Platino
+membre de comité d'organisation	Miembro del Comité Organizador
+ville de la conférence	Ciudad de la Conferencia
+début de la conférence	Inicio de la Conferencia
+nationalité	nacionalidad
+décerne	Premios
+définit	establece
+est décerné par	es otorgado por
+est présenté par	se presenta por
+présente	presenta
+soumet	presenta
+nom de la conférence	nombre de la Conferencia
+fin de la conférence	final de conferencia
+nom du sponsor	nombre del patrocinador
+est démarché par	se hará el escrutinio por
+paye	pagar
+est organisé par	es organizado por
+est soumis jusqu'à	está sujeto a
+démarche	enfoque
+est défini par	se define por
+peut rester sur	puede permanecer en
+université de présentateur	Universidad de presentador
+jour de voyage	día de viaje
+chèque	cheque
+ville de présentateur	Ciudad de presentador
+frais d'inscription de non membre	cuota de inscripción de terceros

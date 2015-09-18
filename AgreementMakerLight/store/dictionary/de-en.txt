@@ -722,3 +722,9 @@ spricht (räumlich und zeitlich)	speaks (spatial and temporal)
 registrierungsbeitrags ist währung	currency is registry contribution
 konferenz findet folgender stadt statt	Conference will be held the following city
 bleibt	remains
+zusammenfassung eines konferenzbeitrags	Summary a Conference contribution
+erweitertes zusammenfassung	extended summary
+zusammenfassung	Summary
+datum der einreichung des zusammenfassungen	date of submission of the summaries
+hat zusammenfassung	has summary
+deadline für die einreichung der zusammenfassung	deadline for submission of the summary

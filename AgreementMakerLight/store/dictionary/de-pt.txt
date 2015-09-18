@@ -722,3 +722,9 @@ spricht (räumlich und zeitlich)	Fala (espacial e temporal)
 registrierungsbeitrags ist währung	moeda é a contribuição do registro
 konferenz findet folgender stadt statt	Conferência será realizada na cidade seguinte
 bleibt	continua a ser
+zusammenfassung eines konferenzbeitrags	Resumo uma contribuição de conferência
+erweitertes zusammenfassung	Resumo estendido
+zusammenfassung	Resumo
+datum der einreichung des zusammenfassungen	Data de apresentação dos resumos
+hat zusammenfassung	tem Resumo
+deadline für die einreichung der zusammenfassung	prazo para apresentação do Resumo

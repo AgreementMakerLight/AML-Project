@@ -847,3 +847,5 @@ setup deadline for	fecha límite de instalación de
 organized	organizado
 stay	estancia
 organize	organizar
+assistant	Asistente
+reviews	Comentarios sobre el

@@ -1,0 +1,627 @@
+conference announcement	إعلان مؤتمر
+co chair	الرئيس المشارك
+person	الشخص
+contributor for conference	المساهم للمؤتمر
+applicant for conference	مقدم للمؤتمر
+steering committee	اللجنة التوجيهية
+submitted contribution	مساهمة مقدم
+participant of conference	مشارك مؤتمر
+contribution	مساهمة
+reviewer	المراجع
+conference	المؤتمر
+conference contribution	مساهمة المؤتمر
+topic	الموضوع
+workshop	ورشة عمل
+organizer	منظم
+tutorial	البرنامج التعليمي
+proceedings of conference	وقائع المؤتمر
+regular contribution	مساهمة منتظمة
+call for paper	دعوة للورق
+track of conference	المسار للمؤتمر
+active participant	مشارك نشط
+chair of workshop track	كرسي للمسار حلقة العمل
+active participant of conference	مشاركة نشطة في المؤتمر
+camera ready version of contribution	إصدار الكاميرا جاهزة للمساهمة
+committee	اللجنة
+presentation	العرض التقديمي
+web of conference	من مؤتمر ويب
+poster	ملصق
+expertise of reviewer	خبرة مراجع
+conference serie	المؤتمر الدوري الإيطالي
+review	استعراض
+conference document	وثيقة المؤتمر
+rejected contribution	مساهمة المرفوضة
+paper	ورقة
+applicant for conference who early paid conference fee	طالب المؤتمر الذين دفعوا رسوم المؤتمر مبكرا
+extended abstract	الخلاصة الموسعة
+invited talk	الحديث المدعوين
+call for participation	دعوة للمشاركة
+publisher	الناشر
+program committee	لجنة البرنامج
+information for participants	معلومات للمشاركين
+organization	المنظمة
+document	الوثيقة
+first author of contribution	البلاغ الأول لمساهمة
+registered applicant	مقدم الطلب المسجل
+applicant for conference who paid conference fee	طالب المؤتمر الذين دفعوا رسوم المؤتمر
+member of committee	عضو اللجنة
+abstract	خلاصة
+written contribution	مساهمة كتابية
+important date	موعد هام
+announcement	إعلان
+invited speaker	متكلم مدعو
+reviewed contribution	استعراض مساهمة
+fee for conference	رسوم المؤتمر
+preference of reviewer	الأفضلية للمراجع
+applicant for conference who lately paid conference fee	طالب مؤتمر منظمة الصحة العالمية في الآونة الأخيرة دفعت رسوم المؤتمر
+serie	الدوري الإيطالي
+chair	كرسي
+co author of contribution	صاحب شركة مساهمة
+author of contribution	مؤلف مساهمة
+passive participant	مشارك سلبي
+part of conference	جزء من المؤتمر
+passive participant of conference	مشارك السلبي من المؤتمر
+accepted contribution	مساهمة المقبولة
+organizing committee	تنظيم اللجنة
+starting date	تاريخ البدء
+volume number of proceedings	حجم عدد من الإجراءات
+volume number proceedings	الدعوى رقم وحدة التخزين
+date abstract submission	موعد تقديم الملخصات
+date of abstract submission	موعد تقديم الملخصات
+has name	باسم
+has email	وقد أرسل
+date acceptance notification	تاريخ إشعار القبول
+date of acceptance notification	تاريخ إشعار القبول
+has gender	وقد بين الجنسين
+date cameraready submission	تاريخ تقديم كاميراريدي
+date of cameraready submission	تاريخ تقديم كاميراريدي
+degree review preference	درجة التفضيل الاستعراض
+degree of review preference	درجة التفضيل الاستعراض
+expertise degree reviewer	المراجع درجة الخبرة
+expertise degree of reviewer	درجة الخبرة من المراجع
+location of conference	موقع للمؤتمر
+location	موقع
+important date of conference serie	تاريخ هامة للمؤتمر الدوري الإيطالي
+important date serie	تاريخ هام الدوري الإيطالي
+has review	وقد استعراض
+makes presentation	يجعل العرض التقديمي
+has topic submission contribution	موضوع تقديم مساهمة
+has topic or submission contribution	الموضوع أو تقديم مساهمة
+has member	وقد الأعضاء
+committee is	وتشعر اللجنة
+committee of conference is	لجنة المؤتمرات
+contributes	وتساهم
+contributes to conference	يساهم في المؤتمر
+publishes	وتنشر
+published date	تاريخ المنشورة
+published on date	نشر في التاريخ
+url of conference web is	عنوان url لمؤتمر ويب
+url web is	محدد موقع معلومات ويب
+date full paper submission	تاريخ تقديم ورقة كاملة
+date of full paper submission	تاريخ تقديم ورقة كاملة
+terminal day	اليوم المحطة الطرفية
+is organizing committee	من اللجنة المنظمة
+is organizing committee of conference	من اللجنة المنظمة للمؤتمر
+has surname	وقد لقب
+isbn proceedings	إجراءات isbn
+isbn of proceedings	isbn للإجراءات
+has first name	الاسم الأول
+invited reviewer	دعت المراجع
+invited by reviewer	ودعا المراجع
+preference expertise review is	يتم استعراض الخبرة الأفضلية
+preference or expertise of review is	تفضيل أو الخبرة لاستعراض
+has tutorial	وقد تعليمي
+is workshop chair	رئاسة حلقة العمل
+is workshop chair of	ورشة عمل في رئاسة
+is first part	هو الجزء الأول
+is the first part of	هو الجزء الأول من
+is chair committee	هو رئيس اللجنة
+is chair of committee	رئيس اللجنة
+topic related to review preference	موضوع يتصل باستعراض الأفضلية
+topic related review preference	المتصلة بموضوع التفضيل الاستعراض
+is cochair committee	هو كوشير اللجنة
+is cochair of committee	كوشير للجنة
+is part of conference	جزء من المؤتمر
+is part	جزء
+has committee chair	وقد رئيس اللجنة
+program committee is	لجنة البرنامج
+program committee of conference is	لجنة البرنامج التابعة للمؤتمر
+invites coreviewer	وتدعو كوريفيوير
+is program committee	لجنة البرنامج
+is program committee of conference	لجنة برنامج المؤتمر
+has submitted contribution	وقد قدمت مساهمة
+has been assigned review preference	تم تعيين تفضيلات الاستعراض
+submitted to	مقدم إلى
+submitted	مقدم
+has author	وقد صاحب البلاغ
+preference expertise reviewer	تفضيل خبرة المراجع
+preference or expertise of reviewer	تفضيل أو الخبرة للمراجع
+is member	وعضو
+is member of	وعضو
+reviews contribution	مساهمة ملاحظات
+has workshop topic	وقد موضوع حلقة العمل
+has important date	لديه موعد هام
+is topic of conference part	موضوع المؤتمر جزء
+is topic part	جزء الموضوع
+has workshop	وقد ورشة عمل
+presented by	المقدم من
+presented	قدمت
+has contribution	مساهمة
+steering committee of conference is	اللجنة التوجيهية للمؤتمر
+steering committee is	اللجنة التوجيهية
+has review expertise	وقد استعراض الخبرة
+has workshop chair	وقد رئيس حلقة العمل
+has track	وقد تعقب
+has committee cochair	لجنة كوتشاير
+is steering committee of conference	هو اللجنة التوجيهية للمؤتمر
+is steering committee	هو اللجنة التوجيهية
+publisher of proceedings is	الناشر للإجراءات
+publisher proceedings is	إجراءات الناشر
+organizing committee is	اللجنة التنظيمية
+organizing committee of conference is	اللجنة المنظمة للمؤتمر
+has part	يحتوي جزء
+is committee of conference	هي اللجنة التابعة للمؤتمر
+is committee	هو اللجنة
+has abstract	وقد مجردة
+chairman	الرئيس:
+rejection	رفض
+author who is not a reviewer	صاحب البلاغ ليست مراجع
+meta reviewer	المراجع الفوقية
+meta review	استعراض ميتا
+member of program committee	عضو لجنة البرنامج
+decision	قرار
+author	كاتب
+full version of paper	النسخة الكاملة من الورق
+abstract of paper	خلاصة الورقة المقدمة
+chair of program committee	رئيس لجنة البرنامج
+acceptance	قبول
+bid	محاولة
+conference chair	رئيس المؤتمر
+co author	المؤلف المشارك
+subject area	مجال الموضوع
+preference	الأفضلية
+administrator	مدير البرنامج
+external reviewer	المراجع الخارجية
+associated chair	كرسي المرتبطة بها
+member of conference	عضو في المؤتمر
+user	المستخدم
+reviews per paper	ملاحظات كل ورقة
+has title	لها عنوان
+maximal number assigned papers	أقصى حد عدد تعيين أوراق
+maximal number of assigned papers	أقصى حد عدد من الورقات المخصصة
+has date	تاريخ
+has website at url	له موقع على شبكة الإنترنت على عنوان url
+has website url	يحتوي url الموقع
+has logo url	يحتوي url شعار
+has logo at url	وقد الشعار في url
+has id	معرف
+accepts hardcopy submissions	تقبل الطلبات مطبوعة
+written by	كتب بواسطة
+written	كتب
+read paper	قراءة ورقة
+hardcopy of mailing manifests printed by	طباعة نسخة مطبوعة من قوائم بريدية من قبل
+hardcopy mailing manifests printed	قوائم بريدية مطبوعة طباعة
+details entered	تفاصيل إدخال
+details entered by	دخلت بالتفاصيل
+read metareviewer	قراءة ميتاريفيوير
+read by metareviewer	قراءة بواسطة ميتاريفيوير
+submit paper	تقديم ورقة
+set maximal number assigned paper	تعيين عدد القصوى المعينة الورق
+set maximal number of assigned paper	تعيين أقصى عدد من الورق المخصصة
+cowrite	كورت
+virtual meeting enabled by	اجتماع ظاهري التي يوفرها
+virtual meeting enabled	الاجتماع الظاهري تمكين
+cowritten	كورتن
+cowritten by	كورتن قبل
+rejected	ورفض
+rejected by	رفض من قبل
+paper assignment finalized	ورقة الإحالة النهائية
+paper assignment finalized by	ورقة مهمة وضعه في صيغته النهائية
+has subject area	وقد مجال الموضوع
+member	الأعضاء
+added	وأضاف
+added by	أضيفت من قبل
+assigned reviewer	المراجع المعينة
+assigned by reviewer	تعيين المراجع
+accepts	تقبل
+mark conflict interest	وضع علامة على تضارب المصالح
+mark conflict of interest	وضع علامة على تضارب في المصالح
+review criteria entered by	استعراض المعايير التي تم إدخالها بواسطة
+review criteria entered	استعراض المعايير التي تم إدخالها
+assign	تعيين
+has bid	وقد عرض
+add	إضافة
+start reviewer bidding	بدء المراجع العطاءات
+accepted	قبول
+accepted by	التي قبلتها
+run paper asignmedt tools	تشغيل أدوات أسيجنميدت الورق
+reviewer bidding started	بدأت المراجع العطاءات
+reviewer bidding started by	الكاتب المراجع العطاءات
+write paper	كتابة ورقة
+assigned to	تعيين إلى
+assigned	تعيين
+has conflict interest respect	وقد احترام المصلحة الصراع
+has conflict of interest with respect to	وقد تضارب في المصالح فيما يتعلق بما يلي:
+enter review criteria	قم بإدخال معايير المراجعة
+end reviewing time	نهاية استعراض الوقت
+assigned by admin	تم تعيينها بواسطة المشرف
+assigned admin	المشرف المعين
+adjust	ضبط
+has been assigned	وقد تم تعيين
+read by reviewer	قراءة المراجع
+read reviewer	قراءة المراجع
+reject paper	رفض ورقة
+print hardcopy mailing manifests	طباعة نسخة مطبوعة قوائم بريدية
+has been decided (to be accepted rejected )	قررت (رفض قبول)
+enter details	أدخل التفاصيل
+enter details on	أدخل تفاصيل
+enable virtual meeting	تمكين الاجتماع الظاهري
+adjusted by	المعدلة من قبل
+adjusted	تعديل
+finalize paper assignment	وضع الصيغة النهائية لورقة التعيين
+paper assignment tools run by	أدوات ورقة الإحالة التي تديرها
+paper assignment tools run	تشغيل أدوات إحالة ورقة
+write review	اكتب مراجعة
+member program committee	عضو لجنة البرنامج
+person involved with conference	شخص متورط مع المؤتمر
+event of sending camera ready version	الحدث لإرسال النسخة الكاميرا جاهزة
+science worker	عامل العلم
+city	مدينة
+assistant	مساعد
+student	طالب
+event	الحدث
+banquet	اجتماعات ولائم
+trip	رحلة
+event of registration of participants event	الحدث تسجيل الحدث المشاركين
+event of submission	الحدث لتقديم
+volunteer of conference	متطوع مؤتمر
+person involved	شخص متورط
+administrative event	الأحداث الإدارية
+university	جامعة
+student participant	طالب مشارك
+event of reviewing results	الحدث لاستعراض النتائج
+short paper	ورقة قصيرة
+regular participant of conference	مشارك منتظم في المؤتمر
+student participant of conference	الطلاب المشاركين في المؤتمر
+working event	العامل الحدث
+country	البلد
+reception	الاستقبال
+social event	الأحداث الاجتماعية
+company	الشركة
+event of reviewing	الحدث لاستعراض
+participant	مشارك
+regular participant	مشارك منتظم
+has contact email	وقد أرسل الاتصال
+has keywords	تحتوي على كلمات رئيسية
+has phone	وقد الهاتف
+event is being held	يقام الحدث
+event is being held at	يقام الحدث في
+setting of maximal number of event	تعيين العدد الأقصى من الحدث
+setting maximal number event	حدث رقم القصوى الإعداد
+has valued added tax	وقد قيمة الضريبة المضافة
+has postal code	الرمز البريدي
+has remark	بهذا التصريح
+has home page	بالصفحة الرئيسية
+participant of conference has early registration	مشارك مؤتمر بالتسجيل المبكر
+participant has early registration	مشارك لديه التسجيل المبكر
+setting of minimal number of event	تحديد أقل عدد ممكن من الحدث
+setting minimal number event	حدث رقم أدنى الإعداد
+setting default choice number event	الإعداد الافتراضي الخيار رقم الحدث
+setting of default choice of number of event	تعيين الخيار الافتراضي لعدد من الأحداث
+starting day of event	انطلاق يوم الحدث
+starting day event	انطلاق يوم الحدث
+stay in city	البقاء في المدينة
+stay city	تبقى المدينة
+employed	يعمل
+employed by	التي تستخدمها
+has topic	وقد الموضوع
+written author	مؤلف مكتوب
+written by author	كتبها المؤلف
+stay in country	البقاء في البلاد
+stay country	يبقى البلد
+deals topic	ويتناول الموضوع
+deals with topic	ويتناول الموضوع
+expert topic	موضوع الخبراء
+expert on topic	خبير في الموضوع
+study university	الدراسة الجامعية
+study at university	الدراسة في جامعة
+has short title	عنوان قصير
+has fax	وقد فاكس
+stay in street	البقاء في الشارع
+stay street	البقاء في الشارع
+end day of event	نهاية يوم الحدث
+end day event	نهاية يوم الحدث
+is parallel with	يتم بالتوازي مع
+is parallel	موازية
+follows	يتبع
+reviews	ملاحظات
+writes contribution	يكتب مساهمة
+has relevant administrative event	وقد حدث الإدارية ذات الصلة
+activity taking place before conference	النشاط تحدث أمام المؤتمر
+deadline for registration	الموعد النهائي للتسجيل
+initial manuscipt	مانوسسيبت الأولى
+social activity	النشاط الاجتماعي
+speaker who presents a tutorial	المتكلم الذي يعرض البرنامج التعليمي
+lecturer	محاضر
+tip	تلميح
+powerpoint presentation	عرض تقديمي ل powerpoint
+registration fee for a student	رسوم التسجيل للطالب
+airport	مطار
+city where a presenter comes	المدينة حيث يأتي مقدم
+time	الوقت
+activity of modelling	النشاط للنمذجة
+worker lecturer	محاضر عامل
+welcome speech	كلمة الترحيب
+place	المكان
+registration fee paid by an attending author for receiving proceedings as book	رسوم التسجيل التي يدفعها أحد المؤلفين الذين حضروا لتلقي الدعاوى ككتاب
+conference restaurant	مطعم المؤتمر
+form	النموذج
+coctail reception	استقبال كوكتيل
+author who will receive proceedings as book	الكاتب الذي سيتلقى الإجراءات ككتاب
+deadline for the hotel reservation	الموعد النهائي للحجز الفندقي
+main office	المكتب الرئيسي
+fee	رسوم
+hotel presenter	فندق مقدم العرض
+full day tour	جولة يوم كامل
+tax	الضرائب
+session	الدورة
+credit card	بطاقة الائتمان
+city where the conference takes place	المدينة التي ينعقد فيها مؤتمر
+activity of simulating	نشاط محاكاة
+registration fee a non author	رسوم التسجيل لكاتب
+deadline	الموعد النهائي
+cheque	شيك
+introduction	مقدمة
+computer	جهاز الكمبيوتر
+activity of accepting a manuscript	نشاط قبول مخطوطة
+conference building	مبنى المؤتمرات
+conference hotel	فندق المؤتمر
+taxi	سيارة أجرة
+hotel fee	رسوم الفندق
+author who will receive proceedings as cd	الكاتب الذي سيتلقى الإجراءات كمؤتمر نزع السلاح
+double hotel room	غرفة فندقية مزدوجة
+currency	تحويل العملات
+delegate	مندوب
+presenter who presents only on one day	مقدم العرض الذي يعرض فقط في يوم واحد
+overhead projector	عرض ضوئي
+activity taking place after	النشاط التي تجري
+invitation letter	رسالة دعوة
+registration fee	رسوم التسجيل
+city which is the location for a trip	المدينة وهو موقع للقيام برحلة
+not member of iasted	ليست عضوا في إياستيد
+value added tax	القيمة المضافة ضريبة
+speaker	المتكلم
+conference hall	قاعة المؤتمرات
+final manuscript	المخطوط النهائي
+video cassette player	مشغل كاسيت فيديو
+university of a presenter	جامعة لمقدم العرض
+fee for extra trip	رسوم لرحلة إضافية
+registration fee for a member	رسوم التسجيل لعضو
+activity taking place after conference	النشاط يعقد بعد المؤتمر
+days	أيام
+departure tax	ضريبة المغادرة
+item	البند
+audiovisual equipment	المعدات السمعية والبصرية
+session chair	رئيس الجلسة
+deadline for submiting	الموعد النهائي لأدعو
+member of iasted	عضو في إياستيد
+coffee break	استراحة
+lecture	محاضرة
+one conference day	يوم واحد من المؤتمر
+book proceeding	الكتاب الدعوى
+hall	قاعة
+lcd projector	جهاز عرض lcd
+hiker	مسافر
+submission	تقديم
+activity taking place during conference	النشاط التي تجري خلال المؤتمر
+conference hiker	مسافر مؤتمر
+conference days	أيام المؤتمر
+activity of refusing a manuscript	النشاط رفض مخطوط
+mailing list	القائمة البريدية
+video presentation	عرض الفيديو
+card	بطاقة
+activity of receiving a manuscript	النشاط تلقي مخطوطة
+state of the sponsor	الدولة من الراعي
+dinner banquet	العشاء
+research activity	النشاط البحثي
+single hotel room	غرفة في فندق واحد
+conference airport	مطار المؤتمر
+registration form	نموذج التسجيل
+student lecturer	محاضرة الطالب
+city where a presenter comes from	المدينة حيث يأتي مقدم من
+conference registration form	استمارة تسجيل المؤتمر
+delegate (person registering and visiting the conference)	مندوب (الشخص تسجيل وزيارة المؤتمر)
+plenary lecture	محاضرة عامة
+payment document	وثيقة الدفع
+time zone	المنطقة الزمنية
+car	سيارات
+registration fee paid by an attending author for receiving proceedings as cd	رسوم التسجيل التي يدفعها أحد المؤلفين الذين حضروا لتلقي الدعاوى كمؤتمر نزع السلاح
+van	فإن
+shuttle bus	حافلة مكوكية
+activity taking place before	الأنشطة التي تجري قبل
+activity taking place during	تجري أثناء النشاط
+item (in general)	البند (بشكل عام)
+state where the conference takes place	الدولة التي ينعقد فيها مؤتمر
+state	الدولة
+city where a sponzor comes from	المدينة حيث يأتي سبونزور من
+technical activity	النشاط التقني
+brief introduction for session chair	مقدمة موجزة لرئيس الدورة
+restaurant	مطعم
+hotel registration form	نموذج التسجيل في الفندق
+registration fee for a non member	رسوم التسجيل لعضو
+technical committee	اللجنة الفنية
+student who is not a speaker	الطلاب الذين لا أحد المتكلمين
+day assigned for a trip	يوم تعيينه للقيام برحلة
+hotel room	غرفة في فندق
+deadline for notification of acceptance	آخر موعد للإشعار بالقبول
+house of a presenter	منزل مقدم
+record of attendance	سجل للحضور
+activity of renting a car	النشاط لتأجير السيارات
+listener	وحدة إصغاء
+house of a company being a sponsor	بيت شركة يجري تقديمه
+activity	النشاط
+non speaker	غير المتكلم
+building	بناء
+introduction of speaker	مقدمة رئيس
+any kind of document	أي نوع من المستند
+amount of money	مبلغ من المال
+cd proceeding	إجراءات مؤتمر نزع السلاح
+departure	رحيل
+state of the presenter	الدولة لمقدم العرض
+author information form	نموذج معلومات الكاتب
+transport vehicle	مركبة النقل
+sponsor	الراعي
+worker who is not a speaker	العمال الذين لا أحد المتكلمين
+deadline for submitting the camera ready script	الموعد النهائي لتقديم البرنامج النصي الكاميرا جاهزة
+registration	التسجيل
+publication	منشور
+sponzorship	سبونزورشيب
+bank transfer	التحويل المصرفي
+viza	فيزا
+lecture given by a speaker	محاضرة ألقاها أحد المتكلمين
+overhead transparency	الشفافية في النفقات العامة
+speaker giving a lecture in front of the plenum	المتكلم إلقاء محاضرة أمام الجلسة المكتملة
+city where a sponzor comes	المدينة حيث يأتي سبونزور
+session room	غرفة الدورة
+hotel	الفندق
+is designed for	تم تصميمه
+is designed	ويهدف
+signs	علامات
+is given	وتعطي
+is given by	وترد عليه
+is paid	ويدفع
+is paid in	وتدفع
+is present time space	هذا الوقت مساحة
+is present in time or space	موجود في الزمان أو المكان
+is occupied	ويشغل
+is occupied by	ويشغل
+pays	يدفع
+is paid with	وتدفع مع
+obtains	يحصل على
+goes through	وغني عن طريق
+is connected	متصل
+is connected with	متصل مع
+is locally situated in	ويقع محلياً في
+is locally situated	ويقع محلياً
+is present time	هو في الوقت الحاضر
+is present in time	يتم هذا في الوقت المناسب
+is needed for	مطلوب من أجل
+is needed	هناك حاجة إلى
+is sent	يتم إرسال
+is sent by	يتم إرسالها بواسطة
+is used	يستخدم
+is used by	يستخدم من قبل
+is visited	زار
+is visited by	زار من قبل
+occupies (lives resides)	وتحتل (يقيم حياة)
+is written	مكتوبة
+is written by	هو مكتوب من قبل
+is sent before	يتم إرسالها من قبل
+prepares	وتعد
+is given to	وترد إلى
+has amount	وقد قدر
+has amount of	كمية من
+be done till	يكون حتى
+to be done till	لأن حتى
+is dated on	هو تاريخ
+is dated	تاريخ
+is equipped	وقد تم تجهيز
+is equipped for	وقد تم تجهيز
+speaks at time or in place	ويتحدث في وقت أو في مكان
+speaks time place	يتحدث عن مكان الوقت
+is made from	وهي مصنوعة من
+is made	يتم إجراء
+is prepared by	وقد أعدت
+is prepared	استعداد
+is signed	توقيع
+is signed by	تم توقيعه من قبل
+sends	يرسل
+writes	يكتب
+is held before	هو الذي عقد قبل
+is paid by	وتدفع
+gives	يعطي
+is held after	ويقام بعد
+needs	الاحتياجات
+is sent after	يتم إرسالها بعد
+is used for	يستخدم من أجل
+is paid for	ويدفع عن
+is held	ويقام
+is held in	ويقام في
+sponzor for best student paper	سبونزور لأفضل الطلبة ورقة
+registration fee for student	رسوم التسجيل للطلاب
+conference acm sigkdd	مؤتمر acm سيجكد
+author of student paper	كاتب الورقة الطالب
+gold sponzor of conference	سبونزور الذهبية للمؤتمر
+award for conference paper	جائزة للمؤتمر ورقة
+deadline of paper submission	الموعد النهائي لتقديم ورقة
+gold sponzor	سبونزور الذهب
+platinum sponzor	سبونزور البلاتين
+member of organizing committee	عضو في اللجنة التنظيمية
+author of paper	كاتب الورقة
+sponzor fee	رسوم سبونزور
+sponzor	سبونزور
+registration fee for member of sigkdd	رسوم التسجيل لأعضاء سيجكد
+main office of conference	المكتب الرئيسي للمؤتمر
+chair of conference	رئيسا للمؤتمر
+listener of conference	مستمع مؤتمر
+conference fee	رسوم المؤتمر
+silver sponzor	سبونزور الفضة
+award for best research paper	جائزة أفضل ورقة بحثية
+award for best application paper	جائزة لأفضل تطبيق ورقة
+person active	شخص نشط
+committee for best paper awards	لجنة جوائز ورقة أفضل
+award for best student paper	جائزة لأفضل طالب ورقة
+sponzor as exhibitor	سبونزور العارضين
+program chair	رئيس البرنامج
+registration fee for member of sigmod	رسوم التسجيل لأعضاء سيجمود
+deadline of author notification	آخر موعد لإعلام الكاتب
+webmaster	المسؤول عن الموقع
+acm sigkdd	سيجكد acm
+abstrakt	abstrakt
+bronze sponzor	سبونزور البرونزية
+platinum sponzor of conference	سبونزور البلاتين من المؤتمر
+organizator of conference	أورجانيزاتور للمؤتمر
+deadline of abstract submission	الموعد النهائي لتقديم الملخصات
+silver sponzor of conference	سبونزور الفضي للمؤتمر
+bronze sponzor of conference	سبونزور البرونزية للمؤتمر
+registration fee for person not being member of sig	رسوم التسجيل لشخص لا يجري عضو سيج
+hall of conference	قاعة المؤتمر
+person active at conference	شخص نشط في المؤتمر
+date of starting day of conference	تاريخ ابتداء من اليوم للمؤتمر
+date starting day	تاريخ البدء اليوم
+has price	وقد ثمن
+has sponzor name	اسم سبونزور
+deadline author notification	إخطار مقدم البلاغ مهلة
+setup deadline	الموعد النهائي للإعداد
+has deadline for submission	بالموعد النهائي لتقديم
+has deadline submission	وقد تقديم الموعد النهائي
+awarded by	التي تمنحها
+awarded	منحت
+sponzor are called	وتسمى سبونزور
+sponzor are called by	سبونزور يتم استدعاؤها بواسطة
+presents document	يعرض المستند
+was presented by	وقدم
+was presented	وقدم
+call for sponzor	الدعوة إلى سبونزور
+call sponzor	استدعاء سبونزور
+date final day	تاريخ آخر يوم
+date of final day of conference	تاريخ اليوم الأخير من المؤتمر
+takes place city	تأخذ مكان المدينة
+conference takes place in city	ينعقد المؤتمر في مدينة
+has name of conference	اسم المؤتمر
+has nationality	وقد الجنسية
+registration fee is in currency	رسوم التسجيل العملة
+registration fee is currency	رسوم التسجيل هي العملة
+has award	وقد منح
+registration fee paid by	رسوم التسجيل التي يدفعها
+registration fee paid	دفع رسوم التسجيل
+organize conference	تنظيم المؤتمر
+organize	تنظيم
+submit of paper	تقديم ورقة
+obtained award	حصل على جائزة
+paid registration fee	رسوم التسجيل المدفوعة
+setup deadline for	الموعد النهائي للإعداد
+conference organized by	المؤتمر الذي نظمته
+organized	نظمت
+stay in	البقاء في
+stay	البقاء

@@ -683,3 +683,10 @@ possui nome do patrocinador	a nom du promoteur
 possui nome da conferência	a le nom de conférence
 data	Date
 finalizar atribuições dos artigos	résilier les affectations des articles
+contribui para a conferência	contribue à la Conférence
+versão completa do artigo	version complète de l'article
+leitura realizada por um revisor	lecture qui s'est tenue par un relecteur
+possui co-autor	Il a co-écrit
+dia de início do evento	jour de départ de l'épreuve
+último dia do evento	dernier jour de l'événement
+email	Messagerie

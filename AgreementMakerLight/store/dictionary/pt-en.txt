@@ -683,3 +683,10 @@ possui nome do patrocinador	has name of sponsor
 possui nome da conferência	has the Conference name
 data	date
 finalizar atribuições dos artigos	terminate assignments of articles
+contribui para a conferência	contributes to the Conference
+versão completa do artigo	full version of article
+leitura realizada por um revisor	reading held by a reviewer
+possui co-autor	It has co-authored
+dia de início do evento	day of start of the event
+último dia do evento	last day of the event
+email	email

@@ -722,3 +722,9 @@ spricht (räumlich und zeitlich)	parle (spatiale et temporelle)
 registrierungsbeitrags ist währung	la monnaie est la contribution de Registre
 konferenz findet folgender stadt statt	Conférence se tiendra la ville suivante
 bleibt	reste
+zusammenfassung eines konferenzbeitrags	Résumé une contribution de la Conférence
+erweitertes zusammenfassung	Résumé étendu
+zusammenfassung	Résumé
+datum der einreichung des zusammenfassungen	Date de soumission des résumés
+hat zusammenfassung	a résumé
+deadline für die einreichung der zusammenfassung	Date limite de soumission du résumé

@@ -714,3 +714,315 @@ soumettre l'article	提交文章
 a une date limite pour la soumission	已提交截止日期
 appel à sponsor	赞助商的电话
 a des parties	(a) 缔约方的
+premier auteur de contribution	第一作者的贡献
+personne qui a payé les frais d'inscription en avance	人已预付注册费
+co-auteur de contribution	合著者的贡献
+thématique	主题
+date importante	重要日期
+contributeur de conférence	会议参与者
+annonce de conférence	会议公告
+expertise de relecteur	审阅者的专门知识
+contribution relue	重播的贡献
+personne qui a demandé à participer à une conférence	已申请参加会议的人
+participant actif de conférence	会议的积极参与者
+préférence de relecteur	审阅者的偏好
+membre de comité	委员会的成员
+président de session d'atelier	研讨会会议主席
+candidat enregistré	注册的候选人
+participant de conférence	会议的参与者
+rapport d'examen	检验报告
+personne qui a payé les frais d'inscription tardivement	已晚支付的注册费的人
+partie de conférence	会议的一部分
+présentation de conférencier invité	主题演讲
+volume de conférence	会议的卷
+contribution ordinaire	定期的贡献
+auteur ordinaire	经常作者
+document de conférence	会议论文
+contribution de conférence	会议的贡献
+version finale de contribution	最终版本的贡献
+personne qui a payé les frais d'inscription	已支付的注册费的人
+participant passif de conférence	会议的被动参与者
+actes de conférence	会议录
+est la date de fin	是的结束日期
+a pour courriel	电子邮件
+est la date de soumission de résumé	是抽象的提交日期
+est la date de début	是的开始日期
+a pour date de publication	出版日期
+a pour nom	名称
+est la date de soumission de la version finale	是的最终版本提交的日期
+a pour lieu	一个地方
+a pour url	为 url
+a pour genre	为种
+a pour isbn	为国际标准书号
+appartient au relecteur	属于该审阅者
+fait la présentation	使演示文稿
+a été un président d'atelier de	已经是总统的讲习班
+a pour éditeur	发布者
+appartient à une préférence du relecteur	属于该审阅者偏好
+a été attribué à une préférence de relecture	被授予校对的偏好
+est une thématique d'une partie de la conférence	是会议之一
+a été un membre de	一直的成员
+est la date de notification de l'acceptation	是的日期
+a pour prénom	第一名
+a pour volume	为卷
+a pour expertise	专业知识
+a pour relecteur	审稿人
+a pour président d'atelier	总统的讲习班
+est la date de soumission de la version complète	是完整版本提交的日期
+a pour degré	学位
+est dispensé par	由提供
+a pour auteur	有的作者
+a été un comité d'organisation de	已组织委员会
+a pour président de comité	有第一委员会主席
+publie	出版
+a pour session	会议
+a pour résumé	摘要
+a pour soumission	提交
+a pour membre	成员
+a pour comité	委员会
+est invité par	通过邀请
+a pour atelier	讲习班
+a été un comité de programme de	已在委员会计划的
+a été un comité de pilotage de	一直的督导委员会
+a pour co-président de comité	委员会联合主席
+a pour comité de pilotage	指导委员会
+a pour préférence ou pour expertise	偏好或专门知识
+a pour date importante	重要日期
+invite le co-relecteur	请共同审阅者
+a pour comité de programme	有程序委员会
+fait partie du volume de conférence	会议卷的一部分
+a été un président de comité de	一直的委员会主席
+a pour contributions	捐款
+a pour thématique ou pour soumission	一个主题或提交
+a pour partie	部分
+a pour sujet d'atelier	研讨会的主题
+a pour comité d'organisation	组织委员会
+a pour tutoriel	教程
+a été un comité de	一直的委员会
+contribue	贡献
+a pour expertise de relecteur	审阅者的专门知识有
+évalue	计算结果
+a été un co-président de comité de	一直的委员会联合主席
+président de conférence	会议主席
+président de comité de programme	程序委员会主席
+président adjoint de conférence	副会议椅
+méta-rapport d'examen	元-融洽来审查
+résumé d'article	文章的摘要
+membre de conférence	会员大会
+membre de comité de programme	方案委员会的成员
+version complète d'article	完整版的文章
+proposition de relecture	建议为重播的
+nombre de rapports d'examen par article	第条的报告数目
+url du logo	徽标的 URL
+accepte les soumissions d'articles au format papier	接受中纸张格式提交的资料
+identifiant de l'article	文章的标识符
+l'attribution de propositions aux relecteurs est initialisée par	分配给审阅者的提案是由初始化
+ajuste la proposition de relecture	调整重播建议
+imprime les courriers de la manifestation	打印字母的事件
+a pour co-auteur	为合著者
+est ajusté par	通过调整
+a pour thématique	主题
+met en place la réunion virtuelle	设置虚拟会议
+est lu par le méta-relecteur	读取元审阅者所做
+affecte le rôle de relecteur externe à	影响外部审查员的作用
+a pour décision	决定
+a été associé à	已经与
+finalise l'attribution d'articles	完成分配的文章
+initialise l'attribution de propositions aux relecteurs de	初始化分配给审阅者的建议
+lit l'article	床上条
+a pour membre du comité de programme	程序委员会成员为
+exécute les outils d'attribution d'articles de	运行命名从工具的博客
+est affecté par l'administrateur	由管理员分配
+accepte l'article	接受第条
+les détails sont saisis par	通过输入详细信息
+saisit les détails de la conférence	捕获会议详细的信息
+soumet l'article	提交文章
+saisit les critères d'évaluation de	捕获的评价标准
+signale un conflit d'intérêt pour	指示为利益冲突
+les exemplaires papier des courriers de la manifestation imprimés par	硬拷贝打印事件的电子邮件
+écrit l'article	写这篇文章
+la réunion virtuelle activée par	由启用的虚拟会议
+a un conflit d'intérêt à propos de	有关于利益冲突
+a pour membre de conférence	成员大会
+est accepté par	被接受
+l'attribution des articles finalisée par	文章的最后定稿的分配
+les outils d'attribution d'articles sont exécutés par	由执行分配的项目工具
+est rejeté par	被拒绝
+est affecté par le relecteur	受该审阅者
+écrit le rapport d'examen	书面的检查报告。
+les critères d'évaluation sont remplis par	评价标准是由填补的。
+rejette l'article	拒绝条
+a pour proposition de relecture	建议为重播的
+définit le nombre maximum d'articles de	设置最大的项数
+co-écrit l'article	合著的文章
+est ajouté par	通过添加
+finalise le processus de relecture	定型审查过程
+est lu par le relecteur	阅读由审阅者
+affecte le rôle de relecteur à	影响到审阅者的作用
+est assigné à	分配给
+scientifique	科学家
+bénévole	志愿者
+evénement de relecture	重播事件
+événement de travail	工人的事件
+universitaire	大学
+participant ordinaire	定期的参与者
+evénement	事件
+evénement d'envoi de version finale	最终版本邮寄的事件
+evénement d'évaluation des résultats	事件的结果评价
+evénement social	社会事件
+etudiant	学生
+evénement de soumission	提交事件
+membre	成员
+evénement d'inscription des participants	事件注册的参与者
+adjoint	助理
+evénement administratif	管理事件
+choix par défaut	默认选择
+a pour téléphone	电话
+a pour numéro de fax	传真号码
+choix max	选择最大
+se termine en	在结束
+a pour titre court	一个短标题
+choix min	选择最小
+inscription anticipée	早期的登记
+a pour titre	标题
+a pour page web	为 web 页
+a pour code postal	邮政编码
+étudie à	在研究
+a pour pays	为国家
+se déroule en parallèle de	从并行运行
+est employé par	通过使用
+est expert sur	上是专家
+a pour rue	大街上的
+a pour tva	增值税
+courriel de contact	联系人的电子邮件
+a pour mot clé	关键字
+a pour ville	城市
+a pour événement administratif	为管理事件
+traite de	交易
+commence en	开始
+étudiant non orateur	学生非-扬声器
+état d'un présentateur	节目主持人的状态
+minibus	小巴
+orateur	演讲者
+conférence d'une journée	一天会议
+brève introduction de président de session	简要介绍了会议的主席
+hôtel d'une conférence	会议酒店
+orateur d'un tutoriel	教程的扬声器
+état d'une conférence	状态的一次会议
+recherche	研究
+date limite de soumission	提交截止时间
+formulaire d'information sur un auteur	作者信息表格
+argent	钱
+frais d'inscription d'auteur participant pour les actes au format papier	作者参与对于纸注册费的行为
+maison de présentateur	演示者回家
+ville de sponsor	赞助商的城市
+frais d'inscription d'auteur participant pour les actes sur support numérique	行为上的数字媒体版权注册
+acceptation de manuscrit	接受的手稿
+frais d'inscription d'auteur	作者注册费
+université de présentateur	大学的主持人
+jour de voyage	一天的旅行
+chèque	支票
+ville de présentateur	演示者的城市
+frais d'inscription de non membre	非会员注册费
+auteur ayant les actes sur support numérique	作用于数字媒体的作者
+date limite de dépôt de version finale de manuscrit	最终版本的手稿提交截止日期
+travailleur non orateur	工人不扬声器
+actes en support numérique	在数字格式中的行为
+date limite d'inscription	登记截止日期
+frais d'inscription de membre	会员注册费
+date limite de notification d'acceptation	接受的通知的截止日期
+auteur ayant les actes au format papier	作者行为在纸张格式
+représentant	代表
+réception de manuscrit	收到的手稿
+programme social	社会程序
+location	租赁
+maître d'hôtel	福不满
+conférence plénière	全体会议上的演讲
+visite guidée d'une journée complète	导游一天满
+membre d'iasted	协会成员
+aéroport de conférence	会议机场
+activité ayant lieu avant une conférence	活动举行一次会议之前
+date limite de réservation d'hôtel	酒店预订截止日期
+refus de manuscrit	手稿的拒绝
+taxe sur la valeur ajoutée	增值税
+activité ayant lieu pendant une conférence	在会议期间发生的活动
+monnaie	货币
+non orateur	没有扬声器
+dîner de gala	盛宴
+frais d'inscription d'étudiant	学生注册费
+orateur de conférence plénière	全体会议议长
+non membre d'iasted	不是协会的成员
+guide d'excursion de conférence	会议旅游指南
+ville de conférence	会议城市
+maison de société de sponsor	赞助商公司的房子
+formulaire d'inscription	注册表单
+introduction d'un orateur	一位发言者的介绍
+présentateur salarié	自雇的人士主讲人
+simulation	模拟
+activité ayant lieu après une conférence	在一次会议后的活动
+bâtiment de conférence	会议大楼
+transparent	透明
+formulaire de réservation de chambre d'hôtel	酒店房间预订表
+état d'un sponsor	赞助商的状态
+pourboire	小贴士
+restaurant d'une conférence	餐厅的一次会议
+jour de conférence	会议的一天
+président de session	会议主席
+présentateur étudiant	学生演示者
+modélisation	建模
+présentation d'accueil	首页概述
+présentation d'orateur	演讲者演示文稿
+ville d'excursion	游览的城市
+orateur pendant une journée	演讲者一天
+est utilisé par	通过使用
+occupe	占地
+est envoyé par	由发送
+parle à	说话
+est daté du	被日
+est fait jusqu'à	组成
+est donné à	是给
+est payé à	支付给
+est présent à	出席
+est donné par	给出了由
+est situé dans	位于
+est présent	是目前
+notification jusqu'à	通知
+sponsor de bronze	铜牌赞助商
+exposant	参展商
+frais d'inscription de non-membre	非会员注册费
+date limite pour soumettre un résumé	提交摘要的截止日期
+sponsor d'argent	银牌赞助商
+comité de sélection de meilleurs articles	最好的博客选择委员会
+prix	价格
+sponsor de meilleur article étudiant	赞助商的最佳学生论文
+date limite pour soumettre un article	提交一篇文章的最后期限
+webmestre	网站管理员
+sponsor d'or	金牌赞助商
+auteur d'article étudiant	学生处的作者
+frais d'inscription de membre de sigkdd	旗舰成员注册费
+prix de meilleur article de recherche	最佳的研究论文奖
+prix de meilleur article étudiant	最佳学生论文奖
+frais d'inscription de membre de sigmod	数据成员注册费
+président général	主席
+prix de meilleur article d'application	最佳应用论文奖
+sponsor de platine	白金赞助商
+membre de comité d'organisation	组织委员会的成员
+ville de la conférence	会议城市
+début de la conférence	会议开始
+nationalité	国籍
+décerne	奖项
+définit	设置
+est décerné par	被授予
+est présenté par	提出了
+présente	礼物
+soumet	提交
+nom de la conférence	会议名称的
+fin de la conférence	会议结束
+nom du sponsor	赞助商的名称
+est démarché par	通过游说
+paye	工资
+est organisé par	由组织
+est soumis jusqu'à	是服从
+démarche	方法
+est défini par	由定义
+peut rester sur	能继续留任

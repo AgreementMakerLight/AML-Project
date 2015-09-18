@@ -1,0 +1,510 @@
+ملخص البحث	Search summary
+الكاتب المشترك	Joint author
+مشرف	Admin
+رئيس	The President of the
+عضو المؤتمر	Member Conference
+البحث	Search
+وثيقة	Document
+الكاتب 	Writer 
+شخص	People
+عضو في اللجنة العلمية	Member of the Scientific Committee
+رئيس المرتبطة	President of associated
+رئيس اللجنة العلمية	Chairman of the Scientific Committee
+مؤتمر	Conference
+أفضلية	Preference
+مراجعة فوقية	Instant review
+المراجع	References
+القبول	Admission
+المراجع الفوقي	Meta-references
+موضوع المحور	Topic axis
+الكاتب، الذي ليس المراجع	The author, who is not references
+رئيس المؤتمر	The President of the Conference
+المستخدم	User
+مزايدة	Auction
+لاشيء	Nothing
+الرفض	Rejection
+لجنة العلمية	Scientific Committee
+قرار	Resolution
+مراجعة	Review
+النسخة الكاملة من البحث	The full version of the research
+المراجع خارجي	External references
+لديه عنوان	Has title
+لديه اسم	Has a name
+لديه التاريخ	Has history
+لديه موقع على رابط	He has a website link
+تقبل نسخة المرسلات	Accept CC posts
+العدد الأقصى من الابحاث المسندة	The maximum number of researches cessions
+لديه الشعار في رابط	Has the logo link
+مراجعة/تعليقات لكل بحث	Review/comments for each search
+لديه معرف	Has the ID
+لديه عضو	Has Member
+قبوله من قبل	Accepted by
+قبوله من قبل 	Accepted by 
+لديه بريد الكتروني	Has e-mail
+يقبل	Accepts
+إدخال التفاصيل حول	Enter details about the
+علامة تضارب المصالح	The conflict of interest tag
+مشترك في الكتابة	Shared writing
+تمكين الاجتماع الظاهري	Enable virtual meeting
+يضيف	Adds
+كتابة البحث	Writing research
+يعيين	Sets
+معايير مراجعة أدخلت من قبل	Standards revision introduced by the
+(... ،تم تقرير (ليكون مقبول، مرفوض	(... Was the report (to be accepted, rejected
+أضافته من قبل	Added by
+كتابته من قبل	Written by
+استكمال احالة البحث	Complete referral search
+احالة أدوات البحث مشغل من قبل	Referral search engine tools by
+بدء تقديم العطاءات المراجع	Start bidding references
+لديه مزايدة	Has bid
+ارسال البحث	Send search
+لديه تضارب في المصالح مع احترام	Has a conflict of interest with respect
+تم تعيين	Been set
+رفض من قبل	Rejected by
+تفاصيل مدخلة من قبل	The details entered by
+كاتب مشترك من قبل	Joint author
+بدأ تقديم العطاءات المراجع من قبل	Bidding started references by
+بدأ تقديم العطاءات المراجع من قبل 	Bidding started references by 
+نسخة من البريد الالكتروني للمظاهرات مطبوعة من قبل	A copy of the email printed by demonstrations
+تحديد مجموعة عدد أقصى من الابحاث المسندة 	Select the set maximum number of researches cessions 
+تحديد مجموعة عدد أقصى من الابحاث المسندة	Select the set maximum number of researches cessions
+قراءته من قبل مراجع	Read by references
+تشغيل أدوات احالة البحث	Referral search tools
+تشغيل أدوات احالة البحث  	Referral search tools  
+قراءته من قبل مراجع الفوقي	Read by meta-references
+المراجعة كتابية	Written review
+تعيينه من قبل مشرف 	Assigned by admin 
+تعيينه من قبل مشرف	Assigned by admin
+ضبط	Adjust
+اجتماع الظاهري ممكن من قبل	The virtual meeting is possible by
+قراءة البحث	Read the research
+إدخال معايير المراجعة	Enter criteria review
+تعيين من اجل	Set for
+احالة البحث منتهي من قبل	Referral search finished by
+لديه موضوع المحور	Has the topic hub
+تعديله من قبل	Modified by
+بحث مرفوض	Search is denied
+وقت إنتهاء مراجعة	The end time of the revision
+مسند من قبل مراجع	Footrest by references
+طباعة نسخة من البريد الالكتروني للمظاهرات	Print a copy of the email for demonstrations
+تاريخ مهم	History is important
+وثيقة المؤتمر	Conference document
+معلومات للمشاركين	Information for participants
+مساهمة مرفوضة	The contribution is rejected
+إعلان المؤتمر	Conference Declaration
+مساهمة مرسلة	The sent contribution
+الرئيس المشترك	Joint President
+منظم	Organizer
+عضو  في اللجنة	Member of the Commission
+طلب مقدم للمؤتمر	Request for Conference
+افضلية المراجع	Preference reference
+مشارك السلبي في المؤتمر	Participants in the Conference
+رئيس مسار ورشة العمل	The head of the path workshop
+المنظمة	Organization
+العرض التقديمي	Presentation
+نسخة جاهزة للتصوير مساهمة	Copy-ready camera input
+مقدم الطلب مسجل	Applicant is registered
+طلب مقدم للمؤتمر الذين دفعوا رسوم المؤتمر	Request for paid conference fees Conference
+دعت الحديث	Invited talk
+الدعوة لتقديم الأبحاث	Call for research
+مسار المؤتمر	Path Conference
+اللجنة التوجيهية	The Steering Committee
+ملخص موسع	An extended summary
+مساهمة منتظمة	Regular contribution
+الناشر	Publisher
+مساهمة مقبولة	Acceptable contribution
+المؤتمر	Conference
+البرنامج التعليمي	Tutorial
+رسوم من اجل المؤتمر	Fees for the Conference
+خبرة المراجع	Experience references
+مساهمة للمؤتمر	Contribution to the Conference
+اللجنة المنظمة	Organizing Committee
+ورشة عمل	Workshop
+المؤلف الأول للمساهمة	The first author to contribute to
+اللجنة	Committee
+الكاتب المشرك في المساهمة	Common contributing writer
+المشارك في المؤتمر	Participating in the Conference
+اللجنة العلمية	The Scientific Committee
+الملخص	TS
+طلب مقدم للمؤتمر الذي دفع مؤخرا رسوم المؤتمر	A request to Congress, which recently paid conference fees
+مساهمة خطية	A written contribution
+مساهمة مراجعة	Contribution audit
+متحدث المدعو	Invited speaker
+جزء من المؤتمر	Part of the Conference
+مساهمة المؤتمر	Conference contribution
+الموضوع	Topic
+سلسله المؤتمر	Conference series
+كاتب المساهمة	Contributing writer
+مقدم الطلب المؤتمر الذي دفع في وقت مبكر رسوم المؤتمر	Applicant Conference which prompted early Conference fee
+شبكة الإنترنت العنكبوتية للمؤتمر	Spider Web Conference
+دعوة للمشاركة	Invitation to participate
+ملصق	Poster
+محضر المؤتمر	Minutes of the Conference
+مشارك ايجابي في المؤتمر	A positive participant in the Conference
+لديه اللقب	Has title
+تاريخ ارسال البحث كامل	The date of sending the whole look
+اليوم محطة	Today the station
+لديه الجنس	Has sex
+موقع المؤتمر	Conference site
+ موقع شبكة الإنترنت العنكبوتية للمؤتمرهو	 Spider Web site llmo'tmerho
+موقع شبكة الإنترنت العنكبوتية للمؤتمرهو	Spider Web site llmo'tmerho
+درجة خبرة المراجع	Degree experience references
+isbn محضر	The minutes of the isbn
+لديه الاسم الأول	Has a first name
+رقم حجم المحضر	Volume number record
+انها اللجنة العلمية للمؤتمر	It's Scientific Committee
+لديه البرنامج التعليمي	He has tutorial
+لجنة المؤتمر هي	The Conference Committee is
+لديه جزء	Has part
+لديه تاريخ مهم	Has an important date
+لديه موضوع ورشة عمل	Has the subject of workshop
+مدعو من المراجع	Invited reviewer
+تاريخ ارسال الملخصات	Date of submission of abstracts
+درجة تفضيل مراجعة	The degree of preference revision
+تاريخ الارسال بعد إجراء التعديل	Date sent after re-dimensioning
+تاريخ البداية	Start date
+تاريخ إخطار القبول	The date of the notification of acceptance
+نشرت بتاريخ	Posted on
+لديه رئيس اللجنة	Has the Chairman of the Committee
+يساهم في المؤتمر	Participating in the Conference
+لديه رئيس مشترك لللجنة	Has a Joint Committee Chairman
+لديه الكاتب	Has the author
+هو الرئيس المشترك للجنة	Joint Commission President
+مساهمة المراجعة	Contribution audit
+يجعل العرض التقديمي	Making presentation
+هي لجنة المؤتمر	Are Conference Committee
+مرسلة إلى	Sent to
+لديه ملخص	Has summary
+اللجنة المنظمة للمؤتمر هي	The Organizing Committee of the Conference
+اللجنة التوجيهية للمؤتمر	The Steering Committee of the Conference
+ينشر	Published
+لديه مراجعة	Has the review
+مقدم من قبل	Submitted by
+تم تسنيد افضلية المراجعة	Securitization audit is the priority
+اللجنة المنظمة للمؤتمر	The Organizing Committee of the Conference
+لديه مساهمة	Has a contribution
+لديه موضوع أو مساهمة مرسلة	Has the subject or contributions sent by
+يدعو المراجع المشترك	Calls for common references
+هو عضو في	He is a member of the
+لديه رئيس ورشة عمل	Has the Chairman of the workshop
+موضوع هو جزء من مؤتمر	The subject is part of the Conference
+لديه ورشة عمل	He has a workshop
+تاريخ مهم من سلسلة المؤتمر	Date of conference series
+لديه مساهمة مرسلة	He has sent contribution
+موضوع مرتبط بافضلية المراجعة	Subject associated with the priority review
+لديه خبرة المراجعة	Audit experience
+افضلية أو خبرة المراجعة هي	Preference or experience audit
+هو الجزء الأول من	Is the first part of the
+انه رئيس ورشة عمل ل	He was Chairman of the workshop
+لديه المسار	Has a path
+منشر المحضر هو	Drying rack record is
+هو رئيس الجنة	Is the head of paradise
+الجنة العلمية للمؤتمرهي	Scientific Committee llmo'tmerhi
+أفضلية أو خبرة المراجع	Preference or experience references
+اللجنة التوجيهية للمؤتمر هي	The Steering Committee of the Conference is
+الجامعة	University
+مشارك	Participant
+الحدث	Event
+رحلة	Trip
+حدث تسجيل الحدث المشاركين	Event log event participants
+حدث عملي	My event
+مساهمة	Contribution
+المشرف	Admin
+منظمة	Organization
+حدث إرسال نسخة بعد اجراء التعديل جاهزة للتصوير	Copy event after re-dimensioning ready for photography
+شخص مشارك مع المؤتمر	People associate with the Conference
+الشركة	Company
+طالب	Student
+المساعد	Plugin
+المدينة	City
+حدث المراجعة	Audit event
+حدث نتائج المراجعة 	Event audit results 
+الكاتب	Writer
+مأدبة	Banquet
+الحدث الإداري	Administrative event
+بحث قصير	A short search
+عامل العلم	Science worker
+حدث الارسال	Submit event
+بحث	Search
+مشارك منتظم في المؤتمر	Regular participant in Conference
+متطوع في المؤتمر	Volunteer Conference
+الحدث الاجتماعي	Social event
+لاشيئ	Nothing
+طالب مشارك في المؤتمر	Students participating in the Conference
+بلد	Country
+استقبال	Reception
+رئيس اللجنة الغلمية	The Chairman of the Commission alghalmih
+المشارك في المؤتمر لديه التسجيل مبكر	Conference early registration has
+لديه الرمز البريدي	It has a zip code
+تحديد أقل عدد من الحدث	Determine the minimum number of event
+بدء يوم الحدث	Start day of the event
+لديه الفاكس	Has a fax
+لديه ملاحظة	Has a note
+لديه قيمة ضريبة مضافة	Has a value added tax
+تحديد العدد الأقصى من الحدث	Specify the maximum number of event
+البقاء في الشارع	Stay on the street
+لديه الهاتف	Has phone
+لديه الصفحة الرئيسية	Has home
+لديه كلمات البحث	Has a keyword search
+بتوازي مع	In parallel with the
+دراسة في الجامعة	A study at the University
+لديه الحدث الإداري ذات الصلة	Has a related administrative event
+كتب من قبل الكاتب	Books by author
+المراجعين	Reviewers
+متستخدمة من قبل	By mtstkhdmh
+البقاء في البلد	Stay in the country
+يتعامل مع الموضوع	Dealing with the subject
+لديه عنوان قصير	Has a short URL
+لديه عنوان 	Has title 
+لديه اتصال البريد الإلكتروني	Has a contact email
+انتهاء يوم الحدث	The end of the day of the event
+حدث يقام في	Event is held in
+تحديد عدد الخيار الافتراضي من الحدث	Select the number of the default option of event
+تحديد عدد الخيار الافتراضي من الحدث 	Select the number of the default option of event 
+خبير في الموضوع	An expert in the subject
+يتبع	Follow
+لديه موضوع	Has subject
+البقاء في المدينة	Stay in the city
+يكتب المساهمة	Write a contribution
+مقدمة موجزة لرئيس الجلسة	Brief introduction of moderator
+بيت المقدم	Colonel House
+منزل شركة كونها الراعي	Home company being a shepherd
+دولة المقدم	The State provided
+ليس عضوا في iasted	Not a member of the iasted
+طالب  غير متحدث	Non-student speaker
+غرفة الجلسة	Meeting room
+المدينة حيث ينعقد المؤتمر	The city where the Conference
+المستمع	Listener
+مقدمة	Introduction
+رئيس الجلسة	Chair
+سيارات الأجرة	Taxis
+الموعد النهائي لتقديم النصي الكاميرا جاهزة	The deadline for submission of camera ready script
+العامل الغير المتحدث	Non-working speaker
+أيام المؤتمر	Conference days
+ كوكتيل الاستقبال 	 Cocktail reception 
+جهاز عرض الإسقاط الضوئي شاشات الكريستال السائل	Optical projection Projector LCD
+غرف الفندق المفردة	Single rooms
+وثيقة الدفع	Payment document
+الحاسوب	Computer
+اللجنة التقنية	The Technical Committee
+نشاط	Activity
+رسم لرحلة اضافية	Fee for additional flight
+الموعد النهائي لحجز الفنادق	Deadline for hotel reservation
+رسوم التسجيل للعضو	Registration fees for the Member
+طالب المحاضر	Student records
+ضريبة المغادرة	Departure tax
+النشاط البحثي	Research activity
+قيمة المضافة للضرائب	Value added tax
+الصك	Instrument
+كتابر المحضر	Ktaber record
+الارسال	Transmitter
+جلسة	Session
+سيارة	Car
+المؤلف الذي سيستلم إجراءات وكتاب	The author will receive the proceedings book
+جولة ليوم كامل	Full day tour
+جهاز عرض ضوئي	Projector
+مقدمة المتحدث	Speaker introduction
+نشر	Publishing
+تحويل مصرفي	Bank transfer
+المعدات السمعية والبصرية	Audio visual equipment
+المتحدث الذي يقدم البرنامج التعليمي	The speaker offers tutorial
+العامل المحاضر	Working records
+آخر موعد لإخطار القبول	The deadline for notification of acceptance
+آخر موعد للتسجيل	Deadline for registration
+الشفافية العامة	Public transparency
+بطاقة الائتمان	Credit card
+رسوم التسجيل مدفوعة من قبل الكاتب الحاضر من اجل استلام محضر الابحاث على شكل كتاب	Registration fees paid by the present writer to receive the minutes of research in book form
+مبنى المؤتمرات	Conference building
+المدينة حيث يأتي منها الراعي	The city where the Shepherd comes from
+قاعة المؤتمر	Conference Hall
+نشاط المحاكاة	Simulation activity
+نشاط القبول مخطوطة	Manuscript acceptance activity
+نشاط يحدث خلال المؤتمر	Activity occurs during the Conference
+رسوم التسجيل للطالب	Registration fees for the student
+نشاط استلام مخطوطة	The activity receiving the manuscript
+المبنى	Building
+رسوم	Fees
+الدولة حيث ينعقد المؤتمر	State where the Conference
+رسوم التسجيل	Registration fees
+النشاط الاجتماعي	Social activity
+فندق المقدم	Hotel provided
+مبلغ من المال	The amount of money
+رسالة الدعوة	Letter of invitation
+الدولة	State
+البند (بشكل عام)	Item (generally)
+محاضرة العامة	Public lecture
+مؤتمر في يوم واحد  	Conference in one day  
+متنزه المؤتمر	The Conference Park
+محاضرة	Lecture
+محاضر	Lecturer
+نشاط رفض مخطوطة	Actively reject a manuscript
+رسوم التسجيل لغير عضو	Non-member registration fee
+فندق المؤتمر	Hotel Conference
+المدينة حيث يأتي منها المقدم	The city where the presenter comes from
+اليوم المسندة من أجل رحلة	The day assigned for trip
+الدولة الراعي	State Shepherd
+تأشيرة	Visa
+استمارة التسجيل المؤتمر	Conference registration form
+استراحة القهوة	Coffee break
+استمارة المعلومات الكاتب	Information form the writer
+غيض	Tip
+المقدم الذي يقدم فقط في يوم واحد	Submitted that only in one day
+آخر موعد	Deadline
+مركبة النقل	ATV
+شاحنة صغيرة	Small truck
+محاضرة ملقاة من قبل متحدث	Lecture dumped by speaker
+غرف الفندق المزدوجة	Double rooms
+استمارة	Application form
+قرص المتابعة	The follow-up disc
+نشاط يجري قبل مؤتمر	Activity conducted by the
+العملة	Currency
+مطارالمؤتمر	Mtaralmo'tmer
+آخر موعد للارسال	The deadline for sending
+الساعة	At
+جامعة المقدم	The University submitted
+الرعاية	Care
+عرض باور بوينت	PowerPoint presentation
+الكاتب الذي سيستلم محضر الابحاث على شكل قرص	The writer who will receive minutes of research on a
+الراعي	Shepherd
+بطاقة	Card
+مأدبة عشاء	Dinner
+حافلات مكوكية	Shuttle buses
+قائمة البريد الالكتروني	Email list
+الضرائب	Taxes
+عضو في iasted	Member of the iasted
+رسوم التسجيل من غير الكاتب	Registration fees from non-writer
+مطعم المؤتمر	Restaurant Conference
+فندق استمارة التسجيل	Hotel registration form
+التسجيل	Registration
+كلمة ترحيبية	Welcome
+منطقة زمنية	Time zone
+مكان	Place
+غرفة الفندق	Hotel room
+سجل الحضور	Attendance record
+نشاط النمذجة	Activity modeling
+أي نوع من وثيقة	Any type of document
+المتحدث إعطاء محاضرة أمام الكنيست	Speaker to give a lecture in front of the Knesset
+رسوم التسجيل مدفوعة من قبل الكاتب الحاضر مقابل استلام محضر الابحاث على شكل قرص	Registration fees paid by the present writer compared receiving record of research in the form of a disk
+غير المتحدث	But speaker
+المتحدث	Speaker
+المدينة التي هي مكان من أجل الرحلة	The city is the location for the journey
+النشاط الفني	Artistic activity
+مغادرة	Leave
+رسوم فندق	Hotel fees
+المخطوطة الأولية  	Initial manuscript  
+نشاط يجري بعد مؤتمر	Activity conducted after the Conference
+(مندوب (شخص يسجيل ويزور المؤتمر	(Delegate (ysgil and visit the Conference
+نشاط تأجير سيارة	Car rental activity
+المخطوط النهائي	The final manuscript
+مشغل شريط فيديو 	Video player 
+ الفيديوعرض التقديمي	 Alvidioard presentation
+المكتب الرئيسي	Main office
+تستعد / يعد	Gears is
+يعطي	To give
+يحتاج	Needs
+يحصل 	Gets 
+يحصل	Gets
+تم انعقاده في	It was held in
+(يشغل (يعيش، يقيم	(Running (live,
+تم إرساله قبل	Sent by
+تم استخدامه من اجل	It is used for
+تم كتابته من قبل	Posted by
+تم دفعه مع	Paid with
+تم إرساله بعد	Sent after
+يرسل	Send
+تم اعطاءه من قبل	Is given by
+تم دفعه من اجل	Paid to
+تم توقيعه من قبل	Signed by
+تم إرساله من قبل	Sent by
+تم اعطاءه ل/ من اجل	Gave for/to
+تم زيارته من قبل	Visited by
+يمر عبر	Passes through
+تم تصميمه من اجل	Is designed for
+تم انعقاده قبل	It was held by
+يدفع	Pay
+تم بتاريخ	On
+يتعين القيام به حتى	To do so
+لديه قدر من	Has some
+تم صنعه من	Is made of
+تم اعداده من قبل	Prepared by
+تم تشغيله من قبل	It is run by
+تم تشغيله من قبل 	It is run by 
+تم دفعه في	Paid in
+تم تجهيزه من اجل	Equipped for
+يوقع	Sign
+يتحدث في وقت أو في مكان	Speaking at the time or place
+تم استخدامه من قبل	Was used by
+تم حاجة من اجل	Is a need for
+يكتب	To write
+تم ارتباطه مع	Been associated with
+يقع محليا في	Located locally in
+تم انعقاده بعد	It was held after the
+موجود في زمان أو مكان	Exist in time or place
+تم دفعه من قبل	Paid by
+موجود في الوقت	Exist in time
+الراعي البلاتيني للمؤتمر	Platinum sponsor of the Conference
+كاتب البحث طالب  	Search Student writer  
+الراعي كمقدم	Sponsor a provider
+عضو اللجنة العلمية	Member of the Scientific Committee
+آخر موعد لتسليم ملخصات الأبحاث	Deadline for delivery of abstracts
+المكتب الرئيسي للمؤتمر	The Conference's main office
+مكان انعقاد المؤتمر	The Conference venue
+أفضل بحث تطبيقي	Best applied research
+منظمي المؤتمر	Conference organizers
+اللجنة التحضيرية	The Preparatory Committee
+الوثيقة	Document
+sig رسوم التسجيل للاشخاص الذين ليسوا أعضاء	Sig registration fee for persons who are not members
+الفندق	Hotel
+جائزة لأفضل مقالة في المؤتمر	Award for best article in Conference
+sigkdd رسوم التسجيل لأعضاء	Sigkdd registration fees for members
+لجنة لاختيار أفضل البحوث	The Committee to select the best research
+الراعي البرونزي للمؤتمر	Bronze sponsor of the Conference
+sigmod رسوم التسجيل لأعضاء	Sigmod registration fees for members
+المسؤول عن الموقع	Webmaster
+عضو اللجنة التحضيرية	Member of the Preparatory Committee
+الراعي لأفضل بحث طالب	Sponsor of the best research student
+رسوم التسجيل لطالب	Registration fee for students
+المؤتمر acm sigkdd	Acm sigkdd Conference
+رسوم المؤتمر	Conference fees
+مراجع الحسابات المؤتمر	Auditor Conference
+المحاضر المدعو	Invitee records
+الراعى الفضى للمؤتمر	Silver sponsor of the Conference
+كاتب	Writer
+رسوم الرعاة	Fees sponsors
+آخر موعد للإخطار الباحثين	The deadline for notification of researchers
+مستمع المؤتمر	One Conference
+مدير المؤتمر	Conference Manager
+لجان المؤتمر	Conference committees
+الراعي الذهبي للمؤتمر	Gold sponsor of the Conference
+ آخر موعد لإرسال البحوث 	 The deadline for submitting research 
+جائزة لأفضل مقالة بحث	Award for the best article search
+الرعاة	Shepherds
+جائزة أفضل بحث لطالب	Student research award
+كاتب البحث	Author search
+لديه اسم المؤتمر	Has the name of the Conference
+مؤرخ على	Dated on
+لديه الجنسية	Has sex
+رسوم التسجيل هي بالعملة	The registration fee is in currency
+مؤتمر عقد في مدينة	A conference held in the city
+يمكن البقاء في	You can stay in
+التي تمنحها	Awarded by
+رسوم التسجيل المدفوعة من قبل	Registration fees paid by
+دفع رسوم التسجيل	Payment of registration fees
+قد قدم من جانب	Was presented by
+إرسال البحث	Send search
+آخر موعد المحدد من اجل	The deadline specified for
+موعد أول يوم من المؤتمر	The date of the first day of the Conference
+لديه السعر	Has a price
+لديه اسم الراعي	Has the name of the sponsor
+موعد اليوم الأخير من المؤتمر	Date of the last day of the Conference
+تنظيم المؤتمر	The Organization of the Conference
+مؤتمر منظم من قبل	Conference organized by
+لديه جائزة	Has the prize
+الدعوة من اجل الراعي	Call for sponsor
+جائزة متحصل عليها	Award vesting
+لديه آخر موعد لإرسال	Has the deadline for submitting
+الرعاة مدعوين من قبل	Invited by the sponsors
+تحديد آخر موعد	Specify the last date
+ تحديد آخر موعد	 Specify the last date
+ يقدم الوثيقة	 Submit a document
+يقدم الوثيقة	Submit a document

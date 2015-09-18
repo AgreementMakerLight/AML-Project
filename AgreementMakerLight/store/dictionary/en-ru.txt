@@ -846,3 +846,5 @@ setup deadline for	срок установки
 organized	организован
 stay	пребывания
 organize	организовать
+assistant	Помощник
+reviews	Отзывы

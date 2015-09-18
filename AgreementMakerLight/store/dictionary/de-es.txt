@@ -722,3 +722,9 @@ spricht (räumlich und zeitlich)	habla (espacial y temporal)
 registrierungsbeitrags ist währung	la moneda es contribución de registro
 konferenz findet folgender stadt statt	Conferencia será la siguiente ciudad
 bleibt	sigue siendo
+zusammenfassung eines konferenzbeitrags	Resumen una contribución de la Conferencia
+erweitertes zusammenfassung	Resumen
+zusammenfassung	Resumen
+datum der einreichung des zusammenfassungen	fecha de presentación de los resúmenes
+hat zusammenfassung	tiene Resumen
+deadline für die einreichung der zusammenfassung	plazo para la presentación del Resumen

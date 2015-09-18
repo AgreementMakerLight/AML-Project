@@ -1,0 +1,510 @@
+ملخص البحث	Souhrn hledání
+الكاتب المشترك	Spoluautor
+مشرف	Správce
+رئيس	Prezident
+عضو المؤتمر	Členské konference
+البحث	Hledat
+وثيقة	Dokument
+الكاتب 	Spisovatel 
+شخص	Lidé
+عضو في اللجنة العلمية	Člen vědeckého výboru
+رئيس المرتبطة	Seznam prezidentů Spojených
+رئيس اللجنة العلمية	Předseda vědeckého výboru
+مؤتمر	Konference
+أفضلية	Předvolba
+مراجعة فوقية	Okamžitý přehled
+المراجع	Odkazy
+القبول	Vstupné
+المراجع الفوقي	Meta odkazy
+موضوع المحور	Téma osa
+الكاتب، الذي ليس المراجع	Autor, který není odkazy
+رئيس المؤتمر	Předseda konference
+المستخدم	Uživatel
+مزايدة	Aukce
+لاشيء	Nic
+الرفض	Odmítnutí
+لجنة العلمية	Vědecký výbor
+قرار	Řešení
+مراجعة	Recenze
+النسخة الكاملة من البحث	Plná verze výzkumu
+المراجع خارجي	Externí odkazy
+لديه عنوان	Má titul
+لديه اسم	Má název
+لديه التاريخ	Má historii
+لديه موقع على رابط	Má odkaz na web
+تقبل نسخة المرسلات	Přijímat příspěvky CC
+العدد الأقصى من الابحاث المسندة	Maximální počet výzkumů cesí
+لديه الشعار في رابط	Má odkaz s logem
+مراجعة/تعليقات لكل بحث	Recenze/komentáře pro každé vyhledávání
+لديه معرف	Má ID
+لديه عضو	Má člen
+قبوله من قبل	Přijato od
+قبوله من قبل 	Přijato od 
+لديه بريد الكتروني	Má e-mailovou
+يقبل	Přijímá
+إدخال التفاصيل حول	Zadejte podrobnosti o
+علامة تضارب المصالح	Konflikt zájmů tag
+مشترك في الكتابة	Sdílené, psaní
+تمكين الاجتماع الظاهري	Povolit virtuální setkání
+يضيف	Přidává
+كتابة البحث	Psaní výzkum
+يعيين	Sety
+معايير مراجعة أدخلت من قبل	Revize normy zavedené
+(... ،تم تقرير (ليكون مقبول، مرفوض	(... Byla zpráva (přijato, odmítnuto
+أضافته من قبل	Přidal
+كتابته من قبل	Napsal
+استكمال احالة البحث	Úplný odkaz vyhledávání
+احالة أدوات البحث مشغل من قبل	Odkazovací vyhledávače nástroje od
+بدء تقديم العطاءات المراجع	Zahájit nabízení odkazy
+لديه مزايدة	Nabídku
+ارسال البحث	Odeslat vyhledávací
+لديه تضارب في المصالح مع احترام	Má s respektem konflikt zájmů
+تم تعيين	Nebyly stanoveny
+رفض من قبل	Zamítla
+تفاصيل مدخلة من قبل	Údaje zapsané do
+كاتب مشترك من قبل	Spoluautor
+بدأ تقديم العطاءات المراجع من قبل	Nabízení začal odkazy podle
+بدأ تقديم العطاءات المراجع من قبل 	Nabízení začal odkazy podle 
+نسخة من البريد الالكتروني للمظاهرات مطبوعة من قبل	Kopii e-mailem vytisknout demonstrace
+تحديد مجموعة عدد أقصى من الابحاث المسندة 	Vyberte nastavit maximální počet výzkumů cesí 
+تحديد مجموعة عدد أقصى من الابحاث المسندة	Vyberte nastavit maximální počet výzkumů cesí
+قراءته من قبل مراجع	Přečtěte si odkazy
+تشغيل أدوات احالة البحث	Nástroje pro vyhledávání odkazů
+تشغيل أدوات احالة البحث  	Nástroje pro vyhledávání odkazů  
+قراءته من قبل مراجع الفوقي	Přečtěte si o meta odkazy
+المراجعة كتابية	Písemné Hodnocení
+تعيينه من قبل مشرف 	Přidělil admin 
+تعيينه من قبل مشرف	Přidělil admin
+ضبط	Upravit
+اجتماع الظاهري ممكن من قبل	Virtuální setkání je možné
+قراءة البحث	Přečtěte si výzkum
+إدخال معايير المراجعة	Zadejte kritéria hodnocení
+تعيين من اجل	Sada pro
+احالة البحث منتهي من قبل	Odkaz Hledat hotové
+لديه موضوع المحور	Má centrální téma
+تعديله من قبل	Upravil
+بحث مرفوض	Hledání je odepřen
+وقت إنتهاء مراجعة	Čas ukončení revize
+مسند من قبل مراجع	Podnožka odkazy
+طباعة نسخة من البريد الالكتروني للمظاهرات	Tisknout kopii e-mailu pro demonstrace
+تاريخ مهم	Historie je důležitá
+وثيقة المؤتمر	Konference dokument
+معلومات للمشاركين	Informace pro účastníky
+مساهمة مرفوضة	Příspěvek se zamítá
+إعلان المؤتمر	Deklarace konference
+مساهمة مرسلة	Odeslaný příspěvek
+الرئيس المشترك	Společný prezident
+منظم	Organizátor
+عضو  في اللجنة	Člen Komise
+طلب مقدم للمؤتمر	Žádost o konferenci
+افضلية المراجع	Předvolba referenční
+مشارك السلبي في المؤتمر	Účastníci konference
+رئيس مسار ورشة العمل	Vedoucí dílny cesta
+المنظمة	Organizace
+العرض التقديمي	Prezentace
+نسخة جاهزة للتصوير مساهمة	Vstup kamery připravené pro kopírování
+مقدم الطلب مسجل	Žadatel je registrován
+طلب مقدم للمؤتمر الذين دفعوا رسوم المؤتمر	Žádost o poplatky placené konference konference
+دعت الحديث	Pozvané přednášky
+الدعوة لتقديم الأبحاث	Výzva pro výzkum
+مسار المؤتمر	Konference cesta
+اللجنة التوجيهية	Řídící výbor
+ملخص موسع	Rozšířený přehled
+مساهمة منتظمة	Pravidelný příspěvek
+الناشر	Vydavatel
+مساهمة مقبولة	Přijatelné příspěvek
+المؤتمر	Konference
+البرنامج التعليمي	Výukový program
+رسوم من اجل المؤتمر	Poplatky za konference
+خبرة المراجع	Odkazy na zkušenosti
+مساهمة للمؤتمر	Příspěvek na konferenci
+اللجنة المنظمة	Organizační výbor
+ورشة عمل	Seminář
+المؤلف الأول للمساهمة	První autor přispět k
+اللجنة	Výbor
+الكاتب المشرك في المساهمة	Běžné dopisovatel
+المشارك في المؤتمر	Účast na konferenci
+اللجنة العلمية	Vědecký výbor
+الملخص	TS
+طلب مقدم للمؤتمر الذي دفع مؤخرا رسوم المؤتمر	Požadavek na kongresu, který nedávno zaplatil konferenční poplatky
+مساهمة خطية	Písemný příspěvek
+مساهمة مراجعة	Přínos auditu
+متحدث المدعو	Pozvaný řečník
+جزء من المؤتمر	Součástí konference
+مساهمة المؤتمر	Konferenční příspěvek
+الموضوع	Téma
+سلسله المؤتمر	Série konferencí
+كاتب المساهمة	Dopisovatel
+مقدم الطلب المؤتمر الذي دفع في وقت مبكر رسوم المؤتمر	Žadatel konference, která se výzva rané vložné
+شبكة الإنترنت العنكبوتية للمؤتمر	Spider Web konference
+دعوة للمشاركة	Pozvání k účasti
+ملصق	Plakát
+محضر المؤتمر	Zápis z konference
+مشارك ايجابي في المؤتمر	Pozitivní účastníkem konference
+لديه اللقب	Má titul
+تاريخ ارسال البحث كامل	Datum odeslání celý vzhled
+اليوم محطة	Dnes na nádraží
+لديه الجنس	Má sex
+موقع المؤتمر	Web konference
+ موقع شبكة الإنترنت العنكبوتية للمؤتمرهو	 Pavouk webu llmo'tmerho
+موقع شبكة الإنترنت العنكبوتية للمؤتمرهو	Pavouk webu llmo'tmerho
+درجة خبرة المراجع	Stupeň zkušenosti odkazy
+isbn محضر	Zápis číslo isbn
+لديه الاسم الأول	Má jméno.
+رقم حجم المحضر	Záznam číslo svazku
+انها اللجنة العلمية للمؤتمر	Je to vědecký výbor
+لديه البرنامج التعليمي	On má návod
+لجنة المؤتمر هي	Je výbor konference
+لديه جزء	Má část
+لديه تاريخ مهم	Je důležité datum
+لديه موضوع ورشة عمل	Má předmět seminář
+مدعو من المراجع	Pozvaných recenzentů
+تاريخ ارسال الملخصات	Datum podání přehledů
+درجة تفضيل مراجعة	Míra preference revize
+تاريخ الارسال بعد إجراء التعديل	Datum odeslání po re-dimenzování
+تاريخ البداية	Datum zahájení
+تاريخ إخطار القبول	Datum oznámení o přijetí
+نشرت بتاريخ	Publikováno dne
+لديه رئيس اللجنة	Má předseda výboru
+يساهم في المؤتمر	Účast na konferenci
+لديه رئيس مشترك لللجنة	Má předseda výboru smíšený
+لديه الكاتب	Má autor
+هو الرئيس المشترك للجنة	Předseda Komise společné
+مساهمة المراجعة	Přínos auditu
+يجعل العرض التقديمي	Tvorba prezentace
+هي لجنة المؤتمر	Jsou konference výboru
+مرسلة إلى	Odesláno do
+لديه ملخص	Má přehled
+اللجنة المنظمة للمؤتمر هي	Organizační výbor konference
+اللجنة التوجيهية للمؤتمر	Řídící výbor konference
+ينشر	Publikované
+لديه مراجعة	Má recenze
+مقدم من قبل	Posílají
+تم تسنيد افضلية المراجعة	Prioritou je sekuritizace auditu
+اللجنة المنظمة للمؤتمر	Organizační výbor konference
+لديه مساهمة	Má příspěvek
+لديه موضوع أو مساهمة مرسلة	Má předmět nebo příspěvky zaslané
+يدعو المراجع المشترك	Vyzývá k běžné odkazy
+هو عضو في	Je členem
+لديه رئيس ورشة عمل	Má předseda semináře
+موضوع هو جزء من مؤتمر	Předmět je součástí konference
+لديه ورشة عمل	On má dílna
+تاريخ مهم من سلسلة المؤتمر	Datum konference série
+لديه مساهمة مرسلة	Poslal příspěvek
+موضوع مرتبط بافضلية المراجعة	Předmět přidružený priority recenzi
+لديه خبرة المراجعة	Auditu zkušenosti
+افضلية أو خبرة المراجعة هي	Preference nebo zkušenosti auditu
+هو الجزء الأول من	Je první část
+انه رئيس ورشة عمل ل	Byl předsedou semináře
+لديه المسار	Má cestu
+منشر المحضر هو	Sušicí stojan záznamu je
+هو رئيس الجنة	Je ředitelem ráje
+الجنة العلمية للمؤتمرهي	Vědecký výbor llmo'tmerhi
+أفضلية أو خبرة المراجع	Preference nebo zkušenosti odkazy
+اللجنة التوجيهية للمؤتمر هي	Řídící výbor konference je
+الجامعة	Univerzita
+مشارك	Účastník
+الحدث	Událost
+رحلة	Cesta
+حدث تسجيل الحدث المشاركين	Účastníci událostí v protokolu událostí
+حدث عملي	Moje událost
+مساهمة	Příspěvek
+المشرف	Správce
+منظمة	Organizace
+حدث إرسال نسخة بعد اجراء التعديل جاهزة للتصوير	Kopírovat událost po re-dimenzování připraven pro fotografování
+شخص مشارك مع المؤتمر	Lidé spojují s konferencí
+الشركة	Společnost
+طالب	Student
+المساعد	Plugin
+المدينة	Město
+حدث المراجعة	Událost auditu
+حدث نتائج المراجعة 	Výsledky auditu událostí 
+الكاتب	Spisovatel
+مأدبة	Banket
+الحدث الإداري	Správní událost
+بحث قصير	Krátké hledání
+عامل العلم	Vědecký pracovník
+حدث الارسال	Odeslat událost
+بحث	Hledat
+مشارك منتظم في المؤتمر	Pravidelný účastník konference
+متطوع في المؤتمر	Dobrovolnické konference
+الحدث الاجتماعي	Sociální událost
+لاشيئ	Nic
+طالب مشارك في المؤتمر	Studenti se účastní konference
+بلد	Země
+استقبال	Recepce
+رئيس اللجنة الغلمية	Předseda Komise alghalmih
+المشارك في المؤتمر لديه التسجيل مبكر	Konference včasné registrace má
+لديه الرمز البريدي	To má PSČ
+تحديد أقل عدد من الحدث	Určete minimální počet událostí
+بدء يوم الحدث	Začněte den události
+لديه الفاكس	Má fax
+لديه ملاحظة	Má Poznámka
+لديه قيمة ضريبة مضافة	Má přidanou hodnotu daň
+تحديد العدد الأقصى من الحدث	Zadejte maximální počet událostí
+البقاء في الشارع	Zůstat na ulici
+لديه الهاتف	Má telefon
+لديه الصفحة الرئيسية	Má doma
+لديه كلمات البحث	Má vyhledávání klíčových slov
+بتوازي مع	Souběžně s
+دراسة في الجامعة	Studium na univerzitě
+لديه الحدث الإداري ذات الصلة	Má související administrativní událost
+كتب من قبل الكاتب	Knihy od autora
+المراجعين	Recenzenti
+متستخدمة من قبل	Podle mtstkhdmh
+البقاء في البلد	Zůstat v zemi
+يتعامل مع الموضوع	Nakládání s předmětem
+لديه عنوان قصير	Má krátký URL
+لديه عنوان 	Má titul 
+لديه اتصال البريد الإلكتروني	Má kontaktní email
+انتهاء يوم الحدث	Na konci dne akce
+حدث يقام في	Akce se koná v
+تحديد عدد الخيار الافتراضي من الحدث	Vyberte číslo výchozí možnost události
+تحديد عدد الخيار الافتراضي من الحدث 	Vyberte číslo výchozí možnost události 
+خبير في الموضوع	Odborník v předmětu
+يتبع	Následovat
+لديه موضوع	Má předmět
+البقاء في المدينة	Zůstat ve městě
+يكتب المساهمة	Napsat příspěvek
+مقدمة موجزة لرئيس الجلسة	Stručný úvod moderátora
+بيت المقدم	Plukovník House
+منزل شركة كونها الراعي	Home společnost, že pastýř
+دولة المقدم	Stát poskytuje
+ليس عضوا في iasted	Není členem iasted
+طالب  غير متحدث	Non studentské reproduktor
+غرفة الجلسة	Zasedací místnost
+المدينة حيث ينعقد المؤتمر	Město kde konference
+المستمع	Naslouchání
+مقدمة	Úvod
+رئيس الجلسة	Křeslo
+سيارات الأجرة	Taxi
+الموعد النهائي لتقديم النصي الكاميرا جاهزة	Konečný termín pro předložení fotoaparát připravený scénář
+العامل الغير المتحدث	Non pracovní reproduktor
+أيام المؤتمر	Konference dny
+ كوكتيل الاستقبال 	 Koktejlové recepce 
+جهاز عرض الإسقاط الضوئي شاشات الكريستال السائل	Optické projekce LCD projektor
+غرف الفندق المفردة	Jednolůžkové pokoje
+وثيقة الدفع	Platební doklad
+الحاسوب	Počítač
+اللجنة التقنية	Technický výbor
+نشاط	Aktivita
+رسم لرحلة اضافية	Poplatek za další letu
+الموعد النهائي لحجز الفنادق	Konečný termín pro rezervaci
+رسوم التسجيل للعضو	Registrační poplatky za člena
+طالب المحاضر	Záznamy studentů
+ضريبة المغادرة	Odletová daň
+النشاط البحثي	Vědecko-výzkumná činnost
+قيمة المضافة للضرائب	Daň z přidané hodnoty
+الصك	Nástroj
+كتابر المحضر	Ktaber záznam
+الارسال	Vysílač
+جلسة	Relace
+سيارة	Auto
+المؤلف الذي سيستلم إجراءات وكتاب	Autor obdrží knihu řízení
+جولة ليوم كامل	Celodenní výlet
+جهاز عرض ضوئي	Projektor
+مقدمة المتحدث	Reproduktor Úvod
+نشر	Publikování
+تحويل مصرفي	Bankovní převod
+المعدات السمعية والبصرية	Audio-vizuální technikou
+المتحدث الذي يقدم البرنامج التعليمي	Reproduktor nabízí kurz
+العامل المحاضر	Pracovní záznamy
+آخر موعد لإخطار القبول	Konečný termín pro oznámení o přijetí
+آخر موعد للتسجيل	Konečný termín pro registraci
+الشفافية العامة	Veřejné průhlednosti
+بطاقة الائتمان	Kreditní karta
+رسوم التسجيل مدفوعة من قبل الكاتب الحاضر من اجل استلام محضر الابحاث على شكل كتاب	Registrační poplatky, které platí od tohoto spisovatele získat minuty výzkumu v knižní podobě
+مبنى المؤتمرات	Konference stavební
+المدينة حيث يأتي منها الراعي	Město, kde pastýř pochází z
+قاعة المؤتمر	Konferenční sál
+نشاط المحاكاة	Simulace činnosti
+نشاط القبول مخطوطة	Rukopis přijetí aktivita
+نشاط يحدث خلال المؤتمر	Aktivita dochází během konference
+رسوم التسجيل للطالب	Registrační poplatky pro studenta
+نشاط استلام مخطوطة	Činnost, jež obdrží rukopis
+المبنى	Budova
+رسوم	Poplatky
+الدولة حيث ينعقد المؤتمر	Uveďte, kde konference
+رسوم التسجيل	Registrační poplatky
+النشاط الاجتماعي	Sociální činnost
+فندق المقدم	Hotel poskytuje
+مبلغ من المال	Množství peněz
+رسالة الدعوة	Zvací dopis
+الدولة	Stát
+البند (بشكل عام)	Položka (obecně)
+محاضرة العامة	Veřejná přednáška
+مؤتمر في يوم واحد  	Konference v jeden den  
+متنزه المؤتمر	Konference Park
+محاضرة	Přednáška
+محاضر	Odborný asistent
+نشاط رفض مخطوطة	Aktivně odmítají rukopis
+رسوم التسجيل لغير عضو	Třetí registrační poplatek
+فندق المؤتمر	Hotel konference
+المدينة حيث يأتي منها المقدم	Město, kde moderátorka pochází z
+اليوم المسندة من أجل رحلة	Den, pro cestu
+الدولة الراعي	Státní Shepherd
+تأشيرة	Víza
+استمارة التسجيل المؤتمر	Přihláška na konferenci
+استراحة القهوة	Přestávka na kávu
+استمارة المعلومات الكاتب	Informace tvoří spisovatel
+غيض	Tip
+المقدم الذي يقدم فقط في يوم واحد	Uvedli, že pouze v jeden den
+آخر موعد	Konečný termín
+مركبة النقل	ATV
+شاحنة صغيرة	Malý vůz
+محاضرة ملقاة من قبل متحدث	Přednáška zblblá reproduktor
+غرف الفندق المزدوجة	Dvoulůžkové pokoje
+استمارة	Formulář žádosti
+قرص المتابعة	Následné disk
+نشاط يجري قبل مؤتمر	Aktivity prováděné
+العملة	Měna
+مطارالمؤتمر	Mtaralmo'tmer
+آخر موعد للارسال	Konečný termín pro odeslání
+الساعة	Na
+جامعة المقدم	Univerzita, napsanou
+الرعاية	Péče o
+عرض باور بوينت	Prezentace aplikace PowerPoint
+الكاتب الذي سيستلم محضر الابحاث على شكل قرص	Spisovatel, který obdrží minut výzkumu na
+الراعي	Ovčák
+بطاقة	Karta
+مأدبة عشاء	Večeře
+حافلات مكوكية	Kyvadlové autobusy
+قائمة البريد الالكتروني	E-mailový seznam
+الضرائب	Daně
+عضو في iasted	Členem iasted
+رسوم التسجيل من غير الكاتب	Registrační poplatky od-spisovatel
+مطعم المؤتمر	Restaurace konference
+فندق استمارة التسجيل	Hotel registrační formulář
+التسجيل	Registrace
+كلمة ترحيبية	Vítej
+منطقة زمنية	Časové pásmo
+مكان	Místo
+غرفة الفندق	Hotelový pokoj
+سجل الحضور	Docházky
+نشاط النمذجة	Modelování aktivity
+أي نوع من وثيقة	Jakýkoli typ dokumentu
+المتحدث إعطاء محاضرة أمام الكنيست	Reproduktor přednášku před Knesetu
+رسوم التسجيل مدفوعة من قبل الكاتب الحاضر مقابل استلام محضر الابحاث على شكل قرص	Registrační poplatky, které platí od tohoto spisovatele porovnání přijímající záznamy o výzkumu v podobě disku
+غير المتحدث	Ale mluvčí
+المتحدث	Reproduktor
+المدينة التي هي مكان من أجل الرحلة	Město je místem pro cestu
+النشاط الفني	Umělecká činnost
+مغادرة	Opustit
+رسوم فندق	Hotel poplatky
+المخطوطة الأولية  	Původní rukopis  
+نشاط يجري بعد مؤتمر	Aktivity prováděné po konferenci
+(مندوب (شخص يسجيل ويزور المؤتمر	(Delegát (ysgil a navštívit konferenci
+نشاط تأجير سيارة	Auto pronájem činnost
+المخطوط النهائي	Konečného rukopisu
+مشغل شريط فيديو 	Video přehrávač 
+ الفيديوعرض التقديمي	 Alvidioard prezentace
+المكتب الرئيسي	Hlavní kancelář
+تستعد / يعد	Zařízení je
+يعطي	Dát
+يحتاج	Potřeby
+يحصل 	Získá 
+يحصل	Získá
+تم انعقاده في	To se konalo v
+(يشغل (يعيش، يقيم	(Běh (živé,
+تم إرساله قبل	Odeslané
+تم استخدامه من اجل	Používá se pro
+تم كتابته من قبل	Přidal
+تم دفعه مع	Wyp
+تم إرساله بعد	Odeslané po
+يرسل	Odeslat
+تم اعطاءه من قبل	Je dána
+تم دفعه من اجل	Věnována
+تم توقيعه من قبل	Podepsáno
+تم إرساله من قبل	Odeslané
+تم اعطاءه ل/ من اجل	Dal na
+تم زيارته من قبل	Navštívilo
+يمر عبر	Prochází
+تم تصميمه من اجل	Je určen pro
+تم انعقاده قبل	To se konalo od
+يدفع	Platit
+تم بتاريخ	Na
+يتعين القيام به حتى	K tomu
+لديه قدر من	Má nějaké
+تم صنعه من	Je vyroben z
+تم اعداده من قبل	Připravené
+تم تشغيله من قبل	Je řízena
+تم تشغيله من قبل 	Je řízena 
+تم دفعه في	Zaplaceno
+تم تجهيزه من اجل	Vybavena pro
+يوقع	Znamení
+يتحدث في وقت أو في مكان	Ve svém projevu na čas nebo místo
+تم استخدامه من قبل	Byl používán
+تم حاجة من اجل	Je zapotřebí
+يكتب	Napsat
+تم ارتباطه مع	Byla spojena s
+يقع محليا في	Nachází se v místě
+تم انعقاده بعد	To se konalo po
+موجود في زمان أو مكان	Existují v čas nebo místo
+تم دفعه من قبل	Placené
+موجود في الوقت	Existují v čase
+الراعي البلاتيني للمؤتمر	Platinový sponzor konference
+كاتب البحث طالب  	Vyhledávání studentů spisovatel  
+الراعي كمقدم	Sponzor poskytovatele
+عضو اللجنة العلمية	Člen vědeckého výboru
+آخر موعد لتسليم ملخصات الأبحاث	Konečný termín pro dodání přehledů
+المكتب الرئيسي للمؤتمر	Konference v hlavní kanceláři
+مكان انعقاد المؤتمر	Místo konání konference
+أفضل بحث تطبيقي	Nejlepší aplikovaný výzkum
+منظمي المؤتمر	Organizátoři konference
+اللجنة التحضيرية	Přípravný výbor
+الوثيقة	Dokument
+sig رسوم التسجيل للاشخاص الذين ليسوا أعضاء	SIG registrační poplatek pro osoby, které nejsou členy
+الفندق	Hotel
+جائزة لأفضل مقالة في المؤتمر	Cena za nejlepší článek v konferenci
+sigkdd رسوم التسجيل لأعضاء	Sigkdd registrační poplatky pro členy
+لجنة لاختيار أفضل البحوث	Výbor pro výběr nejlepší výzkum
+الراعي البرونزي للمؤتمر	Bronzový sponzor konference
+sigmod رسوم التسجيل لأعضاء	Sigmod registrační poplatky pro členy
+المسؤول عن الموقع	Webmaster
+عضو اللجنة التحضيرية	Člen přípravného výboru
+الراعي لأفضل بحث طالب	Sponzor nejlepší studentský výzkum
+رسوم التسجيل لطالب	Registrační poplatek pro studenty
+المؤتمر acm sigkdd	ACM sigkdd konference
+رسوم المؤتمر	Konferenční poplatky
+مراجع الحسابات المؤتمر	Auditor konference
+المحاضر المدعو	Pozvané záznamy
+الراعى الفضى للمؤتمر	Stříbrný sponzor konference
+كاتب	Spisovatel
+رسوم الرعاة	Poplatky sponzoři
+آخر موعد للإخطار الباحثين	Konečný termín pro oznámení o výzkumných pracovníků
+مستمع المؤتمر	Jedna konference
+مدير المؤتمر	Správce konferencí
+لجان المؤتمر	Konference výborů
+الراعي الذهبي للمؤتمر	Zlatý sponzor konference
+ آخر موعد لإرسال البحوث 	 Konečný termín pro předkládání výzkumných 
+جائزة لأفضل مقالة بحث	Cena za nejlepší článek hledání
+الرعاة	Pastýři
+جائزة أفضل بحث لطالب	Studentský výzkum award
+كاتب البحث	Autor hledání
+لديه اسم المؤتمر	Má název konference
+مؤرخ على	Ze na
+لديه الجنسية	Má sex
+رسوم التسجيل هي بالعملة	Registrační poplatek je v měně
+مؤتمر عقد في مدينة	Konference, která se konala ve městě
+يمكن البقاء في	Můžete zůstat v
+التي تمنحها	Vydaný
+رسوم التسجيل المدفوعة من قبل	Registrační poplatky zaplacené
+دفع رسوم التسجيل	Placení poplatků za registraci
+قد قدم من جانب	Byl předložen
+إرسال البحث	Odeslat vyhledávací
+آخر موعد المحدد من اجل	Konečný termín pro
+موعد أول يوم من المؤتمر	Datum prvního dne konference
+لديه السعر	Má cenu
+لديه اسم الراعي	Má jméno sponzora
+موعد اليوم الأخير من المؤتمر	Datum posledního dne, konference
+تنظيم المؤتمر	Organizace konference
+مؤتمر منظم من قبل	Konference pořádané
+لديه جائزة	Má cenu
+الدعوة من اجل الراعي	Výzva pro sponzora
+جائزة متحصل عليها	Cena převodu
+لديه آخر موعد لإرسال	Má lhůtu pro podání
+الرعاة مدعوين من قبل	Pozvání od sponzorů
+تحديد آخر موعد	Zadejte poslední datum
+ تحديد آخر موعد	 Zadejte poslední datum
+ يقدم الوثيقة	 Odeslat dokument
+يقدم الوثيقة	Odeslat dokument

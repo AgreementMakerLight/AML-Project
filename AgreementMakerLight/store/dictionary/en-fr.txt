@@ -846,3 +846,5 @@ setup deadline for	Date limite d'installation pour
 organized	organisé
 stay	séjour à :
 organize	organiser
+assistant	Assistant
+reviews	Commentaires

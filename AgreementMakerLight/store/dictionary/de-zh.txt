@@ -722,3 +722,9 @@ spricht (räumlich und zeitlich)	讲话 (时空)
 registrierungsbeitrags ist währung	货币是注册表的贡献
 konferenz findet folgender stadt statt	会议将举行以下城市
 bleibt	仍然是
+erweitertes zusammenfassung	扩展的摘要
+zusammenfassung	摘要
+datum der einreichung des zusammenfassungen	摘要提交的日期
+hat zusammenfassung	有摘要
+zusammenfassung eines konferenzbeitrags	总结会议的贡献
+deadline für die einreichung der zusammenfassung	摘要提交截止日期

@@ -846,3 +846,5 @@ setup deadline for	Setup indieningstermijn
 organized	georganiseerd
 stay	verblijf
 organize	organiseren
+assistant	assistent
+reviews	Beoordelingen

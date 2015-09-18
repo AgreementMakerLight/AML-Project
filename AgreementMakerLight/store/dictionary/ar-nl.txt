@@ -1,0 +1,510 @@
+ملخص البحث	Zoek samenvatting
+الكاتب المشترك	Gezamenlijke Auteur
+مشرف	Admin
+رئيس	De Voorzitter van de
+عضو المؤتمر	Lid conferentie
+البحث	Zoek
+وثيقة	Document
+الكاتب 	Schrijver 
+شخص	Mensen
+عضو في اللجنة العلمية	Lid van het Wetenschappelijk Comité
+رئيس المرتبطة	Voorzitter van verbonden
+رئيس اللجنة العلمية	Voorzitter van het Wetenschappelijk Comité
+مؤتمر	Conferentie
+أفضلية	Voorkeur
+مراجعة فوقية	Onmiddellijke beoordeling
+المراجع	Verwijzingen
+القبول	Toelating
+المراجع الفوقي	Meta-referenties
+موضوع المحور	Onderwerp as
+الكاتب، الذي ليس المراجع	De auteur, die geen verwijzingen
+رئيس المؤتمر	De Voorzitter van de conferentie
+المستخدم	Gebruiker
+مزايدة	Veiling
+لاشيء	Niets
+الرفض	Afwijzing
+لجنة العلمية	Wetenschappelijk Comité
+قرار	Resolutie
+مراجعة	Beoordeling
+النسخة الكاملة من البحث	De volledige versie van het onderzoek
+المراجع خارجي	Externe verwijzingen
+لديه عنوان	Titel heeft
+لديه اسم	Heeft een naam
+لديه التاريخ	Heeft geschiedenis
+لديه موقع على رابط	Hij heeft een websitelink
+تقبل نسخة المرسلات	CC berichten accepteren
+العدد الأقصى من الابحاث المسندة	Het maximum aantal onderzoeken uit hoofde van herverzekering
+لديه الشعار في رابط	Heeft de Logolink
+مراجعة/تعليقات لكل بحث	Opmerkingen voor elke zoekopdracht
+لديه معرف	De ID heeft
+لديه عضو	Lid heeft
+قبوله من قبل	Aanvaard door
+قبوله من قبل 	Aanvaard door 
+لديه بريد الكتروني	E-mail heeft
+يقبل	Accepteert
+إدخال التفاصيل حول	Voer gegevens over de
+علامة تضارب المصالح	De tag belangenconflict
+مشترك في الكتابة	Gedeelde schrijven
+تمكين الاجتماع الظاهري	De virtuele vergadering inschakelen
+يضيف	Hiermee voegt u toe
+كتابة البحث	Schrijven onderzoek
+يعيين	Sets
+معايير مراجعة أدخلت من قبل	Herziening van de normen ingevoerd door de
+(... ،تم تقرير (ليكون مقبول، مرفوض	(... Is het verslag (om te worden geaccepteerd, afgewezen
+أضافته من قبل	Toegevoegd door
+كتابته من قبل	Geschreven door
+استكمال احالة البحث	Volledige verwijzing zoeken
+احالة أدوات البحث مشغل من قبل	Verwijzing zoekmachine tools door
+بدء تقديم العطاءات المراجع	Start bieden verwijzingen
+لديه مزايدة	Heeft geboden
+ارسال البحث	Zoekopdracht verzenden
+لديه تضارب في المصالح مع احترام	Een belangenconflict met respect heeft
+تم تعيين	Is ingesteld
+رفض من قبل	Verworpen door
+تفاصيل مدخلة من قبل	De gegevens ingevoerd door
+كاتب مشترك من قبل	Gezamenlijke Auteur
+بدأ تقديم العطاءات المراجع من قبل	Bieden begon verwijzingen door
+بدأ تقديم العطاءات المراجع من قبل 	Bieden begon verwijzingen door 
+نسخة من البريد الالكتروني للمظاهرات مطبوعة من قبل	Een kopie van de e-mail gedrukt door demonstraties
+تحديد مجموعة عدد أقصى من الابحاث المسندة 	Selecteer het ingestelde maximum aantal onderzoeken uit hoofde van herverzekering 
+تحديد مجموعة عدد أقصى من الابحاث المسندة	Selecteer het ingestelde maximum aantal onderzoeken uit hoofde van herverzekering
+قراءته من قبل مراجع	Lees door verwijzingen
+تشغيل أدوات احالة البحث	Verwijzing Zoekhulpmiddelen
+تشغيل أدوات احالة البحث  	Verwijzing Zoekhulpmiddelen  
+قراءته من قبل مراجع الفوقي	Gelezen door meta-referenties
+المراجعة كتابية	Geschreven recensie
+تعيينه من قبل مشرف 	Toegewezen door admin 
+تعيينه من قبل مشرف	Toegewezen door admin
+ضبط	Aanpassen
+اجتماع الظاهري ممكن من قبل	De virtuele vergadering is mogelijk door
+قراءة البحث	Lees het onderzoek
+إدخال معايير المراجعة	Voer criteria herziening
+احالة البحث منتهي من قبل	Verwijzing zoeken klaar door
+لديه موضوع المحور	Heeft de onderwerp-hub
+تعديله من قبل	Gewijzigd door
+بحث مرفوض	Zoek is geweigerd
+وقت إنتهاء مراجعة	De eindtijd van de herziening
+مسند من قبل مراجع	Voetensteun door verwijzingen
+طباعة نسخة من البريد الالكتروني للمظاهرات	Afdrukken van een kopie van de e-mail voor demonstraties
+تاريخ مهم	Geschiedenis is belangrijk
+وثيقة المؤتمر	Conferentie document
+معلومات للمشاركين	Informatie voor deelnemers
+مساهمة مرفوضة	De bijdrage wordt verworpen
+إعلان المؤتمر	Verklaring van de conferentie
+مساهمة مرسلة	De verzonden bijdrage
+الرئيس المشترك	Gezamenlijke voorzitter
+منظم	Organisator
+عضو  في اللجنة	Lid van de Commissie
+طلب مقدم للمؤتمر	Verzoek voor conferentie
+افضلية المراجع	Voorkeur verwijzing
+مشارك السلبي في المؤتمر	Deelnemers aan de conferentie
+رئيس مسار ورشة العمل	Het hoofd van de pad-workshop
+المنظمة	Organisatie
+العرض التقديمي	Presentatie
+نسخة جاهزة للتصوير مساهمة	Kopie-klaar camera-invoer
+مقدم الطلب مسجل	Aanvrager is geregistreerd
+طلب مقدم للمؤتمر الذين دفعوا رسوم المؤتمر	Verzoek om betaalde conferentie vergoedingen conferentie
+دعت الحديث	Uitgenodigde talk
+الدعوة لتقديم الأبحاث	Oproep voor onderzoek
+مسار المؤتمر	Pad conferentie
+اللجنة التوجيهية	Het Steering Committee
+ملخص موسع	Een uitgebreide samenvatting
+مساهمة منتظمة	Regelmatige bijdrage
+الناشر	Uitgever
+مساهمة مقبولة	Aanvaardbaar bijdrage
+المؤتمر	Conferentie
+البرنامج التعليمي	Tutorial
+رسوم من اجل المؤتمر	Vergoedingen voor de conferentie
+خبرة المراجع	Ervaring verwijzingen
+مساهمة للمؤتمر	Bijdrage aan de conferentie
+اللجنة المنظمة	Organisatiecomité
+ورشة عمل	Workshop
+المؤلف الأول للمساهمة	De eerste auteur bij te dragen tot
+اللجنة	Comité
+الكاتب المشرك في المساهمة	Gemeenschappelijke bijdragen schrijver
+المشارك في المؤتمر	Deelnemen aan de conferentie
+اللجنة العلمية	Het Wetenschappelijk Comité
+الملخص	TS
+طلب مقدم للمؤتمر الذي دفع مؤخرا رسوم المؤتمر	Een verzoek aan het Congres, die onlangs conferentie vergoedingen betaalde
+مساهمة خطية	Een schriftelijke bijdrage
+مساهمة مراجعة	Bijdrage audit
+متحدث المدعو	Uitgenodigd spreker
+جزء من المؤتمر	Onderdeel van de conferentie
+مساهمة المؤتمر	Conferentie-bijdrage
+الموضوع	Onderwerp
+سلسله المؤتمر	Conferentie serie
+كاتب المساهمة	Bijdragen schrijver
+مقدم الطلب المؤتمر الذي دفع في وقت مبكر رسوم المؤتمر	Aanvrager conferentie die vroegtijdige conferentie vergoeding gevraagd
+شبكة الإنترنت العنكبوتية للمؤتمر	Spider Web conferentie
+دعوة للمشاركة	Uitnodiging om deel te nemen
+ملصق	Poster
+محضر المؤتمر	Notulen van de conferentie
+مشارك ايجابي في المؤتمر	Een positieve deelnemer aan de conferentie
+لديه اللقب	Titel heeft
+تاريخ ارسال البحث كامل	Datum van verzending van de hele look
+اليوم محطة	Vandaag het station
+لديه الجنس	Heeft seks
+موقع المؤتمر	Conferentie site
+ موقع شبكة الإنترنت العنكبوتية للمؤتمرهو	 Spider Web site llmo'tmerho
+موقع شبكة الإنترنت العنكبوتية للمؤتمرهو	Spider Web site llmo'tmerho
+درجة خبرة المراجع	Mate ervaring verwijzingen
+isbn محضر	De notulen van de isbn
+لديه الاسم الأول	Heeft een voornaam
+رقم حجم المحضر	Volume nummer record
+انها اللجنة العلمية للمؤتمر	Het is wetenschappelijk comité
+لديه البرنامج التعليمي	Hij heeft tutorial
+لجنة المؤتمر هي	De Conferentiecommissie is
+لديه جزء	Rol
+لديه تاريخ مهم	Heeft een belangrijke datum
+لديه موضوع ورشة عمل	Het onderwerp van workshop heeft
+مدعو من المراجع	Uitgenodigde revisor
+تاريخ ارسال الملخصات	Datum van indiening van samenvattingen
+درجة تفضيل مراجعة	De mate van voorkeur herziening
+تاريخ الارسال بعد إجراء التعديل	Datum verzonden na opnieuw dimensionering
+تاريخ البداية	Begindatum
+تاريخ إخطار القبول	De datum van de kennisgeving van aanvaarding
+نشرت بتاريخ	Gepost op
+لديه رئيس اللجنة	Heeft de Voorzitter van de Commissie
+يساهم في المؤتمر	Deelnemen aan de conferentie
+لديه رئيس مشترك لللجنة	Heeft de Voorzitter van de Commissie van een gezamenlijke
+لديه الكاتب	De auteur heeft
+هو الرئيس المشترك للجنة	De Voorzitter van de Commissie van de gezamenlijke
+مساهمة المراجعة	Bijdrage audit
+يجعل العرض التقديمي	Presentatie maken
+هي لجنة المؤتمر	Zijn Conferentiecommissie
+مرسلة إلى	Verzonden naar
+لديه ملخص	Heeft samenvatting
+اللجنة المنظمة للمؤتمر هي	Het Organiserend Comité van de conferentie
+اللجنة التوجيهية للمؤتمر	Het Steering Committee van de conferentie
+ينشر	Gepubliceerd
+لديه مراجعة	De herziening heeft
+مقدم من قبل	Afkomstig van
+تم تسنيد افضلية المراجعة	Securitisatie audit is de prioriteit
+اللجنة المنظمة للمؤتمر	Het Organiserend Comité van de conferentie
+لديه مساهمة	Heeft een bijdrage te leveren
+لديه موضوع أو مساهمة مرسلة	Het onderwerp of de bijdragen zijn verzonden door
+يدعو المراجع المشترك	Verlangt dat gemeenschappelijke referentiecriteria
+هو عضو في	Hij is een lid van de
+لديه رئيس ورشة عمل	Heeft de Voorzitter van de workshop
+موضوع هو جزء من مؤتمر	Het onderwerp is onderdeel van de conferentie
+لديه ورشة عمل	Hij heeft een workshop
+تاريخ مهم من سلسلة المؤتمر	Datum conferentie reeks
+لديه مساهمة مرسلة	Hij heeft gestuurd bijdrage
+موضوع مرتبط بافضلية المراجعة	Onderwerp de prioriteit herziening is gekoppeld
+لديه خبرة المراجعة	Audit ervaring
+افضلية أو خبرة المراجعة هي	Voorkeur of ervaring audit
+هو الجزء الأول من	Is het eerste deel van de
+انه رئيس ورشة عمل ل	Hij was voorzitter van de workshop
+لديه المسار	Een pad
+منشر المحضر هو	Drogen rek record is
+هو رئيس الجنة	Is het hoofd van het paradijs
+الجنة العلمية للمؤتمرهي	Wetenschappelijke comité llmo'tmerhi
+أفضلية أو خبرة المراجع	Voorkeur of ervaring verwijzingen
+اللجنة التوجيهية للمؤتمر هي	Het Steering Committee van de conferentie is
+تعيين من اجل	Instellen voor
+الجامعة	Universiteit
+مشارك	Deelnemer
+الحدث	Gebeurtenis
+رحلة	Reis
+حدث تسجيل الحدث المشاركين	Gebeurtenislogboek evenementdeelnem ers
+حدث عملي	Mijn evenement
+مساهمة	Bijdrage
+المشرف	Admin
+منظمة	Organisatie
+حدث إرسال نسخة بعد اجراء التعديل جاهزة للتصوير	Gebeurtenis na opnieuw dimensionering klaar voor fotografie kopiëren
+شخص مشارك مع المؤتمر	Mensen associëren met de conferentie
+الشركة	Bedrijf
+طالب	Student
+المساعد	Plugin
+المدينة	Stad
+حدث المراجعة	Controlegebeurtenis
+حدث نتائج المراجعة 	Gebeurtenis controleresultaten 
+الكاتب	Schrijver
+مأدبة	Feestzaal
+الحدث الإداري	Administratieve gebeurtenis
+بحث قصير	Een korte zoeken
+عامل العلم	Wetenschap werknemer
+حدث الارسال	Indienen van gebeurtenis
+بحث	Zoek
+مشارك منتظم في المؤتمر	Regelmatige deelnemer in conferentie
+متطوع في المؤتمر	Vrijwilliger conferentie
+الحدث الاجتماعي	Sociaal evenement
+لاشيئ	Niets
+طالب مشارك في المؤتمر	Studenten die deelnemen aan de conferentie
+بلد	Land
+استقبال	Receptie
+رئيس اللجنة الغلمية	De Voorzitter van de Commissie alghalmih
+المشارك في المؤتمر لديه التسجيل مبكر	Conferentie vroege registratie heeft
+لديه الرمز البريدي	Het heeft een zip-code
+تحديد أقل عدد من الحدث	Bepalen van het minimumaantal van evenement
+بدء يوم الحدث	Start dag van het evenement
+لديه الفاكس	Een faxapparaat heeft
+لديه ملاحظة	Heeft een opmerking
+لديه قيمة ضريبة مضافة	Een toegevoegde waarde heeft belasting
+تحديد العدد الأقصى من الحدث	Het maximum aantal gebeurtenis opgeven
+البقاء في الشارع	Blijf op de straat
+لديه الهاتف	Telefoon
+لديه الصفحة الرئيسية	Home heeft
+لديه كلمات البحث	Heeft een zoeken op trefwoord
+بتوازي مع	Parallel met de
+دراسة في الجامعة	Een studie aan de Universiteit
+لديه الحدث الإداري ذات الصلة	Heeft een bijbehorende administratieve gebeurtenis
+كتب من قبل الكاتب	Boeken door auteur
+المراجعين	Reviewers
+متستخدمة من قبل	Door mtstkhdmh
+البقاء في البلد	In het land blijven
+يتعامل مع الموضوع	Omgaan met het onderwerp
+لديه عنوان قصير	Heeft een korte URL
+لديه عنوان 	Titel heeft 
+لديه اتصال البريد الإلكتروني	Heeft een contact e-mail
+انتهاء يوم الحدث	Het einde van de dag van het evenement
+حدث يقام في	Evenement wordt gehouden in
+تحديد عدد الخيار الافتراضي من الحدث	Selecteer het nummer van de standaardoptie van evenement
+تحديد عدد الخيار الافتراضي من الحدث 	Selecteer het nummer van de standaardoptie van evenement 
+خبير في الموضوع	Een expert in het onderwerp
+يتبع	Ga als volgt te
+لديه موضوع	Onderwerp
+البقاء في المدينة	Verblijf in de stad
+يكتب المساهمة	Schrijf een bijdrage
+مقدمة موجزة لرئيس الجلسة	Korte introductie van moderator
+بيت المقدم	Kolonel huis
+منزل شركة كونها الراعي	Home bedrijf wordt een herder
+دولة المقدم	De staat verricht
+ليس عضوا في iasted	Niet een lid van de iasted
+طالب  غير متحدث	Non-student spreker
+غرفة الجلسة	Vergaderzaal
+المدينة حيث ينعقد المؤتمر	De stad waar de conferentie
+المستمع	Luisteraar
+مقدمة	Inleiding
+رئيس الجلسة	Stoel
+سيارات الأجرة	Taxi 's
+الموعد النهائي لتقديم النصي الكاميرا جاهزة	De termijn voor indiening van camera klaar script
+العامل الغير المتحدث	Niet-werkende spreker
+أيام المؤتمر	Conferentie dagen
+ كوكتيل الاستقبال 	 Cocktail receptie 
+جهاز عرض الإسقاط الضوئي شاشات الكريستال السائل	Optische projectie Projector LCD
+غرف الفندق المفردة	Eenpersoonskamers
+وثيقة الدفع	Betaling document
+الحاسوب	Computer
+اللجنة التقنية	Het technisch comité
+نشاط	Activiteit
+رسم لرحلة اضافية	Vergoeding voor extra vlucht
+الموعد النهائي لحجز الفنادق	Termijn voor hotelreservering
+رسوم التسجيل للعضو	Registratiekosten voor de lidstaten
+طالب المحاضر	Student records
+ضريبة المغادرة	Vertrekbelasting
+النشاط البحثي	Onderzoeksactiviteit
+قيمة المضافة للضرائب	Belasting over de toegevoegde waarde
+الصك	Instrument
+كتابر المحضر	Ktaber record
+الارسال	Zender
+جلسة	Sessie
+سيارة	Auto
+المؤلف الذي سيستلم إجراءات وكتاب	De auteur krijgt de procedure boek
+جولة ليوم كامل	Volle dagtocht
+جهاز عرض ضوئي	Projector
+مقدمة المتحدث	Spreker introductie
+نشر	Publiceren
+تحويل مصرفي	Bankoverschrijving
+المعدات السمعية والبصرية	Audio-visuele apparatuur
+المتحدث الذي يقدم البرنامج التعليمي	De spreker biedt tutorial
+العامل المحاضر	Werken records
+آخر موعد لإخطار القبول	De termijn voor de kennisgeving van aanvaarding
+آخر موعد للتسجيل	Deadline voor inschrijven
+الشفافية العامة	Openbare transparantie
+بطاقة الائتمان	Credit card
+رسوم التسجيل مدفوعة من قبل الكاتب الحاضر من اجل استلام محضر الابحاث على شكل كتاب	Registratierechten betaald door de huidige schrijver te ontvangen van de notulen van onderzoek in boekvorm
+مبنى المؤتمرات	Conferentie gebouw
+المدينة حيث يأتي منها الراعي	De stad waar de herder vandaan komt
+قاعة المؤتمر	Conferentie zaal
+نشاط المحاكاة	Simulatie activiteit
+نشاط القبول مخطوطة	Manuscript aanvaarding activiteit
+نشاط يحدث خلال المؤتمر	Activiteit plaatsvindt tijdens de conferentie
+رسوم التسجيل للطالب	Registratiekosten voor de student
+نشاط استلام مخطوطة	De activiteit ontvangen van het manuscript
+المبنى	Gebouw
+رسوم	Vergoedingen
+الدولة حيث ينعقد المؤتمر	Waar de conferentie
+رسوم التسجيل	Inschrijvingskosten
+النشاط الاجتماعي	Sociale activiteit
+فندق المقدم	Hotel geboden
+مبلغ من المال	De hoeveelheid geld
+رسالة الدعوة	Brief van uitnodiging
+الدولة	Staat
+البند (بشكل عام)	Punt (meestal)
+محاضرة العامة	Publieke lezing
+مؤتمر في يوم واحد  	Conferentie in één dag  
+متنزه المؤتمر	De conferentie Park
+محاضرة	Hoorcollege
+محاضر	Docent
+نشاط رفض مخطوطة	Actief verwerpen een manuscript
+رسوم التسجيل لغير عضو	Niet-lid registratie fee
+فندق المؤتمر	Hotel conferentie
+المدينة حيث يأتي منها المقدم	De stad waar de presentator vandaan komt
+اليوم المسندة من أجل رحلة	De dag toegewezen voor reis
+الدولة الراعي	Staat herder
+تأشيرة	Visum
+استمارة التسجيل المؤتمر	Conferentie registratieformulier
+استراحة القهوة	Koffiepauze
+استمارة المعلومات الكاتب	Informatieformulier de schrijver
+غيض	Tip
+المقدم الذي يقدم فقط في يوم واحد	Voorgelegd die alleen in één dag
+آخر موعد	Termijn
+مركبة النقل	ATV
+شاحنة صغيرة	Kleine vrachtwagen
+محاضرة ملقاة من قبل متحدث	Hoorcollege gedumpt door spreker
+غرف الفندق المزدوجة	Tweepersoonskamers
+استمارة	Aanvraagformulier
+قرص المتابعة	De follow-up schijf
+نشاط يجري قبل مؤتمر	Activiteiten uitgevoerd door de
+العملة	Valuta
+مطارالمؤتمر	Mtaralmo'tmer
+آخر موعد للارسال	De deadline voor het versturen van
+الساعة	At
+جامعة المقدم	De Universiteit afkomstig
+الرعاية	Zorg
+عرض باور بوينت	PowerPoint-presentatie
+الكاتب الذي سيستلم محضر الابحاث على شكل قرص	De schrijver die krijgt minuten van onderzoek op een
+الراعي	Herder
+بطاقة	Kaart
+مأدبة عشاء	Diner
+حافلات مكوكية	Shuttlebussen
+قائمة البريد الالكتروني	E-maillijst
+الضرائب	Belastingen
+عضو في iasted	Lid van de iasted
+رسوم التسجيل من غير الكاتب	Registratiekosten van niet-schrijver
+مطعم المؤتمر	Restaurant conferentie
+فندق استمارة التسجيل	Hotel registratieformulier
+التسجيل	Registratie
+كلمة ترحيبية	Welkom
+منطقة زمنية	Tijdzone
+مكان	Plaats
+غرفة الفندق	Hotelkamer
+سجل الحضور	Record opkomst
+نشاط النمذجة	Activiteit modellering
+أي نوع من وثيقة	Elk type document
+المتحدث إعطاء محاضرة أمام الكنيست	Spreker te geven een lezing voor de Knesset
+رسوم التسجيل مدفوعة من قبل الكاتب الحاضر مقابل استلام محضر الابحاث على شكل قرص	Registratierechten betaald door de huidige schrijver ten opzichte van ontvangende record van onderzoek in de vorm van een schijf
+غير المتحدث	Maar spreker
+المتحدث	Spreker
+المدينة التي هي مكان من أجل الرحلة	De stad is de locatie voor de reis
+النشاط الفني	Artistieke activiteit
+مغادرة	Verlof
+رسوم فندق	Hotel vergoedingen
+المخطوطة الأولية  	Eerste manuscript  
+نشاط يجري بعد مؤتمر	Activiteit uitgevoerd wordt na de conferentie
+(مندوب (شخص يسجيل ويزور المؤتمر	(De gemachtigde (ysgil en bezoek de conferentie
+نشاط تأجير سيارة	Autoverhuur activiteit
+المخطوط النهائي	Het laatste manuscript
+مشغل شريط فيديو 	Video-speler 
+ الفيديوعرض التقديمي	 Alvidioard presentatie
+المكتب الرئيسي	Hoofdkantoor
+تستعد / يعد	Gears is
+يعطي	Om te geven
+يحتاج	Behoeften
+يحصل 	Krijgt 
+يحصل	Krijgt
+تم انعقاده في	Het werd gehouden in
+(يشغل (يعيش، يقيم	(Uitgevoerd (live,
+تم إرساله قبل	Verzonden door
+تم استخدامه من اجل	Het wordt gebruikt voor
+تم كتابته من قبل	Geplaatst door
+تم دفعه مع	Betaald met
+تم إرساله بعد	Verzonden na
+يرسل	Verzenden
+تم اعطاءه من قبل	Wordt gegeven door
+تم دفعه من اجل	Besteed aan
+تم توقيعه من قبل	Ondertekend door
+تم إرساله من قبل	Verzonden door
+تم اعطاءه ل/ من اجل	Gaf voor/aan
+تم زيارته من قبل	Bezocht door
+يمر عبر	Passeert
+تم تصميمه من اجل	Is ontworpen voor
+تم انعقاده قبل	Het werd gehouden door
+يدفع	Betalen
+تم بتاريخ	Op
+يتعين القيام به حتى	Om dit te doen
+لديه قدر من	Heeft een aantal
+تم صنعه من	Is gemaakt van
+تم اعداده من قبل	Opgesteld door
+تم تشغيله من قبل	Het wordt beheerd door
+تم تشغيله من قبل 	Het wordt beheerd door 
+تم دفعه في	Betaald
+تم تجهيزه من اجل	Uitgerust voor
+يوقع	Teken
+يتحدث في وقت أو في مكان	Spreken op het tijdstip of de plaats
+تم استخدامه من قبل	Werd gebruikt door
+تم حاجة من اجل	Is behoefte aan een
+يكتب	Schrijven
+تم ارتباطه مع	In verband gebracht met
+يقع محليا في	Lokaal in gelegen
+تم انعقاده بعد	Het vond plaats na de
+موجود في زمان أو مكان	Bestaan in de tijd of plaats
+تم دفعه من قبل	Betaald door
+موجود في الوقت	Bestaan in de tijd
+الراعي البلاتيني للمؤتمر	Platina sponsor van de conferentie
+كاتب البحث طالب  	Zoek Student schrijver  
+الراعي كمقدم	Sponsor een provider
+عضو اللجنة العلمية	Lid van het Wetenschappelijk Comité
+آخر موعد لتسليم ملخصات الأبحاث	Uiterste datum voor levering van samenvattingen
+المكتب الرئيسي للمؤتمر	Het hoofdkantoor van de conferentie
+مكان انعقاد المؤتمر	De locatie van de conferentie
+أفضل بحث تطبيقي	Beste toegepast onderzoek
+منظمي المؤتمر	Conferentie organisatoren
+اللجنة التحضيرية	De voorbereidingscommissie
+الوثيقة	Document
+sig رسوم التسجيل للاشخاص الذين ليسوا أعضاء	SIG inschrijvingsgeld voor personen die geen lid
+الفندق	Hotel
+جائزة لأفضل مقالة في المؤتمر	Award voor beste artikel in conferentie
+sigkdd رسوم التسجيل لأعضاء	SIGKDD registratiekosten voor leden
+لجنة لاختيار أفضل البحوث	De Commissie om te selecteren van de beste onderzoek
+الراعي البرونزي للمؤتمر	Bronze sponsor van de conferentie
+sigmod رسوم التسجيل لأعضاء	Sigmod registratiekosten voor leden
+المسؤول عن الموقع	Webmaster
+عضو اللجنة التحضيرية	Lid van het voorbereidend Comité
+الراعي لأفضل بحث طالب	Sponsor van de beste leerling van onderzoek
+رسوم التسجيل لطالب	Inschrijvingsgeld voor studenten
+المؤتمر acm sigkdd	ACM sigkdd conferentie
+رسوم المؤتمر	Conferentie vergoedingen
+مراجع الحسابات المؤتمر	Accountant conferentie
+المحاضر المدعو	Genodigde records
+الراعى الفضى للمؤتمر	Zilveren sponsor van de conferentie
+كاتب	Schrijver
+رسوم الرعاة	Vergoedingen sponsors
+آخر موعد للإخطار الباحثين	De termijn voor de kennisgeving van onderzoekers
+مستمع المؤتمر	Een conferentie
+مدير المؤتمر	Congres Manager
+لجان المؤتمر	Conferentie van commissies
+الراعي الذهبي للمؤتمر	Goud sponsor van de conferentie
+ آخر موعد لإرسال البحوث 	 De deadline voor het indienen van onderzoek 
+جائزة لأفضل مقالة بحث	Award voor de beste artikel zoeken
+الرعاة	Herders
+جائزة أفضل بحث لطالب	Student onderzoek award
+كاتب البحث	Auteur zoeken
+لديه اسم المؤتمر	Is de naam van de conferentie
+مؤرخ على	Gedateerd op
+لديه الجنسية	Heeft seks
+رسوم التسجيل هي بالعملة	Het inschrijvingsgeld is gesteld in valuta
+مؤتمر عقد في مدينة	Een conferentie in de stad
+يمكن البقاء في	U kunt verblijven in
+التي تمنحها	Toegekend door
+رسوم التسجيل المدفوعة من قبل	Registratierechten betaald door
+دفع رسوم التسجيل	Betaling van de inschrijvingskosten
+قد قدم من جانب	Werd gepresenteerd door
+إرسال البحث	Zoekopdracht verzenden
+آخر موعد المحدد من اجل	De deadline voor opgegeven
+موعد أول يوم من المؤتمر	De datum van de eerste dag van de conferentie
+لديه السعر	Heeft een prijs
+لديه اسم الراعي	De naam van de opdrachtgever heeft
+موعد اليوم الأخير من المؤتمر	Datum van de laatste dag van de conferentie
+تنظيم المؤتمر	De organisatie van de conferentie
+مؤتمر منظم من قبل	Conferentie georganiseerd door
+لديه جائزة	Heeft de prijs
+الدعوة من اجل الراعي	Oproep voor sponsor
+جائزة متحصل عليها	Award vesting
+لديه آخر موعد لإرسال	Heeft de deadline voor het indienen van
+الرعاة مدعوين من قبل	Uitgenodigd door de sponsors
+تحديد آخر موعد	Geef de laatste datum
+ تحديد آخر موعد	 Geef de laatste datum
+ يقدم الوثيقة	 Een document indienen
+يقدم الوثيقة	Een document indienen

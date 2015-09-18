@@ -714,3 +714,315 @@ organise conférence	Konferenz
 soumettre l'article	Artikel einreichen
 a une date limite pour la soumission	hat eine Frist für die Einreichung
 appel à sponsor	Aufruf für sponsor
+premier auteur de contribution	des ersten Autors Beitrag
+personne qui a payé les frais d'inscription en avance	Person, die Gebühr für die Eintragung im Voraus bezahlt hat
+co-auteur de contribution	Co-Autor des Beitrags
+thématique	Thema
+date importante	wichtiges Datum
+contributeur de conférence	Konferenz-angemeldeter Benutzer
+annonce de conférence	Konferenzankündigung
+expertise de relecteur	Prüfer-Kompetenz
+contribution relue	Beitrag wiedergegeben
+personne qui a demandé à participer à une conférence	Person, die sich beworben hat, an einer Konferenz teilnehmen
+participant actif de conférence	aktiver Teilnehmer der Konferenz
+préférence de relecteur	Präferenz des Prüfers
+membre de comité	Mitglied des Ausschusses
+président de session d'atelier	Präsident der Workshop Teil
+candidat enregistré	registrierte Bewerber
+participant de conférence	Teilnehmer der Konferenz
+rapport d'examen	Prüfungsbericht
+personne qui a payé les frais d'inscription tardivement	Person, die die Anmeldegebühren spät bezahlt hat
+partie de conférence	Teil der Konferenz
+présentation de conférencier invité	Keynote-Präsentation
+volume de conférence	Tagungsband
+contribution ordinaire	ordentlicher Beitrag
+auteur ordinaire	regelmäßiger Autor
+document de conférence	Konferenzbeitrag
+contribution de conférence	Konferenz-Beitrag
+version finale de contribution	Finale Version des Beitrags
+personne qui a payé les frais d'inscription	Person, die die Teilnahmegebühr bezahlt hat
+participant passif de conférence	passiver Teilnehmer der Konferenz
+actes de conférence	Verfahren der Konferenz
+est la date de fin	ist das Enddatum
+a pour courriel	ein für E-mail
+est la date de soumission de résumé	ist der Termin für die Einreichung des abstrakten
+est la date de début	ist das Startdatum
+a pour date de publication	ein Datum der Veröffentlichung
+a pour nom	eine nach Namen
+est la date de soumission de la version finale	ist das Datum der Einreichung der Endversion
+a pour lieu	ein Ort für
+a pour url	eine URL
+a pour genre	eine Art
+a pour isbn	eine für isbn
+appartient au relecteur	gehört dem Bearbeiter
+fait la présentation	die Präsentation
+a été un président d'atelier de	wurde ein Präsident der Werkstatt des
+a pour éditeur	eine für Publisher
+appartient à une préférence du relecteur	gehört zu einer Bevorzugung des Bearbeiters
+a été attribué à une préférence de relecture	hat zu einer Bevorzugung von Korrekturlesen erhielt
+est une thématique d'une partie de la conférence	gehört zum Thema der Konferenz
+a été un membre de	ist Mitglied der
+est la date de notification de l'acceptation	ist das Datum der Benachrichtigung über die Annahme
+a pour prénom	eine für Vornamen
+a pour volume	eine für Volumen
+a pour expertise	eine Kompetenz
+a pour relecteur	ein Gutachter für
+a pour président d'atelier	eine für das Amt des Workshop
+est la date de soumission de la version complète	ist das Datum der Einreichung der Vollversion
+a pour degré	eine gewisse
+est dispensé par	wird durch bereitgestellt
+a pour auteur	hat der Autor
+a été un comité d'organisation de	wurde ein Organisationskomitee der
+a pour président de comité	Vorsitzender des Ausschusses hat
+publie	veröffentlicht
+a pour session	eine Sitzung
+a pour résumé	eine Zusammenfassung
+a pour soumission	ein für die Einreichung
+a pour membre	ein Mitglied
+a pour comité	ein Ausschuss
+est invité par	wird von eingeladen
+a pour atelier	ein Workshop
+a été un comité de programme de	wurde ein Programmausschuss des
+a été un comité de pilotage de	wurde ein Lenkungsausschuss des
+a pour co-président de comité	Co-Vorsitzender des Ausschusses
+a pour comité de pilotage	ein Lenkungsausschuss für
+a pour préférence ou pour expertise	eine Bevorzugung oder Know-how
+a pour date importante	eine für wichtige Termine
+invite le co-relecteur	Lädt der Co-Prüfer
+a pour comité de programme	hat das Programm Komitee
+fait partie du volume de conférence	Teil des Volumens der Konferenz
+a été un président de comité de	wurde ein Vorsitzender des Ausschusses der
+a pour contributions	eine für Beiträge
+a pour thématique ou pour soumission	ein Thema oder für die Einreichung
+a pour partie	ein Teil
+a pour sujet d'atelier	hat das Thema des Workshops
+a pour comité d'organisation	eine für das Organisationskomitee
+a pour tutoriel	ein Lernprogramm
+a été un comité de	wurde ein Ausschuss des
+contribue	trägt
+a pour expertise de relecteur	Rezensent Know-how hat
+évalue	ergibt
+a été un co-président de comité de	wurde ein Co-Vorsitzender des Ausschusses der
+président de conférence	Präsident der Konferenz
+président de comité de programme	Vorsitzender des Programmkomitees
+président adjoint de conférence	Konferenz-Stellvertreter
+méta-rapport d'examen	Meta-RapPort zu überprüfen
+résumé d'article	Zusammenfassung des Artikels
+membre de conférence	Mitglied Konferenz
+membre de comité de programme	Mitglied des Programmausschusses
+version complète d'article	Vollversion des Artikels
+proposition de relecture	Vorschlag für die Wiedergabe
+nombre de rapports d'examen par article	Anzahl der Berichte von Artikel
+url du logo	Logo-URL
+accepte les soumissions d'articles au format papier	akzeptiert Einreichungen in Papierform
+identifiant de l'article	Kennung des Artikels
+l'attribution de propositions aux relecteurs est initialisée par	die Zuweisung von Vorschlägen an die Prüfer wird durch initialisiert.
+ajuste la proposition de relecture	Passt den Wiedergabe-Vorschlag
+imprime les courriers de la manifestation	druckt die Buchstaben des Ereignisses
+a pour co-auteur	eine für Co-Autor
+est ajusté par	wird durch justiert
+a pour thématique	ein Thema
+met en place la réunion virtuelle	richtet das virtuelle Treffen
+est lu par le méta-relecteur	wird von der Meta-Rezensent gelesen
+affecte le rôle de relecteur externe à	wirkt sich die Rolle des externen Prüfers
+a pour décision	eine Entscheidung
+a été associé à	hat zugeordnet worden
+finalise l'attribution d'articles	Schließt die Zuordnung von Artikeln
+initialise l'attribution de propositions aux relecteurs de	Initialisiert die Zuweisung von Vorschlägen an die Prüfer des
+lit l'article	Bett-Artikel
+a pour membre du comité de programme	ein Mitglied des Programms Ausschuss für
+exécute les outils d'attribution d'articles de	Ausführen von Blogs benennen Tools von
+est affecté par l'administrateur	wird vom Administrator zugewiesen.
+accepte l'article	accept-Artikel
+les détails sont saisis par	die Details werden eingegeben
+saisit les détails de la conférence	erfasst die Informationen über die Konferenz
+soumet l'article	Artikel einreichen
+saisit les critères d'évaluation de	erfasst die Bewertungskriterien der
+signale un conflit d'intérêt pour	Gibt einen Interessenkonflikt für
+les exemplaires papier des courriers de la manifestation imprimés par	die gedruckte Kopien gedruckt mit der Ereignis-emails
+écrit l'article	schrieb den Artikel
+la réunion virtuelle activée par	der virtuelle Sitzung aktiviert, indem
+a un conflit d'intérêt à propos de	hat einen Interessenkonflikt im Zusammenhang mit
+a pour membre de conférence	ein Mitglied der Konferenz
+est accepté par	wird von akzeptiert
+l'attribution des articles finalisée par	die Zuordnung der Artikel abgeschlossen
+les outils d'attribution d'articles sont exécutés par	Verteilung der Elemente-Werkzeuge werden ausgeführt, indem
+est rejeté par	wird abgelehnt
+est affecté par le relecteur	der Rezensent betroffen.
+écrit le rapport d'examen	schriftliche Prüfungsbericht
+les critères d'évaluation sont remplis par	die Bewertungskriterien werden durch gefüllt.
+rejette l'article	lehnt der Artikel
+a pour proposition de relecture	einen Vorschlag für die Wiedergabe
+définit le nombre maximum d'articles de	legt die maximale Anzahl von Elementen des
+co-écrit l'article	Co-Autor Artikel
+est ajouté par	wird durch hinzugefügt
+finalise le processus de relecture	Schließt den Review-Prozess
+est lu par le relecteur	wird von den Rezensenten gelesen.
+affecte le rôle de relecteur à	wirkt sich die Rolle des Prüfers
+est assigné à	wird zugewiesen
+scientifique	Wissenschaftler
+bénévole	Freiwillige
+evénement de relecture	Wiedergabe-Ereignis
+événement de travail	Worker Ereignis
+universitaire	Universität
+participant ordinaire	regelmäßiger Teilnehmer
+evénement	Ereignis
+evénement d'envoi de version finale	endgültige Version-Adressetiketten-Ereignis
+evénement d'évaluation des résultats	Ereignis-Auswertung der Ergebnisse
+evénement social	gesellschaftliches Ereignis
+etudiant	Student
+evénement de soumission	Ereignisübermittlung
+membre	Mitglied
+evénement d'inscription des participants	Event-Registrierung der Teilnehmer
+adjoint	Assistentin
+evénement administratif	Administrative-Ereignis
+choix par défaut	Standardauswahl
+a pour téléphone	eine für Telefon
+a pour numéro de fax	eine Fax-Nr.
+choix max	Wahl-max
+se termine en	endet in
+a pour titre court	ein Kurztitel
+choix min	Wahl-min
+inscription anticipée	frühzeitige Anmeldung
+a pour titre	ein Titel
+a pour page web	eine Webseite
+a pour code postal	eine für Postleitzahl
+étudie à	studierte an der
+a pour pays	eine für die Länder
+se déroule en parallèle de	läuft parallel von
+est employé par	wird von verwendet
+est expert sur	ist ein Experte auf
+a pour rue	ein für die Straße
+a pour tva	eine für die Mehrwertsteuer
+courriel de contact	Kontakt e-mail
+a pour mot clé	ein Schlüsselwort
+a pour ville	ein für die Stadt
+a pour événement administratif	eine für administrative Ereignis
+traite de	Angebote
+commence en	startet im
+étudiant non orateur	Student nicht-Lautsprecher
+état d'un présentateur	Stand der Moderator
+minibus	Kleinbus
+orateur	Lautsprecher
+conférence d'une journée	eintägige Konferenz
+brève introduction de président de session	kurze Einführung des Vorsitzenden der Sitzung
+hôtel d'une conférence	ein Tagungshotel
+orateur d'un tutoriel	ein Lernprogramm Lautsprecher
+état d'une conférence	Zustand einer Konferenz
+recherche	Forschung
+date limite de soumission	Frist für die Einreichung
+formulaire d'information sur un auteur	ein Autor Informationsformular
+argent	Geld
+frais d'inscription d'auteur participant pour les actes au format papier	Autor, die Teilnahme für Handlungen in der Papier-Anmeldegebühr
+maison de présentateur	Moderator-Startseite
+ville de sponsor	Stadt des Sponsors
+frais d'inscription d'auteur participant pour les actes sur support numérique	Registrierung von Urheberrechten für Rechtsakte auf digitale Medien
+acceptation de manuscrit	Annahme des Manuskripts
+frais d'inscription d'auteur	Autor-Anmeldegebühr
+université de présentateur	Universität von Moderatorin
+jour de voyage	Tag der Reise
+chèque	Scheck
+ville de présentateur	Stadt der Moderator
+frais d'inscription de non membre	Teilnahmegebühr für Nichtmitglieder
+auteur ayant les actes sur support numérique	Autor, der auf digitale Medien
+date limite de dépôt de version finale de manuscrit	Frist für Einreichung der Endfassung des Manuskripts
+travailleur non orateur	Arbeitnehmer nicht Lautsprecher
+actes en support numérique	Handlungen im Digitalformat
+date limite d'inscription	Anmeldeschluss
+frais d'inscription de membre	Mitglied Anmeldegebühr
+date limite de notification d'acceptation	Frist für die Mitteilung der Annahme
+auteur ayant les actes au format papier	Autor, der in Papierform
+représentant	Vertreter
+réception de manuscrit	Erhalt des Manuskripts
+programme social	Rahmenprogramm
+location	Vermietung
+maître d'hôtel	Maître d ' Hôtel
+conférence plénière	Plenarvortrag
+visite guidée d'une journée complète	geführte Tour am Tag voll
+membre d'iasted	IASTED Mitglied
+aéroport de conférence	Konferenz-Flughafen
+activité ayant lieu avant une conférence	Aktivität vor einer Konferenz stattfinden
+date limite de réservation d'hôtel	Frist für die Hotelreservierung
+refus de manuscrit	Weigerung des Manuskripts
+taxe sur la valeur ajoutée	Mehrwert-Steuer
+activité ayant lieu pendant une conférence	während einer Konferenz stattfindenden Aktivitäten
+monnaie	Währung
+non orateur	Kein Lautsprecher
+dîner de gala	Gala-dinner
+frais d'inscription d'étudiant	Student-Anmeldegebühr
+orateur de conférence plénière	Plenum Lautsprecher
+non membre d'iasted	noch kein Mitglied bei iasted
+guide d'excursion de conférence	Konferenz-Reiseleiter
+ville de conférence	Stadt der Konferenz
+maison de société de sponsor	Haus der Sponsor Unternehmen
+formulaire d'inscription	Anmeldeformular
+introduction d'un orateur	Einführung eines Speakers
+présentateur salarié	selbständiger-Moderatorin
+simulation	Simulation
+activité ayant lieu après une conférence	Aktivitäten nach einer Konferenz
+bâtiment de conférence	Konferenzgebäude
+transparent	transparente
+formulaire de réservation de chambre d'hôtel	Hotel Zimmer Reservierungsformular
+état d'un sponsor	Zustand eines Sponsors
+pourboire	Tipp
+restaurant d'une conférence	Restaurant einer Konferenz
+jour de conférence	Tag der Konferenz
+président de session	Vorsitzender der Sitzung
+présentateur étudiant	Student-Moderatorin
+modélisation	Modellierung
+présentation d'accueil	Startseite Übersicht
+présentation d'orateur	Lautsprecher-Präsentation
+ville d'excursion	Stadt der Exkursion
+orateur pendant une journée	Sprecher eines Tages
+est utilisé par	wird von verwendet
+occupe	belegt
+est envoyé par	wird gesendet
+parle à	spricht mit
+est daté du	datiert aus
+est fait jusqu'à	besteht
+est donné à	wird gegeben
+est payé à	wird geschenkt
+est présent à	ist anwesend
+est donné par	ergibt sich aus
+est situé dans	befindet sich in
+est présent	ist vorhanden
+notification jusqu'à	Benachrichtigung an
+sponsor de bronze	Bronze sponsor
+exposant	Aussteller
+frais d'inscription de non-membre	Teilnahmegebühr für Nichtmitglieder
+date limite pour soumettre un résumé	Frist, ein Abstract einzureichen
+sponsor d'argent	Silber sponsor
+comité de sélection de meilleurs articles	Ausschuss für die Auswahl der besten blogs
+prix	Preis
+sponsor de meilleur article étudiant	Sponsor der beste Studentenzeitung
+date limite pour soumettre un article	Frist auf einen Artikel einreichen
+webmestre	Webmaster
+sponsor d'or	Gold-sponsor
+auteur d'article étudiant	Autor des Student-Abschnitt
+frais d'inscription de membre de sigkdd	SIGKDD Mitglied Anmeldegebühr
+prix de meilleur article de recherche	Bestes Papier-Forschungspreis
+prix de meilleur article étudiant	bester Schüler-Papier
+frais d'inscription de membre de sigmod	SIGMOD Mitglied Anmeldegebühr
+président général	Präsident general
+prix de meilleur article d'application	Award/beste Anwendung Papier
+sponsor de platine	Platin-sponsor
+membre de comité d'organisation	Mitglied des Organisationskomitee
+ville de la conférence	Stadt der Konferenz
+début de la conférence	Beginn der Konferenz
+nationalité	Staatsangehörigkeit
+décerne	Auszeichnungen
+définit	legt fest
+est décerné par	wird vergeben
+est présenté par	wird präsentiert von
+présente	präsentiert
+soumet	sendet
+nom de la conférence	Name der Konferenz
+fin de la conférence	Ende der Konferenz
+nom du sponsor	Name des Sponsors
+est démarché par	ist von umworben.
+paye	bezahlen
+est organisé par	wird organisiert von
+est soumis jusqu'à	unterliegt
+démarche	Ansatz
+est défini par	ist definiert durch
+peut rester sur	bleiben Sie auf

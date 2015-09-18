@@ -722,3 +722,9 @@ spricht (räumlich und zeitlich)	spreekt (ruimtelijke en temporele)
 registrierungsbeitrags ist währung	valuta is register bijdrage
 konferenz findet folgender stadt statt	Conferentie zal worden gehouden de volgende stad
 bleibt	blijft
+zusammenfassung eines konferenzbeitrags	Samenvatting een conferentie-bijdrage
+erweitertes zusammenfassung	uitgebreide samenvatting
+zusammenfassung	Samenvatting
+datum der einreichung des zusammenfassungen	datum van indiening van de samenvattingen
+hat zusammenfassung	heeft samenvatting
+deadline für die einreichung der zusammenfassung	uiterste datum voor indiening van de samenvatting

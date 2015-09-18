@@ -846,3 +846,5 @@ setup deadline for	termín instalace
 organized	organizoval
 stay	zůstat
 organize	uspořádat
+assistant	asistent
+reviews	Recenze

@@ -846,3 +846,5 @@ setup deadline for	Einrichtung-Frist für die
 organized	organisiert
 stay	Aufenthalt
 organize	organisieren
+assistant	Assistentin
+reviews	Bewertungen
