@@ -74,8 +74,9 @@ public class Translator
 		}
 		
 		lang = new HashMap<String,Language>();
-		lang.put("cn", Language.CHINESE_SIMPLIFIED);
-		lang.put("cz", Language.CZECH);
+		lang.put("ar", Language.ARABIC);
+		lang.put("zh", Language.CHINESE_SIMPLIFIED);
+		lang.put("cs", Language.CZECH);
 		lang.put("de", Language.GERMAN);
 		lang.put("en", Language.ENGLISH);
 		lang.put("es", Language.SPANISH);

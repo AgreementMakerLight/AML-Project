@@ -127,7 +127,7 @@ public class Dictionary
 			{
 				System.out.println("Not found: " + n);
 				trans = translator.translate(n, sourceLang, targetLang);
-				if(trans.startsWith("ArgumentException"))
+				if(trans.startsWith("ArgumentException") || trans.equals(""))
 					continue;
 				//Update the dictionary
 				dictionary.put(n, trans);
@@ -162,7 +162,7 @@ public class Dictionary
 				{
 					System.out.println("Not found: " + n);
 					trans = translator.translate(n, sourceLang, targetLang);
-					if(trans.startsWith("ArgumentException"))
+					if(trans.startsWith("ArgumentException") || trans.equals(""))
 						continue;
 					//Update the dictionary
 					dictionary.put(n, trans);
