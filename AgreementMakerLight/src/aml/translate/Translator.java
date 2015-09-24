@@ -84,6 +84,7 @@ public class Translator
 		lang.put("nl", Language.DUTCH);
 		lang.put("pt", Language.PORTUGUESE);
 		lang.put("ru", Language.RUSSIAN);
+		lang.put("it", Language.ITALIAN);
 	}
 
 //Public Methods
