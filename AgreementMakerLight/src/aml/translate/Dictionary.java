@@ -125,7 +125,7 @@ public class Dictionary
 			//Otherwise use the translator to make the translation
 			else if(useTranslator)
 			{
-				System.out.println("Not found: " + n);
+				System.out.println("Translating: " + n);
 				trans = translator.translate(n, sourceLang, targetLang);
 				if(trans.startsWith("ArgumentException") || trans.equals(""))
 					continue;
@@ -160,7 +160,7 @@ public class Dictionary
 				//Otherwise use the translator to make the translation
 				else if(useTranslator)
 				{
-					System.out.println("Not found: " + n);
+					System.out.println("Translating: " + n);
 					trans = translator.translate(n, sourceLang, targetLang);
 					if(trans.startsWith("ArgumentException") || trans.equals(""))
 						continue;
