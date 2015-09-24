@@ -110,12 +110,7 @@ public class AML
 //Constructors
 	
 	//It's private so that no other instances can be created 
-	private AML()
-	{
-		uris = new URIMap();
-		rels = new RelationshipMap();
-		bkSources = new Vector<String>();		
-	}
+	private AML(){}
 
 //Public Methods
 
@@ -137,6 +132,7 @@ public class AML
     {
     	source = null;
     	target = null;
+    	bk = null;
     	uris = null;
     	rels = null;
     	a = null;
@@ -150,6 +146,7 @@ public class AML
      */
     public void defaultConfig()
     {
+		bkSources = new Vector<String>();		
 		File ontRoot = new File(BK_PATH);
 		if(ontRoot.exists())
 		{
@@ -569,6 +566,7 @@ public class AML
 	
 	public void openOntologies(String src, String tgt) throws OWLOntologyCreationException
 	{
+		closeOntologies();
         //Initialize the URIMap and RelationshipMap
 		uris = new URIMap();
 		rels = new RelationshipMap();
@@ -611,6 +609,7 @@ public class AML
 	
 	public void openOntologies(URI src, URI tgt) throws OWLOntologyCreationException
 	{
+		closeOntologies();
         //Initialize the URIMap and RelationshipMap
 		uris = new URIMap();
 		rels = new RelationshipMap();
