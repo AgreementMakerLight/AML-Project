@@ -27,10 +27,12 @@ import java.util.Set;
 import java.util.Vector;
 
 import org.semanticweb.elk.owlapi.ElkReasonerFactory;
+import org.semanticweb.owlapi.model.AxiomType;
 import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
+import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataProperty;
@@ -493,7 +495,7 @@ public class Ontology2Match extends Ontology
 			int id = uris.addURI(propUri,EntityType.OBJECT);
 			//It is transitive, add it to the RelationshipMap
 			if(op.isTransitive(o))
-				aml.getRelationshipMap().setTransitive(id);
+				rm.setTransitive(id);
 			
 			//Get the local name from the URI
 			String name = getLocalName(propUri);
@@ -548,6 +550,46 @@ public class Ontology2Match extends Ontology
 				}
 			}
 			objectProperties.put(id, prop);
+    	}
+    	//Process "transitive over" relations
+    	//(This requires that all properties be indexed, and thus has to be done in a 2nd pass)
+    	for(OWLObjectProperty op : oProps)
+    	{
+			//In OWL, the OBO transitive_over relation is encoded as a sub-property chain of
+			//the form: "SubObjectPropertyOf(ObjectPropertyChain( <p1> <p2> ) <this_p> )"
+			//in which 'this_p' is usually 'p1' but can also be 'p2' (in case you want to
+			//define that another property is transitive over this one, which may happen when
+			//the other property is imported and this property occurs only in this ontology)
+			for(OWLAxiom e : op.getReferencingAxioms(o))
+			{
+				if(!e.isOfType(AxiomType.SUB_PROPERTY_CHAIN_OF))
+					continue;
+				//Unfortunately, there isn't much support for "ObjectPropertyChain"s in the OWL
+				//API, so the only way to get the referenced properties while preserving their
+				//order is to parse the String representation of the sub-property chain
+				//(getObjectPropertiesInSignature() does NOT preserve the order)
+				String[] chain = e.toString().split("[\\(\\)]");
+				//Make sure the structure of the sub-property chain is in the expected format
+				if(!chain[0].equals("SubObjectPropertyOf") || !chain[1].equals("ObjectPropertyChain"))
+					continue;
+				//Get the indexes of the tags surrounding the URIs
+				int index1 = chain[2].indexOf("<")+1;
+				int index2 = chain[2].indexOf(">");
+				int index3 = chain[2].lastIndexOf("<")+1;
+				int index4 = chain[2].lastIndexOf(">");
+				//Make sure the indexes check up
+				if(index1 < 0 || index2 <= index1 || index3 <= index2 || index4 <= index3)
+					continue;
+				String uri1 = chain[2].substring(index1,index2);
+				String uri2 = chain[2].substring(index3,index4);
+				int id1 = uris.getIndex(uri1);
+				int id2 = uris.getIndex(uri2);
+				//Make sure the URIs are listed object properties
+				if(!objectProperties.containsKey(id1) || !objectProperties.containsKey(id2))
+					continue;
+				//If everything checks up, add the relation to the transitiveOver map
+				rm.setTransitiveOver(id1, id2);
+			}
     	}
 	}
 
