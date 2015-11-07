@@ -35,8 +35,9 @@ public class RelationshipMap
 	
 //Attributes
 
-	//Set of transitive subclass properties
-	private HashSet<Integer> transitive;
+	//Map of object properties that are transitive over other object properties
+	//(transitive properties will be mapped to themselves)
+	private Table2Set<Integer,Integer> transitiveOver;
 	//Map between ancestor classes and their descendants (with transitive closure)
 	private Table3List<Integer,Integer,Relationship> descendantMap;
 	//Map between descendant classes and their ancestors (with transitive closure)
@@ -57,8 +58,8 @@ public class RelationshipMap
 	 */
 	public RelationshipMap()
 	{
-		transitive = new HashSet<Integer>();
-		transitive.add(-1);
+		transitiveOver = new Table2Set<Integer,Integer>();
+		//transitive.add(-1);
 		
 		descendantMap = new Table3List<Integer,Integer,Relationship>();
 		ancestorMap = new Table3List<Integer,Integer,Relationship>();
@@ -760,11 +761,11 @@ public class RelationshipMap
 	}
 	
 	/**
-	 * @return the set of transitive properties
+	 * @return the table of transitive properties
 	 */
-	public Set<Integer> getTransitiveProperties()
+	public Table2Set<Integer,Integer> getTransitiveProperties()
 	{
-		return transitive;
+		return transitiveOver;
 	}
 	
 	/**
@@ -834,7 +835,16 @@ public class RelationshipMap
 	 */
 	public void setTransitive(int prop)
 	{
-		transitive.add(prop);
+		transitiveOver.add(prop,prop);
+	}
+	
+	/**
+	 * @param prop1: the property to set as transitive over prop2
+	 * @param prop2: the property over which prop1 is transitive
+	 */
+	public void setTransitiveOver(int prop1, int prop2)
+	{
+		transitiveOver.add(prop1,prop2);
 	}
 	
 	/**
@@ -890,8 +900,7 @@ public class RelationshipMap
 								int p2 = r2.getProperty();
 								//We only do transitive closure if the property is the same (and transitive)
 								//for two relationships or one of the properties is 'is_a' (-1)
-								if((!transitive.contains(p2) && !transitive.contains(p1)) ||
-										(p1 != p2 && p1 != -1 && p2 != -1))
+								if(!(p1 == -1 || p2 == -1 || transitiveOver.contains(p2,p1)))
 									continue;
 								int dist = r1.getDistance() + r2.getDistance();
 								int prop;

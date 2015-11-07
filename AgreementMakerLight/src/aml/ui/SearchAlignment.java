@@ -14,8 +14,8 @@
 *******************************************************************************
 * Alignment search dialog box for the GUI.                                    *
 *                                                                             *
-* @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @author Daniel Faria, Catarina Martins                                      *
+* @date 19-10-2015                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -25,18 +25,23 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -97,8 +102,12 @@ public class SearchAlignment extends JDialog implements ActionListener
 			mappings.add(map);
 		}
 		searchField = new JTextArea(1,60);
-		searchField.setEditable(true);
-		AutoCompleteDecorator.decorate(searchField,mappings,false);
+		searchField.setEditable(true);    
+	    KeyStroke keyStroke = KeyStroke.getKeyStroke("ENTER");
+        Object actionKey = searchField.getInputMap(
+                JComponent.WHEN_FOCUSED).get(keyStroke);
+		searchField.getActionMap().put(actionKey, wrapper);
+        AutoCompleteDecorator.decorate(searchField,mappings,false);
 		JPanel selectionPanel = new JPanel();
 		selectionPanel.add(searchField);
 		cancel = new JButton("Cancel");
@@ -127,7 +136,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 	
 //Public Methods
 	
-	@Override
+	@Override	
 	public void actionPerformed(ActionEvent e)
 	{
 		Object o = e.getSource();
@@ -146,40 +155,55 @@ public class SearchAlignment extends JDialog implements ActionListener
 		}
 		else if(o == find)
 		{
-			//Get the entered text
-			String text = searchField.getText();
-			//Check that the user entered a valid input (at least 3 consecutive characters)
-			if(text.matches(".*[a-zA-Z0-9]{3,}.*"))
-			{
-				//If so, clean the input
-				text = text.toLowerCase().trim();
-				text = text.replaceAll("\t\n\f\r", " ");
-				//If the input is a listed mapping go there
-				int index = mappings.indexOf(text);
-				if(index > -1)
-				{
-					AML.getInstance().goTo(index);
-					this.dispose();
-				}
-				//Otherwise, search for it
-				else
-				{
-					search(text);
-					buildResultsPanel();
-			       	dialogPanel.add(resultsPanel, "Results");
-			        cl.show(dialogPanel, "Results");
-				}
-			}
-			else
-			{
-				JOptionPane.showMessageDialog(this, "Invalid input!\n" + 
-						"Please enter a word with at least three characters!",
-						"Error", JOptionPane.ERROR_MESSAGE); 
-			}
+			find();
 		}
+	}
+	
+	public void keyPressed(KeyEvent e)
+	{
+	    int key = e.getKeyCode();
+
+	    if(key == KeyEvent.VK_ENTER)
+	    {
+	    	find();
+	    }
 	}
 
 //Private Methods
+	
+	private void find()
+	{
+		//Get the entered text
+		String text = searchField.getText();
+		//Check that the user entered a valid input (at least 3 consecutive characters)
+		if(text.matches(".*[a-zA-Z0-9]{3,}.*"))
+		{
+			//If so, clean the input
+			text = text.toLowerCase().trim();
+			text = text.replaceAll("\t\n\f\r", " ");
+			//If the input is a listed mapping go there
+			int index = mappings.indexOf(text);
+			if(index > -1)
+			{
+				AML.getInstance().goTo(index);
+				this.dispose();
+			}
+			//Otherwise, search for it
+			else
+			{
+				search(text);
+				buildResultsPanel();
+		       	dialogPanel.add(resultsPanel, "Results");
+		        cl.show(dialogPanel, "Results");
+			}
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(this, "Invalid input!\n" + 
+					"Please enter a word with at least three characters!",
+					"Error", JOptionPane.ERROR_MESSAGE); 
+		}
+	}
 	
 	private void search(String query)
 	{
@@ -254,4 +278,15 @@ public class SearchAlignment extends JDialog implements ActionListener
 			resultsPanel.add(buttonPanel);
 		}
 	}
+	
+	private Action wrapper = new AbstractAction()
+	{
+		private static final long serialVersionUID = 424525650588931780L;
+
+		@Override
+        public void actionPerformed(ActionEvent ae)
+        {
+            find.doClick();
+        }
+    };
 }
