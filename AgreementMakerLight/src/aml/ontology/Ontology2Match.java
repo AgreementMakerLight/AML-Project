@@ -15,7 +15,7 @@
 * An Ontology object, loaded using the OWL API.                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 13-08-2015                                                            *
+* @date 06-11-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
@@ -23,6 +23,7 @@ import java.io.File;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
@@ -37,6 +38,7 @@ import org.semanticweb.owlapi.model.OWLDataProperty;
 import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
 import org.semanticweb.owlapi.model.OWLDataRange;
 import org.semanticweb.owlapi.model.OWLDatatype;
+import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
@@ -71,6 +73,8 @@ public class Ontology2Match extends Ontology
 	private HashMap<Integer,DataProperty> dataProperties;
 	//The map of indexes (Integer) -> Object Properties in the ontology
 	private HashMap<Integer,ObjectProperty> objectProperties;
+	//The map of indexes (Integer) -> Individuals in the ontology
+	private HashMap<Integer,Individual> individuals;
 	//Its word lexicon
 	private WordLexicon wLex;
 	//Its set of obsolete classes
@@ -99,6 +103,7 @@ public class Ontology2Match extends Ontology
 		classNames = new HashMap<String,Integer>();
 		dataProperties = new HashMap<Integer,DataProperty>();
 		objectProperties = new HashMap<Integer,ObjectProperty>();
+		individuals = new HashMap<Integer,Individual>();
 		obsolete = new HashSet<Integer>();
 		wLex = null;
 		aml = AML.getInstance();
@@ -227,7 +232,24 @@ public class Ontology2Match extends Ontology
 	{
 		return classNames.get(name);
 	}	
+
+	/**
+	 * @return the indexes of the Individuals in the Ontology
+	 */
+	public Set<Integer> getIndividuals()
+	{
+		return individuals.keySet();
+	}
 	
+	/**
+	 * @param index: the index of the Individual to get
+	 * @return the Individual with the given index in the Ontology
+	 */
+	public Individual getIndividual(int index)
+	{
+		return individuals.get(index);
+	}
+
 	/**
 	 * @return the Lexicon of the Ontology
 	 */
@@ -289,6 +311,14 @@ public class Ontology2Match extends Ontology
 	}
 	
 	/**
+	 * @return the number of Individuals in the Ontology
+	 */
+	public int individualCount()
+	{
+		return individuals.size();
+	}
+	
+	/**
 	 * @param index: the index of the URI in the ontology
 	 * @return whether the index corresponds to an obsolete class
 	 */
@@ -305,7 +335,7 @@ public class Ontology2Match extends Ontology
 		return objectProperties.size();
 	}
 
-	
+
 //Private Methods	
 
 	//Builds the ontology data structures
@@ -321,6 +351,8 @@ public class Ontology2Match extends Ontology
 		//Extend the Lexicon
 		lex.generateStopWordSynonyms();
 		lex.generateParenthesisSynonyms();
+		//Get the individuals
+		getNamedIndividuals(o);
 		//Build the relationship map
 		getRelationships(o);
 	}
@@ -550,7 +582,60 @@ public class Ontology2Match extends Ontology
 			objectProperties.put(id, prop);
     	}
 	}
+	
+	//Processes the named individuals and their data property values
+	//@author Catia Pesquita
+	private void getNamedIndividuals(OWLOntology o)
+	{
+		//The label property
+		OWLAnnotationProperty label = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
+		//Get an iterator over the ontology classes
+		Set<OWLNamedIndividual> indivs = o.getIndividualsInSignature();
+		//Then get the URI for each class
+		for(OWLNamedIndividual i : indivs)
+		{
+			String indivUri = i.getIRI().toString();
+			//Note that this should never happen as a named individual must
+			//have an URI by definition, but better safe than sorry
+			if(indivUri == null)
+				continue;
+			//Add it to the global list of URIs
+			int id = uris.addURI(indivUri, EntityType.INDIVIDUAL);
+			//Get the local name from the URI
+			String name = "";
+			for(OWLAnnotation a : i.getAnnotations(o,label))
+			{
+				if(a.getValue() instanceof OWLLiteral)
+				{
+					OWLLiteral val = (OWLLiteral) a.getValue();
+					name = val.getLiteral();
+					break;
+				}
+			}
+			if(name.equals(""))
+				name = getLocalName(indivUri);
 
+			Individual indiv = new Individual(id,name);
+			individuals.put(id,indiv);
+
+			//Get the data properties associated with the individual and their values
+			Map<OWLDataPropertyExpression,Set<OWLLiteral>> dataPropValues = i.getDataPropertyValues(o);
+			for(OWLDataPropertyExpression prop : dataPropValues.keySet())
+			{
+				//Check that the data property expression is a named data property
+				if(prop.isAnonymous())
+					continue;
+				//And if so, process its URI
+				int propIndex = uris.getIndex(prop.asOWLDataProperty().getIRI().toString());
+				if(propIndex == -1)
+					continue;
+				//Then get its values for the individual
+				for(OWLLiteral val : dataPropValues.get(prop))
+					indiv.addDataValue(propIndex, val.getLiteral());
+			}	
+		}
+	}
+	
 	//Reads all class relationships
 	private void getRelationships(OWLOntology o)
 	{
@@ -578,14 +663,14 @@ public class Ontology2Match extends Ontology
 		objectAllValues = new Table2Map<Integer,Integer,Integer>();
 		objectSomeValues = new Table2Map<Integer,Integer,Integer>();
 		
+		//I - Relationships envolving classes
 		//Get an iterator over the ontology classes
 		Set<OWLClass> classes = o.getClassesInSignature(true);
-		//For each term index (from 'termURIs' list)
+		//For each class index
 		for(OWLClass c : classes)
 		{
-			//Get the identifier of the child
+			//Get its identifier
 			int child = uris.getIndex(c.getIRI().toString());
-			int parent;
 			if(child == -1)
 				continue;
 			
@@ -595,7 +680,7 @@ public class Ontology2Match extends Ontology
 				Set<OWLClass> parents = reasoner.getSuperClasses(c, true).getFlattened();
 				for(OWLClass par : parents)
 				{
-					parent = uris.getIndex(par.getIRI().toString());
+					int parent = uris.getIndex(par.getIRI().toString());
 					if(parent > -1)
 					{
 						rm.addDirectSubclass(child, parent);
@@ -610,7 +695,7 @@ public class Ontology2Match extends Ontology
 				Node<OWLClass> equivs = reasoner.getEquivalentClasses(c);
 				for(OWLClass eq : equivs)
 				{
-					parent = uris.getIndex(eq.getIRI().toString());
+					int parent = uris.getIndex(eq.getIRI().toString());
 					if(parent > -1 && parent != child)
 						rm.addEquivalentClass(child, parent);
 				}
@@ -630,6 +715,18 @@ public class Ontology2Match extends Ontology
 			for(OWLClassExpression e : equivClasses)
 				addRelationship(o,c,e,false,false);
 			
+			//Get the individuals that belong to the class
+			//@author: Catia Pesquita
+			Set<OWLIndividual> indivs = c.getIndividuals(o);
+			for(OWLIndividual i : indivs)
+			{
+				if(i.isNamed())
+				{
+					int ind = uris.getIndex(((OWLNamedIndividual)i).getIRI().toString());
+					rm.addDirectSubclass(ind, child);
+				}
+			}
+			
 			//Get the syntactic disjoints
 			Set<OWLClassExpression> disjClasses = c.getDisjointClasses(o);
 			for(OWLOntology ont : o.getDirectImports())
@@ -641,29 +738,29 @@ public class Ontology2Match extends Ontology
 				//If it is a class, process it
 				if(type.equals(ClassExpressionType.OWL_CLASS))
 				{
-					parent = uris.getIndex(dClass.asOWLClass().getIRI().toString());
+					int parent = uris.getIndex(dClass.asOWLClass().getIRI().toString());
 					if(parent > -1)
 						rm.addDisjoint(child, parent);
 				}
 				//If it is a union, process it
-				if(type.equals(ClassExpressionType.OBJECT_UNION_OF))
+				else if(type.equals(ClassExpressionType.OBJECT_UNION_OF))
 				{
 					Set<OWLClass> dc = dClass.getClassesInSignature();
 					for(OWLClass ce : dc)
 					{
-						parent = uris.getIndex(ce.getIRI().toString());
+						int parent = uris.getIndex(ce.getIRI().toString());
 						if(parent > -1)
 							rm.addDisjoint(child, parent);
 					}
 				}
 				//If it is an intersection, check for common descendants
-				if(type.equals(ClassExpressionType.OBJECT_INTERSECTION_OF))
+				else if(type.equals(ClassExpressionType.OBJECT_INTERSECTION_OF))
 				{
 					Set<OWLClass> dc = dClass.getClassesInSignature();
 					HashSet<Integer> intersect = new HashSet<Integer>();
 					for(OWLClass ce : dc)
 					{
-						parent = uris.getIndex(ce.getIRI().toString());
+						int parent = uris.getIndex(ce.getIRI().toString());
 						if(parent > -1)
 							intersect.add(parent);
 					}
@@ -841,7 +938,38 @@ public class Ontology2Match extends Ontology
 		objectAllValues = null;
 		objectSomeValues = null;
 		
-		//Finally process relationships between properties
+		//II - Relationships between named individuals
+		//@author: Catia Pesquita
+		//Get an iterator over the named individuals
+		Set<OWLNamedIndividual> individuals = o.getIndividualsInSignature();
+		for(OWLNamedIndividual i : individuals)
+		{
+			//Get the numeric id for each individual
+			int namedIndivId = uris.getIndex(i.getIRI().toString());
+			if(namedIndivId == -1)
+				continue;
+			
+			Map<OWLObjectPropertyExpression, Set<OWLIndividual>> iProps = i.getObjectPropertyValues(o);
+			for(OWLObjectPropertyExpression prop : iProps.keySet())
+			{
+				if(prop.isAnonymous())
+					continue;
+
+				int propIndex = uris.getIndex(prop.asOWLObjectProperty().getIRI().toString());
+				if(propIndex == -1)
+					continue;
+				for(OWLIndividual rI : iProps.get(prop))
+				{
+					if(rI.isNamed())
+					{
+						int namedRelIndivId = uris.getIndex(rI.asOWLNamedIndividual().getIRI().toString());
+						rm.addDirectRelationship(namedIndivId, namedRelIndivId, propIndex, false);
+					}
+				}
+			}
+		}
+		
+		//III - Relationships between properties
 		//Data Properties
 		Set<OWLDataProperty> dProps = o.getDataPropertiesInSignature(true);
     	for(OWLDataProperty dp : dProps)
@@ -893,6 +1021,7 @@ public class Ontology2Match extends Ontology
 		return uri.substring(index);
 	}
 	
+	//Add a relationship between two classes to the RelationshipMap
 	private void addRelationship(OWLOntology o, OWLClass c, OWLClassExpression e, boolean sub, boolean inverse)
 	{
 		int child = uris.getIndex(c.getIRI().toString());
