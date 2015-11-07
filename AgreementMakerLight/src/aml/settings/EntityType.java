@@ -23,7 +23,7 @@ package aml.settings;
 public enum EntityType
 {
 	CLASS ("Class"),
-	INSTANCE ("Instance"),
+	INDIVIDUAL ("Individual"),
     DATA ("Data Property"),
     OBJECT ("Object Property"),
     ANNOTATION ("Annotation Property");
