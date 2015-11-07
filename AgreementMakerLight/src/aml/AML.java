@@ -79,7 +79,7 @@ public class AML
 	private double recall;
 	private double fMeasure;
 	//General matching settings
-	private boolean useReasoner = true;
+	private boolean useReasoner = false;
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
     private LanguageSetting lang;
@@ -110,7 +110,12 @@ public class AML
 //Constructors
 	
 	//It's private so that no other instances can be created 
-	private AML(){}
+	private AML()
+	{
+        //Initialize the URIMap and RelationshipMap
+		uris = new URIMap();
+		rels = new RelationshipMap();
+	}
 
 //Public Methods
 
@@ -577,8 +582,9 @@ public class AML
 		source = new Ontology2Match(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
-		System.out.println("Classes: " + source.classCount());	
+		System.out.println("Classes: " + source.classCount());
 		System.out.println("Names: " + source.getLexicon().size());
+		System.out.println("Individuals: " + source.individualCount());
 		System.out.println("Properties: " + (source.dataPropertyCount()+source.objectPropertyCount()));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
@@ -587,6 +593,7 @@ public class AML
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.classCount());
 		System.out.println("Names: " + target.getLexicon().size());
+		System.out.println("Individuals: " + target.individualCount());
 		System.out.println("Properties: " + (target.dataPropertyCount()+target.objectPropertyCount()));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
@@ -622,6 +629,7 @@ public class AML
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.classCount());	
 		System.out.println("Names: " + source.getLexicon().size());
+		System.out.println("Individuals: " + source.individualCount());
 		System.out.println("Properties: " + (source.dataPropertyCount()+source.objectPropertyCount()));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
@@ -630,6 +638,7 @@ public class AML
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.classCount());
 		System.out.println("Names: " + target.getLexicon().size());
+		System.out.println("Individuals: " + target.individualCount());
 		System.out.println("Properties: " + (target.dataPropertyCount()+target.objectPropertyCount()));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
