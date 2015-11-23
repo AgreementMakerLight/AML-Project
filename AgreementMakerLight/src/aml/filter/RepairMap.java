@@ -147,7 +147,7 @@ public class RepairMap
 	private void init()
 	{
 		System.out.println("Building Repair Map");
-		long time = System.currentTimeMillis()/1000;
+		long globalTime = System.currentTimeMillis()/1000;
 		//Initialize the data structures
 		classList = new HashSet<Integer>();
 		checkList = new HashSet<Integer>();
@@ -171,42 +171,61 @@ public class RepairMap
 		for(Integer i : a.getTargets())
 			if(AML.getInstance().getURIMap().isClass(i))
 				classList.add(i);
+		
 		//Then build the checkList
+		long localTime = System.currentTimeMillis()/1000;
 		buildCheckList();
-		System.out.println("Computed check list: " + checkList.size()
-				+ " classes to check");
+		System.out.println("Computed check list in " + 
+				(System.currentTimeMillis()/1000-localTime) + " seconds");
+		HashSet<Integer> t = new HashSet<Integer>(classList);
+		t.addAll(checkList);
+		System.out.println("Core fragments: " + t.size() + " classes");
+		t.clear();
+		System.out.println("Check list: " + checkList.size() + " classes to check");
+		
 		//Build the ancestorMap with transitive closure
+		localTime = System.currentTimeMillis()/1000;
 		buildAncestorMap();
-		System.out.println("Computed ancestral paths: " + pathCount +
-				" paths to process");
+		System.out.println("Computed ancestral paths in " + 
+				(System.currentTimeMillis()/1000-localTime) + " seconds");
+		System.out.println("Paths to process: " + pathCount);
+		
 		//And finally, get the list of conflict sets
+		localTime = System.currentTimeMillis()/1000;
 		buildConflictSets();
-		System.out.println("Computed minimal conflict sets: " +
-				conflictSets.size() + " sets of mappings");
+		System.out.println("Computed minimal conflict sets in " + 
+				(System.currentTimeMillis()/1000-localTime) + " seconds");
+		System.out.println("Sets of conflicting mappings: " + conflictSets.size());
 		System.out.println("Repair Map finished in " +
-				(System.currentTimeMillis()/1000-time) + " seconds");
+				(System.currentTimeMillis()/1000-globalTime) + " seconds");
 	}
 	
 	//Computes the list of classes that must be checked for coherence
 	private void buildCheckList()
 	{
 		//Start with the descendants of classList classes that have
-		//at least 2 parents, both of which have a classList class
-		//in their ancestral line
+		//either 2+ parents with a classList class in their ancestral
+		//line or are involved in a disjoint class and have 1+ parents
 		HashSet<Integer> descList = new HashSet<Integer>();
 		for(Integer i: classList)
 		{
 			//Get the subClasses of classList classes
 			for(Integer j : rels.getSubClasses(i,false))
 			{
-				//Exclude those that have less than two parents
+				//Count their parents
 				Set<Integer> pars = rels.getSuperClasses(j, true);
-				if(pars.size() < 2)
+				//Check if they have a disjoint clause
+				int hasDisjoint = 0;
+				if(rels.hasDisjoint(j))
+					hasDisjoint = 1;
+				//Exclude those that don't have at least two parents
+				//or a parent and a disjoint clause
+				if(pars.size() + hasDisjoint < 2)
 					continue;
 				//Count the classList classes in the ancestral
 				//line of each parent (or until two parents with
 				//classList ancestors are found)
-				int count = 0;
+				int count = hasDisjoint;
 				for(Integer k : pars)
 				{
 					if(classList.contains(k))
@@ -258,6 +277,11 @@ public class RepairMap
 			for(Integer j : rels.getSuperClasses(i,false))
 				if(classList.contains(j))
 					p.add(j);
+			//Put the class itself in the path if it
+			//is also in classList
+			if(classList.contains(i))
+				p.add(i);			
+			
 			boolean add = true;
 			//Check if any of the selected classes
 			for(int j = 0; j < desc.size() && add; j++)
@@ -438,6 +462,12 @@ public class RepairMap
 				}
 			}
 		}
+		//Finally add relations between checkList classes and
+		//themselves when they are involved in disjoint clauses
+		//(to support the buildClassConflicts method)
+		for(Integer i : checkList)
+			if(rels.hasDisjoint(i))
+				ancestorMap.add(i, i, new Path());
 	}
 	
 	//Adds a relation to the ancestorMap (and pathLengths)
@@ -523,6 +553,10 @@ public class RepairMap
 			if(rels.hasDisjoint(i))
 				disj.add(i);
 		
+		//Plus the class itself, if it has a disjoint clause
+		if(rels.hasDisjoint(classId))
+			disj.add(classId);	
+		
 		//Then test each pair of ancestors for disjointness
 		Vector<Path> classConflicts = new Vector<Path>();
 		for(Integer i : disj)
@@ -531,6 +565,7 @@ public class RepairMap
 			{
 				if(i > j || !disj.contains(j))
 					continue;
+				
 				for(Path p : ancestorMap.get(classId, i))
 				{
 					for(Path q : ancestorMap.get(classId, j))

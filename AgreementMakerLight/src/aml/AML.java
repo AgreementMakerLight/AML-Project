@@ -79,7 +79,7 @@ public class AML
 	private double recall;
 	private double fMeasure;
 	//General matching settings
-	private boolean useReasoner = false;
+	private boolean useReasoner = true;
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
     private LanguageSetting lang;
