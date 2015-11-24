@@ -148,6 +148,15 @@ public class URIMap
 	
 	/**
 	 * @param index: the index of the Ontology entity
+	 * @return whether the entity is an Individual
+	 */
+	public boolean isIndividual(int index)
+	{
+		return indexType.get(index).equals(EntityType.INDIVIDUAL);
+	}	
+	
+	/**
+	 * @param index: the index of the Ontology entity
 	 * @return whether the entity is a Property
 	 */
 	public boolean isProperty(int index)
