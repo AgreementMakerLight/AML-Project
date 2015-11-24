@@ -12,11 +12,12 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The map of relationships in an Ontology, including 'is a' and 'part of'     *
-* relationships and disjoint clauses.                                         *
+* The map of relationships in an Ontology, including relationships between    *
+* classes (hierarchical and disjoint), between individuals and classes,       *
+* between individuals, and between properties.                                *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 13-08-2015                                                            *
+* @date 24-11-2015                                                            *
 ******************************************************************************/
 package aml.ontology;
 
@@ -28,6 +29,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.util.Table2Set;
 import aml.util.Table3List;
+import aml.util.Table3Set;
 
 
 public class RelationshipMap
@@ -35,21 +37,31 @@ public class RelationshipMap
 	
 //Attributes
 
-	//Map of object properties that are transitive over other object properties
-	//(transitive properties will be mapped to themselves)
-	private Table2Set<Integer,Integer> transitiveOver;
-	//Map between ancestor classes and their descendants (with transitive closure)
-	private Table3List<Integer,Integer,Relationship> descendantMap;
-	//Map between descendant classes and their ancestors (with transitive closure)
-	private Table3List<Integer,Integer,Relationship> ancestorMap;
-	//Map between disjoint classes (direct only)
-	private Table2Set<Integer,Integer> disjointMap;
+	//Relationships between classes
+	//Hierarchical relations and property restrictions (with transitive closure)
+	private Table3List<Integer,Integer,Relationship> ancestorMap; //Class -> Ancestor -> Relationship
+	private Table3List<Integer,Integer,Relationship> descendantMap;	//Class -> Descendant -> Relationship
+	//Disjointness (direct only, no transitive closure)
+	private Table2Set<Integer,Integer> disjointMap; //Class -> Disjoint Classes
+	
+	//Relationships between individuals and classes (with transitive closure)
+	private Table2Set<Integer,Integer> instanceOfMap; //Individual -> Class 
+	private Table2Set<Integer,Integer> hasInstanceMap; //Class -> Individual
+
+	//Relationships between individuals
+	private Table3Set<Integer,Integer,Integer> ancestorIndividuals; //'Child' -> Property -> 'Parent'
+	private Table3Set<Integer,Integer,Integer> descendantIndividuals; //'Parent' -> Property -> 'Child'
+
+	//Relationships between properties
+	//Hierarchical and inverse relations
+	private Table2Set<Integer,Integer> subProp; //Property -> SubProperty
+	private Table2Set<Integer,Integer> superProp; //Property -> SuperProperty
+	private Table2Set<Integer,Integer> inverseProp; //Property -> InverseProperty
+	//Transitivity relations (transitive properties will be mapped to themselves)
+	private Table2Set<Integer,Integer> transitiveOver; //Property1 -> Property2 over which 1 is transitive
+	
 	//List of high level classes
 	private HashSet<Integer> highLevelClasses;
-	//Map between properties and their parents and inverses
-	private Table2Set<Integer,Integer> subProp;
-	private Table2Set<Integer,Integer> superProp;
-	private Table2Set<Integer,Integer> inverseProp;
 	
 //Constructors
 
@@ -58,131 +70,43 @@ public class RelationshipMap
 	 */
 	public RelationshipMap()
 	{
-		transitiveOver = new Table2Set<Integer,Integer>();
-		//transitive.add(-1);
-		
 		descendantMap = new Table3List<Integer,Integer,Relationship>();
 		ancestorMap = new Table3List<Integer,Integer,Relationship>();
 		disjointMap = new Table2Set<Integer,Integer>();
-		
+		instanceOfMap = new Table2Set<Integer,Integer>();
+		hasInstanceMap = new Table2Set<Integer,Integer>();
+		ancestorIndividuals = new Table3Set<Integer,Integer,Integer>();		
+		descendantIndividuals = new Table3Set<Integer,Integer,Integer>();		
 		subProp = new Table2Set<Integer,Integer>();
 		superProp = new Table2Set<Integer,Integer>();
 		inverseProp = new Table2Set<Integer,Integer>();
+		transitiveOver = new Table2Set<Integer,Integer>();
 	}
 	
 //Public Methods
 
 	/**
-	 * Adds a relationship between two classes with a given distance and type
+	 * Adds a direct relationship between two classes with a given property and restriction
 	 * @param child: the index of the child class
 	 * @param parent: the index of the parent class
 	 * @param distance: the distance (number of edges) between the classes
 	 * @param prop: the property in the subclass relationship
 	 * @param rest: the restriction in the subclass relationship
 	 */
-	public void addDirectRelationship(int child, int parent, int prop, boolean rest)
+	public void addClassRelationship(int child, int parent, int prop, boolean rest)
 	{
-		//Create the relationship
-		Relationship r = new Relationship(1,prop,rest);
-		//Then update the MultiMaps
-		descendantMap.add(parent,child,r);
-		ancestorMap.add(child,parent,r);
+		addClassRelationship(child,parent,1,prop,rest);
 	}
 	
 	/**
-	 * Adds a direct 'is_a' relationship between two classes
-	 * @param child: the index of the child class
-	 * @param parent: the index of the parent class
-	 */
-	public void addDirectSubclass(int child, int parent)
-	{
-		addDirectRelationship(child,parent,-1,false);
-	}
-	
-	/**
-	 * Adds a new disjoint clause between two classes if it doesn't exist
-	 * @param one: the index of the first disjoint class
-	 * @param two: the index of the second disjoint class
-	 */
-	public void addDisjoint(int one, int two)
-	{
-		if(one != two && !areDisjoint(one,two))
-		{
-			//The disjointMap keeps disjoint clauses in both directions
-			disjointMap.add(one, two);
-			disjointMap.add(two, one);
-		}
-	}
-	
-	/**
-	 * Adds an equivalence relationship between two classes with a given property
-	 * @param class1: the index of the first equivalent class
-	 * @param class2: the index of the second equivalent class
-	 * @param prop: the property in the subclass relationship
-	 * @param rest: the restriction in the subclass relationship
-	 */
-	public void addEquivalence(int class1, int class2, int prop, boolean rest)
-	{
-		//Create the relationship
-		Relationship r = new Relationship(0,prop,rest);
-		//Add it to the descendant map in both directions
-		descendantMap.add(class1,class2,r);
-		//Then to the ancestor map in both directions
-		ancestorMap.add(class2,class1,r);
-	}
-	
-	/**
-	 * Adds an equivalence relationship between two classes
-	 * @param class1: the index of the first equivalent class
-	 * @param class2: the index of the second equivalent class
-	 */
-	public void addEquivalentClass(int class1, int class2)
-	{
-		//Create the relationship
-		Relationship r = new Relationship(0,-1,false);
-		//Add it to the ancestor map in both directions
-		descendantMap.add(class1,class2,r);
-		descendantMap.add(class2,class1,r);
-		//Then to the ancestor map in both directions
-		ancestorMap.add(class1,class2,r);
-		ancestorMap.add(class2,class1,r);
-	}
-	
-	/**
-	 * Adds a new inverse relationship between two properties if it doesn't exist
-	 * @param one: the index of the first property
-	 * @param two: the index of the second property
-	 */
-	public void addInverseProp(int one, int two)
-	{
-		if(one != two)
-		{
-			inverseProp.add(one, two);
-			inverseProp.add(two, one);
-		}
-	}
-	
-	/**
-	 * Adds a relationship between two properties
-	 * @param child: the index of the child property
-	 * @param parent: the index of the parent property
-	 */
-	public void addPropertyRel(int child, int parent)
-	{
-		//Then update the MultiMaps
-		subProp.add(parent,child);
-		superProp.add(child,parent);
-	}
-	
-	/**
-	 * Adds a relationship between two classes with a given distance and property
+	 * Adds a relationship between two classes with a given distance, property and restriction
 	 * @param child: the index of the child class
 	 * @param parent: the index of the parent class
 	 * @param distance: the distance (number of edges) between the classes
 	 * @param prop: the property in the subclass relationship
 	 * @param rest: the restriction in the subclass relationship
 	 */
-	public void addRelationship(int child, int parent, int distance, int prop, boolean rest)
+	public void addClassRelationship(int child, int parent, int distance, int prop, boolean rest)
 	{
 		//Create the relationship
 		Relationship r = new Relationship(distance,prop,rest);
@@ -192,35 +116,137 @@ public class RelationshipMap
 	}
 	
 	/**
-	 * Adds a relationship between two classs
+	 * Adds a direct hierarchical relationship between two classes
 	 * @param child: the index of the child class
 	 * @param parent: the index of the parent class
-	 * @param rel: the relationship between the classs
 	 */
-	public void addRelationship(int child, int parent, Relationship rel)
+	public void addDirectSubclass(int child, int parent)
 	{
-		//Update the MultiMaps
-		descendantMap.add(parent,child,rel);
-		ancestorMap.add(child,parent,rel);
+		addClassRelationship(child,parent,1,-1,false);
 	}
 	
 	/**
-	 * @param one: the first class to check for disjointness
-	 * @param two: the second class to check for disjointness
+	 * Adds a new disjointness relations between two classes
+	 * @param class1: the index of the first disjoint class
+	 * @param class2: the index of the second disjoint class
+	 */
+	public void addDisjoint(int class1, int class2)
+	{
+		if(class1 != class2 && !areDisjoint(class1,class2))
+		{
+			//The disjointMap keeps disjoint clauses in both directions
+			disjointMap.add(class1, class2);
+			disjointMap.add(class2, class1);
+		}
+	}
+	
+	/**
+	 * Adds an equivalence relationship between two classes with a given property and restriction
+	 * @param class1: the index of the first equivalent class
+	 * @param class2: the index of the second equivalent class
+	 * @param prop: the property in the subclass relationship
+	 * @param rest: the restriction in the subclass relationship
+	 */
+	public void addEquivalence(int class1, int class2, int prop, boolean rest)
+	{
+		addClassRelationship(class1,class2,0,prop,rest);
+	}
+	
+	/**
+	 * Adds an equivalence relationship between two classes
+	 * @param class1: the index of the first equivalent class
+	 * @param class2: the index of the second equivalent class
+	 */
+	public void addEquivalentClass(int class1, int class2)
+	{
+		//Add the relationship in both directions
+		addClassRelationship(class1,class2,0,-1,false);
+		addClassRelationship(class2,class1,0,-1,false);
+	}
+	
+	/**
+	 * Adds a relationship between two individuals through a given property
+	 * @param indiv1: the index of the first individual
+	 * @param prop: the property in the relationship
+	 * @param indiv2: the index of the second individual
+	 */
+	public void addIndividualRelationship(int indiv1, int prop, int indiv2)
+	{
+		ancestorIndividuals.add(indiv1,prop,indiv2);
+		descendantIndividuals.add(indiv2,prop,indiv1);
+	}
+	
+	/**
+	 * Adds an instantiation relationship between an individual and a class
+	 * @param individualId: the index of the individual
+	 * @param classId: the index of the class
+	 */
+	public void addInstance(int individualId, int classId)
+	{
+		instanceOfMap.add(individualId,classId);
+		hasInstanceMap.add(classId,individualId);
+	}
+	
+	/**
+	 * Adds a new inverse relationship between two properties if it doesn't exist
+	 * @param property1: the index of the first property
+	 * @param property2: the index of the second property
+	 */
+	public void addInverseProp(int property1, int property2)
+	{
+		if(property1 != property2)
+		{
+			inverseProp.add(property1, property2);
+			inverseProp.add(property2, property1);
+		}
+	}
+	
+	/**
+	 * Adds a relationship between two properties
+	 * @param child: the index of the child property
+	 * @param parent: the index of the parent property
+	 */
+	public void addSubProperty(int child, int parent)
+	{
+		//Then update the MultiMaps
+		subProp.add(parent,child);
+		superProp.add(child,parent);
+	}
+	
+	/**
+	 * @param prop: the property to set as transitive
+	 */
+	public void addTransitive(int prop)
+	{
+		transitiveOver.add(prop,prop);
+	}
+	
+	/**
+	 * @param prop1: the property to set as transitive over prop2
+	 * @param prop2: the property over which prop1 is transitive
+	 */
+	public void addTransitiveOver(int prop1, int prop2)
+	{
+		transitiveOver.add(prop1,prop2);
+	}
+	
+	/**
+	 * @param class1: the first class to check for disjointness
+	 * @param class2: the second class to check for disjointness
 	 * @return whether one and two are disjoint considering transitivity
 	 */
-	public boolean areDisjoint(int one, int two)
+	public boolean areDisjoint(int class1, int class2)
 	{
 		//Get the transitive disjoint clauses involving class one
-		Set<Integer> disj = getDisjointTransitive(one);
+		Set<Integer> disj = getDisjointTransitive(class1);
 		if(disj.size() > 0)
 		{
 			//Then get the list of superclasses of class two
-			Set<Integer> ancs = getSuperClasses(two,false);
+			Set<Integer> ancs = getSuperClasses(class2,false);
 			//Including class two itself
-			ancs.add(two);
+			ancs.add(class2);
 		
-			//Two classs are disjoint if the list of transitive disjoint clauses
+			//Two classes are disjoint if the list of transitive disjoint clauses
 			//involving one of them contains the other or any of its 'is_a' ancestors
 			for(Integer i : ancs)
 				if(disj.contains(i))
@@ -234,25 +260,9 @@ public class RelationshipMap
 	 * @param parent: the index of the parent class
 	 * @return whether the RelationshipMap contains a relationship between child and parent
 	 */
-	public boolean contains(int child, int parent)
+	public boolean areRelatedClasses(int child, int parent)
 	{
 		return descendantMap.contains(parent,child);
-	}
-	
-	/**
-	 * @param child: the index of the child class
-	 * @param parent: the index of the parent class
-	 * @return whether the RelationshipMap contains an 'is_a' relationship between child and parent
-	 */	
-	public boolean containsSubClass(int child, int parent)
-	{
-		if(!descendantMap.contains(parent,child))
-			return false;
-		Vector<Relationship> rels = descendantMap.get(parent,child);
-		for(Relationship r : rels)
-			if(r.getProperty() == -1)
-				return true;
-		return false;
 	}
 	
 	/**
@@ -370,6 +380,25 @@ public class RelationshipMap
 	}
 
 	/**
+	 * @param indivId: the id of the individual to search in the map
+	 * @param prop: the property relating the individuals
+	 * @return the list of 'children' relations of the given individual
+	 */
+	public Set<Integer> getChildrenIndividuals(int indivId, int prop)
+	{
+		return descendantIndividuals.get(indivId,prop);
+	}
+	
+	/**
+	 * @param classId: the id of the class to search in the map
+	 * @return the list of individuals that instantiate the given class
+	 */
+	public Set<Integer> getClassIndividuals(int classId)
+	{
+		return hasInstanceMap.get(classId);
+	}
+	
+	/**
 	 * @param classes: the set the class to search in the map
 	 * @return the list of direct subclasses shared by the set of classes
 	 */
@@ -395,13 +424,13 @@ public class RelationshipMap
 		{
 			for(int j = i+1; j < subclasses.size(); j++)
 			{
-				if(containsSubClass(subclasses.get(i),subclasses.get(j)))
+				if(isSubclass(subclasses.get(i),subclasses.get(j)))
 				{
 					subclasses.remove(i);
 					i--;
 					j--;
 				}
-				if(containsSubClass(subclasses.get(j),subclasses.get(i)))
+				if(isSubclass(subclasses.get(j),subclasses.get(i)))
 				{
 					subclasses.remove(j);
 					j--;
@@ -616,6 +645,26 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param indivId: the id of the individual to search in the map
+	 * @return the list of classes instanced by the given individual
+	 */
+	public Set<Integer> getIndividualClasses(int indivId)
+	{
+		return instanceOfMap.get(indivId);
+	}
+	
+	/**
+	 * @param indivId: the id of the individual to search in the map
+	 * @return the list of object properties associated with the given individual
+	 */
+	public Set<Integer> getIndividualProperties(int indivId)
+	{
+		if(ancestorIndividuals.contains(indivId))
+			return ancestorIndividuals.keySet(indivId);
+		return new HashSet<Integer>();
+	}
+	
+	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the list of inverse properties of the input property
 	 */
@@ -638,12 +687,22 @@ public class RelationshipMap
 	}
 
 	/**
-	 * @param class: the id of the class to search in the map
+	 * @param classId: the id of the class to search in the map
 	 * @return the list of direct parents of the given class
 	 */
 	public Set<Integer> getParents(int classId)
 	{
 		return getAncestors(classId,1);
+	}
+	
+	/**
+	 * @param indivId: the id of the individual to search in the map
+	 * @param prop: the property relating the individuals
+	 * @return the list of 'parent' relations of the given individual
+	 */
+	public Set<Integer> getParentIndividuals(int indivId, int prop)
+	{
+		return ancestorIndividuals.get(indivId,prop);
 	}
 	
 	/**
@@ -823,28 +882,27 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param child: the index of the child class
+	 * @param parent: the index of the parent class
+	 * @return whether the RelationshipMap contains an 'is_a' relationship between child and parent
+	 */	
+	public boolean isSubclass(int child, int parent)
+	{
+		if(!descendantMap.contains(parent,child))
+			return false;
+		Vector<Relationship> rels = descendantMap.get(parent,child);
+		for(Relationship r : rels)
+			if(r.getProperty() == -1)
+				return true;
+		return false;
+	}
+	
+	/**
 	 * @return the number of relationships in the map
 	 */
 	public int relationshipCount()
 	{
 		return ancestorMap.size();
-	}
-	
-	/**
-	 * @param prop: the property to set as transitive
-	 */
-	public void setTransitive(int prop)
-	{
-		transitiveOver.add(prop,prop);
-	}
-	
-	/**
-	 * @param prop1: the property to set as transitive over prop2
-	 * @param prop2: the property over which prop1 is transitive
-	 */
-	public void setTransitiveOver(int prop1, int prop2)
-	{
-		transitiveOver.add(prop1,prop2);
 	}
 	
 	/**
@@ -874,6 +932,7 @@ public class RelationshipMap
 	 */
 	public void transitiveClosure()
 	{
+		//Transitive closure for class relations
 		Set<Integer> t = descendantMap.keySet();
 		int lastCount = 0;
 		for(int distance = 1; lastCount != descendantMap.size(); distance++)
@@ -909,13 +968,18 @@ public class RelationshipMap
 								else
 									prop = p2;
 								boolean rest = r1.getRestriction() && r2.getRestriction();
-								addRelationship(h, j, dist, prop, rest);
+								addClassRelationship(h, j, dist, prop, rest);
 							}
 						}
 					}
 				}
 			}
 		}
+		//Transitive closure for individual-class instantiation
+		for(Integer in : instanceOfMap.keySet())
+			for(Integer cl : instanceOfMap.get(in))
+				for(Integer an : getSuperClasses(cl,false))
+					addInstance(in,an);
 	}
 	
 	/**

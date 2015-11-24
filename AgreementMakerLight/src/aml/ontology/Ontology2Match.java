@@ -177,6 +177,17 @@ public class Ontology2Match extends Ontology
 //Public Methods
 
 	/**
+	 * Adds an individual to the ontology (for use when
+	 * the individuals are not listed within the ontology) 
+	 * @param index: the index of the individual
+	 * @param i: the individual to add to the ontology
+	 */
+	public void addIndividual(int index, Individual i)
+	{
+		individuals.put(index,i);
+	}
+	
+	/**
 	 * @return the number of Data Properties in the Ontology
 	 */
 	public int dataPropertyCount()
@@ -527,7 +538,7 @@ public class Ontology2Match extends Ontology
 			int id = uris.addURI(propUri,EntityType.OBJECT);
 			//It is transitive, add it to the RelationshipMap
 			if(op.isTransitive(o))
-				rm.setTransitive(id);
+				rm.addTransitive(id);
 			
 			//Get the local name from the URI
 			String name = getLocalName(propUri);
@@ -620,7 +631,7 @@ public class Ontology2Match extends Ontology
 				if(!objectProperties.containsKey(id1) || !objectProperties.containsKey(id2))
 					continue;
 				//If everything checks up, add the relation to the transitiveOver map
-				rm.setTransitiveOver(id1, id2);
+				rm.addTransitiveOver(id1, id2);
 			}
     	}
 	}
@@ -765,7 +776,7 @@ public class Ontology2Match extends Ontology
 				if(i.isNamed())
 				{
 					int ind = uris.getIndex(((OWLNamedIndividual)i).getIRI().toString());
-					rm.addDirectSubclass(ind, child);
+					rm.addInstance(ind, child);
 				}
 			}
 			
@@ -1005,7 +1016,7 @@ public class Ontology2Match extends Ontology
 					if(rI.isNamed())
 					{
 						int namedRelIndivId = uris.getIndex(rI.asOWLNamedIndividual().getIRI().toString());
-						rm.addDirectRelationship(namedIndivId, namedRelIndivId, propIndex, false);
+						rm.addIndividualRelationship(namedIndivId, propIndex, namedRelIndivId);
 					}
 				}
 			}
@@ -1025,7 +1036,7 @@ public class Ontology2Match extends Ontology
 				OWLDataProperty sProp = de.asOWLDataProperty();
 				int sId = uris.getIndex(sProp.getIRI().toString());
 				if(sId != -1)
-					rm.addPropertyRel(propId,sId);	
+					rm.addSubProperty(propId,sId);	
 			}
     	}
 		//Object Properties
@@ -1041,7 +1052,7 @@ public class Ontology2Match extends Ontology
 				OWLObjectProperty sProp = oe.asOWLObjectProperty();
 				int sId = uris.getIndex(sProp.getIRI().toString());
 				if(sId != -1)
-					rm.addPropertyRel(propId,sId);	
+					rm.addSubProperty(propId,sId);	
 			}
     		Set<OWLObjectPropertyExpression> iProps = op.getInverses(o);
 			for(OWLObjectPropertyExpression oe : iProps)
@@ -1108,9 +1119,9 @@ public class Ontology2Match extends Ontology
 			if(sub)
 			{
 				if(inverse)
-					rm.addDirectRelationship(parent, child, property, false);
+					rm.addClassRelationship(parent, child, property, false);
 				else
-					rm.addDirectRelationship(child, parent, property, false);
+					rm.addClassRelationship(child, parent, property, false);
 			}
 			else
 				rm.addEquivalence(child, parent, property, false);
@@ -1134,9 +1145,9 @@ public class Ontology2Match extends Ontology
 			if(sub)
 			{
 				if(inverse)
-					rm.addDirectRelationship(parent, child, property, false);
+					rm.addClassRelationship(parent, child, property, false);
 				else
-					rm.addDirectRelationship(child, parent, property, false);
+					rm.addClassRelationship(child, parent, property, false);
 			}
 			else
 				rm.addEquivalence(child, parent, property, false);
