@@ -217,7 +217,8 @@ public class Ontology2Match extends Ontology
 	{
 		return classes.contains(index) ||
 				dataProperties.containsKey(index) ||
-				objectProperties.containsKey(index);
+				objectProperties.containsKey(index) ||
+				individuals.containsKey(index);
 	}
 	
 	/**
