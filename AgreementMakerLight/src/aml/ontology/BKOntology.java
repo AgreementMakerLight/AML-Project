@@ -99,8 +99,8 @@ public class BKOntology extends Ontology
 	private void init(OWLOntology o)
 	{
 		//Update the URI of the ontology (if it lists one)
-		if(o.getOntologyID().getOntologyIRI() != null)
-			uri = o.getOntologyID().getOntologyIRI().toString();
+		if(o.getOntologyID().getOntologyIRI().isPresent())
+			uri = o.getOntologyID().getOntologyIRI().get().toString();
 
 		//Get the classes and their lexical and cross-reference information
 		//The internal index of the class

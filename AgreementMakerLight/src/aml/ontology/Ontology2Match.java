@@ -335,8 +335,8 @@ public class Ontology2Match extends Ontology
 	private void init(OWLOntology o)
 	{
 		//Update the URI of the ontology (if it lists one)
-		if(o.getOntologyID().getOntologyIRI() != null)
-			uri = o.getOntologyID().getOntologyIRI().toString();
+		if(o.getOntologyID().getOntologyIRI().isPresent())
+			uri = o.getOntologyID().getOntologyIRI().get().toString();
 		//Get the classes and their names and synonyms
 		getClasses(o);
 		//Get the properties
