@@ -882,6 +882,14 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @return the number of instantiations in the map
+	 */
+	public int instanceCount()
+	{
+		return instanceOfMap.size();
+	}
+	
+	/**
 	 * @param child: the index of the child class
 	 * @param parent: the index of the parent class
 	 * @return whether the RelationshipMap contains an 'is_a' relationship between child and parent
@@ -898,7 +906,7 @@ public class RelationshipMap
 	}
 	
 	/**
-	 * @return the number of relationships in the map
+	 * @return the number of class relationships in the map
 	 */
 	public int relationshipCount()
 	{
