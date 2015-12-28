@@ -131,9 +131,8 @@ public class ResourcePanel extends JInternalFrame
 				doc.insertString(doc.getLength(), "N/A", def);
 			else
 			{
-				String mapDesc = source.getLexicon().getBestName(m.getSourceId()) +
-						" = " + target.getLexicon().getBestName(m.getTargetId()) +
-						" (" + (AML.getInstance().getCurrentIndex()+1) + "/" + a.size() + ")";
+				String mapDesc = m.toGUI() + " (" + (AML.getInstance().getCurrentIndex()+1) +
+						"/" + a.size() + ")";
 				doc.insertString(doc.getLength(), mapDesc, def);
 			}
 		}

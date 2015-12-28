@@ -100,11 +100,8 @@ public class GUI extends JFrame
     {
     	amlMenuBar.refresh();
     	resourcePanel.refresh();
-    	tabbedPane.removeAll();
-    	mappingViewer = new MappingViewerGephi(viewerMax,viewerMin);
-        tabbedPane.addTab("Mapping Viewer", mappingViewer);
-        alignReviewer = new AlignmentReviewer(viewerMax,viewerMin);
-    	tabbedPane.addTab("Alignment Reviewer",alignReviewer);
+    	mappingViewer.buildGraph(0);
+        alignReviewer.refresh();
     	this.pack();
     	setExtendedState(JFrame.MAXIMIZED_BOTH);
     	setVisible(true);
@@ -113,5 +110,10 @@ public class GUI extends JFrame
     public void refreshPanel()
     {
     	resourcePanel.refresh();
-    }    
+    }
+
+	public void refreshGraph()
+	{
+		mappingViewer.buildGraph(0);
+	}    
 }

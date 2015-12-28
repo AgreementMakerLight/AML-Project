@@ -468,7 +468,8 @@ public class AML
 	public void goTo(int index)
     {
    		currentMapping = index;
-   		userInterface.refresh();
+   		userInterface.refreshPanel();
+   		userInterface.refreshGraph();
     }
     
 	/**

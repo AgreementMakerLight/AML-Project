@@ -27,6 +27,7 @@ import java.util.Set;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import org.gephi.graph.api.DirectedGraph;
 import org.gephi.graph.api.Edge;
@@ -82,9 +83,6 @@ public class MappingViewerGephi extends JInternalFrame
 		this.setPreferredSize(min);
 		//Build the graph for the current mapping
 		buildGraph(0);
-		//Pack and go
-		this.pack();
-		setVisible(true);
 	}
 
 //Public Methods (Mapping to Gephi)
@@ -94,7 +92,10 @@ public class MappingViewerGephi extends JInternalFrame
 		//Check if there is a mapping to view
 		Mapping m = AML.getInstance().getCurrentMapping();
 		if(m == null)
+		{
+			setContentPane(new JPanel());
 			return;
+		}
 		try
 		{
 			//Initialize a project and therefore a workspace
@@ -209,6 +210,9 @@ public class MappingViewerGephi extends JInternalFrame
                         "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
+		//Pack and go
+		this.pack();
+		setVisible(true);
 	}
 
 //Private Methods (Mapping to Graph)
