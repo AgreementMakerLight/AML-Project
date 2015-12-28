@@ -190,6 +190,15 @@ public class Mapping implements Comparable<Mapping>
 		similarity = Math.round(sim*10000)/10000.0;
 	}
 	
+	/**
+	 * @return the Mapping in String form, formatted for the AML GUI
+	 */
+	public String toGUI()
+	{
+		return AML.getInstance().getSource().getName(sourceId) + " " +
+			rel.toString() + " " + AML.getInstance().getTarget().getName(sourceId);
+	}
+	
 	@Override
 	public String toString()
 	{
