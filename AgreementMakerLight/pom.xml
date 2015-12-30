@@ -13,9 +13,9 @@
 
   <repositories>
     <repository>
-         <id>oss-sonatype</id>
-         <name>oss-sonatype</name>
-         <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+         <id>maven.yeezhao.com</id>
+         <name>maven.yeezhao.com</name>
+         <url>http://maven.yeezhao.com:8081/nexus/content/groups/public/</url>
          <snapshots>
             <enabled>true</enabled>
          </snapshots>
@@ -94,7 +94,7 @@
     <dependency>
       <groupId>org.gephi</groupId>
       <artifactId>gephi-toolkit</artifactId>
-      <version>0.9</version>
+      <version>0.8.2</version>
     </dependency>
     <dependency>
       <groupId>edu.smu.tspell.wordnet</groupId>
