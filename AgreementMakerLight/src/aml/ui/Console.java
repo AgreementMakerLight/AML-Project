@@ -21,6 +21,7 @@ package aml.ui;
 
 import java.awt.Cursor;
 import java.awt.Dialog;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import javax.swing.JDialog;
@@ -35,6 +36,8 @@ public class Console extends JDialog implements Runnable
 	
 	private static final long serialVersionUID = 8550240765482376323L;
 	private JTextArea console;
+	private ConsoleOutputStream out;
+	private PrintStream stdout, stderr;
 	
 //Constructors
 	
@@ -43,11 +46,14 @@ public class Console extends JDialog implements Runnable
 		super();
 		this.setTitle("Console");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		console = new JTextArea(25,50);
 		console.setEditable(false);
-		ConsoleOutputStream out = new ConsoleOutputStream(console);
+		out = new ConsoleOutputStream(console);
+		stdout = System.out;
+		stderr = System.err;
        	System.setOut(new PrintStream(out, true));
-       	System.setErr(new PrintStream(out, true));		
+       	System.setErr(new PrintStream(out, true));
         JScrollPane scroll = new JScrollPane(console,
         		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -60,6 +66,10 @@ public class Console extends JDialog implements Runnable
 	
 	public void finish()
 	{
+		try{ out.close(); }
+		catch(IOException e){ e.printStackTrace(); }
+       	System.setOut(stdout);
+       	System.setErr(stderr);		
 		this.setVisible(false);
 		this.dispose();
 	}
