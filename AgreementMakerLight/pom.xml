@@ -94,7 +94,7 @@
     <dependency>
       <groupId>org.gephi</groupId>
       <artifactId>gephi-toolkit</artifactId>
-      <version>0.8.2</version>
+      <version>0.9</version>
     </dependency>
     <dependency>
       <groupId>edu.smu.tspell.wordnet</groupId>
