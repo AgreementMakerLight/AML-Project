@@ -13,9 +13,12 @@
 
   <repositories>
     <repository>
-      <id>gephi-nexus</id>
-      <name>Gephi Releases</name>
-      <url>http://nexus.gephi.org/nexus/content/repositories/releases</url>
+         <id>oss-sonatype</id>
+         <name>oss-sonatype</name>
+         <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+         <snapshots>
+            <enabled>true</enabled>
+         </snapshots>
     </repository>
     <repository>
       <id>ironiacorp</id>
