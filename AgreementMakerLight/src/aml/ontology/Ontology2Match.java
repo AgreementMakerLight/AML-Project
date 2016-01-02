@@ -1,73 +1,52 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
-*                                                                             *
-* Licensed under the Apache License, Version 2.0 (the "License"); you may     *
-* not use this file except in compliance with the License. You may obtain a   *
-* copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
-*                                                                             *
-* Unless required by applicable law or agreed to in writing, software         *
-* distributed under the License is distributed on an "AS IS" BASIS,           *
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
-* See the License for the specific language governing permissions and         *
-* limitations under the License.                                              *
-*                                                                             *
-*******************************************************************************
-* An Ontology object, loaded using the OWL API.                               *
-*                                                                             *
-* @author Daniel Faria                                                        *
-* @date 06-11-2015                                                            *
-******************************************************************************/
+ * Copyright 2013-2015 LASIGE                                                  *
+ *                                                                             *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+ * not use this file except in compliance with the License. You may obtain a   *
+ * copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+ *                                                                             *
+ * Unless required by applicable law or agreed to in writing, software         *
+ * distributed under the License is distributed on an "AS IS" BASIS,           *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+ * See the License for the specific language governing permissions and         *
+ * limitations under the License.                                              *
+ *                                                                             *
+ *******************************************************************************
+ * An Ontology object, loaded using the OWL API.                               *
+ *                                                                             *
+ * @author Daniel Faria                                                        *
+ * @date 06-11-2015                                                            *
+ ******************************************************************************/
 package aml.ontology;
+
+import aml.AML;
+import aml.settings.EntityType;
+import aml.settings.LexicalType;
+import aml.util.StringParser;
+import aml.util.Table2Map;
+import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
+import com.google.common.collect.Multimap;
+import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.model.parameters.Imports;
+import org.semanticweb.owlapi.reasoner.Node;
+import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
+import org.semanticweb.owlapi.search.EntitySearcher;
+import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
+import uk.ac.manchester.cs.owl.owlapi.*;
 
 import java.io.File;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
-
-import org.semanticweb.elk.owlapi.ElkReasonerFactory;
-import org.semanticweb.owlapi.model.AxiomType;
-import org.semanticweb.owlapi.model.ClassExpressionType;
-import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLAnnotation;
-import org.semanticweb.owlapi.model.OWLAnnotationProperty;
-import org.semanticweb.owlapi.model.OWLAxiom;
-import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.model.OWLClassExpression;
-import org.semanticweb.owlapi.model.OWLDataProperty;
-import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
-import org.semanticweb.owlapi.model.OWLDataRange;
-import org.semanticweb.owlapi.model.OWLDatatype;
-import org.semanticweb.owlapi.model.OWLIndividual;
-import org.semanticweb.owlapi.model.OWLLiteral;
-import org.semanticweb.owlapi.model.OWLNamedIndividual;
-import org.semanticweb.owlapi.model.OWLObjectProperty;
-import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.reasoner.Node;
-import org.semanticweb.owlapi.reasoner.OWLReasoner;
-import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
-import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
-
-import uk.ac.manchester.cs.owl.owlapi.OWLDataAllValuesFromImpl;
-import uk.ac.manchester.cs.owl.owlapi.OWLDataCardinalityRestrictionImpl;
-import uk.ac.manchester.cs.owl.owlapi.OWLDataHasValueImpl;
-import uk.ac.manchester.cs.owl.owlapi.OWLDataSomeValuesFromImpl;
-import uk.ac.manchester.cs.owl.owlapi.OWLObjectCardinalityRestrictionImpl;
-import aml.AML;
-import aml.settings.LexicalType;
-import aml.settings.EntityType;
-import aml.util.StringParser;
-import aml.util.Table2Map;
 
 public class Ontology2Match extends Ontology
 {
 
 //Attributes
-	
+
 	//The map of class names (String) -> indexes (Integer) in the ontology
 	//which is necessary for the XRefMatcher
 	private HashMap<String,Integer> classNames;
@@ -81,18 +60,18 @@ public class Ontology2Match extends Ontology
 	private WordLexicon wLex;
 	//Its set of obsolete classes
 	private HashSet<Integer> obsolete;
-	
+
 	//Global variables & data structures
 	private AML aml;
 	private boolean useReasoner;
 	private URIMap uris;
 	private RelationshipMap rm;
-	
+
 	//Auxiliary data structures to capture semantic disjointness
 	private Table2Map<Integer,Integer,Integer> maxCard, minCard, card;
 	private Table2Map<Integer,Integer,String> dataAllValues, dataHasValue, dataSomeValues;
 	private Table2Map<Integer,Integer,Integer> objectAllValues, objectSomeValues;
-	
+
 //Constructors
 
 	/**
@@ -113,38 +92,38 @@ public class Ontology2Match extends Ontology
 		uris = aml.getURIMap();
 		rm = aml.getRelationshipMap();
 	}
-	
+
 	/**
-	 * Constructs an Ontology from file 
+	 * Constructs an Ontology from file
 	 * @param path: the path to the input Ontology file
-	 * @throws OWLOntologyCreationException 
+	 * @throws OWLOntologyCreationException
 	 */
 	public Ontology2Match(String path) throws OWLOntologyCreationException
 	{
 		this();
-        //Load the local ontology
-        File f = new File(path);
-        OWLOntology o;
+		//Load the local ontology
+		File f = new File(path);
+		OWLOntology o;
 		o = manager.loadOntologyFromOntologyDocument(f);
 		uri = f.getAbsolutePath();
 		init(o);
 		//Close the OntModel
-        manager.removeOntology(o);
-        //Reset the entity expansion limit
-        System.clearProperty(LIMIT);
+		manager.removeOntology(o);
+		//Reset the entity expansion limit
+		System.clearProperty(LIMIT);
 	}
-	
+
 	/**
-	 * Constructs an Ontology from an URI  
+	 * Constructs an Ontology from an URI
 	 * @param uri: the URI of the input Ontology
-	 * @throws OWLOntologyCreationException 
+	 * @throws OWLOntologyCreationException
 	 */
 	public Ontology2Match(URI uri) throws OWLOntologyCreationException
 	{
 		this();
-        OWLOntology o;
-        //Check if the URI is local
-        if(uri.toString().startsWith("file:"))
+		OWLOntology o;
+		//Check if the URI is local
+		if(uri.toString().startsWith("file:"))
 		{
 			File f = new File(uri);
 			o = manager.loadOntologyFromOntologyDocument(f);
@@ -154,14 +133,14 @@ public class Ontology2Match extends Ontology
 			IRI i = IRI.create(uri);
 			o = manager.loadOntology(i);
 		}
-        this.uri = uri.toString(); 
+		this.uri = uri.toString();
 		init(o);
 		//Close the OntModel
-        manager.removeOntology(o);
-        //Reset the entity expansion limit
-        System.clearProperty(LIMIT);
+		manager.removeOntology(o);
+		//Reset the entity expansion limit
+		System.clearProperty(LIMIT);
 	}
-	
+
 	/**
 	 * Constructs an Ontology from an OWLOntology
 	 * @param o: the OWLOntology to use
@@ -170,15 +149,15 @@ public class Ontology2Match extends Ontology
 	{
 		this();
 		init(o);
-        //Reset the entity expansion limit
-        System.clearProperty(LIMIT);
+		//Reset the entity expansion limit
+		System.clearProperty(LIMIT);
 	}
 
 //Public Methods
 
 	/**
 	 * Adds an individual to the ontology (for use when
-	 * the individuals are not listed within the ontology) 
+	 * the individuals are not listed within the ontology)
 	 * @param index: the index of the individual
 	 * @param i: the individual to add to the ontology
 	 */
@@ -186,7 +165,7 @@ public class Ontology2Match extends Ontology
 	{
 		individuals.put(index,i);
 	}
-	
+
 	/**
 	 * @return the number of Data Properties in the Ontology
 	 */
@@ -208,7 +187,7 @@ public class Ontology2Match extends Ontology
 		uris = null;
 		rm = null;
 	}
-	
+
 	/**
 	 * @param index: the index of the entity to search in the Ontology
 	 * @return whether the entity is contained in the Ontology
@@ -220,7 +199,7 @@ public class Ontology2Match extends Ontology
 				objectProperties.containsKey(index) ||
 				individuals.containsKey(index);
 	}
-	
+
 	/**
 	 * @return the indexes of the Data Properties in the Ontology
 	 */
@@ -228,7 +207,7 @@ public class Ontology2Match extends Ontology
 	{
 		return dataProperties.keySet();
 	}
-	
+
 	/**
 	 * @param index: the index of the Data Property to get
 	 * @return the DataProperty with the given index in the Ontology
@@ -237,7 +216,7 @@ public class Ontology2Match extends Ontology
 	{
 		return dataProperties.get(index);
 	}
-	
+
 	/**
 	 * @param name: the localName of the class to get from the Ontology
 	 * @return the index of the corresponding name in the Ontology
@@ -245,7 +224,7 @@ public class Ontology2Match extends Ontology
 	public int getIndex(String name)
 	{
 		return classNames.get(name);
-	}	
+	}
 
 	/**
 	 * @return the indexes of the Individuals in the Ontology
@@ -254,7 +233,7 @@ public class Ontology2Match extends Ontology
 	{
 		return individuals.keySet();
 	}
-	
+
 	/**
 	 * @param index: the index of the Individual to get
 	 * @return the Individual with the given index in the Ontology
@@ -271,7 +250,7 @@ public class Ontology2Match extends Ontology
 	{
 		return lex;
 	}
-	
+
 	/**
 	 * @return the set of class local names in the Ontology
 	 */
@@ -279,7 +258,7 @@ public class Ontology2Match extends Ontology
 	{
 		return classNames.keySet();
 	}
-	
+
 	/**
 	 * @return the indexes of the Object Properties in the Ontology
 	 */
@@ -287,7 +266,7 @@ public class Ontology2Match extends Ontology
 	{
 		return objectProperties.keySet();
 	}
-	
+
 	/**
 	 * @param index: the index of the Object Property to get
 	 * @return the ObjectProperty with the given index in the Ontology
@@ -296,7 +275,7 @@ public class Ontology2Match extends Ontology
 	{
 		return objectProperties.get(index);
 	}
-	
+
 	/**
 	 * Gets the WordLexicon of this Ontology.
 	 * Builds the WordLexicon if not previously built, or
@@ -309,7 +288,7 @@ public class Ontology2Match extends Ontology
 			wLex = new WordLexicon(lex);
 		return wLex;
 	}
-	
+
 	/**
 	 * Gets the WordLexicon of this Ontology for the specified language.
 	 * Builds the WordLexicon if not previously built, or built for a
@@ -323,7 +302,7 @@ public class Ontology2Match extends Ontology
 			wLex = new WordLexicon(lex,lang);
 		return wLex;
 	}
-	
+
 	/**
 	 * @return the number of Individuals in the Ontology
 	 */
@@ -331,7 +310,7 @@ public class Ontology2Match extends Ontology
 	{
 		return individuals.size();
 	}
-	
+
 	/**
 	 * @param index: the index of the URI in the ontology
 	 * @return whether the index corresponds to an obsolete class
@@ -340,7 +319,7 @@ public class Ontology2Match extends Ontology
 	{
 		return obsolete.contains(index);
 	}
-	
+
 	/**
 	 * @return the number of Object Properties in the Ontology
 	 */
@@ -350,14 +329,14 @@ public class Ontology2Match extends Ontology
 	}
 
 
-//Private Methods	
+//Private Methods
 
 	//Builds the ontology data structures
 	private void init(OWLOntology o)
 	{
 		//Update the URI of the ontology (if it lists one)
-		if(o.getOntologyID().getOntologyIRI() != null)
-			uri = o.getOntologyID().getOntologyIRI().toString();
+		if(o.getOntologyID().getOntologyIRI().isPresent())
+			uri = o.getOntologyID().getOntologyIRI().get().toString();
 		//Get the classes and their names and synonyms
 		getClasses(o);
 		//Get the properties
@@ -370,7 +349,7 @@ public class Ontology2Match extends Ontology
 		//Build the relationship map
 		getRelationships(o);
 	}
-	
+
 	//Processes the classes and their lexical information
 	private void getClasses(OWLOntology o)
 	{
@@ -380,7 +359,7 @@ public class Ontology2Match extends Ontology
 		//The label property
 		OWLAnnotationProperty label = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
 		//Get an iterator over the ontology classes
-		Set<OWLClass> owlClasses = o.getClassesInSignature(true);
+		Set<OWLClass> owlClasses = o.getClassesInSignature(Imports.INCLUDED);
 		//Then get the URI for each class
 		for(OWLClass c : owlClasses)
 		{
@@ -391,12 +370,12 @@ public class Ontology2Match extends Ontology
 			int id = uris.addURI(classUri,EntityType.CLASS);
 			//Add it to the maps of the corresponding type
 			classes.add(id);
-			
+
 			//Get the local name from the URI
 			String name = uris.getLocalName(id);
 			//Add the name to the classNames map
 			classNames.put(name, id);
-			
+
 			//If the local name is not an alphanumeric code, add it to the lexicon
 			if(!StringParser.isNumericId(name))
 			{
@@ -406,59 +385,59 @@ public class Ontology2Match extends Ontology
 			}
 
 			//Now get the class's annotations (including imports)
-			Set<OWLAnnotation> annots = c.getAnnotations(o);
+			Set<OWLAnnotation> annots = new HashSet<>(EntitySearcher.getAnnotations(c, o));
 			for(OWLOntology ont : o.getImports())
-				annots.addAll(c.getAnnotations(ont));
-            for(OWLAnnotation annotation : annots)
-            {
-            	//Labels and synonyms go to the Lexicon
-            	String propUri = annotation.getProperty().getIRI().toString();
-            	type = LexicalType.getLexicalType(propUri);
-            	if(type != null)
-            	{
-	            	weight = type.getDefaultWeight();
-	            	if(annotation.getValue() instanceof OWLLiteral)
-	            	{
-	            		OWLLiteral val = (OWLLiteral) annotation.getValue();
-	            		name = val.getLiteral();
-	            		String lang = val.getLang();
-	            		if(lang.equals(""))
-	            			lang = "en";
-	            		lex.addClass(id, name, lang, type, "", weight);
-		            }
-	            	else if(annotation.getValue() instanceof IRI)
-	            	{
-	            		OWLNamedIndividual ni = factory.getOWLNamedIndividual((IRI) annotation.getValue());
-	                    for(OWLAnnotation a : ni.getAnnotations(o,label))
-	                    {
-	                       	if(a.getValue() instanceof OWLLiteral)
-	                       	{
-	                       		OWLLiteral val = (OWLLiteral) a.getValue();
-	                       		name = val.getLiteral();
-	                       		String lang = val.getLang();
-	    	            		if(lang.equals(""))
-	    	            			lang = "en";
-    		            		lex.addClass(id, name, lang, type, "", weight);
-	                       	}
-	            		}
-	            	}
-            	}
-            	//Deprecated classes are flagged as obsolete
-            	else if(propUri.endsWith("deprecated") &&
-            			annotation.getValue() instanceof OWLLiteral)
-            	{
-            		OWLLiteral val = (OWLLiteral) annotation.getValue();
-            		if(val.isBoolean())
-            		{
-            			boolean deprecated = val.parseBoolean();
-            			if(deprecated)
-            				obsolete.add(id);
-            		}
-            	}
-	        }
+				annots.addAll(EntitySearcher.getAnnotations(c, ont));
+			for(OWLAnnotation annotation : annots)
+			{
+				//Labels and synonyms go to the Lexicon
+				String propUri = annotation.getProperty().getIRI().toString();
+				type = LexicalType.getLexicalType(propUri);
+				if(type != null)
+				{
+					weight = type.getDefaultWeight();
+					if(annotation.getValue() instanceof OWLLiteral)
+					{
+						OWLLiteral val = (OWLLiteral) annotation.getValue();
+						name = val.getLiteral();
+						String lang = val.getLang();
+						if(lang.equals(""))
+							lang = "en";
+						lex.addClass(id, name, lang, type, "", weight);
+					}
+					else if(annotation.getValue() instanceof IRI)
+					{
+						OWLNamedIndividual ni = factory.getOWLNamedIndividual((IRI) annotation.getValue());
+						for(OWLAnnotation a : EntitySearcher.getAnnotations(ni, o, label))
+						{
+							if(a.getValue() instanceof OWLLiteral)
+							{
+								OWLLiteral val = (OWLLiteral) a.getValue();
+								name = val.getLiteral();
+								String lang = val.getLang();
+								if(lang.equals(""))
+									lang = "en";
+								lex.addClass(id, name, lang, type, "", weight);
+							}
+						}
+					}
+				}
+				//Deprecated classes are flagged as obsolete
+				else if(propUri.endsWith("deprecated") &&
+						annotation.getValue() instanceof OWLLiteral)
+				{
+					OWLLiteral val = (OWLLiteral) annotation.getValue();
+					if(val.isBoolean())
+					{
+						boolean deprecated = val.parseBoolean();
+						if(deprecated)
+							obsolete.add(id);
+					}
+				}
+			}
 		}
 	}
-	
+
 	//Reads the properties
 	private void getProperties(OWLOntology o)
 	{
@@ -466,21 +445,21 @@ public class Ontology2Match extends Ontology
 		double weight;
 		//The label property
 		OWLAnnotationProperty label = factory
-                .getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
+				.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
 
 		//Get the Data Properties
-		Set<OWLDataProperty> dProps = o.getDataPropertiesInSignature(true);
-    	for(OWLDataProperty dp : dProps)
-    	{
-    		String propUri = dp.getIRI().toString();
-    		if(propUri == null)
-    			continue;
- 			//Add it to the global list of URIs
+		Set<OWLDataProperty> dProps = o.getDataPropertiesInSignature(Imports.INCLUDED);
+		for(OWLDataProperty dp : dProps)
+		{
+			String propUri = dp.getIRI().toString();
+			if(propUri == null)
+				continue;
+			//Add it to the global list of URIs
 			int id = uris.addURI(propUri,EntityType.DATA);
-			
+
 			//Get the local name from the URI
 			String name = uris.getLocalName(id);
-			
+
 			//If the local name is not an alphanumeric code, add it to the lexicon
 			if(!StringParser.isNumericId(name))
 			{
@@ -488,28 +467,28 @@ public class Ontology2Match extends Ontology
 				weight = type.getDefaultWeight();
 				lex.addProperty(id, name, "en", type, "", weight);
 			}
-			
-			for(OWLAnnotation a : dp.getAnnotations(o,label))
-            {
+
+			for(OWLAnnotation a : EntitySearcher.getAnnotations(dp, o, label))
+			{
 				String lang = "";
-               	if(a.getValue() instanceof OWLLiteral)
-               	{
-               		OWLLiteral val = (OWLLiteral) a.getValue();
-               		name = val.getLiteral();
-               		lang = val.getLang();
-            		if(lang.equals(""))
-            			lang = "en";
-    				type = LexicalType.LABEL;
-    				weight = type.getDefaultWeight();
-    				lex.addProperty(id, name, lang, type, "", weight);
-               	}
-            }
+				if(a.getValue() instanceof OWLLiteral)
+				{
+					OWLLiteral val = (OWLLiteral) a.getValue();
+					name = val.getLiteral();
+					lang = val.getLang();
+					if(lang.equals(""))
+						lang = "en";
+					type = LexicalType.LABEL;
+					weight = type.getDefaultWeight();
+					lex.addProperty(id, name, lang, type, "", weight);
+				}
+			}
 			//Initialize the property
 			DataProperty prop = new DataProperty();
 			//Set the isFunctional parameter
-			prop.isFunctional(dp.isFunctional(o));
+			prop.isFunctional(EntitySearcher.isFunctional(dp, o));
 			//Get its domain
-			Set<OWLClassExpression> domains = dp.getDomains(o);
+			Set<OWLClassExpression> domains = new HashSet<>(EntitySearcher.getDomains(dp, o));
 			for(OWLClassExpression ce : domains)
 			{
 				Set<OWLClassExpression> union = ce.asDisjunctSet();
@@ -520,30 +499,30 @@ public class Ontology2Match extends Ontology
 				}
 			}
 			//And finally its range(s)
-			Set<OWLDataRange> ranges = dp.getRanges(o);
+			Set<OWLDataRange> ranges = new HashSet<>(EntitySearcher.getRanges(dp, o));
 			for(OWLDataRange dr : ranges)
 			{
 				if(dr.isDatatype())
 					prop.addRange(dr.asOWLDatatype().toStringID());
 			}
 			dataProperties.put(id, prop);
-    	}
+		}
 		//Get the Object Properties
-		Set<OWLObjectProperty> oProps = o.getObjectPropertiesInSignature(true);
-    	for(OWLObjectProperty op : oProps)
-    	{
-    		String propUri = op.getIRI().toString();
-    		if(propUri == null)
-    			continue;
+		Set<OWLObjectProperty> oProps = o.getObjectPropertiesInSignature(Imports.INCLUDED);
+		for(OWLObjectProperty op : oProps)
+		{
+			String propUri = op.getIRI().toString();
+			if(propUri == null)
+				continue;
 			//Add it to the global list of URIs
 			int id = uris.addURI(propUri,EntityType.OBJECT);
 			//It is transitive, add it to the RelationshipMap
-			if(op.isTransitive(o))
+			if(EntitySearcher.isTransitive(op, o))
 				rm.addTransitive(id);
-			
+
 			//Get the local name from the URI
 			String name = getLocalName(propUri);
-			
+
 			//If the local name is not an alphanumeric code, add it to the lexicon
 			if(!StringParser.isNumericId(name))
 			{
@@ -551,28 +530,28 @@ public class Ontology2Match extends Ontology
 				weight = type.getDefaultWeight();
 				lex.addProperty(id, name, "en", type, "", weight);
 			}
-			
-			for(OWLAnnotation a : op.getAnnotations(o,label))
-            {
+
+			for(OWLAnnotation a : EntitySearcher.getAnnotations(op, o, label))
+			{
 				String lang = "";
-               	if(a.getValue() instanceof OWLLiteral)
-               	{
-               		OWLLiteral val = (OWLLiteral) a.getValue();
-               		name = val.getLiteral();
-               		lang = val.getLang();
-            		if(lang.equals(""))
-            			lang = "en";
-    				type = LexicalType.LABEL;
-    				weight = type.getDefaultWeight();
-    				lex.addProperty(id, name, lang, type, "", weight);
-               	}
-            }
+				if(a.getValue() instanceof OWLLiteral)
+				{
+					OWLLiteral val = (OWLLiteral) a.getValue();
+					name = val.getLiteral();
+					lang = val.getLang();
+					if(lang.equals(""))
+						lang = "en";
+					type = LexicalType.LABEL;
+					weight = type.getDefaultWeight();
+					lex.addProperty(id, name, lang, type, "", weight);
+				}
+			}
 			//Initialize the property
 			ObjectProperty prop = new ObjectProperty();
 			//Set the isFunctional parameter
-			prop.isFunctional(op.isFunctional(o));
+			prop.isFunctional(EntitySearcher.isFunctional(op, o));
 			//Get its domain
-			Set<OWLClassExpression> domains = op.getDomains(o);
+			Set<OWLClassExpression> domains = new HashSet<>(EntitySearcher.getDomains(op, o));
 			for(OWLClassExpression ce : domains)
 			{
 				Set<OWLClassExpression> union = ce.asDisjunctSet();
@@ -583,7 +562,7 @@ public class Ontology2Match extends Ontology
 				}
 			}
 			//And finally its range(s)
-			Set<OWLClassExpression> ranges = op.getRanges(o);
+			Set<OWLClassExpression> ranges = new HashSet<>(EntitySearcher.getRanges(op, o));
 			for(OWLClassExpression ce : ranges)
 			{
 				Set<OWLClassExpression> union = ce.asDisjunctSet();
@@ -594,17 +573,17 @@ public class Ontology2Match extends Ontology
 				}
 			}
 			objectProperties.put(id, prop);
-    	}
-    	//Process "transitive over" relations
-    	//(This requires that all properties be indexed, and thus has to be done in a 2nd pass)
-    	for(OWLObjectProperty op : oProps)
-    	{
+		}
+		//Process "transitive over" relations
+		//(This requires that all properties be indexed, and thus has to be done in a 2nd pass)
+		for(OWLObjectProperty op : oProps)
+		{
 			//In OWL, the OBO transitive_over relation is encoded as a sub-property chain of
 			//the form: "SubObjectPropertyOf(ObjectPropertyChain( <p1> <p2> ) <this_p> )"
 			//in which 'this_p' is usually 'p1' but can also be 'p2' (in case you want to
 			//define that another property is transitive over this one, which may happen when
 			//the other property is imported and this property occurs only in this ontology)
-			for(OWLAxiom e : op.getReferencingAxioms(o))
+			for(OWLAxiom e : o.getReferencingAxioms(op))
 			{
 				if(!e.isOfType(AxiomType.SUB_PROPERTY_CHAIN_OF))
 					continue;
@@ -634,9 +613,9 @@ public class Ontology2Match extends Ontology
 				//If everything checks up, add the relation to the transitiveOver map
 				rm.addTransitiveOver(id1, id2);
 			}
-    	}
+		}
 	}
-	
+
 	//Processes the named individuals and their data property values
 	//@author Catia Pesquita
 	private void getNamedIndividuals(OWLOntology o)
@@ -657,7 +636,7 @@ public class Ontology2Match extends Ontology
 			int id = uris.addURI(indivUri, EntityType.INDIVIDUAL);
 			//Get the local name from the URI
 			String name = "";
-			for(OWLAnnotation a : i.getAnnotations(o,label))
+			for(OWLAnnotation a : EntitySearcher.getAnnotations(i, o, label))
 			{
 				if(a.getValue() instanceof OWLLiteral)
 				{
@@ -673,7 +652,7 @@ public class Ontology2Match extends Ontology
 			individuals.put(id,indiv);
 
 			//Get the data properties associated with the individual and their values
-			Map<OWLDataPropertyExpression,Set<OWLLiteral>> dataPropValues = i.getDataPropertyValues(o);
+			Multimap<OWLDataPropertyExpression, OWLLiteral> dataPropValues = EntitySearcher.getDataPropertyValues(i,o);
 			for(OWLDataPropertyExpression prop : dataPropValues.keySet())
 			{
 				//Check that the data property expression is a named data property
@@ -686,21 +665,21 @@ public class Ontology2Match extends Ontology
 				//Then get its values for the individual
 				for(OWLLiteral val : dataPropValues.get(prop))
 					indiv.addDataValue(propIndex, val.getLiteral());
-			}	
+			}
 		}
 	}
-	
+
 	//Reads all class relationships
 	private void getRelationships(OWLOntology o)
 	{
-		OWLReasoner reasoner = null;		
+		OWLReasoner reasoner = null;
 		if(useReasoner)
 		{
 			//Create an ELK reasoner
-			OWLReasonerFactory reasonerFactory = new ElkReasonerFactory();
+			OWLReasonerFactory reasonerFactory = new PelletReasonerFactory();
 			reasoner = reasonerFactory.createReasoner(o);
 		}
-		
+
 		//Auxiliary data structures to capture semantic disjointness
 		//Two classes are disjoint if they have:
 		//1) Incompatible cardinality restrictions for the same property
@@ -716,10 +695,10 @@ public class Ontology2Match extends Ontology
 		//restrictions on disjoint classes for the same non-functional object property
 		objectAllValues = new Table2Map<Integer,Integer,Integer>();
 		objectSomeValues = new Table2Map<Integer,Integer,Integer>();
-		
+
 		//I - Relationships envolving classes
 		//Get an iterator over the ontology classes
-		Set<OWLClass> classes = o.getClassesInSignature(true);
+		Set<OWLClass> classes = o.getClassesInSignature(Imports.INCLUDED);
 		//For each class index
 		for(OWLClass c : classes)
 		{
@@ -727,7 +706,7 @@ public class Ontology2Match extends Ontology
 			int child = uris.getIndex(c.getIRI().toString());
 			if(child == -1)
 				continue;
-			
+
 			if(useReasoner)
 			{
 				//Get its superclasses using the reasoner
@@ -754,24 +733,24 @@ public class Ontology2Match extends Ontology
 						rm.addEquivalentClass(child, parent);
 				}
 			}
-			
+
 			//Get the subclass expressions to capture and add relationships
-			Set<OWLClassExpression> superClasses = c.getSuperClasses(o);
+			Set<OWLClassExpression> superClasses = new HashSet<>(EntitySearcher.getSuperClasses(c, o));
 			for(OWLOntology ont : o.getDirectImports())
-				superClasses.addAll(c.getSuperClasses(ont));
+				superClasses.addAll(EntitySearcher.getSuperClasses(c, ont));
 			for(OWLClassExpression e : superClasses)
 				addRelationship(o,c,e,true,false);
-			
+
 			//Get the equivalence expressions to capture and add relationships
-			Set<OWLClassExpression> equivClasses = c.getEquivalentClasses(o);
+			Set<OWLClassExpression> equivClasses = new HashSet<>(EntitySearcher.getEquivalentClasses(c, o));
 			for(OWLOntology ont : o.getDirectImports())
-				equivClasses.addAll(c.getEquivalentClasses(ont));
+				equivClasses.addAll(EntitySearcher.getEquivalentClasses(c, ont));
 			for(OWLClassExpression e : equivClasses)
 				addRelationship(o,c,e,false,false);
-			
+
 			//Get the individuals that belong to the class
 			//@author: Catia Pesquita
-			Set<OWLIndividual> indivs = c.getIndividuals(o);
+			Set<OWLIndividual> indivs = new HashSet<>(EntitySearcher.getIndividuals(c, o));
 			for(OWLIndividual i : indivs)
 			{
 				if(i.isNamed())
@@ -780,11 +759,11 @@ public class Ontology2Match extends Ontology
 					rm.addInstance(ind, child);
 				}
 			}
-			
+
 			//Get the syntactic disjoints
-			Set<OWLClassExpression> disjClasses = c.getDisjointClasses(o);
+			Set<OWLClassExpression> disjClasses = new HashSet<>(EntitySearcher.getDisjointClasses(c, o));
 			for(OWLOntology ont : o.getDirectImports())
-				disjClasses.addAll(c.getDisjointClasses(ont));
+				disjClasses.addAll(EntitySearcher.getDisjointClasses(c, ont));
 			//For each expression
 			for(OWLClassExpression dClass : disjClasses)
 			{
@@ -824,7 +803,7 @@ public class Ontology2Match extends Ontology
 				}
 			}
 		}
-		
+
 		//Finally process the semantically disjoint classes
 		//Classes that have incompatible cardinalities on the same property
 		//First exact cardinalities vs exact, min and max cardinalities
@@ -846,7 +825,7 @@ public class Ontology2Match extends Ontology
 				for(int i = 0; i < exact.size(); i++)
 					for(Integer j : min)
 						if(card.get(prop, exact.get(i)) > minCard.get(prop, j))
-							rm.addDisjoint(exact.get(i), j);				
+							rm.addDisjoint(exact.get(i), j);
 		}
 		//Then min vs max cardinalities
 		for(Integer prop : minCard.keySet())
@@ -945,7 +924,7 @@ public class Ontology2Match extends Ontology
 						rm.addDisjoint(cl.get(i), cl.get(j));
 				}
 			}
-		
+
 			Set<Integer> sv = objectSomeValues.keySet(prop);
 			if(sv == null)
 				continue;
@@ -969,7 +948,7 @@ public class Ontology2Match extends Ontology
 			if(sv == null)
 				continue;
 			Vector<Integer> cl = new Vector<Integer>(sv);
-			
+
 			for(int i = 0; i < cl.size() - 1; i++)
 			{
 				int c1 = objectSomeValues.get(prop, cl.get(i));
@@ -981,7 +960,7 @@ public class Ontology2Match extends Ontology
 				}
 			}
 		}
-		
+
 		//Clean auxiliary data structures
 		maxCard = null;
 		minCard = null;
@@ -991,7 +970,7 @@ public class Ontology2Match extends Ontology
 		dataSomeValues = null;
 		objectAllValues = null;
 		objectSomeValues = null;
-		
+
 		//II - Relationships between named individuals
 		//@author: Catia Pesquita
 		//Get an iterator over the named individuals
@@ -1002,8 +981,8 @@ public class Ontology2Match extends Ontology
 			int namedIndivId = uris.getIndex(i.getIRI().toString());
 			if(namedIndivId == -1)
 				continue;
-			
-			Map<OWLObjectPropertyExpression, Set<OWLIndividual>> iProps = i.getObjectPropertyValues(o);
+
+			Multimap<OWLObjectPropertyExpression, OWLIndividual> iProps = EntitySearcher.getObjectPropertyValues(i, o);
 			for(OWLObjectPropertyExpression prop : iProps.keySet())
 			{
 				if(prop.isAnonymous())
@@ -1022,50 +1001,50 @@ public class Ontology2Match extends Ontology
 				}
 			}
 		}
-		
+
 		//III - Relationships between properties
 		//Data Properties
-		Set<OWLDataProperty> dProps = o.getDataPropertiesInSignature(true);
-    	for(OWLDataProperty dp : dProps)
-    	{
-    		int propId = uris.getIndex(dp.getIRI().toString());
-    		if(propId == -1)
-    			continue;
-    		Set<OWLDataPropertyExpression> sProps = dp.getSuperProperties(o);
+		Set<OWLDataProperty> dProps = o.getDataPropertiesInSignature(Imports.INCLUDED);
+		for(OWLDataProperty dp : dProps)
+		{
+			int propId = uris.getIndex(dp.getIRI().toString());
+			if(propId == -1)
+				continue;
+			Set<OWLDataPropertyExpression> sProps = new HashSet<>(EntitySearcher.getSuperProperties(dp, o));
 			for(OWLDataPropertyExpression de : sProps)
 			{
 				OWLDataProperty sProp = de.asOWLDataProperty();
 				int sId = uris.getIndex(sProp.getIRI().toString());
 				if(sId != -1)
-					rm.addSubProperty(propId,sId);	
+					rm.addSubProperty(propId,sId);
 			}
-    	}
+		}
 		//Object Properties
-		Set<OWLObjectProperty> oProps = o.getObjectPropertiesInSignature(true);
-    	for(OWLObjectProperty op : oProps)
-    	{
-    		int propId = uris.getIndex(op.getIRI().toString());
-    		if(propId == -1)
-    			continue;
-    		Set<OWLObjectPropertyExpression> sProps = op.getSuperProperties(o);
+		Set<OWLObjectProperty> oProps = o.getObjectPropertiesInSignature(Imports.INCLUDED);
+		for(OWLObjectProperty op : oProps)
+		{
+			int propId = uris.getIndex(op.getIRI().toString());
+			if(propId == -1)
+				continue;
+			Set<OWLObjectPropertyExpression> sProps = new HashSet<>(EntitySearcher.getSuperProperties(op, o));
 			for(OWLObjectPropertyExpression oe : sProps)
 			{
 				OWLObjectProperty sProp = oe.asOWLObjectProperty();
 				int sId = uris.getIndex(sProp.getIRI().toString());
 				if(sId != -1)
-					rm.addSubProperty(propId,sId);	
+					rm.addSubProperty(propId,sId);
 			}
-    		Set<OWLObjectPropertyExpression> iProps = op.getInverses(o);
+			Set<OWLObjectPropertyExpression> iProps = new HashSet<>(EntitySearcher.getInverses(op, o));;
 			for(OWLObjectPropertyExpression oe : iProps)
 			{
 				OWLObjectProperty iProp = oe.asOWLObjectProperty();
 				int iId = uris.getIndex(iProp.getIRI().toString());
 				if(iId != -1)
-					rm.addInverseProp(propId,iId);	
+					rm.addInverseProp(propId,iId);
 			}
-    	}
+		}
 	}
-	
+
 	//Get the local name of an entity from its URI
 	private String getLocalName(String uri)
 	{
@@ -1074,7 +1053,7 @@ public class Ontology2Match extends Ontology
 			index = uri.lastIndexOf("/") + 1;
 		return uri.substring(index);
 	}
-	
+
 	//Add a relationship between two classes to the RelationshipMap
 	private void addRelationship(OWLOntology o, OWLClass c, OWLClassExpression e, boolean sub, boolean inverse)
 	{
@@ -1112,7 +1091,7 @@ public class Ontology2Match extends Ontology
 			int property = uris.getIndex(p.getIRI().toString());
 			Set<OWLClass> sup = e.getClassesInSignature();
 			if(sup == null || sup.size() != 1)
-				return;					
+				return;
 			OWLClass cls = sup.iterator().next();
 			parent = uris.getIndex(cls.getIRI().toString());
 			if(parent == -1 || property == -1)
@@ -1138,7 +1117,7 @@ public class Ontology2Match extends Ontology
 			int property = uris.getIndex(p.getIRI().toString());
 			Set<OWLClass> sup = e.getClassesInSignature();
 			if(sup == null || sup.size() != 1)
-				return;					
+				return;
 			OWLClass cls = sup.iterator().next();
 			parent = uris.getIndex(cls.getIRI().toString());
 			if(parent == -1 || property == -1)
@@ -1180,7 +1159,7 @@ public class Ontology2Match extends Ontology
 			if(property == -1)
 				return;
 			int cardinality = ((OWLObjectCardinalityRestrictionImpl)e).getCardinality();
-			card.add(property, child, cardinality);					
+			card.add(property, child, cardinality);
 		}
 		else if(type.equals(ClassExpressionType.OBJECT_MAX_CARDINALITY))
 		{
@@ -1192,7 +1171,7 @@ public class Ontology2Match extends Ontology
 			if(property == -1)
 				return;
 			int cardinality = ((OWLObjectCardinalityRestrictionImpl)e).getCardinality();
-			maxCard.add(property, child, cardinality);					
+			maxCard.add(property, child, cardinality);
 		}
 		else if(type.equals(ClassExpressionType.OBJECT_MIN_CARDINALITY))
 		{
@@ -1204,7 +1183,7 @@ public class Ontology2Match extends Ontology
 			if(property == -1)
 				return;
 			int cardinality = ((OWLObjectCardinalityRestrictionImpl)e).getCardinality();
-			minCard.add(property, child, cardinality);					
+			minCard.add(property, child, cardinality);
 		}
 		else if(type.equals(ClassExpressionType.DATA_ALL_VALUES_FROM))
 		{
@@ -1242,18 +1221,18 @@ public class Ontology2Match extends Ontology
 		}
 		else if(type.equals(ClassExpressionType.DATA_HAS_VALUE))
 		{
-			OWLDataHasValueImpl hv = (OWLDataHasValueImpl)e; 
+			OWLDataHasValueImpl hv = (OWLDataHasValueImpl)e;
 			Set<OWLDataProperty> props = hv.getDataPropertiesInSignature();
 			if(props == null || props.size() != 1)
 				return;
 			OWLDataProperty p = props.iterator().next();
-			if(!p.isFunctional(o))
+			if(!EntitySearcher.isFunctional(p, o))
 				return;
 			int property = uris.getIndex(p.getIRI().toString());
 			if(property == -1)
 				return;
 			String value = hv.getValue().toString();
-			if(p.isFunctional(o))
+			if(EntitySearcher.isFunctional(p, o))
 				dataHasValue.add(property, child, value);
 		}
 		else if(type.equals(ClassExpressionType.DATA_EXACT_CARDINALITY))
@@ -1266,7 +1245,7 @@ public class Ontology2Match extends Ontology
 			if(property == -1)
 				return;
 			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
-			card.add(property, child, cardinality);					
+			card.add(property, child, cardinality);
 		}
 		else if(type.equals(ClassExpressionType.DATA_MAX_CARDINALITY))
 		{
@@ -1278,7 +1257,7 @@ public class Ontology2Match extends Ontology
 			if(property == -1)
 				return;
 			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
-			maxCard.add(property, child, cardinality);					
+			maxCard.add(property, child, cardinality);
 		}
 		else if(type.equals(ClassExpressionType.DATA_MIN_CARDINALITY))
 		{
@@ -1290,7 +1269,7 @@ public class Ontology2Match extends Ontology
 			if(property == -1)
 				return;
 			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
-			minCard.add(property, child, cardinality);					
+			minCard.add(property, child, cardinality);
 		}
 	}
 }
