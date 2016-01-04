@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -15,7 +15,6 @@
 * Alignment search dialog box for the GUI.                                    *
 *                                                                             *
 * @author Daniel Faria, Catarina Martins                                      *
-* @date 19-10-2015                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -57,6 +56,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 //Attributes
 	
 	private static final long serialVersionUID = -3901206021275961468L;
+	private AML aml;
 	private JPanel dialogPanel, searchPanel, resultsPanel;
 	private CardLayout cl;
 	private JButton cancel, find, back, select, quit;
@@ -76,7 +76,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		this.setPreferredSize(new Dimension(700,140));
 
-		AML aml = AML.getInstance();
+		aml = AML.getInstance();
 		
 		//The containing panel
         dialogPanel = new JPanel();
@@ -150,8 +150,8 @@ public class SearchAlignment extends JDialog implements ActionListener
 		}
 		else if(o == select)
 		{
-			AML.getInstance().goTo(mappings.indexOf(results[mappingSelector.getSelectedIndex()]));
 			this.dispose();
+			aml.goTo(mappings.indexOf(results[mappingSelector.getSelectedIndex()]));
 		}
 		else if(o == find)
 		{
