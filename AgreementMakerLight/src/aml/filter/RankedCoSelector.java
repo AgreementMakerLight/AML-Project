@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -17,7 +17,6 @@
 * Alignment.                                                                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 20-08-2014                                                            *
 ******************************************************************************/
 package aml.filter;
 
@@ -54,7 +53,7 @@ public class RankedCoSelector implements Selector
 	{
 		System.out.println("Performing Ranked Co-Selection");
 		long time = System.currentTimeMillis()/1000;
-		aux.sort();
+		aux.sortDescending();
 		Alignment selected = new Alignment();
 		for(Mapping m : aux)
 		{

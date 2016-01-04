@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2004-2015 by the National and Technical University of Athens      *
+* Copyright 2004-2016 by the National and Technical University of Athens      *
 *                                                                             *
 * This program is free software: you can redistribute it and/or modify it     *
 * under the terms of the GNU Lesser General Public License as published by    *
@@ -18,7 +18,6 @@
 * ISub String similarity measure.                                             *
 *                                                                             *
 * @author Giorgos Stoilos (adapted and modified by Daniel Faria)              *
-* @date 22-10-2013                                                            *
 ******************************************************************************/
 package aml.util;
 

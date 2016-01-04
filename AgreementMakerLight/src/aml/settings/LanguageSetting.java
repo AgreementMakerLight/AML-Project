@@ -15,7 +15,6 @@
 * Lists the Language Settings.                                                *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 22-08-2014                                                            *
 ******************************************************************************/
 package aml.settings;
 

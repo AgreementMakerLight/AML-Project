@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,7 +16,6 @@
 * Manager) to help perform alignment selection.                               *
 *                                                                             *
 * @author Daniel Faria, Aynaz Taheri                                          *
-* @date 19-08-2015                                                            *
 ******************************************************************************/
 package aml.filter;
 
@@ -83,7 +82,7 @@ public class InteractiveSelector implements Selector
 		
 		//Setup:
 		//1) Sort the input alignment
-		a.sort();
+		a.sortDescending();
 		//2) Initialize the final alignment
 		Alignment selected = new Alignment();
 		//3) Set the query limit (which is a share of the global limit)

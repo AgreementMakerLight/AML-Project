@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2014 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -17,8 +17,6 @@
 * LexicalMatcher. Extends Lexicons with synonyms from the mediating ontology. *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 18-09-2014                                                            *
-* @version 2.1                                                                *
 ******************************************************************************/
 package aml.match;
 

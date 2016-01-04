@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -15,7 +15,6 @@
 * Selector that reduces an Alignment to the specified cardinality.            *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 07-07-2014                                                            *
 ******************************************************************************/
 package aml.filter;
 
@@ -44,7 +43,7 @@ public class CardinalitySelector implements Selector
 		//Initialize Alignment to return
 		Alignment selected = new Alignment();
 		//Then sort the alignment
-		a.sort();
+		a.sortDescending();
 		//Then select Mappings in ranking order (by similarity)
 		for(Mapping m : a)
 		{

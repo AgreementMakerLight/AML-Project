@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -17,7 +17,6 @@
 * cross-references.                                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml.match;
 

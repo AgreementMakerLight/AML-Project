@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -18,7 +18,6 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 13-08-2015                                                            *
 ******************************************************************************/
 package aml;
 
@@ -238,7 +237,7 @@ public class AML
 		if(gui)
 		{
 			evaluation = "Precision: " + prc + "; Recall: " + rec + "; F-measure: " + fms;
-			userInterface.refreshPanel();
+			userInterface.refresh();
 		}
 		else
 			evaluation = "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
@@ -468,8 +467,7 @@ public class AML
 	public void goTo(int index)
     {
    		currentMapping = index;
-   		userInterface.refreshPanel();
-   		userInterface.refreshGraph();
+   		userInterface.recenter();
     }
     
 	/**
@@ -537,15 +535,6 @@ public class AML
     	evaluation = null;
     	if(userInterface != null)
     		userInterface.refresh();
-    }
-    
-    public void nextMapping()
-    {
-    	if(currentMapping == a.size()-1)
-    		currentMapping = 0;
-    	else
-    		currentMapping++;
-		userInterface.refresh();
     }
     
     public void openAlignment(String path) throws Exception
@@ -665,15 +654,6 @@ public class AML
     	ref = new Alignment(path);
     }
     
-    public void previousMapping()
-    {
-    	if(currentMapping == 0)
-    		currentMapping = a.size()-1;
-    	else
-    		currentMapping--;
-		userInterface.refresh();
-    }
-    
     public boolean primaryStringMatcher()
     {
 		return primaryStringMatcher;
@@ -715,6 +695,8 @@ public class AML
 	public void setAlignment(Alignment maps)
 	{
 		a = maps;
+		if(userInterface != null)
+			userInterface.refresh();			
 	}
 
 	public void setDirectNeighbors(boolean directNeighbors)
