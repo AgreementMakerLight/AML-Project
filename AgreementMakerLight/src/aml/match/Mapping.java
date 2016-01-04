@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -17,13 +17,13 @@
 * An element in an Alignment.                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
 import aml.AML;
 import aml.ontology.URIMap;
 import aml.settings.MappingRelation;
+import aml.settings.MappingStatus;
 
 public class Mapping implements Comparable<Mapping>
 {
@@ -38,6 +38,8 @@ public class Mapping implements Comparable<Mapping>
 	private double similarity;
 	//The relationship between the terms
 	private MappingRelation rel;
+	//The status of the Mapping
+	private MappingStatus s;
 	
 //Constructors
 
@@ -52,6 +54,7 @@ public class Mapping implements Comparable<Mapping>
 		targetId = tId;
 		similarity = 1.0;
 		rel = MappingRelation.EQUIVALENCE;
+		s = MappingStatus.UNKNOWN;
 	}
 	
 	/**
@@ -66,6 +69,7 @@ public class Mapping implements Comparable<Mapping>
 		targetId = tId;
 		similarity = Math.round(sim*10000)/10000.0;
 		rel = MappingRelation.EQUIVALENCE;
+		s = MappingStatus.UNKNOWN;
 	}
 	
 	/**
@@ -81,6 +85,7 @@ public class Mapping implements Comparable<Mapping>
 		targetId = tId;
 		similarity = Math.round(sim*10000)/10000.0;
 		rel = r;
+		s = MappingStatus.UNKNOWN;
 	}
 	
 	/**
@@ -93,24 +98,31 @@ public class Mapping implements Comparable<Mapping>
 		targetId = m.targetId;
 		similarity = m.similarity;
 		rel = m.rel;
+		s = m.s;
 	}
 
 //Public Methods
 
 	@Override
 	/**
-	 * Mappings are compared based only on their similarity,
-	 * which enables sorting the Alignment and selecting the
-	 * best Mapping for a given term
+	 * Mappings are compared first based on their status, then
+	 * based on their similarity. This enables both sorting by
+	 * status for the GUI and sorting by similarity during the
+	 * matching procedure, as all mappings will have UNKNOWN
+	 * status at that stage.
 	 */
 	public int compareTo(Mapping o)
 	{
-		double diff = this.similarity - o.similarity;
-		if(diff < 0)
-			return -1;
-		if(diff > 0)
-			return 1;
-		return 0;
+		if(this.s.equals(o.s))
+		{
+			double diff = this.similarity - o.similarity;
+			if(diff < 0)
+				return -1;
+			if(diff > 0)
+				return 1;
+			return 0;
+		}
+		else return this.s.compareTo(o.s);
 	}
 	
 	/**
@@ -141,6 +153,14 @@ public class Mapping implements Comparable<Mapping>
 	}
 	
 	/**
+	 * @return the similarity between the mapped terms in percentage
+	 */
+	public String getSimilarityPercent()
+	{
+		return (Math.round(similarity*10000) * 1.0 / 100) + "%";
+	}
+	
+	/**
 	 * @return the id of the source term
 	 */
 	public int getSourceId()
@@ -156,6 +176,14 @@ public class Mapping implements Comparable<Mapping>
 		return AML.getInstance().getURIMap().getURI(sourceId);
 	}
 
+	/**
+	 * @return the status of this Mapping
+	 */
+	public MappingStatus getStatus()
+	{
+		return s;
+	}
+	
 	/**
 	 * @return the id of the target term
 	 */
@@ -191,12 +219,22 @@ public class Mapping implements Comparable<Mapping>
 	}
 	
 	/**
+	 * Sets the MappingStatus of this Mapping
+	 * @param s: the Mapping status to set
+	 */
+	public void setStatus(MappingStatus s)
+	{
+		this.s = s;
+	}
+	
+	/**
 	 * @return the Mapping in String form, formatted for the AML GUI
 	 */
 	public String toGUI()
 	{
 		return AML.getInstance().getSource().getName(sourceId) + " " +
-			rel.toString() + " " + AML.getInstance().getTarget().getName(sourceId);
+			rel.toString() + " " + AML.getInstance().getTarget().getName(targetId) +
+			" (" + getSimilarityPercent() + ") ";
 	}
 	
 	@Override
