@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,7 +16,6 @@
 * as a Table of indexes, and including methods for input and output.          *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 26-05-2014                                                            *
 ******************************************************************************/
 package aml.match;
 
@@ -46,6 +45,7 @@ import aml.ontology.Ontology2Match;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.settings.MappingRelation;
+import aml.settings.MappingStatus;
 import aml.util.Table2Map;
 
 public class Alignment implements Collection<Mapping>
@@ -259,7 +259,7 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public void addAllOneToOne(Alignment a)
 	{
-		a.sort();
+		a.sortDescending();
 		for(Mapping m : a.maps)
 			if(!this.containsConflict(m))
 				add(m);
@@ -386,16 +386,22 @@ public class Alignment implements Collection<Mapping>
 	/**
 	 * @param sourceId: the index of the source class to check in the Alignment
  	 * @param targetId: the index of the target class to check in the Alignment 
-	 * @return whether the Alignment contains a Mapping for sourceId or for targetId
+	 * @return whether the Alignment contains another Mapping for sourceId or for targetId
 	 */
 	public boolean containsConflict(int sourceId, int targetId)
 	{
-		return containsSource(sourceId) || containsTarget(targetId);
+		for(int s : getTargetMappings(targetId))
+			if(s != sourceId)
+				return true;
+		for(int t : getSourceMappings(sourceId))
+			if(t != targetId)
+				return true;
+		return false;
 	}
 	
 	/**
  	 * @param m: the Mapping to check in the Alignment 
-	 * @return whether the Alignment contains a Mapping involving either class in m
+	 * @return whether the Alignment contains another Mapping involving either class in m
 	 */
 	public boolean containsConflict(Mapping m)
 	{
@@ -532,8 +538,6 @@ public class Alignment implements Collection<Mapping>
 	
 	/**
 	 * @param ref: the reference Alignment to evaluate this Alignment
-	 * @param forGUI: whether the evaluation is for display in the GUI
-	 * or for output to the console
 	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
 	public int[] evaluate(Alignment ref)
@@ -542,9 +546,17 @@ public class Alignment implements Collection<Mapping>
 		for(Mapping m : maps)
 		{
 			if(ref.contains(m))
+			{
 				count[0]++;
+				m.setStatus(MappingStatus.CORRECT);
+			}
 			else if(ref.contains(m.getSourceId(),m.getTargetId(),MappingRelation.UNKNOWN))
+			{
 				count[1]++;
+				m.setStatus(MappingStatus.UNKNOWN);
+			}
+			else
+				m.setStatus(MappingStatus.INCORRECT);
 		}
 		return count;
 	}
@@ -804,6 +816,19 @@ public class Alignment implements Collection<Mapping>
 	}
 	
 	/**
+	 * @param sourceId: the index of the source class in the Alignment
+	 * @param targetId: the index of the target class in the Alignment
+	 * @return the similarity between source and target in percentage
+	 */
+	public String getSimilarityPercent(int sourceId, int targetId)
+	{
+		Mapping m = sourceMaps.get(sourceId, targetId);
+		if(m == null)
+			return "0%";
+		return m.getSimilarityPercent();
+	}
+	
+	/**
 	 * @param sourceId: the index of the source class to check in the Alignment
  	 * @return the list of all target classes mapped to the source class
 	 */
@@ -1021,22 +1046,27 @@ public class Alignment implements Collection<Mapping>
 	{
 		return maps.size();
 	}
+
+	/**
+	 * Sorts the Alignment ascendingly
+	 */
+	public void sortAscending()
+	{
+		Collections.sort(maps);
+	}
 	
 	/**
-	 * Sorts the Alignment descendingly, by similarity
+	 * Sorts the Alignment descendingly
 	 */
-	public void sort()
+	public void sortDescending()
 	{
 		Collections.sort(maps,new Comparator<Mapping>()
         {
+			//Sorting in descending order can be done simply by
+			//reversing the order of the elements in the comparison
             public int compare(Mapping m1, Mapping m2)
             {
-        		double diff = m2.getSimilarity() - m1.getSimilarity();
-        		if(diff < 0)
-        			return -1;
-        		if(diff > 0)
-        			return 1;
-        		return 0;
+        		return m2.compareTo(m1);
             }
         } );
 	}
