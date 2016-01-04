@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -15,7 +15,6 @@
 * Ontology matching configuration dialog box for the GUI.                     *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 29-09-2014                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -27,6 +26,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -46,7 +47,7 @@ import javax.swing.event.ListSelectionListener;
 import aml.AML;
 import aml.settings.MatchStep;
 
-public class MatchOptions extends JDialog implements ActionListener, ItemListener, ListSelectionListener, Runnable
+public class MatchOptions extends JDialog implements ActionListener, ItemListener, ListSelectionListener, Runnable, WindowListener
 {
 	
 //Attributes
@@ -59,9 +60,11 @@ public class MatchOptions extends JDialog implements ActionListener, ItemListene
 	private JList<String> matchList;
 	private JCheckBox allSteps;
     private Vector<String> matchSteps, selectedSteps;
+    private Thread action, console;
     
 //Constructor
     
+    //TODO: This Dialog doesn't look great - improve its appearance! - also add combination option
 	public MatchOptions()
 	{
 		//Initialize
@@ -87,7 +90,7 @@ public class MatchOptions extends JDialog implements ActionListener, ItemListene
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		
 		//Match Steps
-		allSteps = new JCheckBox("Select All");
+		allSteps = new JCheckBox("Select All/None");
 		allSteps.setSelected(selectedSteps.size() == matchSteps.size());
 		allSteps.addItemListener(this);
 		matchList = new JList<String>(matchSteps);
@@ -161,6 +164,8 @@ public class MatchOptions extends JDialog implements ActionListener, ItemListene
 			this.dispose();
 		else if(o == match)
 		{
+			if(aml.hasAlignment())
+				aml.closeAlignment();
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			aml.setThreshold((Double)threshold.getSelectedItem());
 			Vector<MatchStep> selection = new Vector<MatchStep>();
@@ -169,8 +174,11 @@ public class MatchOptions extends JDialog implements ActionListener, ItemListene
 			aml.setSelectedSteps(selection);
 			//Then match the ontologies
 			c = new Console();
-			new Thread(c).start();
-			new Thread(this).start();
+			c.addWindowListener(this);
+			console = new Thread(c);
+			console.start();
+			action = new Thread(this);
+			action.start();
 		}
 		else if(o == detail)
 		{
@@ -217,4 +225,32 @@ public class MatchOptions extends JDialog implements ActionListener, ItemListene
 		c.finish();
 		dispose();
 	}
+	
+	@Override
+	public void windowOpened(WindowEvent e){}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void windowClosing(WindowEvent e)
+	{
+		//Stop should be relatively safe in this case
+		action.stop();
+		c.finish();
+		this.dispose();
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e){}
+
+	@Override
+	public void windowIconified(WindowEvent e){}
+
+	@Override
+	public void windowDeiconified(WindowEvent e){}
+
+	@Override
+	public void windowActivated(WindowEvent e){}
+
+	@Override
+	public void windowDeactivated(WindowEvent e){}
 }
