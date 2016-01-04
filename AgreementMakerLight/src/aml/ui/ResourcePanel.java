@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,7 +16,6 @@
 * currently being viewed.                                                     *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
 ******************************************************************************/
 package aml.ui;
 
@@ -33,7 +32,6 @@ import javax.swing.text.StyledDocument;
 
 import aml.AML;
 import aml.match.Alignment;
-import aml.match.Mapping;
 import aml.ontology.Ontology2Match;
 
 public class ResourcePanel extends JInternalFrame
@@ -123,17 +121,6 @@ public class ResourcePanel extends JInternalFrame
 					al += " (" + eval + ")";
 				al += "\n";
 				doc.insertString(doc.getLength(), al, def);
-			}
-			
-			doc.insertString(doc.getLength(), "Current Mapping: ", bold);
-			Mapping m = AML.getInstance().getCurrentMapping();
-			if(m == null)
-				doc.insertString(doc.getLength(), "N/A", def);
-			else
-			{
-				String mapDesc = m.toGUI() + " (" + (AML.getInstance().getCurrentIndex()+1) +
-						"/" + a.size() + ")";
-				doc.insertString(doc.getLength(), mapDesc, def);
 			}
 		}
 		catch (BadLocationException e)
