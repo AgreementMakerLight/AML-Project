@@ -226,7 +226,43 @@ public class Alignment implements Collection<Mapping>
 	@Override
 	public boolean add(Mapping m)
 	{
-		return add(m.getSourceId(), m.getTargetId(), m.getSimilarity(), m.getRelationship());
+		int sourceId = m.getSourceId();
+		int targetId = m.getTargetId();
+		double sim = m.getSimilarity();
+		MappingRelation r = m.getRelationship();
+		Mapping clone = new Mapping(m);
+		//Unless the Alignment is internal, we can't have a mapping
+		//involving entities that exist in both ontologies (they are
+		//the same entity, and therefore shouldn't map with other
+		//entities in either ontology)
+		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
+			return false;
+		
+		//If it isn't listed yet, add it
+		if(!sourceMaps.contains(sourceId,targetId))
+		{
+			maps.add(m);
+			sourceMaps.add(sourceId, targetId, clone);
+			targetMaps.add(targetId, sourceId, clone);
+			return true;
+		}
+		//Otherwise update the similarity
+		else
+		{
+			m = sourceMaps.get(sourceId,targetId);
+			boolean check = false;
+			if(m.getSimilarity() < sim)
+			{
+				m.setSimilarity(sim);
+				check = true;
+			}
+			if(!m.getRelationship().equals(r))
+			{
+				m.setRelationship(r);
+				check = true;
+			}
+			return check;
+		}
 	}
 
 	@Override
