@@ -320,6 +320,19 @@ public class Alignment implements Collection<Mapping>
 		return cardinality;		
 	}
 	
+	/**
+	 * @param id: the index of the entity to check in the Alignment
+	 * @return the cardinality of the entity in the Alignment
+	 */
+	public int cardinality(int id)
+	{
+		if(sourceMaps.contains(id))
+			return sourceMaps.get(id).size();
+		if(targetMaps.contains(id))
+			return targetMaps.get(id).size();
+		return 0;
+	}
+	
 	@Override
 	public void clear()
 	{
