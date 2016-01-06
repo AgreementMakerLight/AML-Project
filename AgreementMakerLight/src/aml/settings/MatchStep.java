@@ -20,14 +20,16 @@ package aml.settings;
 
 public enum MatchStep
 {
-   	TRANSLATE ("Translator"),
-   	BK ("BK Matcher"),
-   	WORD ("Word Matcher"),
-   	STRING ("String Matcher"),
-   	STRUCT ("Structural Matcher"),
-   	PROPERTY ("Property Matcher"),
-   	SELECT ("Selector"),
-   	REPAIR ("Repairer");
+   	TRANSLATE	("Translator"),
+   	LEXICAL		("Lexical Matcher"),
+   	BK			("Background Knowledge Matcher"),
+   	WORD		("Word Matcher"),
+   	STRING		("String Matcher"),
+   	STRUCT		("Structural Matcher"),
+   	PROPERTY	("Property Matcher"),
+   	OBSOLETE	("Obsolete Filter"),
+   	SELECT		("Cardinality Filter"),
+   	REPAIR		("Coherence Filter");
 	    	
    	final String value;
     	
