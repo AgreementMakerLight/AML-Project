@@ -23,9 +23,9 @@
 package aml.util;
 
 import aml.AML;
-import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.URIMap;
+import aml.settings.MappingStatus;
 
 //Uncomment below to switch to the Oracle from the SEALS OMT client
 //import eu.sealsproject.omt.client.interactive.Oracle;
@@ -35,12 +35,9 @@ public class InteractionManager
 	
 //Attributes
 	
-	//The alignment built from the positive queries
-	private Alignment positive;
-	//The alignment built from the negative queries
-	private Alignment negative;
-	//The query limit
+	//The query limit & count
 	private int limit;
+	private int count;
 	//Whether user interaction is available
 	private boolean isInteractive;
 	//The URI map used to convert ids to URIs for
@@ -56,9 +53,8 @@ public class InteractionManager
 	 */
 	public InteractionManager()
 	{
-		positive = new Alignment();
-		negative = new Alignment();
 		limit = 0;
+		count = 0;
 		isInteractive = Oracle.isInteractive();
 		uris = AML.getInstance().getURIMap();
 	}
@@ -66,34 +62,24 @@ public class InteractionManager
 //Public Methods
 	
 	/**
-	 * Checks whether a Mapping is correct by first looking at
-	 * the stored alignments, and then querying the Oracle if
-	 * necessary
+	 * Classifies a Mapping by checking the Oracle
 	 * @param m: the Mapping to check
-	 * @return whether the Mapping is correct according to the
-	 * simulated user
 	 */
-	public boolean check(Mapping m)
+	public void classify(Mapping m)
 	{
-		boolean check = positive.contains(m);
-		if(!check && !negative.contains(m) && isInteractive() && positive.size()+negative.size() < limit)
+		if(m.getStatus().equals(MappingStatus.CORRECT) || m.getStatus().equals(MappingStatus.INCORRECT))
+			return;
+		if(limit > count++)
 		{
-			check = Oracle.check(uris.getURI(m.getSourceId()),
+			boolean check = Oracle.check(uris.getURI(m.getSourceId()),
 				uris.getURI(m.getTargetId()), m.getRelationship().toString());
 			if(check)
-				positive.add(m);
+				m.setStatus(MappingStatus.CORRECT);
 			else
-				negative.add(m);
+				m.setStatus(MappingStatus.INCORRECT);
 		}
-		return check;
-	}
-
-	/**
-	 * @return the query limit
-	 */
-	public int getLimit()
-	{
-		return limit;
+		if(limit <= count)
+			isInteractive = false;
 	}
 
 	/**
@@ -105,19 +91,14 @@ public class InteractionManager
 	}
 	
 	/**
-	 * @return the current query count
-	 */
-	public int queryCount()
-	{
-		return positive.size()+negative.size();
-	}
-	
-	/**
 	 * Sets the query limit
 	 * @param limit: the limit to set
 	 */
 	public void setLimit(int limit)
 	{
 		this.limit = limit;
+		this.count = 0;
+		if(limit == 0)
+			isInteractive = false;
 	}
 }
