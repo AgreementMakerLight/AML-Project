@@ -43,7 +43,7 @@ public class ManualMatcher
 	{
 		//Get the AML instance and settings
 		AML aml = AML.getInstance();
-		Vector<MatchStep> steps = aml.getSelectedSteps();
+		Vector<MatchStep> steps = aml.getMatchSteps();
 		double thresh = aml.getThreshold();
 		
 		//Initialize the alignment

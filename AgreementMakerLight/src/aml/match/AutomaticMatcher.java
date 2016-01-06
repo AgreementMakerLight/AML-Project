@@ -85,7 +85,7 @@ public class AutomaticMatcher
 		//Initialize the alignment
 		a = new Alignment();
 		//And start the matching procedure
-		Vector<MatchStep> selectedSteps = aml.getSelectedSteps();
+		Vector<MatchStep> selectedSteps = aml.getMatchSteps();
 		setThresholds();
 		if(selectedSteps.contains(MatchStep.TRANSLATE))
 			translate();
