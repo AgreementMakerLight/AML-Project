@@ -25,6 +25,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
@@ -34,20 +35,21 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import aml.AML;
+import aml.util.Table2Set;
 import aml.util.Table3List;
 import aml.util.Table3Set;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.RelationshipMap;
+import aml.settings.MappingStatus;
 
-public class RepairMap
+public class RepairMap implements Iterable<Integer>
 {
 	
 //Attributes
 	
-	//Link to the global relationship map
-	RelationshipMap rels;
-	//Link to the alignment to repair
+	private AML aml;
+	private RelationshipMap rels;
 	private Alignment a;
 	//The list of classes that are relevant for coherence checking
 	private HashSet<Integer> classList;
@@ -63,21 +65,23 @@ public class RepairMap
 	private int pathCount;
 	//The list of conflict sets
 	private Vector<Path> conflictSets;
+	//The table of conflicts per mapping
+	private Table2Set<Integer,Integer> conflictMappings;
+	private Table2Set<Integer,Integer> mappingConflicts;
 	//The available CPU threads
 	private int threads;
 	
 //Constructors
 	
 	/**
-	 * Constructs a new RepairMap based on the RelationshipMap
-	 * and the given Alignment to repair
-	 * @param maps: the Alignment to repair
+	 * Constructs a new RepairMap
 	 */
-	public RepairMap(Alignment maps)
+	public RepairMap()
 	{
+		aml = AML.getInstance();
+		rels = aml.getRelationshipMap();
+		a = aml.getAlignment();
 		threads = Runtime.getRuntime().availableProcessors();
-		rels = AML.getInstance().getRelationshipMap();
-		a = maps;
 		init();
 	}
 	
@@ -117,9 +121,56 @@ public class RepairMap
 	 * @param index: the index of the Mapping to get
 	 * @return the Mapping at the given index
 	 */
+	public Set<Integer> getConflicts(int index)
+	{
+		return mappingConflicts.get(index);
+	}
+	
+	/**
+	 * @param index: the index of the Mapping to get
+	 * @return the Mapping at the given index
+	 */
 	public Mapping getMapping(int index)
 	{
 		return a.get(index);
+	}
+	
+	/**
+	 * @return whether the alignment is coherent
+	 */
+	public boolean isCoherent()
+	{
+		return conflictSets == null || conflictSets.size() == 0;
+	}
+	
+	@Override
+	public Iterator<Integer> iterator()
+	{
+		return mappingConflicts.keySet().iterator();
+	}
+	
+	/**
+	 * Sets a Mapping as incorrect and removes its conflicts from
+	 * the RepairMap (but does not actually remove the Mapping from
+	 * the Alignment)
+	 * @param index: the index of the Mapping to remove
+	 */
+	public void remove(int index)
+	{
+		HashSet<Integer> conflicts = new HashSet<Integer>(mappingConflicts.get(index));
+		for(Integer i : conflicts)
+		{
+			for(Integer j : conflictMappings.get(i))
+			{
+				if(mappingConflicts.get(j).size() == 1)
+					mappingConflicts.remove(j);
+				else
+					mappingConflicts.remove(j,i);
+			}
+			conflictMappings.remove(i);
+		}
+		mappingConflicts.remove(index);
+		a.get(index).setStatus(MappingStatus.INCORRECT);
 	}
 	
 	/**
@@ -540,6 +591,17 @@ public class RepairMap
 			//And turn them into the final minimal list of conflict sets
 			for(Path p : allConflicts)
 				addConflict(p,conflictSets);
+		}
+		//Now go through the conflict sets and link them to the mappings
+		conflictMappings = new Table2Set<Integer,Integer>();
+		mappingConflicts = new Table2Set<Integer,Integer>();
+		for(int i = 0; i < conflictSets.size(); i++)
+		{
+			for(Integer j : conflictSets.get(i))
+			{
+				conflictMappings.add(i,j);
+				mappingConflicts.add(j,i);
+			}
 		}
 	}
 	

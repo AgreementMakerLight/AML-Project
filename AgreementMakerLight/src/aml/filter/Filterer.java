@@ -12,52 +12,16 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Selector that reduces an Alignment to the specified cardinality.            *
+* A filtering algorithm that removes problem mappings from the Alignment      *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.filter;
 
-import aml.match.Alignment;
-import aml.match.Mapping;
-
-public class CardinalitySelector implements Selector
+public interface Filterer
 {
-	
-//Attributes
-	
-	private int cardinality;
-	
-//Constructors
-		
-	public CardinalitySelector(int card)
-	{
-		cardinality = card;
-	}
-
-//Public Methods
-	
-	@Override
-	public Alignment select(Alignment a, double thresh)
-	{
-		//Initialize Alignment to return
-		Alignment selected = new Alignment();
-		//Then sort the alignment
-		a.sortDescending();
-		//Then select Mappings in ranking order (by similarity)
-		for(Mapping m : a)
-		{
-			//If a Mapping has similarity below the threshold, end the loop
-			if(m.getSimilarity() < thresh)
-				break;
-			//Otherwise, add it if it is within the desired cardinality
-			int sourceId = m.getSourceId();
-			int sourceCard = selected.getSourceMappings(sourceId).size();
-			int targetId = m.getTargetId();
-			int targetCard = selected.getTargetMappings(targetId).size();
-			if(sourceCard < cardinality && targetCard < cardinality)
-				selected.add(new Mapping(m));
-		}
-		return selected;
-	}
+	/**
+	 * Filters problem mappings from the active Alignment
+	 */
+	public void filter();
 }

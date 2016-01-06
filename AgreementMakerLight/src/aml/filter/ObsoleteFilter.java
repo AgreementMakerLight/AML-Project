@@ -12,8 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Repair algorithm that excludes mappings between obsolete classes from an    *
-* Alignment.                                                                  *
+* Filtering algorithm based on obsolete classes.                              *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -23,20 +22,41 @@ import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.Ontology2Match;
+import aml.settings.MappingStatus;
 
-public class ObsoleteRepairer implements Repairer
+public class ObsoleteFilter implements Filterer, Flagger
 {
+
+//Constructors
+	
+	public ObsoleteFilter(){}
+	
+//Public Methods
+	
 	@Override
-	public Alignment repair(Alignment a)
+	public void filter()
 	{
-		Ontology2Match source = AML.getInstance().getSource();
-		Ontology2Match target = AML.getInstance().getTarget();
-		
-		Alignment selected = new Alignment();
+		AML aml = AML.getInstance();
+		Ontology2Match source = aml.getSource();
+		Ontology2Match target = aml.getTarget();
+		Alignment a = aml.getAlignment();
 		for(Mapping m : a)
-			if(!source.isObsoleteClass(m.getSourceId()) &&
-					!target.isObsoleteClass(m.getTargetId()))
-				selected.add(m);
-		return selected;
+			if(source.isObsoleteClass(m.getSourceId()) ||
+					target.isObsoleteClass(m.getTargetId()))
+				m.setStatus(MappingStatus.INCORRECT);
+		aml.removeIncorrect();
+	}
+	
+	@Override
+	public void flag()
+	{
+		AML aml = AML.getInstance();
+		Ontology2Match source = aml.getSource();
+		Ontology2Match target = aml.getTarget();
+		Alignment a = aml.getAlignment();
+		for(Mapping m : a)
+			if(source.isObsoleteClass(m.getSourceId()) ||
+					target.isObsoleteClass(m.getTargetId()))
+				m.setStatus(MappingStatus.FLAGGED);		
 	}
 }

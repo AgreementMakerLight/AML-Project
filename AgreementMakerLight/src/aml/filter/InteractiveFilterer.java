@@ -12,70 +12,51 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Selector that uses (simulated) user interaction (through the Interaction    *
+* Filterer that uses (simulated) user interaction (through the Interaction    *
 * Manager) to help perform alignment selection.                               *
 *                                                                             *
 * @author Daniel Faria, Aynaz Taheri                                          *
 ******************************************************************************/
 package aml.filter;
 
-import java.util.Vector;
-
 import aml.AML;
 import aml.match.Alignment;
-import aml.match.BlockRematcher;
 import aml.match.Mapping;
-import aml.match.NeighborSimilarityMatcher;
-import aml.match.Rematcher;
-import aml.match.StringMatcher;
-import aml.match.WordMatcher;
-import aml.settings.NeighborSimilarityStrategy;
+import aml.settings.MappingStatus;
 import aml.settings.SizeCategory;
-import aml.settings.WordMatchStrategy;
 import aml.util.InteractionManager;
 
-public class InteractiveSelector implements Selector
+public class InteractiveFilterer implements Filterer
 {
 	
 //Attributes
-	
-	//Interaction manager
+
+	private AML aml;
 	private InteractionManager im;
+	private Alignment a;
+	private QualityFlagger qf;
 	//Selection thresholds
 	private final double HIGH_THRESH = 0.7;
 	private final double AVERAGE_THRESH = 0.2;
 	private double lowThresh = 0.45;
 	//Auxiliary variables
 	private SizeCategory size;
-	private Vector<Rematcher> auxMatchers;
-	private Vector<Alignment> auxAlignments;
 	
 //Constructors
 	
-	public InteractiveSelector()
+	public InteractiveFilterer()
 	{
-		AML aml = AML.getInstance();
+		aml = AML.getInstance();
 		im = aml.getInteractionManager();
 		size = aml.getSizeCategory();
-		//Construct the list of auxiliary (re)matchers, which will be used
-		//to compute auxiliary alignments used for interactive selection
-		auxMatchers = new Vector<Rematcher>();
-		auxMatchers.add(new WordMatcher(WordMatchStrategy.AVERAGE));
-		auxMatchers.add(new StringMatcher());
-		auxMatchers.add(new NeighborSimilarityMatcher(
-				NeighborSimilarityStrategy.DESCENDANTS,
-				!size.equals(SizeCategory.SMALL)));
-		auxMatchers.add(new NeighborSimilarityMatcher(
-				NeighborSimilarityStrategy.ANCESTORS,
-				!size.equals(SizeCategory.SMALL)));
-		if(size.equals(SizeCategory.HUGE))
-			auxMatchers.add(new BlockRematcher());
+		a = aml.getAlignment();
+		qf = aml.getQualityFlagger();
 	}
 	
 //Public Methods
 	
 	@Override
-	public Alignment select(Alignment a, double thresh)
+	public void filter()
 	{
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Performing Interactive Selection");
@@ -85,16 +66,7 @@ public class InteractiveSelector implements Selector
 		a.sortDescending();
 		//2) Initialize the final alignment
 		Alignment selected = new Alignment();
-		//3) Set the query limit (which is a share of the global limit)
-		int queryLimit;
-		if(size.equals(SizeCategory.SMALL))
-			//For small ontologies, most of the limit is used in selection
-			//(as there is not much need for repair)
-			queryLimit = (int)Math.round(im.getLimit()*0.9);
-		else
-			//For larger ontologies, we reserve a bit more of the limit for repair
-			queryLimit = (int)Math.round(im.getLimit()*0.75);
-		//4) Start the consecutive negative count and set the limit
+		//3) Start the consecutive negative count and set the limit
 		int consecutiveNegativeCount = 0;
 		boolean updated = false;
 		int consecutiveNegativeLimit;
@@ -102,63 +74,42 @@ public class InteractiveSelector implements Selector
 			consecutiveNegativeLimit = 5;
 		else
 			consecutiveNegativeLimit = 10;
-		//5) Compute auxiliary alignments
-		auxAlignments = new Vector<Alignment>();
-		for(Rematcher r : auxMatchers)
-			auxAlignments.add(r.rematch(a));
 
 		//Select - for each mapping:
 		for(Mapping m : a)
 		{
-			//Get the ids and URIs
+			//Get the ids
 			int sourceId = m.getSourceId();
 			int targetId = m.getTargetId();
 			double finalSim = m.getSimilarity();
 			//Compute the auxiliary parameters
-			double maxSim = 0.0;
-			double average = finalSim;
-			int support = 0;
-			for(int i = 0; i < auxAlignments.size(); i++)
-			{
-				double sim = auxAlignments.get(i).getSimilarity(sourceId, targetId);
-				//All auxiliary alignments count for the max
-				if(sim > maxSim)
-					maxSim = sim;
-				//Block rematcher doesn't count towards the support
-				if(i != 4 && sim > 0)
-					support++;
-				//NSM Ancestors doesn't count towards the average
-				if(i != 3)
-					average += sim;
-			}
-			average /= 4;
+			double maxSim = qf.getMaxSimilarity(sourceId, targetId);
+			double average = qf.getAverageSimilarity(sourceId, targetId);
+			int support = qf.getSupport(sourceId, targetId);
 			
-			boolean check = false;
 			if(finalSim >= HIGH_THRESH)
 			{
-				check = true;
 				if(support < 2 || selected.containsConflict(m))
 				{
-					if(im.queryCount() < queryLimit)
-						check = im.check(m);
+					if(im.isInteractive())
+						im.classify(m);
 					else
-						check = false;
+						m.setStatus(MappingStatus.INCORRECT);
 				}
 			}
 			else if(finalSim >= lowThresh || maxSim >= lowThresh)
 			{
-				check = false;
-				if(im.queryCount() < queryLimit)
+				if(im.isInteractive())
 				{
 					if(support > 1 && average > AVERAGE_THRESH &&
 							!selected.containsConflict(m))
 					{
-						check = im.check(m);
+						im.classify(m);
 						//Update the consecutive negative query count
-						if(check)
-							consecutiveNegativeCount = 0;
-						else
+						if(m.getStatus().equals(MappingStatus.INCORRECT))
 							consecutiveNegativeCount++;
+						else
+							consecutiveNegativeCount = 0;
 						//If it exceeds the limit, raise the lowThresh to the current
 						//similarity value
 						if(!updated && consecutiveNegativeCount > consecutiveNegativeLimit)
@@ -172,11 +123,11 @@ public class InteractiveSelector implements Selector
 				else
 					break;
 			}
-			if(check)
+			if(!m.getStatus().equals(MappingStatus.INCORRECT))
 				selected.add(sourceId, targetId, maxSim);
 		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
-		return selected;
+		aml.setAlignment(selected);
 	}
 }
