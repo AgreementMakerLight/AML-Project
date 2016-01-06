@@ -300,7 +300,7 @@ public class Main
 				{
 					if(option[1].equalsIgnoreCase("true") ||
 							(option[1].equalsIgnoreCase("auto") &&
-							aml.getSelectedSteps().contains(MatchStep.TRANSLATE)))
+							aml.getMatchSteps().contains(MatchStep.TRANSLATE)))
 						selection.add(MatchStep.TRANSLATE);
 				}
 				else if(option[0].equals("bk_sources"))
@@ -325,7 +325,7 @@ public class Main
 				{
 					if(option[1].equalsIgnoreCase("none") ||
 							(option[1].equalsIgnoreCase("auto") &&
-							!aml.getSelectedSteps().contains(MatchStep.WORD)))
+							!aml.getMatchSteps().contains(MatchStep.WORD)))
 						continue;
 					selection.add(MatchStep.WORD);
 					if(!option[1].equalsIgnoreCase("auto"))
@@ -352,7 +352,7 @@ public class Main
 				{
 					if(option[1].equalsIgnoreCase("none") ||
 							(option[1].equalsIgnoreCase("auto") &&
-							!aml.getSelectedSteps().contains(MatchStep.STRUCT)))
+							!aml.getMatchSteps().contains(MatchStep.STRUCT)))
 						continue;
 					selection.add(MatchStep.STRUCT);
 					if(!option[1].equalsIgnoreCase("auto"))
@@ -362,7 +362,7 @@ public class Main
 				{
 					if(option[1].equalsIgnoreCase("true") ||
 							(option[1].equalsIgnoreCase("auto") &&
-							aml.getSelectedSteps().contains(MatchStep.PROPERTY)))
+							aml.getMatchSteps().contains(MatchStep.PROPERTY)))
 						selection.add(MatchStep.PROPERTY);
 				}
 				else if(option[0].equals("selection_type"))
