@@ -163,7 +163,8 @@ public class Selector implements Filterer, Flagger
 				}
 			}
 		}
-		aml.setAlignment(selected);
+		if(selected.size() < a.size())
+			aml.setAlignment(selected);
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}
 	
