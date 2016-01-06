@@ -21,11 +21,9 @@ package aml.match;
 import java.util.Vector;
 
 import aml.AML;
-import aml.filter.SemanticRepairer;
-import aml.filter.ObsoleteRepairer;
-import aml.filter.RankedCoSelector;
-import aml.filter.RankedSelector;
+import aml.filter.ObsoleteFilter;
 import aml.filter.Repairer;
+import aml.filter.Selector;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
@@ -41,7 +39,7 @@ public class ManualMatcher
 	
 //Public Methods
 
-	public static Alignment match()
+	public static void match()
 	{
 		//Get the AML instance and settings
 		AML aml = AML.getInstance();
@@ -102,12 +100,13 @@ public class ManualMatcher
 			PropertyMatcher pm = new PropertyMatcher(true);
 			a.addAllOneToOne(pm.extendAlignment(a, thresh));
 		}
+		aml.setAlignment(a);
 		if(steps.contains(MatchStep.SELECT))
 		{
 			if(aml.removeObsolete())
 			{
-				ObsoleteRepairer or = new ObsoleteRepairer();
-				a = or.repair(a);
+				ObsoleteFilter or = new ObsoleteFilter();
+				or.filter();
 			}
 			SelectionType sType = aml.getSelectionType();
 			if(aml.structuralSelection())
@@ -119,25 +118,22 @@ public class ManualMatcher
 				Alignment c = nb.rematch(a);
 				b = LWC.combine(b, c, 0.75);
 				b = LWC.combine(a, b, 0.8);
-			
-				RankedSelector rs = new RankedSelector(sType);
-				b = rs.select(b, thresh-0.05);
-					
-				RankedCoSelector s = new RankedCoSelector(b, sType);
-				a = s.select(a, thresh);
+				Selector s = new Selector(thresh-0.05,sType);
+				b = s.filter(b);
+				s = new Selector(thresh, sType, b);
+				s.filter();
 				
 			}
 			else
 			{
-				RankedSelector rs = new RankedSelector(sType);
-				a = rs.select(a, thresh);
+				Selector s = new Selector(thresh, sType);
+				s.filter();
 			}
 		}
 		if(steps.contains(MatchStep.REPAIR))
 		{
-			Repairer r = new SemanticRepairer();
-			a = r.repair(a);
+			Repairer r = new Repairer();
+			r.filter();
 		}
-		return a;
 	}
 }

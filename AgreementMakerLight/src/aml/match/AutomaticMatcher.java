@@ -23,13 +23,10 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
-import aml.filter.SemanticRepairer;
-import aml.filter.InteractiveSemanticRepairer;
-import aml.filter.InteractiveSelector;
-import aml.filter.ObsoleteRepairer;
-import aml.filter.RankedCoSelector;
-import aml.filter.RankedSelector;
+import aml.filter.InteractiveFilterer;
+import aml.filter.ObsoleteFilter;
 import aml.filter.Repairer;
+import aml.filter.Selector;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
@@ -47,7 +44,6 @@ public class AutomaticMatcher
 	//Interaction manager
 	private static InteractionManager im;
 	//Settings
-	private static boolean isInteractive;
 	private static SizeCategory size;
 	private static LanguageSetting lang;
 	private static SelectionType sType;
@@ -75,13 +71,12 @@ public class AutomaticMatcher
 	
 //Public Methods
 
-	public static Alignment match()
+	public static void match()
 	{
 		//Get the AML instance
 		aml = AML.getInstance();
 		//The interaction manager
 		im = aml.getInteractionManager();
-		isInteractive = im.isInteractive();
 		//And the size and language configuration
 		size = aml.getSizeCategory();
 		lang = aml.getLanguageSetting();
@@ -105,22 +100,11 @@ public class AutomaticMatcher
 			structuralMatch();
 		if(selectedSteps.contains(MatchStep.PROPERTY))
 			propertyMatch();
-		//Set the interaction limit
-		if(isInteractive)
-		{
-			int limit;
-			//For small ontologies 50% of the alignment
-			if(size.equals(SizeCategory.SMALL))
-				limit = (int)Math.round(a.size()*0.5);
-			//Otherwise, 20% of the alignment
-			else
-				limit = (int)Math.round(a.size()*0.2);
-			im.setLimit(limit);
-		}
+		//Set the Alignment
+		aml.setAlignment(a);
 		//Perform selection and repair
 		selection();
 		repair();
-		return a;
 	}
 		
 //Private Methods
@@ -132,7 +116,7 @@ public class AutomaticMatcher
 		psmThresh = 0.7;
 		wnThresh = 0.1;
 
-    	if(isInteractive)
+    	if(im.isInteractive())
     	{
     		thresh += INTER_MOD;
 			wnThresh = 0.04;
@@ -294,8 +278,8 @@ public class AutomaticMatcher
 	{
 		if(aml.structuralSelection())
 		{
-			ObsoleteRepairer or = new ObsoleteRepairer();
-			a = or.repair(a);
+			ObsoleteFilter or = new ObsoleteFilter();
+			or.filter();
 				
 			BlockRematcher hl = new BlockRematcher();
 			Alignment b = hl.rematch(a);
@@ -304,34 +288,36 @@ public class AutomaticMatcher
 			Alignment c = nb.rematch(a);
 			b = LWC.combine(b, c, 0.75);
 			b = LWC.combine(a, b, 0.8);
-		
-			RankedSelector rs = new RankedSelector(sType);
-			b = rs.select(b, thresh-0.05);
-				
-			RankedCoSelector s = new RankedCoSelector(b, sType);
-			a = s.select(a, thresh);
+			Selector s = new Selector(thresh-0.05,sType);
+			b = s.filter(b);
+			s = new Selector(thresh, sType, b);
+			s.filter();
 		}
-		else if(!isInteractive)
+		else if(!im.isInteractive())
 		{
-			RankedSelector rs = new RankedSelector(sType);
-			a = rs.select(a, thresh);
+			Selector s = new Selector(thresh,sType);
+			s.filter();
 		}
-		if(isInteractive)
+		if(im.isInteractive())
 		{
-			InteractiveSelector is = new InteractiveSelector();
-			a = is.select(a, thresh);
+			if(size.equals(SizeCategory.SMALL))
+				im.setLimit((int)Math.round(a.size()*0.45));
+			else
+				im.setLimit((int)Math.round(a.size()*0.15));
+			InteractiveFilterer in = new InteractiveFilterer();
+			in.filter();
+			
 		}
-
 	}
 	
 	//Step 10 - Repair
 	private static void repair()
 	{
-		Repairer r;
-		if(isInteractive && (size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM)))
-			r = new InteractiveSemanticRepairer();
+		if(im.isInteractive() && (size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM)))
+			im.setLimit((int)Math.round(a.size()*0.5));
 		else
-			r = new SemanticRepairer();
-		a = r.repair(a);
+			im.setLimit(0);
+		Repairer r = new Repairer();
+		r.filter();
 	}
 }
