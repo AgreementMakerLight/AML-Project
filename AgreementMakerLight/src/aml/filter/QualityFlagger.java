@@ -102,8 +102,9 @@ public class QualityFlagger implements Flagger
 			}
 			average /= auxAlignments.size();
 			
-			if(support < 2 || average < AVERAGE_THRESH)
-				m.setStatus(MappingStatus.INCORRECT);
+			if((support < 2 || average < AVERAGE_THRESH) &&
+					m.getStatus().equals(MappingStatus.UNKNOWN))
+				m.setStatus(MappingStatus.FLAGGED);
 		}		
 	}
 	

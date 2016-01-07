@@ -86,7 +86,8 @@ public class Repairer implements Filterer, Flagger
 	public void flag()
 	{
 		for(Integer i : rMap)
-			rMap.getMapping(i).setStatus(MappingStatus.FLAGGED);
+			if(rMap.getMapping(i).getStatus().equals(MappingStatus.UNKNOWN))
+				rMap.getMapping(i).setStatus(MappingStatus.FLAGGED);
 	}
 	
 //Private Methods

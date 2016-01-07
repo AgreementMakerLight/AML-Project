@@ -41,8 +41,9 @@ public class ObsoleteFilter implements Filterer, Flagger
 		Ontology2Match target = aml.getTarget();
 		Alignment a = aml.getAlignment();
 		for(Mapping m : a)
-			if(source.isObsoleteClass(m.getSourceId()) ||
-					target.isObsoleteClass(m.getTargetId()))
+			if((source.isObsoleteClass(m.getSourceId()) ||
+					target.isObsoleteClass(m.getTargetId())) &&
+					!m.getStatus().equals(MappingStatus.CORRECT))
 				m.setStatus(MappingStatus.INCORRECT);
 		aml.removeIncorrect();
 	}
@@ -55,8 +56,9 @@ public class ObsoleteFilter implements Filterer, Flagger
 		Ontology2Match target = aml.getTarget();
 		Alignment a = aml.getAlignment();
 		for(Mapping m : a)
-			if(source.isObsoleteClass(m.getSourceId()) ||
-					target.isObsoleteClass(m.getTargetId()))
+			if((source.isObsoleteClass(m.getSourceId()) ||
+					target.isObsoleteClass(m.getTargetId())) &&
+					m.getStatus().equals(MappingStatus.UNKNOWN))
 				m.setStatus(MappingStatus.FLAGGED);		
 	}
 }

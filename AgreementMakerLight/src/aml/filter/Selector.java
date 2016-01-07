@@ -202,7 +202,7 @@ public class Selector implements Filterer, Flagger
 	public void flag()
 	{
 		for(Mapping m : a)
-			if(a.containsConflict(m))
+			if(a.containsConflict(m) && m.getStatus().equals(MappingStatus.UNKNOWN))
 				m.setStatus(MappingStatus.FLAGGED);
 	}
 }
