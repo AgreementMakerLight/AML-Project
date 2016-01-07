@@ -164,7 +164,12 @@ public class Selector implements Filterer, Flagger
 			}
 		}
 		if(selected.size() < a.size())
+		{
+			for(Mapping m : selected)
+				if(m.getStatus().equals(MappingStatus.FLAGGED))
+					m.setStatus(MappingStatus.UNKNOWN);
 			aml.setAlignment(selected);
+		}
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}
 	

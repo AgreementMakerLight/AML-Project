@@ -43,10 +43,14 @@ public class ObsoleteFilter implements Filterer, Flagger
 		Ontology2Match target = aml.getTarget();
 		Alignment a = aml.getAlignment();
 		for(Mapping m : a)
+		{
 			if((source.isObsoleteClass(m.getSourceId()) ||
 					target.isObsoleteClass(m.getTargetId())) &&
 					!m.getStatus().equals(MappingStatus.CORRECT))
 				m.setStatus(MappingStatus.INCORRECT);
+			else if(m.getStatus().equals(MappingStatus.FLAGGED))
+				m.setStatus(MappingStatus.UNKNOWN);
+		}
 		aml.removeIncorrect();
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}

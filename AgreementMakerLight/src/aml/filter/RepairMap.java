@@ -81,6 +81,10 @@ public class RepairMap implements Iterable<Integer>
 		aml = AML.getInstance();
 		rels = aml.getRelationshipMap();
 		a = aml.getAlignment();
+		//Remove the FLAGGED status from all mappings that have it
+		for(Mapping m : a)
+			if(m.getStatus().equals(MappingStatus.FLAGGED))
+				m.setStatus(MappingStatus.UNKNOWN);
 		threads = Runtime.getRuntime().availableProcessors();
 		init();
 	}
