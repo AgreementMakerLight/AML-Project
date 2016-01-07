@@ -201,8 +201,11 @@ public class Selector implements Filterer, Flagger
 	@Override
 	public void flag()
 	{
+		System.out.println("Running Cardinality Flagger");
+		long time = System.currentTimeMillis()/1000;
 		for(Mapping m : a)
 			if(a.containsConflict(m) && m.getStatus().equals(MappingStatus.UNKNOWN))
 				m.setStatus(MappingStatus.FLAGGED);
+		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}
 }

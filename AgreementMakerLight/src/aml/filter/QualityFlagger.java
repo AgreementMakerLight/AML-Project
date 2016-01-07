@@ -84,6 +84,8 @@ public class QualityFlagger implements Flagger
 	@Override
 	public void flag()
 	{
+		System.out.println("Running Quality Flagger");
+		long time = System.currentTimeMillis()/1000;
 		for(Mapping m : a)
 		{
 			int sourceId = m.getSourceId();
@@ -106,6 +108,7 @@ public class QualityFlagger implements Flagger
 					m.getStatus().equals(MappingStatus.UNKNOWN))
 				m.setStatus(MappingStatus.FLAGGED);
 		}		
+		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}
 	
 	/**

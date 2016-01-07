@@ -36,6 +36,8 @@ public class ObsoleteFilter implements Filterer, Flagger
 	@Override
 	public void filter()
 	{
+		System.out.println("Running Obsoletion Filter");
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology2Match source = aml.getSource();
 		Ontology2Match target = aml.getTarget();
@@ -46,11 +48,14 @@ public class ObsoleteFilter implements Filterer, Flagger
 					!m.getStatus().equals(MappingStatus.CORRECT))
 				m.setStatus(MappingStatus.INCORRECT);
 		aml.removeIncorrect();
+		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}
 	
 	@Override
 	public void flag()
 	{
+		System.out.println("Running Obsoletion Flagger");
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology2Match source = aml.getSource();
 		Ontology2Match target = aml.getTarget();
@@ -59,6 +64,7 @@ public class ObsoleteFilter implements Filterer, Flagger
 			if((source.isObsoleteClass(m.getSourceId()) ||
 					target.isObsoleteClass(m.getTargetId())) &&
 					m.getStatus().equals(MappingStatus.UNKNOWN))
-				m.setStatus(MappingStatus.FLAGGED);		
+				m.setStatus(MappingStatus.FLAGGED);
+		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}
 }

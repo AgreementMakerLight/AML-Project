@@ -85,9 +85,12 @@ public class Repairer implements Filterer, Flagger
 	@Override
 	public void flag()
 	{
+		System.out.println("Running Coherence Flagger");
+		long time = System.currentTimeMillis()/1000;
 		for(Integer i : rMap)
 			if(rMap.getMapping(i).getStatus().equals(MappingStatus.UNKNOWN))
 				rMap.getMapping(i).setStatus(MappingStatus.FLAGGED);
+		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}
 	
 //Private Methods
