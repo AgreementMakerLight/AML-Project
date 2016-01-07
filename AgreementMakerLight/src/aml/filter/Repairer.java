@@ -40,7 +40,7 @@ public class Repairer implements Filterer, Flagger
 	public Repairer()
 	{
 		aml = AML.getInstance();
-		rMap = aml.getRepairMap();
+		rMap = aml.buildRepairMap();
 		im = aml.getInteractionManager();
 	}
 
