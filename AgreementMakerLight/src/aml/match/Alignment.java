@@ -729,6 +729,22 @@ public class Alignment implements Collection<Mapping>
 	}
 	
 	/**
+	 * @param m: the Mapping to check on the Alignment
+	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping
+	 */
+	public Vector<Mapping> getConflicts(Mapping m)
+	{
+		Vector<Mapping> conflicts = new Vector<Mapping>();
+		for(Integer t : sourceMaps.keySet(m.getSourceId()))
+			if(t != m.getTargetId())
+				conflicts.add(sourceMaps.get(m.getSourceId(),t));
+		for(Integer s : targetMaps.keySet(m.getTargetId()))
+			if(s != m.getSourceId())
+				conflicts.add(sourceMaps.get(s,m.getTargetId()));
+		return conflicts;
+	}
+	
+	/**
 	 * @return the high level Alignment induced from this Alignment
 	 * (the similarity between high level classes is given by the
 	 * fraction of classes in this Alignment that are their descendents)
