@@ -20,9 +20,9 @@ package aml.settings;
 
 public enum FlagStep
 {
+   	OBSOLETION	("Obsoletion"),
    	CARDINALITY ("Cardinality"),
    	COHERENCE	("Coherence"),
-   	OBSOLETION	("Obsoletion"),
    	QUALITY		("Quality");
 	    	
    	final String value;
