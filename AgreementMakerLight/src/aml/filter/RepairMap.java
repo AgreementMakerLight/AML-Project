@@ -92,6 +92,36 @@ public class RepairMap implements Iterable<Integer>
 //Public Methods
 	
 	/**
+	 * @param index: the index of the Mapping to get
+	 * @return the conflict sets that contain the given Mapping index
+	 */
+	public Set<Integer> getConflicts(int index)
+	{
+		return mappingConflicts.get(index);
+	}
+	
+	/**
+	 * @param index: the index of the Mapping to get
+	 * @return the list of Mappings in conflict with this Mapping
+	 */
+	public Vector<Mapping> getConflictMappings(int index)
+	{
+		Vector<Mapping> confs = new Vector<Mapping>();
+		for(Integer i : mappingConflicts.get(index))
+		{
+			for(Integer j : conflictMappings.get(i))
+			{
+				if(j == index)
+					continue;
+				Mapping m = a.get(j);
+				if(!confs.contains(m))
+					confs.add(m);
+			}
+		}
+		return confs;
+	}
+	
+	/**
 	 * @return the list of conflict sets of mappings
 	 * in the form of indexes (as per the alignment
 	 * to repair)
@@ -121,15 +151,6 @@ public class RepairMap implements Iterable<Integer>
 		return a.getIndex(source, target);
 	}
 
-	/**
-	 * @param index: the index of the Mapping to get
-	 * @return the Mapping at the given index
-	 */
-	public Set<Integer> getConflicts(int index)
-	{
-		return mappingConflicts.get(index);
-	}
-	
 	/**
 	 * @param index: the index of the Mapping to get
 	 * @return the Mapping at the given index
