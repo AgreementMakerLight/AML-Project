@@ -58,7 +58,7 @@ public class ViewOptions extends JDialog implements ActionListener
 		super();
 		aml = AML.getInstance();
 		
-		this.setTitle("Visualization Options");
+		this.setTitle("Graph Options");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		
 		languageLabel = new JLabel("Label Language:");

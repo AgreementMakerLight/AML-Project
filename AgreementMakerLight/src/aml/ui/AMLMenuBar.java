@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2016 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -15,12 +15,14 @@
 * Menu bar for the GUI.                                                       *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 29-09-2014                                                            *
 ******************************************************************************/
 package aml.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -30,7 +32,7 @@ import javax.swing.JOptionPane;
 import aml.AML;
 import aml.match.Alignment;
 
-public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
+public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, WindowListener
 {
 	
 //Attributes
@@ -38,11 +40,14 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 	private static final long serialVersionUID = 4336946114423673015L;
 	private AML aml;
 	private Console c;
-    private JMenu ontologies, alignment, view;
-    private JMenuItem openO, closeO, matchAuto, matchManual;
-    private JMenuItem openA, closeA, saveA, addC, addP, repair, evaluate;
-    private JMenuItem next, previous, goTo, search, options;
-    private boolean match;
+    private JMenu file, match, filter, view;
+    private JMenuItem openO, closeO, openA,	closeA, saveA,
+    				  matchAuto, matchManual, addC, addP,
+    				  evaluate, obsolete, select, repair, flag,
+    				  search, sortAsc, sortDesc, options;
+    private enum Mode{ MATCH, REPAIR, REVISE; }
+    private Mode m;
+    private Thread action, console;
     
 //Constructors
     
@@ -54,87 +59,80 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
     	super();
         aml = AML.getInstance();
     	
-    	//Ontologies Menu
-    	ontologies = new JMenu();
-        ontologies.setText("Ontologies");
-        openO = new JMenuItem();
-        openO.setText("Open Ontologies");
+    	//File Menu
+    	file = new JMenu("File");
+        openO = new JMenuItem("Open Ontologies");
         openO.addActionListener(this);
-        ontologies.add(openO);
-        closeO = new JMenuItem();
-        closeO.setText("Close Ontologies");
+        file.add(openO);
+        closeO = new JMenuItem("Close Ontologies");
         closeO.addActionListener(this);
-        ontologies.add(closeO);
-        ontologies.addSeparator();
-        matchAuto = new JMenuItem();
-        matchAuto.setText("Automatic Match");
-        matchAuto.addActionListener(this);
-        ontologies.add(matchAuto);
-        matchManual = new JMenuItem();
-        matchManual.setText("Custom Match");
-        matchManual.addActionListener(this);
-        ontologies.add(matchManual);
-        add(ontologies);
-        
-        //Alignment Menu
-        alignment = new JMenu();
-        alignment.setText("Alignment");
-        openA = new JMenuItem();
-        openA.setText("Open Alignment");
+        file.add(closeO);
+        file.addSeparator();
+        openA = new JMenuItem("Open Alignment");
         openA.addActionListener(this);
-        alignment.add(openA);
-        saveA = new JMenuItem();
-        saveA.setText("Save Alignment");
+        file.add(openA);
+        saveA = new JMenuItem("Save Alignment");
         saveA.addActionListener(this);
-        alignment.add(saveA);
-        closeA = new JMenuItem();
-        closeA.setText("Close Alignment");
+        file.add(saveA);
+        closeA = new JMenuItem("Close Alignment");
         closeA.addActionListener(this);
-        alignment.add(closeA);
-        alignment.addSeparator();
+        file.add(closeA);
+        add(file);
+        
+        //Match Menu
+        match = new JMenu("Match");
+        matchAuto = new JMenuItem("Automatic Match");
+        matchAuto.addActionListener(this);
+        match.add(matchAuto);
+        matchManual = new JMenuItem("Custom Match");
+        matchManual.addActionListener(this);
+        match.add(matchManual);
+        match.addSeparator();
         addC = new JMenuItem();
         addC.setText("Add Class Mapping");
         addC.addActionListener(this);
-        alignment.add(addC);
+        match.add(addC);
         addP = new JMenuItem();
         addP.setText("Add Property Mapping");
         addP.addActionListener(this);
-        alignment.add(addP);
-        alignment.addSeparator();
-        repair = new JMenuItem();
-        repair.setText("Repair Alignment");
-        repair.addActionListener(this);
-        alignment.add(repair);
-        alignment.addSeparator();
-        evaluate = new JMenuItem();
-        evaluate.setText("Evaluate Alignment");
+        match.add(addP);        
+        add(match);
+        
+        //Filter Menu
+    	filter = new JMenu("Filter");
+        evaluate = new JMenuItem("Evaluate with Reference");
         evaluate.addActionListener(this);
-        alignment.add(evaluate);
-        add(alignment);
-                
-    	//View Menu
-    	view = new JMenu();
-        view.setText("View");
-        next = new JMenuItem();
-        next.setText("Next Mapping");
-        next.addActionListener(this);
-        view.add(next);
-        previous = new JMenuItem();
-        previous.setText("Previous Mapping");
-        previous.addActionListener(this);
-        view.add(previous);
-        view.addSeparator();
-        goTo = new JMenuItem();
-        goTo.setText("Select Mapping");
-        goTo.addActionListener(this);
-        view.add(goTo);
-        search = new JMenuItem();
-        search.setText("Search Alignment");
+        filter.add(evaluate);
+        filter.addSeparator();
+        obsolete = new JMenuItem("Obsoletion");
+        obsolete.addActionListener(this);
+        filter.add(obsolete);
+        select = new JMenuItem("Cardinality (Selection)");
+        select.addActionListener(this);
+        filter.add(select);
+        repair = new JMenuItem("Coherence (Repair)");
+        repair.addActionListener(this);
+        filter.add(repair);
+        filter.addSeparator();
+        flag = new JMenuItem("Flag Problems");
+        flag.addActionListener(this);
+        filter.add(flag);
+        add(filter);
+        
+        //View Menu
+        view = new JMenu("View");
+        search = new JMenuItem("Search Alignment");
         search.addActionListener(this);
         view.add(search);
         view.addSeparator();
-        options = new JMenuItem();
-        options.setText("Options");
+        sortAsc = new JMenuItem("Sort Ascending");
+        sortAsc.addActionListener(this);
+        view.add(sortAsc);
+        sortDesc = new JMenuItem("Sort Descending");
+        sortDesc.addActionListener(this);
+        view.add(sortDesc);
+        view.addSeparator();
+        options = new JMenuItem("Graph Options");
         options.addActionListener(this);
         view.add(options);
         add(view);
@@ -148,7 +146,7 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 	public void actionPerformed(ActionEvent e)
 	{
 		Object o = e.getSource();
-		//Ontology Options
+		//File Options
 		if(o == openO)
 		{
 			new OpenOntologies();
@@ -157,18 +155,6 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 		{
 			aml.closeOntologies();
 		}
-		else if(o == matchAuto)
-		{
-			c = new Console();
-			new Thread(c).start();
-			match = true;
-			new Thread(this).start();
-		}
-		else if(o == matchManual)
-		{
-			new MatchOptions();
-		}
-		//Alignment Options
 		else if(o == openA)
 		{
 			AlignmentFileChooser fc = AML.getInstance().getAlignmentFileChooser();
@@ -220,6 +206,21 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 		{
 			aml.closeAlignment();
 		}
+		//Match Options
+		else if(o == matchAuto)
+		{
+			m = Mode.MATCH;
+			c = new Console();
+			c.addWindowListener(this);
+			console = new Thread(c);
+			console.start();
+			action = new Thread(this);
+			action.start();
+		}
+		else if(o == matchManual)
+		{
+			new MatchOptions();
+		}
 		else if(o == addC)
 		{
 			new AddClassMapping();
@@ -228,32 +229,45 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 		{
 			new AddPropertyMapping();
 		}
-		else if(o == repair)
-		{
-			c = new Console();
-			match = false;
-			new Thread(this).start();
-		}
+		//Filter Options
 		else if(o == evaluate)
 		{
 			new EvaluateAlignment();
 		}
+		else if(o == obsolete)
+		{
+			aml.removeObsolete();
+		}
+		else if(o == select)
+		{
+			aml.select();
+		}
+		else if(o == repair)
+		{
+			m = Mode.REPAIR;
+			c = new Console();
+			c.addWindowListener(this);
+			console = new Thread(c);
+			console.start();
+			action = new Thread(this);
+			action.start();
+		}
+		else if(o == flag)
+		{
+			new FlagOptions();
+		}
 		//View Options
-		else if(o == next)
-		{
-			aml.nextMapping();
-		}
-		else if(o == previous)
-		{
-			aml.previousMapping();
-		}
-		else if(o == goTo)
-		{
-			new SelectMapping();
-		}
 		else if(o == search)
 		{
 			new SearchAlignment();
+		}
+		else if(o == sortAsc)
+		{
+			aml.sortAscending();
+		}
+		else if(o == sortDesc)
+		{
+			aml.sortDescending();
 		}
 		else if(o == options)
 		{
@@ -273,42 +287,75 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable
 		openA.setEnabled(aml.hasOntologies());
 		closeA.setEnabled(aml.hasAlignment());
 		saveA.setEnabled(aml.hasAlignment());
+		evaluate.setEnabled(aml.hasAlignment());
 		addC.setEnabled(aml.hasAlignment() && aml.hasClasses());
 		addP.setEnabled(aml.hasAlignment() && aml.hasProperties());
 		repair.setEnabled(aml.hasAlignment());
-		evaluate.setEnabled(aml.hasAlignment());
-		next.setEnabled(aml.hasAlignment());
-		previous.setEnabled(aml.hasAlignment());
-		goTo.setEnabled(aml.hasAlignment());
+		obsolete.setEnabled(aml.hasAlignment());
+		select.setEnabled(aml.hasAlignment());
+		flag.setEnabled(aml.hasAlignment());
 		search.setEnabled(aml.hasAlignment());
+		sortAsc.setEnabled(aml.hasAlignment());
+		sortDesc.setEnabled(aml.hasAlignment());
 		options.setEnabled(aml.hasOntologies());
 	}
 
 	@Override
 	public void run()
 	{
-		if(match)
+		if(m.equals(Mode.MATCH))
 		{
+			if(aml.hasAlignment())
+				aml.closeAlignment();
 			try
 			{
 				Thread.sleep(1000);
 			}
-			catch (InterruptedException e)
+			catch(InterruptedException e)
 			{
 				//Do nothing
 			}
 			aml.matchAuto();
 		}
-		else
+		else if(m.equals(Mode.REPAIR))
+			aml.repair();
+		else if(m.equals(Mode.REVISE))
 			aml.repair();
 		try
 		{
 			Thread.sleep(1500);
 		}
-		catch (InterruptedException e)
+		catch(InterruptedException e)
 		{
 			//Do nothing
 		}
 		c.finish();
 	}
+
+	@Override
+	public void windowOpened(WindowEvent e){}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void windowClosing(WindowEvent e)
+	{
+		//Stop should be relatively safe in this case
+		action.stop();
+		c.finish();
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e){}
+
+	@Override
+	public void windowIconified(WindowEvent e){}
+
+	@Override
+	public void windowDeiconified(WindowEvent e){}
+
+	@Override
+	public void windowActivated(WindowEvent e){}
+
+	@Override
+	public void windowDeactivated(WindowEvent e){}
 }

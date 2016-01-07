@@ -31,16 +31,23 @@ import java.util.Vector;
 import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
-import aml.filter.SemanticRepairer;
+import aml.filter.CustomFlagger;
+import aml.filter.ObsoleteFilter;
+import aml.filter.QualityFlagger;
+import aml.filter.RepairMap;
+import aml.filter.Repairer;
+import aml.filter.Selector;
 import aml.match.ManualMatcher;
-import aml.match.Alignment;
 import aml.match.Mapping;
+import aml.match.Alignment;
 import aml.match.AutomaticMatcher;
 import aml.ontology.BKOntology;
 import aml.ontology.Ontology2Match;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
+import aml.settings.FlagStep;
 import aml.settings.LanguageSetting;
+import aml.settings.MappingStatus;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
@@ -69,6 +76,8 @@ public class AML
 	private BKOntology bk;
 	private Alignment a;
 	private Alignment ref;
+	private RepairMap rep;
+	private QualityFlagger qf;
 	//The user interaction manager
 	//(for handling simulated interactions)
 	private InteractionManager im;
@@ -87,20 +96,20 @@ public class AML
     private SelectionType sType;
 	//Manual matching settings
 	private double threshold = 0.6;
-    private Vector<MatchStep> selectedSteps;
+	private boolean hierarchic;
+	private Vector<MatchStep> matchSteps;
+    private Vector<FlagStep> flagSteps;
     private Vector<String> selectedSources; //The selected files under the BK_PATH
     private WordMatchStrategy wms;
     private StringSimMeasure ssm;
     private boolean primaryStringMatcher; //Whether to use the String Matcher globally (TRUE) or locally (FALSE)
     private NeighborSimilarityStrategy nss;
     private boolean directNeighbors = false;
-    private boolean removeObsolete;
     private boolean structuralSelection;    
 	//User interface and settings
 	private GUI userInterface;
 	private OntologyFileChooser ofc;
 	private AlignmentFileChooser afc;
-	private int currentMapping = -1;
 	private int maxDistance = 2;
 	private boolean showAncestors = true;
 	private boolean showDescendants = true;
@@ -119,12 +128,20 @@ public class AML
 //Public Methods
 
 	/**
+	 * Constructs a new RepairMap for the current Alignment
+	 */
+	public RepairMap buildRepairMap()
+    {
+		rep = new RepairMap();
+		return rep;
+    }
+	
+	/**
 	 * Closes the active alignment (GUI)
 	 */
 	public void closeAlignment()
     {
     	a = null;
-    	currentMapping = -1;
     	if(userInterface != null)
     		userInterface.refresh();
     }
@@ -140,7 +157,6 @@ public class AML
     	uris = null;
     	rels = null;
     	a = null;
-    	currentMapping = -1;
     	if(userInterface != null)
     		userInterface.refresh();
     }
@@ -182,30 +198,36 @@ public class AML
 			language = "en";
 		else
 			language = languages.iterator().next();
-		selectedSteps = new Vector<MatchStep>();
+		matchSteps = new Vector<MatchStep>();
 		if(lang.equals(LanguageSetting.TRANSLATE))
-			selectedSteps.add(MatchStep.TRANSLATE);
+			matchSteps.add(MatchStep.TRANSLATE);
+		matchSteps.add(MatchStep.LEXICAL);
 		if(lang.equals(LanguageSetting.SINGLE))
-			selectedSteps.add(MatchStep.BK);
+			matchSteps.add(MatchStep.BK);
 		if(!size.equals(SizeCategory.HUGE))
-			selectedSteps.add(MatchStep.WORD);
-		selectedSteps.add(MatchStep.STRING);
+			matchSteps.add(MatchStep.WORD);
+		matchSteps.add(MatchStep.STRING);
 		if(size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM))
-			selectedSteps.add(MatchStep.STRUCT);
+			matchSteps.add(MatchStep.STRUCT);
 		double sourceRatio = (source.dataPropertyCount() + source.objectPropertyCount()) * 1.0 / source.classCount();
 		double targetRatio = (target.dataPropertyCount() + target.objectPropertyCount()) * 1.0 / target.classCount();
 		if(sourceRatio >= 0.05 && targetRatio >= 0.05)
-			selectedSteps.add(MatchStep.PROPERTY);
-		selectedSteps.add(MatchStep.SELECT);
-		selectedSteps.add(MatchStep.REPAIR);
+			matchSteps.add(MatchStep.PROPERTY);
+		if(size.equals(SizeCategory.HUGE))
+			matchSteps.add(MatchStep.OBSOLETE);
+		matchSteps.add(MatchStep.SELECT);
+		matchSteps.add(MatchStep.REPAIR);
+		hierarchic = true;
 		wms = WordMatchStrategy.AVERAGE;
 		ssm = StringSimMeasure.ISUB;
 		primaryStringMatcher = size.equals(SizeCategory.SMALL);
 		nss = NeighborSimilarityStrategy.DESCENDANTS;
 		directNeighbors = false;
 		sType = SelectionType.getSelectionType();
-		removeObsolete = size.equals(SizeCategory.HUGE);
-		structuralSelection = size.equals(SizeCategory.HUGE);		
+		structuralSelection = size.equals(SizeCategory.HUGE);
+		flagSteps = new Vector<FlagStep>();
+		for(FlagStep f : FlagStep.values())
+			flagSteps.add(f);
     }
     
     /**
@@ -244,6 +266,16 @@ public class AML
 					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
 	}
     
+    /**
+     * Flags problem mappings in the active alignment
+     */
+    public void flag()
+    {
+   		CustomFlagger.flag();
+    	if(userInterface != null)
+    		userInterface.refresh();
+    }
+    
 	/**
 	 * @return the current alignment
 	 */
@@ -276,25 +308,6 @@ public class AML
 		return bkSources;
 	}
 	
-	/**
-	 * @return the index of the current mapping in the current alignment
-	 */
-	public int getCurrentIndex()
-    {
-   		return currentMapping;
-    }
-    
-	/**
-	 * @return the current mapping
-	 */
-    public Mapping getCurrentMapping()
-    {
-    	if(currentMapping == -1)
-    		return null;
-    	else
-    		return a.get(currentMapping);
-    }
-	
     /**
      * @return the evaluation of the current alignment
      */
@@ -302,6 +315,15 @@ public class AML
     {
     	return evaluation;
     }
+    
+	/**
+	 * @return the selected flagging steps
+	 */
+	public Vector<FlagStep> getFlagSteps()
+	{
+		return flagSteps;
+	}
+
 
     /**
      * @return this (single) instance of the AML class
@@ -313,6 +335,8 @@ public class AML
 	
 	public InteractionManager getInteractionManager()
 	{
+		if(im == null)
+			im = new InteractionManager();
 		return im;
 	}
 	
@@ -339,7 +363,15 @@ public class AML
 	{
 		return lang;
 	}
-
+	
+	/**
+	 * @return the selected matching steps
+	 */
+	public Vector<MatchStep> getMatchSteps()
+	{
+		return matchSteps;
+	}
+	
 	/**
      * @return the maximum edge-distance to plot in the Mapping Viewer
      */
@@ -364,6 +396,12 @@ public class AML
     	return ofc;
     }
 
+	public QualityFlagger getQualityFlagger()
+	{
+		if(qf == null)
+			qf = new QualityFlagger();
+		return qf;
+	}
 	/**
 	 * @return the current reference alignment
 	 */
@@ -381,6 +419,14 @@ public class AML
 	}
 	
 	/**
+	 * @return the RepairMap
+	 */
+	public RepairMap getRepairMap()
+	{
+		return rep;
+	}
+	
+	/**
 	 * @return the selected background knowledge sources
 	 */
 	public Vector<String> getSelectedBKSources()
@@ -388,14 +434,6 @@ public class AML
 		return selectedSources;
 	}
 
-	/**
-	 * @return the selected matching steps
-	 */
-	public Vector<MatchStep> getSelectedSteps()
-	{
-		return selectedSteps;
-	}
-	
 	/**
 	 * @return the active SelectionType
 	 */
@@ -459,17 +497,12 @@ public class AML
     {
 		return wms;
 	}
-
-	/**
-	 * @param index: the index of the mapping to plot
-	 * Plots the mapping at the selected index
-	 */
-	public void goTo(int index)
-    {
-   		currentMapping = index;
-   		userInterface.recenter();
-    }
     
+    public void goTo(int index)
+    {
+    	userInterface.goTo(index);
+    }
+
 	/**
 	 * @return whether there is a non-empty active alignment
 	 */
@@ -505,19 +538,21 @@ public class AML
    			((source.dataPropertyCount() > 0 && target.dataPropertyCount() > 0) ||
    			(source.objectPropertyCount() > 0 && target.objectPropertyCount() > 0));
     }
-	
+    
+    public boolean isHierarchic()
+    {
+		return hierarchic;
+	}
+
     /**
      * Matches the active ontologies using the default configuration
      */
     public void matchAuto()
     {
     	im = new InteractionManager();
-   		a = AutomaticMatcher.match();
-    	if(a.size() >= 1)
-    		currentMapping = 0;
-    	else
-    		currentMapping = -1;
+   		AutomaticMatcher.match();
     	evaluation = null;
+    	rep = null;
     	if(userInterface != null)
     		userInterface.refresh();
     }
@@ -527,12 +562,10 @@ public class AML
      */
     public void matchManual()
     {
-   		a = ManualMatcher.match();
-    	if(a.size() >= 1)
-    		currentMapping = 0;
-    	else
-    		currentMapping = -1;
+    	im = new InteractionManager();
+   		ManualMatcher.match();
     	evaluation = null;
+    	rep = null;
     	if(userInterface != null)
     		userInterface.refresh();
     }
@@ -541,10 +574,6 @@ public class AML
     {
     	a = new Alignment(path);
     	evaluation = null;
-    	if(a.size() >= 1)
-    		currentMapping = 0;
-    	else
-    		currentMapping = -1;
     	if(userInterface != null)
     		userInterface.refresh();
     }
@@ -595,7 +624,6 @@ public class AML
 		System.out.println("Disjoints: " + rels.disjointCount());
     	//Reset the alignment, mapping, and evaluation
     	a = null;
-    	currentMapping = -1;
     	evaluation = null;
     	//Refresh the user interface
     	if(userInterface != null)
@@ -640,7 +668,6 @@ public class AML
 		System.out.println("Disjoints: " + rels.disjointCount());
     	//Reset the alignment, mapping, and evaluation
     	a = null;
-    	currentMapping = -1;
     	evaluation = null;
     	//Refresh the user interface
     	if(userInterface != null)
@@ -664,24 +691,35 @@ public class AML
     	userInterface.refresh();
     }
 
-	public boolean removeObsolete()
+	public void removeIncorrect()
 	{
-		return removeObsolete;
+		Alignment reviewed = new Alignment();
+		for(Mapping m : a)
+			if(!m.getStatus().equals(MappingStatus.INCORRECT))
+				reviewed.add(m);
+		if(a.size() > reviewed.size())
+			aml.setAlignment(reviewed);
+		userInterface.refresh();
 	}
-
-	public void repair()
-    {
-		SemanticRepairer r = new SemanticRepairer();
-		a = r.repair(a);
-    	if(a.size() >= 1)
-    		currentMapping = 0;
-    	else
-    		currentMapping = -1;
-    	evaluation = null;
+	
+	public void removeObsolete()
+	{
+		ObsoleteFilter o = new ObsoleteFilter();
+		o.filter();
     	if(userInterface != null)
     		userInterface.refresh();
-    }
-    
+	}
+	
+	public void repair()
+	{
+		im = new InteractionManager();
+		rep = new RepairMap();
+		Repairer r = new Repairer();
+		r.filter();
+    	if(userInterface != null)
+    		userInterface.refresh();
+	}
+
     public void saveAlignmentRDF(String file) throws Exception
     {
     	a.saveRDF(file);
@@ -692,18 +730,38 @@ public class AML
     	a.saveTSV(file);
     }
     
+	public void select()
+	{
+		im = new InteractionManager();
+		Selector s = new Selector(threshold);
+		s.filter();
+    	if(userInterface != null)
+    		userInterface.refresh();
+	}
+	
 	public void setAlignment(Alignment maps)
 	{
 		a = maps;
-		if(userInterface != null)
-			userInterface.refresh();			
+		qf = null;
+    	evaluation = null;
+    	rep = null;
 	}
-
+	
 	public void setDirectNeighbors(boolean directNeighbors)
 	{
 		this.directNeighbors = directNeighbors;
 	}
 
+	public void setFlagSteps(Vector<FlagStep> steps)
+	{
+		flagSteps = steps;
+	}
+	
+	public void setHierarchic(boolean hierarchic)
+	{
+		this.hierarchic = hierarchic;
+	}
+	
 	public void setLabelLanguage(String language)
 	{
 		this.language = language;
@@ -712,6 +770,11 @@ public class AML
 	public void setLanguageSetting()
 	{
 		lang = LanguageSetting.getLanguageSetting();
+	}
+	
+	public void setMatchSteps(Vector<MatchStep> steps)
+	{
+		matchSteps = steps;
 	}
 
 	public void setNeighborSimilarityStrategy(NeighborSimilarityStrategy nss)
@@ -731,21 +794,10 @@ public class AML
 		primaryStringMatcher = primary;
 	}
 	
-	public void setRemoveObsolete(boolean removeObsolete)
-	{
-		this.removeObsolete = removeObsolete;
-	}
-	
 	public void setSelectedSources(Vector<String> sources)
 	{
 		selectedSources = sources;
 	}
-
-	public void setSelectedSteps(Vector<MatchStep> steps)
-	{
-		selectedSteps = steps;
-	}
-
 
 	public void setSelectionType(SelectionType s)
 	{
@@ -798,6 +850,18 @@ public class AML
 		return showDescendants;
 	}
 	
+	public void sortAscending()
+	{
+		a.sortAscending();
+		userInterface.refresh();
+	}
+
+	public void sortDescending()
+	{
+		a.sortDescending();
+		userInterface.refresh();
+	}
+
 	public void startGUI()
 	{
         //Set the Nimbus look and feel

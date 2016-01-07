@@ -30,108 +30,71 @@ import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 
 import aml.AML;
-import aml.settings.MatchStep;
+import aml.settings.FlagStep;
 
-public class MatchOptions extends JDialog implements ActionListener, Runnable, WindowListener
+public class FlagOptions extends JDialog implements ActionListener, Runnable, WindowListener
 {
-	//TODO: Add option of extending existing Alignment
 	
 //Attributes
 	
 	private static final long serialVersionUID = -4255910788613313495L;
 	private AML aml;
 	private Console c;
-	private JButton cancel, match, detail;
-    private JComboBox<Double> threshold;
-    private JComboBox<String> combination;
-	private Vector<JCheckBox> matchers;
-    private Vector<MatchStep> selectedSteps;
+	private JButton cancel, flag;
+	private Vector<JCheckBox> flaggers;
+    private Vector<FlagStep> selectedSteps;
     private Thread action, console;
     
 //Constructor
     
-	public MatchOptions()
+	public FlagOptions()
 	{
 		//Initialize
 		super();
+		this.setMinimumSize(new Dimension(200,100));
 		//Get the AML instance
 		aml = AML.getInstance();
 		//And the lists of match steps & match configurations
-		selectedSteps = aml.getMatchSteps();
-		matchers = new Vector<JCheckBox>();
-		for(MatchStep m : MatchStep.values())
+		selectedSteps = aml.getFlagSteps();
+		flaggers = new Vector<JCheckBox>();
+		for(FlagStep m : FlagStep.values())
 		{
 			JCheckBox cb = new JCheckBox(m.toString());
 			cb.setSelected(selectedSteps.contains(m));
-			if(m.equals(MatchStep.LEXICAL))
-				cb.setEnabled(false);
-			matchers.add(cb);		
+			flaggers.add(cb);		
 		}
 
 		//Set the title and modality
-		this.setTitle("Match Options");
+		this.setTitle("Flagging Options");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	
 		//Match Steps
-		JPanel stepPanel = new JPanel();
-		stepPanel.setBorder(new TitledBorder("Matching Steps"));
-		JPanel matcherPanel = new JPanel();
-		matcherPanel.setLayout(new BoxLayout(matcherPanel, BoxLayout.Y_AXIS));
-		for(JCheckBox cb : matchers)
-			matcherPanel.add(cb);
-		stepPanel.add(matcherPanel);
-		panel.add(stepPanel);
-
-		//Options
-		JPanel optionPanel = new JPanel();
-		optionPanel.setBorder(new TitledBorder("Options"));
-		optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.Y_AXIS));
-		Vector<Double> thresh = new Vector<Double>(50);
-		for(int i = 50; i < 100; i++)
-			thresh.add(Double.parseDouble("0." + i));
-		threshold = new JComboBox<Double>(thresh);
-		threshold.setSelectedItem(aml.getThreshold());
-		JLabel th = new JLabel("Similarity Threshold");
-		JPanel thresholdPane = new JPanel();
-		thresholdPane.add(th);
-		thresholdPane.add(threshold);
-		optionPanel.add(thresholdPane);
-		Vector<String> comb = new Vector<String>(2);
-		comb.add("Hierarchical");
-		comb.add("Concurrent");
-		combination = new JComboBox<String>(comb);
-		JLabel mc = new JLabel("Matcher Combination");
-		JPanel combPane = new JPanel();
-		combPane.add(mc);
-		combPane.add(combination);
-		optionPanel.add(combPane);
-		panel.add(optionPanel);
+		JPanel subPanel = new JPanel();
+		JPanel flaggerPanel = new JPanel();
+		flaggerPanel.setLayout(new BoxLayout(flaggerPanel, BoxLayout.Y_AXIS));
+		for(JCheckBox cb : flaggers)
+			flaggerPanel.add(cb);
+		subPanel.add(flaggerPanel);
+		panel.add(subPanel);
 
         //Button Panel
 		cancel = new JButton("Cancel");
 		cancel.setPreferredSize(new Dimension(80,28));
 		cancel.addActionListener(this);
-		detail = new JButton("Details");
-		detail.setPreferredSize(new Dimension(80,28));
-		detail.addActionListener(this);
-		match = new JButton("Match");
-		match.setPreferredSize(new Dimension(80,28));
-		match.addActionListener(this);
+		flag = new JButton("Flag");
+		flag.setPreferredSize(new Dimension(80,28));
+		flag.addActionListener(this);
 
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(cancel);
-		buttonPanel.add(detail);
-		buttonPanel.add(match);
+		buttonPanel.add(flag);
 		panel.add(buttonPanel);
 
 		add(panel);
@@ -147,28 +110,20 @@ public class MatchOptions extends JDialog implements ActionListener, Runnable, W
 		Object o = e.getSource();
 		if(o == cancel)
 			this.dispose();
-		else if(o == match)
+		else if(o == flag)
 		{
-			if(aml.hasAlignment())
-				aml.closeAlignment();
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			aml.setThreshold((Double)threshold.getSelectedItem());
-			Vector<MatchStep> selection = new Vector<MatchStep>();
-			for(int i = 0; i < matchers.size(); i++)
-				if(matchers.get(i).isSelected())
-					selection.add(MatchStep.values()[i]);
-			aml.setMatchSteps(selection);
-			//Then match the ontologies
+			Vector<FlagStep> selection = new Vector<FlagStep>();
+			for(int i = 0; i < flaggers.size(); i++)
+				if(flaggers.get(i).isSelected())
+					selection.add(FlagStep.values()[i]);
+			aml.setFlagSteps(selection);
 			c = new Console();
 			c.addWindowListener(this);
 			console = new Thread(c);
 			console.start();
 			action = new Thread(this);
 			action.start();
-		}
-		else if(o == detail)
-		{
-			new DetailedOptions();
 		}
 	}
 	
@@ -183,7 +138,7 @@ public class MatchOptions extends JDialog implements ActionListener, Runnable, W
 		{
 			//Do nothing
 		}
-		aml.matchManual();
+		aml.flag();
 		Audio.finished();
 		try
 		{

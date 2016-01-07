@@ -28,7 +28,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.List;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -56,6 +55,7 @@ import aml.settings.WordMatchStrategy;
 
 public class DetailedOptions extends JDialog implements ActionListener, ItemListener, ListSelectionListener
 {
+	//TODO: Add info about each matcher; maybe test a tabbed pane look instead of the card layout
 	
 //Attributes
 	
@@ -66,13 +66,13 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
     private Vector<String> steps, bkSources, selectedSources;
 	private JButton cancel, ok;
 	private JList<String> bkList;
-	private JCheckBox allBK, primaryString, direct, removeObsolete, structSelection;
+	private JCheckBox allBK, primaryString, direct, structSelection;
     private JPanel optionPanel;
     private CardLayout cl;
     
 //Constructor
     
-	public DetailedOptions(List<String> s)
+	public DetailedOptions()
 	{
 		//Initialize
 		super();
@@ -82,13 +82,11 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		this.setTitle("Configure Matching Steps");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		
-		steps = new Vector<String>(s);
-		steps.remove(MatchStep.TRANSLATE.toString());
-		steps.remove(MatchStep.PROPERTY.toString());
-		steps.remove(MatchStep.REPAIR.toString());
-		
 		JPanel configPanel = new JPanel();
 		configPanel.setBorder(new TitledBorder("Matching Step"));
+		steps = new Vector<String>();
+		for(MatchStep m : MatchStep.values())
+			steps.add(m.toString());
 		step = new JComboBox<String>(steps);
 		step.addActionListener(this);
         configPanel.add(step);
@@ -136,8 +134,6 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		for(SelectionType st : SelectionType.values())
 			types.add(st.toString());
 		select = new JComboBox<String>(types);
-		removeObsolete = new JCheckBox("Remove Obsolete Class Mappings");
-		removeObsolete.setSelected(false);
 		structSelection = new JCheckBox("Structure-Based Selection");
 		structSelection.setSelected(aml.getSizeCategory().equals(SizeCategory.HUGE));
 		
@@ -189,7 +185,6 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 			aml.setNeighborSimilarityStrategy(NeighborSimilarityStrategy.parseStrategy((String)struct.getSelectedItem()));
 			aml.setDirectNeighbors(direct.isSelected());
 			aml.setSelectionType(SelectionType.parseSelector((String)select.getSelectedItem()));
-			aml.setRemoveObsolete(removeObsolete.isSelected());
 			aml.setStructuralSelection(structSelection.isSelected());
 			this.dispose();
 		}
@@ -291,12 +286,8 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 			panel.add(p1);
 			JPanel p2 = new JPanel();
 			p2.setLayout(new FlowLayout(FlowLayout.CENTER));
-			p2.add(removeObsolete);
+			p2.add(structSelection);
 			panel.add(p2);
-			JPanel p3 = new JPanel();
-			p3.setLayout(new FlowLayout(FlowLayout.CENTER));
-			p3.add(structSelection);
-			panel.add(p3);
 		}
 		return panel;
 	}
