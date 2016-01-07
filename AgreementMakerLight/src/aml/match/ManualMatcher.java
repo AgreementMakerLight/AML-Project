@@ -45,9 +45,11 @@ public class ManualMatcher
 		AML aml = AML.getInstance();
 		Vector<MatchStep> steps = aml.getMatchSteps();
 		double thresh = aml.getThreshold();
+		boolean hierarchic = aml.isHierarchic();
 		
 		//Initialize the alignment
 		Alignment a = new Alignment();
+		Alignment aux;
 		
 		//Start the matching procedure
 		if(steps.contains(MatchStep.TRANSLATE))
@@ -68,46 +70,61 @@ public class ManualMatcher
 			if(aml.getLanguageSetting().equals(LanguageSetting.SINGLE))
 			{
 				WordMatcher wm = new WordMatcher(wms);
-				a.addAllOneToOne(wm.match(thresh));
+				aux = wm.match(thresh);
 			}
 			else
 			{
-				Alignment word = new Alignment();
+				aux = new Alignment();
 				for(String l : aml.getLanguages())
 				{
 					WordMatcher wm = new WordMatcher(l,wms);
-					word.addAll(wm.match(thresh));
+					aux.addAll(wm.match(thresh));
 				}
-				a.addAllOneToOne(word);
 			}
+			if(hierarchic)
+				a.addAllOneToOne(aux);
+			else
+				a.addAll(aux);
 		}
 		if(steps.contains(MatchStep.STRING))
 		{
 			StringMatcher sm = new StringMatcher(aml.getStringSimMeasure());
 			if(aml.primaryStringMatcher())
-				a.addAllOneToOne(sm.match(thresh));
+				aux = sm.match(thresh);
 			else
-				a.addAllOneToOne(sm.extendAlignment(a, thresh));
+				aux = sm.extendAlignment(a, thresh);
+			if(hierarchic)
+				a.addAllOneToOne(aux);
+			else
+				a.addAll(aux);
 		}
 		if(steps.contains(MatchStep.STRUCT))
 		{
 			NeighborSimilarityMatcher nsm = new NeighborSimilarityMatcher(
 					aml.getNeighborSimilarityStrategy(),aml.directNeighbors());
-			a.addAllOneToOne(nsm.extendAlignment(a,thresh));
+			aux = nsm.extendAlignment(a,thresh);
+			if(hierarchic)
+				a.addAllOneToOne(aux);
+			else
+				a.addAll(aux);
 		}
 		if(steps.contains(MatchStep.PROPERTY))
 		{
 			PropertyMatcher pm = new PropertyMatcher(true);
-			a.addAllOneToOne(pm.extendAlignment(a, thresh));
+			aux = pm.extendAlignment(a, thresh);
+			if(hierarchic)
+				a.addAllOneToOne(aux);
+			else
+				a.addAll(aux);
 		}
 		aml.setAlignment(a);
+		if(steps.contains(MatchStep.OBSOLETE))
+		{
+			ObsoleteFilter or = new ObsoleteFilter();
+			or.filter();
+		}
 		if(steps.contains(MatchStep.SELECT))
 		{
-			if(aml.removeObsolete())
-			{
-				ObsoleteFilter or = new ObsoleteFilter();
-				or.filter();
-			}
 			SelectionType sType = aml.getSelectionType();
 			if(aml.structuralSelection())
 			{
