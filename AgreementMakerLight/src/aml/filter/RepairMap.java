@@ -107,6 +107,8 @@ public class RepairMap implements Iterable<Integer>
 	public Vector<Mapping> getConflictMappings(int index)
 	{
 		Vector<Mapping> confs = new Vector<Mapping>();
+		if(!mappingConflicts.contains(index))
+			return confs;
 		for(Integer i : mappingConflicts.get(index))
 		{
 			for(Integer j : conflictMappings.get(i))
