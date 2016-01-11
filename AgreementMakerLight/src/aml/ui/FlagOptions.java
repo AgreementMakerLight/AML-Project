@@ -12,7 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Ontology matching configuration dialog box for the GUI.                     *
+* Alignment flagging configuration dialog box for the GUI.                    *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -34,7 +34,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import aml.AML;
-import aml.settings.FlagStep;
+import aml.settings.Problem;
 
 public class FlagOptions extends JDialog implements ActionListener, Runnable, WindowListener
 {
@@ -46,7 +46,7 @@ public class FlagOptions extends JDialog implements ActionListener, Runnable, Wi
 	private Console c;
 	private JButton cancel, flag;
 	private Vector<JCheckBox> flaggers;
-    private Vector<FlagStep> selectedSteps;
+    private Vector<Problem> selectedSteps;
     private Thread action, console;
     
 //Constructor
@@ -61,7 +61,7 @@ public class FlagOptions extends JDialog implements ActionListener, Runnable, Wi
 		//And the lists of match steps & match configurations
 		selectedSteps = aml.getFlagSteps();
 		flaggers = new Vector<JCheckBox>();
-		for(FlagStep m : FlagStep.values())
+		for(Problem m : Problem.values())
 		{
 			JCheckBox cb = new JCheckBox(m.toString());
 			cb.setSelected(selectedSteps.contains(m));
@@ -113,10 +113,10 @@ public class FlagOptions extends JDialog implements ActionListener, Runnable, Wi
 		else if(o == flag)
 		{
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-			Vector<FlagStep> selection = new Vector<FlagStep>();
+			Vector<Problem> selection = new Vector<Problem>();
 			for(int i = 0; i < flaggers.size(); i++)
 				if(flaggers.get(i).isSelected())
-					selection.add(FlagStep.values()[i]);
+					selection.add(Problem.values()[i]);
 			aml.setFlagSteps(selection);
 			c = new Console();
 			c.addWindowListener(this);
