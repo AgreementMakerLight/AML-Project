@@ -19,8 +19,6 @@
 
 package aml.ui;
 
-import java.awt.Color;
-
 import javax.swing.JButton;
 
 import aml.match.Mapping;
@@ -29,18 +27,41 @@ import aml.settings.MappingStatus;
 
 public class MappingButton extends JButton
 {
-	private static final long serialVersionUID = 738835377450644263L;
 	
+//Attributes
+	
+	private static final long serialVersionUID = 738835377450644263L;
+	private Mapping m;
+	
+//Constructors
+	
+	/**
+	 * Constructs a new MappingButton for the given Mapping
+	 * @param m: the Mapping to "buttonize"
+	 */
 	public MappingButton(Mapping m)
 	{
 		super(m.toGUI());
+		this.m = m;
 		if(m.getStatus().equals(MappingStatus.UNKNOWN))
-			this.setBackground(Color.LIGHT_GRAY);
+			this.setBackground(AMLColor.GRAY);
 		else if(m.getStatus().equals(MappingStatus.CORRECT))
-			this.setBackground(Color.GREEN);
+			this.setBackground(AMLColor.GREEN);
 		else if(m.getStatus().equals(MappingStatus.INCORRECT))
-			this.setBackground(Color.RED);
+			this.setBackground(AMLColor.RED);
 		else if(m.getStatus().equals(MappingStatus.FLAGGED))
-			this.setBackground(Color.YELLOW);
+			this.setBackground(AMLColor.ORANGE);
+	}
+	
+	public void refresh()
+	{
+		if(m.getStatus().equals(MappingStatus.UNKNOWN))
+			this.setBackground(AMLColor.GRAY);
+		else if(m.getStatus().equals(MappingStatus.CORRECT))
+			this.setBackground(AMLColor.GREEN);
+		else if(m.getStatus().equals(MappingStatus.INCORRECT))
+			this.setBackground(AMLColor.RED);
+		else if(m.getStatus().equals(MappingStatus.FLAGGED))
+			this.setBackground(AMLColor.ORANGE);
 	}
 }
