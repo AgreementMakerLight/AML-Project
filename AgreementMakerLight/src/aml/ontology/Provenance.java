@@ -57,16 +57,20 @@ public class Provenance implements Comparable<Provenance>
 	
 	@Override
 	/**
-	 * Provenances are compared by weight, which enables
-	 * sorting and querying by weight
+	 * Provenances are compared first with regard to whether
+	 * they are internal or external, and then by weight
 	 */
 	public int compareTo(Provenance o)
 	{
-		if(this.weight == o.weight)
-			return 0;
+		if(this.isExternal() && !o.isExternal())
+			return -1;
+		if(!this.isExternal() && o.isExternal())
+			return 1;
 		if(this.weight > o.weight)
 			return 1;
-		return -1;
+		if(this.weight < o.weight)
+			return -1;
+		return 0;
 	}
 	
 	/**
