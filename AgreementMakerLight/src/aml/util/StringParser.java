@@ -43,12 +43,13 @@ public class StringParser
 		return
 			//It doesn't contain at least 3 contiguous letters
 			!name.matches(".*[a-zA-Z]{3,}.*") ||
-			//It is composed by a block of 3 contiguous letters followed by only non-letters
-			name.matches("[a-zA-Z]{3}[^a-zA-Z]+") ||
 			//It is composed by a block of lower case letters followed by only upper case letters
 			name.matches("[a-z]+[A-Z]+") ||
+			//It is composed by a block of 3 contiguous letters followed by only non-letters
+			//except if the non-letters consist of a separator followed by only 1-3 digits
+			(name.matches("[a-zA-Z]{3}[^a-zA-Z]+") && !name.matches("[a-zA-Z]{3}[ _][0-9]{1,3}")) ||
 			//It contains only upper case letters, numbers and dashes but not just upper case letters 
-			(name.matches("[A-Z0-9/\\\\-]+") && name.matches(".*[0-9/\\\\-].*")) ||
+			(name.matches("[A-Z0-9/\\\\-]+") && !name.matches("[A-Z]+")) ||
 			//It starts with a digit-dash-word sequence
 			name.matches("[0-9]{1,2}'?-[a-zA-Z]{3,}.*") ||
 			//or contains a digit-dash-word sequence preceded by a space, comma or dash
