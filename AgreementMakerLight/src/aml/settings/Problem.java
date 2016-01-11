@@ -18,7 +18,7 @@
 ******************************************************************************/
 package aml.settings;
 
-public enum FlagStep
+public enum Problem
 {
    	OBSOLETION	("Obsoletion"),
    	CARDINALITY ("Cardinality"),
@@ -27,7 +27,7 @@ public enum FlagStep
 	    	
    	final String value;
     	
-   	FlagStep(String s)
+   	Problem(String s)
    	{
    		value = s;
    	}
@@ -37,9 +37,9 @@ public enum FlagStep
    		return value;
    	}
    	
-	public static FlagStep parseStep(String step)
+	public static Problem parseStep(String step)
 	{
-		for(FlagStep s : FlagStep.values())
+		for(Problem s : Problem.values())
 			if(step.equalsIgnoreCase(s.toString()))
 				return s;
 		return null;
