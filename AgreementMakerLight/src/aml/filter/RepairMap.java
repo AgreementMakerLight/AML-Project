@@ -80,7 +80,9 @@ public class RepairMap implements Iterable<Integer>
 	{
 		aml = AML.getInstance();
 		rels = aml.getRelationshipMap();
-		a = aml.getAlignment();
+		//We use a clone of the alignment to avoid problems if the
+		//order of the original alignment is altered
+		a = new Alignment(aml.getAlignment());
 		//Remove the FLAGGED status from all mappings that have it
 		for(Mapping m : a)
 			if(m.getStatus().equals(MappingStatus.FLAGGED))
@@ -101,11 +103,12 @@ public class RepairMap implements Iterable<Integer>
 	}
 	
 	/**
-	 * @param index: the index of the Mapping to get
+	 * @param m: the Mapping to get
 	 * @return the list of Mappings in conflict with this Mapping
 	 */
-	public Vector<Mapping> getConflictMappings(int index)
+	public Vector<Mapping> getConflictMappings(Mapping m)
 	{
+		int index = a.getIndex(m.getSourceId(), m.getTargetId());
 		Vector<Mapping> confs = new Vector<Mapping>();
 		if(!mappingConflicts.contains(index))
 			return confs;
@@ -115,9 +118,11 @@ public class RepairMap implements Iterable<Integer>
 			{
 				if(j == index)
 					continue;
-				Mapping m = a.get(j);
-				if(!confs.contains(m))
-					confs.add(m);
+				Mapping n = a.get(j);
+				//Get the Mapping from the original alignment
+				n = aml.getAlignment().get(n.getSourceId(), n.getTargetId());
+				if(!confs.contains(n))
+					confs.add(n);
 			}
 		}
 		return confs;
@@ -159,7 +164,8 @@ public class RepairMap implements Iterable<Integer>
 	 */
 	public Mapping getMapping(int index)
 	{
-		return a.get(index);
+		Mapping m = a.get(index);
+		return aml.getAlignment().get(m.getSourceId(), m.getTargetId());
 	}
 	
 	/**
@@ -197,7 +203,9 @@ public class RepairMap implements Iterable<Integer>
 			conflictMappings.remove(i);
 		}
 		mappingConflicts.remove(index);
-		a.get(index).setStatus(MappingStatus.INCORRECT);
+		Mapping m = a.get(index);
+		m.setStatus(MappingStatus.INCORRECT);
+		aml.getAlignment().get(m.getSourceId(), m.getTargetId()).setStatus(MappingStatus.INCORRECT);
 	}
 	
 	/**
