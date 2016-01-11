@@ -102,14 +102,14 @@ public class Selector implements Filterer, Flagger
 		System.out.println("Performing Selection");
 		long time = System.currentTimeMillis()/1000;
 		Alignment selected;
+		if(!type.equals(SelectionType.HYBRID))
+			selected = parentFilter(a);
 		//In normal selection mode
 		if(aux == null)
 			selected = filterNormal();
 		//In co-selection mode
 		else
 			selected = filterWithAux();
-		if(!type.equals(SelectionType.HYBRID))
-			selected = parentFilter(selected);
 		if(selected.size() < a.size())
 		{
 			for(Mapping m : selected)
