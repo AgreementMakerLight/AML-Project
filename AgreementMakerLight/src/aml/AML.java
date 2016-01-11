@@ -28,15 +28,16 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+import javax.swing.UIManager;
+
 import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
+import aml.filter.CustomFilterer;
 import aml.filter.CustomFlagger;
-import aml.filter.ObsoleteFilter;
 import aml.filter.QualityFlagger;
 import aml.filter.RepairMap;
 import aml.filter.Repairer;
-import aml.filter.Selector;
 import aml.match.ManualMatcher;
 import aml.match.Mapping;
 import aml.match.Alignment;
@@ -45,7 +46,7 @@ import aml.ontology.BKOntology;
 import aml.ontology.Ontology2Match;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
-import aml.settings.FlagStep;
+import aml.settings.Problem;
 import aml.settings.LanguageSetting;
 import aml.settings.MappingStatus;
 import aml.settings.MatchStep;
@@ -55,6 +56,7 @@ import aml.settings.SizeCategory;
 import aml.settings.StringSimMeasure;
 import aml.settings.WordMatchStrategy;
 import aml.translate.Dictionary;
+import aml.ui.AMLColor;
 import aml.ui.AlignmentFileChooser;
 import aml.ui.GUI;
 import aml.ui.OntologyFileChooser;
@@ -98,7 +100,7 @@ public class AML
 	private double threshold = 0.6;
 	private boolean hierarchic;
 	private Vector<MatchStep> matchSteps;
-    private Vector<FlagStep> flagSteps;
+    private Vector<Problem> flagSteps;
     private Vector<String> selectedSources; //The selected files under the BK_PATH
     private WordMatchStrategy wms;
     private StringSimMeasure ssm;
@@ -108,12 +110,13 @@ public class AML
     private boolean structuralSelection;    
 	//User interface and settings
 	private GUI userInterface;
+	private int activeMapping;
 	private OntologyFileChooser ofc;
 	private AlignmentFileChooser afc;
 	private int maxDistance = 2;
 	private boolean showAncestors = true;
 	private boolean showDescendants = true;
-    private String language;
+    private String language = "en";
 	
 //Constructors
 	
@@ -128,7 +131,18 @@ public class AML
 //Public Methods
 
 	/**
+	 * Constructs a new QualityFlagger for the current Alignment
+	 * @return the QualityFlagger
+	 */
+	public QualityFlagger buildQualityFlagger()
+	{
+		qf = new QualityFlagger();
+		return qf;
+	}
+	
+	/**
 	 * Constructs a new RepairMap for the current Alignment
+	 * @return the RepairMap
 	 */
 	public RepairMap buildRepairMap()
     {
@@ -142,6 +156,8 @@ public class AML
 	public void closeAlignment()
     {
     	a = null;
+    	activeMapping = -1;
+    	evaluation = null;
     	if(userInterface != null)
     		userInterface.refresh();
     }
@@ -156,9 +172,7 @@ public class AML
     	bk = null;
     	uris = null;
     	rels = null;
-    	a = null;
-    	if(userInterface != null)
-    		userInterface.refresh();
+    	closeAlignment();
     }
     
     /**
@@ -225,8 +239,8 @@ public class AML
 		directNeighbors = false;
 		sType = SelectionType.getSelectionType();
 		structuralSelection = size.equals(SizeCategory.HUGE);
-		flagSteps = new Vector<FlagStep>();
-		for(FlagStep f : FlagStep.values())
+		flagSteps = new Vector<Problem>();
+		for(Problem f : Problem.values())
 			flagSteps.add(f);
     }
     
@@ -265,6 +279,16 @@ public class AML
 			evaluation = "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
 					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
 	}
+	
+    /**
+     * Filters problem mappings in the active alignment
+     */
+    public void filter()
+    {
+   		CustomFilterer.filter();
+    	if(userInterface != null)
+    		userInterface.refresh();
+    }
     
     /**
      * Flags problem mappings in the active alignment
@@ -274,6 +298,14 @@ public class AML
    		CustomFlagger.flag();
     	if(userInterface != null)
     		userInterface.refresh();
+    }
+    
+    /**
+     * @return the index of the active Mapping
+     */
+    public int getActiveMapping()
+    {
+    	return activeMapping;
     }
     
 	/**
@@ -319,7 +351,7 @@ public class AML
 	/**
 	 * @return the selected flagging steps
 	 */
-	public Vector<FlagStep> getFlagSteps()
+	public Vector<Problem> getFlagSteps()
 	{
 		return flagSteps;
 	}
@@ -398,10 +430,9 @@ public class AML
 
 	public QualityFlagger getQualityFlagger()
 	{
-		if(qf == null)
-			qf = new QualityFlagger();
 		return qf;
 	}
+	
 	/**
 	 * @return the current reference alignment
 	 */
@@ -500,7 +531,8 @@ public class AML
     
     public void goTo(int index)
     {
-    	userInterface.goTo(index);
+    	activeMapping = index;
+    	userInterface.goTo(activeMapping);
     }
 
 	/**
@@ -549,10 +581,13 @@ public class AML
      */
     public void matchAuto()
     {
+    	defaultConfig();
     	im = new InteractionManager();
    		AutomaticMatcher.match();
     	evaluation = null;
     	rep = null;
+    	if(a.size() > 0)
+    		activeMapping = 0;
     	if(userInterface != null)
     		userInterface.refresh();
     }
@@ -566,6 +601,8 @@ public class AML
    		ManualMatcher.match();
     	evaluation = null;
     	rep = null;
+    	if(a.size() > 0)
+    		activeMapping = 0;
     	if(userInterface != null)
     		userInterface.refresh();
     }
@@ -574,6 +611,8 @@ public class AML
     {
     	a = new Alignment(path);
     	evaluation = null;
+    	if(a.size() > 0)
+    		activeMapping = 0;
     	if(userInterface != null)
     		userInterface.refresh();
     }
@@ -624,6 +663,7 @@ public class AML
 		System.out.println("Disjoints: " + rels.disjointCount());
     	//Reset the alignment, mapping, and evaluation
     	a = null;
+    	activeMapping = -1;
     	evaluation = null;
     	//Refresh the user interface
     	if(userInterface != null)
@@ -668,6 +708,7 @@ public class AML
 		System.out.println("Disjoints: " + rels.disjointCount());
     	//Reset the alignment, mapping, and evaluation
     	a = null;
+    	activeMapping = -1;
     	evaluation = null;
     	//Refresh the user interface
     	if(userInterface != null)
@@ -686,6 +727,11 @@ public class AML
 		return primaryStringMatcher;
 	}
     
+    public void refreshMapping(int index)
+    {
+    	userInterface.refresh(index);
+    }
+    
     public void refreshGUI()
     {
     	userInterface.refresh();
@@ -698,16 +744,13 @@ public class AML
 			if(!m.getStatus().equals(MappingStatus.INCORRECT))
 				reviewed.add(m);
 		if(a.size() > reviewed.size())
+		{
 			aml.setAlignment(reviewed);
-		userInterface.refresh();
-	}
-	
-	public void removeObsolete()
-	{
-		ObsoleteFilter o = new ObsoleteFilter();
-		o.filter();
-    	if(userInterface != null)
-    		userInterface.refresh();
+			if(a.size() > 0)
+				activeMapping = 0;
+			if(userInterface != null)
+				userInterface.refresh();
+		}
 	}
 	
 	public void repair()
@@ -716,8 +759,6 @@ public class AML
 		rep = new RepairMap();
 		Repairer r = new Repairer();
 		r.filter();
-    	if(userInterface != null)
-    		userInterface.refresh();
 	}
 
     public void saveAlignmentRDF(String file) throws Exception
@@ -730,18 +771,11 @@ public class AML
     	a.saveTSV(file);
     }
     
-	public void select()
-	{
-		im = new InteractionManager();
-		Selector s = new Selector(threshold);
-		s.filter();
-    	if(userInterface != null)
-    		userInterface.refresh();
-	}
-	
 	public void setAlignment(Alignment maps)
 	{
 		a = maps;
+		if(a.size() > 0)
+			activeMapping = 0;
 		qf = null;
     	evaluation = null;
     	rep = null;
@@ -752,7 +786,7 @@ public class AML
 		this.directNeighbors = directNeighbors;
 	}
 
-	public void setFlagSteps(Vector<FlagStep> steps)
+	public void setFlagSteps(Vector<Problem> steps)
 	{
 		flagSteps = steps;
 	}
@@ -853,13 +887,19 @@ public class AML
 	public void sortAscending()
 	{
 		a.sortAscending();
-		userInterface.refresh();
+		if(a.size() > 0)
+			activeMapping = 0;
+		if(userInterface != null)
+			userInterface.refresh();
 	}
 
 	public void sortDescending()
 	{
 		a.sortDescending();
-		userInterface.refresh();
+		if(a.size() > 0)
+			activeMapping = 0;
+		if(userInterface != null)
+			userInterface.refresh();
 	}
 
 	public void startGUI()
@@ -867,14 +907,18 @@ public class AML
         //Set the Nimbus look and feel
         try
         {
-            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            for(UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
             {
                 if ("Nimbus".equals(info.getName()))
                 {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
+            UIManager.put("control", AMLColor.WHITE);
+            UIManager.put("background", AMLColor.WHITE);
+            UIManager.put("scrollbar", AMLColor.LIGHT_GRAY);
+            UIManager.put("ComboBox.background", AMLColor.WHITE);
         }
         catch (Exception e)
         {
