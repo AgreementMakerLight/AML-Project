@@ -21,7 +21,7 @@ package aml.filter;
 import java.util.Vector;
 
 import aml.AML;
-import aml.settings.FlagStep;
+import aml.settings.Problem;
 
 public class CustomFlagger
 {
@@ -36,24 +36,24 @@ public class CustomFlagger
 	{
 		//Get the AML instance and settings
 		AML aml = AML.getInstance();
-		Vector<FlagStep> steps = aml.getFlagSteps();
+		Vector<Problem> steps = aml.getFlagSteps();
 		//Start the matching procedure
-		if(steps.contains(FlagStep.CARDINALITY))
+		if(steps.contains(Problem.CARDINALITY))
 		{
 			Selector s = new Selector(0.0);
 			s.flag();
 		}
-		if(steps.contains(FlagStep.COHERENCE))
+		if(steps.contains(Problem.COHERENCE))
 		{
 			Repairer r = new Repairer();
 			r.flag();
 		}
-		if(steps.contains(FlagStep.OBSOLETION))
+		if(steps.contains(Problem.OBSOLETION))
 		{
 			ObsoleteFilter o = new ObsoleteFilter();
 			o.flag();
 		}
-		if(steps.contains(FlagStep.QUALITY))
+		if(steps.contains(Problem.QUALITY))
 		{
 			QualityFlagger q = aml.getQualityFlagger();
 			q.flag();
