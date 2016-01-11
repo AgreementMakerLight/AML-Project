@@ -50,7 +50,7 @@ public class InteractiveFilterer implements Filterer
 		im = aml.getInteractionManager();
 		size = aml.getSizeCategory();
 		a = aml.getAlignment();
-		qf = aml.getQualityFlagger();
+		qf = aml.buildQualityFlagger();
 	}
 	
 //Public Methods
