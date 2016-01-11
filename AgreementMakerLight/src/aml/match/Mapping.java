@@ -132,6 +132,8 @@ public class Mapping implements Comparable<Mapping>
 	 */
 	public boolean equals(Object o)
 	{
+		if(!(o instanceof Mapping))
+			return false;
 		Mapping m = (Mapping)o;
 		return (this.sourceId == m.sourceId && this.targetId == m.targetId);
 	}
