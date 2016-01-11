@@ -40,13 +40,10 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
 	private static final long serialVersionUID = 4336946114423673015L;
 	private AML aml;
 	private Console c;
-    private JMenu file, match, filter, view;
+    private JMenu file, match, filter;
     private JMenuItem openO, closeO, openA,	closeA, saveA,
     				  matchAuto, matchManual, addC, addP,
-    				  evaluate, obsolete, select, repair, flag,
-    				  search, sortAsc, sortDesc, options;
-    private enum Mode{ MATCH, REPAIR, REVISE; }
-    private Mode m;
+    				  evaluate, resolve, flag, remove;
     private Thread action, console;
     
 //Constructors
@@ -104,38 +101,17 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
         evaluate.addActionListener(this);
         filter.add(evaluate);
         filter.addSeparator();
-        obsolete = new JMenuItem("Obsoletion");
-        obsolete.addActionListener(this);
-        filter.add(obsolete);
-        select = new JMenuItem("Cardinality (Selection)");
-        select.addActionListener(this);
-        filter.add(select);
-        repair = new JMenuItem("Coherence (Repair)");
-        repair.addActionListener(this);
-        filter.add(repair);
-        filter.addSeparator();
+        resolve = new JMenuItem("Resolve Problems");
+        resolve.addActionListener(this);
+        filter.add(resolve);
         flag = new JMenuItem("Flag Problems");
         flag.addActionListener(this);
         filter.add(flag);
+        filter.addSeparator();
+        remove = new JMenuItem("Remove Incorrect Mappings");
+        remove.addActionListener(this);
+        filter.add(remove);
         add(filter);
-        
-        //View Menu
-        view = new JMenu("View");
-        search = new JMenuItem("Search Alignment");
-        search.addActionListener(this);
-        view.add(search);
-        view.addSeparator();
-        sortAsc = new JMenuItem("Sort Ascending");
-        sortAsc.addActionListener(this);
-        view.add(sortAsc);
-        sortDesc = new JMenuItem("Sort Descending");
-        sortDesc.addActionListener(this);
-        view.add(sortDesc);
-        view.addSeparator();
-        options = new JMenuItem("Graph Options");
-        options.addActionListener(this);
-        view.add(options);
-        add(view);
         
         refresh();
     }
@@ -171,8 +147,8 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
 		}
 		else if(o == saveA)
 		{
-			Alignment a = AML.getInstance().getAlignment();
-			AlignmentFileChooser fc = AML.getInstance().getAlignmentFileChooser();
+			Alignment a = aml.getAlignment();
+			AlignmentFileChooser fc = aml.getAlignmentFileChooser();
 			int returnVal = fc.showSaveDialog(this);
 			if(returnVal == JFileChooser.APPROVE_OPTION)
 			{
@@ -209,7 +185,6 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
 		//Match Options
 		else if(o == matchAuto)
 		{
-			m = Mode.MATCH;
 			c = new Console();
 			c.addWindowListener(this);
 			console = new Thread(c);
@@ -234,44 +209,17 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
 		{
 			new EvaluateAlignment();
 		}
-		else if(o == obsolete)
+		else if(o == resolve)
 		{
-			aml.removeObsolete();
-		}
-		else if(o == select)
-		{
-			aml.select();
-		}
-		else if(o == repair)
-		{
-			m = Mode.REPAIR;
-			c = new Console();
-			c.addWindowListener(this);
-			console = new Thread(c);
-			console.start();
-			action = new Thread(this);
-			action.start();
+			new FilterOptions();
 		}
 		else if(o == flag)
 		{
 			new FlagOptions();
 		}
-		//View Options
-		else if(o == search)
+		else if(o == remove)
 		{
-			new SearchAlignment();
-		}
-		else if(o == sortAsc)
-		{
-			aml.sortAscending();
-		}
-		else if(o == sortDesc)
-		{
-			aml.sortDescending();
-		}
-		else if(o == options)
-		{
-			new ViewOptions();
+			aml.removeIncorrect();
 		}
 	}
 	
@@ -290,37 +238,25 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
 		evaluate.setEnabled(aml.hasAlignment());
 		addC.setEnabled(aml.hasAlignment() && aml.hasClasses());
 		addP.setEnabled(aml.hasAlignment() && aml.hasProperties());
-		repair.setEnabled(aml.hasAlignment());
-		obsolete.setEnabled(aml.hasAlignment());
-		select.setEnabled(aml.hasAlignment());
+		resolve.setEnabled(aml.hasAlignment());
 		flag.setEnabled(aml.hasAlignment());
-		search.setEnabled(aml.hasAlignment());
-		sortAsc.setEnabled(aml.hasAlignment());
-		sortDesc.setEnabled(aml.hasAlignment());
-		options.setEnabled(aml.hasOntologies());
+		remove.setEnabled(aml.hasAlignment());
 	}
 
 	@Override
 	public void run()
 	{
-		if(m.equals(Mode.MATCH))
+		if(aml.hasAlignment())
+			aml.closeAlignment();
+		try
 		{
-			if(aml.hasAlignment())
-				aml.closeAlignment();
-			try
-			{
-				Thread.sleep(1000);
-			}
-			catch(InterruptedException e)
-			{
-				//Do nothing
-			}
-			aml.matchAuto();
+			Thread.sleep(1000);
 		}
-		else if(m.equals(Mode.REPAIR))
-			aml.repair();
-		else if(m.equals(Mode.REVISE))
-			aml.repair();
+		catch(InterruptedException e)
+		{
+			//Do nothing
+		}
+		aml.matchAuto();
 		try
 		{
 			Thread.sleep(1500);
