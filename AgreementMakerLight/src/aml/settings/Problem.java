@@ -20,11 +20,11 @@ package aml.settings;
 
 public enum Problem
 {
-   	OBSOLETION	("Obsoletion"),
-   	CARDINALITY ("Cardinality"),
-   	COHERENCE	("Coherence"),
-   	QUALITY		("Quality");
-	    	
+   	OBSOLETION	("Obsolete Classes"),
+   	CARDINALITY ("Cardinality Conflicts"),
+   	COHERENCE	("Coherence Conflicts"),
+   	QUALITY		("Low Quality Mappings");
+   	
    	final String value;
     	
    	Problem(String s)
