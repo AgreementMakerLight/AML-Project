@@ -19,11 +19,11 @@
 ******************************************************************************/
 package aml.ui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JTextPane;
+import javax.swing.UIDefaults;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
@@ -49,12 +49,17 @@ public class ResourcePanel extends JInternalFrame
 	public ResourcePanel(Dimension max, Dimension min)
 	{
 		super("Resource Panel",false,false,false,false);
-		
 		this.setMaximumSize(max);
 		this.setPreferredSize(min);
 		
 		desc = new JTextPane();
 		desc.setEditable(false);
+		
+		UIDefaults defaults = new UIDefaults();
+		defaults.put("TextPane[Enabled].backgroundPainter", AMLColor.WHITE);
+		desc.putClientProperty("Nimbus.Overrides", defaults);
+		desc.putClientProperty("Nimbus.Overrides.InheritDefaults", true);
+		desc.setBackground(AMLColor.WHITE);
 		
 		doc = desc.getStyledDocument();
 		def = StyleContext.getDefaultStyleContext(). getStyle(StyleContext.DEFAULT_STYLE);
@@ -62,10 +67,10 @@ public class ResourcePanel extends JInternalFrame
 		StyleConstants.setBold(bold, true);
 		s = doc.addStyle("source", def);
 		StyleConstants.setBold(s, true);
-		StyleConstants.setForeground(s, Color.red);
+		StyleConstants.setForeground(s, AMLColor.BLUE);
 		t = doc.addStyle("target", def);
 		StyleConstants.setBold(t, true);
-		StyleConstants.setForeground(t, Color.blue);
+		StyleConstants.setForeground(t, AMLColor.BROWN);
 		u = doc.addStyle("uri", def);
 		StyleConstants.setUnderline(u, true);
 		
