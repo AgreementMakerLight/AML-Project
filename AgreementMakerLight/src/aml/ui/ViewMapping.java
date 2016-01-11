@@ -20,7 +20,6 @@ package aml.ui;
  
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -40,6 +39,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 
 import org.gephi.graph.api.DirectedGraph;
@@ -62,6 +62,7 @@ import org.gephi.project.api.ProjectController;
 import org.openide.util.Lookup;
 
 import aml.AML;
+import aml.filter.QualityFlagger;
 import aml.filter.RepairMap;
 import aml.match.Alignment;
 import aml.match.Mapping;
@@ -86,7 +87,6 @@ public class ViewMapping extends JDialog implements ActionListener
 	//Constants
 	private static final long serialVersionUID = 4516245633857479148L;
   	private static final int MAX_RETRIES = 5;
-  	private static final Color BK = new Color(214,217,223);
   	
   	//Ontology and Alignment attributes
 	private AML aml;
@@ -96,9 +96,6 @@ public class ViewMapping extends JDialog implements ActionListener
   	private Alignment a;
 	private int mapping, sourceId, targetId;
 	private Mapping m;
-
-	//Parent Container
-	private Container parent;
 
 	//Dimensions
 	private int width;
@@ -110,7 +107,7 @@ public class ViewMapping extends JDialog implements ActionListener
 	private JPanel details, conflicts;
 	private Vector<JCheckBox> check;
 	private Vector<Mapping> mappings;
-	private Vector<JButton> mappingButtons;
+	private Vector<MappingButton> mappingButtons;
 	private Vector<JLabel> labels;
 	private JButton reset, setCorrect, setIncorrect;
 	
@@ -119,21 +116,20 @@ public class ViewMapping extends JDialog implements ActionListener
   	private DirectedGraph directedGraph;
   	private HashSet<Integer> sourceNodes, targetNodes;
   	private int maxDistance;
+  	private float[] sourceColor, targetColor;
 
 //Constructors
   	
-    public ViewMapping(Container parent, int index)
+    public ViewMapping()
     {
         super();
-        this.parent = parent;
         //Set the size
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		Dimension screenSize = env.getMaximumWindowBounds().getSize();
 		width = screenSize.width;
 		height = screenSize.height;
-     	this.setMinimumSize(new Dimension((int)(width*0.8),(int)(height*0.8)));
-     	this.setPreferredSize(new Dimension((int)(width*0.8),(int)(height*0.8)));
-     	this.setMaximumSize(new Dimension((int)(width*0.9),(int)(height*0.9)));
+     	this.setMinimumSize(new Dimension((int)(width*0.9),(int)(height*0.9)));
+     	this.setPreferredSize(new Dimension((int)(width*0.9),(int)(height*0.9)));
      
      	//Get the ontologies and alignment
      	aml = AML.getInstance();
@@ -141,47 +137,8 @@ public class ViewMapping extends JDialog implements ActionListener
 		target = aml.getTarget();
 		uris = aml.getURIMap();
         rm = aml.getRelationshipMap();
-		a = aml.getAlignment();
-		mapping = index;
-        m = a.get(mapping);
-        sourceId = m.getSourceId();
-        targetId = m.getTargetId();
-
-        //Set the title and modality
-        this.setTitle(m.toGUI());
-		this.setModalityType(ModalityType.APPLICATION_MODAL);
-
-        //Setup the Tabbed Pane
-        tabbedPane = new JTabbedPane();
-
-        //Add the graph
-        buildGraph();
-        if(mappingViewer != null)
-        	tabbedPane.addTab("Graph View", mappingViewer);
-        else
-        	tabbedPane.addTab("Graph View", new JPanel());
-        JLabel lab1 = new JLabel("Graph View",SwingConstants.CENTER);
-        lab1.setPreferredSize(new Dimension(85, 15));
-        tabbedPane.setTabComponentAt(0, lab1);
-        //Add the details
-        buildDetailPanel();
-        tabbedPane.addTab("Details", details);
-        JLabel lab2 = new JLabel("Details",SwingConstants.CENTER);
-        lab2.setPreferredSize(new Dimension(85, 15));
-        tabbedPane.setTabComponentAt(1, lab2);
-        //Add the issues
-        buildConflictPanel();
-        tabbedPane.addTab("Conflicts", conflicts);
-        JLabel lab3 = new JLabel("Conflicts",SwingConstants.CENTER);
-        lab3.setPreferredSize(new Dimension(85, 15));
-        tabbedPane.setTabComponentAt(2, lab3);
-
-        //Set the tabbed pane as the content pane
-		setContentPane(tabbedPane);
-		
-		//Wrap up
-        this.pack();
-        this.setVisible(true);
+        
+        refresh();
     }
     
 //Public Methods
@@ -200,11 +157,9 @@ public class ViewMapping extends JDialog implements ActionListener
 					if(n.getStatus().equals(MappingStatus.UNKNOWN))
 						continue;
 					int index = a.getIndex(n.getSourceId(),n.getTargetId());
-					//mappings.get(i).setStatus(MappingStatus.CORRECT);
 					a.get(index).setStatus(MappingStatus.UNKNOWN);
-					if(parent instanceof AlignmentPanel)
-						((AlignmentPanel)parent).refresh(index);
-					mappingButtons.get(i).setBackground(Color.GRAY);
+					aml.refreshMapping(index);
+					mappingButtons.get(i).refresh();
 				}
 			}
 		}
@@ -218,11 +173,9 @@ public class ViewMapping extends JDialog implements ActionListener
 					if(n.getStatus().equals(MappingStatus.CORRECT))
 						continue;
 					int index = a.getIndex(n.getSourceId(),n.getTargetId());
-					//mappings.get(i).setStatus(MappingStatus.CORRECT);
 					a.get(index).setStatus(MappingStatus.CORRECT);
-					if(parent instanceof AlignmentPanel)
-						((AlignmentPanel)parent).refresh(index);
-					mappingButtons.get(i).setBackground(Color.GREEN);
+					aml.refreshMapping(index);
+					mappingButtons.get(i).refresh();
 				}
 			}
 		}
@@ -236,11 +189,9 @@ public class ViewMapping extends JDialog implements ActionListener
 					if(n.getStatus().equals(MappingStatus.INCORRECT))
 						continue;
 					int index = a.getIndex(n.getSourceId(),n.getTargetId());
-					//mappings.get(i).setStatus(MappingStatus.CORRECT);
 					a.get(index).setStatus(MappingStatus.INCORRECT);
-					if(parent instanceof AlignmentPanel)
-						((AlignmentPanel)parent).refresh(index);
-					mappingButtons.get(i).setBackground(Color.RED);
+					aml.refreshMapping(index);
+					mappingButtons.get(i).refresh();
 				}
 			}
 		}
@@ -251,17 +202,68 @@ public class ViewMapping extends JDialog implements ActionListener
 			{
 				Mapping n = mappings.get(index);
 				index = a.getIndex(n.getSourceId(),n.getTargetId());
-				this.dispose();
-				new ViewMapping(parent,index);
+				aml.goTo(index);
+				refresh();
 			}
 		}		
 	}
 
 //Private Methods
     
+	private void refresh()
+	{
+		a = aml.getAlignment();
+		mapping = aml.getActiveMapping();
+        m = a.get(mapping);
+        sourceId = m.getSourceId();
+        targetId = m.getTargetId();
+
+        //Set the title and modality
+        this.setTitle(m.toGUI());
+		this.setModalityType(ModalityType.APPLICATION_MODAL);
+
+        //Setup the Tabbed Pane
+        tabbedPane = new JTabbedPane();
+        tabbedPane.setBackground(AMLColor.WHITE);
+
+        //Add the graph
+        buildGraph();
+        if(mappingViewer != null)
+        	tabbedPane.addTab("Graph View", mappingViewer);
+        else
+        	tabbedPane.addTab("Graph View", new JPanel());
+        JLabel lab1 = new JLabel("Graph View",SwingConstants.CENTER);
+        lab1.setPreferredSize(new Dimension(120, 15));
+        tabbedPane.setTabComponentAt(0, lab1);
+        //Add the details
+        buildDetailPanel();
+        tabbedPane.addTab("Details", details);
+        JLabel lab2 = new JLabel("Details",SwingConstants.CENTER);
+        lab2.setPreferredSize(new Dimension(120, 15));
+        tabbedPane.setTabComponentAt(1, lab2);
+        //Add the issues
+        buildConflictPanel();
+        tabbedPane.addTab("Status & Conflicts", conflicts);
+        JLabel lab3 = new JLabel("Status & Conflicts",SwingConstants.CENTER);
+        lab3.setPreferredSize(new Dimension(120, 15));
+        tabbedPane.setTabComponentAt(2, lab3);
+        
+        //Set the tabbed pane as the content pane
+		setContentPane(tabbedPane);
+		
+		//Wrap up
+        this.pack();
+        this.setVisible(true);
+	}
+	
     //Builds the Mapping graph using the Gephi Toolkit
 	private void buildGraph()
 	{
+		sourceColor = new float[3];
+		AMLColor.BLUE.getRGBColorComponents(sourceColor);
+		targetColor = new float[3];
+		AMLColor.BROWN.getRGBColorComponents(targetColor);
+
 		//Initialize a project and therefore a workspace
 		ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
 		pc.newProject();
@@ -322,9 +324,9 @@ public class ViewMapping extends JDialog implements ActionListener
 				PreviewModel previewModel = previewController.getModel();
 				//Configure node labels
 				previewModel.getProperties().putValue(PreviewProperty.SHOW_NODE_LABELS, true);
-				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_OUTLINE_COLOR, new DependantColor(BK));
+				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_OUTLINE_COLOR, new DependantColor(AMLColor.WHITE));
 				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_OUTLINE_SIZE, 5f);
-				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_COLOR, new DependantOriginalColor(Color.BLACK));
+				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_COLOR, new DependantOriginalColor(AMLColor.BLACK));
 				//Configure edges
 				previewModel.getProperties().putValue(PreviewProperty.EDGE_CURVED, false);
 				previewModel.getProperties().putValue(PreviewProperty.EDGE_OPACITY, 100);
@@ -332,11 +334,11 @@ public class ViewMapping extends JDialog implements ActionListener
 				previewModel.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(EdgeColor.Mode.ORIGINAL));
 				//Configure edge labels
 				previewModel.getProperties().putValue(PreviewProperty.SHOW_EDGE_LABELS, true);
-				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_COLOR, new DependantOriginalColor(Color.BLACK));
-				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_OUTLINE_COLOR, new DependantColor(BK));
+				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_COLOR, new DependantOriginalColor(AMLColor.DARK_GRAY));
+				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_OUTLINE_COLOR, new DependantColor(AMLColor.WHITE));
 				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_OUTLINE_SIZE, 2f);
 				//Configure background color
-				previewModel.getProperties().putValue(PreviewProperty.BACKGROUND_COLOR, BK);
+				previewModel.getProperties().putValue(PreviewProperty.BACKGROUND_COLOR, AMLColor.WHITE);
 				previewController.refreshPreview();
 				//Initialize the processing target and the PApplet
 				ProcessingTarget target = (ProcessingTarget) previewController.getRenderTarget(RenderTarget.PROCESSING_TARGET);
@@ -375,13 +377,6 @@ public class ViewMapping extends JDialog implements ActionListener
 		targetPanel.setLayout(new BoxLayout(targetPanel, BoxLayout.Y_AXIS));
 		JPanel fillerPanel = new JPanel();
 
-		//Initialize the mapping panel
-		mappingPanel.setBorder(new TitledBorder("Mapping:"));
-        JLabel type = new JLabel("Type: " + t + " Mapping");
-		mappingPanel.add(type);
-        JLabel sim = new JLabel("Final Similarity: " + m.getSimilarityPercent());
-        mappingPanel.add(sim);
-		//TODO: Add auxiliary similarity values from QualityFlagger
 		if(t.equals(EntityType.CLASS))
 		{
 	        //For the Source Ontology
@@ -689,16 +684,35 @@ public class ViewMapping extends JDialog implements ActionListener
 				}
 			}
 		}
+		//Initialize the mapping panel
+		mappingPanel.setBorder(new TitledBorder("Mapping:"));
+        JLabel type = new JLabel("Type: " + t + " Mapping");
+		mappingPanel.add(type);
+        JLabel sim = new JLabel("Final Similarity: " + m.getSimilarityPercent());
+        mappingPanel.add(sim);
+        if(t.equals(EntityType.CLASS))
+        {
+	        QualityFlagger qf = aml.getQualityFlagger();
+	        if(qf != null)
+	        {
+	        	Vector<String> labels = qf.getLabels();
+	        	for(int i = 0; i < labels.size(); i++)
+	        	{
+	        		JLabel simQ = new JLabel(labels.get(i) + qf.getSimilarityPercent(sourceId,targetId,i));
+	        		mappingPanel.add(simQ);
+	        	}
+	        }
+        }
 		//Set the sizes of the subpanels and add them to the details panel
-		mappingPanel.setPreferredSize(new Dimension((int)(width*0.78),mappingPanel.getPreferredSize().height));
-		mappingPanel.setMaximumSize(new Dimension((int)(width*0.78),mappingPanel.getPreferredSize().height));
-		details.add(mappingPanel);
-		sourcePanel.setPreferredSize(new Dimension((int)(width*0.78),sourcePanel.getPreferredSize().height));
-		sourcePanel.setMaximumSize(new Dimension((int)(width*0.78),sourcePanel.getPreferredSize().height));
+		sourcePanel.setPreferredSize(new Dimension((int)(width*0.86),sourcePanel.getPreferredSize().height));
+		sourcePanel.setMaximumSize(new Dimension((int)(width*0.86),sourcePanel.getPreferredSize().height));
 		details.add(sourcePanel);
-		targetPanel.setPreferredSize(new Dimension((int)(width*0.78),targetPanel.getPreferredSize().height));
-		targetPanel.setMaximumSize(new Dimension((int)(width*0.78),targetPanel.getPreferredSize().height));
+		targetPanel.setPreferredSize(new Dimension((int)(width*0.86),targetPanel.getPreferredSize().height));
+		targetPanel.setMaximumSize(new Dimension((int)(width*0.86),targetPanel.getPreferredSize().height));
 		details.add(targetPanel);
+		mappingPanel.setPreferredSize(new Dimension((int)(width*0.86),mappingPanel.getPreferredSize().height));
+		mappingPanel.setMaximumSize(new Dimension((int)(width*0.86),mappingPanel.getPreferredSize().height));
+		details.add(mappingPanel);
 		details.add(fillerPanel);
 	}
 	
@@ -710,27 +724,31 @@ public class ViewMapping extends JDialog implements ActionListener
 		
 		//The header button panel
 		setCorrect = new JButton("Set Correct");
-		setCorrect.setBackground(Color.GREEN);
-		setCorrect.setPreferredSize(new Dimension(140,28));
+		setCorrect.setBackground(AMLColor.GREEN);
+		setCorrect.setPreferredSize(new Dimension(100,28));
 		setCorrect.addActionListener(this);
 		reset = new JButton("Reset");
-		reset.setBackground(Color.LIGHT_GRAY);
-		reset.setPreferredSize(new Dimension(140,28));
+		reset.setBackground(AMLColor.GRAY);
+		reset.setPreferredSize(new Dimension(100,28));
 		reset.addActionListener(this);
 		setIncorrect = new JButton("Set Incorrect");
-		setIncorrect.setBackground(Color.RED);
-		setIncorrect.setPreferredSize(new Dimension(140,28));
+		setIncorrect.setBackground(AMLColor.RED);
+		setIncorrect.setPreferredSize(new Dimension(100,28));
 		setIncorrect.addActionListener(this);
+		JPanel sub = new JPanel();
+		sub.setBorder(new BevelBorder(1));
+		sub.add(setCorrect);
+		sub.add(reset);
+		sub.add(setIncorrect);
 		JPanel headerPanel = new JPanel(new FlowLayout());
-		headerPanel.setMaximumSize(new Dimension((int)(width*0.8),35));
-		headerPanel.add(setCorrect);
-		headerPanel.add(reset);
-		headerPanel.add(setIncorrect);
+		headerPanel.setMaximumSize(new Dimension((int)(width*0.9),40));
+		headerPanel.add(sub);
+		conflicts.add(headerPanel);
 		
 		JPanel mappingPanel = new JPanel();
 		mappingPanel.setLayout(new BoxLayout(mappingPanel, BoxLayout.Y_AXIS));
 		check = new Vector<JCheckBox>();
-		mappingButtons = new Vector<JButton>();
+		mappingButtons = new Vector<MappingButton>();
 		mappings = new Vector<Mapping>();
 		labels = new Vector<JLabel>();
 		
@@ -744,7 +762,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		RepairMap rMap = aml.getRepairMap();
 		if(rMap != null)
 		{
-			for(Mapping n : rMap.getConflictMappings(a.getIndex(sourceId, targetId)))
+			for(Mapping n : rMap.getConflictMappings(m))
 			{
 				if(!mappings.contains(n))
 				{
@@ -761,24 +779,24 @@ public class ViewMapping extends JDialog implements ActionListener
 		{
 			JCheckBox c = new JCheckBox(""); 
 			check.add(c);
-			JButton b = new MappingButton(mappings.get(i));
-			if(mappings.get(i).equals(m))
-				b.setEnabled(false);
+			MappingButton b = new MappingButton(mappings.get(i));
 			mappingButtons.add(b);
-			b.addActionListener(this);
+			if(!mappings.get(i).equals(m))
+				b.addActionListener(this);
 			JPanel subPanel = new JPanel(new BorderLayout());
 			subPanel.add(c,BorderLayout.LINE_START);
 			JPanel subSubPanel = new JPanel(new BorderLayout());
 			subSubPanel.add(b,BorderLayout.LINE_START);
 			subSubPanel.add(labels.get(i), BorderLayout.CENTER);
 			subPanel.add(subSubPanel, BorderLayout.CENTER);
-			subPanel.setMaximumSize(new Dimension(subPanel.getMaximumSize().width,29));
-			subPanel.setPreferredSize(new Dimension(subPanel.getPreferredSize().width,29));
+			subPanel.setMaximumSize(new Dimension(subPanel.getMaximumSize().width,28));
+			subPanel.setPreferredSize(new Dimension(subPanel.getPreferredSize().width,28));
 			mappingPanel.add(subPanel);
 		}		
 		JPanel filler = new JPanel();
 		mappingPanel.add(filler);
 		JScrollPane scrollPane = new JScrollPane(mappingPanel);
+		scrollPane.setBorder(new BevelBorder(1));
 		conflicts.add(scrollPane);
 	}
 
@@ -801,23 +819,27 @@ public class ViewMapping extends JDialog implements ActionListener
 		if(directedGraph.getEdge(n1,n2) != null)
 			return;
 		MappingRelation r = a.getRelationship(sId,tId);
+		MappingStatus s = a.get(sId,tId).getStatus();
+		float[] edgeColor = new float[3];
+		if(s.equals(MappingStatus.CORRECT))
+			edgeColor = Color.GREEN.getRGBColorComponents(edgeColor);
+		else if(s.equals(MappingStatus.INCORRECT))
+			edgeColor = Color.RED.getRGBColorComponents(edgeColor);
+		else if(s.equals(MappingStatus.FLAGGED))
+			edgeColor = Color.ORANGE.getRGBColorComponents(edgeColor);
+		else
+			edgeColor = Color.LIGHT_GRAY.getRGBColorComponents(edgeColor);
 		if(!r.equals(MappingRelation.SUPERCLASS))
 		{
 			Edge e1 = model.factory().newEdge(n1, n2, 3, true);
-			if(sId == sourceId && tId == targetId)
-				e1.getEdgeData().setColor(1, 1, 0);
-			else
-				e1.getEdgeData().setColor(1, 1, 1);
+			e1.getEdgeData().setColor(edgeColor[0], edgeColor[1], edgeColor[2]);
 			e1.getEdgeData().setLabel(a.getSimilarityPercent(sId,tId));
 			directedGraph.addEdge(e1);
 		}
 		if(!r.equals(MappingRelation.SUBCLASS))
 		{
 			Edge e2 = model.factory().newEdge(n2, n1, 3, true);
-			if(sId == sourceId && tId == targetId)
-				e2.getEdgeData().setColor(1, 1, 0);
-			else
-				e2.getEdgeData().setColor(1, 1, 1);
+			e2.getEdgeData().setColor(edgeColor[0], edgeColor[1], edgeColor[2]);
 			if(r.equals(MappingRelation.SUPERCLASS))
 				e2.getEdgeData().setLabel(a.getSimilarityPercent(sId,tId));
 			directedGraph.addEdge(e2);
@@ -827,24 +849,24 @@ public class ViewMapping extends JDialog implements ActionListener
 	private void addOtherMappings(int sId, int tId)
 	{
 		Set<Integer> sourceMappings = a.getSourceMappings(sId);
-		targetNodes.addAll(sourceMappings);
 		for(Integer i : sourceMappings)
 		{
-			if(i == tId)
+			if(i == tId || targetNodes.contains(i))
 				continue;
+			targetNodes.add(i);
 			addTargetNode(i,6);
 			addMapping(sId,i);
-			if(AML.getInstance().showAncestors())
+			if(aml.showAncestors())
 				addTargetAncestors(i);
-			if(AML.getInstance().showDescendants())
+			if(aml.showDescendants())
 				addTargetDescendants(i);
 		}
 		Set<Integer> targetMappings = a.getTargetMappings(tId);
-		sourceNodes.addAll(targetMappings);
 		for(Integer i : targetMappings)
 		{
-			if(i == sId)
+			if(i == sId || sourceNodes.contains(i))
 				continue;
+			sourceNodes.add(i);
 			addSourceNode(i,6);
 			addMapping(i,tId);
 			if(AML.getInstance().showAncestors())
@@ -907,7 +929,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		Node c = directedGraph.getNode("NS" + child);
 		Node p = directedGraph.getNode("NS" + parent);
 		Edge e = model.factory().newEdge(c, p, 3, true);
-		e.getEdgeData().setColor(1, 0, 0);
+		e.getEdgeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
 		int prop = rm.getRelationship(child, parent).getProperty();
 		if(prop > -1)
 			e.getEdgeData().setLabel(source.getName(prop));
@@ -919,7 +941,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		Node n = model.factory().newNode("NS" + id);
 		n.getNodeData().setSize(3);
 		n.getNodeData().setLabel(source.getName(id));
-		n.getNodeData().setColor(1, 0, 0);
+		n.getNodeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
 		n.getNodeData().setSize(size);
 		directedGraph.addNode(n);
 	}
@@ -977,7 +999,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		Node c = directedGraph.getNode("NT" + child);
 		Node p = directedGraph.getNode("NT" + parent);
 		Edge e = model.factory().newEdge(c, p, 3, true);
-		e.getEdgeData().setColor(0, 0, 1);
+		e.getEdgeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
 		int prop = rm.getRelationship(child, parent).getProperty();
 		if(prop > -1)
 			e.getEdgeData().setLabel(target.getName(prop));
@@ -989,7 +1011,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		Node n = model.factory().newNode("NT" + id);
 		n.getNodeData().setSize(3);
 		n.getNodeData().setLabel(target.getName(id));
-		n.getNodeData().setColor(0, 0, 1);
+		n.getNodeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
 		n.getNodeData().setSize(size);
 		directedGraph.addNode(n);
 	}
