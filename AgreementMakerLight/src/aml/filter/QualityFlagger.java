@@ -164,6 +164,17 @@ public class QualityFlagger implements Flagger
 	/**
 	 * @param sourceId: the id of the source Ontology Entity
 	 * @param targetId: the id of the target Ontology Entity
+	 * @param matcher: the index of the auxiliary Alignment
+	 * @return the similarity between the Entities in the auxiliary Alignment in percentage
+	 */
+	public String getSimilarityPercent(int sourceId, int targetId, int matcher)
+	{
+		return auxAlignments.get(matcher).getSimilarityPercent(sourceId, targetId);
+	}
+	
+	/**
+	 * @param sourceId: the id of the source Ontology Entity
+	 * @param targetId: the id of the target Ontology Entity
 	 * @return the support for a mapping between the Entities
 	 */
 	public int getSupport(int sourceId, int targetId)
