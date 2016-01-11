@@ -26,6 +26,7 @@ import java.io.PrintStream;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 
 
 public class Console extends JDialog implements Runnable
@@ -56,6 +57,8 @@ public class Console extends JDialog implements Runnable
         JScrollPane scroll = new JScrollPane(console,
         		JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        DefaultCaret caret = (DefaultCaret)console.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         add(scroll);
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         this.pack();
