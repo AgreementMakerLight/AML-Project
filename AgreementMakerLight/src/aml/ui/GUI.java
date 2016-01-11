@@ -44,6 +44,7 @@ public class GUI extends JFrame
     {
     	setTitle("AgreementMakerLight");
     	setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    	setDefaultLookAndFeelDecorated(true);
     	
         amlMenuBar = new AMLMenuBar();
         setJMenuBar(amlMenuBar);
@@ -91,9 +92,9 @@ public class GUI extends JFrame
     	setVisible(true);
     }
     
-    public void refreshResourcePanel()
+    public void refresh(int index)
     {
-    	resourcePanel.refresh();
+        alignPanel.refresh(index);
     }
     
     public void goTo(int index)
