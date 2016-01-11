@@ -25,12 +25,14 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
 import aml.util.Table3List;
 import aml.settings.LexicalType;
+import aml.util.MapSorter;
 import aml.util.StopList;
 import aml.util.StringParser;
 
@@ -484,28 +486,42 @@ public class Lexicon
 	
 	/**
 	 * @param entityId: the entity (class or property) to search in the Lexicon
-	 * @return the name associated with the class that has the highest
-	 * provenance weight
+	 * @return the name associated with the class that has the best provenance
 	 */
 	public String getBestName(int entityId)
 	{
-		Set<String> hits = getNamesWithLanguage(entityId, AML.getInstance().getLabelLanguage());
-		if(hits.size() == 0)
-			hits = getInternalNames(entityId);
-		String bestName = "";
-		double weight;
-		double maxWeight = 0.0;
-		
-		for(String n : hits)
+		String lang = AML.getInstance().getLabelLanguage();
+		Map<String,Provenance> results = new HashMap<String,Provenance>();
+		if(nameClasses.contains(entityId))
 		{
-			weight = getWeight(n,entityId);
-			if(weight > maxWeight)
+			for(String n : nameClasses.keySet(entityId))
 			{
-				maxWeight = weight;
-				bestName = n;
+				for(Provenance p : nameClasses.get(entityId, n))
+				{
+					if(p.getLanguage().equals(lang))
+					{
+						results.put(n,p);
+						break;
+					}
+				}				
 			}
 		}
-		return bestName;
+		else if(nameProperties.contains(entityId))
+		{
+			for(String n : nameProperties.keySet(entityId))
+			{
+				for(Provenance p : nameProperties.get(entityId, n))
+				{
+					if(p.getLanguage().equals(lang))
+					{
+						results.put(n,p);
+						break;
+					}
+				}
+			}
+		}
+		results = MapSorter.sortDescending(results);
+		return results.keySet().iterator().next();
 	}
 	
 	/**
