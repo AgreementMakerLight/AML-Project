@@ -20,7 +20,6 @@
 package aml.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -37,6 +36,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.BevelBorder;
 
 import aml.AML;
 import aml.match.Alignment;
@@ -52,9 +52,9 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 	private AML aml;
 	private Alignment a;
 	private Vector<JCheckBox> check;
-	private Vector<JButton> mappings;
+	private Vector<MappingButton> mappings;
 	private JCheckBox selectAll;
-	private JButton remove, reset, setCorrect, setIncorrect;
+	private JButton reset, setCorrect, setIncorrect, sortAsc, sortDes, search;
 	private JPanel dialogPanel, headerPanel, mappingPanel;
 	private JScrollPane scrollPane;
 
@@ -82,18 +82,14 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 	public void actionPerformed(ActionEvent e)
 	{
 		JButton b = (JButton)e.getSource();
-		if(b == remove)
-		{
-			aml.removeIncorrect();
-		}
-		else if(b == reset)
+		if(b == reset)
 		{
 			for(int i = 0; i < check.size(); i++)
 			{
 				if(check.get(i).isSelected() && !a.get(i).getStatus().equals(MappingStatus.UNKNOWN))
 				{
 					a.get(i).setStatus(MappingStatus.UNKNOWN);
-					mappings.get(i).setBackground(Color.LIGHT_GRAY);
+					mappings.get(i).refresh();
 				}
 			}
 		}
@@ -104,7 +100,7 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 				if(check.get(i).isSelected() && !a.get(i).getStatus().equals(MappingStatus.CORRECT))
 				{
 					a.get(i).setStatus(MappingStatus.CORRECT);
-					mappings.get(i).setBackground(Color.GREEN);
+					mappings.get(i).refresh();
 				}
 			}
 		}
@@ -115,15 +111,30 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 				if(check.get(i).isSelected() && !a.get(i).getStatus().equals(MappingStatus.INCORRECT))
 				{
 					a.get(i).setStatus(MappingStatus.INCORRECT);
-					mappings.get(i).setBackground(Color.RED);
+					mappings.get(i).refresh();
 				}
 			}
+		}
+		else if(b == sortAsc)
+		{
+			aml.sortAscending();
+		}
+		else if(b == sortDes)
+		{
+			aml.sortDescending();
+		}
+		else if(b == search)
+		{
+			new SearchAlignment();
 		}
 		else
 		{
 			int index = mappings.indexOf(b);
 			if(index > -1)
-				goTo(index);
+			{
+				aml.goTo(index);
+				new ViewMapping();
+			}
 		}
 	}
 	
@@ -133,8 +144,9 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 	 */
 	public void goTo(int index)
 	{
-		scrollPane.getViewport().setViewPosition(new Point(0,index*27));
-		new ViewMapping(this,index);
+		scrollPane.getViewport().setViewPosition(new Point(0,index*28));
+		mappings.get(index).setFocusPainted(true);
+		mappings.get(index).setSelected(true);
 	}
 	
 	@Override
@@ -165,40 +177,52 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 			selectAll = new JCheckBox("Select All/None");
 			selectAll.addItemListener(this);
 			setCorrect = new JButton("Set Correct");
-			setCorrect.setBackground(Color.GREEN);
-			setCorrect.setPreferredSize(new Dimension(140,28));
+			setCorrect.setBackground(AMLColor.GREEN);
+			setCorrect.setPreferredSize(new Dimension(100,28));
 			setCorrect.addActionListener(this);
 			reset = new JButton("Reset");
-			reset.setBackground(Color.LIGHT_GRAY);
-			reset.setPreferredSize(new Dimension(140,28));
+			reset.setBackground(AMLColor.GRAY);
+			reset.setPreferredSize(new Dimension(100,28));
 			reset.addActionListener(this);
 			setIncorrect = new JButton("Set Incorrect");
-			setIncorrect.setBackground(Color.RED);
-			setIncorrect.setPreferredSize(new Dimension(140,28));
+			setIncorrect.setBackground(AMLColor.RED);
+			setIncorrect.setPreferredSize(new Dimension(100,28));
 			setIncorrect.addActionListener(this);
-			remove = new JButton("Remove Incorrect");
-			remove.setBackground(Color.BLACK);
-			remove.setForeground(Color.RED);
-			remove.setPreferredSize(new Dimension(140,28));
-			remove.addActionListener(this);
+			sortAsc = new JButton("Sort ↑");
+			sortAsc.setPreferredSize(new Dimension(100,28));
+			sortAsc.addActionListener(this);
+			sortDes = new JButton("Sort ↓");
+			sortDes.setPreferredSize(new Dimension(100,28));
+			sortDes.addActionListener(this);
+			search = new JButton("Search");
+			search.setPreferredSize(new Dimension(100,28));
+			search.addActionListener(this);
 			headerPanel = new JPanel(new FlowLayout());
-			headerPanel.add(selectAll);
-			headerPanel.add(setCorrect);
-			headerPanel.add(reset);
-			headerPanel.add(setIncorrect);
-			headerPanel.add(remove);
+			JPanel sub1 = new JPanel();
+			sub1.setBorder(new BevelBorder(1));
+			sub1.add(selectAll);
+			sub1.add(setCorrect);
+			sub1.add(reset);
+			sub1.add(setIncorrect);
+			headerPanel.add(sub1);
+			JPanel sub2 = new JPanel();
+			sub2.setBorder(new BevelBorder(1));
+			sub2.add(sortAsc);
+			sub2.add(sortDes);
+			sub2.add(search);
+			headerPanel.add(sub2);
 			
 			//The mapping list
 			mappingPanel = new JPanel(new GridLayout(0,1));
 			a = aml.getAlignment();
 			check = new Vector<JCheckBox>();
-			mappings = new Vector<JButton>(a.size());
+			mappings = new Vector<MappingButton>(a.size());
 
 			for(Mapping m : a)
 			{
 				JCheckBox c = new JCheckBox(""); 
 				check.add(c);
-				JButton b = new MappingButton(m);
+				MappingButton b = new MappingButton(m);
 				mappings.add(b);
 				b.addActionListener(this);
 				JPanel subPanel = new JPanel(new BorderLayout());
@@ -206,14 +230,16 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 				JPanel subSubPanel = new JPanel(new BorderLayout());
 				subSubPanel.add(b,BorderLayout.LINE_START);
 				subPanel.add(subSubPanel, BorderLayout.CENTER);
-				subPanel.setMaximumSize(new Dimension(subPanel.getMaximumSize().width,29));
-				subPanel.setPreferredSize(new Dimension(subPanel.getPreferredSize().width,29));
+				subPanel.setMaximumSize(new Dimension(subPanel.getMaximumSize().width,28));
+				subPanel.setPreferredSize(new Dimension(subPanel.getPreferredSize().width,28));
 				mappingPanel.add(subPanel);
 			}
 			JPanel filler = new JPanel();
 			mappingPanel.add(filler);
 			scrollPane = new JScrollPane(mappingPanel);
-			
+			scrollPane.setBorder(new BevelBorder(1));
+			scrollPane.getVerticalScrollBar().setUnitIncrement(28);
+			scrollPane.setBackground(AMLColor.WHITE);
 			dialogPanel.add(headerPanel);
 			dialogPanel.add(scrollPane);
 		}
@@ -229,14 +255,6 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 	 */
 	public void refresh(int index)
 	{
-		Mapping m = a.get(index);
-		if(m.getStatus().equals(MappingStatus.CORRECT))
-			mappings.get(index).setBackground(Color.GREEN);
-		else if(m.getStatus().equals(MappingStatus.INCORRECT))
-			mappings.get(index).setBackground(Color.RED);
-		else if(m.getStatus().equals(MappingStatus.FLAGGED))
-			mappings.get(index).setBackground(Color.YELLOW);
-		else
-			mappings.get(index).setBackground(Color.GRAY);
+		mappings.get(index).refresh();
 	}
 }
