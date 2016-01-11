@@ -37,9 +37,9 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
@@ -75,7 +75,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 		this.setTitle("Search Alignment");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		this.setPreferredSize(new Dimension(700,140));
-
+		
 		aml = AML.getInstance();
 		
 		//The containing panel
@@ -152,6 +152,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 		{
 			this.dispose();
 			aml.goTo(mappings.indexOf(results[mappingSelector.getSelectedIndex()]));
+			new ViewMapping();
 		}
 		else if(o == find)
 		{
@@ -185,8 +186,9 @@ public class SearchAlignment extends JDialog implements ActionListener
 			int index = mappings.indexOf(text);
 			if(index > -1)
 			{
-				AML.getInstance().goTo(index);
 				this.dispose();
+				aml.goTo(index);
+				new ViewMapping();
 			}
 			//Otherwise, search for it
 			else
