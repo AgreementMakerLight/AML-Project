@@ -21,6 +21,7 @@ package aml.filter;
 import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
+import aml.ontology.RelationshipMap;
 import aml.settings.MappingStatus;
 import aml.settings.SelectionType;
 import aml.util.InteractionManager;
@@ -100,69 +101,15 @@ public class Selector implements Filterer, Flagger
 	{
 		System.out.println("Performing Selection");
 		long time = System.currentTimeMillis()/1000;
-		//The alignment to store selected mappings
-		Alignment selected = new Alignment();
+		Alignment selected;
 		//In normal selection mode
 		if(aux == null)
-		{
-			//Sort the active alignment
-			a.sortDescending();
-			//Then select Mappings in ranking order (by similarity)
-			for(Mapping m : a)
-			{
-				//If the Mapping is CORRECT, select it, regardless of anything else
-				if(m.getStatus().equals(MappingStatus.CORRECT))
-					selected.add(m);
-				//If it is INCORRECT or below the similarity threshold, discard it
-				else if(m.getSimilarity() < thresh || m.getStatus().equals(MappingStatus.INCORRECT))
-					continue;
-				//Otherwise, add it if it obeys the rules for the chosen SelectionType:
-						//In STRICT selection no conflicts are allowed
-				else if((type.equals(SelectionType.STRICT) && !selected.containsConflict(m)) ||
-						//In PERMISSIVE selection only conflicts of equal similarity are allowed
-						(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(m)) ||
-						//And in HYBRID selection a cardinality of 2 is allowed above 0.75 similarity
-						(type.equals(SelectionType.HYBRID) && ((m.getSimilarity() > 0.75 &&
-						selected.cardinality(m.getSourceId()) < 2 && selected.cardinality(m.getTargetId()) < 2) ||
-						//And PERMISSIVE selection is employed below this limit
-						!selected.containsBetterMapping(m))))
-					selected.add(m);
-				//Finally, if the task is interactive, check if the mapping is correct
-				else if(im.isInteractive())
-				{
-					im.classify(m);
-					if(m.getStatus().equals(MappingStatus.CORRECT))
-						selected.add(m);
-				}
-			}
-		}
+			selected = filterNormal();
 		//In co-selection mode
 		else
-		{
-			//Sort the auxiliary alignment
-			aux.sortDescending();
-			//Then perform selection based on it
-			for(Mapping m : aux)
-			{
-				Mapping n = a.get(m.getSourceId(), m.getTargetId());
-				if(n.getStatus().equals(MappingStatus.CORRECT))
-					selected.add(n);
-				else if(n.getSimilarity() < thresh || n.getStatus().equals(MappingStatus.INCORRECT))
-					continue;
-				if((type.equals(SelectionType.STRICT) && !selected.containsConflict(n)) ||
-						(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(n)) ||
-						(type.equals(SelectionType.HYBRID) && ((n.getSimilarity() > 0.75 && 
-						selected.cardinality(n.getSourceId()) < 2 && selected.cardinality(n.getTargetId()) < 2) ||
-						!selected.containsBetterMapping(n))))
-					selected.add(n);
-				else if(im.isInteractive())
-				{
-					im.classify(m);
-					if(m.getStatus().equals(MappingStatus.CORRECT))
-						selected.add(m);
-				}
-			}
-		}
+			selected = filterWithAux();
+		if(!type.equals(SelectionType.HYBRID))
+			selected = parentFilter(selected);
 		if(selected.size() < a.size())
 		{
 			for(Mapping m : selected)
@@ -212,5 +159,107 @@ public class Selector implements Filterer, Flagger
 			if(a.containsConflict(m) && m.getStatus().equals(MappingStatus.UNKNOWN))
 				m.setStatus(MappingStatus.FLAGGED);
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
+	}
+	
+	private Alignment filterNormal()
+	{
+		//The alignment to store selected mappings
+		Alignment selected = new Alignment();
+		//Sort the active alignment
+		a.sortDescending();
+		//Then select Mappings in ranking order (by similarity)
+		for(Mapping m : a)
+		{
+			//If the Mapping is CORRECT, select it, regardless of anything else
+			if(m.getStatus().equals(MappingStatus.CORRECT))
+				selected.add(m);
+			//If it is INCORRECT or below the similarity threshold, discard it
+			else if(m.getSimilarity() < thresh || m.getStatus().equals(MappingStatus.INCORRECT))
+				continue;
+			//Otherwise, add it if it obeys the rules for the chosen SelectionType:
+					//In STRICT selection no conflicts are allowed
+			else if((type.equals(SelectionType.STRICT) && !selected.containsConflict(m)) ||
+					//In PERMISSIVE selection only conflicts of equal similarity are allowed
+					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(m)) ||
+					//And in HYBRID selection a cardinality of 2 is allowed above 0.75 similarity
+					(type.equals(SelectionType.HYBRID) && ((m.getSimilarity() > 0.75 &&
+					selected.cardinality(m.getSourceId()) < 2 && selected.cardinality(m.getTargetId()) < 2) ||
+					//And PERMISSIVE selection is employed below this limit
+					!selected.containsBetterMapping(m))))
+				selected.add(m);
+			//Finally, if the task is interactive, check if the mapping is correct
+			else if(im.isInteractive())
+			{
+				im.classify(m);
+				if(m.getStatus().equals(MappingStatus.CORRECT))
+					selected.add(m);
+			}
+		}
+		return selected;
+	}
+	
+	private Alignment filterWithAux()
+	{
+		//The alignment to store selected mappings
+		Alignment selected = new Alignment();
+		//Sort the auxiliary alignment
+		aux.sortDescending();
+		//Then perform selection based on it
+		for(Mapping m : aux)
+		{
+			Mapping n = a.get(m.getSourceId(), m.getTargetId());
+			if(n.getStatus().equals(MappingStatus.CORRECT))
+				selected.add(n);
+			else if(n.getSimilarity() < thresh || n.getStatus().equals(MappingStatus.INCORRECT))
+				continue;
+			if((type.equals(SelectionType.STRICT) && !selected.containsConflict(n)) ||
+					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(n)) ||
+					(type.equals(SelectionType.HYBRID) && ((n.getSimilarity() > 0.75 && 
+					selected.cardinality(n.getSourceId()) < 2 && selected.cardinality(n.getTargetId()) < 2) ||
+					!selected.containsBetterMapping(n))))
+				selected.add(n);
+			else if(im.isInteractive())
+			{
+				im.classify(m);
+				if(m.getStatus().equals(MappingStatus.CORRECT))
+					selected.add(m);
+			}
+		}
+		return selected;
+	}
+	
+	private Alignment parentFilter(Alignment in)
+	{
+		RelationshipMap r = aml.getRelationshipMap();
+		Alignment out = new Alignment();
+		for(Mapping m : in)
+		{
+			int src = m.getSourceId();
+			int tgt = m.getTargetId();
+			boolean add = true;
+			for(Integer t : in.getSourceMappings(src))
+			{
+				if(r.isSubclass(t,tgt) &&
+						in.getSimilarity(src, t) >= in.getSimilarity(src, tgt))
+				{
+					add = false;
+					break;
+				}
+			}
+			if(!add)
+				continue;
+			for(Integer s : in.getTargetMappings(tgt))
+			{
+				if(r.isSubclass(s,src) &&
+						in.getSimilarity(s, tgt) >= in.getSimilarity(src, tgt))
+				{
+					add = false;
+					break;
+				}
+			}
+			if(add)
+				out.add(m);
+		}
+		return out;
 	}
 }
