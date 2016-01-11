@@ -91,16 +91,9 @@ public class AddClassMapping extends JDialog implements ActionListener
         JPanel sLPanel = new JPanel();
         sLPanel.add(sLabel);
         sStart.add(sLPanel);
-        //Build the combo box with all the primary class names from the Lexicon
         Vector<String> sNames = new Vector<String>(sources.size());
         for(int i : sources)
         	sNames.add(source.getBestName(i));
-        sourceClasses = new JComboBox<String>(sNames);
-        sourceClasses.setPreferredSize(new Dimension(500,28));
-        //Put it in a subpanel so that it doesn't resize automatically
-        JPanel sClassPanel = new JPanel();
-        sClassPanel.add(sourceClasses);
-        sStart.add(sClassPanel);
         //Create the search area and button
 		sourceSearch = new JTextArea(1,37);
 		sourceSearch.setEditable(true);
@@ -113,6 +106,13 @@ public class AddClassMapping extends JDialog implements ActionListener
 		sSearchPanel.add(sourceSearch);
         sSearchPanel.add(searchS);
         sStart.add(sSearchPanel);
+        //Build the combo box with all the primary class names from the Lexicon
+        sourceClasses = new JComboBox<String>(sNames);
+        sourceClasses.setPreferredSize(new Dimension(500,28));
+        //Put it in a subpanel so that it doesn't resize automatically
+        JPanel sClassPanel = new JPanel();
+        sClassPanel.add(sourceClasses);
+        sStart.add(sClassPanel);
         sourcePanel.add(sStart,"Start");
         clS.show(sourcePanel, "Start");
 
@@ -129,17 +129,9 @@ public class AddClassMapping extends JDialog implements ActionListener
         JPanel tLPanel = new JPanel();
         tLPanel.add(tLabel);
         tStart.add(tLPanel);
-        //Build the combo box with all the primary class names from the Lexicon
         Vector<String> tNames = new Vector<String>(targets.size());
         for(int i : targets)
         	tNames.add(target.getBestName(i));
-        targetClasses = new JComboBox<String>(tNames);
-        targetClasses.setPreferredSize(new Dimension(500,28));
-        //Put it in a subpanel so that it doesn't resize automatically
-        JPanel tClassPanel = new JPanel();
-        tClassPanel.add(targetClasses);
-        tStart.add(tClassPanel);
-
         //Create the search area and button
 		targetSearch = new JTextArea(1,37);
 		targetSearch.setEditable(true);
@@ -152,6 +144,13 @@ public class AddClassMapping extends JDialog implements ActionListener
 		tSearchPanel.add(targetSearch);
         tSearchPanel.add(searchT);
         tStart.add(tSearchPanel);
+        //Build the combo box with all the primary class names from the Lexicon
+        targetClasses = new JComboBox<String>(tNames);
+        targetClasses.setPreferredSize(new Dimension(500,28));
+        //Put it in a subpanel so that it doesn't resize automatically
+        JPanel tClassPanel = new JPanel();
+        tClassPanel.add(targetClasses);
+        tStart.add(tClassPanel);
         targetPanel.add(tStart,"Start");
         clT.show(targetPanel, "Start");
         
@@ -307,17 +306,9 @@ public class AddClassMapping extends JDialog implements ActionListener
         JPanel sLPanel = new JPanel();
         sLPanel.add(sLabel);
         sResults.add(sLPanel);
-        //Build the combo box with all the primary class names from the results
         Vector<String> sNames = new Vector<String>(sourceRes.size());
         for(int i : sourceRes)
         	sNames.add(source.getBestName(i));
-        sourceResults = new JComboBox<String>(sNames);
-        sourceResults.setPreferredSize(new Dimension(500,28));
-        //Put it in a subpanel so that it doesn't resize automatically
-        JPanel sClassPanel = new JPanel();
-        sClassPanel.add(sourceResults);
-        sResults.add(sClassPanel);
-
         //Create the search area and button
 		sourceResult = new JTextArea(1,37);
 		sourceResult.setText(sourceSearch.getText());
@@ -331,6 +322,15 @@ public class AddClassMapping extends JDialog implements ActionListener
 		sSearchPanel.add(sourceResult);
         sSearchPanel.add(backS);
         sResults.add(sSearchPanel);
+        //Build the combo box with all the primary class names from the results
+        sourceResults = new JComboBox<String>(sNames);
+        sourceResults.setPreferredSize(new Dimension(500,28));
+        //Put it in a subpanel so that it doesn't resize automatically
+        JPanel sClassPanel = new JPanel();
+        sClassPanel.add(sourceResults);
+        sResults.add(sClassPanel);
+
+
 	}
 	
 	private void buildTargetResultsPanel()
@@ -343,17 +343,9 @@ public class AddClassMapping extends JDialog implements ActionListener
         JPanel tLPanel = new JPanel();
         tLPanel.add(tLabel);
         tResults.add(tLPanel);
-        //Build the combo box with all the primary class names from the results
         Vector<String> sNames = new Vector<String>(targetRes.size());
         for(int i : targetRes)
         	sNames.add(target.getBestName(i));
-        targetResults = new JComboBox<String>(sNames);
-        targetResults.setPreferredSize(new Dimension(500,28));
-        //Put it in a subpanel so that it doesn't resize automatically
-        JPanel tClassPanel = new JPanel();
-        tClassPanel.add(targetResults);
-        tResults.add(tClassPanel);
-
         //Create the search area and button
 		targetResult = new JTextArea(1,37);
 		targetResult.setText(targetSearch.getText());
@@ -367,6 +359,13 @@ public class AddClassMapping extends JDialog implements ActionListener
 		tSearchPanel.add(targetResult);
         tSearchPanel.add(backT);
         tResults.add(tSearchPanel);
+        //Build the combo box with all the primary class names from the results
+        targetResults = new JComboBox<String>(sNames);
+        targetResults.setPreferredSize(new Dimension(500,28));
+        //Put it in a subpanel so that it doesn't resize automatically
+        JPanel tClassPanel = new JPanel();
+        tClassPanel.add(targetResults);
+        tResults.add(tClassPanel);
 	}
 	
 	private void searchSource(String query)
