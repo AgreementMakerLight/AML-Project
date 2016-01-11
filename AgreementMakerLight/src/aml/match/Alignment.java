@@ -241,7 +241,7 @@ public class Alignment implements Collection<Mapping>
 		//If it isn't listed yet, add it
 		if(!sourceMaps.contains(sourceId,targetId))
 		{
-			maps.add(m);
+			maps.add(clone);
 			sourceMaps.add(sourceId, targetId, clone);
 			targetMaps.add(targetId, sourceId, clone);
 			return true;
