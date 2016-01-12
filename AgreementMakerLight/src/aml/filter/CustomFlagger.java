@@ -55,7 +55,7 @@ public class CustomFlagger
 		}
 		if(steps.contains(Problem.QUALITY))
 		{
-			QualityFlagger q = aml.getQualityFlagger();
+			QualityFlagger q = aml.buildQualityFlagger();
 			q.flag();
 		}
 	}
