@@ -79,14 +79,17 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		aml = AML.getInstance();
 		
 		//Set the title and modality
-		this.setTitle("Configure Matching Steps");
+		this.setTitle("Matching Settings");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		
 		JPanel configPanel = new JPanel();
 		configPanel.setBorder(new TitledBorder("Matching Step"));
 		steps = new Vector<String>();
-		for(MatchStep m : MatchStep.values())
-			steps.add(m.toString());
+		steps.add(MatchStep.BK.toString());
+		steps.add(MatchStep.WORD.toString());
+		steps.add(MatchStep.STRING.toString());
+		steps.add(MatchStep.STRUCT.toString());
+		steps.add(MatchStep.SELECT.toString());
 		step = new JComboBox<String>(steps);
 		step.addActionListener(this);
         configPanel.add(step);
@@ -94,7 +97,7 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		//BK Matcher
 		bkSources = aml.getBKSources();
 		selectedSources = aml.getSelectedBKSources();
-		allBK = new JCheckBox("Select All");
+		allBK = new JCheckBox("Select All/None");
 		allBK.setSelected(selectedSources.size() == bkSources.size());
 		allBK.addItemListener(this);
 		bkList = new JList<String>(bkSources);
@@ -215,8 +218,8 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 	{
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-		panel.setPreferredSize(new Dimension(250,130));
-		panel.setMaximumSize(new Dimension(250,130));
+		panel.setPreferredSize(new Dimension(250,200));
+		panel.setMaximumSize(new Dimension(250,200));
 		
 		if(s.equals(MatchStep.BK.toString()))
 		{
@@ -224,16 +227,18 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 			listPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			listPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			listPane.setAutoscrolls(true);
-			listPane.setPreferredSize(new Dimension(200,90));
-			listPane.setMaximumSize(new Dimension(200,90));
-			JPanel p1 = new JPanel();
-			p1.setLayout(new FlowLayout(FlowLayout.CENTER));
-			p1.add(allBK);
+			listPane.setPreferredSize(new Dimension(200,120));
+			listPane.setMaximumSize(new Dimension(200,120));
+			JLabel l = new JLabel("Background Knowledge Sources");
+			JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			p1.add(l);
 			panel.add(p1);
-			JPanel p2 = new JPanel();
-			p2.setLayout(new FlowLayout(FlowLayout.CENTER));
-			p2.add(listPane);
+			JPanel p2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			p2.add(allBK);
 			panel.add(p2);
+			JPanel p3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			p3.add(listPane);
+			panel.add(p3);
 		}
 		else if(s.equals(MatchStep.WORD.toString()))
 		{
