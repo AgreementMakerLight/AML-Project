@@ -99,7 +99,7 @@ public class AddClassMapping extends JDialog implements ActionListener
 		sourceSearch.setEditable(true);
 		AutoCompleteDecorator.decorate(sourceSearch,sNames,false);
 		searchS = new JButton("Search");
-		searchS.setPreferredSize(new Dimension(70,28));
+		searchS.setPreferredSize(new Dimension(80,28));
 		searchS.addActionListener(this);
 		//Put them in a subpanel, side by side
 		JPanel sSearchPanel = new JPanel();
@@ -137,7 +137,7 @@ public class AddClassMapping extends JDialog implements ActionListener
 		targetSearch.setEditable(true);
 		AutoCompleteDecorator.decorate(targetSearch,tNames,false);
 		searchT = new JButton("Search");
-		searchT.setPreferredSize(new Dimension(70,28));
+		searchT.setPreferredSize(new Dimension(80,28));
 		searchT.addActionListener(this);
 		//Put them in a subpanel, side by side
 		JPanel tSearchPanel = new JPanel();
