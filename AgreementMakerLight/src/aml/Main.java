@@ -48,6 +48,8 @@ public class Main
 	private static final String CONFIG = "store/config.ini";
 	//Path to the background knowledge directory
 	private static final String BK_PATH = "store/knowledge/";
+	//Path where AML is running
+	private static String dir;
 	//The AML instance
 	private static AML aml;
     
@@ -60,6 +62,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		aml = AML.getInstance();
+		dir = aml.getPath();
 		//If no arguments are given, open the GUI
 		if(args.length == 0)
 		{
@@ -278,7 +281,7 @@ public class Main
 
 	private static void readConfigFile()
 	{
-		File conf = new File(CONFIG);
+		File conf = new File(dir + CONFIG);
 		if(!conf.canRead())
 		{
 			System.out.println("Warning: Config file not found");

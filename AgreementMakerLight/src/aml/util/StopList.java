@@ -24,12 +24,14 @@ import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 
+import aml.AML;
+
 public class StopList
 {
 	
 //Attributes
 	
-	private static String file = "store/StopList.txt";
+	private static final String FILE = "store/StopList.txt";
 	
 //Constructors
 	
@@ -42,7 +44,7 @@ public class StopList
 		HashSet<String> stopWords = new HashSet<String>();
 		try
 		{
-			BufferedReader inStream = new BufferedReader(new FileReader(file));
+			BufferedReader inStream = new BufferedReader(new FileReader(AML.getInstance().getPath() + FILE));
 			String line;
 			while((line = inStream.readLine()) != null)
 				stopWords.add(line);

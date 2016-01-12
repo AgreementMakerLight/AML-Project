@@ -40,6 +40,7 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 
 	//The path to the background knowledge sources
 	private final String BK_PATH = "store/knowledge/";
+	private String path;
 	private AML aml;
 	//The minimum gain threshold
 	private final double GAIN_THRESH = 0.02;
@@ -53,6 +54,7 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 	public BackgroundKnowledgeMatcher()
 	{
 		aml = AML.getInstance();
+		path = aml.getPath() + BK_PATH;
 		sources = aml.getSelectedBKSources();
 		oneToOne = !aml.getSelectionType().equals(SelectionType.HYBRID);
 	}
@@ -94,7 +96,7 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 			//Lexicon files
 			if(s.endsWith(".lexicon"))
 			{
-				MediatingMatcher mm = new MediatingMatcher(BK_PATH + s);
+				MediatingMatcher mm = new MediatingMatcher(path + s);
 				temp = mm.match(thresh);
 			}
 			//WordNet

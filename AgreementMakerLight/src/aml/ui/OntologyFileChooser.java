@@ -22,6 +22,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import aml.AML;
 import aml.util.ExtensionFilter;
 
 public class OntologyFileChooser extends JFileChooser
@@ -35,7 +36,7 @@ public class OntologyFileChooser extends JFileChooser
 	
 	public OntologyFileChooser()
 	{
-		super(new File("store/"));
+		super(new File(AML.getInstance().getPath() + "store/"));
 		setAcceptAllFileFilterUsed(false);
 		ExtensionFilter ontologies = new ExtensionFilter("Ontology Files (*.owl, *.rdf, *.rdfs, *.xml, *.obo)",
 				new String[] { ".owl", ".rdf", ".rdfs", ".xml", ".obo" }, true);

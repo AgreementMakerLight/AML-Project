@@ -70,6 +70,8 @@ public class AML
 	
 	//Singleton pattern: unique instance
 	private static AML aml = new AML();
+	//Path to AML
+	private String dir;
 	//The ontology and alignment data structures
 	private URIMap uris;
 	private RelationshipMap rels;
@@ -90,6 +92,7 @@ public class AML
 	private double fMeasure;
 	//General matching settings
 	private boolean useReasoner = true;
+	private final String LOG = "log4j.properties";
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
     private LanguageSetting lang;
@@ -126,6 +129,18 @@ public class AML
         //Initialize the URIMap and RelationshipMap
 		uris = new URIMap();
 		rels = new RelationshipMap();
+		dir = "";
+		try
+		{
+			File start = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+			start = start.getParentFile();
+			if(start != null)
+				dir = start.getAbsolutePath() + "/";
+		}
+		catch(Exception e)
+		{
+			//Do nothing
+		}
 	}
 
 //Public Methods
@@ -181,7 +196,7 @@ public class AML
     public void defaultConfig()
     {
 		bkSources = new Vector<String>();		
-		File ontRoot = new File(BK_PATH);
+		File ontRoot = new File(dir + BK_PATH);
 		if(ontRoot.exists())
 		{
 			FileFilter ont = new ExtensionFilter("Ontology Files (*.owl, *.rdf, *.rdfs, *.xml)",
@@ -427,6 +442,14 @@ public class AML
     {
     	return ofc;
     }
+	
+	/**
+	 * @return the Path to AML's directory
+	 */
+	public String getPath()
+	{
+		return dir;
+	}
 
 	public QualityFlagger getQualityFlagger()
 	{
@@ -622,7 +645,7 @@ public class AML
 		long time = System.currentTimeMillis()/1000;
 		if(bk != null)
 			bk.close();
-		bk = new BKOntology(BK_PATH + name);
+		bk = new BKOntology(dir + BK_PATH + name);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(bk.getURI() + " loaded in " + time + " seconds");
 	}
@@ -634,7 +657,7 @@ public class AML
 		uris = new URIMap();
 		rels = new RelationshipMap();
 		if(useReasoner)
-			PropertyConfigurator.configure("log4j.properties");
+			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
 		source = new Ontology2Match(src);
@@ -679,7 +702,7 @@ public class AML
 		uris = new URIMap();
 		rels = new RelationshipMap();
 		if(useReasoner)
-			PropertyConfigurator.configure("log4j.properties");
+			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
 		source = new Ontology2Match(src);

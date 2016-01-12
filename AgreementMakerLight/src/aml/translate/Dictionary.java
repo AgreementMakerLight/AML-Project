@@ -189,7 +189,7 @@ public class Dictionary
 		//Initialize the data structure and set the languages
 		dictionary = new HashMap<String, String>();
 		//Compose the file name
-		file = ROOT + sourceLang + "-" + targetLang + ".txt";
+		file = AML.getInstance().getPath() + ROOT + sourceLang + "-" + targetLang + ".txt";
 		//Open the Translator and check if we can use it
 		translator = new Translator();
 		useTranslator = translator.isAuthenticated();

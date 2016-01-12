@@ -31,6 +31,8 @@ import java.util.HashMap;
 import com.memetix.mst.language.Language;
 import com.memetix.mst.translate.Translate;
 
+import aml.AML;
+
 public class Translator
 {
 	
@@ -46,7 +48,7 @@ public class Translator
 	 */
 	public Translator()
 	{
-		File f = new File("store/microsoft-translator-id");
+		File f = new File(AML.getInstance().getPath() + "store/microsoft-translator-id");
 		if(f.exists())
 		{
 			try

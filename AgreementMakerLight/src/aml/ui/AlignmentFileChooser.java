@@ -22,6 +22,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import aml.AML;
 import aml.util.ExtensionFilter;
 
 public class AlignmentFileChooser extends JFileChooser
@@ -35,7 +36,7 @@ public class AlignmentFileChooser extends JFileChooser
 	
 	public AlignmentFileChooser()
 	{
-		super(new File("store/"));
+		super(new File(AML.getInstance().getPath() + "store/"));
 		setAcceptAllFileFilterUsed(false);
 		ExtensionFilter oaei = new ExtensionFilter("OAEI Alignment Files (*.rdf)", new String[] { ".rdf" }, true);
 		ExtensionFilter aml = new ExtensionFilter("AML Alignment Files (*.tsv)", new String[] { ".tsv" }, true);
