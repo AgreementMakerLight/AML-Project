@@ -780,15 +780,15 @@ public class ViewMapping extends JDialog implements ActionListener
 		//The header button panel
 		setCorrect = new JButton("Set Correct");
 		setCorrect.setBackground(AMLColor.GREEN);
-		setCorrect.setPreferredSize(new Dimension(100,28));
+		setCorrect.setPreferredSize(new Dimension(110,28));
 		setCorrect.addActionListener(this);
 		reset = new JButton("Reset");
 		reset.setBackground(AMLColor.GRAY);
-		reset.setPreferredSize(new Dimension(100,28));
+		reset.setPreferredSize(new Dimension(110,28));
 		reset.addActionListener(this);
 		setIncorrect = new JButton("Set Incorrect");
 		setIncorrect.setBackground(AMLColor.RED);
-		setIncorrect.setPreferredSize(new Dimension(100,28));
+		setIncorrect.setPreferredSize(new Dimension(110,28));
 		setIncorrect.addActionListener(this);
 		JPanel sub = new JPanel();
 		sub.setBorder(new BevelBorder(1));
