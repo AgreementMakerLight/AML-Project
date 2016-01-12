@@ -22,7 +22,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -424,52 +423,53 @@ public class ViewMapping extends JDialog implements ActionListener
 		//Setup the panels
 		details = new JPanel();
 		details.setLayout(new BoxLayout(details, BoxLayout.Y_AXIS));
-		JPanel mappingPanel = new JPanel();
-		mappingPanel.setLayout(new BoxLayout(mappingPanel, BoxLayout.Y_AXIS));
+		JPanel topFiller = new JPanel();
+		topFiller.setPreferredSize(new Dimension(topFiller.getPreferredSize().width,10));
+		topFiller.setMaximumSize(new Dimension(topFiller.getMaximumSize().width,10));
+		details.add(topFiller);
+		
 		JPanel sourcePanel = new JPanel();
 		sourcePanel.setLayout(new BoxLayout(sourcePanel, BoxLayout.Y_AXIS));
 		JPanel targetPanel = new JPanel();
 		targetPanel.setLayout(new BoxLayout(targetPanel, BoxLayout.Y_AXIS));
-		JPanel fillerPanel = new JPanel();
-
 		if(t.equals(EntityType.CLASS))
 		{
 	        //For the Source Ontology
 			Lexicon srcLex = source.getLexicon();
 			sourcePanel.setBorder(new TitledBorder("Source Class:"));
 			//Get the local name
-	        JLabel localNameS = new JLabel("Local Name: " +
-	        		uris.getLocalName(sourceId));
+	        JLabel localNameS = new JLabel("<html>Local Name: <i>" +
+	        		uris.getLocalName(sourceId) + "</i></html>");
 	        sourcePanel.add(localNameS);
 	        //Labels
-	        String lab = "Label(s): ";
+	        String lab = "<html>Label(s): ";
 	        Set<String> names = srcLex.getNames(sourceId,LexicalType.LABEL);
 			for(String s : names)
-				lab += s + "; ";
+				lab += "<i>" + s + "</i>; ";
 			if(names.size() == 0)
-				lab += "N/A";
+				lab += "N/A</html>";
 			else
-				lab = lab.substring(0, lab.length()-2);
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 	        JLabel labelS = new JLabel(lab);
 	        sourcePanel.add(labelS);
 	        //Synonyms
 	        names = srcLex.getNames(sourceId,LexicalType.EXACT_SYNONYM);
 			if(names.size() > 0)
 			{
-		        lab = "Exact Synonyms(s): ";
+		        lab = "<html>Exact Synonyms(s): ";
 				for(String s : names)
-					lab += s + "; ";
-				lab = lab.substring(0, lab.length()-2);
+					lab += "<i>" + s + "</i>; ";
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 		        JLabel exactS = new JLabel(lab);
 		        sourcePanel.add(exactS);
 			}
 	        names = srcLex.getNames(sourceId,LexicalType.OTHER_SYNONYM);
 			if(names.size() > 0)
 			{
-		        lab = "Other Synonyms(s): ";
+		        lab = "<html>Other Synonyms(s): ";
 				for(String s : names)
-					lab += s + "; ";
-				lab = lab.substring(0, lab.length()-2);
+					lab += "<i>" + s + "</i>; ";
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 		        JLabel otherS = new JLabel(lab);
 		        sourcePanel.add(otherS);
 			}
@@ -477,135 +477,132 @@ public class ViewMapping extends JDialog implements ActionListener
 	        names = srcLex.getNames(sourceId,LexicalType.FORMULA);
 			if(names.size() > 0)
 			{
-		        lab = "Formula(s): ";
+		        lab = "<html>Formula(s): ";
 				for(String s : names)
-					lab += s + "; ";
-				lab = lab.substring(0, lab.length()-2);
+					lab += "<i>" + s + "</i>; ";
+					lab = lab.substring(0, lab.length()-2) + "</html>";
 		        JLabel formS = new JLabel(lab);
 		        sourcePanel.add(formS);
 			}
 			//Direct Superclasses
 			Set<Integer> directSetSource = rm.getSuperClasses(sourceId,true);
-			lab = "Direct Superclass(es): ";
+			lab = "<html>Direct Superclass(es): ";
 			for(Integer i : directSetSource)
-				lab += source.getName(i) + "; ";
+				lab += "<i>" + source.getName(i) + "</i>; ";
 			if(directSetSource.size() == 0)
-				lab += "N/A";
+				lab += "N/A</html>";
 			else
-				lab = lab.substring(0, lab.length()-2);
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 			JLabel directS = new JLabel(lab);
 			sourcePanel.add(directS);
 			//High Level Ancestors
 			Set<Integer> highSetSource = rm.getHighLevelAncestors(sourceId);
-			lab = "High-Level Ancestors: ";
+			lab = "<html>High-Level Ancestors: ";
 			for(Integer i : highSetSource)
-				lab += source.getName(i) + "; ";
+				lab += "<i>" + source.getName(i) + "</i>; ";
 			if(highSetSource.size() == 0)
-				lab += "N/A";
+				lab += "N/A</html>";
 			else
-				lab = lab.substring(0, lab.length()-2);
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 			JLabel highS = new JLabel(lab);
 			sourcePanel.add(highS);
 			//And Disjoints
 			Set<Integer> disjointSetSource = rm.getDisjointTransitive(sourceId);
-			lab = "Disjoint Classes: ";
+			lab = "<html>Disjoint Classes: ";
 			for(Integer i : disjointSetSource)
-				lab += source.getName(i) + "; ";
+				lab += "<i>" + source.getName(i) + "</i>; ";
 			if(disjointSetSource.size() == 0)
-				lab += "N/A";
+				lab += "N/A</html>";
 			else
-				lab = lab.substring(0, lab.length()-2);
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 			JLabel disjointsS = new JLabel(lab);
 			sourcePanel.add(disjointsS);
 			if(source.isObsoleteClass(sourceId))
 			{
-				JLabel obsS = new JLabel("Obsolete Class!");
-				Font font =  obsS.getFont();
-				obsS.setFont(new Font(font.getFontName(), Font.BOLD, font.getSize()));
+				JLabel obsS = new JLabel("<html><b><font color=\"red\"> Obsolete Class!</font></b></html>");
+				sourcePanel.add(obsS);
 			}
 			
 	        //Then do the same for the Target Ontology
 			Lexicon tgtLex = target.getLexicon();
 			targetPanel.setBorder(new TitledBorder("Target Class:"));
-	        JLabel localNameT = new JLabel("Local Name: " +
-	        		uris.getLocalName(targetId));
+	        JLabel localNameT = new JLabel("<html>Local Name: <i>" +
+	        		uris.getLocalName(targetId) + "</i></html>");
 	        targetPanel.add(localNameT);
-	        lab = "Label(s): ";
+	        lab = "<html>Label(s): ";
 	        names = tgtLex.getNames(targetId,LexicalType.LABEL);
 			for(String s : names)
-				lab += s + "; ";
+				lab += "<i>" + s + "</i>; ";
 			if(names.size() == 0)
-				lab += "N/A";
+				lab += "N/A</html>";
 			else
-				lab = lab.substring(0, lab.length()-2);
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 	        JLabel labelT = new JLabel(lab);
 	        targetPanel.add(labelT);
 	        names = tgtLex.getNames(targetId,LexicalType.EXACT_SYNONYM);
 			if(names.size() > 0)
 			{
-		        lab = "Exact Synonyms(s): ";
+		        lab = "<html>Exact Synonyms(s): ";
 				for(String s : names)
-					lab += s + "; ";
-				lab = lab.substring(0, lab.length()-2);
+					lab += "<i>" + s + "</i>; ";
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 		        JLabel exactT = new JLabel(lab);
 		        targetPanel.add(exactT);
 			}
 	        names = tgtLex.getNames(targetId,LexicalType.OTHER_SYNONYM);
 			if(names.size() > 0)
 			{
-		        lab = "Other Synonyms(s): ";
+		        lab = "<html>Other Synonyms(s): ";
 				for(String s : names)
-					lab += s + "; ";
-				lab = lab.substring(0, lab.length()-2);
+					lab += "<i>" + s + "</i>; ";
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 		        JLabel otherT = new JLabel(lab);
 		        targetPanel.add(otherT);
 			}
 	        names = tgtLex.getNames(targetId,LexicalType.FORMULA);
 			if(names.size() > 0)
 			{
-		        lab = "Formula(s): ";
+		        lab = "<html>Formula(s): ";
 				for(String s : names)
-					lab += s + "; ";
-				lab = lab.substring(0, lab.length()-2);
+					lab += "<i>" + s + "</i>; ";
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 		        JLabel formT = new JLabel(lab);
 		        targetPanel.add(formT);
 			}
 			Set<Integer> directSetTarget = rm.getSuperClasses(targetId,true);
-			lab = "Direct Superclass(es): ";
+			lab = "<html>Direct Superclass(es): ";
 			for(Integer i : directSetTarget)
-				lab += target.getName(i) + "; ";
+				lab += "<i>" + target.getName(i) + "</i>; ";
 			if(directSetTarget.size() == 0)
-				lab += "N/A";
+				lab += "N/A</html>";
 			else
-				lab = lab.substring(0, lab.length()-2);
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 			JLabel directT = new JLabel(lab);
 			targetPanel.add(directT);
 			Set<Integer> highSetTarget = rm.getHighLevelAncestors(targetId);
-			lab = "High-Level Ancestors: ";
+			lab = "<html>High-Level Ancestors: ";
 			for(Integer i : highSetTarget)
-				lab += target.getName(i) + "; ";
+				lab += "<i>" + target.getName(i) + "</i>; ";
 			if(highSetTarget.size() == 0)
-				lab += "N/A";
+				lab += "N/A</html>";
 			else
-				lab = lab.substring(0, lab.length()-2);
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 			JLabel highT = new JLabel(lab);
 			targetPanel.add(highT);
 			Set<Integer> disjointSetTarget = rm.getDisjointTransitive(targetId);
-			lab = "Disjoint Classes: ";
+			lab = "<html>Disjoint Classes: ";
 			for(Integer i : disjointSetTarget)
-				lab += target.getName(i) + "; ";
+				lab += "<i>" + target.getName(i) + "</i>; ";
 			if(disjointSetTarget.size() == 0)
-				lab += "N/A";
+				lab += "N/A</html>";
 			else
-				lab = lab.substring(0, lab.length()-2);
+				lab = lab.substring(0, lab.length()-2) + "</html>";
 			JLabel disjointsT = new JLabel(lab);
 			targetPanel.add(disjointsT);
 			if(target.isObsoleteClass(targetId))
 			{
-				JLabel obsS = new JLabel("Obsolete Class!");
-				obsS.setForeground(Color.RED);
-				Font font =  obsS.getFont();
-				obsS.setFont(new Font(font.getFontName(), Font.BOLD, font.getSize()));
+				JLabel obsT = new JLabel("<html><b><font color=\"red\"> Obsolete Class!</font></b></html>");
+				targetPanel.add(obsT);
 			}
 		}
 		else
@@ -618,24 +615,24 @@ public class ViewMapping extends JDialog implements ActionListener
 			{
 				ObjectProperty pSource = source.getObjectProperty(sourceId);
 				Set<Integer> domain = pSource.getDomain();
-				String lab = "Domain: ";
+				String lab = "<html>Domain: ";
 				for(Integer i : domain)
-					lab += source.getName(i) + "; ";
+					lab += "<i>" + source.getName(i) + "</i>; ";
 				if(domain.size() > 0)
-					lab = lab.substring(0, lab.length()-2);
+					lab = lab.substring(0, lab.length()-2) + "</html>";
 				else
-					lab += "N/A";
+					lab += "N/A</html>";
 				JLabel domainS = new JLabel(lab);
 				sourcePanel.add(domainS);
 				
 				Set<Integer> range = pSource.getRange();
-				lab = "Range: ";
+				lab = "<html>Range: ";
 				for(Integer i : range)
-					lab += source.getName(i) + "; ";
+					lab += "<i>" + source.getName(i) + "</i>; ";
 				if(range.size() > 0)
-					lab = lab.substring(0, lab.length()-2);
+					lab = lab.substring(0, lab.length()-2) + "</html>";
 				else
-					lab += "N/A";
+					lab += "N/A</html>";
 				JLabel rangeS = new JLabel(lab);
 				sourcePanel.add(rangeS);
 				if(pSource.isFunctional())
@@ -648,24 +645,24 @@ public class ViewMapping extends JDialog implements ActionListener
 			{
 				DataProperty pSource = source.getDataProperty(sourceId);
 				Set<Integer> domain = pSource.getDomain();
-				String lab = "Domain: ";
+				String lab = "<html>Domain: ";
 				for(Integer i : domain)
-					lab += source.getName(i) + "; ";
+					lab += "<i>" + source.getName(i) + "</i>; ";
 				if(domain.size() > 0)
-					lab = lab.substring(0, lab.length()-2);
+					lab = lab.substring(0, lab.length()-2) + "</html>";
 				else
-					lab += "N/A";
+					lab += "N/A</html>";
 				JLabel domainS = new JLabel(lab);
 				sourcePanel.add(domainS);
 				
 				Set<String> range = pSource.getRange();
 				lab = "Range: ";
 				for(String s : range)
-					lab += s + "; ";
+					lab += "<i>" + s + "</i>; ";
 				if(range.size() > 0)
-					lab = lab.substring(0, lab.length()-2);
+					lab = lab.substring(0, lab.length()-2) + "</html>";
 				else
-					lab += "N/A";
+					lab += "N/A</html>";
 				JLabel rangeS = new JLabel(lab);
 				sourcePanel.add(rangeS);
 				if(pSource.isFunctional())
@@ -682,24 +679,24 @@ public class ViewMapping extends JDialog implements ActionListener
 			{
 				ObjectProperty pTarget = target.getObjectProperty(targetId);
 				Set<Integer> domain = pTarget.getDomain();
-				String lab = "Domain: ";
+				String lab = "<html>Domain: ";
 				for(Integer i : domain)
-					lab += target.getName(i) + "; ";
+					lab += "<i>" + target.getName(i) + "</i>; ";
 				if(domain.size() > 0)
-					lab = lab.substring(0, lab.length()-2);
+					lab = lab.substring(0, lab.length()-2) + "</html>";
 				else
-					lab += "N/A";
+					lab += "N/A</html>";
 				JLabel domainT = new JLabel(lab);
 				targetPanel.add(domainT);
 				
 				Set<Integer> range = pTarget.getRange();
-				lab = "Range: ";
+				lab = "<html>Range: ";
 				for(Integer i : range)
-					lab += target.getName(i) + "; ";
+					lab += "<i>" + target.getName(i) + "</i>; ";
 				if(range.size() > 0)
-					lab = lab.substring(0, lab.length()-2);
+					lab = lab.substring(0, lab.length()-2) + "</html>";
 				else
-					lab += "N/A";
+					lab += "N/A</html>";
 				JLabel rangeT = new JLabel(lab);
 				targetPanel.add(rangeT);
 				if(pTarget.isFunctional())
@@ -712,24 +709,24 @@ public class ViewMapping extends JDialog implements ActionListener
 			{
 				DataProperty pTarget = target.getDataProperty(targetId);
 				Set<Integer> domain = pTarget.getDomain();
-				String lab = "Domain: ";
+				String lab = "<html>Domain: ";
 				for(Integer i : domain)
-					lab += target.getName(i) + "; ";
+					lab += "<i>" + target.getName(i) + "</i>; ";
 				if(domain.size() > 0)
-					lab = lab.substring(0, lab.length()-2);
+					lab = lab.substring(0, lab.length()-2) + "</html>";
 				else
-					lab += "N/A";
+					lab += "N/A</html>";
 				JLabel domainT = new JLabel(lab);
 				targetPanel.add(domainT);
 				
 				Set<String> range = pTarget.getRange();
-				lab = "Range: ";
+				lab = "<html>Range: ";
 				for(String s : range)
-					lab += s + "; ";
+					lab += "<i>" + s + "</i>; ";
 				if(range.size() > 0)
-					lab = lab.substring(0, lab.length()-2);
+					lab = lab.substring(0, lab.length()-2) + "</html>";
 				else
-					lab += "N/A";
+					lab += "N/A</html>";
 				JLabel rangeT = new JLabel(lab);
 				targetPanel.add(rangeT);
 				if(pTarget.isFunctional())
@@ -739,11 +736,28 @@ public class ViewMapping extends JDialog implements ActionListener
 				}
 			}
 		}
-		//Initialize the mapping panel
+		//Set the sizes of the subpanels and add them to the details panel
+		sourcePanel.setPreferredSize(new Dimension((int)(width*0.85),sourcePanel.getPreferredSize().height));
+		sourcePanel.setMaximumSize(new Dimension((int)(width*0.85),sourcePanel.getPreferredSize().height));
+		details.add(sourcePanel);
+		JPanel midFiller1 = new JPanel();
+		midFiller1.setPreferredSize(new Dimension(midFiller1.getPreferredSize().width,10));
+		midFiller1.setMaximumSize(new Dimension(midFiller1.getMaximumSize().width,10));
+		details.add(midFiller1);
+		targetPanel.setPreferredSize(new Dimension((int)(width*0.85),targetPanel.getPreferredSize().height));
+		targetPanel.setMaximumSize(new Dimension((int)(width*0.85),targetPanel.getPreferredSize().height));
+		details.add(targetPanel);
+		JPanel midFiller2 = new JPanel();
+		midFiller2.setPreferredSize(new Dimension(midFiller2.getPreferredSize().width,10));
+		midFiller2.setMaximumSize(new Dimension(midFiller2.getMaximumSize().width,10));
+		details.add(midFiller2);
+		//Initialize and construct the mapping panel
+		JPanel mappingPanel = new JPanel();
+		mappingPanel.setLayout(new BoxLayout(mappingPanel, BoxLayout.Y_AXIS));
 		mappingPanel.setBorder(new TitledBorder("Mapping:"));
-        JLabel type = new JLabel("Type: " + t + " Mapping");
+        JLabel type = new JLabel("<html>Type: <i>" + t + " Mapping</i></html>");
 		mappingPanel.add(type);
-        JLabel sim = new JLabel("Final Similarity: " + m.getSimilarityPercent());
+        JLabel sim = new JLabel("<html>Final Similarity: <i>" + m.getSimilarityPercent() + "</i></html>");
         mappingPanel.add(sim);
         if(t.equals(EntityType.CLASS))
         {
@@ -753,22 +767,18 @@ public class ViewMapping extends JDialog implements ActionListener
 	        	Vector<String> labels = qf.getLabels();
 	        	for(int i = 0; i < labels.size(); i++)
 	        	{
-	        		JLabel simQ = new JLabel(labels.get(i) + qf.getSimilarityPercent(sourceId,targetId,i));
+	        		JLabel simQ = new JLabel("<html>" + labels.get(i) + "<i>" +
+	        				qf.getSimilarityPercent(sourceId,targetId,i) + "</i></html>");
 	        		mappingPanel.add(simQ);
 	        	}
 	        }
         }
-		//Set the sizes of the subpanels and add them to the details panel
-		sourcePanel.setPreferredSize(new Dimension((int)(width*0.86),sourcePanel.getPreferredSize().height));
-		sourcePanel.setMaximumSize(new Dimension((int)(width*0.86),sourcePanel.getPreferredSize().height));
-		details.add(sourcePanel);
-		targetPanel.setPreferredSize(new Dimension((int)(width*0.86),targetPanel.getPreferredSize().height));
-		targetPanel.setMaximumSize(new Dimension((int)(width*0.86),targetPanel.getPreferredSize().height));
-		details.add(targetPanel);
-		mappingPanel.setPreferredSize(new Dimension((int)(width*0.86),mappingPanel.getPreferredSize().height));
-		mappingPanel.setMaximumSize(new Dimension((int)(width*0.86),mappingPanel.getPreferredSize().height));
+		//Set its size and add it to the details panel
+		mappingPanel.setPreferredSize(new Dimension((int)(width*0.85),mappingPanel.getPreferredSize().height));
+		mappingPanel.setMaximumSize(new Dimension((int)(width*0.85),mappingPanel.getPreferredSize().height));
 		details.add(mappingPanel);
-		details.add(fillerPanel);
+		JPanel bottomFiller = new JPanel();
+		details.add(bottomFiller);
 	}
 	
 	//Builds the conflict panel
