@@ -121,7 +121,7 @@ public class MatchOptions extends JDialog implements ActionListener, Runnable, W
 		cancel = new JButton("Cancel");
 		cancel.setPreferredSize(new Dimension(80,28));
 		cancel.addActionListener(this);
-		detail = new JButton("Details");
+		detail = new JButton("Settings");
 		detail.setPreferredSize(new Dimension(80,28));
 		detail.addActionListener(this);
 		match = new JButton("Match");
