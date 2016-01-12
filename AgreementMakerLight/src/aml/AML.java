@@ -866,7 +866,6 @@ public class AML
 		showAncestors = a;
 		showDescendants = d;
 		maxDistance = m;
-		userInterface.refresh();
 	}
 	
 	public void setWordMatchStrategy(WordMatchStrategy wms)

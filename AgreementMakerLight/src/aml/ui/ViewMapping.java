@@ -35,6 +35,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -102,6 +105,9 @@ public class ViewMapping extends JDialog implements ActionListener
 	private int height;
 	
 	//Components
+	private JMenuBar menu;
+	private JMenu view;
+	private JMenuItem next, previous, options, redraw;
 	private JTabbedPane tabbedPane;
 	private PApplet mappingViewer;
 	private JPanel details, conflicts;
@@ -138,6 +144,25 @@ public class ViewMapping extends JDialog implements ActionListener
 		uris = aml.getURIMap();
         rm = aml.getRelationshipMap();
         
+        //Setup the menu bar
+        menu = new JMenuBar();
+        view = new JMenu("View");
+        next = new JMenuItem("Next Mapping");
+        next.addActionListener(this);
+        view.add(next);
+        previous = new JMenuItem("Previous Mapping");
+        previous.addActionListener(this);
+        view.add(previous);
+        view.addSeparator();
+        options = new JMenuItem("Graph Options");
+        options.addActionListener(this);
+        view.add(options);
+        redraw = new JMenuItem("Redraw Graph");
+        redraw.addActionListener(this);
+        view.add(redraw);
+        menu.add(view);
+        this.setJMenuBar(menu);
+        
         refresh();
     }
     
@@ -146,8 +171,35 @@ public class ViewMapping extends JDialog implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		JButton b = (JButton)e.getSource();
-		if(b == reset)
+		Object b = e.getSource();
+		if(b == redraw)
+		{
+			this.refresh();			
+		}
+		else if(b == next)
+		{
+			mapping++;
+			if(mapping >= a.size())
+				aml.goTo(0);
+			else
+				aml.goTo(mapping);
+			this.refresh();			
+		}
+		else if(b == previous)
+		{
+			mapping--;
+			if(mapping < 0)
+				aml.goTo(a.size() - 1);
+			else
+				aml.goTo(mapping);
+			this.refresh();
+		}
+		else if(b == options)
+		{
+			new ViewOptions();
+			this.refresh();
+		}
+		else if(b == reset)
 		{
 			for(int i = 0; i < check.size(); i++)
 			{
@@ -229,7 +281,10 @@ public class ViewMapping extends JDialog implements ActionListener
         //Add the graph
         buildGraph();
         if(mappingViewer != null)
+        {
         	tabbedPane.addTab("Graph View", mappingViewer);
+        	mappingViewer.mouseClicked();
+        }
         else
         	tabbedPane.addTab("Graph View", new JPanel());
         JLabel lab1 = new JLabel("Graph View",SwingConstants.CENTER);
