@@ -43,8 +43,7 @@ public class WordNet
 	public WordNet()
 	{
 		//Setup the wordnet database directory
-		String path = new File(PATH).getAbsolutePath();
-		System.setProperty("wordnet.database.dir", AML.getInstance().getPath() + path);
+		System.setProperty("wordnet.database.dir", AML.getInstance().getPath() + PATH);
 		//Instantiate WordNet
 		wordNet = WordNetDatabase.getFileInstance();
 	}
