@@ -22,6 +22,7 @@ package aml.util;
 import java.io.File;
 import java.util.HashSet;
 
+import aml.AML;
 import edu.smu.tspell.wordnet.NounSynset;
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.SynsetType;
@@ -43,7 +44,7 @@ public class WordNet
 	{
 		//Setup the wordnet database directory
 		String path = new File(PATH).getAbsolutePath();
-		System.setProperty("wordnet.database.dir", path);
+		System.setProperty("wordnet.database.dir", AML.getInstance().getPath() + path);
 		//Instantiate WordNet
 		wordNet = WordNetDatabase.getFileInstance();
 	}
