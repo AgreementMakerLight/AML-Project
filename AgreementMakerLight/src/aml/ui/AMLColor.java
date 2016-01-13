@@ -27,7 +27,7 @@ public class AMLColor extends Color
 	public static final Color BLACK = new Color(20,20,20);
 	public static final Color BLUE = new Color(20,60,120);
 	public static final Color BROWN = new Color(120,120,30);
-	public static final Color CYAN = new Color(160,200,200);
+	public static final Color CYAN = new Color(100,220,250);
 	public static final Color DARK_GRAY = new Color(170,170,170);
 	public static final Color GRAY = new Color(200,200,200);
 	public static final Color GREEN = new Color(100,180,100);
