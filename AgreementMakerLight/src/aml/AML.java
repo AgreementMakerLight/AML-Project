@@ -940,7 +940,6 @@ public class AML
             UIManager.put("control", AMLColor.WHITE);
             UIManager.put("background", AMLColor.WHITE);
             UIManager.put("scrollbar", AMLColor.LIGHT_GRAY);
-            UIManager.put("ComboBox.background", AMLColor.WHITE);
         }
         catch (Exception e)
         {
