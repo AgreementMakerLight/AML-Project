@@ -101,6 +101,8 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		allBK.setSelected(selectedSources.size() == bkSources.size());
 		allBK.addItemListener(this);
 		bkList = new JList<String>(bkSources);
+		bkList.setBackground(AMLColor.WHITE);
+		bkList.setSelectionBackground(AMLColor.CYAN);
 		bkList.addListSelectionListener(this);
 		bkList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		if(bkSources.size() == selectedSources.size())
