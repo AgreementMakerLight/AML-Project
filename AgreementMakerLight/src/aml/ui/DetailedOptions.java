@@ -55,7 +55,6 @@ import aml.settings.WordMatchStrategy;
 
 public class DetailedOptions extends JDialog implements ActionListener, ItemListener, ListSelectionListener
 {
-	//TODO: Add info about each matcher; maybe test a tabbed pane look instead of the card layout
 	
 //Attributes
 	
@@ -120,11 +119,13 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		for(WordMatchStrategy wm : WordMatchStrategy.values())
 			words.add(wm.toString());
 		word = new JComboBox<String>(words);
+		word.setSelectedItem(aml.getWordMatchStrategy().toString());
 		//String Matcher
 		Vector<String> measures = new Vector<String>(4);
 		for(StringSimMeasure ssm : StringSimMeasure.values())
 			measures.add(ssm.toString());
 		string = new JComboBox<String>(measures);
+		string.setSelectedItem(aml.getStringSimMeasure().toString());
 		primaryString = new JCheckBox("Global Match");
 		primaryString.setSelected(aml.getSizeCategory().equals(SizeCategory.SMALL));
 		//Structural Matcher
@@ -132,6 +133,7 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		for(NeighborSimilarityStrategy ns : NeighborSimilarityStrategy.values())
 			strategies.add(ns.toString());
 		struct = new JComboBox<String>(strategies);
+		struct.setSelectedItem(aml.getNeighborSimilarityStrategy().toString());
 		direct = new JCheckBox("Direct Ancestors");
 		direct.setSelected(false);
 		//Selector
@@ -139,6 +141,7 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		for(SelectionType st : SelectionType.values())
 			types.add(st.toString());
 		select = new JComboBox<String>(types);
+		select.setSelectedItem(aml.getSelectionType().toString());
 		structSelection = new JCheckBox("Structure-Based Selection");
 		structSelection.setSelected(aml.getSizeCategory().equals(SizeCategory.HUGE));
 		
