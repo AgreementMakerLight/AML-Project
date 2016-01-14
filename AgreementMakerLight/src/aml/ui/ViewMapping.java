@@ -916,10 +916,13 @@ public class ViewMapping extends JDialog implements ActionListener
 		Set<Integer> sourceMappings = a.getSourceMappings(sId);
 		for(Integer i : sourceMappings)
 		{
-			if(i == tId || targetNodes.contains(i))
+			if(i == tId)
 				continue;
-			targetNodes.add(i);
-			addTargetNode(i,6);
+			if(!targetNodes.contains(i))
+			{
+				targetNodes.add(i);
+				addTargetNode(i,6);
+			}
 			addMapping(sId,i);
 			if(aml.showAncestors())
 				addTargetAncestors(i);
@@ -929,10 +932,13 @@ public class ViewMapping extends JDialog implements ActionListener
 		Set<Integer> targetMappings = a.getTargetMappings(tId);
 		for(Integer i : targetMappings)
 		{
-			if(i == sId || sourceNodes.contains(i))
+			if(i == sId)
 				continue;
-			sourceNodes.add(i);
-			addSourceNode(i,6);
+			if(!sourceNodes.contains(i))
+			{
+				sourceNodes.add(i);
+				addSourceNode(i,6);
+			}
 			addMapping(i,tId);
 			if(AML.getInstance().showAncestors())
 				addSourceAncestors(i);
