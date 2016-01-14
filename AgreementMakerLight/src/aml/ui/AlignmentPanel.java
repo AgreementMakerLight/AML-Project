@@ -90,6 +90,7 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 				{
 					a.get(i).setStatus(MappingStatus.UNKNOWN);
 					mappings.get(i).refresh();
+					check.get(i).setSelected(false);
 				}
 			}
 		}
@@ -101,6 +102,7 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 				{
 					a.get(i).setStatus(MappingStatus.CORRECT);
 					mappings.get(i).refresh();
+					check.get(i).setSelected(false);
 				}
 			}
 		}
@@ -112,6 +114,7 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 				{
 					a.get(i).setStatus(MappingStatus.INCORRECT);
 					mappings.get(i).refresh();
+					check.get(i).setSelected(false);
 				}
 			}
 		}

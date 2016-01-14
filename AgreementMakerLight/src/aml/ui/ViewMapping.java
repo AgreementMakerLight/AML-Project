@@ -211,6 +211,7 @@ public class ViewMapping extends JDialog implements ActionListener
 					a.get(index).setStatus(MappingStatus.UNKNOWN);
 					aml.refreshMapping(index);
 					mappingButtons.get(i).refresh();
+					check.get(i).setSelected(false);
 				}
 			}
 		}
@@ -227,6 +228,7 @@ public class ViewMapping extends JDialog implements ActionListener
 					a.get(index).setStatus(MappingStatus.CORRECT);
 					aml.refreshMapping(index);
 					mappingButtons.get(i).refresh();
+					check.get(i).setSelected(false);
 				}
 			}
 		}
@@ -243,6 +245,7 @@ public class ViewMapping extends JDialog implements ActionListener
 					a.get(index).setStatus(MappingStatus.INCORRECT);
 					aml.refreshMapping(index);
 					mappingButtons.get(i).refresh();
+					check.get(i).setSelected(false);
 				}
 			}
 		}
