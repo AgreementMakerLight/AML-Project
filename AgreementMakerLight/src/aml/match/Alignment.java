@@ -192,13 +192,67 @@ public class Alignment implements Collection<Mapping>
 	 * Adds a new Mapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
 	 * to the maximum similarity of the two redundant Mappings
+	 * @param sourceId: the index of the source class to add to the Alignment
+	 * @param targetId: the index of the target class to add to the Alignment
+	 * @param sim: the similarity between the classes
+	 * @param r: the mapping relationship between the classes
+	 * @param s: the mapping status
+	 */
+	public boolean add(int sourceId, int targetId, double sim, MappingRelation r, MappingStatus s)
+	{
+		//Unless the Alignment is internal, we can't have a mapping
+		//involving entities that exist in both ontologies (they are
+		//the same entity, and therefore shouldn't map with other
+		//entities in either ontology)
+		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
+			return false;
+		
+		//Construct the Mapping
+		Mapping m = new Mapping(sourceId, targetId, sim, r);
+		m.setStatus(s);
+		//If it isn't listed yet, add it
+		if(!sourceMaps.contains(sourceId,targetId))
+		{
+			maps.add(m);
+			sourceMaps.add(sourceId, targetId, m);
+			targetMaps.add(targetId, sourceId, m);
+			return true;
+		}
+		//Otherwise update the similarity
+		else
+		{
+			m = sourceMaps.get(sourceId,targetId);
+			boolean check = false;
+			if(m.getSimilarity() < sim)
+			{
+				m.setSimilarity(sim);
+				check = true;
+			}
+			if(!m.getRelationship().equals(r))
+			{
+				m.setRelationship(r);
+				check = true;
+			}
+			if(!m.getStatus().equals(s))
+			{
+				m.setStatus(s);
+				check = true;
+			}
+			return check;
+		}
+	}
+	
+	/**
+	 * Adds a new Mapping to the Alignment if it is non-redundant
+	 * Otherwise, updates the similarity of the already present Mapping
+	 * to the maximum similarity of the two redundant Mappings
 	 * @param sourceURI: the URI of the source class to add to the Alignment
 	 * @param targetURI: the URI of the target class to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 */
 	public boolean add(String sourceURI, String targetURI, double sim)
 	{
-		return add(sourceURI,targetURI,sim,MappingRelation.EQUIVALENCE);
+		return add(sourceURI,targetURI,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
 	}
 	
 	/**
@@ -209,17 +263,18 @@ public class Alignment implements Collection<Mapping>
 	 * @param targetURI: the URI of the target class to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 * @param r: the mapping relationship between the classes
+	 * @param s: the mapping status
 	 */
-	public boolean add(String sourceURI, String targetURI, double sim, MappingRelation r)
+	public boolean add(String sourceURI, String targetURI, double sim, MappingRelation r, MappingStatus s)
 	{
 		int id1 = uris.getIndex(sourceURI);
 		int id2 = uris.getIndex(targetURI);
 		if(id1 == -1 || id2 == -1)
 			return false;
 		if(aml.getSource().contains(id1) && aml.getTarget().contains(id2))
-			return add(id1,id2,sim,r);
+			return add(id1,id2,sim,r,s);
 		else if(aml.getSource().contains(id2) && aml.getTarget().contains(id1))
-			return add(id2,id1,sim,r);
+			return add(id2,id1,sim,r,s);
 		return false;
 	}
 	
@@ -1068,18 +1123,7 @@ public class Alignment implements Collection<Mapping>
 		outStream.println("\t<uri1>" + sourceURI + "</uri1>");
 		outStream.println("\t<uri2>" + targetURI + "</uri2>");
 		for(Mapping m : maps)
-		{
-			outStream.println("\t<map>");
-			outStream.println("\t\t<Cell>");
-			outStream.println("\t\t\t<entity1 rdf:resource=\""+uris.getURI(m.getSourceId())+"\"/>");
-			outStream.println("\t\t\t<entity2 rdf:resource=\""+uris.getURI(m.getTargetId())+"\"/>");
-			outStream.println("\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+
-					m.getSimilarity()+"</measure>");
-			outStream.println("\t\t\t<relation>" + StringEscapeUtils.escapeXml(m.getRelationship().toString()) +
-					"</relation>");
-			outStream.println("\t\t</Cell>");
-			outStream.println("\t</map>");
-		}
+			outStream.println(m.toRDF());
 		outStream.println("</Alignment>");
 		outStream.println("</rdf:RDF>");		
 		outStream.close();
@@ -1091,18 +1135,13 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public void saveTSV(String file) throws FileNotFoundException
 	{
-		AML aml = AML.getInstance();
-		URIMap uris = aml.getURIMap();
-		
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		outStream.println("#AgreementMakerLight Alignment File");
 		outStream.println("#Source ontology:\t" + source.getURI());
 		outStream.println("#Target ontology:\t" + target.getURI());
 		outStream.println("Source URI\tSource Label\tTarget URI\tTarget Label\tSimilarity\tRelationship");
 		for(Mapping m : maps)
-			outStream.println(uris.getURI(m.getSourceId()) + "\t" + source.getName(m.getSourceId()) +
-						"\t" + uris.getURI(m.getTargetId()) + "\t" + target.getName(m.getTargetId()) +
-						"\t" + m.getSimilarity() + "\t" + m.getRelationship().toString());
+			outStream.println(m.toString());
 		outStream.close();
 	}
 
@@ -1231,7 +1270,12 @@ public class Alignment implements Collection<Mapping>
             if(r == null)
             	r = "?";
             MappingRelation rel = MappingRelation.parseRelation(StringEscapeUtils.unescapeXml(r));
-			add(sourceURI, targetURI, similarity, rel);
+            //Get the status
+            String s = e.elementText("status");
+            if(s == null)
+            	s = "?";
+            MappingStatus st = MappingStatus.parseStatus(s);
+			add(sourceURI, targetURI, similarity, rel, st);
 		}
 	}
 	
@@ -1269,14 +1313,21 @@ public class Alignment implements Collection<Mapping>
 				}
             	catch(Exception ex){/*Do nothing - use the default value*/};
             }
-			//Finally, sixth column contains the type of relation
+			//The sixth column contains the type of relation
 			MappingRelation rel;
 			if(col.length > 5)
 				rel = MappingRelation.parseRelation(col[5]);
 			//For compatibility with previous tsv format without listed relation
 			else
 				rel = MappingRelation.EQUIVALENCE;
-			add(sourceURI, targetURI, similarity, rel);
+			//The seventh column, if it exists, contains the status of the Mapping
+			MappingStatus st;
+			if(col.length > 6)
+				st = MappingStatus.parseStatus(col[6]);
+			//For compatibility with previous tsv format without listed relation
+			else
+				st = MappingStatus.UNKNOWN;
+			add(sourceURI, targetURI, similarity, rel, st);
 		}
 		inStream.close();
 	}
