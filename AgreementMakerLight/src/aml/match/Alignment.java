@@ -1139,7 +1139,7 @@ public class Alignment implements Collection<Mapping>
 		outStream.println("#AgreementMakerLight Alignment File");
 		outStream.println("#Source ontology:\t" + source.getURI());
 		outStream.println("#Target ontology:\t" + target.getURI());
-		outStream.println("Source URI\tSource Label\tTarget URI\tTarget Label\tSimilarity\tRelationship");
+		outStream.println("Source URI\tSource Label\tTarget URI\tTarget Label\tSimilarity\tRelationship\tStatus");
 		for(Mapping m : maps)
 			outStream.println(m.toString());
 		outStream.close();
