@@ -20,7 +20,10 @@
 ******************************************************************************/
 package aml.match;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import aml.AML;
+import aml.ontology.Ontology;
 import aml.ontology.URIMap;
 import aml.settings.MappingRelation;
 import aml.settings.MappingStatus;
@@ -239,11 +242,34 @@ public class Mapping implements Comparable<Mapping>
 			" (" + getSimilarityPercent() + ") ";
 	}
 	
+	public String toRDF()
+	{
+		URIMap uris = AML.getInstance().getURIMap();
+		String out = "\t<map>\n" +
+			"\t\t<Cell>\n" +
+			"\t\t\t<entity1 rdf:resource=\""+uris.getURI(sourceId)+"\"/>\n" +
+			"\t\t\t<entity2 rdf:resource=\""+uris.getURI(targetId)+"\"/>\n" +
+			"\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
+			"\t\t\t<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";
+		if(!s.equals(MappingStatus.UNKNOWN))
+			out += "\t\t\t<status>" + s.toString() + "</status>\n";
+		out += "\t\t</Cell>\n" +
+			"\t</map>\n";
+		return out;
+	}
+	
 	@Override
 	public String toString()
 	{
-		URIMap uris = AML.getInstance().getURIMap();
-		return uris.getURI(sourceId) + " " + rel.toString() + " " +
-				uris.getURI(targetId) + " " + similarity;
+		AML aml = AML.getInstance();
+		URIMap uris = aml.getURIMap();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
+		String out = uris.getURI(sourceId) + "\t" + source.getName(sourceId) +
+				"\t" + uris.getURI(targetId) + "\t" + target.getName(targetId) +
+				"\t" + similarity + "\t" + rel.toString();
+		if(!s.equals(MappingStatus.UNKNOWN))
+			out += "\t" + s;
+		return out;
 	}
 }
