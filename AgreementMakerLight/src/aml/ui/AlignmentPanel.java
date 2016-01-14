@@ -198,26 +198,27 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 			search.setPreferredSize(new Dimension(110,28));
 			search.addActionListener(this);
 			headerPanel = new JPanel(new FlowLayout());
-			JPanel sub1 = new JPanel();
-			sub1.setBorder(new BevelBorder(1));
-			sub1.add(selectAll);
-			sub1.add(setCorrect);
-			sub1.add(reset);
-			sub1.add(setIncorrect);
-			headerPanel.add(sub1);
-			JPanel sub2 = new JPanel();
-			sub2.setBorder(new BevelBorder(1));
-			sub2.add(sortAsc);
-			sub2.add(sortDes);
-			sub2.add(search);
-			headerPanel.add(sub2);
+			headerPanel.setMaximumSize(new Dimension(headerPanel.getMaximumSize().width,30));
+			JPanel left = new JPanel();
+			left.setBorder(new BevelBorder(1));
+			left.add(selectAll);
+			left.add(setCorrect);
+			left.add(reset);
+			left.add(setIncorrect);
+			headerPanel.add(left);
+			JPanel right = new JPanel();
+			right.setBorder(new BevelBorder(1));
+			right.add(sortAsc);
+			right.add(sortDes);
+			right.add(search);
+			headerPanel.add(right);
 			
 			//The mapping list
 			mappingPanel = new JPanel(new GridLayout(0,1));
 			a = aml.getAlignment();
 			check = new Vector<JCheckBox>();
 			mappings = new Vector<MappingButton>(a.size());
-
+			mappingPanel.setMaximumSize(new Dimension(mappingPanel.getMaximumSize().width,a.size()*30));
 			for(Mapping m : a)
 			{
 				JCheckBox c = new JCheckBox(""); 
@@ -234,9 +235,12 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 				subPanel.setPreferredSize(new Dimension(subPanel.getPreferredSize().width,28));
 				mappingPanel.add(subPanel);
 			}
+			JPanel alignment = new JPanel();
+			alignment.setLayout(new BoxLayout(alignment, BoxLayout.PAGE_AXIS));
+			alignment.add(mappingPanel);
 			JPanel filler = new JPanel();
-			mappingPanel.add(filler);
-			scrollPane = new JScrollPane(mappingPanel);
+			alignment.add(filler);
+			scrollPane = new JScrollPane(alignment);
 			scrollPane.setBorder(new BevelBorder(1));
 			scrollPane.getVerticalScrollBar().setUnitIncrement(28);
 			scrollPane.setBackground(AMLColor.WHITE);
