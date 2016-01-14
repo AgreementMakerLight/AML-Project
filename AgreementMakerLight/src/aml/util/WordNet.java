@@ -19,7 +19,6 @@
 ******************************************************************************/
 package aml.util;
 
-import java.io.File;
 import java.util.HashSet;
 
 import aml.AML;
