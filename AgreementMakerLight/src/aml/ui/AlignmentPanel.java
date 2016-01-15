@@ -86,11 +86,15 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 		{
 			for(int i = 0; i < check.size(); i++)
 			{
-				if(check.get(i).isSelected() && !a.get(i).getStatus().equals(MappingStatus.UNKNOWN))
+				if(check.get(i).isSelected())
 				{
-					a.get(i).setStatus(MappingStatus.UNKNOWN);
-					mappings.get(i).refresh();
 					check.get(i).setSelected(false);
+					if(!a.get(i).getStatus().equals(MappingStatus.UNKNOWN))
+					{
+						a.get(i).setStatus(MappingStatus.UNKNOWN);
+						mappings.get(i).refresh();
+						check.get(i).setSelected(false);
+					}
 				}
 			}
 		}
@@ -98,11 +102,15 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 		{
 			for(int i = 0; i < check.size(); i++)
 			{
-				if(check.get(i).isSelected() && !a.get(i).getStatus().equals(MappingStatus.CORRECT))
+				if(check.get(i).isSelected())
 				{
-					a.get(i).setStatus(MappingStatus.CORRECT);
-					mappings.get(i).refresh();
 					check.get(i).setSelected(false);
+					if(!a.get(i).getStatus().equals(MappingStatus.CORRECT))
+					{
+						a.get(i).setStatus(MappingStatus.CORRECT);
+						mappings.get(i).refresh();
+						check.get(i).setSelected(false);
+					}
 				}
 			}
 		}
@@ -110,11 +118,15 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 		{
 			for(int i = 0; i < check.size(); i++)
 			{
-				if(check.get(i).isSelected() && !a.get(i).getStatus().equals(MappingStatus.INCORRECT))
+				if(check.get(i).isSelected())
 				{
-					a.get(i).setStatus(MappingStatus.INCORRECT);
-					mappings.get(i).refresh();
 					check.get(i).setSelected(false);
+					if(!a.get(i).getStatus().equals(MappingStatus.INCORRECT))
+					{
+						a.get(i).setStatus(MappingStatus.INCORRECT);
+						mappings.get(i).refresh();
+						check.get(i).setSelected(false);
+					}
 				}
 			}
 		}

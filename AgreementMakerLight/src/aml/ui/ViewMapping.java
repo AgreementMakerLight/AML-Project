@@ -205,13 +205,13 @@ public class ViewMapping extends JDialog implements ActionListener
 				if(check.get(i).isSelected())
 				{
 					Mapping n = mappings.get(i);
+					check.get(i).setSelected(false);
 					if(n.getStatus().equals(MappingStatus.UNKNOWN))
 						continue;
 					int index = a.getIndex(n.getSourceId(),n.getTargetId());
 					a.get(index).setStatus(MappingStatus.UNKNOWN);
 					aml.refreshMapping(index);
 					mappingButtons.get(i).refresh();
-					check.get(i).setSelected(false);
 				}
 			}
 		}
@@ -222,13 +222,13 @@ public class ViewMapping extends JDialog implements ActionListener
 				if(check.get(i).isSelected())
 				{
 					Mapping n = mappings.get(i);
+					check.get(i).setSelected(false);
 					if(n.getStatus().equals(MappingStatus.CORRECT))
 						continue;
 					int index = a.getIndex(n.getSourceId(),n.getTargetId());
 					a.get(index).setStatus(MappingStatus.CORRECT);
 					aml.refreshMapping(index);
 					mappingButtons.get(i).refresh();
-					check.get(i).setSelected(false);
 				}
 			}
 		}
@@ -239,13 +239,13 @@ public class ViewMapping extends JDialog implements ActionListener
 				if(check.get(i).isSelected())
 				{
 					Mapping n = mappings.get(i);
+					check.get(i).setSelected(false);
 					if(n.getStatus().equals(MappingStatus.INCORRECT))
 						continue;
 					int index = a.getIndex(n.getSourceId(),n.getTargetId());
 					a.get(index).setStatus(MappingStatus.INCORRECT);
 					aml.refreshMapping(index);
 					mappingButtons.get(i).refresh();
-					check.get(i).setSelected(false);
 				}
 			}
 		}
