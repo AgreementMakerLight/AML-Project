@@ -20,6 +20,7 @@ package aml.ui;
 
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -109,6 +110,9 @@ public class ViewOptions extends JDialog implements ActionListener
 		add(dialogPanel);
         
         this.pack();
+		GraphicsEnvironment g = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		int left = g.getCenterPoint().x - (int)(this.getPreferredSize().width / 2);
+		this.setLocation(left, 0);
         this.setVisible(true);
 	}
 

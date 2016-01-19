@@ -20,6 +20,7 @@ package aml.ui;
 
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -62,7 +63,8 @@ public class OpenOntologies extends JDialog implements ActionListener, Runnable,
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
 		selectSource = new JButton("Select Source Ontology");
-		selectSource.setMinimumSize(new Dimension(160,28));
+		selectSource.setMinimumSize(new Dimension(175,28));
+		selectSource.setPreferredSize(new Dimension(175,28));
 		selectSource.addActionListener(this);
 		sourcePath = new JTextArea(1,30);
 		sourcePath.setEditable(false);
@@ -71,7 +73,8 @@ public class OpenOntologies extends JDialog implements ActionListener, Runnable,
 		sourcePanel.add(sourcePath);
 		
 		selectTarget = new JButton("Select Target Ontology");
-		selectTarget.setMinimumSize(new Dimension(160,28));
+		selectTarget.setMinimumSize(new Dimension(175,28));
+		selectTarget.setPreferredSize(new Dimension(175,28));
 		selectTarget.addActionListener(this);
 		targetPath = new JTextArea(1,30);
 		targetPath.setEditable(false);
@@ -98,7 +101,10 @@ public class OpenOntologies extends JDialog implements ActionListener, Runnable,
 		
 		add(dialogPanel);
         
-        this.pack();
+		this.pack();
+        GraphicsEnvironment g = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		int left = g.getCenterPoint().x - (int)(this.getPreferredSize().width / 2);
+		this.setLocation(left, 0);
         this.setVisible(true);
 	}
 

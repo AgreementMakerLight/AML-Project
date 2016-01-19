@@ -196,7 +196,6 @@ public class ViewMapping extends JDialog implements ActionListener
 		else if(b == options)
 		{
 			new ViewOptions();
-			this.refresh();
 		}
 		else if(b == reset)
 		{
@@ -309,7 +308,10 @@ public class ViewMapping extends JDialog implements ActionListener
 		setContentPane(tabbedPane);
 		
 		//Wrap up
-        this.pack();
+		this.pack();
+		GraphicsEnvironment g = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		int left = g.getCenterPoint().x - (int)(this.getPreferredSize().width / 2);
+		this.setLocation(left, 0);
         this.setVisible(true);
 	}
 	

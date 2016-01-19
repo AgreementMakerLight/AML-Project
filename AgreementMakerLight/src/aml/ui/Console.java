@@ -20,6 +20,7 @@ package aml.ui;
 
 import java.awt.Cursor;
 import java.awt.Dialog;
+import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -61,7 +62,11 @@ public class Console extends JDialog implements Runnable
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         add(scroll);
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        
         this.pack();
+		GraphicsEnvironment g = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		int left = g.getCenterPoint().x - (int)(this.getPreferredSize().width / 2);
+		this.setLocation(left, 0);
     }
 	
 //Public Methods

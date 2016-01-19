@@ -21,6 +21,7 @@ package aml.ui;
 import java.awt.Cursor;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -138,7 +139,11 @@ public class MatchOptions extends JDialog implements ActionListener, Runnable, W
 		panel.add(buttonPanel);
 
 		add(panel);
+		
         this.pack();
+		GraphicsEnvironment g = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		int left = g.getCenterPoint().x - (int)(this.getPreferredSize().width / 2);
+		this.setLocation(left, 0);
         this.setVisible(true);
 	}
 

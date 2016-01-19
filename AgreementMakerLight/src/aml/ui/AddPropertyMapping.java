@@ -21,6 +21,7 @@ package aml.ui;
 import java.awt.CardLayout;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -72,7 +73,6 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 		//Set the title
 		this.setTitle("Add Property Mapping");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-		this.setMinimumSize(new Dimension(400,400));
 
 		//Header panel: allows the user to toggle between property types
 		//Setup the combo box listing the property types
@@ -102,6 +102,7 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			for(int i = 0; i < os.length; i++)
 				os[i] = source.getName(objectSource.get(i));
 			objectS = new JComboBox<String>(os);
+			objectS.setPreferredSize(new Dimension(300,28));
 			JPanel osp = new JPanel();
 			osp.setBorder(new TitledBorder("Source Ontology Property"));
 			osp.add(objectS);
@@ -109,6 +110,7 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			for(int i = 0; i < ot.length; i++)
 				ot[i] = target.getName(objectTarget.get(i));
 			objectT = new JComboBox<String>(ot);
+			objectT.setPreferredSize(new Dimension(300,28));
 			JPanel otp = new JPanel();
 			otp.setBorder(new TitledBorder("Target Ontology Property"));
 			otp.add(objectT);
@@ -125,6 +127,7 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			for(int i = 0; i < ds.length; i++)
 				ds[i] = source.getName(dataSource.get(i));
 			dataS = new JComboBox<String>(ds);
+			dataS.setPreferredSize(new Dimension(300,28));
 			JPanel dsp = new JPanel();
 			dsp.setBorder(new TitledBorder("Source Ontology Property"));
 			dsp.add(dataS);
@@ -132,6 +135,7 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			for(int i = 0; i < dt.length; i++)
 				dt[i] = target.getName(dataTarget.get(i));
 			dataT = new JComboBox<String>(dt);
+			dataT.setPreferredSize(new Dimension(300,28));
 			JPanel dtp = new JPanel();
 			dtp.setBorder(new TitledBorder("Target Ontology Property"));
 			dtp.add(dataT);
@@ -174,6 +178,9 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 		add(dialogPanel);
         
         this.pack();
+		GraphicsEnvironment g = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		int left = g.getCenterPoint().x - (int)(this.getPreferredSize().width / 2);
+		this.setLocation(left, 0);
         this.setVisible(true);
 	}
 
