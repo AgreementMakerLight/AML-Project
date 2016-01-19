@@ -153,12 +153,13 @@ public class ViewMapping extends JDialog implements ActionListener
         previous.addActionListener(this);
         view.add(previous);
         view.addSeparator();
+        redraw = new JMenuItem("Refresh");
+        redraw.addActionListener(this);
+        view.add(redraw);
+        view.addSeparator();
         options = new JMenuItem("Graph Options");
         options.addActionListener(this);
         view.add(options);
-        redraw = new JMenuItem("Redraw Graph");
-        redraw.addActionListener(this);
-        view.add(redraw);
         menu.add(view);
         this.setJMenuBar(menu);
         
@@ -195,7 +196,16 @@ public class ViewMapping extends JDialog implements ActionListener
 		}
 		else if(b == options)
 		{
+			String lang = aml.getLabelLanguage();
+			boolean anc = aml.showAncestors();
+			boolean des = aml.showDescendants();
+			int dist = aml.getMaxDistance();
 			new ViewOptions();
+			if(!lang.equals(aml.getLabelLanguage()) ||
+					anc != aml.showAncestors() ||
+					des != aml.showDescendants() ||
+					dist != aml.getMaxDistance())
+				this.refresh();
 		}
 		else if(b == reset)
 		{
