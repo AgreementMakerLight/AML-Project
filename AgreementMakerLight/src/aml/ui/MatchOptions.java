@@ -37,6 +37,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import aml.AML;
+import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
 
 public class MatchOptions extends JDialog implements ActionListener, Runnable, WindowListener
@@ -68,6 +69,8 @@ public class MatchOptions extends JDialog implements ActionListener, Runnable, W
 		matchers = new Vector<JCheckBox>();
 		for(MatchStep m : MatchStep.values())
 		{
+			if(m.equals(MatchStep.TRANSLATE) && aml.getLanguageSetting().equals(LanguageSetting.SINGLE))
+				continue;
 			JCheckBox cb = new JCheckBox(m.toString());
 			cb.setSelected(selectedSteps.contains(m));
 			if(m.equals(MatchStep.LEXICAL))
@@ -154,9 +157,9 @@ public class MatchOptions extends JDialog implements ActionListener, Runnable, W
 			setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 			aml.setThreshold((Double)threshold.getSelectedItem());
 			Vector<MatchStep> selection = new Vector<MatchStep>();
-			for(int i = 0; i < matchers.size(); i++)
-				if(matchers.get(i).isSelected())
-					selection.add(MatchStep.values()[i]);
+			for(JCheckBox c : matchers)
+				if(c.isSelected())
+					selection.add(MatchStep.parseStep(c.getText()));
 			aml.setMatchSteps(selection);
 			//Then match the ontologies
 			c = new Console();
