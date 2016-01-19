@@ -30,7 +30,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import aml.AML;
-import aml.match.Alignment;
 
 public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, WindowListener
 {
@@ -133,6 +132,15 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
 		}
 		else if(o == openA)
 		{
+			if(aml.needSave())
+			{
+				int option = JOptionPane.showConfirmDialog(this, "Save current alignment before proceeding?",
+						"Unsaved Alignment", JOptionPane.YES_NO_CANCEL_OPTION);
+				if(option == JOptionPane.YES_OPTION)
+					saveAlignment();
+				else if(option == JOptionPane.CANCEL_OPTION)
+					return;
+			}
 			AlignmentFileChooser fc = AML.getInstance().getAlignmentFileChooser();
 			int returnVal = fc.showOpenDialog(this);
 			if(returnVal == JFileChooser.APPROVE_OPTION)
@@ -147,44 +155,33 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
 		}
 		else if(o == saveA)
 		{
-			Alignment a = aml.getAlignment();
-			AlignmentFileChooser fc = aml.getAlignmentFileChooser();
-			int returnVal = fc.showSaveDialog(this);
-			if(returnVal == JFileChooser.APPROVE_OPTION)
-			{
-				String f = fc.getSelectedFile().getAbsolutePath();
-				String filter = fc.getFileFilter().getDescription();
-				if(filter.startsWith("OAEI"))
-				{
-					if(!f.endsWith(".rdf"))
-						f += ".rdf";
-					try{a.saveRDF(f);}
-					catch(Exception x)
-					{
-						JOptionPane.showMessageDialog(this, "Could not save alignment!\n" + 
-								x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE); 
-					}
-				}
-				else if(filter.startsWith("AML"))
-				{
-					if(!f.endsWith(".tsv"))
-						f += ".tsv";
-					try{a.saveTSV(f);}
-					catch(Exception x)
-					{
-						JOptionPane.showMessageDialog(this, "Could not save alignment!\n" + 
-								x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE); 
-					}
-				}
-			}
+			saveAlignment();
 		}
 		else if(o == closeA)
 		{
+			if(aml.needSave())
+			{
+				int option = JOptionPane.showConfirmDialog(this, "Save alignment before closing?",
+						"Unsaved Alignment", JOptionPane.YES_NO_CANCEL_OPTION);
+				if(option == JOptionPane.YES_OPTION)
+					saveAlignment();
+				else if(option == JOptionPane.CANCEL_OPTION)
+					return;
+			}
 			aml.closeAlignment();
 		}
 		//Match Options
 		else if(o == matchAuto)
 		{
+			if(aml.needSave())
+			{
+				int option = JOptionPane.showConfirmDialog(this, "Save current alignment before proceeding?",
+						"Unsaved Alignment", JOptionPane.YES_NO_CANCEL_OPTION);
+				if(option == JOptionPane.YES_OPTION)
+					saveAlignment();
+				else if(option == JOptionPane.CANCEL_OPTION)
+					return;
+			}
 			c = new Console();
 			c.addWindowListener(this);
 			console = new Thread(c);
@@ -194,6 +191,15 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
 		}
 		else if(o == matchManual)
 		{
+			if(aml.needSave())
+			{
+				int option = JOptionPane.showConfirmDialog(this, "Save current alignment before proceeding?",
+						"Unsaved Alignment", JOptionPane.YES_NO_CANCEL_OPTION);
+				if(option == JOptionPane.YES_OPTION)
+					saveAlignment();
+				else if(option == JOptionPane.CANCEL_OPTION)
+					return;
+			}
 			new MatchOptions();
 		}
 		else if(o == addC)
@@ -294,4 +300,39 @@ public class AMLMenuBar extends JMenuBar implements ActionListener, Runnable, Wi
 
 	@Override
 	public void windowDeactivated(WindowEvent e){}
+	
+//Private Methods
+	
+	private void saveAlignment()
+	{
+		AlignmentFileChooser fc = aml.getAlignmentFileChooser();
+		int returnVal = fc.showSaveDialog(this);
+		if(returnVal == JFileChooser.APPROVE_OPTION)
+		{
+			String f = fc.getSelectedFile().getAbsolutePath();
+			String filter = fc.getFileFilter().getDescription();
+			if(filter.startsWith("OAEI"))
+			{
+				if(!f.endsWith(".rdf"))
+					f += ".rdf";
+				try{aml.saveAlignmentRDF(f);}
+				catch(Exception x)
+				{
+					JOptionPane.showMessageDialog(this, "Could not save alignment!\n" + 
+							x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE); 
+				}
+			}
+			else if(filter.startsWith("AML"))
+			{
+				if(!f.endsWith(".tsv"))
+					f += ".tsv";
+				try{aml.saveAlignmentTSV(f);}
+				catch(Exception x)
+				{
+					JOptionPane.showMessageDialog(this, "Could not save alignment!\n" + 
+							x.getMessage(),	"Error", JOptionPane.ERROR_MESSAGE); 
+				}
+			}
+		}
+	}
 }

@@ -114,6 +114,7 @@ public class AML
 	//User interface and settings
 	private GUI userInterface;
 	private int activeMapping;
+	private boolean needSave = false;
 	private OntologyFileChooser ofc;
 	private AlignmentFileChooser afc;
 	private int maxDistance = 2;
@@ -175,6 +176,7 @@ public class AML
     	evaluation = null;
     	if(userInterface != null)
     		userInterface.refresh();
+    	needSave = false;
     }
     
 	/**
@@ -303,6 +305,7 @@ public class AML
    		CustomFilterer.filter();
     	if(userInterface != null)
     		userInterface.refresh();
+    	needSave = true;
     }
     
     /**
@@ -313,6 +316,7 @@ public class AML
    		CustomFlagger.flag();
     	if(userInterface != null)
     		userInterface.refresh();
+    	needSave = true;
     }
     
     /**
@@ -613,6 +617,7 @@ public class AML
     		activeMapping = 0;
     	if(userInterface != null)
     		userInterface.refresh();
+    	needSave = true;
     }
 
     /**
@@ -628,8 +633,31 @@ public class AML
     		activeMapping = 0;
     	if(userInterface != null)
     		userInterface.refresh();
+    	needSave = true;
     }
     
+    /**
+     * @return whether the active alignment needs saving
+     */
+    public boolean needSave()
+    {
+    	return needSave;
+    }
+    
+    /**
+     * Sets whether the active alignment needs saving
+     * @param s: the value to set
+     */
+    public void needSave(boolean s)
+    {
+    	needSave = s;
+    }
+    
+    /**
+     * Opens an alignment from a file as the active alignment
+     * @param path: the path to the alignment file
+     * @throws Exception if the alignment file can't be read or interpreted
+     */
     public void openAlignment(String path) throws Exception
     {
     	a = new Alignment(path);
@@ -638,6 +666,7 @@ public class AML
     		activeMapping = 0;
     	if(userInterface != null)
     		userInterface.refresh();
+    	needSave = false;
     }
 	
 	public void openBKOntology(String name) throws OWLOntologyCreationException
@@ -773,6 +802,7 @@ public class AML
 				activeMapping = 0;
 			if(userInterface != null)
 				userInterface.refresh();
+			needSave = true;
 		}
 	}
 	
@@ -782,16 +812,19 @@ public class AML
 		rep = new RepairMap();
 		Repairer r = new Repairer();
 		r.filter();
+		needSave = true;
 	}
 
     public void saveAlignmentRDF(String file) throws Exception
     {
     	a.saveRDF(file);
+    	needSave = false;
     }
     
     public void saveAlignmentTSV(String file) throws Exception
     {
     	a.saveTSV(file);
+    	needSave = false;
     }
     
 	public void setAlignment(Alignment maps)
@@ -802,6 +835,7 @@ public class AML
 		qf = null;
     	evaluation = null;
     	rep = null;
+    	needSave = false;
 	}
 	
 	public void setDirectNeighbors(boolean directNeighbors)

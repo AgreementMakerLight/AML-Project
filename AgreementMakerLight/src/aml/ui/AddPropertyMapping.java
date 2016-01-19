@@ -219,6 +219,7 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			{
 				aml.getAlignment().add(sourceId,targetId,1.0,
 						MappingRelation.parseRelation((String)rels.getSelectedItem()));
+				aml.needSave(true);
 				aml.refreshGUI();
 			}
 			this.dispose();
