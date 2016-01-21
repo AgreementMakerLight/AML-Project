@@ -32,6 +32,7 @@ import org.semanticweb.owlapi.model.ClassExpressionType;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
+import org.semanticweb.owlapi.model.OWLAnnotationValue;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
@@ -58,6 +59,7 @@ import uk.ac.manchester.cs.owl.owlapi.OWLDataSomeValuesFromImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLObjectCardinalityRestrictionImpl;
 import aml.AML;
 import aml.settings.LexicalType;
+import aml.settings.SKOS;
 import aml.settings.EntityType;
 import aml.util.StringParser;
 import aml.util.Table2Map;
@@ -84,6 +86,7 @@ public class Ontology2Match extends Ontology
 	//Global variables & data structures
 	private AML aml;
 	private boolean useReasoner;
+	private boolean isSKOS;
 	private URIMap uris;
 	private RelationshipMap rm;
 	
@@ -341,6 +344,14 @@ public class Ontology2Match extends Ontology
 	}
 	
 	/**
+	 * @return whether this ontology is SKOS or OWL/OBO
+	 */
+	public boolean isSKOS()
+	{
+		return isSKOS;
+	}
+	
+	/**
 	 * @return the number of Object Properties in the Ontology
 	 */
 	public int objectPropertyCount()
@@ -354,24 +365,235 @@ public class Ontology2Match extends Ontology
 	//Builds the ontology data structures
 	private void init(OWLOntology o)
 	{
-		//Update the URI of the ontology (if it lists one)
-		if(o.getOntologyID().getOntologyIRI() != null)
-			uri = o.getOntologyID().getOntologyIRI().toString();
-		//Get the classes and their names and synonyms
-		getClasses(o);
-		//Get the properties
-		getProperties(o);
-		//Extend the Lexicon
-		lex.generateStopWordSynonyms();
-		lex.generateParenthesisSynonyms();
-		//Get the individuals
-		getNamedIndividuals(o);
-		//Build the relationship map
-		getRelationships(o);
+		//Check if the ontology is in SKOS format
+		if(o.containsClassInSignature(SKOS.CONCEPT_SCHEME.toIRI()) &&
+				o.containsClassInSignature(SKOS.CONCEPT.toIRI()))
+		{
+			isSKOS = true;
+			//Update the URI of the ontology
+			OWLClass scheme = getClass(o,SKOS.CONCEPT_SCHEME.toIRI());
+			Set<OWLIndividual> indivs = scheme.getIndividuals(o);
+			String schemeURIs = "";
+			for(OWLIndividual i : indivs)
+				if(i.isNamed())
+					schemeURIs += i.asOWLNamedIndividual().getIRI().toString() + " | ";
+			if(schemeURIs.length() > 0)
+				uri = schemeURIs.substring(0, schemeURIs.length() - 3);
+			
+			getSKOSConcepts(o);
+			//Extend the Lexicon
+			lex.generateStopWordSynonyms();
+			lex.generateParenthesisSynonyms();
+			//Build the relationship map
+			getSKOSRelationships(o);
+		}
+		else
+		{
+			isSKOS = false;
+			//Update the URI of the ontology (if it lists one)
+			if(o.getOntologyID().getOntologyIRI() != null)
+				uri = o.getOntologyID().getOntologyIRI().toString();
+			//Get the classes and their names and synonyms
+			getOWLClasses(o);
+			//Get the properties
+			getOWLProperties(o);
+			//Extend the Lexicon
+			lex.generateStopWordSynonyms();
+			lex.generateParenthesisSynonyms();
+			//Get the individuals
+			getOWLNamedIndividuals(o);
+			//Build the relationship map
+			getOWLRelationships(o);
+		}
 	}
 	
+	//SKOS Thesauri
+	
 	//Processes the classes and their lexical information
-	private void getClasses(OWLOntology o)
+	private void getSKOSConcepts(OWLOntology o)
+	{
+		//The Lexical type and weight
+		LexicalType type;
+		double weight;
+		//SKOS concepts are instances of class "concept"
+		//Thus, we start by retrieving this class
+		OWLClass concept = getClass(o,SKOS.CONCEPT.toIRI());
+		if(concept == null)
+			return;
+		//Then retrieve its instances, as well as those of its subclasses
+		Set<OWLIndividual> indivs = concept.getIndividuals(o);
+		for(OWLClassExpression c : concept.getSubClasses(o))
+			if(c instanceof OWLClass)
+				indivs.addAll(c.asOWLClass().getIndividuals(o));
+		//And process them as if they were OWL classes
+		for(OWLIndividual i : indivs)
+		{
+			if(!i.isNamed())
+				continue;
+			OWLNamedIndividual ind = i.asOWLNamedIndividual();
+			String indivUri = ind.getIRI().toString();
+			//Add it to the global list of URIs (as a class)
+			int id = uris.addURI(indivUri, EntityType.CLASS);
+			//Add it to the class map
+			classes.add(id);			
+			//Get the local name from the URI
+			String name = uris.getLocalName(id);
+			//Add the name to the classNames map
+			classNames.put(name, id);
+			//If the local name is not an alphanumeric code, add it to the lexicon
+			if(!StringParser.isNumericId(name))
+			{
+				type = LexicalType.LOCAL_NAME;
+				weight = type.getDefaultWeight();
+				lex.addClass(id, name, "en", type, "", weight);
+			}
+
+			//Now get the class's annotations (including imports)
+			Set<OWLAnnotation> annots = ind.getAnnotations(o);
+            for(OWLAnnotation annotation : annots)
+            {
+            	//Labels and synonyms go to the Lexicon
+            	String propUri = annotation.getProperty().getIRI().toString();
+            	type = LexicalType.getLexicalType(propUri);
+            	if(type != null)
+            	{
+	            	weight = type.getDefaultWeight();
+	            	if(annotation.getValue() instanceof OWLLiteral)
+	            	{
+	            		OWLLiteral val = (OWLLiteral) annotation.getValue();
+	            		name = val.getLiteral();
+	            		String lang = val.getLang();
+	            		if(lang.equals(""))
+	            			lang = "en";
+	            		lex.addClass(id, name, lang, type, "", weight);
+		            }
+	            	else if(annotation.getValue() instanceof IRI)
+	            	{
+	            		OWLNamedIndividual ni = factory.getOWLNamedIndividual((IRI) annotation.getValue());
+	                    for(OWLAnnotation a : ni.getAnnotations(o))
+	                    {
+	                       	if(a.getValue() instanceof OWLLiteral)
+	                       	{
+	                       		OWLLiteral val = (OWLLiteral) a.getValue();
+	                       		name = val.getLiteral();
+	                       		String lang = val.getLang();
+	    	            		if(lang.equals(""))
+	    	            			lang = "en";
+    		            		lex.addClass(id, name, lang, type, "", weight);
+	                       	}
+	            		}
+	            	}
+            	}
+	        }
+		}
+	}
+	
+	//Reads all class relationships
+	private void getSKOSRelationships(OWLOntology o)
+	{
+		//For simplicity, we convert "broader", "broader_transitive", "narrower"
+		//and "narrower_transitive" to "broader" and assume transitivity
+		//We treat "related" as a form of equivalence with the "related" property
+		
+		//Start by adding the "broader" and "related" property
+		int broader = uris.addURI(SKOS.BROADER.toIRI().toString(),EntityType.OBJECT);
+		lex.addProperty(broader, SKOS.BROADER.toString(), "en", LexicalType.LOCAL_NAME,
+				"",	LexicalType.LOCAL_NAME.getDefaultWeight());
+		objectProperties.put(broader, new ObjectProperty());
+		rm.addTransitive(broader);
+		int related = uris.addURI(SKOS.RELATED.toIRI().toString(),EntityType.OBJECT);
+		lex.addProperty(related, SKOS.RELATED.toString(), "en", LexicalType.LOCAL_NAME,
+				"", LexicalType.LOCAL_NAME.getDefaultWeight());
+		objectProperties.put(related, new ObjectProperty());
+		rm.addSymmetric(related);
+		//Check that the thesaurus explicitly defines the SKOS object properties
+		//(for convenience, we test only the "skos:broader") 
+		boolean hasObject = o.containsObjectPropertyInSignature(SKOS.BROADER.toIRI());
+		//Retrieving the "concept" class
+		OWLClass concept = getClass(o,SKOS.CONCEPT.toIRI());
+		if(concept == null)
+			return;
+		//Then retrieve its instances, as well as those of its subclasses
+		Set<OWLIndividual> indivs = concept.getIndividuals(o);
+		for(OWLClassExpression c : concept.getSubClasses(o))
+			if(c instanceof OWLClass)
+				indivs.addAll(c.asOWLClass().getIndividuals(o));
+		//And process them as if they were OWL classes
+		for(OWLIndividual i : indivs)
+		{
+			if(!i.isNamed())
+				continue;
+			OWLNamedIndividual ind = i.asOWLNamedIndividual();
+			int child = uris.getIndex(ind.getIRI().toString());
+			if(child == -1)
+				continue;
+			//If the thesaurus has the SKOS Object Properties properly defined
+			if(hasObject)
+			{
+				//We can retrieve the Object Properties of each concept
+				Map<OWLObjectPropertyExpression, Set<OWLIndividual>> iProps = i.getObjectPropertyValues(o);
+				for(OWLObjectPropertyExpression prop : iProps.keySet())
+				{
+					if(prop.isAnonymous())
+						continue;
+					//Get each property's IRI
+					IRI rel = prop.asOWLObjectProperty().getIRI();
+					//Check that the Object Property is one of the SKOS relations
+					if(!rel.equals(SKOS.BROADER.toIRI()) && !rel.equals(SKOS.BROADER_TRANS.toIRI()) &&
+							!rel.equals(SKOS.NARROWER.toIRI()) && !rel.equals(SKOS.BROADER_TRANS.toIRI()) &&
+							!rel.equals(SKOS.RELATED.toIRI()))
+						continue;
+					//And if so, get the related concepts
+					for(OWLIndividual p : iProps.get(prop))
+					{
+						if(!p.isNamed())
+							continue;
+						int parent = uris.getIndex(p.asOWLNamedIndividual().getIRI().toString());
+						if(parent == -1)
+							continue;
+						//And add the relation according to the Object Property
+						if(rel.equals(SKOS.BROADER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
+							rm.addClassRelationship(child, parent, broader, false);
+						if(rel.equals(SKOS.NARROWER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
+							rm.addClassRelationship(parent, child, broader, false);
+						if(rel.equals(SKOS.RELATED.toIRI()))
+							rm.addEquivalence(child, parent, related, false);
+					}
+				}
+			}
+			//Otherwise, they will likely register as Annotation Properties
+			else
+			{
+				//So we have to get them from the annotations
+				for(OWLAnnotation p : ind.getAnnotations(o))
+				{
+					IRI rel = p.getProperty().getIRI();
+					if(!rel.equals(SKOS.BROADER.toIRI()) && !rel.equals(SKOS.BROADER_TRANS.toIRI()) &&
+							!rel.equals(SKOS.NARROWER.toIRI()) && !rel.equals(SKOS.BROADER_TRANS.toIRI()) &&
+							!rel.equals(SKOS.RELATED.toIRI()))
+						continue;
+					OWLAnnotationValue v = p.getValue();
+					if(!(v instanceof IRI))
+						continue;
+					int parent = uris.getIndex(v.toString());
+					if(parent == -1)
+						continue;
+					//And add the relation according to the Object Property
+					if(rel.equals(SKOS.BROADER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
+						rm.addClassRelationship(child, parent, broader, false);
+					if(rel.equals(SKOS.NARROWER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
+						rm.addClassRelationship(parent, child, broader, false);
+					if(rel.equals(SKOS.RELATED.toIRI()))
+						rm.addEquivalence(child, parent, related, false);					
+				}
+			}
+		}
+	}
+	
+	//OWL Ontologies
+
+	//Processes the classes and their lexical information
+	private void getOWLClasses(OWLOntology o)
 	{
 		//The Lexical type and weight
 		LexicalType type;
@@ -459,7 +681,7 @@ public class Ontology2Match extends Ontology
 	}
 	
 	//Reads the properties
-	private void getProperties(OWLOntology o)
+	private void getOWLProperties(OWLOntology o)
 	{
 		LexicalType type;
 		double weight;
@@ -539,6 +761,8 @@ public class Ontology2Match extends Ontology
 			//It is transitive, add it to the RelationshipMap
 			if(op.isTransitive(o))
 				rm.addTransitive(id);
+			if(op.isSymmetric(o))
+				rm.addSymmetric(id);
 			
 			//Get the local name from the URI
 			String name = getLocalName(propUri);
@@ -638,11 +862,11 @@ public class Ontology2Match extends Ontology
 	
 	//Processes the named individuals and their data property values
 	//@author Catia Pesquita
-	private void getNamedIndividuals(OWLOntology o)
+	private void getOWLNamedIndividuals(OWLOntology o)
 	{
 		//The label property
 		OWLAnnotationProperty label = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
-		//Get an iterator over the ontology classes
+		//Get an iterator over the ontology individuals
 		Set<OWLNamedIndividual> indivs = o.getIndividualsInSignature();
 		//Then get the URI for each class
 		for(OWLNamedIndividual i : indivs)
@@ -690,7 +914,7 @@ public class Ontology2Match extends Ontology
 	}
 	
 	//Reads all class relationships
-	private void getRelationships(OWLOntology o)
+	private void getOWLRelationships(OWLOntology o)
 	{
 		OWLReasoner reasoner = null;		
 		if(useReasoner)
@@ -1063,6 +1287,23 @@ public class Ontology2Match extends Ontology
 					rm.addInverseProp(propId,iId);	
 			}
     	}
+	}
+	
+	//Auxiliary Methods
+	
+	//Gets a named class from the given OWLOntology 
+	private OWLClass getClass(OWLOntology o, IRI classIRI)
+	{
+		OWLClass cl = null;
+		for(OWLClass c : o.getClassesInSignature())
+		{
+			if(c.getIRI().equals(classIRI))
+			{
+				cl = c;
+				break;
+			}
+		}
+		return cl;
 	}
 	
 	//Get the local name of an entity from its URI
