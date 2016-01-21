@@ -20,6 +20,7 @@
 ******************************************************************************/
 package aml.ontology;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -58,6 +59,7 @@ public class RelationshipMap
 	private Table2Set<Integer,Integer> inverseProp; //Property -> InverseProperty
 	//Transitivity relations (transitive properties will be mapped to themselves)
 	private Table2Set<Integer,Integer> transitiveOver; //Property1 -> Property2 over which 1 is transitive
+	private HashSet<Integer> symmetric;
 	
 	//List of high level classes
 	private HashSet<Integer> highLevelClasses;
@@ -80,6 +82,8 @@ public class RelationshipMap
 		superProp = new Table2Set<Integer,Integer>();
 		inverseProp = new Table2Set<Integer,Integer>();
 		transitiveOver = new Table2Set<Integer,Integer>();
+		symmetric = new HashSet<Integer>();
+		symmetric.add(-1);
 	}
 	
 //Public Methods
@@ -149,6 +153,8 @@ public class RelationshipMap
 	public void addEquivalence(int class1, int class2, int prop, boolean rest)
 	{
 		addClassRelationship(class1,class2,0,prop,rest);
+		if(symmetric.contains(prop))
+			addClassRelationship(class2,class1,0,prop,rest);
 	}
 	
 	/**
@@ -158,9 +164,7 @@ public class RelationshipMap
 	 */
 	public void addEquivalentClass(int class1, int class2)
 	{
-		//Add the relationship in both directions
-		addClassRelationship(class1,class2,0,-1,false);
-		addClassRelationship(class2,class1,0,-1,false);
+		addEquivalence(class1,class2,-1,false);
 	}
 	
 	/**
@@ -210,6 +214,14 @@ public class RelationshipMap
 		//Then update the MultiMaps
 		subProp.add(parent,child);
 		superProp.add(child,parent);
+	}
+	
+	/**
+	 * @param prop: the property to set as symmetric
+	 */
+	public void addSymmetric(int prop)
+	{
+		symmetric.add(prop);
 	}
 	
 	/**
@@ -902,6 +914,15 @@ public class RelationshipMap
 			if(r.getProperty() == -1)
 				return true;
 		return false;
+	}
+	
+	/**
+	 * @param prop: the index of the property to check
+	 * @return whether the property is symmetric
+	 */
+	public boolean isSymmetric(int prop)
+	{
+		return symmetric.contains(prop);
 	}
 	
 	/**
