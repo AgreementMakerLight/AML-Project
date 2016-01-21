@@ -503,7 +503,12 @@ public class Lexicon
 						results.put(n,p);
 						break;
 					}
-				}				
+				}
+			}
+			if(results.size() == 0)
+			{
+				for(String n : nameClasses.keySet(entityId))
+					results.put(n,nameClasses.get(entityId, n).iterator().next());
 			}
 		}
 		else if(nameProperties.contains(entityId))
@@ -519,6 +524,16 @@ public class Lexicon
 					}
 				}
 			}
+			if(results.size() == 0)
+			{
+				for(String n : nameProperties.keySet(entityId))
+					results.put(n,nameProperties.get(entityId, n).iterator().next());
+			}
+
+		}
+		else
+		{
+			return "";
 		}
 		results = MapSorter.sortDescending(results);
 		return results.keySet().iterator().next();
