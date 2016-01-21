@@ -361,6 +361,9 @@ public class ViewMapping extends JDialog implements ActionListener
 			addSourceDescendants(sourceId);
 			addTargetDescendants(targetId);
 		}
+		//Add equivalent classes
+		addSourceEquiv(sourceId);
+		addTargetEquiv(targetId);
 		//Add all additional mappings of the initial nodes
 		addOtherMappings(sourceId,targetId);
 		//Now find if there are any mappings between the node sets and add them
@@ -1009,6 +1012,18 @@ public class ViewMapping extends JDialog implements ActionListener
 			sourceNodes.addAll(descendants);
 		}
 	}
+	
+	private void addSourceEquiv(int id)
+	{
+		Set<Integer> eq = rm.getEquivalences(id);
+		for(int i : eq)
+		{
+			if(directedGraph.getNode("NS" + i) == null)
+				addSourceNode(i, 6);
+			addSourceEdge(i, id);
+		}
+		sourceNodes.addAll(eq);
+	}
 
 	private void addSourceEdge(int child, int parent)
 	{
@@ -1020,6 +1035,12 @@ public class ViewMapping extends JDialog implements ActionListener
 		if(prop > -1)
 			e.getEdgeData().setLabel(source.getName(prop));
 		directedGraph.addEdge(e);
+		if(rm.getDistance(child, parent) == 0 && rm.isSymmetric(prop))
+		{
+			Edge f = model.factory().newEdge(p, c, 3, true);
+			f.getEdgeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
+			directedGraph.addEdge(f);
+		}
 	}
 	
 	private void addSourceNode(int id, int size)
@@ -1080,6 +1101,18 @@ public class ViewMapping extends JDialog implements ActionListener
 		}
 	}
 	
+	private void addTargetEquiv(int id)
+	{
+		Set<Integer> eq = rm.getEquivalences(id);
+		for(int i : eq)
+		{
+			if(directedGraph.getNode("NS" + i) == null)
+				addSourceNode(i, 6);
+			addSourceEdge(i, id);
+		}
+		sourceNodes.addAll(eq);
+	}
+	
 	private void addTargetEdge(int child, int parent)
 	{
 		Node c = directedGraph.getNode("NT" + child);
@@ -1090,6 +1123,12 @@ public class ViewMapping extends JDialog implements ActionListener
 		if(prop > -1)
 			e.getEdgeData().setLabel(target.getName(prop));
 		directedGraph.addEdge(e);
+		if(rm.getDistance(child, parent) == 0 && rm.isSymmetric(prop))
+		{
+			Edge f = model.factory().newEdge(p, c, 3, true);
+			f.getEdgeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
+			directedGraph.addEdge(f);
+		}
 	}
 	
 	private void addTargetNode(int id, int size)
