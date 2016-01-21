@@ -65,7 +65,8 @@ public class StringParser
 	{
 		return name.matches("[0-9]*") || name.matches("[0-9]+[_:\\.\\-][0-9]+")
 				|| name.matches("[a-zA-Z]+[_:]?[a-zA-Z]?[0-9\\.]+")
-				|| name.matches("[a-z]{1,3}-[0-9]{3,}-[0-9]{3,}");
+				|| name.matches("[a-z]{1,3}-[0-9]{3,}-[0-9]{3,}")
+				|| name.matches("[a-zA-Z]{1}");
 	}
 
 	/**
