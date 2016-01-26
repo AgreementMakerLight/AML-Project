@@ -82,7 +82,6 @@ public class RelationshipMap
 		inverseProp = new Table2Set<Integer,Integer>();
 		transitiveOver = new Table2Set<Integer,Integer>();
 		symmetric = new HashSet<Integer>();
-		symmetric.add(-1);
 	}
 	
 //Public Methods
