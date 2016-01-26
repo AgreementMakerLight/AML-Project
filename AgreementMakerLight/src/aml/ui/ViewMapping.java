@@ -1035,7 +1035,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		if(prop > -1)
 			e.getEdgeData().setLabel(source.getName(prop));
 		directedGraph.addEdge(e);
-		if(rm.isSymmetric(prop))
+		if(rm.isSymmetric(prop) || (prop == -1 && rm.getDistance(child, parent) == 0))
 		{
 			Edge f = model.factory().newEdge(p, c, 3, true);
 			f.getEdgeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
@@ -1123,7 +1123,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		if(prop > -1)
 			e.getEdgeData().setLabel(target.getName(prop));
 		directedGraph.addEdge(e);
-		if(rm.isSymmetric(prop))
+		if(rm.isSymmetric(prop) || (prop == -1 && rm.getDistance(child, parent) == 0))
 		{
 			Edge f = model.factory().newEdge(p, c, 3, true);
 			f.getEdgeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
