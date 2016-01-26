@@ -45,8 +45,7 @@ public class CustomFilterer
 		}
 		if(steps.contains(Problem.CARDINALITY))
 		{
-			aml.setSelectionType(SelectionType.STRICT);
-			Selector s = new Selector(0.0);
+			Selector s = new Selector(0.0, SelectionType.STRICT);
 			s.filter();
 		}
 		if(steps.contains(Problem.COHERENCE))
