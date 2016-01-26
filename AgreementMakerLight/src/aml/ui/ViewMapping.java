@@ -1106,11 +1106,11 @@ public class ViewMapping extends JDialog implements ActionListener
 		Set<Integer> eq = rm.getEquivalences(id);
 		for(int i : eq)
 		{
-			if(directedGraph.getNode("NS" + i) == null)
-				addSourceNode(i, 6);
-			addSourceEdge(i, id);
+			if(directedGraph.getNode("NT" + i) == null)
+				addTargetNode(i, 6);
+			addTargetEdge(i, id);
 		}
-		sourceNodes.addAll(eq);
+		targetNodes.addAll(eq);
 	}
 	
 	private void addTargetEdge(int child, int parent)
