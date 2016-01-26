@@ -63,6 +63,7 @@ import aml.settings.SKOS;
 import aml.settings.EntityType;
 import aml.util.StringParser;
 import aml.util.Table2Map;
+import aml.util.Table2Set;
 
 public class Ontology2Match extends Ontology
 {
@@ -492,20 +493,17 @@ public class Ontology2Match extends Ontology
 	private void getSKOSRelationships(OWLOntology o)
 	{
 		//For simplicity, we convert "broader", "broader_transitive", "narrower"
-		//and "narrower_transitive" to "broader" and assume transitivity
+		//and "narrower_transitive" to subclass relationships
 		//We treat "related" as a form of equivalence with the "related" property
 		
-		//Start by adding the "broader" and "related" property
-		int broader = uris.addURI(SKOS.BROADER.toIRI().toString(),EntityType.OBJECT);
-		lex.addProperty(broader, SKOS.BROADER.toString(), "en", LexicalType.LOCAL_NAME,
-				"",	LexicalType.LOCAL_NAME.getDefaultWeight());
-		objectProperties.put(broader, new ObjectProperty());
-		rm.addTransitive(broader);
+		//Start by adding the "related" property
 		int related = uris.addURI(SKOS.RELATED.toIRI().toString(),EntityType.OBJECT);
 		lex.addProperty(related, SKOS.RELATED.toString(), "en", LexicalType.LOCAL_NAME,
 				"", LexicalType.LOCAL_NAME.getDefaultWeight());
 		objectProperties.put(related, new ObjectProperty());
 		rm.addSymmetric(related);
+		//Create a temporary map of disjoints from "related" concepts
+		Table2Set<Integer,Integer> disj = new Table2Set<Integer,Integer>();
 		//Check that the thesaurus explicitly defines the SKOS object properties
 		//(for convenience, we test only the "skos:broader") 
 		boolean hasObject = o.containsObjectPropertyInSignature(SKOS.BROADER.toIRI());
@@ -553,11 +551,14 @@ public class Ontology2Match extends Ontology
 							continue;
 						//And add the relation according to the Object Property
 						if(rel.equals(SKOS.BROADER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
-							rm.addClassRelationship(child, parent, broader, false);
-						if(rel.equals(SKOS.NARROWER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
-							rm.addClassRelationship(parent, child, broader, false);
-						if(rel.equals(SKOS.RELATED.toIRI()))
+							rm.addClassRelationship(child, parent, -1, false);
+						else if(rel.equals(SKOS.NARROWER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
+							rm.addClassRelationship(parent, child, -1, false);
+						else if(rel.equals(SKOS.RELATED.toIRI()))
+						{
 							rm.addEquivalence(child, parent, related, false);
+							disj.add(child, parent);
+						}
 					}
 				}
 			}
@@ -580,12 +581,26 @@ public class Ontology2Match extends Ontology
 						continue;
 					//And add the relation according to the Object Property
 					if(rel.equals(SKOS.BROADER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
-						rm.addClassRelationship(child, parent, broader, false);
-					if(rel.equals(SKOS.NARROWER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
-						rm.addClassRelationship(parent, child, broader, false);
-					if(rel.equals(SKOS.RELATED.toIRI()))
-						rm.addEquivalence(child, parent, related, false);					
+						rm.addClassRelationship(child, parent, -1, false);
+					else if(rel.equals(SKOS.NARROWER.toIRI()) || rel.equals(SKOS.BROADER_TRANS.toIRI()))
+						rm.addClassRelationship(parent, child, -1, false);
+					else if(rel.equals(SKOS.RELATED.toIRI()))
+					{
+						rm.addEquivalence(child, parent, related, false);
+						disj.add(child, parent);
+					}
 				}
+			}
+		}
+		for(Integer i : disj.keySet())
+		{
+			Set<Integer> top1 = getTopParents(i);
+			for(Integer j : disj.get(i))
+			{
+				Set<Integer> top2 = getTopParents(j);
+				for(Integer k : top1)
+					for(Integer l : top2)
+						rm.addDisjoint(k, l);
 			}
 		}
 	}
@@ -1532,5 +1547,27 @@ public class Ontology2Match extends Ontology
 			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
 			minCard.add(property, child, cardinality);					
 		}
+	}
+	
+	//Gets the top level parents of a class (recursively)
+	private Set<Integer> getTopParents(int classId)
+	{
+		return getTopParents(rm.getSuperClasses(classId, true));
+	}
+	
+	//Gets the top level parents of a class (recursively)
+	private Set<Integer> getTopParents(Set<Integer> classes)
+	{
+		Set<Integer> parents = new HashSet<Integer>();
+		for(int i : classes)
+		{
+			boolean check = parents.addAll(rm.getSuperClasses(i, true));
+			if(!check)
+				parents.add(i);
+		}
+		if(parents.equals(classes))
+			return classes;
+		else
+			return getTopParents(parents);
 	}
 }
