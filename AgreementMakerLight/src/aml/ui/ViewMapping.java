@@ -911,7 +911,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		else if(s.equals(MappingStatus.FLAGGED))
 			edgeColor = Color.ORANGE.getRGBColorComponents(edgeColor);
 		else
-			edgeColor = Color.LIGHT_GRAY.getRGBColorComponents(edgeColor);
+			edgeColor = Color.GRAY.getRGBColorComponents(edgeColor);
 		if(!r.equals(MappingRelation.SUPERCLASS))
 		{
 			Edge e1 = model.factory().newEdge(n1, n2, 3, true);
