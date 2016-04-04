@@ -283,6 +283,14 @@ public class Ontology2Match extends Ontology
 		return classNames.keySet();
 	}
 	
+	@Override
+	public String getName(int index)
+	{
+		if(individuals.containsKey(index))
+			return individuals.get(index).getName();
+		return super.getName(index);
+	}
+	
 	/**
 	 * @return the indexes of the Object Properties in the Ontology
 	 */
@@ -893,7 +901,7 @@ public class Ontology2Match extends Ontology
 				continue;
 			//Add it to the global list of URIs
 			int id = uris.addURI(indivUri, EntityType.INDIVIDUAL);
-			//Get the local name from the URI
+			//Get the label
 			String name = "";
 			for(OWLAnnotation a : i.getAnnotations(o,label))
 			{
@@ -904,6 +912,7 @@ public class Ontology2Match extends Ontology
 					break;
 				}
 			}
+			//If there is no label, use the local name
 			if(name.equals(""))
 				name = getLocalName(indivUri);
 
