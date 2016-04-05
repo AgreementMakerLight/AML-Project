@@ -25,6 +25,7 @@ import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
@@ -77,6 +78,7 @@ import aml.ontology.URIMap;
 import aml.settings.LexicalType;
 import aml.settings.MappingRelation;
 import aml.settings.MappingStatus;
+import aml.util.Table2Set;
 import processing.core.PApplet;
 import aml.settings.EntityType;
  
@@ -98,6 +100,7 @@ public class ViewMapping extends JDialog implements ActionListener
   	private Alignment a;
 	private int mapping, sourceId, targetId;
 	private Mapping m;
+	private EntityType t;
 
 	//Dimensions
 	private int width;
@@ -109,7 +112,7 @@ public class ViewMapping extends JDialog implements ActionListener
 	private JMenuItem next, previous, options, redraw;
 	private JTabbedPane tabbedPane;
 	private PApplet mappingViewer;
-	private JPanel details, conflicts;
+	private JPanel details, conflicts, sourcePanel, targetPanel;
 	private Vector<JCheckBox> check;
 	private Vector<Mapping> mappings;
 	private Vector<MappingButton> mappingButtons;
@@ -119,8 +122,9 @@ public class ViewMapping extends JDialog implements ActionListener
 	//Graph components
 	private GraphModel model;
   	private DirectedGraph directedGraph;
-  	private HashSet<Integer> sourceNodes, targetNodes;
-  	private int maxDistance;
+  	private HashSet<Integer> nodes;
+  	private Table2Set<Integer,Integer> edges;
+  	private int classDistance, individualDistance;
   	private float[] sourceColor, targetColor;
 
 //Constructors
@@ -128,14 +132,18 @@ public class ViewMapping extends JDialog implements ActionListener
     public ViewMapping()
     {
         super();
-        //Set the size
+        //Set the size & colors
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		Dimension screenSize = env.getMaximumWindowBounds().getSize();
 		width = screenSize.width;
 		height = screenSize.height;
      	this.setMinimumSize(new Dimension((int)(width*0.9),(int)(height*0.9)));
      	this.setPreferredSize(new Dimension((int)(width*0.9),(int)(height*0.9)));
-     
+		sourceColor = new float[3];
+		AMLColor.BLUE.getRGBColorComponents(sourceColor);
+		targetColor = new float[3];
+		AMLColor.BROWN.getRGBColorComponents(targetColor);
+		
      	//Get the ontologies and alignment
      	aml = AML.getInstance();
 		source = aml.getSource();
@@ -199,12 +207,14 @@ public class ViewMapping extends JDialog implements ActionListener
 			String lang = aml.getLabelLanguage();
 			boolean anc = aml.showAncestors();
 			boolean des = aml.showDescendants();
-			int dist = aml.getMaxDistance();
+			int cls = aml.getClassDistance();
+			int ind = aml.getIndividualDistance();
 			new ViewOptions();
 			if(!lang.equals(aml.getLabelLanguage()) ||
 					anc != aml.showAncestors() ||
 					des != aml.showDescendants() ||
-					dist != aml.getMaxDistance())
+					cls != aml.getClassDistance() ||
+					ind != aml.getIndividualDistance())
 				this.refresh();
 		}
 		else if(b == reset)
@@ -280,7 +290,8 @@ public class ViewMapping extends JDialog implements ActionListener
         m = a.get(mapping);
         sourceId = m.getSourceId();
         targetId = m.getTargetId();
-
+        t = uris.getType(sourceId);
+        
         //Set the title and modality
         this.setTitle(m.toGUI());
 		this.setModalityType(ModalityType.APPLICATION_MODAL);
@@ -328,11 +339,6 @@ public class ViewMapping extends JDialog implements ActionListener
     //Builds the Mapping graph using the Gephi Toolkit
 	private void buildGraph()
 	{
-		sourceColor = new float[3];
-		AMLColor.BLUE.getRGBColorComponents(sourceColor);
-		targetColor = new float[3];
-		AMLColor.BROWN.getRGBColorComponents(targetColor);
-
 		//Initialize a project and therefore a workspace
 		ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
 		pc.newProject();
@@ -340,104 +346,47 @@ public class ViewMapping extends JDialog implements ActionListener
 		GraphController graphController = Lookup.getDefault().lookup(GraphController.class);
 		model = graphController.getModel();
 		directedGraph = model.getDirectedGraph();
+		//Initialize the node sets (which don't include the starting nodes)
+		nodes = new HashSet<Integer>();
+		edges = new Table2Set<Integer,Integer>();
+		//Get the maximum distance
+		classDistance = aml.getClassDistance();
+		individualDistance = aml.getIndividualDistance();
+		
 		//Add the starting source and target nodes to the graph
-		addSourceNode(sourceId,8);
-		addTargetNode(targetId,8);
+		addNode(sourceId,8);
+		addNode(targetId,8);
 		//And the mapping between them
 		addMapping(sourceId,targetId);
-		//Get the maximum distance
-		maxDistance = aml.getMaxDistance();
-		//Initialize the node sets (which don't include the starting nodes)
-		sourceNodes = new HashSet<Integer>();
-		targetNodes = new HashSet<Integer>();
 		//Add all ancestors and descendants as per the view parameters
 		if(aml.showAncestors())
 		{
-			addSourceAncestors(sourceId);
-			addTargetAncestors(targetId);
+			addAncestors(sourceId);
+			addAncestors(targetId);
 		}
 		if(aml.showDescendants())
 		{
-			addSourceDescendants(sourceId);
-			addTargetDescendants(targetId);
+			addDescendants(sourceId);
+			addDescendants(targetId);
 		}
-		//Add equivalent classes
-		addSourceEquiv(sourceId);
-		addTargetEquiv(targetId);
+		if(t.equals(EntityType.INDIVIDUAL))
+			addInstancedClasses();
+		else if(t.equals(EntityType.CLASS))
+		{
+			addEquiv(sourceId);
+			addEquiv(targetId);
+		}
 		//Add all additional mappings of the initial nodes
 		addOtherMappings(sourceId,targetId);
 		//Now find if there are any mappings between the node sets and add them
 		addAllMappings();
-		
-		//Finally, try to render the graph
-		for(int i = 0; i < MAX_RETRIES; i++)
-		{
-			try
-			{
-				//Run YifanHuLayout for 100 passes - The layout always takes the current visible view
-				YifanHuLayout layout = new YifanHuLayout(null, new StepDisplacement(1f));
-				layout.setGraphModel(model);
-				layout.resetPropertiesValues();
-				layout.setOptimalDistance(300f);
-				layout.setBarnesHutTheta(0.2f);
-				layout.initAlgo();
-				for (int j = 0; j < 100 && layout.canAlgo(); j++)
-					layout.goAlgo();
-			
-				//Run LabelAdjust to stop labels from overlapping
-				LabelAdjust labela = new LabelAdjust(null);
-				labela.resetPropertiesValues();
-				labela.initAlgo();
-				for (int j = 0; j < 30 && labela.canAlgo(); j++)
-					labela.goAlgo();
-				
-				//Initialize and configure preview
-				PreviewController previewController = Lookup.getDefault().lookup(PreviewController.class);
-				PreviewModel previewModel = previewController.getModel();
-				//Configure node labels
-				previewModel.getProperties().putValue(PreviewProperty.SHOW_NODE_LABELS, true);
-				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_OUTLINE_COLOR, new DependantColor(AMLColor.WHITE));
-				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_OUTLINE_SIZE, 5f);
-				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_COLOR, new DependantOriginalColor(AMLColor.BLACK));
-				//Configure edges
-				previewModel.getProperties().putValue(PreviewProperty.EDGE_CURVED, false);
-				previewModel.getProperties().putValue(PreviewProperty.EDGE_OPACITY, 100);
-				previewModel.getProperties().putValue(PreviewProperty.EDGE_RADIUS, 5f);
-				previewModel.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(EdgeColor.Mode.ORIGINAL));
-				//Configure edge labels
-				previewModel.getProperties().putValue(PreviewProperty.SHOW_EDGE_LABELS, true);
-				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_COLOR, new DependantOriginalColor(AMLColor.DARK_GRAY));
-				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_OUTLINE_COLOR, new DependantColor(AMLColor.WHITE));
-				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_OUTLINE_SIZE, 2f);
-				//Configure background color
-				previewModel.getProperties().putValue(PreviewProperty.BACKGROUND_COLOR, AMLColor.WHITE);
-				previewController.refreshPreview();
-				//Initialize the processing target and the PApplet
-				ProcessingTarget target = (ProcessingTarget) previewController.getRenderTarget(RenderTarget.PROCESSING_TARGET);
-				mappingViewer = target.getApplet();
-				mappingViewer.init();
-				//Refresh the preview and reset the zoom
-				previewController.render(target);
-				target.refresh();
-				target.resetZoom();
-				//If successful, return
-				return;
-			}
-			catch(Exception e)
-			{
-				//Otherwise keep trying
-				continue;
-			}
-		}
-		//If not successful after the retry limit, set mappingViewer to null
-		mappingViewer = null;
+		//Finally, render the graph
+		renderGraph();
 	}
 	
 	//Builds the details panel
 	private void buildDetailPanel()
 	{
-		EntityType t = uris.getType(sourceId);
-	
 		//Setup the panels
 		details = new JPanel();
 		details.setLayout(new BoxLayout(details, BoxLayout.Y_AXIS));
@@ -446,314 +395,28 @@ public class ViewMapping extends JDialog implements ActionListener
 		topFiller.setMaximumSize(new Dimension(topFiller.getMaximumSize().width,10));
 		details.add(topFiller);
 		
-		JPanel sourcePanel = new JPanel();
-		sourcePanel.setLayout(new BoxLayout(sourcePanel, BoxLayout.Y_AXIS));
-		JPanel targetPanel = new JPanel();
-		targetPanel.setLayout(new BoxLayout(targetPanel, BoxLayout.Y_AXIS));
 		if(t.equals(EntityType.CLASS))
 		{
-	        //For the Source Ontology
-			Lexicon srcLex = source.getLexicon();
+			sourcePanel = buildClassDetailPanel(sourceId);
 			sourcePanel.setBorder(new TitledBorder("Source Class:"));
-			//Get the local name
-	        JLabel localNameS = new JLabel("<html>Local Name: <i>" +
-	        		uris.getLocalName(sourceId) + "</i></html>");
-	        sourcePanel.add(localNameS);
-	        //Labels
-	        String lab = "<html>Label(s): ";
-	        Set<String> names = srcLex.getNames(sourceId,LexicalType.LABEL);
-			for(String s : names)
-				lab += "<i>" + s + "</i>; ";
-			if(names.size() == 0)
-				lab += "N/A</html>";
-			else
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-	        JLabel labelS = new JLabel(lab);
-	        sourcePanel.add(labelS);
-	        //Synonyms
-	        names = srcLex.getNames(sourceId,LexicalType.EXACT_SYNONYM);
-			if(names.size() > 0)
-			{
-		        lab = "<html>Exact Synonyms(s): ";
-				for(String s : names)
-					lab += "<i>" + s + "</i>; ";
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-		        JLabel exactS = new JLabel(lab);
-		        sourcePanel.add(exactS);
-			}
-	        names = srcLex.getNames(sourceId,LexicalType.OTHER_SYNONYM);
-			if(names.size() > 0)
-			{
-		        lab = "<html>Other Synonyms(s): ";
-				for(String s : names)
-					lab += "<i>" + s + "</i>; ";
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-		        JLabel otherS = new JLabel(lab);
-		        sourcePanel.add(otherS);
-			}
-	        //Formulas
-	        names = srcLex.getNames(sourceId,LexicalType.FORMULA);
-			if(names.size() > 0)
-			{
-		        lab = "<html>Formula(s): ";
-				for(String s : names)
-					lab += "<i>" + s + "</i>; ";
-					lab = lab.substring(0, lab.length()-2) + "</html>";
-		        JLabel formS = new JLabel(lab);
-		        sourcePanel.add(formS);
-			}
-			//Direct Superclasses
-			Set<Integer> directSetSource = rm.getSuperClasses(sourceId,true);
-			lab = "<html>Direct Superclass(es): ";
-			for(Integer i : directSetSource)
-				lab += "<i>" + source.getName(i) + "</i>; ";
-			if(directSetSource.size() == 0)
-				lab += "N/A</html>";
-			else
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-			JLabel directS = new JLabel(lab);
-			sourcePanel.add(directS);
-			//High Level Ancestors
-			Set<Integer> highSetSource = rm.getHighLevelAncestors(sourceId);
-			lab = "<html>High-Level Ancestors: ";
-			for(Integer i : highSetSource)
-				lab += "<i>" + source.getName(i) + "</i>; ";
-			if(highSetSource.size() == 0)
-				lab += "N/A</html>";
-			else
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-			JLabel highS = new JLabel(lab);
-			sourcePanel.add(highS);
-			//And Disjoints
-			Set<Integer> disjointSetSource = rm.getDisjointTransitive(sourceId);
-			lab = "<html>Disjoint Classes: ";
-			for(Integer i : disjointSetSource)
-				lab += "<i>" + source.getName(i) + "</i>; ";
-			if(disjointSetSource.size() == 0)
-				lab += "N/A</html>";
-			else
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-			JLabel disjointsS = new JLabel(lab);
-			sourcePanel.add(disjointsS);
-			if(source.isObsoleteClass(sourceId))
-			{
-				JLabel obsS = new JLabel("<html><b><font color=\"red\"> Obsolete Class!</font></b></html>");
-				sourcePanel.add(obsS);
-			}
-			
-	        //Then do the same for the Target Ontology
-			Lexicon tgtLex = target.getLexicon();
+			targetPanel = buildClassDetailPanel(targetId);
 			targetPanel.setBorder(new TitledBorder("Target Class:"));
-	        JLabel localNameT = new JLabel("<html>Local Name: <i>" +
-	        		uris.getLocalName(targetId) + "</i></html>");
-	        targetPanel.add(localNameT);
-	        lab = "<html>Label(s): ";
-	        names = tgtLex.getNames(targetId,LexicalType.LABEL);
-			for(String s : names)
-				lab += "<i>" + s + "</i>; ";
-			if(names.size() == 0)
-				lab += "N/A</html>";
-			else
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-	        JLabel labelT = new JLabel(lab);
-	        targetPanel.add(labelT);
-	        names = tgtLex.getNames(targetId,LexicalType.EXACT_SYNONYM);
-			if(names.size() > 0)
-			{
-		        lab = "<html>Exact Synonyms(s): ";
-				for(String s : names)
-					lab += "<i>" + s + "</i>; ";
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-		        JLabel exactT = new JLabel(lab);
-		        targetPanel.add(exactT);
-			}
-	        names = tgtLex.getNames(targetId,LexicalType.OTHER_SYNONYM);
-			if(names.size() > 0)
-			{
-		        lab = "<html>Other Synonyms(s): ";
-				for(String s : names)
-					lab += "<i>" + s + "</i>; ";
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-		        JLabel otherT = new JLabel(lab);
-		        targetPanel.add(otherT);
-			}
-	        names = tgtLex.getNames(targetId,LexicalType.FORMULA);
-			if(names.size() > 0)
-			{
-		        lab = "<html>Formula(s): ";
-				for(String s : names)
-					lab += "<i>" + s + "</i>; ";
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-		        JLabel formT = new JLabel(lab);
-		        targetPanel.add(formT);
-			}
-			Set<Integer> directSetTarget = rm.getSuperClasses(targetId,true);
-			lab = "<html>Direct Superclass(es): ";
-			for(Integer i : directSetTarget)
-				lab += "<i>" + target.getName(i) + "</i>; ";
-			if(directSetTarget.size() == 0)
-				lab += "N/A</html>";
-			else
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-			JLabel directT = new JLabel(lab);
-			targetPanel.add(directT);
-			Set<Integer> highSetTarget = rm.getHighLevelAncestors(targetId);
-			lab = "<html>High-Level Ancestors: ";
-			for(Integer i : highSetTarget)
-				lab += "<i>" + target.getName(i) + "</i>; ";
-			if(highSetTarget.size() == 0)
-				lab += "N/A</html>";
-			else
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-			JLabel highT = new JLabel(lab);
-			targetPanel.add(highT);
-			Set<Integer> disjointSetTarget = rm.getDisjointTransitive(targetId);
-			lab = "<html>Disjoint Classes: ";
-			for(Integer i : disjointSetTarget)
-				lab += "<i>" + target.getName(i) + "</i>; ";
-			if(disjointSetTarget.size() == 0)
-				lab += "N/A</html>";
-			else
-				lab = lab.substring(0, lab.length()-2) + "</html>";
-			JLabel disjointsT = new JLabel(lab);
-			targetPanel.add(disjointsT);
-			if(target.isObsoleteClass(targetId))
-			{
-				JLabel obsT = new JLabel("<html><b><font color=\"red\"> Obsolete Class!</font></b></html>");
-				targetPanel.add(obsT);
-			}
+		}
+		else if(t.equals(EntityType.INDIVIDUAL))
+		{
+			sourcePanel = buildIndivDetailPanel(sourceId);
+			sourcePanel.setBorder(new TitledBorder("Source Individual:"));
+			targetPanel = buildIndivDetailPanel(targetId);
+			targetPanel.setBorder(new TitledBorder("Target Individual:"));
 		}
 		else
 		{
-			//Get the name, domain and range for the source Ontology
+			sourcePanel = buildPropDetailPanel(sourceId);
 			sourcePanel.setBorder(new TitledBorder("Source Property:"));
-			JLabel nameS = new JLabel("Name: " + source.getName(sourceId));
-			sourcePanel.add(nameS);
-			if(t.equals(EntityType.OBJECT))
-			{
-				ObjectProperty pSource = source.getObjectProperty(sourceId);
-				Set<Integer> domain = pSource.getDomain();
-				String lab = "<html>Domain: ";
-				for(Integer i : domain)
-					lab += "<i>" + source.getName(i) + "</i>; ";
-				if(domain.size() > 0)
-					lab = lab.substring(0, lab.length()-2) + "</html>";
-				else
-					lab += "N/A</html>";
-				JLabel domainS = new JLabel(lab);
-				sourcePanel.add(domainS);
-				
-				Set<Integer> range = pSource.getRange();
-				lab = "<html>Range: ";
-				for(Integer i : range)
-					lab += "<i>" + source.getName(i) + "</i>; ";
-				if(range.size() > 0)
-					lab = lab.substring(0, lab.length()-2) + "</html>";
-				else
-					lab += "N/A</html>";
-				JLabel rangeS = new JLabel(lab);
-				sourcePanel.add(rangeS);
-				if(pSource.isFunctional())
-				{
-					JLabel funS = new JLabel("Functional Property");
-					sourcePanel.add(funS);
-				}
-			}
-			else if(t.equals(EntityType.DATA))
-			{
-				DataProperty pSource = source.getDataProperty(sourceId);
-				Set<Integer> domain = pSource.getDomain();
-				String lab = "<html>Domain: ";
-				for(Integer i : domain)
-					lab += "<i>" + source.getName(i) + "</i>; ";
-				if(domain.size() > 0)
-					lab = lab.substring(0, lab.length()-2) + "</html>";
-				else
-					lab += "N/A</html>";
-				JLabel domainS = new JLabel(lab);
-				sourcePanel.add(domainS);
-				
-				Set<String> range = pSource.getRange();
-				lab = "Range: ";
-				for(String s : range)
-					lab += "<i>" + s + "</i>; ";
-				if(range.size() > 0)
-					lab = lab.substring(0, lab.length()-2) + "</html>";
-				else
-					lab += "N/A</html>";
-				JLabel rangeS = new JLabel(lab);
-				sourcePanel.add(rangeS);
-				if(pSource.isFunctional())
-				{
-					JLabel funS = new JLabel("Functional Property");
-					sourcePanel.add(funS);
-				}
-			}
-			//Do the same for the target property
+			targetPanel = buildPropDetailPanel(targetId);
 			targetPanel.setBorder(new TitledBorder("Target Property:"));
-			JLabel nameT = new JLabel("Name: " + target.getName(targetId));
-			targetPanel.add(nameT);
-			if(t.equals(EntityType.OBJECT))
-			{
-				ObjectProperty pTarget = target.getObjectProperty(targetId);
-				Set<Integer> domain = pTarget.getDomain();
-				String lab = "<html>Domain: ";
-				for(Integer i : domain)
-					lab += "<i>" + target.getName(i) + "</i>; ";
-				if(domain.size() > 0)
-					lab = lab.substring(0, lab.length()-2) + "</html>";
-				else
-					lab += "N/A</html>";
-				JLabel domainT = new JLabel(lab);
-				targetPanel.add(domainT);
-				
-				Set<Integer> range = pTarget.getRange();
-				lab = "<html>Range: ";
-				for(Integer i : range)
-					lab += "<i>" + target.getName(i) + "</i>; ";
-				if(range.size() > 0)
-					lab = lab.substring(0, lab.length()-2) + "</html>";
-				else
-					lab += "N/A</html>";
-				JLabel rangeT = new JLabel(lab);
-				targetPanel.add(rangeT);
-				if(pTarget.isFunctional())
-				{
-					JLabel funS = new JLabel("Functional Property");
-					targetPanel.add(funS);
-				}
-			}
-			else if(t.equals(EntityType.DATA))
-			{
-				DataProperty pTarget = target.getDataProperty(targetId);
-				Set<Integer> domain = pTarget.getDomain();
-				String lab = "<html>Domain: ";
-				for(Integer i : domain)
-					lab += "<i>" + target.getName(i) + "</i>; ";
-				if(domain.size() > 0)
-					lab = lab.substring(0, lab.length()-2) + "</html>";
-				else
-					lab += "N/A</html>";
-				JLabel domainT = new JLabel(lab);
-				targetPanel.add(domainT);
-				
-				Set<String> range = pTarget.getRange();
-				lab = "<html>Range: ";
-				for(String s : range)
-					lab += "<i>" + s + "</i>; ";
-				if(range.size() > 0)
-					lab = lab.substring(0, lab.length()-2) + "</html>";
-				else
-					lab += "N/A</html>";
-				JLabel rangeT = new JLabel(lab);
-				targetPanel.add(rangeT);
-				if(pTarget.isFunctional())
-				{
-					JLabel funS = new JLabel("Functional Property");
-					targetPanel.add(funS);
-				}
-			}
 		}
+		
 		//Set the sizes of the subpanels and add them to the details panel
 		sourcePanel.setPreferredSize(new Dimension((int)(width*0.85),sourcePanel.getPreferredSize().height));
 		sourcePanel.setMaximumSize(new Dimension((int)(width*0.85),sourcePanel.getPreferredSize().height));
@@ -884,21 +547,239 @@ public class ViewMapping extends JDialog implements ActionListener
 	}
 
 //Auxiliary Methods for buildGraph()
-
+	
+	//Adds all mappings between listed nodes to the graph
 	private void addAllMappings()
 	{
 		if(a == null)
 			return;
-		for(int i : sourceNodes)
-			for(int j : targetNodes)
-				if(a.containsMapping(i, j))
-					addMapping(i, j);
+		for(Mapping m : a)
+			if(nodes.contains(m.getSourceId()) && nodes.contains(m.getTargetId()))
+				addMapping(m.getSourceId(), m.getTargetId());
 	}
 	
+	//Adds all ancestors of the given entity to the graph
+	private void addAncestors(int id)
+	{
+		HashSet<Integer> ancestors = new HashSet<Integer>();
+		ancestors.add(id);
+		HashSet<Integer> descendants;
+		if(t.equals(EntityType.CLASS))
+		{
+			for(int i = 0; i < classDistance; i++)
+			{
+				descendants = new HashSet<Integer>(ancestors);
+				ancestors = new HashSet<Integer>();
+				for(int j : descendants)
+				{
+					Set<Integer> parents = rm.getParents(j);
+					for(int k : parents)
+					{
+						if(directedGraph.getNode("" + k) == null)
+							addNode(k, 6);
+						if(!edges.contains(j,k) && !edges.contains(k,j))
+							addEdge(j, k, rm.getRelationship(j, k).getProperty());
+					}
+					ancestors.addAll(parents);
+				}
+				nodes.addAll(ancestors);
+			}
+		}
+		else if(t.equals(EntityType.INDIVIDUAL))
+		{
+			for(int i = 0; i < individualDistance; i++)
+			{
+				descendants = new HashSet<Integer>(ancestors);
+				ancestors = new HashSet<Integer>();
+				for(int j : descendants)
+				{
+					for(int p : rm.getIndividualProperties(j))
+					{
+						Set<Integer> parents = rm.getParentIndividuals(j, p);
+						for(int k : parents)
+						{
+							if(directedGraph.getNode("" + k) == null)
+								addNode(k, 6);
+							if(!edges.contains(j,k) && !edges.contains(k,j))
+								addEdge(j, k, p);
+						}
+						ancestors.addAll(parents);
+					}
+				}
+				nodes.addAll(ancestors);
+			}
+		}
+	}
+	
+	//Adds all descendants of the given entity to the graph
+	private void addDescendants(int id)
+	{
+		HashSet<Integer> descendants = new HashSet<Integer>();
+		descendants.add(id);
+		HashSet<Integer> ancestors;
+		if(t.equals(EntityType.CLASS))
+		{
+			for(int i = 0; i < classDistance; i++)
+			{
+				ancestors = new HashSet<Integer>(descendants);
+				descendants = new HashSet<Integer>();
+				for(int j : ancestors)
+				{
+					Set<Integer> children = rm.getChildren(j);
+					for(int k : children)
+					{
+						if(directedGraph.getNode("" + k) == null)
+							addNode(k, 6);
+						if(!edges.contains(j,k) && !edges.contains(k,j))
+							addEdge(k, j, rm.getRelationship(k, j).getProperty());
+					}
+					descendants.addAll(children);
+				}
+				nodes.addAll(descendants);
+			}
+		}
+		else if(t.equals(EntityType.INDIVIDUAL))
+		{
+			for(int i = 0; i < individualDistance; i++)
+			{
+				ancestors = new HashSet<Integer>(descendants);
+				descendants = new HashSet<Integer>();
+				for(int j : ancestors)
+				{
+					for(int p : rm.getIndividualRangeProperties(j))
+					{
+						Set<Integer> children = rm.getChildrenIndividuals(j, p);
+						for(int k : children)
+						{
+							if(directedGraph.getNode("" + k) == null)
+								addNode(k, 6);
+							if(!edges.contains(j,k) && !edges.contains(k,j))
+								addEdge(k, j, p);
+						}
+						descendants.addAll(children);
+					}
+				}
+				nodes.addAll(descendants);
+			}
+		}
+	}
+	
+	//Adds an anonymous edge between two entities to the graph (for subclass relations)
+	private void addEdge(int child, int parent)
+	{
+		edges.add(child, parent);
+		Node c = directedGraph.getNode("" + child);
+		Node p = directedGraph.getNode("" + parent);
+		Edge e = model.factory().newEdge(c, p, 3, true);
+		if(source.contains(child) && !target.contains(child))
+			e.getEdgeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
+		else if(!source.contains(child) && target.contains(child))
+			e.getEdgeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
+		directedGraph.addEdge(e);
+	}
+	
+	//Adds an edge between two entities to the graph with the given property's label
+	private void addEdge(int child, int parent, int prop)
+	{
+		edges.add(child, parent);
+		Node c = directedGraph.getNode("" + child);
+		Node p = directedGraph.getNode("" + parent);
+		Edge e = model.factory().newEdge(c, p, 3, true);
+		if(source.contains(child))
+		{
+			if(prop > -1)
+				e.getEdgeData().setLabel(source.getName(prop));
+			if(!target.contains(child))
+				e.getEdgeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
+		}
+		else if(target.contains(child))
+		{
+			if(prop > -1)
+				e.getEdgeData().setLabel(target.getName(prop));
+			e.getEdgeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
+		}
+		directedGraph.addEdge(e);
+		if(rm.isSymmetric(prop) || (prop == -1 && rm.getDistance(child, parent) == 0))
+		{
+			Edge f = model.factory().newEdge(p, c, 3, true);
+			f.getEdgeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
+			directedGraph.addEdge(f);
+		}
+	}
+	
+	//Adds an edge between two entities to the graph with the given label
+	private void addEdge(int child, int parent, String label)
+	{
+		edges.add(child, parent);
+		Node c = directedGraph.getNode("" + child);
+		Node p = directedGraph.getNode("" + parent);
+		Edge e = model.factory().newEdge(c, p, 3, true);
+		if(source.contains(child) && !target.contains(child))
+			e.getEdgeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
+		else if(!source.contains(child) && target.contains(child))
+			e.getEdgeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
+		e.getEdgeData().setLabel(label);
+		directedGraph.addEdge(e);
+	}
+	
+	//Adds all equivalent classes of the given class to the graph
+	private void addEquiv(int id)
+	{
+		Set<Integer> eq = rm.getEquivalences(id);
+		for(int i : eq)
+		{
+			if(directedGraph.getNode("" + i) == null)
+				addNode(i, 6);
+			addEdge(i, id);
+		}
+		nodes.addAll(eq);
+	}
+	
+	//Adds all classes instanced by the listed individuals to the graph
+	//plus their ancestors up to the classDistance limit
+	private void addInstancedClasses()
+	{
+		Set<Integer> classes = new HashSet<Integer>();
+		Set<Integer> individuals = new HashSet<Integer>(nodes);
+		for(int i : individuals)
+		{
+			for(int c : rm.getIndividualClasses(i))
+			{
+				nodes.add(c);
+				classes.add(c);
+				if(directedGraph.getNode("" + c) == null)
+					addNode(c,10);
+				if(!edges.contains(i,c) && !edges.contains(c,i))
+					addEdge(i, c, "instanceOf");
+			}
+		}
+		HashSet<Integer> ancestors = new HashSet<Integer>(classes);
+		HashSet<Integer> descendants;
+		for(int i = 0; i < classDistance; i++)
+		{
+			descendants = new HashSet<Integer>(ancestors);
+			ancestors = new HashSet<Integer>();
+			for(int j : descendants)
+			{
+				Set<Integer> parents = rm.getParents(j);
+				for(int k : parents)
+				{
+					if(directedGraph.getNode("" + k) == null)
+						addNode(k,10);
+					if(!edges.contains(j,k) && !edges.contains(k,j))
+						addEdge(j, k);
+				}
+				ancestors.addAll(parents);
+			}
+			nodes.addAll(ancestors);
+		}
+	}
+	
+	//Adds a mapping between two classes to the graph
 	private void addMapping(int sId, int tId)
 	{
-		Node n1 = directedGraph.getNode("NS" + sId);
-		Node n2 = directedGraph.getNode("NT" + tId);
+		Node n1 = directedGraph.getNode("" + sId);
+		Node n2 = directedGraph.getNode("" + tId);
 		if(directedGraph.getEdge(n1,n2) != null)
 			return;
 		MappingRelation r = a.getRelationship(sId,tId);
@@ -929,6 +810,26 @@ public class ViewMapping extends JDialog implements ActionListener
 		}
 	}
 	
+	//Adds a node to the graph
+	private void addNode(int id, int size)
+	{
+		Node n = model.factory().newNode("" + id);
+		if(source.contains(id))
+		{
+			n.getNodeData().setLabel(source.getName(id));
+			if(!target.contains(id))
+				n.getNodeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
+		}
+		else if(target.contains(id))
+		{
+			n.getNodeData().setLabel(target.getName(id));
+			n.getNodeData().setColor(targetColor[0], targetColor[1], targetColor[2]);			
+		}
+		n.getNodeData().setSize(size);
+		directedGraph.addNode(n);
+	}
+	
+	//Adds other entities mapped to the entities in the central mapping
 	private void addOtherMappings(int sId, int tId)
 	{
 		Set<Integer> sourceMappings = a.getSourceMappings(sId);
@@ -936,208 +837,363 @@ public class ViewMapping extends JDialog implements ActionListener
 		{
 			if(i == tId)
 				continue;
-			if(!targetNodes.contains(i))
+			if(!nodes.contains(i))
 			{
-				targetNodes.add(i);
-				addTargetNode(i,6);
+				nodes.add(i);
+				addNode(i,6);
 			}
 			addMapping(sId,i);
 			if(aml.showAncestors())
-				addTargetAncestors(i);
+				addAncestors(i);
 			if(aml.showDescendants())
-				addTargetDescendants(i);
+				addDescendants(i);
 		}
 		Set<Integer> targetMappings = a.getTargetMappings(tId);
 		for(Integer i : targetMappings)
 		{
 			if(i == sId)
 				continue;
-			if(!sourceNodes.contains(i))
+			if(!nodes.contains(i))
 			{
-				sourceNodes.add(i);
-				addSourceNode(i,6);
+				nodes.add(i);
+				addNode(i,6);
 			}
 			addMapping(i,tId);
 			if(AML.getInstance().showAncestors())
-				addSourceAncestors(i);
+				addAncestors(i);
 			if(AML.getInstance().showDescendants())
-				addSourceDescendants(i);
+				addDescendants(i);
 		}
 	}
 	
-	private void addSourceAncestors(int id)
+	//Graph rendering procedure with placement heuristic
+	private void renderGraph()
 	{
-		HashSet<Integer> ancestors = new HashSet<Integer>();
-		ancestors.add(id);
-		HashSet<Integer> descendants;
-		for(int i = 0; i < maxDistance; i++)
+		//Finally, try to render the graph
+		for(int i = 0; i < MAX_RETRIES; i++)
 		{
-			descendants = new HashSet<Integer>(ancestors);
-			ancestors = new HashSet<Integer>();
-			for(int j : descendants)
+			try
 			{
-				Set<Integer> parents = rm.getParents(j);
-				for(int k : parents)
-				{
-					if(directedGraph.getNode("NS" + k) == null)
-						addSourceNode(k, 6);
-					addSourceEdge(j, k);
-				}
-				ancestors.addAll(parents);
+				//Run YifanHuLayout for 100 passes - The layout always takes the current visible view
+				YifanHuLayout layout = new YifanHuLayout(null, new StepDisplacement(1f));
+				layout.setGraphModel(model);
+				layout.resetPropertiesValues();
+				layout.setOptimalDistance(300f);
+				layout.setBarnesHutTheta(0.2f);
+				layout.initAlgo();
+				for (int j = 0; j < 100 && layout.canAlgo(); j++)
+					layout.goAlgo();
+			
+				//Run LabelAdjust to stop labels from overlapping
+				LabelAdjust labela = new LabelAdjust(null);
+				labela.resetPropertiesValues();
+				labela.initAlgo();
+				for (int j = 0; j < 30 && labela.canAlgo(); j++)
+					labela.goAlgo();
+				
+				//Initialize and configure preview
+				PreviewController previewController = Lookup.getDefault().lookup(PreviewController.class);
+				PreviewModel previewModel = previewController.getModel();
+				//Configure node labels
+				previewModel.getProperties().putValue(PreviewProperty.SHOW_NODE_LABELS, true);
+				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_OUTLINE_COLOR, new DependantColor(AMLColor.WHITE));
+				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_OUTLINE_SIZE, 5f);
+				previewModel.getProperties().putValue(PreviewProperty.NODE_LABEL_COLOR, new DependantOriginalColor(AMLColor.BLACK));
+				//Configure edges
+				previewModel.getProperties().putValue(PreviewProperty.EDGE_CURVED, false);
+				previewModel.getProperties().putValue(PreviewProperty.EDGE_OPACITY, 100);
+				previewModel.getProperties().putValue(PreviewProperty.EDGE_RADIUS, 5f);
+				previewModel.getProperties().putValue(PreviewProperty.EDGE_COLOR, new EdgeColor(EdgeColor.Mode.ORIGINAL));
+				//Configure edge labels
+				previewModel.getProperties().putValue(PreviewProperty.SHOW_EDGE_LABELS, true);
+				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_COLOR, new DependantOriginalColor(AMLColor.DARK_GRAY));
+				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_OUTLINE_COLOR, new DependantColor(AMLColor.WHITE));
+				previewModel.getProperties().putValue(PreviewProperty.EDGE_LABEL_OUTLINE_SIZE, 2f);
+				//Configure background color
+				previewModel.getProperties().putValue(PreviewProperty.BACKGROUND_COLOR, AMLColor.WHITE);
+				previewController.refreshPreview();
+				//Initialize the processing target and the PApplet
+				ProcessingTarget target = (ProcessingTarget) previewController.getRenderTarget(RenderTarget.PROCESSING_TARGET);
+				mappingViewer = target.getApplet();
+				mappingViewer.init();
+				//Refresh the preview and reset the zoom
+				previewController.render(target);
+				target.refresh();
+				target.resetZoom();
+				//If successful, return
+				return;
 			}
-			sourceNodes.addAll(ancestors);
-		}
-	}
-	
-	private void addSourceDescendants(int id)
-	{
-		HashSet<Integer> descendants = new HashSet<Integer>();
-		descendants.add(id);
-		HashSet<Integer> ancestors;
-		for(int i = 0; i < maxDistance; i++)
-		{
-			ancestors = new HashSet<Integer>(descendants);
-			descendants = new HashSet<Integer>();
-			for(int j : ancestors)
+			catch(Exception e)
 			{
-				Set<Integer> children = rm.getChildren(j);
-				for(int k : children)
-				{
-					if(directedGraph.getNode("NS" + k) == null)
-						addSourceNode(k, 6);
-					addSourceEdge(k, j);
-				}
-				descendants.addAll(children);
+				//Otherwise keep trying
+				continue;
 			}
-			sourceNodes.addAll(descendants);
 		}
+		//If not successful after the retry limit, set mappingViewer to null
+		mappingViewer = null;
 	}
 	
-	private void addSourceEquiv(int id)
+//Auxiliary Methods for buildDetailPanel()
+	
+	private JPanel buildClassDetailPanel(int id)
 	{
-		Set<Integer> eq = rm.getEquivalences(id);
-		for(int i : eq)
-		{
-			if(directedGraph.getNode("NS" + i) == null)
-				addSourceNode(i, 6);
-			addSourceEdge(i, id);
-		}
-		sourceNodes.addAll(eq);
-	}
+		JPanel p = new JPanel();
+		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 
-	private void addSourceEdge(int child, int parent)
-	{
-		Node c = directedGraph.getNode("NS" + child);
-		Node p = directedGraph.getNode("NS" + parent);
-		Edge e = model.factory().newEdge(c, p, 3, true);
-		e.getEdgeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
-		int prop = rm.getRelationship(child, parent).getProperty();
-		if(prop > -1)
-			e.getEdgeData().setLabel(source.getName(prop));
-		directedGraph.addEdge(e);
-		if(rm.isSymmetric(prop) || (prop == -1 && rm.getDistance(child, parent) == 0))
+		Ontology2Match o;
+		if(source.contains(id))
+			o = source;
+		else
+			o = target;
+		Lexicon lex = o.getLexicon();
+		
+		//Get the local name
+        JLabel localName = new JLabel("<html>Local Name: <i>" +
+        		uris.getLocalName(id) + "</i></html>");
+        p.add(localName);
+        //Labels
+        String lab = "<html>Label(s): ";
+        Set<String> names = lex.getNames(id,LexicalType.LABEL);
+		for(String s : names)
+			lab += "<i>" + s + "</i>; ";
+		if(names.size() == 0)
+			lab += "N/A</html>";
+		else
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+        JLabel label = new JLabel(lab);
+        p.add(label);
+        //Synonyms
+        names = lex.getNames(id,LexicalType.EXACT_SYNONYM);
+		if(names.size() > 0)
 		{
-			Edge f = model.factory().newEdge(p, c, 3, true);
-			f.getEdgeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
-			directedGraph.addEdge(f);
+	        lab = "<html>Exact Synonyms(s): ";
+			for(String s : names)
+				lab += "<i>" + s + "</i>; ";
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+	        JLabel exact = new JLabel(lab);
+	        p.add(exact);
 		}
-	}
-	
-	private void addSourceNode(int id, int size)
-	{
-		Node n = model.factory().newNode("NS" + id);
-		n.getNodeData().setSize(3);
-		n.getNodeData().setLabel(source.getName(id));
-		n.getNodeData().setColor(sourceColor[0], sourceColor[1], sourceColor[2]);
-		n.getNodeData().setSize(size);
-		directedGraph.addNode(n);
-	}
-	
-	private void addTargetAncestors(int id)
-	{
-		HashSet<Integer> ancestors = new HashSet<Integer>();
-		ancestors.add(id);
-		HashSet<Integer> descendants;
-		for(int i = 0; i < maxDistance; i++)
+        names = lex.getNames(id,LexicalType.OTHER_SYNONYM);
+		if(names.size() > 0)
 		{
-			descendants = new HashSet<Integer>(ancestors);
-			ancestors = new HashSet<Integer>();
-			for(int j : descendants)
+	        lab = "<html>Other Synonyms(s): ";
+			for(String s : names)
+				lab += "<i>" + s + "</i>; ";
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+	        JLabel other = new JLabel(lab);
+	        p.add(other);
+		}
+        //Formulas
+        names = lex.getNames(id,LexicalType.FORMULA);
+		if(names.size() > 0)
+		{
+	        lab = "<html>Formula(s): ";
+			for(String s : names)
+				lab += "<i>" + s + "</i>; ";
+				lab = lab.substring(0, lab.length()-2) + "</html>";
+	        JLabel form = new JLabel(lab);
+	        p.add(form);
+		}
+		
+		//High Level Ancestors
+		Set<Integer> highSet = rm.getHighLevelAncestors(id);
+		lab = "<html>Ontology Branch(es): ";
+		for(Integer i : highSet)
+			lab += "<i>" + o.getName(i) + "</i>; ";
+		if(highSet.size() == 0)
+			lab += "N/A</html>";
+		else
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+		JLabel high = new JLabel(lab);
+		p.add(high);
+		
+		//Parents
+		Set<Integer> parents = rm.getParents(id);
+		Table2Set<Integer,Integer> relParents = new Table2Set<Integer,Integer>();
+		for(Integer i : parents)
+			relParents.add(rm.getRelationship(id, i).getProperty(), i);
+		Vector<Integer> rels = new Vector<Integer>(relParents.keySet());
+		Collections.sort(rels);
+		for(Integer r : rels)
+		{
+			if(r == -1)
+				lab = "<html>subClassOf: ";
+			else
+				lab = "<html>" + o.getName(r) + ": ";
+			for(Integer a : relParents.get(r))
+				lab += "<i>" + o.getName(a) + "</i>; ";
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+			JLabel ancs = new JLabel(lab);
+			p.add(ancs);
+		}
+		
+		//And Disjoints
+		Set<Integer> disjointSetSource = rm.getDisjointTransitive(id);
+		if(disjointSetSource.size() != 0)
+		{
+			lab = "<html>disjointWith: ";
+			for(Integer i : disjointSetSource)
+				lab += "<i>" + o.getName(i) + "</i>; ";
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+			JLabel disjointsS = new JLabel(lab);
+			p.add(disjointsS);
+		}
+		if(o.isObsoleteClass(id))
+		{
+			JLabel obsS = new JLabel("<html><b><font color=\"red\"> Obsolete Class!</font></b></html>");
+			p.add(obsS);
+		}
+		return p;
+	}
+	
+	private JPanel buildIndivDetailPanel(int id)
+	{
+		JPanel p = new JPanel();
+		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+		
+		Ontology2Match o;
+		if(source.contains(id))
+			o = source;
+		else
+			o = target;
+		//Get the local name
+        JLabel localName = new JLabel("<html>Local Name: <i>" +
+        		uris.getLocalName(id) + "</i></html>");
+        p.add(localName);
+        //Labels
+        String lab = "<html>Label: " + o.getName(id);
+        JLabel label = new JLabel(lab);
+        p.add(label);
+		
+		//Classes
+		Set<Integer> classes = rm.getIndividualClasses(id);
+		lab = "<html>instanceOf: ";
+		for(Integer i : classes)
+			lab += "<i>" + o.getName(i) + "</i>; ";
+		if(classes.size() == 0)
+			lab += "N/A</html>";
+		else
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+		JLabel high = new JLabel(lab);
+		p.add(high);
+		
+		//Parents
+		Vector<Integer> rels = new Vector<Integer>(rm.getIndividualProperties(id));
+		Collections.sort(rels);
+		for(Integer r : rels)
+		{
+			lab = "<html>" + o.getName(r) + ": ";
+			for(Integer a : rm.getParentIndividuals(id, r))
+				lab += "<i>" + o.getName(a) + "</i>; ";
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+			JLabel ancs = new JLabel(lab);
+			p.add(ancs);
+		}
+		
+		//Data Properties
+		Table2Set<Integer,String> data = o.getIndividual(id).getDataValues();
+		rels = new Vector<Integer>(data.keySet());
+		Collections.sort(rels);
+		for(Integer r : rels)
+		{
+			lab = "<html>" + o.getName(r) + ": ";
+			for(String s : data.get(r))
+				lab += "<i>" + s + "</i>; ";
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+			JLabel ancs = new JLabel(lab);
+			p.add(ancs);
+		}
+		return p;
+	}
+	
+	private JPanel buildPropDetailPanel(int id)
+	{
+		JPanel p = new JPanel();
+		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+
+		Ontology2Match o;
+		if(source.contains(id))
+			o = source;
+		else
+			o = target;
+		Lexicon lex = o.getLexicon();
+		
+		//Get the local name
+        JLabel localName = new JLabel("<html>Local Name: <i>" +
+        		uris.getLocalName(id) + "</i></html>");
+        p.add(localName);
+        //Labels
+        String lab = "<html>Label(s): ";
+        Set<String> names = lex.getNames(id,LexicalType.LABEL);
+		for(String s : names)
+			lab += "<i>" + s + "</i>; ";
+		if(names.size() == 0)
+			lab += "N/A</html>";
+		else
+			lab = lab.substring(0, lab.length()-2) + "</html>";
+        JLabel label = new JLabel(lab);
+        p.add(label);
+        
+		if(t.equals(EntityType.OBJECT))
+		{
+			ObjectProperty pr = o.getObjectProperty(sourceId);
+			Set<Integer> domain = pr.getDomain();
+			lab = "<html>Domain: ";
+			for(Integer i : domain)
+				lab += "<i>" + o.getName(i) + "</i>; ";
+			if(domain.size() > 0)
+				lab = lab.substring(0, lab.length()-2) + "</html>";
+			else
+				lab += "N/A</html>";
+			JLabel domainS = new JLabel(lab);
+			p.add(domainS);
+			
+			Set<Integer> range = pr.getRange();
+			lab = "<html>Range: ";
+			for(Integer i : range)
+				lab += "<i>" + o.getName(i) + "</i>; ";
+			if(range.size() > 0)
+				lab = lab.substring(0, lab.length()-2) + "</html>";
+			else
+				lab += "N/A</html>";
+			JLabel rangeS = new JLabel(lab);
+			p.add(rangeS);
+			if(pr.isFunctional())
 			{
-				Set<Integer> parents = rm.getParents(j);
-				for(int k : parents)
-				{
-					if(directedGraph.getNode("NT" + k) == null)
-						addTargetNode(k, 6);
-					addTargetEdge(j, k);
-				}
-				ancestors.addAll(parents);
+				JLabel funS = new JLabel("Functional Property");
+				p.add(funS);
 			}
-			targetNodes.addAll(ancestors);
 		}
-	}
-	
-	private void addTargetDescendants(int id)
-	{
-		HashSet<Integer> descendants = new HashSet<Integer>();
-		descendants.add(id);
-		HashSet<Integer> ancestors;
-		for(int i = 0; i < maxDistance; i++)
+		else if(t.equals(EntityType.DATA))
 		{
-			ancestors = new HashSet<Integer>(descendants);
-			descendants = new HashSet<Integer>();
-			for(int j : ancestors)
+			DataProperty pr = o.getDataProperty(sourceId);
+			Set<Integer> domain = pr.getDomain();
+			lab = "<html>Domain: ";
+			for(Integer i : domain)
+				lab += "<i>" + o.getName(i) + "</i>; ";
+			if(domain.size() > 0)
+				lab = lab.substring(0, lab.length()-2) + "</html>";
+			else
+				lab += "N/A</html>";
+			JLabel domainS = new JLabel(lab);
+			p.add(domainS);
+			
+			Set<String> range = pr.getRange();
+			lab = "Range: ";
+			for(String s : range)
+				lab += "<i>" + s + "</i>; ";
+			if(range.size() > 0)
+				lab = lab.substring(0, lab.length()-2) + "</html>";
+			else
+				lab += "N/A</html>";
+			JLabel rangeS = new JLabel(lab);
+			p.add(rangeS);
+			if(pr.isFunctional())
 			{
-				Set<Integer> children = rm.getChildren(j);
-				for(int k : children)
-				{
-					if(directedGraph.getNode("NT" + k) == null)
-						addTargetNode(k, 6);
-					addTargetEdge(k, j);
-				}
-				descendants.addAll(children);
+				JLabel funS = new JLabel("Functional Property");
+				p.add(funS);
 			}
-			targetNodes.addAll(descendants);
 		}
-	}
-	
-	private void addTargetEquiv(int id)
-	{
-		Set<Integer> eq = rm.getEquivalences(id);
-		for(int i : eq)
-		{
-			if(directedGraph.getNode("NT" + i) == null)
-				addTargetNode(i, 6);
-			addTargetEdge(i, id);
-		}
-		targetNodes.addAll(eq);
-	}
-	
-	private void addTargetEdge(int child, int parent)
-	{
-		Node c = directedGraph.getNode("NT" + child);
-		Node p = directedGraph.getNode("NT" + parent);
-		Edge e = model.factory().newEdge(c, p, 3, true);
-		e.getEdgeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
-		int prop = rm.getRelationship(child, parent).getProperty();
-		if(prop > -1)
-			e.getEdgeData().setLabel(target.getName(prop));
-		directedGraph.addEdge(e);
-		if(rm.isSymmetric(prop) || (prop == -1 && rm.getDistance(child, parent) == 0))
-		{
-			Edge f = model.factory().newEdge(p, c, 3, true);
-			f.getEdgeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
-			directedGraph.addEdge(f);
-		}
-	}
-	
-	private void addTargetNode(int id, int size)
-	{
-		Node n = model.factory().newNode("NT" + id);
-		n.getNodeData().setSize(3);
-		n.getNodeData().setLabel(target.getName(id));
-		n.getNodeData().setColor(targetColor[0], targetColor[1], targetColor[2]);
-		n.getNodeData().setSize(size);
-		directedGraph.addNode(n);
+		return p;
 	}
 }
