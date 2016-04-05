@@ -44,11 +44,11 @@ public class ViewOptions extends JDialog implements ActionListener
 	
 	private static final long serialVersionUID = -3900206021275961468L;
 	private AML aml;
-	private JPanel dialogPanel, languagePanel, directionPanel, distancePanel, buttonPanel;
+	private JPanel dialogPanel, languagePanel, directionPanel, classPanel, individualPanel, buttonPanel;
 	private JButton cancel, ok;
-	private JLabel languageLabel, distanceLabel;
+	private JLabel languageLabel, classLabel, individualLabel;
 	private JComboBox<String> languageSelector;
-	private JComboBox<Integer> distanceSelector;
+	private JComboBox<Integer> classSelector, individualSelector;
 	private JCheckBox ancestors, descendants;
 	private final Integer[] DIST = {0,1,2,3,4,5};
     
@@ -80,13 +80,19 @@ public class ViewOptions extends JDialog implements ActionListener
 		directionPanel.add(ancestors);
 		directionPanel.add(descendants);
 		
-		distanceLabel = new JLabel("Extension (edges):");
-		distanceSelector = new JComboBox<Integer>(DIST);
-		distanceSelector.setSelectedIndex(AML.getInstance().getMaxDistance());
-        distanceSelector.addActionListener(this);
-		distancePanel = new JPanel();
-		distancePanel.add(distanceLabel);
-		distancePanel.add(distanceSelector);
+		classLabel = new JLabel("Class extension (edges):");
+		classSelector = new JComboBox<Integer>(DIST);
+		classSelector.setSelectedIndex(AML.getInstance().getClassDistance());
+        classPanel = new JPanel();
+		classPanel.add(classLabel);
+		classPanel.add(classSelector);
+		
+		individualLabel = new JLabel("Individual extension (edges):");
+		individualSelector = new JComboBox<Integer>(DIST);
+		individualSelector.setSelectedIndex(AML.getInstance().getIndividualDistance());
+		individualPanel = new JPanel();
+		individualPanel.add(individualLabel);
+		individualPanel.add(individualSelector);
 
 		cancel = new JButton("Cancel");
 		cancel.setPreferredSize(new Dimension(70,28));
@@ -104,7 +110,8 @@ public class ViewOptions extends JDialog implements ActionListener
 		if(!aml.getLanguageSetting().equals(LanguageSetting.SINGLE))
 			dialogPanel.add(languagePanel);
 		dialogPanel.add(directionPanel);
-		dialogPanel.add(distancePanel);
+		dialogPanel.add(classPanel);
+		dialogPanel.add(individualPanel);
 		dialogPanel.add(buttonPanel);
 		
 		add(dialogPanel);
@@ -129,7 +136,7 @@ public class ViewOptions extends JDialog implements ActionListener
 		else if(o == ok)
 		{
 			aml.setViewOptions(ancestors.isSelected(),descendants.isSelected(),
-					(Integer)distanceSelector.getSelectedItem());
+					(Integer)classSelector.getSelectedItem(),(Integer)individualSelector.getSelectedItem());
 			if(!aml.getLanguageSetting().equals(LanguageSetting.SINGLE))
 				aml.setLabelLanguage((String)languageSelector.getSelectedItem());
 			this.dispose();
