@@ -964,7 +964,7 @@ public class Ontology2Match extends Ontology
 		objectAllValues = new Table2Map<Integer,Integer,Integer>();
 		objectSomeValues = new Table2Map<Integer,Integer,Integer>();
 		
-		//I - Relationships envolving classes
+		//I - Relationships involving classes
 		//Get an iterator over the ontology classes
 		Set<OWLClass> classes = o.getClassesInSignature(true);
 		//For each class index
