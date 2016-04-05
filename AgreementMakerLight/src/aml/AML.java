@@ -117,7 +117,8 @@ public class AML
 	private boolean needSave = false;
 	private OntologyFileChooser ofc;
 	private AlignmentFileChooser afc;
-	private int maxDistance = 2;
+	private int classDistance = 2;
+	private int individualDistance = 2;
 	private boolean showAncestors = true;
 	private boolean showDescendants = true;
     private String language = "en";
@@ -359,6 +360,14 @@ public class AML
 		return bkSources;
 	}
 	
+	/**
+     * @return the maximum class edge-distance to plot in the Mapping Viewer
+     */
+	public int getClassDistance()
+    {
+		return classDistance;
+	}
+	
     /**
      * @return the evaluation of the current alignment
      */
@@ -375,6 +384,13 @@ public class AML
 		return flagSteps;
 	}
 
+	/**
+     * @return the maximum individual edge-distance to plot in the Mapping Viewer
+     */
+	public int getIndividualDistance()
+    {
+		return individualDistance;
+	}
 
     /**
      * @return this (single) instance of the AML class
@@ -423,14 +439,6 @@ public class AML
 		return matchSteps;
 	}
 	
-	/**
-     * @return the maximum edge-distance to plot in the Mapping Viewer
-     */
-	public int getMaxDistance()
-    {
-		return maxDistance;
-	}
-    
 	/**
      * @return the active NeighborSimilarityStrategy 
      */
@@ -918,11 +926,12 @@ public class AML
 		useReasoner = b;
 	}
 
-	public void setViewOptions(boolean a, boolean d, int m)
+	public void setViewOptions(boolean a, boolean d, int c, int i)
 	{
 		showAncestors = a;
 		showDescendants = d;
-		maxDistance = m;
+		classDistance = c;
+		individualDistance = i;
 	}
 	
 	public void setWordMatchStrategy(WordMatchStrategy wms)
