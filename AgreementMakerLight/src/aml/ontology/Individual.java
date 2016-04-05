@@ -87,6 +87,14 @@ public class Individual
 		return dataValues.get(propIndex);
 	}
 	
+	/**
+	 * @return the Data Properties and their values for this Individual 
+	 */
+	public Table2Set<Integer,String> getDataValues()
+	{
+		return dataValues;
+	}
+	
 	@Override
 	public String toString()
 	{
