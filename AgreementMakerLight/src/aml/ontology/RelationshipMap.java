@@ -43,7 +43,7 @@ public class RelationshipMap
 	//Disjointness (direct only, no transitive closure)
 	private Table2Set<Integer,Integer> disjointMap; //Class -> Disjoint Classes
 	
-	//Relationships between individuals and classes (with transitive closure)
+	//Relationships between individuals and classes
 	private Table2Set<Integer,Integer> instanceOfMap; //Individual -> Class 
 	private Table2Set<Integer,Integer> hasInstanceMap; //Class -> Individual
 
@@ -395,7 +395,9 @@ public class RelationshipMap
 	 */
 	public Set<Integer> getChildrenIndividuals(int indivId, int prop)
 	{
-		return descendantIndividuals.get(indivId,prop);
+		if(descendantIndividuals.contains(indivId,prop))
+			return descendantIndividuals.get(indivId,prop);
+		return new HashSet<Integer>();
 	}
 	
 	/**
@@ -674,6 +676,17 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param indivId: the id of the individual to search in the map
+	 * @return the list of object properties associated with the given individual
+	 */
+	public Set<Integer> getIndividualRangeProperties(int indivId)
+	{
+		if(descendantIndividuals.contains(indivId))
+			return descendantIndividuals.keySet(indivId);
+		return new HashSet<Integer>();
+	}
+	
+	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the list of inverse properties of the input property
 	 */
@@ -711,7 +724,9 @@ public class RelationshipMap
 	 */
 	public Set<Integer> getParentIndividuals(int indivId, int prop)
 	{
-		return ancestorIndividuals.get(indivId,prop);
+		if(ancestorIndividuals.contains(indivId,prop))
+			return ancestorIndividuals.get(indivId,prop);
+		return new HashSet<Integer>();
 	}
 	
 	/**
@@ -1001,11 +1016,6 @@ public class RelationshipMap
 				}
 			}
 		}
-		//Transitive closure for individual-class instantiation
-		for(Integer in : instanceOfMap.keySet())
-			for(Integer cl : instanceOfMap.get(in))
-				for(Integer an : getSuperClasses(cl,false))
-					addInstance(in,an);
 	}
 	
 	/**
