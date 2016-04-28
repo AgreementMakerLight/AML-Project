@@ -48,8 +48,8 @@ public class RelationshipMap
 	private Table2Set<Integer,Integer> hasInstanceMap; //Class -> Individual
 
 	//Relationships between individuals
-	private Table3Set<Integer,Integer,Integer> ancestorIndividuals; //'Child' -> Property -> 'Parent'
-	private Table3Set<Integer,Integer,Integer> descendantIndividuals; //'Parent' -> Property -> 'Child'
+	private Table3Set<Integer,Integer,Integer> ancestorIndividuals; //'Child' or 'Source' -> Property -> 'Parent' or 'Target'
+	private Table3Set<Integer,Integer,Integer> descendantIndividuals; //'Parent' or 'Target' -> Property -> 'Child' or 'Source'
 
 	//Relationships between properties
 	//Hierarchical and inverse relations
