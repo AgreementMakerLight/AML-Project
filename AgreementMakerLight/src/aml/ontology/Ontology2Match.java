@@ -266,6 +266,14 @@ public class Ontology2Match extends Ontology
 	{
 		return individuals.get(index);
 	}
+	
+	/**
+	 * @return the map of Individuals in the Ontology
+	 */
+	public HashMap<Integer,Individual> getIndividualMap()
+	{
+		return individuals;
+	}
 
 	/**
 	 * @return the Lexicon of the Ontology
