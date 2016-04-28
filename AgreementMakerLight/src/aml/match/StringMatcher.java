@@ -58,7 +58,7 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 	private LanguageSetting lSet;
 	private Set<String> languages;
 	//Similarity measure
-	private StringSimMeasure measure;
+	private StringSimMeasure measure = StringSimMeasure.ISUB;
 	//Correction factor (to make string similarity values comparable to word similarity values
 	//and thus enable their combination and proper selection; 0.8 is optimized for the ISub measure)
 	private final double CORRECTION = 0.80;
@@ -81,7 +81,6 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 		tLex = target.getLexicon();
 		lSet = AML.getInstance().getLanguageSetting();
 		languages = aml.getLanguages();
-		measure = StringSimMeasure.ISUB;
 	}
 
 	/**
@@ -155,36 +154,6 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
-	}
-	
-	/**
-	 * Computes the string the similarity between two Strings
-	 * @param s: the source String
-	 * @param t: the target String
-	 * @return the similarity between s and t using 
-	 */
-	public double stringSimilarity(String s, String t)
-	{
-		double sim = 0.0;
-		if(measure.equals(StringSimMeasure.ISUB))
-			sim = ISub.stringSimilarity(s,t);
-		else if(measure.equals(StringSimMeasure.EDIT))
-		{
-			Levenshtein lv = new Levenshtein();
-			sim = lv.getSimilarity(s, t);
-		}
-		else if(measure.equals(StringSimMeasure.JW))
-		{
-			JaroWinkler jv = new JaroWinkler();
-			sim = jv.getSimilarity(s, t);
-		}
-		else if(measure.equals(StringSimMeasure.QGRAM))
-		{
-			QGramsDistance q = new QGramsDistance();
-			sim = q.getSimilarity(s, t);
-		}
-		sim *= CORRECTION;
-		return sim;
 	}
 	
 //Private Methods
@@ -347,6 +316,31 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 			}
 		}
 		return maxSim;
+	}
+	
+	// Computes the string the similarity between two Strings
+	private double stringSimilarity(String s, String t)
+	{
+		double sim = 0.0;
+		if(measure.equals(StringSimMeasure.ISUB))
+			sim = ISub.stringSimilarity(s,t);
+		else if(measure.equals(StringSimMeasure.EDIT))
+		{
+			Levenshtein lv = new Levenshtein();
+			sim = lv.getSimilarity(s, t);
+		}
+		else if(measure.equals(StringSimMeasure.JW))
+		{
+			JaroWinkler jv = new JaroWinkler();
+			sim = jv.getSimilarity(s, t);
+		}
+		else if(measure.equals(StringSimMeasure.QGRAM))
+		{
+			QGramsDistance q = new QGramsDistance();
+			sim = q.getSimilarity(s, t);
+		}
+		sim *= CORRECTION;
+		return sim;
 	}
 	
 	//Callable class for mapping two classes
