@@ -157,6 +157,36 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 		return maps;
 	}
 	
+	/**
+	 * Computes the string the similarity between two Strings
+	 * @param s: the source String
+	 * @param t: the target String
+	 * @return the similarity between s and t using 
+	 */
+	public double stringSimilarity(String s, String t)
+	{
+		double sim = 0.0;
+		if(measure.equals(StringSimMeasure.ISUB))
+			sim = ISub.stringSimilarity(s,t);
+		else if(measure.equals(StringSimMeasure.EDIT))
+		{
+			Levenshtein lv = new Levenshtein();
+			sim = lv.getSimilarity(s, t);
+		}
+		else if(measure.equals(StringSimMeasure.JW))
+		{
+			JaroWinkler jv = new JaroWinkler();
+			sim = jv.getSimilarity(s, t);
+		}
+		else if(measure.equals(StringSimMeasure.QGRAM))
+		{
+			QGramsDistance q = new QGramsDistance();
+			sim = q.getSimilarity(s, t);
+		}
+		sim *= CORRECTION;
+		return sim;
+	}
+	
 //Private Methods
 	
 	private Alignment extendChildrenAndParents(Alignment a, double thresh)
@@ -317,31 +347,6 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 			}
 		}
 		return maxSim;
-	}
-	
-	//Gets the similarity between two Strings
-	private double stringSimilarity(String s, String t)
-	{
-		double sim = 0.0;
-		if(measure.equals(StringSimMeasure.ISUB))
-			sim = ISub.stringSimilarity(s,t);
-		else if(measure.equals(StringSimMeasure.EDIT))
-		{
-			Levenshtein lv = new Levenshtein();
-			sim = lv.getSimilarity(s, t);
-		}
-		else if(measure.equals(StringSimMeasure.JW))
-		{
-			JaroWinkler jv = new JaroWinkler();
-			sim = jv.getSimilarity(s, t);
-		}
-		else if(measure.equals(StringSimMeasure.QGRAM))
-		{
-			QGramsDistance q = new QGramsDistance();
-			sim = q.getSimilarity(s, t);
-		}
-		sim *= CORRECTION;
-		return sim;
 	}
 	
 	//Callable class for mapping two classes
