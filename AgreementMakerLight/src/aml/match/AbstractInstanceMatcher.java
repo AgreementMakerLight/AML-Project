@@ -32,10 +32,10 @@ import aml.util.WordNet;
 
 public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 {
-	private HashMap<Integer,Individual> sourceInd, targetInd;
-	private RelationshipMap rels;
-	private WordNet wn;
-	private boolean useWordNet = true;
+	protected HashMap<Integer,Individual> sourceInd, targetInd;
+	protected RelationshipMap rels;
+	protected WordNet wn;
+	protected boolean useWordNet = true;
 	
 	public AbstractInstanceMatcher()
 	{
