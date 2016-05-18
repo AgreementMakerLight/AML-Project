@@ -51,6 +51,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 		AML aml = AML.getInstance();
 		sourceInd = aml.getSource().getIndividualMap();
 		targetInd = aml.getTarget().getIndividualMap();
+		rels = aml.getRelationshipMap();
 		wn = new WordNet();
 		this.useWordNet = useWordNet;
 	}
