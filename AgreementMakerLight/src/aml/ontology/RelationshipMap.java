@@ -687,6 +687,15 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param indivId: the id of the individual to search in the map
+	 * @return the list of classes instanced by the given individual
+	 */
+	public Set<Integer> getInstancedClasses()
+	{
+		return hasInstanceMap.keySet();
+	}
+	
+	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the list of inverse properties of the input property
 	 */
