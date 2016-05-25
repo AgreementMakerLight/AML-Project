@@ -45,8 +45,7 @@ public class Individual
 	public Individual(int i, String n)
 	{
 		index = i;
-		//TODO: Check that it is really formula here
-		name = StringParser.normalizeFormula(n);
+		name = StringParser.normalizeProperty(n);
 		dataValues = new Table2Set<Integer,String>();
 	}
 	
