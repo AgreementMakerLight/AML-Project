@@ -80,6 +80,7 @@ public class StringParser
 		String parsed = formula;
 		parsed = parsed.toLowerCase();
 		parsed = parsed.replace("_"," ");
+		parsed = parsed.replaceAll("\\s"," ");
 		//The only exception is that if a formula closes brackets
 		//before opening brackets (which happens in NCI) we correct
 		//it by opening brackets at the start
