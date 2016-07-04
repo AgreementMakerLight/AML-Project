@@ -1338,15 +1338,6 @@ public class Ontology2Match extends Ontology
 		return cl;
 	}
 	
-	//Get the local name of an entity from its URI
-	private String getLocalName(String uri)
-	{
-		int index = uri.indexOf("#") + 1;
-		if(index == 0)
-			index = uri.lastIndexOf("/") + 1;
-		return uri.substring(index);
-	}
-	
 	//Add a relationship between two classes to the RelationshipMap
 	private void addRelationship(OWLOntology o, OWLClass c, OWLClassExpression e, boolean sub, boolean inverse)
 	{

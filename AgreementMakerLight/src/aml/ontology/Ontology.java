@@ -119,4 +119,13 @@ public abstract class Ontology
 	{
 		return uri;
 	}
+	
+	//Get the local name of an entity from its URI
+	protected String getLocalName(String uri)
+	{
+		int index = uri.indexOf("#") + 1;
+		if(index == 0)
+			index = uri.lastIndexOf("/") + 1;
+		return uri.substring(index);
+	}
 }
