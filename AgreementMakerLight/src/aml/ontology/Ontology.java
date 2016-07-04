@@ -18,6 +18,8 @@
 ******************************************************************************/
 package aml.ontology;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -123,9 +125,21 @@ public abstract class Ontology
 	//Get the local name of an entity from its URI
 	protected String getLocalName(String uri)
 	{
-		int index = uri.indexOf("#") + 1;
+		String newUri = uri;
+		if(newUri.contains("%"))
+		{
+			try
+			{
+				newUri = URLDecoder.decode(newUri,"UTF-8");
+			}
+			catch(UnsupportedEncodingException e)
+			{
+				//Do nothing
+			}
+		}
+		int index = newUri.indexOf("#") + 1;
 		if(index == 0)
-			index = uri.lastIndexOf("/") + 1;
-		return uri.substring(index);
+			index = newUri.lastIndexOf("/") + 1;
+		return newUri.substring(index);
 	}
 }
