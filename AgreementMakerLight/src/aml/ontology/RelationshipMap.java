@@ -275,6 +275,23 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * Checks whether an individual belongs to a class
+	 * @param indivId: the index of the individual to check
+	 * @param classId: the index of the class to check
+	 * @return whether indivId is an instance of classId or
+	 * of one of its subclasses
+	 */
+	public boolean belongsToClass(int indivId, int classId)
+	{
+		if(instanceOfMap.contains(indivId, classId))
+			return true;
+		for(int subclassId : getSubClasses(classId,false))
+			if(instanceOfMap.contains(indivId, subclassId))
+				return true;
+		return false;	
+	}
+	
+	/**
 	 * @return the number of disjoint clauses
 	 */
 	public int disjointCount()
