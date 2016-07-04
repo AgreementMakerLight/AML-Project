@@ -62,7 +62,7 @@ public class URIMap
 	public int addURI(String uri, EntityType t)
 	{
 		String newUri = uri;
-		if(newUri.contains("%"))
+		if(newUri.contains("%") || newUri.contains("&"))
 		{
 			try
 			{

@@ -126,7 +126,7 @@ public abstract class Ontology
 	protected String getLocalName(String uri)
 	{
 		String newUri = uri;
-		if(newUri.contains("%"))
+		if(newUri.contains("%") || newUri.contains("&"))
 		{
 			try
 			{
