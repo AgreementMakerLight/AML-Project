@@ -121,6 +121,13 @@ public class Provenance implements Comparable<Provenance>
 		return weight;
 	}
 	
+	@Override
+	public int hashCode()
+	{
+		String toHash = type.toString() + "_" + language + "_" + source;
+		return toHash.hashCode();
+	}
+	
 	/**
 	 * @return whether this Provenance is external
 	 */
