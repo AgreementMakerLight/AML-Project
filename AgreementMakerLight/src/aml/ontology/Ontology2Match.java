@@ -211,6 +211,14 @@ public class Ontology2Match extends Ontology
 	}
 	
 	/**
+	 * @return this Ontology's ValueMap
+	 */
+	public ValueMap getValueMap()
+	{
+		return vMap;
+	}
+	
+	/**
 	 * Gets the WordLexicon of this Ontology.
 	 * Builds the WordLexicon if not previously built, or
 	 * built for a specific language
