@@ -73,12 +73,6 @@ public class Ontology2Match extends Ontology
 	//The map of class names (String) -> indexes (Integer) in the ontology
 	//which is necessary for the XRefMatcher
 	private HashMap<String,Integer> classNames;
-	//The map of indexes (Integer) -> Data Properties in the ontology
-	private HashMap<Integer,DataProperty> dataProperties;
-	//The map of indexes (Integer) -> Object Properties in the ontology
-	private HashMap<Integer,ObjectProperty> objectProperties;
-	//The map of indexes (Integer) -> Individuals in the ontology
-	private HashMap<Integer,Individual> individuals;
 	//Its word lexicon
 	private WordLexicon wLex;
 	//Its set of obsolete classes
@@ -106,9 +100,6 @@ public class Ontology2Match extends Ontology
 		super();
 		//Initialize the data structures
 		classNames = new HashMap<String,Integer>();
-		dataProperties = new HashMap<Integer,DataProperty>();
-		objectProperties = new HashMap<Integer,ObjectProperty>();
-		individuals = new HashMap<Integer,Individual>();
 		obsolete = new HashSet<Integer>();
 		wLex = null;
 		aml = AML.getInstance();
@@ -179,66 +170,16 @@ public class Ontology2Match extends Ontology
 
 //Public Methods
 
-	/**
-	 * Adds an individual to the ontology (for use when
-	 * the individuals are not listed within the ontology) 
-	 * @param index: the index of the individual
-	 * @param i: the individual to add to the ontology
-	 */
-	public void addIndividual(int index, Individual i)
-	{
-		individuals.put(index,i);
-	}
-	
-	/**
-	 * @return the number of Data Properties in the Ontology
-	 */
-	public int dataPropertyCount()
-	{
-		return dataProperties.size();
-	}
-
 	@Override
 	public void close()
 	{
 		super.close();
 		classNames = null;
-		dataProperties = null;
-		objectProperties = null;
 		wLex = null;
 		obsolete = null;
 		aml = null;
 		uris = null;
 		rm = null;
-	}
-	
-	/**
-	 * @param index: the index of the entity to search in the Ontology
-	 * @return whether the entity is contained in the Ontology
-	 */
-	public boolean contains(int index)
-	{
-		return classes.contains(index) ||
-				dataProperties.containsKey(index) ||
-				objectProperties.containsKey(index) ||
-				individuals.containsKey(index);
-	}
-	
-	/**
-	 * @return the indexes of the Data Properties in the Ontology
-	 */
-	public Set<Integer> getDataProperties()
-	{
-		return dataProperties.keySet();
-	}
-	
-	/**
-	 * @param index: the index of the Data Property to get
-	 * @return the DataProperty with the given index in the Ontology
-	 */
-	public DataProperty getDataProperty(int index)
-	{
-		return dataProperties.get(index);
 	}
 	
 	/**
@@ -249,31 +190,6 @@ public class Ontology2Match extends Ontology
 	{
 		return classNames.get(name);
 	}	
-
-	/**
-	 * @return the indexes of the Individuals in the Ontology
-	 */
-	public Set<Integer> getIndividuals()
-	{
-		return individuals.keySet();
-	}
-	
-	/**
-	 * @param index: the index of the Individual to get
-	 * @return the Individual with the given index in the Ontology
-	 */
-	public Individual getIndividual(int index)
-	{
-		return individuals.get(index);
-	}
-	
-	/**
-	 * @return the map of Individuals in the Ontology
-	 */
-	public HashMap<Integer,Individual> getIndividualMap()
-	{
-		return individuals;
-	}
 
 	/**
 	 * @return the Lexicon of the Ontology
@@ -289,31 +205,6 @@ public class Ontology2Match extends Ontology
 	public Set<String> getLocalNames()
 	{
 		return classNames.keySet();
-	}
-	
-	@Override
-	public String getName(int index)
-	{
-		if(individuals.containsKey(index))
-			return individuals.get(index).getName();
-		return super.getName(index);
-	}
-	
-	/**
-	 * @return the indexes of the Object Properties in the Ontology
-	 */
-	public Set<Integer> getObjectProperties()
-	{
-		return objectProperties.keySet();
-	}
-	
-	/**
-	 * @param index: the index of the Object Property to get
-	 * @return the ObjectProperty with the given index in the Ontology
-	 */
-	public ObjectProperty getObjectProperty(int index)
-	{
-		return objectProperties.get(index);
 	}
 	
 	/**
@@ -344,14 +235,6 @@ public class Ontology2Match extends Ontology
 	}
 	
 	/**
-	 * @return the number of Individuals in the Ontology
-	 */
-	public int individualCount()
-	{
-		return individuals.size();
-	}
-	
-	/**
 	 * @param index: the index of the URI in the ontology
 	 * @return whether the index corresponds to an obsolete class
 	 */
@@ -368,15 +251,6 @@ public class Ontology2Match extends Ontology
 		return isSKOS;
 	}
 	
-	/**
-	 * @return the number of Object Properties in the Ontology
-	 */
-	public int objectPropertyCount()
-	{
-		return objectProperties.size();
-	}
-
-
 //Private Methods	
 
 	//Builds the ontology data structures
@@ -452,7 +326,7 @@ public class Ontology2Match extends Ontology
 			//Add it to the global list of URIs (as a class)
 			int id = uris.addURI(indivUri, EntityType.CLASS);
 			//Add it to the class map
-			classes.add(id);			
+			entities.add(id);			
 			//Get the local name from the URI
 			String name = uris.getLocalName(id);
 			//Add the name to the classNames map
@@ -462,7 +336,7 @@ public class Ontology2Match extends Ontology
 			{
 				type = LexicalType.LOCAL_NAME;
 				weight = type.getDefaultWeight();
-				lex.addClass(id, name, "en", type, "", weight);
+				lex.add(id, name, "en", type, "", weight);
 			}
 
 			//Now get the class's annotations (including imports)
@@ -482,7 +356,7 @@ public class Ontology2Match extends Ontology
 	            		String lang = val.getLang();
 	            		if(lang.equals(""))
 	            			lang = "en";
-	            		lex.addClass(id, name, lang, type, "", weight);
+	            		lex.add(id, name, lang, type, "", weight);
 		            }
 	            	else if(annotation.getValue() instanceof IRI)
 	            	{
@@ -496,7 +370,7 @@ public class Ontology2Match extends Ontology
 	                       		String lang = val.getLang();
 	    	            		if(lang.equals(""))
 	    	            			lang = "en";
-    		            		lex.addClass(id, name, lang, type, "", weight);
+    		            		lex.add(id, name, lang, type, "", weight);
 	                       	}
 	            		}
 	            	}
@@ -514,7 +388,7 @@ public class Ontology2Match extends Ontology
 		
 		//Start by adding the "related" property
 		int related = uris.addURI(SKOS.RELATED.toIRI().toString(),EntityType.OBJECT);
-		lex.addProperty(related, SKOS.RELATED.toString(), "en", LexicalType.LOCAL_NAME,
+		lex.add(related, SKOS.RELATED.toString(), "en", LexicalType.LOCAL_NAME,
 				"", LexicalType.LOCAL_NAME.getDefaultWeight());
 		objectProperties.put(related, new ObjectProperty());
 		rm.addSymmetric(related);
@@ -642,7 +516,7 @@ public class Ontology2Match extends Ontology
 			//Add it to the global list of URIs
 			int id = uris.addURI(classUri,EntityType.CLASS);
 			//Add it to the maps of the corresponding type
-			classes.add(id);
+			entities.add(id);
 			
 			//Get the local name from the URI
 			String name = uris.getLocalName(id);
@@ -654,7 +528,7 @@ public class Ontology2Match extends Ontology
 			{
 				type = LexicalType.LOCAL_NAME;
 				weight = type.getDefaultWeight();
-				lex.addClass(id, name, "en", type, "", weight);
+				lex.add(id, name, "en", type, "", weight);
 			}
 
 			//Now get the class's annotations (including imports)
@@ -676,7 +550,7 @@ public class Ontology2Match extends Ontology
 	            		String lang = val.getLang();
 	            		if(lang.equals(""))
 	            			lang = "en";
-	            		lex.addClass(id, name, lang, type, "", weight);
+	            		lex.add(id, name, lang, type, "", weight);
 		            }
 	            	else if(annotation.getValue() instanceof IRI)
 	            	{
@@ -690,7 +564,7 @@ public class Ontology2Match extends Ontology
 	                       		String lang = val.getLang();
 	    	            		if(lang.equals(""))
 	    	            			lang = "en";
-    		            		lex.addClass(id, name, lang, type, "", weight);
+    		            		lex.add(id, name, lang, type, "", weight);
 	                       	}
 	            		}
 	            	}
@@ -731,31 +605,31 @@ public class Ontology2Match extends Ontology
 			int id = uris.addURI(propUri,EntityType.DATA);
 			
 			//Get the local name from the URI
-			String name = uris.getLocalName(id);
-			
-			//If the local name is not an alphanumeric code, add it to the lexicon
-			if(!StringParser.isNumericId(name))
-			{
-				type = LexicalType.LOCAL_NAME;
-				weight = type.getDefaultWeight();
-				lex.addProperty(id, name, "en", type, "", weight);
-			}
-			
+			String localName = uris.getLocalName(id);
+			//Get the label(s)
+			String lang = "";
 			for(OWLAnnotation a : dp.getAnnotations(o,label))
             {
-				String lang = "";
                	if(a.getValue() instanceof OWLLiteral)
                	{
                		OWLLiteral val = (OWLLiteral) a.getValue();
-               		name = val.getLiteral();
+               		String name = val.getLiteral();
                		lang = val.getLang();
             		if(lang.equals(""))
             			lang = "en";
     				type = LexicalType.LABEL;
     				weight = type.getDefaultWeight();
-    				lex.addProperty(id, name, lang, type, "", weight);
+    				lex.add(id, name, lang, type, "", weight);
                	}
             }
+			//If the local name is not an alphanumeric code, add it to the lexicon
+			//(assume it is in the same language as the label)
+			if(!StringParser.isNumericId(localName))
+			{
+				type = LexicalType.LOCAL_NAME;
+				weight = type.getDefaultWeight();
+				lex.add(id, localName, lang, type, "", weight);
+			}
 			//Initialize the property
 			DataProperty prop = new DataProperty();
 			//Set the isFunctional parameter
@@ -796,31 +670,31 @@ public class Ontology2Match extends Ontology
 				rm.addSymmetric(id);
 			
 			//Get the local name from the URI
-			String name = getLocalName(propUri);
-			
-			//If the local name is not an alphanumeric code, add it to the lexicon
-			if(!StringParser.isNumericId(name))
-			{
-				type = LexicalType.LOCAL_NAME;
-				weight = type.getDefaultWeight();
-				lex.addProperty(id, name, "en", type, "", weight);
-			}
-			
+			String localName = getLocalName(propUri);
+			//Get the label(s)
+			String lang = "";			
 			for(OWLAnnotation a : op.getAnnotations(o,label))
             {
-				String lang = "";
                	if(a.getValue() instanceof OWLLiteral)
                	{
                		OWLLiteral val = (OWLLiteral) a.getValue();
-               		name = val.getLiteral();
+               		String name = val.getLiteral();
                		lang = val.getLang();
             		if(lang.equals(""))
             			lang = "en";
     				type = LexicalType.LABEL;
     				weight = type.getDefaultWeight();
-    				lex.addProperty(id, name, lang, type, "", weight);
+    				lex.add(id, name, lang, type, "", weight);
                	}
             }
+			//If the local name is not an alphanumeric code, add it to the lexicon
+			//(assume it is in the same language as the label)
+			if(!StringParser.isNumericId(localName))
+			{
+				type = LexicalType.LOCAL_NAME;
+				weight = type.getDefaultWeight();
+				lex.add(id, localName, lang, type, "", weight);
+			}
 			//Initialize the property
 			ObjectProperty prop = new ObjectProperty();
 			//Set the isFunctional parameter
@@ -895,6 +769,8 @@ public class Ontology2Match extends Ontology
 	//@author Catia Pesquita
 	private void getOWLNamedIndividuals(OWLOntology o)
 	{
+		LexicalType type;
+		double weight;
 		//The label property
 		OWLAnnotationProperty label = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
 		//Get an iterator over the ontology individuals
@@ -909,23 +785,32 @@ public class Ontology2Match extends Ontology
 				continue;
 			//Add it to the global list of URIs
 			int id = uris.addURI(indivUri, EntityType.INDIVIDUAL);
-			//Get the label
-			String name = "";
+			//Get the local name from the URI
+			String localName = getLocalName(indivUri);
+			//Get the label(s)
+			String lang = "";			
 			for(OWLAnnotation a : i.getAnnotations(o,label))
+            {
+               	if(a.getValue() instanceof OWLLiteral)
+               	{
+               		OWLLiteral val = (OWLLiteral) a.getValue();
+               		String name = val.getLiteral();
+               		lang = val.getLang();
+            		if(lang.equals(""))
+            			lang = "en";
+    				type = LexicalType.LABEL;
+    				weight = type.getDefaultWeight();
+    				lex.add(id, name, lang, type, "", weight);
+               	}
+            }
+			//If the local name is not an alphanumeric code, add it to the lexicon
+			//(assume it is in the same language as the label)
+			if(!StringParser.isNumericId(localName))
 			{
-				if(a.getValue() instanceof OWLLiteral)
-				{
-					OWLLiteral val = (OWLLiteral) a.getValue();
-					name = val.getLiteral();
-					break;
-				}
+				type = LexicalType.LOCAL_NAME;
+				weight = type.getDefaultWeight();
+				lex.add(id, localName, lang, type, "", weight);
 			}
-			//If there is no label, use the local name
-			if(name.equals(""))
-				name = getLocalName(indivUri);
-
-			Individual indiv = new Individual(id,name);
-			individuals.put(id,indiv);
 
 			//Get the data properties associated with the individual and their values
 			Map<OWLDataPropertyExpression,Set<OWLLiteral>> dataPropValues = i.getDataPropertyValues(o);
