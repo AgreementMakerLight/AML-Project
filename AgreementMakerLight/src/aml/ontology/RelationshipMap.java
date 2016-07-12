@@ -38,18 +38,20 @@ public class RelationshipMap
 
 	//Relationships between classes
 	//Hierarchical relations and property restrictions (with transitive closure)
-	private Table3List<Integer,Integer,Relationship> ancestorMap; //Class -> Ancestor -> Relationship
-	private Table3List<Integer,Integer,Relationship> descendantMap;	//Class -> Descendant -> Relationship
+	private Table3List<Integer,Integer,Relationship> ancestorClasses; //Class -> Ancestor -> Relationship
+	private Table3List<Integer,Integer,Relationship> descendantClasses;	//Class -> Descendant -> Relationship
 	//Disjointness (direct only, no transitive closure)
 	private Table2Set<Integer,Integer> disjointMap; //Class -> Disjoint Classes
+	//List of high level classes
+	private HashSet<Integer> highLevelClasses;
 	
 	//Relationships between individuals and classes
 	private Table2Set<Integer,Integer> instanceOfMap; //Individual -> Class 
 	private Table2Set<Integer,Integer> hasInstanceMap; //Class -> Individual
 
 	//Relationships between individuals
-	private Table3Set<Integer,Integer,Integer> ancestorIndividuals; //'Child' or 'Source' -> Property -> 'Parent' or 'Target'
-	private Table3Set<Integer,Integer,Integer> descendantIndividuals; //'Parent' or 'Target' -> Property -> 'Child' or 'Source'
+	private Table3Set<Integer,Integer,Integer> activeRelation; //Source Individual -> Target Individual -> Property
+	private Table3Set<Integer,Integer,Integer> passiveRelation; //Target Individual -> Source Individual -> Property
 
 	//Relationships between properties
 	//Hierarchical and inverse relations
@@ -58,10 +60,13 @@ public class RelationshipMap
 	private Table2Set<Integer,Integer> inverseProp; //Property -> InverseProperty
 	//Transitivity relations (transitive properties will be mapped to themselves)
 	private Table2Set<Integer,Integer> transitiveOver; //Property1 -> Property2 over which 1 is transitive
+	//List of symmetric properties
 	private HashSet<Integer> symmetric;
 	
-	//List of high level classes
-	private HashSet<Integer> highLevelClasses;
+	//Property domains and ranges (property to class or to String)
+	private Table2Set<Integer,Integer> domain; //Property -> Class
+	private Table2Set<Integer,Integer> objectRange; //Property -> Class
+	private Table2Set<Integer,String> dataRange; //Property -> String
 	
 //Constructors
 
@@ -70,18 +75,21 @@ public class RelationshipMap
 	 */
 	public RelationshipMap()
 	{
-		descendantMap = new Table3List<Integer,Integer,Relationship>();
-		ancestorMap = new Table3List<Integer,Integer,Relationship>();
+		descendantClasses = new Table3List<Integer,Integer,Relationship>();
+		ancestorClasses = new Table3List<Integer,Integer,Relationship>();
 		disjointMap = new Table2Set<Integer,Integer>();
 		instanceOfMap = new Table2Set<Integer,Integer>();
 		hasInstanceMap = new Table2Set<Integer,Integer>();
-		ancestorIndividuals = new Table3Set<Integer,Integer,Integer>();		
-		descendantIndividuals = new Table3Set<Integer,Integer,Integer>();		
+		activeRelation = new Table3Set<Integer,Integer,Integer>();		
+		passiveRelation = new Table3Set<Integer,Integer,Integer>();		
 		subProp = new Table2Set<Integer,Integer>();
 		superProp = new Table2Set<Integer,Integer>();
 		inverseProp = new Table2Set<Integer,Integer>();
 		transitiveOver = new Table2Set<Integer,Integer>();
 		symmetric = new HashSet<Integer>();
+		domain = new Table2Set<Integer,Integer>();
+		objectRange = new Table2Set<Integer,Integer>();
+		dataRange = new Table2Set<Integer,String>();
 	}
 	
 //Public Methods
@@ -112,8 +120,8 @@ public class RelationshipMap
 		//Create the relationship
 		Relationship r = new Relationship(distance,prop,rest);
 		//Then update the MultiMaps
-		descendantMap.add(parent,child,r);
-		ancestorMap.add(child,parent,r);
+		descendantClasses.add(parent,child,r);
+		ancestorClasses.add(child,parent,r);
 	}
 	
 	/**
@@ -139,6 +147,16 @@ public class RelationshipMap
 			disjointMap.add(class1, class2);
 			disjointMap.add(class2, class1);
 		}
+	}
+	
+	/**
+	 * Adds a new domain (class) to a given property
+	 * @param propId: the index of the property with the domain
+	 * @param classId: the index of the class in the domain of the property
+	 */
+	public void addDomain(int propId, int classId)
+	{
+		domain.add(propId, classId);
 	}
 	
 	/**
@@ -168,13 +186,13 @@ public class RelationshipMap
 	/**
 	 * Adds a relationship between two individuals through a given property
 	 * @param indiv1: the index of the first individual
-	 * @param prop: the property in the relationship
 	 * @param indiv2: the index of the second individual
+	 * @param prop: the property in the relationship
 	 */
-	public void addIndividualRelationship(int indiv1, int prop, int indiv2)
+	public void addIndividualRelationship(int indiv1, int indiv2, int prop)
 	{
-		ancestorIndividuals.add(indiv1,prop,indiv2);
-		descendantIndividuals.add(indiv2,prop,indiv1);
+		activeRelation.add(indiv1,indiv2,prop);
+		passiveRelation.add(indiv2,indiv1,prop);
 	}
 	
 	/**
@@ -200,6 +218,26 @@ public class RelationshipMap
 			inverseProp.add(property1, property2);
 			inverseProp.add(property2, property1);
 		}
+	}
+	
+	/**
+	 * Adds a new range (class) to a given object property
+	 * @param propId: the index of the property with the range
+	 * @param classId: the index of the class in the range of the property
+	 */
+	public void addRange(int propId, int classId)
+	{
+		objectRange.add(propId, classId);
+	}
+	
+	/**
+	 * Adds a new range (data type) to a given data property
+	 * @param propId: the index of the property with the range
+	 * @param type: the data type in the range of the property
+	 */
+	public void addRange(int propId, String type)
+	{
+		dataRange.add(propId, type);
 	}
 	
 	/**
@@ -271,7 +309,7 @@ public class RelationshipMap
 	 */
 	public boolean areRelatedClasses(int child, int parent)
 	{
-		return descendantMap.contains(parent,child);
+		return descendantClasses.contains(parent,child);
 	}
 	
 	/**
@@ -328,8 +366,8 @@ public class RelationshipMap
 	 */
 	public Set<Integer> getAncestors(int classId)
 	{
-		if(ancestorMap.contains(classId))
-			return ancestorMap.keySet(classId);
+		if(ancestorClasses.contains(classId))
+			return ancestorClasses.keySet(classId);
 		return new HashSet<Integer>();
 	}
 	
@@ -341,10 +379,10 @@ public class RelationshipMap
 	public Set<Integer> getAncestors(int classId, int distance)
 	{
 		HashSet<Integer> asc = new HashSet<Integer>();
-		if(!ancestorMap.contains(classId))
+		if(!ancestorClasses.contains(classId))
 			return asc;
-		for(Integer i : ancestorMap.keySet(classId))
-			for(Relationship r : ancestorMap.get(classId, i))
+		for(Integer i : ancestorClasses.keySet(classId))
+			for(Relationship r : ancestorClasses.get(classId, i))
 				if(r.getDistance() == distance)
 					asc.add(i);
 		return asc;
@@ -358,10 +396,10 @@ public class RelationshipMap
 	public Set<Integer> getAncestorsProperty(int classId, int prop)
 	{
 		HashSet<Integer> asc = new HashSet<Integer>();
-		if(!ancestorMap.contains(classId))
+		if(!ancestorClasses.contains(classId))
 			return asc;
-		for(Integer i : ancestorMap.keySet(classId))
-			for(Relationship r : ancestorMap.get(classId, i))
+		for(Integer i : ancestorClasses.keySet(classId))
+			for(Relationship r : ancestorClasses.get(classId, i))
 				if(r.getProperty() == prop)
 					asc.add(i);
 		return asc;
@@ -377,10 +415,10 @@ public class RelationshipMap
 	public Set<Integer> getAncestors(int classId, int distance, int prop)
 	{
 		HashSet<Integer> asc = new HashSet<Integer>();
-		if(!ancestorMap.contains(classId))
+		if(!ancestorClasses.contains(classId))
 			return asc;
-		for(Integer i : ancestorMap.keySet(classId))
-			for(Relationship r : ancestorMap.get(classId, i))
+		for(Integer i : ancestorClasses.keySet(classId))
+			for(Relationship r : ancestorClasses.get(classId, i))
 				if(r.getDistance() == distance && r.getProperty() == prop)
 					asc.add(i);
 		return asc;
@@ -391,8 +429,8 @@ public class RelationshipMap
 	 */
 	public Set<Integer> getChildren()
 	{
-		if(ancestorMap != null)
-			return ancestorMap.keySet();
+		if(ancestorClasses != null)
+			return ancestorClasses.keySet();
 		return new HashSet<Integer>();
 	}
 	
@@ -405,18 +443,6 @@ public class RelationshipMap
 		return getDescendants(classId,1);
 	}
 
-	/**
-	 * @param indivId: the id of the individual to search in the map
-	 * @param prop: the property relating the individuals
-	 * @return the list of 'children' relations of the given individual
-	 */
-	public Set<Integer> getChildrenIndividuals(int indivId, int prop)
-	{
-		if(descendantIndividuals.contains(indivId,prop))
-			return descendantIndividuals.get(indivId,prop);
-		return new HashSet<Integer>();
-	}
-	
 	/**
 	 * @param classId: the id of the class to search in the map
 	 * @return the list of individuals that instantiate the given class
@@ -469,13 +495,24 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param propId: the id of the property to search in the map
+	 * @return the list of data types in the range of the input property
+	 */
+	public Set<String> getDataRanges(int propId)
+	{
+		if(dataRange.contains(propId))
+			return dataRange.get(propId);
+		return new HashSet<String>();
+	}
+	
+	/**
 	 * @param classId: the id of the class to search in the map
 	 * @return the list of descendants of the input class
 	 */
 	public Set<Integer> getDescendants(int classId)
 	{
-		if(descendantMap.contains(classId))
-			return descendantMap.keySet(classId);
+		if(descendantClasses.contains(classId))
+			return descendantClasses.keySet(classId);
 		return new HashSet<Integer>();
 	}
 	
@@ -487,10 +524,10 @@ public class RelationshipMap
 	public Set<Integer> getDescendants(int classId, int distance)
 	{
 		HashSet<Integer> desc = new HashSet<Integer>();
-		if(!descendantMap.contains(classId))
+		if(!descendantClasses.contains(classId))
 			return desc;
-		for(Integer i : descendantMap.keySet(classId))
-			for(Relationship r : descendantMap.get(classId, i))
+		for(Integer i : descendantClasses.keySet(classId))
+			for(Relationship r : descendantClasses.get(classId, i))
 				if(r.getDistance() == distance)
 					desc.add(i);
 		return desc;
@@ -504,10 +541,10 @@ public class RelationshipMap
 	public Set<Integer> getDescendantsProperty(int classId, int prop)
 	{
 		HashSet<Integer> desc = new HashSet<Integer>();
-		if(!descendantMap.contains(classId))
+		if(!descendantClasses.contains(classId))
 			return desc;
-		for(Integer i : descendantMap.keySet(classId))
-			for(Relationship r : descendantMap.get(classId, i))
+		for(Integer i : descendantClasses.keySet(classId))
+			for(Relationship r : descendantClasses.get(classId, i))
 				if(r.getProperty() == prop)
 					desc.add(i);
 		return desc;
@@ -523,10 +560,10 @@ public class RelationshipMap
 	public Set<Integer> getDescendants(int classId, int distance, int prop)
 	{
 		HashSet<Integer> desc = new HashSet<Integer>();
-		if(!descendantMap.contains(classId))
+		if(!descendantClasses.contains(classId))
 			return desc;
-		for(Integer i : descendantMap.keySet(classId))
-			for(Relationship r : descendantMap.get(classId, i))
+		for(Integer i : descendantClasses.keySet(classId))
+			for(Relationship r : descendantClasses.get(classId, i))
 				if(r.getDistance() == distance && r.getProperty() == prop)
 					desc.add(i);
 		return desc;
@@ -579,9 +616,9 @@ public class RelationshipMap
 	{
 		if(child == parent)
 			return 0;
-		if(!ancestorMap.contains(child, parent))
+		if(!ancestorClasses.contains(child, parent))
 			return -1;
-		Vector<Relationship> rels = ancestorMap.get(child,parent);
+		Vector<Relationship> rels = ancestorClasses.get(child,parent);
 		int distance = rels.get(0).getDistance();
 		for(Relationship r : rels)
 			if(r.getDistance() < distance)
@@ -638,7 +675,7 @@ public class RelationshipMap
 		//First get the very top classes
 		HashSet<Integer> sourceTop = new HashSet<Integer>();
 		HashSet<Integer> targetTop = new HashSet<Integer>();
-		Set<Integer> ancestors = descendantMap.keySet();
+		Set<Integer> ancestors = descendantClasses.keySet();
 		//Which are classes that have children but not parents
 		//NOTE: This may not work out well if the ontologies are not is_a complete
 		for(Integer a : ancestors)
@@ -674,6 +711,17 @@ public class RelationshipMap
 	
 	/**
 	 * @param indivId: the id of the individual to search in the map
+	 * @return the list of individuals to which the given individual is actively related
+	 */
+	public Set<Integer> getIndividualActiveRelations(int indivId)
+	{
+		if(activeRelation.contains(indivId))
+			return activeRelation.keySet(indivId);
+		return new HashSet<Integer>();
+	}
+	
+	/**
+	 * @param indivId: the id of the individual to search in the map
 	 * @return the list of classes instanced by the given individual
 	 */
 	public Set<Integer> getIndividualClasses(int indivId)
@@ -683,23 +731,24 @@ public class RelationshipMap
 	
 	/**
 	 * @param indivId: the id of the individual to search in the map
-	 * @return the list of object properties associated with the given individual
+	 * @return the list of individuals that are actively related with of the given individual
 	 */
-	public Set<Integer> getIndividualProperties(int indivId)
+	public Set<Integer> getIndividualPassiveRelations(int indivId)
 	{
-		if(ancestorIndividuals.contains(indivId))
-			return ancestorIndividuals.keySet(indivId);
+		if(passiveRelation.contains(indivId))
+			return passiveRelation.keySet(indivId);
 		return new HashSet<Integer>();
 	}
-	
+
 	/**
-	 * @param indivId: the id of the individual to search in the map
-	 * @return the list of object properties associated with the given individual
+	 * @param sourceInd: the id of the source individual in the relation
+	 * @param targetInd: the id of the target individual in the relation
+	 * @return the list of object properties actively relating sourceInd to targetInd
 	 */
-	public Set<Integer> getIndividualRangeProperties(int indivId)
+	public Set<Integer> getIndividualProperties(int sourceInd, int targetInd)
 	{
-		if(descendantIndividuals.contains(indivId))
-			return descendantIndividuals.keySet(indivId);
+		if(activeRelation.contains(sourceInd,targetInd))
+			return activeRelation.get(sourceInd,targetInd);
 		return new HashSet<Integer>();
 	}
 	
@@ -725,12 +774,23 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param propId: the id of the property to search in the map
+	 * @return the list of classes in the range of the input property
+	 */
+	public Set<Integer> getObjectRanges(int propId)
+	{
+		if(objectRange.contains(propId))
+			return objectRange.get(propId);
+		return new HashSet<Integer>();
+	}
+	
+	/**
 	 * @return the set of classes with ancestors in the map
 	 */
 	public Set<Integer> getParents()
 	{
-		if(descendantMap != null)
-			return descendantMap.keySet();
+		if(descendantClasses != null)
+			return descendantClasses.keySet();
 		return new HashSet<Integer>();
 	}
 
@@ -750,8 +810,8 @@ public class RelationshipMap
 	 */
 	public Set<Integer> getParentIndividuals(int indivId, int prop)
 	{
-		if(ancestorIndividuals.contains(indivId,prop))
-			return ancestorIndividuals.get(indivId,prop);
+		if(activeRelation.contains(indivId,prop))
+			return activeRelation.get(indivId,prop);
 		return new HashSet<Integer>();
 	}
 	
@@ -762,10 +822,10 @@ public class RelationshipMap
 	 */
 	public Relationship getRelationship(int child, int parent)
 	{
-		if(!ancestorMap.contains(child, parent))
+		if(!ancestorClasses.contains(child, parent))
 			return null;
-		Relationship rel = ancestorMap.get(child).get(parent).get(0);
-		for(Relationship r : ancestorMap.get(child).get(parent))
+		Relationship rel = ancestorClasses.get(child).get(parent).get(0);
+		for(Relationship r : ancestorClasses.get(child).get(parent))
 			if(r.compareTo(rel) > 0)
 				rel = r;
 		return rel;
@@ -778,7 +838,7 @@ public class RelationshipMap
 	 */
 	public Vector<Relationship> getRelationships(int child, int parent)
 	{
-		return ancestorMap.get(child).get(parent);
+		return ancestorClasses.get(child).get(parent);
 	}
 	
 	/**
@@ -946,9 +1006,9 @@ public class RelationshipMap
 	 */	
 	public boolean isSubclass(int child, int parent)
 	{
-		if(!descendantMap.contains(parent,child))
+		if(!descendantClasses.contains(parent,child))
 			return false;
-		Vector<Relationship> rels = descendantMap.get(parent,child);
+		Vector<Relationship> rels = descendantClasses.get(parent,child);
 		for(Relationship r : rels)
 			if(r.getProperty() == -1)
 				return true;
@@ -969,7 +1029,7 @@ public class RelationshipMap
 	 */
 	public int relationshipCount()
 	{
-		return ancestorMap.size();
+		return ancestorClasses.size();
 	}
 	
 	/**
@@ -1000,11 +1060,11 @@ public class RelationshipMap
 	public void transitiveClosure()
 	{
 		//Transitive closure for class relations
-		Set<Integer> t = descendantMap.keySet();
+		Set<Integer> t = descendantClasses.keySet();
 		int lastCount = 0;
-		for(int distance = 1; lastCount != descendantMap.size(); distance++)
+		for(int distance = 1; lastCount != descendantClasses.size(); distance++)
 		{
-			lastCount = descendantMap.size();
+			lastCount = descendantClasses.size();
 			for(Integer i : t)
 			{
 				Set<Integer> childs = getChildren(i);
