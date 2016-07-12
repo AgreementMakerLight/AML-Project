@@ -449,7 +449,9 @@ public class RelationshipMap
 	 */
 	public Set<Integer> getClassIndividuals(int classId)
 	{
-		return hasInstanceMap.get(classId);
+		if(hasInstanceMap.contains(classId))
+			return hasInstanceMap.get(classId);
+		return new HashSet<Integer>();
 	}
 	
 	/**
@@ -726,7 +728,9 @@ public class RelationshipMap
 	 */
 	public Set<Integer> getIndividualClasses(int indivId)
 	{
-		return instanceOfMap.get(indivId);
+		if(instanceOfMap.contains(indivId))
+			return instanceOfMap.get(indivId);
+		return new HashSet<Integer>();
 	}
 	
 	/**
