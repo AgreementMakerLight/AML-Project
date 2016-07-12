@@ -174,7 +174,8 @@ public class URIMap
 	 */
 	public boolean isProperty(int index)
 	{
-		return indexType.get(index).equals(EntityType.DATA) ||
+		return indexType.get(index).equals(EntityType.ANNOTATION) ||
+				indexType.get(index).equals(EntityType.DATA) ||
 				indexType.get(index).equals(EntityType.OBJECT);
 	}
 	
