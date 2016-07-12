@@ -27,6 +27,9 @@ import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 
+import aml.settings.EntityType;
+import aml.util.Table2Set;
+
 public abstract class Ontology
 {
 	
@@ -39,8 +42,10 @@ public abstract class Ontology
     protected final String LIMIT = "entityExpansionLimit"; 
 	//The URI of the ontology
 	protected String uri;
-	//The set of classes in the ontology 
-	protected HashSet<Integer> classes;
+	//The set of entities in the ontology 
+	protected HashSet<Integer> entities;
+	//The table of entities by type in the ontology 
+	protected Table2Set<EntityType,Integer> entityTypes;
 	//Its lexicon
 	protected Lexicon lex;
 
@@ -54,7 +59,8 @@ public abstract class Ontology
         manager = OWLManager.createOWLOntologyManager();
         factory = manager.getOWLDataFactory();
         //Initialize the data structures
-        classes = new HashSet<Integer>();
+        entities = new HashSet<Integer>();
+        entityTypes = new Table2Set<EntityType,Integer>();
         lex = new Lexicon();
 	}
 
@@ -67,7 +73,7 @@ public abstract class Ontology
 	{
 		manager = null;
 		factory = null;
-		classes = null;
+		entities = null;
 		lex = null;
 		uri = null;
 	}
@@ -77,24 +83,25 @@ public abstract class Ontology
 	 */
 	public int classCount()
 	{
-		return classes.size();
+		return entities.size();
 	}
 	
 	/**
-	 * @param index: the index of the Class to search in the Ontology
-	 * @return whether the Ontology contains the Class with the given index
+	 * @param index: the index of the entity to search in the Ontology
+	 * @return whether the Ontology contains the entity with the given index
 	 */
-	public boolean containsClass(int index)
+	public boolean contains(int index)
 	{
-		return classes.contains(index);
+		return entities.contains(index);
 	}
 	
 	/**
-	 * @return the set of Classes in the Ontology
+	 * @param e: the EntityType to search in the Ontology
+	 * @return the set of entities of the given type in the Ontology
 	 */
-	public Set<Integer> getClasses()
+	public Set<Integer> getEntities(EntityType e)
 	{
-		return classes;
+		return entityTypes.get(e);
 	}
 	
 	/**
