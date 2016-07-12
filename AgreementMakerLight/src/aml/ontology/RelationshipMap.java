@@ -682,9 +682,9 @@ public class RelationshipMap
 		{
 			if(getParents(a).size() == 0 && getChildren(a).size() > 0)
 			{
-				if(aml.getSource().containsClass(a))
+				if(aml.getSource().contains(a))
 					sourceTop.add(a);
-				if(aml.getTarget().containsClass(a))
+				if(aml.getTarget().contains(a))
 					targetTop.add(a);
 			}
 		}
