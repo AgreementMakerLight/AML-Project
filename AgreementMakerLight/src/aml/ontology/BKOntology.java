@@ -124,7 +124,7 @@ public class BKOntology extends Ontology
 			if(classUri == null || classUri.endsWith("owl#Thing") || classUri.endsWith("owl:Thing"))
 				continue;
 			//Update the index and add it to the list of classes
-			classes.add(++id);
+			entities.add(++id);
 			//Get the local name from the URI
 			String name = getLocalName(classUri);
 			
@@ -133,7 +133,7 @@ public class BKOntology extends Ontology
 			{
 				type = LexicalType.LOCAL_NAME;
 				weight = type.getDefaultWeight();
-				lex.addClass(id, name, "en", type, "", weight);
+				lex.add(id, name, "en", type, "", weight);
 			}
 
 			//Now get the class's annotations (including imports)
@@ -155,7 +155,7 @@ public class BKOntology extends Ontology
 	            		String lang = val.getLang();
 	            		if(lang.equals(""))
 	            			lang = "en";
-	            		lex.addClass(id, name, lang, type, "", weight);
+	            		lex.add(id, name, lang, type, "", weight);
 		            }
 	            	else if(annotation.getValue() instanceof IRI)
 	            	{
@@ -169,7 +169,7 @@ public class BKOntology extends Ontology
 	                       		String lang = val.getLang();
 	    	            		if(lang.equals(""))
 	    	            			lang = "en";
-    		            		lex.addClass(id, name, lang, type, "", weight);
+    		            		lex.add(id, name, lang, type, "", weight);
 	                       	}
 	            		}
 	            	}
