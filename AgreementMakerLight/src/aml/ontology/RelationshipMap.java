@@ -62,6 +62,8 @@ public class RelationshipMap
 	private Table2Set<Integer,Integer> transitiveOver; //Property1 -> Property2 over which 1 is transitive
 	//List of symmetric properties
 	private HashSet<Integer> symmetric;
+	//List of functional properties
+	private HashSet<Integer> functional;
 	
 	//Property domains and ranges (property to class or to String)
 	private Table2Set<Integer,Integer> domain; //Property -> Class
@@ -87,6 +89,7 @@ public class RelationshipMap
 		inverseProp = new Table2Set<Integer,Integer>();
 		transitiveOver = new Table2Set<Integer,Integer>();
 		symmetric = new HashSet<Integer>();
+		functional = new HashSet<Integer>();
 		domain = new Table2Set<Integer,Integer>();
 		objectRange = new Table2Set<Integer,Integer>();
 		dataRange = new Table2Set<Integer,String>();
@@ -181,6 +184,14 @@ public class RelationshipMap
 	public void addEquivalentClass(int class1, int class2)
 	{
 		addEquivalence(class1,class2,-1,false);
+	}
+	
+	/**
+	 * @param prop: the property to set as functional
+	 */
+	public void addFunctional(int prop)
+	{
+		functional.add(prop);
 	}
 	
 	/**
@@ -1001,6 +1012,15 @@ public class RelationshipMap
 	public int instanceCount()
 	{
 		return instanceOfMap.size();
+	}
+	
+	/**
+	 * @param prop: the index of the property to check
+	 * @return whether the property is functional
+	 */
+	public boolean isFunctional(int prop)
+	{
+		return functional.contains(prop);
 	}
 	
 	/**
