@@ -196,6 +196,15 @@ public class Ontology2Match extends Ontology
 	}
 	
 	/**
+	 * @param e: the EntityType to check in the Ontology
+	 * @return the number of entities of EntityType e in the Ontology
+	 */
+	public int count(EntityType e)
+	{
+		return entityTypes.entryCount(e);
+	}
+	
+	/**
 	 * @param name: the localName of the class to get from the Ontology
 	 * @return the index of the corresponding name in the Ontology
 	 */
