@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
+import aml.settings.EntityType;
 import aml.settings.LexicalType;
 import aml.util.StringParser;
 import aml.util.Table2List;
@@ -80,7 +81,7 @@ public class Thesaurus implements Iterable<String>
 	public void buildFrom(Ontology o)
 	{
 		Lexicon lex = o.getLexicon();
-		Set<Integer> terms = lex.getClasses();
+		Set<Integer> terms = lex.getEntities(EntityType.CLASS);
 		//For each term in the Lexicon
 		for(Integer i : terms)
 		{
@@ -96,7 +97,7 @@ public class Thesaurus implements Iterable<String>
 	public void extendLexicon(Ontology o)
 	{
 		Lexicon lex = o.getLexicon();
-		Set<String> names = lex.getNames();
+		Set<String> names = lex.getNames(EntityType.CLASS);
 		//For each name in the Lexicon
 		for(String n: names)
 		{
@@ -112,14 +113,14 @@ public class Thesaurus implements Iterable<String>
 				//Otherwise, get the Thesaurus synonyms for that entry
 				Vector<String> thesEntries = get(s);
 				//For each Thesaurus synonym, create a new synonym in the Lexicon
-				Set<Integer> terms = lex.getInternalClasses(n);
+				Set<Integer> terms = lex.getInternalEntities(EntityType.CLASS,n);
 				for(String t: thesEntries)
 				{
 					String newName = n.replace(s,t);
 					for(Integer i: terms)
 					{
 						double weight = lex.getWeight(n,i) * CONFIDENCE;
-						lex.addClass(i, newName, TYPE, "", weight);
+						lex.add(i, newName, lex.getLanguages(n,i).iterator().next(), TYPE, "", weight);
 					}
 				}
 			}
