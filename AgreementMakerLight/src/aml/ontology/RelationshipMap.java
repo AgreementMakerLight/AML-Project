@@ -640,6 +640,17 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param propId: the id of the property to search in the map
+	 * @return the list of class indexes in the domain of the input property
+	 */
+	public Set<Integer> getDomains(int propId)
+	{
+		if(domain.contains(propId))
+			return domain.get(propId);
+		return new HashSet<Integer>();
+	}
+	
+	/**
 	 * @param classId: the id of the class to search in the map
 	 * @return the list of equivalences of the given class
 	 */
