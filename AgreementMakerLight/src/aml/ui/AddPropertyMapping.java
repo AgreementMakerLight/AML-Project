@@ -63,11 +63,11 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 		Ontology2Match source = aml.getSource();
 		Ontology2Match target = aml.getTarget();
 		//Get the lists of properties from the ontologies
-		objectSource = new Vector<Integer>(source.getObjectProperties());
-		objectTarget = new Vector<Integer>(target.getObjectProperties());
+		objectSource = new Vector<Integer>(source.getEntities(EntityType.OBJECT));
+		objectTarget = new Vector<Integer>(target.getEntities(EntityType.OBJECT));
 		boolean objectP = objectSource.size() > 0 && objectTarget.size() > 0;
-		dataSource = new Vector<Integer>(source.getDataProperties());
-		dataTarget = new Vector<Integer>(target.getDataProperties());
+		dataSource = new Vector<Integer>(source.getEntities(EntityType.DATA));
+		dataTarget = new Vector<Integer>(target.getEntities(EntityType.DATA));
 		boolean dataP = dataSource.size() > 0 && dataTarget.size() > 0;
 				
 		//Set the title
