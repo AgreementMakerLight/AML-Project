@@ -47,6 +47,7 @@ import aml.ontology.Ontology2Match;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.settings.Problem;
+import aml.settings.EntityType;
 import aml.settings.LanguageSetting;
 import aml.settings.MappingStatus;
 import aml.settings.MatchStep;
@@ -241,8 +242,8 @@ public class AML
 		matchSteps.add(MatchStep.STRING);
 		if(size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM))
 			matchSteps.add(MatchStep.STRUCT);
-		double sourceRatio = (source.dataPropertyCount() + source.objectPropertyCount()) * 1.0 / source.classCount();
-		double targetRatio = (target.dataPropertyCount() + target.objectPropertyCount()) * 1.0 / target.classCount();
+		double sourceRatio = (source.count(EntityType.DATA) + source.count(EntityType.OBJECT)) * 1.0 / source.count(EntityType.CLASS);
+		double targetRatio = (target.count(EntityType.DATA) + target.count(EntityType.OBJECT)) * 1.0 / target.count(EntityType.CLASS);
 		if(sourceRatio >= 0.05 && targetRatio >= 0.05)
 			matchSteps.add(MatchStep.PROPERTY);
 		if(size.equals(SizeCategory.HUGE))
@@ -584,7 +585,7 @@ public class AML
     public boolean hasClasses()
     {
     	return hasOntologies() &&
-    		source.classCount() > 0 && target.classCount() > 0;
+    		source.count(EntityType.CLASS) > 0 && target.count(EntityType.CLASS) > 0;
     }
     
     /**
@@ -602,8 +603,8 @@ public class AML
     public boolean hasProperties()
     {
     	return hasOntologies() &&
-   			((source.dataPropertyCount() > 0 && target.dataPropertyCount() > 0) ||
-   			(source.objectPropertyCount() > 0 && target.objectPropertyCount() > 0));
+   			((source.count(EntityType.DATA) > 0 && target.count(EntityType.DATA) > 0) ||
+   			(source.count(EntityType.OBJECT) > 0 && target.count(EntityType.OBJECT) > 0));
     }
     
     public boolean isHierarchic()
@@ -700,19 +701,19 @@ public class AML
 		source = new Ontology2Match(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
-		System.out.println("Classes: " + source.classCount());
+		System.out.println("Classes: " + source.count(EntityType.CLASS));
 		System.out.println("Names: " + source.getLexicon().size());
-		System.out.println("Individuals: " + source.individualCount());
-		System.out.println("Properties: " + (source.dataPropertyCount()+source.objectPropertyCount()));
+		System.out.println("Individuals: " + source.count(EntityType.INDIVIDUAL));
+		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
 		target = new Ontology2Match(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
-		System.out.println("Classes: " + target.classCount());
+		System.out.println("Classes: " + target.count(EntityType.CLASS));
 		System.out.println("Names: " + target.getLexicon().size());
-		System.out.println("Individuals: " + target.individualCount());
-		System.out.println("Properties: " + (target.dataPropertyCount()+target.objectPropertyCount()));
+		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
+		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Running transitive closure on RelationshipMap");
@@ -745,19 +746,19 @@ public class AML
 		source = new Ontology2Match(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
-		System.out.println("Classes: " + source.classCount());	
+		System.out.println("Classes: " + source.count(EntityType.CLASS));
 		System.out.println("Names: " + source.getLexicon().size());
-		System.out.println("Individuals: " + source.individualCount());
-		System.out.println("Properties: " + (source.dataPropertyCount()+source.objectPropertyCount()));
+		System.out.println("Individuals: " + source.count(EntityType.INDIVIDUAL));
+		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
 		target = new Ontology2Match(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
-		System.out.println("Classes: " + target.classCount());
+		System.out.println("Classes: " + target.count(EntityType.CLASS));
 		System.out.println("Names: " + target.getLexicon().size());
-		System.out.println("Individuals: " + target.individualCount());
-		System.out.println("Properties: " + (target.dataPropertyCount()+target.objectPropertyCount()));
+		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
+		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Running transitive closure on RelationshipMap");
