@@ -77,15 +77,7 @@ public abstract class Ontology
 		lex = null;
 		uri = null;
 	}
-	
-	/**
-	 * @return the number of Classes in the Ontology
-	 */
-	public int classCount()
-	{
-		return entities.size();
-	}
-	
+
 	/**
 	 * @param index: the index of the entity to search in the Ontology
 	 * @return whether the Ontology contains the entity with the given index
@@ -93,6 +85,23 @@ public abstract class Ontology
 	public boolean contains(int index)
 	{
 		return entities.contains(index);
+	}
+	
+	/**
+	 * @return the number of Entities in the Ontology
+	 */
+	public int count()
+	{
+		return entities.size();
+	}
+	
+	/**
+	 * @param e: the EntityType to check in the Ontology
+	 * @return the number of entities of EntityType e in the Ontology
+	 */
+	public int count(EntityType e)
+	{
+		return entityTypes.entryCount(e);
 	}
 	
 	/**
