@@ -44,6 +44,7 @@ import aml.AML;
 import aml.ontology.Ontology2Match;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
+import aml.settings.EntityType;
 import aml.settings.MappingRelation;
 import aml.settings.MappingStatus;
 import aml.util.Table2Map;
@@ -1190,7 +1191,7 @@ public class Alignment implements Collection<Mapping>
 	{
 		AML aml = AML.getInstance();
 		double coverage = sourceMaps.keyCount();
-		int count = aml.getSource().classCount();
+		int count = aml.getSource().count(EntityType.CLASS);
 		coverage /= count;
 		return coverage;
 	}
@@ -1210,7 +1211,7 @@ public class Alignment implements Collection<Mapping>
 	{
 		AML aml = AML.getInstance();
 		double coverage = targetMaps.keyCount();
-		int count = aml.getTarget().classCount();
+		int count = aml.getTarget().count(EntityType.CLASS);
 		coverage /= count;
 		return coverage;
 	}
