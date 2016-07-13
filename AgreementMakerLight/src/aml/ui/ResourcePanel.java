@@ -33,6 +33,7 @@ import javax.swing.text.StyledDocument;
 import aml.AML;
 import aml.match.Alignment;
 import aml.ontology.Ontology2Match;
+import aml.settings.EntityType;
 
 public class ResourcePanel extends JInternalFrame
 {
@@ -95,9 +96,9 @@ public class ResourcePanel extends JInternalFrame
 			else
 			{
 				doc.insertString(doc.getLength(), source.getURI(), u);
-				String src = " (" + source.classCount() + " classes, " +
-						(source.dataPropertyCount()+source.objectPropertyCount()) +
-						" properties, " + source.individualCount() + " individuals)\n";
+				String src = " (" + source.count(EntityType.CLASS) + " classes, " +
+						(source.count(EntityType.DATA)+source.count(EntityType.OBJECT)) +
+						" properties, " + source.count(EntityType.INDIVIDUAL) + " individuals)\n";
 				doc.insertString(doc.getLength(), src, def);
 			}
 			
@@ -108,9 +109,9 @@ public class ResourcePanel extends JInternalFrame
 			else
 			{
 				doc.insertString(doc.getLength(), target.getURI(), u);
-				String tgt = " (" + target.classCount() + " classes, " +
-						(target.dataPropertyCount()+target.objectPropertyCount()) +
-						" properties, " + target.individualCount() + " individuals)\n";
+				String tgt = " (" + target.count(EntityType.CLASS) + " classes, " +
+						(target.count(EntityType.DATA)+target.count(EntityType.OBJECT)) +
+						" properties, " + source.count(EntityType.INDIVIDUAL) + " individuals)\n";
 				doc.insertString(doc.getLength(), tgt, def);
 			}
 			
