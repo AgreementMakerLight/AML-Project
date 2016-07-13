@@ -173,6 +173,17 @@ public class Ontology2Match extends Ontology
 
 //Public Methods
 
+	/**
+	 * Adds an entity to the Ontology
+	 * @param index: the index of the entity to add
+	 * @param e: the EntityType of the entity to add
+	 */
+	public void add(int index, EntityType e)
+	{
+		entities.add(index);
+		entityTypes.add(e, index);
+	}
+	
 	@Override
 	public void close()
 	{
