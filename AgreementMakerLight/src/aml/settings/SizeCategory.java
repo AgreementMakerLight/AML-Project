@@ -38,8 +38,8 @@ public enum SizeCategory
 	{
 		Ontology source = AML.getInstance().getSource();
 		Ontology target = AML.getInstance().getTarget();
-		int sSize = source.classCount();
-		int tSize = target.classCount();
+		int sSize = source.count();
+		int tSize = target.count();
 		int max = Math.max(sSize, tSize);
 		if(Math.min(sSize,tSize) > 30000 || max > 60000)
 			return HUGE;
