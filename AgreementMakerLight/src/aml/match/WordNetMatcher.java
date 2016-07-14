@@ -24,11 +24,13 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
+import aml.knowledge.MediatorLexicon;
+import aml.knowledge.WordNet;
 import aml.match.PrimaryMatcher;
 import aml.ontology.Lexicon;
+import aml.settings.EntityType;
 import aml.settings.LexicalType;
 import aml.util.StringParser;
-import aml.util.WordNet;
 
 public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 {
@@ -43,6 +45,8 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 	private final String SOURCE = "WordNet";
 	//The confidence score of WordNet
 	private final double CONFIDENCE = 0.9;
+	//The MediatorLexicons built using WordNet
+	private MediatorLexicon src, tgt;
 	
 //Constructors
 
@@ -57,26 +61,30 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 //Public Methods
 
 	@Override
-	public void extendLexicons(double thresh)
+	public void extendLexicons(EntityType e, double thresh)
 	{
 		System.out.println("Extending Lexicons with WordNet Matcher");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		extendLexicon(aml.getSource().getLexicon(),thresh);
-		extendLexicon(aml.getTarget().getLexicon(),thresh);
+		extendLexicon(aml.getSource().getLexicon(),e,thresh);
+		extendLexicon(aml.getTarget().getLexicon(),e,thresh);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 	}
 	
 	@Override
-	public Alignment match(double thresh)
+	public Alignment match(EntityType e, double thresh)
 	{
 		System.out.println("Running WordNet Matcher");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		Lexicon ext1 = getExtensionLexicon(aml.getSource().getLexicon(),thresh);
-		Lexicon ext2 = getExtensionLexicon(aml.getTarget().getLexicon(),thresh);
-		Alignment a = match(ext1, ext2, thresh);
+		Lexicon source = aml.getSource().getLexicon();
+		Lexicon target = aml.getTarget().getLexicon();
+		src = getMediatorLexicon(source,e,thresh);
+		tgt = getMediatorLexicon(target,e,thresh);
+		Alignment a = match(source, e, tgt, thresh, false);
+		a.addAll(match(target, e, src, thresh, true));
+		a.addAll(match(thresh));
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
@@ -84,12 +92,12 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 	
 //Private Methods
 
-	private void extendLexicon(Lexicon l, double thresh)
+	private void extendLexicon(Lexicon l, EntityType e, double thresh)
 	{
 		//Get the original Lexicon names into a Vector since the
 		//Lexicon will be extended during the iteration (otherwise
 		//we'd get a concurrentModificationException)
-		Vector<String> names = new Vector<String>(l.getNames());
+		Vector<String> names = new Vector<String>(l.getNames(e));
 		//Iterate through the original Lexicon names
 		for(String s : names)
 		{
@@ -122,7 +130,7 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 			double conf = CONFIDENCE - 0.01*wordForms.size();
 			if(conf < thresh)
 				continue;
-			Set<Integer> terms = l.getInternalClasses(s);
+			Set<Integer> terms = l.getInternalEntities(e,s);
 			//Add each term with the name to the extension Lexicon
 			for(Integer i : terms)
 			{
@@ -130,16 +138,16 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 				if(weight < thresh)
 					continue;
 				for(String w : wordForms)
-					l.addClass(i, w, TYPE, SOURCE, weight);
+					l.add(i, w, "en", TYPE, SOURCE, weight);
 			}
 		}
 	}
 	
-	//Returns a copy of the given Lexicon, extended with WordNet
-	private Lexicon getExtensionLexicon(Lexicon l, double thresh)
+	//Returns a WordNet MediatorLexicon for the given Lexicon
+	private MediatorLexicon getMediatorLexicon(Lexicon l, EntityType e, double thresh)
 	{
-		Lexicon ext = new Lexicon(l);
-		Set<String> names = l.getNames();
+		MediatorLexicon ext = new MediatorLexicon();
+		Set<String> names = l.getNames(e);
 		//Iterate through the original Lexicon names
 		for(String s : names)
 		{
@@ -172,77 +180,85 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 			double conf = CONFIDENCE - 0.01*wordForms.size();
 			if(conf < thresh)
 				continue;
-			Set<Integer> terms = l.getInternalClasses(s);
-			//Add each term with the name to the extension Lexicon
+			Set<Integer> terms = l.getInternalEntities(e,s);
+			//Add each term with the name to the MediatorLexicon
 			for(Integer i : terms)
 			{
 				double weight = conf * l.getWeight(s, i);
 				if(weight < thresh)
 					continue;
 				for(String w : wordForms)
-					ext.addClass(i, w, "en", TYPE, SOURCE, weight);
+					ext.add(i, w, weight);
 			}
 		}
 		return ext;
 	}
 	
-	//Matches two given Lexicons (after extension with WordNet)
-	private Alignment match(Lexicon source, Lexicon target, double thresh)
+	//Matches a Lexicon against a MediatorLexicon
+	private Alignment match(Lexicon source, EntityType e, MediatorLexicon target, double thresh, boolean reverse)
 	{
 		Alignment maps = new Alignment();
-		Lexicon larger, smaller;
-		//To minimize iterations, we want to iterate through the
-		//ontology with the smallest Lexicon
-		boolean sourceIsSmaller = (source.nameCount() <= target.nameCount());
-		double weight, similarity;
-		if(sourceIsSmaller)
-		{
-			smaller = source;
-			larger = target;
-		}
-		else
-		{
-			smaller = target;
-			larger = source;
-		}
 		//Get the smaller ontology names
-		Set<String> names = smaller.getNames();
+		Set<String> names = target.getNames();
 		for(String s : names)
 		{
 			//Get all term indexes for the name in both ontologies
-			Set<Integer> largerIndexes = larger.getClasses(s);
-			Set<Integer> smallerIndexes = smaller.getClasses(s);
-			if(largerIndexes == null)
+			Set<Integer> tIndexes = target.getEntities(s);
+			Set<Integer> sIndexes = source.getEntities(e,s);
+			if(sIndexes == null)
 				continue;
 			//Otherwise, match all indexes
-			for(Integer i : smallerIndexes)
+			for(Integer i : tIndexes)
 			{
 				//Get the weight of the name for the term in the smaller lexicon
-				weight = smaller.getCorrectedWeight(s, i);
-				Set<String> smallerSources = smaller.getSources(s, i);
-				for(Integer j : largerIndexes)
+				double weight = target.getCorrectedWeight(s, i);
+				for(Integer j : sIndexes)
 				{
-					Set<String> largerSources = larger.getSources(s, j);
-					//We only consider matches involving at least one WordNet synonym
-					//and not envolving any external synonyms
-					boolean check = (smallerSources.contains(SOURCE) && largerSources.contains(SOURCE)) ||
-							(smallerSources.contains(SOURCE) && largerSources.contains("")) ||
-							(smallerSources.contains("") && largerSources.contains(SOURCE));
-					if(!check)
-						continue;
 					//Get the weight of the name for the term in the larger lexicon
-					similarity = larger.getCorrectedWeight(s, j);
+					double similarity = source.getCorrectedWeight(s, j);
 					//Then compute the similarity, by multiplying the two weights
 					similarity *= weight;
-					//If the similarity is above threshold
+					//If the similarity is above threshold add the mapping
 					if(similarity >= thresh)
 					{
-						//Add the mapping, taking into account the order of the ontologies
-						if(sourceIsSmaller)
+						if(reverse)
 							maps.add(new Mapping(i, j, similarity));
 						else
 							maps.add(new Mapping(j, i, similarity));
 					}
+				}
+			}
+		}
+		return maps;	
+	}
+	
+	//Matches the two MediatorLexicons
+	private Alignment match(double thresh)
+	{
+		Alignment maps = new Alignment();
+		//Get the smaller ontology names
+		Set<String> names = src.getNames();
+		for(String s : names)
+		{
+			//Get all term indexes for the name in both ontologies
+			Set<Integer> sIndexes = src.getEntities(s);
+			Set<Integer> tIndexes = tgt.getEntities(s);
+			if(tIndexes == null)
+				continue;
+			//Otherwise, match all indexes
+			for(Integer i : sIndexes)
+			{
+				//Get the weight of the name for the term in the smaller lexicon
+				double weight = src.getCorrectedWeight(s, i);
+				for(Integer j : tIndexes)
+				{
+					//Get the weight of the name for the term in the larger lexicon
+					double similarity = tgt.getCorrectedWeight(s, j);
+					//Then compute the similarity, by multiplying the two weights
+					similarity *= weight;
+					//If the similarity is above threshold add the mapping
+					if(similarity >= thresh)
+						maps.add(new Mapping(i, j, similarity));
 				}
 			}
 		}
