@@ -33,7 +33,7 @@ public class MeSHParser
 	public static void main(String[] args) throws Exception
 	{
 		Vector<String> concepts = new Vector<String>();
-		Mediator med = new Mediator();
+		MediatorLexicon med = new MediatorLexicon();
 		
 		SAXReader reader = new SAXReader();
 		File f = new File("store/knowledge/mesh.xml");

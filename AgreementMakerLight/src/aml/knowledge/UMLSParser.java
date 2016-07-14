@@ -32,7 +32,7 @@ public class UMLSParser
 	public static void main(String[] args) throws Exception
 	{
 		Table2Set<Integer,String> termSources = new Table2Set<Integer,String>();
-		Mediator med = new Mediator();
+		MediatorLexicon med = new MediatorLexicon();
 		
 		BufferedReader inStream = new BufferedReader(new FileReader("store/knowledge/MRCONSO.RRF"));
 		String line;
