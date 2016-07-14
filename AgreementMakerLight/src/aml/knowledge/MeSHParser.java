@@ -18,7 +18,7 @@
 *                                                                             *
 * @author Daniel Faria, Claudia Duarte                                        *
 ******************************************************************************/
-package aml.util;
+package aml.knowledge;
 
 import java.io.File;
 import java.util.Iterator;
@@ -27,8 +27,6 @@ import java.util.Vector;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-
-import aml.knowledge.Mediator;
 
 public class MeSHParser
 {

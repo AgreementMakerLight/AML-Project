@@ -19,13 +19,13 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util;
+package aml.knowledge;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import aml.knowledge.Mediator;
 import aml.settings.LexicalType;
+import aml.util.Table2Set;
 
 public class UMLSParser
 {

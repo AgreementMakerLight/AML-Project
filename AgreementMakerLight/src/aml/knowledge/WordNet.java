@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util;
+package aml.knowledge;
 
 import java.util.HashSet;
 
