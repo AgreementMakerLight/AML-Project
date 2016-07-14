@@ -24,6 +24,6 @@ public class UnsupportedEntityTypeException extends Exception
 
 	public UnsupportedEntityTypeException(String message)
 	{
-		super(message);
+		super("Unsupported EntityType: " + message);
 	}
 }
