@@ -29,6 +29,7 @@ import java.util.concurrent.Future;
 
 import aml.AML;
 import aml.ontology.RelationshipMap;
+import aml.settings.EntityType;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.util.Table2Set;
 
@@ -67,8 +68,13 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
+	public Alignment extendAlignment(Alignment a, EntityType e, double thresh)
 	{
+		if(!e.equals(EntityType.CLASS))
+		{
+			System.out.println("Neighbor Similarity Matcher supports only class mappings");
+			return new Alignment();
+		}
 		System.out.println("Extending Alignment with Neighbor Similarity Matcher");
 		long time = System.currentTimeMillis()/1000;
 		input = a;
@@ -112,8 +118,13 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	}
 
 	@Override
-	public Alignment rematch(Alignment a)
+	public Alignment rematch(Alignment a, EntityType e)
 	{
+		if(!e.equals(EntityType.CLASS))
+		{
+			System.out.println("Neighbor Similarity Matcher supports only class mappings");
+			return new Alignment();
+		}
 		System.out.println("Computing Neighbor Similarity");
 		long time = System.currentTimeMillis()/1000;
 		input = a;
