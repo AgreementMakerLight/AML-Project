@@ -21,6 +21,7 @@ package aml.knowledge;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,7 +57,7 @@ public class MediatorLexicon
 	 * Reads a MediatorLexicon from a given Lexicon file
 	 * @param file: the MediatorLexicon file
 	 */
-	public MediatorLexicon(String file) throws Exception
+	public MediatorLexicon(String file) throws IOException
 	{
 		this();
 		BufferedReader inStream = new BufferedReader(new FileReader(file));
