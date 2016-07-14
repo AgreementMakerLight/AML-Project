@@ -38,7 +38,12 @@ public class XRefMatcher extends MediatingMatcher
 	
 //Attributes
 
-	//The external ontology
+	private static final String DESCRIPTION = "Matches entities that are cross-referenced by\n" +
+											  "the same entity of a background knowledge\n" +
+											  "source, and/or using the Mediating Matcher.";
+	private static final String NAME = "Cross-Reference Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS};
+	//The external ontology's ReferenceMap
 	private ReferenceMap rm;
 	//The weight used for matching and Lexicon extension
 	private final double WEIGHT = 0.95;
@@ -61,14 +66,9 @@ public class XRefMatcher extends MediatingMatcher
 //Public Methods
 
 	@Override
-	public void extendLexicons(EntityType e, double thresh)
+	public void extendLexicons(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
-		//XRefMatcher supports classes only
-		if(!e.equals(EntityType.CLASS))
-		{
-			System.out.println("Cross-Reference Matcher supports class matching only");
-			return;
-		}
+		checkEntityType(e);
 		System.out.println("Extending Lexicons with Cross-Reference Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
@@ -129,14 +129,9 @@ public class XRefMatcher extends MediatingMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh)
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
-		//XRefMatcher supports classes only
-		if(!e.equals(EntityType.CLASS))
-		{
-			System.out.println("Cross-Reference Matcher supports class matching only");
-			return new Alignment();
-		}
+		checkEntityType(e);
 		System.out.println("Running Cross-Reference Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();

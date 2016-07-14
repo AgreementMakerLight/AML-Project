@@ -49,6 +49,11 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 
 //Attributes
 
+	private static final String DESCRIPTION = "Matches entities by computing the maximum\n" +
+											  "String similarity between their Lexicon\n" +
+											  "entries, using a String similarity measure";
+	private static final String NAME = "String Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
 	//Links to the AML class and to the source and target Lexicons
 	private AML aml;
 	private Ontology source;
@@ -97,8 +102,27 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, EntityType e, double thresh)
+	public String getDescription()
+	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment extendAlignment(Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{	
+		checkEntityType(e);
 		System.out.println("Extending Alignment with String Matcher");
 		long time = System.currentTimeMillis()/1000;
 		Alignment ext;
@@ -130,8 +154,9 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh)
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
+		checkEntityType(e);
 		System.out.println("Running String Matcher");
 		long time = System.currentTimeMillis()/1000;
 		Set<Integer> sources = sLex.getEntities(e);
@@ -150,8 +175,9 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 	}
 		
 	@Override
-	public Alignment rematch(Alignment a, EntityType e)
+	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
+		checkEntityType(e);
 		System.out.println("Computing String Similarity");
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
@@ -168,6 +194,21 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 	}
 	
 //Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
+	}
 	
 	private Alignment extendChildrenAndParents(Alignment a, double thresh)
 	{

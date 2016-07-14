@@ -65,17 +65,7 @@ public class LexicalMatcher implements PrimaryMatcher
 	@Override
 	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
+		checkEntityType(e);
 		System.out.println("Running Lexical Matcher");
 		long time = System.currentTimeMillis()/1000;
 		//Get the lexicons of the source and target Ontologies
@@ -167,5 +157,22 @@ public class LexicalMatcher implements PrimaryMatcher
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
+	}
+	
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }

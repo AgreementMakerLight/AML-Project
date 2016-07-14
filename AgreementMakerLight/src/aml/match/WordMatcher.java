@@ -34,6 +34,12 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 
 //Attributes
 	
+	private static final String DESCRIPTION = "Matches entities by checking for words\n" +
+			  								  "they share in their Lexicon entries.\n" +
+			  								  "Computes word similarity by entity, by\n" +
+			  								  "by entry, or combined";
+	private static final String NAME = "Word Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
 	private WordLexicon sourceLex;
 	private WordLexicon targetLex;
 	private WordMatchStrategy strategy = WordMatchStrategy.AVERAGE;
@@ -82,8 +88,27 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 //Public Methods
 	
 	@Override
-	public Alignment match(EntityType e, double thresh)
+	public String getDescription()
 	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
 		AML aml = AML.getInstance();
 		System.out.println("Building Word Lexicons");
 		long time = System.currentTimeMillis()/1000;
@@ -155,8 +180,9 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	}
 	
 	@Override
-	public Alignment rematch(Alignment a, EntityType e)
+	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
+		checkEntityType(e);
 		AML aml = AML.getInstance();
 		System.out.println("Building Word Lexicons");
 		long time = System.currentTimeMillis()/1000;
@@ -183,7 +209,22 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		return maps;
 	}
 	
-//Private
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
+	}
 	
 	//Computes the word-based (bag-of-words) similarity between two
 	//classes, for use by rematch()

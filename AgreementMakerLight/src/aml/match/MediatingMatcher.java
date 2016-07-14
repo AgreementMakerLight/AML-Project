@@ -38,6 +38,12 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 
 //Attributes
 
+	private static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
+			  								  "String matches between their Lexicon entries\n" +
+			  								  "and a common Lexicon entry of a background\n" +
+			  								  "knowledge source.";
+	private static final String NAME = "Mediating Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The MediatorLexicon used by this matcher
 	protected MediatorLexicon ext;
 	protected String uri;
@@ -70,14 +76,9 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public void extendLexicons(EntityType e, double thresh)
+	public void extendLexicons(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
-		//MediatingMatcher supports classes only
-		if(!e.equals(EntityType.CLASS))
-		{
-			System.out.println("Mediating Matcher supports class matching only");
-			return;
-		}
+		checkEntityType(e);
 		System.out.println("Extending Lexicons with Mediating Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
@@ -138,14 +139,27 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh)
+	public String getDescription()
 	{
-		//MediatingMatcher supports classes only
-		if(!e.equals(EntityType.CLASS))
-		{
-			System.out.println("Mediating Matcher supports class matching only");
-			return new Alignment();
-		}
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
 		System.out.println("Running Mediating Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
@@ -173,6 +187,21 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 	}
 	
 //Private Methods
+	
+	protected void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
+	}
 	
 	protected Table2Map<Integer,Integer,Double> match(Lexicon source, double thresh, boolean reverse)
 	{
