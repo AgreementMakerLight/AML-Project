@@ -21,7 +21,6 @@ package aml.knowledge;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -37,10 +36,8 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 
-import aml.settings.EntityType;
 import aml.settings.LexicalType;
 import aml.util.StringParser;
-import aml.util.Table2Set;
 
 public class MediatorOntology
 {
@@ -51,10 +48,6 @@ public class MediatorOntology
     private final String LIMIT = "entityExpansionLimit";
 	//The URI of the ontology
 	private String uri;
-	//The set of entities in the ontology 
-	private HashSet<Integer> entities;
-	//The table of entities by type in the ontology 
-	private Table2Set<EntityType,Integer> entityTypes;
 	//Its lexicon
 	private MediatorLexicon lex;
 	//Its map of cross-references
@@ -160,8 +153,6 @@ public class MediatorOntology
 			String classUri = c.getIRI().toString();
 			if(classUri == null || classUri.endsWith("owl#Thing") || classUri.endsWith("owl:Thing"))
 				continue;
-			//Update the index and add it to the list of classes
-			entities.add(++id);
 			//Get the local name from the URI
 			String name = getLocalName(classUri);
 			
