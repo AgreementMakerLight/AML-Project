@@ -36,8 +36,6 @@ public class MediatorLexicon
 
 //Attributes
 	
-	//The EntityType of this Mediator (currently restricted to class)
-	private EntityType type = EntityType.CLASS;
 	//The map of names (String) to entity indexes (Integer)
 	private Table2Map<String,Integer,Double> entityNames;
 	private Table2Set<Integer,String> nameEntities;
@@ -180,14 +178,6 @@ public class MediatorLexicon
 		return entityNames.keySet();
 	}
 	
-	/**
-	 * @return the EntityType of this Mediator (for now restricted to class)
-	 */
-	public EntityType getType()
-	{
-		return type;
-	}
-
 	/**
 	 * @param name: the name to search in the Lexicon
 	 * @param entityId: the entity to search in the Lexicon
