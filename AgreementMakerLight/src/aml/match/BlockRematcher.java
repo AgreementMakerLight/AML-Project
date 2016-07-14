@@ -23,6 +23,7 @@ import java.util.Set;
 
 import aml.AML;
 import aml.ontology.RelationshipMap;
+import aml.settings.EntityType;
 
 public class BlockRematcher implements Rematcher
 {
@@ -43,8 +44,13 @@ public class BlockRematcher implements Rematcher
 	}
 	
 	@Override
-	public Alignment rematch(Alignment a)
+	public Alignment rematch(Alignment a, EntityType e)
 	{
+		if(e.equals(EntityType.CLASS))
+		{
+			System.out.println("Block Rematcher supports class matching only");
+			return new Alignment();
+		}
 		System.out.println("Computing High-Level Structure Overlap");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
