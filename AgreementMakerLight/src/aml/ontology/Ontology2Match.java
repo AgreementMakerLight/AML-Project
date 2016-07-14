@@ -229,29 +229,31 @@ public class Ontology2Match extends Ontology
 	}
 	
 	/**
-	 * Gets the WordLexicon of this Ontology.
-	 * Builds the WordLexicon if not previously built, or
-	 * built for a specific language
+	 * Build a new WordLexicon of the given EntityType and without
+	 * language restrictions for this Ontology, or returns the
+	 * current WordLexicon if it matches these specifications.
+	 * @param e: the EntityType for which to build the WordLexicon
 	 * @return the WordLexicon of this Ontology
 	 */
-	public WordLexicon getWordLexicon()
+	public WordLexicon getWordLexicon(EntityType e)
 	{
-		if(wLex == null || !wLex.getLanguage().equals(""))
-			wLex = new WordLexicon(lex);
+		if(wLex == null || !wLex.getType().equals(e) || !wLex.getLanguage().equals(""))
+			wLex = new WordLexicon(lex,e);
 		return wLex;
 	}
 	
 	/**
-	 * Gets the WordLexicon of this Ontology for the specified language.
-	 * Builds the WordLexicon if not previously built, or built for a
-	 * different or unspecified language.
+	 * Build a new WordLexicon of the given EntityType and language
+	 * for this Ontology, or returns the current WordLexicon if it
+	 * matches these specifications.
+	 * @param e: the EntityType for which to build the WordLexicon
 	 * @param lang: the language of the WordLexicon
 	 * @return the WordLexicon of this Ontology
 	 */
-	public WordLexicon getWordLexicon(String lang)
+	public WordLexicon getWordLexicon(EntityType e, String lang)
 	{
 		if(wLex == null || !wLex.getLanguage().equals(lang))
-			wLex = new WordLexicon(lex,lang);
+			wLex = new WordLexicon(lex,e,lang);
 		return wLex;
 	}
 	
