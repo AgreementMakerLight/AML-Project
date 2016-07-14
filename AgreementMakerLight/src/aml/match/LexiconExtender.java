@@ -21,7 +21,7 @@ package aml.match;
 
 import aml.settings.EntityType;
 
-public interface LexiconExtender
+public interface LexiconExtender extends Matcher
 {
 	/**
 	 * Extends the Lexicons of the source and target Ontologies
@@ -29,5 +29,5 @@ public interface LexiconExtender
 	 * @param thresh: the minimum confidence threshold below
 	 * which synonyms will not be added to the Lexicons
 	 */
-	public void extendLexicons(EntityType e, double thresh);
+	public void extendLexicons(EntityType e, double thresh) throws UnsupportedEntityTypeException;
 }

@@ -20,7 +20,7 @@ package aml.match;
 
 import aml.settings.EntityType;
 
-public interface PrimaryMatcher
+public interface PrimaryMatcher extends Matcher
 {
 	/**
 	 * Matches the source and target Ontologies, returning an Alignment between them
@@ -28,5 +28,5 @@ public interface PrimaryMatcher
 	 * @param thresh: the similarity threshold for the alignment
 	 * @return the alignment between the source and target ontologies
 	 */
-	public Alignment match(EntityType e, double thresh);
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException;
 }

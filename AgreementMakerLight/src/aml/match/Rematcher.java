@@ -21,7 +21,7 @@ package aml.match;
 
 import aml.settings.EntityType;
 
-public interface Rematcher
+public interface Rematcher extends Matcher
 {
 	/**
 	 * Recomputes similarities for mappings of a given Alignment
@@ -29,5 +29,5 @@ public interface Rematcher
 	 * @param e: the EntityType for which to recompute similarities
 	 * @return the Alignment with the new similarities
 	 */
-	public Alignment rematch(Alignment a, EntityType e);
+	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException;
 }
