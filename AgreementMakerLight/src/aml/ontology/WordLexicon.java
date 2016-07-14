@@ -168,6 +168,14 @@ public class WordLexicon
 	}
 	
 	/**
+	 * @return the EntityType for which this WordLexicon was built
+	 */
+	public EntityType getType()
+	{
+		return type;
+	}
+	
+	/**
 	 * @param w: the word to search in the WordLexicon
 	 * @return the EC of the given word
 	 */
