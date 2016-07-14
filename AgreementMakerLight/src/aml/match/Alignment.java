@@ -41,7 +41,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.settings.EntityType;
@@ -60,12 +60,10 @@ public class Alignment implements Collection<Mapping>
 	private Table2Map<Integer,Integer,Mapping> sourceMaps;
 	//Term mappings organized by target class (Target Id, Source Id, Mapping)
 	private Table2Map<Integer,Integer,Mapping> targetMaps;
-	//Whether the Alignment is internal
-	private boolean internal;
 	//Link to AML and the Ontologies
 	private AML aml;
-	private Ontology2Match source;
-	private Ontology2Match target;
+	private Ontology source;
+	private Ontology target;
 	//Link to the URIMap
 	private URIMap uris;
 	
@@ -83,23 +81,6 @@ public class Alignment implements Collection<Mapping>
 		source = aml.getSource();
 		target = aml.getTarget();
 		uris = aml.getURIMap();
-		internal = false;
-	}
-
-	/**
-	 * Creates a new empty Alignment
-	 */
-	public Alignment(boolean internal)
-	{
-		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
-		targetMaps = new Table2Map<Integer,Integer,Mapping>();
-		aml = AML.getInstance();
-		if(!internal)
-			source = aml.getSource();
-			target = aml.getTarget();
-		uris = aml.getURIMap();
-		this.internal = internal;
 	}
 
 	/**
@@ -153,11 +134,10 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean add(int sourceId, int targetId, double sim, MappingRelation r)
 	{
-		//Unless the Alignment is internal, we can't have a mapping
-		//involving entities that exist in both ontologies (they are
-		//the same entity, and therefore shouldn't map with other
-		//entities in either ontology)
-		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
+		//We can't have a mapping involving entities that exist in
+		//both ontologies (they are the same entity, and therefore
+		//shouldn't map with other entities in either ontology)
+		if(source.contains(targetId) || target.contains(sourceId))
 			return false;
 		
 		//Construct the Mapping
@@ -201,11 +181,10 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean add(int sourceId, int targetId, double sim, MappingRelation r, MappingStatus s)
 	{
-		//Unless the Alignment is internal, we can't have a mapping
-		//involving entities that exist in both ontologies (they are
-		//the same entity, and therefore shouldn't map with other
-		//entities in either ontology)
-		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
+		//We can't have a mapping involving entities that exist in
+		//both ontologies (they are the same entity, and therefore
+		//shouldn't map with other entities in either ontology)
+		if(source.contains(targetId) || target.contains(sourceId))
 			return false;
 		
 		//Construct the Mapping
@@ -287,11 +266,10 @@ public class Alignment implements Collection<Mapping>
 		double sim = m.getSimilarity();
 		MappingRelation r = m.getRelationship();
 		Mapping clone = new Mapping(m);
-		//Unless the Alignment is internal, we can't have a mapping
-		//involving entities that exist in both ontologies (they are
-		//the same entity, and therefore shouldn't map with other
-		//entities in either ontology)
-		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
+		//We can't have a mapping involving entities that exist in
+		//both ontologies (they are the same entity, and therefore
+		//shouldn't map with other entities in either ontology)
+		if(source.contains(targetId) || target.contains(sourceId))
 			return false;
 		
 		//If it isn't listed yet, add it
