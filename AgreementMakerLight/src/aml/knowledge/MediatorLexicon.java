@@ -27,7 +27,6 @@ import java.util.Vector;
 
 import aml.util.Table2Map;
 import aml.util.Table2Set;
-import aml.settings.EntityType;
 import aml.util.StringParser;
 
 
