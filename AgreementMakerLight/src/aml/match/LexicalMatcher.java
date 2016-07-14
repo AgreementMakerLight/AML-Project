@@ -24,6 +24,7 @@ import java.util.Set;
 
 import aml.AML;
 import aml.ontology.Lexicon;
+import aml.settings.EntityType;
 import aml.settings.LanguageSetting;
 import aml.util.StringParser;
 
@@ -37,7 +38,7 @@ public class LexicalMatcher implements PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public Alignment match(double thresh)
+	public Alignment match(EntityType e, double thresh)
 	{
 		System.out.println("Running Lexical Matcher");
 		long time = System.currentTimeMillis()/1000;
@@ -45,44 +46,32 @@ public class LexicalMatcher implements PrimaryMatcher
 		AML aml = AML.getInstance();
 		Lexicon sLex = aml.getSource().getLexicon();
 		Lexicon tLex = aml.getTarget().getLexicon();
-		//And match them
-		Alignment a = match(sLex,tLex,thresh,false);
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
-		return a;
-	}
-	
-//Private Methods
-	
-	// Matches two Lexicons
-	protected Alignment match(Lexicon sLex, Lexicon tLex, double thresh, boolean internal)
-	{
 		//Initialize the alignment
-		Alignment maps = new Alignment(internal);
+		Alignment maps = new Alignment();
 		//To minimize iterations, we want to iterate through the
 		//Ontology with the smallest Lexicon
-		boolean sourceIsSmaller = (sLex.nameCount() <= tLex.nameCount());
+		boolean sourceIsSmaller = (sLex.nameCount(e) <= tLex.nameCount(e));
 		Set<String> names;
 		if(sourceIsSmaller)
-			names = sLex.getNames();
+			names = sLex.getNames(e);
 		else
-			names = tLex.getNames();
+			names = tLex.getNames(e);
 		
 		//If we have a multi-language Lexicon, we must match language by language
-		if(AML.getInstance().getLanguageSetting().equals(LanguageSetting.MULTI))
+		if(aml.getLanguageSetting().equals(LanguageSetting.MULTI))
 		{
 			for(String s : names)
 			{
 				HashSet<String> languages = new HashSet<String>();
-				for(String l : sLex.getLanguages(s))
+				for(String l : sLex.getLanguages(e,s))
 					if(tLex.getLanguages().contains(l))
 						languages.add(l);
 				
 				for(String l : languages)
 				{
 					//Get all term indexes for the name in both ontologies
-					Set<Integer> sourceIndexes = sLex.getClassesWithLanguage(s,l);
-					Set<Integer> targetIndexes = tLex.getClassesWithLanguage(s,l);
+					Set<Integer> sourceIndexes = sLex.getEntitiesWithLanguage(e,s,l);
+					Set<Integer> targetIndexes = tLex.getEntitiesWithLanguage(e,s,l);
 					//If the name doesn't exist in either ontology, skip it
 					if(sourceIndexes == null || targetIndexes == null)
 						continue;
@@ -111,8 +100,8 @@ public class LexicalMatcher implements PrimaryMatcher
 			for(String s : names)
 			{
 				boolean isSmallFormula = StringParser.isFormula(s) && s.length() < 10;
-				Set<Integer> sourceIndexes = sLex.getClasses(s);
-				Set<Integer> targetIndexes = tLex.getClasses(s);
+				Set<Integer> sourceIndexes = sLex.getEntities(e,s);
+				Set<Integer> targetIndexes = tLex.getEntities(e,s);
 				//If the name doesn't exist in either ontology, skip it
 				if(sourceIndexes == null || targetIndexes == null)
 					continue;
@@ -138,6 +127,9 @@ public class LexicalMatcher implements PrimaryMatcher
 				}
 			}
 		}
+		//And match them
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 }
