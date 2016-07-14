@@ -21,7 +21,7 @@
 *                                                                             *
 * @author Daniel Faria, Joana Pinto, Pedro do Vale                            *
 ******************************************************************************/
-package aml.translate;
+package aml.knowledge;
 
 import java.io.BufferedReader;
 import java.io.File;
