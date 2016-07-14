@@ -38,7 +38,7 @@ public class AnnotationFileReader
 	 * @param annotFile: the GAF formatted annotation file to read 
 	 * @param o: the ontology with which the annotation file is associated
 	 */
-	public static void readGAF(String annotFile, Ontology2Match o)
+	public static void readGAF(String annotFile, Ontology o)
 	{
 		AML aml = AML.getInstance();
 		URIMap uris = aml.getURIMap();
@@ -94,7 +94,7 @@ public class AnnotationFileReader
 	 * @param o: the ontology with which the annotation file is associated
 	 * @param header: whether the TSV file contains a header
 	 */
-	public static void readTSV(String annotFile, Ontology2Match o, boolean header)
+	public static void readTSV(String annotFile, Ontology o, boolean header)
 	{
 		AML aml = AML.getInstance();
 		URIMap uris = aml.getURIMap();
