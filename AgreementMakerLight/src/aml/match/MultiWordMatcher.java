@@ -27,10 +27,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
+import aml.knowledge.WordNet;
 import aml.ontology.Lexicon;
 import aml.ontology.WordLexicon;
+import aml.settings.EntityType;
 import aml.util.StopList;
-import aml.util.WordNet;
 
 public class MultiWordMatcher implements PrimaryMatcher
 {
@@ -52,24 +53,24 @@ public class MultiWordMatcher implements PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public Alignment match(double thresh)
+	public Alignment match(EntityType e, double thresh)
 	{
 		System.out.println("Running Multi-Word Matcher");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon sourceLex = aml.getSource().getLexicon();
 		Lexicon targetLex = aml.getTarget().getLexicon();
-		WordLexicon sourceWLex = aml.getSource().getWordLexicon();
-		WordLexicon targetWLex = aml.getTarget().getWordLexicon();
+		WordLexicon sourceWLex = aml.getSource().getWordLexicon(e);
+		WordLexicon targetWLex = aml.getTarget().getWordLexicon(e);
 		
 		Alignment maps = new Alignment();
-		for(String sName : sourceLex.getNames())
+		for(String sName : sourceLex.getNames(e))
 		{
 			String[] sWords = sName.split(" ");
 			if(sWords.length < 2 || sWords.length > 3)
 				continue;
 			
-			for(String tName : targetLex.getNames())
+			for(String tName : targetLex.getNames(e))
 			{
 				if(sName.equals(tName))
 					continue;
@@ -105,9 +106,9 @@ public class MultiWordMatcher implements PrimaryMatcher
 				if(sim < 1.5)
 					continue;
 				sim /= sWords.length;
-				for(Integer srcId : sourceLex.getClasses(sName))
+				for(Integer srcId : sourceLex.getEntities(e,sName))
 				{
-					for(Integer tgtId : targetLex.getClasses(tName))
+					for(Integer tgtId : targetLex.getEntities(e,tName))
 					{
 						double finalSim = sim * sourceLex.getCorrectedWeight(sName, srcId) *
 								targetLex.getCorrectedWeight(tName, tgtId);
