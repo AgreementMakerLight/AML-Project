@@ -19,10 +19,6 @@
 ******************************************************************************/
 package aml.ontology;
 
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -88,27 +84,6 @@ public class Lexicon
 		langCount = new HashMap<String,Integer>(l.langCount);
 	}
 	
-	/**
-	 * Reads a Lexicon from a given Lexicon file
-	 * @param file: the Lexicon file
-	 */
-	public Lexicon(String file) throws Exception
-	{
-		this();
-		BufferedReader inStream = new BufferedReader(new FileReader(file));
-		String line;
-		while((line = inStream.readLine()) != null)
-		{
-			String[] lex = line.split("\t");
-			int id = Integer.parseInt(lex[0]);
-			String name = lex[1];
-			LexicalType type = LexicalType.parseLexicalType(lex[2]);
-			double weight = type.getDefaultWeight();
-			add(id,name,"en",type,"",weight);
-		}
-		inStream.close();
-	}
-
 //Public Methods
 
 	/**
@@ -969,20 +944,6 @@ public class Lexicon
 		return count;
 	}
 	
-	/**
-	 * Saves this Lexicon to the specified file
-	 * @param file: the file on which to save the Lexicon
-	 */
-	public void save(String file) throws Exception
-	{
-		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		for(int e = 0; e < nameEntities.length; e++)
-			for(Integer i : nameEntities[e].keySet())
-				for(String n : nameEntities[e].keySet(i))
-					outStream.println(i + "\t" + n + "\t" + getType(n,i));
-		outStream.close();
-	}
-
 	/**
 	 * @return the number of class name entries in the Lexicon
 	 */
