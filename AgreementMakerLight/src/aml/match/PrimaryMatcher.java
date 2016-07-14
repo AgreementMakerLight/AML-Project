@@ -18,14 +18,15 @@
 ******************************************************************************/
 package aml.match;
 
+import aml.settings.EntityType;
+
 public interface PrimaryMatcher
 {
 	/**
 	 * Matches the source and target Ontologies, returning an Alignment between them
-	 * @param source: the source Ontology
-	 * @param target: the target Ontology
+	 * @param e: the EntityType to match
 	 * @param thresh: the similarity threshold for the alignment
 	 * @return the alignment between the source and target ontologies
 	 */
-	public Alignment match(double thresh);
+	public Alignment match(EntityType e, double thresh);
 }

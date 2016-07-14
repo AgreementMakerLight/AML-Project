@@ -19,12 +19,15 @@
 ******************************************************************************/
 package aml.match;
 
+import aml.settings.EntityType;
+
 public interface LexiconExtender
 {
 	/**
 	 * Extends the Lexicons of the source and target Ontologies
-	 * @param the minimum confidence threshold below
+	 * @param e: the EntityType for which to extend the Lexicons
+	 * @param thresh: the minimum confidence threshold below
 	 * which synonyms will not be added to the Lexicons
 	 */
-	public void extendLexicons(double thresh);
+	public void extendLexicons(EntityType e, double thresh);
 }

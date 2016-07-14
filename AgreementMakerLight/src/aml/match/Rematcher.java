@@ -19,12 +19,15 @@
 ******************************************************************************/
 package aml.match;
 
+import aml.settings.EntityType;
+
 public interface Rematcher
 {
 	/**
 	 * Recomputes similarities for mappings of a given Alignment
 	 * @param a: the existing alignment
+	 * @param e: the EntityType for which to recompute similarities
 	 * @return the Alignment with the new similarities
 	 */
-	public Alignment rematch(Alignment a);
+	public Alignment rematch(Alignment a, EntityType e);
 }
