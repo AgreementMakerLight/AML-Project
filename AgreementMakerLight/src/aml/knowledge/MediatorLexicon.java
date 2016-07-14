@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
@@ -42,8 +43,7 @@ public class MediatorLexicon
 //Constructors
 
 	/**
-	 * Creates a new empty Lexicon, initializing the multimaps
-	 * and the list of provenances
+	 * Creates a new empty MediatorLexicon
 	 */
 	public MediatorLexicon()
 	{
@@ -53,8 +53,8 @@ public class MediatorLexicon
 	
 	
 	/**
-	 * Reads a Lexicon from a given Lexicon file
-	 * @param file: the Lexicon file
+	 * Reads a MediatorLexicon from a given Lexicon file
+	 * @param file: the MediatorLexicon file
 	 */
 	public MediatorLexicon(String file) throws Exception
 	{
@@ -75,9 +75,9 @@ public class MediatorLexicon
 //Public Methods
 
 	/**
-	 * Adds a new entry to the Mediator
+	 * Adds a new entry to the MediatorLexicon
 	 * @param index: the index of the entity to which the name belongs
-	 * @param name: the name to add to the Mediator
+	 * @param name: the name to add to the MediatorLexicon
 	 * @param weight: the weight of the name for the index entry
 	 */
 	public void add(int classId, String name, double weight)
@@ -102,8 +102,8 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * @param name: the name to check in the Lexicon
-	 * @return whether a class in the Lexicon contains the name
+	 * @param name: the name to check in the MediatorLexicon
+	 * @return whether a class in the MediatorLexicon contains the name
 	 */
 	public boolean contains(String name)
 	{
@@ -111,7 +111,7 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * @param name: the name to search in the Mediator
+	 * @param name: the name to search in the MediatorLexicon
 	 * @return the entity associated with the name that has the highest
 	 * weight, or -1 if there are either no entities or two or more entities
 	 */
@@ -170,7 +170,7 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * @return the set of class names in the Lexicon
+	 * @return the set of class names in the MediatorLexicon
 	 */
 	public Set<String> getNames()
 	{
@@ -178,8 +178,19 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * @param name: the name to search in the Lexicon
-	 * @param entityId: the entity to search in the Lexicon
+	 * @param index: the index of the entity to search in the MediatorLexicon
+	 * @return the set of names of the given entity in the MediatorLexicon
+	 */
+	public Set<String> getNames(int index)
+	{
+		if(nameEntities.contains(index))
+			return nameEntities.get(index);
+		return new HashSet<String>();
+	}
+	
+	/**
+	 * @param name: the name to search in the MediatorLexicon
+	 * @param entityId: the entity to search in the MediatorLexicon
 	 * @return the best weight of the name for that entity
 	 */
 	public double getWeight(String name, int entityId)
@@ -190,7 +201,7 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * @return the number of names in the Lexicon
+	 * @return the number of names in the MediatorLexicon
 	 */
 	public int nameCount()
 	{
@@ -198,7 +209,7 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * @param entityId: the entity to search in the Mediator
+	 * @param entityId: the entity to search in the MediatorLexicon
 	 * @return the number of names associated with the class
 	 */
 	public int nameCount(int entityId)
@@ -207,8 +218,8 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * Saves this Lexicon to the specified file
-	 * @param file: the file on which to save the Lexicon
+	 * Saves this MediatorLexicon to the specified file
+	 * @param file: the file on which to save the MediatorLexicon
 	 */
 	public void save(String file) throws Exception
 	{
