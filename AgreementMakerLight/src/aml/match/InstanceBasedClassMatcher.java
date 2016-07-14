@@ -23,25 +23,31 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
+import aml.settings.EntityType;
 import aml.util.Similarity;
 import aml.util.Table2Set;
 
 public class InstanceBasedClassMatcher implements PrimaryMatcher
 {
 	@Override
-	public Alignment match(double thresh)
+	public Alignment match(EntityType e, double thresh)
 	{
+		if(!e.equals(EntityType.CLASS))
+		{
+			System.out.println("Instance-Based Class Matcher supports only class mappings");
+			return new Alignment();
+		}
 		Alignment a = new Alignment();
 		AML aml = AML.getInstance();
-		Ontology2Match source = aml.getSource();
-		Ontology2Match target = aml.getTarget();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
 		RelationshipMap rm = aml.getRelationshipMap();
 		System.out.println(rm.instanceCount());
 		
 		Table2Set<Integer,Integer> pairs = new Table2Set<Integer,Integer>();
-		for(int i : source.getIndividuals())
+		for(int i : source.getEntities(EntityType.INDIVIDUAL))
 		{
 			Set<Integer> classes = rm.getIndividualClasses(i);
 			Set<Integer> sources = new HashSet<Integer>();
