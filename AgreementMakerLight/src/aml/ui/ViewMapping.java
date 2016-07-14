@@ -70,7 +70,7 @@ import aml.filter.RepairMap;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.Lexicon;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.ontology.ValueMap;
@@ -95,7 +95,7 @@ public class ViewMapping extends JDialog implements ActionListener
 	private AML aml;
 	private URIMap uris;
 	private RelationshipMap rm;
-	private Ontology2Match source, target;
+	private Ontology source, target;
   	private Alignment a;
 	private int mapping, sourceId, targetId;
 	private Mapping m;
@@ -939,7 +939,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 
-		Ontology2Match o;
+		Ontology o;
 		if(source.contains(id))
 			o = source;
 		else
@@ -1050,7 +1050,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 		
-		Ontology2Match o;
+		Ontology o;
 		if(source.contains(id))
 			o = source;
 		else
@@ -1112,7 +1112,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 
-		Ontology2Match o;
+		Ontology o;
 		if(source.contains(id))
 			o = source;
 		else

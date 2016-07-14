@@ -32,7 +32,7 @@ import javax.swing.text.StyledDocument;
 
 import aml.AML;
 import aml.match.Alignment;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.settings.EntityType;
 
 public class ResourcePanel extends JInternalFrame
@@ -90,7 +90,7 @@ public class ResourcePanel extends JInternalFrame
 		{
 			doc.remove(0, doc.getLength());
 			doc.insertString(doc.getLength(), "Source Ontology: ", s);
-			Ontology2Match source = AML.getInstance().getSource();
+			Ontology source = AML.getInstance().getSource();
 			if(source == null)
 				doc.insertString(doc.getLength(), "N/A\n", def);
 			else
@@ -103,7 +103,7 @@ public class ResourcePanel extends JInternalFrame
 			}
 			
 			doc.insertString(doc.getLength(), "Target Ontology: ", t);
-			Ontology2Match target = AML.getInstance().getTarget();
+			Ontology target = AML.getInstance().getTarget();
 			if(target == null)
 				doc.insertString(doc.getLength(), "N/A\n", def);
 			else
