@@ -58,22 +58,14 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 	}
 	
 	/**
-	 * Constructs a MediatingMatcher with the given external Lexicon file
-	 * @param file: the file with the external Lexicon
+	 * Constructs a MediatingMatcher with the given MediatorLexicon
+	 * @param x: the MediatorLexicon
+	 * @param u: the URI of the MediatorLexicon
 	 */
-	public MediatingMatcher(String file)
+	public MediatingMatcher(MediatorLexicon x, String u)
 	{
-		try
-		{
-			ext = new MediatorLexicon(file);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Unable to build lexicon: " + file);
-			e.printStackTrace();
-			ext = new MediatorLexicon();
-		}
-		uri = (new File(file)).getName();
+		ext = x;
+		uri = u;
 	}
 
 //Public Methods
