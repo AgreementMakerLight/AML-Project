@@ -12,7 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The map of cross-references in an Ontology.                                 *
+* The map of cross-references in a MediatorOntology.                          *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
