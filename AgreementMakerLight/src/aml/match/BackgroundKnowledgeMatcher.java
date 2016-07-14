@@ -23,6 +23,8 @@
 ******************************************************************************/
 package aml.match;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Vector;
@@ -30,6 +32,9 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
+import aml.knowledge.MediatorLexicon;
+import aml.knowledge.MediatorOntology;
+import aml.settings.EntityType;
 import aml.settings.SelectionType;
 import aml.util.MapSorter;
 
@@ -72,13 +77,13 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(double thresh)
+	public Alignment match(EntityType e, double thresh)
 	{
 		System.out.println("Running Background Knowledge Matcher");
 		long time = System.currentTimeMillis()/1000;
 		LexicalMatcher lm = new LexicalMatcher();
 		//The baseline alignment
-		Alignment base = lm.match(thresh);
+		Alignment base = lm.match(e,thresh);
 		//The alignment to return
 		//(note that if no background knowledge sources are selected
 		//this matcher will return the baseline Lexical alignment)
@@ -96,31 +101,45 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 			//Lexicon files
 			if(s.endsWith(".lexicon"))
 			{
-				MediatingMatcher mm = new MediatingMatcher(path + s);
-				temp = mm.match(thresh);
+				try
+				{
+					MediatorLexicon ml = new MediatorLexicon(path + s);
+					MediatingMatcher mm = new MediatingMatcher(ml, (new File(path + s)).toURI().toString());
+					temp = mm.match(e,thresh);
+				}
+				catch(IOException io)
+				{
+					System.out.println("Could not open lexicon file: " + path + s);
+					io.printStackTrace();
+					continue;
+				}				
 			}
 			//WordNet
 			else if(s.equals("WordNet"))
 			{
 				WordNetMatcher wn = new WordNetMatcher();
-				temp = wn.match(thresh);
+				temp = wn.match(e,thresh);
 			}
 			//Ontologies
 			else
 			{
 				try
 				{
-					aml.openBKOntology(s);
+					long ontoTime = System.currentTimeMillis()/1000;
+					MediatorOntology mo = new MediatorOntology(path + s);
+					ontoTime = System.currentTimeMillis()/1000 - time;
+					System.out.println(mo.getURI() + " loaded in " + ontoTime + " seconds");
+					XRefMatcher x = new XRefMatcher(mo);
+					temp = x.match(e,thresh);
 				}
-				catch(OWLOntologyCreationException e)
+				catch(OWLOntologyCreationException o)
 				{
 					System.out.println("WARNING: Could not open ontology " + s);
-					System.out.println(e.getMessage());
+					o.printStackTrace();
 					continue;
 				}
-				XRefMatcher x = new XRefMatcher(aml.getBKOntology());
-				temp = x.match(thresh);
 			}
+			
 			if(oneToOne)
 				gain = temp.gainOneToOne(base);
 			else
