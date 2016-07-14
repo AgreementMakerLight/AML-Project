@@ -33,7 +33,8 @@ public class LexicalMatcher implements PrimaryMatcher
 	
 //Attributes
 	
-	private static final String DESCRIPTION = "Matches entities that have one or more exact matches between their Lexicon entries";
+	private static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
+											  "String matches between their Lexicon entries";
 	private static final String NAME = "Lexical Matcher";
 	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
 		
