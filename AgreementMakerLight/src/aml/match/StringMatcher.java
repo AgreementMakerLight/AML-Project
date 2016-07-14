@@ -160,8 +160,6 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 		{
 			if(aml.getURIMap().getType(m.getSourceId()).equals(e))
 				toMap.add(m.getSourceId(),m.getTargetId());
-			else
-				maps.add(m);
 		}
 		maps.addAll(mapInParallel(toMap,0.0));
 		time = System.currentTimeMillis()/1000 - time;

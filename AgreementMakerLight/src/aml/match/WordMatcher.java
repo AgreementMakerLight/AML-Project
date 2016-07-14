@@ -97,7 +97,6 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		{
 			sourceLex = aml.getSource().getWordLexicon(e);
 			targetLex = aml.getTarget().getWordLexicon(e);
-
 		}
 		System.out.println("Running Word Matcher");
 		Alignment a = new Alignment();
@@ -178,8 +177,6 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		{
 			if(aml.getURIMap().getType(m.getSourceId()).equals(e))
 				maps.add(mapTwoClasses(m.getSourceId(),m.getTargetId()));
-			else
-				maps.add(m);
 		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
