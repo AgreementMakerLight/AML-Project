@@ -24,11 +24,12 @@ import java.util.ArrayList;
 
 import aml.AML;
 import aml.ontology.Lexicon;
+import aml.settings.EntityType;
 
 public class AcronymMatcher implements PrimaryMatcher
 {
 	@Override
-	public Alignment match(double thresh)
+	public Alignment match(EntityType e, double thresh)
 	{
 		AML aml = AML.getInstance();
 		Lexicon sourceLex = aml.getSource().getLexicon();
@@ -36,11 +37,11 @@ public class AcronymMatcher implements PrimaryMatcher
 		
 		Alignment maps = new Alignment();
 
-		for(String sName : sourceLex.getNames())
+		for(String sName : sourceLex.getNames(e))
 		{
 			//Split the source name into words
 			String[] srcWords = sName.split(" ");
-			for(String tName : targetLex.getNames())
+			for(String tName : targetLex.getNames(e))
 			{
 				//Do the same for the target name
 				String[] tgtWords = tName.split(" ");
@@ -101,8 +102,8 @@ public class AcronymMatcher implements PrimaryMatcher
 					continue;
 				sim /= total;
 				if(sim >= thresh)
-					for(int sourceId : sourceLex.getClasses(sName))
-						for(int targetId : targetLex.getClasses(tName))
+					for(int sourceId : sourceLex.getEntities(e,sName))
+						for(int targetId : targetLex.getEntities(e,tName))
 							maps.add(sourceId, targetId, sim * 
 								Math.sqrt(sourceLex.getCorrectedWeight(sName, sourceId) *
 									targetLex.getCorrectedWeight(tName, targetId)));
