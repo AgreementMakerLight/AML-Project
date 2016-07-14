@@ -12,9 +12,10 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Parses the UMLS MRCONSO.RRF file into a Lexicon.                            *
-* WARNING: Requires the UMLS MRCONSO.RRF file, which is not released with     *
-* AgreementMakerLight                                                         * 
+* Parses the UMLS MRCONSO.RRF file into a lexicon file, which can be read by  *
+* class Mediator. Requires the UMLS MRCONSO.RRF file, which is not released   *
+* with AgreementMakerLight. Please see https://www.nlm.nih.gov/research/umls/ *
+* for instructions on obtaining a UMLS license.                               * 
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -23,7 +24,7 @@ package aml.util;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import aml.ontology.Lexicon;
+import aml.knowledge.Mediator;
 import aml.settings.LexicalType;
 
 public class UMLSParser
@@ -31,7 +32,7 @@ public class UMLSParser
 	public static void main(String[] args) throws Exception
 	{
 		Table2Set<Integer,String> termSources = new Table2Set<Integer,String>();
-		Lexicon lexicon = new Lexicon();
+		Mediator med = new Mediator();
 		
 		BufferedReader inStream = new BufferedReader(new FileReader("store/knowledge/MRCONSO.RRF"));
 		String line;
@@ -44,10 +45,12 @@ public class UMLSParser
 			LexicalType type = LexicalType.LABEL;
 			if(termSources.contains(id, source))
 				type = LexicalType.EXACT_SYNONYM;
+			else
+				termSources.add(id, source);
 			double weight = type.getDefaultWeight();
-			lexicon.addClass(id,name,type,source,weight);
+			med.add(id,name,weight);
 		}
 		inStream.close();
-		lexicon.save("store/knowledge/UMLS.lexicon");
+		med.save("store/knowledge/UMLS.lexicon");
 	}
 }
