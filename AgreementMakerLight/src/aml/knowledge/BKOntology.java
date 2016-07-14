@@ -16,7 +16,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ontology;
+package aml.knowledge;
 
 import java.io.File;
 import java.util.Set;
@@ -34,7 +34,7 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import aml.settings.LexicalType;
 import aml.util.StringParser;
 
-public class BKOntology extends Ontology
+public class BKOntology extends MediatorOntology
 {
 
 //Attributes
