@@ -59,6 +59,8 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 		sourceInd = aml.getSource().getEntities(EntityType.INDIVIDUAL);
 		targetInd = aml.getTarget().getEntities(EntityType.INDIVIDUAL);
 		rels = aml.getRelationshipMap();
+		sLex = aml.getSource().getLexicon();
+		tLex = aml.getTarget().getLexicon();
 		sValues = aml.getSource().getValueMap();
 		tValues = aml.getTarget().getValueMap();
 		this.useWordNet = useWordNet;
