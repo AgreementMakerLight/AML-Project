@@ -38,12 +38,14 @@ import aml.filter.CustomFlagger;
 import aml.filter.QualityFlagger;
 import aml.filter.RepairMap;
 import aml.filter.Repairer;
+import aml.knowledge.Dictionary;
+import aml.knowledge.MediatorOntology;
 import aml.match.ManualMatcher;
 import aml.match.Mapping;
+import aml.match.UnsupportedEntityTypeException;
 import aml.match.Alignment;
 import aml.match.AutomaticMatcher;
-import aml.ontology.BKOntology;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.settings.Problem;
@@ -56,7 +58,6 @@ import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
 import aml.settings.StringSimMeasure;
 import aml.settings.WordMatchStrategy;
-import aml.translate.Dictionary;
 import aml.ui.AMLColor;
 import aml.ui.AlignmentFileChooser;
 import aml.ui.GUI;
@@ -76,9 +77,9 @@ public class AML
 	//The ontology and alignment data structures
 	private URIMap uris;
 	private RelationshipMap rels;
-	private Ontology2Match source;
-	private Ontology2Match target;
-	private BKOntology bk;
+	private Ontology source;
+	private Ontology target;
+	private MediatorOntology bk;
 	private Alignment a;
 	private Alignment ref;
 	private RepairMap rep;
@@ -348,7 +349,7 @@ public class AML
     /**
      * @return the current background knowledge ontology
      */
-	public BKOntology getBKOntology()
+	public MediatorOntology getBKOntology()
 	{
 		return bk;
 	}
@@ -520,7 +521,7 @@ public class AML
 	/**
 	 * @return the current source ontology
 	 */
-	public Ontology2Match getSource()
+	public Ontology getSource()
 	{
 		return source;
 	}
@@ -536,7 +537,7 @@ public class AML
 	/**
 	 * @return the current target ontology
 	 */
-	public Ontology2Match getTarget()
+	public Ontology getTarget()
 	{
 		return target;
 	}
@@ -619,7 +620,14 @@ public class AML
     {
     	defaultConfig();
     	im = new InteractionManager();
-   		AutomaticMatcher.match();
+   		try
+   		{
+			AutomaticMatcher.match();
+		}
+   		catch(UnsupportedEntityTypeException e)
+   		{
+			e.printStackTrace();
+		}
     	evaluation = null;
     	rep = null;
     	if(a.size() > 0)
@@ -635,7 +643,14 @@ public class AML
     public void matchManual()
     {
     	im = new InteractionManager();
-   		ManualMatcher.match();
+   		try
+   		{
+			ManualMatcher.match();
+		}
+   		catch(UnsupportedEntityTypeException e)
+   		{
+			e.printStackTrace();
+		}
     	evaluation = null;
     	rep = null;
     	if(a.size() > 0)
@@ -683,7 +698,7 @@ public class AML
 		long time = System.currentTimeMillis()/1000;
 		if(bk != null)
 			bk.close();
-		bk = new BKOntology(dir + BK_PATH + name);
+		bk = new MediatorOntology(dir + BK_PATH + name);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(bk.getURI() + " loaded in " + time + " seconds");
 	}
@@ -698,7 +713,7 @@ public class AML
 			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = new Ontology2Match(src);
+		source = new Ontology(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.count(EntityType.CLASS));
@@ -707,7 +722,7 @@ public class AML
 		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
-		target = new Ontology2Match(tgt);
+		target = new Ontology(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
@@ -743,7 +758,7 @@ public class AML
 			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = new Ontology2Match(src);
+		source = new Ontology(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.count(EntityType.CLASS));
@@ -752,7 +767,7 @@ public class AML
 		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
-		target = new Ontology2Match(tgt);
+		target = new Ontology(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
@@ -882,7 +897,7 @@ public class AML
 		this.nss = nss;
 	}
 
-	public void setOntologies(Ontology2Match s, Ontology2Match t)
+	public void setOntologies(Ontology s, Ontology t)
 	{
 		source = s;
 		target = t;
