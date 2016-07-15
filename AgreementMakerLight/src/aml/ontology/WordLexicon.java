@@ -234,7 +234,8 @@ public class WordLexicon
 	{
 		//Initialize the data structures
 		stopSet = StopList.read();
-		wordEntities = new Table2Set[lex.entityCount(type)/MAX_BLOCK_SIZE];
+		int size = (int)Math.ceil(1.0*lex.entityCount(type)/MAX_BLOCK_SIZE);
+		wordEntities = new Table2Set[size];
 		for(int i = 0; i < wordEntities.length; i++)
 			wordEntities[i] = new Table2Set<String,Integer>();
 		entityWords = new Table2Map<Integer,String,Double>();
