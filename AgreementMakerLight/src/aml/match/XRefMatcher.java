@@ -20,17 +20,13 @@
 ******************************************************************************/
 package aml.match;
 
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
 import aml.AML;
 import aml.knowledge.MediatorOntology;
 import aml.knowledge.ReferenceMap;
-import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.settings.EntityType;
-import aml.util.MapSorter;
 import aml.util.Table2Map;
 
 public class XRefMatcher extends MediatingMatcher
@@ -91,55 +87,35 @@ public class XRefMatcher extends MediatingMatcher
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
-		Table2Map<Integer,Integer,Double> maps = match(source,thresh,false);
-		for(Integer s : maps.keySet())
+		if(src == null)
+			src = match(source,thresh);
+		for(Integer s : src.keySet())
 		{
-			int hit;
-			//If there are multiple mappings, choose the best
-			if(maps.entryCount(s) > 1)
+			for(Integer hit : src.keySet(s))
 			{
-				Map<Integer,Double> results = MapSorter.sortDescending(maps.get(s));
-				Iterator<Integer> i = results.keySet().iterator();
-				hit = i.next();
-				int secondHit = i.next();
-				//If there is a tie, then skip to next class
-				if(maps.get(s,hit) == maps.get(s,secondHit))
-					continue;
-			}
-			else
-				hit = maps.keySet(s).iterator().next();
-			Set<String> names = ext.getNames(hit);
-			for(String n : names)
-			{
-				double sim = maps.get(s,hit) * WEIGHT;
-				if(sim >= thresh)
-					source.getLexicon().add(s, n, "en", TYPE, uri, sim);
+				Set<String> names = ext.getNames(hit);
+				for(String n : names)
+				{
+					double sim = src.get(s,hit) * WEIGHT;
+					if(sim >= thresh)
+						source.getLexicon().add(s, n, "en", TYPE, uri, sim);
+				}
 			}
 		}
 		Ontology target = aml.getTarget();
-		maps = match(target,thresh,false);
-		for(Integer s : maps.keySet())
+		if(tgt == null)
+			tgt = match(target,thresh);
+		for(Integer s : tgt.keySet())
 		{
-			int hit;
-			//If there are multiple mappings, choose the best
-			if(maps.entryCount(s) > 1)
+			for(Integer hit : tgt.keySet(s))
 			{
-				Map<Integer,Double> results = MapSorter.sortDescending(maps.get(s));
-				Iterator<Integer> i = results.keySet().iterator();
-				hit = i.next();
-				int secondHit = i.next();
-				//If there is a tie, then skip to next class
-				if(maps.get(s,hit) == maps.get(s,secondHit))
-					continue;
-			}
-			else
-				hit = maps.keySet(s).iterator().next();
-			Set<String> names = ext.getNames(hit);
-			for(String n : names)
-			{
-				double sim = maps.get(s,hit) * WEIGHT;
-				if(sim >= thresh)
-					target.getLexicon().add(s, n, "en", TYPE, uri, sim);
+				Set<String> names = ext.getNames(hit);
+				for(String n : names)
+				{
+					double sim = tgt.get(s,hit) * WEIGHT;
+					if(sim >= thresh)
+						target.getLexicon().add(s, n, "en", TYPE, uri, sim);
+				}
 			}
 		}
 		time = System.currentTimeMillis()/1000 - time;
@@ -153,20 +129,25 @@ public class XRefMatcher extends MediatingMatcher
 		System.out.println("Running Cross-Reference Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		Lexicon source = aml.getSource().getLexicon();
-		Lexicon target = aml.getTarget().getLexicon();
-		Table2Map<Integer,Integer,Double> src = match(source,thresh,false);
-		Table2Map<Integer,Integer,Double> tgt = match(target,thresh,true);
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
+		src = match(source,thresh);
+		tgt = match(target,thresh);
+		//Reverse the target alignment table
+		Table2Map<Integer,Integer,Double> rev = new Table2Map<Integer,Integer,Double>();
+		for(Integer s : tgt.keySet())
+			for(Integer t : tgt.keySet(s))
+				rev.add(t, s, tgt.get(s, t));
 		Alignment maps = new Alignment();
 		for(Integer s : src.keySet())
 		{
 			for(Integer med : src.keySet(s))
 			{
-				if(!tgt.contains(med))
+				if(!rev.contains(med))
 					continue;
-				for(Integer t : tgt.keySet(med))
+				for(Integer t : rev.keySet(med))
 				{
-					double similarity = Math.min(src.get(s, med), tgt.get(med, t));
+					double similarity = Math.min(src.get(s, med), rev.get(med, t));
 					maps.add(s,t,similarity);
 				}
 			}
@@ -178,7 +159,7 @@ public class XRefMatcher extends MediatingMatcher
 	
 //Private Methods
 	
-	private Table2Map<Integer,Integer,Double> match(Ontology o, double thresh, boolean reverse)
+	private Table2Map<Integer,Integer,Double> match(Ontology o, double thresh)
 	{
 		Table2Map<Integer,Integer,Double> maps = new Table2Map<Integer,Integer,Double>();
 		if(rm != null)
@@ -196,7 +177,8 @@ public class XRefMatcher extends MediatingMatcher
 					if(sim < thresh)
 						continue;
 					for(Integer i : terms)
-						maps.add(o.getIndex(r), i, sim);
+						if(!maps.contains(o.getIndex(r), i) || maps.get(o.getIndex(r), i) > sim)
+							maps.add(o.getIndex(r), i, sim);
 				}
 			}
 		}
@@ -216,16 +198,6 @@ public class XRefMatcher extends MediatingMatcher
 				for(Integer t : lex.keySet(s))
 					maps.add(s, t, lex.get(s, t));
 			}
-		}
-		if(reverse)
-		{
-			Table2Map<Integer,Integer,Double> rev = new Table2Map<Integer,Integer,Double>();
-			for(Integer s : maps.keySet())
-			{
-				for(Integer t : maps.keySet(s))
-					rev.add(t, s, lex.get(s, t));
-			}
-			return rev;
 		}
 		return maps;
 	}
