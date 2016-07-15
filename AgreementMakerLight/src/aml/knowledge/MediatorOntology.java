@@ -61,7 +61,7 @@ public class MediatorOntology
 	 */
 	public MediatorOntology()
 	{
-		super();
+		lex = new MediatorLexicon();
 		refs = new ReferenceMap();
 	}
 	
@@ -72,6 +72,7 @@ public class MediatorOntology
 	 */
 	public MediatorOntology(String path) throws OWLOntologyCreationException
 	{
+		this();
         //Load the local ontology
 		init(path);
         //Check if a xrefs file with the same name as the ontology exists 
