@@ -24,7 +24,8 @@ public enum EntityType
 	CLASS ("Class"),
 	INDIVIDUAL ("Individual"),
     DATA ("Data Property"),
-    OBJECT ("Object Property");
+    OBJECT ("Object Property"),
+    ANNOTATION ("Annotation Property");
     
     String label;
     
