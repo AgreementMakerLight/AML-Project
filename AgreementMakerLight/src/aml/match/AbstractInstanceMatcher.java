@@ -19,43 +19,73 @@
 
 package aml.match;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.ontology.Individual;
+import aml.knowledge.WordNet;
+import aml.ontology.Lexicon;
 import aml.ontology.RelationshipMap;
+import aml.ontology.ValueMap;
+import aml.settings.EntityType;
 import aml.util.ISub;
 import aml.util.Similarity;
-import aml.util.WordNet;
 
 public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 {
-	protected HashMap<Integer,Individual> sourceInd, targetInd;
+	
+//Attributes
+	
+	private static final String DESCRIPTION = "Matches individuals.";
+	private static final String NAME = "Abstract Individual Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
+	protected Set<Integer> sourceInd, targetInd;
 	protected RelationshipMap rels;
+	protected Lexicon sLex, tLex;
+	protected ValueMap sValues, tValues;
 	protected WordNet wn;
 	protected boolean useWordNet = true;
 	
+//Constructors
+	
 	public AbstractInstanceMatcher()
 	{
-		AML aml = AML.getInstance();
-		sourceInd = aml.getSource().getIndividualMap();
-		targetInd = aml.getTarget().getIndividualMap();
-		rels = aml.getRelationshipMap();
-		wn = new WordNet();
+		this(true);
 	}
 
 	public AbstractInstanceMatcher(boolean useWordNet)
 	{
 		AML aml = AML.getInstance();
-		sourceInd = aml.getSource().getIndividualMap();
-		targetInd = aml.getTarget().getIndividualMap();
+		sourceInd = aml.getSource().getEntities(EntityType.INDIVIDUAL);
+		targetInd = aml.getTarget().getEntities(EntityType.INDIVIDUAL);
 		rels = aml.getRelationshipMap();
-		wn = new WordNet();
+		sValues = aml.getSource().getValueMap();
+		tValues = aml.getTarget().getValueMap();
 		this.useWordNet = useWordNet;
+		if(useWordNet)
+			wn = new WordNet();
+	}
+	
+//Public Methods
+
+	@Override
+	public String getDescription()
+	{
+		return DESCRIPTION;
 	}
 
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
 	@Override
 	/* 
 	 * Note that this method assumes that the classes instanced by the individuals
@@ -63,21 +93,26 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 	 * If this isn't true, then InstanceMatcher must be implemented as a SecondaryMatcher
 	 * so that the classes are matched before the individuals.
 	 */
-	public Alignment match(double thresh)
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
+		if(!e.equals(EntityType.INDIVIDUAL))
+			throw new UnsupportedEntityTypeException(e.toString());
 		Alignment a = new Alignment();
 		//Iterate through the source individuals
-		for(Integer i : sourceInd.keySet())
+		for(Integer i : sourceInd)
 		{
-			//Get their classes and object properties
+			//Get their classes and relations
 			Set<Integer> sourceClasses = rels.getIndividualClasses(i);
-			Set<Integer> sourceProps = rels.getIndividualProperties(i);
+			Set<Integer> sourceRels = rels.getIndividualActiveRelations(i);
+			
 			//Iterate through the target individuals
-			for(Integer j : targetInd.keySet())
+			for(Integer j : targetInd)
 			{
 				//Get their classes, and verify that at least one class is
 				//shared by the source and the target individuals
+				//Note: this only works if the ontologies share the Tbox
 				Set<Integer> targetClasses = rels.getIndividualClasses(j);
+				Set<Integer> targetRels = rels.getIndividualActiveRelations(j);
 				boolean check = false;
 				for(Integer sc : sourceClasses)
 				{
@@ -90,42 +125,52 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 				if(!check)
 					continue;
 				//Compute the string similarity between the individuals' names
-				double nameSim = nameSimilarity(sourceInd.get(i).getName(), targetInd.get(j).getName(), useWordNet);
+				double nameSim = nameSimilarity(i, j, useWordNet);
 				
 				//Compare the data properties and their values
 				double dataSim = 0;
-				for(Integer sd : sourceInd.get(i).getDataValues().keySet())
+				for(Integer sd : sValues.getProperties(i))
 				{
-					if(targetInd.get(j).getDataValues().keySet().contains(sd))
+					if(tValues.getProperties(j).contains(sd))
 					{
-						for(String sv : sourceInd.get(i).getDataValue(sd))
-							for(String tv: targetInd.get(j).getDataValue(sd))
+						for(String sv : sValues.getValues(i,sd))
+							for(String tv: tValues.getValues(j,sd))
 								dataSim = Math.max(dataSim, ISub.stringSimilarity(sv,tv));
 					}
 				}
 				
-				//Get the target object properties and compare them with the source
-				Set<Integer> targetProps = rels.getIndividualProperties(j);
-				double objectSim = Similarity.jaccard(sourceProps, targetProps);
-				//Now compare the individuals related through these properties
+				//Compare the related individuals
 				double relatedSim = 0;
-				for(Integer so : sourceProps)
+				for(Integer so : sourceRels)
 				{
-					if(targetProps.contains(so))
+					Set<Integer> sourceProps = rels.getIndividualProperties(i, so);
+					for(Integer to : targetRels)
 					{
-						for(Integer si : rels.getParentIndividuals(i, so))
-							for(Integer ti : rels.getParentIndividuals(j, so))
-								relatedSim = Math.max(relatedSim,
-										nameSimilarity(sourceInd.get(si).getName(),targetInd.get(ti).getName(), useWordNet));
+						Set<Integer> targetProps = rels.getIndividualProperties(j, to);
+						//Check if there is at least one property in common
+						//Note: again, this only works if the ontologies share the Tbox
+						if(Similarity.jaccard(sourceProps, targetProps) == 0)
+							continue;
+						
+						relatedSim = Math.max(relatedSim,nameSimilarity(so,to,useWordNet));
 					}
 				}
 				//The final similarity should be some combination of all the similarities we've computed
-				double finalSim = Math.max(nameSim, Math.max(dataSim, Math.max(objectSim, relatedSim)));
+				double finalSim = Math.max(nameSim, Math.max(dataSim, relatedSim));
 				if(finalSim >= thresh)
 					a.add(i,j,finalSim);
 			}
 		}
 		return a;		
+	}
+	
+	private double nameSimilarity(int i1, int i2, boolean useWordNet)
+	{
+		double sim = 0.0;
+		for(String n1 : sLex.getNames(i1))
+			for(String n2 : tLex.getNames(i2))
+				sim = Math.max(sim, nameSimilarity(n1,n2,useWordNet));
+		return sim;
 	}
 	
 	private double nameSimilarity(String n1, String n2, boolean useWordNet)
