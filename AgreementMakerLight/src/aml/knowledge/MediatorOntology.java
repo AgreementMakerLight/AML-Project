@@ -210,6 +210,8 @@ public class MediatorOntology
 						refs.add(id,xRef.replace(':','_'));
             	}
 	        }
+            //Increment the index
+            id++;
 		}
 		//Close the OntModel
         manager.removeOntology(o);
