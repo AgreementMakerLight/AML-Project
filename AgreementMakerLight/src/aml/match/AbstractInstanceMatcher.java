@@ -164,6 +164,8 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 		return a;		
 	}
 	
+//Private Methods
+	
 	private double nameSimilarity(int i1, int i2, boolean useWordNet)
 	{
 		double sim = 0.0;
