@@ -919,20 +919,20 @@ public class Ontology
 			String lang = "";
 			HashSet<String> labelLanguages = new HashSet<String>();
 			for(OWLAnnotation a : i.getAnnotations(o,label))
-            {
-               	if(a.getValue() instanceof OWLLiteral)
-               	{
-               		OWLLiteral val = (OWLLiteral) a.getValue();
-               		String name = val.getLiteral();
-               		lang = val.getLang();
-            		if(lang.equals(""))
-            			lang = "en";
-    				type = LexicalType.LABEL;
-    				weight = type.getDefaultWeight();
-    				lex.add(id, name, lang, type, "", weight);
-    				labelLanguages.add(lang);
-               	}
-            }
+			{
+				if(a.getValue() instanceof OWLLiteral)
+				{
+					OWLLiteral val = (OWLLiteral) a.getValue();
+					String name = val.getLiteral();
+					lang = val.getLang();
+					if(lang.equals(""))
+						lang = "en";
+					type = LexicalType.LABEL;
+					weight = type.getDefaultWeight();
+					lex.add(id, name, lang, type, "", weight);
+					labelLanguages.add(lang);
+				}
+			}
 			//If the local name is not an alphanumeric code, add it to the lexicon
 			//(assume it is in the same language as the label(s), if only one label
 			//language is declared; otherwise assume it is English)
@@ -944,7 +944,58 @@ public class Ontology
 					lang = "en";
 				lex.add(id, localName, lang, type, "", weight);
 			}
-
+			//Get the annotations of the Individual
+			for(OWLAnnotation annotation : i.getAnnotations(o))
+			{
+				//Skip rdf:labels which were already processed
+				if(annotation.getProperty().equals(label))
+					continue;
+				String propUri = annotation.getProperty().getIRI().toString();
+				//Annotations with a LexicalType go to the Lexicon
+				type = LexicalType.getLexicalType(propUri);
+				if(type != null)
+				{
+					weight = type.getDefaultWeight();
+					if(annotation.getValue() instanceof OWLLiteral)
+					{
+						OWLLiteral val = (OWLLiteral) annotation.getValue();
+						String name = val.getLiteral();
+						String localLang = val.getLang();
+						if(localLang.equals(""))
+							localLang = lang;
+						lex.add(id, name, localLang, type, "", weight);
+					}
+					else if(annotation.getValue() instanceof IRI)
+					{
+						OWLNamedIndividual ni = factory.getOWLNamedIndividual((IRI) annotation.getValue());
+						for(OWLAnnotation a : ni.getAnnotations(o,label))
+						{
+							if(a.getValue() instanceof OWLLiteral)
+							{
+								OWLLiteral val = (OWLLiteral) a.getValue();
+								String name = val.getLiteral();
+								String localLang = val.getLang();
+								if(localLang.equals(""))
+									localLang = lang;
+								lex.add(id, name, localLang, type, "", weight);
+							}
+						}
+					}
+				}
+				//Otherwise, literal annotations go to the ValueMap
+				else if(annotation.getValue() instanceof OWLLiteral)
+				{
+					OWLLiteral val = (OWLLiteral) annotation.getValue();
+					String v = val.getLiteral();
+					//We must first add the annotation property to the URIMap and Ontology
+					//(if it was already added, nothing happens)
+					int propId = uris.addURI(propUri, EntityType.ANNOTATION);
+					entities.add(propId);
+					entityTypes.add(EntityType.ANNOTATION, propId);
+					//Then add the value to the ValueMap
+					vMap.add(id, propId, v);
+				}
+			}
 			//Get the data properties associated with the individual and their values
 			Map<OWLDataPropertyExpression,Set<OWLLiteral>> dataPropValues = i.getDataPropertyValues(o);
 			for(OWLDataPropertyExpression prop : dataPropValues.keySet())
@@ -1282,7 +1333,8 @@ public class Ontology
 				if(prop.isAnonymous())
 					continue;
 
-				int propIndex = uris.getIndex(prop.asOWLObjectProperty().getIRI().toString());
+				String propURI = prop.asOWLObjectProperty().getIRI().toString();
+				int propIndex = uris.getIndex(propURI);
 				if(propIndex == -1)
 					continue;
 				for(OWLIndividual rI : iProps.get(prop))
@@ -1291,6 +1343,23 @@ public class Ontology
 					{
 						int namedRelIndivId = uris.getIndex(rI.asOWLNamedIndividual().getIRI().toString());
 						rm.addIndividualRelationship(namedIndivId, propIndex, namedRelIndivId);
+						//If the individual is an alias of the related individual
+						//use the individual's lexical entries to extend those of
+						//the related individual
+						if(propURI.endsWith("isAliasOf"))
+						{
+							for(String name : lex.getNames(namedIndivId))
+							{
+								for(Provenance p : lex.get(name, namedIndivId))
+								{
+									LexicalType t = p.getType();
+									if(t.equals(LexicalType.LABEL) || t.equals(LexicalType.LOCAL_NAME))
+										t = LexicalType.EXACT_SYNONYM;
+									double weight = t.getDefaultWeight();
+									lex.add(namedRelIndivId,name,p.getLanguage(),t,"",weight);
+								}
+							}
+						}
 					}
 				}
 			}
