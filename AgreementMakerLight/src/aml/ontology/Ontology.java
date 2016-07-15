@@ -258,7 +258,9 @@ public class Ontology
 	 */
 	public Set<Integer> getEntities(EntityType e)
 	{
-		return entityTypes.get(e);
+		if(entityTypes.contains(e))
+			return entityTypes.get(e);
+		return new HashSet<Integer>();
 	}
 	
 	/**
