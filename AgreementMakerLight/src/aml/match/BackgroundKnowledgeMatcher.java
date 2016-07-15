@@ -43,6 +43,13 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 	
 //Attributes
 
+	private static final String DESCRIPTION = "Matches classes by testing all available\n" +
+											  "sources of background knowledge, and using\n" +
+											  "those that have a significant mapping gain\n" +
+											  "(with Cross-Reference Matcher, Mediating\n" +
+											  "Matcher, and/or WordNet Matcher).";
+	private static final String NAME = "Background Knowledge Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The path to the background knowledge sources
 	private final String BK_PATH = "store/knowledge/";
 	private String path;
@@ -66,19 +73,28 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 
 //Public Methods
 	
-	public static String description()
+	@Override
+	public String getDescription()
 	{
-		return "This matching algorithm tests all pre-selected\n" +
-			   "background knowledge sources, selecting those\n" +
-			   "that are suitable for the matching task, and\n" +
-			   "combining the mappings obtained with them all.\n" +
-			   "It finds literal full-name matches, or when\n" +
-			   "available, cross-reference matches.";
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh)
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
+		checkEntityType(e);
 		System.out.println("Running Background Knowledge Matcher");
 		long time = System.currentTimeMillis()/1000;
 		LexicalMatcher lm = new LexicalMatcher();
@@ -163,5 +179,22 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
+	}
+	
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }

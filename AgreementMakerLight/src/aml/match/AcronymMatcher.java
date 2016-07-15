@@ -28,9 +28,42 @@ import aml.settings.EntityType;
 
 public class AcronymMatcher implements PrimaryMatcher
 {
+
+//Attributes
+	
+	private static final String DESCRIPTION = "Matches entities where the Lexicon entry of one\n" +
+											  "is an acronym of the Lexicon entry of the other\n";
+	private static final String NAME = "Acronym Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
+			
+//Constructors
+
+	public AcronymMatcher(){}
+	
+//Public Methods
+	
 	@Override
-	public Alignment match(EntityType e, double thresh)
+	public String getDescription()
 	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
 		AML aml = AML.getInstance();
 		Lexicon sourceLex = aml.getSource().getLexicon();
 		Lexicon targetLex = aml.getTarget().getLexicon();
@@ -110,5 +143,22 @@ public class AcronymMatcher implements PrimaryMatcher
 			}
 		}
 		return maps;
+	}
+	
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }

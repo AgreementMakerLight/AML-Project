@@ -66,6 +66,24 @@ public class XRefMatcher extends MediatingMatcher
 //Public Methods
 
 	@Override
+	public String getDescription()
+	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
 	public void extendLexicons(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);

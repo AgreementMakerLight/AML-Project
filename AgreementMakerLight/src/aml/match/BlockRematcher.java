@@ -28,29 +28,43 @@ import aml.settings.EntityType;
 public class BlockRematcher implements Rematcher
 {
 	
+//Attributes
+	
+	private static final String DESCRIPTION = "Rematches classes by computing the fraction\n" +
+											  "of mappings that fall within the blocks of the\n" +
+											  "ontologies (i.e., have the same high-level\n" +
+											  "classes.";
+	private static final String NAME = "Block Rematcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS};
+
 //Constructors
 	
 	public BlockRematcher(){}
 	
 //Public Methods
 	
-	public static String description()
+	@Override
+	public String getDescription()
 	{
-		return "This rematching algorithm infers a block alignment\n" +
-			   "by looking at the overlap between the descendants\n" +
-			   "of high-level classes in the input alignment. It\n" +
-			   "then defines similarity between two classes as\n" +
-			   "the highest overlap between their blocks.";
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
 	}
 	
 	@Override
-	public Alignment rematch(Alignment a, EntityType e)
+	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
-		if(e.equals(EntityType.CLASS))
-		{
-			System.out.println("Block Rematcher supports class matching only");
-			return new Alignment();
-		}
+		checkEntityType(e);
 		System.out.println("Computing High-Level Structure Overlap");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
@@ -83,5 +97,22 @@ public class BlockRematcher implements Rematcher
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
+	}
+	
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }

@@ -38,6 +38,12 @@ public class MultiWordMatcher implements PrimaryMatcher
 	
 //Attributes
 	
+	private static final String DESCRIPTION = "Matches entities that have Lexicon entries\n" +
+											  "with two words where one word is shared\n"+
+											  "between them and the other word is related\n" + 
+											  "through WordNet.";
+	private static final String NAME = "Lexical Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
 	private WordNet wn;
 	//The set of stop words
 	private Set<String> stopset;
@@ -53,8 +59,27 @@ public class MultiWordMatcher implements PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public Alignment match(EntityType e, double thresh)
+	public String getDescription()
 	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
 		System.out.println("Running Multi-Word Matcher");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
@@ -125,6 +150,21 @@ public class MultiWordMatcher implements PrimaryMatcher
 	}
 
 //Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
+	}
 	
 	private HashSet<String> getAllWordForms(String s)
 	{
