@@ -27,7 +27,9 @@ import aml.match.BlockRematcher;
 import aml.match.Mapping;
 import aml.match.NeighborSimilarityMatcher;
 import aml.match.StringMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.match.WordMatcher;
+import aml.settings.EntityType;
 import aml.settings.MappingStatus;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SizeCategory;
@@ -55,27 +57,34 @@ public class QualityFlagger implements Flagger
 		//Construct the list of auxiliary (re)matchers and alignments
 		auxMatchers = new Vector<String>();
 		auxAlignments = new Vector<Alignment>();
-		auxMatchers.add("Word Similarity: ");
-		WordMatcher wm = new WordMatcher(WordMatchStrategy.AVERAGE);
-		auxAlignments.add(wm.rematch(a));
-		auxMatchers.add("String Similarity: ");
-		StringMatcher sm = new StringMatcher();
-		auxAlignments.add(sm.rematch(a));
-		auxMatchers.add("Descendant Similarity: ");
-		NeighborSimilarityMatcher nm = new NeighborSimilarityMatcher(
-				NeighborSimilarityStrategy.DESCENDANTS,
-				!size.equals(SizeCategory.SMALL));
-		auxAlignments.add(nm.rematch(a));
-		auxMatchers.add("Ancestor Similarity: ");
-		nm = new NeighborSimilarityMatcher(
-				NeighborSimilarityStrategy.ANCESTORS,
-				!size.equals(SizeCategory.SMALL));
-		auxAlignments.add(nm.rematch(a));
-		if(size.equals(SizeCategory.HUGE))
+		try
 		{
-			auxMatchers.add("High-Level Similarity: ");
-			BlockRematcher br = new BlockRematcher();
-			auxAlignments.add(br.rematch(a));
+			auxMatchers.add("Word Similarity: ");
+			WordMatcher wm = new WordMatcher(WordMatchStrategy.AVERAGE);
+			auxAlignments.add(wm.rematch(a,EntityType.CLASS));
+			auxMatchers.add("String Similarity: ");
+			StringMatcher sm = new StringMatcher();
+			auxAlignments.add(sm.rematch(a,EntityType.CLASS));
+			auxMatchers.add("Descendant Similarity: ");
+			NeighborSimilarityMatcher nm = new NeighborSimilarityMatcher(
+					NeighborSimilarityStrategy.DESCENDANTS,
+					!size.equals(SizeCategory.SMALL));
+			auxAlignments.add(nm.rematch(a,EntityType.CLASS));
+			auxMatchers.add("Ancestor Similarity: ");
+			nm = new NeighborSimilarityMatcher(
+					NeighborSimilarityStrategy.ANCESTORS,
+					!size.equals(SizeCategory.SMALL));
+			auxAlignments.add(nm.rematch(a,EntityType.CLASS));
+			if(size.equals(SizeCategory.HUGE))
+			{
+				auxMatchers.add("High-Level Similarity: ");
+				BlockRematcher br = new BlockRematcher();
+				auxAlignments.add(br.rematch(a,EntityType.CLASS));
+			}
+		}
+		catch(UnsupportedEntityTypeException e)
+		{
+			e.printStackTrace();
 		}
 	}
 	
