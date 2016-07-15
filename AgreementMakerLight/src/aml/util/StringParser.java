@@ -99,6 +99,8 @@ public class StringParser
 	{
 		//First replace codes with their word equivalents 
 		String parsed = name.replace("&amp","and");
+		parsed = parsed.replace("&apos;","'");
+		parsed = parsed.replace("&nbsp;"," ");
 		parsed = parsed.replace("(+)","positive");
 		parsed = parsed.replace("(-)","negative");
 		
@@ -123,6 +125,8 @@ public class StringParser
 	{
 		//First replace codes with their word equivalents 
 		String parsed = name.replace("&amp","and");
+		parsed = parsed.replace("&apos;","'");
+		parsed = parsed.replace("&nbsp;"," ");
 		//Remove dashes
 		parsed = parsed.replaceAll("-","");
 		//Then replace all other non-word characters with white spaces
