@@ -18,6 +18,7 @@
 ******************************************************************************/
 package aml.match;
 
+import java.io.IOException;
 import java.util.Vector;
 
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -27,6 +28,8 @@ import aml.filter.InteractiveFilterer;
 import aml.filter.ObsoleteFilter;
 import aml.filter.Repairer;
 import aml.filter.Selector;
+import aml.knowledge.MediatorLexicon;
+import aml.settings.EntityType;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
@@ -71,7 +74,7 @@ public class AutomaticMatcher
 	
 //Public Methods
 
-	public static void match()
+	public static void match() throws UnsupportedEntityTypeException
 	{
 		//Get the AML instance
 		aml = AML.getInstance();
@@ -140,21 +143,21 @@ public class AutomaticMatcher
 	}
 	
 	//Step 3 - Lexical Match
-	private static void lexicalMatch()
+	private static void lexicalMatch() throws UnsupportedEntityTypeException
 	{
 		LexicalMatcher lm = new LexicalMatcher();
-		lex = lm.match(thresh);
+		lex = lm.match(EntityType.CLASS, thresh);
 		a.addAll(lex);
 	}
 
 	//Step 4 - Background Knowledge Match
-	private static void bkMatch()
+	private static void bkMatch() throws UnsupportedEntityTypeException
 	{
 		//We use only WordNet for very small ontologies
 		if(size.equals(SizeCategory.SMALL))
 		{
 			WordNetMatcher wn = new WordNetMatcher();
-			Alignment wordNet = wn.match(thresh);
+			Alignment wordNet = wn.match(EntityType.CLASS, thresh);
 			//Deciding whether to use it based on its coverage of the input ontologies
 			//(as we expect a high gain if the coverage is high given that WordNet will
 			//generate numerous synonyms)
@@ -175,11 +178,21 @@ public class AutomaticMatcher
 				//based on their mapping gain (over the direct Lexical alignment)
 				if(bk.endsWith(".lexicon"))
 				{
-					MediatingMatcher mm = new MediatingMatcher(BK_PATH + bk);
-					Alignment med = mm.match(thresh);
-					double gain = med.gain(lex);
-					if(gain >= MIN_GAIN_THRESH)
-						a.addAll(med);
+					try
+					{
+						MediatorLexicon ml = new MediatorLexicon(BK_PATH + bk);
+						MediatingMatcher mm = new MediatingMatcher(ml, BK_PATH + bk);
+						Alignment med = mm.match(EntityType.CLASS, thresh);
+						double gain = med.gain(lex);
+						if(gain >= MIN_GAIN_THRESH)
+							a.addAll(med);
+					}
+					catch(IOException e)
+					{
+						System.out.println("WARNING: Could not open lexicon " + bk);
+						e.printStackTrace();
+						continue;						
+					}
 				}
 				else
 				{
@@ -194,18 +207,18 @@ public class AutomaticMatcher
 						continue;
 					}
 					XRefMatcher xr = new XRefMatcher(aml.getBKOntology());
-					Alignment ref = xr.match(thresh);
+					Alignment ref = xr.match(EntityType.CLASS, thresh);
 					double gain = ref.gain(lex);
 					//In the case of Ontologies, if the mapping gain is very high, we can
 					//use them for Lexical Extension, which will effectively enable Word-
 					//and String-Matching with the BK Ontologies' names
 					if(gain >= HIGH_GAIN_THRESH)
 					{
-						xr.extendLexicons(thresh);
+						xr.extendLexicons(EntityType.CLASS, thresh);
 						//If that is the case, we must compute a new Lexical alignment
 						//after the extension
 						LexicalMatcher lm = new LexicalMatcher();
-						a.addAll(lm.match(thresh));
+						a.addAll(lm.match(EntityType.CLASS, thresh));
 					}
 					//Otherwise, we add the BK alignment as normal
 					else if(gain >= MIN_GAIN_THRESH)
@@ -216,65 +229,66 @@ public class AutomaticMatcher
 	}
 	
 	//Step 5 - Word Match
-	private static void wordMatch()
+	private static void wordMatch() throws UnsupportedEntityTypeException
 	{
 		Alignment word = new Alignment();
 		if(lang.equals(LanguageSetting.SINGLE))
 		{
 			WordMatcher wm = new WordMatcher();
-			word.addAll(wm.match(thresh));
+			word.addAll(wm.match(EntityType.CLASS, thresh));
 		}
 		else if(lang.equals(LanguageSetting.MULTI))
 		{
 			for(String l : aml.getLanguages())
 			{
 				WordMatcher wm = new WordMatcher(l);
-				word.addAll(wm.match(thresh));
+				word.addAll(wm.match(EntityType.CLASS, thresh));
 			}
 		}
 		a.addAllOneToOne(word);
 	}
 	
 	//Step 6 - String Match
-	private static void stringMatch()
+	private static void stringMatch() throws UnsupportedEntityTypeException
 	{
 		StringMatcher psm = new StringMatcher();
 		//If the task is small, we can use the PSM in match mode
 		if(aml.primaryStringMatcher())
 		{
-			a.addAllOneToOne(psm.match(psmThresh));
+			a.addAllOneToOne(psm.match(EntityType.CLASS, psmThresh));
 			//And if the task is single-language we can use the
 			//MultiWordMatcher as well (which uses WordNet)
 			if(lang.equals(LanguageSetting.SINGLE))
 			{
 				MultiWordMatcher mwm = new MultiWordMatcher();
-				a.addAllOneToOne(mwm.match(thresh));
+				a.addAllOneToOne(mwm.match(EntityType.CLASS, thresh));
 				AcronymMatcher am = new AcronymMatcher();
-				a.addAllOneToOne(am.match(thresh));
+				a.addAllOneToOne(am.match(EntityType.CLASS, thresh));
 			}
 		}
 		//Otherwise we use it in extendAlignment mode
 		else
-			a.addAllOneToOne(psm.extendAlignment(a,thresh));
+			a.addAllOneToOne(psm.extendAlignment(a,EntityType.CLASS,thresh));
 	}	
 	
 	//Step 7 - Structural Match
-	private static void structuralMatch()
+	private static void structuralMatch() throws UnsupportedEntityTypeException
 	{
 		NeighborSimilarityMatcher nsm = new NeighborSimilarityMatcher(
 				aml.getNeighborSimilarityStrategy(),aml.directNeighbors());
-		a.addAllOneToOne(nsm.extendAlignment(a,thresh));
+		a.addAllOneToOne(nsm.extendAlignment(a,EntityType.CLASS,thresh));
 	}
 	
 	//Step 8 - Property Match
-	private static void propertyMatch()
+	private static void propertyMatch() throws UnsupportedEntityTypeException
 	{
 		PropertyMatcher pm = new PropertyMatcher(true);
-		a.addAllOneToOne(pm.extendAlignment(a, thresh));
+		a.addAllOneToOne(pm.extendAlignment(a, EntityType.DATA, thresh));
+		a.addAllOneToOne(pm.extendAlignment(a, EntityType.OBJECT, thresh));
 	}
 	
 	//Step 9 - Selection
-	private static void selection()
+	private static void selection() throws UnsupportedEntityTypeException
 	{
 		if(aml.structuralSelection())
 		{
@@ -282,10 +296,10 @@ public class AutomaticMatcher
 			or.filter();
 				
 			BlockRematcher hl = new BlockRematcher();
-			Alignment b = hl.rematch(a);
+			Alignment b = hl.rematch(a,EntityType.CLASS);
 			NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(
 					NeighborSimilarityStrategy.MAXIMUM,true);
-			Alignment c = nb.rematch(a);
+			Alignment c = nb.rematch(a,EntityType.CLASS);
 			b = LWC.combine(b, c, 0.75);
 			b = LWC.combine(a, b, 0.8);
 			Selector s = new Selector(thresh-0.05,sType);
