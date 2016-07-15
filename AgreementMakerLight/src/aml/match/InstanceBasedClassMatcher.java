@@ -31,14 +31,42 @@ import aml.util.Table2Set;
 
 public class InstanceBasedClassMatcher implements PrimaryMatcher
 {
+	
+//Attributes
+	
+	private static final String DESCRIPTION = "Matches classes that have a high fraction\n" +
+											  "of instances in common.";
+	private static final String NAME = "Instance-Based Class Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS};
+	
+//Constructors
+	
+	public InstanceBasedClassMatcher(){}
+	
+//Public Methods
+	
 	@Override
-	public Alignment match(EntityType e, double thresh)
+	public String getDescription()
 	{
-		if(!e.equals(EntityType.CLASS))
-		{
-			System.out.println("Instance-Based Class Matcher supports only class mappings");
-			return new Alignment();
-		}
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
 		Alignment a = new Alignment();
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
@@ -76,5 +104,22 @@ public class InstanceBasedClassMatcher implements PrimaryMatcher
 			}			
 		}
 		return a;
+	}
+	
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }
