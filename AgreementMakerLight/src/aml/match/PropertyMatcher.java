@@ -24,27 +24,31 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
+import aml.knowledge.WordNet;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.match.SecondaryMatcher;
-import aml.ontology.DataProperty;
-import aml.ontology.ObjectProperty;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.settings.EntityType;
 import aml.util.ISub;
 import aml.util.Similarity;
-import aml.util.WordNet;
 
 public class PropertyMatcher implements SecondaryMatcher
 {
 	
 //Attributes
 	
+	private static final String DESCRIPTION = "Matches Data and Object Properties by\n" +
+											  "comparing their Lexicon entries (String\n" +
+											  "and word similarity) and checking that\n" +
+											  "their domains and ranges overlap";
+	private static final String NAME = "Property Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.DATA,EntityType.OBJECT};
 	private Alignment maps;
 	private AML aml;
-	private Ontology2Match source;
-	private Ontology2Match target;
+	private Ontology source;
+	private Ontology target;
 	private WordNet wn = null;
 	
 //Constructors
@@ -61,32 +65,21 @@ public class PropertyMatcher implements SecondaryMatcher
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, double threshold)
+	public Alignment extendAlignment(Alignment a, EntityType e, double threshold) throws UnsupportedEntityTypeException
 	{
+		checkEntityType(e);
 		System.out.println("Extending Alignment with Property Matcher");
 		long time = System.currentTimeMillis()/1000;
 		maps = a;
 		Alignment propMaps = new Alignment();
 		//Map data properties
-		Set<Integer> sourceKeys = source.getDataProperties();
-		Set<Integer> targetKeys = target.getDataProperties();
+		Set<Integer> sourceKeys = source.getEntities(e);
+		Set<Integer> targetKeys = target.getEntities(e);
 		for(Integer i : sourceKeys)
 		{
 			for(Integer j : targetKeys)
 			{
-				double sim = matchProperties(i,j,EntityType.DATA);
-				if(sim >= threshold)
-					propMaps.add(new Mapping(i,j,sim));
-			}
-		}
-		//Map object properties
-		sourceKeys = source.getObjectProperties();
-		targetKeys = target.getObjectProperties();
-		for(Integer i : sourceKeys)
-		{
-			for(Integer j : targetKeys)
-			{
-				double sim = matchProperties(i,j,EntityType.OBJECT);
+				double sim = matchProperties(i,j,e);
 				if(sim >= threshold)
 					propMaps.add(new Mapping(i,j,sim));
 			}
@@ -95,8 +88,41 @@ public class PropertyMatcher implements SecondaryMatcher
 		System.out.println("Finished in " + time + " seconds");
 		return propMaps;
 	}
+	
+	@Override
+	public String getDescription()
+	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
 
 //Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
+	}
 	
 	//Checks if two lists of ids match (i.e., have Jaccard similarity above 50%)
 	private boolean idsMatch(Set<Integer> sIds, Set<Integer> tIds)
@@ -152,31 +178,24 @@ public class PropertyMatcher implements SecondaryMatcher
 	{
 		double sim = 0.0d;
 
-		//We should only match datatype properties that have matching domains and ranges
+		//We should only match properties that have matching domains and ranges
+		RelationshipMap rm = aml.getRelationshipMap();
+		Set<Integer> sDomain = rm.getDomains(sourceId);
+		Set<Integer> tDomain = rm.getDomains(targetId);
+		if(!idsMatch(sDomain,tDomain))
+			return sim;
+		
 		if(e.equals(EntityType.DATA))
 		{
-			DataProperty sProp = source.getDataProperty(sourceId);
-			DataProperty tProp = target.getDataProperty(targetId);
-			Set<Integer> sDomain = sProp.getDomain();
-			Set<Integer> tDomain = tProp.getDomain();
-			if(!idsMatch(sDomain,tDomain))
-				return sim;
-			Set<String> sRange = sProp.getRange();
-			Set<String> tRange = tProp.getRange();
+			Set<String> sRange = rm.getDataRanges(sourceId);
+			Set<String> tRange = rm.getDataRanges(targetId);
 			if(!valuesMatch(sRange,tRange))
 				return sim;
 		}
-		//We should only match object properties that have matching domains and ranges
 		else if(e.equals(EntityType.OBJECT))
 		{
-			ObjectProperty sProp = source.getObjectProperty(sourceId);
-			ObjectProperty tProp = target.getObjectProperty(targetId);
-			Set<Integer> sDomain = sProp.getDomain();
-			Set<Integer> tDomain = tProp.getDomain();
-			if(!idsMatch(sDomain,tDomain))
-				return sim;
-			Set<Integer> sRange = sProp.getRange();
-			Set<Integer> tRange = tProp.getRange();
+			Set<Integer> sRange = rm.getObjectRanges(sourceId);
+			Set<Integer> tRange = rm.getObjectRanges(targetId);
 			if(!idsMatch(sRange,tRange))
 				return sim;
 		}
