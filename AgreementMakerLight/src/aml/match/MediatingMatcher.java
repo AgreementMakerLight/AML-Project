@@ -230,7 +230,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 					//Then compute the similarity, by multiplying the two weights
 					similarity *= weight;
 					//If the similarity is above threshold
-					if(similarity >= thresh)
+					if(similarity >= thresh && (!maps.contains(i, j) || similarity > maps.get(i, j)))
 						maps.add(i, j, similarity);
 				}
 			}
