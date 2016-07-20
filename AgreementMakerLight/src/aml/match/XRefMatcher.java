@@ -184,7 +184,7 @@ public class XRefMatcher extends MediatingMatcher
 			}
 		}
 		//Step 2 - Do a lexical match
-		Table2Map<Integer,Integer,Double> lex = match(o.getLexicon(),thresh,false);
+		Table2Map<Integer,Integer,Double> lex = match(o.getLexicon(),thresh);
 		
 		//Step 3 - Compare the two
 		//If the coverage of the lexical match is at least double
