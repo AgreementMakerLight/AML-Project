@@ -59,7 +59,7 @@ public class MediatorOntology
 	/**
 	 * Constructs an empty ontology
 	 */
-	public MediatorOntology()
+	private MediatorOntology()
 	{
 		lex = new MediatorLexicon();
 		refs = new ReferenceMap();
@@ -81,6 +81,7 @@ public class MediatorOntology
 		File f = new File(refName);
 		if(f.exists())
 			refs.extend(refName);
+		
 	}
 
 //Public Methods

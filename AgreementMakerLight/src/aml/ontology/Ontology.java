@@ -115,7 +115,7 @@ public class Ontology
 	/**
 	 * Constructs an empty ontology
 	 */
-	public Ontology()
+	private Ontology()
 	{
         //Increase the entity expansion limit to allow large ontologies
         System.setProperty(LIMIT, "1000000");
