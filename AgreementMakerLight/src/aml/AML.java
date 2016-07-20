@@ -695,6 +695,7 @@ public class AML
 	
 	public void openBKOntology(String name) throws OWLOntologyCreationException
 	{
+		System.out.println("Loading mediating ontology " + name);
 		long time = System.currentTimeMillis()/1000;
 		if(bk != null)
 			bk.close();
@@ -717,7 +718,6 @@ public class AML
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.count(EntityType.CLASS));
-		System.out.println("Names: " + source.getLexicon().size());
 		System.out.println("Individuals: " + source.count(EntityType.INDIVIDUAL));
 		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
 		time = System.currentTimeMillis()/1000;
@@ -727,7 +727,6 @@ public class AML
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
 		System.out.println("Names: " + target.getLexicon().size());
-		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
 		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
@@ -762,7 +761,6 @@ public class AML
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.count(EntityType.CLASS));
-		System.out.println("Names: " + source.getLexicon().size());
 		System.out.println("Individuals: " + source.count(EntityType.INDIVIDUAL));
 		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
 		time = System.currentTimeMillis()/1000;
@@ -771,7 +769,6 @@ public class AML
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
-		System.out.println("Names: " + target.getLexicon().size());
 		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
 		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
