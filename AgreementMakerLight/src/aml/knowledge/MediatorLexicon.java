@@ -166,7 +166,7 @@ public class MediatorLexicon
 		double weight = getWeight(name,classId);
 		if(weight == 0)
 			return weight;
-		double correction = nameCount(classId);
+		double correction = nameCount(classId)/100.0;
 		return weight - correction;
 	}
 	

@@ -81,7 +81,6 @@ public class MediatorOntology
 		File f = new File(refName);
 		if(f.exists())
 			refs.extend(refName);
-		
 	}
 
 //Public Methods
