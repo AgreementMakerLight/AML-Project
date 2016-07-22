@@ -718,7 +718,7 @@ public class Ontology
 			entityTypes.add(EntityType.DATA, id);
 			
 			//Get the local name from the URI
-			String localName = uris.getLocalName(id);
+			String localName = getLocalName(propUri);
 			//Get the label(s)
 			String lang = "";
 			HashSet<String> labelLanguages = new HashSet<String>();
