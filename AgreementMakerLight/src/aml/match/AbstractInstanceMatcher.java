@@ -158,8 +158,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 					}
 				}
 				//The final similarity should be some combination of all the similarities we've computed
-				//double finalSim = Math.max(nameSim, Math.max(dataSim, relatedSim));
-				double finalSim=nameSim;
+				double finalSim = Math.max(nameSim, Math.max(dataSim, relatedSim));
 				if(finalSim >= thresh)
 					a.add(i,j,finalSim);
 			}
@@ -169,7 +168,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 	
 //Private Methods
 	
-	public double nameSimilarity(int i1, int i2, boolean useWordNet)
+	private double nameSimilarity(int i1, int i2, boolean useWordNet)
 	{
 		double sim = 0.0;
 		for(String n1 : sLex.getNames(i1))
@@ -178,7 +177,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 		return sim;
 	}
 	
-	public double nameSimilarity(String n1, String n2, boolean useWordNet)
+	private double nameSimilarity(String n1, String n2, boolean useWordNet)
 	{
 		//Check if the names are equal
 		if(n1.equals(n2))
