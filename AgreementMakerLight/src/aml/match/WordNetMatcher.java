@@ -194,8 +194,18 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 			{
 				//Get the weight of the name for the term in the smaller lexicon
 				double weight = source.getCorrectedWeight(s, i);
+				Set<String> sSources = source.getSources(s, i);
 				for(Integer j : tIndexes)
 				{
+					Set<String> tSources = target.getSources(s, j);
+					//We only consider matches involving at least one WordNet synonym
+					//and not envolving any external synonyms
+					boolean check = (sSources.contains(SOURCE) && tSources.contains(SOURCE)) ||
+							(sSources.contains(SOURCE) && tSources.contains("")) ||
+							(sSources.contains("") && tSources.contains(SOURCE));
+					if(!check)
+						continue;
+
 					//Get the weight of the name for the term in the larger lexicon
 					double similarity = target.getCorrectedWeight(s, j);
 					//Then compute the similarity, by multiplying the two weights
