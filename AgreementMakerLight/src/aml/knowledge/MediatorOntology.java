@@ -59,7 +59,7 @@ public class MediatorOntology
 	/**
 	 * Constructs an empty ontology
 	 */
-	public MediatorOntology()
+	private MediatorOntology()
 	{
 		lex = new MediatorLexicon();
 		refs = new ReferenceMap();

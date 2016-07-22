@@ -96,7 +96,7 @@ public class XRefMatcher extends MediatingMatcher
 				Set<String> names = ext.getNames(hit);
 				for(String n : names)
 				{
-					double sim = src.get(s,hit) * WEIGHT;
+					double sim = src.get(s,hit) * ext.getWeight(n, hit);
 					if(sim >= thresh)
 						source.getLexicon().add(s, n, "en", TYPE, uri, sim);
 				}
@@ -112,7 +112,7 @@ public class XRefMatcher extends MediatingMatcher
 				Set<String> names = ext.getNames(hit);
 				for(String n : names)
 				{
-					double sim = tgt.get(s,hit) * WEIGHT;
+					double sim = tgt.get(s,hit) * ext.getWeight(n, hit);
 					if(sim >= thresh)
 						target.getLexicon().add(s, n, "en", TYPE, uri, sim);
 				}
@@ -148,6 +148,7 @@ public class XRefMatcher extends MediatingMatcher
 				for(Integer t : rev.keySet(med))
 				{
 					double similarity = Math.min(src.get(s, med), rev.get(med, t));
+					similarity = Math.min(similarity,WEIGHT);
 					maps.add(s,t,similarity);
 				}
 			}
@@ -183,7 +184,7 @@ public class XRefMatcher extends MediatingMatcher
 			}
 		}
 		//Step 2 - Do a lexical match
-		Table2Map<Integer,Integer,Double> lex = match(o.getLexicon(),thresh,false);
+		Table2Map<Integer,Integer,Double> lex = match(o.getLexicon(),thresh);
 		
 		//Step 3 - Compare the two
 		//If the coverage of the lexical match is at least double

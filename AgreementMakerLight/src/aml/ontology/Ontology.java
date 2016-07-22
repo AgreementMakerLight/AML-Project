@@ -115,7 +115,7 @@ public class Ontology
 	/**
 	 * Constructs an empty ontology
 	 */
-	public Ontology()
+	private Ontology()
 	{
         //Increase the entity expansion limit to allow large ontologies
         System.setProperty(LIMIT, "1000000");
@@ -1363,7 +1363,36 @@ public class Ontology
 					}
 				}
 			}
+			//Relationships between individuals encoded by AnnotationProperties
+			//NOTE: this shouldn't happen, but sometimes ontologies fail to
+			//declare all their object properties
+			for(OWLAnnotation annotation : i.getAnnotations(o))
+			{
+				String propUri = annotation.getProperty().getIRI().toString();
+				//If the annotation doesn't have a LexicalType and is
+				//pointing to a URI rather than a literal, treat it as
+				//an object property
+				LexicalType type = LexicalType.getLexicalType(propUri);
+				if(type == null && annotation.getValue() instanceof IRI)
+				{
+					OWLNamedIndividual ni = factory.getOWLNamedIndividual((IRI) annotation.getValue());
+					//Check that the named individual is in the URIMap
+					int namedRelIndivId = uris.getIndex(ni.getIRI().toString());
+					if(namedRelIndivId == -1)
+						continue;
+					//Add the property to the URIMap and Ontology as an object property
+					int propId = uris.addURI(propUri, EntityType.OBJECT);
+					entities.add(propId);
+					entityTypes.add(EntityType.OBJECT, propId);
+					//Add its name to the Lexicon
+					lex.add(propId, getLocalName(propUri), "en", LexicalType.LOCAL_NAME,
+							"", LexicalType.LOCAL_NAME.getDefaultWeight());
+					//Add the relation to the RelationshipMap
+					rm.addIndividualRelationship(namedIndivId, namedRelIndivId, propId);
+				}
+			}
 		}
+
 		
 		//III - Relationships between properties
 		//Data Properties

@@ -83,7 +83,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon source = aml.getSource().getLexicon();
-		Table2Map<Integer,Integer,Double> maps = match(source,thresh,false);
+		Table2Map<Integer,Integer,Double> maps = match(source,thresh);
 		for(Integer s : maps.keySet())
 		{
 			int hit;
@@ -109,7 +109,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 			}
 		}
 		Lexicon target = aml.getTarget().getLexicon();
-		maps = match(target,thresh,false);
+		maps = match(target,thresh);
 		for(Integer s : maps.keySet())
 		{
 			int hit;
@@ -165,18 +165,23 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 		AML aml = AML.getInstance();
 		Lexicon source = aml.getSource().getLexicon();
 		Lexicon target = aml.getTarget().getLexicon();
-		Table2Map<Integer,Integer,Double> src = match(source,thresh,false);
-		Table2Map<Integer,Integer,Double> tgt = match(target,thresh,true);
+		Table2Map<Integer,Integer,Double> src = match(source,thresh);
+		Table2Map<Integer,Integer,Double> tgt = match(target,thresh);
+		//Reverse the target alignment table
+		Table2Map<Integer,Integer,Double> rev = new Table2Map<Integer,Integer,Double>();
+		for(Integer s : tgt.keySet())
+			for(Integer t : tgt.keySet(s))
+				rev.add(t, s, tgt.get(s, t));
 		Alignment maps = new Alignment();
 		for(Integer s : src.keySet())
 		{
 			for(Integer med : src.keySet(s))
 			{
-				if(!tgt.contains(med))
+				if(!rev.contains(med))
 					continue;
-				for(Integer t : tgt.keySet(med))
+				for(Integer t : rev.keySet(med))
 				{
-					double similarity = Math.min(src.get(s, med), tgt.get(med, t));
+					double similarity = Math.min(src.get(s, med), rev.get(med, t));
 					maps.add(s,t,similarity);
 				}
 			}
@@ -203,7 +208,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 			throw new UnsupportedEntityTypeException(e.toString());
 	}
 	
-	protected Table2Map<Integer,Integer,Double> match(Lexicon source, double thresh, boolean reverse)
+	protected Table2Map<Integer,Integer,Double> match(Lexicon source, double thresh)
 	{
 		Table2Map<Integer,Integer,Double> maps = new Table2Map<Integer,Integer,Double>();
 		for(String s : source.getNames(EntityType.CLASS))
@@ -213,6 +218,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 			//If the name doesn't exist in either ontology, skip it
 			if(sourceIndexes == null || targetIndexes == null)
 				continue;
+			//count += sourceIndexes.size()*targetIndexes.size();
 			//Otherwise, match all indexes
 			for(Integer i : sourceIndexes)
 			{
@@ -224,13 +230,8 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 					//Then compute the similarity, by multiplying the two weights
 					similarity *= weight;
 					//If the similarity is above threshold
-					if(similarity >= thresh)
-					{
-						if(reverse)
-							maps.add(j, i, similarity);
-						else
-							maps.add(i, j, similarity);
-					}
+					if(similarity >= thresh && (!maps.contains(i, j) || similarity > maps.get(i, j)))
+						maps.add(i, j, similarity);
 				}
 			}
 		}
