@@ -292,48 +292,77 @@ public class Lexicon
 	}
 	
 	/**
-	 * Generates synonyms by removing leading and trailing stop words from class names
+	 * Generates synonyms by removing leading and trailing stop words
+	 * from class names, and all stop words from individual and
+	 * property names
 	 */
 	public void generateStopWordSynonyms()
 	{
 		//Read the stop list
 		Set<String> stopList = StopList.read();
-		for(int h = 0; h < entityNames.length; h++)
+		//Process Classes (remove only leading and trailing stop words)
+		Vector<String> nm = new Vector<String>(entityNames[0].keySet());
+		for(String n: nm)
 		{
-			Vector<String> nm = new Vector<String>(entityNames[h].keySet());
+			if(StringParser.isFormula(n))
+				continue;
+			//Build a synonym by removing all leading and trailing stopWords
+			String[] nameWords = n.split(" ");
+			//First find the first word in the name that is not a stopWord
+			int start = 0;
+			for(int i = 0; i < nameWords.length; i++)
+			{
+				if(!stopList.contains(nameWords[i]))
+				{
+					start = i;
+					break;
+				}
+			}
+			//Then find the last word in the name that is not a stopWord
+			int end = nameWords.length;
+			for(int i = nameWords.length - 1; i > 0; i--)
+			{
+				if(!stopList.contains(nameWords[i]))
+				{
+					end = i+1;
+					break;
+				}
+			}
+			//If the name contains no leading or trailing stopWords proceed to next name
+			if(start == 0 && end == nameWords.length)
+				continue;
+			//Otherwise build the synonym
+			String newName = "";
+			for(int i = start; i < end; i++)
+				newName += nameWords[i] + " ";
+			newName = newName.trim();
+
+			//Get the entities with the name
+			Vector<Integer> tr = new Vector<Integer>(getInternalEntities(EntityType.values()[0], n));
+			for(Integer i : tr)
+			{
+				for(Provenance p : entityNames[0].get(n, i))
+				{
+					double weight = p.getWeight() * 0.9;
+					add(i, newName, p.getLanguage(),
+							LexicalType.INTERNAL_SYNONYM, p.getSource(), weight);
+				}
+			}
+		}
+		//Process Individuals and Properties (remove all stop words)
+		for(int h = 1; h < entityNames.length; h++)
+		{
+			nm = new Vector<String>(entityNames[h].keySet());
 			for(String n: nm)
 			{
 				if(StringParser.isFormula(n))
 					continue;
 				//Build a synonym by removing all leading and trailing stopWords
 				String[] nameWords = n.split(" ");
-				//First find the first word in the name that is not a stopWord
-				int start = 0;
-				for(int i = 0; i < nameWords.length; i++)
-				{
-					if(!stopList.contains(nameWords[i]))
-					{
-						start = i;
-						break;
-					}
-				}
-				//Then find the last word in the name that is not a stopWord
-				int end = nameWords.length;
-				for(int i = nameWords.length - 1; i > 0; i--)
-				{
-					if(!stopList.contains(nameWords[i]))
-					{
-						end = i+1;
-						break;
-					}
-				}
-				//If the name contains no leading or trailing stopWords proceed to next name
-				if(start == 0 && end == nameWords.length)
-					continue;
-				//Otherwise build the synonym
 				String newName = "";
-				for(int i = start; i < end; i++)
-					newName += nameWords[i] + " ";
+				for(int i = 0; i < nameWords.length; i++)
+					if(!stopList.contains(nameWords[i]))
+						newName += nameWords[i] + " ";
 				newName = newName.trim();
 	
 				//Get the entities with the name
