@@ -226,7 +226,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 				for(Integer j : targetIndexes)
 				{
 					//Get the weight of the name for the term in the larger lexicon
-					double similarity = ext.getCorrectedWeight(s, j);
+					double similarity = ext.getWeight(s, j);
 					//Then compute the similarity, by multiplying the two weights
 					similarity *= weight;
 					//If the similarity is above threshold

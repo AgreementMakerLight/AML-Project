@@ -155,22 +155,6 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * @param name: the name to search in the Lexicon
-	 * @param classId: the class to search in the Lexicon
-	 * @return the weight corresponding to the provenance of the name for that class
-	 * with a correction factor depending on how many names of that provenance the
-	 * the class has
-	 */
-	public double getCorrectedWeight(String name, int classId)
-	{
-		double weight = getWeight(name,classId);
-		if(weight == 0)
-			return weight;
-		double correction = nameCount(classId)/100.0;
-		return weight - correction;
-	}
-	
-	/**
 	 * @return the set of class names in the MediatorLexicon
 	 */
 	public Set<String> getNames()
