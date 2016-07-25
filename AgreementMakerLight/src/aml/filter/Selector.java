@@ -208,6 +208,8 @@ public class Selector implements Filterer, Flagger
 		for(Mapping m : aux)
 		{
 			Mapping n = a.get(m.getSourceId(), m.getTargetId());
+			if(n == null)
+				continue;
 			if(n.getStatus().equals(MappingStatus.CORRECT))
 				selected.add(n);
 			else if(n.getSimilarity() < thresh || n.getStatus().equals(MappingStatus.INCORRECT))
