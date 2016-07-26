@@ -54,7 +54,8 @@ public enum LexicalType
 	public static LexicalType getLexicalType(String prop)
 	{
 		if(prop.endsWith("label") || prop.endsWith("prefLabel") || 
-				prop.endsWith("title") || prop.endsWith("indentified_by"))
+				prop.endsWith("title") || prop.endsWith("indentified_by") ||
+				prop.endsWith("name"))
 			return LABEL;
 		if(prop.endsWith("hasExactSynonym") || prop.endsWith("FULL_SYN") ||
 				prop.endsWith("alternative_term"))
