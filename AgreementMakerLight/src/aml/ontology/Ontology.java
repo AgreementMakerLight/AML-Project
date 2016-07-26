@@ -1356,7 +1356,7 @@ public class Ontology
 					if(rI.isNamed())
 					{
 						int namedRelIndivId = uris.getIndex(rI.asOWLNamedIndividual().getIRI().toString());
-						rm.addIndividualRelationship(namedIndivId, propIndex, namedRelIndivId);
+						rm.addIndividualRelationship(namedIndivId, namedRelIndivId, propIndex);
 						//If the individual is an alias of the related individual
 						//use the individual's lexical entries to extend those of
 						//the related individual
