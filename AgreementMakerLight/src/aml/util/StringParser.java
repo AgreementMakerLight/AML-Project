@@ -106,7 +106,7 @@ public class StringParser
 		
 		//Then replace all non-word characters with white spaces
 		//except for apostrophes and brackets
-		parsed = parsed.replaceAll(" *[^a-zA-Z0-9'()] *"," ");
+		parsed = parsed.replaceAll(" *[^a-zA-Z0-9'()ÁÀÂÄÉÈÊËÍÌÎÏÓÒÔÖÚÙÛÜÇÑáàâãäéèêëíìîïóòôõöúùûüçñ] *"," ");
 		
 		//Then remove multiple, leading and trailing spaces
 		parsed = parsed.replaceAll(" {2,}"," ");
