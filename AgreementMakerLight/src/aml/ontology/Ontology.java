@@ -912,7 +912,6 @@ public class Ontology
 			//Add it to the Ontology
 			entities.add(id);
 			entityTypes.add(EntityType.INDIVIDUAL, id);
-			
 			//Get the local name from the URI
 			String localName = getLocalName(indivUri);
 			//Get the label(s)
@@ -978,6 +977,7 @@ public class Ontology
 								if(localLang.equals(""))
 									localLang = lang;
 								lex.add(id, name, localLang, type, "", weight);
+								System.out.println(name);
 							}
 						}
 					}
@@ -1004,12 +1004,26 @@ public class Ontology
 				if(prop.isAnonymous())
 					continue;
 				//And if so, process its URI
-				int propIndex = uris.getIndex(prop.asOWLDataProperty().getIRI().toString());
+				String propUri = prop.asOWLDataProperty().getIRI().toString();
+				int propIndex = uris.getIndex(propUri);
 				if(propIndex == -1)
 					continue;
-				//Then get its values for the individual
-				for(OWLLiteral val : dataPropValues.get(prop))
-					vMap.add(id, propIndex, val.getLiteral());
+				
+				//Data Properties with a LexicalType go to the Lexicon
+				type = LexicalType.getLexicalType(propUri);
+				if(type != null)
+				{
+					weight = type.getDefaultWeight();
+					for(OWLLiteral val : dataPropValues.get(prop))
+						lex.add(id, val.getLiteral(), "en", type, "", weight);
+				}
+				//Otherwise, they go to the ValueMap
+				else
+				{
+					//Then get its values for the individual
+					for(OWLLiteral val : dataPropValues.get(prop))
+						vMap.add(id, propIndex, val.getLiteral());
+				}
 			}	
 		}
 	}
