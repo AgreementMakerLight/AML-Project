@@ -93,7 +93,7 @@ public class AML
 	private double recall;
 	private double fMeasure;
 	//General matching settings
-	private boolean useReasoner = true;
+	private boolean useReasoner = false;
 	private final String LOG = "log4j.properties";
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
@@ -726,7 +726,6 @@ public class AML
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
-		System.out.println("Names: " + target.getLexicon().size());
 		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
