@@ -93,11 +93,16 @@ public class AML
 	private double recall;
 	private double fMeasure;
 	//General matching settings
-	private boolean useReasoner = false;
+	private boolean useReasoner = true;
+	private boolean matchClasses;
+	private boolean matchIndividuals;
+	private boolean matchProperties;
 	private final String LOG = "log4j.properties";
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
-    private LanguageSetting lang;
+	private Set<Integer> sourceClassesToMatch;
+	private Set<Integer> targetClassesToMatch;
+	private LanguageSetting lang;
 	private SizeCategory size;
 	private Set<String> languages;
     private SelectionType sType;
@@ -525,6 +530,15 @@ public class AML
 	{
 		return source;
 	}
+
+	/**
+	 * @return the set of classes of the source ontology to which
+	 * the individuals to match belong to
+	 */
+	public Set<Integer> getSourceClassesToMatch()
+	{
+		return sourceClassesToMatch;
+	}
 	
 	/**
 	 * @return the active StringSimMeasure
@@ -541,7 +555,16 @@ public class AML
 	{
 		return target;
 	}
-    
+ 
+	/**
+	 * @return the set of classes of the target ontology to which
+	 * the individuals to match belong to
+	 */
+    public Set<Integer> getTargetClassesToMatch()
+    {
+		return targetClassesToMatch;
+	}
+
 	/**
 	 * @return the active similarity threshold
 	 */
@@ -636,6 +659,42 @@ public class AML
     		userInterface.refresh();
     	needSave = true;
     }
+    
+    /**
+     * @return whether class matching is on
+     */
+    public boolean matchClasses()
+    {
+    	return matchClasses;
+    }
+    
+    /**
+     * Sets the matchClasses parameter that determines
+     * whether ontology classes will be matched
+     * @param match: whether to match classes
+     */
+    public void matchClasses(boolean match)
+    {
+    	matchClasses = match;
+    }
+    
+    /**
+     * @return whether individual matching is on
+     */
+    public boolean matchIndividuals()
+    {
+    	return matchIndividuals;
+    }
+    
+    /**
+     * Sets the matchIndividuals parameter that determines
+     * whether ontology individuals will be matched
+     * @param match: whether to match individuals
+     */
+    public void matchIndividuals(boolean match)
+    {
+    	matchIndividuals = match;
+    }
 
     /**
      * Matches the active ontologies using manual configurations
@@ -658,6 +717,24 @@ public class AML
     	if(userInterface != null)
     		userInterface.refresh();
     	needSave = true;
+    }
+    
+    /**
+     * @return whether property matching is on
+     */
+    public boolean matchProperties()
+    {
+    	return matchProperties;
+    }
+    
+    /**
+     * Sets the matchProperties parameter that determines
+     * whether ontology properties will be matched
+     * @param match: whether to match properties
+     */
+    public void matchProperties(boolean match)
+    {
+    	matchProperties = match;
     }
     
     /**
@@ -918,6 +995,16 @@ public class AML
 			sType = s;
 	}
 	
+	/**
+	 * Sets the set of classes of the source ontology to which the individuals
+	 * to match belong to
+	 * @param sourceClassesToMatch: the set of source classes to match
+	 */
+	public void setSourceClassesToMatch(Set<Integer> sourceClassesToMatch)
+	{
+		this.sourceClassesToMatch = sourceClassesToMatch;
+	}
+	
 	public void setStringSimMeasure(StringSimMeasure ssm)
 	{
 		this.ssm = ssm;
@@ -928,6 +1015,16 @@ public class AML
 		this.structuralSelection = structuralSelection;
 	}
 
+	/**
+	 * Sets the set of classes of the target ontology to which the individuals
+	 * to match belong to
+	 * @param sourceClassesToMatch: the set of target classes to match
+	 */	
+	public void setTargetClassesToMatch(Set<Integer> targetClassesToMatch)
+	{
+		this.targetClassesToMatch = targetClassesToMatch;
+	}
+	
 	public void setThreshold(double thresh)
 	{
 		threshold = thresh;
