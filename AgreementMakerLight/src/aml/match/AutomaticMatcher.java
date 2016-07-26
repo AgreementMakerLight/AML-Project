@@ -25,7 +25,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
 import aml.filter.InteractiveFilterer;
-import aml.filter.ObsoleteFilter;
+import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
 import aml.filter.Selector;
 import aml.knowledge.MediatorLexicon;
@@ -292,7 +292,7 @@ public class AutomaticMatcher
 	{
 		if(aml.structuralSelection())
 		{
-			ObsoleteFilter or = new ObsoleteFilter();
+			ObsoleteFilterer or = new ObsoleteFilterer();
 			or.filter();
 				
 			BlockRematcher hl = new BlockRematcher();

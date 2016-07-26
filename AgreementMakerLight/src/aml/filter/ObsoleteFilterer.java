@@ -24,12 +24,12 @@ import aml.match.Mapping;
 import aml.ontology.Ontology;
 import aml.settings.MappingStatus;
 
-public class ObsoleteFilter implements Filterer, Flagger
+public class ObsoleteFilterer implements Filterer, Flagger
 {
 
 //Constructors
 	
-	public ObsoleteFilter(){}
+	public ObsoleteFilterer(){}
 	
 //Public Methods
 	

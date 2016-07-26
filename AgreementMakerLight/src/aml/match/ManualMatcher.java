@@ -21,7 +21,7 @@ package aml.match;
 import java.util.Vector;
 
 import aml.AML;
-import aml.filter.ObsoleteFilter;
+import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
 import aml.filter.Selector;
 import aml.settings.EntityType;
@@ -122,7 +122,7 @@ public class ManualMatcher
 		aml.setAlignment(a);
 		if(steps.contains(MatchStep.OBSOLETE))
 		{
-			ObsoleteFilter or = new ObsoleteFilter();
+			ObsoleteFilterer or = new ObsoleteFilterer();
 			or.filter();
 		}
 		if(steps.contains(MatchStep.SELECT))

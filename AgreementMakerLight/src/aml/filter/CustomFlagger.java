@@ -50,7 +50,7 @@ public class CustomFlagger
 		}
 		if(steps.contains(Problem.OBSOLETION))
 		{
-			ObsoleteFilter o = new ObsoleteFilter();
+			ObsoleteFilterer o = new ObsoleteFilterer();
 			o.flag();
 		}
 		if(steps.contains(Problem.QUALITY))
