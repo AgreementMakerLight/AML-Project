@@ -12,22 +12,16 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A matching algorithm that extends the Lexicons of the source and target     *
-* ontologies.                                                                 *
+* An algorithm that extends the Lexicons of the source and target ontologies. *                                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.match;
+package aml.ext;
 
-import aml.settings.EntityType;
-
-public interface LexiconExtender extends Matcher
+public interface LexiconExtender
 {
 	/**
 	 * Extends the Lexicons of the source and target Ontologies
-	 * @param e: the EntityType for which to extend the Lexicons
-	 * @param thresh: the minimum confidence threshold below
-	 * which synonyms will not be added to the Lexicons
 	 */
-	public void extendLexicons(EntityType e, double thresh) throws UnsupportedEntityTypeException;
+	public void extendLexicons();
 }
