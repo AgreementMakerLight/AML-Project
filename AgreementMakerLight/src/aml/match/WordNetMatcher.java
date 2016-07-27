@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
+import aml.ext.LexiconExtender;
 import aml.knowledge.WordNet;
 import aml.ontology.Lexicon;
 import aml.settings.EntityType;
@@ -62,14 +63,16 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 //Public Methods
 
 	@Override
-	public void extendLexicons(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public void extendLexicons()
 	{
-		checkEntityType(e);
 		System.out.println("Extending Lexicons with WordNet Matcher");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		extendLexicon(aml.getSource().getLexicon(),e,thresh);
-		extendLexicon(aml.getTarget().getLexicon(),e,thresh);
+		for(EntityType e : EntityType.values())
+		{
+			extendLexicon(aml.getSource().getLexicon(),e,0.0);
+			extendLexicon(aml.getTarget().getLexicon(),e,0.0);
+		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 	}

@@ -80,15 +80,14 @@ public class XRefMatcher extends MediatingMatcher
 	}
 	
 	@Override
-	public void extendLexicons(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public void extendLexicons()
 	{
-		checkEntityType(e);
 		System.out.println("Extending Lexicons with Cross-Reference Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		if(src == null)
-			src = match(source,thresh);
+			src = match(source,0.0);
 		for(Integer s : src.keySet())
 		{
 			for(Integer hit : src.keySet(s))
@@ -97,14 +96,13 @@ public class XRefMatcher extends MediatingMatcher
 				for(String n : names)
 				{
 					double sim = src.get(s,hit) * ext.getWeight(n, hit);
-					if(sim >= thresh)
-						source.getLexicon().add(s, n, "en", TYPE, uri, sim);
+					source.getLexicon().add(s, n, "en", TYPE, uri, sim);
 				}
 			}
 		}
 		Ontology target = aml.getTarget();
 		if(tgt == null)
-			tgt = match(target,thresh);
+			tgt = match(target,0.0);
 		for(Integer s : tgt.keySet())
 		{
 			for(Integer hit : tgt.keySet(s))
@@ -113,8 +111,7 @@ public class XRefMatcher extends MediatingMatcher
 				for(String n : names)
 				{
 					double sim = tgt.get(s,hit) * ext.getWeight(n, hit);
-					if(sim >= thresh)
-						target.getLexicon().add(s, n, "en", TYPE, uri, sim);
+					target.getLexicon().add(s, n, "en", TYPE, uri, sim);
 				}
 			}
 		}

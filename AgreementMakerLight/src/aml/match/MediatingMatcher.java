@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Set;
 
 import aml.AML;
+import aml.ext.LexiconExtender;
 import aml.knowledge.MediatorLexicon;
 import aml.knowledge.MediatorOntology;
 import aml.ontology.Lexicon;
@@ -76,14 +77,13 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public void extendLexicons(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public void extendLexicons()
 	{
-		checkEntityType(e);
 		System.out.println("Extending Lexicons with Mediating Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon source = aml.getSource().getLexicon();
-		Table2Map<Integer,Integer,Double> maps = match(source,thresh);
+		Table2Map<Integer,Integer,Double> maps = match(source,0.0);
 		for(Integer s : maps.keySet())
 		{
 			int hit;
@@ -104,12 +104,11 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 			for(String n : names)
 			{
 				double sim = maps.get(s,hit) * ext.getWeight(n, hit);
-				if(sim >= thresh)
-					source.add(s, n, "en", TYPE, uri, sim);
+				source.add(s, n, "en", TYPE, uri, sim);
 			}
 		}
 		Lexicon target = aml.getTarget().getLexicon();
-		maps = match(target,thresh);
+		maps = match(target,0.0);
 		for(Integer s : maps.keySet())
 		{
 			int hit;
@@ -130,8 +129,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 			for(String n : names)
 			{
 				double sim = maps.get(s,hit) * ext.getWeight(n, hit);
-				if(sim >= thresh)
-					target.add(s, n, "en", TYPE, uri, sim);
+				target.add(s, n, "en", TYPE, uri, sim);
 			}
 		}
 		time = System.currentTimeMillis()/1000 - time;
