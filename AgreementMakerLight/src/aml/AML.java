@@ -33,6 +33,8 @@ import javax.swing.UIManager;
 import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
+import aml.ext.ParenthesisExtender;
+import aml.ext.StopWordExtender;
 import aml.filter.CustomFilterer;
 import aml.filter.CustomFlagger;
 import aml.filter.QualityFlagger;
@@ -820,6 +822,10 @@ public class AML
     	if(userInterface != null)
     		userInterface.refresh();
     	defaultConfig();
+    	StopWordExtender sw = new StopWordExtender();
+    	sw.extendLexicons();
+    	ParenthesisExtender p = new ParenthesisExtender();
+    	p.extendLexicons();
     	System.out.println("Finished!");	
 	}
 	
@@ -863,6 +869,10 @@ public class AML
     	if(userInterface != null)
     		userInterface.refresh();
     	defaultConfig();
+    	StopWordExtender sw = new StopWordExtender();
+    	sw.extendLexicons();
+    	ParenthesisExtender p = new ParenthesisExtender();
+    	p.extendLexicons();
     	System.out.println("Finished!");	
     }
     

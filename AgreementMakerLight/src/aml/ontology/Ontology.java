@@ -380,10 +380,6 @@ public class Ontology
 				uri = schemeURIs.substring(0, schemeURIs.length() - 3);
 			
 			getSKOSConcepts(o);
-			//Extend the Lexicon
-			lex.generateStopWordSynonyms();
-			lex.generateParenthesisSynonyms();
-			//Build the relationship map
 			getSKOSRelationships(o);
 		}
 		else
@@ -396,9 +392,6 @@ public class Ontology
 			getOWLClasses(o);
 			//Get the properties
 			getOWLProperties(o);
-			//Extend the Lexicon
-			lex.generateStopWordSynonyms();
-			lex.generateParenthesisSynonyms();
 			//Get the individuals
 			getOWLNamedIndividuals(o);
 			//Build the relationship map
