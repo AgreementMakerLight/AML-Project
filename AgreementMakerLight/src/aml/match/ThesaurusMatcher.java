@@ -12,9 +12,9 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A thesaurus based on one or more ontologies that derives synonym concepts   *
-* from defined synonym names for ontology classes, and can use those synonyms *
-* to extend ontology Lexicons.                                                *
+* A matching algorithm that derives a thesaurus from the Lexicon of each of   *
+* input ontologies, then uses that thesaurus to create a temporary extended   *
+* Lexicon which is used to match the ontologies.                              *
 *                                                                             *
 * @authors Catia Pesquita, Daniel Faria                                       *
 ******************************************************************************/
@@ -142,6 +142,7 @@ public class ThesaurusMatcher implements PrimaryMatcher
 		{
 			thesaurus.add(synonym1, synonym2);
 			thesaurus.add(synonym2, synonym1);
+			return;
 		}
 		//Multi-word names
 		int index = -1;
@@ -156,7 +157,7 @@ public class ThesaurusMatcher implements PrimaryMatcher
 					index = i;
 			}
 		}
-		if(index != -1)
+		if(index != -1 && words1[index].length() > 2 && words2[index].length() > 2)
 		{
 			thesaurus.add(words1[index], words2[index]);
 			thesaurus.add(words2[index], words1[index]);
@@ -198,7 +199,7 @@ public class ThesaurusMatcher implements PrimaryMatcher
 					for(Integer i: terms)
 					{
 						double weight = lex.getWeight(n,i) * CONFIDENCE;
-						if(weight >= thresh)
+						if(weight >= thresh && !lex.contains(i, newName))
 							lex.add(i, newName, lex.getLanguages(n,i).iterator().next(), TYPE, SOURCE, weight);
 					}
 				}
