@@ -214,7 +214,7 @@ public class AutomaticMatcher
 					//and String-Matching with the BK Ontologies' names
 					if(gain >= HIGH_GAIN_THRESH)
 					{
-						xr.extendLexicons(EntityType.CLASS, thresh);
+						xr.extendLexicons();
 						//If that is the case, we must compute a new Lexical alignment
 						//after the extension
 						LexicalMatcher lm = new LexicalMatcher();
@@ -269,6 +269,9 @@ public class AutomaticMatcher
 		//Otherwise we use it in extendAlignment mode
 		else
 			a.addAllOneToOne(psm.extendAlignment(a,EntityType.CLASS,thresh));
+		
+		ThesaurusMatcher tm = new ThesaurusMatcher();
+		a.addAllOneToOne(tm.match(EntityType.CLASS, thresh));
 	}	
 	
 	//Step 7 - Structural Match
