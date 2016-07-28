@@ -221,7 +221,6 @@ public class AML
 			File[] lexFiles = ontRoot.listFiles(lex);
 			for(File f : lexFiles)
 				bkSources.add(f.getName());
-			bkSources.add("WordNet");
 		}
 		else
 		{
