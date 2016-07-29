@@ -30,7 +30,6 @@ import aml.util.Table3List;
 import aml.settings.EntityType;
 import aml.settings.LexicalType;
 import aml.util.MapSorter;
-import aml.util.StopList;
 import aml.util.StringParser;
 
 
