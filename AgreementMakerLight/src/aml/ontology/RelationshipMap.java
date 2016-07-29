@@ -1020,6 +1020,14 @@ public class RelationshipMap
 	/**
 	 * @return the number of instantiations in the map
 	 */
+	public int individualRelationshipCount()
+	{
+		return activeRelation.size();
+	}
+	
+	/**
+	 * @return the number of instantiations in the map
+	 */
 	public int instanceCount()
 	{
 		return instanceOfMap.size();
