@@ -122,4 +122,12 @@ public class ValueMap
 			return valueIndividuals.get(indivId,propId);
 		return new HashSet<String>();
 	}
+	
+	/**
+	 * @return the size of the ValueMap
+	 */
+	public int size()
+	{
+		return valueIndividuals.size();
+	}
 }
