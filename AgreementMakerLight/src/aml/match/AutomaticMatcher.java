@@ -24,6 +24,7 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
+import aml.filter.DomainAndRangeFilterer;
 import aml.filter.InteractiveFilterer;
 import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
@@ -111,8 +112,6 @@ public class AutomaticMatcher
 		if(matchIndividuals)
 			matchIndividuals();
 
-		//Set the Alignment
-		aml.setAlignment(a);
 		//Perform selection and repair
 		selection();
 		repair();
@@ -225,7 +224,7 @@ public class AutomaticMatcher
 			a.addAllOneToOne(psm.match(EntityType.CLASS, psmThresh));
 			//And if the task is single-language we can use the
 			//MultiWordMatcher as well (which uses WordNet)
-			if(lang.equals(LanguageSetting.SINGLE))
+			if(size.equals(SizeCategory.SMALL) && lang.equals(LanguageSetting.SINGLE))
 			{
 				MultiWordMatcher mwm = new MultiWordMatcher();
 				a.addAllOneToOne(mwm.match(EntityType.CLASS, thresh));
@@ -260,17 +259,16 @@ public class AutomaticMatcher
 	private static void matchProperties() throws UnsupportedEntityTypeException
 	{
 		PropertyMatcher pm = new PropertyMatcher(true);
-		a.addAllOneToOne(pm.extendAlignment(a, EntityType.DATA, thresh));
-		a.addAllOneToOne(pm.extendAlignment(a, EntityType.OBJECT, thresh));
+		a.addAll(pm.extendAlignment(a, EntityType.DATA, thresh));
+		a.addAll(pm.extendAlignment(a, EntityType.OBJECT, thresh));
 		aml.setAlignment(a);
+		DomainAndRangeFilterer dr = new DomainAndRangeFilterer();
+		dr.filter();
 	}
 
 	private static void matchIndividuals() throws UnsupportedEntityTypeException
 	{
-		NewInstanceMatcher pm = new NewInstanceMatcher();
-		a.addAllOneToOne(pm.match(EntityType.DATA, thresh));
-		a.addAllOneToOne(pm.match(EntityType.OBJECT, thresh));
-		aml.setAlignment(a);
+		
 	}
 
 	//Step 9 - Selection
