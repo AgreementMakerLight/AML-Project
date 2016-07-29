@@ -781,3 +781,21 @@ neoliberismo	neoliberalism
 premier	Premier
 interviste	interviews
 intervista	interview
+sabine-ita.owl#tetto del 3%25	sabine-ita.owl # 3% 25 roof
+acqua	water
+comitato militare dell'unione europea	European Union military Committee
+sabine-ita.owl#tetto al 3%25	sabine-ita.owl # 3% ceiling 25
+banca d'italia	Bank of Italy
+movimento politico cristiano d'europa	European Christian political movement
+sit	sit
+istituzione	institution
+corte europea dei diritti dell'uomo	the European Court of human rights
+fiducia nell'istituzione	confidence in the institution
+uomo	male
+alleanza dei liberali e democratici per l'europa	Alliance of Liberals and Democrats for Europe
+sabine-ita.owl#tetto 3%25	sabine-ita.owl # 3% 25 roof
+donne politica	women in politics
+presidente del consiglio d'europa	President of the Council of Europe
+fratelli d'italia	Brothers of Italy
+popolari per l'italia	popular for Italy
+forum italiano dei movimenti per l'acqua	Italian Forum of water movements
