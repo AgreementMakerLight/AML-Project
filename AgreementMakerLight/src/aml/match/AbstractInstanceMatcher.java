@@ -168,7 +168,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 	
 //Private Methods
 	
-	private double nameSimilarity(int i1, int i2, boolean useWordNet)
+	protected double nameSimilarity(int i1, int i2, boolean useWordNet)
 	{
 		double sim = 0.0;
 		for(String n1 : sLex.getNames(i1))
@@ -177,7 +177,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 		return sim;
 	}
 	
-	private double nameSimilarity(String n1, String n2, boolean useWordNet)
+	protected double nameSimilarity(String n1, String n2, boolean useWordNet)
 	{
 		//Check if the names are equal
 		if(n1.equals(n2))
