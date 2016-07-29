@@ -29,7 +29,6 @@ import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.match.SecondaryMatcher;
 import aml.ontology.Ontology;
-import aml.ontology.RelationshipMap;
 import aml.settings.EntityType;
 import aml.util.ISub;
 import aml.util.Similarity;
@@ -41,11 +40,9 @@ public class PropertyMatcher implements SecondaryMatcher
 	
 	private static final String DESCRIPTION = "Matches Data and Object Properties by\n" +
 											  "comparing their Lexicon entries (String\n" +
-											  "and word similarity) and checking that\n" +
-											  "their domains and ranges overlap";
+											  "and word similarity)";
 	private static final String NAME = "Property Matcher";
 	private static final EntityType[] SUPPORT = {EntityType.DATA,EntityType.OBJECT};
-	private Alignment maps;
 	private AML aml;
 	private Ontology source;
 	private Ontology target;
@@ -70,7 +67,6 @@ public class PropertyMatcher implements SecondaryMatcher
 		checkEntityType(e);
 		System.out.println("Extending Alignment with Property Matcher");
 		long time = System.currentTimeMillis()/1000;
-		maps = a;
 		Alignment propMaps = new Alignment();
 		//Map data properties
 		Set<Integer> sourceKeys = source.getEntities(e);
@@ -79,7 +75,7 @@ public class PropertyMatcher implements SecondaryMatcher
 		{
 			for(Integer j : targetKeys)
 			{
-				double sim = matchProperties(i,j,e);
+				double sim = nameSimilarity(i,j);
 				if(sim >= threshold)
 					propMaps.add(new Mapping(i,j,sim));
 			}
@@ -124,85 +120,6 @@ public class PropertyMatcher implements SecondaryMatcher
 			throw new UnsupportedEntityTypeException(e.toString());
 	}
 	
-	//Checks if two lists of ids match (i.e., have Jaccard similarity above 50%)
-	private boolean idsMatch(Set<Integer> sIds, Set<Integer> tIds)
-	{
-		if(sIds.size() == 0 && tIds.size() == 0)
-			return true;
-		if(sIds.size() == 0 || tIds.size() == 0)
-			return false;
-		double matches = 0.0;
-		for(Integer i : sIds)
-		{
-			for(Integer j : tIds)
-			{
-				if(idsMatch(i,j))
-				{
-					matches++;
-					break;
-				}
-			}
-		}
-		matches /= sIds.size()+tIds.size()-matches;
-		return (matches > 0.5);
-	}
-	
-	//Checks if two ids match (i.e., are either equal, aligned
-	//or one is aligned to the parent of the other)
-	private boolean idsMatch(int sIndex, int tIndex)
-	{
-		RelationshipMap rm = aml.getRelationshipMap();
-
-		if(sIndex == tIndex || maps.containsMapping(sIndex, tIndex))
-	    	return true;
-		
-		Set<Integer> sParent= rm.getParents(sIndex);
-		if(sParent.size()==1)
-		{
-			int spId = sParent.iterator().next();
-			if(maps.containsMapping(spId, tIndex))
-				return true;
-		}
-		Set<Integer> tParent= rm.getParents(tIndex);
-		if(tParent.size()==1)
-		{
-			int tpId=tParent.iterator().next();
-			if(maps.containsMapping(sIndex, tpId))
-				return true;
-		}
-		return false;
-	}
-	
-	//Matches two annotation properties
-	private double matchProperties(int sourceId, int targetId, EntityType e)
-	{
-		double sim = 0.0d;
-
-		//We should only match properties that have matching domains and ranges
-		RelationshipMap rm = aml.getRelationshipMap();
-		Set<Integer> sDomain = rm.getDomains(sourceId);
-		Set<Integer> tDomain = rm.getDomains(targetId);
-		if(!idsMatch(sDomain,tDomain))
-			return sim;
-		
-		if(e.equals(EntityType.DATA))
-		{
-			Set<String> sRange = rm.getDataRanges(sourceId);
-			Set<String> tRange = rm.getDataRanges(targetId);
-			if(!valuesMatch(sRange,tRange))
-				return sim;
-		}
-		else if(e.equals(EntityType.OBJECT))
-		{
-			Set<Integer> sRange = rm.getObjectRanges(sourceId);
-			Set<Integer> tRange = rm.getObjectRanges(targetId);
-			if(!idsMatch(sRange,tRange))
-				return sim;
-		}
-		//If they do, we can compute the name similarity between the properties
-		return nameSimilarity(sourceId,targetId);
-	}
-
 	//Measures the name similarity between two properties, given by the
 	//maximum similarity between their names
 	private double nameSimilarity(int s, int t)
@@ -279,16 +196,5 @@ public class PropertyMatcher implements SecondaryMatcher
 				sim = wordNetSim;
 		}
 		return sim;
-	}
-
-	//Checks if two lists of values match (i.e., have Jaccard similarity above 50%)
-	private boolean valuesMatch(Set<String> sRange, Set<String> tRange)
-	{
-		if(sRange.size() == 0 && tRange.size() == 0)
-			return true;
-		if(sRange.size() == 0 || tRange.size() == 0)
-			return false;
-		double sim = Similarity.jaccard(sRange,tRange);
-		return (sim > 0.5);
 	}
 }
