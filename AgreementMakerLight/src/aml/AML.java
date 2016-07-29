@@ -268,6 +268,8 @@ public class AML
 		flagSteps = new Vector<Problem>();
 		for(Problem f : Problem.values())
 			flagSteps.add(f);
+		sourceClassesToMatch = new HashSet<Integer>();
+		targetClassesToMatch = new HashSet<Integer>();
     }
     
     /**
@@ -804,6 +806,7 @@ public class AML
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
+		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
 		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
