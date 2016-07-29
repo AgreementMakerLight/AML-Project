@@ -57,7 +57,7 @@ public class ClassFilterer implements Filterer
 					uris.getType(target).equals(EntityType.INDIVIDUAL) &&
 					!m.getStatus().equals(MappingStatus.CORRECT))
 			{
-				boolean check = false;
+				boolean check = sourcesToMatch.size() == 0;
 				for(int i : sourcesToMatch)
 				{
 					if(rels.belongsToClass(source, i))
@@ -68,7 +68,7 @@ public class ClassFilterer implements Filterer
 				}
 				if(check)
 				{
-					check = false;
+					check = targetsToMatch.size() == 0;
 					for(int i : targetsToMatch)
 					{
 						if(rels.belongsToClass(target, i))
