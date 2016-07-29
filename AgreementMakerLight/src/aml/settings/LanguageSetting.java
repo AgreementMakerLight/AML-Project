@@ -44,7 +44,7 @@ public enum LanguageSetting
 	{
 		Ontology source = AML.getInstance().getSource();
 		Ontology target = AML.getInstance().getTarget();
-		HashMap<String,Integer> sLangs = new HashMap<String,Integer>();
+		HashMap<String,Double> sLangs = new HashMap<String,Double>();
 		int sTotal = 0;
 		double sMax = 0.0;
 		String sLang = "";
@@ -52,7 +52,7 @@ public enum LanguageSetting
 		{
 			if(!l.equals("Formula"))
 			{
-				int count = source.getLexicon().getLanguageCount(l);
+				double count = source.getLexicon().getLanguageCount(l);
 				sLangs.put(l, count);
 				sTotal += count;
 				if(count > sMax)
@@ -63,8 +63,10 @@ public enum LanguageSetting
 			}
 		}
 		sMax /= sTotal;
+		for(String l : sLangs.keySet())
+			sLangs.put(l, sLangs.get(l)/sTotal);
 		//Do the same for the target ontology
-		HashMap<String,Integer> tLangs = new HashMap<String,Integer>();
+		HashMap<String,Double> tLangs = new HashMap<String,Double>();
 		int tTotal = 0;
 		double tMax = 0.0;
 		String tLang = "";
@@ -72,7 +74,7 @@ public enum LanguageSetting
 		{
 			if(!l.equals("Formula"))
 			{
-				int count = target.getLexicon().getLanguageCount(l);
+				double count = target.getLexicon().getLanguageCount(l);
 				tLangs.put(l, count);
 				tTotal += count;
 				if(count > tMax)
@@ -83,11 +85,16 @@ public enum LanguageSetting
 			}
 		}
 		tMax /= (1.0*tTotal);
+		for(String l : tLangs.keySet())
+			tLangs.put(l, tLangs.get(l)/tTotal);
+
 		//If both ontologies have the same main language, setting is single language
 		if(sLang.equals(tLang) && sMax > 0.8 && tMax > 0.8)
 			return SINGLE;
-		//If the main language of each ontology is not present in the other, setting is translate
-		else if(!sLangs.containsKey(tLang) && !tLangs.containsKey(sLang))
+		//If the main language of each ontology is not present in the other in significant
+		//amount, setting is translate
+		else if((sLangs.get(tLang) == null || sLangs.get(tLang) < 0.2) &&
+				(tLangs.get(sLang) == null || tLangs.get(sLang) < 0.2))
 			return TRANSLATE;
 		//Otherwise, setting is multi-language
 		else
