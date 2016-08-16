@@ -26,7 +26,6 @@ import aml.util.ISub;
 
 public class InstanceMatcher extends AbstractInstanceMatcher
 {
-
 	public InstanceMatcher()
 	{
 		this(true);
@@ -65,14 +64,14 @@ public class InstanceMatcher extends AbstractInstanceMatcher
 				double nameSim = nameSimilarity(i, j, useWordNet);
 				double dataSim = dataSim(i, j);
 				double crossPropSim = crossTableSim(i, j, useWordNet);
-				double finalSim = Math.max(nameSim,Math.max(dataSim,crossPropSim));
+				double finalSim = Math.max(nameSim,Math.max(dataSim,crossPropSim)) + 0.01*nameSim + 0.01*dataSim + 0.01*crossPropSim;
 				if(finalSim >= thresh)
 					a.add(i,j,finalSim);
 			}
 		}
 		return a;
 	}
-
+	
 	//Compares the data and annotation values of the individuals
 	private double dataSim(Integer i, Integer j)
 	{		
