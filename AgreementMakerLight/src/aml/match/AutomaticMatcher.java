@@ -258,9 +258,9 @@ public class AutomaticMatcher
 	
 	private static void matchProperties() throws UnsupportedEntityTypeException
 	{
-		PropertyMatcher pm = new PropertyMatcher(true);
-		a.addAll(pm.extendAlignment(a, EntityType.DATA, thresh));
-		a.addAll(pm.extendAlignment(a, EntityType.OBJECT, thresh));
+		HybridStringMatcher pm = new HybridStringMatcher(true);
+		a.addAll(pm.match(EntityType.DATA, thresh));
+		a.addAll(pm.match(EntityType.OBJECT, thresh));
 		aml.setAlignment(a);
 		DomainAndRangeFilterer dr = new DomainAndRangeFilterer();
 		dr.filter();

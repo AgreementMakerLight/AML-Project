@@ -111,9 +111,9 @@ public class ManualMatcher
 		}
 		if(steps.contains(MatchStep.PROPERTY))
 		{
-			PropertyMatcher pm = new PropertyMatcher(true);
-			aux = pm.extendAlignment(a,EntityType.DATA,thresh);
-			aux.addAll(pm.extendAlignment(a,EntityType.OBJECT,thresh));
+			HybridStringMatcher pm = new HybridStringMatcher(true);
+			aux = pm.match(EntityType.DATA,thresh);
+			aux.addAll(pm.match(EntityType.OBJECT,thresh));
 			if(hierarchic)
 				a.addAllOneToOne(aux);
 			else
