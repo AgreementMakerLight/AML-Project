@@ -28,19 +28,19 @@ import aml.settings.EntityType;
 public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 {
 
-	//Attributes
+//Attributes
 
 	private static final String DESCRIPTION = "Matches individuals that have equal values for\n" +
-			"the same Annotation or Data Property, or for\n" +
-			"for matching properties (in secondary mode)";
+											  "the same Annotation or Data Property, or for\n" +
+											  "for matching properties (in secondary mode)";
 	private static final String NAME = "Value Matcher";
 	private static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
 
-	//Constructors
+//Constructors
 
 	public ValueMatcher(){}
 
-	//Public Methods
+//Public Methods
 
 	@Override
 	public Alignment extendAlignment(Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
