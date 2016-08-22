@@ -215,7 +215,7 @@ public class Selector implements Filterer, Flagger
 			else if(n.getSimilarity() < thresh || n.getStatus().equals(MappingStatus.INCORRECT))
 				continue;
 			if((type.equals(SelectionType.STRICT) && !selected.containsConflict(n)) ||
-					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(n)) ||
+					(type.equals(SelectionType.PERMISSIVE) && !aux.containsBetterMapping(m)) ||
 					(type.equals(SelectionType.HYBRID) && ((n.getSimilarity() > 0.75 && 
 					selected.cardinality(n.getSourceId()) < 2 && selected.cardinality(n.getTargetId()) < 2) ||
 					!selected.containsBetterMapping(n))))
