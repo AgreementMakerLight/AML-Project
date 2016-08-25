@@ -33,9 +33,14 @@ import aml.util.StringParser;
 
 public class StopWordExtender implements LexiconExtender
 {
-	//The source of this LexiconExtender
+
+//Attributes
+	
 	private SizeCategory s;
 	private Set<String> stopList;
+	private final double WEIGHT = 0.98;
+	
+//Public Methods
 	
 	@Override
 	public void extendLexicons()
@@ -48,6 +53,8 @@ public class StopWordExtender implements LexiconExtender
 		Lexicon target = aml.getTarget().getLexicon();
 		extend(target);
 	}
+	
+//Private Methods
 	
 	private void extend(Lexicon l)
 	{
@@ -94,7 +101,7 @@ public class StopWordExtender implements LexiconExtender
 			{
 				for(Provenance p : l.get(n, i))
 				{
-					double weight = p.getWeight() * 0.9;
+					double weight = p.getWeight() * WEIGHT;
 					l.add(i, newName, p.getLanguage(),
 							LexicalType.INTERNAL_SYNONYM, p.getSource(), weight);
 				}
@@ -128,7 +135,7 @@ public class StopWordExtender implements LexiconExtender
 				{
 					for(Provenance p : l.get(n, i))
 					{
-						double weight = p.getWeight() * 0.9;
+						double weight = p.getWeight() * WEIGHT;
 						l.add(i, newName, p.getLanguage(),
 								LexicalType.INTERNAL_SYNONYM, p.getSource(), weight);
 					}
