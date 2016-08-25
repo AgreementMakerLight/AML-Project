@@ -24,6 +24,7 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -66,6 +67,7 @@ import aml.AML;
 import aml.settings.LexicalType;
 import aml.settings.SKOS;
 import aml.settings.EntityType;
+import aml.util.MapSorter;
 import aml.util.StringParser;
 import aml.util.Table2Map;
 import aml.util.Table2Set;
@@ -886,6 +888,7 @@ public class Ontology
 	//@author Catia Pesquita
 	private void getOWLNamedIndividuals(OWLOntology o)
 	{
+		Map<String,Integer> langCounts = new LinkedHashMap<String,Integer>();
 		LexicalType type;
 		double weight;
 		//The label property
@@ -909,7 +912,6 @@ public class Ontology
 			String localName = getLocalName(indivUri);
 			//Get the label(s)
 			String lang = "";
-			HashSet<String> labelLanguages = new HashSet<String>();
 			for(OWLAnnotation a : i.getAnnotations(o,label))
 			{
 				if(a.getValue() instanceof OWLLiteral)
@@ -918,22 +920,43 @@ public class Ontology
 					String name = val.getLiteral();
 					lang = val.getLang();
 					if(lang.equals(""))
-						lang = "en";
+					{
+						if(langCounts.isEmpty())
+							lang = "en";
+						else
+						{
+							langCounts = MapSorter.sortDescending(langCounts);
+							lang = langCounts.keySet().iterator().next();
+						}
+					}
+					else
+					{
+						int count = 1;
+						if(langCounts.containsKey(lang))
+							count += langCounts.get(lang);
+						langCounts.put(lang, count);
+					}
 					type = LexicalType.LABEL;
 					weight = type.getDefaultWeight();
 					lex.add(id, name, lang, type, "", weight);
-					labelLanguages.add(lang);
 				}
 			}
 			//If the local name is not an alphanumeric code, add it to the lexicon
-			//(assume it is in the same language as the label(s), if only one label
-			//language is declared; otherwise assume it is English)
+			//(assume it is in the most common label language)
 			if(!StringParser.isNumericId(localName))
 			{
 				type = LexicalType.LOCAL_NAME;
 				weight = type.getDefaultWeight();
-				if(labelLanguages.size() != 1)
-					lang = "en";
+				if(lang.equals(""))
+				{
+					if(langCounts.isEmpty())
+						lang = "en";
+					else
+					{
+						langCounts = MapSorter.sortDescending(langCounts);
+						lang = langCounts.keySet().iterator().next();
+					}
+				}
 				lex.add(id, localName, lang, type, "", weight);
 			}
 			//Get the annotations of the Individual
