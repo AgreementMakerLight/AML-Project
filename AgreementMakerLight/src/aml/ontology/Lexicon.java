@@ -89,6 +89,7 @@ public class Lexicon
 	 * Adds a new entry to the Lexicon
 	 * @param id: the numerical index of the entry to add
 	 * @param name: the name of the entry to add
+	 * @param language: the language of the entry to add
 	 * @param type: the LexicalType of the entry to add (localName, label, etc)
 	 * @param source: the source of the entry (ontology URI, etc)
 	 * @param weight: the numeric weight of the entry, in [0.0,1.0]
