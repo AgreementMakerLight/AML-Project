@@ -44,8 +44,8 @@ public class ClassFilterer implements Filterer
 		System.out.println("Running Class Filter");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		Set<Integer> sourcesToMatch = aml.getSourceClassesToMatch();
-		Set<Integer> targetsToMatch = aml.getTargetClassesToMatch();
+		Set<String> sourcesToMatch = aml.getSourceClassesToMatch();
+		Set<String> targetsToMatch = aml.getTargetClassesToMatch();
 		RelationshipMap rels = aml.getRelationshipMap();
 		URIMap uris = aml.getURIMap();
 		Alignment a = aml.getAlignment();
@@ -58,9 +58,9 @@ public class ClassFilterer implements Filterer
 					!m.getStatus().equals(MappingStatus.CORRECT))
 			{
 				boolean check = sourcesToMatch.size() == 0;
-				for(int i : sourcesToMatch)
+				for(String uri : sourcesToMatch)
 				{
-					if(rels.belongsToClass(source, i))
+					if(rels.belongsToClass(source, uris.getIndex(uri)))
 					{
 						check = true;
 						break;
@@ -69,9 +69,9 @@ public class ClassFilterer implements Filterer
 				if(check)
 				{
 					check = targetsToMatch.size() == 0;
-					for(int i : targetsToMatch)
+					for(String uri : targetsToMatch)
 					{
-						if(rels.belongsToClass(target, i))
+						if(rels.belongsToClass(target, uris.getIndex(uri)))
 						{
 							check = true;
 							break;

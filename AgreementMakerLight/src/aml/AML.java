@@ -102,8 +102,9 @@ public class AML
 	private final String LOG = "log4j.properties";
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
-	private Set<Integer> sourceClassesToMatch;
-	private Set<Integer> targetClassesToMatch;
+	private Set<String> sourceClassesToMatch;
+	private Set<String> targetClassesToMatch;
+	private boolean sameClassIndividualMatching;
 	private LanguageSetting lang;
 	private SizeCategory size;
 	private Set<String> languages;
@@ -268,8 +269,8 @@ public class AML
 		flagSteps = new Vector<Problem>();
 		for(Problem f : Problem.values())
 			flagSteps.add(f);
-		sourceClassesToMatch = new HashSet<Integer>();
-		targetClassesToMatch = new HashSet<Integer>();
+		sourceClassesToMatch = new HashSet<String>();
+		targetClassesToMatch = new HashSet<String>();
     }
     
     /**
@@ -538,7 +539,7 @@ public class AML
 	 * @return the set of classes of the source ontology to which
 	 * the individuals to match belong to
 	 */
-	public Set<Integer> getSourceClassesToMatch()
+	public Set<String> getSourceClassesToMatch()
 	{
 		return sourceClassesToMatch;
 	}
@@ -563,7 +564,7 @@ public class AML
 	 * @return the set of classes of the target ontology to which
 	 * the individuals to match belong to
 	 */
-    public Set<Integer> getTargetClassesToMatch()
+    public Set<String> getTargetClassesToMatch()
     {
 		return targetClassesToMatch;
 	}
@@ -923,6 +924,11 @@ public class AML
 		r.filter();
 		needSave = true;
 	}
+	
+	public boolean sameClassIndividualMatching()
+	{
+		return sameClassIndividualMatching;
+	}
 
     public void saveAlignmentRDF(String file) throws Exception
     {
@@ -994,6 +1000,11 @@ public class AML
 		primaryStringMatcher = primary;
 	}
 	
+	public void setSameClassIndividualMatching(boolean sameClass)
+	{
+		sameClassIndividualMatching = sameClass;
+	}
+	
 	public void setSelectedSources(Vector<String> sources)
 	{
 		selectedSources = sources;
@@ -1012,7 +1023,7 @@ public class AML
 	 * to match belong to
 	 * @param sourceClassesToMatch: the set of source classes to match
 	 */
-	public void setSourceClassesToMatch(Set<Integer> sourceClassesToMatch)
+	public void setSourceClassesToMatch(Set<String> sourceClassesToMatch)
 	{
 		this.sourceClassesToMatch = sourceClassesToMatch;
 	}
@@ -1032,7 +1043,7 @@ public class AML
 	 * to match belong to
 	 * @param sourceClassesToMatch: the set of target classes to match
 	 */	
-	public void setTargetClassesToMatch(Set<Integer> targetClassesToMatch)
+	public void setTargetClassesToMatch(Set<String> targetClassesToMatch)
 	{
 		this.targetClassesToMatch = targetClassesToMatch;
 	}
