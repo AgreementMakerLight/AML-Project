@@ -138,11 +138,22 @@ public class AutomaticMatcher
 				//(as we expect a high gain if the coverage is high given that WordNet will
 				//generate numerous synonyms)
 				double coverage = Math.min(wordNet.sourceCoverage(),wordNet.targetCoverage());
+				
 				if(coverage >= wnThresh)
-					a.addAllOneToOne(wordNet);		
+				{
+					System.out.println("WordNet selected");
+					a.addAllOneToOne(wordNet);
+				}
+				else
+					System.out.println("WordNet discarded");
 			}
 			else
 			{
+				LogicalDefMatcher ld = new LogicalDefMatcher();
+				Alignment logic = ld.match(EntityType.CLASS, thresh);
+				lex.addAll(logic);
+				a.addAll(logic);
+
 				Vector<String> bkSources = new Vector<String>();
 				bkSources.addAll(aml.getBKSources());
 				for(String bk : bkSources)
@@ -158,7 +169,12 @@ public class AutomaticMatcher
 							Alignment med = mm.match(EntityType.CLASS, thresh);
 							double gain = med.gain(lex);
 							if(gain >= MIN_GAIN_THRESH)
+							{
+								System.out.println(bk + " selected");
 								a.addAll(med);
+							}
+							else
+								System.out.println(bk + " discarded");
 						}
 						catch(IOException e)
 						{
@@ -187,6 +203,7 @@ public class AutomaticMatcher
 						//and String-Matching with the BK Ontologies' names
 						if(gain >= HIGH_GAIN_THRESH)
 						{
+							System.out.println(bk + " selected for lexical extension");
 							xr.extendLexicons();
 							//If that is the case, we must compute a new Lexical alignment
 							//after the extension
@@ -194,7 +211,12 @@ public class AutomaticMatcher
 						}
 						//Otherwise, we add the BK alignment as normal
 						else if(gain >= MIN_GAIN_THRESH)
-							a.addAll(ref);					
+						{
+							System.out.println(bk + " selected as a mediator");
+							a.addAll(ref);
+						}
+						else
+							System.out.println(bk + " discarded");
 					}
 				}
 			}
@@ -238,6 +260,8 @@ public class AutomaticMatcher
 
 		if(!size.equals(SizeCategory.HUGE))
 		{
+			SpacelessLexicalMatcher sl = new SpacelessLexicalMatcher();
+			a.addAllNonConflicting(sl.match(EntityType.CLASS, thresh));
 			double nameRatio = Math.max(1.0*source.getLexicon().nameCount(EntityType.CLASS)/source.count(EntityType.CLASS),
 					1.0*target.getLexicon().nameCount(EntityType.CLASS)/target.count(EntityType.CLASS));
 			System.out.println(nameRatio);
