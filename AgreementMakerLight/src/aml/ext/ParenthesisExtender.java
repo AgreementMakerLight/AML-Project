@@ -13,7 +13,7 @@
 *                                                                             *
 *******************************************************************************
 * An algorithm that extends the Lexicons of the source and target ontologies  *
-* by sections between parenthesis.                                            *
+* by removing sections between parenthesis.                                   *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
