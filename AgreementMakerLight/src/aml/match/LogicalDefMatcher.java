@@ -158,10 +158,7 @@ public class LogicalDefMatcher implements PrimaryMatcher
 				else if(target.getLocalNames().contains(c))
 					id = target.getIndex(c);
 				else
-				{
-					System.out.println(defs[0]);
 					continue;
-				}
 				String d = defs[1].replace(':','_');
 				classDefs.add(id, d);
 				defClasses.add(d, id);
