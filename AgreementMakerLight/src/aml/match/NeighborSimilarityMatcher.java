@@ -29,6 +29,7 @@ import java.util.concurrent.Future;
 
 import aml.AML;
 import aml.ontology.RelationshipMap;
+import aml.settings.EntityType;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.util.Table2Set;
 
@@ -37,6 +38,11 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	
 //Attributes
 	
+	private static final String DESCRIPTION = "Matches classes that have matching neighbor\n" +
+											  "classes (ancestors and/or descendants) by\n" +
+											  "propagating neighbor similarity.";
+	private static final String NAME = "Neighbor Similarity Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//Links to ontology data structures
 	private AML aml;
 	private RelationshipMap rels;
@@ -67,8 +73,9 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
+	public Alignment extendAlignment(Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
+		checkEntityType(e);
 		System.out.println("Extending Alignment with Neighbor Similarity Matcher");
 		long time = System.currentTimeMillis()/1000;
 		input = a;
@@ -112,8 +119,27 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	}
 
 	@Override
-	public Alignment rematch(Alignment a)
+	public String getDescription()
 	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+
+	@Override
+	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
 		System.out.println("Computing Neighbor Similarity");
 		long time = System.currentTimeMillis()/1000;
 		input = a;
@@ -137,6 +163,21 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	}
 	
 //Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
+	}
 	
 	//Maps a table of classes in parallel, using all available threads
 	private Alignment mapInParallel(Table2Set<Integer,Integer> toMap, double thresh)

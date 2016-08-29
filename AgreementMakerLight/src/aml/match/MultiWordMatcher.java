@@ -27,16 +27,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
+import aml.knowledge.WordNet;
 import aml.ontology.Lexicon;
 import aml.ontology.WordLexicon;
+import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.util.StopList;
-import aml.util.WordNet;
 
 public class MultiWordMatcher implements PrimaryMatcher
 {
 	
 //Attributes
 	
+	private static final String DESCRIPTION = "Matches entities that have Lexicon entries\n" +
+											  "with two words where one word is shared\n"+
+											  "between them and the other word is related\n" + 
+											  "through WordNet.";
+	private static final String NAME = "Lexical Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
 	private WordNet wn;
 	//The set of stop words
 	private Set<String> stopset;
@@ -52,24 +60,43 @@ public class MultiWordMatcher implements PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public Alignment match(double thresh)
+	public String getDescription()
 	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
 		System.out.println("Running Multi-Word Matcher");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon sourceLex = aml.getSource().getLexicon();
 		Lexicon targetLex = aml.getTarget().getLexicon();
-		WordLexicon sourceWLex = aml.getSource().getWordLexicon();
-		WordLexicon targetWLex = aml.getTarget().getWordLexicon();
+		WordLexicon sourceWLex = aml.getSource().getWordLexicon(e);
+		WordLexicon targetWLex = aml.getTarget().getWordLexicon(e);
 		
 		Alignment maps = new Alignment();
-		for(String sName : sourceLex.getNames())
+		for(String sName : sourceLex.getNames(e))
 		{
 			String[] sWords = sName.split(" ");
 			if(sWords.length < 2 || sWords.length > 3)
 				continue;
 			
-			for(String tName : targetLex.getNames())
+			for(String tName : targetLex.getNames(e))
 			{
 				if(sName.equals(tName))
 					continue;
@@ -105,10 +132,17 @@ public class MultiWordMatcher implements PrimaryMatcher
 				if(sim < 1.5)
 					continue;
 				sim /= sWords.length;
-				for(Integer srcId : sourceLex.getClasses(sName))
+				for(Integer srcId : sourceLex.getEntities(e,sName))
 				{
-					for(Integer tgtId : targetLex.getClasses(tName))
+					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(srcId))
+						continue;
+					for(Integer tgtId : targetLex.getEntities(e,tName))
 					{
+						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(tgtId))
+							continue;
+						if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+								!aml.getRelationshipMap().shareClass(srcId,tgtId))
+							continue;
 						double finalSim = sim * sourceLex.getCorrectedWeight(sName, srcId) *
 								targetLex.getCorrectedWeight(tName, tgtId);
 						if(finalSim < thresh)
@@ -124,6 +158,21 @@ public class MultiWordMatcher implements PrimaryMatcher
 	}
 
 //Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
+	}
 	
 	private HashSet<String> getAllWordForms(String s)
 	{

@@ -23,25 +23,59 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
+import aml.settings.EntityType;
 import aml.util.Similarity;
 import aml.util.Table2Set;
 
 public class InstanceBasedClassMatcher implements PrimaryMatcher
 {
+	
+//Attributes
+	
+	private static final String DESCRIPTION = "Matches classes that have a high fraction\n" +
+											  "of instances in common.";
+	private static final String NAME = "Instance-Based Class Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS};
+	
+//Constructors
+	
+	public InstanceBasedClassMatcher(){}
+	
+//Public Methods
+	
 	@Override
-	public Alignment match(double thresh)
+	public String getDescription()
 	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
 		Alignment a = new Alignment();
 		AML aml = AML.getInstance();
-		Ontology2Match source = aml.getSource();
-		Ontology2Match target = aml.getTarget();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
 		RelationshipMap rm = aml.getRelationshipMap();
 		System.out.println(rm.instanceCount());
 		
 		Table2Set<Integer,Integer> pairs = new Table2Set<Integer,Integer>();
-		for(int i : source.getIndividuals())
+		for(int i : source.getEntities(EntityType.INDIVIDUAL))
 		{
 			Set<Integer> classes = rm.getIndividualClasses(i);
 			Set<Integer> sources = new HashSet<Integer>();
@@ -70,5 +104,22 @@ public class InstanceBasedClassMatcher implements PrimaryMatcher
 			}			
 		}
 		return a;
+	}
+	
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }

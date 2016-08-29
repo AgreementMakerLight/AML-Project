@@ -92,8 +92,20 @@ public class URIMap
 	 */
 	public int getIndex(String uri)
 	{
-		if(URIindex.containsKey(uri))
-			return URIindex.get(uri);
+		String newUri = uri;
+		if(newUri.contains("%") || newUri.contains("&"))
+		{
+			try
+			{
+				newUri = URLDecoder.decode(newUri,"UTF-8");
+			}
+			catch(UnsupportedEncodingException e)
+			{
+				//Do nothing
+			}
+		}
+		if(URIindex.containsKey(newUri))
+			return URIindex.get(newUri);
 		else
 			return -1;
 	}

@@ -24,23 +24,57 @@ import java.util.ArrayList;
 
 import aml.AML;
 import aml.ontology.Lexicon;
+import aml.settings.EntityType;
 
 public class AcronymMatcher implements PrimaryMatcher
 {
+
+//Attributes
+	
+	private static final String DESCRIPTION = "Matches entities where the Lexicon entry of one\n" +
+											  "is an acronym of the Lexicon entry of the other\n";
+	private static final String NAME = "Acronym Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
+			
+//Constructors
+
+	public AcronymMatcher(){}
+	
+//Public Methods
+	
 	@Override
-	public Alignment match(double thresh)
+	public String getDescription()
 	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
 		AML aml = AML.getInstance();
 		Lexicon sourceLex = aml.getSource().getLexicon();
 		Lexicon targetLex = aml.getTarget().getLexicon();
 		
 		Alignment maps = new Alignment();
 
-		for(String sName : sourceLex.getNames())
+		for(String sName : sourceLex.getNames(e))
 		{
 			//Split the source name into words
 			String[] srcWords = sName.split(" ");
-			for(String tName : targetLex.getNames())
+			for(String tName : targetLex.getNames(e))
 			{
 				//Do the same for the target name
 				String[] tgtWords = tName.split(" ");
@@ -101,13 +135,30 @@ public class AcronymMatcher implements PrimaryMatcher
 					continue;
 				sim /= total;
 				if(sim >= thresh)
-					for(int sourceId : sourceLex.getClasses(sName))
-						for(int targetId : targetLex.getClasses(tName))
+					for(int sourceId : sourceLex.getEntities(e,sName))
+						for(int targetId : targetLex.getEntities(e,tName))
 							maps.add(sourceId, targetId, sim * 
 								Math.sqrt(sourceLex.getCorrectedWeight(sName, sourceId) *
 									targetLex.getCorrectedWeight(tName, targetId)));
 			}
 		}
 		return maps;
+	}
+	
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }

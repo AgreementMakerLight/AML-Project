@@ -23,6 +23,8 @@
 ******************************************************************************/
 package aml.match;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Vector;
@@ -30,6 +32,9 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
+import aml.knowledge.MediatorLexicon;
+import aml.knowledge.MediatorOntology;
+import aml.settings.EntityType;
 import aml.settings.SelectionType;
 import aml.util.MapSorter;
 
@@ -38,6 +43,13 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 	
 //Attributes
 
+	private static final String DESCRIPTION = "Matches classes by testing all available\n" +
+											  "sources of background knowledge, and using\n" +
+											  "those that have a significant mapping gain\n" +
+											  "(with Cross-Reference Matcher, Mediating\n" +
+											  "Matcher, and/or WordNet Matcher).";
+	private static final String NAME = "Background Knowledge Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The path to the background knowledge sources
 	private final String BK_PATH = "store/knowledge/";
 	private String path;
@@ -61,24 +73,33 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 
 //Public Methods
 	
-	public static String description()
+	@Override
+	public String getDescription()
 	{
-		return "This matching algorithm tests all pre-selected\n" +
-			   "background knowledge sources, selecting those\n" +
-			   "that are suitable for the matching task, and\n" +
-			   "combining the mappings obtained with them all.\n" +
-			   "It finds literal full-name matches, or when\n" +
-			   "available, cross-reference matches.";
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
 	}
 	
 	@Override
-	public Alignment match(double thresh)
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
+		checkEntityType(e);
 		System.out.println("Running Background Knowledge Matcher");
 		long time = System.currentTimeMillis()/1000;
 		LexicalMatcher lm = new LexicalMatcher();
 		//The baseline alignment
-		Alignment base = lm.match(thresh);
+		Alignment base = lm.match(e,thresh);
 		//The alignment to return
 		//(note that if no background knowledge sources are selected
 		//this matcher will return the baseline Lexical alignment)
@@ -96,31 +117,45 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 			//Lexicon files
 			if(s.endsWith(".lexicon"))
 			{
-				MediatingMatcher mm = new MediatingMatcher(path + s);
-				temp = mm.match(thresh);
+				try
+				{
+					MediatorLexicon ml = new MediatorLexicon(path + s);
+					MediatingMatcher mm = new MediatingMatcher(ml, (new File(path + s)).toURI().toString());
+					temp = mm.match(e,thresh);
+				}
+				catch(IOException io)
+				{
+					System.out.println("Could not open lexicon file: " + path + s);
+					io.printStackTrace();
+					continue;
+				}				
 			}
 			//WordNet
 			else if(s.equals("WordNet"))
 			{
 				WordNetMatcher wn = new WordNetMatcher();
-				temp = wn.match(thresh);
+				temp = wn.match(e,thresh);
 			}
 			//Ontologies
 			else
 			{
 				try
 				{
-					aml.openBKOntology(s);
+					long ontoTime = System.currentTimeMillis()/1000;
+					MediatorOntology mo = new MediatorOntology(path + s);
+					ontoTime = System.currentTimeMillis()/1000 - time;
+					System.out.println(mo.getURI() + " loaded in " + ontoTime + " seconds");
+					XRefMatcher x = new XRefMatcher(mo);
+					temp = x.match(e,thresh);
 				}
-				catch(OWLOntologyCreationException e)
+				catch(OWLOntologyCreationException o)
 				{
 					System.out.println("WARNING: Could not open ontology " + s);
-					System.out.println(e.getMessage());
+					o.printStackTrace();
 					continue;
 				}
-				XRefMatcher x = new XRefMatcher(aml.getBKOntology());
-				temp = x.match(thresh);
 			}
+			
 			if(oneToOne)
 				gain = temp.gainOneToOne(base);
 			else
@@ -144,5 +179,22 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
+	}
+	
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }

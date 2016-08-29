@@ -69,12 +69,11 @@ import aml.filter.QualityFlagger;
 import aml.filter.RepairMap;
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.ontology.DataProperty;
 import aml.ontology.Lexicon;
-import aml.ontology.ObjectProperty;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
+import aml.ontology.ValueMap;
 import aml.settings.LexicalType;
 import aml.settings.MappingRelation;
 import aml.settings.MappingStatus;
@@ -96,7 +95,7 @@ public class ViewMapping extends JDialog implements ActionListener
 	private AML aml;
 	private URIMap uris;
 	private RelationshipMap rm;
-	private Ontology2Match source, target;
+	private Ontology source, target;
   	private Alignment a;
 	private int mapping, sourceId, targetId;
 	private Mapping m;
@@ -593,17 +592,17 @@ public class ViewMapping extends JDialog implements ActionListener
 				ancestors = new HashSet<Integer>();
 				for(int j : descendants)
 				{
-					for(int p : rm.getIndividualProperties(j))
+					for(int k : rm.getIndividualActiveRelations(j))
 					{
-						Set<Integer> parents = rm.getParentIndividuals(j, p);
-						for(int k : parents)
+						Set<Integer> rels = rm.getIndividualProperties(j, k);
+						if(rels.size() > 0)
 						{
 							if(directedGraph.getNode("" + k) == null)
 								addNode(k, 6);
 							if(!edges.contains(j,k) && !edges.contains(k,j))
-								addEdge(j, k, p);
+								addEdge(j, k, rels.iterator().next());
 						}
-						ancestors.addAll(parents);
+						ancestors.add(k);
 					}
 				}
 				nodes.addAll(ancestors);
@@ -646,17 +645,17 @@ public class ViewMapping extends JDialog implements ActionListener
 				descendants = new HashSet<Integer>();
 				for(int j : ancestors)
 				{
-					for(int p : rm.getIndividualRangeProperties(j))
+					for(int k : rm.getIndividualPassiveRelations(j))
 					{
-						Set<Integer> children = rm.getChildrenIndividuals(j, p);
-						for(int k : children)
+						Set<Integer> rels = rm.getIndividualProperties(j, k);
+						if(rels.size() > 0)
 						{
 							if(directedGraph.getNode("" + k) == null)
 								addNode(k, 6);
 							if(!edges.contains(j,k) && !edges.contains(k,j))
-								addEdge(k, j, p);
+								addEdge(k, j, rels.iterator().next());
 						}
-						descendants.addAll(children);
+						descendants.add(k);
 					}
 				}
 				nodes.addAll(descendants);
@@ -940,7 +939,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 
-		Ontology2Match o;
+		Ontology o;
 		if(source.contains(id))
 			o = source;
 		else
@@ -1051,7 +1050,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 		
-		Ontology2Match o;
+		Ontology o;
 		if(source.contains(id))
 			o = source;
 		else
@@ -1077,27 +1076,29 @@ public class ViewMapping extends JDialog implements ActionListener
 		JLabel high = new JLabel(lab);
 		p.add(high);
 		
-		//Parents
-		Vector<Integer> rels = new Vector<Integer>(rm.getIndividualProperties(id));
+		//Relations
+		Table2Set<String,String> relMap = new Table2Set<String,String>();
+		for(Integer i : rm.getIndividualActiveRelations(id))
+			for(Integer j : rm.getIndividualProperties(id, i))
+				relMap.add(o.getName(j),o.getName(i));
+		Vector<String> rels = new Vector<String>(relMap.keySet());
 		Collections.sort(rels);
-		for(Integer r : rels)
+		for(String r : rels)
 		{
-			lab = "<html>" + o.getName(r) + ": ";
-			for(Integer a : rm.getParentIndividuals(id, r))
-				lab += "<i>" + o.getName(a) + "</i>; ";
+			lab = "<html>" + r + ": ";
+			for(String s : relMap.get(r))
+				lab += "<i>" + s + "</i>; ";
 			lab = lab.substring(0, lab.length()-2) + "</html>";
 			JLabel ancs = new JLabel(lab);
 			p.add(ancs);
 		}
 		
 		//Data Properties
-		Table2Set<Integer,String> data = o.getIndividual(id).getDataValues();
-		rels = new Vector<Integer>(data.keySet());
-		Collections.sort(rels);
-		for(Integer r : rels)
+		ValueMap vm = o.getValueMap();
+		for(Integer v : vm.getProperties(id))
 		{
-			lab = "<html>" + o.getName(r) + ": ";
-			for(String s : data.get(r))
+			lab = "<html>" + o.getName(v) + ": ";
+			for(String s : vm.getValues(id, v))
 				lab += "<i>" + s + "</i>; ";
 			lab = lab.substring(0, lab.length()-2) + "</html>";
 			JLabel ancs = new JLabel(lab);
@@ -1111,7 +1112,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		JPanel p = new JPanel();
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 
-		Ontology2Match o;
+		Ontology o;
 		if(source.contains(id))
 			o = source;
 		else
@@ -1136,8 +1137,7 @@ public class ViewMapping extends JDialog implements ActionListener
         
 		if(t.equals(EntityType.OBJECT))
 		{
-			ObjectProperty pr = o.getObjectProperty(sourceId);
-			Set<Integer> domain = pr.getDomain();
+			Set<Integer> domain = rm.getDomains(id);
 			lab = "<html>Domain: ";
 			for(Integer i : domain)
 				lab += "<i>" + o.getName(i) + "</i>; ";
@@ -1148,7 +1148,7 @@ public class ViewMapping extends JDialog implements ActionListener
 			JLabel domainS = new JLabel(lab);
 			p.add(domainS);
 			
-			Set<Integer> range = pr.getRange();
+			Set<Integer> range = rm.getObjectRanges(id);
 			lab = "<html>Range: ";
 			for(Integer i : range)
 				lab += "<i>" + o.getName(i) + "</i>; ";
@@ -1158,7 +1158,7 @@ public class ViewMapping extends JDialog implements ActionListener
 				lab += "N/A</html>";
 			JLabel rangeS = new JLabel(lab);
 			p.add(rangeS);
-			if(pr.isFunctional())
+			if(rm.isFunctional(id))
 			{
 				JLabel funS = new JLabel("Functional Property");
 				p.add(funS);
@@ -1166,8 +1166,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		}
 		else if(t.equals(EntityType.DATA))
 		{
-			DataProperty pr = o.getDataProperty(sourceId);
-			Set<Integer> domain = pr.getDomain();
+			Set<Integer> domain = rm.getDomains(id);
 			lab = "<html>Domain: ";
 			for(Integer i : domain)
 				lab += "<i>" + o.getName(i) + "</i>; ";
@@ -1178,7 +1177,7 @@ public class ViewMapping extends JDialog implements ActionListener
 			JLabel domainS = new JLabel(lab);
 			p.add(domainS);
 			
-			Set<String> range = pr.getRange();
+			Set<String> range = rm.getDataRanges(id);
 			lab = "Range: ";
 			for(String s : range)
 				lab += "<i>" + s + "</i>; ";
@@ -1188,7 +1187,7 @@ public class ViewMapping extends JDialog implements ActionListener
 				lab += "N/A</html>";
 			JLabel rangeS = new JLabel(lab);
 			p.add(rangeS);
-			if(pr.isFunctional())
+			if(rm.isFunctional(id))
 			{
 				JLabel funS = new JLabel("Functional Property");
 				p.add(funS);

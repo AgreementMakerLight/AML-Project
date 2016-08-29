@@ -44,6 +44,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import aml.AML;
 import aml.ontology.Lexicon;
+import aml.settings.EntityType;
 import aml.settings.MappingRelation;
 import aml.util.MapSorter;
 
@@ -73,8 +74,8 @@ public class AddClassMapping extends JDialog implements ActionListener
 		source = aml.getSource().getLexicon();
 		target = aml.getTarget().getLexicon();
 		//Get the lists of classes from the ontologies
-		Vector<Integer> sources = new Vector<Integer>(source.getClasses());
-		Vector<Integer> targets = new Vector<Integer>(target.getClasses());
+		Vector<Integer> sources = new Vector<Integer>(source.getEntities(EntityType.CLASS));
+		Vector<Integer> targets = new Vector<Integer>(target.getEntities(EntityType.CLASS));
 		
 		this.setTitle("Add Class Mapping");
 		this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -215,15 +216,15 @@ public class AddClassMapping extends JDialog implements ActionListener
 		{
 			int sourceId;
 			if(sourceResults == null)
-				sourceId = source.getBestClass((String)sourceClasses.getSelectedItem(),false);
+				sourceId = source.getBestEntity(EntityType.CLASS,(String)sourceClasses.getSelectedItem(),false);
 			else
-				sourceId = source.getBestClass((String)sourceResults.getSelectedItem(),false);
+				sourceId = source.getBestEntity(EntityType.CLASS,(String)sourceResults.getSelectedItem(),false);
 			
 			int targetId;
 			if(targetResults == null)
-				targetId = target.getBestClass((String)targetClasses.getSelectedItem(),false);
+				targetId = target.getBestEntity(EntityType.CLASS,(String)targetClasses.getSelectedItem(),false);
 			else
-				targetId = target.getBestClass((String)targetResults.getSelectedItem(),false);
+				targetId = target.getBestEntity(EntityType.CLASS,(String)targetResults.getSelectedItem(),false);
 
 			if(sourceId == targetId)
 			{
@@ -376,12 +377,12 @@ public class AddClassMapping extends JDialog implements ActionListener
 	private void searchSource(String query)
 	{
 		HashMap<Integer,Double> hits = new HashMap<Integer,Double>();
-		for(String n : source.getNames())
+		for(String n : source.getNames(EntityType.CLASS))
 		{
 			if(n.contains(query))
 			{
 				double sim = similarity(n,query);
-				for(Integer i : source.getClasses(n))
+				for(Integer i : source.getEntities(EntityType.CLASS,n))
 				{
 					double classSim = sim*source.getCorrectedWeight(n, i);
 					if(hits.containsKey(i))
@@ -397,12 +398,12 @@ public class AddClassMapping extends JDialog implements ActionListener
 	private void searchTarget(String query)
 	{
 		HashMap<Integer,Double> hits = new HashMap<Integer,Double>();
-		for(String n : target.getNames())
+		for(String n : target.getNames(EntityType.CLASS))
 		{
 			if(n.contains(query))
 			{
 				double sim = similarity(n,query);
-				for(Integer i : target.getClasses(n))
+				for(Integer i : target.getEntities(EntityType.CLASS,n))
 				{
 					double classSim = sim*target.getCorrectedWeight(n, i);
 					if(hits.containsKey(i))

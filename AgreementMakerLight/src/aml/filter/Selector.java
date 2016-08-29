@@ -208,12 +208,14 @@ public class Selector implements Filterer, Flagger
 		for(Mapping m : aux)
 		{
 			Mapping n = a.get(m.getSourceId(), m.getTargetId());
+			if(n == null)
+				continue;
 			if(n.getStatus().equals(MappingStatus.CORRECT))
 				selected.add(n);
 			else if(n.getSimilarity() < thresh || n.getStatus().equals(MappingStatus.INCORRECT))
 				continue;
 			if((type.equals(SelectionType.STRICT) && !selected.containsConflict(n)) ||
-					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(n)) ||
+					(type.equals(SelectionType.PERMISSIVE) && !aux.containsBetterMapping(m)) ||
 					(type.equals(SelectionType.HYBRID) && ((n.getSimilarity() > 0.75 && 
 					selected.cardinality(n.getSourceId()) < 2 && selected.cardinality(n.getTargetId()) < 2) ||
 					!selected.containsBetterMapping(n))))

@@ -35,7 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import aml.AML;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.settings.EntityType;
 import aml.settings.MappingRelation;
 
@@ -60,14 +60,14 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 		
 		//Get the AML instance and the ontologies
 		aml = AML.getInstance();
-		Ontology2Match source = aml.getSource();
-		Ontology2Match target = aml.getTarget();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
 		//Get the lists of properties from the ontologies
-		objectSource = new Vector<Integer>(source.getObjectProperties());
-		objectTarget = new Vector<Integer>(target.getObjectProperties());
+		objectSource = new Vector<Integer>(source.getEntities(EntityType.OBJECT));
+		objectTarget = new Vector<Integer>(target.getEntities(EntityType.OBJECT));
 		boolean objectP = objectSource.size() > 0 && objectTarget.size() > 0;
-		dataSource = new Vector<Integer>(source.getDataProperties());
-		dataTarget = new Vector<Integer>(target.getDataProperties());
+		dataSource = new Vector<Integer>(source.getEntities(EntityType.DATA));
+		dataTarget = new Vector<Integer>(target.getEntities(EntityType.DATA));
 		boolean dataP = dataSource.size() > 0 && dataTarget.size() > 0;
 				
 		//Set the title

@@ -34,20 +34,27 @@ import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
 import aml.AML;
-import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
+import aml.ontology.Lexicon;
 import aml.ontology.RelationshipMap;
+import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.LexicalType;
 import aml.settings.StringSimMeasure;
 import aml.util.ISub;
 import aml.util.Table2Set;
 
-public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematcher
+public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatcher
 {
 
 //Attributes
 
+	private static final String DESCRIPTION = "Matches entities by computing the maximum\n" +
+											  "String similarity between their Lexicon\n" +
+											  "entries, using a String similarity measure";
+	private static final String NAME = "String Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
 	//Links to the AML class and to the source and target Lexicons
 	private AML aml;
 	private Ontology source;
@@ -96,42 +103,80 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
+	public String getDescription()
+	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment extendAlignment(Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{	
+		checkEntityType(e);
 		System.out.println("Extending Alignment with String Matcher");
 		long time = System.currentTimeMillis()/1000;
-		System.out.println("Matching Children & Parents");
-		Alignment ext = extendChildrenAndParents(a,thresh);
-		Alignment aux = extendChildrenAndParents(ext,thresh);
-		int size = 0;
-		for(int i = 0; i < 10 && ext.size() > size; i++)
+		Alignment ext;
+		if(e.equals(EntityType.CLASS))
 		{
-			size = ext.size();
-			for(Mapping m : aux)
-				if(!a.containsConflict(m))
-					ext.add(m);
-			aux = extendChildrenAndParents(aux,thresh);
+			System.out.println("Matching Children & Parents");
+			ext = extendChildrenAndParents(a,thresh);
+			Alignment aux = extendChildrenAndParents(ext,thresh);
+			int size = 0;
+			for(int i = 0; i < 10 && ext.size() > size; i++)
+			{
+				size = ext.size();
+				for(Mapping m : aux)
+					if(!a.containsConflict(m))
+						ext.add(m);
+				aux = extendChildrenAndParents(aux,thresh);
+			}
+			System.out.println("Matching Siblings");
+			ext.addAll(extendSiblings(a,thresh));
 		}
-		System.out.println("Matching Siblings");
-		ext.addAll(extendSiblings(a,thresh));
+		else
+		{
+			//TODO: Add support for other EntityTypes
+			ext = new Alignment();
+		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return ext;
 	}
 	
 	@Override
-	public Alignment match(double thresh)
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
+		checkEntityType(e);
 		System.out.println("Running String Matcher");
 		long time = System.currentTimeMillis()/1000;
-		Set<Integer> sources = sLex.getClasses();
-		Set<Integer> targets = tLex.getClasses();
+		Set<Integer> sources = sLex.getEntities(e);
+		Set<Integer> targets = tLex.getEntities(e);
 		Alignment a = new Alignment();
 		for(Integer i : sources)
 		{
+			if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+				continue;
 			Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 			for(Integer j : targets)
+			{
+				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
+					continue;
+				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+						!aml.getRelationshipMap().shareClass(i,j))
+					continue;
 				toMap.add(i,j);
+			}
 			a.addAll(mapInParallel(toMap,thresh));
 		}
 		time = System.currentTimeMillis()/1000 - time;
@@ -140,15 +185,17 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 	}
 		
 	@Override
-	public Alignment rematch(Alignment a)
+	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
+		checkEntityType(e);
 		System.out.println("Computing String Similarity");
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
 		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(Mapping m : a)
 		{
-			toMap.add(m.getSourceId(),m.getTargetId());
+			if(aml.getURIMap().getType(m.getSourceId()).equals(e))
+				toMap.add(m.getSourceId(),m.getTargetId());
 		}
 		maps.addAll(mapInParallel(toMap,0.0));
 		time = System.currentTimeMillis()/1000 - time;
@@ -157,6 +204,21 @@ public class StringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematche
 	}
 	
 //Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
+	}
 	
 	private Alignment extendChildrenAndParents(Alignment a, double thresh)
 	{
