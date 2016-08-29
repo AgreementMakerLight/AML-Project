@@ -903,6 +903,9 @@ public class Ontology
 			//have an URI by definition, but better safe than sorry
 			if(indivUri == null)
 				continue;
+			//If the individual has not class, skip it
+			if(i.getTypes(o).isEmpty())
+				continue;
 			//Add it to the global list of URIs
 			int id = uris.addURI(indivUri, EntityType.INDIVIDUAL);
 			//Add it to the Ontology
@@ -982,18 +985,21 @@ public class Ontology
 					}
 					else if(annotation.getValue() instanceof IRI)
 					{
+						String iri = ((IRI)annotation.getValue()).toString();
+						String name = getLocalName(iri);
+						if(!StringParser.isNumericId(name))
+							lex.add(id, name, lang, type, "", weight);
 						OWLNamedIndividual ni = factory.getOWLNamedIndividual((IRI) annotation.getValue());
 						for(OWLAnnotation a : ni.getAnnotations(o,label))
 						{
 							if(a.getValue() instanceof OWLLiteral)
 							{
 								OWLLiteral val = (OWLLiteral) a.getValue();
-								String name = val.getLiteral();
+								name = val.getLiteral();
 								String localLang = val.getLang();
 								if(localLang.equals(""))
 									localLang = lang;
 								lex.add(id, name, localLang, type, "", weight);
-								System.out.println(name);
 							}
 						}
 					}
