@@ -38,6 +38,7 @@ import aml.ontology.Ontology;
 import aml.ontology.Lexicon;
 import aml.ontology.RelationshipMap;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.LexicalType;
 import aml.settings.StringSimMeasure;
@@ -164,9 +165,18 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 		Alignment a = new Alignment();
 		for(Integer i : sources)
 		{
+			if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+				continue;
 			Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 			for(Integer j : targets)
+			{
+				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
+					continue;
+				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+						!aml.getRelationshipMap().shareClass(i,j))
+					continue;
 				toMap.add(i,j);
+			}
 			a.addAll(mapInParallel(toMap,thresh));
 		}
 		time = System.currentTimeMillis()/1000 - time;

@@ -27,6 +27,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.LexicalType;
 import aml.util.StringParser;
 import aml.util.Table2List;
@@ -210,6 +211,7 @@ public class ThesaurusMatcher implements PrimaryMatcher
 	//Matches two Lexicons
 	private Alignment match(Lexicon source, Lexicon target, EntityType e, double thresh)
 	{
+		AML aml = AML.getInstance();
 		Alignment maps = new Alignment();
 		Set<String> names = source.getNames(e);
 		for(String s : names)
@@ -222,10 +224,17 @@ public class ThesaurusMatcher implements PrimaryMatcher
 			//Otherwise, match all indexes
 			for(Integer i : sIndexes)
 			{
+				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+					continue;
 				//Get the weight of the name for the term in the smaller lexicon
 				double weight = source.getCorrectedWeight(s, i);
 				for(Integer j : tIndexes)
 				{
+					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
+						continue;
+					if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+							!aml.getRelationshipMap().shareClass(i,j))
+						continue;
 					//Get the weight of the name for the term in the larger lexicon
 					double similarity = target.getCorrectedWeight(s, j);
 					//Then compute the similarity, by multiplying the two weights

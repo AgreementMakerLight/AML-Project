@@ -37,6 +37,7 @@ import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.ValueMap;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.util.ISub;
 import aml.util.Similarity;
 import aml.util.Table2Set;
@@ -110,9 +111,18 @@ public class Value2LexiconMatcher implements PrimaryMatcher, Rematcher
 		Alignment a = new Alignment();
 		for(Integer i : sources)
 		{
+			if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+				continue;
 			Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 			for(Integer j : targets)
+			{
+				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
+					continue;
+				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+						!aml.getRelationshipMap().shareClass(i,j))
+					continue;
 				toMap.add(i,j);
+			}
 			a.addAll(mapInParallel(toMap,thresh));
 		}
 		time = System.currentTimeMillis()/1000 - time;
@@ -124,7 +134,7 @@ public class Value2LexiconMatcher implements PrimaryMatcher, Rematcher
 	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
-		System.out.println("Computing String Similarity");
+		System.out.println("Computing Value-To-Lexicon Similarity");
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
 		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();

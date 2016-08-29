@@ -25,6 +25,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.ontology.WordLexicon;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.WordMatchStrategy;
 import aml.util.Table2Map;
 import aml.util.Table2Set;
@@ -145,7 +146,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 			{
 				//The word table (words->String, class indexes->Integer) for the current block
 				Table2Set<String,Integer> tWLex = targetLex.getWordTable(j);
-				Vector<Mapping> temp = matchBlocks(sWLex,tWLex,t);
+				Vector<Mapping> temp = matchBlocks(sWLex,tWLex,e,t);
 				//If the strategy is BY_CLASS, just add the alignment
 				if(strategy.equals(WordMatchStrategy.BY_CLASS))
 					a.addAll(temp);
@@ -251,8 +252,9 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	//or to compute a preliminary alignment which is then refined according
 	//to the WordMatchStrategy.
 	private Vector<Mapping> matchBlocks(Table2Set<String,Integer> sWLex,
-			Table2Set<String,Integer> tWLex, double thresh)
+			Table2Set<String,Integer> tWLex, EntityType e, double thresh)
 	{
+		AML aml = AML.getInstance();
 		Table2Map<Integer,Integer,Double> maps = new Table2Map<Integer,Integer,Double>();
 		//To minimize iterations, we want to iterate through the smallest Lexicon
 		boolean sourceIsSmaller = (sWLex.keyCount() <= tWLex.keyCount());
@@ -271,9 +273,16 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 			double ec = sourceLex.getWordEC(s) * targetLex.getWordEC(s);
 			for(Integer i : sourceIndexes)
 			{
+				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+					continue;
 				double sim = ec * sourceLex.getWordWeight(s,i);
 				for(Integer j : targetIndexes)
 				{
+					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
+						continue;
+					if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+							!aml.getRelationshipMap().shareClass(i,j))
+						continue;
 					double finalSim = Math.sqrt(sim * targetLex.getWordWeight(s,j));
 					Double previousSim = maps.get(i,j);
 					if(previousSim == null)

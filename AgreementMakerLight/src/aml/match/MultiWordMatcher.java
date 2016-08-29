@@ -31,6 +31,7 @@ import aml.knowledge.WordNet;
 import aml.ontology.Lexicon;
 import aml.ontology.WordLexicon;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.util.StopList;
 
 public class MultiWordMatcher implements PrimaryMatcher
@@ -133,8 +134,15 @@ public class MultiWordMatcher implements PrimaryMatcher
 				sim /= sWords.length;
 				for(Integer srcId : sourceLex.getEntities(e,sName))
 				{
+					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(srcId))
+						continue;
 					for(Integer tgtId : targetLex.getEntities(e,tName))
 					{
+						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(tgtId))
+							continue;
+						if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+								!aml.getRelationshipMap().shareClass(srcId,tgtId))
+							continue;
 						double finalSim = sim * sourceLex.getCorrectedWeight(sName, srcId) *
 								targetLex.getCorrectedWeight(tName, tgtId);
 						if(finalSim < thresh)

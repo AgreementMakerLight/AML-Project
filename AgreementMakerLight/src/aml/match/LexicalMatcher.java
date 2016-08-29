@@ -25,6 +25,7 @@ import java.util.Set;
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.util.StringParser;
 
@@ -104,10 +105,17 @@ public class LexicalMatcher implements PrimaryMatcher
 					//Otherwise, match all indexes
 					for(Integer i : sourceIndexes)
 					{
+						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+							continue;
 						//Get the weight of the name for the term in the smaller lexicon
 						double weight = sLex.getCorrectedWeight(s, i);
 						for(Integer j : targetIndexes)
 						{
+							if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
+								continue;
+							if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+									!aml.getRelationshipMap().shareClass(i,j))
+								continue;
 							//Get the weight of the name for the term in the larger lexicon
 							double similarity = tLex.getCorrectedWeight(s, j);
 							//Then compute the similarity, by multiplying the two weights
@@ -134,12 +142,19 @@ public class LexicalMatcher implements PrimaryMatcher
 				//Otherwise, match all indexes
 				for(Integer i : sourceIndexes)
 				{
+					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+						continue;
 					if(isSmallFormula && sLex.containsNonSmallFormula(i))
 						continue;
 					//Get the weight of the name for the term in the smaller lexicon
 					double weight = sLex.getCorrectedWeight(s, i);
 					for(Integer j : targetIndexes)
 					{
+						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
+							continue;
+						if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+								!aml.getRelationshipMap().shareClass(i,j))
+							continue;
 						if(isSmallFormula && tLex.containsNonSmallFormula(j))
 							continue;
 						//Get the weight of the name for the term in the larger lexicon

@@ -23,6 +23,7 @@ package aml.match;
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.util.Table2Set;
 
 public class SpacelessLexicalMatcher implements PrimaryMatcher
@@ -89,11 +90,18 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 			{
 				for(Integer i : sLex.getEntities(e,s))
 				{
+					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+						continue;
 					double weight = sLex.getCorrectedWeight(s, i) * WEIGHT;
 					for(String t : targetConv.get(c))
 					{
 						for(Integer j : tLex.getEntities(e,t))
 						{
+							if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
+								continue;
+							if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+									!aml.getRelationshipMap().shareClass(i,j))
+								continue;
 							double similarity = tLex.getCorrectedWeight(t, j) * weight;
 							if(similarity >= thresh)
 								maps.add(i, j, similarity);

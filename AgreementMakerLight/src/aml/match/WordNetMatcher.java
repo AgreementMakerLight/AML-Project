@@ -28,6 +28,7 @@ import aml.ext.LexiconExtender;
 import aml.knowledge.WordNet;
 import aml.ontology.Lexicon;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.LexicalType;
 import aml.util.StringParser;
 
@@ -183,6 +184,7 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 	//Matches two Lexicons
 	private Alignment match(Lexicon source, Lexicon target, EntityType e, double thresh)
 	{
+		AML aml = AML.getInstance();
 		Alignment maps = new Alignment();
 		Set<String> names = source.getNames(e);
 		for(String s : names)
@@ -195,11 +197,18 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 			//Otherwise, match all indexes
 			for(Integer i : sIndexes)
 			{
+				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+					continue;
 				//Get the weight of the name for the term in the smaller lexicon
 				double weight = source.getCorrectedWeight(s, i);
 				Set<String> sSources = source.getSources(s, i);
 				for(Integer j : tIndexes)
 				{
+					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
+						continue;
+					if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+							!aml.getRelationshipMap().shareClass(i,j))
+						continue;
 					Set<String> tSources = target.getSources(s, j);
 					//We only consider matches involving at least one WordNet synonym
 					//and not envolving any external synonyms

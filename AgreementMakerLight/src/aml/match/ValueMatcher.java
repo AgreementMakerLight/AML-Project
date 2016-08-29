@@ -24,6 +24,7 @@ import java.util.Set;
 import aml.AML;
 import aml.ontology.ValueMap;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 
 public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 {
@@ -133,8 +134,15 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 				int count = Math.min(sourceIndexes.size(), targetIndexes.size());
 				for(Integer j : sourceIndexes)
 				{
+					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(j))
+						continue;
 					for(Integer k : targetIndexes)
 					{
+						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(k))
+							continue;
+						if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+								!aml.getRelationshipMap().shareClass(j,k))
+							continue;
 						double similarity = maps.getSimilarity(j, k);
 						similarity = Math.max(similarity, 1.0/count);
 
@@ -144,7 +152,6 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 				}
 			}
 		}
-		System.out.println(maps.size());
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
