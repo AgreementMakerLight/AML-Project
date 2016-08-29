@@ -52,6 +52,7 @@ import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.settings.Problem;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.MappingStatus;
 import aml.settings.MatchStep;
@@ -102,9 +103,9 @@ public class AML
 	private final String LOG = "log4j.properties";
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
-	private Set<String> sourceClassesToMatch;
-	private Set<String> targetClassesToMatch;
-	private boolean sameClassIndividualMatching;
+	private Set<Integer> sourceClassesToMatch;
+	private Set<Integer> targetClassesToMatch;
+	private InstanceMatchingCategory inst;
 	private LanguageSetting lang;
 	private SizeCategory size;
 	private Set<String> languages;
@@ -269,8 +270,8 @@ public class AML
 		flagSteps = new Vector<Problem>();
 		for(Problem f : Problem.values())
 			flagSteps.add(f);
-		sourceClassesToMatch = new HashSet<String>();
-		targetClassesToMatch = new HashSet<String>();
+		sourceClassesToMatch = new HashSet<Integer>();
+		targetClassesToMatch = new HashSet<Integer>();
     }
     
     /**
@@ -539,7 +540,7 @@ public class AML
 	 * @return the set of classes of the source ontology to which
 	 * the individuals to match belong to
 	 */
-	public Set<String> getSourceClassesToMatch()
+	public Set<Integer> getSourceClassesToMatch()
 	{
 		return sourceClassesToMatch;
 	}
@@ -564,7 +565,7 @@ public class AML
 	 * @return the set of classes of the target ontology to which
 	 * the individuals to match belong to
 	 */
-    public Set<String> getTargetClassesToMatch()
+    public Set<Integer> getTargetClassesToMatch()
     {
 		return targetClassesToMatch;
 	}
@@ -639,7 +640,27 @@ public class AML
     {
 		return hierarchic;
 	}
+    
+    public boolean isToMatchSource(int index)
+    {
+    	if(sourceClassesToMatch.isEmpty())
+    		return true;
+		for(int cl : sourceClassesToMatch)
+			if(rels.belongsToClass(index, cl))
+				return true;
+		return false;
+	}
 
+    public boolean isToMatchTarget(int index)
+    {
+    	if(targetClassesToMatch.isEmpty())
+    		return true;
+		for(int cl : targetClassesToMatch)
+			if(rels.belongsToClass(index, cl))
+				return true;
+		return false;
+	}
+    
     /**
      * Matches the active ontologies using the default configuration
      */
@@ -925,9 +946,9 @@ public class AML
 		needSave = true;
 	}
 	
-	public boolean sameClassIndividualMatching()
+	public InstanceMatchingCategory getInstanceMatchingCategory()
 	{
-		return sameClassIndividualMatching;
+		return inst;
 	}
 
     public void saveAlignmentRDF(String file) throws Exception
@@ -1000,9 +1021,9 @@ public class AML
 		primaryStringMatcher = primary;
 	}
 	
-	public void setSameClassIndividualMatching(boolean sameClass)
+	public void setInstanceMatchingCategory(InstanceMatchingCategory cat)
 	{
-		sameClassIndividualMatching = sameClass;
+		inst = cat;
 	}
 	
 	public void setSelectedSources(Vector<String> sources)
@@ -1021,11 +1042,17 @@ public class AML
 	/**
 	 * Sets the set of classes of the source ontology to which the individuals
 	 * to match belong to
-	 * @param sourceClassesToMatch: the set of source classes to match
+	 * @param sourcesToMatch: the set of source classes to match
 	 */
-	public void setSourceClassesToMatch(Set<String> sourceClassesToMatch)
+	public void setSourceClassesToMatch(Set<String> sourcesToMatch)
 	{
-		this.sourceClassesToMatch = sourceClassesToMatch;
+		sourceClassesToMatch = new HashSet<Integer>();
+		for(String s : sourcesToMatch)
+		{
+			int id = uris.getIndex(s);
+			if(id != -1)
+				sourceClassesToMatch.add(id);
+		}
 	}
 	
 	public void setStringSimMeasure(StringSimMeasure ssm)
@@ -1041,11 +1068,17 @@ public class AML
 	/**
 	 * Sets the set of classes of the target ontology to which the individuals
 	 * to match belong to
-	 * @param sourceClassesToMatch: the set of target classes to match
+	 * @param targetsToMatch: the set of target classes to match
 	 */	
-	public void setTargetClassesToMatch(Set<String> targetClassesToMatch)
+	public void setTargetClassesToMatch(Set<String> targetsToMatch)
 	{
-		this.targetClassesToMatch = targetClassesToMatch;
+		targetClassesToMatch = new HashSet<Integer>();
+		for(String s : targetsToMatch)
+		{
+			int id = uris.getIndex(s);
+			if(id != -1)
+				targetClassesToMatch.add(id);
+		}
 	}
 	
 	public void setThreshold(double thresh)
