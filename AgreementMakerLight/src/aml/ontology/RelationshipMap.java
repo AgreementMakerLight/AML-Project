@@ -1076,6 +1076,23 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * Checks whether two individuals share a direct class assignment
+	 * @param ind1Id: the first individual to check
+	 * @param ind2Id: the second individual to check
+	 * @return whether ind1Id and ind2Id have at least one class in common
+	 * in their direct class assignments
+	 */
+	public boolean shareClass(int ind1Id, int ind2Id)
+	{
+		if(instanceOfMap.get(ind1Id) == null || instanceOfMap.get(ind2Id) == null)
+			return false;
+		for(int c : instanceOfMap.get(ind1Id))
+			if(instanceOfMap.get(ind2Id).contains(c))
+				return true;
+		return false;
+	}
+	
+	/**
 	 * @param classId: the id of the class to search in the map
 	 * @param direct: whether to return all subclasses or just the direct ones
 	 * @return the number of direct or indirect subclasses of the input class
