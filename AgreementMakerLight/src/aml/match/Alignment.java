@@ -120,7 +120,7 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public void add(int sourceId, int targetId, double sim)
 	{
-		add(sourceId,targetId,sim,MappingRelation.EQUIVALENCE);
+		add(sourceId,targetId,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
 	}
 	
 	/**
@@ -134,39 +134,7 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean add(int sourceId, int targetId, double sim, MappingRelation r)
 	{
-		//We can't have a mapping involving entities that exist in
-		//both ontologies (they are the same entity, and therefore
-		//shouldn't map with other entities in either ontology)
-		if(source.contains(targetId) || target.contains(sourceId))
-			return false;
-		
-		//Construct the Mapping
-		Mapping m = new Mapping(sourceId, targetId, sim, r);
-		//If it isn't listed yet, add it
-		if(!sourceMaps.contains(sourceId,targetId))
-		{
-			maps.add(m);
-			sourceMaps.add(sourceId, targetId, m);
-			targetMaps.add(targetId, sourceId, m);
-			return true;
-		}
-		//Otherwise update the similarity
-		else
-		{
-			m = sourceMaps.get(sourceId,targetId);
-			boolean check = false;
-			if(m.getSimilarity() < sim)
-			{
-				m.setSimilarity(sim);
-				check = true;
-			}
-			if(!m.getRelationship().equals(r))
-			{
-				m.setRelationship(r);
-				check = true;
-			}
-			return check;
-		}
+		return add(sourceId,targetId,sim,r,MappingStatus.UNKNOWN);
 	}
 	
 	/**
@@ -261,42 +229,7 @@ public class Alignment implements Collection<Mapping>
 	@Override
 	public boolean add(Mapping m)
 	{
-		int sourceId = m.getSourceId();
-		int targetId = m.getTargetId();
-		double sim = m.getSimilarity();
-		MappingRelation r = m.getRelationship();
-		Mapping clone = new Mapping(m);
-		//We can't have a mapping involving entities that exist in
-		//both ontologies (they are the same entity, and therefore
-		//shouldn't map with other entities in either ontology)
-		if(source.contains(targetId) || target.contains(sourceId))
-			return false;
-		
-		//If it isn't listed yet, add it
-		if(!sourceMaps.contains(sourceId,targetId))
-		{
-			maps.add(clone);
-			sourceMaps.add(sourceId, targetId, clone);
-			targetMaps.add(targetId, sourceId, clone);
-			return true;
-		}
-		//Otherwise update the similarity
-		else
-		{
-			m = sourceMaps.get(sourceId,targetId);
-			boolean check = false;
-			if(m.getSimilarity() < sim)
-			{
-				m.setSimilarity(sim);
-				check = true;
-			}
-			if(!m.getRelationship().equals(r))
-			{
-				m.setRelationship(r);
-				check = true;
-			}
-			return check;
-		}
+		return add(m.getSourceId(),m.getTargetId(),m.getSimilarity(),m.getRelationship(),m.getStatus());
 	}
 
 	@Override
