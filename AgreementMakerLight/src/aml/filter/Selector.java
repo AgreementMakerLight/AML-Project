@@ -22,6 +22,7 @@ import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.RelationshipMap;
+import aml.settings.EntityType;
 import aml.settings.MappingStatus;
 import aml.settings.SelectionType;
 import aml.util.InteractionManager;
@@ -50,7 +51,6 @@ public class Selector implements Filterer, Flagger
 		aml = AML.getInstance();
 		this.thresh = thresh;
 		type = SelectionType.getSelectionType();
-		a = aml.getAlignment();
 		aux = null;
 		im = aml.getInteractionManager();
 	}
@@ -102,6 +102,7 @@ public class Selector implements Filterer, Flagger
 		System.out.println("Performing Selection");
 		long time = System.currentTimeMillis()/1000;
 		Alignment selected;
+		a = aml.getAlignment();
 		if(!type.equals(SelectionType.HYBRID))
 			selected = parentFilter(a);
 		//In normal selection mode
@@ -155,6 +156,7 @@ public class Selector implements Filterer, Flagger
 	{
 		System.out.println("Running Cardinality Flagger");
 		long time = System.currentTimeMillis()/1000;
+		a = aml.getAlignment();
 		for(Mapping m : a)
 			if(a.containsConflict(m) && m.getStatus().equals(MappingStatus.UNKNOWN))
 				m.setStatus(MappingStatus.FLAGGED);
@@ -238,6 +240,8 @@ public class Selector implements Filterer, Flagger
 		{
 			int src = m.getSourceId();
 			int tgt = m.getTargetId();
+			if(!aml.getURIMap().getType(src).equals(EntityType.CLASS))
+				continue;
 			boolean add = true;
 			for(Integer t : in.getSourceMappings(src))
 			{
