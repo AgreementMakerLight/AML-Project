@@ -278,10 +278,9 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 				double sim = ec * sourceLex.getWordWeight(s,i);
 				for(Integer j : targetIndexes)
 				{
-					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
-						continue;
-					if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-							!aml.getRelationshipMap().shareClass(i,j))
+					if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
+							(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+							!aml.getRelationshipMap().shareClass(i,j))))
 						continue;
 					double finalSim = Math.sqrt(sim * targetLex.getWordWeight(s,j));
 					Double previousSim = maps.get(i,j);

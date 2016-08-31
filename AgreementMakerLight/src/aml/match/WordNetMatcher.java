@@ -204,10 +204,9 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 				Set<String> sSources = source.getSources(s, i);
 				for(Integer j : tIndexes)
 				{
-					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
-						continue;
-					if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-							!aml.getRelationshipMap().shareClass(i,j))
+					if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
+							(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+							!aml.getRelationshipMap().shareClass(i,j))))
 						continue;
 					Set<String> tSources = target.getSources(s, j);
 					//We only consider matches involving at least one WordNet synonym

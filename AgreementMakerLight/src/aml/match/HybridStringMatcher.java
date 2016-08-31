@@ -118,10 +118,9 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 			{
 				if(i == j)
 					continue;
-				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
-					continue;
-				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-						!aml.getRelationshipMap().shareClass(i,j))
+				if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
+						(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+						!aml.getRelationshipMap().shareClass(i,j))))
 					continue;
 				toMap.add(i,j);
 			}
@@ -242,9 +241,6 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 			{
 				for(String t : targetNames)
 				{
-					if(s.contains("course0") && t.contains("course0"))
-						System.out.println(s + " = " + t);
-
 					if(s.equals(t))
 						return 1.0;
 					double sim = nameSimilarity(s,t);

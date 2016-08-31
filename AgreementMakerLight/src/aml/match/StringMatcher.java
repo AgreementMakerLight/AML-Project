@@ -170,10 +170,9 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 			Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 			for(Integer j : targets)
 			{
-				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
-					continue;
-				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-						!aml.getRelationshipMap().shareClass(i,j))
+				if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
+						(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+						!aml.getRelationshipMap().shareClass(i,j))))
 					continue;
 				toMap.add(i,j);
 			}

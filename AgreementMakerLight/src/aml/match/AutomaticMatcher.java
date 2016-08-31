@@ -243,7 +243,7 @@ public class AutomaticMatcher
 		//If the task is small, we can use the PSM in match mode
 		if(aml.primaryStringMatcher())
 		{
-			a.addAllOneToOne(psm.match(EntityType.CLASS, psmThresh));
+			a.addAll(psm.match(EntityType.CLASS, psmThresh));
 			//And if the task is single-language we can use the
 			//MultiWordMatcher as well (which uses WordNet)
 			if(size.equals(SizeCategory.SMALL) && lang.equals(LanguageSetting.SINGLE))

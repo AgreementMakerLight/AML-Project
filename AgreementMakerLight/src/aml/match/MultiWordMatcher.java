@@ -138,10 +138,9 @@ public class MultiWordMatcher implements PrimaryMatcher
 						continue;
 					for(Integer tgtId : targetLex.getEntities(e,tName))
 					{
-						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(tgtId))
-							continue;
-						if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-								!aml.getRelationshipMap().shareClass(srcId,tgtId))
+						if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(tgtId) ||
+								(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+								!aml.getRelationshipMap().shareClass(srcId,tgtId))))
 							continue;
 						double finalSim = sim * sourceLex.getCorrectedWeight(sName, srcId) *
 								targetLex.getCorrectedWeight(tName, tgtId);

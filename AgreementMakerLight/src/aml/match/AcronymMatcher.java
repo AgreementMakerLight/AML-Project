@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 
 public class AcronymMatcher implements PrimaryMatcher
 {
@@ -135,11 +136,23 @@ public class AcronymMatcher implements PrimaryMatcher
 					continue;
 				sim /= total;
 				if(sim >= thresh)
+				{
 					for(int sourceId : sourceLex.getEntities(e,sName))
+					{
+						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(sourceId))
+							continue;
 						for(int targetId : targetLex.getEntities(e,tName))
+						{
+							if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(targetId) ||
+									(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+									!aml.getRelationshipMap().shareClass(sourceId,targetId))))
+								continue;
 							maps.add(sourceId, targetId, sim * 
 								Math.sqrt(sourceLex.getCorrectedWeight(sName, sourceId) *
 									targetLex.getCorrectedWeight(tName, targetId)));
+						}
+					}
+				}
 			}
 		}
 		return maps;

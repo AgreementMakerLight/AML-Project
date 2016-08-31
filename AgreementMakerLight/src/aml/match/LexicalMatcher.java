@@ -150,10 +150,9 @@ public class LexicalMatcher implements PrimaryMatcher
 					double weight = sLex.getCorrectedWeight(s, i);
 					for(Integer j : targetIndexes)
 					{
-						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
-							continue;
-						if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-								!aml.getRelationshipMap().shareClass(i,j))
+						if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
+								(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+								!aml.getRelationshipMap().shareClass(i,j))))
 							continue;
 						if(isSmallFormula && tLex.containsNonSmallFormula(j))
 							continue;
