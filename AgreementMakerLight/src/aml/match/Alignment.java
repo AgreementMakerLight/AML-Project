@@ -1015,7 +1015,7 @@ public class Alignment implements Collection<Mapping>
 		AML aml = AML.getInstance();
 		String sourceURI = aml.getSource().getURI();
 		String targetURI = aml.getTarget().getURI();
-		
+
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		outStream.println("<?xml version='1.0' encoding='utf-8'?>");
 		outStream.println("<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment'"); 
@@ -1098,11 +1098,11 @@ public class Alignment implements Collection<Mapping>
 	/**
 	 * @return the fraction of source classes mapped in this Alignment
 	 */
-	public double sourceCoverage()
+	public double sourceCoverage(EntityType e)
 	{
 		AML aml = AML.getInstance();
 		double coverage = sourceMaps.keyCount();
-		int count = aml.getSource().count(EntityType.CLASS);
+		int count = aml.getSource().count(e);
 		coverage /= count;
 		return coverage;
 	}
@@ -1118,11 +1118,11 @@ public class Alignment implements Collection<Mapping>
 	/**
 	 * @return the fraction of target classes mapped in this Alignment
 	 */
-	public double targetCoverage()
+	public double targetCoverage(EntityType e)
 	{
 		AML aml = AML.getInstance();
 		double coverage = targetMaps.keyCount();
-		int count = aml.getTarget().count(EntityType.CLASS);
+		int count = aml.getTarget().count(e);
 		coverage /= count;
 		return coverage;
 	}
