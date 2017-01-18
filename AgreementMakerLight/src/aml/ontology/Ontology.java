@@ -271,7 +271,9 @@ public class Ontology
 	 */
 	public int getIndex(String name)
 	{
-		return classNames.get(name);
+		if(classNames.containsKey(name))
+			return classNames.get(name);
+		return -1;
 	}	
 
 	/**
