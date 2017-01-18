@@ -690,3 +690,13 @@ possui co-autor	It has co-authored
 dia de início do evento	day of start of the event
 último dia do evento	last day of the event
 email	email
+tem código artigo	has code article
+possui um membro comitê de programa	has a Member Program Committee
+membro comitê de programa	Program Committee Member
+adicionar um membro comitê de programa	Add a Member Program Committee
+definição número máximo de artigos	setting maximum number of articles
+especialidade revisor	speciality reviewer
+número volume dos anais	Annals volume number
+último dia evento	last day event
+dia de início evento	start day event
+possui nome patrocinador	has name sponsor

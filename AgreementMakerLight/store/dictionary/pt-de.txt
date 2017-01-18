@@ -690,3 +690,13 @@ possui co-autor	Es ist Co-Autor
 dia de início do evento	Tag der Beginn der Veranstaltung
 último dia do evento	letzten Tag der Veranstaltung
 email	E-Mail
+tem código artigo	hat Code Artikel
+possui um membro comitê de programa	hat ein Mitglied Programmkomitee
+membro comitê de programa	Programm-Komitee-Mitglied
+adicionar um membro comitê de programa	Fügen Sie ein Mitglied Programmkomitee
+definição número máximo de artigos	maximale Anzahl von Artikeln festlegen
+especialidade revisor	Spezialität-Gutachter
+número volume dos anais	Annalen Bandnummer
+último dia evento	letzten Tages-Veranstaltung
+dia de início evento	ganztägiges Ereignis starten
+possui nome patrocinador	hat Namenssponsor

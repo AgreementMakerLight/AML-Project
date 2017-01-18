@@ -728,3 +728,6 @@ zusammenfassung	Resumo
 datum der einreichung des zusammenfassungen	Data de apresentação dos resumos
 hat zusammenfassung	tem Resumo
 deadline für die einreichung der zusammenfassung	prazo para apresentação do Resumo
+spricht in	Fala-se em
+spricht	Fala
+istanwesend	istanwesend

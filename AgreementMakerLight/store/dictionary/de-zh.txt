@@ -728,3 +728,6 @@ datum der einreichung des zusammenfassungen	摘要提交的日期
 hat zusammenfassung	有摘要
 zusammenfassung eines konferenzbeitrags	总结会议的贡献
 deadline für die einreichung der zusammenfassung	摘要提交截止日期
+spricht in	在讲话
+istanwesend	istanwesend
+spricht	讲话

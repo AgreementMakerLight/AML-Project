@@ -728,3 +728,6 @@ zusammenfassung	Resumen
 datum der einreichung des zusammenfassungen	fecha de presentación de los resúmenes
 hat zusammenfassung	tiene Resumen
 deadline für die einreichung der zusammenfassung	plazo para la presentación del Resumen
+spricht in	habla en
+istanwesend	istanwesend
+spricht	habla

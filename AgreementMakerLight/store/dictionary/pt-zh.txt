@@ -690,3 +690,13 @@ possui co-autor	它还与他人合著
 dia de início do evento	活动开始的一天
 último dia do evento	最后一天的事件
 email	电子邮件
+tem código artigo	有代码的文章
+possui um membro comitê de programa	有一个成员程序委员会
+membro comitê de programa	程序委员会成员
+adicionar um membro comitê de programa	添加一个成员程序委员会
+definição número máximo de artigos	设置文章的最大数目
+especialidade revisor	专业审阅者
+número volume dos anais	编年史卷号
+último dia evento	最后一天的活动
+dia de início evento	开始一天事件
+possui nome patrocinador	有赞助商名称

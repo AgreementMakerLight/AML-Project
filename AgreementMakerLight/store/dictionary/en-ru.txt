@@ -848,3 +848,473 @@ stay	пребывания
 organize	организовать
 assistant	Помощник
 reviews	Отзывы
+has been decided	было решено
+speaker introduction	спикер – обзор
+projector	проектор
+video player	видео плеер
+at	на
+actively reject a manuscript	активно отвергают рукописи
+item (generally)	пункт (в целом)
+information form the writer	Информационная форма писатель
+visa	виза
+registration fees paid by the present writer compared receiving record of research in the form of a disk	регистрационные сборы, выплачиваемые настоящий писатель по сравнению приема записи исследований в форме диска
+manuscript acceptance activity	Рукопись признание деятельности
+taxis	такси
+leave	отпуск
+the deadline for sending	Крайний срок для отправки
+car rental activity	активность Прокат автомобилей
+instrument	инструмент
+speaker to give a lecture in front of the knesset	спикер лекцию перед кнессетом
+attendance record	рекорд посещаемости
+activity conducted by the	деятельность ведется по
+any type of document	любой тип документа
+the speaker offers tutorial	Оратор предлагает учебник
+registration fees	регистрационные сборы
+fee for additional flight	плата за дополнительный рейс
+dinner	ужин
+lecture dumped by speaker	Лекция, сбрасывали спикер
+deadline for hotel reservation	Крайний срок для гостиниц
+submitted that only in one day	заявил, что только за один день
+the city is the location for the journey	город является местом для путешествия
+application form	Форма заявки
+nothing	ничего не
+ktaber record	ktaber запись
+small truck	небольшой грузовик
+not a member of the iasted	не является членом iasted
+the technical committee	Технический Комитет
+home company being a shepherd	Главная Компания пастух
+hotel conference	Отель Конференции
+registration fees paid by the present writer to receive the minutes of research in book form	регистрационные сборы, выплачиваемые настоящий писатель получить минут исследования в форме книги
+fees	сборы
+optical projection projector lcd	оптический проекции проектор lcd
+artistic activity	художественная деятельность
+audio visual equipment	аудио-визуальное оборудование
+single rooms	одноместные номера
+email list	список адресов электронной почты
+the amount of money	сумма денег
+conference in one day	Конференция в один день
+simulation activity	моделирование деятельности
+registration fees for the member	Регистрационный взнос для члена
+the follow up disc	следить за диск
+mtaralmo'tmer	mtaralmo'tmer
+activity conducted after the conference	деятельность после Конференции
+non member registration fee	Регистрационный взнос не член
+but speaker	но динамика
+public transparency	обеспечение прозрачности
+writer	писатель
+the university submitted	Университет представил
+hotel fees	Отель сборы
+initial manuscript	первоначальной рукописи
+welcome	Добро пожаловать
+publishing	Публикация
+the author will receive the proceedings book	автор получит книгу производства
+cocktail reception	коктейль-прием
+the deadline for submission of camera ready script	Крайний срок для представления камеры готовый скрипт
+state where the conference	государством, когда Конференция
+people	люди
+non working speaker	не работает динамик
+registration fees for the student	Регистрационный взнос для студента
+member of the iasted	член iasted
+the day assigned for trip	день, назначенный для поездки
+hotel provided	Отель
+atv	ATV
+activity occurs during the conference	действие происходит во время конференции
+double rooms	Двухместные номера
+(delegate (ysgil and visit the conference	(делегат (ysgil и посещение конференции
+alvidioard presentation	Презентация alvidioard
+shuttle buses	Автобусы
+the city where the presenter comes from	город, где ведущий происходит от
+working records	рабочие записи
+taxes	налоги
+the deadline for notification of acceptance	Крайний срок для уведомления о принятии
+the city where the shepherd comes from	город, где пастух происходит от
+transmitter	передатчик
+colonel house	полковник дом
+care	Уход
+activity modeling	моделирование деятельности
+brief introduction of moderator	Краткое введение Модератор
+registration fees from non writer	Регистрационный взнос от не писатель
+the conference park	Конференс Парк
+public lecture	Публичная лекция
+state shepherd	Государственный пастух
+non student speaker	не студент спикер
+the state provided	государство обеспечивает
+student records	Студенческие отчеты
+the final manuscript	окончательный вариант рукописи
+the activity receiving the manuscript	действие получения рукописи
+power point presentation	Power point презентации
+shepherd	Пастух
+the writer who will receive minutes of research on a	писатель, который получит минут исследования на
+the city where the conference	город где Конференция
+letter of invitation	Письмо-приглашение
+restaurant conference	Ресторан конференции
+mexico	Мексика
+peso	песо
+cancun	Канкун
+chichen itza	Чичен-Ица
+has some	имеет некоторые
+to do so	для этого
+on	на
+exist in time or place	существует во времени или месте
+paid by	оплачивается
+to give	Давать
+(running (live	(бег (live
+been associated with	связан с
+visited by	посетил
+it was held after the	оно было проведено после
+was used by	была использована
+sent after	отправлено после
+gears is	зубчатых колес
+gave for to	дал для
+posted by	Написал
+paid to	выплаченные
+passes through	проходит через
+it is used for	Он используется для
+sign	знак
+pay	оплатить
+exist in time	существует во времени
+send	Отправить
+located locally in	расположенный локально в
+to write	Написать
+paid with	платные с
+paid in	выплачивается в
+is a need for	Существует необходимость
+prepared by	подготовленный
+sent by	отправленные
+it was held in	Он был проведен в
+it is run by	Он находится в ведении
+equipped for	для
+it was held by	оно было проведено по
+gets	Получает
+is made of	изготовлен из
+signed by	подписано
+speaking at the time or place	Выступая на время или место
+neprezentující student	студент neprezentující
+plenary lecturers	пленарные преподаватели
+head of section	Начальник секции
+the departure of the	Отъезд
+car hire activity	активность Аренда автомобилей
+the term of the contribution	срок вклада
+country sponsor	Спонсор
+publications	публикации
+deadline for submission of print version	Крайний срок для представления печатной версии
+conference trips	поездки конференции
+information form for the author	форма информация для автора
+the submission of the contribution of the	представление вклада
+konferen í city	konferen í город
+the main office	Главный офис
+the listener	слушатель
+check	Проверка
+article	Статья
+the author who will receive the conference proceedings on cd	Автор, который получит материалы конференции на cd
+country prezentujícího	страна prezentujícího
+the iasted conference	iasted Конференция
+the registration fee for the student	Регистрационный взнос для студента
+conference room section	номер секции конференции
+participant of the conference	участник конференции
+university of prezentujícího	Университет prezentujícího
+the term of registration for the conference	срок регистрации для Конференции
+presenting	представление
+lecture lecturer	Лекция лектора
+receive activity contribution	получить вклад деятельности
+the registration fee for non members towards the conference	Регистрационный взнос для нечленов Конференции
+the term notification of acceptance	срок уведомления о принятии
+record participation	рекорд участия
+conference activity	деятельность Конференции
+in addition the trip fee	Кроме того стоимость поездки
+the registration fee	Регистрационный взнос
+day trip	Однодневная поездка
+videotape player	видеокассета игрок
+home versions of the contribution	Домашние версии вклада
+city prezentujícího	город prezentujícího
+the country conferences	страна Конференции
+minibus	Микроавтобус
+the registration fee for neautora	Регистрационный взнос за neautora
+conference proceedings on cd	материалы конференции на cd
+the author of the	Автор
+one day presenting	один день представления
+the list of emails	Список писем
+evening banquet	Вечерний banquet
+payment card	Платежная карта
+lecturer student	преподаватель студент
+pre conference activity	Предсессионная конференции деятельность
+instead of the	Вместо
+presentation slides	слайды презентации
+author registration fee for receipt of conference proceedings on cd	Автор регистрационный взнос для получения конференции на cd
+neprezentující worker	работник neprezentující
+the hotel's room	номер отеля
+the author who will receive the printed proceedings	Автор, который будет получать печатные материалы
+author registration fee for receipt of the printed conference proceedings	Автор регистрационный сбор за получение печатной конференции
+the final version of the contribution	окончательный вариант вклада
+transport post edek	пост edek транспорта
+post conference activity	деятельность Конференции пост
+the days of the conference	дни конференции
+performances	спектакли
+cruise the city	Круиз-город
+house sponsor	Дом спонсор
+delivery	Доставка
+printed proceedings	печатные производства
+lecturer researcher	преподаватель-исследователь
+show presenter	Показать ведущий
+head projector	Главный проектор
+neprezentující	neprezentující
+registration for the conference	Регистрация участников Конференции
+city sponsor	Спонсор города
+the lecturer tutorial	преподаватель учебник
+the hotel registration form	Форма регистрации отеля
+conference day	день конференции
+the term	термин
+house prezentujícího	Дом prezentujícího
+the amount of cash	количество наличных денег
+a member of the iasted conference	член iasted конференции
+brief introduction to the head section	Краткое введение в раздел head
+the person	человек
+section	раздел
+the registration fee for a member of the conference	Регистрационный взнос для члена Конференции
+hotel usher	Отель Ашер
+the activity of the rejection of the contribution	активность отказа от вклада
+timezone	Часовой пояс
+activity dated on the date and time	о дате и времени от деятельности
+futures date	Фьючерсы Дата
+it takes place before the	Это происходит до
+posted by whom	Написал кем
+the payment took place where	Оплата прошла где
+it is inhabited by the who	Он населен ВОЗ
+signed by the who	подписано ВОЗ
+paid for what	заплатил за то, что
+applies	применяется
+who is paid	кто заплатил
+posted in time before the	Опубликовано в время до
+he is assigned to	он назначен
+related to the activity	связанных с деятельностью
+signed by the	подписано
+it takes place when and where	Это происходит, когда и где
+paid the	платные
+made from	изготовленные из
+located where the	где расположен
+used for the	используется для
+it takes place after the	Это происходит
+posted by who	Написал ВОЗ
+it is equipped with the	Он оснащен
+wrote	Написал
+used by	используется
+receives the	Получает
+it is ready for	Он готов
+it is present when and where	он присутствует когда и где
+it is present when	она присутствует, когда
+related to the	относящиеся к
+preparing article	Подготовка статьи
+it is associated with	Это связано с
+talking about when and where	Говоря о когда и где
+sent time after	время отправки после
+takes place	имеет место
+state of sponzors	состояние спонсоры
+registration fee for a non author	Регистрационный взнос за не автора
+departure fee	плата за отправление
+hotel rooms	Гостиничные номера
+registration fee for an author who receives the tagungsband in book form	Регистрационный взнос для автора, который получает tagungsband в форме книги
+city representing a destination	город, представляющий пункт назначения
+lecturer who speak in the plenary	Лектор, которые говорят на пленарных заседаниях
+speakers	колонки
+house of presenting	Дом представления
+registration form (hotel)	Регистрационная форма (Гостиница)
+registration fee for an author receiving the tagungsband as cd	Регистрационный взнос для получения tagungsband как cd автора
+brief introduction to the session seat above	Краткое введение сессии место выше
+author receiving a tagungsband in book form	Автор, получив tagungsband в форме книги
+fee for one additional trip	плата за одну дополнительную поездку
+home to a company that is a sponsor	Дом для компании, которая является спонсором
+time (time and date)	время (время и дата)
+single room	Одноместный номер
+expert	Эксперт
+accept a manuscript	принять рукопись
+rent a car	Аренда автомобиля
+retail	Розничная торговля
+submission deadline	Крайний срок представления
+state of the conference	состояние Конференции
+map	Карта
+university of presenting	Университет представления
+listeners	слушатели
+activity that takes place before the conference	деятельность, которая происходит до Конференции
+employee lecturer	преподаватель работника
+subject	Тема
+foil (overhead projector)	фольга (проектор)
+lecturer the in the conference hotel is	Лектор в Конференции
+employee who is not a public speaker	работник, который не является общественный спикер
+subject (in general)	Тема (вообще)
+airport in the conference venue	Аэропорт в место проведения Конференции
+state of presenting	состояние представления
+form for the information of the author	Форма для информации автора
+activity that takes place after the conference	деятельность, которая имеет место после Конференции
+single conference day	один день
+city a sponsor comes from the	город, спонсор приходит от
+non speakers	не спикер
+proof of payment	доказательство оплаты
+conference visitors	Посетители конференции
+cameraready deadline	cameraready срок
+lecture held by a speaker	Лекция, проведенные спикер
+city where the conference will be held	город, где будет проводиться Конференция
+activity that takes place during the conference	деятельность, которая происходит во время конференции
+lecturer holds the a tutorial	преподаватель проводит учебное пособие
+original version of the manuscript	Оригинальная версия рукописи
+video recorder	видеомагнитофон
+modeling activity	моделирование деятельности
+non member of iasted	не член iasted
+excursion day	экскурсионный день
+author receiving a tagungsband as cd	Автор получает tagungsband как cd
+tagungsband as book	tagungsband как книга
+registration form (conference)	Регистрационная форма (конференция)
+lecturer who talks only in one day	Лектор, который говорит только в один день
+student who is not a public speaker	студент, который не является общественный спикер
+sponsorgebuehr	sponsorgebuehr
+opinion	мнение
+rejection of a manuscript	отказ от рукописи
+foil	фольга
+city comes from the a lecturer	город приходит от преподавателя
+attendance sheet	посещаемость листа
+automotive	Автомобильные
+tagungsband as cd	tagungsband как cd
+double room	Двухместный номер
+endversion of the manuscript	endversion рукопись
+registration deadline	Крайний срок регистрации
+lecture in the plenary	Лекция на пленарных заседаниях
+acceptance of a manuscript	принятие рукописи
+day tour	Однодневный тур
+must be done to	необходимо сделать для
+has the amount of	имеет размер
+will be sent by	будут отправлены по
+wirdgegebenan	wirdgegebenan
+required	Обязательно
+will be paid for	будут платить за
+will be paid in	будут выплачиваться
+located in	Расположенный в
+designed intended for	разработан предназначенный для
+will be sent to	будет отправлен на
+signed	подписано
+is required for	требуется для
+is equipped with	есть
+inhabited	жилые
+receives	Получает
+istanwesend (place)	istanwesend (место)
+takes place in	имеет место в
+are	являются
+will be paid by	будут оплачены
+speaks in	говорит в
+speaks in (spatial and temporal)	владеет (пространственных и временных)
+speaks	говорит
+located	Отель
+prepared	подготовлено
+will be paid with	будут выплачиваться с
+istanwesend (spatial and temporal)	istanwesend (пространственные и временные)
+takes place before	происходит перед
+takes place after	происходит после
+is inhabited by	населен
+istanwesend	istanwesend
+speaks (spatial and temporal)	говорит (пространственные и временные)
+is connected related to	подключения, относящиеся к
+will be given carried out by	будет уделяться осуществляемой по
+will be paid	будут выплачиваться
+paid	платные
+taking place during	происходит во время
+taking place after	проходит
+refusing a manuscript	отказ от рукописи
+accepting a manuscript	принятие рукописи
+taking place before	перед
+modelling	моделирование
+receiving a manuscript	получение рукописи
+renting a car	Аренда автомобиля
+simulating	Имитация
+occupies	занимает
+registration fee for non member	Регистрационный взнос для нечленов
+presenter's house	ведущий в дом
+final version	Финальная версия
+extra travel fee	дополнительные поездки
+refusal of articles	отказ статей
+hotel of the conference	Отель Конференции
+search	Поиск
+book of annals	Книга анналы
+hotel signup form	Отель регистрационная форма
+sponsoring company	Спонсорство компании
+double room hotel	Двухместный номер отеля
+day of travel	день поездки
+presenter's university	ведущий в университет
+rate	курс
+deadline for submission	Крайний срок для представления
+conference state	состояние Конференции
+presenter of a day	ведущий день
+the conference's restaurant	Ресторан конференции
+simulation	моделирование
+no speaker	нет динамик
+registration fee for participant cd author	Регистрационный взнос для участников cd автора
+tutorial presenter	Учебник ведущий
+information form for authors	форма информация для авторов
+list of presence	Список присутствия
+not professional speaker	не профессиональный диктор
+host city	город пребывания
+days of the conference	дни конференции
+city of sponsor	город спонсора
+receipt of articles	получение статей
+the conference city	город конференции
+full day excursion	Экскурсия на целый день
+shipment fee	Стоимость перевозки
+the state sponsor	государственный спонсор
+day of the conference	день работы Конференции
+professor employee	профессор работник
+registration fee for students	Регистрационный взнос для студентов
+the speaker's presentation	презентации спикер
+no member of the iasted	ни один из членов iasted
+brief introduction to the session coordinator	Краткое введение к сессии координатор
+staying at the host hotel	Гости отеля host
+building of the conference	здание конференции
+transparencies	прозрачные пленки
+seen	видел
+speaker's lecture	Лекция оратора
+iasted member	iasted член
+cd of the proceedings	CD разбирательства
+bus	автобус
+registration fee for non author	Регистрационный взнос за не автора
+session coordinator	Координатор сессии
+technical commission	Техническая Комиссия
+author book included in the annals	Автор книги, включенные в летописях
+plenary lecture presenter	пленарные лекции ведущий
+modeling	моделирование
+tripper of the conference	Tripper конференции
+rent	Аренда
+registration fee for membership	Регистрационный взнос за членство
+city trip	Город поездку
+reception cocktail	коктейль прием
+single room hotel	Одноместный номер
+expiry date of registration	срок действия регистрации
+student presenter	ведущий студент
+deadline for final version article	Крайний срок для окончательной версии статьи
+boarding	интернат
+price of hotel	Цена отеля
+acceptance of articles	Прием статей
+wire transfer	банковский перевод
+author cd included in the annals	Автор cd включены в летописях
+registration fee for participant book author	Регистрационный взнос для участников книги автора
+social program	Социальная программа
+no student speaker	не студент спикер
+inscription	надпись
+pause	Пауза
+cab	кабина
+initial version	Начальная версия
+cost	стоимость
+done until	сделано до
+has a date	Дата
+is present within	присутствует в
+requires	требуется
+is made within	производится в
+va by	ва
+is paid to	выплачивается
+is made after	производится после
+is paid within	выплачивается в течение
+it is equipped for	Он оборудован для
+is submitted after	представлен после
+it is necessary to	необходимо
+is situated within	находится в
+is determined by	определяется
+is present	присутствует
+is done before	сделано раньше
+of	из
+it is made of	Он изготовлен из
+is used to	используется для

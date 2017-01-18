@@ -690,3 +690,13 @@ possui co-autor	Es coautor
 dia de início do evento	día de inicio del evento
 último dia do evento	último día del evento
 email	Correo electrónico
+tem código artigo	tiene Código artículo
+possui um membro comitê de programa	tiene un Comité de programa
+membro comitê de programa	Miembro del Comité de programa
+adicionar um membro comitê de programa	Añadir un Comité de programa
+definição número máximo de artigos	establecer número máximo de artículos
+especialidade revisor	Revisor de especialidad
+número volume dos anais	Número de volumen de los anales
+último dia evento	último evento del día
+dia de início evento	iniciar la jornada
+possui nome patrocinador	cuenta nombre sponsor
