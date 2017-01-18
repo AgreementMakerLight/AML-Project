@@ -24,6 +24,7 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
+import aml.filter.DifferentClassPenalizer;
 import aml.filter.DomainAndRangeFilterer;
 import aml.filter.InteractiveFilterer;
 import aml.filter.ObsoleteFilterer;
@@ -32,6 +33,7 @@ import aml.filter.Selector;
 import aml.knowledge.MediatorLexicon;
 import aml.ontology.Ontology;
 import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
@@ -55,15 +57,12 @@ public class AutomaticMatcher
 	private static final String BK_PATH = "store/knowledge/";
 	//Thresholds
 	private static double thresh;
-	private static double psmThresh;
-	private static double wnThresh;
-	private static final double BASE_THRESH = 0.6;
 	private static final double HIGH_GAIN_THRESH = 0.25;
 	private static final double MIN_GAIN_THRESH = 0.02;
+	private static final double WN_THRESH = 0.1;
 	//And their modifiers
-	private static final double INTER_MOD = -0.3;
-	private static final double TRANS_MOD = -0.15;
-	private static final double SIZE_MOD = 0.1;
+	private static final double INTERACTIVE_MOD = -0.3;
+	private static final double PSM_MOD = 0.1;
 	//Alignments
 	private static Alignment a;
 	private static Alignment lex;
@@ -81,7 +80,7 @@ public class AutomaticMatcher
 		source = aml.getSource();
 		target = aml.getTarget();
 		//The interaction manager
-		im = new InteractionManager();
+		im = aml.getInteractionManager();
 		//What entity types to match
 		matchClasses = aml.matchClasses();
 		matchIndividuals = aml.matchIndividuals();
@@ -89,44 +88,32 @@ public class AutomaticMatcher
 		size = aml.getSizeCategory();
 		//Initialize the alignment
 		a = new Alignment();
-
-    	thresh = BASE_THRESH;
-		psmThresh = 0.7;
-		wnThresh = 0.1;
-    	if(im.isInteractive())
-    	{
-    		thresh += INTER_MOD;
-			wnThresh = 0.04;
-    	}		
-		//If translation is necessary, translate
-		if(LanguageSetting.getLanguageSetting().equals(LanguageSetting.TRANSLATE))
-		{
-			aml.translateOntologies();
-    		thresh += TRANS_MOD;
-			psmThresh = thresh;
-		}
+		thresh = aml.getThreshold();
 		if(matchClasses)
 			matchClasses();
-		if(matchProperties)
+		else if(matchProperties)
 			matchProperties();
 		if(matchIndividuals)
 			matchIndividuals();
-
-		//Perform selection and repair
-		selection();
-		repair();
 	}
 		
 //Private Methods
 
+	//Matching procedure for classes (or classes+properties)
 	private static void matchClasses() throws UnsupportedEntityTypeException
 	{
+    	if(im.isInteractive())
+    		thresh += INTERACTIVE_MOD;
+		//If translation is necessary, translate
+		LanguageSetting lang = LanguageSetting.getLanguageSetting();
+		if(lang.equals(LanguageSetting.TRANSLATE))
+		{
+			aml.translateOntologies();
+    		lang = LanguageSetting.getLanguageSetting();
+		}
 		LexicalMatcher lm = new LexicalMatcher();
 		lex = lm.match(EntityType.CLASS, thresh);
 		a.addAll(lex);
-    	if(size.equals(SizeCategory.HUGE))
-    		thresh += SIZE_MOD;
-		LanguageSetting lang = LanguageSetting.getLanguageSetting();
 		
 		if(lang.equals(LanguageSetting.SINGLE))
 		{
@@ -137,9 +124,10 @@ public class AutomaticMatcher
 				//Deciding whether to use it based on its coverage of the input ontologies
 				//(as we expect a high gain if the coverage is high given that WordNet will
 				//generate numerous synonyms)
-				double coverage = Math.min(wordNet.sourceCoverage(),wordNet.targetCoverage());
+				double coverage = Math.min(wordNet.sourceCoverage(EntityType.CLASS),
+						wordNet.targetCoverage(EntityType.CLASS));
 				
-				if(coverage >= wnThresh)
+				if(coverage >= WN_THRESH)
 				{
 					System.out.println("WordNet selected");
 					a.addAllOneToOne(wordNet);
@@ -241,18 +229,18 @@ public class AutomaticMatcher
 		}
 		StringMatcher psm = new StringMatcher();
 		//If the task is small, we can use the PSM in match mode
-		if(aml.primaryStringMatcher())
+		if(size.equals(SizeCategory.SMALL))
 		{
-			a.addAll(psm.match(EntityType.CLASS, psmThresh));
-			//And if the task is single-language we can use the
-			//MultiWordMatcher as well (which uses WordNet)
-			if(size.equals(SizeCategory.SMALL) && lang.equals(LanguageSetting.SINGLE))
+			if(lang.equals(LanguageSetting.SINGLE))
 			{
+				a.addAll(psm.match(EntityType.CLASS, thresh + PSM_MOD));
 				MultiWordMatcher mwm = new MultiWordMatcher();
 				a.addAllOneToOne(mwm.match(EntityType.CLASS, thresh));
 				AcronymMatcher am = new AcronymMatcher();
 				a.addAllOneToOne(am.match(EntityType.CLASS, thresh));
 			}
+			else
+				a.addAll(psm.match(EntityType.CLASS, thresh));
 		}
 		//Otherwise we use it in extendAlignment mode
 		else
@@ -264,7 +252,6 @@ public class AutomaticMatcher
 			a.addAllNonConflicting(sl.match(EntityType.CLASS, thresh));
 			double nameRatio = Math.max(1.0*source.getLexicon().nameCount(EntityType.CLASS)/source.count(EntityType.CLASS),
 					1.0*target.getLexicon().nameCount(EntityType.CLASS)/target.count(EntityType.CLASS));
-			System.out.println(nameRatio);
 			if(nameRatio >= 1.2)
 			{
 				ThesaurusMatcher tm = new ThesaurusMatcher();
@@ -278,26 +265,15 @@ public class AutomaticMatcher
 			a.addAllOneToOne(nsm.extendAlignment(a,EntityType.CLASS,thresh));
 		}
 		aml.setAlignment(a);
-	}
-	
-	private static void matchProperties() throws UnsupportedEntityTypeException
-	{
-		HybridStringMatcher pm = new HybridStringMatcher(true);
-		a.addAll(pm.match(EntityType.DATA, thresh));
-		a.addAll(pm.match(EntityType.OBJECT, thresh));
-		aml.setAlignment(a);
-		DomainAndRangeFilterer dr = new DomainAndRangeFilterer();
-		dr.filter();
-	}
-
-	private static void matchIndividuals() throws UnsupportedEntityTypeException
-	{
-		
-	}
-
-	//Step 9 - Selection
-	private static void selection() throws UnsupportedEntityTypeException
-	{
+		if(matchProperties)
+		{
+			HybridStringMatcher pm = new HybridStringMatcher(true);
+			a.addAll(pm.match(EntityType.DATA, thresh));
+			a.addAll(pm.match(EntityType.OBJECT, thresh));
+			aml.setAlignment(a);
+			DomainAndRangeFilterer dr = new DomainAndRangeFilterer();
+			dr.filter();
+		}
 		SelectionType sType = aml.getSelectionType();
 		if(size.equals(SizeCategory.HUGE))
 		{
@@ -330,16 +306,99 @@ public class AutomaticMatcher
 			InteractiveFilterer in = new InteractiveFilterer();
 			in.filter();
 		}
-	}
-	
-	//Step 10 - Repair
-	private static void repair()
-	{
 		if(im.isInteractive())
 			im.setLimit((int)Math.round(a.size()*0.05));
 		else
 			im.setLimit(0);
 		Repairer r = new Repairer();
 		r.filter();
+	}
+	
+	//Matching procedure for individuals
+	private static void matchIndividuals() throws UnsupportedEntityTypeException
+	{
+		LanguageSetting lang = LanguageSetting.getLanguageSetting();
+		double connectivity = aml.getIndividualConnectivity();
+		//Translation problem
+		if(lang.equals(LanguageSetting.TRANSLATE))
+		{
+			aml.translateOntologies();
+			LexicalMatcher lm = new LexicalMatcher();
+			Alignment a = lm.match(EntityType.INDIVIDUAL,thresh);
+			StringMatcher sm = new StringMatcher();
+			a.addAll(sm.match(EntityType.INDIVIDUAL,thresh));
+			for(String l : aml.getLanguages())
+			{
+				WordMatcher wm = new WordMatcher(l);
+				a.addAll(wm.match(EntityType.CLASS, thresh));
+			}
+			aml.setAlignment(a);
+			if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
+				DifferentClassPenalizer.penalize();
+			Selector s = new Selector(thresh,SelectionType.PERMISSIVE);
+			s.filter();
+		}
+		//Process matching problem
+		else if(connectivity >= 0.9)
+		{
+			ProcessMatcher pm = new ProcessMatcher();
+			a = pm.match(EntityType.INDIVIDUAL, thresh);
+			aml.setAlignment(a);
+			if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
+				DifferentClassPenalizer.penalize();
+			Selector s = new Selector(thresh,SelectionType.PERMISSIVE);
+			s.filter();
+		}
+		else
+		{
+			ValueMatcher vm = new ValueMatcher();
+			Alignment b = vm.match(EntityType.INDIVIDUAL, thresh);
+			double cov = Math.min(b.sourceCoverage(EntityType.INDIVIDUAL),
+					b.targetCoverage(EntityType.INDIVIDUAL));
+			System.out.println(cov);
+			//ValueMatcher based strategy
+			if(cov >= 0.5)
+			{
+				HybridStringMatcher sm = new HybridStringMatcher(aml.getSizeCategory().equals(SizeCategory.SMALL));
+				a = sm.match(EntityType.INDIVIDUAL, thresh);
+				a.addAll(b);
+				aml.setAlignment(a);
+				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
+					DifferentClassPenalizer.penalize();
+				Selector s = new Selector(thresh,SelectionType.PERMISSIVE);
+				s.filter();
+			}
+			//Default strategy
+			else
+			{
+				HybridStringMatcher sm = new HybridStringMatcher(size.equals(SizeCategory.SMALL));
+				a = sm.match(EntityType.INDIVIDUAL, thresh);
+				ValueStringMatcher vsm = new ValueStringMatcher();
+				a.addAll(vsm.match(EntityType.INDIVIDUAL, thresh));
+				Value2LexiconMatcher vlm = new Value2LexiconMatcher(size.equals(SizeCategory.SMALL)); 
+				a.addAll(vlm.match(EntityType.INDIVIDUAL, thresh));
+				aml.setAlignment(a);
+				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
+					DifferentClassPenalizer.penalize();
+
+				Alignment c = vsm.rematch(a, EntityType.INDIVIDUAL);
+				Alignment d = vlm.rematch(a, EntityType.INDIVIDUAL);
+				Alignment aux = LWC.combine(c, d, 0.5);
+				aux = LWC.combine(aux, b, 0.5);
+				aux = LWC.combine(aux, a, 0.5);
+				
+				Selector s = new Selector(thresh,SelectionType.PERMISSIVE,aux);
+				s.filter();
+			}
+		}
+	}
+	
+	//Matching procedure for properties only
+	private static void matchProperties() throws UnsupportedEntityTypeException
+	{
+		HybridStringMatcher pm = new HybridStringMatcher(true);
+		a.addAll(pm.match(EntityType.DATA, thresh));
+		a.addAll(pm.match(EntityType.OBJECT, thresh));
+		aml.setAlignment(a);
 	}
 }
