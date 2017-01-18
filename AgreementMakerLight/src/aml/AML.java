@@ -21,8 +21,10 @@
 ******************************************************************************/
 package aml;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileReader;
 import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
@@ -67,6 +69,7 @@ import aml.ui.GUI;
 import aml.ui.OntologyFileChooser;
 import aml.util.ExtensionFilter;
 import aml.util.InteractionManager;
+import aml.util.Similarity;
 
 public class AML
 {
@@ -96,7 +99,7 @@ public class AML
 	private double recall;
 	private double fMeasure;
 	//General matching settings
-	private boolean useReasoner = true;
+	private boolean useReasoner = false;
 	private boolean matchClasses;
 	private boolean matchIndividuals;
 	private boolean matchProperties;
@@ -230,6 +233,22 @@ public class AML
 		}
 		selectedSources = new Vector<String>(bkSources);
 		
+		matchClasses = hasClasses();
+		matchProperties = hasProperties();
+		matchIndividuals = hasIndividuals();
+		inst = InstanceMatchingCategory.DIFFERENT_ONTOLOGIES;
+		if(matchIndividuals)
+		{
+			double share = Similarity.jaccard(source.getEntities(EntityType.CLASS),
+					target.getEntities(EntityType.CLASS));
+			if(share >= 0.5)
+			{
+				inst = InstanceMatchingCategory.SAME_ONTOLOGY;
+				matchClasses = false;
+				matchProperties = false;
+			}
+		}
+		
     	size = SizeCategory.getSizeCategory();
     	lang = LanguageSetting.getLanguageSetting();
 		languages = new HashSet<String>();
@@ -240,29 +259,8 @@ public class AML
 			language = "en";
 		else
 			language = languages.iterator().next();
-		matchSteps = new Vector<MatchStep>();
-		if(lang.equals(LanguageSetting.TRANSLATE))
-			matchSteps.add(MatchStep.TRANSLATE);
-		matchSteps.add(MatchStep.LEXICAL);
-		if(lang.equals(LanguageSetting.SINGLE))
-			matchSteps.add(MatchStep.BK);
-		if(!size.equals(SizeCategory.HUGE))
-			matchSteps.add(MatchStep.WORD);
-		matchSteps.add(MatchStep.STRING);
-		if(size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM))
-			matchSteps.add(MatchStep.STRUCT);
-		double sourceRatio = (source.count(EntityType.DATA) + source.count(EntityType.OBJECT)) * 1.0 / source.count(EntityType.CLASS);
-		double targetRatio = (target.count(EntityType.DATA) + target.count(EntityType.OBJECT)) * 1.0 / target.count(EntityType.CLASS);
-		if(sourceRatio >= 0.05 && targetRatio >= 0.05)
-			matchSteps.add(MatchStep.PROPERTY);
-		if(size.equals(SizeCategory.HUGE))
-			matchSteps.add(MatchStep.OBSOLETE);
-		matchSteps.add(MatchStep.SELECT);
-		matchSteps.add(MatchStep.REPAIR);
-		hierarchic = true;
 		wms = WordMatchStrategy.AVERAGE;
 		ssm = StringSimMeasure.ISUB;
-		primaryStringMatcher = size.equals(SizeCategory.SMALL);
 		nss = NeighborSimilarityStrategy.DESCENDANTS;
 		directNeighbors = false;
 		sType = SelectionType.getSelectionType();
@@ -272,6 +270,7 @@ public class AML
 			flagSteps.add(f);
 		sourceClassesToMatch = new HashSet<Integer>();
 		targetClassesToMatch = new HashSet<Integer>();
+		readConfigFile();
     }
     
     /**
@@ -394,6 +393,14 @@ public class AML
 	public Vector<Problem> getFlagSteps()
 	{
 		return flagSteps;
+	}
+
+	public double getIndividualConnectivity()
+	{
+		double connectivity = Math.min(rels.getIndividualsWithPassiveRelations().size(),
+				rels.getIndividualsWithActiveRelations().size());
+		connectivity /= source.count(EntityType.INDIVIDUAL) + target.count(EntityType.INDIVIDUAL);
+		return connectivity;
 	}
 
 	/**
@@ -618,6 +625,16 @@ public class AML
     }
     
     /**
+     * @return whether there are individuals in both active ontologies
+     */
+    private boolean hasIndividuals()
+    {
+    	return hasOntologies() &&
+        		source.count(EntityType.INDIVIDUAL) > 0 && target.count(EntityType.INDIVIDUAL) > 0;
+	}
+
+    
+    /**
      * @return whether there is an active pair of ontologies
      */
     public boolean hasOntologies()
@@ -666,7 +683,6 @@ public class AML
      */
     public void matchAuto()
     {
-    	defaultConfig();
     	im = new InteractionManager();
    		try
    		{
@@ -910,7 +926,82 @@ public class AML
 		return primaryStringMatcher;
 	}
     
-    public void refreshMapping(int index)
+	public void readConfigFile()
+	{
+		File conf = new File(dir + "store/config.ini");
+		if(!conf.canRead())
+		{
+			System.out.println("Warning: config.ini file not found");
+			System.out.println("Matching will proceed with default configuration");
+		}
+		try
+		{
+			System.out.println("Reading config.ini file");
+			BufferedReader in = new BufferedReader(new FileReader(conf));
+			String line;
+			while((line=in.readLine()) != null)
+			{
+				if(line.startsWith("#") || line.isEmpty())
+					continue;
+				String[] option = line.split("=");
+				option[0] = option[0].trim();
+				option[1] = option[1].trim();
+				if(option[0].equals("match_classes"))
+					matchClasses = option[1].equalsIgnoreCase("true");
+				else if(option[0].equals("match_individuals"))
+					matchIndividuals = option[1].equalsIgnoreCase("true");
+				else if(option[0].equals("match_properties"))
+					matchProperties = option[1].equalsIgnoreCase("true");
+				else if(option[0].equals("threshold"))
+					threshold = Double.parseDouble(option[1]);
+				else if(option[0].equals("class_correspondence"))
+				{
+					if(option[1].equalsIgnoreCase("true"))
+						inst = InstanceMatchingCategory.SAME_CLASSES;
+				}
+				else if(option[0].equals("use_reasoner"))
+					useReasoner = option[1].equalsIgnoreCase("true");
+				else if(option[0].equals("source_classes"))
+				{
+					if(option[1].equals(""))
+						continue;
+					String[] iris = option[1].split(";");
+					for(String i : iris)
+					{
+						int id = source.getIndex(i);
+						if(id != -1)
+							sourceClassesToMatch.add(id);
+					}
+				}
+				else if(option[0].equals("target_classes"))
+				{
+					if(option[1].equals(""))
+						continue;
+					if(option[1].equals("*"))
+					{
+						targetClassesToMatch.addAll(sourceClassesToMatch);
+						continue;
+					}
+					String[] iris = option[1].split(";");
+					for(String i : iris)
+					{
+						int id = target.getIndex(i);
+						if(id != -1)
+							targetClassesToMatch.add(id);
+					}
+				}
+			}
+			in.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error: Could not read config file");
+			e.printStackTrace();
+			System.out.println("Matching will proceed with default configuration");
+		}
+	}
+	
+	public void refreshMapping(int index)
     {
     	userInterface.refresh(index);
     }
@@ -1049,7 +1140,7 @@ public class AML
 		sourceClassesToMatch = new HashSet<Integer>();
 		for(String s : sourcesToMatch)
 		{
-			int id = uris.getIndex(s);
+			int id = source.getIndex(s);
 			if(id != -1)
 				sourceClassesToMatch.add(id);
 		}
@@ -1075,7 +1166,7 @@ public class AML
 		targetClassesToMatch = new HashSet<Integer>();
 		for(String s : targetsToMatch)
 		{
-			int id = uris.getIndex(s);
+			int id = target.getIndex(s);
 			if(id != -1)
 				targetClassesToMatch.add(id);
 		}
