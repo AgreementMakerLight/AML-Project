@@ -779,6 +779,23 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @return the list of individuals with active relations
+	 */
+	public Set<Integer> getIndividualsWithActiveRelations()
+	{
+		return activeRelation.keySet();
+	}
+
+	/**
+	 * @return the list of individuals with active relations
+	 */
+	public Set<Integer> getIndividualsWithPassiveRelations()
+	{
+		return passiveRelation.keySet();
+	}
+
+	
+	/**
 	 * @param indivId: the id of the individual to search in the map
 	 * @return the list of classes instanced by the given individual
 	 */
