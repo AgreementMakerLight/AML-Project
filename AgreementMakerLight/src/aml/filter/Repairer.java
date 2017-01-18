@@ -106,8 +106,8 @@ public class Repairer implements Filterer, Flagger
 		{
 			int card = rMap.getConflicts(i).size();
 			Mapping m = rMap.getMapping(i);
-			if(card > maxCard || (card == maxCard &&
-				m.getSimilarity() < rMap.getMapping(worstMapping).getSimilarity()) &&
+			if((card > maxCard || (card == maxCard &&
+				m.getSimilarity() < rMap.getMapping(worstMapping).getSimilarity())) &&
 				!m.getStatus().equals(MappingStatus.CORRECT))
 			{
 				maxCard = card;
