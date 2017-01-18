@@ -119,10 +119,14 @@ public class InteractiveFilterer implements Filterer
 							updated = true;
 						}
 					}
+					else
+						m.setStatus(MappingStatus.INCORRECT);
 				}
 				else
 					break;
 			}
+			else
+				break;
 			if(!m.getStatus().equals(MappingStatus.INCORRECT))
 				selected.add(sourceId, targetId, maxSim);
 		}
