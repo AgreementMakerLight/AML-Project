@@ -352,7 +352,7 @@ public class RelationshipMap
 	
 	/**
 	 * @param classId: the id of the class to search in the map
-	 * @return the list of siblings of the given class with the given property
+	 * @return the list of all siblings of the given class
 	 */
 	public Set<Integer> getAllSiblings(int classId)
 	{
@@ -887,7 +887,7 @@ public class RelationshipMap
 	/**
 	 * @param classId: the id of the class to search in the map
 	 * @param prop: the relationship property between the class and its ancestors
-	 * @return the list of siblings of the given class with the given property
+	 * @return the list of strict siblings of the given class (through the subclass relation)
 	 */
 	public Set<Integer> getSiblings(int classId)
 	{
