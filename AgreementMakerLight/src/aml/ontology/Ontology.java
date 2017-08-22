@@ -1375,6 +1375,12 @@ public class Ontology
 				int propIndex = uris.getIndex(propURI);
 				if(propIndex == -1)
 					continue;
+				
+				//FIX: Filling in missing types of individuals from object property restrictions
+				//(Sometimes ontologies fail to declare individual types)
+				if(rm.getIndividualClasses(namedIndivId).isEmpty() && rm.getDomains(propIndex).size() == 1)
+					rm.addInstance(namedIndivId, rm.getDomains(propIndex).iterator().next());
+				
 				for(OWLIndividual rI : iProps.get(prop))
 				{
 					if(rI.isNamed())
