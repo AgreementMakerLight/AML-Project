@@ -305,9 +305,8 @@ public class AutomaticMatcher
 				im.setLimit((int)Math.round(a.size()*0.15));
 			InteractiveFilterer in = new InteractiveFilterer();
 			in.filter();
-		}
-		if(im.isInteractive())
 			im.setLimit((int)Math.round(a.size()*0.05));
+		}
 		else
 			im.setLimit(0);
 		Repairer r = new Repairer();
