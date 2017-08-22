@@ -245,8 +245,8 @@ public class Mapping implements Comparable<Mapping>
 	public String toRDF()
 	{
 		URIMap uris = AML.getInstance().getURIMap();
-		String sourceURI = uris.getURIEncoded(sourceId);
-		String targetURI = uris.getURIEncoded(targetId);
+		String sourceURI = uris.getURI(sourceId);
+		String targetURI = uris.getURI(targetId);
 		String out = "\t<map>\n" +
 			"\t\t<Cell>\n" +
 			"\t\t\t<entity1 rdf:resource=\""+ sourceURI +"\"/>\n" +
