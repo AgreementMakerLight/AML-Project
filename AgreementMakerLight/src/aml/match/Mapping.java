@@ -245,14 +245,14 @@ public class Mapping implements Comparable<Mapping>
 	public String toRDF()
 	{
 		URIMap uris = AML.getInstance().getURIMap();
-		String sourceURI = uris.getURIEncoded(sourceId);
-		String targetURI = uris.getURIEncoded(targetId);
 		String out = "\t<map>\n" +
 			"\t\t<Cell>\n" +
-			"\t\t\t<entity1 rdf:resource=\""+ sourceURI +"\"/>\n" +
-			"\t\t\t<entity2 rdf:resource=\""+ targetURI +"\"/>\n" +
+			"\t\t\t<entity1 rdf:resource=\""+uris.getURI(sourceId)+"\"/>\n" +
+			"\t\t\t<entity2 rdf:resource=\""+uris.getURI(targetId)+"\"/>\n" +
 			"\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
 			"\t\t\t<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";
+		if(!s.equals(MappingStatus.UNKNOWN))
+			out += "\t\t\t<status>" + s.toString() + "</status>\n";
 		out += "\t\t</Cell>\n" +
 			"\t</map>\n";
 		return out;
