@@ -1398,12 +1398,15 @@ public class Ontology
 								}
 							}
 						}
+						//FIX: Filling in missing types of individuals from object property restrictions
+						//(Sometimes ontologies fail to declare individual types)
+						if(rm.getIndividualClasses(namedRelIndivId).isEmpty() && rm.getObjectRanges(propIndex).size() == 1)
+							rm.addInstance(namedRelIndivId, rm.getObjectRanges(propIndex).iterator().next());
 					}
 				}
 			}
-			//Relationships between individuals encoded by AnnotationProperties
-			//NOTE: this shouldn't happen, but sometimes ontologies fail to
-			//declare all their object properties
+			//FIX: Relationships between individuals encoded by AnnotationProperties
+			//(Sometimes ontologies fail to declare object properties)
 			for(OWLAnnotation annotation : i.getAnnotations(o))
 			{
 				String propUri = annotation.getProperty().getIRI().toString();
