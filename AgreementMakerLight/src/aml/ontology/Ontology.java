@@ -905,9 +905,6 @@ public class Ontology
 			//have an URI by definition, but better safe than sorry
 			if(indivUri == null)
 				continue;
-			//If the individual has not class, skip it
-			if(i.getTypes(o).isEmpty())
-				continue;
 			//Add it to the global list of URIs
 			int id = uris.addURI(indivUri, EntityType.INDIVIDUAL);
 			//Add it to the Ontology
@@ -1048,6 +1045,10 @@ public class Ontology
 					for(OWLLiteral val : dataPropValues.get(prop))
 						vMap.add(id, propIndex, val.getLiteral());
 				}
+				//FIX: Filling in missing types of individuals from data property restrictions
+				//(Sometimes ontologies fail to declare individual types)
+				if(rm.getIndividualClasses(id).isEmpty() && rm.getDomains(propIndex).size() == 1)
+					rm.addInstance(id, rm.getObjectRanges(propIndex).iterator().next());
 			}	
 		}
 	}
