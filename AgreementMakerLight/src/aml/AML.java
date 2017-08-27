@@ -234,8 +234,12 @@ public class AML
 		selectedSources = new Vector<String>(bkSources);
 		
 		matchClasses = hasClasses();
-		matchProperties = hasProperties();
-		matchIndividuals = hasIndividuals();
+		double sourceRatio = (source.count(EntityType.DATA) + source.count(EntityType.OBJECT)) * 1.0 / source.count(EntityType.CLASS);
+		double targetRatio = (target.count(EntityType.DATA) + target.count(EntityType.OBJECT)) * 1.0 / target.count(EntityType.CLASS);
+		matchProperties = hasProperties() && sourceRatio >= 0.05 && targetRatio >= 0.05;
+		sourceRatio = source.count(EntityType.INDIVIDUAL) * 1.0 / source.count(EntityType.CLASS);
+		targetRatio = target.count(EntityType.INDIVIDUAL) * 1.0 / target.count(EntityType.CLASS);
+		matchIndividuals = hasIndividuals() && sourceRatio >= 0.25 && targetRatio >= 0.25;
 		inst = InstanceMatchingCategory.DIFFERENT_ONTOLOGIES;
 		if(matchIndividuals)
 		{
@@ -934,70 +938,73 @@ public class AML
 			System.out.println("Warning: config.ini file not found");
 			System.out.println("Matching will proceed with default configuration");
 		}
-		try
+		else
 		{
-			System.out.println("Reading config.ini file");
-			BufferedReader in = new BufferedReader(new FileReader(conf));
-			String line;
-			while((line=in.readLine()) != null)
+			try
 			{
-				if(line.startsWith("#") || line.isEmpty())
-					continue;
-				String[] option = line.split("=");
-				option[0] = option[0].trim();
-				option[1] = option[1].trim();
-				if(option[0].equals("match_classes"))
-					matchClasses = option[1].equalsIgnoreCase("true");
-				else if(option[0].equals("match_individuals"))
-					matchIndividuals = option[1].equalsIgnoreCase("true");
-				else if(option[0].equals("match_properties"))
-					matchProperties = option[1].equalsIgnoreCase("true");
-				else if(option[0].equals("threshold"))
-					threshold = Double.parseDouble(option[1]);
-				else if(option[0].equals("class_correspondence"))
+				System.out.println("Reading config.ini file");
+				BufferedReader in = new BufferedReader(new FileReader(conf));
+				String line;
+				while((line=in.readLine()) != null)
 				{
-					if(option[1].equalsIgnoreCase("true"))
-						inst = InstanceMatchingCategory.SAME_CLASSES;
-				}
-				else if(option[0].equals("use_reasoner"))
-					useReasoner = option[1].equalsIgnoreCase("true");
-				else if(option[0].equals("source_classes"))
-				{
-					if(option[1].equals(""))
+					if(line.startsWith("#") || line.isEmpty())
 						continue;
-					String[] iris = option[1].split(";");
-					for(String i : iris)
+					String[] option = line.split("=");
+					option[0] = option[0].trim();
+					option[1] = option[1].trim();
+					if(option[0].equals("match_classes"))
+						matchClasses = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("match_individuals"))
+						matchIndividuals = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("match_properties"))
+						matchProperties = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("threshold"))
+						threshold = Double.parseDouble(option[1]);
+					else if(option[0].equals("class_correspondence"))
 					{
-						int id = source.getIndex(i);
-						if(id != -1)
-							sourceClassesToMatch.add(id);
+						if(option[1].equalsIgnoreCase("true"))
+							inst = InstanceMatchingCategory.SAME_CLASSES;
+					}
+					else if(option[0].equals("use_reasoner"))
+						useReasoner = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("source_classes"))
+					{
+						if(option[1].equals(""))
+							continue;
+						String[] iris = option[1].split(";");
+						for(String i : iris)
+						{
+							int id = source.getIndex(i);
+							if(id != -1)
+								sourceClassesToMatch.add(id);
+						}
+					}
+					else if(option[0].equals("target_classes"))
+					{
+						if(option[1].equals(""))
+							continue;
+						if(option[1].equals("*"))
+						{
+							targetClassesToMatch.addAll(sourceClassesToMatch);
+							continue;
+						}
+						String[] iris = option[1].split(";");
+						for(String i : iris)
+						{
+							int id = target.getIndex(i);
+							if(id != -1)
+								targetClassesToMatch.add(id);
+						}
 					}
 				}
-				else if(option[0].equals("target_classes"))
-				{
-					if(option[1].equals(""))
-						continue;
-					if(option[1].equals("*"))
-					{
-						targetClassesToMatch.addAll(sourceClassesToMatch);
-						continue;
-					}
-					String[] iris = option[1].split(";");
-					for(String i : iris)
-					{
-						int id = target.getIndex(i);
-						if(id != -1)
-							targetClassesToMatch.add(id);
-					}
-				}
+				in.close();
 			}
-			in.close();
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error: Could not read config file");
-			e.printStackTrace();
-			System.out.println("Matching will proceed with default configuration");
+			catch(Exception e)
+			{
+				System.out.println("Error: Could not read config file");
+				e.printStackTrace();
+				System.out.println("Matching will proceed with default configuration");
+			}
 		}
 	}
 	
