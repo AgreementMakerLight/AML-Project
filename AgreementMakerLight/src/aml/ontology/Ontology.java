@@ -90,13 +90,15 @@ public class Ontology
 	protected Table2Set<EntityType,Integer> entityTypes;
 	//Its lexicon
 	protected Lexicon lex;
-	//The map of class names (String) -> indexes (Integer) in the ontology
-	//which is necessary for the XRefMatcher
-	private HashMap<String,Integer> classNames;
 	//Its value map
 	private ValueMap vMap;
 	//Its word lexicon
 	private WordLexicon wLex;
+	//The table of classes (Integer) -> cross-references (String)
+	private Table2Set<Integer,String> refs;
+	//The map of class names (String) -> indexes (Integer) in the ontology
+	//which is necessary for the cross-reference matching
+	private HashMap<String,Integer> classNames;
 	//Its set of obsolete classes
 	private HashSet<Integer> obsolete;
 	
@@ -128,8 +130,9 @@ public class Ontology
         entities = new HashSet<Integer>();
         entityTypes = new Table2Set<EntityType,Integer>();
         lex = new Lexicon();
-		classNames = new HashMap<String,Integer>();
 		vMap = new ValueMap();
+		refs = new Table2Set<Integer,String>();
+		classNames = new HashMap<String,Integer>();
 		obsolete = new HashSet<Integer>();
 		wLex = null;
 		aml = AML.getInstance();
@@ -156,6 +159,7 @@ public class Ontology
         manager.removeOntology(o);
         //Reset the entity expansion limit
         System.clearProperty(LIMIT);
+        System.out.println(refs.size());
 	}
 	
 	/**
@@ -675,6 +679,15 @@ public class Ontology
 	                       	}
 	            		}
 	            	}
+            	}
+            	//xRefs go to the cross-reference table
+            	else if(propUri.endsWith("hasDbXref") &&
+            			annotation.getValue() instanceof OWLLiteral)
+            	{
+            		OWLLiteral val = (OWLLiteral) annotation.getValue();
+					String xRef = val.getLiteral();
+					if(!xRef.startsWith("http"))
+						refs.add(id,xRef.replace(':','_'));
             	}
             	//Deprecated classes are flagged as obsolete
             	else if(propUri.endsWith("deprecated") &&
