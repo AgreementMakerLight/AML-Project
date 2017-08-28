@@ -1005,6 +1005,18 @@ public class Alignment implements Collection<Mapping>
 				check = remove(m) || check;
 		return check;
 	}
+	
+	/**
+	 * Saves the Alignment into a text file as a list of douples
+	 * @param file: the output file
+	 */
+	public void saveDoubles(String file) throws FileNotFoundException
+	{
+		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
+		for(Mapping m : maps)
+			outStream.println("<" + m.getSourceURI() + "> <" + m.getTargetURI() + ">");
+		outStream.close();
+	}
 
 	/**
 	 * Saves the Alignment into an .rdf file in OAEI format
