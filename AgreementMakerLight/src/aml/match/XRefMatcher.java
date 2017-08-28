@@ -24,8 +24,8 @@ import java.util.Set;
 
 import aml.AML;
 import aml.knowledge.MediatorOntology;
-import aml.knowledge.ReferenceMap;
 import aml.ontology.Ontology;
+import aml.ontology.ReferenceMap;
 import aml.settings.EntityType;
 import aml.util.Table2Map;
 
