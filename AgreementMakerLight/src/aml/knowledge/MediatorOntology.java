@@ -36,7 +36,6 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 
-import aml.ontology.ReferenceMap;
 import aml.settings.LexicalType;
 import aml.util.StringParser;
 
