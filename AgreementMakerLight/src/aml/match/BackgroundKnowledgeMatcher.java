@@ -145,7 +145,7 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 					MediatorOntology mo = new MediatorOntology(path + s);
 					ontoTime = System.currentTimeMillis()/1000 - time;
 					System.out.println(mo.getURI() + " loaded in " + ontoTime + " seconds");
-					XRefMatcher x = new XRefMatcher(mo);
+					MediatingXRefMatcher x = new MediatingXRefMatcher(mo);
 					temp = x.match(e,thresh);
 				}
 				catch(OWLOntologyCreationException o)

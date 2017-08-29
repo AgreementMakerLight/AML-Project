@@ -183,7 +183,7 @@ public class AutomaticMatcher
 							System.out.println(e.getMessage());
 							continue;
 						}
-						XRefMatcher xr = new XRefMatcher(aml.getBKOntology());
+						MediatingXRefMatcher xr = new MediatingXRefMatcher(aml.getBKOntology());
 						Alignment ref = xr.match(EntityType.CLASS, thresh);
 						double gain = ref.gain(lex);
 						//In the case of Ontologies, if the mapping gain is very high, we can
