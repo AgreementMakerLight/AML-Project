@@ -329,7 +329,7 @@ public class AutomaticMatcher
 			for(String l : aml.getLanguages())
 			{
 				WordMatcher wm = new WordMatcher(l);
-				a.addAll(wm.match(EntityType.CLASS, thresh));
+				a.addAll(wm.match(EntityType.INDIVIDUAL, thresh));
 			}
 			aml.setAlignment(a);
 			if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
