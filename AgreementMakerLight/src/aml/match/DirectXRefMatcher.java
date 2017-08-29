@@ -110,7 +110,7 @@ public class DirectXRefMatcher implements PrimaryMatcher
 				if(j == -1)
 					continue;
 			}
-			for(Integer i : sourceRefs.get(r))
+			for(Integer i : targetRefs.get(r))
 				maps.add(j,i,WEIGHT1);
 		}
 		//3 - Check for common references of the ontologies
