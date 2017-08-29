@@ -29,7 +29,7 @@ import aml.ontology.ReferenceMap;
 import aml.settings.EntityType;
 import aml.util.Table2Map;
 
-public class XRefMatcher extends MediatingMatcher
+public class XRefMediatingMatcher extends MediatingMatcher
 {
 	
 //Attributes
@@ -53,7 +53,7 @@ public class XRefMatcher extends MediatingMatcher
 	 * Constructs a XRefMatcher with the given external Ontology
 	 * @param x: the external Ontology
 	 */
-	public XRefMatcher(MediatorOntology x)
+	public XRefMediatingMatcher(MediatorOntology x)
 	{
 		super(x);
 		rm = x.getReferenceMap();
