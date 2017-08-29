@@ -37,7 +37,7 @@ public class XRefMediatingMatcher extends MediatingMatcher
 	private static final String DESCRIPTION = "Matches entities that are cross-referenced by\n" +
 											  "the same entity of a background knowledge\n" +
 											  "source, and/or using the Mediating Matcher.";
-	private static final String NAME = "Cross-Reference Matcher";
+	private static final String NAME = "Mediating Cross-Reference Matcher";
 	private static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The external ontology's ReferenceMap
 	private ReferenceMap rm;
