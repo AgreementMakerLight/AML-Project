@@ -144,10 +144,6 @@ public class AutomaticMatcher
 			}
 			else
 			{
-				Alignment logic = ld.match(EntityType.CLASS, thresh);
-				lex.addAll(logic);
-				a.addAll(logic);
-
 				Vector<String> bkSources = new Vector<String>();
 				bkSources.addAll(aml.getBKSources());
 				for(String bk : bkSources)
