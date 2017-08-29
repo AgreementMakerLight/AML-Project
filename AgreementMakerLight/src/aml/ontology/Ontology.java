@@ -159,7 +159,6 @@ public class Ontology
 		manager.removeOntology(o);
 		//Reset the entity expansion limit
 		System.clearProperty(LIMIT);
-		System.out.println(refs.size());
 	}
 
 	/**
