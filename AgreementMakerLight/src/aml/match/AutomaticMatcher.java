@@ -111,6 +111,13 @@ public class AutomaticMatcher
 			aml.translateOntologies();
     		lang = LanguageSetting.getLanguageSetting();
 		}
+		
+		if(aml.hasReferences())
+		{
+			DirectXRefMatcher dx = new DirectXRefMatcher();
+			a.addAll(dx.match(EntityType.CLASS, thresh));
+		}
+		
 		LexicalMatcher lm = new LexicalMatcher();
 		lex = lm.match(EntityType.CLASS, thresh);
 		a.addAll(lex);
@@ -137,7 +144,6 @@ public class AutomaticMatcher
 			}
 			else
 			{
-				LogicalDefMatcher ld = new LogicalDefMatcher();
 				Alignment logic = ld.match(EntityType.CLASS, thresh);
 				lex.addAll(logic);
 				a.addAll(logic);
