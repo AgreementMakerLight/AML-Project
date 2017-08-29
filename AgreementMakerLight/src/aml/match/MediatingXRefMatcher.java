@@ -29,7 +29,7 @@ import aml.ontology.ReferenceMap;
 import aml.settings.EntityType;
 import aml.util.Table2Map;
 
-public class XRefMediatingMatcher extends MediatingMatcher
+public class MediatingXRefMatcher extends MediatingMatcher
 {
 	
 //Attributes
@@ -50,10 +50,10 @@ public class XRefMediatingMatcher extends MediatingMatcher
 //Constructors
 
 	/**
-	 * Constructs a XRefMatcher with the given external Ontology
+	 * Constructs a MediatingXRefMatcher with the given external Ontology
 	 * @param x: the external Ontology
 	 */
-	public XRefMediatingMatcher(MediatorOntology x)
+	public MediatingXRefMatcher(MediatorOntology x)
 	{
 		super(x);
 		rm = x.getReferenceMap();
@@ -82,7 +82,7 @@ public class XRefMediatingMatcher extends MediatingMatcher
 	@Override
 	public void extendLexicons()
 	{
-		System.out.println("Extending Lexicons with Cross-Reference Matcher using " + uri);
+		System.out.println("Extending Lexicons with " + NAME + " using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
@@ -123,7 +123,7 @@ public class XRefMediatingMatcher extends MediatingMatcher
 	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
-		System.out.println("Running Cross-Reference Matcher using " + uri);
+		System.out.println("Running " + NAME + " using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
