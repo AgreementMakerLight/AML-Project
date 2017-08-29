@@ -657,6 +657,15 @@ public class AML
    			(source.count(EntityType.OBJECT) > 0 && target.count(EntityType.OBJECT) > 0));
     }
     
+    /**
+     * @return whether there are cross-references in at least one ontology
+     */
+    public boolean hasReferences()
+    {
+    	return hasOntologies() &&
+   			(source.getReferenceMap().size() > 0 || target.getReferenceMap().size() > 0);
+    }
+    
     public boolean isHierarchic()
     {
 		return hierarchic;
