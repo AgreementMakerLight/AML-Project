@@ -1115,7 +1115,7 @@ public class Ontology
 				//FIX: Filling in missing types of individuals from data property restrictions
 				//(Sometimes ontologies fail to declare individual types)
 				if(rm.getIndividualClasses(id).isEmpty() && rm.getDomains(propIndex).size() == 1)
-					rm.addInstance(id, rm.getObjectRanges(propIndex).iterator().next());
+					rm.addInstance(id, rm.getDomains(propIndex).iterator().next());
 			}	
 		}
 	}
