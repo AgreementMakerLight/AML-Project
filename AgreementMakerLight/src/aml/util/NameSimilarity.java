@@ -51,14 +51,6 @@ public class NameSimilarity
 		//If the names are equal, no need to compute similarity
 		if(n1.equals(n2))
 			return 1.0;
-		//If they aren't, we don't compare them if they are small
-		if(n1.length() < 5 || n2.length() < 5)
-			return 0.0;
-		//We also don't compare them if their size ratio is smaller
-		//than the threshold
-		double ratio = n1.length()*1.0/n2.length();
-		if(ratio < thresh*0.8 || ratio > 1/(thresh*0.8))
-			return 0.0;
 		
 		//Split the source name into words
 		String[] sW = n1.split(" ");
