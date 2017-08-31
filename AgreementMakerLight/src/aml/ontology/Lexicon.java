@@ -99,6 +99,9 @@ public class Lexicon
 		//First ensure that the name is not null or empty
 		if(name == null || name.equals(""))
 			return;
+		
+		if(language.length() > 2)
+			language = language.substring(0, 2);
 
 		String s;
 		Provenance p;
