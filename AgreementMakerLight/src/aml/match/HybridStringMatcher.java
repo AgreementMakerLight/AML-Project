@@ -21,7 +21,6 @@
 package aml.match;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -30,7 +29,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import aml.AML;
-import aml.knowledge.WordNet;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.Lexicon;
@@ -38,8 +36,7 @@ import aml.ontology.Ontology;
 import aml.settings.EntityType;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
-import aml.util.ISub;
-import aml.util.Similarity;
+import aml.util.NameSimilarity;
 import aml.util.Table2Set;
 
 public class HybridStringMatcher implements PrimaryMatcher, Rematcher
@@ -60,7 +57,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 	private Lexicon tLex;
 	private LanguageSetting lSet;
 	private Set<String> languages;
-	private WordNet wn = null;
+	private NameSimilarity ns = null;
 	//The available CPU threads
 	private int threads;
 	
@@ -68,8 +65,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 	
 	public HybridStringMatcher(boolean useWordNet)
 	{
-		if(useWordNet)
-			wn = new WordNet();
+		ns = new NameSimilarity(useWordNet);
 		aml = AML.getInstance();
 		source = aml.getSource();
 		target = aml.getTarget();
@@ -108,19 +104,25 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 		long time = System.currentTimeMillis()/1000;
 		Set<Integer> sources = sLex.getEntities(e);
 		Set<Integer> targets = tLex.getEntities(e);
+		if(e.equals(EntityType.INDIVIDUAL))
+		{
+			sources.retainAll(aml.getSourceIndividualsToMatch());
+			targets.retainAll(aml.getTargetIndividualsToMatch());
+		}
 		Alignment a = new Alignment();
 		for(Integer i : sources)
 		{
-			if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
-				continue;
 			Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 			for(Integer j : targets)
 			{
 				if(i == j)
+				{
+					if(aml.matchSameURI())
+						a.add(i,j,1.0);
 					continue;
-				if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
-						(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-						!aml.getRelationshipMap().shareClass(i,j))))
+				}
+				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+						!aml.getRelationshipMap().shareClass(i,j))
 					continue;
 				toMap.add(i,j);
 			}
@@ -174,7 +176,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 		ArrayList<MappingTask> tasks = new ArrayList<MappingTask>();
 		for(Integer i : toMap.keySet())
 			for(Integer j : toMap.get(i))
-				tasks.add(new MappingTask(i,j));
+				tasks.add(new MappingTask(i,j,thresh));
         List<Future<Mapping>> results;
 		ExecutorService exec = Executors.newFixedThreadPool(threads);
 		try
@@ -205,7 +207,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 	
 	//Computes the maximum String similarity between two Classes by doing a
 	//pairwise comparison of all their names
-	private double mapTwoEntities(int sId, int tId)
+	private double mapTwoEntities(int sId, int tId, double thresh)
 	{
 		double maxSim = 0.0;
 		
@@ -217,18 +219,9 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 				Set<String> targetNames = tLex.getNamesWithLanguage(tId,l);
 				if(sourceNames == null || targetNames == null)
 					continue;
-			
 				for(String s : sourceNames)
-				{
 					for(String t : targetNames)
-					{
-						if(s.equals(t))
-							return 1.0;
-						double sim = nameSimilarity(s,t);
-						if(sim > maxSim)
-							maxSim = sim;
-					}
-				}
+						maxSim = Math.max(maxSim,ns.nameSimilarity(s,t,thresh));
 			}
 		}
 		else
@@ -238,16 +231,8 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 			if(sourceNames == null || targetNames == null)
 				return maxSim;
 			for(String s : sourceNames)
-			{
 				for(String t : targetNames)
-				{
-					if(s.equals(t))
-						return 1.0;
-					double sim = nameSimilarity(s,t);
-					if(sim > maxSim)
-						maxSim = sim;
-				}
-			}
+					maxSim = Math.max(maxSim,ns.nameSimilarity(s,t,thresh));
 		}
 		return maxSim;
 	}
@@ -257,71 +242,19 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 	{
 		private int source;
 		private int target;
+		private double threshold;
 		
-		MappingTask(int s, int t)
+		MappingTask(int s, int t, double thresh)
 	    {
 			source = s;
 	        target = t;
+	        threshold = thresh;
 	    }
 	        
 	    @Override
 	    public Mapping call()
 	    {
-       		return new Mapping(source,target,mapTwoEntities(source,target));
+       		return new Mapping(source,target,mapTwoEntities(source,target,threshold));
         }
-	}
-	
-	//Computes the similarity between two property names using a Jaccard
-	//index between their words. When using WordNet, the WordNet similarity
-	//is given by the Jaccard index between all WordNet synonyms, and is
-	//returned instead of the name similarity if it is higher
-	private double nameSimilarity(String n1, String n2)
-	{
-		//Check if the names are equal
-		if(n1.equals(n2))
-			return 1.0;
-		
-		//Split the source name into words
-		String[] sW = n1.split(" ");
-		HashSet<String> sWords = new HashSet<String>();
-		HashSet<String> sSyns = new HashSet<String>();
-		for(String w : sW)
-		{
-			sWords.add(w);
-			sSyns.add(w);
-			//And compute the WordNet synonyms of each word
-			if(wn != null && w.length() > 2)
-				sSyns.addAll(wn.getAllNounWordForms(w));
-		}
-		
-		//Split the target name into words
-		String[] tW = n2.split(" ");
-		HashSet<String> tWords = new HashSet<String>();
-		HashSet<String> tSyns = new HashSet<String>();		
-		for(String w : tW)
-		{
-			tWords.add(w);
-			tSyns.add(w);
-			//And compute the WordNet synonyms of each word
-			if(wn != null && w.length() > 3)
-				tSyns.addAll(wn.getAllWordForms(w));
-		}
-		
-		//Compute the Jaccard word similarity between the properties
-		double wordSim = Similarity.jaccard(sWords,tWords)*0.9;
-		//and the String similarity
-		double simString = ISub.stringSimilarity(n1,n2)*0.9;
-		//Combine the two
-		double sim = 1 - ((1-wordSim) * (1-simString));
-		if(wn != null)
-		{
-			//Check if the WordNet similarity
-			double wordNetSim = Similarity.jaccard(sSyns,tSyns);
-			//Is greater than the name similarity
-			if(wordNetSim > sim)
-				//And if so, return it
-				sim = wordNetSim;
-		}
-		return sim;
 	}
 }

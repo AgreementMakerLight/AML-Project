@@ -130,16 +130,14 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 				if(!tVal.getValues(i).contains(s))
 					continue;
 				Set<Integer> sourceIndexes = sVal.getIndividuals(i,s);
+				sourceIndexes.retainAll(aml.getSourceIndividualsToMatch());
 				Set<Integer> targetIndexes = tVal.getIndividuals(i,s);
+				targetIndexes.retainAll(aml.getTargetIndividualsToMatch());
 				int count = Math.min(sourceIndexes.size(), targetIndexes.size());
 				for(Integer j : sourceIndexes)
 				{
-					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(j))
-						continue;
 					for(Integer k : targetIndexes)
 					{
-						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(k))
-							continue;
 						if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
 								!aml.getRelationshipMap().shareClass(j,k))
 							continue;

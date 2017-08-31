@@ -34,7 +34,7 @@ import aml.ontology.Ontology;
 import aml.ontology.ValueMap;
 import aml.settings.EntityType;
 import aml.settings.InstanceMatchingCategory;
-import aml.util.ISub;
+import aml.util.NameSimilarity;
 import aml.util.Table2Set;
 
 public class ValueStringMatcher implements PrimaryMatcher, Rematcher
@@ -51,6 +51,7 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	private Ontology target;
 	private ValueMap sVal;
 	private ValueMap tVal;
+	private NameSimilarity ns = null;
 	//The available CPU threads
 	private int threads;
 	
@@ -58,6 +59,7 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	
 	public ValueStringMatcher()
 	{
+		ns = new NameSimilarity(false);
 		aml = AML.getInstance();
 		source = aml.getSource();
 		target = aml.getTarget();
@@ -93,17 +95,15 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 		System.out.println("Running Value String Matcher");
 		long time = System.currentTimeMillis()/1000;
 		Set<Integer> sources = sVal.getIndividuals();
+		sources.retainAll(aml.getSourceIndividualsToMatch());
 		Set<Integer> targets = tVal.getIndividuals();
+		targets.retainAll(aml.getTargetIndividualsToMatch());
 		Alignment a = new Alignment();
 		for(Integer i : sources)
 		{
-			if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
-				continue;
 			Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 			for(Integer j : targets)
 			{
-				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchTarget(j))
-					continue;
 				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
 						!aml.getRelationshipMap().shareClass(i,j))
 					continue;
@@ -159,7 +159,7 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 		ArrayList<MappingTask> tasks = new ArrayList<MappingTask>();
 		for(Integer i : toMap.keySet())
 			for(Integer j : toMap.get(i))
-				tasks.add(new MappingTask(i,j));
+				tasks.add(new MappingTask(i,j,thresh));
         List<Future<Mapping>> results;
 		ExecutorService exec = Executors.newFixedThreadPool(threads);
 		try
@@ -190,17 +190,21 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	
 	//Computes the maximum String similarity between two Classes by doing a
 	//pairwise comparison of all their names
-	private double mapTwoEntities(int sId, int tId)
+	private double mapTwoEntities(int sId, int tId, double thresh)
 	{
-		double dataSim = 0;
+		double dataSim = 0.0;
 		for(Integer sd : sVal.getProperties(sId))
+		{
 			for(String sv : sVal.getValues(sId,sd))
+			{
 				for(Integer td : tVal.getProperties(tId))
+				{
+					double weight = (td==sd ? 1.0 : 0.9);
 					for(String tv : tVal.getValues(tId,td))
-						//Compare the values using ISub
-						dataSim = Math.max(dataSim,ISub.stringSimilarity(sv,tv) *
-								//If the properties are different, penalize the score
-								(td==sd ? 1.0 : 0.9));
+						dataSim = Math.max(ns.nameSimilarity(sv, tv, thresh) * weight, dataSim);
+				}
+			}
+		}
 		return dataSim;
 	}
 	
@@ -209,17 +213,19 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	{
 		private int source;
 		private int target;
+		private double threshold;
 		
-		MappingTask(int s, int t)
+		MappingTask(int s, int t, double thresh)
 	    {
 			source = s;
 	        target = t;
+	        threshold = thresh;
 	    }
 	        
 	    @Override
 	    public Mapping call()
 	    {
-       		return new Mapping(source,target,mapTwoEntities(source,target));
+       		return new Mapping(source,target,mapTwoEntities(source,target,threshold));
         }
 	}
 }
