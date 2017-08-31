@@ -121,7 +121,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 						a.add(i,j,1.0);
 					continue;
 				}
-				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+				if(e.equals(EntityType.INDIVIDUAL) && aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
 						!aml.getRelationshipMap().shareClass(i,j))
 					continue;
 				toMap.add(i,j);
