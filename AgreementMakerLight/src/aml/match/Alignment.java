@@ -149,10 +149,11 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean add(int sourceId, int targetId, double sim, MappingRelation r, MappingStatus s)
 	{
-		//We can't have a mapping involving entities that exist in
-		//both ontologies (they are the same entity, and therefore
-		//shouldn't map with other entities in either ontology)
-		if(source.contains(targetId) || target.contains(sourceId))
+		//We shouldn't have a mapping involving entities that exist in
+		//both ontologies as they are the same entity, and therefore
+		//shouldn't map with other entities in either ontology, unless
+		//same URI matching is turned on
+		if(!aml.matchSameURI() && (source.contains(targetId) || target.contains(sourceId)))
 			return false;
 		
 		//Construct the Mapping
@@ -345,7 +346,6 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsAncestralMapping(int sourceId, int targetId)
 	{
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
 		
 		Set<Integer> sourceAncestors = rels.getAncestors(sourceId);
@@ -432,7 +432,6 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsDescendantMapping(int sourceId, int targetId)
 	{
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
 		
 		Set<Integer> sourceDescendants = rels.getDescendants(sourceId);
@@ -488,7 +487,6 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsParentMapping(int sourceId, int targetId)
 	{
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
 		
 		Set<Integer> sourceAncestors = rels.getParents(sourceId);
@@ -718,7 +716,6 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public Alignment getHighLevelAlignment()
 	{
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
 		
 		Alignment a = new Alignment();
@@ -1024,7 +1021,6 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public void saveRDF(String file) throws FileNotFoundException
 	{
-		AML aml = AML.getInstance();
 		String sourceURI = aml.getSource().getURI();
 		String targetURI = aml.getTarget().getURI();
 
@@ -1100,7 +1096,7 @@ public class Alignment implements Collection<Mapping>
 	}
 	
 	/**
-	 * @return the number of source classes mapped in this Alignment
+	 * @return the number of source entities mapped in this Alignment
 	 */
 	public int sourceCount()
 	{
@@ -1112,15 +1108,20 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public double sourceCoverage(EntityType e)
 	{
-		AML aml = AML.getInstance();
-		double coverage = sourceMaps.keyCount();
-		int count = aml.getSource().count(e);
-		coverage /= count;
-		return coverage;
+		double coverage = 0.0;
+		for(Integer i : sourceMaps.keySet())
+			if(uris.getType(i).equals(e))
+				coverage++;
+		int count;
+		if(e.equals(EntityType.INDIVIDUAL))
+			count = aml.getSourceIndividualsToMatch().size();
+		else
+			count = aml.getSource().count(e);
+		return coverage / count;
 	}
 	
 	/**
-	 * @return the number of target classes mapped in this Alignment
+	 * @return the number of target entities mapped in this Alignment
 	 */
 	public int targetCount()
 	{
@@ -1132,11 +1133,16 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public double targetCoverage(EntityType e)
 	{
-		AML aml = AML.getInstance();
-		double coverage = targetMaps.keyCount();
-		int count = aml.getTarget().count(e);
-		coverage /= count;
-		return coverage;
+		double coverage = 0.0;
+		for(Integer i : targetMaps.keySet())
+			if(uris.getType(i).equals(e))
+				coverage++;
+		int count;
+		if(e.equals(EntityType.INDIVIDUAL))
+			count = aml.getTargetIndividualsToMatch().size();
+		else
+			count = aml.getTarget().count(e);
+		return coverage / count;
 	}
 	
 	@Override
@@ -1158,7 +1164,6 @@ public class Alignment implements Collection<Mapping>
 		//Open the Alignment file using SAXReader
 		SAXReader reader = new SAXReader();
 		File f = new File(file);
-
 		Document doc = reader.read(f);
 		//Read the root, then go to the "Alignment" element
 		Element root = doc.getRootElement();
