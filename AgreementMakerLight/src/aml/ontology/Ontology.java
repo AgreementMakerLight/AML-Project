@@ -987,6 +987,8 @@ public class Ontology
 				{
 					OWLLiteral val = (OWLLiteral) a.getValue();
 					String name = val.getLiteral();
+					if(name.equals(localName) && StringParser.isNumericId(name))
+						continue;
 					lang = val.getLang();
 					if(lang.equals(""))
 					{
@@ -1182,6 +1184,12 @@ public class Ontology
 					int parent = uris.getIndex(eq.getIRI().toString());
 					if(parent > -1 && parent != child)
 						rm.addEquivalentClass(child, parent);
+				}
+				Set<OWLNamedIndividual> indivs = reasoner.getInstances(c, true).getFlattened();
+				for(OWLNamedIndividual i : indivs)
+				{
+					int ind = uris.getIndex(i.getIRI().toString());
+					rm.addInstance(ind, child);
 				}
 			}
 
