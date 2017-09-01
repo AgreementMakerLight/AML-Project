@@ -1507,6 +1507,8 @@ public class Ontology
 					int propId = uris.addURI(propUri, EntityType.OBJECT);
 					entities.add(propId);
 					entityTypes.add(EntityType.OBJECT, propId);
+					//And remove it as an annotation property
+					entityTypes.remove(EntityType.ANNOTATION, propId);
 					//Add its name to the Lexicon
 					lex.add(propId, getLocalName(propUri), "en", LexicalType.LOCAL_NAME,
 							"", LexicalType.LOCAL_NAME.getDefaultWeight());

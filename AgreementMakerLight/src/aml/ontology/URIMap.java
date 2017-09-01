@@ -61,7 +61,12 @@ public class URIMap
 	{
 		String newUri = uri;
 		if(URIindex.containsKey(newUri))
-			return URIindex.get(newUri);
+		{
+			int index = URIindex.get(newUri);
+			if(!indexType.get(index).equals(t))
+				indexType.put(index,t);
+			return index;
+		}
 		else
 		{
 			size++;
