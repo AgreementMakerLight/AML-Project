@@ -262,6 +262,8 @@ public class AML
 		}
 		
     	size = SizeCategory.getSizeCategory();
+    	if(size.equals(SizeCategory.HUGE))
+    		threshold = 0.7;
     	lang = LanguageSetting.getLanguageSetting();
 		languages = new HashSet<String>();
 		for(String s : source.getLexicon().getLanguages())
@@ -999,6 +1001,8 @@ public class AML
 					}
 					else if(option[0].equals("use_reasoner"))
 						useReasoner = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("match_same_uri"))
+						matchSameURI = option[1].equalsIgnoreCase("true");
 					else if(option[0].equals("source_classes"))
 					{
 						if(option[1].equals(""))
@@ -1340,6 +1344,19 @@ public class AML
 					d = new Dictionary(l2,l1);
 					d.translateLexicon(target.getLexicon());
 				}
+			}
+		}
+		if(!sLangs.contains("en") && !tLangs.contains("en"))
+		{
+			for(String l1 : sLangs)
+			{
+				Dictionary d = new Dictionary(l1,"en");
+				d.translateLexicon(source.getLexicon());
+			}
+			for(String l2 : tLangs)
+			{
+				Dictionary d = new Dictionary(l2,"en");
+				d.translateLexicon(target.getLexicon());
 			}
 		}
 		languages = new HashSet<String>();
