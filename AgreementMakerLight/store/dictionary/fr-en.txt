@@ -1026,3 +1026,189 @@ est soumis jusqu'à	is subject to
 démarche	approach
 est défini par	is defined by
 peut rester sur	can stay on
+carnet de bord	logbook
+critique de meta	criticism of meta
+conferentielid	conferentielid
+examen	review
+rubrique	section
+auteur non-examinateur	author examiner
+examinateur externe de amazon	external examiner of amazon
+metarecentie	metarecentie
+comité du programme	the program Committee
+co-auteure	co-author
+coprésident	Co-Chair
+lire l'article	read the article
+id de document	document ID
+url du site web	URL of the web site
+accepte des communications sur papier	accept communications on paper
+messagerie	e-mail
+définir le nombre maximal d'éléments dans	set the maximum number of elements in
+hardcopy envoyer preuve imprimé par	hardcopy send evidence printed by
+d'envoyer sur papier	to send on paper
+acceptée par	accepted by
+décision a	decision has
+détails du complété par	the full details by
+a sujet	a subject
+cet article dans	This article in
+ajouter commentaire	Add comment
+article lu	article read
+examinateur d'amazon, pour pointer vers l'extérieur	amazon reviewer, to point to outside
+créer point allocation	create point allocation
+remplir les critères d'examen	meet the criteria for review
+assignés à	assigned to
+remplissez les critères d'examen	meet the review criteria
+tous les détails de la conférence	details of the conference
+accepter l'article	accept article
+lu par metarecencent	read by metarecencent
+attribué par l'examinateur d'amazon	awarded by the examiner from amazon
+rédigé par	written by
+a offert	has offered
+outil de l'article de prix utilisé par	price used by article tool
+a l'auteur	a the author
+est décerné	is awarded
+lu par relecteur	read by reviewer
+a conferentielid	a conferentielid
+début examen offre	early examination offers
+réunion virtuelle autorisée par	virtual meeting authorized by
+article fini par prix	Article finished by price
+tous les détails de la conférence en	details of the conference in
+a co-écrit	a co-written
+modifié par	modified by
+ajouter le point à l'examinateur d'amazon	Add the point to the examiner from amazon
+membre du comité de programme a	Member of the program Committee
+rejetée par	rejected by
+soumettre article	submit article
+seul but de	only purpose of
+écrire article	write article
+critères d'examen remplies par	review completed by criteria
+a les conflits d'intérêts	a conflict of interest
+ajouter le membre de comité de programme	Add the Member of Program Committee
+démarré par l'examen offre	started by reviewing offer
+mettre en évidence des conflits d'intérêts	highlight conflicts of interest
+laissez la réunion virtuelle	Let the virtual meeting
+utilisez l'outil d'affectation de point	use the assignment of point tool
+définir un nombre maximal d'articles	set a maximum number of items
+eindrecentie	eindrecentie
+article d'écriture co	article writing co
+pointez sur l'article	point to the article
+comité coordonnateur du programme	Program Coordinator Committee
+revue meta	meta review
+domaine thématique	thematic area
+auteur de co	author of co
+coordinateur général de l'événement	general coordinator of the event
+coordonnatrice de la conférence	the conference coordinator
+examinateur externe	external examiner
+associer le coordonnateur de l'événement	associate coordinator of the event
+propositions	proposals
+participant de la membre de la conférence	the Member of the conference participant
+relecteur de meta	Reviewer of meta
+critique de l'auteur	criticism of the author
+articles maximum	maximum items
+accepte les présentations imprimées	accepts print presentations
+a une date	has a date
+a l’article du code	a section of the code
+url	URL
+révisions par article	revisions per article
+a site web	a web site
+avoir un nom	have a name
+a code article	a item code
+a titre	a title
+a e-mail	a e-mail
+réunion virtuelle activée par	enabled by virtual meeting
+ajouter un comité de programme de membre	Add a Member Program Committee
+permettre une réunion virtuelle	allow a virtual meeting
+requêtes de révision initiées par	revision requests initiated by
+affectation d'articles outils interprétée par	assignment of articles tools interpreted by
+a un comité de programme de membre	has a Member Program Committee
+examen final	final exam
+écrire un article avec	write an article with
+marquer un conflit d'intérêts	mark a conflict of interest
+attribué par l'examinateur	awarded by the examiner
+a un conflit d'intérêts	has a conflict of interest
+définir le nombre maximal d’articles	set the maximum number of items
+a la fin de la conférence	at the end of the conference
+entrez les détails de la conférence	Enter the details of the conference
+fixant le nombre maximum d'articles	fixing the maximum number of items
+a l'attribution	a allocation
+fusion et publipostage	mail merge
+propre décision	own decision
+demande de fonctionnalités de révision	request for review features
+finaliser les attributions d'articles	complete assignments of articles
+critères d'examen présentés par	submitted by review criteria
+ajouter un membre du comité de programme	Add a member of the program Committee
+envoi d'articles	sending articles
+assigner un examinateur externe	assign an external examiner
+entrez les critères de révision	Enter the criteria review
+résilier les affectations des articles	terminate assignments of items
+impression de documents d'envoyer le volume de courrier	printing documents to send the volume of mail
+effectuer les articles outils de cession	perform the assignment tools articles
+il a une superficie	It has an area
+assigner un relecteur	assign a reviewer
+a un membre du comité de programme	was a member of the program Committee
+rejeter l'article	reject the article
+initier les demandes de révision	initiate requests for review
+ajuster la demande de réexamen	adjust the request for review
+il a co-écrit	He co-wrote
+insérez les détails	Insert details
+article rejeté par	Article rejected by
+une affectation article terminée par	an article assignment completed by
+demande de révision ensemble	request to review all
+lecture qui s'est tenue par un relecteur	Reading which is held by a reviewer
+article écrit	Article written
+examen effectué	review
+le président de la conférence	the president of the conference
+l'adoption de	the adoption of
+vice-président	Vice President
+solution	solution
+en tant que membre du comité de programme	as a member of the program Committee
+l'auteur n'est pas un critique	the author is not a critic
+critique de livre	Book review
+critique de meta-livre	meta-book review
+la version complète de l'article	the full version of the article
+article résumé	Article summary
+meta-examinateur	Meta-reviewer
+taux	rate
+déviation	deviation
+l'adresse internet du site web	the internet address of the web site
+commentateurs de l'article	article commentators
+adresse de courriel	email address
+le nombre de	the number of
+l'adresse internet du logo	the internet address of the logo
+le nom	the name
+l'id de l'article	the id of the article
+accepte les demandes d'impression	accepts print requests
+en-tête	header
+qui dirige le programme articles de destination	who runs the program destination articles
+lire le meta-examinateur	read the meta-reviewer
+nomme un examinateur externe	appoints an external examiner
+un évaluateur nommé	an assessor appointed
+pour faire les détails de la conférence	to make the details of the conference
+commencer à parier de l'examinateur	start betting the examiner
+définir les articles maximum	set the maximum items
+qui a fait de détails	who did detail
+rédiger un article	write an article
+remarque les conflits d'intérêts	Note conflict of interest
+qui affecté des articles	which affected articles
+printhardcopymailingmanifests	printhardcopymailingmanifests
+nommé par l'administrateur	appointed by the administrator
+examen terminé	review completed
+nommé	named
+critères d'examen intronisé	inductee review criteria
+permettre la rencontre virtuelle	allow the virtual meeting
+taux de change	Exchange rate
+qui a commencé plaçant relecteur de paris	who started placing reviewer of paris
+qui a changé	has changed
+qui est rejetée	who is rejected
+lire la critique	read the review
+terminer l'affectation des objets	complete the assignment of objects
+par razeršëna réunion virtuelle	by razeršena virtual meeting
+écrire un article co-écrit	write an article co-written
+par date d'ajout	by date added
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+soumettre un article	submit an article
+nomme un relecteur	appoint a reviewer
+toute personne prise	anyone caught
+ajouter un commentaire	Add a comment
+d'examiner les critères	to examine the criteria
+conflits d'intérêts	conflicts of interest
+ajoute un comité de programme de membre	Adds a Member Program Committee

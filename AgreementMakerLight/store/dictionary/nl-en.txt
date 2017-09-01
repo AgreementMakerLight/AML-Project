@@ -692,3 +692,143 @@ is gelegen	is located
 wordt betaald	is paid
 wordt gehouden	is held
 mag verblijven	is allowed to stay
+besluit	decision
+volledige versie van artikel	full version of article
+aanvaarding	acceptance
+thematische gebied	thematic area
+samenvatting van het artikel	Summary of the article
+conferentie coördinator	Conference Coordinator
+revisor	Reviewer
+voorstellen	proposals
+programma comité coördinator	Program Committee Coordinator
+co auteur	co author
+deelnemer aan de conferentie lid	participant of the Conference Member
+algemeen coördinator van het evenement	General Coordinator of the event
+externe revisor	external auditor
+meta revisor	Meta reviewer
+koppelen van de coördinator van het evenement	linking the Coordinator of the event
+beoordeling	rating
+meta-overzicht	Meta-review
+programma comité	Programme Committee
+lid van het programma comité	Member of the program Committee
+auteur revisor	author reviewer
+heeft website	has website
+titel heeft	title has
+een naam hebben	have a name
+artikelcode heeft	product code has
+bewerkingen per artikel	edits per article
+accepteert inzendingen afgedrukt	accepts entries printed
+maximale artikelen	maximum articles
+heeft een datum	has a date
+url	URL
+heeft e-mail	has email
+heeft artikel code	has product code
+schrijf een artikel met	write an article with
+een artikel toewijzing beëindigd door	an article assignment terminated by
+eigen besluit	own decision
+herziening verzoeken geïnitieerd door	revision requests initiated by
+het verzoek om herziening aanpassen	customize the request for review
+nieuwe onderzoeken uit	new surveys
+toevoegen van een lid programma comité	adding a member of the program Committee
+heeft einde van conferentie	has end of Conference
+het heeft co-auteur	It has co-authored
+het heeft een oppervlakte	It has a surface
+toegewezen door de beheerder	assigned by the administrator
+een lid van het programma comité toevoegen	Add a member of the Programme Committee
+markeren van een belangenconflict	marking a conflict of interest
+instellen van het maximum aantal artikelen	setting the maximum number of items
+instelling maximum aantal artikelen	setting maximum number of articles
+artikel lezen	read the article
+heeft een lid van het programma comité	has a member of the program Committee
+starten van verzoeken om herziening	Start ask for review
+artikelen verzenden	shipping items
+verzoek om herziening set	request for review set
+toewijzen van een revisor	assigning a reviewer
+artikel geschreven	Article written
+lezing gehouden door een revisor	reading by a reviewer
+toegewezen door de revisor	assigned by the reviewer
+virtuele vergadering ingeschakeld door	virtual meeting enabled by
+afdruk samenvoegen	mail merge
+evaluatiecriteria geïntroduceerd door	evaluation criteria introduced by
+functies verzoek om herziening	features request for review
+voegt u details	Add details of
+toestaan dat een virtuele vergadering	allow a virtual meeting
+artikel aanvaard	Article accepted
+artikel weigert	Article refuses
+extra artikelen toewijzing uitgevoerd door	additional articles mapping performed by
+heeft een lid programma comité	has a member of the program Committee
+artikel door verworpen	Article by rejected
+aanvaard door	accepted by
+uitvoeren van toewijzing hulpmiddelen artikelen	performing mapping tools articles
+lid van de conferentie	a member of the Conference
+lid van de commissie van het programma	Member of the Commission of the programme
+beëindigen van toewijzingen van artikelen	termination of assignments of articles
+voer de criteria voor revisies	Enter the criteria for revisions
+afdrukken van documenten van het verzenden van e-mailverkeer	printing documents of sending email traffic
+een belangenconflict heeft	a conflict of interest has
+voer de gegevens van de conferentie	Enter the information of the Conference
+finaliseer de bevoegdheden van artikelen	finalize the powers of articles
+naamsvermelding heeft	attribution has
+laatste revisie	latest revision
+toewijzen van een externe revisor	assign an external auditor
+de volledige versie van het artikel	the full version of the article
+als een lid van het programma comité	as a member of the program Committee
+oplossing	solution
+mede-auteur	co-author
+abstracte artikel	abstract article
+boekbespreking	Book review
+de aanneming van	the adoption of
+voorzitter van het programma comité	President of the Programme Committee
+afwijking	deviation
+meta-revisor	Meta-reviewer
+de auteur is niet een revisor	the author is not a reviewer
+vice-voorzitter	Vice-President
+meta-boekbespreking	Meta-book review
+tarief	rate
+de voorzitter van de conferentie	the President of the Conference
+de naam	the name
+het internetadres van de website	the internet address of the website
+e-mailadres	email address
+accepteert afdrukken aanvragen	accepts print requests
+het internet-adres van het logo	the internet address of the logo
+het aantal	the number of
+de artikel-id	the item id
+koptekst	header
+revisoren van het artikel	reviewers of the article
+die begon weddenschappen revisor plaatsen	that started betting reviewer places
+virtuele vergadering toestaan	allow virtual meeting
+wie maakte details	who made details of
+om te beoordelen van criteria	to judge by criteria
+lees artikel	Read article
+benoemt revisor	appoints reviewer
+die klaar bent met het toewijzen van artikelen	that finished assigning articles
+iedereen genomen	anyone taken
+printhardcopymailingmanifests	printhardcopymailingmanifests
+belangenconflict	conflict of interest
+door datum toegevoegd	by date added
+benoemt een externe revisor	shall appoint an external auditor
+om details van de conferentie te maken	to make details of the Conference
+wie beheert de programma bestemming artikelen	who manages the program destination articles
+verwerpt artikel	rejects article
+lezen van de meta-revisor	read the meta-reviewer
+opmerking het belangenconflict	Note the conflict of interest
+die verworpen	which rejected
+benoemd door de beheerder	appointed by the administrator
+door razeršëna virtuele vergadering	by razeršëna virtual meeting
+submit een artikel	submit an article
+opgenomen evaluatiecriteria	evaluation criteria included
+benoemd	appointed
+schrijf een review	write a review
+schrijf een artikel co-auteur	write an article co-author
+aanvaarde artikel	accepted article
+afgewerkte beoordeling	finished assessment
+schrijven van een artikel	writing an article
+einddatum van de toewijzing van artikelen	end date of the allocation of articles
+een revisor benoemd	a reviewer appointed
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+lees revisor	read reviewer
+snelheid wijzigen	change speed
+voegt een lid programma comité	Adds a Member Program Committee
+instellen van de maximale artikelen	setting the maximum articles
+die veranderd	that changed
+start de revisor wedden	start betting the reviewer

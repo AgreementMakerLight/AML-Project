@@ -731,3 +731,305 @@ deadline für die einreichung der zusammenfassung	deadline for submission of the
 spricht in	speaks in
 istanwesend	istanwesend
 spricht	speaks
+vollversion des artikels	full of article
+mitglied des ausschuss-programms	Member of programme of Committee
+präsident	President
+ablehnen	reject
+ziel-bewertung	objective evaluation
+rezensent	Reviewer
+themenbereich	subject area
+vizepräsident	Vice President
+programmkomitee	Program Committee
+okay	Ok
+autor, keine prüfer	author, no examiner
+co-autor	co author
+vorsitzender des ausschusses-programms	Chairman of the Committee on programme
+mitglied der konferenz	Member of the Conference
+zusammenfassung des artikels	Summary of the article
+meta prüfer	Meta examiner
+bewertung	review
+artikel	Article
+präsidentin der konferenz	President of the Conference
+datum	date
+logo-url	logo url
+url der webseite	URL of the website
+lieferungen auf papier akzeptiert	accepts deliveries on paper
+titel	title
+bearbeitungen pro artikel	edits per article
+name	name
+e-mail	email
+maximale anzahl von elementen	maximum number of items
+elementbezeichner	Item identifier
+ordnen externen gutachter zu	assign external reviewers
+prüfer zuweisen	assign Auditors
+weist den artikel	has the article
+virtuelles treffen können	virtual meet
+mitglied konferenz	Member Conference
+werkzeuge für die zuweisung von elementen von geführt	tools for the assignment of elements from led
+es verwaltet die werkzeuge, um die verteilung der elemente	It manages the tools to the distribution of elements
+weist eine maximale anzahl von elementen zu	has a maximum number of items to
+ist ein mitglied der konferenz	is a member of the Conference
+von abgelehnt	by refused
+vom administrator zugewiesen	assigned by the administrator
+lesen sie den artikel	read the article
+entscheidung hat	decision has
+hat autor	author has
+beginnt die auktion der artikel	starts the auction of articles
+versand manifeste gedruckte exemplare wurden von gedruckt	shipping manifests printed copies were by printed
+hat das programm ausschussmitglied	has the program Committee Member
+lesen von rezensent meta	read by reviewer meta
+geändert von	changed by
+kopierpapier aus der schifffahrt manifeste	copy paper shipping manifest
+mithilfe von virtuellen meeting	use of virtual meeting
+betritt der prüfkriterien	enters testing criteria
+ist co-autor	is the co author
+endet das hinzufügen von artikeln	It ends up adding articles
+ende bewertung	end review
+gebot hat	offer has
+interessenkonflikt hat	Conflict of interest has
+artikel schreiben	write article
+zusätzlichen mitglied des programmkomitees	additional member of the program Committee
+themenbereich hat	subject area has
+von akzeptiert	by accepted
+schreiben bewertung	write review
+gelesen vom autor	read by the author
+angaben von	indicated by
+bekannte interessenkonflikt	known conflict of interest
+geben sie informationen über die konferenz	provide information about the Conference
+ist co-autor eines artikels	has co-authored of an article
+ist ein mitglied des programms ausschuss	is a member of the program Committee
+accept-artikel	accept article
+ändert das angebot	changes the offer
+durch den bearbeiter zugewiesen	assigned by the editor
+prüfkriterien wurden durch eingeführt	Test criteria were introduced through
+es wurde zugewiesen	It was assigned to
+die zuordnung der artikel wurde von abgeschlossen	was the assignment of articles of completed
+sendet das element	sends the element
+gebote ab bewertungen wurde initiiert durch	bids from reviews was initiated by
+zugewiesen	assigned to
+ablehnung	rejection
+meta-prüfer	Meta reviewer
+vorschlag für die wiedergabe	proposal for the playback
+vorsitzender des programmkomitees	Chairman of the program Committee
+autor der rezensent nicht ist	author who isn't reviewer
+meta-rapport zu überprüfen	Meta pattern to check
+prüfungsbericht	Audit report
+präsident der konferenz	President of the Conference
+konferenz-stellvertreter	Conference delegate
+kennung des artikels	ID of the article
+url der website	URL of the site
+akzeptiert einreichungen in papierform	accepts submissions in paper form
+anzahl der berichte von artikel	number of reports by article
+eine für co-autor	one for co-author
+die details werden eingegeben	to enter the details
+richtet das virtuelle treffen	is the virtual meeting
+der rezensent betroffen.	the reviewer concerned.
+bett-artikel	bed article
+schriftliche prüfungsbericht	written examination report
+lehnt der artikel	the article is not
+hat der autor	has the author
+ein thema	a theme
+ein mitglied des programms ausschuss für	a member of the program Committee for
+der virtuelle sitzung aktiviert, indem	the activate virtual meeting, by
+verteilung der elemente-werkzeuge werden ausgeführt, indem	distribution of items tools are run, by
+druckt die buchstaben des ereignisses	prints the letters of the event
+passt den wiedergabe-vorschlag	fits the play-advice
+einen vorschlag für die wiedergabe	a proposal for the playback
+wird zugewiesen	will be assigned to
+wird von den rezensenten gelesen.	is read by the reviewers.
+wirkt sich die rolle des externen prüfers	affects the role of the external auditor
+wird vom administrator zugewiesen.	is assigned by the administrator.
+die zuordnung der artikel abgeschlossen	completed the mapping of the article
+mitglied des programmausschusses hinzugefügt	Member of the program Committee added
+erfasst die bewertungskriterien der	gathered the assessment criteria
+wird von der meta-rezensent gelesen	is read by the meta reviewer
+die bewertungskriterien werden durch gefüllt.	the evaluation criteria are filled out.
+schließt die zuordnung von artikeln	includes the allocation of articles
+legt die maximale anzahl von elementen des	sets the maximum number of elements of the
+wird geschieben von	is written by
+erfasst die informationen über die konferenz	collects the information about the Conference
+wird abgelehnt	is rejected
+ein mitglied der konferenz	a member of the Conference
+eine entscheidung	a decision
+hat einen interessenkonflikt im zusammenhang mit	has a conflict of interest in connection with
+wird durch hinzugefügt	added by
+wirkt sich die rolle des prüfers	affects the role of the auditor
+co-autor artikel	co-author article
+die zuweisung von vorschlägen an die prüfer wird durch initialisiert.	the assignment of proposals to the examiner is initialized through.
+ausführen von blogs benennen tools von	running blogs tools name from
+die gedruckte kopien gedruckt mit der ereignis-emails	the printed copies printed with the event emails
+schrieb den artikel	wrote the article
+artikel einreichen	submit articles
+gibt einen interessenkonflikt für	is a conflict of interest for
+initialisiert die zuweisung von vorschlägen an die prüfer des	Initializes the assignment of proposals to the Auditors of the
+wird von akzeptiert	will by accepted
+wird durch justiert	is adjusted by
+hat zugeordnet worden	has been associated
+schließt den review-prozess	includes the review process
+übersicht	Overview
+program committee member	program committee member
+conferentielid	conferentielid
+externer gutachter in amazon	external evaluators in amazon
+meta-kritiker	Meta critic
+konferenz-präsident	Conference President
+autor nicht-prüfer	author not examiner
+ganzen artikel	full article
+ko-vorsitzende	Ko Chairman
+vorsitzender programmausschuss	Chairman, Programme Committee
+metarecentie	metarecentie
+akzeptiert hardcopy einreichungen	accept hardcopy\r submissions
+website-url	Web site url
+maximale anzahl von artikeln	maximum number of articles
+bewertungen pro stück	reviews per piece
+papier-id	paper-id
+legen sie maximale anzahl von elementen in	place it maximum number of elements in
+vollständige details zur konferenz	full details of the Conference
+artikel von award	Article by award
+dieser artikel in	This article in
+informationen über abgeschlossen	information about completed
+markieren sie interessenkonflikte	highlight conflicts of interest
+hat betreff	has subject
+anfang bewertung angebot	start evaluation offer
+amazon-rezensent punkt hinzufügen	Add Amazon reviewer point
+program committee member hinzufügen	program committee member add
+amazon-rezensent, auf externe hinzu	Amazon reviewer, external to
+verwenden sie element-zuteilung-tool	use item allocation tool
+gestartet von test-angebot	started by trial offer
+hardcopy schicken	send a hardcopy
+preis artikel-werkzeug von verwendet	price article tool by uses
+hardcopy senden beweis gedruckt von	send hardcopy proof printed by
+virtuelles treffen lassen	make virtual
+hat zusammen	has put together
+von amazon bearbeiter zugewiesen	assigned by amazon reviewer
+hat conferentielid	has conferentielid
+maximale anzahl von artikeln festlegen	maximum number of items set
+nur zu bieten	only to provide
+zeigen sie auf artikel	point to article
+prüfkriterien von ausgefüllt	criteria of completed
+prüfkriterien füllen	fill the test criteria
+lesen von rezensenten	read by reviewers
+artikel lesen	Read article
+programm-komitee-mitglied hat	Program Committee Member
+erstellen von element-verteilung	creating element distribution
+lesen von metarecencent	read by metarecencent
+vollständige details zur konferenz in	full details of the Conference in
+prüfkriterien zu füllen	Test criteria to fill
+eindrecentie	eindrecentie
+virtuelles treffen gesetzlich	virtual meet legally
+co schreiben artikel	article writing co
+wird verliehen	will be awarded
+hat interessenkonflikte	has conflicts of interest
+teilnehmer der konferenz	participants of the Conference
+konferenz koordinatorin	Conference Coordinator
+koordinator des ereignisses zuordnen	associate coordinator of the event
+vorschläge	proposals
+autor-prüfer	author investigator
+general-koordinator der veranstaltung	General Coordinator of the event
+meta-bewertung	meta evaluation
+programm-komitee-koordinator	Program Committee Coordinator
+akzeptiert einreichungen gedruckt	accepted print submissions
+maximale artikel	maximum article
+hat website	has website
+url	URL
+hat code artikel	has code article
+haben sie einen namen	they have a name
+hat artikelcode	has product
+hat ein date	has a date
+geben sie die kriterien von revisionen	Enter the criteria of revisions
+hat ein mitglied des programms ausschuss	has a member of the program Committee
+hat einen interessenkonflikt	has a conflict of interest
+er hat eine fläche	He has a surface
+artikel geschrieben	Article written
+namensnennung hat	attribution has
+festlegen der maximalen anzahl von artikeln	set the maximum number of articles
+hat ende der konferenz	has the end of the Conference
+eigene entscheidung	own decision
+artikel von abgelehnt	Article by refused
+artikel ablehnen	reject Article
+einfügen von informationen	insert information
+werkzeuge-artikel-zuordnung durchgeführt von	Tools article mapping performed by
+es ist co-autor	It has co-authored
+geben sie die details der konferenz	Enter the details of the Conference
+überprüfung zugriffe initiierten	review hits initiated
+überprüfungsanträge zu initiieren	review on slow to initiate
+virtuelles treffen aktiviert, indem	virtual meeting enabled by
+abschließende überprüfung	final review
+durchgeführten überprüfung	carried out verification
+eine artikel-zuordnung von beendet	an article assignment of finished
+lesung, gehalten von einem bearbeiter	reading, held by a reviewer
+passen sie den antrag auf überprüfung	they fit the request for reconsideration
+hat ein mitglied programmkomitee	has a member of Program Committee
+artikel senden	send article
+antrag auf revision satz	proposal on revision set
+zuweisen eines bearbeiters	assign a reviewer
+markieren eines interessenkonflikts	mark a conflict of interest
+kriterien zu überprüfen	criteria to check
+schreiben sie einen artikel mit	write an article
+weisen sie eine externe gutachter	have an external reviewer
+drucken von dokumenten vom senden von e-mail-aufkommen	print documents from the send by email-come on
+funktionen-antrag auf überprüfung	functions-request for review
+zuordnung von artikeln zu beenden	assignment of articles to stop
+seriendruck	Mail merge
+hinzufügen eines mitglieds des programms ausschuss	Add a member of the Programme Committee
+fügen sie ein mitglied programmkomitee	Add a program Committee Member
+artikel akzeptiert	Article accepted
+programm-komitee-mitglied	Program Committee Member
+abschließen der zuschreibungen von artikeln	complete the attributions of articles
+ausführen der zuordnung tools artikel	perform the mapping tools article
+ein virtuelles treffen zu ermöglichen	a virtual meeting to allow
+die volle version des artikels	the full version of the article
+der präsident der konferenz	the President of the Conference
+komplettpreise	Total price
+die annahme des	the adoption of the
+lösung	solution
+der autor ist kein prüfer	the author is not a tester
+buchbesprechung	Book review
+meta-buchbesprechung	Meta - book review
+abstrakt-artikel	abstract article
+als mitglied des programms ausschuss	as a member of the program Committee
+abweichung	deviation
+artikel-id	Article-id
+die anzahl der	the number of the
+die internet-adresse des logos	the internet address of the logo
+bewertungen des artikels	reviews of the article
+der name	the name
+header	header
+die internetadresse der website	the internetadresse website
+nimmt druckaufträge	takes up slow printing
+e-mail-adresse	email address
+einen externen gutachter bestellt	ordered an external expert
+schreiben eines artikels	write an article
+prüfer zu lesen	Auditors to read
+bewerten sie	rate
+wer abgelehnt wird	who is rejected
+interessenkonflikt	Conflict of interest
+die zuordnung eines artikels fertig	the assignment of an article ready
+ernannt	appointed
+beachten sie den interessenkonflikt	Note the conflict of interest
+virtuelles treffen zu ermöglichen	virtual meeting to allow
+razeršëna virtuelle treffen	razeršëna virtual meet
+änderungsrate	Rate of change
+ernennt prüfer	appoint auditors
+printhardcopymailingmanifests	printhardcopymailingmanifests
+fertige bewertung	final assessment
+einen artikel einreichen	submit an article
+zu informationen über die konferenz	for information about the Conference
+ein prüfer ernannt	a reviewer appointed
+schreiben sie einen artikel, co-autor	write an article, co-author
+von geschrieben	by written
+jemand getroffen	someone hit
+angesaugte prüfkriterien	for accumulated test criteria
+fügt ein mitglied programmkomitee	Adds a member of Program Committee
+wer läuft das programm ziel artikel	who is running the program aim article
+wer hat informationen	who has information
+legen sie die maximale artikel	set the maximum article
+die zuordnung von artikeln zu beenden	to terminate the assignment of articles
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+nach datum hinzugefügt	added by date
+wer geändert	who changed
+wetten der rezensent	bet the reviewer
+lehnt artikel	rejects article
+wer hat rezensent wetten platzieren	who has bet reviewer place
+lesen der meta-rezensent	read the meta reviewer
+vom administrator ernannt	appointed by the administrator
+akzeptierten artikel	accepted articles

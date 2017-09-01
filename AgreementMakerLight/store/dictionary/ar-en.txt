@@ -508,3 +508,1098 @@ sigmod رسوم التسجيل لأعضاء	Sigmod registration fees for members
  تحديد آخر موعد	 Specify the last date
  يقدم الوثيقة	 Submit a document
 يقدم الوثيقة	Submit a document
+أعضاء المؤتمر	Conference members
+استعراض الأقران شاملة	A comprehensive peer review
+أعضاء لجنة البرنامج	Members of the Programme Committee
+الأفضلية	Preference
+عدم-المراجع، المؤلف من	Non-reviewer, author of
+تقرر	Decides to
+رفض	Reject
+ورقة	Paper
+العطاء	Tender
+إدارة شؤون الموظفين	Staff management
+الرئيس	President
+تعليقات	Comments
+نائب الرئيس	Vice President
+استئجار	Car rental
+الملف	File
+ورقة كاملة	Full sheet
+الموظفين	Staff
+توليف المراجعين	Synthesis reviewers
+لجنة البرنامج	Programme Committee
+شارك في تأليف	Co-authored
+رئيس الجمعية العامة	The President of the General Assembly
+خلاصة	Abstract
+المجالات المواضيعية	Thematic areas
+رئيس لجنة البرنامج	The Chairman of the Programme Committee
+المراجعين الخارجيين	External Auditors
+الحد الأقصى لعدد من الأوراق	The maximum number of papers.
+قبول الطلبات مطبوعة	Printed applications
+العنوان	Title
+عنوان موقع ويب	Web site address
+كل التعليقات الورق	All paper comments
+معالجة الموارد الموحد العلامات التجارية	Address common trademark resources
+البريد الإلكتروني	Email
+تاريخ	The history of
+رقم الرسالة	Message number
+الاسم	The name
+استعراض نهاية	Review of the end
+تفاصيل الدخول	Login details
+مكان مخصص المراجعين	Designated reviewers
+يبدأ المراجع العطاءات	Starts the bidding references
+تضارب في المصالح	A conflict of interest.
+تنقيح العطاء	Revision of tender
+طباعة نسخة مطبوعة قوائم بريدية	Print hard copy mailing lists
+التصحيح لأعضاء اللجنة	Patch for Committee members
+عضو في برنامج اللجنة	Member of the Programme Committee
+الأطروحة المعينة	Assigned thesis
+بواسطة إدخال نظير مراجعة المعايير	By entering the peer review criteria
+تشغيل أدوات إحالة ورقة	Run the paper assignment tools
+تمكين اجتماعات افتراضية	Enable virtual meetings
+تعديل العطاءات	Adjust bids.
+كتابة التعليقات	Writing comments
+قبل بدء الجلسات الظاهري	Before starting the virtual meetings
+من خلال التعاقد	By Contracting
+تسجيل تفاصيل الاجتماعات	Record details of meetings
+كتب بواسطة	Written by
+المحدد بواسطة المراجع	Specified by the auditor
+واستعرض خبراء الاستعراض العام	The reviewers reviewed the General
+إدخال معايير استعراض الأقران	Enter criteria peer review
+قراءة ورقة	Reading the paper
+تعيين المراجعين الخارجيين	Appointment of external auditors
+برفضها	By refusing to
+تقديم	Introducing
+واستعرض بالمراجعين	The reviewers reviewed
+أوراق التجنيد	Papers
+أوراق الكتابة	Writing papers
+وضع الصيغة النهائية للورقة التي عهدت بها	Finalize paper entrusted
+توزيع الورقة النهائية	Distribution of final paper
+مارك تضارب في المصالح	Mark a conflict of interest.
+-البدء في استعراض العطاءات	-Start reviewing bids.
+الأوراق المرفوضة	Rejected papers.
+المحدد من قبل إدارة	Selected by the Department of
+أول أكسيد الكربون-	Carbon monoxide.
+عن طريق تحديث	By updating
+الأعضاء في المؤتمر	Members of the Conference
+تعيين الحد الأقصى لعدد من الأوراق	Set the maximum number of papers.
+أداة تخصيص ورقة عن طريق تشغيل	Sheet customization tool by running
+تعيين إلى	Set to
+المادة	Article
+ميتا-ملاحظات	Meta-reviews
+عضو في لجنة البرنامج	Member of the Programme Committee
+المجال	Area
+ملاحظات	Reviews
+القرار الذي اتخذته	The decision by
+مقالة قصيرة	Short article
+صاحب البلاغ ليست مراجع	The author is not references
+مادة السليم	Good material
+الرئيس المشارك	Co-President
+اعتماد	Adoption
+مدير البرنامج	Administrator
+ميتا-المراجع	Meta-references
+صاحب البلاغ من	The author of
+المراجع الخارجية	External references
+التعبير عن الاهتمام	Express interest
+الشخص الذي يشارك في المؤتمر	A person participating in a Conference
+الشخص	The person
+تفضيلات	Preferences
+البريد الإلكتروني الخاص بي	My email
+هذه المادة قد معرف	This article has defined
+المؤتمر له ملاحظات على المادة	His Conference remarks on article
+المساهمات المقبولة لمؤتمر للطباعة	Contributions accepted for printing Conference
+اسمي	My name
+المؤتمر بعنوان url صفحة ويب	Conference Web page url address
+تعيين الحد الأقصى لعدد من ملاحظات	Set the maximum number of reviews
+تاريخ المؤتمر	History of the Conference
+المقال يحتوي على اسم	The article contains the name
+شعار المؤتمر يحتوي على url	The theme contains the url
+تمكين المؤتمر من الاجتماعات الافتراضية	Enable virtual meetings conference
+ملاحظات كتبها منهم	Reviews written by them.
+إدراج تفاصيل المؤتمر	Include details of the Conference
+تلقت منظمة الصحة العالمية	Who has received
+خفض توزيع مواد المؤتمر	Reduce distribution of Conference materials
+قراءة المادة الوصفية-المراجع	Read the meta article-references
+استعراض معايير إدراج	Review criteria for listing
+تعيين إلى مراجع	Assign to references
+ودعا تضارب في المصالح	He called a conflict of interest.
+المادة ملاحظات	Article reviews
+وأضاف عضو "لجنة البرنامج"	"Member" Program Committee "
+تم تعيينها إلى مراجع الخارجية	Assigned to external references
+أدخل ملاحظات معايير منظمة الصحة العالمية	Enter the World Health Organization standards notes
+وكتب المقال	And wrote the article
+بي التعبير عن الاهتمام	B expressions of interest
+لإضافة عضو "لجنة البرنامج"	To add a member "Program Committee"
+قراءة المقال	Read article
+تعيين إلى المراجع ميتا-المراجع	Set the reference meta-references
+شارك في تأليف مساهمة	Co-authored a contribution
+بدأ التعبير عن اهتمام المراجعين	He began expressing interest of reviewers
+تخصيص المساهمات الذين أتموا	Allocation of contributions who completed
+المقال الذي كتبه	Article written by
+وقد عضوا في المؤتمر	Having a member of Congress
+وقد تضارب في المصالح مع المساهمة	Having a conflict of interest with contribute
+vyjadření الفوائد الناجمة عن منظمة الصحة العالمية	Vyjadření benefits from the World Health Organization
+المادة مقبولة	Acceptable material
+الكتيبات المطبوعة من قبل الذين	Booklets printed by who
+استعراض خطية	Written review
+المادة قراءة المراجع	Article read references
+أداة přídělení للاشتراكات التي أطلقها بعضهم	Přídělení tool for the contributions made by each
+يناقش هذا الموضوع	This topic discusses
+شارك في تأليف كتاب	Co-author
+المؤتمرات طباعة كتيب	Brochure printing conferences
+إغلاق استعراض	Close review
+توزيع أعضاء مدير "لجنة البرنامج"	Distribution Manager "Program Committee"
+تفاصيل إدخالها بواسطة منهم	The details entered by them
+إرسال مقالة	Send an article
+المادة المرفوضة	Objectionable material
+تعيين المراجع	Set references
+مدير المراجع المعينة	Specific references Manager
+اجتماع ظاهري المؤتمر الذي أصبح ممكناً منهم	Virtual meeting Conference made possible from them.
+تمثيل مصالح المنظمة	Represent the interests of the Organization
+استكمال تخصيص المساهمات المقدمة إلى المؤتمر	Complete the allocation of contributions to the Conference
+عضو لجنة البرنامج	Program Committee Member
+ورفضت الجهة	The rejected
+تحرير التعبير عن الاهتمام	Edit the expressions of interest
+مجال الموضوع	Subject area
+الرئيس:	President:
+قاد	Led
+مقعد نائب في	One Deputy seat
+المشاركون في مؤتمر	Participants in the Conference
+الكاتب الذي أي خبير	A writer who is an expert
+ميتا-الرأي	Meta-opinion
+ميتا-جوتاتشاتير (استعرض الرأي خبير)	Meta-gotachatir (expert opinion reviewed)
+ميتا-الرأي (الرأي على رأي)	Meta-opinion (view view)
+قبول	Acceptance of
+ميتا-جوتاتشاتير	Meta-gotachatir
+رسوم المؤتمر كامل	Full conference fee
+ملخص مساهمة في المؤتمر	Summary of the contributions at the Conference.
+الرأي	View
+الخبراء	Experts
+رأي كل مساهمة	View all contributions
+وقد عنوان url لصفحة ويب	And Web page url address may
+باسم	In the name of
+له موقع على شبكة الإنترنت على عنوان url	His Web site url address
+لها عنوان	Her address
+قبول الطلبات hardcopy\r	Applications hardcopy\r
+وقد أرسل	And sent
+الحد الأقصى لعدد المساهمات المخصصة	The maximum number of earmarked contributions
+يحتوي url شعار	Url contains a logo
+معرف	ID
+اختر الحد الأقصى لعدد المساهمات المخصصة	Choose the maximum number of earmarked contributions
+تأليف	Scriptwriter
+وقد كتب مساهمة	He has written a contribution
+المشاركون من	Participants from
+أرسلت بواسطة	Posted by
+قراءة المراجع الفوقية	Read the meta-references
+يحتوي مرجع إينتيريسينسكونفليكت	Contains a reference aintirisinskonflikt
+تعارض مصالح مع مساهمة	Conflict of interest with the contribution
+وبدأ في مرحلة العطاء	And looked at the tender stage
+وقد تقرر	It was decided
+وقد تطابق	And might match
+رئاسة الاجتماع الظاهري	Virtual meeting
+تقابلها	Corresponding
+وقد صدرت الأوامر إلى	Were ordered to
+قام بتأليف مساهمة	Has authored a contribution
+وقد أضاف معايير للرأي	View standards has added
+وقد أدى لقاء الظاهري	Virtual meeting has
+إضافة تفاصيل مرجع في	Adding details reference in
+المرحلة محاولة الكاتب	Author's attempt to stage
+وقد كتب الرأي	He has written opinion
+التي قبلتها	Accepted by
+تشغيل البرمجيات بيتراجسزوردنونجس	Software bitragszordnongs
+وقد أضيف تفاصيل بشأن	Have added details on
+التعيين بعد الانتهاء من	After completing the assignment
+وقد نفذت زوردنونجسوفتواري مساهمة	Zordnongsoftwari has implemented a contribution
+وأضاف	And added
+وقد انتهى ذلك الوقت لتقييم	And over time to assess
+المعينة من قبل مسؤول	Assigned by an administrator
+اختر الحد الأقصى عدد المساهمات المخصصة	Choose the maximum number of earmarked contributions
+تخصيص	Customize
+نطاق	Scope
+وقد إينتيريسينسكونفليكت	Intirisinskonflikt has
+المعايير لإدراجه من قبل الرأي	The criteria for inclusion by the view
+التفاصيل التي أضيفت من قبل	Details added by
+وقد الأعضاء	The Member has
+طباعة نسخة ورقية من بيان بريدية	Print a paper copy of the statement of the postcard.
+المطبوعة نسخة مطبوعة من بيان البريدية التي	Printed hard copy mailing statement
+وقد قاد الحصول على	Get the led
+وقد أكملت رسم خرائط للمساهمات	Having completed the mapping of contributions
+وقد تم تعيينها إلى	It has been set to
+وقد قبلت	I have accepted
+وقدمت مساهمات	And contributions
+ورقة المرفوضة	Unacceptable paper
+قراءة بواسطة خبراء	Read by experts
+تعيين خبراء	Appointment of experts
+أضيفت من قبل	Added by
+عضو في المؤتمر	Member of the Conference.
+محاولة	Try
+لرئيس المؤتمر	The President of the Conference
+استعراض الهدف	Objective review
+استعراض	Review
+ملخص للمادة	A summary of the article
+المراجع الفوقية	Meta-references
+موافق	Ok
+النسخة الكاملة من المادة	The full version of the article
+صاحب البلاغ، لا مراجع	The author, no references
+المجال المواضيعي	Thematic area
+معرف العنصر	Item ID
+عنوان url للشعار	Url address of the logo
+يقبل التسليم على الورق	Accept delivery on paper.
+الحد الأقصى لعدد العناصر	The maximum number of items
+عنوان url لصفحة ويب	Url address of a Web page
+تنقيحات للمادة	Revisions to article
+وقد اكتمل توزيع المواد التي	The distribution has been completed
+ويبدأ تقديم العطاءات للمواد	Bidding starts for materials
+دخلت بالتفاصيل	Enter details
+وترفض هذه المادة	Reject Article
+أدخل تفاصيل المؤتمر	Enter the details of the Conference
+وينتهي بتوزيع البنود	And ends with the allocation of items
+قراءة مقدم البلاغ	Read by the author
+يرسل هذا البند	Send this item
+تعين الحد أقصى لعدد العناصر	Specifies the maximum number of items
+لوحظ تضارب في المصالح	Noted a conflict of interest.
+اكتب مراجعة	Write a review
+وقد طبعت نسخ ورقة بيانات الشحن قبل	Copies have been printed before shipping data sheet
+قد بدأت عطاءات من المراجعين	Starting bid of reviewers
+تعيين من قبل المراجع	Assign by reference
+وقد عضو المؤتمر	Having a member of Congress
+وقد صاحب البلاغ	The author has
+يسمح اجتماع ظاهري	Allows a virtual meeting
+قد عهد إلى	Has been entrusted to
+تعديل العرض	Modify width
+تقبل المادة	Accept article
+يقوم بإدخال معايير المراجعة	Enters review criteria
+وهي تدير الأدوات اللازمة لتوزيع البنود	It runs the tools necessary for the allocation of items
+ورق نسخ من بيانات الشحن	Paper copies of the shipping data
+وقد مجال الموضوع	And might subject area
+قراءة بواسطة المراجع الفوقية	Read by meta-references
+اجتماع ظاهري باستخدام	Virtual meeting using
+وقد تضارب المصالح	Having a conflict of interest
+تعديل بواسطة	Modified by
+يديرها أدوات لتوزيع البنود	Tools for run allocation of items
+قراءة المادة	Read the article
+وقد شارك في تأليفها	He has participated in author
+وقد عرض	Has to offer
+شارك في تأليف مادة	Co-authored articles
+وقد أدخلت معايير المراجعة التي	The audit criteria were introduced
+كتابة المقالة	Article writing
+وقد البرنامج "عضو اللجنة"	And the program "Committee member"
+تعيين المراجع الخارجي	Appointment of the external auditor
+ميتا-علاقة لاستعراض	Meta-link to review
+الكاتب الذي لا المراجع	The author references
+اقتراح لإعادة	Suggestion for re-
+نائب رئيس المؤتمر	Vice Chairman of the Conference
+لجنة البرامج	Programme Committee
+مؤتمر الأعضاء	Member Conference
+تقرير الفحص	Examination report
+تقبل الطلبات في شكل ورقة	Applications are accepted in the form of paper
+معرف المقالة	Article ID
+عنوان url للموقع	Url address of the site
+عدد من التقارير بموجب المادة	A number of reports under article
+ويتأثر بالمراجع	And influenced by references
+يتم تعيين إلى	It is set to
+تشغيل مدونات بتسمية الأدوات من	Running blogs label tools
+توزيع أدوات عناصر يتم تنفيذها بواسطة	Distribution elements are performed by
+تعيين الحد الأقصى لعدد من البنود	Set the maximum number of items
+تهيئة توزيع مقترحات للمراجعين من	Creating the distribution proposals for reviewers from
+ارتبط	Allergen
+يلتقط بمعايير التقييم	Captures evaluation criteria
+يتم تعيينه من قبل المسؤول	Is assigned by the administrator
+توزيع المواد في صيغتها النهائية بحلول	Distribute articles finalized by
+يتم إضافتها بواسطة	Added by
+ويضيف عضو في برنامج اللجنة	Adds a Member Program Committee
+اللمسات الأخيرة في عملية الاستعراض	Final touches in the review process
+المادة التي شارك في تأليفها	Article by author
+موضوع	Theme
+معايير التقييم التي تمتلئ بها	The evaluation criteria are filled.
+يؤثر على دور المراجع الخارجي	Affect the role of the external auditor
+وترفض المادة	Rejects article
+تقرير الامتحان التحريري	Report of the written exam.
+تتم تهيئة توزيع مقترحات للمراجعين قبل	Initialize the distribution proposals to reviewers before
+لعضو المؤتمر	For a member of Congress
+يتم تعديل من قبل	Be modified by
+للقراءة قبل ميتا-المراجع	Read by meta-references
+يؤثر على دور المراجع إلى	Affect the role of the auditor
+طباعة رسائل الحدث	Print event messages
+هو رفض من قبل	Is refused by
+المادة سرير	Bed material
+هو مكتوب من قبل	It is written by
+للمؤلف المشارك	To co-author
+اللمسات الأخيرة على إحالة المواد	Final touches to refer articles
+للقراءة من المراجع	Read references
+يلتقط تفاصيل المؤتمر	Captures the details of the Conference
+ويشير إلى وجود تضارب في المصالح	And suggests a conflict of interest.
+عضو في لجنة البرنامج ل	Member of the Programme Committee for
+وقد تضارب في المصالح فيما يتعلق بما يلي:	Having a conflict of interest with respect to the following:
+يقوم بإعداد اجتماع ظاهري	Set up a virtual meeting
+طباعة نسخ مطبوعة من قبل الحدث رسائل البريد الإلكتروني	Print hard copies of e-mail messages before the event
+يتم إدخال التفاصيل قبل	The details are entered by
+الاجتماع الظاهرية التي يوفرها	Virtual meeting enabled
+تقديم المادة	Article submission
+يضبط على اقتراح إعادة	Sets on the proposal to
+تم قبولها بواسطة	Is accepted by
+لمقرر	The decision of the
+الناقد ميتا	Meta critic
+المادة كاملة	Full article
+البلاغ-المراجع	Author-references
+المراجع الخارجي في الأمازون	External auditor at Amazon
+ميتاريسينتي	Mitarisinti
+كونفيرينتيليد	Konferintilid
+الحد الأقصى لعدد من المواد	The maximum number of articles
+معرف ورقة	ID paper
+عنوان الشعار	Title logo
+ملاحظات كل بند	Reviews of each item
+عنوان الموقع	Location address
+يتم منح	Is granted
+إكمال تفاصيل المؤتمر	Complete Conference details
+وقد تأليفه	And has authored
+اجتماع ظاهري يسمح به	Virtual meeting allowed
+هذه المادة في	This article in the
+المادة تنتهي بجائزة	Article ends with an award
+أشر إلى المادة	Point to the article
+تعيين الحد الأقصى لعدد من المواد	Set the maximum number of articles
+عرض استعراض الكاتب	Displaying a review writer
+إرسال نسخة مطبوعة الأدلة المطبوعة من قبل	Send hard copy evidence printed by
+واسمحوا اجتماع ظاهري	Let virtual meeting
+عضو لجنة برنامج	Member of the Programme Committee
+استخدام أداة تخصيص البند	Use the Customize item
+محاولة فقط	Try just
+قراءة المراجع	Reading references
+جائزة المقالة أداة يستخدمها	Article award tool
+أكمل التفاصيل من قبل	Complete the details by
+تفاصيل المؤتمر كاملة في	Full Conference details
+إرسال نسخة مطبوعة الإثبات	Send a hard copy proof
+المراجع الأمازون، للإشارة إلى الخارجية	Amazon references, indicating foreign
+تسليط الضوء على تضارب في المصالح	Highlight conflicts of interest
+استعراض المعايير التي يشغلها	Browse by standards
+بداية استعراض العرض	Beginning of the Browse view
+إنشاء تخصيص البند	Create item allocation
+وقد كونفيرينتيليد	Konvirintilade has
+قراءة بواسطة ميتاريسينسينت	Read by mitarisinsint
+المادة الكتابة المشارك	Article writing poster
+إضافة عضو لجنة البرنامج	Add Program Committee Member
+ملء معايير المراجعة	Fill the audit criteria
+تعيين المراجع الأمازون	Set references to Amazon
+بهذا الموضوع	This subject
+أشر إلى إضافة مراجع الأمازون	Point to add references to Amazon
+تعيين الحد الأقصى لعدد العناصر في	Set the maximum number of elements in the
+ايندريسينتي	Indrisinti
+منسق لجنة البرنامج	Program Committee Coordinator
+مشاركة الأعضاء في المؤتمر	Member's participation in the Conference
+المنسق العام للحدث	General Coordinator of the event.
+مساعد منسق الحدث	Assistant event coordinator
+مراجع المؤلف	Author references
+مقترحات	Proposals
+المؤلف المشارك	Coauthor
+استعراض ميتا	Review of dead
+منسق المؤتمر	Conference Coordinator
+تقبل الطلبات المطبوعة	Accept printed applications
+معظم المواد	Most of the material
+وقد رمز المادة	Article code has
+وقد رمز العنصر	Having an icon element
+يكون اسم	The name
+يحتوي على بيانات	Contains data
+عنوان url	Url address
+له موقع على شبكة الإنترنت	His Web site
+تخصيص الخاصة	Special allocation
+قم بإدخال المعايير للتنقيحات	Enter criteria for revisions
+دمج المراسلات	Mail merge
+ضبط لطلب الاستعراض	Adjust the request for review
+إرسال مقالات	Sending articles
+قد شارك في تأليفها	Has co-authored
+المادة المكتوبة	Written article
+رفض المقالة	Reject the article
+إضافة عضو للجنة البرنامج	Add a member of the Programme Committee
+وقد طلب إعادة النظر	Review requested
+إحالة المادة إنهاؤها قبل	Refer article terminated prior
+استعراض أجرى	Review
+وضع علامة على وجود تضارب في المصالح	Mark a conflict of interest.
+طلب مراجعة مجموعة	Request a review group
+وقد تضارب في المصالح	Having a conflict of interest.
+استعراض المعايير التي أدخلتها	Review the criteria entered
+المادة رفضته	Article turned it down.
+وضع الصيغة النهائية لمواصفات المواد	Finalization of material specifications
+وقد عضوا للجنة البرنامج	And was a member of the Programme Committee
+أدوات مواد الإحالة التي يؤديها	Referral material performed by tools
+المقرر الخاص	The Special Rapporteur
+أداء المواد أدوات الإحالة	Referral tools materials performance
+القراءة بالمراجع	Reading references
+السماح بعقد اجتماع ظاهري	Allow virtual meeting
+كتابة مقال مع	Write an essay with
+الاستعراض النهائي	Final review
+بدء طلبات إعادة النظر	Initiate requests for review
+وتبلغ مساحتها	With an area
+طباعة المستندات من إرسال حجم البريد	Printing documents from sending mail size
+استعراض الطلبات التي بدأها	Review requests initiated by
+إنهاء التعيينات للمواد	Appointments to articles
+نهاية المؤتمر	End of Conference
+تعيين مراجع الخارجية	Appointment of external auditor
+أدخل تفاصيل	Enter details
+اجتماع ظاهري التي يوفرها	Virtual meeting enabled
+المادة مجردة	Article Abstract
+الانحراف	Skew
+نائب الرئيس:	Vice President:
+كعضو في لجنة البرنامج	As a member of the Programme Committee
+ميتا--استعراض	Meta-review
+معدل	Rate
+عدد	The number of
+تقبل طلبات الطباعة	Accepts print requests
+مراجعين المادة	Article reviewers
+عنوان البريد الإلكتروني	The email address
+عنوان إنترنت لموقع ويب	The Internet address for the Web site
+مقالات الحد الأقصى	Maximum entries
+عنوان إنترنت للشعار	The Internet address for the logo
+رأس	Top
+بدء الرهان المراجع	Start betting references
+يقرأ مقال	Read an article
+يعين مدير البرنامج	The administrator sets
+إضافة عضو إلى البرامج المحلية	Add a member to a local programs
+برينثاردكوبيميلينجمانيفيستس	Brinthardkobimilingmanivistes
+يكتب المقالة	Write article
+الذين رفضت	Those who refused.
+تعيين الذين	Specify who
+معايير المراجعة المستقدمين	Deploys its auditing standards
+يكتب استعراضاً	Write a review
+تغيير الرهان	Change bet
+كتابة مقال في تأليف	Essay writing author
+الذين razeršëna الاجتماع الظاهري	Who razeršëna the virtual meeting
+قراءة ميتا-المراجع	Read the meta-references
+عين	Ein
+شخص ما نشرت	Someone posted
+منهم كتب	Them wrote
+الذين انتهى تعيين المواد	Who ended up assigning materials
+مجموعة مواد كحد أقصى	Max Kit
+يسمح الاجتماع الظاهري	Allows virtual meeting
+جعل معايير مراجعة	Make review standards
+هاردكوبيميلينجمانيفيستسبرينتيدبي	Hardkobimilingmanivistsbrintidbi
+وبدأ الذين وضع الرهانات المراجع	Who started placing bets references
+الانتهاء من تعيين المواد	Completion of set articles
+قام بالتفاصيل	He details
+قام بتغييرها	Who changed it
+وتعين مراجع الخارجية	The external auditor had
+ملاحظة تضارب في المصالح	Note the conflict of interest.
+الذي يقوم بتشغيل البرنامج المواد الوجهة	Who is running the program destination articles
+تضارب المصالح	Conflict of interest.
+لجعل تفاصيل المؤتمر	To make the Conference details
+أي شخص أخذ	Anyone taking
+تعين المراجع	Specifies references
+الانتهاء من مراجعة	Completion of review
+تكاليف المؤتمر	Conference costs
+تدفع مقدما من مقدمي الطلبات	Pay in advance of applicants
+تقديم البلاغ	Presenting author
+موقع الاجتماع	Meeting location
+المنظمون	Schedulers
+أعضاء اللجنة	Members of the Committee
+وثائق الاجتماع	Meeting documents
+المتحدثون الرئيسيون	Keynote speakers
+الحلقة الدراسية	Seminar
+مشاركة نشطة	Active participation
+مقدمو الطلبات المسجلة	Registered applicants
+المشاركون	Participants
+إشعار الاجتماع	Notice of meeting
+وقائع المؤتمر	Proceedings of the Conference
+مخطوطة للمحاكمة	Manuscript of the trial.
+المشاركون السلبي	Passive participants
+ملخص	Summary
+محادثات المدعوين	Invited talks
+معلومات الحضور	Attendance information
+البيان الكتابي	The written statement
+الخبرة استعراض الأقران	The peer review experience
+المدفوع لمقدم الطلب	Paid to the applicant
+المؤلف العادية	Regular author
+رئيس الحلقة الدراسية	Chairman of the seminar
+قسم تأجير	Rental Department
+المؤتمر دعوة لتقديم أوراق	Conference call for papers
+نشر مؤلفين	Published authors
+التقرير	Report
+قسم طباعة الصور الفوتوغرافية	Department of printing photos
+الجزء	Part
+اجتماع مقدم الطلب	Meeting of the applicant
+استعراض الأولويات	Review priorities
+المساهمين العادية	Regular contributors
+التأخر في دفع مقدم الطلب	Late payment of the applicant
+المخطوطات المرفوضة	Rejected manuscripts
+التواريخ الهامة	Important dates
+جمع إعلام المشتركين	Collect subscriber notification
+المساهمين في المؤتمر	Contributors to the Conference
+الناشرين	Publishers
+المسارات	Tracks
+مجلدات المؤتمر	Conference folders
+ملخص طويل	Long summary
+أوراق-	Papers-
+يكون isbn	Have the isbn
+وهناك إشعار القبول	There is a notice of acceptance.
+تحتوي على تاريخ تقديم نص الكامل	Contain a date that provide full text
+وقد يمثل مشكلة تاريخ القضية	Having an issue date of issue
+يكون اسم العائلة	Have the family name.
+لديها خبرة	With experience
+وهناك تاريخ انتهاء	There is an expiration date
+تاريخ الإيداع بلوحة فوتوغرافية	Filing date of a photographic plate
+وهناك تاريخ بدء	There is a start date
+الشهير	Famous
+موعد تقديم الملخصات	Submission of abstracts
+تتمتع بدرجة	Enjoy a degree
+موقع	Site
+وهناك عنوان	There is an address
+ممارسة الجنس	Having sex
+يكون للبريد الإلكتروني	Be for email
+وهناك وحدة التخزين	There are volume
+وكان اللجنة	The Committee was
+وهناك رئيس اللجنة المشتركة	There are joint Commission President
+وهناك دورة دراسية الرئيس	A course President
+وكان رئيسا للجنة	He was Chairman of the Committee
+القضية	Case
+وهناك موضوع أو الترحيل	There is a topic or posting
+وهناك رئيس اللجنة	There is the Chairman of the Committee
+وقد طلب	And may request
+برنامج اللجنة	The Programme Committee
+يتم تحويل إلى	Converted to
+لجنة تنظيمية	Organizational Committee
+وكان لجنة التوجيهية	The Steering Committee was
+مرة برنامج اللجنة	Once the Committee's programme
+ناشر	Publisher
+جزء من موضوع المؤتمر	Part of the theme of the Conference
+أعضاء	Members
+وهناك لجنة	There is a Committee
+وهناك استعراض الأقران	There is a peer review
+يتم تعيين إلى مرجع استعراض الأقران	It is set to the peer review reference
+جزء من وحدة المؤتمر	Part of the Conference unit
+وكان لجنة تنظيمية	Organizational Committee was
+تنتمي إلى مرجع استعراض الأقران	Belong to a peer review
+بعض	Some
+وهناك ملخص	There is a summary
+وكان نظير مراجعة مرجع أو الخبرة	It was peer reviewed reference or experience
+ينتمي للمراجعين	Belongs to reviewers
+ينتمون إلى وحدة تخزين المؤتمر	Belong to the Conference volume
+وقد دعا إلى	Had been called upon to
+وهناك لجنة توجيهية	And a Steering Committee
+دعوة ومشتركة بين المراجع	Invitation and cross references
+وكان رئيس اللجنة المشتركة	And was Chairman of the Joint Committee
+من العمل	Of work
+تستخدم ليكون عضوا	Used to be a Member
+وكان هناك خبرة استعراض الأقران	And there was the peer review experience
+هو الجزء الأول	Is the first part
+مواضيع حلقات عمل التعليمي	Educational workshops topics
+وكان رئيس الحلقة الدراسية	He was Chairman of the seminar
+الكلمة لكتابة المقالة	Call for article writing
+مبكرا للمؤتمر الذي قام بتسجيل الدخول	Early to the logged Conference
+الخبرة الفنية للخبراء	The expertise of the experts
+الموقع الإلكتروني للمؤتمر	Conference website
+بعد تلقي	After receiving the
+أرسلت بالبريد	Sent by mail
+وظيفة المرفوضة	Rejected posts
+محاضرة المدعوين	Invited lecture
+تسجيل في الصدارة عن المؤتمر	Register in the lead about the Conference
+مساهمة مقدم البلاغ الصحيح	Correct author's contribution
+المنظم	Sequencer
+الخلاصة الموسعة	Extended abstract
+وظيفة عادية	Regular job
+أي مساهمة لاستعراض الأقران	No contribution to peer review
+مشاركة نشطة في المؤتمر	Active participation in the Conference
+المرشحين المسجلين للمؤتمر	Candidates registered for the Conference
+تفضيلات الخبراء	Expert preferences
+عضو في اللجنة	Member of the Committee
+وظيفة كتابية	Written post
+مؤتمر المساهم	Shareholder's Conference
+دعوة للمشاركة في المؤتمر	Invitation to participate in the Conference
+إعلان مؤتمر	Declaration of the Conference
+المؤلف الرئيسي لمساهمة	Lead author of the contribution
+مشارك المؤتمر	Conference participant
+رئيس حلقة العمل	Chairman of the workshop
+عميل متوقع أواخر على الذين تم تسجيل دخوله إلى المؤتمر	Lead late on who is logged on to the Conference
+لجنة الإدارة	The Management Committee
+عمل المؤتمر	The work of the Conference
+نسخة جاهزة للتصوير من مساهمة	Camera ready copy of the contribution
+ودعا المحاضر	He called the lecturer
+اللجنة التنظيمية	Organizational Committee
+يؤدي المؤتمر	Lead Conference
+مشارك السلبي من المؤتمر	The passive participant of the Conference
+قسم المؤتمر	Conference Department
+تاريخ إرسال الملخص	Date of sending summary
+درجة التفضيل ملاحظات	A preference score reviews
+الاسم الأول	First name
+وقائع المؤتمر isbn	Conference proceedings isbn
+نشرت في	Posted in
+رقم وحدة التخزين لوقائع المؤتمر	Volume number of conference proceedings
+الجنس	Sex
+تبدأ اليوم	Start today
+تاريخ إرسال النسخة جاهزة للتصوير من مساهمة	Date of sending camera-ready version of the contribution
+اليوم الأخير	Last day
+مستوى خبرة المراجع	Experience level of references
+يوم الإشعار باستلام مساهمة	On receipt of the contribution
+الاسم الأخير	Last name
+عنوان url للموقع الإلكتروني للمؤتمر	Url address of the website of the Conference
+تاريخ إرسال مساهمة السليم	Date of sending good contribution
+تكون "اللجنة التوجيهية للمؤتمر"	The "Steering Committee"
+يحتوي جزء	Has part
+ساهم في المؤتمر	Contributed to the Conference
+الموضوع أو مساهمة المرسلة	Subject or sending contribution
+ورشة عمل بلدي	My workshop
+دعوة سبولوريسينزينتا	Call sbolorisinzinta
+وقد موضوع حلقة العمل	The theme of the workshop was
+وقد رئيس حلقة العمل	And Chairman of the workshop
+وقد المؤتمر لجنة التوجيهية	The Steering Committee has the Conference
+ربط موضوع التخصص المفضل	Connect your favorite specialty theme
+وقد مجردة	Pruned
+وقد يوم مهم	Having a big day.
+دعت المراجع	Invited reviewer
+أن يكون عضوا في اللجنة	To be a member of the Committee
+منصبي	My post
+تفضيل أو خبرة منظمة الصحة العالمية	Preference or who experience
+قدم	Feet
+وقد قسم	Has been divided
+موضوع المؤتمر	The theme of the Conference
+استعراض بلدي	My review
+وقد قامت "لجنة المؤتمر"	Having the "Conference Committee"
+تفضيل أو الخبرة للمراجع	Preference or experience to references
+الجزء الأول من الوثيقة	The first part of the document
+وليس لدى اللجنة،	The Committee has,
+الناشر للإجراءات	Publisher for actions
+أن "اللجنة المنظمة" للمؤتمر	The "Organizing Committee" for the Conference
+تكون "لجنة المؤتمر"	"Conference Committee."
+وقد رئيس اللجنة	And Chairman of the Committee
+وتنشر	And published
+أن ما هو رئيس حلقة العمل	What is the Chairman of the workshop
+وقد قامت "لجنة تنظيم المؤتمر"	And the Organizing Committee of the Conference "
+عضو	Member
+البرنامج التعليمي الخاص بي	My tutorial
+وقد أرسلت	Has posted
+الوظيفة ملاحظات	Post reviews
+يوم مهم للمؤتمر	Big day for the Conference
+أن رئيس اللجنة	The Chairman of the Committee
+نشرت فيها	Posted in it
+وقد قامت "لجنة برنامج المؤتمر"	Having the Conference Programme Committee "
+يمكن برمجة "مؤتمر اللجنة"	"Conference Committee" can be programmed
+قدمها منهم	By them
+أن يكون رئيس المشارك للجنة	Co-President of the Commission should be
+تم تعيينه لمصلحة المراجع	Assigned to the benefit of references
+شهادة مراجعة بلدي	My review certificate
+سلسلة المؤتمرات	Series of conferences
+متكلم مدعو	Invited speaker
+الأفضلية للمدقق	Preference to the auditor
+مرشح المؤتمر الذين قد دفعوا رسوم المؤتمر أواخر	Congress who have paid the Conference fees late
+مؤلف مساهمات منتظمة	The author of regular contributions
+مقاطع من المؤتمر	Sections of the Conference
+مساهمة المفترضة	The assumed contribution
+كوفيرينزبيويربير	Kovirinzbioirbare
+موعد هام	Important date
+المشاركة في المؤتمرات	Participation in conferences
+مرشح المؤتمر الذي قد دفع رسوم المؤتمر	The Congress candidate might pay Conference fees
+مساهمة أدار	Contribution to March
+شبكة الإنترنت للمؤتمر	Internet Conference
+مساهمة مقدم	Contribution submitted
+إشعار المجلس	Notice Board
+انتهاء المؤتمر	End of Conference
+المؤلف الأساسي لمساهمة	The primary author of the contribution
+المشاركون في المؤتمر، قدمت مساهمة واحدة	Participants in the Conference, one contribution
+مساهمة المرفوضة	Rejected contribution
+مساهمة كتابية	Written contribution
+مرشح المؤتمر الذين قد دفعوا رسوم المؤتمر مبكرا	Congress who have paid the Conference fees early.
+مجال الخبرة الفنية للمدقق	The area of expertise of the auditor
+مدير حلقة العمل	Workshop Manager
+المشاركون في المؤتمر	Participants at the Conference.
+التقدم المحرز في المؤتمر	Progress at the Conference.
+نداء لتقديم تبرعات	Call for contributions
+كوفيرينزدوكومينت	Kovirinzdokomint
+مساهمة دروكفيرتيجير	Contribution drokvirtigare
+ملخص الموسعة	Extended summary
+درجة من موضوع المدقق	Degree of subject Checker
+تاريخ انتهاء	End date
+عدد إحراز تقدم المؤتمر	Number of progress Convention
+وقد الجنس	Having sex
+تاريخ الإشعار بالقبول	The date of notification of acceptance.
+مجرد تفضيل الخبراء	Just the expert preference
+تاريخ بدء	Start date
+تاريخ تقديم جاهزة للطباعة	Date of submission of print-ready
+isbn التقدم الذي	Isbn progress
+باسم معين	With the given name
+عنوان المؤتمر	Conference address
+تاريخ إيداع مساهمة كاملة	Filing date of full contribution
+يحتوي عنوان البريد الإلكتروني	The e-mail address contains
+وقد صدرت في التاريخ التالي	The following history has been issued
+ويقدم	And offers
+وقد ستيلفيرتريندين رئيس	Stilvertrindine was President of
+وتشعر اللجنة المؤتمر	The Conference Committee
+وقد الرئيس	The President has
+وتشعر اللجنة برنامج المؤتمر	The Conference Programme Committee
+هو الجزء الوحيد من	Is the only part of
+قدم الموضوع أو التبرعات	The topic was introduced or donations
+وهو نائب رئيس اللجنة	And is Vice Chairman of the Committee
+عبارة عن مقطع من موضوع المؤتمر	A section of Conference theme
+وقد اينجريتشت مساهمة	Ingricht has a contribution
+وقد تفضيل خبراء المخصصة	Ad hoc experts may prefer
+وقد تعليمي	And tutorial
+وقد تسلسل	Having the sequence
+الخبراء المدعوون	Invited experts
+الموضوع المفضل أو مجال من مجالات الخبرة خبير	Favorite topic or area of expertise, expert
+عضو في	Member of the
+وقد ورشة عمل	Having a workshop
+الناشر للتقدم المؤتمر	Publisher for progress Conference
+مساهمة عامة	General contribution
+تفضيل أو مجال من مجالات الخبرة للمدقق	Preference or area of expertise to the auditor
+لجنة المؤتمر	Conference Committee
+إدارة ورشة عمل	Management workshop
+هو "لجنة برنامج المؤتمر"	"The Conference Programme Committee"
+هو "مؤتمر اللجنة التوجيهية"	Is the "Steering Committee"
+لديه موعد هام	Has an important date.
+مع جيدة تدعو الثامنة	With a good eighth invites
+موضوع حلقة العمل	The theme of the workshop
+جزء من سلسلة المؤتمرات	Part of a series of conferences
+إجراء عرض تقديمي	Giving a presentation
+وقد قطع	And cut
+موعد مهم في سلسلة المؤتمرات	An important date in the series
+من "اللجنة المنظمة" للمؤتمر	"Organizing Committee" for the Conference
+وهو مدير حلقة العمل	Workshop Director
+وقد رأي الخبراء	And expert opinion
+وهو رئيس اللجنة	He is Chairman of the Committee
+وقد رأي	He's seen
+وقد ملخص	Having a summary
+المقدم من	Submitted by
+ونشرت	And published
+موضوع مفضل لخبير	A favorite theme of an expert
+تنظيم اللجنة	Organizing Committee
+طلب المشاركة	Asked to participate
+مشارك نشط في المؤتمر	Active participant at the Conference.
+المساهمة في كتابة	Contribute to write
+شخص مسجل للمؤتمر	People registered for the Conference
+مساهمة المقبولة	Acceptable input
+حجم المؤتمر	The size of the Conference
+المساهمة في المؤتمر	Contribute to the Conference
+طلب لتقديم	Request for offer
+الخبرة المكتسبة للمراجع	Experience gained to references
+محرر	Editor
+معدلات المؤتمر	Conference rates
+حلقات العمل المنظم	Organized workshops
+مساهمة المنقحة	The revised contribution
+السلبي من المشاركين في المؤتمر	Downside of Conference participants
+مساهمة البلاغ الأول	The contribution of the first communication
+الشخص الذي دفع رسوم المؤتمر	The person who paid the Conference fees
+جاهزة للشحن النهائي مساهمة	Ready for final shipping contribution
+تفضيل المراجع	A preference references
+شخص دفع الرسوم المتأخرة للمؤتمر	People paying late fees for the Conference
+www المؤتمر	Www Conference
+ودعا	Called
+الشخص الذي قام بإرسال طلب إلى المؤتمر	The person who submitted the request to the Conference
+لوحة	Plate
+نظرة عامة حول تمديد	Extension overview
+نظرة عامة	Overview
+ضيف	Guest
+الشخص مبلغاً مقدما من رسوم المؤتمر	Person an advance of Conference fees
+الشخص الذي يرسل تبرعا للمؤتمر	The person who sends a contribution to the Conference
+أسماء آخر	Other names
+هو تاريخ قبول الإعلان	Is the date of acceptance of the Declaration
+تاريخ انتهاء المشروع	Project finish date
+لديه خبرة	Has experience
+تاريخ تقديم الملخصات	Date of submission of abstracts
+وقد بين الجنسين	Gender has been
+وقد قدر	It has been estimated
+وقد isbn	Having isbn
+تاريخ مقالات طويلة	History of long articles
+تاريخ المسألة	Date of issue
+وقد وحدة التخزين	Volume has been
+هو تاريخ النسخ النهائية للمواد	Is the date of the final versions of articles
+يحتوي url	Url contains
+كوريفيسوريس المدعوين	Guest korivisoris
+لجنة توجيهية	Steering Committee
+وهو ينتمي إلى مرجع من الاستعراض	It belongs to a review
+الدروس	Lessons
+مشاكل	Problems
+كانت لجنة من	The Committee of
+يكون نائب "رئيس اللجنة"	The Deputy Head of the Commission "
+وقد إيمبرورتانتيس التواريخ	Having aimbrortantis dates
+وقد اللجنة رئيس	The Committee has
+لديك موضوع أو مساهمة في المقدمة	You have a theme or contribution provided
+وتساهم	And contribute to
+وقد عقد حلقات عمل	And workshops
+موضوع الحلقة--تعليمي	Theme of episode-tutorial
+ولديه خبرة في استعراض المواد	And has experience in reviewing articles
+اشتراكات	Subscriptions
+وجزء من موضوع المؤتمر	And part of the theme of the Conference
+كان فريق تنظيم حلقات عمل	Team workshops
+يكون برنامج اللجنة	The Programme Committee
+لجنة التنظيم	Organization Committee
+ودعا قبل	Called before
+لديك مراجع أو الخبرة في استعراض المواد	You have references or experience in reviewing articles
+ينتمي إلى وحدة التخزين المؤتمر	Belongs to the Conference volume
+وكان رئيس اللجنة	He was Chairman of the Committee
+بتنظيم حلقة عمل تعليمي	An educational workshop
+وكان نائب رئيس اللجنة	He was Deputy Chairman of the Committee
+وقد المؤلف	And copyright
+وجزء من وحدات التخزين للمؤتمر	And part of the volumes of the Conference
+تم تعيينك مرجع التنقيحات	You are assigned a reference revisions
+وقد المراجع	Having references
+وكان "لجنة البرنامج"	The "Program Committee"
+وقد نظرة عامة	Having an overview
+قدمها	Submitted by
+وقد محرر	And editor
+وقد قدم مساهمة	Has made a contribution
+لوحات	Plates
+تقديم العروض التقديمية	Give presentations
+وكان تنظيم لجنة	He was organizing Committee
+وكان اللجنة التوجيهية من	The Steering Committee was
+إرسال إلى	Send to
+وكان عضوا في	He was a member of the
+لجنة	Committee for
+الأفضلية للمراجع	Preference to references
+مرشح مسجل	Registered candidates
+الشخص الذي قام دفع رسوم التسجيل مسبقاً	The person who paid the registration fee in advance
+رئيس ورشة عمل الدورة	Head of a workshop session
+شخص الذين قد تقدموا بطلبات للمشاركة في مؤتمر	A person who has applied to participate in the Conference
+مساهمة ردها	Contributions refunded
+عضو اللجنة	Committee Member
+مشارك مؤتمر	Conference participant
+الصيغة النهائية لمساهمة	The final version of the contribution
+الدورة	Session
+ورقة المؤتمر	Conference paper
+الشخص الذي قد دفع رسوم التسجيل	The person who has paid the registration fee
+الشخص الذي قد دفع رسوم التسجيل المتأخر	The person who has paid the fee for late registration
+دعوة لتقديم أوراق	Call for papers
+العرض الرئيسي	Master view
+مساهمة رفض	Contribution to reject
+كاتب العادية	Regular writer
+لنوع	For the type of
+للاسم الأول	For first name
+هو تاريخ انتهاء	Is the end date
+لدرجة	To the extent
+هو تاريخ لتقديم خلاصة	Is the date for the submission of abstract
+تاريخ النشر	Date posted
+لعنوان url	Url address
+هو تاريخ البدء	Is the start date
+لاسم	The name
+لخبرة	To experience
+أجل isbn	For isbn
+هو تاريخ تقديم النسخة الكاملة	Is the date of submission of full version
+لوحدة التخزين	For volume
+هو تاريخ الإشعار بالقبول	Is the date of notice of acceptance
+للبريد الإلكتروني	For email
+هو تاريخ تقديم النسخة النهائية	Is the date of submission of the final version
+للدورة	For the course
+للناشر	For Publisher
+تنتمي إلى وحدة تخزين للمؤتمر	Belong to a volume of the Conference
+يقيم	Assesses
+وكان رئيسا لحلقة العمل	He was Chairman of the workshop
+وقد "رئيس اللجنة"	The "Chairman"
+قدم العرض التقديمي	Gave a presentation
+تشكيل لجنة توجيهية	A Steering Committee
+مراجع	References to
+سمة أو لتقديم	Attribute or to provide
+جزء من وحدة التخزين للمؤتمر	Part of the volume of the Conference
+رئيس المشارك للجنة	Co-President of the Commission
+تفضيل أو الخبرة	Preference or experience.
+وكانت لجنة تنظيمية من	Regulatory Commission
+لديه خبرة المراجع	Has experience references
+وكان "رئيس لجنة" مؤلفة من	"Commission" composed of
+أجل تقديم	In order to provide
+وقد كان عضوا في	And he was a member of the
+للمساهمات	For contributions
+وكانت لجنة توجيهية من	A Steering Committee of
+لتعليمي	For the tutorial
+للأعضاء	For members
+ينتمي إلى المراجع	Belongs to the references
+لملخص	For a summary
+وقد منحت إلى تفضيل لتصحيح التجارب المطبعية	Awarded to a preference for proofreading
+للتواريخ الهامة	For important dates
+لحلقة العمل	For the workshop
+وقد موضوعا لحلقة العمل	Having a theme for the workshop
+بدعوة من	At the invitation of
+وكانت لجنة من	The Committee of
+لجزء	To part
+تدعو المراجع المشارك	Invite participant references
+هو رهنا	Is the subject
+ينتمي إلى تفضيل من المراجع	Belongs to the preference of the references
+للجنة	Of the Commission
+وقد تم وضع برنامج اللجنة من	The Committee has been developing a programme of
+لقد كان رئيس المشارك للجنة	He was Chairman of the Committee-
+للجنة التنظيمية	Organizational Committee
+يتم توفيرها من قبل	Is provided by
+لرئيس حلقة العمل	Chairman of the workshop
+مقدم الطلب المسجل	Registered applicant
+يدفع مقدم الطلب	Applicant pays
+استعراض الخبرة	Review of experience
+استعراض الأفضلية	Priority review
+دورة مكثفة	Intensive course
+رسوم قابلة للطباعة	Printable fee
+مشارك في المؤتمر	Participants at the Conference.
+استدعاء إينزينزينجين	Call ainzinzingin
+محاضرة عن دعوة	Lecture on the invitation
+مشارك مؤتمر السلبي	Negative conference participant
+الكاتب الأول	First writer
+رسوم المقبولة	Admissible fees
+المسار-ورشة عمل الرئيس	Course-workshop chair
+المسار	Path
+حزمة المؤتمر	Conference package
+رسوم العضوية المرفوضة	Membership fee rejected
+استعراض مساهمة	Review of the contribution
+رسوم العضوية العادية	Regular membership fee
+مقدم الطلب تأخر دفع	Applicant delayed payment
+مساهمة المؤلف المشارك	Co-author's contribution
+طالب المؤتمر	Student Conference
+مقدم الطلب المبكر المدفوعة	Early applicant paid
+يحتوي على url	Contains the url
+تاريخ تقديم خلاصة	Date of submission of abstract
+تاريخ تقديم نسخة جاهزة للطباعة	Print-ready version history
+برسالة بريد إلكتروني	In an e-mail message
+حاصل على درجة	Holds a degree
+تاريخ تقديم المقالة بالكامل	Date of submission of full article
+يحتوي على اسم	Contains the name of the
+تاريخ الإصدار	Release date
+يحتوي على جزء	Contains a part
+تاريخ النشر للقبول	Publication date for admission
+وقد سنيلكورسوسين	Snilkorsosin has
+وترد عليه	And answer it.
+وكان فريق توجيهي من	The Steering Group was
+وقد رئيس المشارك اللجنة	The Commission has co-President
+وكان مسار-رئيسا لحلقة العمل	Path was Chairman of the workshop
+ينتمي إلى مجموعة المؤتمر	Belongs to a Group Conference
+وقد نبذة مختصرة	Having a brief
+كانت اللجنة منظمة من	The Organization Committee
+وتدعو كوريسينسينتين من	Korisinsintin calls from
+وكان برنامج اللجنة من	The Programme Committee
+ينتمي إلى مرجع استعراض	Belongs to reference review
+يعطي العروض التقديمية	Give presentations
+وقد منظمة اللجنة	The Committee has organized
+موضوع نصيب المؤتمر	Share topic Conference
+خبرة الاستعراض	Browsing experience
+تواريخ هامة	Significant dates
+ينتمي إلى ريسينسينتين	Belongs to risinsintin
+جزء من حزمة المؤتمر	Part of the Conference package
+رئيس اللجنة	Chairman of the Committee
+مقدم	Submitted by
+تم إنشاء لجنة من	A Committee was created in
+يتم تعيين إشارة استعراض	Flag is set review
+موضوع أو مساهمة في المقدمة	Subject or contribution provided
+وقد دورة مكثفة-المسار--ورشة عمل في الرئيس	Having an intensive course-course-workshop on the President
+وقد ناشر	Having a Publisher
+المساهمة	Contributing to
+وكان الرئيس المشارك للجنة	He was co-Chairman of the Committee
+مجموعة التوجيه	Routing group
+النفقات	Expenses
+وقد رسم عضوية معلقة	Pending membership fee has
+وقد استعراض	Having reviewed the
+خبرة مرجع استعراض	Experience reference review
+وقد موضوع المسار-ورشة عمل--تحطم دورة	The track was the theme-workshop-crash course
+وقد موضوع مساهمة في المقدمة	Having the subject contribution provided
+يحتوي على مرجع استعراض أو الخبرة	Contains a reference to review or experience
+رسوم التسجيل في المؤتمر	Congress registration
+محاضرة ضيف	Guest lecture
+محاضر زائر	Guest lecturer
+أعمال تحت التنفيذ	WIP
+تتبع حلقة العمل المنسق	Follow the Coordinator's workshop
+مشارك تدفع متأخرة	Participants pay late.
+موقع ويب المؤتمر	Conference Web site
+مساهمة المقالة بالكامل	Contribution to full article
+مشارك مسجل	A registered participant
+المنسق المشارك	Co-coordinator
+مشارك المدفوعة	Participants paid
+استعراض التخصصي	The specialist review
+المنسق العام	General Coordinator
+وثيقة من وثائق المؤتمر	Conference document
+النسخة النهائية من مساهمة	The final version of the contribution
+المساهمات المقدمة	Contributions
+نهاية المدفوعة مسبقاً	The end of the prepaid
+صاحب شركة مساهمة	His stock company
+يوم اختتام	Closing day
+تاريخ التسليم للصيغة النهائية للمادة	The delivery date for the final version of the article
+تاريخ البدء	Start date
+دبلوم المراجعة	Diploma review
+isbn حوليات	Isbn annals
+المتخصصة المراجع	Specialized bibliography
+رقم وحدة التخزين حوليات	Annals volume number
+تاريخ الإعلان عن القبول	Date of admission
+تاريخ تقديم موجز	Provide a brief history
+المراجع المتخصصة	Specialized reference
+وقد "المنسق العام"	The "General Coordinator"
+كان منسق	The Coordinator
+ميزات الكتاب	The book features
+عقدت حلقة عمل منسق المسار	Track coordinator workshop
+وكان "المنسق العام"	He was "Chief Coordinator"
+شركة تدعو المراجعين	Company invites reviewers
+وقد موضوع مسار لحلقة العمل، والبرنامج التعليمي	The theme has a path to the workshop and tutorial
+هذا موضوع لأجزاء من المؤتمر	This subject to parts of the Conference
+كانت "لجنة برنامج المؤتمر"	"The Conference Programme Committee"
+ينتمي إلى تفضيلها للاستعراض	Belongs to a preference for review
+ينتمي إلى وحدة تخزين المؤتمر	Belongs to the Conference volume
+دروس الميزات	Feature tutorials
+وقد موجز	And summary
+كانت "لجنة تنظيم المؤتمر"	"Commission"
+وقد منسق مسار لحلقة العمل، والبرنامج التعليمي	A path has been coordinator of the workshop and tutorial
+وقد شارك منسق	Rich has participated
+وقد استعراض التفضيل أو التخصص	Preference has been reviewed or specialization
+كان "مؤتمر اللجنة التوجيهية"	"The Conference Steering Committee"
+ويتميز المسارات	It features tracks
+ينتمي إلى المراجعين	Belongs to reviewers
+وقد قدمت مساهمة	And have made a contribution
+موضوع أو الموضوع	Subject or topic
+تم تعيين تفضيل للاستعراض	Preference is set for review
+كانت "لجنة المؤتمر"	"Conference Committee."
+وقد استعراض التخصصي	The specialist has reviewed
+عروض وزير	The Minister offers
+جزء من مجلدات المؤتمر	Part of the Conference folders
+شارك في تأليف العمل	Co-authored work.
+المجلس العلمي	The Scientific Council
+رئيس قسم، حلقة دراسية	Section Chief, seminar
+مؤتمر الأطراف	The Conference of the parties
+بوث	Booth
+1 صاحب العمل	1 employer
+قسم	Department of
+العمل بالنسخة النهائية	Work with final version
+عنوان إنترنت للمؤتمر	The Internet address of the Conference
+واعتمدت في العمل	And adopted at work
+مؤتمر العمل	Labour Conference
+رسالة المعلومات	Information message
+حزب مسجل	Registered party
+تأخر شراء الطرف	Delayed buying party
+متطلبات للاستعراض	Review requirements
+تقرير ضيف	Report of a guest
+شراء الطرف	Buy party
+المؤتمر الصحفي	The press conference
+عمل بودانيج	Work bodanig
+الشخص وسم المساهمات المقدمة إلى المؤتمر	Person marking the contributions to the Conference
+أوائل شراء الطرف	Early buying party
+ملاحظات الخبرة	Reviews of experience
+إنجاز العمل	Complete work
+عمل أوتريسينزيروفانج	Work uttrisinzirovang
+الأعمال الكتابية	Clerical work
+دورة تدريبية	A training course
+رفض العمل	Refuse to work
+isbn	isbn
+تاريخ الإعلان على اتخاذ	Date to take
+تاريخ لعرض المقالة بالكامل	Date to view full article
+الاختصاص	Jurisdiction
+تاريخ الإيداع للصيغة النهائية للمادة	The filing date for the final version of the article
+اللقب	Title
+تاريخ تقديم شروح	History of providing explanations
+عنوان إنترنت	Internet address
+الملعب	Playground
+درجة	The degree of
+تاريخ الانتهاء	Finish date
+paul	paul
+نائب رئيس اللجنة	Vice Chairman of the Committee
+هو الموضوع المؤتمرات أجزاء	Conference theme parts
+الأعضاء	Members
+الدورات التدريبية	Training courses
+وكان تنظيم اللجنة	The Committee was organized
+الحلقات الدراسية	Seminars
+عمل عرض تقديمي	Making a presentation
+جاء في بيان المؤتمر	Conference statement
+جزء من القضية (s) للمؤتمر	Part of the issue (s) of the Conference
+ودعت منظمة الصحة العالمية	The World Health Organization called
+الرئيس المشارك للجنة	Co-Chairman of the Committee
+تحديد الاحتياجات المتعلقة بملاحظات	Determine requirements for reviews
+وكان رئيسا للقسم، الحلقة الدراسية	He was head of the Department, the seminar
+قسم الموضوع، حلقة دراسية، دورة تدريبية	Topic section, seminar, training session
+موضوع أو عمل قدم	Subject or the work presented
+جزء	Part
+وينتقد	And criticize
+في المقدمة	In the foreground
+استعراض rekommendaciâ أو اختصاص	Review of rekommendaciâ or competence
+رئيس قسم، حلقة دراسية، obučaûŝegokursa	Section Chief, seminar, obučaûŝegokursa
+قام	The
+ترودي	Trudy
+وتدعو إلى المراجعين	And calls for reviewers
+وكان عضوا	He was a member of
+المؤلف	Author
+مملوكة للمراجعين	Owned by reviewers
+استعراض rekommendaciâ	Rekommendaciâ review
+وكان "المجلس العلمي"	The "Scientific Council"
+يسهم في	Contributes to
+أنه بمثابة برنامج اللجنة	He served as program Committee

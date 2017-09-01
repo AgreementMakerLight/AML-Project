@@ -700,3 +700,66 @@ número volume dos anais	Annals volume number
 último dia evento	last day event
 dia de início evento	start day event
 possui nome patrocinador	has name sponsor
+solução	solution
+resumo artigo	summary article
+presidente	President
+resenha do livro	Book review
+o autor não é um revisor	the author is not a reviewer
+desvio	detour
+a adopção de	the adoption of
+a versão completa do artigo	the full version of the article
+meta-resenha	Meta-review
+co-autor	co-author
+presidente do comité de programa	Chairman of the program Committee
+como um membro do comité de programa	as a member of the program Committee
+meta-revisor	Meta-reviewer
+vice-presidente	Vice President
+o presidente da conferência	the President of the Conference
+taxa de	rate of
+aceita pedidos de impressão	accepts print requests
+o endereço internet do web site	the internet address of the web site
+o nome	the name
+revisores do artigo	reviewers of the article
+o número de	the number of
+o id de artigo	the article id
+cabeçalho	header
+endereço de e-mail	email address
+o endereço de internet do logotipo	the internet address of the logo
+artigos máximos	maximum items
+quem rejeitou	who rejected
+quem começou a colocar apostas revisor	who started the place bets reviewer
+um revisor nomeado	a reviewer appointed
+para rever os critérios	to review the criteria
+tornar detalhes da conferência	make details of the Conference
+printhardcopymailingmanifests	printhardcopymailingmanifests
+quem acabou atribuindo artigos	who just assigning articles
+leia o revisor	read the reviewer
+quem mudou	who changed
+nota o conflito de interesses	Note the conflict of interest
+revisão terminado	review finished
+leia o meta-revisor	read the meta-reviewer
+quem comanda o programa artigos de destino	who runs the program destination articles
+permitir a reunião virtual	allow virtual meeting
+quem fez os detalhes	who did the details
+adiciona um membro comitê de programa	Adds a Member Program Committee
+terminar a atribuição dos artigos	finish the assignment of articles
+alterar a taxa de	change the rate of
+nomeação do revisor	appointment of Auditor
+rejeita o artigo	rejects the article
+enviar um artigo	submit an article
+atribuído a	assigned to
+começar a apostar o revisor	start betting the reviewer
+nomeia um revisor externo	appoints an external reviewer
+escrever um artigo	write an article
+reunião virtual de razeršëna	virtual meeting of razeršëna
+conflito de interesses	conflict of interest
+escrever um comentário	write a comment
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+escrever um artigo em co-autoria	write an article co-authored
+nomeado pelo administrador	appointed by the administrator
+critérios de avaliação induzido	induced evaluation criteria
+nomeado	named
+leia o artigo	read the article
+data adicionada	date added
+ninguém tomadas	anyone taken
+definir os máximos artigos	set the maximum articles
