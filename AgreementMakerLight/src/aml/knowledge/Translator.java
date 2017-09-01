@@ -28,8 +28,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
 
-import com.memetix.mst.language.Language;
-import com.memetix.mst.translate.Translate;
+import io.github.firemaples.language.Language;
+import  io.github.firemaples.translate.Translate;
 
 import aml.AML;
 
@@ -54,10 +54,8 @@ public class Translator
 			try
 			{
 				BufferedReader inStream = new BufferedReader(new FileReader(f));
-				String id = inStream.readLine();
 				String password = inStream.readLine();
-				Translate.setClientId(id);
-				Translate.setClientSecret(password);
+				Translate.setSubscriptionKey(password);
 				authenticated = true;
 				inStream.close();
 			}
