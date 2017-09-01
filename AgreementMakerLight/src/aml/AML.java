@@ -1007,30 +1007,21 @@ public class AML
 					{
 						if(option[1].equals(""))
 							continue;
+						HashSet<String> toMatch = new HashSet<String>();
 						String[] iris = option[1].split(";");
 						for(String i : iris)
-						{
-							int id = source.getIndex(i);
-							if(id != -1)
-								sourceIndividualsToMatch.add(id);
-						}
+							toMatch.add(i);
+						setSourceClassesToMatch(toMatch);
 					}
 					else if(option[0].equals("target_classes"))
 					{
 						if(option[1].equals(""))
 							continue;
-						if(option[1].equals("*"))
-						{
-							targetIndividualsToMatch.addAll(sourceIndividualsToMatch);
-							continue;
-						}
+						HashSet<String> toMatch = new HashSet<String>();
 						String[] iris = option[1].split(";");
 						for(String i : iris)
-						{
-							int id = target.getIndex(i);
-							if(id != -1)
-								targetIndividualsToMatch.add(id);
-						}
+							toMatch.add(i);
+						setSourceClassesToMatch(toMatch);
 					}
 				}
 				in.close();
