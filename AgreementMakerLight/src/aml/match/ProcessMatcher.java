@@ -91,6 +91,13 @@ public class ProcessMatcher implements PrimaryMatcher
 			}
 		}
 		a = neighborSimilarity(a);
+		double names = aml.getSource().getLexicon().nameCount(EntityType.INDIVIDUAL)*1.0/aml.getSource().count(EntityType.INDIVIDUAL);
+		names = Math.min(names, aml.getTarget().getLexicon().nameCount(EntityType.INDIVIDUAL)*1.0/aml.getTarget().count(EntityType.INDIVIDUAL));
+		if(aml.getIndividualConnectivity() < 0.9)
+		{
+			a = neighborSimilarity(a);
+			a = neighborSimilarity(a);
+		}
 		Alignment b = new Alignment();
 		for(Mapping m : a)
 		{

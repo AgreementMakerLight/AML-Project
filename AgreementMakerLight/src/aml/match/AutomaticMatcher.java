@@ -24,6 +24,7 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
+import aml.filter.CardinalitySelector;
 import aml.filter.DifferentClassPenalizer;
 import aml.filter.DomainAndRangeFilterer;
 import aml.filter.InteractiveFilterer;
@@ -277,6 +278,10 @@ public class AutomaticMatcher
 			dr.filter();
 		}
 		SelectionType sType = aml.getSelectionType();
+		int card = Math.max(aml.getSource().count(EntityType.CLASS), aml.getTarget().count(EntityType.CLASS))/
+				Math.min(aml.getSource().count(EntityType.CLASS), aml.getTarget().count(EntityType.CLASS));
+		if(size.equals(SizeCategory.SMALL))
+			card = 1;
 		if(size.equals(SizeCategory.HUGE))
 		{
 			ObsoleteFilterer or = new ObsoleteFilterer();
@@ -289,14 +294,14 @@ public class AutomaticMatcher
 			Alignment c = nb.rematch(a,EntityType.CLASS);
 			b = LWC.combine(b, c, 0.75);
 			b = LWC.combine(a, b, 0.8);
-			Selector s = new Selector(thresh-0.05,sType);
+			CardinalitySelector s = new CardinalitySelector(thresh-0.05,card,sType);
 			b = s.filter(b);
-			s = new Selector(thresh, sType, b);
+			s = new CardinalitySelector(thresh,card,sType,b);
 			s.filter();
 		}
 		else if(!im.isInteractive())
 		{
-			Selector s = new Selector(thresh,sType);
+			CardinalitySelector s = new CardinalitySelector(thresh,card,sType);
 			s.filter();
 		}
 		if(im.isInteractive())
@@ -311,8 +316,11 @@ public class AutomaticMatcher
 		}
 		else
 			im.setLimit(0);
-		Repairer r = new Repairer();
-		r.filter();
+		if(!size.equals(SizeCategory.HUGE) || aml.getAlignment().cardinality() < 1.5)
+		{
+			Repairer r = new Repairer();
+			r.filter();
+		}
 	}
 	
 	//Matching procedure for individuals
@@ -320,6 +328,7 @@ public class AutomaticMatcher
 	{
 		LanguageSetting lang = LanguageSetting.getLanguageSetting();
 		double connectivity = aml.getIndividualConnectivity();
+		double valueCoverage = aml.getIndividualValueDensity();
 		//Translation problem
 		if(lang.equals(LanguageSetting.TRANSLATE))
 		{
@@ -340,14 +349,18 @@ public class AutomaticMatcher
 			s.filter();
 		}
 		//Process matching problem
-		else if(connectivity >= 0.9)
+		else if(connectivity >= 0.9 || (connectivity >= 0.4 && valueCoverage < 0.2))
 		{
 			ProcessMatcher pm = new ProcessMatcher();
 			a = pm.match(EntityType.INDIVIDUAL, thresh);
 			aml.setAlignment(a);
 			if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
 				DifferentClassPenalizer.penalize();
-			Selector s = new Selector(thresh,SelectionType.PERMISSIVE);
+			Selector s;
+			if(aml.getAlignment().cardinality() >= 2.0)
+				s = new Selector(thresh,SelectionType.HYBRID);
+			else
+				s = new Selector(thresh,SelectionType.PERMISSIVE);
 			s.filter();
 		}
 		else
@@ -356,7 +369,7 @@ public class AutomaticMatcher
 			Alignment b = vm.match(EntityType.INDIVIDUAL, thresh);
 			double cov = Math.min(b.sourceCoverage(EntityType.INDIVIDUAL),
 					b.targetCoverage(EntityType.INDIVIDUAL));
-			System.out.println(cov);
+			System.out.println("ValueMatcher coverage : " + cov);
 			//ValueMatcher based strategy
 			if(cov >= 0.5)
 			{
@@ -372,6 +385,8 @@ public class AutomaticMatcher
 			//Default strategy
 			else
 			{
+				thresh = 0.2;
+				b = vm.match(EntityType.INDIVIDUAL, thresh);
 				HybridStringMatcher sm = new HybridStringMatcher(size.equals(SizeCategory.SMALL));
 				a = sm.match(EntityType.INDIVIDUAL, thresh);
 				ValueStringMatcher vsm = new ValueStringMatcher();
@@ -384,12 +399,14 @@ public class AutomaticMatcher
 
 				Alignment c = vsm.rematch(a, EntityType.INDIVIDUAL);
 				Alignment d = vlm.rematch(a, EntityType.INDIVIDUAL);
-				Alignment aux = LWC.combine(c, d, 0.5);
-				aux = LWC.combine(aux, b, 0.5);
-				aux = LWC.combine(aux, a, 0.5);
+				Alignment aux = LWC.combine(c, d, 0.75);
+				aux = LWC.combine(aux, b, 0.65);
+				aux = LWC.combine(aux, a, 0.8);
 				
 				Selector s = new Selector(thresh,SelectionType.PERMISSIVE,aux);
 				s.filter();
+				System.out.println(aml.getSelectionType());
+				System.out.println(aml.getAlignment().cardinality());
 			}
 		}
 	}

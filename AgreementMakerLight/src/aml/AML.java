@@ -1021,7 +1021,7 @@ public class AML
 						String[] iris = option[1].split(";");
 						for(String i : iris)
 							toMatch.add(i);
-						setSourceClassesToMatch(toMatch);
+						setTargetClassesToMatch(toMatch);
 					}
 				}
 				in.close();
