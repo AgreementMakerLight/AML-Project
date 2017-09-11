@@ -103,7 +103,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 			Set<String> names = ext.getNames(hit);
 			for(String n : names)
 			{
-				double sim = maps.get(s,hit) * ext.getWeight(n, hit);
+				double sim = maps.get(s,hit);
 				source.add(s, n, "en", TYPE, uri, sim);
 			}
 		}
@@ -128,7 +128,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 			Set<String> names = ext.getNames(hit);
 			for(String n : names)
 			{
-				double sim = maps.get(s,hit) * ext.getWeight(n, hit);
+				double sim = maps.get(s,hit);
 				target.add(s, n, "en", TYPE, uri, sim);
 			}
 		}
