@@ -91,23 +91,23 @@ public class Ontology
 	//Its lexicon
 	protected Lexicon lex;
 	//Its value map
-	private ValueMap vMap;
+	protected ValueMap vMap;
 	//Its word lexicon
-	private WordLexicon wLex;
+	protected WordLexicon wLex;
 	//Its reference map
-	private ReferenceMap refs;
+	protected ReferenceMap refs;
 	//The map of class names (String) -> indexes (Integer) in the ontology
 	//which is necessary for the cross-reference matching
-	private HashMap<String,Integer> classNames;
+	protected HashMap<String,Integer> classNames;
 	//Its set of obsolete classes
-	private HashSet<Integer> obsolete;
+	protected HashSet<Integer> obsolete;
 	
 	//Global variables & data structures
-	private AML aml;
-	private boolean useReasoner;
-	private boolean isSKOS;
-	private URIMap uris;
-	private RelationshipMap rm;
+	protected AML aml;
+	protected boolean useReasoner;
+	protected boolean isSKOS;
+	protected URIMap uris;
+	protected RelationshipMap rm;
 	
 	//Auxiliary data structures to capture semantic disjointness
 	private Table2Map<Integer,Integer,Integer> maxCard, minCard, card;
@@ -119,7 +119,7 @@ public class Ontology
 	/**
 	 * Constructs an empty ontology
 	 */
-	private Ontology()
+	protected Ontology()
 	{
 		//Increase the entity expansion limit to allow large ontologies
 		System.setProperty(LIMIT, "1000000");
@@ -1367,7 +1367,7 @@ public class Ontology
 				}
 			}
 		}
-		//Classes that incompatible value restrictions for the same object property
+		//Classes with incompatible value restrictions for the same object property
 		//(i.e., the restrictions point to disjoint classes)
 		//First allValues restrictions
 		for(Integer prop : objectAllValues.keySet())
@@ -1399,7 +1399,7 @@ public class Ontology
 			}
 		}
 		//Finally someValues restrictions on functional properties
-		for(Integer prop : objectAllValues.keySet())
+		for(Integer prop : objectSomeValues.keySet())
 		{
 			if(!rm.isFunctional(prop))
 				continue;
@@ -1413,7 +1413,7 @@ public class Ontology
 				int c1 = objectSomeValues.get(prop, cl.get(i));
 				for(int j = i + 1; j < cl.size(); j++)
 				{
-					int c2 = objectAllValues.get(prop, cl.get(j));
+					int c2 = objectSomeValues.get(prop, cl.get(j));
 					if(c1 != c2 && rm.areDisjoint(c1, c2))
 						rm.addDisjoint(cl.get(i), cl.get(j));
 				}
