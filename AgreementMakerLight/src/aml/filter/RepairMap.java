@@ -251,10 +251,10 @@ public class RepairMap implements Iterable<Integer>
 		}
 		//Otherwise, add all classes involved in mappings
 		for(Integer i : a.getSources())
-			if(AML.getInstance().getURIMap().isClass(i))
+			if(aml.getURIMap().isClass(i))
 				classList.add(i);
 		for(Integer i : a.getTargets())
-			if(AML.getInstance().getURIMap().isClass(i))
+			if(aml.getURIMap().isClass(i))
 				classList.add(i);
 		
 		//Then build the checkList
@@ -401,6 +401,8 @@ public class RepairMap implements Iterable<Integer>
 		{
 			int source = m.getSourceId();
 			int target = m.getTargetId();
+			if(!aml.getURIMap().isClass(source) || !aml.getURIMap().isClass(target))
+				continue;
 			//Check if there is no descendant in the checkList
 			boolean isRedundant = false;
 			HashSet<Integer> descendants = new HashSet<Integer>(rels.getSubClasses(source, false));
