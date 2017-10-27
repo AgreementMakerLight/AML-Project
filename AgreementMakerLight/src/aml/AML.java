@@ -100,14 +100,15 @@ public class AML
 	private double fMeasure;
 	//General matching settings
 	private boolean useReasoner = false;
+	private boolean matchSameURI = false;
 	private boolean matchClasses;
 	private boolean matchIndividuals;
 	private boolean matchProperties;
 	private final String LOG = "log4j.properties";
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
-	private Set<Integer> sourceClassesToMatch;
-	private Set<Integer> targetClassesToMatch;
+	private Set<Integer> sourceIndividualsToMatch;
+	private Set<Integer> targetIndividualsToMatch;
 	private InstanceMatchingCategory inst;
 	private LanguageSetting lang;
 	private SizeCategory size;
@@ -233,6 +234,11 @@ public class AML
 		}
 		selectedSources = new Vector<String>(bkSources);
 		
+		//Custom Match
+		matchSteps = new Vector<MatchStep>();
+		for(MatchStep s : MatchStep.values())
+			matchSteps.add(s);
+		
 		matchClasses = hasClasses();
 		double sourceRatio = (source.count(EntityType.DATA) + source.count(EntityType.OBJECT)) * 1.0 / source.count(EntityType.CLASS);
 		double targetRatio = (target.count(EntityType.DATA) + target.count(EntityType.OBJECT)) * 1.0 / target.count(EntityType.CLASS);
@@ -240,9 +246,9 @@ public class AML
 		sourceRatio = source.count(EntityType.INDIVIDUAL) * 1.0 / source.count(EntityType.CLASS);
 		targetRatio = target.count(EntityType.INDIVIDUAL) * 1.0 / target.count(EntityType.CLASS);
 		matchIndividuals = hasIndividuals() && sourceRatio >= 0.25 && targetRatio >= 0.25;
-		inst = InstanceMatchingCategory.DIFFERENT_ONTOLOGIES;
 		if(matchIndividuals)
 		{
+			inst = InstanceMatchingCategory.DIFFERENT_ONTOLOGIES;
 			double share = Similarity.jaccard(source.getEntities(EntityType.CLASS),
 					target.getEntities(EntityType.CLASS));
 			if(share >= 0.5)
@@ -251,9 +257,18 @@ public class AML
 				matchClasses = false;
 				matchProperties = false;
 			}
+			else if(sourceRatio > 1 && targetRatio > 1)
+			{
+				matchClasses = false;
+				matchProperties = false;
+			}
+			sourceIndividualsToMatch = source.getEntities(EntityType.INDIVIDUAL);
+			targetIndividualsToMatch = target.getEntities(EntityType.INDIVIDUAL);
 		}
 		
     	size = SizeCategory.getSizeCategory();
+    	if(size.equals(SizeCategory.HUGE))
+    		threshold = 0.7;
     	lang = LanguageSetting.getLanguageSetting();
 		languages = new HashSet<String>();
 		for(String s : source.getLexicon().getLanguages())
@@ -272,8 +287,8 @@ public class AML
 		flagSteps = new Vector<Problem>();
 		for(Problem f : Problem.values())
 			flagSteps.add(f);
-		sourceClassesToMatch = new HashSet<Integer>();
-		targetClassesToMatch = new HashSet<Integer>();
+		sourceIndividualsToMatch = new HashSet<Integer>();
+		targetIndividualsToMatch = new HashSet<Integer>();
 		readConfigFile();
     }
     
@@ -414,6 +429,15 @@ public class AML
     {
 		return individualDistance;
 	}
+	
+	/**
+	 * @return the number of Data and Annotation properties in the ValueMaps
+	 */
+	public double getIndividualValueDensity()
+	{
+		return Math.min(source.getValueMap().size()*1.0/source.count(EntityType.INDIVIDUAL),
+				target.getValueMap().size()*1.0/target.count(EntityType.INDIVIDUAL));
+	}
 
     /**
      * @return this (single) instance of the AML class
@@ -548,12 +572,11 @@ public class AML
 	}
 
 	/**
-	 * @return the set of classes of the source ontology to which
-	 * the individuals to match belong to
+	 * @return the set of individuals of the source ontology to match
 	 */
-	public Set<Integer> getSourceClassesToMatch()
+	public Set<Integer> getSourceIndividualsToMatch()
 	{
-		return sourceClassesToMatch;
+		return sourceIndividualsToMatch;
 	}
 	
 	/**
@@ -573,12 +596,11 @@ public class AML
 	}
  
 	/**
-	 * @return the set of classes of the target ontology to which
-	 * the individuals to match belong to
+	 * @return the set of individuals of the target ontology to match
 	 */
-    public Set<Integer> getTargetClassesToMatch()
+    public Set<Integer> getTargetIndividualsToMatch()
     {
-		return targetClassesToMatch;
+		return targetIndividualsToMatch;
 	}
 
 	/**
@@ -657,6 +679,15 @@ public class AML
    			(source.count(EntityType.OBJECT) > 0 && target.count(EntityType.OBJECT) > 0));
     }
     
+    /**
+     * @return whether there are cross-references in at least one ontology
+     */
+    public boolean hasReferences()
+    {
+    	return hasOntologies() &&
+   			(source.getReferenceMap().size() > 0 || target.getReferenceMap().size() > 0);
+    }
+    
     public boolean isHierarchic()
     {
 		return hierarchic;
@@ -664,22 +695,12 @@ public class AML
     
     public boolean isToMatchSource(int index)
     {
-    	if(sourceClassesToMatch.isEmpty())
-    		return true;
-		for(int cl : sourceClassesToMatch)
-			if(rels.belongsToClass(index, cl))
-				return true;
-		return false;
+    	return sourceIndividualsToMatch.contains(index);
 	}
 
     public boolean isToMatchTarget(int index)
     {
-    	if(targetClassesToMatch.isEmpty())
-    		return true;
-		for(int cl : targetClassesToMatch)
-			if(rels.belongsToClass(index, cl))
-				return true;
-		return false;
+    	return targetIndividualsToMatch.contains(index);
 	}
     
     /**
@@ -780,6 +801,24 @@ public class AML
     public void matchProperties(boolean match)
     {
     	matchProperties = match;
+    }
+    
+    /**
+     * @return whether same URI matching is on
+     */
+    public boolean matchSameURI()
+    {
+    	return matchSameURI;
+    }
+    
+    /**
+     * Sets the matchSameURI parameter that determines
+     * whether entities with the same URI will be matched
+     * @param match: whether to match entities with the same URI
+     */
+    public void matchSameURI(boolean match)
+    {
+    	matchSameURI = match;
     }
     
     /**
@@ -967,34 +1006,27 @@ public class AML
 					}
 					else if(option[0].equals("use_reasoner"))
 						useReasoner = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("match_same_uri"))
+						matchSameURI = option[1].equalsIgnoreCase("true");
 					else if(option[0].equals("source_classes"))
 					{
 						if(option[1].equals(""))
 							continue;
+						HashSet<String> toMatch = new HashSet<String>();
 						String[] iris = option[1].split(";");
 						for(String i : iris)
-						{
-							int id = source.getIndex(i);
-							if(id != -1)
-								sourceClassesToMatch.add(id);
-						}
+							toMatch.add(i);
+						setSourceClassesToMatch(toMatch);
 					}
 					else if(option[0].equals("target_classes"))
 					{
 						if(option[1].equals(""))
 							continue;
-						if(option[1].equals("*"))
-						{
-							targetClassesToMatch.addAll(sourceClassesToMatch);
-							continue;
-						}
+						HashSet<String> toMatch = new HashSet<String>();
 						String[] iris = option[1].split(";");
 						for(String i : iris)
-						{
-							int id = target.getIndex(i);
-							if(id != -1)
-								targetClassesToMatch.add(id);
-						}
+							toMatch.add(i);
+						setTargetClassesToMatch(toMatch);
 					}
 				}
 				in.close();
@@ -1144,12 +1176,24 @@ public class AML
 	 */
 	public void setSourceClassesToMatch(Set<String> sourcesToMatch)
 	{
-		sourceClassesToMatch = new HashSet<Integer>();
+		sourceIndividualsToMatch = new HashSet<Integer>();
+		HashSet<Integer> sourceClasses = new HashSet<Integer>();
 		for(String s : sourcesToMatch)
 		{
 			int id = source.getIndex(s);
 			if(id != -1)
-				sourceClassesToMatch.add(id);
+				sourceClasses.add(id);
+		}
+		for(Integer i : source.getEntities(EntityType.INDIVIDUAL))
+		{
+			for(Integer c : sourceClasses)
+			{
+				if(rels.belongsToClass(i, c))
+				{
+					sourceIndividualsToMatch.add(i);
+					break;
+				}
+			}
 		}
 	}
 	
@@ -1170,12 +1214,24 @@ public class AML
 	 */	
 	public void setTargetClassesToMatch(Set<String> targetsToMatch)
 	{
-		targetClassesToMatch = new HashSet<Integer>();
+		targetIndividualsToMatch = new HashSet<Integer>();
+		HashSet<Integer> targetClasses = new HashSet<Integer>();
 		for(String s : targetsToMatch)
 		{
 			int id = target.getIndex(s);
 			if(id != -1)
-				targetClassesToMatch.add(id);
+				targetClasses.add(id);
+		}
+		for(Integer i : target.getEntities(EntityType.INDIVIDUAL))
+		{
+			for(Integer c : targetClasses)
+			{
+				if(rels.belongsToClass(i, c))
+				{
+					targetIndividualsToMatch.add(i);
+					break;
+				}
+			}
 		}
 	}
 	
@@ -1284,6 +1340,19 @@ public class AML
 					d = new Dictionary(l2,l1);
 					d.translateLexicon(target.getLexicon());
 				}
+			}
+		}
+		if(!sLangs.contains("en") && !tLangs.contains("en"))
+		{
+			for(String l1 : sLangs)
+			{
+				Dictionary d = new Dictionary(l1,"en");
+				d.translateLexicon(source.getLexicon());
+			}
+			for(String l2 : tLangs)
+			{
+				Dictionary d = new Dictionary(l2,"en");
+				d.translateLexicon(target.getLexicon());
 			}
 		}
 		languages = new HashSet<String>();
