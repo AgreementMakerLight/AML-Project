@@ -1407,7 +1407,6 @@ public class Ontology
 			if(sv == null)
 				continue;
 			Vector<Integer> cl = new Vector<Integer>(sv);
-
 			for(int i = 0; i < cl.size() - 1; i++)
 			{
 				int c1 = objectSomeValues.get(prop, cl.get(i));

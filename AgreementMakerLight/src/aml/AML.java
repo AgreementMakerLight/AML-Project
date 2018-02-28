@@ -234,6 +234,11 @@ public class AML
 		}
 		selectedSources = new Vector<String>(bkSources);
 		
+		//Custom Match
+		matchSteps = new Vector<MatchStep>();
+		for(MatchStep s : MatchStep.values())
+			matchSteps.add(s);
+		
 		matchClasses = hasClasses();
 		double sourceRatio = (source.count(EntityType.DATA) + source.count(EntityType.OBJECT)) * 1.0 / source.count(EntityType.CLASS);
 		double targetRatio = (target.count(EntityType.DATA) + target.count(EntityType.OBJECT)) * 1.0 / target.count(EntityType.CLASS);
