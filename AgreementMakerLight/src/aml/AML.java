@@ -287,8 +287,6 @@ public class AML
 		flagSteps = new Vector<Problem>();
 		for(Problem f : Problem.values())
 			flagSteps.add(f);
-		sourceIndividualsToMatch = new HashSet<Integer>();
-		targetIndividualsToMatch = new HashSet<Integer>();
 		readConfigFile();
     }
     
