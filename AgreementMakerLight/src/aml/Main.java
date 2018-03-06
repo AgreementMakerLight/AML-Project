@@ -372,7 +372,7 @@ public class Main
 				{
 					if(option[1].equalsIgnoreCase("none"))
 						continue;
-					selection.add(MatchStep.PROPERTY);
+					selection.add(MatchStep.SELECT);
 					if(!option[1].equalsIgnoreCase("auto"))
 						aml.setSelectionType(SelectionType.parseSelector(option[1]));
 				}
@@ -383,6 +383,7 @@ public class Main
 				}
 			}
 			in.close();
+			aml.setMatchSteps(selection);
 		}
 		catch(Exception e)
 		{
