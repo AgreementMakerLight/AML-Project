@@ -443,7 +443,8 @@ public class Ontology
 			//Add it to the global list of URIs (as a class)
 			int id = uris.addURI(indivUri, EntityType.CLASS);
 			//Add it to the class map
-			entities.add(id);			
+			entities.add(id);
+			entityTypes.add(EntityType.CLASS, id);
 			//Get the local name from the URI
 			String name = uris.getLocalName(id);
 			//Add the name to the classNames map
@@ -1268,6 +1269,7 @@ public class Ontology
 		//First exact cardinalities vs exact, min and max cardinalities
 		for(Integer prop : card.keySet())
 		{
+			//TODO: cardinality restrictions on object properties need to be processed differently
 			Vector<Integer> exact = new Vector<Integer>(card.keySet(prop));
 			for(int i = 0; i < exact.size()-1; i++)
 				for(int j = i+1; j < exact.size(); j++)
@@ -1289,6 +1291,7 @@ public class Ontology
 		//Then min vs max cardinalities
 		for(Integer prop : minCard.keySet())
 		{
+			//TODO: cardinality restrictions on object properties need to be processed differently
 			Set<Integer> min = minCard.keySet(prop);
 			Set<Integer> max = maxCard.keySet(prop);
 			if(max == null)
