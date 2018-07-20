@@ -203,10 +203,10 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 			setIncorrect.setBackground(AMLColor.RED);
 			setIncorrect.setPreferredSize(new Dimension(110,28));
 			setIncorrect.addActionListener(this);
-			sortAsc = new JButton("Sort ↑");
+			sortAsc = new JButton("Sort \u2191");
 			sortAsc.setPreferredSize(new Dimension(110,28));
 			sortAsc.addActionListener(this);
-			sortDes = new JButton("Sort ↓");
+			sortDes = new JButton("Sort \u2193");
 			sortDes.setPreferredSize(new Dimension(110,28));
 			sortDes.addActionListener(this);
 			search = new JButton("Search");
