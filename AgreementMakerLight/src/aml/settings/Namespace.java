@@ -33,9 +33,9 @@ public enum Namespace
     XSD				("xsd","http://www.w3.org/2001/XMLSchema","#"),
     XSI				("xsi","http://www.w3.org/1999/XMLSchema-instance","");
 	
-	String ns;
-	String uri;
-	String separator;
+	final public String ns;
+	final public String uri;
+	final public String separator;
 	
 	Namespace(String ns, String uri, String separator)
 	{
