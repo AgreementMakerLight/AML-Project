@@ -855,7 +855,7 @@ public class Alignment implements Collection<Mapping>
 	/**
 	 * @return the URI of the target ontology
 	 */
-	public String getTergetURI()
+	public String getTargetURI()
 	{
 		return targetURI;
 	}
