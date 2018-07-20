@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -16,15 +16,15 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.settings;
+package aml.alignment;
 
 public enum MappingRelation
 {
-	EQUIVALENCE	("=","equivalence"),
-	SUPERCLASS	(">","superclass"),
-	SUBCLASS	("<","subclass"),
-	OVERLAP		("^","overlap"),
-	UNKNOWN		("?","unknown");
+	EQUIVALENCE	("=","Equivalence"),
+	SUBSUMED_BY	("<","SubsumedBy"),
+	SUBSUMES	(">","Subsumes"),
+	OVERLAP		("^","Overlap"),
+	UNKNOWN		("?","Unknown");
     	
 	private String representation;
 	private String label;
@@ -42,10 +42,10 @@ public enum MappingRelation
     	
 	public MappingRelation inverse()
 	{
-		if(this.equals(SUBCLASS))
-			return SUPERCLASS;
-		else if(this.equals(SUPERCLASS))
-			return SUBCLASS;
+		if(this.equals(SUBSUMES))
+			return SUBSUMED_BY;
+		else if(this.equals(SUBSUMED_BY))
+			return SUBSUMES;
 		else
 			return this;
 	}
@@ -66,7 +66,7 @@ public enum MappingRelation
 		else
 		{
 			for(MappingRelation rel : MappingRelation.values())
-				if(relation.equals(rel.getLabel()))
+				if(relation.equalsIgnoreCase(rel.getLabel()))
 					return rel;
 		}
 		return UNKNOWN;
