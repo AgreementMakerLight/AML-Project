@@ -16,9 +16,11 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.settings;
+package aml.ontology;
 
 import org.semanticweb.owlapi.model.IRI;
+
+import aml.settings.Namespace;
 
 public enum SKOS
 {
