@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -14,8 +14,7 @@
 *******************************************************************************
 * A relationship between two terms (classes) in an Ontology, which is an      *
 * element in the RelationshipMap. The Relationship includes the distance      *
-* between the terms (number of edges) and the type of relationship (true for  *
-* 'is a' or false for 'part of').                                             *
+* between the terms (number of edges), the property, and the restriction.     *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -26,12 +25,12 @@ public class Relationship implements Comparable<Relationship>
 	
 //Attributes
 
-	//The distance between the terms
+	//The distance between the classes
 	private int distance;
-	//The subclass property of the relationship (-1 for 'is_a' relationships)
-	private int property;
-	//The type of restriction on the property (true for 'all values', false for 'some values')
-	private boolean restriction;
+	//The subclass property of the relationship
+	private String property;
+	//Whether the relation between the classes is exclusive for the property (true for 'all values' restrictions, false for 'some values' restriction)
+	private boolean exclusive;
 
 //Constructors
 	
@@ -41,11 +40,11 @@ public class Relationship implements Comparable<Relationship>
 	 * @param p: the property of the Relationship
 	 * @param r: the restriction on the property of the Relationship
 	 */
-	public Relationship(int dist, int p, boolean r)
+	public Relationship(int dist, String p, boolean r)
 	{
 		distance = dist;
 		property = p;
-		restriction = r;
+		exclusive = r;
 	}
 	
 	/**
@@ -57,7 +56,7 @@ public class Relationship implements Comparable<Relationship>
 	{
 		distance = r.distance;
 		property = r.property;
-		restriction = r.restriction;
+		exclusive = r.exclusive;
 	}
 	
 //Public Methods
@@ -72,17 +71,17 @@ public class Relationship implements Comparable<Relationship>
 	public int compareTo(Relationship r)
 	{
 		int value = 0;
-		if(property == -1 && r.property == -1)
+		if(property.equals("") && r.property.equals(""))
 			value = distance - r.distance;
-		else if(property == -1)
+		else if(property.equals(""))
 			value = 1;
-		else if(r.property == -1)
+		else if(r.property.equals(""))
 			value = -1;
-		else if(restriction == r.restriction)
+		else if(exclusive == r.exclusive)
 			value = distance - r.distance;
-		else if(restriction)
+		else if(exclusive)
 			value = 1;
-		else if(r.restriction)
+		else if(r.exclusive)
 			value = -1;
 		return value;
 	}
@@ -97,7 +96,7 @@ public class Relationship implements Comparable<Relationship>
 		if(o instanceof Relationship)
 		{
 			Relationship r = (Relationship)o;
-			return property == r.property && restriction == r.restriction;
+			return property == r.property && exclusive == r.exclusive;
 		}
 		else
 			return false;
@@ -114,7 +113,7 @@ public class Relationship implements Comparable<Relationship>
 	/**
 	 * @return the property of the Relationship
 	 */
-	public int getProperty()
+	public String getProperty()
 	{
 		return property;
 	}
@@ -122,9 +121,9 @@ public class Relationship implements Comparable<Relationship>
 	/**
 	 * @return the restriction of the Relationship
 	 */
-	public boolean getRestriction()
+	public boolean isExclusive()
 	{
-		return restriction;
+		return exclusive;
 	}
 	
 	/**
@@ -132,6 +131,6 @@ public class Relationship implements Comparable<Relationship>
 	 */
 	public boolean isA()
 	{
-		return property == -1;
+		return property.equals("");
 	}
 }
