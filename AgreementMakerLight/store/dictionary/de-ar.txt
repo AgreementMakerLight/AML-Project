@@ -519,3 +519,6 @@ deadline für authorenmitteilung	الموعد النهائي أوثورينمي�
 organisiert konferenz	مؤتمر المنظمة
 hat deadline für einreichungen	هو الموعد النهائي لتقديم الطلبات
 aufruf von sponsoren	دعوة لمقدمي مشروع القرار
+spricht in	ويتحدث في
+spricht	ويتحدث
+istanwesend	إيستانويسيند

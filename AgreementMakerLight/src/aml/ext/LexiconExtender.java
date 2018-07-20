@@ -12,42 +12,16 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Parses the UMLS MRCONSO.RRF file into a Lexicon.                            *
-* WARNING: Requires the UMLS MRCONSO.RRF file, which is not released with     *
-* AgreementMakerLight                                                         * 
+* An algorithm that extends the Lexicons of the source and target ontologies. *                                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util;
+package aml.ext;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-import aml.ontology.Lexicon;
-import aml.settings.LexicalType;
-
-public class UMLSParser
+public interface LexiconExtender
 {
-	public static void main(String[] args) throws Exception
-	{
-		Table2Set<Integer,String> termSources = new Table2Set<Integer,String>();
-		Lexicon lexicon = new Lexicon();
-		
-		BufferedReader inStream = new BufferedReader(new FileReader("store/knowledge/MRCONSO.RRF"));
-		String line;
-		while((line = inStream.readLine()) != null)
-		{
-			String[] cols = line.split("\\|");
-			int id = Integer.parseInt(cols[0].substring(1));
-			String source = cols[11];
-			String name = cols[14];
-			LexicalType type = LexicalType.LABEL;
-			if(termSources.contains(id, source))
-				type = LexicalType.EXACT_SYNONYM;
-			double weight = type.getDefaultWeight();
-			lexicon.addClass(id,name,type,source,weight);
-		}
-		inStream.close();
-		lexicon.save("store/knowledge/UMLS.lexicon");
-	}
+	/**
+	 * Extends the Lexicons of the source and target Ontologies
+	 */
+	public void extendLexicons();
 }

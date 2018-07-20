@@ -667,3 +667,921 @@ sigkdd成员注册费	SIGKDD membership registration fee
 由之作报告	Reported by the the
 国籍	Nationality
 会议开始日期	Conference start date
+外部审查员	External reviewer
+共同主持的	Co-chaired by
+元点评	Hotel reviews
+一篇短文	A short essay
+方案委员会主席	Chairman of the Programme Committee
+点评	Hotel reviews
+管理员	Administrator
+文档	Document
+一个合适的文章	A proper article
+人	People
+第条	Article
+有关地区的	Related areas
+被拒绝	Is rejected
+主席的	The President of the
+利益表达的	Expression of interest
+元-审阅者	Meta-reviewers
+在会议的参与人	During the meeting participants
+作者不是审阅者	Author is not a reviewer
+审阅者	Reviewer
+首选项	Preferences
+方案委员会的成员	Member of the Programme Committee
+通过	Pass
+会议有一个 web 页的 url	Meeting there is a Web page URL
+我的名字	My name
+打印会议的公认的贡献	Recognition of printed Conference contributions
+会议的标志都有一个 url	Conference logo has a URL
+我的电子邮件	My email
+这篇文章有一个名字	This article has a name
+会议对文章有点评	Conference on article reviews
+设置最大数量的点评	Sets the maximum number of reviews
+这篇文章有一个 id	This article has an ID
+该会议的日期	The date of the meeting
+分配给外部的审阅者	Assign external reviewers
+写了评论	Written comments
+分配的由管理员指导委员会成员	Assigned by an administrator Steering Committee members
+有会议的一个成员	A member of the Conference
+有冲突的利益与所作的贡献	Contribution to the conflict of interest and
+输入的详细信息	Enter the details of
+审阅者指派给管理员	Reviewers are assigned to administrators
+插入会议详细的信息	Insert detailed information
+编辑利益的表达	Edit expression of interest
+提交一篇文章	Submit an article
+读元审阅者的文章	Read reviewers of the articles
+插入标准审查	Insert a standard review
+分配给 meta 审阅者的审阅者	Assign meta reviewers of the reviewers
+我的合著者	My co-author
+谁收到了	Who receives the
+分配给审阅者	Assign reviewers
+退回的文章	Return articles
+写的文章	Writing articles
+结束审查	End review
+利益表达的发起审阅者	Expressions of interest launched the reviewer
+阅读审阅者的文章	Read the reviewer's article
+所谓的利益冲突	The so-called conflict of interest
+由印制的小册子	By the printed booklet
+审查所写	Review written by
+由利益表达的	Expression of interest
+评论文章	Review articles
+请输入评论的标准	Please enter a comment of the standard
+读这篇文章	To read this article
+降低分配的会议文章	Reduce the distribution of conference papers
+公认的文章	Accepted articles
+分配完成的捐款	Assigned contributions
+添加了成员的方案委员会	Add members of the Programme Committee
+vyjadření 利息由触发	Vyjadření interest triggered by
+是的方案委员会成员	Yes, members of the Programme Committee
+小册子印刷会议	Brochure printing conferences
+分配审阅者	Assign reviewers
+要完成的对会议的贡献分配	To complete the allocation of contributions to conferences
+若要添加方案委员会的成员	To add a member of the Programme Committee
+捐款发起的 přídělení 工具	Contributions přídělení tool launched
+虚拟会议会议使成为可能由	Virtual Conference is made possible by
+讨论主题	Discussion topics
+合作作者的贡献	Co-author of contribution
+使虚拟会议会议	Make a virtual meeting
+该会议的成员	The members of the Conference
+写这篇文章	Writing this article
+利益表达	Expression of interest
+偏好	Preferences
+作家，他是不是专家	Writer, he is an expert
+专家	Specialist
+吩咐	Command
+在副座	In the auxiliary seat
+总结会议的贡献	Summary of conference contributions
+会议的与会者	Participants in the Conference
+元-gutachater	Element-gutachater
+意见	Views
+元-意见	Meta-comments
+会议的贡献	Conference contributions
+排斥反应	Rejection
+验收	Acceptance
+范围	Range
+完整的会议费	Full conference fee
+外部评价员	The external evaluators
+元-意见 （意见的看法）	Meta-comments (view)
+元-gutachater （专家意见进行审查）	-Gutachater (expert review)
+有的 web 页的 url	Web page URL
+接受 hardcopy\r 提交	Accept submitted by hardcopy\r
+已分配捐款的最大数量	Maximum number of allocated contributions
+有的电子邮件	Some e-mail
+有的 id	Some ID
+具有名称	Have a name
+有的日期	Some dates
+有的标题	Some title
+已分配捐款的最大数目	Maximum number of allocated contributions
+每贡献的意见	The views of each contribution
+有的网站的 url	Existing site URL
+有标志的 url	Logo URL
+捐款提交了吗	Contributions submitted
+添加	Add to
+打印纸张副本邮寄清单的	Print a paper copy mailing list
+有书面意见	The written submissions
+贡献撰写了吗	Contribution: wrote
+通过添加	By adding
+已完成贡献的映射	Mapping completed contribution
+标准的意见由插入	Standard inserts
+已接受	Has been accepted
+读元审阅者所做	Read reviewer
+开始投标阶段	Start the bidding phase
+已订购到	Have been ordered to
+由创作	By creation
+岗位任务，通过完成	Job tasks through completion
+已完成评价的时间	Complete evaluation time
+是委员会成员	Are members of the Commission
+已添加标准的意见	Add standard comments
+接受的	Accepted
+已分配给	Has been assigned
+从参与者	From participants
+所吩咐 get	Command get
+有范围	Range
+通过添加详细信息	By adding more information
+为首的虚拟会议	Led by a virtual meeting
+已插入相对于细节	Insert details relative to the
+利益冲突与贡献吗?	Conflicts of interest and input?
+细节上添加了一个引用	Detail adds a reference
+通过邮寄清单的打印的硬拷贝	Through hard printed copy of the mailing list
+利益冲突与贡献	Conflict of interests and contributions
+对 interessenskonflikt 的引用	Reference to a interessenskonflikt
+写了贡献	Written contributions
+有的成员	Some members
+阅读本文	Read this article
+投标阶段的开始	Bidding period begins
+满足虚拟了	Meet the virtual
+在 interessenskonflikt 有	In interessenskonflikt
+已匹配	Has matching
+它被定为	It was designated as the
+选择分配捐款的最大数目	Select the maximum number of contributions
+已进行的贡献 zuordnungssoftware	Contribution zuordnungssoftware
+被拒绝的纸	Rejected papers
+由管理员分配	Assigned by the administrator
+选择最大编号分配的捐款	Select the maximum number of contributions
+由匹配	By matching
+阅读由专家	Reading by experts
+分配给	Assigned to
+指派的专家	Designated experts
+发表于	Posted by
+通过运行 beitragszuordnungs 软件	By running the beitragszuordnungs software
+文章的摘要	Summary of the article
+meta 审阅者	Meta reviewers
+这篇文章的完整版	The full version of this article
+出价	Bid
+专题区	Thematic areas
+拒绝	Refuse
+副总裁	Vice President
+目标审查	Review
+还行	Not bad
+审查	Review
+作者，没有审阅者	The author, no reviewer
+web 页的 url	Web page URL
+名称	The name
+最大项目数	Maximum number of items
+电子邮件	Email
+每篇文章的修改	Every article modified
+url 的徽标	URL logo
+项目标识符	Project identifier
+接受交付在纸上	To accept delivery on paper
+写的	Wrote
+进入审查标准	To review standards
+它已分配给	It has been assigned
+有的程序委员会成员	Some members of the program Committee
+拒绝文章	Rejected articles
+有主题区域	Subject area
+决定了	Determines the
+航运舱单纸张副本已打印的	Manifest shipping paper copies printed
+是的一篇文章的作者	Yes an article's author
+由修改	Modified by
+结束审阅	End a review
+从航运舱单拷贝纸	From the shipping manifest copy paper
+修改出价	Modify the bid
+有冲突的利益	Having a conflict of interest
+合著了	Co-author
+由作者读	Read by the author
+有成员会议	Meeting of members
+使用虚拟会议	Using Virtual Conference
+开始投标的文章	Starting bid article
+写检讨	Write a review
+通过介绍了审查标准	Introduces the standard of review
+接受第条	Accept article
+输入会议详细的信息	Enter detail information
+允许虚拟会议	Allow virtual conference
+是该会议的成员	Is a member of the Conference
+分配给项目的最大数目	The maximum number allocated to the project
+发送项目	Sent items
+已完成分配的文章	Completed distribution of articles
+从审阅者出价已经初始化	Reviewer bidding already initialized
+阅读由审阅者元	Read by the reviewer
+注意到的利益冲突	Note conflict of interest
+有一直由管理的项目分配的工具	Has been allocated by project management tools
+已出价	Bid
+结束项目的分配	Allocation of end items
+它管理的工具，以便分配的项目	It management tool for allocation of project
+分配外部审查员	Assign external reviewer
+添加的程序委员会委员	Add a program Committee Member
+写篇文章	Write an article
+分配的审阅者	Assign reviewers
+元-融洽来审查	-Good review
+完整版的文章	Full version of the article
+方案委员会	The Programme Committee
+建议为重播的	Recommendations for replay
+副会议椅	Deputy Conference Chair
+会员大会	General meeting
+检验报告	Inspection report
+第条的报告数目	Number of reports
+网站的 url	Web site URL
+文章的标识符	Article identifier
+徽标的 url	Logo URL
+接受中纸张格式提交的资料	Accept the information to be submitted in paper format
+有关于利益冲突	On conflicts of interest
+捕获的评价标准	Capture the evaluation criteria
+合著的文章	Authored articles
+分配给审阅者的提案是由初始化	Proposals assigned to the reviewer is initialized by
+影响外部审查员的作用	The role of external examiners
+受该审阅者	By the reviewer
+评价标准是由填补的。	Evaluation criteria are filled in.
+通过输入详细信息	By entering the details
+影响到审阅者的作用	Affect the reviewer's role
+完成分配的文章	Complete the assigned articles
+打印字母的事件	Print letter
+运行命名从工具的博客	Run the named tools blog
+捕获会议详细的信息	Capture information in detail
+由启用的虚拟会议	Enabled by Virtual Conference
+初始化分配给审阅者的建议	Initialize the assigned reviewer recommendations
+读取元审阅者所做	Read reviewer
+阅读由审阅者	Read by reviewer
+文章的最后定稿的分配	The distribution of the final version of the article
+定型审查过程	Setting the review process
+有的作者	Some authors
+指示为利益冲突	Instructions for a conflict of interest
+提交文章	Submit an article
+设置最大的项数	Sets the maximum number of items
+被接受	Be accepted
+书面的检查报告。	A written inspection report.
+硬拷贝打印事件的电子邮件	Hard copy prints the events email
+成员大会	Members of the General Assembly
+为合著者	As co-author
+由执行分配的项目工具	Assigned by the implementation project tools
+床上条	On the bed
+调整重播建议	Resizing the replay recommends
+通过调整	By adjusting the
+设置虚拟会议	Set up the virtual conference
+已经与	Already with
+是写的	Is written by
+拒绝条	Refuse to
+添加方案委员会的成员	Add the members of the Programme Committee
+程序委员会成员为	Members of the program Committee for
+conferentielid	conferentielid
+外部亚马逊书评	Outside the Amazon book reviews
+完整的文章	The full article
+审阅者作者非-	Reviewers, authors the non-
+程序委员会委员	Program Committee Member
+联席主席	The co-chairs
+简介	Profile
+metarecentie	metarecentie
+评论家元	Critics
+接受硬拷贝意见书	Accept hard copy submissions
+每个项目的点评	Each project reviews
+文章 id	Article ID
+文章的最大数目	The maximum number of articles
+审查标准由填充的	Review by filling
+使用项目配置工具	Use the project configuration tool
+只出价到	Only bid
+硬拷贝发送证明	Send hard copy proof
+亚马逊的审阅者，使其指向外部	Amazon's reviewers, to point to an external
+阅读的文章	Read article
+有的利益冲突	Some conflicts of interest
+让虚拟会议	Virtual Conference
+由亚马逊审阅者分配	Assigned by the Amazon reviewer
+第条成品由奖	Product Awards
+有 conferentielid	There are conferentielid
+开始审查报价	Review quotes
+点到的文章	Point to the article
+由 metarecencent 读取	Read by metarecencent
+突出显示的利益冲突	Highlighting conflicts of interest
+硬拷贝发送由印制的证据	Hard copy sent by printed evidence
+在完整的会议详细信息	In the full Conference details
+方案委员会成员有	Member of the Programme Committee
+会议的成员	Members of the Conference
+完整的会议详细信息	Full Conference details
+所允许的虚拟会议	Allows a virtual meeting
+添加程序委员会委员	Add a program Committee Member
+由完成的详细信息	Up to the completion of detailed information
+在这篇文章	In this article
+所使用的奖文章工具	The award article tools
+将点添加到亚马逊书评	Add points to the Amazon book reviews
+填写审查标准	Fill out the review standards
+填充审查标准	Fill review standards
+审查由开始的报价	Review from the beginning of the quote
+被授予	Was awarded the
+创建项目分配	Create a project assignment
+eindrecentie	eindrecentie
+共同写篇文章	Together to write an article
+设置中的项目的最大数目	Sets the maximum number of items in the
+设置文章的最大数目	Sets the maximum number of articles
+会议协调员	Conference Coordinator
+程序委员会协调员	Coordinator of the program Committee
+meta 审查	Meta reviews
+事件的总协调员	General Coordinator of the event
+作者审阅者	Authors and reviewers
+将相关联事件协调的员	The associated event coordination
+会议成员的参与者	Members of the Conference participants
+co 作者	Co author
+建议	Word of advice
+有的网站	Some sites
+最大文章	Most articles
+url	url
+有代码的文章	Code base
+有一个日期	There is a date
+有项目的代码	Project code
+接受提交打印	Accept the submission of print
+它还与他人合著	It has co-authored
+有利益冲突的	Have a conflict of interest
+最后确定归因关系的文章	Finalization of the attributions of articles
+自己的决定	His decision
+添加程序委员会的成员	Add a program Committee Member
+输入标准的修订	Enter the revision of the standard
+审查功能请求	Review of feature requests
+审查请求发起的	Review request
+输入会议的详细信息	Enter meeting details
+发起请求的审查	Request review
+从发送邮件量打印文档	Print a document from email
+插入详细信息	Insert details
+介绍了通过审查标准	Introduced by examining standard
+它的面积有	It has an area of
+有一个成员程序委员会	There was a member of the program Committee
+写一篇文章	Write an article
+添加一个成员程序委员会	Add a Member Program Committee
+举行的审阅者所做的阅读	Reviewer's read
+邮件合并	Mail merge
+调整请求复审	Adjust the request for review
+进行的审查	A review of the
+有归属	Of belonging
+标记的利益冲突	Mark conflict of interest
+由执行的工具条分配	Assigned by the implementation tools
+接受的文章	Accepted articles
+终止任务的文章	Terminating tasks article
+有程序委员会的成员	Members of the program Committee
+文章被拒绝	Articles rejected
+修订组的请求	Amendment Group of the request
+发送文章	Sending articles
+有会议的结束	Session ended
+分配外部的审阅者	Assign external reviewers
+由终止第条转让	Termination of transfer
+执行分配的工具条	Implementation of assigned tools article
+最后审查	Final review
+率	Rate
+完整版本的文章	The full version of the article
+元-书评	-Book review
+书评	Book reviews
+解决方案	Solutions
+作为程序委员会成员	As a member of the program Committee
+偏差	Deviation
+抽象的文章	Abstract article
+这篇文章的审阅者	This article's reviewers
+数目	The number of
+互联网地址的标志	Internet address signs
+web 站点的互联网地址	The Internet address of the Web site
+电子邮件地址	E-mail address
+接受打印请求	Accepts print requests
+任命外部的审阅者	Appointment of external reviewers
+通过添加日期	By adding dates
+阅读文章	Read the article
+添加一个成员的程序委员会	Add a member of the program Committee
+写一篇与他人合著的文章	Write a co-authored article
+入职的审查标准	Entry standards of review
+完成的审查	Complete review
+开始投注审阅者	Start betting review
+任命审阅者	Appointing reviewers
+要使会议的详细信息	To make the meeting more information
+printhardcopymailingmanifests	printhardcopymailingmanifests
+设置最大文章	Set the maximum articles
+谁改变了	Who changed
+利益冲突	Conflict of interest
+阅读审阅者	Read reviewer
+谁运行程序的目的地的文章	Who runs the program destination articles
+审查标准	Standard of review
+谁完成分配的文章了	Who do the allocation base
+变化率	Rate of change
+由管理员任命	Appointed by the administrator
+读元-审阅者	Read the meta-reviewer
+谁做的细节	Who does the details
+谁拒绝了	Who refused to
+通过写	By writing
+完成这项任务的文章	Complete this task with articles
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+任命	The appointment of
+谁开始放置的赌注审阅者	Who placed bets that a reviewer
+任何人采取	Anyone taken
+审阅者任命	Reviewer appointments
+通过 razeršëna 的虚拟会议	Through the virtual conference razeršëna
+被称为讲师	Be called an instructor
+专家的专业知识	Specialist expertise
+节会议	Section meeting
+本文的写作要求	The writing requirement
+委员会的成员	Members of the Committee
+在有关这次会议铅的早期	Early in the lead about the Conference
+化好妆的版本所作的贡献	And makeup version of the contribution made by the
+会议公告	Conference announcement
+在有关这次会议铅后期	Late in the Conference lead
+会议的被动参与者	Passive participants in the Conference
+会议的参与者	Participants in the meeting
+主要作者的贡献	Author's contribution
+合适的岗位	Right position
+会议的文件	The documents of the Conference
+那些对感兴趣的会议	The people who are interested in meeting
+受邀的演讲	Invited lecture
+会议行动	Action of the International Conference
+同行的帖子	Peer post
+会议程序	Conference program
+讲习班	Workshop
+在有关这次会议铅中记录	Recorded in the lead about the Conference
+管理委员会	The Management Committee
+发布者	Publisher
+扩展的抽象	Extended abstract
+参与者的信息	Participant information
+适当的作者的贡献	Due to the author's contribution
+邮寄	Mailing
+主席的讲习班	Chairman of the workshop
+书面的员额	Writing posts
+会议参与者	Meeting participants
+会议的一个积极的参与者	One of the active participants
+参加会议的呼吁	Participate in Conference calls
+一个被拒绝的职位	Rejected for a job
+会议费	Conference fees
+关于会议注册的候选人	About registration of candidates
+收到的帖子	Received by post
+演示文稿	Presentation
+专家首选项	Expert preferences
+会议的网站的网址	Conference Web site
+日期的调度了应有的贡献	Date of dispatch due contributions
+程度的偏好点评	The degree of preference reviews
+会议的地点	The location of the meeting
+卷号的会议论文集	Volumes of conference proceedings
+最后的名字	Last name
+开始的一天	Start day
+抽象的发运日期的	Date of shipment in the abstract
+通知 》 所作的贡献通过日期	Contribution to the notice date of adoption
+最后一天	The last day of
+国际标准书号文集	ISBN collection
+第一名	First name
+张贴在	Posted in
+化好妆版所作的贡献的发运日期的	And makeup of the contribution made by the date of shipment
+对的审阅者的专业化程度的	On the degree of professionalism of the reviewer
+性别	Sex
+会议作出了贡献	Contribution to the Conference
+是的成员	Yes members
+绑的首选主题的主题	Tied to the preferred themes themes
+出版	Publishing
+委员会主席	The Chairman of the Committee
+这一主题所作的贡献发送或	This contribution to the topic send or
+研讨会的主题	The theme of the seminar
+我的帖子	My post
+偏好或审阅者的专门知识	Preference or expertise of reviewers
+会议指导委员会	Steering Committee of the Conference
+提出了一种	Presents
+委员会共同主席	Joint Chairman of the Committee
+其委员会已	The Committee has
+会议组委会有	The Organizing Committee of the Conference
+会议的程序委员会	Program Committee of the Conference
+为主题的会议科	As the theme of the Conference
+我的审查证明	My review proof
+已发送的贡献	Send contributions
+提出了一种由	Presented by the
+我的评论	My comment
+我的一部分	A part of me
+会议的一个重要的日子	Meeting an important day
+点评帖子	Hotel reviews posts
+偏好或专门知识的人	Preference or expertise of the people
+有一个重要的日子	There is an important day
+我的工作室	My Studio
+将会议指导委员会	Steering Committee of the Conference
+诉讼程序的发布者是	Publishers of the proceedings is
+有一节	There is a section
+会议的一部分	Part of the
+张贴在哪里	Posted in where
+会议委员会已	The Committee on Conferences had
+将会议组委会	Conference Organizing Committee
+委员会的主席	The Chairman of the Committee
+将会议委员会	Committee on conferences
+文件的第一部分	The first part of the file
+邀请 spolurecenzenta	Invite spolurecenzenta
+是的编程的委员会会议，	Yes programming Committee meeting
+被邀请的审阅者	Invited reviewer
+主席，车间，什么	Madam President, shop,
+我的教程	My tutorials
+他被分配到审阅者的利益	He was assigned to the reviewer's interests
+它有一种抽象	It has an abstract
+会议的进展情况	Session progress
+书面的贡献	Written contributions
+验证程序的专门知识领域	Validator's areas of expertise
+koferenzbewerber	koferenzbewerber
+推定作出贡献	Contribute to the presumption of
+会议申请人支付会议费	Meeting the applicant pay the Conference fee
+被动的参与者	Passive participants
+会议的过期时间	Session expiration time
+参加会议	Participating in the Conference
+有早支付会议费的会议候选人	Candidates for early payment of conference sessions
+druckfertiger 的贡献	Contribution druckfertiger
+会议系列	Meeting series
+互联网的会议	Internet Conference
+提交的贡献	Submit contribution
+主办单位	The Organizer
+定期的贡献	Regular contributions
+被拒绝的贡献	Rejected contributions
+koferenzdokument	koferenzdokument
+督导委员会	The Steering Committee
+部分的会议	Part of the meeting
+车间主任	Workshop Director
+积极的参与者	Active participants
+审阅的贡献	Reviewing contributions
+会议的参加者，已作的一个贡献，	Participants in the Conference, have made a contribution to
+定期作出贡献的作者	Regular contributing author
+号召参与。	Call for participation.
+注册的申请人	Registration of the
+扩展的摘要	Extended summary
+邀请的演讲者	Invited speaker
+捐款呼吁	Appeal for contributions
+已经晚了支付会议费的会议候选人	Candidates for late payment of conference sessions
+会议的参加者	Participants in the meeting
+公告板	Bulletin Board
+验证程序的首选项	Preferences for the validator
+提交的完整的日期是贡献的	Full dates are submitted by contributions
+验证程序的标的物的程度是	Verify that the extent of the subject-matter of the procedure is
+会议 url 是	URL of the Conference was
+是开始日期	Is the starting date
+接受通知的日期是	Acceptance notification date is
+最后提交日期是	Last date of submission is
+有的名字	Some names
+数量的进展会议	Number of progress meetings
+只是专家的偏好	Expert preferences
+做爱	Make love
+是结束日期	Is the end date
+具有给定的名称	With the given name
+有的姓氏	Some last names
+摘要提交的日期	Abstract submission date
+国际标准书号的进展是	Progress for international standard book number is
+具有电子邮件地址	Have an e-mail address
+已经于发表了以下日期	Has made the following dates
+切断了	Cut off
+主题或提交的贡献	Topic or submit a contribution
+会议委员会是	Conference committees are
+发布者的会议取得进展	Progress in meeting a Publisher
+特邀的专家	Invited experts
+有主席	President
+拥有车间	With shop
+偏好或验证程序领域是专业的	Preference or validation program is a professional in the field of
+车间管理	Shop floor management
+会议组委会	Conference Organizing Committee
+是委员会副主席	Deputy Chairman of the Committee
+是会议指导委员会	Is the Steering Committee of the Conference
+有的贡献	Contribution in
+是首选的主题或专业领域的专家吗	Is the preferred themes or areas of expertise: expert
+在提交	Submit
+有的贡献 eingreicht	Contribution eingreicht
+控股演示文稿	Holding presentation
+有的观点	View
+公共的贡献	Public contributions
+用好第八届邀请	Use the eighth invitation
+有序列	Sequence
+有 stellvertrenden 董事长	Stellvertrenden, Chairman
+会议委员会	The Committee on conferences
+大会的程序委员会是	Program Committee of the Conference is
+是会议系列的一部分	Is part of the Conference series
+只是一部分	Just a part
+是会议程序委员会	Conference Program Committee
+有重要约会	Have a hot date
+这是专家的首选的主题	It is preferred by the experts of theme
+是会议的一段	Conference period
+已分配的专家偏好	Experts assigned preference
+讲习班的主题	The theme of the workshop
+会议指导委员会是	Steering Committee of the Conference is
+有专家的意见	Opinions of experts
+是会议的一系列重要日期	Is a series of important meetings dates
+是委员会主席	Is the Chairman of the Committee
+有摘要	Summary
+是各车间主任	Is the workshop Director
+将请求发送到会议的人	Who sends the requests to the Conference
+注册参加会议的人	People who register for the Conference
+会议的积极参与者	Active participants in meetings
+人付滞纳金的会议	People paying late fees of the Conference
+会议订房服务	Conference booking service
+www 会议	Www Conference
+扩展的概述	Extension overview
+经修订的贡献	The revised contribution
+发送到会议作出贡献的人	Delivered to people who contribute to meeting
+作出预先支付了费用会议的人	Person who paid the fees in advance the meeting
+审阅者的经验	Reviewer's experience
+第一作者的贡献	First author's contribution
+提交的请求	Submit request
+公认的贡献	Accepted contributions
+会议的卷	Conference volumes
+编辑器	Editor
+邀请	Invite
+会议的公告	Notice of meeting
+参加的请求	Participation request
+准备好最后一批贡献	Ready for the final batch of contributions
+在写作中的贡献	Contribution in writing
+在会议中的被动参与者	Passive participants in the meeting
+审阅者偏好	Reviewer preferences
+小组	Group
+概述	Overview
+讲习班组织者	Workshop organizers
+演讲嘉宾	Speakers
+对会议的贡献	Contribution to the Conference
+支付会议费的人	Those who pay the Conference fee
+有的位置	Some locations
+它是长文章的日期	It is a long article date
+完成日期	Finish date
+有的 url	Some URL
+有的体积	Some volume
+摘要提交日期	Abstract submission dates
+有的第一个名字	First name
+已发行日期	Issue date
+有国际标准书号	ISBN
+这是文章的最终版本的日期	This is the date of the final version of the article
+有经验	Experience
+是广告的日期	Advertisement date
+有个姓	Have a last name
+有学位	With a degree
+这是主题的会议的一部分	This is part of the theme of the meeting
+有的简介	Profile
+已举办的讲习班教程	Has workshops tutorials
+给出了由	Is given by
+他在文章的审查有经验	He has experience in review articles
+邀请的 corevisores	Invite corevisores
+您已分配的修订的引用	Your reference to the amendments which have been assigned
+由邀请	By invitation
+是督导委员会	Is the Steering Committee
+它是一个讲习班组织者的小组	It is one of the organizers of the workshop group
+有工作坊	Workshops
+发送到	Send to
+属于审阅者	Belongs to the reviewers
+你有一个主题或提交的贡献	You have a topic or submit a contribution
+有主题讲习班-教程	Thematic workshop-tutorials
+有一个总统委员会	A Presidential Committee
+有一个委员会副主席	A Deputy Chairman of the Committee
+贡献	Contribution
+属于会议卷	Belong to the Conference volume
+是副主席	Is the Deputy Chairman
+它属于审查的参考	It belongs to the review of the reference
+给演示文稿	Give presentations
+是程序委员会	Program Committee
+有的编辑器	Some editors
+已审阅者	Reviewer
+它是会议的一部分的容量	It is part of the volume
+有一个督导委员会	There is a Steering Committee
+他提出了一个贡献	He proposed a contribution
+有日期 imprortantes	Date imprortantes
+是的委员会	Yes Committee
+有电池板	Battery plate
+你有引用或经验审查的文章	Do you have references or experience to review articles
+是的第一部分	Yes, the first part
+问题	Problem
+是的主席	Yes, President
+已支付的注册费的人	Who registration fees that have been paid
+重播的贡献	Replay of the contribution
+经常作者	Often the author
+征稿通知	Call for papers
+审阅者的偏好	Reviewer preferences
+主题演讲	Keynote speech
+向与会者信息	Attendee information
+最终版本的贡献	The final version of the contribution
+研讨会会议主席	Chairman of the Symposium
+接受的贡献	Accepting contributions
+注册的候选人	Registration of candidates
+已晚支付的注册费的人	People who have late payment of the registration fee
+已申请参加会议的人	People who have applied to participate in the Conference
+审阅者的专门知识	Reviewer expertise
+人已预付注册费	One prepaid registration fees
+合著者的贡献	Co-author of contribution
+是完整版本提交的日期	Date is submitted in full version
+是抽象的提交日期	Abstract submission date
+出版日期	Date of publication
+一个地方	A place
+专业知识	Expertise
+为种	For species
+为国际标准书号	For ISBN
+是的最终版本提交的日期	Yes the final version submitted by date
+为 url	For the URL
+学位	Degree
+是的结束日期	No end date
+是的开始日期	Yes start date
+是的日期	Yes date
+为卷	For the volume
+审阅者的专门知识有	Reviewer expertise
+总统的讲习班	President's workshop
+通过邀请	By invitation
+有第一委员会主席	Chairman of the first Committee
+部分	Part
+偏好或专门知识	Preference or expertise
+请共同审阅者	List of common reviewer
+使演示文稿	Making a presentation
+属于该审阅者偏好	Is the reviewer preferences
+已经是总统的讲习班	Was the President's workshop
+一直的委员会主席	The Chairman of the Committee
+已在委员会计划的	The Board plans
+会议卷的一部分	Part of a conference volume
+属于该审阅者	Belonging to the reviewers
+委员会联合主席	Joint Chairman of the Committee
+提交	Submit
+是服从	Is subject to
+一直的成员	Has been member of the
+一个主题或提交	Submit a topic or
+有程序委员会	Program Committee
+捐款	Contributions
+是会议之一	Is one of the
+计算结果	Results
+被授予校对的偏好	Was awarded the proofreading preference
+由提供	By providing
+一直的委员会	Of the Committee has been
+属于会议的卷	The volume belongs to the Conference
+一直的督导委员会	The Steering Committee has been
+一直的委员会联合主席	Joint Chairman of the Committee
+已组织委员会	Organizing Committee
+电话 inzenzingen	Phone inzenzingen
+共同主席	Co-Chairperson
+活动会议的参与者	Participants in the event
+速成班	Accelerated course
+共同作者的贡献	Co-author's contribution
+申请人会议	Applicants meeting
+跟踪	Tracking
+审查偏好	Reviewing preferences
+长简介	Introduction to longest
+第一作者	First author
+被动会议的参与者	Passive participants in the Conference
+公认的费用	Accepted fee
+申请登记的人	People who apply to register
+定期会员费	Regular membership fee
+申请人支付	Applicant
+会议包	Conference package
+审查的贡献	Contribution to the review of
+讲座邀请	Seminar invitation
+轨道研讨会主席	Track Chairman
+可打印费	Printable fee
+定期的作者	Regular authors
+早期申请人支付	Early applicant
+审查专业知识	Review expertise
+被拒绝的会员费	Denied membership fee
+逾期申请支付	Late for a payment
+是打印就绪版本提交日期	Is print-ready version submission date
+是一个完整的文章提交日期	Is a complete article submission date
+接受日期是发布的	Received date is released
+有一个地方	There's a place
+是一个简介提交日期	Is a US filing date
+有一封电子邮件	Have an email
+有性	Sex
+拥有专业知识	With the expertise
+有一个 url	There is a URL
+已发布日期	Published date
+有一个审查	There is a review
+是的一个委员会	Yes, a Committee
+有一个轨道-车间-速成课程主题	Have a track-workshop-a crash course in the subject
+属于 recencenten	Belonging to recencenten
+共享是会议的主题	Sharing is the theme of the meeting
+有一个审查参考或专业知识	A review of reference or expertise
+有欧盟委员会主席	President of the European Commission
+已审查参考专业知识	Review reference expertise
+具有重要日期	Important dates
+属于一个会议包	Belong in a conference package
+已审查专业知识	Review expertise
+督导组的	Of the Steering Group
+是委员会的总统	Is the President of the Commission
+有一名委员会联席主席	One Committee co-chairs
+会议是捆绑包的一部分	Meeting is part of a bundle
+有简介	Profile
+是一个组织委员会的	Is an organizing Committee
+是一个程序委员会的	Is a program Committee
+corecensenten 请从	From corecensenten
+在总统有一个跟踪车间的速成班	Presidents have a tracking workshop crash course
+有一个方案委员会	There is a Programme Committee
+支出	Expenditure
+属于审查参考	Belonging to review references
+有 snelcursussen	There are snelcursussen
+是主席的一个轨道讲习班	Is Chairman of the orbital workshop
+有一个话题或提交的贡献	Have a topic or submit a contribution
+有一个主题提交的贡献	Has submitted a theme contributions
+被审查的引用分配吗	Review: references are assigned
+给出了演示文稿	Gives a presentation
+已挂起的会员费	Suspended membership fee
+会议注册费	Conference registration fees
+跟踪协调员讲习班	Track coordinator workshop
+总协调员	General Coordinator
+参与者的迟到付出	Participants paid late
+捐助者会议	The donors ' Conference
+整篇文章的贡献	The whole article contribution
+最终版本的所作的贡献	Contribution to the final version of the
+客座讲师	Guest lecturer
+专业审查	Professional review
+会议结束	Meeting
+wip	wip
+co 作者的贡献	Co author's contribution
+参与者注册	Participant registration
+会议跟踪	Conference track
+预付费的参与者	Prepaid participants
+co 协调员	Co coordinator
+参与者支付	Participant
+整篇文章提交的日期	Full article submitted by date
+会议的位置	Meeting location
+文章的最后版本的交付日期	Date of delivery of the final version of the article
+审阅者的专业	Reviewers of the professional
+文凭审查	Diploma review
+功能的姓氏	Function name
+专业审阅者	Professional reviewers
+编年史卷号	Chronicle volume number
+会议网站是	Conference website is
+广告的接受的日期	Advertising acceptance date
+国际标准书号的史册	Annals of the ISBN
+是会议卷的一部分	Is part of a conference volume
+小径的车间及教程主题的特点	Trails workshop and tutorial topics features
+邀请 co 审阅者	Invite co reviewer
+有一个 co 协调	A co coordinated
+它是部分会议主题	It is part of the theme
+被分配了对审查的偏好	Was assigned a preference for review
+有助于会议	Contribute to meeting
+有一个一般的协调	There is one general coordination
+功能作者	Feature writer
+这是一个会议指导委员会	This is a Conference Steering Committee
+这是会议的程序委员会	The Conference Program Committee
+是总协调员	Is General Coordinator
+有一个跟踪协调的车间和教程	With a tracking and coordination of workshops and tutorials
+有一个偏好或专业的审查	There is a preference or a professional review
+有一个专业的审查	Have a professional review
+功能工作坊	Function workshop
+有一个概括	With such a broad
+是一个跟踪协调员讲习班	Is a track coordinator workshop
+有一个受限制的贡献	Have a restricted contribution
+这是一个会议委员会	This is a Conference Committee
+它的特点的轨道	It features tracks
+部长演示文稿	Minister presentation
+功能教程	Function tutorial
+属于对审查的偏好	Belonging to a preference for review
+有一个项目委员会	A project Committee
+它是 co 的协调员	It is the Coordinator of co
+这是一个会议组织委员会	This is a meeting of organizing Committee
+书面的工作	Written work
+在最终版本中工作	Work in the final release
+完成工作	Completed work
+podanyj 工作	Podanyj work
+互联网地址的会议	Internet address of the Conference
+工作的	Work
+购买方	Buyer
+早期购买方	Early buyers
+对进行审查的要求	Requirements for review
+扩大的抽象	Extended abstract
+客人报告	Guests report
+科学理事会	The Scientific Council
+发布会	The press conference
+晚了购买方	Late buyers
+注册的会员	Registered members
+otrecenzirovannj 工作	Otrecenzirovannj work
+参与的邀请	Participation of invited
+节	Section
+头节的研讨会	Head section seminar
+专家点评	Expert reviews
+展位	Booth
+培训课程	Training courses
+信息的信	Information letter
+合著者的工作	Co-author of work
+工作的第一作者	Author of the work
+组织的董事会	Organization's Board of Directors
+劳工大会	Labour Conference
+拒绝的劳工	Refuse workers
+该标记对会议的贡献的人	The mark's contribution to meeting the people
+国际标准书号	ISBN
+在为自己的公告的日期	In their announcement dates
+发行日期	Issue date
+日期的呈现完整的文章	Rendering of the date of the complete article
+这篇文章的最终版本提交日期	Date of filing the final version of the article
+能力	Capacity
+互联网地址的	Internet addresses
+程度	Degree
+paul	paul
+特鲁迪	Trudy
+是的第 1 部分	Yes, 1th part
+节主题研讨会、 培训课程	Thematic seminars, training courses
+在点评的要求中指定	Reviews of the requirements specified in the
+制作演示文稿	Making a presentation
+审阅者所拥有	Owned by reviewers
+他是程序委员会	He was Program Committee
+在提起	Filed in
+谁邀请	Who invited
+一部分	A fraction of it
+主题或归档的工作	Topics or archives work
+担任主席的这次研讨会的一节	Chaired the workshop section
+他是的成员	He is Member
+是组织委员会	The Organizational Committee
+是的主题部分会议吗	Yes theme: segment
+表示在释放会议	Release Conference
+是委员会	Is the Commission
+是问题 (s) 的一部分	Is the problem (s) part of the
+rekommendaciâ 审查或能力	Rekommendaciâ review, or
+节、 研讨会、 obučaûŝegokursa 的头	Festivals, seminars, obučaûŝegokursa
+担任委员会主席	As Chairman of the Committee
+谁执行了	Who performed the
+批评	Criticism
+请你给审阅者	Please give the reviewer
+rekommendaciâ 审查	Rekommendaciâ review
+他是委员会联席主席	He is co-Chairman of the Committee
+委员会副主席	Deputy Chairman of the Committee

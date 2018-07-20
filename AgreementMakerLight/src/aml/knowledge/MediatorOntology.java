@@ -16,31 +16,43 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ontology;
+package aml.knowledge;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Set;
 
+import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLClass;
+import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 
+import aml.ontology.ReferenceMap;
 import aml.settings.LexicalType;
 import aml.util.StringParser;
 
-public class BKOntology extends Ontology
+public class MediatorOntology
 {
 
 //Attributes
 	
+	//The entity expansion limit property
+    private final String LIMIT = "entityExpansionLimit";
+	//The URI of the ontology
+	private String uri;
+	//Its lexicon
+	private MediatorLexicon lex;
 	//Its map of cross-references
-	protected ReferenceMap refs;
+	private ReferenceMap refs;
 	
 	
 //Constructors
@@ -48,9 +60,9 @@ public class BKOntology extends Ontology
 	/**
 	 * Constructs an empty ontology
 	 */
-	public BKOntology()
+	private MediatorOntology()
 	{
-		super();
+		lex = new MediatorLexicon();
 		refs = new ReferenceMap();
 	}
 	
@@ -59,34 +71,37 @@ public class BKOntology extends Ontology
 	 * @param path: the path to the input Ontology file
 	 * @throws OWLOntologyCreationException 
 	 */
-	public BKOntology(String path) throws OWLOntologyCreationException
+	public MediatorOntology(String path) throws OWLOntologyCreationException
 	{
 		this();
         //Load the local ontology
-        File f = new File(path);
-        OWLOntology o;
-		o = manager.loadOntologyFromOntologyDocument(f);
-		uri = f.getAbsolutePath();
-		init(o);
-		//Close the OntModel
-        manager.removeOntology(o);
-        //Reset the entity expansion limit
-        System.clearProperty(LIMIT);
+		init(path);
         //Check if a xrefs file with the same name as the ontology exists 
+		//And if so, use it to extend the ReferenceMap
 		String refName = path.substring(0,path.lastIndexOf(".")) + ".xrefs";
-		f = new File(refName);
+		File f = new File(refName);
 		if(f.exists())
-			//And if so, use it to extend the ReferenceMap
 			refs.extend(refName);
 	}
 
 //Public Methods
 
-	@Override
+	/**
+	 * Closes the Ontology 
+	 */
 	public void close()
 	{
-		super.close();
+		uri = null;
+		lex = null;
 		refs = null;
+	}
+	
+	/**
+	 * @return the MediatorLexicon of the Ontology
+	 */
+	public MediatorLexicon getMediatorLexicon()
+	{
+		return lex;
 	}
 	
 	/**
@@ -96,12 +111,29 @@ public class BKOntology extends Ontology
 	{
 		return refs;
 	}
+	
+	/**
+	 * @return the URI of the Ontology
+	 */
+	public String getURI()
+	{
+		return uri;
+	}
 		
 //Private Methods	
 
 	//Builds the ontology data structures
-	private void init(OWLOntology o)
+	private void init(String path) throws OWLOntologyCreationException
 	{
+        //Increase the entity expansion limit to allow large ontologies
+        System.setProperty(LIMIT, "1000000");
+        //Get an Ontology Manager and Data Factory
+		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
+		OWLDataFactory factory = manager.getOWLDataFactory();
+        File f = new File(path);
+		uri = f.getAbsolutePath();
+        OWLOntology o = manager.loadOntologyFromOntologyDocument(f);
+
 		//Update the URI of the ontology (if it lists one)
 		if(o.getOntologyID().getOntologyIRI() != null)
 			uri = o.getOntologyID().getOntologyIRI().toString();
@@ -123,8 +155,6 @@ public class BKOntology extends Ontology
 			String classUri = c.getIRI().toString();
 			if(classUri == null || classUri.endsWith("owl#Thing") || classUri.endsWith("owl:Thing"))
 				continue;
-			//Update the index and add it to the list of classes
-			classes.add(++id);
 			//Get the local name from the URI
 			String name = getLocalName(classUri);
 			
@@ -133,7 +163,7 @@ public class BKOntology extends Ontology
 			{
 				type = LexicalType.LOCAL_NAME;
 				weight = type.getDefaultWeight();
-				lex.addClass(id, name, "en", type, "", weight);
+				lex.add(id, name, weight);
 			}
 
 			//Now get the class's annotations (including imports)
@@ -155,7 +185,7 @@ public class BKOntology extends Ontology
 	            		String lang = val.getLang();
 	            		if(lang.equals(""))
 	            			lang = "en";
-	            		lex.addClass(id, name, lang, type, "", weight);
+	            		lex.add(id, name, weight);
 		            }
 	            	else if(annotation.getValue() instanceof IRI)
 	            	{
@@ -166,10 +196,7 @@ public class BKOntology extends Ontology
 	                       	{
 	                       		OWLLiteral val = (OWLLiteral) a.getValue();
 	                       		name = val.getLiteral();
-	                       		String lang = val.getLang();
-	    	            		if(lang.equals(""))
-	    	            			lang = "en";
-    		            		lex.addClass(id, name, lang, type, "", weight);
+    		            		lex.add(id, name, weight);
 	                       	}
 	            		}
 	            	}
@@ -184,6 +211,33 @@ public class BKOntology extends Ontology
 						refs.add(id,xRef.replace(':','_'));
             	}
 	        }
+            //Increment the index
+            id++;
 		}
+		//Close the OntModel
+        manager.removeOntology(o);
+        //Reset the entity expansion limit
+        System.clearProperty(LIMIT);
+	}
+	
+	//Get the local name of an entity from its URI
+	private String getLocalName(String uri)
+	{
+		String newUri = uri;
+		if(newUri.contains("%") || newUri.contains("&"))
+		{
+			try
+			{
+				newUri = URLDecoder.decode(newUri,"UTF-8");
+			}
+			catch(UnsupportedEncodingException e)
+			{
+				//Do nothing
+			}
+		}
+		int index = newUri.indexOf("#") + 1;
+		if(index == 0)
+			index = newUri.lastIndexOf("/") + 1;
+		return newUri.substring(index);
 	}
 }

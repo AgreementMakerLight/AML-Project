@@ -728,3 +728,6 @@ zusammenfassung	Samenvatting
 datum der einreichung des zusammenfassungen	datum van indiening van de samenvattingen
 hat zusammenfassung	heeft samenvatting
 deadline für die einreichung der zusammenfassung	uiterste datum voor indiening van de samenvatting
+spricht in	spreekt in
+istanwesend	istanwesend
+spricht	spreekt

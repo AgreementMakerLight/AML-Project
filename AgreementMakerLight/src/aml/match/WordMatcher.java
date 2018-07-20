@@ -24,6 +24,8 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.ontology.WordLexicon;
+import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.WordMatchStrategy;
 import aml.util.Table2Map;
 import aml.util.Table2Set;
@@ -33,6 +35,12 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 
 //Attributes
 	
+	private static final String DESCRIPTION = "Matches entities by checking for words\n" +
+			  								  "they share in their Lexicon entries.\n" +
+			  								  "Computes word similarity by entity, by\n" +
+			  								  "by entry, or combined";
+	private static final String NAME = "Word Matcher";
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
 	private WordLexicon sourceLex;
 	private WordLexicon targetLex;
 	private WordMatchStrategy strategy = WordMatchStrategy.AVERAGE;
@@ -45,9 +53,6 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	 */
 	public WordMatcher()
 	{
-		AML aml = AML.getInstance();
-		sourceLex = aml.getSource().getWordLexicon();
-		targetLex = aml.getTarget().getWordLexicon();
 		language = "";
 	}
 	
@@ -57,9 +62,6 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	 */
 	public WordMatcher(String lang)
 	{
-		AML aml = AML.getInstance();
-		sourceLex = aml.getSource().getWordLexicon(lang);
-		targetLex = aml.getTarget().getWordLexicon(lang);
 		language = lang;
 	}
 	
@@ -87,12 +89,42 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 //Public Methods
 	
 	@Override
-	public Alignment match(double thresh)
+	public String getDescription()
 	{
-		System.out.println("Running Word Matcher");
-		if(!language.isEmpty())
-			System.out.println("Language: " + language);
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+
+	@Override
+	public EntityType[] getSupportedEntityTypes()
+	{
+		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
+		AML aml = AML.getInstance();
+		System.out.println("Building Word Lexicons");
 		long time = System.currentTimeMillis()/1000;
+		if(!language.isEmpty())
+		{
+			System.out.println("Language: " + language);
+			sourceLex = aml.getSource().getWordLexicon(e,language);
+			targetLex = aml.getTarget().getWordLexicon(e,language);
+		}
+		else
+		{
+			sourceLex = aml.getSource().getWordLexicon(e);
+			targetLex = aml.getTarget().getWordLexicon(e);
+		}
+		System.out.println("Running Word Matcher");
 		Alignment a = new Alignment();
 		//If the strategy is BY_CLASS, the alignment can be computed
 		//globally. Otherwise we need to compute a preliminary
@@ -114,7 +146,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 			{
 				//The word table (words->String, class indexes->Integer) for the current block
 				Table2Set<String,Integer> tWLex = targetLex.getWordTable(j);
-				Vector<Mapping> temp = matchBlocks(sWLex,tWLex,t);
+				Vector<Mapping> temp = matchBlocks(sWLex,tWLex,e,t);
 				//If the strategy is BY_CLASS, just add the alignment
 				if(strategy.equals(WordMatchStrategy.BY_CLASS))
 					a.addAll(temp);
@@ -149,19 +181,51 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	}
 	
 	@Override
-	public Alignment rematch(Alignment a)
+	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
-		System.out.println("Computing Word Similarity");
+		checkEntityType(e);
+		AML aml = AML.getInstance();
+		System.out.println("Building Word Lexicons");
 		long time = System.currentTimeMillis()/1000;
+		if(!language.isEmpty())
+		{
+			System.out.println("Language: " + language);
+			sourceLex = aml.getSource().getWordLexicon(e,language);
+			targetLex = aml.getTarget().getWordLexicon(e,language);
+		}
+		else
+		{
+			sourceLex = aml.getSource().getWordLexicon(e);
+			targetLex = aml.getTarget().getWordLexicon(e);
+		}		
+		System.out.println("Computing Word Similarity");
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
-			maps.add(mapTwoClasses(m.getSourceId(),m.getTargetId()));
+		{
+			if(aml.getURIMap().getType(m.getSourceId()).equals(e))
+				maps.add(mapTwoClasses(m.getSourceId(),m.getTargetId()));
+		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 	
-//Private
+//Private Methods
+	
+	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	{
+		boolean check = false;
+		for(EntityType t : SUPPORT)
+		{
+			if(t.equals(e))
+			{
+				check = true;
+				break;
+			}
+		}
+		if(!check)
+			throw new UnsupportedEntityTypeException(e.toString());
+	}
 	
 	//Computes the word-based (bag-of-words) similarity between two
 	//classes, for use by rematch()
@@ -170,8 +234,8 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		Set<String> sourceWords = sourceLex.getWords(sourceId);
 		Set<String> targetWords = targetLex.getWords(targetId);
 		double intersection = 0.0;
-		double union = sourceLex.getClassEC(sourceId) + 
-				targetLex.getClassEC(targetId);
+		double union = sourceLex.getEntityEC(sourceId) + 
+				targetLex.getEntityEC(targetId);
 		for(String w : sourceWords)
 		{
 			double weight = sourceLex.getWordEC(w) * sourceLex.getWordWeight(w,sourceId);
@@ -188,8 +252,9 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	//or to compute a preliminary alignment which is then refined according
 	//to the WordMatchStrategy.
 	private Vector<Mapping> matchBlocks(Table2Set<String,Integer> sWLex,
-			Table2Set<String,Integer> tWLex, double thresh)
+			Table2Set<String,Integer> tWLex, EntityType e, double thresh)
 	{
+		AML aml = AML.getInstance();
 		Table2Map<Integer,Integer,Double> maps = new Table2Map<Integer,Integer,Double>();
 		//To minimize iterations, we want to iterate through the smallest Lexicon
 		boolean sourceIsSmaller = (sWLex.keyCount() <= tWLex.keyCount());
@@ -208,9 +273,15 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 			double ec = sourceLex.getWordEC(s) * targetLex.getWordEC(s);
 			for(Integer i : sourceIndexes)
 			{
+				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
+					continue;
 				double sim = ec * sourceLex.getWordWeight(s,i);
 				for(Integer j : targetIndexes)
 				{
+					if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
+							(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+							!aml.getRelationshipMap().shareClass(i,j))))
+						continue;
 					double finalSim = Math.sqrt(sim * targetLex.getWordWeight(s,j));
 					Double previousSim = maps.get(i,j);
 					if(previousSim == null)
@@ -228,7 +299,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 			for(Integer j : targets)
 			{
 				double sim = maps.get(i,j);
-				sim /= sourceLex.getClassEC(i) + targetLex.getClassEC(j) - sim;
+				sim /= sourceLex.getEntityEC(i) + targetLex.getEntityEC(j) - sim;
 				if(sim >= thresh)
 					a.add(new Mapping(i, j, sim));
 			}

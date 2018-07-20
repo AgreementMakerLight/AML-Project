@@ -690,3 +690,13 @@ possui co-autor	Het heeft co-auteur
 dia de início do evento	dag van de aanvang van het evenement
 último dia do evento	laatste dag van het evenement
 email	E-mail
+tem código artigo	heeft artikel code
+possui um membro comitê de programa	heeft een lid programma Comité
+membro comitê de programa	Lid van de Commissie van het programma
+adicionar um membro comitê de programa	Toevoegen van een lid programma Comité
+definição número máximo de artigos	instelling maximum aantal artikelen
+especialidade revisor	specialiteit revisor
+número volume dos anais	Annalen volumenummer
+último dia evento	laatste dag evenement
+dia de início evento	Start dagen durende evenement
+possui nome patrocinador	heeft naam sponsor

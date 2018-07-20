@@ -728,3 +728,6 @@ zusammenfassung	Résumé
 datum der einreichung des zusammenfassungen	Date de soumission des résumés
 hat zusammenfassung	a résumé
 deadline für die einreichung der zusammenfassung	Date limite de soumission du résumé
+spricht in	parle en
+istanwesend	istanwesend
+spricht	parle

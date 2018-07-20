@@ -478,3 +478,13 @@ conjunto de prazos	المواعيد المحددة
 notificação de autor até	إخطار مقدم البلاغ
 premiados por	التي تمنحها
 pode ficar em	يمكن أن يبقى في
+tem código artigo	وقد رمز المادة
+possui um membro comitê de programa	عضو لجنة البرنامج
+membro comitê de programa	عضو لجنة البرنامج
+adicionar um membro comitê de programa	إضافة عضو لجنة البرنامج
+definição número máximo de artigos	تعيين الحد الأقصى لعدد من المواد
+especialidade revisor	المراجع المتخصصة
+número volume dos anais	رقم وحدة التخزين حوليات
+último dia evento	حدث اليوم الأخير
+dia de início evento	ابدأ بتشغيل الحدث اليوم
+possui nome patrocinador	باسم الراعي

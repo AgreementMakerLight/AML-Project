@@ -18,7 +18,7 @@
 *                                                                             *
 * @author Daniel Faria, Claudia Duarte                                        *
 ******************************************************************************/
-package aml.util;
+package aml.knowledge;
 
 import java.io.File;
 import java.util.Iterator;
@@ -28,15 +28,12 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import aml.ontology.Lexicon;
-import aml.settings.LexicalType;
-
 public class MeSHParser
 {
 	public static void main(String[] args) throws Exception
 	{
 		Vector<String> concepts = new Vector<String>();
-		Lexicon lexicon = new Lexicon();
+		MediatorLexicon med = new MediatorLexicon();
 		
 		SAXReader reader = new SAXReader();
 		File f = new File("store/knowledge/mesh.xml");
@@ -54,11 +51,11 @@ public class MeSHParser
 				Element c = (Element)conc.next();
 				String conceptName = c.element("ConceptName").elementText("String");
 				concepts.add(conceptName);
-				lexicon.addClass(index, conceptName, LexicalType.LABEL, "", 0.90);
+				med.add(index, conceptName, 0.90);
 				
 				String casN1Name = c.elementText("CASN1Name");
 				if(casN1Name != null)
-					lexicon.addClass(index, casN1Name, LexicalType.FORMULA, "", 0.85);
+					med.add(index, casN1Name, 0.85);
 					
 				Element termList = c.element("TermList");
 				Iterator<?> terms = termList.elementIterator("Term");
@@ -67,11 +64,11 @@ public class MeSHParser
 					Element t = (Element)terms.next();
 					String termName = t.elementText("String");
 					if(!conceptName.equals(termName))
-						lexicon.addClass(index, termName, LexicalType.EXACT_SYNONYM, "", 0.85);
+						med.add(index, termName, 0.85);
 				}
 				index++;
 			}
 		}
-		lexicon.save("store/knowledge/mesh.lexicon");
+		med.save("store/knowledge/mesh.lexicon");
 	}
 }

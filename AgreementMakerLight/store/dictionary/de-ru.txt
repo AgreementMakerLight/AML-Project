@@ -728,3 +728,6 @@ zusammenfassung	Резюме
 datum der einreichung des zusammenfassungen	Дата подачи резюме
 hat zusammenfassung	имеет резюме
 deadline für die einreichung der zusammenfassung	Крайний срок подачи резюме
+spricht in	говорит в
+spricht	говорит
+istanwesend	istanwesend

@@ -690,3 +690,13 @@ contribui para a conferência	вклад Конференции
 dia de início do evento	день начала события
 último dia do evento	последний день мероприятия
 email	Отправить по электронной почте
+tem código artigo	Код статьи
+possui um membro comitê de programa	имеет член программного комитета
+membro comitê de programa	Член Комитета программы
+adicionar um membro comitê de programa	Добавление члена программного комитета
+definição número máximo de artigos	Установка максимального числа статей
+especialidade revisor	специальность рецензент
+número volume dos anais	Номер тома анналы
+último dia evento	последний день мероприятия
+dia de início evento	начать день мероприятия
+possui nome patrocinador	имеет имя спонсора

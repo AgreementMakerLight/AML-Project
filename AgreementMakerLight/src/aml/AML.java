@@ -21,8 +21,10 @@
 ******************************************************************************/
 package aml;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileReader;
 import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,20 +35,26 @@ import javax.swing.UIManager;
 import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
+import aml.ext.ParenthesisExtender;
+import aml.ext.StopWordExtender;
 import aml.filter.CustomFilterer;
 import aml.filter.CustomFlagger;
 import aml.filter.QualityFlagger;
 import aml.filter.RepairMap;
 import aml.filter.Repairer;
+import aml.knowledge.Dictionary;
+import aml.knowledge.MediatorOntology;
 import aml.match.ManualMatcher;
 import aml.match.Mapping;
+import aml.match.UnsupportedEntityTypeException;
 import aml.match.Alignment;
 import aml.match.AutomaticMatcher;
-import aml.ontology.BKOntology;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.settings.Problem;
+import aml.settings.EntityType;
+import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.MappingStatus;
 import aml.settings.MatchStep;
@@ -55,13 +63,13 @@ import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
 import aml.settings.StringSimMeasure;
 import aml.settings.WordMatchStrategy;
-import aml.translate.Dictionary;
 import aml.ui.AMLColor;
 import aml.ui.AlignmentFileChooser;
 import aml.ui.GUI;
 import aml.ui.OntologyFileChooser;
 import aml.util.ExtensionFilter;
 import aml.util.InteractionManager;
+import aml.util.Similarity;
 
 public class AML
 {
@@ -75,9 +83,9 @@ public class AML
 	//The ontology and alignment data structures
 	private URIMap uris;
 	private RelationshipMap rels;
-	private Ontology2Match source;
-	private Ontology2Match target;
-	private BKOntology bk;
+	private Ontology source;
+	private Ontology target;
+	private MediatorOntology bk;
 	private Alignment a;
 	private Alignment ref;
 	private RepairMap rep;
@@ -91,11 +99,18 @@ public class AML
 	private double recall;
 	private double fMeasure;
 	//General matching settings
-	private boolean useReasoner = true;
+	private boolean useReasoner = false;
+	private boolean matchSameURI = false;
+	private boolean matchClasses;
+	private boolean matchIndividuals;
+	private boolean matchProperties;
 	private final String LOG = "log4j.properties";
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
-    private LanguageSetting lang;
+	private Set<Integer> sourceIndividualsToMatch;
+	private Set<Integer> targetIndividualsToMatch;
+	private InstanceMatchingCategory inst;
+	private LanguageSetting lang;
 	private SizeCategory size;
 	private Set<String> languages;
     private SelectionType sType;
@@ -212,7 +227,6 @@ public class AML
 			File[] lexFiles = ontRoot.listFiles(lex);
 			for(File f : lexFiles)
 				bkSources.add(f.getName());
-			bkSources.add("WordNet");
 		}
 		else
 		{
@@ -220,7 +234,41 @@ public class AML
 		}
 		selectedSources = new Vector<String>(bkSources);
 		
+		//Custom Match
+		matchSteps = new Vector<MatchStep>();
+		for(MatchStep s : MatchStep.values())
+			matchSteps.add(s);
+		
+		matchClasses = hasClasses();
+		double sourceRatio = (source.count(EntityType.DATA) + source.count(EntityType.OBJECT)) * 1.0 / source.count(EntityType.CLASS);
+		double targetRatio = (target.count(EntityType.DATA) + target.count(EntityType.OBJECT)) * 1.0 / target.count(EntityType.CLASS);
+		matchProperties = hasProperties() && sourceRatio >= 0.05 && targetRatio >= 0.05;
+		sourceRatio = source.count(EntityType.INDIVIDUAL) * 1.0 / source.count(EntityType.CLASS);
+		targetRatio = target.count(EntityType.INDIVIDUAL) * 1.0 / target.count(EntityType.CLASS);
+		matchIndividuals = hasIndividuals() && sourceRatio >= 0.25 && targetRatio >= 0.25;
+		if(matchIndividuals)
+		{
+			inst = InstanceMatchingCategory.DIFFERENT_ONTOLOGIES;
+			double share = Similarity.jaccard(source.getEntities(EntityType.CLASS),
+					target.getEntities(EntityType.CLASS));
+			if(share >= 0.5)
+			{
+				inst = InstanceMatchingCategory.SAME_ONTOLOGY;
+				matchClasses = false;
+				matchProperties = false;
+			}
+			else if(sourceRatio > 1 && targetRatio > 1)
+			{
+				matchClasses = false;
+				matchProperties = false;
+			}
+			sourceIndividualsToMatch = source.getEntities(EntityType.INDIVIDUAL);
+			targetIndividualsToMatch = target.getEntities(EntityType.INDIVIDUAL);
+		}
+		
     	size = SizeCategory.getSizeCategory();
+    	if(size.equals(SizeCategory.HUGE))
+    		threshold = 0.7;
     	lang = LanguageSetting.getLanguageSetting();
 		languages = new HashSet<String>();
 		for(String s : source.getLexicon().getLanguages())
@@ -230,29 +278,8 @@ public class AML
 			language = "en";
 		else
 			language = languages.iterator().next();
-		matchSteps = new Vector<MatchStep>();
-		if(lang.equals(LanguageSetting.TRANSLATE))
-			matchSteps.add(MatchStep.TRANSLATE);
-		matchSteps.add(MatchStep.LEXICAL);
-		if(lang.equals(LanguageSetting.SINGLE))
-			matchSteps.add(MatchStep.BK);
-		if(!size.equals(SizeCategory.HUGE))
-			matchSteps.add(MatchStep.WORD);
-		matchSteps.add(MatchStep.STRING);
-		if(size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM))
-			matchSteps.add(MatchStep.STRUCT);
-		double sourceRatio = (source.dataPropertyCount() + source.objectPropertyCount()) * 1.0 / source.classCount();
-		double targetRatio = (target.dataPropertyCount() + target.objectPropertyCount()) * 1.0 / target.classCount();
-		if(sourceRatio >= 0.05 && targetRatio >= 0.05)
-			matchSteps.add(MatchStep.PROPERTY);
-		if(size.equals(SizeCategory.HUGE))
-			matchSteps.add(MatchStep.OBSOLETE);
-		matchSteps.add(MatchStep.SELECT);
-		matchSteps.add(MatchStep.REPAIR);
-		hierarchic = true;
 		wms = WordMatchStrategy.AVERAGE;
 		ssm = StringSimMeasure.ISUB;
-		primaryStringMatcher = size.equals(SizeCategory.SMALL);
 		nss = NeighborSimilarityStrategy.DESCENDANTS;
 		directNeighbors = false;
 		sType = SelectionType.getSelectionType();
@@ -260,6 +287,7 @@ public class AML
 		flagSteps = new Vector<Problem>();
 		for(Problem f : Problem.values())
 			flagSteps.add(f);
+		readConfigFile();
     }
     
     /**
@@ -347,7 +375,7 @@ public class AML
     /**
      * @return the current background knowledge ontology
      */
-	public BKOntology getBKOntology()
+	public MediatorOntology getBKOntology()
 	{
 		return bk;
 	}
@@ -384,12 +412,29 @@ public class AML
 		return flagSteps;
 	}
 
+	public double getIndividualConnectivity()
+	{
+		double connectivity = Math.min(rels.getIndividualsWithPassiveRelations().size(),
+				rels.getIndividualsWithActiveRelations().size());
+		connectivity /= source.count(EntityType.INDIVIDUAL) + target.count(EntityType.INDIVIDUAL);
+		return connectivity;
+	}
+
 	/**
      * @return the maximum individual edge-distance to plot in the Mapping Viewer
      */
 	public int getIndividualDistance()
     {
 		return individualDistance;
+	}
+	
+	/**
+	 * @return the number of Data and Annotation properties in the ValueMaps
+	 */
+	public double getIndividualValueDensity()
+	{
+		return Math.min(source.getValueMap().size()*1.0/source.count(EntityType.INDIVIDUAL),
+				target.getValueMap().size()*1.0/target.count(EntityType.INDIVIDUAL));
 	}
 
     /**
@@ -519,9 +564,17 @@ public class AML
 	/**
 	 * @return the current source ontology
 	 */
-	public Ontology2Match getSource()
+	public Ontology getSource()
 	{
 		return source;
+	}
+
+	/**
+	 * @return the set of individuals of the source ontology to match
+	 */
+	public Set<Integer> getSourceIndividualsToMatch()
+	{
+		return sourceIndividualsToMatch;
 	}
 	
 	/**
@@ -535,11 +588,19 @@ public class AML
 	/**
 	 * @return the current target ontology
 	 */
-	public Ontology2Match getTarget()
+	public Ontology getTarget()
 	{
 		return target;
 	}
-    
+ 
+	/**
+	 * @return the set of individuals of the target ontology to match
+	 */
+    public Set<Integer> getTargetIndividualsToMatch()
+    {
+		return targetIndividualsToMatch;
+	}
+
 	/**
 	 * @return the active similarity threshold
 	 */
@@ -584,8 +645,18 @@ public class AML
     public boolean hasClasses()
     {
     	return hasOntologies() &&
-    		source.classCount() > 0 && target.classCount() > 0;
+    		source.count(EntityType.CLASS) > 0 && target.count(EntityType.CLASS) > 0;
     }
+    
+    /**
+     * @return whether there are individuals in both active ontologies
+     */
+    private boolean hasIndividuals()
+    {
+    	return hasOntologies() &&
+        		source.count(EntityType.INDIVIDUAL) > 0 && target.count(EntityType.INDIVIDUAL) > 0;
+	}
+
     
     /**
      * @return whether there is an active pair of ontologies
@@ -602,23 +673,48 @@ public class AML
     public boolean hasProperties()
     {
     	return hasOntologies() &&
-   			((source.dataPropertyCount() > 0 && target.dataPropertyCount() > 0) ||
-   			(source.objectPropertyCount() > 0 && target.objectPropertyCount() > 0));
+   			((source.count(EntityType.DATA) > 0 && target.count(EntityType.DATA) > 0) ||
+   			(source.count(EntityType.OBJECT) > 0 && target.count(EntityType.OBJECT) > 0));
+    }
+    
+    /**
+     * @return whether there are cross-references in at least one ontology
+     */
+    public boolean hasReferences()
+    {
+    	return hasOntologies() &&
+   			(source.getReferenceMap().size() > 0 || target.getReferenceMap().size() > 0);
     }
     
     public boolean isHierarchic()
     {
 		return hierarchic;
 	}
+    
+    public boolean isToMatchSource(int index)
+    {
+    	return sourceIndividualsToMatch.contains(index);
+	}
 
+    public boolean isToMatchTarget(int index)
+    {
+    	return targetIndividualsToMatch.contains(index);
+	}
+    
     /**
      * Matches the active ontologies using the default configuration
      */
     public void matchAuto()
     {
-    	defaultConfig();
     	im = new InteractionManager();
-   		AutomaticMatcher.match();
+   		try
+   		{
+			AutomaticMatcher.match();
+		}
+   		catch(UnsupportedEntityTypeException e)
+   		{
+			e.printStackTrace();
+		}
     	evaluation = null;
     	rep = null;
     	if(a.size() > 0)
@@ -626,6 +722,42 @@ public class AML
     	if(userInterface != null)
     		userInterface.refresh();
     	needSave = true;
+    }
+    
+    /**
+     * @return whether class matching is on
+     */
+    public boolean matchClasses()
+    {
+    	return matchClasses;
+    }
+    
+    /**
+     * Sets the matchClasses parameter that determines
+     * whether ontology classes will be matched
+     * @param match: whether to match classes
+     */
+    public void matchClasses(boolean match)
+    {
+    	matchClasses = match;
+    }
+    
+    /**
+     * @return whether individual matching is on
+     */
+    public boolean matchIndividuals()
+    {
+    	return matchIndividuals;
+    }
+    
+    /**
+     * Sets the matchIndividuals parameter that determines
+     * whether ontology individuals will be matched
+     * @param match: whether to match individuals
+     */
+    public void matchIndividuals(boolean match)
+    {
+    	matchIndividuals = match;
     }
 
     /**
@@ -634,7 +766,14 @@ public class AML
     public void matchManual()
     {
     	im = new InteractionManager();
-   		ManualMatcher.match();
+   		try
+   		{
+			ManualMatcher.match();
+		}
+   		catch(UnsupportedEntityTypeException e)
+   		{
+			e.printStackTrace();
+		}
     	evaluation = null;
     	rep = null;
     	if(a.size() > 0)
@@ -642,6 +781,42 @@ public class AML
     	if(userInterface != null)
     		userInterface.refresh();
     	needSave = true;
+    }
+    
+    /**
+     * @return whether property matching is on
+     */
+    public boolean matchProperties()
+    {
+    	return matchProperties;
+    }
+    
+    /**
+     * Sets the matchProperties parameter that determines
+     * whether ontology properties will be matched
+     * @param match: whether to match properties
+     */
+    public void matchProperties(boolean match)
+    {
+    	matchProperties = match;
+    }
+    
+    /**
+     * @return whether same URI matching is on
+     */
+    public boolean matchSameURI()
+    {
+    	return matchSameURI;
+    }
+    
+    /**
+     * Sets the matchSameURI parameter that determines
+     * whether entities with the same URI will be matched
+     * @param match: whether to match entities with the same URI
+     */
+    public void matchSameURI(boolean match)
+    {
+    	matchSameURI = match;
     }
     
     /**
@@ -679,10 +854,11 @@ public class AML
 	
 	public void openBKOntology(String name) throws OWLOntologyCreationException
 	{
+		System.out.println("Loading mediating ontology " + name);
 		long time = System.currentTimeMillis()/1000;
 		if(bk != null)
 			bk.close();
-		bk = new BKOntology(dir + BK_PATH + name);
+		bk = new MediatorOntology(dir + BK_PATH + name);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(bk.getURI() + " loaded in " + time + " seconds");
 	}
@@ -697,22 +873,20 @@ public class AML
 			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = new Ontology2Match(src);
+		source = new Ontology(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
-		System.out.println("Classes: " + source.classCount());
-		System.out.println("Names: " + source.getLexicon().size());
-		System.out.println("Individuals: " + source.individualCount());
-		System.out.println("Properties: " + (source.dataPropertyCount()+source.objectPropertyCount()));
+		System.out.println("Classes: " + source.count(EntityType.CLASS));
+		System.out.println("Individuals: " + source.count(EntityType.INDIVIDUAL));
+		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
-		target = new Ontology2Match(tgt);
+		target = new Ontology(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
-		System.out.println("Classes: " + target.classCount());
-		System.out.println("Names: " + target.getLexicon().size());
-		System.out.println("Individuals: " + target.individualCount());
-		System.out.println("Properties: " + (target.dataPropertyCount()+target.objectPropertyCount()));
+		System.out.println("Classes: " + target.count(EntityType.CLASS));
+		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
+		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Running transitive closure on RelationshipMap");
@@ -729,6 +903,10 @@ public class AML
     	if(userInterface != null)
     		userInterface.refresh();
     	defaultConfig();
+    	StopWordExtender sw = new StopWordExtender();
+    	sw.extendLexicons();
+    	ParenthesisExtender p = new ParenthesisExtender();
+    	p.extendLexicons();
     	System.out.println("Finished!");	
 	}
 	
@@ -742,22 +920,20 @@ public class AML
 			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = new Ontology2Match(src);
+		source = new Ontology(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
-		System.out.println("Classes: " + source.classCount());	
-		System.out.println("Names: " + source.getLexicon().size());
-		System.out.println("Individuals: " + source.individualCount());
-		System.out.println("Properties: " + (source.dataPropertyCount()+source.objectPropertyCount()));
+		System.out.println("Classes: " + source.count(EntityType.CLASS));
+		System.out.println("Individuals: " + source.count(EntityType.INDIVIDUAL));
+		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
-		target = new Ontology2Match(tgt);
+		target = new Ontology(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
-		System.out.println("Classes: " + target.classCount());
-		System.out.println("Names: " + target.getLexicon().size());
-		System.out.println("Individuals: " + target.individualCount());
-		System.out.println("Properties: " + (target.dataPropertyCount()+target.objectPropertyCount()));
+		System.out.println("Classes: " + target.count(EntityType.CLASS));
+		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
+		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
 		System.out.println("Direct Relationships: " + rels.relationshipCount());
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Running transitive closure on RelationshipMap");
@@ -774,6 +950,10 @@ public class AML
     	if(userInterface != null)
     		userInterface.refresh();
     	defaultConfig();
+    	StopWordExtender sw = new StopWordExtender();
+    	sw.extendLexicons();
+    	ParenthesisExtender p = new ParenthesisExtender();
+    	p.extendLexicons();
     	System.out.println("Finished!");	
     }
     
@@ -787,7 +967,78 @@ public class AML
 		return primaryStringMatcher;
 	}
     
-    public void refreshMapping(int index)
+	public void readConfigFile()
+	{
+		File conf = new File(dir + "store/config.ini");
+		if(!conf.canRead())
+		{
+			System.out.println("Warning: config.ini file not found");
+			System.out.println("Matching will proceed with default configuration");
+		}
+		else
+		{
+			try
+			{
+				System.out.println("Reading config.ini file");
+				BufferedReader in = new BufferedReader(new FileReader(conf));
+				String line;
+				while((line=in.readLine()) != null)
+				{
+					if(line.startsWith("#") || line.isEmpty())
+						continue;
+					String[] option = line.split("=");
+					option[0] = option[0].trim();
+					option[1] = option[1].trim();
+					if(option[0].equals("match_classes"))
+						matchClasses = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("match_individuals"))
+						matchIndividuals = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("match_properties"))
+						matchProperties = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("threshold"))
+						threshold = Double.parseDouble(option[1]);
+					else if(option[0].equals("class_correspondence"))
+					{
+						if(option[1].equalsIgnoreCase("true"))
+							inst = InstanceMatchingCategory.SAME_CLASSES;
+					}
+					else if(option[0].equals("use_reasoner"))
+						useReasoner = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("match_same_uri"))
+						matchSameURI = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("source_classes"))
+					{
+						if(option[1].equals(""))
+							continue;
+						HashSet<String> toMatch = new HashSet<String>();
+						String[] iris = option[1].split(";");
+						for(String i : iris)
+							toMatch.add(i);
+						setSourceClassesToMatch(toMatch);
+					}
+					else if(option[0].equals("target_classes"))
+					{
+						if(option[1].equals(""))
+							continue;
+						HashSet<String> toMatch = new HashSet<String>();
+						String[] iris = option[1].split(";");
+						for(String i : iris)
+							toMatch.add(i);
+						setTargetClassesToMatch(toMatch);
+					}
+				}
+				in.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println("Error: Could not read config file");
+				e.printStackTrace();
+				System.out.println("Matching will proceed with default configuration");
+			}
+		}
+	}
+	
+	public void refreshMapping(int index)
     {
     	userInterface.refresh(index);
     }
@@ -821,6 +1072,11 @@ public class AML
 		Repairer r = new Repairer();
 		r.filter();
 		needSave = true;
+	}
+	
+	public InstanceMatchingCategory getInstanceMatchingCategory()
+	{
+		return inst;
 	}
 
     public void saveAlignmentRDF(String file) throws Exception
@@ -881,7 +1137,7 @@ public class AML
 		this.nss = nss;
 	}
 
-	public void setOntologies(Ontology2Match s, Ontology2Match t)
+	public void setOntologies(Ontology s, Ontology t)
 	{
 		source = s;
 		target = t;
@@ -891,6 +1147,11 @@ public class AML
 	public void setPrimaryStringMatcher(boolean primary)
 	{
 		primaryStringMatcher = primary;
+	}
+	
+	public void setInstanceMatchingCategory(InstanceMatchingCategory cat)
+	{
+		inst = cat;
 	}
 	
 	public void setSelectedSources(Vector<String> sources)
@@ -906,6 +1167,34 @@ public class AML
 			sType = s;
 	}
 	
+	/**
+	 * Sets the set of classes of the source ontology to which the individuals
+	 * to match belong to
+	 * @param sourcesToMatch: the set of source classes to match
+	 */
+	public void setSourceClassesToMatch(Set<String> sourcesToMatch)
+	{
+		sourceIndividualsToMatch = new HashSet<Integer>();
+		HashSet<Integer> sourceClasses = new HashSet<Integer>();
+		for(String s : sourcesToMatch)
+		{
+			int id = source.getIndex(s);
+			if(id != -1)
+				sourceClasses.add(id);
+		}
+		for(Integer i : source.getEntities(EntityType.INDIVIDUAL))
+		{
+			for(Integer c : sourceClasses)
+			{
+				if(rels.belongsToClass(i, c))
+				{
+					sourceIndividualsToMatch.add(i);
+					break;
+				}
+			}
+		}
+	}
+	
 	public void setStringSimMeasure(StringSimMeasure ssm)
 	{
 		this.ssm = ssm;
@@ -916,6 +1205,34 @@ public class AML
 		this.structuralSelection = structuralSelection;
 	}
 
+	/**
+	 * Sets the set of classes of the target ontology to which the individuals
+	 * to match belong to
+	 * @param targetsToMatch: the set of target classes to match
+	 */	
+	public void setTargetClassesToMatch(Set<String> targetsToMatch)
+	{
+		targetIndividualsToMatch = new HashSet<Integer>();
+		HashSet<Integer> targetClasses = new HashSet<Integer>();
+		for(String s : targetsToMatch)
+		{
+			int id = target.getIndex(s);
+			if(id != -1)
+				targetClasses.add(id);
+		}
+		for(Integer i : target.getEntities(EntityType.INDIVIDUAL))
+		{
+			for(Integer c : targetClasses)
+			{
+				if(rels.belongsToClass(i, c))
+				{
+					targetIndividualsToMatch.add(i);
+					break;
+				}
+			}
+		}
+	}
+	
 	public void setThreshold(double thresh)
 	{
 		threshold = thresh;
@@ -1021,6 +1338,19 @@ public class AML
 					d = new Dictionary(l2,l1);
 					d.translateLexicon(target.getLexicon());
 				}
+			}
+		}
+		if(!sLangs.contains("en") && !tLangs.contains("en"))
+		{
+			for(String l1 : sLangs)
+			{
+				Dictionary d = new Dictionary(l1,"en");
+				d.translateLexicon(source.getLexicon());
+			}
+			for(String l2 : tLangs)
+			{
+				Dictionary d = new Dictionary(l2,"en");
+				d.translateLexicon(target.getLexicon());
 			}
 		}
 		languages = new HashSet<String>();

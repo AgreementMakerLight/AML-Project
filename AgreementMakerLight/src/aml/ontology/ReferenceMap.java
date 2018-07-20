@@ -12,7 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The map of cross-references in an Ontology.                                 *
+* The map of cross-references in a MediatorOntology.                          *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -31,8 +31,8 @@ public class ReferenceMap
 //Attributes
 	
 	//The table of classes (Integer) <-> cross-reference URIs (String)
-	Table2Set<Integer,String> termRefs;
-	Table2Set<String,Integer> refTerms;
+	private Table2Set<Integer,String> termRefs;
+	private Table2Set<String,Integer> refTerms;
 
 //Constructors
 	

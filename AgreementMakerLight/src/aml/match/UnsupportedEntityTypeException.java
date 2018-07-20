@@ -12,39 +12,18 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An Ontology Object Property Entity.                                         *
+* An Exception thrown by Matchers requested to match unsupported EntityTypes. *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ontology;
+package aml.match;
 
-import java.util.HashSet;
-import java.util.Set;
-
-public class ObjectProperty extends Property
+public class UnsupportedEntityTypeException extends Exception
 {
-	
-//Attributes
-	
-	private Set<Integer> range;
-	
-//Constructors
+	private static final long serialVersionUID = -3684631816965093673L;
 
-	public ObjectProperty()
+	public UnsupportedEntityTypeException(String message)
 	{
-		super();
-		range = new HashSet<Integer>();
-	}
-	
-//Public Methods
-
-	public void addRange(Integer i)
-	{
-		range.add(i);
-	}
-	
-	public Set<Integer> getRange()
-	{
-		return range;
+		super("Unsupported EntityType: " + message);
 	}
 }

@@ -12,39 +12,28 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An Ontology Data Property Entity.                                           *
+* A matching algorithm that maps entities of one or more EntityTypes.         *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ontology;
+package aml.match;
 
-import java.util.HashSet;
-import java.util.Set;
+import aml.settings.EntityType;
 
-public class DataProperty extends Property
+public interface Matcher
 {
+	/**
+	 * @return this Matcher's textual description
+	 */
+	public String getDescription();
 	
-//Attributes
-	
-	private Set<String> range;
-	
-//Constructors
+	/**
+	 * @return this Matcher's name
+	 */
+	public String getName();
 
-	public DataProperty()
-	{
-		super();
-		range = new HashSet<String>();
-	}
-	
-//Public Methods
-
-	public void addRange(String s)
-	{
-		range.add(s);
-	}
-	
-	public Set<String> getRange()
-	{
-		return range;
-	}
+	/**
+	 * @return the list of EntityTypes supported by this Matcher
+	 */
+	public EntityType[] getSupportedEntityTypes();
 }

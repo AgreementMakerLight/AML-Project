@@ -41,9 +41,10 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
+import aml.settings.EntityType;
 import aml.settings.MappingRelation;
 import aml.settings.MappingStatus;
 import aml.util.Table2Map;
@@ -59,12 +60,10 @@ public class Alignment implements Collection<Mapping>
 	private Table2Map<Integer,Integer,Mapping> sourceMaps;
 	//Term mappings organized by target class (Target Id, Source Id, Mapping)
 	private Table2Map<Integer,Integer,Mapping> targetMaps;
-	//Whether the Alignment is internal
-	private boolean internal;
 	//Link to AML and the Ontologies
 	private AML aml;
-	private Ontology2Match source;
-	private Ontology2Match target;
+	private Ontology source;
+	private Ontology target;
 	//Link to the URIMap
 	private URIMap uris;
 	
@@ -82,23 +81,6 @@ public class Alignment implements Collection<Mapping>
 		source = aml.getSource();
 		target = aml.getTarget();
 		uris = aml.getURIMap();
-		internal = false;
-	}
-
-	/**
-	 * Creates a new empty Alignment
-	 */
-	public Alignment(boolean internal)
-	{
-		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
-		targetMaps = new Table2Map<Integer,Integer,Mapping>();
-		aml = AML.getInstance();
-		if(!internal)
-			source = aml.getSource();
-			target = aml.getTarget();
-		uris = aml.getURIMap();
-		this.internal = internal;
 	}
 
 	/**
@@ -138,7 +120,7 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public void add(int sourceId, int targetId, double sim)
 	{
-		add(sourceId,targetId,sim,MappingRelation.EQUIVALENCE);
+		add(sourceId,targetId,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
 	}
 	
 	/**
@@ -152,40 +134,7 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean add(int sourceId, int targetId, double sim, MappingRelation r)
 	{
-		//Unless the Alignment is internal, we can't have a mapping
-		//involving entities that exist in both ontologies (they are
-		//the same entity, and therefore shouldn't map with other
-		//entities in either ontology)
-		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
-			return false;
-		
-		//Construct the Mapping
-		Mapping m = new Mapping(sourceId, targetId, sim, r);
-		//If it isn't listed yet, add it
-		if(!sourceMaps.contains(sourceId,targetId))
-		{
-			maps.add(m);
-			sourceMaps.add(sourceId, targetId, m);
-			targetMaps.add(targetId, sourceId, m);
-			return true;
-		}
-		//Otherwise update the similarity
-		else
-		{
-			m = sourceMaps.get(sourceId,targetId);
-			boolean check = false;
-			if(m.getSimilarity() < sim)
-			{
-				m.setSimilarity(sim);
-				check = true;
-			}
-			if(!m.getRelationship().equals(r))
-			{
-				m.setRelationship(r);
-				check = true;
-			}
-			return check;
-		}
+		return add(sourceId,targetId,sim,r,MappingStatus.UNKNOWN);
 	}
 	
 	/**
@@ -200,11 +149,11 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean add(int sourceId, int targetId, double sim, MappingRelation r, MappingStatus s)
 	{
-		//Unless the Alignment is internal, we can't have a mapping
-		//involving entities that exist in both ontologies (they are
-		//the same entity, and therefore shouldn't map with other
-		//entities in either ontology)
-		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
+		//We shouldn't have a mapping involving entities that exist in
+		//both ontologies as they are the same entity, and therefore
+		//shouldn't map with other entities in either ontology, unless
+		//same URI matching is turned on
+		if(!aml.matchSameURI() && (source.contains(targetId) || target.contains(sourceId)))
 			return false;
 		
 		//Construct the Mapping
@@ -281,43 +230,7 @@ public class Alignment implements Collection<Mapping>
 	@Override
 	public boolean add(Mapping m)
 	{
-		int sourceId = m.getSourceId();
-		int targetId = m.getTargetId();
-		double sim = m.getSimilarity();
-		MappingRelation r = m.getRelationship();
-		Mapping clone = new Mapping(m);
-		//Unless the Alignment is internal, we can't have a mapping
-		//involving entities that exist in both ontologies (they are
-		//the same entity, and therefore shouldn't map with other
-		//entities in either ontology)
-		if(!internal && (source.contains(targetId) || target.contains(sourceId)))
-			return false;
-		
-		//If it isn't listed yet, add it
-		if(!sourceMaps.contains(sourceId,targetId))
-		{
-			maps.add(clone);
-			sourceMaps.add(sourceId, targetId, clone);
-			targetMaps.add(targetId, sourceId, clone);
-			return true;
-		}
-		//Otherwise update the similarity
-		else
-		{
-			m = sourceMaps.get(sourceId,targetId);
-			boolean check = false;
-			if(m.getSimilarity() < sim)
-			{
-				m.setSimilarity(sim);
-				check = true;
-			}
-			if(!m.getRelationship().equals(r))
-			{
-				m.setRelationship(r);
-				check = true;
-			}
-			return check;
-		}
+		return add(m.getSourceId(),m.getTargetId(),m.getSimilarity(),m.getRelationship(),m.getStatus());
 	}
 
 	@Override
@@ -433,7 +346,6 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsAncestralMapping(int sourceId, int targetId)
 	{
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
 		
 		Set<Integer> sourceAncestors = rels.getAncestors(sourceId);
@@ -520,7 +432,6 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsDescendantMapping(int sourceId, int targetId)
 	{
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
 		
 		Set<Integer> sourceDescendants = rels.getDescendants(sourceId);
@@ -576,7 +487,6 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsParentMapping(int sourceId, int targetId)
 	{
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
 		
 		Set<Integer> sourceAncestors = rels.getParents(sourceId);
@@ -806,7 +716,6 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public Alignment getHighLevelAlignment()
 	{
-		AML aml = AML.getInstance();
 		RelationshipMap rels = aml.getRelationshipMap();
 		
 		Alignment a = new Alignment();
@@ -1093,6 +1002,18 @@ public class Alignment implements Collection<Mapping>
 				check = remove(m) || check;
 		return check;
 	}
+	
+	/**
+	 * Saves the Alignment into a text file as a list of douples
+	 * @param file: the output file
+	 */
+	public void saveDoubles(String file) throws FileNotFoundException
+	{
+		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
+		for(Mapping m : maps)
+			outStream.println("<" + m.getSourceURI() + "> <" + m.getTargetURI() + ">");
+		outStream.close();
+	}
 
 	/**
 	 * Saves the Alignment into an .rdf file in OAEI format
@@ -1100,10 +1021,9 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public void saveRDF(String file) throws FileNotFoundException
 	{
-		AML aml = AML.getInstance();
 		String sourceURI = aml.getSource().getURI();
 		String targetURI = aml.getTarget().getURI();
-		
+
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		outStream.println("<?xml version='1.0' encoding='utf-8'?>");
 		outStream.println("<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment'"); 
@@ -1176,7 +1096,7 @@ public class Alignment implements Collection<Mapping>
 	}
 	
 	/**
-	 * @return the number of source classes mapped in this Alignment
+	 * @return the number of source entities mapped in this Alignment
 	 */
 	public int sourceCount()
 	{
@@ -1186,17 +1106,22 @@ public class Alignment implements Collection<Mapping>
 	/**
 	 * @return the fraction of source classes mapped in this Alignment
 	 */
-	public double sourceCoverage()
+	public double sourceCoverage(EntityType e)
 	{
-		AML aml = AML.getInstance();
-		double coverage = sourceMaps.keyCount();
-		int count = aml.getSource().classCount();
-		coverage /= count;
-		return coverage;
+		double coverage = 0.0;
+		for(Integer i : sourceMaps.keySet())
+			if(uris.getType(i).equals(e))
+				coverage++;
+		int count;
+		if(e.equals(EntityType.INDIVIDUAL))
+			count = aml.getSourceIndividualsToMatch().size();
+		else
+			count = aml.getSource().count(e);
+		return coverage / count;
 	}
 	
 	/**
-	 * @return the number of target classes mapped in this Alignment
+	 * @return the number of target entities mapped in this Alignment
 	 */
 	public int targetCount()
 	{
@@ -1206,13 +1131,18 @@ public class Alignment implements Collection<Mapping>
 	/**
 	 * @return the fraction of target classes mapped in this Alignment
 	 */
-	public double targetCoverage()
+	public double targetCoverage(EntityType e)
 	{
-		AML aml = AML.getInstance();
-		double coverage = targetMaps.keyCount();
-		int count = aml.getTarget().classCount();
-		coverage /= count;
-		return coverage;
+		double coverage = 0.0;
+		for(Integer i : targetMaps.keySet())
+			if(uris.getType(i).equals(e))
+				coverage++;
+		int count;
+		if(e.equals(EntityType.INDIVIDUAL))
+			count = aml.getTargetIndividualsToMatch().size();
+		else
+			count = aml.getTarget().count(e);
+		return coverage / count;
 	}
 	
 	@Override
@@ -1234,7 +1164,6 @@ public class Alignment implements Collection<Mapping>
 		//Open the Alignment file using SAXReader
 		SAXReader reader = new SAXReader();
 		File f = new File(file);
-
 		Document doc = reader.read(f);
 		//Read the root, then go to the "Alignment" element
 		Element root = doc.getRootElement();

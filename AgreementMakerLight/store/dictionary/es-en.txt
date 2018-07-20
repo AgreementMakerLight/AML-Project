@@ -664,3 +664,237 @@ buscado por	sought by
 notificación hasta el	notification to the
 diseñado por	designed by
 diseñar	design
+diputado presidente de la conferencia	Deputy President of the Conference
+presidente de conferencia	President of Conference
+miembro de la comisión de programa	Member of the program Committee
+meta-rapport para revisar	goal-rapport to review
+conferencia de miembros	Members Conference
+meta-revisor	Meta-revisor
+informe de examen	examination report
+propuesta para la reproducción	proposal for reproduction
+comité del programa	the program Committee
+autor que no es revisor	author who is no reviewer
+resumen de artículo	Summary of article
+aceptación	acceptance
+rechazo	rejection
+url del sitio	site URL
+número máximo de elementos	maximum number of items
+acepta las presentaciones en formato de papel	It accepts submissions in paper format
+número de informes en el artículo	number of reports in the article
+ajusta la propuesta de replay	Adjusts the replay proposal
+un tema	a theme
+una propuesta para la reproducción	a proposal for reproduction
+es leído por el revisor	It is read by the reviewer
+se asigna a	is assigned to
+una conferencia de miembros	a Conference of members
+añade el miembro del comité de programa	Adds the program Committee Member
+captura los criterios de evaluación de	capture the evaluation criteria of
+rechaza artículo	rejects article
+se ha asociado	It has partnered
+es aceptado por	It is accepted by
+asignación de herramientas de elementos son ejecutados por	allocation of items tools are executed by
+aceptar el artículo	accept article
+establece el número máximo de elementos de	sets the maximum number of elements of
+funcionamiento de nombres de herramientas de los blogs	operation of names of tools for blogs
+afecta a la función de revisor de	affects the function of reviser of
+la reunión virtual habilitada por	the virtual meeting enabled by
+afecta a la función de revisor externo	It affects the function of external reviewer
+la asignación de artículos por	the allocation of articles by
+es asignado por el administrador	It is assigned by the administrator
+es rechazado por	It is rejected by
+finaliza la asignación de los artículos	ends the allocation of items
+indica un conflicto de intereses para	indicates a conflict of interest for
+inicializa la asignación de propuestas a los revisores de	Initializes the allocation of proposals to reviewers of
+una para uno de los autores	one to one of the authors
+captura los detalles de la conferencia	captures the details of the Conference
+tiene un conflicto de intereses con respecto a	you have a conflict of interest with regard to
+se ajusta por	is adjusted by
+miembro del comité de programa para	Member of the program Committee for
+se agrega por	added by
+una decisión	a decision
+escribió el artículo	wrote the article
+es leído por el meta-revisor	It is read by the meta-revisor
+informe de examen escrito	written examination report
+la asignación de propuestas a los revisores es inicializada por	the allocation of proposals to reviewers is initialized by
+se ve afectado por el revisor	is affected by the reviewer
+imprime las letras del evento	print the letters of the event
+configura la reunión virtual	Configures the virtual meeting
+coautor artículo	co-author article
+los datos son introducidos por	the data are sent by
+enviar artículo	send article
+tiene el autor	has the author
+finaliza el proceso de revisión	the review process is complete
+los criterios de evaluación son llenados por	the evaluation criteria are filled by
+artículo de cama	bed article
+las copias del impreso por los mensajes de evento	copies of the printed by event messages
+oferta	offer
+crítico de meta	meta critic
+conferentielid	conferentielid
+sinopsis	Synopsis
+ver artículo completo	view full article
+revisor externo de amazon	external reviewer from amazon
+metarecentie	metarecentie
+co-chair	co-chair
+autor no crítico	non-critical author
+id de papel	ID paper
+url del sitio web	URL of the web site
+comentarios por artículo	comments by article
+acepta envíos hardcopy	accept hardcopy submissions
+logotipo url	logo url
+miembro del comité del programa	Member of the Programme Committee
+establecer el número máximo de elementos de	set the maximum number of elements of
+modificado por	modified by
+este artículo en	This article in
+detalles de la conferencia completas	complete Conference details
+señalan en el artículo	They point out in the article
+ha pujado	It has bid
+destacan los conflictos de interés	highlights conflicts of interest
+envíe una copia impresa prueba	send a hardcopy proof
+añadir a miembro del comité de programa	Add to Member of the program Committee
+decisión tiene	decision has
+escribir comentario	write comment
+hardcopy enviar evidencia impresa por	hardcopy send printed evidence by
+oferta de revisión iniciado por	offer review started by
+tiene conferentielid	has conferentielid
+permita la reunión virtual	allow the virtual meeting
+revisor de amazon, para que apunte a externo	reviewer from amazon, so that it points to external
+llenar criterios de revisión	fill review criteria
+use la herramienta de asignación del artículo	use the object mapping tool
+leído por revisor	read by reviewer
+artículo de escritura co	writing article co
+ha coautor	has co-authored
+rellenado por los criterios de revisión	filled in by the screening criteria
+detalles de la conferencia completos en	full details of the Conference in
+añadida por	added by
+rellene los criterios de revisión	fill out the review criteria
+detalles de terminado por	details of completed by
+escribir artículo	write article
+se concede	is granted
+artículo leído	Read article
+leído por metarecencent	read by metarecencent
+artículo terminado por premio	Article finished by award
+principio revisión oferta	beginning review offer
+miembro del comité de programa ha	Member of the program Committee has
+herramienta artículo de premio	tool award article
+eindrecentie	eindrecentie
+sólo intento	only attempt
+asignado por el revisor de amazon	assigned by the reviewer from amazon
+deja encuentro virtual	Let virtual meeting
+crear asignación de artículo	create item allocation
+añadir punto al revisor de amazon	Add point to the reviewer from amazon
+establecer número máximo de artículos	set maximum number of items
+tiene conflictos de intereses	has conflicts of interest
+revisor de autor	author reviewer
+coordinador general del evento	general coordinator of the event
+informe meta	report goal
+socio coordinador del evento	partner event coordinator
+revisor de meta	Reviewer of goal
+co-autor	co-author
+comité coordinador del programa	Committee program coordinator
+propuestas	proposals
+extracto del artículo	excerpt from the article
+coordinadora de la conferencia	the Conference Coordinator
+tiene código de artículo	has item code
+artículos máximos	maximum items
+tiene una cita	have a quote
+cuenta de correo electrónico	e-mail account
+url	URL
+tiene un nombre	has a name
+acepta las presentaciones impresas	accepted print submissions
+tiene código artículo	has code article
+cuenta con un miembro del comité de programa	It has a member of the program Committee
+permitir una reunión virtual	allow a virtual meeting
+introduzca los detalles	Enter the details
+iniciar solicitudes de revisión	initiate requests for review
+asignación de herramientas artículos realizado por	allocation of items tools made by
+finalizar las atribuciones de los artículos	end of the attributions of articles
+añadir un comité de programa	Add a program Committee
+impresión de documentos de envío de volumen de correo	volume of mail dispatch documents printing
+solicitudes de revisión iniciadas por	requests for review initiated by
+lectura de un revisor	reading from a reviewer
+enviar artículos	submit articles
+establecer el número máximo de artículos	set the maximum number of items
+revisión realizada	review
+realizar artículos de herramientas de asignación	perform assignment tools articles
+marcar un conflicto de intereses	mark a conflict of interest
+criterios de revisión presentados por	review criteria presented by
+rechazan artículo	They reject Article
+reunión virtual habilitada por	virtual meeting enabled by
+tiene un conflicto de intereses	has a conflict of interest
+asignar a un revisor externo	assign an external reviewer
+leer artículo	Read article
+solicitud de revisión de conjunto	request for review of set
+lectura celebrada por un revisor	reading held by a reviewer
+es coautor	He is the co-author
+asignar un revisor	assign a reviewer
+introduce los detalles de la conferencia	Enter the details of the Conference
+revisión final	final review
+una asignación del artículo terminada por	a completed allocation of the article by
+propia decisión	own decision
+artículo escrito	written article
+ajustar la solicitud de revisión	adjust the request for review
+tiene atribución	has attribution
+introduzca los criterios de las revisiones	Enter criteria revisions
+tiene final de conferencia	has end of Conference
+terminar las asignaciones de los artículos	complete assignments of articles
+combinación de correspondencia	mail merge
+solicitud de funciones de revisión	application of functions of revision
+artículo rechazado por	Article rejected by
+escribir un artículo con	write an article with
+agregar a un miembro del comité de programa	Add a member of the program Committee
+tiene una superficie	has a surface
+el autor no es un revisor	the author is not a reviewer
+artículo abstracto	abstract article
+el presidente de la conferencia	the President of the Conference
+como miembro del comité de programa	as a member of the program Committee
+meta-reseña	Meta-resena
+reseña del libro	Book review
+solución	solution
+tasa	rate
+la versión completa del artículo	the full version of the article
+desviación	deviation
+la adopción de	the adoption of
+el número de	the number of
+el id del artículo	the id of the item
+el nombre	the name
+la dirección de internet del logotipo	the internet address of the logo
+revisores del artículo	reviewers of the article
+la dirección internet del sitio web	the internet address of the web site
+acepta las peticiones de impresión	accepts print requests
+dirección de correo electrónico	email address
+cabecera	header
+¿quién ha cambiado	who has changed
+¿quién hizo los detalles	who made the details
+por reuniones virtuales razeršëna	by razeršena virtual meetings
+terminar la asignación de los artículos	finish the allocation of items
+leer el artículo	read the article
+que termine de asignar artículos	that you have finished assigning items
+permitir reuniones virtuales	enable virtual meetings
+leer revisor	read reviewer
+printhardcopymailingmanifests	printhardcopymailingmanifests
+agrega un comité de programa	Adds a program Committee
+comenzar a apostar el revisor	start betting the reviewer
+leer el meta-revisor	read the meta-revisor
+escriba un comentario	write a comment
+enviar un artículo	submit a paper
+designa a un revisor externo	appoints an external reviewer
+nombrado	named
+escribir un artículo coautor	write an article co-author
+por fecha agregada	by date added
+alguien toma	someone takes
+establece los artículos máximos	sets the maximum items
+quien rechazó	who rejected
+informe final	final report
+para hacer los detalles de la conferencia	to make the details of the Conference
+tenga en cuenta el conflicto de intereses	Please note the conflict of interest
+designa revisor	appoints reviewer
+designado por el administrador	designated by the administrator
+revisar criterios	review criteria
+un revisor designado	a designated reviewer
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+criterios de revisión exaltado	exalted review criteria
+tasa de cambio	Exchange rate
+¿quién empezó a colocar apuestas revisor	who started to place bets reviewer
+conflicto de intereses	conflict of interest
+¿quién dirige el programa de los artículos de destino	who runs the program of target articles
+escribir un artículo	write an article

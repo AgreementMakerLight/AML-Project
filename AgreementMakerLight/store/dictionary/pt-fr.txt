@@ -690,3 +690,13 @@ possui co-autor	Il a co-écrit
 dia de início do evento	jour de départ de l'épreuve
 último dia do evento	dernier jour de l'événement
 email	Messagerie
+tem código artigo	a l’article du code
+possui um membro comitê de programa	a un Comité de programme de membre
+membro comitê de programa	Membre du Comité de programme
+adicionar um membro comitê de programa	Ajouter un Comité de programme de membre
+definição número máximo de artigos	définir le nombre maximal d’articles
+especialidade revisor	relecteur de spécialité
+número volume dos anais	Numéro de volume des annales
+último dia evento	dernier événement de la journée
+dia de início evento	commencer la journée
+possui nome patrocinador	a nom parrain

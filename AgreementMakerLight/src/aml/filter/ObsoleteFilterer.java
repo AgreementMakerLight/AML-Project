@@ -21,15 +21,15 @@ package aml.filter;
 import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.ontology.Ontology2Match;
+import aml.ontology.Ontology;
 import aml.settings.MappingStatus;
 
-public class ObsoleteFilter implements Filterer, Flagger
+public class ObsoleteFilterer implements Filterer, Flagger
 {
 
 //Constructors
 	
-	public ObsoleteFilter(){}
+	public ObsoleteFilterer(){}
 	
 //Public Methods
 	
@@ -39,8 +39,8 @@ public class ObsoleteFilter implements Filterer, Flagger
 		System.out.println("Running Obsoletion Filter");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		Ontology2Match source = aml.getSource();
-		Ontology2Match target = aml.getTarget();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
 		Alignment a = aml.getAlignment();
 		for(Mapping m : a)
 		{
@@ -61,8 +61,8 @@ public class ObsoleteFilter implements Filterer, Flagger
 		System.out.println("Running Obsoletion Flagger");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		Ontology2Match source = aml.getSource();
-		Ontology2Match target = aml.getTarget();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
 		Alignment a = aml.getAlignment();
 		for(Mapping m : a)
 			if((source.isObsoleteClass(m.getSourceId()) ||

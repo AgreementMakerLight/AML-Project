@@ -38,7 +38,7 @@ public class AnnotationFileReader
 	 * @param annotFile: the GAF formatted annotation file to read 
 	 * @param o: the ontology with which the annotation file is associated
 	 */
-	public static void readGAF(String annotFile, Ontology2Match o)
+	public static void readGAF(String annotFile, Ontology o)
 	{
 		AML aml = AML.getInstance();
 		URIMap uris = aml.getURIMap();
@@ -70,9 +70,8 @@ public class AnnotationFileReader
 				int classIndex = o.getIndex(term);
 				//Add/get the instance index
 				int instanceIndex = uris.addURI(instance, EntityType.INDIVIDUAL);
-				//Construct the individual and add it to the ontology
-				Individual i = new Individual(instanceIndex,instance);
-				o.addIndividual(instanceIndex, i);
+				//Add it to the ontology
+				o.add(instanceIndex);
 				//Add the relation between the individual and class
 				rels.addInstance(instanceIndex, classIndex);
 				//Then a relation between the individual and each superclass
@@ -95,7 +94,7 @@ public class AnnotationFileReader
 	 * @param o: the ontology with which the annotation file is associated
 	 * @param header: whether the TSV file contains a header
 	 */
-	public static void readTSV(String annotFile, Ontology2Match o, boolean header)
+	public static void readTSV(String annotFile, Ontology o, boolean header)
 	{
 		AML aml = AML.getInstance();
 		URIMap uris = aml.getURIMap();
@@ -123,9 +122,8 @@ public class AnnotationFileReader
 				int classIndex = o.getIndex(term);
 				//Add/get the instance index
 				int instanceIndex = uris.addURI(instance, EntityType.INDIVIDUAL);
-				//Construct the individual and add it to the ontology
-				Individual i = new Individual(instanceIndex,instance);
-				o.addIndividual(instanceIndex, i);
+				//Add it to the ontology
+				o.add(instanceIndex);
 				//Add the relation between the individual and class
 				rels.addInstance(instanceIndex, classIndex);
 				//Then a relation between the individual and each superclass

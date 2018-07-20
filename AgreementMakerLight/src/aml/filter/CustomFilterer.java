@@ -40,7 +40,7 @@ public class CustomFilterer
 		Vector<Problem> steps = aml.getFlagSteps();
 		if(steps.contains(Problem.OBSOLETION))
 		{
-			ObsoleteFilter o = new ObsoleteFilter();
+			ObsoleteFilterer o = new ObsoleteFilterer();
 			o.filter();
 		}
 		if(steps.contains(Problem.CARDINALITY))

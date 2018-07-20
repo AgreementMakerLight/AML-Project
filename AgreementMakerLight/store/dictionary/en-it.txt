@@ -1,0 +1,796 @@
+sector	settore
+institutional	istituzionali
+social movement	movimento sociale
+ground	terra
+party	partito
+party family	famiglia di partito
+politician	politico
+technocrat	tecnocrate
+campaign event	evento di campagna
+on the ground	sul terreno
+role	ruolo
+citizen event	evento cittadino
+civil society	società civile
+politician event	evento politico
+institution	istituzione
+office	Ufficio
+topic	argomento
+alias	alias
+hashtag	hashtag
+interest group	gruppo di interesse
+legitimacy	legittimità
+european party group	gruppo del partito europeo
+nation	nazione
+policy	politica
+extra institutional	extra istituzionali
+media	media
+lib dem	lib dem
+equal opportunity	pari opportunità
+institute for fiscal studies	Istituto per studi fiscali
+herman achille van rompuy	achille di Herman van rompuy
+europe of rights	Europa dei diritti
+whistlestop tour	tour Whistlestop
+amnesty international uk	Amnesty international uk
+ucu	UCU
+gay rights	diritti dei gay
+economic growth	crescita economica
+erasmus	Erasmus
+lord	Signore
+hollande	Hollande
+farm policies	politiche agricole
+uk independence party	partito di indipendenza del Regno Unito
+schengen agreement	accordo di Schengen
+migration watch uk	migrazione Guarda uk
+movement	movimento
+lib democrats	democratici di lib
+civil societies	società civili
+bill of rights	carta dei diritti
+sustainability	sostenibilità
+government	governo
+directive	direttiva
+ukip	UKIP
+scottish national party	partito nazionale scozzese
+party leader	leader del partito
+borders	bordi
+high representative of the union for foreign affairs and security policy	alto rappresentante dell'Unione per gli affari esteri e la politica di sicurezza
+demos uk	Regno Unito demo
+entrepreneurs	imprenditori
+ukyouth	ukyouth
+inequalities	disuguaglianze
+recession	recessione
+lib democratic	lib democratica
+campaigning	una campagna
+eaf	EAF
+european parliament	Parlamento europeo
+lobbies	lobby
+nhs	NHS
+president of the european commission	Presidente della Commissione europea
+european left	sinistra europea
+fiscal compact	patto fiscale
+friends of the earth	amici della terra
+armies	eserciti
+european	europeo
+sustainable development	sviluppo sostenibile
+greenhouse gas	gas a effetto serra
+ministers	ministri
+hospital	Ospedale
+rajoy	Rajoy
+eu commission candidate	candidato alla Commissione
+queen	Regina
+stop the war coalition	interrompere la coalizione di guerra
+technocracy	tecnocrazia
+green party	Partito verde
+first minister of wales	primo ministro del Galles
+etuc	CES
+training	formazione
+alliance of liberals and democrats for europe	Alleanza dei democratici e liberali per l'Europa
+multiculturalism	multiculturalismo
+debate	dibattito
+homophobe	omofobo
+john fredrik reinfeldt	John fredrik reinfeldt
+greenhouse effect	effetto serra
+single currency	moneta unica
+italy	Italia
+trial	versione di prova
+gchq	GCHQ
+cost of living	costo della vita
+tories	Tories
+monopoly	monopolio
+leafleting	volantinaggio
+eu	dell'Unione europea
+members of parliament	membri del Parlamento
+international court of justice	Corte internazionale di giustizia
+council of the european union	Consiglio dell'Unione europea
+topup fees	topup tasse
+press conference	conferenza stampa
+david cameron	david cameron
+policy exchange	cambio di politica
+european alliance for freedom	Alleanza europea per la libertà
+single market	mercato unico
+farmers	agricoltori
+sit down strikes	Siediti scioperi
+speeches	discorsi
+miliband	Miliband
+farage	Farage
+strikes	scioperi
+salmond	Salmond
+renzi	Renzi
+university and college union	Unione di Università e college
+sit down strike	Siediti sciopero
+banks	banche
+trust the institutions	fiducia nelle istituzioni
+neoliberalism	neoliberismo
+trust in the institutions	fiducia nelle istituzioni
+fbu	FBU
+regulations	regolamenti
+efa	EFA
+trust and institutions	fiducia e istituzioni
+transportation	trasporto
+efd	EFD
+european conservatives and reformists	conservatori e Riformisti europei
+troika	Troika
+paneuropean corridors	corridoi paneuropei
+homophobiac	homophobiac
+patroller	Patroller
+home offices	uffici domestici
+international trade	commercio internazionale
+jeanclaude juncker	Jeanclaude juncker
+unison	all'unisono
+pcs	PCS
+social europe	Europa sociale
+liberal	liberale
+invasion	invasione
+royal air force	Royal air force
+bank	Banca
+pcc	PCC
+establishment	istituzione
+european free alliance	Alleanza libera europea
+european christian political movement	movimento politico cristiano europeo
+foreign office	foreign office
+wwf uk	WWF uk
+sanction	sanzione
+social agenda	agenda sociale
+refugees	rifugiati
+investigations	indagini
+rally	Rally
+business for new europe	business per la nuova Europa
+speech	discorso
+common security and defence policy	politica di sicurezza e di difesa comune
+carwyn jones	Carwyn jones
+constitutions	Costituzioni
+transport salaried staffs' association	associazione personale stipendiato di trasporto
+public debt	debito pubblico
+neoliberalist	neoliberista
+top up fees	ricaricare la pagina di tasse
+secretaries	segretarie
+social policies	politiche sociali
+constitution	Costituzione
+justice	giustizia
+angela merkel	angela merkel
+common agricultural policy	politica agricola comune
+herman van rompuy	Herman van rompuy
+criminals	criminali
+gdp	PIL
+françois hollande	François hollande
+international monetary fund	Fondo monetario internazionale
+education	formazione
+business	business
+farm	azienda agricola
+defence	difesa
+economic crisis	crisi economica
+president of the european council	Presidente del Consiglio europeo
+mep	MEP
+high speed rail	ferrovia ad alta velocità
+immigration	immigrazione
+treaty	trattato
+natalie louise bennett	Natalie louise bennett
+reinfeldt	Reinfeldt
+voting	di voto
+unlock democracy	sbloccare la democrazia
+eurosceptic	euroscettici
+snowden	Snowden
+ecofin	ECOFIN
+edward joseph snowden	Edward joseph snowden
+donald franciszek tusk	Zanna del Donald franciszek
+ecb	BCE
+outofwork benefit	outofwork beneficio
+frontiers	frontiere
+european semester	semestre europeo
+hospitals	ospedali
+structural funds	fondi strutturali
+childcare	assistenza bambini
+ukraine	Ucraina
+communication workers union	Unione di operai di comunicazione
+employment policy	politica dell'occupazione
+unite the union	unire l'Unione
+peace	pace
+national union of rail maritime and transport workers	Unione nazionale dei ferroviari marittimi e dei lavoratori dei trasporti
+cooperative	cooperativa
+ecr	ECR
+piracy	pirateria
+barroso	Barroso
+party of european socialists	partito del socialismo europeo
+growth	crescita
+terrorism	terrorismo
+employment	occupazione
+job benefits	vantaggi di lavoro
+lobby	Hall
+criminality	criminalità
+marines	Marines
+court	Corte
+academies	Accademie
+press complaints commission	Commissione di reclami di pressa
+online security	sicurezza online
+scottish parliament	Parlamento scozzese
+nigel farage	Nigel farage
+privatization	privatizzazione
+border	confine
+gmos	OGM
+abstentionism	Grillino
+clean energy	energia pulita
+wilders	Wilders
+glass ceilings	soffitti in vetro
+emissions	emissioni
+tell europe	raccontare l'Europa
+welfare	benessere
+volunteering	volontariato
+health	salute
+economic policy	politica economica
+prisons	prigioni
+david william donald cameron	David william donald cameron
+foreign policy and defense	politica estera e difesa
+bové	Bové
+union of shop distributive and allied workers	Unione degli operai distributivi e alleate negozio
+pm	PM
+inflation	inflazione
+tssa	TSSA
+pension	Pensione
+antonis samaras	Antonis samaras
+party manifestos	manifesti di partito
+high speed rails	rotaie ad alta velocità
+john reinfeldt	John reinfeldt
+europe	Europa
+sitdown strikes	sitdown scioperi
+transportations policy	politica di trasporti
+votes	voti
+lords	Signori
+voter	dell'elettore
+riot	Riot
+top up fee	le prime spese di apertura
+schultz	Schultz
+transports	trasporti
+deputy prime minister	Vice primo ministro
+juncker	Juncker
+protests	proteste
+geert wilders	geert wilders
+redistribution	ridistribuzione
+euroskeptic	euroscettici
+mp	MP
+green paper	Libro verde
+green	verde
+alternative energies	energie alternative
+nick clegg	Nick clegg
+commons speaker	altoparlante di scorta
+whistle stop tour	tour whistle stop
+rmt	TM2
+european economic interest grouping	gruppo europeo di interesse economico
+libdemocrat	libdemocrat
+european social fund	Fondo sociale europeo
+bernd lucke	Bernd lucke
+homophobes	omofobi
+migrants	migranti
+interview	intervista
+pes	PES
+protected designation of origin	denominazione di origine protetta
+minimum wages	salari minimi
+digital divide	divario digitale
+pel	PEL
+agricultural policy	politica agricola
+european court of justice	Corte di giustizia europea
+northern ireland assembly	Assemblea dell'Irlanda del Nord
+white paper	Libro bianco
+10 downing street	10 downing street
+elections	elezioni
+imf	FMI
+cameron	Cameron
+protected geographical indication	indicazione geografica protetta
+military	militare
+neoliberal	neoliberista
+digital agenda	agenda digitale
+civil disobedience	disobbedienza civile
+schools	scuole
+paneuropean corridor	corridoio paneuropeo
+crimes	crimini
+genetically modified organisms	organismi geneticamente modificati
+conservatives	conservatori
+investigation	indagine
+security and justice	sicurezza e giustizia
+medicine	medicina
+clashes	scontri
+purchasing power	potere d'acquisto
+trials	prove
+right of asylum	diritto d'asilo
+corruptor	corruttore
+revolt	rivolta
+edward samuel miliband	Edward samuel miliband
+ecpm	eCPM
+mario draghi	Mario draghi
+gap between rich and poor	divario tra ricchi e poveri
+carney	Catanzaro
+incomes	redditi
+mariano rajoy	Mariano rajoy
+whistle stop tours	Tour di whistle stop
+policy network uk	Criteri rete uk
+academy	Accademia
+european law	diritto europeo
+confederation of british industry	Confederazione dell'industria britannica
+ashton	Ashton
+house of commons	Camera dei comuni
+cwu	CWU
+first minister of northern ireland	primo ministro dell'Irlanda del Nord
+trade unions	dei sindacati
+jean claude juncker	Jean claude juncker
+neoliberalists	neoliberalists
+fortress europe	Fortezza Europa
+gender pay gap	divario retributivo di genere
+social affairs	affari sociali
+genetically modified organism	organismo geneticamente modificato
+snp	SNP
+volunteer	volontariato
+christian democrat conservative	Carbossimetilazione cristiana conservatrice
+archbishop of canterbury	Arcivescovo di canterbury
+chatham house	La Chatham house
+security	sicurezza
+eurocracy	eurocrazia
+topup fee	tassa di topup
+investment	investimenti
+war	guerra
+ngla	ngla
+avaaz	Avaaz
+army	esercito
+economic and financial affairs council	Consiglio affari economici e finanziari
+member of parliament	membro del Parlamento
+jean marie le pen	Jean il pen marie
+poverty	povertà
+renewable energies	energie rinnovabili
+party of the european left	Partito della sinistra europea
+libdemocratic	libdemocratic
+pan european corridors	corridoi europei Pan
+politcal union	politcal Unione
+matteo renzi	Matteo renzi
+usdaw	USDAW
+doorstep statements	istruzioni a portata di mano
+cooperatives	cooperative
+healthcare	assistenza sanitaria
+euroregion	Euroregione
+eu governance	governance dell'UE
+investments	investimenti
+ofgem	OFGEM
+maastricht treaty	trattato di Maastricht
+left libertarian	sinistra libertaria
+same sex marriage	matrimonio dello stesso sesso
+le pen	pen
+riots	sommosse
+nasuwt	NASUWT
+clegg	Clegg
+jails	prigioni
+meps	deputati
+nordic green left alliance	Alleanza della sinistra verde nordica
+revolts	rivolte
+crimea	Crimea
+election	elezione
+carbon emission	emissione di carbonio
+european green party	Partito verde europeo
+martin schultz	Martin schultz
+gender equality	l'uguaglianza di genere
+inequality	disuguaglianza
+energy	energia
+e government policy	politica del governo e
+trust in the institution	fiducia nell'istituzione
+member of the european parliament	membro del Parlamento europeo
+gmb	GMB
+teachers	insegnanti
+cohesion funds	fondi di coesione
+eurocrats	eurocrati
+rompuy	Rompuy
+head of state	Capo dello stato
+foreign offices	sedi estere
+institute of economic affairs	Istituto degli affari economici
+jones	Jones
+minimum wage	Salario minimo
+mps	m/s
+movements	movimenti
+prime minister	primo ministro
+education policy	politica dell'istruzione
+trade union	sindacato
+euroskeptical	euroskeptical
+vote	Voto
+directives	direttive
+mayors	Sindaci
+green economy	economia verde
+european commission	Commissione europea
+copyright	Copyright
+sanctions	sanzioni
+structural fund	fondi strutturali
+george osborne	George osborne
+union of construction allied trades and technicians	Unione di commerci della costruzione alleata e tecnici
+austerity	austerità
+corrupted	danneggiato
+herman rompuy	rompuy Herman
+open data	aprire dati
+lib democrat	Carbossimetilazione di lib
+corruption	corruzione
+crime	crimine
+prescriptions	prescrizioni
+european convention on human rights	Convenzione europea dei diritti dell'uomo
+treaties	trattati
+professor	professore
+professors	professori
+patrol	Patrol
+prescription	prescrizione
+national assembly for wales	Assemblea nazionale per il Galles
+digital natives	nativi digitali
+lucke	Lucke
+united kingdom	Regno Unito
+voters	elettori
+glass ceiling	soffitto di vetro
+open europe	Aprire Europa
+strike	sciopero
+cohesion fund	fondo di coesione
+catherine margaret ashton	Catherine margaret ashton
+rallies	raduni
+labour party	partito di lavoro
+privatizations	privatizzazioni
+european court of human rights	Corte europea dei diritti dell'uomo
+edward miliband	Edward miliband
+josé barroso	José barroso
+uk	Regno Unito
+38 degrees	38 gradi
+donald tusk	Zanna del Donald
+corrupts	corrompe
+technocrats	tecnocrati
+public deficit	deficit pubblico
+jail	prigione
+national union of teachers	Unione nazionale degli insegnanti
+gmo	OGM
+christian institute	Istituto cristiano
+bennett	Bennett
+nus	Nus
+nut	dado
+european fund	Fondo europeo di
+greenhouse gases	gas a effetto serra
+numast	NUMAST
+eurosceptical	euroscettico
+carbon emissions	emissioni di carbonio
+infrastructure	infrastrutture
+trust in institutions	fiducia nelle istituzioni
+national union of students	Unione nazionale degli studenti
+debates	Discussioni
+european foundation	Fondazione europea
+association of teachers and lecturers	Associazione degli insegnanti e dei docenti
+heckler	Heckler
+heckles	Heckles
+interviews	interviste
+members of the european parliament	membri del Parlamento europeo
+canvassing	vendita porta a porta
+robinson	Robinson
+public and commercial services union	Unione di servizi pubblici e commerciali
+alexis tsipras	Alexis tsipras
+information and communication technologies policy support programme	programma di sostegno strategico tecnologie informazione e comunicazione
+frontier	frontiera
+fabian society	società di Fabian
+conservative	conservatore
+student	studente
+greenpeace uk	Greenpeace uk
+europeans	europei
+draghi	draghi
+alliance of european conservatives and reformists	Alleanza dei conservatori e Riformisti europei
+germany	Germania
+european council	Consiglio europeo
+patrollers	pattuglie
+edward snowden	Edward snowden
+commons speakers	altoparlanti di scorta
+exekutive	Delegato
+catherine ashton	Catherine ashton
+heckle	Heckle
+agriculture	agricoltura
+national secular society	società secolare nazionale
+refugee	rifugiato
+tax evasion	evasione fiscale
+tsipras	Tsipras
+political unions	sindacati politici
+president of the european parliament	Presidente del Parlamento europeo
+van rompuy	van rompuy
+kyoto protocol	protocollo di Kyoto
+invasions	invasioni
+josé manuel barroso	José manuel barroso
+eurosceptics	euroscettici
+epp	EPP
+teacher	insegnante
+nsa	NSA
+ofsted	Ofsted
+euroskepticism	euroskepticism
+josé manuel durão barroso	José manuel durão barroso
+liberal democrat	Liberal democratico
+doorstep statement	istruzione a portata di mano
+liberal democrats	liberal democratici
+cap	tappo
+democratic deficit	deficit democratico
+tusk	Zanna
+cllimate changes	cllimate modifiche
+businesses	imprese
+monopolies	Monopoli
+food safety	sicurezza alimentare
+demonstrations	dimostrazioni
+mariano rajoy brey	Mariano rajoy brey
+public administration	pubblica amministrazione
+petition	petizione
+pan european corridor	pan europeo corridoio
+libdemocrats	libdemocrats
+josé bové	José bové
+unite	unire
+homophobia	omofobia
+homophobic	omofoba
+fsa	FSA
+milk quota	quote latte
+hansard	Hansard
+europe of freedom and democracy	Europa della libertà e della democrazia
+demonstration	dimostrazione
+medicines	farmaci
+entrepreneur	imprenditore
+school	scuola
+british army	esercito britannico
+infrastructures	infrastrutture
+liberal democratics	democratics liberale
+racism	razzismo
+european union military committee	Comitato militare dell'Unione europea
+press conferences	conferenze stampa
+cbi	CBI
+universities	Università
+competition	Concorso
+tariffs	Tariffe
+eurogroup	Eurogroup
+radical right	destra radicale
+trust and institution	fiducia e istituzione
+public administrations	pubbliche amministrazioni
+highspeed rail	ferrovia ad alta velocità
+hecklers	disturbatori
+trust in institution	fiducia nell'istituzione
+democratic europe	Europa democratica
+corrupt	corrompere
+privatisation	privatizzazione
+peter robinson	Peter robinson
+chancellor	cancelliere
+whistle stop	whistle stop
+door to door	porta a porta
+patrols	pattuglie
+farmer	agricoltore
+income	reddito
+criminal	penale
+nigel paul farage	Nigel paul farage
+prime ministers	primi ministri
+royal navy	blu marino reale
+same sex marriages	stesse unioni del sesso
+tory	Tory
+euroskeptics	euroscettici
+energies	energie
+transportations	trasporti
+home office	Ministero degli interni
+neoliberals	neoliberisti
+oxfam	Oxfam
+minister	Ministro
+datagate	Datagate
+election campaign	campagna elettorale
+soldier	soldato
+parliament	Parlamento
+soldiers	soldati
+tax	tassa di soggiorno
+trades union congress	Congresso del sindacato
+referendum	referendum
+women in politics	donne in politica
+free trade	libero scambio
+european ombudsman	Mediatore europeo
+out of work benefit	fuori lavoro beneficio
+culture	cultura
+guy verhofstadt	guy verhofstadt
+budget	bilancio
+first minister	primo ministro
+courts	campi
+carbon footprint	impronta di carbonio
+ofcom	UFCOM
+nicholas william peter clegg	Nicholas william peter clegg
+stability and growth pact	patto di stabilità e crescita
+angela dorothea merkel	Angela dorothea merkel
+transport	trasporto
+european constitution	Costituzione europea
+campaign	campagna
+house of lords	Camera dei lords
+job benefit	beneficio di lavoro
+natalie bennett	Natalie bennett
+osborne	Osborne
+sitdown strike	sciopero di sitdown
+ucatt	UCATT
+mayor	Sindaco
+amnesty uk	amnistia nel Regno Unito
+anonymous uk	Anonimo uk
+first minister of scotland	primo ministro della Scozia
+bank of england	Banca d'Inghilterra
+research	ricerca
+secretary	Segretario
+uk youth	della gioventù nel Regno Unito
+prison	prigione
+farm policy	politica agricola
+out of work benefits	fuori lavoro benefici
+highspeed rails	rotaie ad alta velocità
+equal opportunities	pari opportunità
+westminster	Westminster
+tcu	TCU
+taxes	tasse
+committee of the regions	Comitato delle regioni
+regionalist	regionalista
+european greens	Verdi europei
+unemployment	disoccupazione
+egp	EGP
+migrant	migrante
+euroscepticism	euroscetticismo
+european people's party	Partito popolare europeo
+climate change	cambiamento climatico
+women and politics	donne e politica
+european trade union confederation	Confederazione europea dei sindacati
+alternative energy	energia alternativa
+police	polizia
+eurocrat	eurocrate
+whistlestop tours	Tour Whistlestop
+populism	populismo
+european democratic party	partito democratico europeo
+pensions	Pensioni
+lifelong learning	apprendimento permanente
+women politics	politica delle donne
+european central bank	Banca centrale europea
+social policy	politica sociale
+taxpayers' alliance	Alleanza contribuenti'
+samaras	Samaras
+petitions	petizioni
+ska keller	Ska keller
+european court of auditors	Corte dei conti europea
+aecr	aecr
+pay rise	aumento di stipendio
+online privacy	privacy online
+environment	ambiente
+buycott	Buycott
+representation	rappresentazione
+european funds	fondi europei
+regulation	regolamento
+tax avoidance	elusione fiscale
+clash	scontro
+human rights	diritti umani
+campaign for an independent britain	campagna per una Bretagna indipendente
+protest	protesta
+quarantine	quarantena
+corruptors	corruttori
+fire brigades union	Unione di vigili del fuoco
+wars	guerre
+lib dems	lib dems
+outofwork benefits	vantaggi di outofwork
+franziska maria keller	Franziska maria keller
+atl	ATL
+farms	aziende agricole
+tariff	tariffario
+merkel	Merkel
+judiciary	potere giudiziario
+verhofstadt	Verhofstadt
+george gideon oliver osborne	George gideon oliver osborne
+boycott	boicottaggio
+socialist democratic	socialista democratico
+marine	Marine
+clean energies	energia pulita
+liberal democratic	Liberal democratico
+university	Università
+students	studenti
+radical left	sinistra radicale
+party manifesto	manifesto del partito
+volunteers	volontari
+foreign policy	politica estera
+renewable energy	energie rinnovabili
+labour	lavoro
+entrepreneurship	imprenditorialità
+alde	ALDE
+alex salmond	Alex salmond
+governments	governi
+trust the institution	l'istituzione di fiducia
+doortodoor	rapido
+mark carney	Castagnaro
+has topic id	ha id di argomento
+is alias of	è alias di
+belongs to	appartiene a
+has nation	ha nazione
+is alias	è alias
+belongs	appartiene
+plays	Gioca
+holds	tiene
+protected designation origin	denominazione di origine
+institute economic affairs	Istituto Affari economici
+ep14	ep14
+national union rail maritime transport workers	lavoratori del trasporto marittimo nazionale ferroviario dell'Unione
+european court justice	Corte europea
+gap between rich poor	divario tra ricchi poveri
+european alliance freedom	libertà di Alleanza europea
+national union teachers	Unione nazionale degli insegnanti
+eudebate2014	eudebate2014
+university college union	Unione di college universitari
+alliance liberals democrats europe	Alleanza dei liberali democratici Europa
+bank england	Banca Inghilterra
+hs2	HS2
+institute fiscal studies	Istituto studi fiscali
+allied trades and technicians	tecnici e mestieri alleati
+allied trades technicians	alleate mestieri tecnici
+s party	Partito popolare
+europe rights	diritti dell'Europa
+friends earth	terra di amici
+party european socialists	socialisti europei
+democratic	democratica
+committee regions	Comitato regioni
+national union students	Unione nazionale degli studenti
+europe freedom democracy	democrazia libertà Europa
+high representative union foreign affairs security policy	criteri di sicurezza di alta rappresentante dell'Unione gli affari esteri
+first minister northern ireland	primo ministro Irlanda del Nord
+common security defence policy	politica di difesa comune sicurezza
+union construction allied trades technicians	costruzione del sindacato alleato mestieri tecnici
+european court auditors	Corte europea
+international court justice	Corte internazionale giustizia
+out work benefit	fuori lavoro beneficio
+door door	porta porta
+public commercial services union	Unione di pubblici servizi commerciali
+archbishop canterbury	Arcivescovo canterbury
+trust institution	istituzione di fiducia
+trust institutions	istituzioni di fiducia
+first minister wales	primo ministro Galles
+european conservatives reformists	Riformisti europei conservatori
+information communication technologies policy support programme	programma di sostegno della politica di tecnologie informazione comunicazione
+right asylum	asilo giusto
+distributive and allied workers	distributivi e alleati dei lavoratori
+council european union	del Consiglio dell'Unione europea
+national assembly wales	Assemblea nazionale Galles
+foreign policy defense	difesa di politica estera
+security justice	sicurezza giustizia
+european court human rights	Corte europea diritti dell'uomo
+press	Premere
+campaign independent britain	Gran Bretagna indipendente di campagna
+downing street	Downing street
+alliance european conservatives reformists	Riformisti europei conservatori alleanza
+european convention human rights	Convenzione europea dei diritti dell'uomo
+party european left	partito di sinistra europeo
+association	associazione
+member european parliament	Parlamento europeo membro
+eudebate14	eudebate14
+head state	Capo dello stato
+house commons	Camera comuni
+cost living	costo vita
+president european council	Presidente del Consiglio europeo
+business new europe	Business nuova Europa
+ep2014	ep2014
+distributive allied workers	distributiva degli operai alleati
+member parliament	deputato
+bill rights	fattura dei diritti
+confederation british industry	Confederazione di industria britannica
+maritime transport workers	dei lavoratori dei trasporti marittimi
+president european commission	Presidente Commissione europea
+house lords	Signori di casa
+eu14	UE14
+stability growth pact	patto di stabilità
+first minister scotland	primo ministro scozzese
+union shop distributive allied workers	negozio di Unione degli operai alleati distributiva
+degrees	gradi
+unite union	unire Unione
+association teachers lecturers	docenti di associazione insegnanti
+sabine eng owl exekutive	Sabine ita gufo delegato
+maritime and transport workers	marittimo e il trasporto dei lavoratori
+members parliament	membri Parlamento
+out work benefits	prestazioni di lavoro
+eu2014	eu2014
+alliance	Alleanza
+members european parliament	Parlamento europeo membri
+economic financial affairs council	Consiglio affari economici finanziari
+president european parliament	Presidente del Parlamento europeo
+stop war coalition	smettere di coalizione di guerra
+politics	politica

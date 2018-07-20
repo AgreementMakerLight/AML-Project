@@ -19,8 +19,6 @@
 ******************************************************************************/
 package aml.ontology;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -62,19 +60,13 @@ public class URIMap
 	public int addURI(String uri, EntityType t)
 	{
 		String newUri = uri;
-		if(newUri.contains("%") || newUri.contains("&"))
-		{
-			try
-			{
-				newUri = URLDecoder.decode(newUri,"UTF-8");
-			}
-			catch(UnsupportedEncodingException e)
-			{
-				//Do nothing
-			}
-		}
 		if(URIindex.containsKey(newUri))
-			return URIindex.get(newUri);
+		{
+			int index = URIindex.get(newUri);
+			if(!indexType.get(index).equals(t))
+				indexType.put(index,t);
+			return index;
+		}
 		else
 		{
 			size++;

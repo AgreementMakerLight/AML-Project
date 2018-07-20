@@ -848,3 +848,154 @@ stay	zůstat
 organize	uspořádat
 assistant	asistent
 reviews	Recenze
+has been decided	bylo rozhodnuto
+speaker introduction	reproduktoru Úvod
+projector	projektor
+video player	video přehrávač
+at	na
+actively reject a manuscript	aktivně odmítají rukopis
+item (generally)	položka (obecně)
+information form the writer	informace tvoří spisovatel
+visa	víza
+registration fees paid by the present writer compared receiving record of research in the form of a disk	registrační poplatky zaplacené současné spisovatele porovnání přijímající záznamy o výzkumu v podobě disku
+manuscript acceptance activity	rukopis přijetí aktivita
+taxis	vozidla taxislužby
+leave	opustit
+the deadline for sending	konečný termín pro odeslání
+car rental activity	aktivita pronájem vozu
+instrument	přístroj
+speaker to give a lecture in front of the knesset	reproduktor na přednášku před Knesetu
+attendance record	záznam o docházce
+activity conducted by the	činnosti prováděné
+any type of document	jakýkoli typ dokumentu
+the speaker offers tutorial	reproduktor nabízí kurz
+registration fees	registrační poplatky
+fee for additional flight	poplatek za další let
+dinner	večeře
+lecture dumped by speaker	Přednáška zblblá reproduktor
+deadline for hotel reservation	termín pro rezervace hotelů
+submitted that only in one day	uvedli, že jen v jeden den
+the city is the location for the journey	Město je místem pro cestu
+application form	formulář žádosti
+nothing	nic
+ktaber record	ktaber záznam
+small truck	malé auto
+not a member of the iasted	není členem iasted
+the technical committee	Technický výbor
+home company being a shepherd	Domů Společnost pastýř
+hotel conference	Hotel konference
+registration fees paid by the present writer to receive the minutes of research in book form	registrační poplatky zaplacené současné spisovatele získat zápis z výzkumu v knižní podobě
+fees	poplatky
+optical projection projector lcd	Optická projekce projektor lcd
+artistic activity	umělecká činnost
+audio visual equipment	audio vizuální zařízení
+single rooms	Jednolůžkové pokoje
+email list	e-mailový seznam
+the amount of money	množství peněz
+conference in one day	konference v jeden den
+simulation activity	simulace činnosti
+registration fees for the member	registrační poplatky pro člena
+the follow up disc	sledování disku
+mtaralmo'tmer	mtaralmo'tmer
+activity conducted after the conference	činnost vykonává po konferenci
+non member registration fee	nečlen registrační poplatek
+but speaker	ale reproduktor
+public transparency	veřejné průhlednosti
+writer	spisovatel
+the university submitted	Univerzita, napsanou
+hotel fees	Hotel poplatky
+initial manuscript	původní rukopis
+welcome	Vítej
+publishing	publikování
+the author will receive the proceedings book	autor obdrží knihu řízení
+cocktail reception	koktejlové recepce
+the deadline for submission of camera ready script	konečný termín pro předložení fotoaparát připraven skriptu
+state where the conference	Uveďte, kde konference
+people	lidé
+non working speaker	nefunkční reproduktor
+registration fees for the student	registrační poplatky pro studenta
+member of the iasted	členem iasted
+the day assigned for trip	den pro cestu
+hotel provided	Hotel poskytuje
+atv	ATV
+activity occurs during the conference	Aktivity dojde během konference
+double rooms	Dvoulůžkové pokoje
+(delegate (ysgil and visit the conference	(delegát (ysgil a návštěva konference
+alvidioard presentation	alvidioard prezentace
+shuttle buses	kyvadlové autobusy
+the city where the presenter comes from	město, odkud pochází předvádějící
+working records	pracovní záznamy
+taxes	daně
+the deadline for notification of acceptance	konečný termín pro oznámení o přijetí
+the city where the shepherd comes from	město, odkud pochází pastýř
+transmitter	vysílač
+colonel house	Plukovník house
+care	péče
+activity modeling	aktivita modelování
+brief introduction of moderator	Stručný úvod moderátora
+registration fees from non writer	registrační poplatky od bez spisovatel
+the conference park	konference park
+public lecture	Veřejná přednáška
+state shepherd	státní ovčák
+non student speaker	než student reproduktor
+the state provided	stát poskytuje
+student records	záznamy studentů
+the final manuscript	konečného rukopisu
+the activity receiving the manuscript	aktivita příjmu rukopis
+power point presentation	Power point prezentace
+shepherd	pastýř
+the writer who will receive minutes of research on a	spisovatel, který obdrží minut výzkumu
+the city where the conference	Město kde konference
+letter of invitation	zvací dopis
+restaurant conference	Restaurace konference
+mexico	Mexiko
+peso	Peso
+cancun	Cancun
+chichen itza	Chichen itza
+has some	má některé
+to do so	k tomu
+on	na
+exist in time or place	Existují v době nebo místě
+paid by	hradí
+to give	Dát
+(running (live	(běh (live
+been associated with	spojena s
+visited by	navštívil
+it was held after the	To se konalo po
+was used by	byl používán
+sent after	odeslané po
+gears is	zařízení je
+gave for to	dal za
+posted by	Přidal
+paid to	věnována
+passes through	prochází
+it is used for	používá se pro
+sign	podepsat
+pay	platit
+exist in time	Existují v čase
+send	Odeslat
+located locally in	lokálně se nachází v
+to write	Napsat
+paid with	wyp
+paid in	zaplaceno
+is a need for	je zapotřebí
+prepared by	vypracoval
+sent by	odeslané
+it was held in	konal se v
+it is run by	je řízena
+equipped for	vybavena pro
+it was held by	konal se od
+gets	Získá
+is made of	je vyroben z
+signed by	Podepsáno
+speaking at the time or place	ve svém projevu na čas nebo místo
+taking place during	dochází během
+taking place after	probíhají po
+refusing a manuscript	odmítnutí rukopis
+accepting a manuscript	přijetí rukopisu
+taking place before	které proběhly
+modelling	modelování
+receiving a manuscript	přijetí rukopisu
+renting a car	Pronájem auta
+simulating	simulace
+occupies	zabírá

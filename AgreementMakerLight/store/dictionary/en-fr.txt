@@ -848,3 +848,652 @@ stay	séjour à :
 organize	organiser
 assistant	Assistant
 reviews	Commentaires
+has been decided	a été décidé
+speaker introduction	introduction de haut-parleur
+projector	projecteur
+video player	lecteur vidéo
+at	à
+actively reject a manuscript	rejeter activement un manuscrit
+item (generally)	point (en général)
+information form the writer	formulaire d’information sur l’écrivain
+visa	Visa
+registration fees paid by the present writer compared receiving record of research in the form of a disk	frais d’inscription versés par l’auteur contre récepteur d’enregistrement de la recherche sous la forme d’un disque
+manuscript acceptance activity	activité d’acceptation manuscrit
+taxis	taxis
+leave	congé
+the deadline for sending	la date limite pour l’envoi
+car rental activity	activité de location de voiture
+instrument	instrument
+attendance record	record d’affluence
+speaker to give a lecture in front of the knesset	haut-parleur pour donner une conférence devant la knesset
+activity conducted by the	activités menées par le
+any type of document	tout type de document
+the speaker offers tutorial	l’orateur propose tutoriel
+registration fees	frais d’inscription
+fee for additional flight	Tarif pour un vol supplémentaire
+dinner	dîner
+lecture dumped by speaker	Conférence sous évaluée avec haut-parleur
+deadline for hotel reservation	Date limite de réservation d’hôtel
+submitted that only in one day	fait valoir que seulement dans un jour
+the city is the location for the journey	la ville est l’endroit pour le voyage
+application form	formulaire de demande
+nothing	rien
+ktaber record	dossier ktaber
+small truck	petit camion
+not a member of the iasted	pas encore membre de l’iasted
+the technical committee	le Comité technique
+home company being a shepherd	Accueil société faisant un berger
+hotel conference	Conférence de l’hôtel
+registration fees paid by the present writer to receive the minutes of research in book form	frais d’inscription versés par l’auteur pour recevoir le procès-verbal de la recherche sous forme de livre
+fees	frais
+optical projection projector lcd	optique de projection projecteur lcd
+artistic activity	activité artistique
+audio visual equipment	équipement audio visuel
+single rooms	chambres simples
+email list	liste d’email
+the amount of money	le montant d’argent
+conference in one day	Conférence en une seule journée
+simulation activity	activité de simulation
+registration fees for the member	frais d’inscription pour les membres
+the follow up disc	le disque de suivi
+mtaralmo'tmer	mtaralmo'tmer
+activity conducted after the conference	activité menée après la Conférence
+non member registration fee	frais d’inscription non membre
+but speaker	mais le Président
+public transparency	transparence publique
+writer	écrivain
+the university submitted	l’Université a fait valoir
+hotel fees	frais d’hôtel
+initial manuscript	manuscrit initial
+welcome	Bienvenue
+publishing	d’édition
+the author will receive the proceedings book	l’auteur recevra le livre de procédure
+cocktail reception	cocktail dînatoire
+the deadline for submission of camera ready script	la date limite de soumission du script prêt de caméra
+state where the conference	État où la Conférence
+people	gens
+non working speaker	haut-parleur non fonctionnel
+registration fees for the student	frais d’inscription pour les étudiants
+member of the iasted	membre de l’iasted
+the day assigned for trip	la journée assignée pour voyage
+hotel provided	Hôtel fourni
+atv	ATV
+activity occurs during the conference	l’activité se produit lors de la Conférence
+double rooms	chambres pour deux personnes
+(delegate (ysgil and visit the conference	(délégué (ysgil et visite de la Conférence
+alvidioard presentation	présentation d’alvidioard
+shuttle buses	bus-navettes
+the city where the presenter comes from	la ville où le présentateur vient de
+working records	documents de travail
+taxes	taxes
+the deadline for notification of acceptance	la date limite pour la notification d’acceptation
+the city where the shepherd comes from	la ville où le berger vient de
+transmitter	émetteur
+colonel house	le colonel house
+care	soins
+activity modeling	modélisation de l’activité
+brief introduction of moderator	brève introduction du modérateur
+registration fees from non writer	frais d’inscription de l’écrivain non
+the conference park	le parc de la Conférence
+public lecture	Conférence publique
+state shepherd	Berger de l’État
+non student speaker	haut-parleur de non-étudiants
+the state provided	l’état fourni
+student records	dossiers des étudiants
+the final manuscript	le manuscrit final
+the activity receiving the manuscript	l’activité réception du manuscrit
+power point presentation	Présentation Power point
+shepherd	Berger
+the writer who will receive minutes of research on a	l’écrivain qui recevront des minutes de recherche sur un
+the city where the conference	la ville où la Conférence
+letter of invitation	lettre d’invitation
+restaurant conference	Conférence de restaurant
+mexico	Mexique
+peso	Peso
+cancun	Cancun
+chichen itza	Chichen itza
+has some	a certains
+to do so	pour le faire
+on	sur
+exist in time or place	Il existe dans le temps ou de lieu
+paid by	payé par
+to give	Donner
+(running (live	(en cours d’exécution (live
+been associated with	été associée
+visited by	visité par
+it was held after the	Il a eu lieu après la
+was used by	a été utilisé par
+sent after	envoyé après
+gears is	Gears est
+gave for to	a pour
+posted by	Posté par
+paid to	versée à
+passes through	traverse
+it is used for	Il est utilisé pour
+sign	signe
+pay	payer
+exist in time	Il existe dans le temps
+send	Envoyer
+to write	Écrire
+located locally in	Situé localement dans
+paid with	payé avec
+paid in	payé en
+is a need for	est nécessaire pour
+prepared by	préparé par
+sent by	envoyé par
+it was held in	elle s’est tenue à
+it is run by	Il est géré par
+equipped for	équipé pour
+it was held by	Il a été jugé par
+gets	Obtient
+is made of	Il est fait de
+speaking at the time or place	prenant la parole au moment ou lieu
+signed by	signé par
+neprezentující student	neprezentující étudiant
+plenary lecturers	chargés de cours plénières
+head of section	chef de section
+the departure of the	le départ de la
+car hire activity	activité de location de voiture
+the term of the contribution	la durée de la contribution
+country sponsor	commanditaire du pays
+publications	publications
+deadline for submission of print version	Date limite pour le dépôt d’une version imprimable
+conference trips	voyages de conférence
+information form for the author	formulaire de renseignements pour l’auteur
+the submission of the contribution of the	la présentation de la contribution de la
+konferen í city	Konferen í ville
+the main office	le bureau principal
+the listener	l’auditeur
+check	vérifier
+article	article
+the author who will receive the conference proceedings on cd	l’auteur qui va recevoir les comptes rendus de conférences sur cd
+country prezentujícího	pays prezentujícího
+the iasted conference	la Conférence de l’iasted
+the registration fee for the student	les frais d’inscription pour les étudiants
+conference room section	section de salle de conférence
+participant of the conference	participant de la Conférence
+university of prezentujícího	Université de prezentujícího
+the term of registration for the conference	la durée de l’enregistrement de la Conférence
+presenting	présentant
+lecture lecturer	maître de conférences de conférence
+receive activity contribution	recevoir une contribution de l’activité
+the registration fee for non members towards the conference	les frais d’inscription pour les non membres à la Conférence
+the term notification of acceptance	la notification en terme d’acceptation
+record participation	participation record
+conference activity	activité de congrès
+in addition the trip fee	en outre, les frais de voyage
+the registration fee	les frais d’inscription
+day trip	excursion d’une journée
+videotape player	lecteur de cassette vidéo
+home versions of the contribution	versions Home de la contribution
+city prezentujícího	ville prezentujícího
+the country conferences	les conférences de pays
+minibus	minibus
+the registration fee for neautora	droits d’enregistrement neautora
+conference proceedings on cd	comptes rendus de conférences sur cd
+the author of the	l’auteur de la
+one day presenting	présentation d’un jour
+the list of emails	la liste des emails
+evening banquet	banquet du soir
+payment card	carte de paiement
+lecturer student	élève de maître de conférences
+pre conference activity	activité de pré congrès
+instead of the	au lieu de la
+presentation slides	diapositives de la présentation
+author registration fee for receipt of conference proceedings on cd	frais d’inscription auteur pour la réception des comptes rendus de conférences sur cd
+neprezentující worker	ouvrier neprezentující
+the hotel's room	la salle de
+the author who will receive the printed proceedings	l’auteur qui recevront les actes imprimés
+author registration fee for receipt of the printed conference proceedings	frais d’inscription auteur pour la réception des actes de la Conférence imprimée
+the final version of the contribution	la version finale de la contribution
+transport post edek	transport poste edek
+post conference activity	activité post conférence
+the days of the conference	les jours de la Conférence
+performances	interprétations et exécutions
+cruise the city	croisière de la ville
+house sponsor	commanditaire de la maison
+delivery	livraison
+printed proceedings	procédure d’imprimés
+lecturer researcher	chercheur de maître de conférences
+show presenter	Voir l’établissement présentateur
+head projector	projecteur principal
+neprezentující	neprezentující
+registration for the conference	inscription pour la Conférence
+city sponsor	sponsor de la ville
+the lecturer tutorial	le tutoriel de maître de conférences
+the hotel registration form	le formulaire d’inscription hôtel
+conference day	journée-Conférence
+the term	le terme
+house prezentujícího	maison prezentujícího
+the amount of cash	le montant de l’encaisse
+a member of the iasted conference	un membre de la Conférence de l’iasted
+brief introduction to the head section	brève introduction à la section head
+the person	la personne
+section	section
+the registration fee for a member of the conference	les frais d’inscription pour un membre de la Conférence
+hotel usher	huissier de l’hôtel
+the activity of the rejection of the contribution	l’activité du rejet de la contribution
+timezone	fuseau horaire
+activity dated on the date and time	activité publiée sur la date et l’heure
+futures date	date de futures
+it takes place before the	elle a lieu avant le
+posted by whom	Posté par qui
+the payment took place where	le paiement a eu lieu où
+it is inhabited by the who	elle est habitée par the who
+signed by the who	signé par the who
+paid for what	payé pour ce qui
+applies	s’applique
+who is paid	qui est payé
+posted in time before the	Posté dans un délai avant la
+he is assigned to	Il est affecté à
+related to the activity	liés à l’activité
+signed by the	signée par le
+it takes place when and where	elle a lieu quand et où
+paid the	payé le
+made from	fabriqués à partir de
+located where the	situé où le
+it takes place after the	Il se déroule la
+used for the	utilisé pour la
+posted by who	Posté par l’OMS
+it is equipped with the	Il est équipé du
+wrote	a écrit
+used by	utilisé par
+receives the	reçoit le
+it is ready for	Il est prêt pour
+it is present when and where	Il est présent quand et où
+it is present when	Il est présent lorsque
+related to the	liés à la
+preparing article	préparation de l’article
+it is associated with	elle est associée
+talking about when and where	parler de quand et où
+sent time after	fois envoyée après
+takes place	a lieu
+state of sponzors	État des sponzors
+registration fee for a non author	frais d’inscription pour un auteur non
+departure fee	frais de départ
+hotel rooms	chambre d’hôtel
+registration fee for an author who receives the tagungsband in book form	frais d’inscription pour un auteur qui reçoit le tagungsband sous forme de livre
+city representing a destination	ville, ce qui représente une destination
+lecturer who speak in the plenary	maître de conférences qui parlent en séance plénière
+speakers	haut-parleurs
+house of presenting	maison de présenter
+registration form (hotel)	formulaire d’inscription (hôtel)
+registration fee for an author receiving the tagungsband as cd	frais d’inscription pour un auteur recevant le tagungsband comme cd
+brief introduction to the session seat above	brève introduction sur le siège de la session qui précède
+author receiving a tagungsband in book form	auteur recevant une tagungsband sous forme de livre
+fee for one additional trip	Tarif pour un voyage supplémentaire
+home to a company that is a sponsor	maison à une entreprise qui est un commanditaire
+time (time and date)	temps (heure et date)
+single room	chambre simple
+expert	expert
+accept a manuscript	accepter un manuscrit
+rent a car	Location de voitures
+retail	vente au détail
+submission deadline	Date limite de soumission
+map	carte
+state of the conference	Etat de la Conférence
+university of presenting	Université de présenter
+listeners	auditeurs
+activity that takes place before the conference	activité qui a lieu avant la Conférence
+employee lecturer	conférencier de l’employé
+subject	Objet
+foil (overhead projector)	fleuret (rétroprojecteur)
+lecturer the in the conference hotel is	chargé de cours à la Conférence de l’hôtel est
+employee who is not a public speaker	employé-e qui n’est pas un orateur public
+subject (in general)	objet (en général)
+airport in the conference venue	aéroport le plus pratique dans la salle de conférence
+state of presenting	État de présenter
+form for the information of the author	formulaire pour obtenir les informations de l’auteur
+activity that takes place after the conference	activité a lieu après la Conférence
+single conference day	journée-conférence unique
+city a sponsor comes from the	ville un promoteur vient de la
+non speakers	haut-parleurs non
+proof of payment	preuve du paiement
+conference visitors	visiteurs de la Conférence
+cameraready deadline	Date limite de photocomposition
+lecture held by a speaker	Conférence tenue par un haut-parleur
+city where the conference will be held	ville où se tiendra la Conférence
+activity that takes place during the conference	activité qui se déroule au cours de la Conférence
+lecturer holds the a tutorial	professeur titulaire l’un tutoriel
+original version of the manuscript	version originale du manuscrit
+video recorder	enregistreur vidéo
+modeling activity	l’activité de modélisation
+non member of iasted	non membre de l’iasted
+excursion day	journée d’excursion
+author receiving a tagungsband as cd	auteur recevant une tagungsband comme cd
+tagungsband as book	tagungsband comme livre
+registration form (conference)	formulaire d’inscription (Conférence)
+lecturer who talks only in one day	Conférencier qui parle uniquement en une seule journée
+student who is not a public speaker	étudiant qui n’est pas un orateur public
+sponsorgebuehr	sponsorgebuehr
+opinion	avis
+rejection of a manuscript	rejet d’un manuscrit
+foil	fleuret
+city comes from the a lecturer	ville vient de la lectrice
+attendance sheet	feuille de présence
+automotive	automobile
+tagungsband as cd	tagungsband comme cd
+double room	chambre double
+endversion of the manuscript	EndVersion du manuscrit
+registration deadline	Date limite d’inscription
+lecture in the plenary	Conférence en séance plénière
+acceptance of a manuscript	acceptation d’un manuscrit
+day tour	excursion d’une journée
+must be done to	Il faut faire pour
+has the amount of	a la quantité de
+will be sent by	sera envoyé par
+wirdgegebenan	wirdgegebenan
+required	Obligatoire
+will be paid for	On paiera
+will be paid in	seront payés en
+located in	Situé à
+designed intended for	conçu destinés à
+will be sent to	sera envoyé à
+signed	signé
+is required for	est nécessaire pour
+is equipped with	est équipé
+inhabited	habitée
+receives	reçoit
+istanwesend (place)	istanwesend (place)
+takes place in	se déroule dans
+are	sont
+will be paid by	seront payés par
+speaks in	parle en
+speaks in (spatial and temporal)	parle en (spatiale et temporelle)
+speaks	parle
+located	Situé
+prepared	préparé
+will be paid with	sera payé avec
+istanwesend (spatial and temporal)	istanwesend (spatiale et temporelle)
+takes place before	a lieu avant
+takes place after	s’effectue après
+is inhabited by	est habitée par
+istanwesend	istanwesend
+speaks (spatial and temporal)	parle (spatiale et temporelle)
+is connected related to	est connecté liés à
+will be given carried out by	sera donnée effectuée par
+will be paid	seront payés
+paid	payé
+taking place during	qui aura lieu au cours de
+taking place after	qui se déroule après
+refusing a manuscript	refuser un manuscrit
+accepting a manuscript	acceptant un manuscrit
+taking place before	qui se déroulent avant
+modelling	modélisation
+receiving a manuscript	recevoir un manuscrit
+renting a car	louer une voiture
+simulating	simulant
+occupies	occupe
+student registration fee	frais d’inscription étudiant
+hotel costs	frais d’hôtel
+author conference book bundle included	bundle de livre auteur Conférence inclus
+author book present registration fee	frais d’inscription présent auteur livre
+activity after the conference	activité après la Conférence
+transparent	transparent
+student lector	lector de l’étudiant
+sponsor state	État de sponsor
+worker lector	lector de travailleur
+presenter is	Presenter est
+ready to print manuscript deadline	prêt à imprimer date limite manuscrit
+beamer	vidéo-projecteur
+conference book bundle	bundle de livre de conférence
+manuscript received	manuscrit reçu
+iasted member	membre de l’IASTED
+member registration fee	frais d’inscription de membre
+research	recherche
+crash course in speaker	cours intensif sur les enceintes
+iasted non member	IASTED non membre
+first manuscript	premier manuscrit
+author registration fee using existing cd	frais d’inscription d’auteur à l’aide de cd existant
+hire	Location
+conference state	Etat de la Conférence
+reading	lecture
+money	argent
+modeling	modélisation
+lector	Lector
+author conference bundle cd included	auteur Conférence bundle cd inclus
+conference cd bundle	bundle cd Conférence
+hotel enquiry form	formulaire de demande d’hôtel
+crash course	cours intensif
+travel day	jour de voyage
+activity for the conference	activité de la Conférence
+general lecture speaker	Président de la Conférence générale
+simulate	simuler
+session president	Président de session
+amazon reviewer	examinateur d’Amazon
+cost for extra travel	frais de voyage supplémentaires
+head office	siège social
+speaker reading	haut-parleur de lecture
+deadline hotel booking	Réservation hôtel date limite
+sponsor town	ville de sponsor
+host city	ville hôte
+conference walker	walker de conférence
+conference room	salle de conférence
+one day presenter	présentatrice d’un jour
+social program	programme social
+accept script	accepter le script
+presenter university	Université de présentateur
+travel city	ville de voyage
+manuscript rejection	rejet du manuscrit
+proof of presence	preuve de la présence
+brief introduction president	Président de la brève introduction
+worker not speaker	travailleur non enceinte
+one day tour	excursion d’un jour
+a conference day	une journée de conférence
+presenter home	maison de présentateur
+part	partie
+registration fees are non author	frais d’inscription sont non auteur
+sponsor company home	origine de la société commanditaire
+student non speaker	haut-parleur non étudiant
+cost	coût
+acceptance deadline announcement	annonce de date limite d’acceptation
+conference city	ville de conférence
+speaker proposals	propositions de haut-parleur
+ready to	prêt à
+is sent for	est envoyé
+is held for	est tenue pour
+features	caractéristiques
+continue	continuer
+is located in	se trouve dans
+give	donner
+speaking in	prenant la parole en
+need	besoin
+preparing	préparation
+charged	facturé
+occupy	occuper
+has been signed by	a été signé par
+is connected to	est connecté à
+is present	est présent
+get	Télécharger
+speak	prendre la parole
+is present at	est présent à
+is located	se trouve
+registration fee for non member	frais d’inscription pour les non membres
+presenter's house	maison du présentateur
+final version	version finale
+extra travel fee	frais de voyage supplémentaires
+refusal of articles	refus des articles
+hotel of the conference	Hôtel de la Conférence
+search	recherche
+book of annals	livre des annales
+hotel signup form	formulaire d’inscription de l’hôtel
+sponsoring company	parrainage entreprise
+double room hotel	chambre double hôtel
+day of travel	jour du voyage
+presenter's university	Université du présentateur
+rate	taux
+deadline for submission	Date limite de soumission
+presenter of a day	présentatrice d’un jour
+the conference's restaurant	restaurant de la Conférence
+simulation	simulation
+no speaker	aucune enceinte
+registration fee for participant cd author	frais d’inscription pour les participants cd auteur
+tutorial presenter	présentateur de tutoriel
+information form for authors	formulaire d’information pour auteurs
+list of presence	liste de présence
+not professional speaker	haut-parleur non professionnel
+days of the conference	jours de la Conférence
+city of sponsor	ville du parrain
+receipt of articles	réception des statuts
+the conference city	la ville de conférence
+full day excursion	excursion d’une journée
+shipment fee	frais d’expédition
+the state sponsor	le promoteur d’État
+day of the conference	jour de la Conférence
+professor employee	employé de professeur
+registration fee for students	frais d’inscription pour les étudiants
+the speaker's presentation	présentation de l’orateur
+no member of the iasted	aucun membre de l’iasted
+brief introduction to the session coordinator	brève introduction au coordonnateur de la session
+staying at the host hotel	votre séjour à l’hôtel hôte
+building of the conference	bâtiment de la Conférence
+transparencies	transparents
+seen	vu
+speaker's lecture	Conférence du Président
+cd of the proceedings	CD de la procédure
+bus	bus
+registration fee for non author	frais d’inscription pour auteur non
+session coordinator	Coordonnateur de la session
+technical commission	commission technique
+author book included in the annals	livre d’auteur inclus dans les annales
+plenary lecture presenter	animateur de la Conférence plénière
+tripper of the conference	Tripper de la Conférence
+rent	Location
+registration fee for membership	frais d’inscription pour les membres
+city trip	visite d’une ville
+reception cocktail	réception cocktail
+single room hotel	Hôtel Chambre simple
+expiry date of registration	date d’expiration de l’enregistrement
+student presenter	présentateur de l’étudiant
+deadline for final version article	Date limite pour l’article de la version finale
+boarding	d’embarquement
+price of hotel	prix de l’hôtel
+acceptance of articles	acceptation des articles
+wire transfer	virement bancaire
+author cd included in the annals	cd inclus dans les annales de l’auteur
+registration fee for participant book author	frais d’inscription pour le participant auteur de la
+no student speaker	aucun orateur étudiant
+inscription	inscription
+pause	mettre en pause
+cab	CAB
+initial version	version initiale
+done until	fait jusqu'à
+has a date	a une date
+is present within	On observe dans
+requires	nécessite
+is made within	est effectué dans les
+va by	va par
+is paid to	est versée à
+is made after	faite après
+is paid within	est payée dans
+it is equipped for	Il est équipé pour
+is submitted after	est présentée après
+it is necessary to	Il est nécessaire de
+is situated within	est situé au sein de
+is determined by	est déterminé par
+is done before	se fait avant
+of	de
+it is made of	Il est composé de
+is used to	sert à
+information request form about the author	formulaire de demande de renseignements au sujet de l’auteur
+the deadline for registration	la date limite d’inscription
+fee for additional trip	frais de voyage supplémentaire
+report of the rapporteur	rapport du rapporteur
+student reporter	journaliste de l’étudiant
+the employee is not the rapporteur	l’employé n’est pas le rapporteur
+the country rapporteur	le rapporteur de pays
+no author registration fee	aucun frais d’inscription d’auteur
+country conference	Conférence des Nations
+tax administration	administration fiscale
+event conference	Conférence événement
+itkokristalli eskij projector	itkokristalli eskij projecteur
+hotel single room	chambre individuelle hôtel
+the book collection of works	la collection de livres de œuvres
+one day he	un jour il
+city conference	Conférence de la ville
+the administration of	l’administration de la
+house sponsor company	promoteur de maison
+the author the book is a compendium of works incorporated	l’auteur du livre est un recueil de œuvres incorporées
+room partition	partition de la salle
+the rapporteur of the plenary report	le rapporteur de la séance plénière du rapport
+author registration fee exhibitor	exposant de frais d’inscription auteur
+book review	critique de livre
+giver in the hotel	donneur dans l’hôtel
+transparency	transparence
+rejection of the manuscript	rejet du manuscrit
+dates of the conference	dates de la Conférence
+secular program	programme laïque
+the deadline for application submission	la date limite pour le dépôt de la demande
+not dosklad ik	pas de dosklad ik
+technical event	épreuve technique
+rental	Location
+report	rapport
+worker rapporteur	rapporteur du travailleur
+building conference	Conférence de bâtiment
+ceiling projector	projecteur de plafond
+feed	aliments pour animaux
+suburban bus	lignes de bus suburbaines
+entry	entrée
+registration fee book author contributor	d’inscription frais livre auteur contributeur
+receipt of the manuscript	réception du manuscrit
+the author a disc of works included	l’auteur un disque de œuvres inclus
+cd compilation of works	CD compilation de œuvres
+city reporter	journaliste de la ville
+a brief introduction of the section	une brève introduction de la section
+airport conference	Conférence de l’aéroport
+cocktail party	soirée cocktail
+one day conference	Conférence d’un jour
+the student is not the rapporteur	l’étudiant n’est pas le rapporteur
+rapporteur of the training course	Rapporteur du stage
+afternoon tour	après-midi visite
+hotel reservation deadline	Date limite de réservation hôtel
+welcome address	Allocution de bienvenue
+view	vue
+certificate of participation	certificat de participation
+house speaker	haut-parleurs de maison
+membership registration fee	cotisation d’inscription
+the student registration fee	les frais d’inscription étudiant
+no membership fee	aucun frais d’adhésion
+training course	cours de formation
+city sightseeing tours	visites guidées de ville
+plenary report	rapport de séance plénière
+acceptance of the manuscript	acceptation du manuscrit
+study	étude
+the original manuscript	le manuscrit original
+vehicle	véhicule
+the deadline for	la date limite pour
+event after the conference	événement après la Conférence
+rapporteur	Rapporteur
+deadline for final version of the manuscript	Date limite pour la version finale du manuscrit
+presenter view	mode Présentateur
+day excursions	excursions d’une journée
+university of rapporteur	Université du rapporteur
+up to	jusqu'à
+scheduled for	à la demande pour
+the amount of	le montant de
+present during the	présent lors de la
+who is visited	qui est visité
+designed for	conçu pour les
+occur before	surviennent avant
+is in	est en
+who submitted	qui a fait valoir
+occurs in	se produit en
+who subscribes	qui s’abonne
+what does	en quoi consiste
+who is preparing	qui se prépare
+takes	prend
+gets the	Obtient le
+who uses	qui utilise
+sent after the	envoyé après la
+occur after the	se produit après la
+report in the	rapport à la
+used	utilisé
+than paid	que payé
+what is written	ce qui est écrit
+is associated with	est associé
+pristutstvuet in	pristutstvuet dans
+what is paid	ce qui est payé
+is sent to the	est envoyé à la
+produced from	produit à partir de
+where payable	cas échéant
+who is sent	qui est envoyé

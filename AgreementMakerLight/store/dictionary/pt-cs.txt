@@ -690,3 +690,13 @@ possui co-autor	Je spoluautorem
 dia de início do evento	den začátku události
 último dia do evento	poslední den akce
 email	e-mail
+tem código artigo	má kód článku
+possui um membro comitê de programa	má člen programového výboru
+membro comitê de programa	Člen programového výboru
+adicionar um membro comitê de programa	Přidat člen programového výboru
+definição número máximo de artigos	nastavení maximální počet článků
+especialidade revisor	speciální recenzent
+número volume dos anais	Číslo svazku kroniky
+último dia evento	Poslední celodenní zvláštní událost
+dia de início evento	zahájit celodenní zvláštní událost
+possui nome patrocinador	má jméno sponzora

@@ -625,3 +625,18 @@ conference organized by	المؤتمر الذي نظمته
 organized	نظمت
 stay in	البقاء في
 stay	البقاء
+has been decided	وقد قرر
+mexico	المكسيك
+peso	بيزو
+cancun	كانكون
+chichen itza	تشيتشن إيتزا
+taking place during	تجري خلال
+taking place after	تجري
+refusing a manuscript	رفض مخطوط
+accepting a manuscript	قبول مخطوطة
+taking place before	تجري قبل
+modelling	وضع النماذج
+receiving a manuscript	تلقي مخطوطة
+renting a car	تأجير سيارة
+simulating	محاكاة
+occupies	ويحتل

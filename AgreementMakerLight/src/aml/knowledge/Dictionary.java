@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria, Joana Pinto, Pedro do Vale                            *
 ******************************************************************************/
-package aml.translate;
+package aml.knowledge;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -34,6 +34,7 @@ import java.util.HashSet;
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.settings.LexicalType;
+import aml.settings.EntityType;
 
 public class Dictionary
 {
@@ -108,47 +109,15 @@ public class Dictionary
 						e.getMessage());
 			}
 		}
-		//Get the Lexicon's class names
-		HashSet<String> names = new HashSet<String>(l.getNames());
-		for(String n : names)
+		
+		//Get the Lexicon's names for each EntityType
+		for(EntityType e : EntityType.values())
 		{
-			//Check if they are in the source language
-			if(!l.getLanguages(n).contains(sourceLang) || n.equals("null"))
-				continue;
-			String trans = "";
-			//If the dictionary contains the name, get the translation
-			if(dictionary.containsKey(n))
+			HashSet<String> names = new HashSet<String>(l.getNames(e));
+			for(String n : names)
 			{
-				trans = dictionary.get(n);
-			}
-			//Otherwise use the translator to make the translation
-			else if(useTranslator)
-			{
-				System.out.println("Translating: " + n);
-				trans = translator.translate(n, sourceLang, targetLang);
-				if(trans.startsWith("ArgumentException") || trans.equals(""))
-					continue;
-				//Update the dictionary
-				dictionary.put(n, trans);
-				//Update the dictionary file
-				try { outStream.write(n + "\t" + trans + "\n");	}
-				catch(IOException e) {/*Do nothing*/}
-			}
-			//If we have a translation, extend the Lexicon with it
-			if(!trans.equals(""))
-				for(Integer i : l.getClassesWithLanguage(n,sourceLang))
-					l.addClass(i, trans, targetLang, TYPE, SOURCE, l.getWeight(n, i));
-		}
-		//Get the Lexicon's properties
-		HashSet<Integer> props = new HashSet<Integer>(l.getProperties());
-		for(int i : props)
-		{
-			//Get each property's names
-			HashSet<String> pNames = new HashSet<String>(l.getNamesWithLanguage(i, sourceLang));
-			//And translate them
-			for(String n : pNames)
-			{
-				if(n.equals("null"))
+				//Check if they are in the source language
+				if(!l.getLanguages(e,n).contains(sourceLang) || n.equals("null"))
 					continue;
 				String trans = "";
 				//If the dictionary contains the name, get the translation
@@ -167,11 +136,12 @@ public class Dictionary
 					dictionary.put(n, trans);
 					//Update the dictionary file
 					try { outStream.write(n + "\t" + trans + "\n");	}
-					catch(IOException e) {/*Do nothing*/}
+					catch(IOException ex) {/*Do nothing*/}
 				}
 				//If we have a translation, extend the Lexicon with it
 				if(!trans.equals(""))
-					l.addProperty(i, trans, targetLang, TYPE, SOURCE, l.getWeight(n, i));
+					for(Integer i : l.getEntitiesWithLanguage(e,n,sourceLang))
+						l.add(i, trans, targetLang, TYPE, SOURCE, l.getWeight(n, i));
 			}
 		}
 		if(outStream != null)

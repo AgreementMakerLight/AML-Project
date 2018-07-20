@@ -688,3 +688,345 @@ prezentace dokumentu	the presentation of the document
 zaslání článku	send article
 sponzoři hledáni kým	search for sponsors who
 registrační poplatek zaplacen kým	the registration fee has been paid by
+rozsah	range
+expert	expert
+předvolba	preference
+velel	He commanded the
+externí hodnotitelé	the external evaluators
+meta - stanovisko	Meta-opinion
+předseda organizačního výboru konference	Chairman of the Organizing Committee of the Conference
+správce	Administrator
+názor	view
+shrnutí konferenčního příspěvku	Summary of the Conference contribution
+spisovatel, který je expert	the writer, who is an expert
+meta - stanovisko (názor názor)	Meta-opinion (opinion opinion)
+meta-gutachater	Meta-gutachater
+křeslo náměstka v	the Deputy Chair in
+kompletní konferenční poplatek	full conference fee
+meta-gutachater (znalecký posudek, který přehlídku)	Meta-gutachater (expert's report, which reviews)
+odmítnutí	denial of
+účastníci na konferenci	participants at the Conference
+má id	has an id
+má titul	has title
+maximální počet přidělených příspěvků	the maximum number of allocated contributions
+má internetové stránky na adrese url	has a website at the url
+má datum	has a date
+má elektronická pošta	my email
+názor na příspěvek	opinion on the contribution of
+má adresa url webové stránky	the url of the Web page
+má adresa url loga	has the logo url
+přijmout hardcopy\r podání	accept hardcopy\r submissions
+přijato od	received from
+dokončil té doby hodnocení	He finished that time reviews
+bylo nařízeno, aby	was ordered to
+vložila údaje ve vztahu k	put the data in relation to the
+vytisknout papírovou kopii poštovní manifestu	print a paper copy of your manifest
+dokončila mapování příspěvků	completed the mapping of the contributions
+přečtěte si meta recenzentem	read the meta-reviewer
+přijal	He accepted the
+odpovídající	the corresponding
+softwarem beitragszuordnungs od	the software from beitragszuordnungs
+zájmy v rozporu s příspěvkem	the interests in conflict with the contribution of the
+má člen	the Member has
+podrobnosti o přidali odkaz na	added a link to details
+bylo rozhodnuto, jako	It was decided, as a
+zaslal	posted by
+vyberte maximální počet přidělených příspěvků	Select the maximum number of allocated contributions
+přidělené odborníky	assigned to the experts
+přečtěte si odborníci	read the experts
+je členem programového výboru	is a member of the Programme Committee
+má interessenskonflikt odkaz na	interessenskonflikt has a link to
+virtuální setkání pod vedením	virtual meeting under the leadership of
+přikázal get	He ordered the get
+přidáno	added
+zaúčtovat přiřazení dokončena	post completed assignments
+odmítnuté papír	the rejected paper
+přiřadil k	has assigned to the
+začala fáze nabídky	She started the quotation phase
+přiřadit správce	assign administrator
+přidal	posted by
+podrobnosti přidal	details added
+zamítla	rejected by
+má uzavřeno	has closed
+autorem je	the author is
+přidal kritéria k názoru	added to the view criteria
+virtuální setkání vedla	virtual meeting led
+tištěný výtisk poštovních manifestu o	a printed copy of the mailing of the manifest
+číst dokument	read the document
+interessenskonflikt má ve vztahu k	interessenskonflikt has in relation to
+fáze nabídky od	the quotation phase from
+účastníci z	the participants of the
+má rozsah	has a range of
+se zájmy konfliktu s příspěvkem	the interests conflict with the contribution of the
+je autorem příspěvku	He is the author of the contribution
+napsal názor	written opinion
+uskutečnil zuordnungssoftware příspěvek	made zuordnungssoftware contribution
+má napsané příspěvky	has written posts
+přidělené	the allocated
+kritéria pro názor vložil	the criteria for the view put
+plná verze článku	the full version of the article
+prezident	the President of the
+tématická oblast	the thematic area
+cíl recenze	destination reviews
+prezident konference	the President of the Conference
+vice prezident	Vice President
+odmítnout	refuse to
+ok	OK
+meta recenzent	Meta-reviewer
+shrnutí článku	Article summary
+autor, žádný recenzent	author, no reviewer
+nabídka	menu
+datum	the date of the
+titul	the title of the
+jméno	the name of the
+adresa url loga	logo url
+přijímá dodávky na papíře	accepts deliveries on paper
+identifikátor položky	item identifier
+url webové stránky	URL of the Web page
+maximální počet položek	the maximum number of items
+editací na článek	edits per article
+poznamenal střet zájmů	He noted a conflict of interest
+upravil	edited by
+přiřadí maximální počet položek	assigns the maximum number of items
+nabídku	menu
+přidělil recenzenta	assigned by the reviewer
+má konflikt zájmů	has a conflict of interest
+přijmout článek	accept article
+přečteny recenzent meta	read the meta-reviewer
+přezkoumání kritérií byly zavedeny	review criteria were introduced
+napsat článek	write an article
+upravuje nabídky	modifies the menu
+údaje o	data on the
+spravuje nástroje k přidělení položky	manages the tools to allocate items
+má člen konference	has a member of the Conference
+napsat recenzi	write a review
+končí přidělení položky	ends the allocation of items
+byla řízena nástroje pro přidělení položky	It was controlled by the instrument for the allocation of items
+přiřadit externí recenzent	assign an external reviewer
+ukončit revizi	end review
+přečtěte si autor	read author
+má program, člen výboru	has the program, Member of the Committee
+je spoluautorem	He is co-author of
+přiřazené k	assigned to the
+přiřadit recenzenta	assign reviewer
+odešle položku	sends the item
+nabídky od recenzentů byla iniciována.	quotes from reviewers has been initiated.
+to byl přiřazen	It has been assigned
+zadejte podrobnosti o konferenci	Enter details about the Conference
+má oblast	the range is
+odmítá článek	rejects article
+je spoluautorem článku	He is co-author of article
+umožňuje virtuální setkání	enables virtual meetings
+rozhodnutí má	the decision has
+pomocí virtuální setkání	using virtual meetings
+zadá přezkoumání kritérií	enters review criteria
+začíná nabízení článků	begins offering articles
+přečtěte si článek	read the article
+přepravní papírové kopie manifesty vytiskl	shipping of hard-copy manifests printed
+rozdělení článků byla dokončena do	the distribution of articles has been completed in the
+kopírovací papír z lodní manifesty	copy paper from shipping manifests
+má autor	has the author
+autor, který není recenzenta	the author, that is not the reviewer
+návrh na replay	proposal on replay
+zpráva o zkoušení	examination report
+meta-vztah k přezkoumání	Meta-review
+členka programového výboru	Member of the Programme Committee
+zástupkyně konferenční židle	Deputy Conference Chair
+souhrnné informace o článku	a summary of the article
+programového výboru	the Programme Committee
+členské konference	Member of the Conference
+identifikátor článku	the identifier for the article
+adresa url webu	Web site url
+přijímá podání ve formátu papíru	accepts submissions in paper format
+počet zpráv podle článku	the number of reports required by article
+je upravena	is modified.
+hodnotící kritéria jsou vyplněny	the evaluation criteria are filled
+pro členské konference	for a member of the Conference
+podrobnosti jsou zadány pomocí	the details are specified using the
+postel článek	bed article
+písemná zpráva	written report
+má s ohledem na střet zájmů	has with regard to the conflict of interest
+je přiřazena správcem	It is assigned by the administrator
+dokončí proces recenzování	completes the review process
+pro co-autor	for co-author
+spoluautorem článku	co-author of the article
+inicializuje rozdělování návrhů recenzenti	Initializes the distribution proposals reviewers
+tiskne písmeny události	prints the letters events
+tištěné kopie vytištěné e-maily událost	printed copies of the printed email event
+ovlivňuje roli externí recenzent	affects the role of the external reviewer
+rozdělení návrhů recenzentům iniciovány	Division of proposals initiated by the reviewers
+přidá člen programového výboru	Adds a member to the Steering Committee
+je ovlivněna recenzenta	is influenced by the reviewer
+dokončí úkol článků	completes the task of articles
+je přijata	is taken
+upraví návrh replay	modifies the design of a replay
+zamítnut	rejected
+je přiřazen	is assigned
+běh pojmenování nástrojů z blogů	current naming tools from blogs
+je spojována s	It is associated with
+čte meta kontrolor	reads meta-controller
+ovlivňuje roli recenzenta k	affects the role of the reviewer to
+čte recenzenta	reads the reviewer
+akceptovat článek	accept article
+přidělení položky nástroje jsou prováděny	item allocation tools are carried out
+pro rozhodnutí	for decision
+virtuální setkání ve	virtual meetings in
+je doplněn	It is complemented by the
+nastaví maximální počet položek	sets the maximum number of items
+člen programového výboru pro	Member of the program Committee for
+rozdělení článků, zakončené	the distribution of articles, ended with
+zachycuje podrobné informace o konferenci	captures detailed information about the Conference
+nastavuje virtuální setkání	sets virtual meeting
+označuje konflikt zájmů pro	indicates a conflict of interest for the
+odeslat článek	submit article
+zachycuje kritéria hodnocení	captures the evaluation criteria
+synopse	a synopsis of the
+conferentielid	conferentielid
+celý článek	the full article
+člen výboru programu	Member of the program Committee
+autor non recenzent	the author of the non reviewer
+externí amazon recenzent	external amazon reviewer
+metarecentie	metarecentie
+meta kritik	Meta critic
+recenze za položku	reviewed per item
+id papíru	ID paper
+maximální počet článků	the maximum number of articles
+přijímá podání hardcopy	accepts the submission of hardcopy
+pouze nabídku na	only bid on
+nechť virtuální setkání	Let the virtual meeting
+úplné podrobnosti o konferenci v	full details of the Conference in
+přidat bod do amazon recenzent	Add point to amazon reviewer
+co-napsat článek	co-write an article
+přiřazeno amazon recenzent	assigned to amazon reviewer
+má conferentielid	has conferentielid
+člen výboru programu má	Member of the Committee of the programme has
+nastavit maximální počet položek v	to set the maximum number of items in the
+vyplňte kritéria přezkoumání	fill in the criteria review
+tento článek v	This article in the
+má předmět	has the subject
+recenze nabídka založil	offer reviews, started by
+přejděte na článek	go to article
+zvýraznění střety zájmů	highlighting conflicts of interest
+číst metarecencent	read metarecencent
+přidat člena výboru programu	to add a member to the Committee of the programme
+vyplnit přezkum kritérií	fill out the review criteria
+použít nástroj pro přidělení položky	use the tool to the allocation of items
+číst článek	read the article
+začátek recenze nabídka	the beginning of the review menu
+virtuální setkání povoleném	virtual meeting permitted by
+článek hotové ocenění	Article finished Awards
+ocenění článek nástroj používaný	Awards article tool used
+přezkoumat kritéria doplněno	revise the criteria followed by the
+má střety zájmů	has conflicts of interest
+je udělována	It is awarded to
+přečtěte si recenzent	read the reviewer
+tištěné poslat důkaz	send printed proof
+úplné podrobnosti o konferenci	for complete details about the Conference
+eindrecentie	eindrecentie
+vytvoření položky přidělení	create an item allocation
+nastavit maximální počet článků	set the maximum number of articles
+amazon recenzent, aby ukazoval na vnější	Amazon reviewer, to point to the external
+tištěné poslat důkaz tisk	send a proof print printed
+podrobnosti o dokončena	details of the completed
+přidružit koordinátor akce	associate event coordinator
+koordinátorka programu výboru	program coordinator of the Committee
+meta recenze	Meta reviews
+autor recenzentem	author reviewer
+účastník konference členských	participant of the Conference Member
+návrhy	suggestions
+obecné koordinátor akce	General Coordinator of the action
+konference koordinátor	Conference Coordinator
+co autor	what the author
+přijímá podání vytištěné	accepts the filing of a printed
+název	the name of the
+má kód článku	article code
+maximální články	the maximum articles
+má kód položky	has the item code
+má webové stránky	has a website
+adresa url	the url of the
+vložit podrobnosti	Insert details
+přidání člena programového výboru	to add a member of the Programme Committee
+provést přiřazení nástroje článků	make the assignment tools articles
+má konec konference	has the end of the Conference
+odmítnout článek	reject Article
+zrušit přiřazení článků	unassign articles
+přiřaďte recenzent	assign reviewer
+článek přiřazení ukončena	Article assignment terminated
+napsat článek s	write an article with
+přezkoumat kritéria zavedená	revise the criteria established by the
+žádost o revizi sady	request for the revision of
+nastavení maximálního počtu článků	to set the maximum number of articles
+iniciovat žádosti o přezkum	initiate a request for a review
+hromadná korespondence	mail merge
+má rozlohu	has an area of
+odesílání článků	sending articles
+tisk dokumentů v odesílání pošty objem	printing documents in sending mail volume
+článek zamítnut	article is rejected
+čtení článku	reading the article
+funkce žádost o přezkum	feature request for review
+má člen programového výboru	has a member of the Programme Committee
+článek přijat	Article accepted
+finalizovat známky článků	Finalize signs articles
+poslední revize	last revision
+zadejte kritéria revizí	Enter the criteria revisions
+označení střetu zájmů	indications of conflict of interest
+přezkoumání žádosti iniciována	examination of the request initiated by the
+má přidělení	has the allocation of
+přidat člen programového výboru	to add a member of the Programme Committee
+vlastní rozhodnutí	own decision
+nastavení maximální počet článků	to set the maximum number of articles
+povolit virtuální setkání	enable virtual meetings
+nástroje články přiřazení provádí	Tools articles assignment done
+úprava žádosti o přezkum	Edit the review request
+přezkumy	the reviews
+čtení držení recenzent	reading held by reviewer
+jako člen programového výboru	as a member of the Programme Committee
+autor není recenzent	the author is not a reviewer
+odchylka	deviation
+meta knižní recenze	Meta book review
+recenze knihy	review of the book
+řešení	solution
+abstraktní článek	abstract article
+místopředseda	Vice Chairman
+míra	a measure of the
+internetová adresa webové stránky	the Internet address of the Web page
+přijímá požadavky na tisk	accepts print requests
+recenzenti v článku	reviewers in the article
+e-mailová adresa	e-mail address
+id článku	Article ID
+záhlaví	header
+internetová adresa loga	the Internet address of the logo
+počet	the number of
+kdo se změnilo	who has changed
+jmenuje recenzenta	appoints reviewer
+kdo je spuštěn program cíl článků	who is running the program target articles
+každý, kdo přijal	Anyone who has taken
+jmenuje externí recenzent	appoint an external reviewer
+změna frekvence	frequency change
+psaní článku	writing an article
+jmenován správcem	appointed by the administrator
+po ukončení	after their
+printhardcopymailingmanifests	printhardcopymailingmanifests
+přezkoumat kritéria	review criteria
+k podrobnostem konference	to the details of the Conference
+dokončení přiřazení článků	completion of the assignment of articles
+poznámka: konflikt zájmů	Note: a conflict of interest
+zásluhy přezkum kritérií	merit review criteria
+podle data přidání	by date added
+recenzent jmenován	a reviewer appointed
+přijaté článek	adopted article
+kdo dokončil přiřazení článků	who has completed his assignment articles
+střet zájmů	conflict of interest
+začít sázet recenzenta	Start bet reviewer
+číst recenzenta	read the reviewer's
+přečtěte si meta kontrolor	read the meta-controller
+jmenován	appointed
+kdo odmítl	those who refused
+kdo z podrobnosti	who from the details
+hardcopymailingmanifestsprintedby	hardcopymailingmanifestsprintedby
+dokončení recenze	complete review
+napište článek spoluautorem	write article co-author
+nastavte maximální články	set the maximum articles
+kdo začal, umístění sázky recenzent	who started it, placing wagers reviewer
+razeršëna virtuální setkání	razeršëna virtual meeting
+přečíst článek	Read article

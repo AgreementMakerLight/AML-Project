@@ -65,7 +65,7 @@ public class Oracle
 		//reference alignment return true by default, but do not store it or
 		//count it as a query (it will also not count in the evaluation)
 		if((reference.contains(id1, id2, MappingRelation.UNKNOWN)))
-			return true;
+			return false;
 		//Check if the query is present in the reference alignment
 		boolean classification = reference.contains(id1, id2, r);
 		//Reverse the classification with probability given by the error

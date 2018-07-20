@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -65,8 +65,6 @@ public enum SKOS
 	
     private String uri;
     
-    private final String NAMESPACE = "http://www.w3.org/2004/02/skos/core#";
-    
     SKOS(String s)
     {
     	uri = s;
@@ -77,7 +75,7 @@ public enum SKOS
      */
     public IRI toIRI()
     {
-    	return IRI.create(NAMESPACE + uri);
+    	return IRI.create(Namespace.SKOS + uri);
     }
     
     public String toString()

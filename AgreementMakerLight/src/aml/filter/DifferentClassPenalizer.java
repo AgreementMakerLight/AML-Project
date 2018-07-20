@@ -12,19 +12,35 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A matching algorithm that extends the Lexicons of the source and target     *
-* ontologies.                                                                 *
+* A filtering algorithm based on cardinality.                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.match;
 
-public interface LexiconExtender
+package aml.filter;
+
+import aml.AML;
+import aml.match.Alignment;
+import aml.match.Mapping;
+
+public class DifferentClassPenalizer
 {
-	/**
-	 * Extends the Lexicons of the source and target Ontologies
-	 * @param the minimum confidence threshold below
-	 * which synonyms will not be added to the Lexicons
-	 */
-	public void extendLexicons(double thresh);
+
+//Constructors
+	
+	private DifferentClassPenalizer(){}
+	
+	
+//Public Methods
+	
+	public static void penalize()
+	{
+		AML aml = AML.getInstance();
+		Alignment a = aml.getAlignment();
+		for(Mapping m : a)
+		{
+			if(!aml.getRelationshipMap().shareClass(m.getSourceId(),m.getTargetId()))
+				m.setSimilarity(m.getSimilarity() * 0.9);
+		}
+	}
 }

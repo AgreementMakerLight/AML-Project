@@ -63,10 +63,24 @@ public class StringParser
 	 */
 	public static boolean isNumericId(String name)
 	{
-		return name.matches("[0-9]*") || name.matches("[0-9]+[_:\\.\\-][0-9]+")
-				|| name.matches("[a-zA-Z]+[_:]?[a-zA-Z]?[0-9\\.]+")
-				|| name.matches("[a-z]{1,3}-[0-9]{3,}-[0-9]{3,}")
-				|| name.matches("[a-zA-Z]{1}");
+		//just digits
+		return name.matches("[0-9]*")
+			//digits with an intervening separator
+			|| name.matches("[0-9]+[_:\\.\\-][0-9]+")
+			//a single letter
+			|| name.matches("[a-zA-Z]{1}")
+			//a single letter followed by digits
+			|| name.matches("[a-zA-Z]{1}[0-9]{1,3}")
+			//OBO Foundry style (e.g., "GO:000001")
+			|| name.matches("[a-zA-Z]{2,}[_:][0-9\\.]{4,}")
+			//akin to OBO Foundry style (e.g., "C_A00001")
+			|| name.matches("[a-zA-Z]+[_:]?[a-zA-Z]?[0-9\\.]{5,}")
+			//simple letters-dash-numbers-dash-numbers pattern
+			|| name.matches("[a-zA-Z]{1,3}-[0-9]{3,}-[0-9]{3,}")
+			//specific letters-and-numbers separated by dashes pattern
+			|| name.matches("[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}")
+			//another specific letters-and-numbers separated by dashes pattern
+			|| name.matches("sid-[a-zA-Z0-9]{4,}-[a-zA-Z0-9]{4,}-[a-zA-Z0-9]{4,}-[a-zA-Z0-9]{4,}-[a-zA-Z0-9]{4,}");
 	}
 
 	/**
@@ -99,12 +113,14 @@ public class StringParser
 	{
 		//First replace codes with their word equivalents 
 		String parsed = name.replace("&amp","and");
+		parsed = parsed.replace("&apos;","'");
+		parsed = parsed.replace("&nbsp;"," ");
 		parsed = parsed.replace("(+)","positive");
 		parsed = parsed.replace("(-)","negative");
 		
 		//Then replace all non-word characters with white spaces
 		//except for apostrophes and brackets
-		parsed = parsed.replaceAll(" *[^a-zA-Z0-9'()] *"," ");
+		parsed = parsed.replaceAll(" *[^a-zA-Z0-9'()ÁÀÂÄÉÈÊËÍÌÎÏÓÒÔÖÚÙÛÜÇÑáàâãäéèêëíìîïóòôõöúùûüçñ] *"," ");
 		
 		//Then remove multiple, leading and trailing spaces
 		parsed = parsed.replaceAll(" {2,}"," ");
@@ -123,6 +139,8 @@ public class StringParser
 	{
 		//First replace codes with their word equivalents 
 		String parsed = name.replace("&amp","and");
+		parsed = parsed.replace("&apos;","'");
+		parsed = parsed.replace("&nbsp;"," ");
 		//Remove dashes
 		parsed = parsed.replaceAll("-","");
 		//Then replace all other non-word characters with white spaces

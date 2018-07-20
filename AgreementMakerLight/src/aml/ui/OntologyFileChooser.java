@@ -38,8 +38,8 @@ public class OntologyFileChooser extends JFileChooser
 	{
 		super(new File(AML.getInstance().getPath() + "store/"));
 		setAcceptAllFileFilterUsed(false);
-		ExtensionFilter ontologies = new ExtensionFilter("OWL/OBO/SKOS Ontology (*.owl, *.rdf, *.rdfs, *.xml, *.obo)",
-				new String[] { ".owl", ".rdf", ".rdfs", ".xml", ".obo" }, true);
+		ExtensionFilter ontologies = new ExtensionFilter("OWL/OBO/SKOS Ontology (*.owl, *.rdf, *.rdfs, *.xml, *.obo, *.nt)",
+				new String[] { ".owl", ".rdf", ".rdfs", ".xml", ".obo" , ".nt"}, true);
 		setFileFilter(ontologies);
 	}
 }

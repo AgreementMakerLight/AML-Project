@@ -728,3 +728,6 @@ datum der einreichung des zusammenfassungen	datum podání přehledů
 hat zusammenfassung	má přehled
 zusammenfassung eines konferenzbeitrags	Shrnutí konferenčního příspěvku
 deadline für die einreichung der zusammenfassung	termín pro podání přehledu
+spricht in	mluví v
+spricht	mluví
+istanwesend	istanwesend

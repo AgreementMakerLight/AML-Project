@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,51 +12,40 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An Ontology Property, which can either be a Data or an Object property.     *
+* Lists relevant namespaces.                                                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ontology;
+package aml.settings;
 
-import java.util.HashSet;
-import java.util.Set;
-
-public class Property
+public enum Namespace
 {
+    ALIGN_SVC		("alignsvc","http://exmo.inrialpes.fr/align/service","#"),
+    ALIGN_EXT		("alext","http://exmo.inrialpes.fr/align/ext/1.0/",""),
+    ALIGNMENT		("align","http://knowledgeweb.semanticweb.org/heterogeneity/alignment","#"),
+    DUBLIN_CORE		("dc","http://purl.org/dc/elements/1.1/",""),
+    EDOAL			("edoal","http://ns.inria.org/edoal/1.0/","#"),
+    OWL				("owl","http://www.w3.org/2002/07/owl#",""),
+    RDF				("rdf","http://www.w3.org/1999/02/22-rdf-syntax-ns#",""),
+    RDFS			("rdfs","http://www.w3.org/2000/01/rdf-schema#",""),
+    SKOS			("skos","http://www.w3.org/2004/02/skos/core#",""),
+    SOAP			("SOAP-ENV","http://schemas.xmlsoap.org/soap/envelope/",""),
+    XSD				("xsd","http://www.w3.org/2001/XMLSchema","#"),
+    XSI				("xsi","http://www.w3.org/1999/XMLSchema-instance","");
 	
-//Attributes
+	String ns;
+	String uri;
+	String separator;
 	
-	private Set<Integer> domain;
-	private boolean isFunctional;
-
-	
-//Constructors
-
-	public Property()
+	Namespace(String ns, String uri, String separator)
 	{
-		domain = new HashSet<Integer>();
-		isFunctional = false;
+		this.ns = ns;
+		this.uri = uri;
+		this.separator = separator;
 	}
 	
-//Public Methods
-
-	public void addDomain(Integer i)
+	public String prefix()
 	{
-		domain.add(i);
-	}
-	
-	public Set<Integer> getDomain()
-	{
-		return domain;
-	}
-		
-	public boolean isFunctional()
-	{
-		return isFunctional;
-	}
-	
-	public void isFunctional(boolean f)
-	{
-		isFunctional = f;
+		return uri + separator;
 	}
 }
