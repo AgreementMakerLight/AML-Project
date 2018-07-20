@@ -22,8 +22,10 @@ package aml.match;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
+import aml.ontology.EntityType;
 import aml.ontology.RelationshipMap;
-import aml.settings.EntityType;
 
 public class BlockRematcher implements Rematcher
 {
@@ -71,7 +73,7 @@ public class BlockRematcher implements Rematcher
 		Alignment maps = new Alignment();
 		Alignment high = a.getHighLevelAlignment();
 		RelationshipMap rMap = aml.getRelationshipMap();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			int sId = m.getSourceId();
 			int tId = m.getTargetId();

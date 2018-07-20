@@ -24,12 +24,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
+import aml.ontology.EntityType;
 import aml.ontology.RelationshipMap;
-import aml.settings.EntityType;
+import aml.ontology.lexicon.StringParser;
 import aml.util.ISub;
 import aml.util.Similarity;
 import aml.util.StopList;
-import aml.util.StringParser;
 
 public class ProcessMatcher implements PrimaryMatcher
 {
@@ -99,7 +101,7 @@ public class ProcessMatcher implements PrimaryMatcher
 			a = neighborSimilarity(a);
 		}
 		Alignment b = new Alignment();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			if(aml.isToMatchSource(m.getSourceId()) && aml.isToMatchTarget(m.getTargetId()) &&
 					m.getSimilarity() >= threshold)
@@ -165,7 +167,7 @@ public class ProcessMatcher implements PrimaryMatcher
 	public Alignment neighborSimilarity(Alignment a)
 	{
 		Alignment b = new Alignment();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			double maxSim = 0.0;
 			HashSet<Integer> sourceChildren = getChildren(m.getSourceId(),false);
@@ -174,7 +176,7 @@ public class ProcessMatcher implements PrimaryMatcher
 			{
 				for(Integer t : targetChildren)
 				{
-					Mapping n = a.getBidirectional(s, t);
+					SimpleMapping n = a.getBidirectional(s, t);
 					if(n != null && n.getSimilarity() > maxSim)
 						maxSim = n.getSimilarity();
 				}
@@ -186,7 +188,7 @@ public class ProcessMatcher implements PrimaryMatcher
 			{
 				for(Integer t : targetParents)
 				{
-					Mapping n = a.getBidirectional(s, t);
+					SimpleMapping n = a.getBidirectional(s, t);
 					if(n != null && n.getSimilarity() > maxSim)
 						maxSim = n.getSimilarity();
 				}

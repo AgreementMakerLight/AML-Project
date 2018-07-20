@@ -65,21 +65,21 @@ import org.gephi.project.api.ProjectController;
 import org.openide.util.Lookup;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
+import aml.alignment.MappingRelation;
+import aml.alignment.MappingStatus;
 import aml.filter.QualityFlagger;
 import aml.filter.RepairMap;
-import aml.match.Alignment;
-import aml.match.Mapping;
-import aml.ontology.Lexicon;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.ontology.ValueMap;
-import aml.settings.LexicalType;
-import aml.settings.MappingRelation;
-import aml.settings.MappingStatus;
+import aml.ontology.lexicon.LexicalType;
+import aml.ontology.lexicon.Lexicon;
 import aml.util.Table2Set;
 import processing.core.PApplet;
-import aml.settings.EntityType;
  
 
 public class ViewMapping extends JDialog implements ActionListener
@@ -98,7 +98,7 @@ public class ViewMapping extends JDialog implements ActionListener
 	private Ontology source, target;
   	private Alignment a;
 	private int mapping, sourceId, targetId;
-	private Mapping m;
+	private SimpleMapping m;
 	private EntityType t;
 
 	//Dimensions
@@ -113,7 +113,7 @@ public class ViewMapping extends JDialog implements ActionListener
 	private PApplet mappingViewer;
 	private JPanel details, conflicts, sourcePanel, targetPanel;
 	private Vector<JCheckBox> check;
-	private Vector<Mapping> mappings;
+	private Vector<SimpleMapping> mappings;
 	private Vector<MappingButton> mappingButtons;
 	private Vector<JLabel> labels;
 	private JButton reset, setCorrect, setIncorrect;
@@ -222,7 +222,7 @@ public class ViewMapping extends JDialog implements ActionListener
 			{
 				if(check.get(i).isSelected())
 				{
-					Mapping n = mappings.get(i);
+					SimpleMapping n = mappings.get(i);
 					check.get(i).setSelected(false);
 					if(n.getStatus().equals(MappingStatus.UNKNOWN))
 						continue;
@@ -239,7 +239,7 @@ public class ViewMapping extends JDialog implements ActionListener
 			{
 				if(check.get(i).isSelected())
 				{
-					Mapping n = mappings.get(i);
+					SimpleMapping n = mappings.get(i);
 					check.get(i).setSelected(false);
 					if(n.getStatus().equals(MappingStatus.CORRECT))
 						continue;
@@ -256,7 +256,7 @@ public class ViewMapping extends JDialog implements ActionListener
 			{
 				if(check.get(i).isSelected())
 				{
-					Mapping n = mappings.get(i);
+					SimpleMapping n = mappings.get(i);
 					check.get(i).setSelected(false);
 					if(n.getStatus().equals(MappingStatus.INCORRECT))
 						continue;
@@ -272,7 +272,7 @@ public class ViewMapping extends JDialog implements ActionListener
 			int index = mappingButtons.indexOf(b);
 			if(index > -1)
 			{
-				Mapping n = mappings.get(index);
+				SimpleMapping n = mappings.get(index);
 				index = a.getIndex(n.getSourceId(),n.getTargetId());
 				aml.goTo(index);
 				refresh();
@@ -289,10 +289,10 @@ public class ViewMapping extends JDialog implements ActionListener
         m = a.get(mapping);
         sourceId = m.getSourceId();
         targetId = m.getTargetId();
-        t = uris.getType(sourceId);
+        t = uris.getTypes(sourceId);
         
         //Set the title and modality
-        this.setTitle(m.toGUI());
+        this.setTitle(m.toString());
 		this.setModalityType(ModalityType.APPLICATION_MODAL);
 
         //Setup the Tabbed Pane
@@ -494,12 +494,12 @@ public class ViewMapping extends JDialog implements ActionListener
 		mappingPanel.setLayout(new BoxLayout(mappingPanel, BoxLayout.Y_AXIS));
 		check = new Vector<JCheckBox>();
 		mappingButtons = new Vector<MappingButton>();
-		mappings = new Vector<Mapping>();
+		mappings = new Vector<SimpleMapping>();
 		labels = new Vector<JLabel>();
 		
 		mappings.add(m);
 		labels.add(new JLabel("[Active Mapping]"));
-		for(Mapping n : a.getConflicts(m))
+		for(SimpleMapping n : a.getConflicts(m))
 		{
 			mappings.add(n);
 			labels.add(new JLabel("[Cardinality Conflict]"));
@@ -507,7 +507,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		RepairMap rMap = aml.getRepairMap();
 		if(rMap != null)
 		{
-			for(Mapping n : rMap.getConflictMappings(m))
+			for(SimpleMapping n : rMap.getConflictMappings(m))
 			{
 				if(!mappings.contains(n))
 				{
@@ -552,7 +552,7 @@ public class ViewMapping extends JDialog implements ActionListener
 	{
 		if(a == null)
 			return;
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 			if(nodes.contains(m.getSourceId()) && nodes.contains(m.getTargetId()))
 				addMapping(m.getSourceId(), m.getTargetId());
 	}

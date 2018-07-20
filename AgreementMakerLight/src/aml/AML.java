@@ -35,6 +35,9 @@ import javax.swing.UIManager;
 import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
+import aml.alignment.Alignment;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
 import aml.ext.ParenthesisExtender;
 import aml.ext.StopWordExtender;
 import aml.filter.CustomFilterer;
@@ -45,18 +48,15 @@ import aml.filter.Repairer;
 import aml.knowledge.Dictionary;
 import aml.knowledge.MediatorOntology;
 import aml.match.ManualMatcher;
-import aml.match.Mapping;
 import aml.match.UnsupportedEntityTypeException;
-import aml.match.Alignment;
 import aml.match.AutomaticMatcher;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
 import aml.settings.Problem;
-import aml.settings.EntityType;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
-import aml.settings.MappingStatus;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
@@ -1051,7 +1051,7 @@ public class AML
 	public void removeIncorrect()
 	{
 		Alignment reviewed = new Alignment();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 			if(!m.getStatus().equals(MappingStatus.INCORRECT))
 				reviewed.add(m);
 		if(a.size() > reviewed.size())

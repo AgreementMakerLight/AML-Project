@@ -39,9 +39,9 @@ import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 
 import aml.AML;
-import aml.match.Alignment;
-import aml.match.Mapping;
-import aml.settings.MappingStatus;
+import aml.alignment.Alignment;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
 
 public class AlignmentPanel extends JInternalFrame implements ActionListener, ItemListener
 {
@@ -234,7 +234,7 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 			check = new Vector<JCheckBox>();
 			mappings = new Vector<MappingButton>(a.size());
 			mappingPanel.setMaximumSize(new Dimension(mappingPanel.getMaximumSize().width,a.size()*30));
-			for(Mapping m : a)
+			for(SimpleMapping m : a)
 			{
 				JCheckBox c = new JCheckBox(""); 
 				check.add(c);

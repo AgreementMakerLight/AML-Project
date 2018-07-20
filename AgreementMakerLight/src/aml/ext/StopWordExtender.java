@@ -23,13 +23,13 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.ontology.Lexicon;
-import aml.ontology.Provenance;
-import aml.settings.EntityType;
-import aml.settings.LexicalType;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.LexicalMetadata;
+import aml.ontology.lexicon.LexicalType;
+import aml.ontology.lexicon.Lexicon;
+import aml.ontology.lexicon.StringParser;
 import aml.settings.SizeCategory;
 import aml.util.StopList;
-import aml.util.StringParser;
 
 public class StopWordExtender implements LexiconExtender
 {
@@ -99,7 +99,7 @@ public class StopWordExtender implements LexiconExtender
 			Vector<Integer> tr = new Vector<Integer>(l.getInternalEntities(EntityType.CLASS, n));
 			for(Integer i : tr)
 			{
-				for(Provenance p : l.get(n, i))
+				for(LexicalMetadata p : l.get(n, i))
 				{
 					double weight = p.getWeight() * WEIGHT;
 					l.add(i, newName, p.getLanguage(),
@@ -133,7 +133,7 @@ public class StopWordExtender implements LexiconExtender
 				Vector<Integer> tr = new Vector<Integer>(l.getInternalEntities(types[h], n));
 				for(Integer i : tr)
 				{
-					for(Provenance p : l.get(n, i))
+					for(LexicalMetadata p : l.get(n, i))
 					{
 						double weight = p.getWeight() * WEIGHT;
 						l.add(i, newName, p.getLanguage(),

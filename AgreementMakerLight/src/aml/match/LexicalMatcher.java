@@ -23,11 +23,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.ontology.Lexicon;
-import aml.settings.EntityType;
+import aml.alignment.Alignment;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.Lexicon;
+import aml.ontology.lexicon.StringParser;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
-import aml.util.StringParser;
 
 public class LexicalMatcher implements PrimaryMatcher
 {

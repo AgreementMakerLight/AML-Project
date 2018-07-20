@@ -43,9 +43,9 @@ import javax.swing.border.TitledBorder;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import aml.AML;
-import aml.ontology.Lexicon;
-import aml.settings.EntityType;
-import aml.settings.MappingRelation;
+import aml.alignment.MappingRelation;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.Lexicon;
 import aml.util.MapSorter;
 
 public class AddClassMapping extends JDialog implements ActionListener

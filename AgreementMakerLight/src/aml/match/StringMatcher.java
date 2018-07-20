@@ -34,13 +34,15 @@ import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.Lexicon;
 import aml.ontology.RelationshipMap;
-import aml.settings.EntityType;
+import aml.ontology.lexicon.LexicalType;
+import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
-import aml.settings.LexicalType;
 import aml.settings.StringSimMeasure;
 import aml.util.ISub;
 import aml.util.Table2Set;
@@ -136,7 +138,7 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 			for(int i = 0; i < 10 && ext.size() > size; i++)
 			{
 				size = ext.size();
-				for(Mapping m : aux)
+				for(SimpleMapping m : aux)
 					if(!a.containsConflict(m))
 						ext.add(m);
 				aux = extendChildrenAndParents(aux,thresh);
@@ -191,9 +193,9 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
 		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
-			if(aml.getURIMap().getType(m.getSourceId()).equals(e))
+			if(aml.getURIMap().getTypes(m.getSourceId()).equals(e))
 				toMap.add(m.getSourceId(),m.getTargetId());
 		}
 		maps.addAll(mapInParallel(toMap,0.0));
@@ -225,7 +227,7 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(int i = 0; i < a.size(); i++)
 		{
-			Mapping input = a.get(i);
+			SimpleMapping input = a.get(i);
 			if(!aml.getURIMap().isClass(input.getSourceId()))
 				continue;
 			Set<Integer> sourceChildren = rels.getChildren(input.getSourceId());
@@ -262,7 +264,7 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(int i = 0; i < a.size(); i++)
 		{
-			Mapping input = a.get(i);
+			SimpleMapping input = a.get(i);
 			if(!aml.getURIMap().isClass(input.getSourceId()))
 				continue;
 			Set<Integer> sourceSiblings = rels.getAllSiblings(input.getSourceId());
@@ -291,7 +293,7 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 		for(Integer i : toMap.keySet())
 			for(Integer j : toMap.get(i))
 				tasks.add(new MappingTask(i,j));
-        List<Future<Mapping>> results;
+        List<Future<SimpleMapping>> results;
 		ExecutorService exec = Executors.newFixedThreadPool(threads);
 		try
 		{
@@ -300,14 +302,14 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 		catch (InterruptedException e)
 		{
 			e.printStackTrace();
-	        results = new ArrayList<Future<Mapping>>();
+	        results = new ArrayList<Future<SimpleMapping>>();
 		}
 		exec.shutdown();
-		for(Future<Mapping> fm : results)
+		for(Future<SimpleMapping> fm : results)
 		{
 			try
 			{
-				Mapping m = fm.get();
+				SimpleMapping m = fm.get();
 				if(m.getSimilarity() >= thresh)
 					maps.add(m);
 			}
@@ -405,7 +407,7 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 	}
 	
 	//Callable class for mapping two classes
-	private class MappingTask implements Callable<Mapping>
+	private class MappingTask implements Callable<SimpleMapping>
 	{
 		private int source;
 		private int target;
@@ -417,9 +419,9 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 	    }
 	        
 	    @Override
-	    public Mapping call()
+	    public SimpleMapping call()
 	    {
-       		return new Mapping(source,target,mapTwoEntities(source,target));
+       		return new SimpleMapping(source,target,mapTwoEntities(source,target));
         }
 	}
 }

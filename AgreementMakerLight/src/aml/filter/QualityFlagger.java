@@ -22,15 +22,15 @@ package aml.filter;
 import java.util.Vector;
 
 import aml.AML;
-import aml.match.Alignment;
+import aml.alignment.Alignment;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
 import aml.match.BlockRematcher;
-import aml.match.Mapping;
 import aml.match.NeighborSimilarityMatcher;
 import aml.match.StringMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.match.WordMatcher;
-import aml.settings.EntityType;
-import aml.settings.MappingStatus;
+import aml.ontology.EntityType;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SizeCategory;
 import aml.settings.WordMatchStrategy;
@@ -95,7 +95,7 @@ public class QualityFlagger implements Flagger
 	{
 		System.out.println("Running Quality Flagger");
 		long time = System.currentTimeMillis()/1000;
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			int sourceId = m.getSourceId();
 			int targetId = m.getTargetId();

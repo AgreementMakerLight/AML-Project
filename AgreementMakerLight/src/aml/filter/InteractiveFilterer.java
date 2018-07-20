@@ -20,9 +20,9 @@
 package aml.filter;
 
 import aml.AML;
-import aml.match.Alignment;
-import aml.match.Mapping;
-import aml.settings.MappingStatus;
+import aml.alignment.Alignment;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
 import aml.settings.SizeCategory;
 import aml.util.InteractionManager;
 
@@ -76,7 +76,7 @@ public class InteractiveFilterer implements Filterer
 			consecutiveNegativeLimit = 10;
 
 		//Select - for each mapping:
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			//Get the ids
 			int sourceId = m.getSourceId();

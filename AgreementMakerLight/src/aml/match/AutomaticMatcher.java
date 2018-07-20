@@ -24,6 +24,7 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.filter.CardinalitySelector;
 import aml.filter.DifferentClassPenalizer;
 import aml.filter.DomainAndRangeFilterer;
@@ -32,8 +33,8 @@ import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
 import aml.filter.Selector;
 import aml.knowledge.MediatorLexicon;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.settings.EntityType;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.NeighborSimilarityStrategy;

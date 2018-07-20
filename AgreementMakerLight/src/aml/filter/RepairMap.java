@@ -35,13 +35,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
 import aml.util.Table2Set;
 import aml.util.Table3List;
 import aml.util.Table3Set;
-import aml.match.Alignment;
-import aml.match.Mapping;
 import aml.ontology.RelationshipMap;
-import aml.settings.MappingStatus;
 
 public class RepairMap implements Iterable<Integer>
 {
@@ -84,7 +84,7 @@ public class RepairMap implements Iterable<Integer>
 		//order of the original alignment is altered
 		a = new Alignment(aml.getAlignment());
 		//Remove the FLAGGED status from all mappings that have it
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 			if(m.getStatus().equals(MappingStatus.FLAGGED))
 				m.setStatus(MappingStatus.UNKNOWN);
 		threads = Runtime.getRuntime().availableProcessors();
@@ -106,10 +106,10 @@ public class RepairMap implements Iterable<Integer>
 	 * @param m: the Mapping to get
 	 * @return the list of Mappings in conflict with this Mapping
 	 */
-	public Vector<Mapping> getConflictMappings(Mapping m)
+	public Vector<SimpleMapping> getConflictMappings(SimpleMapping m)
 	{
 		int index = a.getIndex(m.getSourceId(), m.getTargetId());
-		Vector<Mapping> confs = new Vector<Mapping>();
+		Vector<SimpleMapping> confs = new Vector<SimpleMapping>();
 		if(!mappingConflicts.contains(index))
 			return confs;
 		for(Integer i : mappingConflicts.get(index))
@@ -118,7 +118,7 @@ public class RepairMap implements Iterable<Integer>
 			{
 				if(j == index)
 					continue;
-				Mapping n = a.get(j);
+				SimpleMapping n = a.get(j);
 				//Get the Mapping from the original alignment
 				n = aml.getAlignment().get(n.getSourceId(), n.getTargetId());
 				if(!confs.contains(n))
@@ -142,7 +142,7 @@ public class RepairMap implements Iterable<Integer>
 	 * @param m: the Mapping to search in the RepairMap
 	 * @return the index of the Mapping in the RepairMap
 	 */
-	public int getIndex(Mapping m)
+	public int getIndex(SimpleMapping m)
 	{
 		return a.getIndex(m.getSourceId(), m.getTargetId());
 	}
@@ -162,9 +162,9 @@ public class RepairMap implements Iterable<Integer>
 	 * @param index: the index of the Mapping to get
 	 * @return the Mapping at the given index
 	 */
-	public Mapping getMapping(int index)
+	public SimpleMapping getMapping(int index)
 	{
-		Mapping m = a.get(index);
+		SimpleMapping m = a.get(index);
 		return aml.getAlignment().get(m.getSourceId(), m.getTargetId());
 	}
 	
@@ -203,7 +203,7 @@ public class RepairMap implements Iterable<Integer>
 			conflictMappings.remove(i);
 		}
 		mappingConflicts.remove(index);
-		Mapping m = a.get(index);
+		SimpleMapping m = a.get(index);
 		m.setStatus(MappingStatus.INCORRECT);
 		aml.getAlignment().get(m.getSourceId(), m.getTargetId()).setStatus(MappingStatus.INCORRECT);
 	}
@@ -342,7 +342,7 @@ public class RepairMap implements Iterable<Integer>
 		{
 			for(Integer j : rels.getSubClasses(i, false))
 			{
-				if(descList.contains(j) || a.containsClass(j))
+				if(descList.contains(j) || a.containsEntity(j))
 				{
 					toRemove.add(i);
 					break;
@@ -397,7 +397,7 @@ public class RepairMap implements Iterable<Integer>
 		//involved in two mappings or have an ancestral
 		//path to a mapped class, from only one side
 		HashSet<Integer> mapList = new HashSet<Integer>();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			int source = m.getSourceId();
 			int target = m.getTargetId();

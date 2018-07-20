@@ -20,9 +20,9 @@
 package aml.util;
 
 import aml.AML;
-import aml.match.Alignment;
+import aml.alignment.Alignment;
+import aml.alignment.MappingRelation;
 import aml.ontology.URIMap;
-import aml.settings.MappingRelation;
 
 
 public class Oracle

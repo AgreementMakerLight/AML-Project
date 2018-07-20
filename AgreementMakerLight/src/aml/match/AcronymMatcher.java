@@ -23,8 +23,9 @@ package aml.match;
 import java.util.ArrayList;
 
 import aml.AML;
-import aml.ontology.Lexicon;
-import aml.settings.EntityType;
+import aml.alignment.Alignment;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 
 public class AcronymMatcher implements PrimaryMatcher

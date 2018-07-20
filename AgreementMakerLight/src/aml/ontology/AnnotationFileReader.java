@@ -25,7 +25,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import aml.AML;
-import aml.settings.EntityType;
 
 public class AnnotationFileReader
 {

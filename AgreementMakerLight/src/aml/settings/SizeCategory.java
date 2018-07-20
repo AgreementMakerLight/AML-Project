@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -38,8 +38,8 @@ public enum SizeCategory
 	{
 		Ontology source = AML.getInstance().getSource();
 		Ontology target = AML.getInstance().getTarget();
-		int sSize = source.count();
-		int tSize = target.count();
+		int sSize = source.size();
+		int tSize = target.size();
 		int max = Math.max(sSize, tSize);
 		int min = Math.min(sSize, tSize);
 		if(max > 60000 || (min > 30000 && sSize*tSize > 1000000000))

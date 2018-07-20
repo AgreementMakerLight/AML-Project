@@ -22,8 +22,10 @@ package aml.match;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
+import aml.ontology.EntityType;
 import aml.ontology.ValueMap;
-import aml.settings.EntityType;
 import aml.settings.InstanceMatchingCategory;
 
 public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
@@ -79,7 +81,7 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 				}
 			}
 		}
-		for(Mapping m : maps)
+		for(SimpleMapping m : maps)
 		{
 			double similarity = m.getSimilarity() / Math.min(sVal.getProperties(m.getSourceId()).size(),
 					tVal.getProperties(m.getTargetId()).size());

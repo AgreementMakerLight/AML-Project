@@ -18,6 +18,9 @@
 ******************************************************************************/
 package aml.match;
 
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
+
 public class LWC
 {
 
@@ -40,13 +43,13 @@ public class LWC
 	{
 		Alignment combine = new Alignment();
 	
-		for(Mapping m: a)
+		for(SimpleMapping m: a)
 		{
 			double similarity = m.getSimilarity()*weight + 
 					b.getSimilarity(m.getSourceId(), m.getTargetId())*(1-weight);
 			combine.add(m.getSourceId(), m.getTargetId(), similarity);
 		}
-		for(Mapping m : b)
+		for(SimpleMapping m : b)
 		{
 			if(!a.containsMapping(m))
 			{

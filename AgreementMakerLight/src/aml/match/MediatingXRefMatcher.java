@@ -23,10 +23,11 @@ package aml.match;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.knowledge.MediatorOntology;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
-import aml.settings.EntityType;
 import aml.util.Table2Map;
 
 public class MediatingXRefMatcher extends MediatingMatcher

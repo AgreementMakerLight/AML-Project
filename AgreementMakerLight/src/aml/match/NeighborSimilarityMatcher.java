@@ -28,8 +28,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
+import aml.ontology.EntityType;
 import aml.ontology.RelationshipMap;
-import aml.settings.EntityType;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.util.Table2Set;
 
@@ -82,7 +84,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
 		for(int i = 0; i < input.size(); i++)
 		{
-			Mapping m = input.get(i);
+			SimpleMapping m = input.get(i);
 			if(!aml.getURIMap().isClass(m.getSourceId()))
 				continue;
 			Set<Integer> sourceSubClasses = rels.getSubClasses(m.getSourceId(),true);
@@ -145,7 +147,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		input = a;
 		Alignment maps = new Alignment();
 		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			int sId = m.getSourceId();
 			int tId = m.getTargetId();
@@ -187,7 +189,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		for(Integer i : toMap.keySet())
 			for(Integer j : toMap.get(i))
 				tasks.add(new MappingTask(i,j));
-        List<Future<Mapping>> results;
+        List<Future<SimpleMapping>> results;
 		ExecutorService exec = Executors.newFixedThreadPool(threads);
 		try
 		{
@@ -196,14 +198,14 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		catch (InterruptedException e)
 		{
 			e.printStackTrace();
-	        results = new ArrayList<Future<Mapping>>();
+	        results = new ArrayList<Future<SimpleMapping>>();
 		}
 		exec.shutdown();
-		for(Future<Mapping> fm : results)
+		for(Future<SimpleMapping> fm : results)
 		{
 			try
 			{
-				Mapping m = fm.get();
+				SimpleMapping m = fm.get();
 				if(m.getSimilarity() >= thresh)
 					maps.add(m);
 			}
@@ -266,7 +268,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	}
 	
 	//Callable class for mapping two classes
-	private class MappingTask implements Callable<Mapping>
+	private class MappingTask implements Callable<SimpleMapping>
 	{
 		private int source;
 		private int target;
@@ -278,9 +280,9 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	    }
 	        
 	    @Override
-	    public Mapping call()
+	    public SimpleMapping call()
 	    {
-       		return new Mapping(source,target,mapTwoTerms(source,target));
+       		return new SimpleMapping(source,target,mapTwoTerms(source,target));
         }
 	}
 }

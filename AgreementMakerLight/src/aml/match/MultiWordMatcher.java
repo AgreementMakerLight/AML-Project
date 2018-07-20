@@ -27,10 +27,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.knowledge.WordNet;
-import aml.ontology.Lexicon;
-import aml.ontology.WordLexicon;
-import aml.settings.EntityType;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.Lexicon;
+import aml.ontology.lexicon.WordLexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.StopList;
 

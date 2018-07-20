@@ -19,11 +19,11 @@
 package aml.filter;
 
 import aml.AML;
-import aml.match.Alignment;
-import aml.match.Mapping;
+import aml.alignment.Alignment;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
+import aml.ontology.EntityType;
 import aml.ontology.RelationshipMap;
-import aml.settings.EntityType;
-import aml.settings.MappingStatus;
 import aml.settings.SelectionType;
 import aml.util.InteractionManager;
 
@@ -113,7 +113,7 @@ public class Selector implements Filterer, Flagger
 			selected = filterWithAux();
 		if(selected.size() < a.size())
 		{
-			for(Mapping m : selected)
+			for(SimpleMapping m : selected)
 				if(m.getStatus().equals(MappingStatus.FLAGGED))
 					m.setStatus(MappingStatus.UNKNOWN);
 			aml.setAlignment(selected);
@@ -130,7 +130,7 @@ public class Selector implements Filterer, Flagger
 	{
 		Alignment selected = new Alignment();
 		a.sortDescending();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			if(m.getStatus().equals(MappingStatus.CORRECT))
 				selected.add(m);
@@ -138,7 +138,7 @@ public class Selector implements Filterer, Flagger
 				continue;
 			else if((type.equals(SelectionType.STRICT) && !selected.containsConflict(m)) ||
 					(type.equals(SelectionType.PERMISSIVE) && !selected.containsBetterMapping(m)))
-				selected.add(new Mapping(m));
+				selected.add(new SimpleMapping(m));
 			else if(type.equals(SelectionType.HYBRID))
 			{
 				int sourceCard = selected.getSourceMappings(m.getSourceId()).size();
@@ -157,7 +157,7 @@ public class Selector implements Filterer, Flagger
 		System.out.println("Running Cardinality Flagger");
 		long time = System.currentTimeMillis()/1000;
 		a = aml.getAlignment();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 			if(a.containsConflict(m) && m.getStatus().equals(MappingStatus.UNKNOWN))
 				m.setStatus(MappingStatus.FLAGGED);
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
@@ -170,7 +170,7 @@ public class Selector implements Filterer, Flagger
 		//Sort the active alignment
 		a.sortDescending();
 		//Then select Mappings in ranking order (by similarity)
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			//If the Mapping is CORRECT, select it, regardless of anything else
 			if(m.getStatus().equals(MappingStatus.CORRECT))
@@ -207,9 +207,9 @@ public class Selector implements Filterer, Flagger
 		//Sort the auxiliary alignment
 		aux.sortDescending();
 		//Then perform selection based on it
-		for(Mapping m : aux)
+		for(SimpleMapping m : aux)
 		{
-			Mapping n = a.get(m.getSourceId(), m.getTargetId());
+			SimpleMapping n = a.get(m.getSourceId(), m.getTargetId());
 			if(n == null)
 				continue;
 			if(n.getStatus().equals(MappingStatus.CORRECT))
@@ -236,11 +236,11 @@ public class Selector implements Filterer, Flagger
 	{
 		RelationshipMap r = aml.getRelationshipMap();
 		Alignment out = new Alignment();
-		for(Mapping m : in)
+		for(SimpleMapping m : in)
 		{
 			int src = m.getSourceId();
 			int tgt = m.getTargetId();
-			if(!aml.getURIMap().getType(src).equals(EntityType.CLASS))
+			if(!aml.getURIMap().getTypes(src).equals(EntityType.CLASS))
 				continue;
 			boolean add = true;
 			for(Integer t : in.getSourceMappings(src))

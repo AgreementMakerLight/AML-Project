@@ -32,9 +32,10 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.knowledge.MediatorLexicon;
 import aml.knowledge.MediatorOntology;
-import aml.settings.EntityType;
+import aml.ontology.EntityType;
 import aml.settings.SelectionType;
 import aml.util.MapSorter;
 

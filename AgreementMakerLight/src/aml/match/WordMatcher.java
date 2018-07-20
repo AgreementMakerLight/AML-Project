@@ -23,8 +23,10 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.ontology.WordLexicon;
-import aml.settings.EntityType;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.WordLexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.WordMatchStrategy;
 import aml.util.Table2Map;
@@ -146,14 +148,14 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 			{
 				//The word table (words->String, class indexes->Integer) for the current block
 				Table2Set<String,Integer> tWLex = targetLex.getWordTable(j);
-				Vector<Mapping> temp = matchBlocks(sWLex,tWLex,e,t);
+				Vector<SimpleMapping> temp = matchBlocks(sWLex,tWLex,e,t);
 				//If the strategy is BY_CLASS, just add the alignment
 				if(strategy.equals(WordMatchStrategy.BY_CLASS))
 					a.addAll(temp);
 				//Otherwise, update the similarity according to the strategy
 				else
 				{
-					for(Mapping m : temp)
+					for(SimpleMapping m : temp)
 					{
 						//First compute the name similarity
 						double nameSim = nameSimilarity(m.getSourceId(),m.getTargetId());
@@ -200,9 +202,9 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		}		
 		System.out.println("Computing Word Similarity");
 		Alignment maps = new Alignment();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
-			if(aml.getURIMap().getType(m.getSourceId()).equals(e))
+			if(aml.getURIMap().getTypes(m.getSourceId()).equals(e))
 				maps.add(mapTwoClasses(m.getSourceId(),m.getTargetId()));
 		}
 		time = System.currentTimeMillis()/1000 - time;
@@ -251,7 +253,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	//Used by match() method either to compute the final BY_CLASS alignment
 	//or to compute a preliminary alignment which is then refined according
 	//to the WordMatchStrategy.
-	private Vector<Mapping> matchBlocks(Table2Set<String,Integer> sWLex,
+	private Vector<SimpleMapping> matchBlocks(Table2Set<String,Integer> sWLex,
 			Table2Set<String,Integer> tWLex, EntityType e, double thresh)
 	{
 		AML aml = AML.getInstance();
@@ -292,7 +294,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 			}
 		}
 		Set<Integer> sources = maps.keySet();
-		Vector<Mapping> a = new Vector<Mapping>();
+		Vector<SimpleMapping> a = new Vector<SimpleMapping>();
 		for(Integer i : sources)
 		{
 			Set<Integer> targets = maps.keySet(i);
@@ -301,7 +303,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 				double sim = maps.get(i,j);
 				sim /= sourceLex.getEntityEC(i) + targetLex.getEntityEC(j) - sim;
 				if(sim >= thresh)
-					a.add(new Mapping(i, j, sim));
+					a.add(new SimpleMapping(i, j, sim));
 			}
 		}
 		return a;
@@ -309,7 +311,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	
 	//Maps two classes according to the selected strategy.
 	//Used by rematch() only.
-	private Mapping mapTwoClasses(int sourceId, int targetId)
+	private SimpleMapping mapTwoClasses(int sourceId, int targetId)
 	{
 		//If the strategy is not by name, compute the class similarity
 		double classSim = 0.0;
@@ -319,7 +321,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 			//If the class similarity is very low, return the mapping
 			//so as not to waste time computing name similarity
 			if(classSim < 0.25)
-				return new Mapping(sourceId,targetId,classSim);
+				return new SimpleMapping(sourceId,targetId,classSim);
 		}
 		//If the strategy is not by class, compute the name similarity
 		double nameSim = 0.0;
@@ -339,7 +341,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		else if(strategy.equals(WordMatchStrategy.MINIMUM))
 			sim = Math.min(nameSim,classSim);
 		//Return the mapping with the combined similarity
-		return new Mapping(sourceId,targetId,sim);
+		return new SimpleMapping(sourceId,targetId,sim);
 	}
 
 	//Computes the maximum word-based (bag-of-words) similarity between

@@ -28,11 +28,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import aml.AML;
-import aml.match.Alignment;
-import aml.match.Mapping;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ValueMap;
-import aml.settings.EntityType;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.NameSimilarity;
 import aml.util.Table2Set;
@@ -124,9 +124,9 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
 		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
-			if(aml.getURIMap().getType(m.getSourceId()).equals(e))
+			if(aml.getURIMap().getTypes(m.getSourceId()).equals(e))
 				toMap.add(m.getSourceId(),m.getTargetId());
 		}
 		maps.addAll(mapInParallel(toMap,0.0));
@@ -160,7 +160,7 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 		for(Integer i : toMap.keySet())
 			for(Integer j : toMap.get(i))
 				tasks.add(new MappingTask(i,j,thresh));
-        List<Future<Mapping>> results;
+        List<Future<SimpleMapping>> results;
 		ExecutorService exec = Executors.newFixedThreadPool(threads);
 		try
 		{
@@ -169,14 +169,14 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 		catch (InterruptedException e)
 		{
 			e.printStackTrace();
-	        results = new ArrayList<Future<Mapping>>();
+	        results = new ArrayList<Future<SimpleMapping>>();
 		}
 		exec.shutdown();
-		for(Future<Mapping> fm : results)
+		for(Future<SimpleMapping> fm : results)
 		{
 			try
 			{
-				Mapping m = fm.get();
+				SimpleMapping m = fm.get();
 				if(m.getSimilarity() >= thresh)
 					maps.add(m);
 			}
@@ -209,7 +209,7 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	}
 	
 	//Callable class for mapping two classes
-	private class MappingTask implements Callable<Mapping>
+	private class MappingTask implements Callable<SimpleMapping>
 	{
 		private int source;
 		private int target;
@@ -223,9 +223,9 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	    }
 	        
 	    @Override
-	    public Mapping call()
+	    public SimpleMapping call()
 	    {
-       		return new Mapping(source,target,mapTwoEntities(source,target,threshold));
+       		return new SimpleMapping(source,target,mapTwoEntities(source,target,threshold));
         }
 	}
 }

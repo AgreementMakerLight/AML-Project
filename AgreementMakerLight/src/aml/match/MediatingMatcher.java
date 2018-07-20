@@ -25,12 +25,13 @@ import java.util.Map;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.ext.LexiconExtender;
 import aml.knowledge.MediatorLexicon;
 import aml.knowledge.MediatorOntology;
-import aml.ontology.Lexicon;
-import aml.settings.EntityType;
-import aml.settings.LexicalType;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.LexicalType;
+import aml.ontology.lexicon.Lexicon;
 import aml.util.MapSorter;
 import aml.util.Table2Map;
 

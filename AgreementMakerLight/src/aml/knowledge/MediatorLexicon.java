@@ -27,9 +27,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+import aml.ontology.lexicon.StringParser;
 import aml.util.Table2Map;
 import aml.util.Table2Set;
-import aml.util.StringParser;
 
 
 public class MediatorLexicon

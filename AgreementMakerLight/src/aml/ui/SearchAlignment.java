@@ -47,8 +47,8 @@ import javax.swing.border.EmptyBorder;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import aml.AML;
-import aml.match.Alignment;
-import aml.match.Mapping;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
 import aml.util.MapSorter;
 
 public class SearchAlignment extends JDialog implements ActionListener
@@ -96,7 +96,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 		mappings = new ArrayList<String>(total);
 		for(int i = 0; i < total; i++)
 		{
-			Mapping m = a.get(i);
+			SimpleMapping m = a.get(i);
 			String map = aml.getSource().getName(m.getSourceId());
 			map += " = ";
 			map += aml.getTarget().getName(m.getTargetId());

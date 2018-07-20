@@ -23,9 +23,9 @@
 package aml.util;
 
 import aml.AML;
-import aml.match.Mapping;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
 import aml.ontology.URIMap;
-import aml.settings.MappingStatus;
 
 //Uncomment below to switch to the Oracle from the SEALS OMT client
 //import eu.sealsproject.omt.client.interactive.Oracle;
@@ -65,7 +65,7 @@ public class InteractionManager
 	 * Classifies a Mapping by checking the Oracle
 	 * @param m: the Mapping to check
 	 */
-	public void classify(Mapping m)
+	public void classify(SimpleMapping m)
 	{
 		if(m.getStatus().equals(MappingStatus.CORRECT) || m.getStatus().equals(MappingStatus.INCORRECT))
 			return;

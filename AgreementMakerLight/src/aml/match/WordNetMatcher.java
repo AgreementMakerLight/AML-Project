@@ -24,13 +24,15 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
 import aml.ext.LexiconExtender;
 import aml.knowledge.WordNet;
-import aml.ontology.Lexicon;
-import aml.settings.EntityType;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.LexicalType;
+import aml.ontology.lexicon.Lexicon;
+import aml.ontology.lexicon.StringParser;
 import aml.settings.InstanceMatchingCategory;
-import aml.settings.LexicalType;
-import aml.util.StringParser;
 
 public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 {
@@ -223,7 +225,7 @@ public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 					similarity *= weight;
 					//If the similarity is above threshold add the mapping
 					if(similarity >= thresh)
-						maps.add(new Mapping(i, j, similarity));
+						maps.add(new SimpleMapping(i, j, similarity));
 				}
 			}
 		}

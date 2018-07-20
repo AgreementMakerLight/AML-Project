@@ -31,9 +31,9 @@ import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
 import aml.AML;
-import aml.match.Alignment;
+import aml.alignment.Alignment;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.settings.EntityType;
 
 public class ResourcePanel extends JInternalFrame
 {

@@ -21,10 +21,11 @@ package aml.match;
 import java.util.Vector;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
 import aml.filter.Selector;
-import aml.settings.EntityType;
+import aml.ontology.EntityType;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;

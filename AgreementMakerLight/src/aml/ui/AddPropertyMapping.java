@@ -35,9 +35,9 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import aml.AML;
+import aml.alignment.MappingRelation;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.settings.EntityType;
-import aml.settings.MappingRelation;
 
 public class AddPropertyMapping extends JDialog implements ActionListener
 {

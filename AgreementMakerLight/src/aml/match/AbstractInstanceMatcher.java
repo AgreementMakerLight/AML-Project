@@ -23,11 +23,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.knowledge.WordNet;
-import aml.ontology.Lexicon;
+import aml.ontology.EntityType;
 import aml.ontology.RelationshipMap;
 import aml.ontology.ValueMap;
-import aml.settings.EntityType;
+import aml.ontology.lexicon.Lexicon;
 import aml.util.ISub;
 import aml.util.Similarity;
 

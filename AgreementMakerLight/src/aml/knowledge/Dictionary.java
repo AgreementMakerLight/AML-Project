@@ -32,9 +32,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import aml.AML;
-import aml.ontology.Lexicon;
-import aml.settings.LexicalType;
-import aml.settings.EntityType;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.LexicalType;
+import aml.ontology.lexicon.Lexicon;
 
 public class Dictionary
 {

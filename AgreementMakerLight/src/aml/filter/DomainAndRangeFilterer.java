@@ -22,12 +22,12 @@ package aml.filter;
 import java.util.Set;
 
 import aml.AML;
-import aml.match.Alignment;
-import aml.match.Mapping;
+import aml.alignment.Alignment;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
+import aml.ontology.EntityType;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
-import aml.settings.EntityType;
-import aml.settings.MappingStatus;
 import aml.util.Similarity;
 
 public class DomainAndRangeFilterer implements Filterer
@@ -55,17 +55,17 @@ public class DomainAndRangeFilterer implements Filterer
 		long time = System.currentTimeMillis()/1000;
 		Alignment a = aml.getAlignment();
 		URIMap uris = aml.getURIMap();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			if(m.getStatus().equals(MappingStatus.CORRECT))
 				continue;
-			if(uris.getType(m.getSourceId()).equals(EntityType.DATA))
+			if(uris.getTypes(m.getSourceId()).equals(EntityType.DATA))
 			{
 				if(!idsMatch(rm.getDomains(m.getSourceId()),rm.getDomains(m.getTargetId())) || 
 						!valuesMatch(rm.getDataRanges(m.getSourceId()),rm.getDataRanges(m.getTargetId())))
 					m.setStatus(MappingStatus.INCORRECT);				
 			}
-			else if(uris.getType(m.getSourceId()).equals(EntityType.OBJECT))
+			else if(uris.getTypes(m.getSourceId()).equals(EntityType.OBJECT))
 			{
 				if(!idsMatch(rm.getDomains(m.getSourceId()),rm.getDomains(m.getTargetId())) || 
 						!idsMatch(rm.getObjectRanges(m.getSourceId()),rm.getObjectRanges(m.getTargetId())))

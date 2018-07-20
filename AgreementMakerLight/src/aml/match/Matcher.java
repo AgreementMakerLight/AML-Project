@@ -18,7 +18,7 @@
 ******************************************************************************/
 package aml.match;
 
-import aml.settings.EntityType;
+import aml.ontology.EntityType;
 
 public interface Matcher
 {

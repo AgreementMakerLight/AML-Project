@@ -21,8 +21,8 @@ package aml.ui;
 
 import javax.swing.JButton;
 
-import aml.match.Mapping;
-import aml.settings.MappingStatus;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
 
 
 public class MappingButton extends JButton
@@ -31,7 +31,7 @@ public class MappingButton extends JButton
 //Attributes
 	
 	private static final long serialVersionUID = 738835377450644263L;
-	private Mapping m;
+	private SimpleMapping m;
 	
 //Constructors
 	
@@ -39,9 +39,9 @@ public class MappingButton extends JButton
 	 * Constructs a new MappingButton for the given Mapping
 	 * @param m: the Mapping to "buttonize"
 	 */
-	public MappingButton(Mapping m)
+	public MappingButton(SimpleMapping m)
 	{
-		super(m.toGUI());
+		super(m.toString());
 		this.m = m;
 		if(m.getStatus().equals(MappingStatus.UNKNOWN))
 			this.setBackground(AMLColor.GRAY);

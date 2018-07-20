@@ -19,9 +19,10 @@
 package aml.match;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
-import aml.settings.EntityType;
 
 public class DirectXRefMatcher implements PrimaryMatcher
 {

@@ -22,11 +22,11 @@ package aml.ext;
 import java.util.Vector;
 
 import aml.AML;
-import aml.ontology.Lexicon;
-import aml.ontology.Provenance;
-import aml.settings.EntityType;
-import aml.settings.LexicalType;
-import aml.util.StringParser;
+import aml.ontology.EntityType;
+import aml.ontology.lexicon.LexicalMetadata;
+import aml.ontology.lexicon.LexicalType;
+import aml.ontology.lexicon.Lexicon;
+import aml.ontology.lexicon.StringParser;
 
 public class ParenthesisExtender implements LexiconExtender
 {
@@ -80,7 +80,7 @@ public class ParenthesisExtender implements LexiconExtender
 				//Get the classes with the name
 				Vector<Integer> tr = new Vector<Integer>(l.getInternalEntities(e, n));
 				for(Integer j : tr)
-					for(Provenance p : l.get(n, j))
+					for(LexicalMetadata p : l.get(n, j))
 						l.add(j, newName, p.getLanguage(),
 								LexicalType.INTERNAL_SYNONYM, p.getSource(), weight*p.getWeight());
 			}

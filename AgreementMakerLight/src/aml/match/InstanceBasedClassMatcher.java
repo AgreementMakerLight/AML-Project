@@ -23,9 +23,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
-import aml.settings.EntityType;
 import aml.util.Similarity;
 import aml.util.Table2Set;
 

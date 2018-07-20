@@ -19,8 +19,8 @@
 package aml.filter;
 
 import aml.AML;
-import aml.match.Mapping;
-import aml.settings.MappingStatus;
+import aml.alignment.MappingStatus;
+import aml.alignment.SimpleMapping;
 import aml.util.InteractionManager;
 
 public class Repairer implements Filterer, Flagger
@@ -67,7 +67,7 @@ public class Repairer implements Filterer, Flagger
 			{
 				if(im.isInteractive())
 				{	
-					Mapping m = rMap.getMapping(worstMapping);
+					SimpleMapping m = rMap.getMapping(worstMapping);
 					im.classify(m);
 					if(m.getStatus().equals(MappingStatus.CORRECT))
 						continue;
@@ -105,7 +105,7 @@ public class Repairer implements Filterer, Flagger
 		for(Integer i : rMap)
 		{
 			int card = rMap.getConflicts(i).size();
-			Mapping m = rMap.getMapping(i);
+			SimpleMapping m = rMap.getMapping(i);
 			if((card > maxCard || (card == maxCard &&
 				m.getSimilarity() < rMap.getMapping(worstMapping).getSimilarity())) &&
 				!m.getStatus().equals(MappingStatus.CORRECT))

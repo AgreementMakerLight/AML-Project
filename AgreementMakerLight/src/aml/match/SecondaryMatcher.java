@@ -19,7 +19,8 @@
 ******************************************************************************/
 package aml.match;
 
-import aml.settings.EntityType;
+import aml.alignment.Alignment;
+import aml.ontology.EntityType;
 
 public interface SecondaryMatcher extends Matcher
 {

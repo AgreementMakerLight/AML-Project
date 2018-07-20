@@ -20,8 +20,8 @@
 package aml.filter;
 
 import aml.AML;
-import aml.match.Alignment;
-import aml.match.Mapping;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleMapping;
 
 public class DifferentClassPenalizer
 {
@@ -37,7 +37,7 @@ public class DifferentClassPenalizer
 	{
 		AML aml = AML.getInstance();
 		Alignment a = aml.getAlignment();
-		for(Mapping m : a)
+		for(SimpleMapping m : a)
 		{
 			if(!aml.getRelationshipMap().shareClass(m.getSourceId(),m.getTargetId()))
 				m.setSimilarity(m.getSimilarity() * 0.9);
