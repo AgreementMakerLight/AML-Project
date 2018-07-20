@@ -12,99 +12,57 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The global map of URIs, numeric indexes, and entity types in the opened     *
-* ontologies.                                                                 *
+* The global map of URIs and entity types in the open ontologies.             *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.ontology;
 
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
-import aml.settings.EntityType;
-
-/**
- * The global map of URIs, numeric indexes, and entity types in the open ontologies.
- */
+import aml.util.Table2Set;
 
 public class URIMap
 {
 
 //Attributes
 	
-	//The numeric index (Integer) <-> URI (String) maps of ontology entities 
-	private HashMap<Integer,String> indexURI;
-	private HashMap<String,Integer> URIindex;
 	//The numeric index (Integer) -> EntityType map of ontology entities 
-	private HashMap<Integer,EntityType> indexType;
-	//The total number of stored URIs
-	private int size;
+	private Table2Set<String,EntityType> entityType;
 	
 //Constructors
 	
 	public URIMap()
 	{
-		indexURI = new HashMap<Integer,String>();
-		URIindex = new HashMap<String,Integer>();
-		indexType = new HashMap<Integer,EntityType>();
-		size = 0;
+		entityType = new Table2Set<String,EntityType>();
 	}
 	
 //Public Methods
 	
 	/**
-	 * @param uri: the URI to add to AML
-	 * @return the index of the added URI
+	 * @param uri: the uri to add to AML
 	 */
-	public int addURI(String uri, EntityType t)
+	public void addURI(String uri, EntityType t)
 	{
-		String newUri = uri;
-		if(URIindex.containsKey(newUri))
-		{
-			int index = URIindex.get(newUri);
-			if(!indexType.get(index).equals(t))
-				indexType.put(index,t);
-			return index;
-		}
-		else
-		{
-			size++;
-			Integer i = new Integer(size);
-			indexURI.put(i,newUri);
-			URIindex.put(newUri,i);
-			indexType.put(i, t);
-			return size;
-		}
+		entityType.add(uri,t);
 	}
 	
 	/**
-	 * @param uri: the URI to search in AML
-	 * @return the index of the input URI
+	 * @param uri: the uri to search in the URIMap
+	 * @return whether the URIMap contains the uri
 	 */
-	public int getIndex(String uri)
+	public boolean contains(String uri)
 	{
-		if(URIindex.containsKey(uri))
-			return URIindex.get(uri);
-		else
-			return -1;
+		return entityType.contains(uri);
 	}
 	
 	/**
-	 * @return the indexes in the URIMap
-	 */
-	public Set<Integer> getIndexes()
-	{
-		return indexURI.keySet();
-	}
-	
-	/**
-	 * @param index: the index of the entity to get the name
+	 * @param uri: the uri of the entity to get the name
 	 * @return the local name of the entity with the given index
 	 */
-	public String getLocalName(int index)
+	public String getLocalName(String uri)
 	{
-		String uri = indexURI.get(index);
 		if(uri == null)
 			return null;
 		int i = uri.indexOf("#") + 1;
@@ -114,24 +72,28 @@ public class URIMap
 	}
 
 	/**
-	 * @param index: the index of the Ontology entity
+	 * @param uri: the uri of the Ontology entity
 	 * @return the EntityType of the input index
 	 */
-	public EntityType getType(int index)
+	public Set<EntityType> getMatchableTypes(String uri)
 	{
-		return indexType.get(index);
+		HashSet<EntityType> types = new HashSet<EntityType>();
+		if(entityType.contains(uri))
+			for(EntityType e : entityType.get(uri))
+				if(e.isMatchable())
+					types.add(e);
+		return types;
 	}
-	
+
 	/**
-	 * @param index: the index to search in AML
-	 * @return the URI of the input index
+	 * @param uri: the uri of the Ontology entity
+	 * @return the EntityType of the input index
 	 */
-	public String getURI(int index)
+	public Set<EntityType> getTypes(String uri)
 	{
-		if(indexURI.containsKey(index))
-			return indexURI.get(index);
-		else
-			return null;
+		if(entityType.contains(uri))
+			return entityType.get(uri);
+		return new HashSet<EntityType>();
 	}
 	
 	/**
@@ -139,36 +101,43 @@ public class URIMap
 	 */
 	public Set<String> getURIS()
 	{
-		return URIindex.keySet();
+		return entityType.keySet();
 	}
 	
 	/**
-	 * @param index: the index of the Ontology entity
+	 * @param uri: the uri of the Ontology entity
 	 * @return whether the entity is a Class
 	 */
-	public boolean isClass(int index)
+	public boolean isClass(String uri)
 	{
-		return indexType.get(index).equals(EntityType.CLASS);
+		return entityType.get(uri).contains(EntityType.CLASS);
 	}
-	
+
 	/**
-	 * @param index: the index of the Ontology entity
+	 * @param uri: the uri of the Ontology entity
+	 * @return whether the entity is a Data Property
+	 */
+	public boolean isDataProperty(String uri)
+	{
+		return entityType.get(uri).contains(EntityType.DATA);
+	}
+
+	/**
+	 * @param uri: the uri of the Ontology entity
 	 * @return whether the entity is an Individual
 	 */
-	public boolean isIndividual(int index)
+	public boolean isIndividual(String uri)
 	{
-		return indexType.get(index).equals(EntityType.INDIVIDUAL);
+		return entityType.get(uri).contains(EntityType.INDIVIDUAL);
 	}	
 	
 	/**
-	 * @param index: the index of the Ontology entity
-	 * @return whether the entity is a Property
+	 * @param uri: the uri of the Ontology entity
+	 * @return whether the entity is an Object Property
 	 */
-	public boolean isProperty(int index)
+	public boolean isObjectProperty(String uri)
 	{
-		return indexType.get(index).equals(EntityType.ANNOTATION) ||
-				indexType.get(index).equals(EntityType.DATA) ||
-				indexType.get(index).equals(EntityType.OBJECT);
+		return entityType.get(uri).contains(EntityType.OBJECT);
 	}
 	
 	/**
@@ -176,6 +145,6 @@ public class URIMap
 	 */
 	public int size()
 	{
-		return indexURI.size();
+		return entityType.keyCount();
 	}
 }
