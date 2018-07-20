@@ -202,19 +202,19 @@ public class AlignmentIO
 		outStream.println("<rdf:RDF xmlns='" + Namespace.ALIGNMENT.uri + "'"); 
 		outStream.println("\t xmlns:rdf='" + Namespace.RDF.uri + "' "); 
 		outStream.println("\t xmlns:xsd='" + Namespace.XSD.uri + "' ");
-		outStream.println("<Alignment>");
-		outStream.println("\t<xml>yes</xml>");
-		outStream.println("\t<level>0</level>");
+		outStream.println("<" + RDFElement.ALIGNMENT_ + ">");
+		outStream.println("\t<" + RDFElement.XML + ">yes</" + RDFElement.XML +">");
+		outStream.println("\t<" + RDFElement.LEVEL + ">0</" + RDFElement.LEVEL + ">");
 		double card = a.cardinality();
 		if(card < 1.02)
-			outStream.println("\t<type>11</type>");
+			outStream.println("\t<" + RDFElement.TYPE + ">11</" + RDFElement.TYPE + ">");
 		else
-			outStream.println("\t<type>??</type>");
-		outStream.println("\t<onto1>" + a.getSourceURI() + "</onto1>");
-		outStream.println("\t<onto2>" + a.getTargetURI() + "</onto2>");
+			outStream.println("\t<" + RDFElement.TYPE + ">??</" + RDFElement.TYPE + ">");
+		outStream.println("\t<" + RDFElement.ONTO1 + ">" + a.getSourceURI() + "</" + RDFElement.ONTO1 + ">");
+		outStream.println("\t<" + RDFElement.ONTO2 + ">" + a.getTargetURI() + "</" + RDFElement.ONTO2 + ">");
 		for(Mapping m : a)
 			outStream.println(m.toRDF());
-		outStream.println("</Alignment>");
+		outStream.println("</" + RDFElement.ALIGNMENT_ + ">");
 		outStream.println("</rdf:RDF>");		
 		outStream.close();
 	}
