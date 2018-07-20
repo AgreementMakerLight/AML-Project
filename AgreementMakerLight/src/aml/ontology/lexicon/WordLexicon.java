@@ -17,14 +17,13 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ontology;
+package aml.ontology.lexicon;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import aml.settings.EntityType;
-import aml.settings.LexicalType;
+import aml.ontology.EntityType;
 import aml.util.StopList;
 import aml.util.Table2Set;
 import aml.util.Table2Map;

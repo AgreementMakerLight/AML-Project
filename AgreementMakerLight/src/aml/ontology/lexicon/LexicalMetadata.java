@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,40 +12,37 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The provenance (type and source) of an entry in the Lexicon and its         *
-* associated weight.                                                          *
+* The metadata associated with an entry in the Lexicon: the type, source,     *
+* language and weight.                                                        *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ontology;
+package aml.ontology.lexicon;
 
-import aml.settings.LexicalType;
-
-public class Provenance implements Comparable<Provenance>
+public class LexicalMetadata implements Comparable<LexicalMetadata>
 {
 
 //Attributes
 
-	//The lexical type of the name for the class (see aml.settings.LexicalType)
+	//The lexical type of the name for the entity
 	private LexicalType type;
-	//The source of the name for the class ("" if it is the ontology that lists
-	//the class, or an ontology URI/name if it is an external resource - e.g. other ontology, wordnet)
+	//The source of the name for the entity ("" if the name is internal, the URI/name of the external resource otherwise)
 	private String source;
+	//The language of the name
 	private String language;
-	//The weight of the name for the class (according to aml.settings.LexicalType, or in case of
-	//lexical extension, based on the match similarity)
+	//The weight of the name for the entity
 	private double weight;
 	
 //Constructors
 	
 	/**
-	 * Constructs a new Provenance object with the given values
+	 * Constructs a new LexicalMetadata object with the given values
 	 * @param t: the type of the lexical entry (localName, label, etc)
 	 * @param s: the source of the lexical entry (ontology uri, etc)
  	 * @param l: the language of the lexical entry ("en", "de", "pt", etc)
 	 * @param w: the weight of the lexical entry
 	 */
-	public Provenance(LexicalType t, String s, String l, double w)
+	public LexicalMetadata(LexicalType t, String s, String l, double w)
 	{
 		type = t;
 		source = s;
@@ -57,10 +54,10 @@ public class Provenance implements Comparable<Provenance>
 	
 	@Override
 	/**
-	 * Provenances are compared first with regard to whether
+	 * LexicalMetadata are compared first with regard to whether
 	 * they are internal or external, and then by weight
 	 */
-	public int compareTo(Provenance o)
+	public int compareTo(LexicalMetadata o)
 	{
 		if(this.isExternal() && !o.isExternal())
 			return -1;
@@ -74,15 +71,15 @@ public class Provenance implements Comparable<Provenance>
 	}
 	
 	/**
-	 * Two Provenance objects are "equal" if they have the same
-	 * language so that a (class,name) pair can only occur
+	 * Two LexicalMetadata objects are "equal" if they have the same
+	 * language so that an (entity,name) pair can only occur
 	 * multiple times if it comes from different languages
 	 */
 	public boolean equals(Object o)
 	{
-		if(o instanceof Provenance)
+		if(o instanceof LexicalMetadata)
 		{
-			Provenance p = (Provenance)o;
+			LexicalMetadata p = (LexicalMetadata)o;
 			return language.equals(p.language);
 		}
 		else
@@ -90,7 +87,7 @@ public class Provenance implements Comparable<Provenance>
 	}
 	
 	/**
-	 * @return the language of this Provenance object
+	 * @return the language of this LexicalMetadata object
 	 */
 	public String getLanguage()
 	{
@@ -98,7 +95,7 @@ public class Provenance implements Comparable<Provenance>
 	}
 
 	/**
-	 * @return the source of this Provenance object
+	 * @return the source of this LexicalMetadata object
 	 */
 	public String getSource()
 	{
@@ -106,7 +103,7 @@ public class Provenance implements Comparable<Provenance>
 	}
 	
 	/**
-	 * @return the type of this Provenance
+	 * @return the type of this LexicalMetadata
 	 */
 	public LexicalType getType()
 	{
@@ -114,7 +111,7 @@ public class Provenance implements Comparable<Provenance>
 	}
 	
 	/**
-	 * @return the weight of this Provenance
+	 * @return the weight of this LexicalMetadata
 	 */
 	public double getWeight()
 	{
@@ -129,7 +126,7 @@ public class Provenance implements Comparable<Provenance>
 	}
 	
 	/**
-	 * @return whether this Provenance is external
+	 * @return whether this LexicalMetadata is external
 	 */
 	public boolean isExternal()
 	{
@@ -137,7 +134,7 @@ public class Provenance implements Comparable<Provenance>
 	}
 	
 	/**
-	 * Sets the weight of this Provenance to the given value
+	 * Sets the weight of this LexicalMetadata to the given value
 	 * @param w: the weight to set
 	 */
 	public void setWeight(double w)
