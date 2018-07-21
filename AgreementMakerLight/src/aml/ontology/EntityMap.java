@@ -27,19 +27,23 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.util.table.Map2Set;
-import aml.util.table.Map2Map2List;
+import aml.util.table.Map2List;
+import aml.util.table.Map2Map;
 import aml.util.table.Map2Map2Set;
 
 
-public class RelationshipMap
+public class EntityMap
 {
 	
 //Attributes
 
-	//Relationships between classes
-	//Hierarchical relations and property restrictions (with transitive closure)
-	private Map2Map2List<String,String,Relationship> ancestorClasses; //Class -> Ancestor -> Relationship
-	private Map2Map2List<String,String,Relationship> descendantClasses;	//Class -> Descendant -> Relationship
+	//The map of entities to EntityTypes 
+	private Map2Set<String,EntityType> entityType;
+	
+	//Relationships between classes / class expressions
+	//Hierarchical relations and property restrictions (with transitive closure, but min distance only)
+	private Map2Map<String,String,Integer> ancestorClasses; //Class -> Ancestor -> Distance
+	private Map2Map<String,String,Integer> descendantClasses;	//Class -> Descendant -> Distance
 	//Disjointness (direct only, no transitive closure)
 	private Map2Set<String,String> disjointMap; //Class -> Disjoint Classes
 	//List of high level classes
@@ -53,18 +57,25 @@ public class RelationshipMap
 	private Map2Map2Set<String,String,String> activeRelation; //Source Individual -> Target Individual -> Property
 	private Map2Map2Set<String,String,String> passiveRelation; //Target Individual -> Source Individual -> Property
 
-	//Relationships between properties
+	//Relationships between properties and properties of properties
 	//Hierarchical and inverse relations
 	private Map2Set<String,String> subProp; //Property -> SubProperty
 	private Map2Set<String,String> superProp; //Property -> SuperProperty
 	private Map2Set<String,String> inverseProp; //Property -> InverseProperty
-	//Transitivity relations (transitive properties will be mapped to themselves)
+	//Transitivity (transitive: P * P = P; transitive over: P * Q = P)
 	private Map2Set<String,String> transitiveOver; //Property1 -> Property2 over which 1 is transitive
-	//List of symmetric properties
-	private HashSet<String> symmetric;
+	//Other (more complex) property chains (e.g. father * father = grandfather)
+	private Map2Set<String,Vector<String>> propChain; //Property -> Property Chain
+	//List of asymmetric properties
+	private HashSet<String> asymmetric;
 	//List of functional properties
 	private HashSet<String> functional;
-	
+	//List of irreflexive properties
+	private HashSet<String> irreflexive;
+	//List of symmetric properties
+	private HashSet<String> reflexive;
+	//List of symmetric properties
+	private HashSet<String> symmetric;
 	//Property domains and ranges (property to class or to String)
 	private Map2Set<String,String> domain; //Property -> Class
 	private Map2Set<String,String> objectRange; //Property -> Class
@@ -75,10 +86,11 @@ public class RelationshipMap
 	/**
 	 * Creates a new empty RelationshipMap
 	 */
-	public RelationshipMap()
+	public EntityMap()
 	{
-		descendantClasses = new Map2Map2List<String,String,Relationship>();
-		ancestorClasses = new Map2Map2List<String,String,Relationship>();
+		entityType = new Map2Set<String,EntityType>();
+		descendantClasses = new Map2Map<String,String,Integer>();
+		ancestorClasses = new Map2Map<String,String,Integer>();
 		disjointMap = new Map2Set<String,String>();
 		instanceOfMap = new Map2Set<String,String>();
 		hasInstanceMap = new Map2Set<String,String>();
@@ -289,6 +301,14 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param uri: the uri to add to AML
+	 */
+	public void addURI(String uri, EntityType t)
+	{
+		entityType.add(uri,t);
+	}
+	
+	/**
 	 * @param class1: the first class to check for disjointness
 	 * @param class2: the second class to check for disjointness
 	 * @return whether one and two are disjoint considering transitivity
@@ -341,6 +361,15 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param uri: the uri to search in the URIMap
+	 * @return whether the URIMap contains the uri
+	 */
+	public boolean contains(String uri)
+	{
+		return entityType.contains(uri);
+	}
+	
+	/**
 	 * @return the number of disjoint clauses
 	 */
 	public int disjointCount()
@@ -348,6 +377,14 @@ public class RelationshipMap
 		//The size is divided by 2 since the disjoint
 		//clauses are stored in both directions
 		return disjointMap.size()/2;
+	}
+	
+	/**
+	 * @return the number of entities registered in the EntityMap
+	 */
+	public int entityCount()
+	{
+		return entityType.keyCount();
 	}
 	
 	/**
@@ -817,6 +854,34 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param uri: the uri of the entity to get the name
+	 * @return the local name of the entity with the given index
+	 */
+	public String getLocalName(String uri)
+	{
+		if(uri == null)
+			return null;
+		int i = uri.indexOf("#") + 1;
+		if(i == 0)
+			i = uri.lastIndexOf("/") + 1;
+		return uri.substring(i);
+	}
+
+	/**
+	 * @param uri: the uri of the Ontology entity
+	 * @return the EntityType of the input index
+	 */
+	public Set<EntityType> getMatchableTypes(String uri)
+	{
+		HashSet<EntityType> types = new HashSet<EntityType>();
+		if(entityType.contains(uri))
+			for(EntityType e : entityType.get(uri))
+				if(e.isMatchable())
+					types.add(e);
+		return types;
+	}
+	
+	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the list of classes in the range of the input property
 	 */
@@ -981,6 +1046,24 @@ public class RelationshipMap
 	}
 	
 	/**
+	 * @param uri: the uri of the Ontology entity
+	 * @return the EntityTypes of the entity
+	 */
+	public Set<EntityType> getTypes(String uri)
+	{
+		if(entityType.contains(uri))
+			return entityType.get(uri);
+		return new HashSet<EntityType>();
+	}
+	
+	/**
+	 * @return the URIs in the EntityMap
+	 */
+	public Set<String> getURIS()
+	{
+		return entityType.keySet();
+	}
+	/**
 	 * @param class: the uri of the class to search in the map
 	 * @return whether there is a disjoint clause associated with the class
 	 */
@@ -1052,27 +1135,66 @@ public class RelationshipMap
 	
 	/**
 	 * @param prop: the uri of the property to check
+	 * @return whether the property is asymmetric
+	 */
+	public boolean isAsymmetric(String prop)
+	{
+		return asymmetric.contains(prop);
+	}
+	
+	/**
+	 * @param uri: the uri of the Ontology entity
+	 * @return whether the entity is a Class
+	 */
+	public boolean isClass(String uri)
+	{
+		return entityType.get(uri).contains(EntityType.CLASS);
+	}
+
+	/**
+	 * @param uri: the uri of the Ontology entity
+	 * @return whether the entity is a Data Property
+	 */
+	public boolean isDataProperty(String uri)
+	{
+		return entityType.get(uri).contains(EntityType.DATA_PROP);
+	}
+	
+	/**
+	 * @param prop: the uri of the property to check
 	 * @return whether the property is functional
 	 */
 	public boolean isFunctional(String prop)
 	{
 		return functional.contains(prop);
 	}
+
+	/**
+	 * @param uri: the uri of the Ontology entity
+	 * @return whether the entity is an Individual
+	 */
+	public boolean isIndividual(String uri)
+	{
+		return entityType.get(uri).contains(EntityType.INDIVIDUAL);
+	}	
+	
+	/**
+	 * @param uri: the uri of the Ontology entity
+	 * @return whether the entity is an Object Property
+	 */
+	public boolean isObjectProperty(String uri)
+	{
+		return entityType.get(uri).contains(EntityType.OBJECT_PROP);
+	}
 	
 	/**
 	 * @param child: the uri of the child class
 	 * @param parent: the uri of the parent class
-	 * @return whether the RelationshipMap contains an 'is_a' relationship between child and parent
+	 * @return whether the RelationshipMap contains a relationship between child and parent
 	 */	
 	public boolean isSubclass(String child, String parent)
 	{
-		if(!descendantClasses.contains(parent,child))
-			return false;
-		Vector<Relationship> rels = descendantClasses.get(parent,child);
-		for(Relationship r : rels)
-			if(r.getProperty().equals(""))
-				return true;
-		return false;
+		return descendantClasses.contains(parent,child);
 	}
 	
 	/**

@@ -53,11 +53,6 @@ public class Ontology
 	//Its set of obsolete classes
 	protected HashSet<String> obsolete;
 	
-	//Global variables & data structures
-	protected AML aml;
-	protected URIMap uris;
-	protected RelationshipMap rm;
-	
 //Constructors
 
 	/**
@@ -74,9 +69,6 @@ public class Ontology
 		classNames = new HashMap<String,String>();
 		obsolete = new HashSet<String>();
 		wLex = new Map2Map<EntityType,String,WordLexicon>();
-		aml = AML.getInstance();
-		uris = aml.getURIMap();
-		rm = aml.getRelationshipMap();
 	}
 	
 //Public Methods
