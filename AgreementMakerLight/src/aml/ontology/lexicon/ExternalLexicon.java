@@ -16,7 +16,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.knowledge;
+package aml.ontology.lexicon;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,12 +28,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
-import aml.ontology.lexicon.StringParser;
 import aml.util.table.Map2MapComparable;
 import aml.util.table.Map2Set;
 
 
-public class MediatorLexicon
+public class ExternalLexicon
 {
 
 //Attributes
@@ -47,7 +46,7 @@ public class MediatorLexicon
 	/**
 	 * Creates a new empty MediatorLexicon
 	 */
-	public MediatorLexicon()
+	public ExternalLexicon()
 	{
 		entityNames = new Map2MapComparable<String,String,Double>();
 		nameEntities = new Map2Set<String,String>();
@@ -58,7 +57,7 @@ public class MediatorLexicon
 	 * Reads a MediatorLexicon from a given Lexicon file
 	 * @param file: the MediatorLexicon file
 	 */
-	public MediatorLexicon(String file) throws IOException
+	public ExternalLexicon(String file) throws IOException
 	{
 		this();
 		BufferedReader inStream = new BufferedReader(new FileReader(file));
