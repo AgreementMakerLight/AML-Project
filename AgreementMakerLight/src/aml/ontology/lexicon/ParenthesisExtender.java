@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,35 +12,22 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An algorithm that extends the Lexicons of the source and target ontologies  *
-* by removing sections between parenthesis.                                   *
+* An algorithm that extends a Lexicon by removing name sections between       *
+* parenthesis.                                                                *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ext;
+package aml.ontology.lexicon;
 
+import java.util.HashSet;
 import java.util.Vector;
 
-import aml.AML;
 import aml.ontology.EntityType;
-import aml.ontology.lexicon.LexicalMetadata;
-import aml.ontology.lexicon.LexicalType;
-import aml.ontology.lexicon.Lexicon;
-import aml.ontology.lexicon.StringParser;
 
 public class ParenthesisExtender implements LexiconExtender
 {
 	@Override
-	public void extendLexicons()
-	{
-		AML aml = AML.getInstance();
-		Lexicon source = aml.getSource().getLexicon();
-		extend(source);
-		Lexicon target = aml.getTarget().getLexicon();
-		extend(target);
-	}
-	
-	private void extend(Lexicon l)
+	public void extendLexicon(Lexicon l)
 	{
 		for(EntityType e : EntityType.values())
 		{
@@ -78,8 +65,8 @@ public class ParenthesisExtender implements LexiconExtender
 				if(newName.equals(""))
 					continue;
 				//Get the classes with the name
-				Vector<Integer> tr = new Vector<Integer>(l.getInternalEntities(e, n));
-				for(Integer j : tr)
+				HashSet<String> tr = new HashSet<String>(l.getInternalEntities(e, n));
+				for(String j : tr)
 					for(LexicalMetadata p : l.get(n, j))
 						l.add(j, newName, p.getLanguage(),
 								LexicalType.INTERNAL_SYNONYM, p.getSource(), weight*p.getWeight());

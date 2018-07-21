@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,16 +12,16 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An algorithm that extends the Lexicons of the source and target ontologies. *                                                                 *
+* An algorithm that extends a Lexicon by adding new synonyms.                 *                                                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ext;
+package aml.ontology.lexicon;
 
 public interface LexiconExtender
 {
 	/**
-	 * Extends the Lexicons of the source and target Ontologies
+	 * Extends the given Lexicon
 	 */
-	public void extendLexicons();
+	public void extendLexicon(Lexicon l);
 }
