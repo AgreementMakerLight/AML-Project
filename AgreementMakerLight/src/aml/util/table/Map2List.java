@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,23 +12,24 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A simple table with two columns, represented by a HashMap of HashSets.      *
+* A table with two columns, represented by a HashMap of Vectors.              *
+* Adapted from AgreementMakerLight.                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util;
+package aml.util.table;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
-public class Table2Set<A,B>
+public class Map2List<A,B extends Comparable<B>>
 {
 
 //Attributes
 	
-	private HashMap<A,HashSet<B>> multimap;
+	private HashMap<A,Vector<B>> multimap;
 	private int size;
 	
 //Constructors
@@ -36,9 +37,9 @@ public class Table2Set<A,B>
 	/**
 	 * Constructs a new empty Table
 	 */
-	public Table2Set()
+	public Map2List()
 	{
-		multimap = new HashMap<A,HashSet<B>>();
+		multimap = new HashMap<A,Vector<B>>();
 		size = 0;
 	}
 	
@@ -47,36 +48,46 @@ public class Table2Set<A,B>
 	 * the given Table
 	 * @param m: the Table to copy
 	 */
-	public Table2Set(Table2Set<A,B> m)
+	public Map2List(Map2List<A,B> m)
 	{
-		multimap = new HashMap<A,HashSet<B>>();
+		multimap = new HashMap<A,Vector<B>>();
 		size = m.size;
 		Set<A> keys = m.keySet();
 		for(A a : keys)
-			multimap.put(a, new HashSet<B>(m.get(a)));
+			multimap.put(a, new Vector<B>(m.get(a)));
 	}
 
 //Public Methods
 	
 	/**
 	 * Adds the value for the given key to the Table, or
-	 * updates the value if an equal value already exists
+	 * upgrades the value if an equal value already exists
+	 * (and if compareTo and equals differ)
 	 * @param key: the key to add to the Table
 	 * @param value: the value to add to the Table
 	 */
 	public void add(A key, B value)
 	{
-		HashSet<B> set = multimap.get(key);
+		Vector<B> list = multimap.get(key);
 		if(!contains(key,value))
 			size++;
-		if(set == null)
+		if(list == null)
 		{
-			set = new HashSet<B>();
-			set.add(value);
-			multimap.put(key, set);
+			list = new Vector<B>(0,1);
+			list.add(value);
+			multimap.put(key, list);
 		}
-		else 
-			set.add(value);	
+		else
+		{
+			int index = list.indexOf(value);
+			if(index == -1)
+				list.add(value);
+			else if(value.compareTo(list.get(index)) > 0)
+			{
+				list.remove(index);
+				list.add(value);
+			}
+		}
 	}
 	
 	/**
@@ -116,17 +127,17 @@ public class Table2Set<A,B>
 	 */
 	public int entryCount(A key)
 	{
-		Set<B> set = multimap.get(key);
-		if(set == null)
+		Vector<B> list = multimap.get(key);
+		if(list == null)
 			return 0;
-		return set.size();
+		return list.size();
 	}
 	
 	/**
 	 * @param key: the key to search in the Table
-	 * @return the set of all entries for key
+	 * @return the Vector with all entries for key
 	 */
-	public Set<B> get(A key)
+	public Vector<B> get(A key)
 	{
 		return multimap.get(key);
 	}
@@ -165,7 +176,7 @@ public class Table2Set<A,B>
 	 */
 	public void remove(A key, B value)
 	{
-		Set<B> values = multimap.get(key);
+		Vector<B> values = multimap.get(key);
 		if(values != null)
 		{
 			values.remove(value);

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,23 +12,23 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A table with three columns, represented by a HashMap of Table2List.         *
-* Adapted from AgreementMakerLight.                                           *
+* A table with two variable columns and one fixed column, represented by a    *
+* HashMap of HashMaps.                                                        *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util;
+package aml.util.table;
 
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Vector;
 
-public class Table3List<A,B,C extends Comparable<C>>
+public class Map2Map<A,B,C>
 {
 
 //Attributes
 	
-	private HashMap<A,Table2List<B,C>> multimap;
+	private HashMap<A,HashMap<B,C>> multimap;
 	private int size;
 	
 //Constructors
@@ -36,9 +36,9 @@ public class Table3List<A,B,C extends Comparable<C>>
 	/**
 	 * Constructs a new empty Table
 	 */
-	public Table3List()
+	public Map2Map()
 	{
-		multimap = new HashMap<A,Table2List<B,C>>();
+		multimap = new HashMap<A,HashMap<B,C>>();
 		size = 0;
 	}
 	
@@ -47,13 +47,13 @@ public class Table3List<A,B,C extends Comparable<C>>
 	 * the given Table
 	 * @param m: the Table to copy
 	 */
-	public Table3List(Table3List<A,B,C> m)
+	public Map2Map(Map2Map<A,B,C> m)
 	{
-		multimap = new HashMap<A,Table2List<B,C>>();
+		multimap = new HashMap<A,HashMap<B,C>>();
 		size = m.size;
 		Set<A> keys = m.keySet();
 		for(A a : keys)
-			multimap.put(a, new Table2List<B,C>(m.get(a)));
+			multimap.put(a, new HashMap<B,C>(m.get(a)));
 	}
 
 //Public Methods
@@ -66,17 +66,17 @@ public class Table3List<A,B,C extends Comparable<C>>
 	 */
 	public void add(A keyA, B keyB, C valueC)
 	{
-		Table2List<B,C> mapsA = multimap.get(keyA);
-		if(!contains(keyA,keyB,valueC))
+		HashMap<B,C> mapsA = multimap.get(keyA);
+		if(!contains(keyA,keyB))
 			size++;
 		if(mapsA == null)
 		{
-			mapsA = new Table2List<B,C>();
-			mapsA.add(keyB, valueC);
+			mapsA = new HashMap<B,C>();
+			mapsA.put(keyB, valueC);
 			multimap.put(keyA, mapsA);
 		}
 		else
-			mapsA.add(keyB, valueC);
+			mapsA.put(keyB, valueC);
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class Table3List<A,B,C extends Comparable<C>>
 	public boolean contains(A keyA, B keyB)
 	{
 		return multimap.containsKey(keyA) &&
-			multimap.get(keyA).contains(keyB);
+			multimap.get(keyA).containsKey(keyB);
 	}
 	
 	/**
@@ -109,8 +109,8 @@ public class Table3List<A,B,C extends Comparable<C>>
 	public boolean contains(A keyA, B keyB, C valueC)
 	{
 		return multimap.containsKey(keyA) &&
-			multimap.get(keyA).contains(keyB) &&
-			multimap.get(keyA).get(keyB).contains(valueC);
+			multimap.get(keyA).containsKey(keyB) &&
+			multimap.get(keyA).get(keyB).equals(valueC);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class Table3List<A,B,C extends Comparable<C>>
 	 */
 	public int entryCount(A keyA)
 	{
-		Table2List<B,C> mapsA = multimap.get(keyA);
+		HashMap<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return 0;
 		return mapsA.size();
@@ -133,7 +133,7 @@ public class Table3List<A,B,C extends Comparable<C>>
 	public int entryCount(A keyA, C valueC)
 	{
 		int count = 0;
-		Table2List<B,C> mapsA = multimap.get(keyA);
+		HashMap<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return count;
 		Set<B> setA = mapsA.keySet();
@@ -147,7 +147,7 @@ public class Table3List<A,B,C extends Comparable<C>>
 	 * @param keyA: the first level key to search in the Table
 	 * @return the HashMap with all entries for keyA
 	 */
-	public Table2List<B,C> get(A keyA)
+	public HashMap<B,C> get(A keyA)
 	{
 		return multimap.get(keyA);
 	}
@@ -158,10 +158,10 @@ public class Table3List<A,B,C extends Comparable<C>>
 	 * @return the value for the entry with the two keys or null
 	 * if no such entry exists
 	 */	
-	public Vector<C> get(A keyA, B keyB)
+	public C get(A keyA, B keyB)
 	{
-		Table2List<B,C> mapsA = multimap.get(keyA);
-		if(mapsA == null || !mapsA.contains(keyB))
+		HashMap<B,C> mapsA = multimap.get(keyA);
+		if(mapsA == null || !mapsA.containsKey(keyB))
 			return null;
 		return mapsA.get(keyB);
 	}
@@ -174,12 +174,12 @@ public class Table3List<A,B,C extends Comparable<C>>
 	public Vector<B> getMatchingKeys(A keyA, C valueC)
 	{
 		Vector<B> keysB = new Vector<B>(0,1);
-		Table2List<B,C> mapsA = multimap.get(keyA);
+		HashMap<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return keysB;
 		Set<B> setA = mapsA.keySet();
 		for(B b : setA)
-			if(mapsA.get(b).contains(valueC))
+			if(mapsA.get(b).equals(valueC))
 				keysB.add(b);
 		return keysB;
 	}
@@ -198,7 +198,7 @@ public class Table3List<A,B,C extends Comparable<C>>
 	 */
 	public Set<B> keySet(A keyA)
 	{
-		Table2List<B,C> mapsA = multimap.get(keyA);
+		HashMap<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return null;
 		return mapsA.keySet();
@@ -231,11 +231,11 @@ public class Table3List<A,B,C extends Comparable<C>>
 	 */
 	public void remove(A keyA, B keyB)
 	{
-		Table2List<B,C> maps = multimap.get(keyA);
+		HashMap<B,C> maps = multimap.get(keyA);
 		if(maps != null)
 		{
-			size -= maps.get(keyB).size();
 			maps.remove(keyB);
+			size--;
 		}
 	}
 	

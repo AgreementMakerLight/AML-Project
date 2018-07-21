@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,22 +12,23 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A table with three columns, represented by a HashMap of Table2Set.          *
+* A table with three columns, represented by a HashMap of Table2List.         *
+* Adapted from AgreementMakerLight.                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util;
+package aml.util.table;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
-public class Table3Set<A,B,C>
+public class Map2Map2List<A,B,C extends Comparable<C>>
 {
 
 //Attributes
 	
-	private HashMap<A,Table2Set<B,C>> multimap;
+	private HashMap<A,Map2List<B,C>> multimap;
 	private int size;
 	
 //Constructors
@@ -35,9 +36,9 @@ public class Table3Set<A,B,C>
 	/**
 	 * Constructs a new empty Table
 	 */
-	public Table3Set()
+	public Map2Map2List()
 	{
-		multimap = new HashMap<A,Table2Set<B,C>>();
+		multimap = new HashMap<A,Map2List<B,C>>();
 		size = 0;
 	}
 	
@@ -46,13 +47,13 @@ public class Table3Set<A,B,C>
 	 * the given Table
 	 * @param m: the Table to copy
 	 */
-	public Table3Set(Table3Set<A,B,C> m)
+	public Map2Map2List(Map2Map2List<A,B,C> m)
 	{
-		multimap = new HashMap<A,Table2Set<B,C>>();
+		multimap = new HashMap<A,Map2List<B,C>>();
 		size = m.size;
 		Set<A> keys = m.keySet();
 		for(A a : keys)
-			multimap.put(a, new Table2Set<B,C>(m.get(a)));
+			multimap.put(a, new Map2List<B,C>(m.get(a)));
 	}
 
 //Public Methods
@@ -65,12 +66,12 @@ public class Table3Set<A,B,C>
 	 */
 	public void add(A keyA, B keyB, C valueC)
 	{
-		Table2Set<B,C> mapsA = multimap.get(keyA);
+		Map2List<B,C> mapsA = multimap.get(keyA);
 		if(!contains(keyA,keyB,valueC))
 			size++;
 		if(mapsA == null)
 		{
-			mapsA = new Table2Set<B,C>();
+			mapsA = new Map2List<B,C>();
 			mapsA.add(keyB, valueC);
 			multimap.put(keyA, mapsA);
 		}
@@ -118,7 +119,7 @@ public class Table3Set<A,B,C>
 	 */
 	public int entryCount(A keyA)
 	{
-		Table2Set<B,C> mapsA = multimap.get(keyA);
+		Map2List<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return 0;
 		return mapsA.size();
@@ -132,7 +133,7 @@ public class Table3Set<A,B,C>
 	public int entryCount(A keyA, C valueC)
 	{
 		int count = 0;
-		Table2Set<B,C> mapsA = multimap.get(keyA);
+		Map2List<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return count;
 		Set<B> setA = mapsA.keySet();
@@ -146,7 +147,7 @@ public class Table3Set<A,B,C>
 	 * @param keyA: the first level key to search in the Table
 	 * @return the HashMap with all entries for keyA
 	 */
-	public Table2Set<B,C> get(A keyA)
+	public Map2List<B,C> get(A keyA)
 	{
 		return multimap.get(keyA);
 	}
@@ -154,12 +155,12 @@ public class Table3Set<A,B,C>
 	/**
 	 * @param keyA: the first level key to search in the Table
 	 * @param keyB: the second level key to search in the Table
-	 * @return the values for the entries with the two keys or null
-	 * if no such entries exist
+	 * @return the value for the entry with the two keys or null
+	 * if no such entry exists
 	 */	
-	public Set<C> get(A keyA, B keyB)
+	public Vector<C> get(A keyA, B keyB)
 	{
-		Table2Set<B,C> mapsA = multimap.get(keyA);
+		Map2List<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null || !mapsA.contains(keyB))
 			return null;
 		return mapsA.get(keyB);
@@ -170,10 +171,10 @@ public class Table3Set<A,B,C>
 	 * @param valueC: the value to search in the Table
 	 * @return the list of second level keys in entries with keyA and valueC
 	 */	
-	public HashSet<B> getMatchingKeys(A keyA, C valueC)
+	public Vector<B> getMatchingKeys(A keyA, C valueC)
 	{
-		HashSet<B> keysB = new HashSet<B>();
-		Table2Set<B,C> mapsA = multimap.get(keyA);
+		Vector<B> keysB = new Vector<B>(0,1);
+		Map2List<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return keysB;
 		Set<B> setA = mapsA.keySet();
@@ -197,7 +198,7 @@ public class Table3Set<A,B,C>
 	 */
 	public Set<B> keySet(A keyA)
 	{
-		Table2Set<B,C> mapsA = multimap.get(keyA);
+		Map2List<B,C> mapsA = multimap.get(keyA);
 		if(mapsA == null)
 			return null;
 		return mapsA.keySet();
@@ -230,7 +231,7 @@ public class Table3Set<A,B,C>
 	 */
 	public void remove(A keyA, B keyB)
 	{
-		Table2Set<B,C> maps = multimap.get(keyA);
+		Map2List<B,C> maps = multimap.get(keyA);
 		if(maps != null)
 		{
 			size -= maps.get(keyB).size();
