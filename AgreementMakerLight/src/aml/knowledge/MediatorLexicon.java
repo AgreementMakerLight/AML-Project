@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2015 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -19,6 +19,7 @@
 package aml.knowledge;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,8 +29,8 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.ontology.lexicon.StringParser;
-import aml.util.Map2MapComparable;
-import aml.util.Table2Set;
+import aml.util.table.Map2MapComparable;
+import aml.util.table.Map2Set;
 
 
 public class MediatorLexicon
@@ -37,9 +38,9 @@ public class MediatorLexicon
 
 //Attributes
 	
-	//The map of names (String) to entity indexes (Integer)
-	private Map2MapComparable<String,Integer,Double> entityNames;
-	private Table2Set<Integer,String> nameEntities;
+	//The map of names to entities
+	private Map2MapComparable<String,String,Double> entityNames;
+	private Map2Set<String,String> nameEntities;
 	
 //Constructors
 
@@ -48,8 +49,8 @@ public class MediatorLexicon
 	 */
 	public MediatorLexicon()
 	{
-		entityNames = new Map2MapComparable<String,Integer,Double>();
-		nameEntities = new Table2Set<Integer,String>();
+		entityNames = new Map2MapComparable<String,String,Double>();
+		nameEntities = new Map2Set<String,String>();
 	}
 	
 	
@@ -65,10 +66,10 @@ public class MediatorLexicon
 		while((line = inStream.readLine()) != null)
 		{
 			String[] lex = line.split("\t");
-			int id = Integer.parseInt(lex[0]);
+			String uri = (new File(file)).toURI() + "#" + lex[0];
 			String name = lex[1];
 			double weight = Double.parseDouble(lex[2]);
-			add(id,name,weight);
+			add(uri,name,weight);
 		}
 		inStream.close();
 	}
@@ -77,11 +78,11 @@ public class MediatorLexicon
 
 	/**
 	 * Adds a new entry to the MediatorLexicon
-	 * @param index: the index of the entity to which the name belongs
+	 * @param uri: the uri of the entity to which the name belongs
 	 * @param name: the name to add to the MediatorLexicon
 	 * @param weight: the weight of the name for the index entry
 	 */
-	public void add(int classId, String name, double weight)
+	public void add(String uri, String name, double weight)
 	{
 		//First ensure that the name is not null or empty
 		if(name == null || name.equals(""))
@@ -95,10 +96,10 @@ public class MediatorLexicon
 		else
 			s = StringParser.normalizeName(name);
 		//Then update the table
-		if(!entityNames.contains(s, classId) || entityNames.get(s, classId) < weight)
+		if(!entityNames.contains(s,uri) || entityNames.get(s,uri) < weight)
 		{
-			entityNames.add(s,classId,weight);
-			nameEntities.add(classId, s);
+			entityNames.add(s,uri,weight);
+			nameEntities.add(uri, s);
 		}
 	}
 	
@@ -116,17 +117,17 @@ public class MediatorLexicon
 	 * @return the entity associated with the name that has the highest
 	 * weight, or -1 if there are either no entities or two or more entities
 	 */
-	public int getBestClass(String name)
+	public String getBestClass(String name)
 	{
-		Set<Integer> hits = getEntities(name);
+		Set<String> hits = getEntities(name);
 		if(hits == null)
-			return -1;
+			return null;
 		
-		Vector<Integer> bestClasses = new Vector<Integer>(1,1);
+		Vector<String> bestClasses = new Vector<String>(1,1);
 		double weight;
 		double maxWeight = 0.0;
 		
-		for(Integer i : hits)
+		for(String i : hits)
 		{
 			weight = getWeight(name,i);
 			if(weight > maxWeight)
@@ -141,7 +142,7 @@ public class MediatorLexicon
 			}
 		}
 		if(bestClasses.size() != 1)
-			return -1;
+			return null;
 		return bestClasses.get(0);
 	}
 	
@@ -149,7 +150,7 @@ public class MediatorLexicon
 	 * @param name: the class name to search in the Lexicon
 	 * @return the list of classes associated with the name
 	 */
-	public Set<Integer> getEntities(String name)
+	public Set<String> getEntities(String name)
 	{
 		return entityNames.keySet(name);
 	}
@@ -163,25 +164,25 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * @param index: the index of the entity to search in the MediatorLexicon
+	 * @param uri: the uri of the entity to search in the MediatorLexicon
 	 * @return the set of names of the given entity in the MediatorLexicon
 	 */
-	public Set<String> getNames(int index)
+	public Set<String> getNames(String uri)
 	{
-		if(nameEntities.contains(index))
-			return nameEntities.get(index);
+		if(nameEntities.contains(uri))
+			return nameEntities.get(uri);
 		return new HashSet<String>();
 	}
 	
 	/**
 	 * @param name: the name to search in the MediatorLexicon
-	 * @param entityId: the entity to search in the MediatorLexicon
+	 * @param uri: the uri of the entity to search in the MediatorLexicon
 	 * @return the best weight of the name for that entity
 	 */
-	public double getWeight(String name, int entityId)
+	public double getWeight(String name, String uri)
 	{
-		if(entityNames.contains(name,entityId))
-			return entityNames.get(name, entityId);
+		if(entityNames.contains(name,uri))
+			return entityNames.get(name,uri);
 		return 0.0;
 	}
 	
@@ -194,12 +195,12 @@ public class MediatorLexicon
 	}
 	
 	/**
-	 * @param entityId: the entity to search in the MediatorLexicon
+	 * @param uri: the uri of the entity to search in the MediatorLexicon
 	 * @return the number of names associated with the class
 	 */
-	public int nameCount(int entityId)
+	public int nameCount(String uri)
 	{
-		return nameEntities.entryCount(entityId);
+		return nameEntities.entryCount(uri);
 	}
 	
 	/**
@@ -209,9 +210,9 @@ public class MediatorLexicon
 	public void save(String file) throws Exception
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		for(Integer i : nameEntities.keySet())
+		for(String i : nameEntities.keySet())
 			for(String n : nameEntities.get(i))
-				outStream.println(i + "\t" + n + "\t" + getWeight(n,i));
+				outStream.println(i.substring(i.indexOf("#")+1) + "\t" + n + "\t" + getWeight(n,i));
 		outStream.close();
 	}
 }
