@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -140,7 +140,7 @@ public class Dictionary
 				}
 				//If we have a translation, extend the Lexicon with it
 				if(!trans.equals(""))
-					for(Integer i : l.getEntitiesWithLanguage(e,n,sourceLang))
+					for(String i : l.getEntitiesWithLanguage(e,n,sourceLang))
 						l.add(i, trans, targetLang, TYPE, SOURCE, l.getWeight(n, i));
 			}
 		}
