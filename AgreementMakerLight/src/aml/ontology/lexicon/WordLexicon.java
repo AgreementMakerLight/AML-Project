@@ -25,8 +25,8 @@ import java.util.Set;
 
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.util.Table2Set;
-import aml.util.Map2MapComparable;
+import aml.util.table.Map2MapComparable;
+import aml.util.table.Map2Set;
 
 public class WordLexicon
 {
@@ -43,11 +43,11 @@ public class WordLexicon
 	private EntityType type;
 	private String language;
 	//The map of words to entities divided in blocks
-	private Table2Set<String,String>[] wordEntities;
+	private Map2Set<String,String>[] wordEntities;
 	//The map of entities to words with weights
 	private Map2MapComparable<String,String,Double> entityWords;
 	//The map of names to words
-	private Table2Set<String,String> nameWords;
+	private Map2Set<String,String> nameWords;
 	//The map of word evidence contents
 	private HashMap<String,Double> wordECs;
 	//The map of entities to total evidence contents, which are the sum
@@ -76,11 +76,11 @@ public class WordLexicon
 		//Initialize the data structures
 		stopSet = StopList.read();
 		int size = (int)Math.ceil(1.0*o.count(type)/MAX_BLOCK_SIZE);
-		wordEntities = new Table2Set[size];
+		wordEntities = new Map2Set[size];
 		for(int i = 0; i < wordEntities.length; i++)
-			wordEntities[i] = new Table2Set<String,String>();
+			wordEntities[i] = new Map2Set<String,String>();
 		entityWords = new Map2MapComparable<String,String,Double>();
-		nameWords = new Table2Set<String,String>();
+		nameWords = new Map2Set<String,String>();
 		wordECs = new HashMap<String,Double>();
 		entityECs = new HashMap<String,Double>();
 		nameECs = new HashMap<String,Double>();
@@ -212,7 +212,7 @@ public class WordLexicon
 	/**
 	 * @return the table of words for a given block of classes
 	 */
-	public Table2Set<String,String> getWordTable(int block)
+	public Map2Set<String,String> getWordTable(int block)
 	{
 		return wordEntities[block];
 	}

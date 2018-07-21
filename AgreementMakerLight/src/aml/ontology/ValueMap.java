@@ -23,7 +23,7 @@ package aml.ontology;
 import java.util.HashSet;
 import java.util.Set;
 
-import aml.util.Table3Set;
+import aml.util.table.Map2Map2Set;
 
 public class ValueMap
 {
@@ -31,9 +31,9 @@ public class ValueMap
 //Attributes	
 
 	//The table of individual indexes (Integer), property indexes (Integer), and property values (String)
-	private Table3Set<Integer,Integer,String> valueIndividuals;
+	private Map2Map2Set<Integer,Integer,String> valueIndividuals;
 	//The table of property indexes (Integer), property values (String), and individual indexes (Integer)
-	private Table3Set<Integer,String,Integer> individualValues;
+	private Map2Map2Set<Integer,String,Integer> individualValues;
 	
 //Constructors
 	
@@ -42,8 +42,8 @@ public class ValueMap
 	 */
 	public ValueMap()
 	{
-		valueIndividuals = new Table3Set<Integer,Integer,String>();
-		individualValues = new Table3Set<Integer,String,Integer>();
+		valueIndividuals = new Map2Map2Set<Integer,Integer,String>();
+		individualValues = new Map2Map2Set<Integer,String,Integer>();
 	}
 	
 //Public Methods

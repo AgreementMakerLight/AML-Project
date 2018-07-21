@@ -21,7 +21,7 @@ package aml.ontology;
 import java.util.HashSet;
 import java.util.Set;
 
-import aml.util.Table2Set;
+import aml.util.table.Map2Set;
 
 public class URIMap
 {
@@ -29,13 +29,13 @@ public class URIMap
 //Attributes
 	
 	//The numeric index (Integer) -> EntityType map of ontology entities 
-	private Table2Set<String,EntityType> entityType;
+	private Map2Set<String,EntityType> entityType;
 	
 //Constructors
 	
 	public URIMap()
 	{
-		entityType = new Table2Set<String,EntityType>();
+		entityType = new Map2Set<String,EntityType>();
 	}
 	
 //Public Methods

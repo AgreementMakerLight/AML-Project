@@ -26,9 +26,9 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.util.Table2Set;
-import aml.util.Table3List;
-import aml.util.Table3Set;
+import aml.util.table.Map2Set;
+import aml.util.table.Map2Map2List;
+import aml.util.table.Map2Map2Set;
 
 
 public class RelationshipMap
@@ -38,37 +38,37 @@ public class RelationshipMap
 
 	//Relationships between classes
 	//Hierarchical relations and property restrictions (with transitive closure)
-	private Table3List<String,String,Relationship> ancestorClasses; //Class -> Ancestor -> Relationship
-	private Table3List<String,String,Relationship> descendantClasses;	//Class -> Descendant -> Relationship
+	private Map2Map2List<String,String,Relationship> ancestorClasses; //Class -> Ancestor -> Relationship
+	private Map2Map2List<String,String,Relationship> descendantClasses;	//Class -> Descendant -> Relationship
 	//Disjointness (direct only, no transitive closure)
-	private Table2Set<String,String> disjointMap; //Class -> Disjoint Classes
+	private Map2Set<String,String> disjointMap; //Class -> Disjoint Classes
 	//List of high level classes
 	private HashSet<String> highLevelClasses;
 	
 	//Relationships between individuals and classes
-	private Table2Set<String,String> instanceOfMap; //Individual -> Class 
-	private Table2Set<String,String> hasInstanceMap; //Class -> Individual
+	private Map2Set<String,String> instanceOfMap; //Individual -> Class 
+	private Map2Set<String,String> hasInstanceMap; //Class -> Individual
 
 	//Relationships between individuals
-	private Table3Set<String,String,String> activeRelation; //Source Individual -> Target Individual -> Property
-	private Table3Set<String,String,String> passiveRelation; //Target Individual -> Source Individual -> Property
+	private Map2Map2Set<String,String,String> activeRelation; //Source Individual -> Target Individual -> Property
+	private Map2Map2Set<String,String,String> passiveRelation; //Target Individual -> Source Individual -> Property
 
 	//Relationships between properties
 	//Hierarchical and inverse relations
-	private Table2Set<String,String> subProp; //Property -> SubProperty
-	private Table2Set<String,String> superProp; //Property -> SuperProperty
-	private Table2Set<String,String> inverseProp; //Property -> InverseProperty
+	private Map2Set<String,String> subProp; //Property -> SubProperty
+	private Map2Set<String,String> superProp; //Property -> SuperProperty
+	private Map2Set<String,String> inverseProp; //Property -> InverseProperty
 	//Transitivity relations (transitive properties will be mapped to themselves)
-	private Table2Set<String,String> transitiveOver; //Property1 -> Property2 over which 1 is transitive
+	private Map2Set<String,String> transitiveOver; //Property1 -> Property2 over which 1 is transitive
 	//List of symmetric properties
 	private HashSet<String> symmetric;
 	//List of functional properties
 	private HashSet<String> functional;
 	
 	//Property domains and ranges (property to class or to String)
-	private Table2Set<String,String> domain; //Property -> Class
-	private Table2Set<String,String> objectRange; //Property -> Class
-	private Table2Set<String,String> dataRange; //Property -> String
+	private Map2Set<String,String> domain; //Property -> Class
+	private Map2Set<String,String> objectRange; //Property -> Class
+	private Map2Set<String,String> dataRange; //Property -> String
 	
 //Constructors
 
@@ -77,22 +77,22 @@ public class RelationshipMap
 	 */
 	public RelationshipMap()
 	{
-		descendantClasses = new Table3List<String,String,Relationship>();
-		ancestorClasses = new Table3List<String,String,Relationship>();
-		disjointMap = new Table2Set<String,String>();
-		instanceOfMap = new Table2Set<String,String>();
-		hasInstanceMap = new Table2Set<String,String>();
-		activeRelation = new Table3Set<String,String,String>();		
-		passiveRelation = new Table3Set<String,String,String>();		
-		subProp = new Table2Set<String,String>();
-		superProp = new Table2Set<String,String>();
-		inverseProp = new Table2Set<String,String>();
-		transitiveOver = new Table2Set<String,String>();
+		descendantClasses = new Map2Map2List<String,String,Relationship>();
+		ancestorClasses = new Map2Map2List<String,String,Relationship>();
+		disjointMap = new Map2Set<String,String>();
+		instanceOfMap = new Map2Set<String,String>();
+		hasInstanceMap = new Map2Set<String,String>();
+		activeRelation = new Map2Map2Set<String,String,String>();		
+		passiveRelation = new Map2Map2Set<String,String,String>();		
+		subProp = new Map2Set<String,String>();
+		superProp = new Map2Set<String,String>();
+		inverseProp = new Map2Set<String,String>();
+		transitiveOver = new Map2Set<String,String>();
 		symmetric = new HashSet<String>();
 		functional = new HashSet<String>();
-		domain = new Table2Set<String,String>();
-		objectRange = new Table2Set<String,String>();
-		dataRange = new Table2Set<String,String>();
+		domain = new Map2Set<String,String>();
+		objectRange = new Map2Set<String,String>();
+		dataRange = new Map2Set<String,String>();
 	}
 	
 //Public Methods
@@ -975,7 +975,7 @@ public class RelationshipMap
 	/**
 	 * @return the table of transitive properties
 	 */
-	public Table2Set<String,String> getTransitiveProperties()
+	public Map2Set<String,String> getTransitiveProperties()
 	{
 		return transitiveOver;
 	}

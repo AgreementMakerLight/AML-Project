@@ -23,7 +23,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Set;
 
-import aml.util.Table2Set;
+import aml.util.table.Map2Set;
 
 public class ReferenceMap
 {
@@ -31,15 +31,15 @@ public class ReferenceMap
 //Attributes
 	
 	//The table of classes (Integer) <-> cross-reference URIs (String)
-	private Table2Set<Integer,String> termRefs;
-	private Table2Set<String,Integer> refTerms;
+	private Map2Set<Integer,String> termRefs;
+	private Map2Set<String,Integer> refTerms;
 
 //Constructors
 	
 	public ReferenceMap()
 	{
-		termRefs = new Table2Set<Integer,String>();
-		refTerms = new Table2Set<String,Integer>();
+		termRefs = new Map2Set<Integer,String>();
+		refTerms = new Map2Set<String,Integer>();
 	}
 	
 //Public Methods

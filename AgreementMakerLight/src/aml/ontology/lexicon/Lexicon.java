@@ -28,8 +28,8 @@ import java.util.Vector;
 import aml.AML;
 import aml.ontology.EntityType;
 import aml.util.MapSorter;
-import aml.util.Table3List;
-import aml.util.Table3Set;
+import aml.util.table.Map2Map2List;
+import aml.util.table.Map2Map2Set;
 
 
 public class Lexicon
@@ -38,9 +38,9 @@ public class Lexicon
 //Attributes
 	
 	//The table of entity uris to names and associated metadata, for matching by entity
-	private Table3List<String,String,LexicalMetadata> URINames;
+	private Map2Map2List<String,String,LexicalMetadata> URINames;
 	//The table of entity names to uris organized by EntityType, for hash-based matching 
-	private Table3Set<EntityType,String,String> nameURIs;
+	private Map2Map2Set<EntityType,String,String> nameURIs;
 	//The language counts
 	private HashMap<String,Integer> langCount;
 	
@@ -52,8 +52,8 @@ public class Lexicon
 	 */
 	public Lexicon()
 	{
-		URINames = new Table3List<String,String,LexicalMetadata>();
-		nameURIs = new Table3Set<EntityType,String,String>();
+		URINames = new Map2Map2List<String,String,LexicalMetadata>();
+		nameURIs = new Map2Map2Set<EntityType,String,String>();
 		langCount = new HashMap<String,Integer>();
 	}
 	
@@ -63,8 +63,8 @@ public class Lexicon
 	 */
 	public Lexicon(Lexicon l)
 	{
-		URINames = new Table3List<String,String,LexicalMetadata>(l.URINames);
-		nameURIs = new Table3Set<EntityType,String,String>(l.nameURIs);
+		URINames = new Map2Map2List<String,String,LexicalMetadata>(l.URINames);
+		nameURIs = new Map2Map2Set<EntityType,String,String>(l.nameURIs);
 		langCount = new HashMap<String,Integer>(l.langCount);
 	}
 	
