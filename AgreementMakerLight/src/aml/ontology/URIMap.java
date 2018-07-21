@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -119,7 +119,7 @@ public class URIMap
 	 */
 	public boolean isDataProperty(String uri)
 	{
-		return entityType.get(uri).contains(EntityType.DATA);
+		return entityType.get(uri).contains(EntityType.DATA_PROP);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class URIMap
 	 */
 	public boolean isObjectProperty(String uri)
 	{
-		return entityType.get(uri).contains(EntityType.OBJECT);
+		return entityType.get(uri).contains(EntityType.OBJECT_PROP);
 	}
 	
 	/**
