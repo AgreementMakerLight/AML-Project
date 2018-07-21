@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE												  *
+* Copyright 2013-2018 LASIGE												  *
 *																			  *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may	  *
 * not use this file except in compliance with the License. You may obtain a	  *
@@ -25,7 +25,8 @@ import java.util.Set;
 import aml.AML;
 import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.WordLexicon;
-import aml.util.Table2Set;
+import aml.util.table.Map2Map;
+import aml.util.table.Map2Set;
 
 public class Ontology
 {
@@ -37,13 +38,13 @@ public class Ontology
 	//The set of entities in the ontology 
 	protected HashSet<String> entities;
 	//The table of entities by type in the ontology 
-	protected Table2Set<EntityType,String> entityTypes;
+	protected Map2Set<EntityType,String> entityTypes;
 	//Its lexicon
 	protected Lexicon lex;
 	//Its value map
 	protected ValueMap vMap;
 	//Its word lexicon
-	protected WordLexicon wLex;
+	protected Map2Map<EntityType,String,WordLexicon> wLex;
 	//Its reference map
 	protected ReferenceMap refs;
 	//The map of class names -> uris in the ontology
@@ -66,13 +67,13 @@ public class Ontology
 	{
 		//Initialize the data structures
 		entities = new HashSet<String>();
-		entityTypes = new Table2Set<EntityType,String>();
+		entityTypes = new Map2Set<EntityType,String>();
 		lex = new Lexicon();
 		vMap = new ValueMap();
 		refs = new ReferenceMap();
 		classNames = new HashMap<String,String>();
 		obsolete = new HashSet<String>();
-		wLex = null;
+		wLex = new Map2Map<EntityType,String,WordLexicon>();
 		aml = AML.getInstance();
 		uris = aml.getURIMap();
 		rm = aml.getRelationshipMap();
@@ -186,32 +187,17 @@ public class Ontology
 	}
 
 	/**
-	 * Build a new WordLexicon of the given EntityType and without
-	 * language restrictions for this Ontology, or returns the
-	 * current WordLexicon if it matches these specifications.
-	 * @param e: the EntityType for which to build the WordLexicon
-	 * @return the WordLexicon of this Ontology
-	 */
-	public WordLexicon getWordLexicon(EntityType e)
-	{
-		if(wLex == null || !wLex.getType().equals(e) || !wLex.getLanguage().equals(""))
-			wLex = new WordLexicon(lex,e);
-		return wLex;
-	}
-
-	/**
-	 * Build a new WordLexicon of the given EntityType and language
-	 * for this Ontology, or returns the current WordLexicon if it
-	 * matches these specifications.
+	 * Gets the WordLexicon for the given EntityType and language
+	 * for this Ontology, or builds one if not yet built.
 	 * @param e: the EntityType for which to build the WordLexicon
 	 * @param lang: the language of the WordLexicon
 	 * @return the WordLexicon of this Ontology
 	 */
 	public WordLexicon getWordLexicon(EntityType e, String lang)
 	{
-		if(wLex == null || !wLex.getLanguage().equals(lang))
-			wLex = new WordLexicon(lex,e,lang);
-		return wLex;
+		if(!wLex.contains(e,lang))
+			wLex.add(e, lang, new WordLexicon(this,e,lang));
+		return wLex.get(e, lang);
 	}
 
 	/**
