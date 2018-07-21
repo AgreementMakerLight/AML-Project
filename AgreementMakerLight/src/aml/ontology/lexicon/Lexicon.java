@@ -113,7 +113,7 @@ public class Lexicon
 				p = new LexicalMetadata(LexicalType.FORMULA, source, language, weight);
 			}
 			//If it is a property, parse it as such
-			else if(types.contains(EntityType.DATA) || types.contains(EntityType.OBJECT))
+			else if(types.contains(EntityType.DATA_PROP) || types.contains(EntityType.OBJECT_PROP))
 			{
 				s = StringParser.normalizeProperty(name);
 				p = new LexicalMetadata(type, source, language, weight);
