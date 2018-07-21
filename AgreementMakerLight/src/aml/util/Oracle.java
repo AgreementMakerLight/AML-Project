@@ -33,8 +33,8 @@ public class Oracle
 	//The reference alignment to use in this Oracle
 	private static Alignment reference;
 	private static double error;
-	private static Table2Map<Integer,Integer,MappingRelation> positive;
-	private static Table2Map<Integer,Integer,MappingRelation> negative;
+	private static Map2MapComparable<Integer,Integer,MappingRelation> positive;
+	private static Map2MapComparable<Integer,Integer,MappingRelation> negative;
 
 //Constructors
 	
@@ -95,8 +95,8 @@ public class Oracle
 	{
 		reference = ref;
 		error = err;
-		positive = new Table2Map<Integer,Integer,MappingRelation>();
-		negative = new Table2Map<Integer,Integer,MappingRelation>();
+		positive = new Map2MapComparable<Integer,Integer,MappingRelation>();
+		negative = new Map2MapComparable<Integer,Integer,MappingRelation>();
 	}
 	
 	public static int negativeInteractions()

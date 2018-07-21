@@ -28,7 +28,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.ontology.lexicon.StringParser;
-import aml.util.Table2Map;
+import aml.util.Map2MapComparable;
 import aml.util.Table2Set;
 
 
@@ -38,7 +38,7 @@ public class MediatorLexicon
 //Attributes
 	
 	//The map of names (String) to entity indexes (Integer)
-	private Table2Map<String,Integer,Double> entityNames;
+	private Map2MapComparable<String,Integer,Double> entityNames;
 	private Table2Set<Integer,String> nameEntities;
 	
 //Constructors
@@ -48,7 +48,7 @@ public class MediatorLexicon
 	 */
 	public MediatorLexicon()
 	{
-		entityNames = new Table2Map<String,Integer,Double>();
+		entityNames = new Map2MapComparable<String,Integer,Double>();
 		nameEntities = new Table2Set<Integer,String>();
 	}
 	

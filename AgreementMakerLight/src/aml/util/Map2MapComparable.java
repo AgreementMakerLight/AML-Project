@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.Vector;
 
-public class Table2Map<A,B,C extends Comparable<C>>
+public class Map2MapComparable<A,B,C extends Comparable<C>>
 {
 
 //Attributes
@@ -36,7 +36,7 @@ public class Table2Map<A,B,C extends Comparable<C>>
 	/**
 	 * Constructs a new empty Table
 	 */
-	public Table2Map()
+	public Map2MapComparable()
 	{
 		multimap = new HashMap<A,HashMap<B,C>>();
 		size = 0;
@@ -47,7 +47,7 @@ public class Table2Map<A,B,C extends Comparable<C>>
 	 * the given Table
 	 * @param m: the Table to copy
 	 */
-	public Table2Map(Table2Map<A,B,C> m)
+	public Map2MapComparable(Map2MapComparable<A,B,C> m)
 	{
 		multimap = new HashMap<A,HashMap<B,C>>();
 		size = m.size;

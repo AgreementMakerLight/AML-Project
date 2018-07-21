@@ -28,7 +28,7 @@ import aml.knowledge.MediatorOntology;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
-import aml.util.Table2Map;
+import aml.util.Map2MapComparable;
 
 public class MediatingXRefMatcher extends MediatingMatcher
 {
@@ -45,8 +45,8 @@ public class MediatingXRefMatcher extends MediatingMatcher
 	//The weight used for matching and Lexicon extension
 	private final double WEIGHT = 0.95;
 	//The source and target alignments
-	Table2Map<Integer,Integer,Double> src;
-	Table2Map<Integer,Integer,Double> tgt;
+	Map2MapComparable<Integer,Integer,Double> src;
+	Map2MapComparable<Integer,Integer,Double> tgt;
 	
 //Constructors
 
@@ -132,7 +132,7 @@ public class MediatingXRefMatcher extends MediatingMatcher
 		src = match(source,thresh);
 		tgt = match(target,thresh);
 		//Reverse the target alignment table
-		Table2Map<Integer,Integer,Double> rev = new Table2Map<Integer,Integer,Double>();
+		Map2MapComparable<Integer,Integer,Double> rev = new Map2MapComparable<Integer,Integer,Double>();
 		for(Integer s : tgt.keySet())
 			for(Integer t : tgt.keySet(s))
 				rev.add(t, s, tgt.get(s, t));
@@ -158,9 +158,9 @@ public class MediatingXRefMatcher extends MediatingMatcher
 	
 //Private Methods
 	
-	private Table2Map<Integer,Integer,Double> match(Ontology o, double thresh)
+	private Map2MapComparable<Integer,Integer,Double> match(Ontology o, double thresh)
 	{
-		Table2Map<Integer,Integer,Double> maps = new Table2Map<Integer,Integer,Double>();
+		Map2MapComparable<Integer,Integer,Double> maps = new Map2MapComparable<Integer,Integer,Double>();
 		if(rm != null)
 		{
 			Set<String> refs = rm.getReferences();
@@ -182,7 +182,7 @@ public class MediatingXRefMatcher extends MediatingMatcher
 			}
 		}
 		//Step 2 - Do a lexical match
-		Table2Map<Integer,Integer,Double> lex = match(o.getLexicon(),thresh);
+		Map2MapComparable<Integer,Integer,Double> lex = match(o.getLexicon(),thresh);
 		
 		//Step 3 - Compare the two
 		//If the coverage of the lexical match is at least double

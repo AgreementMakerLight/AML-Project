@@ -70,7 +70,7 @@ import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.StringParser;
 import aml.ontology.lexicon.WordLexicon;
 import aml.util.MapSorter;
-import aml.util.Table2Map;
+import aml.util.Map2MapComparable;
 import aml.util.Table2Set;
 
 public class OntologyParser
@@ -91,9 +91,9 @@ public class OntologyParser
 	private static RelationshipMap rm;
 	
 	//Auxiliary data structures to capture semantic disjointness
-	private Table2Map<Integer,Integer,Integer> maxCard, minCard, card;
-	private Table2Map<Integer,Integer,String> dataAllValues, dataHasValue, dataSomeValues;
-	private Table2Map<Integer,Integer,Integer> objectAllValues, objectSomeValues;
+	private Map2MapComparable<Integer,Integer,Integer> maxCard, minCard, card;
+	private Map2MapComparable<Integer,Integer,String> dataAllValues, dataHasValue, dataSomeValues;
+	private Map2MapComparable<Integer,Integer,Integer> objectAllValues, objectSomeValues;
 
 //Public Methods
 
@@ -916,18 +916,18 @@ public class OntologyParser
 		//Auxiliary data structures to capture semantic disjointness
 		//Two classes are disjoint if they have:
 		//1) Incompatible cardinality restrictions for the same property
-		maxCard = new Table2Map<Integer,Integer,Integer>();
-		minCard = new Table2Map<Integer,Integer,Integer>();
-		card = new Table2Map<Integer,Integer,Integer>();
+		maxCard = new Map2MapComparable<Integer,Integer,Integer>();
+		minCard = new Map2MapComparable<Integer,Integer,Integer>();
+		card = new Map2MapComparable<Integer,Integer,Integer>();
 		//2) Different values for the same functional data property or incompatible value
 		//restrictions on the same non-functional data property
-		dataAllValues = new Table2Map<Integer,Integer,String>();
-		dataHasValue = new Table2Map<Integer,Integer,String>();
-		dataSomeValues = new Table2Map<Integer,Integer,String>();
+		dataAllValues = new Map2MapComparable<Integer,Integer,String>();
+		dataHasValue = new Map2MapComparable<Integer,Integer,String>();
+		dataSomeValues = new Map2MapComparable<Integer,Integer,String>();
 		//3) Disjoint classes for the same functional object property or incompatible value
 		//restrictions on disjoint classes for the same non-functional object property
-		objectAllValues = new Table2Map<Integer,Integer,Integer>();
-		objectSomeValues = new Table2Map<Integer,Integer,Integer>();
+		objectAllValues = new Map2MapComparable<Integer,Integer,Integer>();
+		objectSomeValues = new Map2MapComparable<Integer,Integer,Integer>();
 
 		//I - Relationships involving classes
 		//Get an iterator over the ontology classes

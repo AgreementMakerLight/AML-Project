@@ -31,7 +31,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.ontology.EntityType;
 import aml.ontology.RelationshipMap;
-import aml.util.Table2Map;
+import aml.util.Map2MapComparable;
 
 public class Alignment implements Collection<Mapping>
 {
@@ -44,9 +44,9 @@ public class Alignment implements Collection<Mapping>
 	//Mappings organized in list
 	private Vector<Mapping> maps;
 	//Simple mappings organized by entity1 (entity1, entity2, Mapping)
-	private Table2Map<String,String,Mapping> sourceMaps;
+	private Map2MapComparable<String,String,Mapping> sourceMaps;
 	//Simple mappings organized by entity2 (entity2, entity1, Mapping)
-	private Table2Map<String,String,Mapping> targetMaps;
+	private Map2MapComparable<String,String,Mapping> targetMaps;
 
 	
 //Constructors
@@ -67,8 +67,8 @@ public class Alignment implements Collection<Mapping>
 		this.sourceURI = sourceUri;
 		this.targetURI = targetUri;
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Map<String,String,Mapping>();
-		targetMaps = new Table2Map<String,String,Mapping>();
+		sourceMaps = new Map2MapComparable<String,String,Mapping>();
+		targetMaps = new Map2MapComparable<String,String,Mapping>();
 	}
 
 	/**
@@ -246,8 +246,8 @@ public class Alignment implements Collection<Mapping>
 	public void clear()
 	{
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Map<String,String,Mapping>();
-		targetMaps = new Table2Map<String,String,Mapping>();		
+		sourceMaps = new Map2MapComparable<String,String,Mapping>();
+		targetMaps = new Map2MapComparable<String,String,Mapping>();		
 	}
 	
 	/**

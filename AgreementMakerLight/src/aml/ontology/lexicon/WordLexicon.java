@@ -26,7 +26,7 @@ import java.util.Set;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.util.Table2Set;
-import aml.util.Table2Map;
+import aml.util.Map2MapComparable;
 
 public class WordLexicon
 {
@@ -45,7 +45,7 @@ public class WordLexicon
 	//The map of words to entities divided in blocks
 	private Table2Set<String,String>[] wordEntities;
 	//The map of entities to words with weights
-	private Table2Map<String,String,Double> entityWords;
+	private Map2MapComparable<String,String,Double> entityWords;
 	//The map of names to words
 	private Table2Set<String,String> nameWords;
 	//The map of word evidence contents
@@ -79,7 +79,7 @@ public class WordLexicon
 		wordEntities = new Table2Set[size];
 		for(int i = 0; i < wordEntities.length; i++)
 			wordEntities[i] = new Table2Set<String,String>();
-		entityWords = new Table2Map<String,String,Double>();
+		entityWords = new Map2MapComparable<String,String,Double>();
 		nameWords = new Table2Set<String,String>();
 		wordECs = new HashMap<String,Double>();
 		entityECs = new HashMap<String,Double>();
