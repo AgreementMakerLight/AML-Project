@@ -112,10 +112,10 @@ public class AlignmentIO
 	            if(s == null)
 	            	s = "?";
 	            MappingStatus st = MappingStatus.parseStatus(s);
-	            if(active && AML.getInstance().getSource().contains(targetURI) && AML.getInstance().getTarget().contains(sourceURI))
-					a.add(targetURI, sourceURI, similarity, rel, st);
-	            else	
+	            if(!active || (AML.getInstance().getSource().contains(sourceURI) && AML.getInstance().getTarget().contains(targetURI)))
 	            	a.add(sourceURI, targetURI, similarity, rel, st);
+	            else if(AML.getInstance().getSource().contains(targetURI) && AML.getInstance().getTarget().contains(sourceURI))
+					a.add(targetURI, sourceURI, similarity, rel, st);
 			}
 			return a;
 		}
