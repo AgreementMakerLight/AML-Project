@@ -31,7 +31,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.ontology.EntityType;
 import aml.ontology.RelationshipMap;
-import aml.util.Map2MapComparable;
+import aml.util.table.Map2MapComparable;
 
 public class Alignment implements Collection<Mapping>
 {
