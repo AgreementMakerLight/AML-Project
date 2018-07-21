@@ -20,13 +20,14 @@ package aml.ontology;
 
 public enum EntityType
 {
+    ANNOTATION_PROP		("Annotation Property", false),
 	CLASS				("Class", true),
 	CLASS_EXPRESSION	("Class Expression", false),
+    DATA_PROP			("Data Property", true),
+	DATATYPE			("Datatype", false),
 	INDIVIDUAL			("Individual", true),
-    DATA				("Data Property", true),
-    OBJECT				("Object Property", true),
-    OBJECT_EXPRESSION	("Object Property Expression", false),
-    ANNOTATION			("Annotation Property", false);
+    OBJECT_PROP			("Object Property", true),
+    OBJECT_EXPRESSION	("Object Property Expression", false);
     
     String label;
     boolean matchable;
