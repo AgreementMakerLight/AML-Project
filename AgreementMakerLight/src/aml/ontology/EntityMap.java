@@ -12,9 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The map of relationships in an Ontology, including relationships between    *
-* classes (hierarchical and disjoint), between individuals and classes,       *
-* between individuals, and between properties.                                *
+* Registry of entities in the ontologies opened by AML and all of their       *
+* semantics, including relationships, restrictions, properties, etc...        *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -27,7 +26,6 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.util.table.Map2Set;
-import aml.util.table.Map2List;
 import aml.util.table.Map2Map;
 import aml.util.table.Map2Map2Set;
 
@@ -41,9 +39,9 @@ public class EntityMap
 	private Map2Set<String,EntityType> entityType;
 	
 	//Relationships between classes / class expressions
-	//Hierarchical relations and property restrictions (with transitive closure, but min distance only)
+	//Subclass & equivalence relations (with transitive closure, but min distance only)
 	private Map2Map<String,String,Integer> ancestorClasses; //Class -> Ancestor -> Distance
-	private Map2Map<String,String,Integer> descendantClasses;	//Class -> Descendant -> Distance
+	private Map2Map<String,String,Integer> descendantClasses; //Class -> Descendant -> Distance
 	//Disjointness (direct only, no transitive closure)
 	private Map2Set<String,String> disjointMap; //Class -> Disjoint Classes
 	//List of high level classes
@@ -57,7 +55,7 @@ public class EntityMap
 	private Map2Map2Set<String,String,String> activeRelation; //Source Individual -> Target Individual -> Property
 	private Map2Map2Set<String,String,String> passiveRelation; //Target Individual -> Source Individual -> Property
 
-	//Relationships between properties and properties of properties
+	//Relationships between properties
 	//Hierarchical and inverse relations
 	private Map2Set<String,String> subProp; //Property -> SubProperty
 	private Map2Set<String,String> superProp; //Property -> SuperProperty
@@ -66,6 +64,8 @@ public class EntityMap
 	private Map2Set<String,String> transitiveOver; //Property1 -> Property2 over which 1 is transitive
 	//Other (more complex) property chains (e.g. father * father = grandfather)
 	private Map2Set<String,Vector<String>> propChain; //Property -> Property Chain
+	
+	//Properties of properties
 	//List of asymmetric properties
 	private HashSet<String> asymmetric;
 	//List of functional properties
@@ -77,9 +77,8 @@ public class EntityMap
 	//List of symmetric properties
 	private HashSet<String> symmetric;
 	//Property domains and ranges (property to class or to String)
-	private Map2Set<String,String> domain; //Property -> Class
-	private Map2Set<String,String> objectRange; //Property -> Class
-	private Map2Set<String,String> dataRange; //Property -> String
+	private Map2Set<String,String> domain; //Property -> Domain (Class)
+	private Map2Set<String,String> range; //Property -> Range (Class/Datatype)
 	
 //Constructors
 
@@ -100,65 +99,36 @@ public class EntityMap
 		superProp = new Map2Set<String,String>();
 		inverseProp = new Map2Set<String,String>();
 		transitiveOver = new Map2Set<String,String>();
-		symmetric = new HashSet<String>();
+		asymmetric = new HashSet<String>();
 		functional = new HashSet<String>();
+		irreflexive = new HashSet<String>();
+		reflexive = new HashSet<String>();
+		symmetric = new HashSet<String>();
 		domain = new Map2Set<String,String>();
-		objectRange = new Map2Set<String,String>();
-		dataRange = new Map2Set<String,String>();
+		range = new Map2Set<String,String>();
 	}
 	
 //Public Methods
 
 	/**
-	 * Adds a direct relationship between two classes with a given property and restriction
+	 * @param prop: the property to set as asymmetric
+	 */
+	public void addAsymmetric(String prop)
+	{
+		asymmetric.add(prop);
+	}
+	/**
+	 * Adds a relationship between two classes with a given distance
 	 * @param child: the uri of the child class
 	 * @param parent: the uri of the parent class
 	 * @param distance: the distance (number of edges) between the classes
-	 * @param prop: the property in the subclass relationship
-	 * @param rest: the restriction in the subclass relationship
 	 */
-	public void addClassRelationship(String child, String parent, String prop, boolean rest)
+	public void addClassRelationship(String child, String parent, int distance)
 	{
-		addClassRelationship(child,parent,1,prop,rest);
+		descendantClasses.add(parent,child,distance);
+		ancestorClasses.add(child,parent,distance);
 	}
-	
-	/**
-	 * Adds a relationship between two classes with a given distance, property and restriction
-	 * @param child: the uri of the child class
-	 * @param parent: the uri of the parent class
-	 * @param distance: the distance (number of edges) between the classes
-	 * @param prop: the property in the subclass relationship
-	 * @param rest: the restriction in the subclass relationship
-	 */
-	public void addClassRelationship(String child, String parent, int distance, String prop, boolean rest)
-	{
-		//Create the relationship
-		Relationship r = new Relationship(distance,prop,rest);
-		//Then update the MultiMaps
-		descendantClasses.add(parent,child,r);
-		ancestorClasses.add(child,parent,r);
-	}
-	
-	/**
-	 * Adds a new range (data type) to a given data property
-	 * @param propId: the uri of the property with the range
-	 * @param type: the data type in the range of the property
-	 */
-	public void addDataRange(String propId, String type)
-	{
-		dataRange.add(propId, type);
-	}
-	
-	/**
-	 * Adds a direct hierarchical relationship between two classes
-	 * @param child: the uri of the child class
-	 * @param parent: the uri of the parent class
-	 */
-	public void addDirectSubclass(String child, String parent)
-	{
-		addClassRelationship(child,parent,1,"",false);
-	}
-	
+		
 	/**
 	 * Adds a new disjointness relations between two classes
 	 * @param class1: the uri of the first disjoint class
@@ -177,25 +147,11 @@ public class EntityMap
 	/**
 	 * Adds a new domain (class) to a given property
 	 * @param propId: the uri of the property with the domain
-	 * @param classId: the uri of the class in the domain of the property
+	 * @param uri: the uri of the class in the domain of the property
 	 */
-	public void addDomain(String propId, String classId)
+	public void addDomain(String propId, String uri)
 	{
-		domain.add(propId, classId);
-	}
-	
-	/**
-	 * Adds an equivalence relationship between two classes with a given property and restriction
-	 * @param class1: the uri of the first equivalent class
-	 * @param class2: the uri of the second equivalent class
-	 * @param prop: the property in the subclass relationship
-	 * @param rest: the restriction in the subclass relationship
-	 */
-	public void addEquivalence(String class1, String class2, String prop, boolean rest)
-	{
-		addClassRelationship(class1,class2,0,prop,rest);
-		if(symmetric.contains(prop))
-			addClassRelationship(class2,class1,0,prop,rest);
+		domain.add(propId, uri);
 	}
 	
 	/**
@@ -203,9 +159,9 @@ public class EntityMap
 	 * @param class1: the uri of the first equivalent class
 	 * @param class2: the uri of the second equivalent class
 	 */
-	public void addEquivalentClass(String class1, String class2)
+	public void addEquivalence(String class1, String class2)
 	{
-		addEquivalence(class1,class2,"",false);
+		addClassRelationship(class1,class2,0);
 	}
 	
 	/**
@@ -231,12 +187,12 @@ public class EntityMap
 	/**
 	 * Adds an instantiation relationship between an individual and a class
 	 * @param individualId: the uri of the individual
-	 * @param classId: the uri of the class
+	 * @param uri: the uri of the class
 	 */
-	public void addInstance(String individualId, String classId)
+	public void addInstance(String individualId, String uri)
 	{
-		instanceOfMap.add(individualId,classId);
-		hasInstanceMap.add(classId,individualId);
+		instanceOfMap.add(individualId,uri);
+		hasInstanceMap.add(uri,individualId);
 	}
 	
 	/**
@@ -246,7 +202,7 @@ public class EntityMap
 	 */
 	public void addInverseProp(String property1, String property2)
 	{
-		if(property1 != property2)
+		if(!property1.equals(property2))
 		{
 			inverseProp.add(property1, property2);
 			inverseProp.add(property2, property1);
@@ -254,15 +210,41 @@ public class EntityMap
 	}
 	
 	/**
-	 * Adds a new range (class) to a given object property
-	 * @param propId: the uri of the property with the range
-	 * @param classId: the uri of the class in the range of the property
+	 * @param prop: the property to set as irreflexive
 	 */
-	public void addObjectRange(String propId, String classId)
+	public void addIrreflexive(String prop)
 	{
-		objectRange.add(propId, classId);
+		irreflexive.add(prop);
 	}
 	
+	/**
+	 * Adds a new range (class) to a given object property
+	 * @param propId: the uri of the property with the range
+	 * @param uri: the uri of the class in the range of the property
+	 */
+	public void addRange(String propId, String uri)
+	{
+		range.add(propId, uri);
+	}
+	
+	/**
+	 * @param prop: the property to set as reflexive
+	 */
+	public void addReflexive(String prop)
+	{
+		reflexive.add(prop);
+	}
+	
+	/**
+	 * Adds a direct hierarchical relationship between two classes
+	 * @param child: the uri of the child class
+	 * @param parent: the uri of the parent class
+	 */
+	public void addSubclass(String child, String parent)
+	{
+		addClassRelationship(child,parent,1);
+	}
+
 	/**
 	 * Adds a relationship between two properties
 	 * @param child: the uri of the child property
@@ -270,7 +252,6 @@ public class EntityMap
 	 */
 	public void addSubProperty(String child, String parent)
 	{
-		//Then update the MultiMaps
 		subProp.add(parent,child);
 		superProp.add(child,parent);
 	}
@@ -346,23 +327,23 @@ public class EntityMap
 	/**
 	 * Checks whether an individual belongs to a class
 	 * @param indivId: the uri of the individual to check
-	 * @param classId: the uri of the class to check
-	 * @return whether indivId is an instance of classId or
+	 * @param uri: the uri of the class to check
+	 * @return whether indivId is an instance of uri or
 	 * of one of its subclasses
 	 */
-	public boolean belongsToClass(String indivId, String classId)
+	public boolean belongsToClass(String indivId, String uri)
 	{
-		if(instanceOfMap.contains(indivId, classId))
+		if(instanceOfMap.contains(indivId, uri))
 			return true;
-		for(String subclassId : getSubClasses(classId,false))
-			if(instanceOfMap.contains(indivId, subclassId))
+		for(String suburi : getSubClasses(uri,false))
+			if(instanceOfMap.contains(indivId, suburi))
 				return true;
 		return false;	
 	}
 	
 	/**
-	 * @param uri: the uri to search in the URIMap
-	 * @return whether the URIMap contains the uri
+	 * @param uri: the uri to search in the EntityMap
+	 * @return whether the EntityMap contains the uri
 	 */
 	public boolean contains(String uri)
 	{
@@ -388,87 +369,29 @@ public class EntityMap
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
-	 * @return the list of all siblings of the given class
-	 */
-	public Set<String> getAllSiblings(String classId)
-	{
-		Set<String> parents = getAncestors(classId,1);
-		HashSet<String> siblings = new HashSet<String>();
-		for(String i : parents)
-		{
-			for(Relationship r : getRelationships(classId,i))
-			{
-				Set<String> children = getDescendants(i,1,r.getProperty());
-				for(String j : children)
-					if(j != classId)
-						siblings.add(j);
-			}
-		}
-		return siblings;
-	}
-	
-	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of ancestors of the given class
 	 */
-	public Set<String> getAncestors(String classId)
+	public Set<String> getAncestors(String uri)
 	{
-		if(ancestorClasses.contains(classId))
-			return ancestorClasses.keySet(classId);
+		if(ancestorClasses.contains(uri))
+			return ancestorClasses.keySet(uri);
 		return new HashSet<String>();
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the uri of the class to search in the map
 	 * @param distance: the distance between the class and its ancestors
 	 * @return the list of ancestors at the given distance from the input class
 	 */
-	public Set<String> getAncestors(String classId, int distance)
+	public Set<String> getAncestors(String uri, int distance)
 	{
 		HashSet<String> asc = new HashSet<String>();
-		if(!ancestorClasses.contains(classId))
+		if(!ancestorClasses.contains(uri))
 			return asc;
-		for(String i : ancestorClasses.keySet(classId))
-			for(Relationship r : ancestorClasses.get(classId, i))
-				if(r.getDistance() == distance)
-					asc.add(i);
-		return asc;
-	}
-	
-	/**
-	 * @param classId: the id of the class to search in the map
-	 * @param prop: the relationship property between the class and its ancestors
-	 * @return the list of ancestors at the given distance from the input class
-	 */
-	public Set<String> getAncestorsProperty(String classId, String prop)
-	{
-		HashSet<String> asc = new HashSet<String>();
-		if(!ancestorClasses.contains(classId))
-			return asc;
-		for(String i : ancestorClasses.keySet(classId))
-			for(Relationship r : ancestorClasses.get(classId, i))
-				if(r.getProperty() == prop)
-					asc.add(i);
-		return asc;
-	}
-	
-	/**
-	 * @param classId: the id of the class to search in the map
-	 * @param distance: the distance between the class and its ancestors
-	 * @param prop: the relationship property between the class and its ancestors
-	 * @return the list of ancestors of the input class that are at the given
-	 * distance and with the given property
-	 */
-	public Set<String> getAncestors(String classId, int distance, String prop)
-	{
-		HashSet<String> asc = new HashSet<String>();
-		if(!ancestorClasses.contains(classId))
-			return asc;
-		for(String i : ancestorClasses.keySet(classId))
-			for(Relationship r : ancestorClasses.get(classId, i))
-				if(r.getDistance() == distance && r.getProperty() == prop)
-					asc.add(i);
+		for(String i : ancestorClasses.keySet(uri))
+			if(ancestorClasses.get(uri,i) == distance)
+				asc.add(i);
 		return asc;
 	}
 	
@@ -483,22 +406,22 @@ public class EntityMap
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of direct children of the given class
 	 */
-	public Set<String> getChildren(String classId)
+	public Set<String> getChildren(String uri)
 	{
-		return getDescendants(classId,1);
+		return getDescendants(uri,1);
 	}
 
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of individuals that instantiate the given class
 	 */
-	public Set<String> getClassIndividuals(String classId)
+	public Set<String> getClassIndividuals(String uri)
 	{
-		if(hasInstanceMap.contains(classId))
-			return hasInstanceMap.get(classId);
+		if(hasInstanceMap.contains(uri))
+			return hasInstanceMap.get(uri);
 		return new HashSet<String>();
 	}
 	
@@ -546,76 +469,39 @@ public class EntityMap
 	
 	/**
 	 * @param propId: the id of the property to search in the map
-	 * @return the list of data types in the range of the input property
+	 * @return the list of classes / datatypes in the range of the input property
 	 */
-	public Set<String> getDataRanges(String propId)
+	public Set<String> getRanges(String propId)
 	{
-		if(dataRange.contains(propId))
-			return dataRange.get(propId);
+		if(range.contains(propId))
+			return range.get(propId);
 		return new HashSet<String>();
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of descendants of the input class
 	 */
-	public Set<String> getDescendants(String classId)
+	public Set<String> getDescendants(String uri)
 	{
-		if(descendantClasses.contains(classId))
-			return descendantClasses.keySet(classId);
+		if(descendantClasses.contains(uri))
+			return descendantClasses.keySet(uri);
 		return new HashSet<String>();
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @param distance: the distance between the class and its ancestors
 	 * @return the list of descendants at the given distance from the input class
 	 */
-	public Set<String> getDescendants(String classId, int distance)
+	public Set<String> getDescendants(String uri, int distance)
 	{
 		HashSet<String> desc = new HashSet<String>();
-		if(!descendantClasses.contains(classId))
+		if(!descendantClasses.contains(uri))
 			return desc;
-		for(String i : descendantClasses.keySet(classId))
-			for(Relationship r : descendantClasses.get(classId, i))
-				if(r.getDistance() == distance)
-					desc.add(i);
-		return desc;
-	}
-	
-	/**
-	 * @param classId: the id of the class to search in the map
-	 * @param prop: the relationship property between the class and its ancestors
-	 * @return the list of descendants at the given distance from the input class
-	 */
-	public Set<String> getDescendantsProperty(String classId, String prop)
-	{
-		HashSet<String> desc = new HashSet<String>();
-		if(!descendantClasses.contains(classId))
-			return desc;
-		for(String i : descendantClasses.keySet(classId))
-			for(Relationship r : descendantClasses.get(classId, i))
-				if(r.getProperty() == prop)
-					desc.add(i);
-		return desc;
-	}
-	
-	/**
-	 * @param classId: the id of the class to search in the map
-	 * @param distance: the distance between the class and its ancestors
-	 * @param prop: the relationship property between the class and its ancestors
-	 * @return the list of descendants of the input class at the given distance
-	 * and with the given property
-	 */
-	public Set<String> getDescendants(String classId, int distance, String prop)
-	{
-		HashSet<String> desc = new HashSet<String>();
-		if(!descendantClasses.contains(classId))
-			return desc;
-		for(String i : descendantClasses.keySet(classId))
-			for(Relationship r : descendantClasses.get(classId, i))
-				if(r.getDistance() == distance && r.getProperty() == prop)
-					desc.add(i);
+		for(String i : descendantClasses.keySet(uri))
+			if(descendantClasses.get(uri, i) == distance)
+				desc.add(i);
 		return desc;
 	}
 	
@@ -628,27 +514,27 @@ public class EntityMap
 	}
 
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of classes disjoint with the given class
 	 */
-	public Set<String> getDisjoint(String classId)
+	public Set<String> getDisjoint(String uri)
 	{
-		if(disjointMap.contains(classId))
-			return disjointMap.get(classId);
+		if(disjointMap.contains(uri))
+			return disjointMap.get(uri);
 		return new HashSet<String>();
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of classes disjoint with the given class
-	 * or any of its 'is_a' ancestors
+	 * or any of its ancestors
 	 */
-	public Set<String> getDisjointTransitive(String classId)
+	public Set<String> getDisjointTransitive(String uri)
 	{
 		//Get the disjoint clauses for the class
-		Set<String> disj = getDisjoint(classId);
+		Set<String> disj = getDisjoint(uri);
 		//Then get all superclasses of the class
-		Set<String> ancestors = getSuperClasses(classId,false);
+		Set<String> ancestors = getSuperClasses(uri,false);
 		//For each superclass
 		for(String i : ancestors)
 			//Add its disjoint clauses to the list
@@ -664,16 +550,11 @@ public class EntityMap
 	 */
 	public int getDistance(String child, String parent)
 	{
-		if(child == parent)
+		if(child.equals(parent))
 			return 0;
 		if(!ancestorClasses.contains(child, parent))
 			return -1;
-		Vector<Relationship> rels = ancestorClasses.get(child,parent);
-		int distance = rels.get(0).getDistance();
-		for(Relationship r : rels)
-			if(r.getDistance() < distance)
-				distance = r.getDistance();
-		return distance;
+		return ancestorClasses.get(child,parent);
 	}
 	
 	/**
@@ -688,32 +569,36 @@ public class EntityMap
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of equivalences of the given class
 	 */
-	public Set<String> getEquivalences(String classId)
+	public Set<String> getEquivalences(String uri)
 	{
-		return getDescendants(classId, 0);
+		return getDescendants(uri, 0);
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of classes equivalent to the given class
 	 */
-	public Set<String> getEquivalentClasses(String classId)
+	public Set<String> getEquivalentClasses(String uri)
 	{
-		return getDescendants(classId,0,"");
+		HashSet<String> equivs = new HashSet<String>();
+		for(String e : getEquivalences(uri))
+			if(isClass(e))
+				equivs.add(e);
+		return equivs;
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of high level ancestors of the given class
 	 */
-	public Set<String> getHighLevelAncestors(String classId)
+	public Set<String> getHighLevelAncestors(String uri)
 	{
 		if(highLevelClasses == null)
 			getHighLevelClasses();
-		Set<String> ancestors = getAncestors(classId);
+		Set<String> ancestors = getAncestors(uri);
 		HashSet<String> highAncs = new HashSet<String>();
 		for(String i : ancestors)
 			if(highLevelClasses.contains(i))
@@ -830,7 +715,6 @@ public class EntityMap
 	{
 		return passiveRelation.keySet();
 	}
-
 	
 	/**
 	 * @param indivId: the id of the individual to search in the map
@@ -882,17 +766,6 @@ public class EntityMap
 	}
 	
 	/**
-	 * @param propId: the id of the property to search in the map
-	 * @return the list of classes in the range of the input property
-	 */
-	public Set<String> getObjectRanges(String propId)
-	{
-		if(objectRange.contains(propId))
-			return objectRange.get(propId);
-		return new HashSet<String>();
-	}
-	
-	/**
 	 * @return the set of classes with ancestors in the map
 	 */
 	public Set<String> getParents()
@@ -903,12 +776,12 @@ public class EntityMap
 	}
 
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @return the list of direct parents of the given class
 	 */
-	public Set<String> getParents(String classId)
+	public Set<String> getParents(String uri)
 	{
-		return getAncestors(classId,1);
+		return getAncestors(uri,1);
 	}
 	
 	/**
@@ -924,80 +797,41 @@ public class EntityMap
 	}
 	
 	/**
-	 * @param child: the id of the child class to search in the map
-	 * @param parent: the id of the parent class to search in the map
-	 * @return the 'best' relationship between the two classes
-	 */
-	public Relationship getRelationship(String child, String parent)
-	{
-		if(!ancestorClasses.contains(child, parent))
-			return null;
-		Relationship rel = ancestorClasses.get(child).get(parent).get(0);
-		for(Relationship r : ancestorClasses.get(child).get(parent))
-			if(r.compareTo(rel) > 0)
-				rel = r;
-		return rel;
-	}
-
-	/**
-	 * @param child: the id of the child class to search in the map
-	 * @param parent: the id of the parent class to search in the map
-	 * @return the relationships between the two classes
-	 */
-	public Vector<Relationship> getRelationships(String child, String parent)
-	{
-		return ancestorClasses.get(child).get(parent);
-	}
-	
-	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @param prop: the relationship property between the class and its ancestors
 	 * @return the list of strict siblings of the given class (through the subclass relation)
 	 */
-	public Set<String> getSiblings(String classId)
+	public Set<String> getSiblings(String uri)
 	{
-		Set<String> parents = getAncestors(classId,1,"");
+		Set<String> parents = getAncestors(uri,1);
 		HashSet<String> siblings = new HashSet<String>();
 		for(String i : parents)
 		{
-			Set<String> children = getDescendants(i,1,"");
+			Set<String> children = getDescendants(i,1);
 			for(String j : children)
-				if(j != classId)
+				if(j != uri)
 					siblings.add(j);
 		}
 		return siblings;
 	}
-	
+
 	/**
-	 * @param classId: the id of the class to search in the map
-	 * @return the list of siblings of the given class for all
-	 * subclass relationships
-	 */
-	public Set<String> getSiblingsProperty(String classId, String prop)
-	{
-		Set<String> parents = getAncestors(classId,1,prop);
-		HashSet<String> siblings = new HashSet<String>();
-		for(String i : parents)
-		{
-			Set<String> children = getDescendants(i,1,prop);
-			for(String j : children)
-				if(j != classId)
-					siblings.add(j);
-		}
-		return siblings;
-	}
-	
-	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @param direct: whether to return all subclasses or just the direct ones
 	 * @return the list of direct or indirect subclasses of the input class
 	 */
-	public Set<String> getSubClasses(String classId, boolean direct)
+	public Set<String> getSubClasses(String uri, boolean direct)
 	{
+		HashSet<String> desc = new HashSet<String>();
+		Set<String> toSearch;
 		if(direct)
-			return getDescendants(classId,1,"");
+			toSearch = getDescendants(uri,1);
 		else
-			return getDescendantsProperty(classId,"");
+			toSearch = getDescendants(uri);
+		for(String e : toSearch)
+			if(isClass(e))
+				desc.add(e);
+		return desc;
 	}
 	
 	/**
@@ -1013,16 +847,22 @@ public class EntityMap
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @param direct: whether to return all superclasses or just the direct ones
 	 * @return the list of direct or indirect superclasses of the input class
 	 */
-	public Set<String> getSuperClasses(String classId, boolean direct)
+	public Set<String> getSuperClasses(String uri, boolean direct)
 	{
+		HashSet<String> anc = new HashSet<String>();
+		Set<String> toSearch;
 		if(direct)
-			return getAncestors(classId,1,"");
+			toSearch = getAncestors(uri,1);
 		else
-			return getAncestorsProperty(classId,"");
+			toSearch = getAncestors(uri);
+		for(String e : toSearch)
+			if(isClass(e))
+				anc.add(e);
+		return anc;
 	}
 	
 	/**
@@ -1067,22 +907,22 @@ public class EntityMap
 	 * @param class: the uri of the class to search in the map
 	 * @return whether there is a disjoint clause associated with the class
 	 */
-	public boolean hasDisjoint(String classId)
+	public boolean hasDisjoint(String uri)
 	{
-		return disjointMap.contains(classId);
+		return disjointMap.contains(uri);
 	}
 
 	/**
-	 * @param classId: the uri of the class to search in the map
+	 * @param uri: the uri of the class to search in the map
 	 * @return whether there is a disjoint clause associated with the class
 	 * or any of its 'is_a' ancestors
 	 */
-	public boolean hasDisjointTransitive(String classId)
+	public boolean hasDisjointTransitive(String uri)
 	{
 		//Get all superclasses of the class
-		Set<String> ancestors = getSuperClasses(classId,false);
+		Set<String> ancestors = getSuperClasses(uri,false);
 		//Plus the parent itself
-		ancestors.add(classId);
+		ancestors.add(uri);
 		//Run through the list of superclasses
 		for(String i : ancestors)
 			//And check if any have disjoint clauses
@@ -1099,22 +939,6 @@ public class EntityMap
 	public boolean hasDisjointClause(String one, String two)
 	{
 		return (disjointMap.contains(one) && disjointMap.contains(one,two));
-	}
-	
-	/**
-	 * @param child: the id of the child class to search in the map
-	 * @param parent: the id of the parent class to search in the map
-	 * @param property: the id of the property between child and parent
-	 * @return whether there is a relationship between child and parent
-	 *  with the given property
-	 */
-	public boolean hasProperty(String child, String parent, String property)
-	{
-		Vector<Relationship> rels = getRelationships(child,parent);
-		for(Relationship r : rels)
-			if(r.getProperty() == property)
-				return true;
-		return false;
 	}
 	
 	/**
@@ -1176,7 +1000,16 @@ public class EntityMap
 	public boolean isIndividual(String uri)
 	{
 		return entityType.get(uri).contains(EntityType.INDIVIDUAL);
-	}	
+	}
+	
+	/**
+	 * @param prop: the uri of the property to check
+	 * @return whether the property is irreflexive
+	 */
+	public boolean isIrreflexive(String prop)
+	{
+		return irreflexive.contains(prop);
+	}
 	
 	/**
 	 * @param uri: the uri of the Ontology entity
@@ -1185,6 +1018,15 @@ public class EntityMap
 	public boolean isObjectProperty(String uri)
 	{
 		return entityType.get(uri).contains(EntityType.OBJECT_PROP);
+	}
+	
+	/**
+	 * @param prop: the uri of the property to check
+	 * @return whether the property is reflexive
+	 */
+	public boolean isReflexive(String prop)
+	{
+		return reflexive.contains(prop);
 	}
 	
 	/**
@@ -1232,23 +1074,23 @@ public class EntityMap
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @param direct: whether to return all subclasses or just the direct ones
 	 * @return the number of direct or indirect subclasses of the input class
 	 */
-	public int subClassCount(String classId, boolean direct)
+	public int subClassCount(String uri, boolean direct)
 	{
-		return getSubClasses(classId,direct).size();
+		return getSubClasses(uri,direct).size();
 	}
 	
 	/**
-	 * @param classId: the id of the class to search in the map
+	 * @param uri: the id of the class to search in the map
 	 * @param direct: whether to return all superclasses or just the direct ones
 	 * @return the number of direct or indirect superclasses of the input class
 	 */
-	public int superClassCount(String classId, boolean direct)
+	public int superClassCount(String uri, boolean direct)
 	{
-		return getSuperClasses(classId,direct).size();
+		return getSuperClasses(uri,direct).size();
 	}
 	
 	/**
@@ -1270,35 +1112,8 @@ public class EntityMap
 				childs.addAll(getEquivalences(i));
 				Set<String> pars = getAncestors(i,distance);
 				for(String j : pars)
-				{
-					Vector<Relationship> rel1 = getRelationships(i,j);
-					for(int k = 0; k < rel1.size(); k++)
-					{
-						Relationship r1 = rel1.get(k);
-						String p1 = r1.getProperty();
-						for(String h : childs)
-						{
-							Vector<Relationship> rel2 = getRelationships(h,i);
-							for(int l = 0; l < rel2.size(); l++)
-							{
-								Relationship r2 = rel2.get(l);
-								String p2 = r2.getProperty();
-								//We only do transitive closure if the property is the same (and transitive)
-								//for two relationships or one of the properties is 'is_a' (-1)
-								if(!(p1.equals("") || p2.equals("") || transitiveOver.contains(p2,p1)))
-									continue;
-								int dist = r1.getDistance() + r2.getDistance();
-								String prop;
-								if(p1.equals(p2) || !p1.equals(""))
-									prop = p1;
-								else
-									prop = p2;
-								boolean rest = r1.isExclusive() && r2.isExclusive();
-								addClassRelationship(h, j, dist, prop, rest);
-							}
-						}
-					}
-				}
+					for(String h : childs)
+						addClassRelationship(h, j, getDistance(i,j) + getDistance(h,i));
 			}
 		}
 	}
