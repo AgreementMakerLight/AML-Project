@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,7 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* The map of cross-references in a MediatorOntology.                          *
+* The map of cross-references in an Ontology.                                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -30,24 +30,24 @@ public class ReferenceMap
 	
 //Attributes
 	
-	//The table of classes (Integer) <-> cross-reference URIs (String)
-	private Map2Set<Integer,String> termRefs;
-	private Map2Set<String,Integer> refTerms;
+	//The map of entities <-> cross-reference
+	private Map2Set<String,String> entityRefs;
+	private Map2Set<String,String> refEntities;
 
 //Constructors
 	
 	public ReferenceMap()
 	{
-		termRefs = new Map2Set<Integer,String>();
-		refTerms = new Map2Set<String,Integer>();
+		entityRefs = new Map2Set<String,String>();
+		refEntities = new Map2Set<String,String>();
 	}
 	
 //Public Methods
 	
-	public void add(int term, String ref)
+	public void add(String uri, String ref)
 	{
-		termRefs.add(term, ref);
-		refTerms.add(ref, term);
+		entityRefs.add(uri, ref);
+		refEntities.add(ref, uri);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class ReferenceMap
 	 */
 	public boolean contains(String ref)
 	{
-		return refTerms.contains(ref);
+		return refEntities.contains(ref);
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class ReferenceMap
 	 */
 	public boolean contains(int term, String ref)
 	{
-		return termRefs.contains(term) && termRefs.get(term).contains(ref);
+		return entityRefs.contains(term) && entityRefs.getReferences(term).contains(ref);
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class ReferenceMap
 	 */
 	public int countRefs(int term)
 	{
-		return termRefs.entryCount(term);
+		return entityRefs.entryCount(term);
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class ReferenceMap
 	 */
 	public int countTerms(String ref)
 	{
-		return refTerms.entryCount(ref);
+		return refEntities.entryCount(ref);
 	}
 	
 	/**
@@ -102,8 +102,8 @@ public class ReferenceMap
 				String[] words = line.split("\t");
 				if(!contains(words[0]))
 					continue;
-				Set<Integer> terms = get(words[0]);
-				for(Integer i : terms)
+				Set<String> terms = getEntities(words[0]);
+				for(String i : terms)
 					add(i, words[1]);
 			}
 			inStream.close();
@@ -115,21 +115,21 @@ public class ReferenceMap
 	}
 	
 	/**
-	 * @param term: the term to search in the ReferenceMap
-	 * @return the list of external references associated with the term
+	 * @param uri: the uri of the entity to search in the ReferenceMap
+	 * @return the list of external references associated with the entity
 	 */
-	public Set<String> get(int term)
+	public Set<String> getReferences(String uri)
 	{
-		return termRefs.get(term);
+		return entityRefs.get(uri);
 	}
 
 	/**
 	 * @param ref: the reference to search in the ReferenceMap
-	 * @return the list of terms for that reference
+	 * @return the list of entities that reference
 	 */
-	public Set<Integer> get(String ref)
+	public Set<String> getEntities(String ref)
 	{
-		return refTerms.get(ref);
+		return refEntities.get(ref);
 	}
 
 	/**
@@ -137,15 +137,15 @@ public class ReferenceMap
 	 */
 	public Set<String> getReferences()
 	{
-		return refTerms.keySet();
+		return refEntities.keySet();
 	}
 
 	/**
 	 * @return the set of terms in the ReferenceMap
 	 */
-	public Set<Integer> getTerms()
+	public Set<String> getEntities()
 	{
-		return termRefs.keySet();
+		return entityRefs.keySet();
 	}
 	
 	/**
@@ -153,7 +153,7 @@ public class ReferenceMap
 	 */
 	public int refCount()
 	{
-		return refTerms.keyCount();
+		return refEntities.keyCount();
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class ReferenceMap
 	 */
 	public int size()
 	{
-		return refTerms.size();
+		return refEntities.size();
 	}
 	
 	/**
@@ -169,6 +169,6 @@ public class ReferenceMap
 	 */
 	public int termCount()
 	{
-		return termRefs.keyCount();
+		return entityRefs.keyCount();
 	}
 }
