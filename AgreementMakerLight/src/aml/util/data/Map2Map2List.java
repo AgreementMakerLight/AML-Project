@@ -13,11 +13,10 @@
 *                                                                             *
 *******************************************************************************
 * A table with three columns, represented by a HashMap of Table2List.         *
-* Adapted from AgreementMakerLight.                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util.table;
+package aml.util.data;
 
 import java.util.HashMap;
 import java.util.Set;

@@ -13,11 +13,10 @@
 *                                                                             *
 *******************************************************************************
 * A table with two columns, represented by a HashMap of Vectors.              *
-* Adapted from AgreementMakerLight.                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util.table;
+package aml.util.data;
 
 import java.util.Collection;
 import java.util.HashMap;

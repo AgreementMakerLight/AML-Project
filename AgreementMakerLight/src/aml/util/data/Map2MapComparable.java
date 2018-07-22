@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util.table;
+package aml.util.data;
 
 import java.util.HashMap;
 import java.util.Set;

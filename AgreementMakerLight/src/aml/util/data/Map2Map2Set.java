@@ -12,11 +12,11 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A table with three columns, represented by a HashMap of Table2Set.          *
+* A table with three columns, represented by a HashMap of Map2Set.            *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util.table;
+package aml.util.data;
 
 import java.util.HashMap;
 import java.util.HashSet;
