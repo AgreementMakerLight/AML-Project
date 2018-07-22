@@ -19,6 +19,7 @@
 ******************************************************************************/
 package aml.ontology;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -80,19 +81,21 @@ public class EntityMap
 	private Map2Set<String,Vector<String>> propChain; //Property -> Property Chain
 	
 	//5) Class expressions
-	//Expression -> set of Expressions in the intersection
+	//Expression -> ClassExpressionType
+	private HashMap<String,ClassExpressionType> expressionTypes;
+	//Intersection expression -> set of Expressions in the intersection
 	private Map2Set<String,String> intersect;
-	//Expression -> set of Expressions in the union
+	//Union expression -> set of Expressions in the union
 	private Map2Set<String,String> union;
-	//Expression -> {restricted Property; Expression in the restricted range}
+	//AllValues restriction -> {restricted Property; Expression in the restricted range}
 	private Map2Couple<String,String,String> allValues;
-	//Expression -> {restricted Property; Literal in the restricted range}
+	//HasValue restriction -> {restricted Property; Literal in the restricted range}
 	private Map2Couple<String,String,String> hasValue;
-	//Expression -> {restricted Property; Expression in the restricted range; Cardinality}
+	//MinCardinality restriction -> {restricted Property; Expression in the restricted range; Cardinality}
 	private Map2Triple<String,String,String,Integer> minCard; //includes someValues = minCard(1)
-	//Expression -> {restricted Property; Expression in the restricted range; Cardinality}
+	//MaxCardinality restriction -> {restricted Property; Expression in the restricted range; Cardinality}
 	private Map2Triple<String,String,String,Integer> maxCard;
-	//Expression -> {restricted Property; Expression in the restricted range; Cardinality}
+	//ExactCardinality restriction -> {restricted Property; Expression in the restricted range; Cardinality}
 	private Map2Triple<String,String,String,Integer> exactCard;
 	
 //Constructors
