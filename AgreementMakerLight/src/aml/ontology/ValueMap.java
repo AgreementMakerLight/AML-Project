@@ -23,7 +23,7 @@ package aml.ontology;
 import java.util.HashSet;
 import java.util.Set;
 
-import aml.util.table.Map2Map2Set;
+import aml.util.data.Map2Map2Set;
 
 public class ValueMap
 {

@@ -23,7 +23,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Set;
 
-import aml.util.table.Map2Set;
+import aml.util.data.Map2Set;
 
 public class ReferenceMap
 {
@@ -60,22 +60,22 @@ public class ReferenceMap
 	}
 	
 	/**
-	 * @param term: the term to check in the ReferenceMap
+	 * @param uri: the uri to check in the ReferenceMap
 	 * @param ref: the reference to check in the Lexicon
-	 * @return whether the Lexicon contains the name for the term
+	 * @return whether the Lexicon contains the name for the uri
 	 */
-	public boolean contains(int term, String ref)
+	public boolean contains(String uri, String ref)
 	{
-		return entityRefs.contains(term) && entityRefs.getReferences(term).contains(ref);
+		return entityRefs.contains(uri) && entityRefs.get(uri).contains(ref);
 	}
 	
 	/**
-	 * @param term: the term to search in the ReferenceMap
-	 * @return the number of external references associated with the term
+	 * @param uri: the uri to search in the ReferenceMap
+	 * @return the number of external references associated with the uri
 	 */
-	public int countRefs(int term)
+	public int countRefs(String uri)
 	{
-		return entityRefs.entryCount(term);
+		return entityRefs.entryCount(uri);
 	}
 	
 	/**
