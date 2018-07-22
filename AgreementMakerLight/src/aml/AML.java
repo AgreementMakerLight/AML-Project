@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -36,24 +36,24 @@ import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.alignment.Alignment;
+import aml.alignment.AlignmentIO;
+import aml.alignment.Mapping;
 import aml.alignment.MappingStatus;
-import aml.alignment.SimpleMapping;
-import aml.ext.ParenthesisExtender;
-import aml.ext.StopWordExtender;
 import aml.filter.CustomFilterer;
 import aml.filter.CustomFlagger;
 import aml.filter.QualityFlagger;
 import aml.filter.RepairMap;
 import aml.filter.Repairer;
 import aml.knowledge.Dictionary;
-import aml.knowledge.MediatorOntology;
 import aml.match.ManualMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.match.AutomaticMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.RelationshipMap;
-import aml.ontology.URIMap;
+import aml.ontology.OntologyParser;
+import aml.ontology.EntityMap;
+import aml.ontology.lexicon.ParenthesisExtender;
+import aml.ontology.lexicon.StopWordExtender;
 import aml.settings.Problem;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
@@ -81,11 +81,10 @@ public class AML
 	//Path to AML
 	private String dir;
 	//The ontology and alignment data structures
-	private URIMap uris;
-	private RelationshipMap rels;
+	private EntityMap entities;
 	private Ontology source;
 	private Ontology target;
-	private MediatorOntology bk;
+	private Ontology bk;
 	private Alignment a;
 	private Alignment ref;
 	private RepairMap rep;
@@ -107,8 +106,8 @@ public class AML
 	private final String LOG = "log4j.properties";
 	private final String BK_PATH = "store/knowledge/";
 	private Vector<String> bkSources; //The list of files under the BK_PATH
-	private Set<Integer> sourceIndividualsToMatch;
-	private Set<Integer> targetIndividualsToMatch;
+	private Set<String> sourceIndividualsToMatch;
+	private Set<String> targetIndividualsToMatch;
 	private InstanceMatchingCategory inst;
 	private LanguageSetting lang;
 	private SizeCategory size;
@@ -144,8 +143,7 @@ public class AML
 	private AML()
 	{
         //Initialize the URIMap and RelationshipMap
-		uris = new URIMap();
-		rels = new RelationshipMap();
+		entities = new EntityMap();
 		dir = "";
 		try
 		{
@@ -203,8 +201,7 @@ public class AML
     	source = null;
     	target = null;
     	bk = null;
-    	uris = null;
-    	rels = null;
+    	entities = null;
     	closeAlignment();
     }
     
@@ -240,8 +237,8 @@ public class AML
 			matchSteps.add(s);
 		
 		matchClasses = hasClasses();
-		double sourceRatio = (source.count(EntityType.DATA) + source.count(EntityType.OBJECT)) * 1.0 / source.count(EntityType.CLASS);
-		double targetRatio = (target.count(EntityType.DATA) + target.count(EntityType.OBJECT)) * 1.0 / target.count(EntityType.CLASS);
+		double sourceRatio = (source.count(EntityType.DATA_PROP) + source.count(EntityType.OBJECT_PROP)) * 1.0 / source.count(EntityType.CLASS);
+		double targetRatio = (target.count(EntityType.DATA_PROP) + target.count(EntityType.OBJECT_PROP)) * 1.0 / target.count(EntityType.CLASS);
 		matchProperties = hasProperties() && sourceRatio >= 0.05 && targetRatio >= 0.05;
 		sourceRatio = source.count(EntityType.INDIVIDUAL) * 1.0 / source.count(EntityType.CLASS);
 		targetRatio = target.count(EntityType.INDIVIDUAL) * 1.0 / target.count(EntityType.CLASS);
@@ -326,6 +323,19 @@ public class AML
 					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
 	}
 	
+	/**
+	 * Extends the Lexicons of the open ontologies using the ParenthesisExtender
+	 * and the StopWordExtender
+	 */
+	public void extendLexicons()
+	{
+		//TODO: Update this
+//    	StopWordExtender sw = new StopWordExtender();
+//    	sw.extendLexicons();
+//    	ParenthesisExtender p = new ParenthesisExtender();
+//    	p.extendLexicons();
+	}
+	
     /**
      * Filters problem mappings in the active alignment
      */
@@ -375,7 +385,7 @@ public class AML
     /**
      * @return the current background knowledge ontology
      */
-	public MediatorOntology getBKOntology()
+	public Ontology getBKOntology()
 	{
 		return bk;
 	}
@@ -395,7 +405,15 @@ public class AML
     {
 		return classDistance;
 	}
-	
+
+	/**
+	 * @return the EntityMap
+	 */
+	public EntityMap getEntityMap()
+	{
+		return entities;
+	}
+
     /**
      * @return the evaluation of the current alignment
      */
@@ -414,8 +432,8 @@ public class AML
 
 	public double getIndividualConnectivity()
 	{
-		double connectivity = Math.min(rels.getIndividualsWithPassiveRelations().size(),
-				rels.getIndividualsWithActiveRelations().size());
+		double connectivity = Math.min(entities.getIndividualsWithPassiveRelations().size(),
+				entities.getIndividualsWithActiveRelations().size());
 		connectivity /= source.count(EntityType.INDIVIDUAL) + target.count(EntityType.INDIVIDUAL);
 		return connectivity;
 	}
@@ -522,14 +540,6 @@ public class AML
     }
     
 	/**
-	 * @return the RelationshipMap
-	 */
-	public RelationshipMap getRelationshipMap()
-	{
-		return rels;
-	}
-	
-	/**
 	 * @return the RepairMap
 	 */
 	public RepairMap getRepairMap()
@@ -572,7 +582,7 @@ public class AML
 	/**
 	 * @return the set of individuals of the source ontology to match
 	 */
-	public Set<Integer> getSourceIndividualsToMatch()
+	public Set<String> getSourceIndividualsToMatch()
 	{
 		return sourceIndividualsToMatch;
 	}
@@ -596,7 +606,7 @@ public class AML
 	/**
 	 * @return the set of individuals of the target ontology to match
 	 */
-    public Set<Integer> getTargetIndividualsToMatch()
+    public Set<String> getTargetIndividualsToMatch()
     {
 		return targetIndividualsToMatch;
 	}
@@ -609,14 +619,6 @@ public class AML
     	return threshold;
     }
     
-	/**
-	 * @return the URIMap
-	 */
-	public URIMap getURIMap()
-	{
-		return uris;
-	}
-	
 	/**
 	 * @return the active WordMatchStrategy
 	 */
@@ -673,8 +675,8 @@ public class AML
     public boolean hasProperties()
     {
     	return hasOntologies() &&
-   			((source.count(EntityType.DATA) > 0 && target.count(EntityType.DATA) > 0) ||
-   			(source.count(EntityType.OBJECT) > 0 && target.count(EntityType.OBJECT) > 0));
+   			((source.count(EntityType.DATA_PROP) > 0 && target.count(EntityType.DATA_PROP) > 0) ||
+   			(source.count(EntityType.OBJECT_PROP) > 0 && target.count(EntityType.OBJECT_PROP) > 0));
     }
     
     /**
@@ -691,14 +693,14 @@ public class AML
 		return hierarchic;
 	}
     
-    public boolean isToMatchSource(int index)
+    public boolean isToMatchSource(String uri)
     {
-    	return sourceIndividualsToMatch.contains(index);
+    	return sourceIndividualsToMatch.contains(uri);
 	}
 
-    public boolean isToMatchTarget(int index)
+    public boolean isToMatchTarget(String uri)
     {
-    	return targetIndividualsToMatch.contains(index);
+    	return targetIndividualsToMatch.contains(uri);
 	}
     
     /**
@@ -843,7 +845,7 @@ public class AML
      */
     public void openAlignment(String path) throws Exception
     {
-    	a = new Alignment(path);
+    	a = AlignmentIO.parse(path,true);
     	evaluation = null;
     	if(a.size() > 0)
     		activeMapping = 0;
@@ -856,9 +858,7 @@ public class AML
 	{
 		System.out.println("Loading mediating ontology " + name);
 		long time = System.currentTimeMillis()/1000;
-		if(bk != null)
-			bk.close();
-		bk = new MediatorOntology(dir + BK_PATH + name);
+		bk = OntologyParser.parse(dir + BK_PATH + name,true);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(bk.getURI() + " loaded in " + time + " seconds");
 	}
@@ -866,35 +866,34 @@ public class AML
 	public void openOntologies(String src, String tgt) throws OWLOntologyCreationException
 	{
 		closeOntologies();
-        //Initialize the URIMap and RelationshipMap
-		uris = new URIMap();
-		rels = new RelationshipMap();
+        //Initialize the EntityMap
+		entities = new EntityMap();
 		if(useReasoner)
 			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = new Ontology(src);
+		source = OntologyParser.parse(src,false);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.count(EntityType.CLASS));
 		System.out.println("Individuals: " + source.count(EntityType.INDIVIDUAL));
-		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
+		System.out.println("Properties: " + (source.count(EntityType.DATA_PROP)+source.count(EntityType.OBJECT_PROP)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
-		target = new Ontology(tgt);
+		target = OntologyParser.parse(tgt,false);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
 		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
-		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
-		System.out.println("Direct Relationships: " + rels.relationshipCount());
+		System.out.println("Properties: " + (target.count(EntityType.DATA_PROP)+target.count(EntityType.OBJECT_PROP)));
+		System.out.println("Direct Relationships: " + entities.relationshipCount());
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Running transitive closure on RelationshipMap");
-		rels.transitiveClosure();
+		entities.transitiveClosure();
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Transitive closure finished in " + time + " seconds");	
-		System.out.println("Extended Relationships: " + rels.relationshipCount());
-		System.out.println("Disjoints: " + rels.disjointCount());
+		System.out.println("Extended Relationships: " + entities.relationshipCount());
+		System.out.println("Disjoints: " + entities.disjointCount());
     	//Reset the alignment, mapping, and evaluation
     	a = null;
     	activeMapping = -1;
@@ -903,45 +902,41 @@ public class AML
     	if(userInterface != null)
     		userInterface.refresh();
     	defaultConfig();
-    	StopWordExtender sw = new StopWordExtender();
-    	sw.extendLexicons();
-    	ParenthesisExtender p = new ParenthesisExtender();
-    	p.extendLexicons();
+    	extendLexicons();
     	System.out.println("Finished!");	
 	}
 	
 	public void openOntologies(URI src, URI tgt) throws OWLOntologyCreationException
 	{
 		closeOntologies();
-        //Initialize the URIMap and RelationshipMap
-		uris = new URIMap();
-		rels = new RelationshipMap();
+        //Initialize the EntityMap
+		entities = new EntityMap();
 		if(useReasoner)
 			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = new Ontology(src);
+		source = OntologyParser.parse(src,false);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.count(EntityType.CLASS));
 		System.out.println("Individuals: " + source.count(EntityType.INDIVIDUAL));
-		System.out.println("Properties: " + (source.count(EntityType.DATA)+source.count(EntityType.OBJECT)));
+		System.out.println("Properties: " + (source.count(EntityType.DATA_PROP)+source.count(EntityType.OBJECT_PROP)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
-		target = new Ontology(tgt);
+		target = OntologyParser.parse(tgt,false);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
 		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
-		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
-		System.out.println("Direct Relationships: " + rels.relationshipCount());
+		System.out.println("Properties: " + (target.count(EntityType.DATA_PROP)+target.count(EntityType.OBJECT_PROP)));
+		System.out.println("Direct Relationships: " + entities.relationshipCount());
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Running transitive closure on RelationshipMap");
-		rels.transitiveClosure();
+		entities.transitiveClosure();
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Transitive closure finished in " + time + " seconds");	
-		System.out.println("Extended Relationships: " + rels.relationshipCount());
-		System.out.println("Disjoints: " + rels.disjointCount());
+		System.out.println("Extended Relationships: " + entities.relationshipCount());
+		System.out.println("Disjoints: " + entities.disjointCount());
     	//Reset the alignment, mapping, and evaluation
     	a = null;
     	activeMapping = -1;
@@ -950,16 +945,13 @@ public class AML
     	if(userInterface != null)
     		userInterface.refresh();
     	defaultConfig();
-    	StopWordExtender sw = new StopWordExtender();
-    	sw.extendLexicons();
-    	ParenthesisExtender p = new ParenthesisExtender();
-    	p.extendLexicons();
+    	extendLexicons();
     	System.out.println("Finished!");	
     }
     
     public void openReferenceAlignment(String path) throws Exception
     {
-    	ref = new Alignment(path);
+    	ref = AlignmentIO.parse(path,true);
     }
     
     public boolean primaryStringMatcher()
@@ -1051,7 +1043,7 @@ public class AML
 	public void removeIncorrect()
 	{
 		Alignment reviewed = new Alignment();
-		for(SimpleMapping m : a)
+		for(Mapping m : a)
 			if(!m.getStatus().equals(MappingStatus.INCORRECT))
 				reviewed.add(m);
 		if(a.size() > reviewed.size())
@@ -1081,13 +1073,13 @@ public class AML
 
     public void saveAlignmentRDF(String file) throws Exception
     {
-    	a.saveRDF(file);
+    	AlignmentIO.saveRDF(a,file);
     	needSave = false;
     }
     
     public void saveAlignmentTSV(String file) throws Exception
     {
-    	a.saveTSV(file);
+    	AlignmentIO.saveTSV(a,file);
     	needSave = false;
     }
     
@@ -1174,19 +1166,19 @@ public class AML
 	 */
 	public void setSourceClassesToMatch(Set<String> sourcesToMatch)
 	{
-		sourceIndividualsToMatch = new HashSet<Integer>();
-		HashSet<Integer> sourceClasses = new HashSet<Integer>();
+		sourceIndividualsToMatch = new HashSet<String>();
+		HashSet<String> sourceClasses = new HashSet<String>();
 		for(String s : sourcesToMatch)
 		{
-			int id = source.getIndex(s);
-			if(id != -1)
+			String id = source.getURI(s);
+			if(id != null)
 				sourceClasses.add(id);
 		}
-		for(Integer i : source.getEntities(EntityType.INDIVIDUAL))
+		for(String i : source.getEntities(EntityType.INDIVIDUAL))
 		{
-			for(Integer c : sourceClasses)
+			for(String c : sourceClasses)
 			{
-				if(rels.belongsToClass(i, c))
+				if(entities.belongsToClass(i, c))
 				{
 					sourceIndividualsToMatch.add(i);
 					break;
@@ -1212,19 +1204,19 @@ public class AML
 	 */	
 	public void setTargetClassesToMatch(Set<String> targetsToMatch)
 	{
-		targetIndividualsToMatch = new HashSet<Integer>();
-		HashSet<Integer> targetClasses = new HashSet<Integer>();
+		targetIndividualsToMatch = new HashSet<String>();
+		HashSet<String> targetClasses = new HashSet<String>();
 		for(String s : targetsToMatch)
 		{
-			int id = target.getIndex(s);
-			if(id != -1)
+			String id = target.getURI(s);
+			if(id != null)
 				targetClasses.add(id);
 		}
-		for(Integer i : target.getEntities(EntityType.INDIVIDUAL))
+		for(String i : target.getEntities(EntityType.INDIVIDUAL))
 		{
-			for(Integer c : targetClasses)
+			for(String c : targetClasses)
 			{
-				if(rels.belongsToClass(i, c))
+				if(entities.belongsToClass(i, c))
 				{
 					targetIndividualsToMatch.add(i);
 					break;
