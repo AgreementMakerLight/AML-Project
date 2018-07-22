@@ -30,8 +30,8 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.ontology.EntityType;
-import aml.ontology.RelationshipMap;
-import aml.util.table.Map2MapComparable;
+import aml.util.data.Map2MapComparable;
+import aml.ontology.EntityMap;
 
 public class Alignment implements Collection<Mapping>
 {
@@ -287,7 +287,7 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsAncestralMapping(String entity1, String entity2)
 	{
-		RelationshipMap rels = AML.getInstance().getRelationshipMap();
+		EntityMap rels = AML.getInstance().getEntityMap();
 		
 		Set<String> sourceAncestors = rels.getAncestors(entity1);
 		Set<String> targetAncestors = rels.getAncestors(entity2);
@@ -377,7 +377,7 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsDescendantMapping(String entity1, String entity2)
 	{
-		RelationshipMap rels = AML.getInstance().getRelationshipMap();
+		EntityMap rels = AML.getInstance().getEntityMap();
 		
 		Set<String> sourceDescendants = rels.getDescendants(entity1);
 		Set<String> targetDescendants = rels.getDescendants(entity2);
@@ -432,7 +432,7 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsParentMapping(String entity1, String entity2)
 	{
-		RelationshipMap rels = AML.getInstance().getRelationshipMap();
+		EntityMap rels = AML.getInstance().getEntityMap();
 		
 		Set<String> sourceAncestors = rels.getParents(entity1);
 		Set<String> targetAncestors = rels.getParents(entity2);
@@ -661,7 +661,7 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public Alignment getHighLevelAlignment()
 	{
-		RelationshipMap rels = AML.getInstance().getRelationshipMap();
+		EntityMap rels = AML.getInstance().getEntityMap();
 		
 		Alignment a = new Alignment();
 		int total = maps.size();
@@ -1010,7 +1010,7 @@ public class Alignment implements Collection<Mapping>
 	{
 		double coverage = 0.0;
 		for(String i : sourceMaps.keySet())
-			if(AML.getInstance().getURIMap().getTypes(i).contains(e))
+			if(AML.getInstance().getEntityMap().getTypes(i).contains(e))
 				coverage++;
 		int count;
 		if(e.equals(EntityType.INDIVIDUAL))
@@ -1035,7 +1035,7 @@ public class Alignment implements Collection<Mapping>
 	{
 		double coverage = 0.0;
 		for(String i : targetMaps.keySet())
-			if(AML.getInstance().getURIMap().getTypes(i).equals(e))
+			if(AML.getInstance().getEntityMap().getTypes(i).contains(e))
 				coverage++;
 		int count;
 		if(e.equals(EntityType.INDIVIDUAL))
