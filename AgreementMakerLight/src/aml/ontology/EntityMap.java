@@ -126,10 +126,30 @@ public class EntityMap
 		symmetric = new HashSet<String>();
 		transitiveOver = new Map2Set<String,String>();
 		propChain = new Map2Set<String,Vector<String>>();
+		expressionTypes = new HashMap<String,ClassExpressionType>();
+		intersect = new Map2Set<String,String>();
+		union = new Map2Set<String,String>();
+		allValues = new Map2Couple<String,String,String>();
+		hasValue = new Map2Couple<String,String,String>();
+		minCard = new Map2Triple<String,String,String,Integer>();
+		maxCard = new Map2Triple<String,String,String,Integer>();
+		exactCard = new Map2Triple<String,String,String,Integer>();
 	}
 	
 //Public Methods
 
+	/**
+	 * Adds an allValues restriction to the EntityMap
+	 * @param exp: the uri of the allValues class expression
+	 * @param prop: the restricted property
+	 * @param range: the restricted range (class expression)
+	 */
+	public void addAllValues(String exp, String prop, String range)
+	{
+		expressionTypes.put(exp,ClassExpressionType.ALL_VALUES);
+		allValues.add(exp, prop, range);
+	}
+	
 	/**
 	 * @param prop: the property to set as asymmetric
 	 */
@@ -183,13 +203,38 @@ public class EntityMap
 	{
 		addClassRelationship(class1,class2,0);
 	}
-	
+
+	/**
+	 * Adds an exact cardinality restriction to the EntityMap
+	 * @param exp: the uri of the allValues class expression
+	 * @param prop: the restricted property
+	 * @param range: the restricted range (class expression)
+	 * @param int: the restricted cardinality
+	 */
+	public void addExactCardinality(String exp, String prop, String range, int card)
+	{
+		expressionTypes.put(exp,ClassExpressionType.EXACT_CARDINALITY);
+		exactCard.add(exp, prop, range, card);
+	}
+
 	/**
 	 * @param prop: the property to set as functional
 	 */
 	public void addFunctional(String prop)
 	{
 		functional.add(prop);
+	}
+	
+	/**
+	 * Adds a hasValues restriction to the EntityMap
+	 * @param exp: the uri of the allValues class expression
+	 * @param prop: the restricted property
+	 * @param range: the restricted range (class expression)
+	 */
+	public void addHasValues(String exp, String prop, String range)
+	{
+		expressionTypes.put(exp,ClassExpressionType.HAS_VALUE);
+		hasValue.add(exp, prop, range);
 	}
 	
 	/**
@@ -216,6 +261,17 @@ public class EntityMap
 	}
 	
 	/**
+	 * Adds an intersection expression to the EntityMap
+	 * @param exp: the uri of the allValues class expression
+	 * @param inter: the set of classes in the intersection
+	 */
+	public void addIntersection(String exp, Set<String> inter)
+	{
+		expressionTypes.put(exp,ClassExpressionType.INTERSECTION);
+		intersect.addAll(exp,inter);
+	}
+	
+	/**
 	 * Adds a new inverse relationship between two properties if it doesn't exist
 	 * @param property1: the uri of the first property
 	 * @param property2: the uri of the second property
@@ -235,6 +291,42 @@ public class EntityMap
 	public void addIrreflexive(String prop)
 	{
 		irreflexive.add(prop);
+	}
+	
+	/**
+	 * Adds a max cardinality restriction to the EntityMap
+	 * @param exp: the uri of the allValues class expression
+	 * @param prop: the restricted property
+	 * @param range: the restricted range (class expression)
+	 * @param int: the restricted cardinality
+	 */
+	public void addMaxCardinality(String exp, String prop, String range, int card)
+	{
+		expressionTypes.put(exp,ClassExpressionType.MAX_CARDINALITY);
+		maxCard.add(exp, prop, range, card);
+	}
+	
+	/**
+	 * Adds a min cardinality restriction to the EntityMap
+	 * @param exp: the uri of the allValues class expression
+	 * @param prop: the restricted property
+	 * @param range: the restricted range (class expression)
+	 * @param int: the restricted cardinality
+	 */
+	public void addMinCardinality(String exp, String prop, String range, int card)
+	{
+		expressionTypes.put(exp,ClassExpressionType.MIN_CARDINALITY);
+		minCard.add(exp, prop, range, card);
+	}
+	
+	/**
+	 * Adds a property chain axiom to a given property
+	 * @param prop: the uri of the property equivalent to the chain
+	 * @param chain: the property chain equivalent to the prop
+	 */
+	public void addPropertyChain(String prop, Vector<String> chain)
+	{
+		propChain.add(prop, chain);
 	}
 	
 	/**
@@ -300,7 +392,18 @@ public class EntityMap
 	{
 		transitiveOver.add(prop1,prop2);
 	}
-	
+
+	/**
+	 * Adds an union expression to the EntityMap
+	 * @param exp: the uri of the allValues class expression
+	 * @param un: the set of classes in the union
+	 */
+	public void addUnion(String exp, Set<String> un)
+	{
+		expressionTypes.put(exp,ClassExpressionType.UNION);
+		union.addAll(exp,un);
+	}
+
 	/**
 	 * @param uri: the uri to add to AML
 	 */
@@ -611,6 +714,15 @@ public class EntityMap
 	}
 	
 	/**
+	 * @param uri: the uri of the class expression
+	 * @return the type of class expression
+	 */
+	public ClassExpressionType getExpressionType(String uri)
+	{
+		return expressionTypes.get(uri);
+	}
+	
+	/**
 	 * @param uri: the id of the class to search in the map
 	 * @return the list of high level ancestors of the given class
 	 */
@@ -746,6 +858,15 @@ public class EntityMap
 	}
 	
 	/**
+	 * @param uri: the uri of the intersection expression
+	 * @return the class expressions in the intersection
+	 */
+	public Set<String> getIntersection(String uri)
+	{
+		return intersect.get(uri);
+	}
+	
+	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the list of inverse properties of the input property
 	 */
@@ -814,6 +935,74 @@ public class EntityMap
 		if(activeRelation.contains(indivId,prop))
 			return activeRelation.get(indivId,prop);
 		return new HashSet<String>();
+	}
+
+	/**
+	 * @param prop: the uri of the property with the property chain(s)
+	 * @return the set of property chains that are equivalent to the prop
+	 */
+	public Set<Vector<String>> getPropertyChain(String prop)
+	{
+		return propChain.get(prop);
+	}
+	
+	/**
+	 * @param uri: the uri of the restriction expression
+	 * @return the cardinality restricted in the expression
+	 */
+	public Integer getRestrictedCardinality(String uri)
+	{
+		ClassExpressionType t = getExpressionType(uri);
+		if(t.equals(ClassExpressionType.EXACT_CARDINALITY))
+			return exactCard.get3(uri);
+		else if(t.equals(ClassExpressionType.MAX_CARDINALITY))
+			return maxCard.get3(uri);
+		else if(t.equals(ClassExpressionType.MIN_CARDINALITY))
+			return minCard.get3(uri);
+		else
+			return null;
+	}
+
+	/**
+	 * @param uri: the uri of the restriction expression
+	 * @return the property restricted in the expression
+	 */
+	public String getRestrictedProperty(String uri)
+	{
+		ClassExpressionType t = getExpressionType(uri);
+		if(t.equals(ClassExpressionType.ALL_VALUES))
+			return allValues.get1(uri);
+		else if(t.equals(ClassExpressionType.HAS_VALUE))
+			return hasValue.get1(uri);
+		else if(t.equals(ClassExpressionType.EXACT_CARDINALITY))
+			return exactCard.get1(uri);
+		else if(t.equals(ClassExpressionType.MAX_CARDINALITY))
+			return maxCard.get1(uri);
+		else if(t.equals(ClassExpressionType.MIN_CARDINALITY))
+			return minCard.get1(uri);
+		else
+			return null;
+	}
+
+	/**
+	 * @param uri: the uri of the restriction expression
+	 * @return the range restricted in the expression
+	 */
+	public String getRestrictedRange(String uri)
+	{
+		ClassExpressionType t = getExpressionType(uri);
+		if(t.equals(ClassExpressionType.ALL_VALUES))
+			return allValues.get2(uri);
+		else if(t.equals(ClassExpressionType.HAS_VALUE))
+			return hasValue.get2(uri);
+		else if(t.equals(ClassExpressionType.EXACT_CARDINALITY))
+			return exactCard.get2(uri);
+		else if(t.equals(ClassExpressionType.MAX_CARDINALITY))
+			return maxCard.get2(uri);
+		else if(t.equals(ClassExpressionType.MIN_CARDINALITY))
+			return minCard.get2(uri);
+		else
+			return null;
 	}
 	
 	/**
@@ -917,9 +1106,18 @@ public class EntityMap
 	}
 	
 	/**
+	 * @param uri: the uri of the union expression
+	 * @return the class expressions in the union
+	 */
+	public Set<String> getUnion(String uri)
+	{
+		return union.get(uri);
+	}
+	
+	/**
 	 * @return the URIs in the EntityMap
 	 */
-	public Set<String> getURIS()
+	public Set<String> getURIs()
 	{
 		return entityType.keySet();
 	}
