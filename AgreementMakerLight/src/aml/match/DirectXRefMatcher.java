@@ -93,7 +93,7 @@ public class DirectXRefMatcher implements PrimaryMatcher
 				if(j == -1)
 					continue;
 			}
-			for(Integer i : sourceRefs.get(r))
+			for(Integer i : sourceRefs.getEntities(r))
 				maps.add(i,j,WEIGHT1);
 		}
 		//2 - Check for direct references between the ontologies in the opposite direction
@@ -111,7 +111,7 @@ public class DirectXRefMatcher implements PrimaryMatcher
 				if(j == -1)
 					continue;
 			}
-			for(Integer i : targetRefs.get(r))
+			for(Integer i : targetRefs.getEntities(r))
 				maps.add(j,i,WEIGHT1);
 		}
 		//3 - Check for common references of the ontologies
@@ -133,9 +133,9 @@ public class DirectXRefMatcher implements PrimaryMatcher
 		{
 			if(!largest.contains(r))
 				continue;
-			for(Integer i : smallest.get(r))
+			for(Integer i : smallest.getEntities(r))
 			{
-				for(Integer j : largest.get(r))
+				for(Integer j : largest.getEntities(r))
 				{
 					if(sourceIsSmallest)
 						maps.add(i,j,WEIGHT2);

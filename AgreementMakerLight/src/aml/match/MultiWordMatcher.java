@@ -31,9 +31,9 @@ import aml.alignment.Alignment;
 import aml.knowledge.WordNet;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.Lexicon;
+import aml.ontology.lexicon.StopList;
 import aml.ontology.lexicon.WordLexicon;
 import aml.settings.InstanceMatchingCategory;
-import aml.util.StopList;
 
 public class MultiWordMatcher implements PrimaryMatcher
 {
@@ -45,7 +45,7 @@ public class MultiWordMatcher implements PrimaryMatcher
 											  "between them and the other word is related\n" + 
 											  "through WordNet.";
 	private static final String NAME = "Lexical Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	private WordNet wn;
 	//The set of stop words
 	private Set<String> stopset;
@@ -141,7 +141,7 @@ public class MultiWordMatcher implements PrimaryMatcher
 					{
 						if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(tgtId) ||
 								(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-								!aml.getRelationshipMap().shareClass(srcId,tgtId))))
+								!aml.getEntityMap().shareClass(srcId,tgtId))))
 							continue;
 						double finalSim = sim * sourceLex.getCorrectedWeight(sName, srcId) *
 								targetLex.getCorrectedWeight(tName, tgtId);

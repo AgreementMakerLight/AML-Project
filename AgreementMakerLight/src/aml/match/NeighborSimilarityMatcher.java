@@ -31,9 +31,9 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
 import aml.settings.NeighborSimilarityStrategy;
-import aml.util.Table2Set;
+import aml.util.data.Map2Set;
 
 public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 {
@@ -47,7 +47,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	private static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//Links to ontology data structures
 	private AML aml;
-	private RelationshipMap rels;
+	private EntityMap rels;
 	private Alignment input;
 	private NeighborSimilarityStrategy strat;
 	private boolean direct;
@@ -59,7 +59,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	public NeighborSimilarityMatcher()
 	{
 		aml = AML.getInstance();
-		rels = aml.getRelationshipMap();
+		rels = aml.getEntityMap();
 		strat = NeighborSimilarityStrategy.MINIMUM;
 		direct = aml.directNeighbors();
 		threads = Runtime.getRuntime().availableProcessors();
@@ -81,7 +81,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		System.out.println("Extending Alignment with Neighbor Similarity Matcher");
 		long time = System.currentTimeMillis()/1000;
 		input = a;
-		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+		Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
 		for(int i = 0; i < input.size(); i++)
 		{
 			SimpleMapping m = input.get(i);
@@ -146,7 +146,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 		long time = System.currentTimeMillis()/1000;
 		input = a;
 		Alignment maps = new Alignment();
-		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+		Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
 		for(SimpleMapping m : a)
 		{
 			int sId = m.getSourceId();
@@ -182,7 +182,7 @@ public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
 	}
 	
 	//Maps a table of classes in parallel, using all available threads
-	private Alignment mapInParallel(Table2Set<Integer,Integer> toMap, double thresh)
+	private Alignment mapInParallel(Map2Set<Integer,Integer> toMap, double thresh)
 	{
 		Alignment maps = new Alignment();
 		ArrayList<MappingTask> tasks = new ArrayList<MappingTask>();

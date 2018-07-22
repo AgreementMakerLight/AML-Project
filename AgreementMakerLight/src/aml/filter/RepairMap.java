@@ -38,10 +38,10 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
-import aml.util.Table2Set;
-import aml.util.Table3List;
-import aml.util.Table3Set;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
+import aml.util.data.Map2Map2List;
+import aml.util.data.Map2Map2Set;
+import aml.util.data.Map2Set;
 
 public class RepairMap implements Iterable<Integer>
 {
@@ -49,7 +49,7 @@ public class RepairMap implements Iterable<Integer>
 //Attributes
 	
 	private AML aml;
-	private RelationshipMap rels;
+	private EntityMap rels;
 	private Alignment a;
 	//The list of classes that are relevant for coherence checking
 	private HashSet<Integer> classList;
@@ -57,17 +57,17 @@ public class RepairMap implements Iterable<Integer>
 	private HashSet<Integer> checkList;
 	//The minimal map of ancestor relations of checkList classes
 	//(checkList class Id, classList class Id, Path)
-	private Table3List<Integer,Integer,Path> ancestorMap;
+	private Map2Map2List<Integer,Integer,Path> ancestorMap;
 	//The length of ancestral paths to facilitate transitive closure
 	//(checklist class Id, Path length, classList class Id)
-	private Table3Set<Integer,Integer,Integer> pathLengths;
+	private Map2Map2Set<Integer,Integer,Integer> pathLengths;
 	//The number of paths to disjoint classes
 	private int pathCount;
 	//The list of conflict sets
 	private Vector<Path> conflictSets;
 	//The table of conflicts per mapping
-	private Table2Set<Integer,Integer> conflictMappings;
-	private Table2Set<Integer,Integer> mappingConflicts;
+	private Map2Set<Integer,Integer> conflictMappings;
+	private Map2Set<Integer,Integer> mappingConflicts;
 	//The available CPU threads
 	private int threads;
 	
@@ -79,7 +79,7 @@ public class RepairMap implements Iterable<Integer>
 	public RepairMap()
 	{
 		aml = AML.getInstance();
-		rels = aml.getRelationshipMap();
+		rels = aml.getEntityMap();
 		//We use a clone of the alignment to avoid problems if the
 		//order of the original alignment is altered
 		a = new Alignment(aml.getAlignment());
@@ -236,8 +236,8 @@ public class RepairMap implements Iterable<Integer>
 		//Initialize the data structures
 		classList = new HashSet<Integer>();
 		checkList = new HashSet<Integer>();
-		ancestorMap = new Table3List<Integer,Integer,Path>();
-		pathLengths = new Table3Set<Integer,Integer,Integer>();
+		ancestorMap = new Map2Map2List<Integer,Integer,Path>();
+		pathLengths = new Map2Map2Set<Integer,Integer,Integer>();
 		conflictSets = new Vector<Path>();
 		
 		//Build the classList, starting with the classes
@@ -630,8 +630,8 @@ public class RepairMap implements Iterable<Integer>
 				addConflict(p,conflictSets);
 		}
 		//Now go through the conflict sets and link them to the mappings
-		conflictMappings = new Table2Set<Integer,Integer>();
-		mappingConflicts = new Table2Set<Integer,Integer>();
+		conflictMappings = new Map2Set<Integer,Integer>();
+		mappingConflicts = new Map2Set<Integer,Integer>();
 		for(int i = 0; i < conflictSets.size(); i++)
 		{
 			for(Integer j : conflictSets.get(i))

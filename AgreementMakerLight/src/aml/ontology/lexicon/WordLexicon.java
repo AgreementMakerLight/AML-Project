@@ -25,8 +25,8 @@ import java.util.Set;
 
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.util.table.Map2MapComparable;
-import aml.util.table.Map2Set;
+import aml.util.data.Map2MapComparable;
+import aml.util.data.Map2Set;
 
 public class WordLexicon
 {

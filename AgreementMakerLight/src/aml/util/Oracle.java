@@ -23,6 +23,7 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.MappingRelation;
 import aml.ontology.URIMap;
+import aml.util.data.Map2MapComparable;
 
 
 public class Oracle

@@ -28,12 +28,14 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import aml.ontology.lexicon.ExternalLexicon;
+
 public class MeSHParser
 {
 	public static void main(String[] args) throws Exception
 	{
 		Vector<String> concepts = new Vector<String>();
-		MediatorLexicon med = new MediatorLexicon();
+		ExternalLexicon med = new ExternalLexicon();
 		
 		SAXReader reader = new SAXReader();
 		File f = new File("store/knowledge/mesh.xml");

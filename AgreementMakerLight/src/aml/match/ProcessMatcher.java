@@ -27,11 +27,11 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
+import aml.ontology.lexicon.StopList;
 import aml.ontology.lexicon.StringParser;
 import aml.util.ISub;
 import aml.util.Similarity;
-import aml.util.StopList;
 
 public class ProcessMatcher implements PrimaryMatcher
 {
@@ -47,14 +47,14 @@ public class ProcessMatcher implements PrimaryMatcher
 	private static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
 	private Set<String> stopSet;
 	private AML aml;
-	private RelationshipMap rels;
+	private EntityMap rels;
 	
 //Constructors
 	
 	public ProcessMatcher()
 	{
 		aml = AML.getInstance();
-		rels = aml.getRelationshipMap();
+		rels = aml.getEntityMap();
 		stopSet = StopList.read();
 	}
 	

@@ -37,7 +37,7 @@ import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.util.NameSimilarity;
-import aml.util.Table2Set;
+import aml.util.data.Map2Set;
 
 public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 {
@@ -49,7 +49,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 											  "word-matching algorithms, with the optional\n" +
 											  "use of WordNet";
 	private static final String NAME = "Hybrid String Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.DATA,EntityType.INDIVIDUAL,EntityType.OBJECT};
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.DATA_PROP,EntityType.INDIVIDUAL,EntityType.OBJECT_PROP};
 	private AML aml;
 	private Ontology source;
 	private Ontology target;
@@ -112,7 +112,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 		Alignment a = new Alignment();
 		for(Integer i : sources)
 		{
-			Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+			Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
 			for(Integer j : targets)
 			{
 				if(i == j)
@@ -122,7 +122,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 					continue;
 				}
 				if(e.equals(EntityType.INDIVIDUAL) && aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-						!aml.getRelationshipMap().shareClass(i,j))
+						!aml.getEntityMap().shareClass(i,j))
 					continue;
 				toMap.add(i,j);
 			}
@@ -140,7 +140,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 		System.out.println("Computing Hybrid String Similarity");
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
-		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+		Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
 		for(SimpleMapping m : a)
 		{
 			if(aml.getURIMap().getTypes(m.getSourceId()).equals(e))
@@ -170,7 +170,7 @@ public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 	}
 	
 	//Maps a table of classes in parallel, using all available threads
-	private Alignment mapInParallel(Table2Set<Integer,Integer> toMap, double thresh)
+	private Alignment mapInParallel(Map2Set<Integer,Integer> toMap, double thresh)
 	{
 		Alignment maps = new Alignment();
 		ArrayList<MappingTask> tasks = new ArrayList<MappingTask>();

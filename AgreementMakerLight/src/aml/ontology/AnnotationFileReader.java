@@ -41,7 +41,7 @@ public class AnnotationFileReader
 	{
 		AML aml = AML.getInstance();
 		URIMap uris = aml.getURIMap();
-		RelationshipMap rels = aml.getRelationshipMap();
+		EntityMap rels = aml.getEntityMap();
 		
 		try
 		{
@@ -97,7 +97,7 @@ public class AnnotationFileReader
 	{
 		AML aml = AML.getInstance();
 		URIMap uris = aml.getURIMap();
-		RelationshipMap rels = aml.getRelationshipMap();
+		EntityMap rels = aml.getEntityMap();
 		
 		try
 		{

@@ -32,9 +32,9 @@ import aml.filter.InteractiveFilterer;
 import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
 import aml.filter.Selector;
-import aml.knowledge.MediatorLexicon;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
+import aml.ontology.lexicon.ExternalLexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.NeighborSimilarityStrategy;
@@ -156,7 +156,7 @@ public class AutomaticMatcher
 					{
 						try
 						{
-							MediatorLexicon ml = new MediatorLexicon(BK_PATH + bk);
+							ExternalLexicon ml = new ExternalLexicon(BK_PATH + bk);
 							MediatingMatcher mm = new MediatingMatcher(ml, BK_PATH + bk);
 							Alignment med = mm.match(EntityType.CLASS, thresh);
 							double gain = med.gain(lex);
@@ -272,8 +272,8 @@ public class AutomaticMatcher
 		if(matchProperties)
 		{
 			HybridStringMatcher pm = new HybridStringMatcher(true);
-			a.addAll(pm.match(EntityType.DATA, thresh));
-			a.addAll(pm.match(EntityType.OBJECT, thresh));
+			a.addAll(pm.match(EntityType.DATA_PROP, thresh));
+			a.addAll(pm.match(EntityType.OBJECT_PROP, thresh));
 			aml.setAlignment(a);
 			DomainAndRangeFilterer dr = new DomainAndRangeFilterer();
 			dr.filter();
@@ -416,8 +416,8 @@ public class AutomaticMatcher
 	private static void matchProperties() throws UnsupportedEntityTypeException
 	{
 		HybridStringMatcher pm = new HybridStringMatcher(true);
-		a.addAll(pm.match(EntityType.DATA, thresh));
-		a.addAll(pm.match(EntityType.OBJECT, thresh));
+		a.addAll(pm.match(EntityType.DATA_PROP, thresh));
+		a.addAll(pm.match(EntityType.OBJECT_PROP, thresh));
 		aml.setAlignment(a);
 	}
 }

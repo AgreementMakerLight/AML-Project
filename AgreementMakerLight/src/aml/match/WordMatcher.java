@@ -29,8 +29,8 @@ import aml.ontology.EntityType;
 import aml.ontology.lexicon.WordLexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.WordMatchStrategy;
-import aml.util.Table2Map;
-import aml.util.Table2Set;
+import aml.util.data.Map2MapComparable;
+import aml.util.data.Map2Set;
 
 public class WordMatcher implements PrimaryMatcher, Rematcher
 {
@@ -42,7 +42,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 			  								  "Computes word similarity by entity, by\n" +
 			  								  "by entry, or combined";
 	private static final String NAME = "Word Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	private WordLexicon sourceLex;
 	private WordLexicon targetLex;
 	private WordMatchStrategy strategy = WordMatchStrategy.AVERAGE;
@@ -143,11 +143,11 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		for(int i = 0; i < sourceLex.blockCount(); i++)
 		{
 			//The word table (words->String, class indexes->Integer) for the current block
-			Table2Set<String,Integer> sWLex = sourceLex.getWordTable(i);
+			Map2Set<String,Integer> sWLex = sourceLex.getWordTable(i);
 			for(int j = 0; j < targetLex.blockCount(); j++)
 			{
 				//The word table (words->String, class indexes->Integer) for the current block
-				Table2Set<String,Integer> tWLex = targetLex.getWordTable(j);
+				Map2Set<String,Integer> tWLex = targetLex.getWordTable(j);
 				Vector<SimpleMapping> temp = matchBlocks(sWLex,tWLex,e,t);
 				//If the strategy is BY_CLASS, just add the alignment
 				if(strategy.equals(WordMatchStrategy.BY_CLASS))
@@ -233,8 +233,8 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	//classes, for use by rematch()
 	private double classSimilarity(int sourceId, int targetId)
 	{
-		Set<String> sourceWords = sourceLex.getWords(sourceId);
-		Set<String> targetWords = targetLex.getWords(targetId);
+		Set<String> sourceWords = sourceLex.getWordsByEntity(sourceId);
+		Set<String> targetWords = targetLex.getWordsByEntity(targetId);
 		double intersection = 0.0;
 		double union = sourceLex.getEntityEC(sourceId) + 
 				targetLex.getEntityEC(targetId);
@@ -253,11 +253,11 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	//Used by match() method either to compute the final BY_CLASS alignment
 	//or to compute a preliminary alignment which is then refined according
 	//to the WordMatchStrategy.
-	private Vector<SimpleMapping> matchBlocks(Table2Set<String,Integer> sWLex,
-			Table2Set<String,Integer> tWLex, EntityType e, double thresh)
+	private Vector<SimpleMapping> matchBlocks(Map2Set<String,Integer> sWLex,
+			Map2Set<String,Integer> tWLex, EntityType e, double thresh)
 	{
 		AML aml = AML.getInstance();
-		Table2Map<Integer,Integer,Double> maps = new Table2Map<Integer,Integer,Double>();
+		Map2MapComparable<Integer,Integer,Double> maps = new Map2MapComparable<Integer,Integer,Double>();
 		//To minimize iterations, we want to iterate through the smallest Lexicon
 		boolean sourceIsSmaller = (sWLex.keyCount() <= tWLex.keyCount());
 		Set<String> words;
@@ -282,7 +282,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 				{
 					if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
 							(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-							!aml.getRelationshipMap().shareClass(i,j))))
+							!aml.getEntityMap().shareClass(i,j))))
 						continue;
 					double finalSim = Math.sqrt(sim * targetLex.getWordWeight(s,j));
 					Double previousSim = maps.get(i,j);
@@ -369,8 +369,8 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	//Computes the word-based (bag-of-words) similarity between two names
 	private double nameSimilarity(String s, String t)
 	{
-		Set<String> sourceWords = sourceLex.getWords(s);
-		Set<String> targetWords = targetLex.getWords(t);
+		Set<String> sourceWords = sourceLex.getWordsByName(s);
+		Set<String> targetWords = targetLex.getWordsByName(t);
 		double intersection = 0.0;
 		double union = sourceLex.getNameEC(s) + targetLex.getNameEC(t);
 		for(String w : sourceWords)

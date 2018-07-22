@@ -26,7 +26,7 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.knowledge.WordNet;
 import aml.ontology.EntityType;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
 import aml.ontology.ValueMap;
 import aml.ontology.lexicon.Lexicon;
 import aml.util.ISub;
@@ -41,7 +41,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 	private static final String NAME = "Abstract Individual Matcher";
 	private static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
 	protected Set<Integer> sourceInd, targetInd;
-	protected RelationshipMap rels;
+	protected EntityMap rels;
 	protected Lexicon sLex, tLex;
 	protected ValueMap sValues, tValues;
 	protected WordNet wn;
@@ -59,7 +59,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 		AML aml = AML.getInstance();
 		sourceInd = aml.getSource().getEntities(EntityType.INDIVIDUAL);
 		targetInd = aml.getTarget().getEntities(EntityType.INDIVIDUAL);
-		rels = aml.getRelationshipMap();
+		rels = aml.getEntityMap();
 		sLex = aml.getSource().getLexicon();
 		tLex = aml.getTarget().getLexicon();
 		sValues = aml.getSource().getValueMap();

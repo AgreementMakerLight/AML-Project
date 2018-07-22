@@ -73,12 +73,12 @@ import aml.filter.QualityFlagger;
 import aml.filter.RepairMap;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
 import aml.ontology.URIMap;
 import aml.ontology.ValueMap;
 import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;
-import aml.util.Table2Set;
+import aml.util.data.Map2Set;
 import processing.core.PApplet;
  
 
@@ -94,7 +94,7 @@ public class ViewMapping extends JDialog implements ActionListener
   	//Ontology and Alignment attributes
 	private AML aml;
 	private URIMap uris;
-	private RelationshipMap rm;
+	private EntityMap rm;
 	private Ontology source, target;
   	private Alignment a;
 	private int mapping, sourceId, targetId;
@@ -122,7 +122,7 @@ public class ViewMapping extends JDialog implements ActionListener
 	private GraphModel model;
   	private DirectedGraph directedGraph;
   	private HashSet<Integer> nodes;
-  	private Table2Set<Integer,Integer> edges;
+  	private Map2Set<Integer,Integer> edges;
   	private int classDistance, individualDistance;
   	private float[] sourceColor, targetColor;
 
@@ -148,7 +148,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		source = aml.getSource();
 		target = aml.getTarget();
 		uris = aml.getURIMap();
-        rm = aml.getRelationshipMap();
+        rm = aml.getEntityMap();
         
         //Setup the menu bar
         menu = new JMenuBar();
@@ -347,7 +347,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		directedGraph = model.getDirectedGraph();
 		//Initialize the node sets (which don't include the starting nodes)
 		nodes = new HashSet<Integer>();
-		edges = new Table2Set<Integer,Integer>();
+		edges = new Map2Set<Integer,Integer>();
 		//Get the maximum distance
 		classDistance = aml.getClassDistance();
 		individualDistance = aml.getIndividualDistance();
@@ -1008,7 +1008,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		
 		//Parents
 		Set<Integer> parents = rm.getParents(id);
-		Table2Set<Integer,Integer> relParents = new Table2Set<Integer,Integer>();
+		Map2Set<Integer,Integer> relParents = new Map2Set<Integer,Integer>();
 		for(Integer i : parents)
 			relParents.add(rm.getRelationship(id, i).getProperty(), i);
 		Vector<Integer> rels = new Vector<Integer>(relParents.keySet());
@@ -1077,7 +1077,7 @@ public class ViewMapping extends JDialog implements ActionListener
 		p.add(high);
 		
 		//Relations
-		Table2Set<String,String> relMap = new Table2Set<String,String>();
+		Map2Set<String,String> relMap = new Map2Set<String,String>();
 		for(Integer i : rm.getIndividualActiveRelations(id))
 			for(Integer j : rm.getIndividualProperties(id, i))
 				relMap.add(o.getName(j),o.getName(i));
@@ -1135,7 +1135,7 @@ public class ViewMapping extends JDialog implements ActionListener
         JLabel label = new JLabel(lab);
         p.add(label);
         
-		if(t.equals(EntityType.OBJECT))
+		if(t.equals(EntityType.OBJECT_PROP))
 		{
 			Set<Integer> domain = rm.getDomains(id);
 			lab = "<html>Domain: ";
@@ -1164,7 +1164,7 @@ public class ViewMapping extends JDialog implements ActionListener
 				p.add(funS);
 			}
 		}
-		else if(t.equals(EntityType.DATA))
+		else if(t.equals(EntityType.DATA_PROP))
 		{
 			Set<Integer> domain = rm.getDomains(id);
 			lab = "<html>Domain: ";

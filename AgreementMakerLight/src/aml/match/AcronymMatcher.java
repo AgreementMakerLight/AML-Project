@@ -36,7 +36,7 @@ public class AcronymMatcher implements PrimaryMatcher
 	private static final String DESCRIPTION = "Matches entities where the Lexicon entry of one\n" +
 											  "is an acronym of the Lexicon entry of the other\n";
 	private static final String NAME = "Acronym Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 			
 //Constructors
 
@@ -146,7 +146,7 @@ public class AcronymMatcher implements PrimaryMatcher
 						{
 							if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(targetId) ||
 									(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-									!aml.getRelationshipMap().shareClass(sourceId,targetId))))
+									!aml.getEntityMap().shareClass(sourceId,targetId))))
 								continue;
 							maps.add(sourceId, targetId, sim * 
 								Math.sqrt(sourceLex.getCorrectedWeight(sName, sourceId) *

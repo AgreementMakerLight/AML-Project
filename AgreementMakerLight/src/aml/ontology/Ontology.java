@@ -25,8 +25,8 @@ import java.util.Set;
 import aml.AML;
 import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.WordLexicon;
-import aml.util.table.Map2Map;
-import aml.util.table.Map2Set;
+import aml.util.data.Map2Map;
+import aml.util.data.Map2Set;
 
 public class Ontology
 {
@@ -84,7 +84,7 @@ public class Ontology
 		entityTypes.add(e, uri);
 		if(e.equals(EntityType.CLASS))
 		{
-			String name = uris.getLocalName(uri);
+			String name = AML.getInstance().getEntityMap().getLocalName(uri);
 			classNames.put(name, uri);
 		}
 	}

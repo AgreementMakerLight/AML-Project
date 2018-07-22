@@ -25,7 +25,7 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
 
 public class BlockRematcher implements Rematcher
 {
@@ -72,7 +72,7 @@ public class BlockRematcher implements Rematcher
 		AML aml = AML.getInstance();
 		Alignment maps = new Alignment();
 		Alignment high = a.getHighLevelAlignment();
-		RelationshipMap rMap = aml.getRelationshipMap();
+		EntityMap rMap = aml.getEntityMap();
 		for(SimpleMapping m : a)
 		{
 			int sId = m.getSourceId();

@@ -38,14 +38,14 @@ import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
 import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.StringSimMeasure;
 import aml.util.ISub;
-import aml.util.Table2Set;
+import aml.util.data.Map2Set;
 
 public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatcher
 {
@@ -56,7 +56,7 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 											  "String similarity between their Lexicon\n" +
 											  "entries, using a String similarity measure";
 	private static final String NAME = "String Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	//Links to the AML class and to the source and target Lexicons
 	private AML aml;
 	private Ontology source;
@@ -169,12 +169,12 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 		{
 			if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
 				continue;
-			Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+			Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
 			for(Integer j : targets)
 			{
 				if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
 						(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-						!aml.getRelationshipMap().shareClass(i,j))))
+						!aml.getEntityMap().shareClass(i,j))))
 					continue;
 				toMap.add(i,j);
 			}
@@ -192,7 +192,7 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 		System.out.println("Computing String Similarity");
 		long time = System.currentTimeMillis()/1000;
 		Alignment maps = new Alignment();
-		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+		Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
 		for(SimpleMapping m : a)
 		{
 			if(aml.getURIMap().getTypes(m.getSourceId()).equals(e))
@@ -223,8 +223,8 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 	
 	private Alignment extendChildrenAndParents(Alignment a, double thresh)
 	{
-		RelationshipMap rels = aml.getRelationshipMap();
-		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+		EntityMap rels = aml.getEntityMap();
+		Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
 		for(int i = 0; i < a.size(); i++)
 		{
 			SimpleMapping input = a.get(i);
@@ -260,8 +260,8 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 	
 	private Alignment extendSiblings(Alignment a, double thresh)
 	{		
-		RelationshipMap rels = aml.getRelationshipMap();
-		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+		EntityMap rels = aml.getEntityMap();
+		Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
 		for(int i = 0; i < a.size(); i++)
 		{
 			SimpleMapping input = a.get(i);
@@ -286,7 +286,7 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 	}
 	
 	//Maps a table of classes in parallel, using all available threads
-	private Alignment mapInParallel(Table2Set<Integer,Integer> toMap, double thresh)
+	private Alignment mapInParallel(Map2Set<Integer,Integer> toMap, double thresh)
 	{
 		Alignment maps = new Alignment();
 		ArrayList<MappingTask> tasks = new ArrayList<MappingTask>();

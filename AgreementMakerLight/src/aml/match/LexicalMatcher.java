@@ -38,7 +38,7 @@ public class LexicalMatcher implements PrimaryMatcher
 	private static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
 											  "String matches between their Lexicon entries";
 	private static final String NAME = "Lexical Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 		
 //Constructors
 
@@ -114,7 +114,7 @@ public class LexicalMatcher implements PrimaryMatcher
 						{
 							if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
 									(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-									!aml.getRelationshipMap().shareClass(i,j))))
+									!aml.getEntityMap().shareClass(i,j))))
 								continue;
 							//Get the weight of the name for the term in the larger lexicon
 							double similarity = tLex.getCorrectedWeight(s, j);
@@ -152,7 +152,7 @@ public class LexicalMatcher implements PrimaryMatcher
 					{
 						if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
 								(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-								!aml.getRelationshipMap().shareClass(i,j))))
+								!aml.getEntityMap().shareClass(i,j))))
 							continue;
 						if(isSmallFormula && tLex.containsNonSmallFormula(j))
 							continue;

@@ -141,7 +141,7 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 					for(Integer k : targetIndexes)
 					{
 						if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-								!aml.getRelationshipMap().shareClass(j,k))
+								!aml.getEntityMap().shareClass(j,k))
 							continue;
 						double similarity = maps.getSimilarity(j, k);
 						similarity = Math.max(similarity, 1.0/count);

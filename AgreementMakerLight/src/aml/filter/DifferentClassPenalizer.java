@@ -39,7 +39,7 @@ public class DifferentClassPenalizer
 		Alignment a = aml.getAlignment();
 		for(SimpleMapping m : a)
 		{
-			if(!aml.getRelationshipMap().shareClass(m.getSourceId(),m.getTargetId()))
+			if(!aml.getEntityMap().shareClass(m.getSourceId(),m.getTargetId()))
 				m.setSimilarity(m.getSimilarity() * 0.9);
 		}
 	}

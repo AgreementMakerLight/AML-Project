@@ -23,7 +23,7 @@ import aml.alignment.Alignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
 import aml.settings.SelectionType;
 import aml.util.InteractionManager;
 
@@ -235,7 +235,7 @@ public class CardinalitySelector implements Filterer, Flagger
 
 	private Alignment parentFilter(Alignment in)
 	{
-		RelationshipMap r = aml.getRelationshipMap();
+		EntityMap r = aml.getEntityMap();
 		Alignment out = new Alignment();
 		for(SimpleMapping m : in)
 		{

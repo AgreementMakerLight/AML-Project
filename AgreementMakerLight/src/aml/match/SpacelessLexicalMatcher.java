@@ -25,7 +25,7 @@ import aml.alignment.Alignment;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
-import aml.util.Table2Set;
+import aml.util.data.Map2Set;
 
 public class SpacelessLexicalMatcher implements PrimaryMatcher
 {
@@ -36,7 +36,7 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 											  "String matches between their Lexicon entries\n" +
 											  "after removing their white spaces";
 	private static final String NAME = "Lexical Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA,EntityType.OBJECT};
+	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	private static final double WEIGHT = 0.99;
 		
 //Constructors
@@ -74,10 +74,10 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 		Lexicon sLex = aml.getSource().getLexicon();
 		Lexicon tLex = aml.getTarget().getLexicon();
 		//Create spaceless lexicons
-		Table2Set<String,String> sourceConv = new Table2Set<String,String>();
+		Map2Set<String,String> sourceConv = new Map2Set<String,String>();
 		for(String n : sLex.getNames(e))
 			sourceConv.add(n.replace(" ", ""), n);
-		Table2Set<String,String> targetConv = new Table2Set<String,String>();
+		Map2Set<String,String> targetConv = new Map2Set<String,String>();
 		for(String n : tLex.getNames(e))
 			targetConv.add(n.replace(" ", ""), n);
 		
@@ -100,7 +100,7 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 						{
 							if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
 									(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-									!aml.getRelationshipMap().shareClass(i,j))))
+									!aml.getEntityMap().shareClass(i,j))))
 								continue;
 							double similarity = tLex.getCorrectedWeight(t, j) * weight;
 							if(similarity >= thresh)

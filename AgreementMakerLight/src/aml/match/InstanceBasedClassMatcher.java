@@ -26,9 +26,9 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
 import aml.util.Similarity;
-import aml.util.Table2Set;
+import aml.util.data.Map2Set;
 
 public class InstanceBasedClassMatcher implements PrimaryMatcher
 {
@@ -72,10 +72,10 @@ public class InstanceBasedClassMatcher implements PrimaryMatcher
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
-		RelationshipMap rm = aml.getRelationshipMap();
+		EntityMap rm = aml.getEntityMap();
 		System.out.println(rm.instanceCount());
 		
-		Table2Set<Integer,Integer> pairs = new Table2Set<Integer,Integer>();
+		Map2Set<Integer,Integer> pairs = new Map2Set<Integer,Integer>();
 		for(int i : source.getEntities(EntityType.INDIVIDUAL))
 		{
 			Set<Integer> classes = rm.getIndividualClasses(i);

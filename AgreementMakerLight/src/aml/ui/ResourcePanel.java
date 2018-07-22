@@ -97,7 +97,7 @@ public class ResourcePanel extends JInternalFrame
 			{
 				doc.insertString(doc.getLength(), source.getURI(), u);
 				String src = " (" + source.count(EntityType.CLASS) + " classes, " +
-						(source.count(EntityType.DATA)+source.count(EntityType.OBJECT)) +
+						(source.count(EntityType.DATA_PROP)+source.count(EntityType.OBJECT_PROP)) +
 						" properties, " + source.count(EntityType.INDIVIDUAL) + " individuals)\n";
 				doc.insertString(doc.getLength(), src, def);
 			}
@@ -110,7 +110,7 @@ public class ResourcePanel extends JInternalFrame
 			{
 				doc.insertString(doc.getLength(), target.getURI(), u);
 				String tgt = " (" + target.count(EntityType.CLASS) + " classes, " +
-						(target.count(EntityType.DATA)+target.count(EntityType.OBJECT)) +
+						(target.count(EntityType.DATA_PROP)+target.count(EntityType.OBJECT_PROP)) +
 						" properties, " + source.count(EntityType.INDIVIDUAL) + " individuals)\n";
 				doc.insertString(doc.getLength(), tgt, def);
 			}

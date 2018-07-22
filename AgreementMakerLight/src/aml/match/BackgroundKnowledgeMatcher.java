@@ -33,9 +33,9 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
 import aml.alignment.Alignment;
-import aml.knowledge.MediatorLexicon;
 import aml.knowledge.MediatorOntology;
 import aml.ontology.EntityType;
+import aml.ontology.lexicon.ExternalLexicon;
 import aml.settings.SelectionType;
 import aml.util.MapSorter;
 
@@ -120,7 +120,7 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 			{
 				try
 				{
-					MediatorLexicon ml = new MediatorLexicon(path + s);
+					ExternalLexicon ml = new ExternalLexicon(path + s);
 					MediatingMatcher mm = new MediatingMatcher(ml, (new File(path + s)).toURI().toString());
 					temp = mm.match(e,thresh);
 				}

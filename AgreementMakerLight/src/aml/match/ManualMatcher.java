@@ -113,8 +113,8 @@ public class ManualMatcher
 		if(steps.contains(MatchStep.PROPERTY))
 		{
 			HybridStringMatcher pm = new HybridStringMatcher(true);
-			aux = pm.match(EntityType.DATA,thresh);
-			aux.addAll(pm.match(EntityType.OBJECT,thresh));
+			aux = pm.match(EntityType.DATA_PROP,thresh);
+			aux.addAll(pm.match(EntityType.OBJECT_PROP,thresh));
 			if(hierarchic)
 				a.addAllOneToOne(aux);
 			else

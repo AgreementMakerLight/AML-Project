@@ -19,6 +19,10 @@ import aml.settings.Namespace;
 
 public class AlignmentIO
 {
+	public static Alignment parse(String file, boolean active) throws Exception
+	{
+		return null;
+	}
 
 	public static Alignment parseRDF(String file, boolean active) throws DocumentException
 	{

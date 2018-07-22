@@ -28,7 +28,7 @@ import aml.knowledge.MediatorOntology;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
-import aml.util.Map2MapComparable;
+import aml.util.data.Map2MapComparable;
 
 public class MediatingXRefMatcher extends MediatingMatcher
 {
@@ -169,7 +169,7 @@ public class MediatingXRefMatcher extends MediatingMatcher
 			{
 				if(names.contains(r))
 				{
-					Set<Integer> terms = rm.get(r);
+					Set<Integer> terms = rm.getEntities(r);
 					//Penalize cases where multiple terms have the same xref
 					//(note that sim = 1 when the xref is unique) 
 					double sim = 1.3 - (terms.size() * 0.3);

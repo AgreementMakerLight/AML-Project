@@ -25,14 +25,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 import aml.ontology.lexicon.LexicalType;
-import aml.util.Table2Set;
+import aml.util.data.Map2Set;
+import aml.ontology.lexicon.ExternalLexicon;
 
 public class UMLSParser
 {
 	public static void main(String[] args) throws Exception
 	{
-		Table2Set<Integer,String> termSources = new Table2Set<Integer,String>();
-		MediatorLexicon med = new MediatorLexicon();
+		Map2Set<Integer,String> termSources = new Map2Set<Integer,String>();
+		ExternalLexicon med = new ExternalLexicon();
 		
 		BufferedReader inStream = new BufferedReader(new FileReader("store/knowledge/MRCONSO.RRF"));
 		String line;

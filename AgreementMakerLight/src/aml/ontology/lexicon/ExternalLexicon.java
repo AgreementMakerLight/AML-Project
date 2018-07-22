@@ -28,8 +28,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
-import aml.util.table.Map2MapComparable;
-import aml.util.table.Map2Set;
+import aml.util.data.Map2MapComparable;
+import aml.util.data.Map2Set;
 
 
 public class ExternalLexicon

@@ -63,11 +63,11 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
 		//Get the lists of properties from the ontologies
-		objectSource = new Vector<Integer>(source.getEntities(EntityType.OBJECT));
-		objectTarget = new Vector<Integer>(target.getEntities(EntityType.OBJECT));
+		objectSource = new Vector<Integer>(source.getEntities(EntityType.OBJECT_PROP));
+		objectTarget = new Vector<Integer>(target.getEntities(EntityType.OBJECT_PROP));
 		boolean objectP = objectSource.size() > 0 && objectTarget.size() > 0;
-		dataSource = new Vector<Integer>(source.getEntities(EntityType.DATA));
-		dataTarget = new Vector<Integer>(target.getEntities(EntityType.DATA));
+		dataSource = new Vector<Integer>(source.getEntities(EntityType.DATA_PROP));
+		dataTarget = new Vector<Integer>(target.getEntities(EntityType.DATA_PROP));
 		boolean dataP = dataSource.size() > 0 && dataTarget.size() > 0;
 				
 		//Set the title
@@ -78,9 +78,9 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 		//Setup the combo box listing the property types
 		Vector<String> types = new Vector<String>();
 		if(objectP)
-			types.add(EntityType.OBJECT.toString()); 
+			types.add(EntityType.OBJECT_PROP.toString()); 
 		if(dataP)
-			types.add(EntityType.DATA.toString()); 
+			types.add(EntityType.DATA_PROP.toString()); 
 		propTypes = new JComboBox<String>(types);
 		propTypes.addActionListener(this);
 		//Setup the header panel
@@ -118,7 +118,7 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			objectPanel.setLayout(new BoxLayout(objectPanel, BoxLayout.PAGE_AXIS));
 			objectPanel.add(osp);
 			objectPanel.add(otp);
-			selectionPanel.add(objectPanel,EntityType.OBJECT.toString());
+			selectionPanel.add(objectPanel,EntityType.OBJECT_PROP.toString());
         }
         //Data Properties
         if(dataP)
@@ -143,7 +143,7 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 			dataPanel.setLayout(new BoxLayout(dataPanel, BoxLayout.PAGE_AXIS));
 			dataPanel.add(dsp);
 			dataPanel.add(dtp);
-	      	selectionPanel.add(dataPanel,EntityType.DATA.toString());
+	      	selectionPanel.add(dataPanel,EntityType.DATA_PROP.toString());
         }
         //Start in the first panel
        	cl.first(selectionPanel);
@@ -197,7 +197,7 @@ public class AddPropertyMapping extends JDialog implements ActionListener
 		else if(o == add)
 		{
 			int sourceId, targetId;
-			if(propTypes.getSelectedItem().equals(EntityType.OBJECT.toString()))
+			if(propTypes.getSelectedItem().equals(EntityType.OBJECT_PROP.toString()))
 			{
 				sourceId = objectSource.get(objectS.getSelectedIndex());
 				targetId = objectTarget.get(objectT.getSelectedIndex());

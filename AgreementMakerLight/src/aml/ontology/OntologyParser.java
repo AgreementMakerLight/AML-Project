@@ -14,7 +14,7 @@
 *******************************************************************************
 * An Ontology file parser based on the OWL API.								  *
 *																			  *
-* @author Daniel Faria														  *
+* @author Daniel Faria, Catia Pesquita                                        *
 ******************************************************************************/
 package aml.ontology;
 
@@ -29,7 +29,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
-import org.semanticweb.elk.owlapi.ElkReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.AxiomType;
 import org.semanticweb.owlapi.model.ClassExpressionType;
@@ -70,8 +69,8 @@ import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.StringParser;
 import aml.ontology.lexicon.WordLexicon;
 import aml.util.MapSorter;
-import aml.util.Map2MapComparable;
-import aml.util.Table2Set;
+import aml.util.data.Map2MapComparable;
+import aml.util.data.Map2Set;
 
 public class OntologyParser
 {
@@ -82,39 +81,33 @@ public class OntologyParser
 	private static OWLOntologyManager manager;
 	private static OWLDataFactory factory;
 	//The entity expansion limit property
-	private static final String LIMIT = "entityExpansionLimit"; 
-	//Global variables
-	private static AML aml;
-	private static boolean useReasoner;
-	private static boolean isSKOS;
-	private static URIMap uris;
-	private static RelationshipMap rm;
+	private static final String LIMIT = "entityExpansionLimit";
 	
-	//Auxiliary data structures to capture semantic disjointness
-	private Map2MapComparable<Integer,Integer,Integer> maxCard, minCard, card;
-	private Map2MapComparable<Integer,Integer,String> dataAllValues, dataHasValue, dataSomeValues;
-	private Map2MapComparable<Integer,Integer,Integer> objectAllValues, objectSomeValues;
-
 //Public Methods
 
-	public static Ontology parse(String path)  throws OWLOntologyCreationException
+	/**
+	 * Creates an AML Ontology object from an OWL ontology or SKOS thesaurus local file
+	 * by using the OWL API to interpret it
+	 * @param path: the path to the file to parse
+	 * @param isBK: whether the ontology is to be used strictly as background knowledge
+	 * or is to be matched (BK ontologies are not registered in the global URIMap or
+	 * RelationshipMap)
+	 * @return the AML Ontology encoding the ontology/thesaurus in the file
+	 * @throws OWLOntologyCreationException
+	 */
+	public static Ontology parse(String path, boolean isBK) throws OWLOntologyCreationException
 	{
 		//Increase the entity expansion limit to allow large ontologies
 		System.setProperty(LIMIT, "1000000");
 		//Get an Ontology Manager and Data Factory
 		manager = OWLManager.createOWLOntologyManager();
 		factory = manager.getOWLDataFactory();
-		aml = AML.getInstance();
-		useReasoner = aml.useReasoner();
-		uris = aml.getURIMap();
-		rm = aml.getRelationshipMap();
-
 		//Load the local ontology
 		File f = new File(path);
 		OWLOntology o = manager.loadOntologyFromOntologyDocument(f);
 		Ontology l = new Ontology();
 		l.setURI(f.toURI().toString());
-		init(o,l);
+		init(o,l,isBK);
 		//Close the OntModel
 		manager.removeOntology(o);
 		//Reset the entity expansion limit
@@ -123,17 +116,23 @@ public class OntologyParser
 		return l;
 	}
 
-	public static Ontology parse(URI uri) throws OWLOntologyCreationException
+	/**
+	 * Creates an AML Ontology object from an OWL ontology or SKOS thesaurus specified
+	 * via an URI by using the OWL API to interpret it
+	 * @param uri: the URI to the ontology/thesaurus to parse
+	 * @param isBK: whether the ontology is to be used strictly as background knowledge
+	 * or is to be matched (BK ontologies are not registered in the global URIMap or
+	 * RelationshipMap)
+	 * @return the AML Ontology encoding the ontology/thesaurus in the file
+	 * @throws OWLOntologyCreationException
+	 */
+	public static Ontology parse(URI uri, boolean isBK) throws OWLOntologyCreationException
 	{
 		//Increase the entity expansion limit to allow large ontologies
 		System.setProperty(LIMIT, "1000000");
 		//Get an Ontology Manager and Data Factory
 		manager = OWLManager.createOWLOntologyManager();
 		factory = manager.getOWLDataFactory();
-		aml = AML.getInstance();
-		useReasoner = aml.useReasoner();
-		uris = aml.getURIMap();
-		rm = aml.getRelationshipMap();
 		OWLOntology o;
 		//Check if the URI is local
 		if(uri.toString().startsWith("file:"))
@@ -148,7 +147,7 @@ public class OntologyParser
 		}
 		Ontology l = new Ontology();
 		l.setURI(uri.toString());
-		init(o,l);
+		init(o,l,isBK);
 		//Close the OntModel
 		manager.removeOntology(o);
 		//Reset the entity expansion limit
@@ -160,13 +159,12 @@ public class OntologyParser
 //Private Methods	
 
 	//Builds the ontology data structures
-	private static void init(OWLOntology o, Ontology l)
+	private static void init(OWLOntology o, Ontology l, boolean isBK)
 	{
 		//Check if the ontology is in SKOS format
 		if(o.containsClassInSignature(SKOS.CONCEPT_SCHEME.toIRI()) &&
 				o.containsClassInSignature(SKOS.CONCEPT.toIRI()))
 		{
-			isSKOS = true;
 			//Update the URI of the ontology
 			OWLClass scheme = getClass(o,SKOS.CONCEPT_SCHEME.toIRI());
 			Set<OWLIndividual> indivs = scheme.getIndividuals(o);
@@ -176,32 +174,37 @@ public class OntologyParser
 					schemeURIs += i.asOWLNamedIndividual().getIRI().toString() + " | ";
 			if(schemeURIs.length() > 0)
 				l.setURI(schemeURIs.substring(0, schemeURIs.length() - 3));
-			getSKOSConcepts(o,l);
-			getSKOSRelationships(o,l);
+			getSKOSConcepts(o,l,isBK);
+			if(!isBK)
+				getSKOSRelationships(o,l);
 		}
 		else
 		{
-			isSKOS = false;
 			//Update the URI of the ontology (if it lists one)
 			if(o.getOntologyID().getOntologyIRI() != null)
 				l.setURI(o.getOntologyID().getOntologyIRI().toString());
 			//Get the classes and their names and synonyms
-			getOWLClasses(o);
-			//Get the properties
-			getOWLProperties(o);
-			//Get the individuals
-			getOWLNamedIndividuals(o);
-			//Build the relationship map
-			getOWLRelationships(o);
+			getOWLClasses(o,l,isBK);
+			//Presently we use background knowledge ontologies only for class matching
+			if(!isBK)
+			{
+				//Get the properties
+				getOWLProperties(o,l);
+				//Get the individuals
+				getOWLNamedIndividuals(o,l);
+				//Build the relationship map
+				getOWLRelationships(o,l);
+			}
 		}
 	}
 
 	//SKOS Thesauri
 
 	//Processes the classes and their lexical information
-	private static void getSKOSConcepts(OWLOntology o, Ontology l)
+	private static void getSKOSConcepts(OWLOntology o, Ontology l, boolean isBK)
 	{
 		//The Lexical type and weight
+		URIMap uris = AML.getInstance().getURIMap();
 		Lexicon lex = l.getLexicon();
 		LexicalType type;
 		double weight;
@@ -222,8 +225,9 @@ public class OntologyParser
 				continue;
 			OWLNamedIndividual ind = i.asOWLNamedIndividual();
 			String indivUri = ind.getIRI().toString();
-			//Add it to the global list of URIs (as a class)
-			uris.addURI(indivUri, EntityType.CLASS);
+			//If this is not a BK ontology, add the URI to the global list of URIs (as a class)
+			if(!isBK)
+				uris.addURI(indivUri, EntityType.CLASS);
 			//Add it to the ontology
 			l.add(indivUri, EntityType.CLASS);
 			//Get the local name from the URI
@@ -282,16 +286,17 @@ public class OntologyParser
 		//For simplicity, we convert "broader", "broader_transitive", "narrower"
 		//and "narrower_transitive" to subclass relationships
 		//We treat "related" as a form of equivalence with the "related" property
-
+		URIMap uris = AML.getInstance().getURIMap();
+		EntityMap rm = AML.getInstance().getEntityMap();
 		//Start by adding the "related" property
 		String related = SKOS.RELATED.toIRI().toString();
-		uris.addURI(related, EntityType.OBJECT);
+		uris.addURI(related, EntityType.OBJECT_PROP);
 		l.getLexicon().add(related, SKOS.RELATED.toString(), "en", LexicalType.LOCAL_NAME,
 				"", LexicalType.LOCAL_NAME.getDefaultWeight());
-		l.add(related,EntityType.OBJECT);
+		l.add(related,EntityType.OBJECT_PROP);
 		rm.addSymmetric(related);
 		//Create a temporary map of disjoints from "related" concepts
-		Table2Set<String,String> disj = new Table2Set<String,String>();
+		Map2Set<String,String> disj = new Map2Set<String,String>();
 		//Check that the thesaurus explicitly defines the SKOS object properties
 		//(for convenience, we test only the "skos:broader") 
 		boolean hasObject = o.containsObjectPropertyInSignature(SKOS.BROADER.toIRI());
@@ -387,8 +392,8 @@ public class OntologyParser
 			{
 				Set<String> top2 = getTopParents(j);
 				for(String k : top1)
-					for(String l : top2)
-						rm.addDisjoint(k, l);
+					for(String n : top2)
+						rm.addDisjoint(k, n);
 			}
 		}
 	}
@@ -396,9 +401,11 @@ public class OntologyParser
 	//OWL Ontologies
 
 	//Processes the classes and their lexical information
-	private static void getOWLClasses(OWLOntology o)
+	private static void getOWLClasses(OWLOntology o, Ontology l, boolean isBK)
 	{
-		//The Lexical type and weight
+		URIMap uris = AML.getInstance().getURIMap();
+		Lexicon lex = l.getLexicon();
+		ReferenceMap refs = l.getReferenceMap();
 		LexicalType type;
 		double weight;
 		//The label property
@@ -411,23 +418,20 @@ public class OntologyParser
 			String classUri = c.getIRI().toString();
 			if(classUri == null || classUri.endsWith("owl#Thing") || classUri.endsWith("owl:Thing"))
 				continue;
-			//Add it to the global list of URIs
-			int id = uris.addURI(classUri,EntityType.CLASS);
+			//If the ontology is not BK, add the URI it to the global list of URIs
+			if(!isBK)
+				uris.addURI(classUri,EntityType.CLASS);
 			//Add it to the Ontology
-			entities.add(id);
-			entityTypes.add(EntityType.CLASS, id);
+			l.add(classUri,EntityType.CLASS);
 
 			//Get the local name from the URI
-			String name = uris.getLocalName(id);
-			//Add the name to the classNames map
-			classNames.put(name, id);
-
+			String name = uris.getLocalName(classUri);
 			//If the local name is not an alphanumeric code, add it to the lexicon
 			if(!StringParser.isNumericId(name))
 			{
 				type = LexicalType.LOCAL_NAME;
 				weight = type.getDefaultWeight();
-				lex.add(id, name, "en", type, "", weight);
+				lex.add(classUri, name, "en", type, "", weight);
 			}
 
 			//Now get the class's annotations (including imports)
@@ -449,7 +453,7 @@ public class OntologyParser
 						String lang = val.getLang();
 						if(lang.equals(""))
 							lang = "en";
-						lex.add(id, name, lang, type, "", weight);
+						lex.add(classUri, name, lang, type, "", weight);
 					}
 					else if(annotation.getValue() instanceof IRI)
 					{
@@ -463,7 +467,7 @@ public class OntologyParser
 								String lang = val.getLang();
 								if(lang.equals(""))
 									lang = "en";
-								lex.add(id, name, lang, type, "", weight);
+								lex.add(classUri, name, lang, type, "", weight);
 							}
 						}
 					}
@@ -475,7 +479,7 @@ public class OntologyParser
 					OWLLiteral val = (OWLLiteral) annotation.getValue();
 					String xRef = val.getLiteral();
 					if(!xRef.startsWith("http"))
-						refs.add(id,xRef.replace(':','_'));
+						refs.add(classUri,xRef.replace(':','_'));
 				}
 				//Deprecated classes are flagged as obsolete
 				else if(propUri.endsWith("deprecated") &&
@@ -486,7 +490,7 @@ public class OntologyParser
 					{
 						boolean deprecated = val.parseBoolean();
 						if(deprecated)
-							obsolete.add(id);
+							l.setObsolete(classUri);
 					}
 				}
 			}
@@ -534,14 +538,17 @@ public class OntologyParser
 					}
 				}
 				if(classCheck && largest.getClassExpressionType().equals(ClassExpressionType.OBJECT_INTERSECTION_OF))
-					refs.add(id, e.toString());
+					refs.add(classUri, e.toString());
 			}
 		}
 	}
 
 	//Reads the properties
-	private static void getOWLProperties(OWLOntology o)
+	private static void getOWLProperties(OWLOntology o, Ontology l)
 	{
+		URIMap uris = AML.getInstance().getURIMap();
+		EntityMap rm = AML.getInstance().getEntityMap();
+		Lexicon lex = l.getLexicon();
 		LexicalType type;
 		double weight;
 		//The label property
@@ -556,13 +563,12 @@ public class OntologyParser
 			if(propUri == null)
 				continue;
 			//Add it to the global list of URIs
-			int id = uris.addURI(propUri,EntityType.DATA);
+			uris.addURI(propUri,EntityType.DATA_PROP);
 			//And to the ontology
-			entities.add(id);
-			entityTypes.add(EntityType.DATA, id);
-
+			l.add(propUri,EntityType.DATA_PROP);
+			
 			//Get the local name from the URI
-			String localName = getLocalName(propUri);
+			String localName = uris.getLocalName(propUri);
 			//Get the label(s)
 			String lang = "";
 			HashSet<String> labelLanguages = new HashSet<String>();
@@ -577,7 +583,7 @@ public class OntologyParser
 						lang = "en";
 					type = LexicalType.LABEL;
 					weight = type.getDefaultWeight();
-					lex.add(id, name, lang, type, "", weight);
+					lex.add(propUri, name, lang, type, "", weight);
 					labelLanguages.add(lang);
 				}
 			}
@@ -590,11 +596,11 @@ public class OntologyParser
 				weight = type.getDefaultWeight();
 				if(labelLanguages.size() != 1)
 					lang = "en";
-				lex.add(id, localName, lang, type, "", weight);
+				lex.add(propUri, localName, lang, type, "", weight);
 			}
 			//If the property is functional, add it to the RelationshipMap
 			if(dp.isFunctional(o))
-				rm.addFunctional(id);
+				rm.addFunctional(propUri);
 			//Add its domain(s) to the RelationshipMap
 			Set<OWLClassExpression> domains = dp.getDomains(o);
 			for(OWLClassExpression ce : domains)
@@ -603,7 +609,7 @@ public class OntologyParser
 				for(OWLClassExpression cf : union)
 				{
 					if(cf instanceof OWLClass)
-						rm.addDomain(id, uris.getIndex(cf.asOWLClass().getIRI().toString()));
+						rm.addDomain(propUri, cf.asOWLClass().getIRI().toString());
 				}
 			}
 			//And finally its range(s)
@@ -611,7 +617,7 @@ public class OntologyParser
 			for(OWLDataRange dr : ranges)
 			{
 				if(dr.isDatatype())
-					rm.addDataRange(id, dr.asOWLDatatype().toStringID());
+					rm.addDataRange(propUri, dr.asOWLDatatype().toStringID());
 			}
 		}
 		//Get the Object Properties
@@ -622,13 +628,12 @@ public class OntologyParser
 			if(propUri == null)
 				continue;
 			//Add it to the global list of URIs
-			int id = uris.addURI(propUri,EntityType.OBJECT);
+			uris.addURI(propUri,EntityType.OBJECT_PROP);
 			//And to the ontology
-			entities.add(id);
-			entityTypes.add(EntityType.OBJECT, id);
+			l.add(propUri,EntityType.OBJECT_PROP);
 
 			//Get the local name from the URI
-			String localName = getLocalName(propUri);
+			String localName = uris.getLocalName(propUri);
 			//Get the label(s)
 			String lang = "";
 			HashSet<String> labelLanguages = new HashSet<String>();
@@ -643,7 +648,7 @@ public class OntologyParser
 						lang = "en";
 					type = LexicalType.LABEL;
 					weight = type.getDefaultWeight();
-					lex.add(id, name, lang, type, "", weight);
+					lex.add(propUri, name, lang, type, "", weight);
 					labelLanguages.add(lang);
 				}
 			}
@@ -656,7 +661,7 @@ public class OntologyParser
 				weight = type.getDefaultWeight();
 				if(labelLanguages.size() != 1)
 					lang = "en";
-				lex.add(id, localName, lang, type, "", weight);
+				lex.add(propUri, localName, lang, type, "", weight);
 			}
 			//If the property is transitive and/or symmetric and/or functional
 			//add it to the RelationshipMap
@@ -724,8 +729,8 @@ public class OntologyParser
 				int id1 = uris.getIndex(uri1);
 				int id2 = uris.getIndex(uri2);
 				//Make sure the URIs are listed object properties
-				if(!entityTypes.contains(EntityType.OBJECT, id1) ||
-						!entityTypes.contains(EntityType.OBJECT, id2))
+				if(!entityTypes.contains(EntityType.OBJECT_PROP, id1) ||
+						!entityTypes.contains(EntityType.OBJECT_PROP, id2))
 					continue;
 				//If everything checks up, add the relation to the transitiveOver map
 				rm.addTransitiveOver(id1, id2);
@@ -859,9 +864,9 @@ public class OntologyParser
 					String v = val.getLiteral();
 					//We must first add the annotation property to the URIMap and Ontology
 					//(if it was already added, nothing happens)
-					int propId = uris.addURI(propUri, EntityType.ANNOTATION);
+					int propId = uris.addURI(propUri, EntityType.ANNOTATION_PROP);
 					entities.add(propId);
-					entityTypes.add(EntityType.ANNOTATION, propId);
+					entityTypes.add(EntityType.ANNOTATION_PROP, propId);
 					//Then add the value to the ValueMap
 					vMap.add(id, propId, v);
 				}
@@ -949,7 +954,7 @@ public class OntologyParser
 					int parent = uris.getIndex(par.getIRI().toString());
 					if(parent > -1)
 					{
-						rm.addDirectSubclass(child, parent);
+						rm.addSubclass(child, parent);
 						String name = uris.getLocalName(parent);
 						if(name.contains("Obsolete") || name.contains("obsolete") ||
 								name.contains("Retired") || name.contains ("retired") ||
@@ -1285,11 +1290,11 @@ public class OntologyParser
 					if(namedRelIndivId == -1)
 						continue;
 					//Add the property to the URIMap and Ontology as an object property
-					int propId = uris.addURI(propUri, EntityType.OBJECT);
+					int propId = uris.addURI(propUri, EntityType.OBJECT_PROP);
 					entities.add(propId);
-					entityTypes.add(EntityType.OBJECT, propId);
+					entityTypes.add(EntityType.OBJECT_PROP, propId);
 					//And remove it as an annotation property
-					entityTypes.remove(EntityType.ANNOTATION, propId);
+					entityTypes.remove(EntityType.ANNOTATION_PROP, propId);
 					//Add its name to the Lexicon
 					lex.add(propId, getLocalName(propUri), "en", LexicalType.LOCAL_NAME,
 							"", LexicalType.LOCAL_NAME.getDefaultWeight());
@@ -1375,9 +1380,9 @@ public class OntologyParser
 			if(sub)
 			{
 				if(inverse)
-					rm.addDirectSubclass(parent, child);
+					rm.addSubclass(parent, child);
 				else
-					rm.addDirectSubclass(child, parent);
+					rm.addSubclass(child, parent);
 				String name = getName(parent);
 				if(name.contains("Obsolete") || name.contains("obsolete") ||
 						name.contains("Retired") || name.contains ("retired") ||

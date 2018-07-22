@@ -26,7 +26,7 @@ import aml.alignment.Alignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.RelationshipMap;
+import aml.ontology.EntityMap;
 import aml.ontology.URIMap;
 import aml.util.Similarity;
 
@@ -36,14 +36,14 @@ public class DomainAndRangeFilterer implements Filterer
 //Attributes
 	
 	private AML aml;
-	private RelationshipMap rm;
+	private EntityMap rm;
 	
 //Constructors
 	
 	public DomainAndRangeFilterer()
 	{
 		aml = AML.getInstance();
-		rm = aml.getRelationshipMap();
+		rm = aml.getEntityMap();
 	}
 	
 //Public Methods
@@ -59,13 +59,13 @@ public class DomainAndRangeFilterer implements Filterer
 		{
 			if(m.getStatus().equals(MappingStatus.CORRECT))
 				continue;
-			if(uris.getTypes(m.getSourceId()).equals(EntityType.DATA))
+			if(uris.getTypes(m.getSourceId()).equals(EntityType.DATA_PROP))
 			{
 				if(!idsMatch(rm.getDomains(m.getSourceId()),rm.getDomains(m.getTargetId())) || 
 						!valuesMatch(rm.getDataRanges(m.getSourceId()),rm.getDataRanges(m.getTargetId())))
 					m.setStatus(MappingStatus.INCORRECT);				
 			}
-			else if(uris.getTypes(m.getSourceId()).equals(EntityType.OBJECT))
+			else if(uris.getTypes(m.getSourceId()).equals(EntityType.OBJECT_PROP))
 			{
 				if(!idsMatch(rm.getDomains(m.getSourceId()),rm.getDomains(m.getTargetId())) || 
 						!idsMatch(rm.getObjectRanges(m.getSourceId()),rm.getObjectRanges(m.getTargetId())))
@@ -103,7 +103,7 @@ public class DomainAndRangeFilterer implements Filterer
 	//or one is aligned to the parent of the other)
 	private boolean idsMatch(int sIndex, int tIndex)
 	{
-		RelationshipMap rm = aml.getRelationshipMap();
+		EntityMap rm = aml.getEntityMap();
 
 		if(sIndex == tIndex || aml.getAlignment().containsMapping(sIndex, tIndex))
 	    	return true;

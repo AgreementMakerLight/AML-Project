@@ -25,9 +25,11 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.util.table.Map2Set;
-import aml.util.table.Map2Map;
-import aml.util.table.Map2Map2Set;
+import aml.util.data.Map2Couple;
+import aml.util.data.Map2Map;
+import aml.util.data.Map2Map2Set;
+import aml.util.data.Map2Set;
+import aml.util.data.Map2Triple;
 
 
 public class EntityMap
@@ -35,50 +37,63 @@ public class EntityMap
 	
 //Attributes
 
-	//The map of entities to EntityTypes 
+	//0) The map of entities to EntityTypes 
 	private Map2Set<String,EntityType> entityType;
+	private Map2Set<EntityType,String> typeEntity;
 	
-	//Relationships between classes / class expressions
+	//1) Structural data on classes (& class expressions)
 	//Subclass & equivalence relations (with transitive closure, but min distance only)
 	private Map2Map<String,String,Integer> ancestorClasses; //Class -> Ancestor -> Distance
 	private Map2Map<String,String,Integer> descendantClasses; //Class -> Descendant -> Distance
 	//Disjointness (direct only, no transitive closure)
 	private Map2Set<String,String> disjointMap; //Class -> Disjoint Classes
-	//List of high level classes
+	//High level classes
 	private HashSet<String> highLevelClasses;
 	
+	//2) Structural data on individuals
 	//Relationships between individuals and classes
 	private Map2Set<String,String> instanceOfMap; //Individual -> Class 
 	private Map2Set<String,String> hasInstanceMap; //Class -> Individual
-
 	//Relationships between individuals
 	private Map2Map2Set<String,String,String> activeRelation; //Source Individual -> Target Individual -> Property
 	private Map2Map2Set<String,String,String> passiveRelation; //Target Individual -> Source Individual -> Property
 
-	//Relationships between properties
-	//Hierarchical and inverse relations
+	//3) Structural data on properties
+	//Hierarchical and inverse relations between properties (and expressions)
 	private Map2Set<String,String> subProp; //Property -> SubProperty
 	private Map2Set<String,String> superProp; //Property -> SuperProperty
 	private Map2Set<String,String> inverseProp; //Property -> InverseProperty
-	//Transitivity (transitive: P * P = P; transitive over: P * Q = P)
+	//Property domains and ranges (property to class or datatype)
+	private Map2Set<String,String> domain; //Property -> Domain (class)
+	private Map2Set<String,String> range; //Property -> Range (class/datatype)
+
+	//4) Properties of properties
+	//Asymmetric, functional, irreflexive, reflexive, symmetric properties
+	private HashSet<String> asymmetric;
+	private HashSet<String> functional;
+	private HashSet<String> irreflexive;
+	private HashSet<String> reflexive;
+	private HashSet<String> symmetric;
+	//Simple property chains (transitive: P * P = P; transitive over: P * Q = P)
 	private Map2Set<String,String> transitiveOver; //Property1 -> Property2 over which 1 is transitive
-	//Other (more complex) property chains (e.g. father * father = grandfather)
+	//Complex property chains (e.g. father * father = grandfather)
 	private Map2Set<String,Vector<String>> propChain; //Property -> Property Chain
 	
-	//Properties of properties
-	//List of asymmetric properties
-	private HashSet<String> asymmetric;
-	//List of functional properties
-	private HashSet<String> functional;
-	//List of irreflexive properties
-	private HashSet<String> irreflexive;
-	//List of symmetric properties
-	private HashSet<String> reflexive;
-	//List of symmetric properties
-	private HashSet<String> symmetric;
-	//Property domains and ranges (property to class or to String)
-	private Map2Set<String,String> domain; //Property -> Domain (Class)
-	private Map2Set<String,String> range; //Property -> Range (Class/Datatype)
+	//5) Class expressions
+	//Expression -> set of Expressions in the intersection
+	private Map2Set<String,String> intersect;
+	//Expression -> set of Expressions in the union
+	private Map2Set<String,String> union;
+	//Expression -> {restricted Property; Expression in the restricted range}
+	private Map2Couple<String,String,String> allValues;
+	//Expression -> {restricted Property; Literal in the restricted range}
+	private Map2Couple<String,String,String> hasValue;
+	//Expression -> {restricted Property; Expression in the restricted range; Cardinality}
+	private Map2Triple<String,String,String,Integer> minCard; //includes someValues = minCard(1)
+	//Expression -> {restricted Property; Expression in the restricted range; Cardinality}
+	private Map2Triple<String,String,String,Integer> maxCard;
+	//Expression -> {restricted Property; Expression in the restricted range; Cardinality}
+	private Map2Triple<String,String,String,Integer> exactCard;
 	
 //Constructors
 
@@ -88,6 +103,7 @@ public class EntityMap
 	public EntityMap()
 	{
 		entityType = new Map2Set<String,EntityType>();
+		typeEntity = new Map2Set<EntityType,String>();
 		descendantClasses = new Map2Map<String,String,Integer>();
 		ancestorClasses = new Map2Map<String,String,Integer>();
 		disjointMap = new Map2Set<String,String>();
@@ -98,14 +114,15 @@ public class EntityMap
 		subProp = new Map2Set<String,String>();
 		superProp = new Map2Set<String,String>();
 		inverseProp = new Map2Set<String,String>();
-		transitiveOver = new Map2Set<String,String>();
+		domain = new Map2Set<String,String>();
+		range = new Map2Set<String,String>();
 		asymmetric = new HashSet<String>();
 		functional = new HashSet<String>();
 		irreflexive = new HashSet<String>();
 		reflexive = new HashSet<String>();
 		symmetric = new HashSet<String>();
-		domain = new Map2Set<String,String>();
-		range = new Map2Set<String,String>();
+		transitiveOver = new Map2Set<String,String>();
+		propChain = new Map2Set<String,Vector<String>>();
 	}
 	
 //Public Methods
