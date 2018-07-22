@@ -44,6 +44,13 @@ public class Triple<A,B,C>
 	
 //Public Methods
 	
+	@SuppressWarnings("rawtypes")
+	public boolean equals(Object o)
+	{
+		return o instanceof Triple && element1.equals(((Triple)o).element1) &&
+				element2.equals(((Triple)o).element2) && element3.equals(((Triple)o).element3);
+	}
+	
 	/**
 	 * @return the first element in the Triple
 	 */

@@ -41,6 +41,13 @@ public class Couple<A,B>
 	
 //Public Methods
 	
+	@SuppressWarnings("rawtypes")
+	public boolean equals(Object o)
+	{
+		return o instanceof Couple && element1.equals(((Couple)o).element1) &&
+				element2.equals(((Couple)o).element2);
+	}
+	
 	/**
 	 * @return the first element in the Triple
 	 */
