@@ -89,7 +89,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	}
 		
 	@Override
-	public Alignment rematch(Ontology o1, Ontology o2, Alignment a, EntityType e)
+	public Alignment rematch(Ontology o1, Ontology o2, Alignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
 		AML aml = AML.getInstance();
 		Alignment maps = new Alignment();
