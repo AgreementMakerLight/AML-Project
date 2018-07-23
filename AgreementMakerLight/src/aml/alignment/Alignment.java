@@ -32,7 +32,7 @@ import aml.AML;
 import aml.alignment.complex.ComplexMapping;
 import aml.ontology.EntityType;
 import aml.ontology.semantics.EntityMap;
-import aml.util.data.Map2MapComparable;
+import aml.util.data.Map2Map;
 
 public class Alignment implements Collection<AbstractMapping>
 {
@@ -45,13 +45,13 @@ public class Alignment implements Collection<AbstractMapping>
 	//Mappings organized in list
 	private Vector<AbstractMapping> maps;
 	//Simple mappings organized by entity1 (entity1, entity2, Mapping)
-	private Map2MapComparable<String,String,AbstractMapping> sourceMaps;
+	private Map2Map<String,String,SimpleMapping> sourceMaps;
 	//Simple mappings organized by entity2 (entity2, entity1, Mapping)
-	private Map2MapComparable<String,String,AbstractMapping> targetMaps;
+	private Map2Map<String,String,SimpleMapping> targetMaps;
 	//Complex mappings organized by elements in entity1 (entity1 elements, entity2 elements, Mapping)
-	private Map2MapComparable<Set<String>,Set<String>,AbstractMapping> sourceComplexMapss;
+	private Map2Map<Set<String>,Set<String>,ComplexMapping> sourceComplexMaps;
 	//Complex mappings organized by elements in entity2 (entity2 elements, entity1 elements, Mapping)
-	private Map2MapComparable<Set<String>,Set<String>,AbstractMapping> targetComplexMapss;
+	private Map2Map<Set<String>,Set<String>,ComplexMapping> targetComplexMaps;
 	
 //Constructors
 
@@ -71,8 +71,10 @@ public class Alignment implements Collection<AbstractMapping>
 		this.sourceURI = sourceUri;
 		this.targetURI = targetUri;
 		maps = new Vector<AbstractMapping>(0,1);
-		sourceMaps = new Map2MapComparable<String,String,AbstractMapping>();
-		targetMaps = new Map2MapComparable<String,String,AbstractMapping>();
+		sourceMaps = new Map2Map<String,String,SimpleMapping>();
+		targetMaps = new Map2Map<String,String,SimpleMapping>();
+		sourceComplexMaps = new Map2Map<Set<String>,Set<String>,ComplexMapping>();
+		targetComplexMaps = new Map2Map<Set<String>,Set<String>,ComplexMapping>();
 	}
 
 	/**
@@ -216,7 +218,8 @@ public class Alignment implements Collection<AbstractMapping>
 	
 	public boolean addComplex(ComplexMapping m)
 	{
-		Set<String> sources = m.getElements();
+		Set<String> sources = m.getElements1();
+		Set<String> targets = m.getElements2();
 		return false;
 	}
 	
