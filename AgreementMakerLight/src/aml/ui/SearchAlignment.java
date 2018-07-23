@@ -49,7 +49,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
-import aml.util.MapSorter;
+import aml.util.data.MapSorter;
 
 public class SearchAlignment extends JDialog implements ActionListener
 {

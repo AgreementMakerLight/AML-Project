@@ -73,9 +73,9 @@ import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.StringParser;
 import aml.ontology.lexicon.WordLexicon;
 import aml.ontology.semantics.EntityMap;
-import aml.util.MapSorter;
 import aml.util.data.Map2MapComparable;
 import aml.util.data.Map2Set;
+import aml.util.data.MapSorter;
 
 public class OntologyParser
 {

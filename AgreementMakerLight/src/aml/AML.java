@@ -64,10 +64,10 @@ import aml.settings.StringSimMeasure;
 import aml.settings.WordMatchStrategy;
 import aml.ui.AMLColor;
 import aml.ui.AlignmentFileChooser;
+import aml.ui.ExtensionFilter;
 import aml.ui.GUI;
 import aml.ui.OntologyFileChooser;
-import aml.util.ExtensionFilter;
-import aml.util.InteractionManager;
+import aml.util.interactive.InteractionManager;
 import aml.util.similarity.Similarity;
 import aml.util.translate.Dictionary;
 

@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.util;
+package aml.util.interactive;
 
 import aml.AML;
 import aml.alignment.Alignment;

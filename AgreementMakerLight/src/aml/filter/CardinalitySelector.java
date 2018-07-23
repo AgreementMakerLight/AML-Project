@@ -25,7 +25,7 @@ import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
 import aml.ontology.semantics.EntityMap;
 import aml.settings.SelectionType;
-import aml.util.InteractionManager;
+import aml.util.interactive.InteractionManager;
 
 public class CardinalitySelector implements Filterer, Flagger
 {

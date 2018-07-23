@@ -46,7 +46,7 @@ import aml.AML;
 import aml.alignment.MappingRelation;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.Lexicon;
-import aml.util.MapSorter;
+import aml.util.data.MapSorter;
 
 public class AddClassMapping extends JDialog implements ActionListener
 {

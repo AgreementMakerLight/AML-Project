@@ -32,8 +32,8 @@ import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.LexiconExtender;
 import aml.ontology.lexicon.ExternalLexicon;
-import aml.util.MapSorter;
 import aml.util.data.Map2MapComparable;
+import aml.util.data.MapSorter;
 
 public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 {

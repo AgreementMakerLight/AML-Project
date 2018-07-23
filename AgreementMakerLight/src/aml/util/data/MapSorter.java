@@ -16,7 +16,7 @@
 *                                                                             *
 * @author Daniel Faria (adapted from Carter Page)                             *
 ******************************************************************************/
-package aml.util;
+package aml.util.data;
 
 import java.util.Collections;
 import java.util.Comparator;

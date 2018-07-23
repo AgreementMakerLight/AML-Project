@@ -27,9 +27,9 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.ontology.EntityType;
-import aml.util.MapSorter;
 import aml.util.data.Map2Map2List;
 import aml.util.data.Map2Map2Set;
+import aml.util.data.MapSorter;
 
 
 public class Lexicon

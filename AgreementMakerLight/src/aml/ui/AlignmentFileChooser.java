@@ -23,7 +23,6 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import aml.AML;
-import aml.util.ExtensionFilter;
 
 public class AlignmentFileChooser extends JFileChooser
 {

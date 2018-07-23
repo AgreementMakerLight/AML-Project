@@ -37,7 +37,7 @@ import aml.knowledge.MediatorOntology;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.ExternalLexicon;
 import aml.settings.SelectionType;
-import aml.util.MapSorter;
+import aml.util.data.MapSorter;
 
 public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 {

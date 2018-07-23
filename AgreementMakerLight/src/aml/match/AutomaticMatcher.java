@@ -40,7 +40,7 @@ import aml.settings.LanguageSetting;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
-import aml.util.InteractionManager;
+import aml.util.interactive.InteractionManager;
 
 public class AutomaticMatcher
 {

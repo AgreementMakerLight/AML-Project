@@ -24,7 +24,7 @@ import aml.alignment.Alignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.settings.SizeCategory;
-import aml.util.InteractionManager;
+import aml.util.interactive.InteractionManager;
 
 public class InteractiveFilterer implements Filterer
 {

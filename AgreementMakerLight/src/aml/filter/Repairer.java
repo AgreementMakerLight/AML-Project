@@ -22,7 +22,7 @@ import aml.AML;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.ontology.semantics.RepairMap;
-import aml.util.InteractionManager;
+import aml.util.interactive.InteractionManager;
 
 public class Repairer implements Filterer, Flagger
 {
