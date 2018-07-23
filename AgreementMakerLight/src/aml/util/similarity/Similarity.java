@@ -21,7 +21,6 @@ package aml.util.similarity;
 import java.util.Collection;
 import java.util.HashSet;
 
-import aml.settings.StringSimMeasure;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
@@ -124,7 +123,7 @@ public class Similarity
 	 * @param measure: the String Similarity Measure
 	 * @return
 	 */
-	public static double stringSimilarity(String s, String t, String measure)
+	public static double stringSimilarity(String s, String t, StringSimMeasure measure)
 	{
 		double sim = 0.0;
 		if(measure.equals(StringSimMeasure.ISUB))
