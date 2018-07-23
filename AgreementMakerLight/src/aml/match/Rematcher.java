@@ -1,5 +1,5 @@
 /******************************************************************************
- Copyright 2013-2016 LASIGE                                                  *
+ Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -21,14 +21,17 @@ package aml.match;
 
 import aml.alignment.Alignment;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 
 public interface Rematcher extends Matcher
 {
 	/**
 	 * Recomputes similarities for mappings of a given Alignment
+	 * @param o1: the source Ontology to match
+	 * @param o2: the target Ontology to match
 	 * @param a: the existing alignment
 	 * @param e: the EntityType for which to recompute similarities
 	 * @return the Alignment with the new similarities
 	 */
-	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException;
+	public Alignment rematch(Ontology o1, Ontology o2, Alignment a, EntityType e) throws UnsupportedEntityTypeException;
 }

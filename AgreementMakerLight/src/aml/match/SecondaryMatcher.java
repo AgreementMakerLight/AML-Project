@@ -21,15 +21,18 @@ package aml.match;
 
 import aml.alignment.Alignment;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 
 public interface SecondaryMatcher extends Matcher
 {
 	/**
 	 * Extends the given Alignment between the source and target Ontologies
-	 * @param a: the existing alignment
+	 * @param o1: the source Ontology to match
+	 * @param o2: the target Ontology to match
+	 * @param a: the existing alignment to extend
 	 * @param e: the EntityType to match
 	 * @param thresh: the similarity threshold for the extention
 	 * @return the alignment with (only) the new mappings between the Ontologies
 	 */
-	public Alignment extendAlignment(Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException;
+	public Alignment extendAlignment(Ontology o1, Ontology o2, Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException;
 }
