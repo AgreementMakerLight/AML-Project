@@ -22,14 +22,18 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.alignment.Alignment;
+import aml.alignment.LWC;
 import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
 import aml.filter.Selector;
+import aml.match.bk.BackgroundKnowledgeMatcher;
 import aml.match.lexical.HybridStringMatcher;
 import aml.match.lexical.LexicalMatcher;
 import aml.match.lexical.StringMatcher;
 import aml.match.lexical.WordMatchStrategy;
 import aml.match.lexical.WordMatcher;
+import aml.match.structural.BlockRematcher;
+import aml.match.structural.NeighborSimilarityMatcher;
 import aml.ontology.EntityType;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;

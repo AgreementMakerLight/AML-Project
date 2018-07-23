@@ -18,7 +18,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.match;
+package aml.match.bk;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -27,6 +27,8 @@ import java.util.Set;
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.knowledge.MediatorOntology;
+import aml.match.PrimaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;

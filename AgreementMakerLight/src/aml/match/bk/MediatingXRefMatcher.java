@@ -18,13 +18,14 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.match;
+package aml.match.bk;
 
 import java.util.Set;
 
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.knowledge.MediatorOntology;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;

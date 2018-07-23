@@ -16,10 +16,7 @@
 *                                                                             *
 * @author Catarina Martins, Daniel Faria                                      *
 ******************************************************************************/
-package aml.match;
-
-import aml.alignment.Alignment;
-import aml.alignment.SimpleMapping;
+package aml.alignment;
 
 public class LWC
 {

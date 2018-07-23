@@ -18,7 +18,7 @@
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 
-package aml.match;
+package aml.match.structural;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +26,7 @@ import java.util.Set;
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
+import aml.match.PrimaryMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.StopList;
 import aml.ontology.lexicon.StringParser;

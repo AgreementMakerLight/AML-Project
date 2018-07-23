@@ -16,10 +16,12 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.match;
+package aml.match.bk;
 
 import aml.AML;
 import aml.alignment.Alignment;
+import aml.match.PrimaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;

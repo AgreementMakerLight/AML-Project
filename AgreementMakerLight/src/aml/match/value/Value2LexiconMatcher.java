@@ -18,7 +18,7 @@
 *                                                                             *
 * @author Daniel Faria, Catia Pesquita                                        *
 ******************************************************************************/
-package aml.match;
+package aml.match.value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +31,9 @@ import java.util.concurrent.Future;
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
+import aml.match.PrimaryMatcher;
+import aml.match.Rematcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ValueMap;

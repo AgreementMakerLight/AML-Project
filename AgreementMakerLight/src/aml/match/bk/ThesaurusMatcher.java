@@ -18,7 +18,7 @@
 *                                                                             *
 * @authors Catia Pesquita, Daniel Faria                                       *
 ******************************************************************************/
-package aml.match;
+package aml.match.bk;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +27,8 @@ import java.util.Vector;
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
+import aml.match.PrimaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;

@@ -21,7 +21,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.match;
+package aml.match.bk;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +34,8 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.knowledge.MediatorOntology;
+import aml.match.PrimaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.match.lexical.LexicalMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.ExternalLexicon;

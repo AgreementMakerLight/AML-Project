@@ -21,13 +21,15 @@
 *                                                                             *
 * @author Amruta Nanavaty, Daniel Faria                                       *
 ******************************************************************************/
-package aml.match;
+package aml.match.bk;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
 import aml.alignment.Alignment;
+import aml.match.PrimaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.StopList;

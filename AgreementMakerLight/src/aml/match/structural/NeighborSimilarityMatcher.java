@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.match;
+package aml.match.structural;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,9 @@ import java.util.concurrent.Future;
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
+import aml.match.Rematcher;
+import aml.match.SecondaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.semantics.EntityMap;
 import aml.settings.NeighborSimilarityStrategy;
