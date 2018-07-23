@@ -70,17 +70,21 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 		AML aml = AML.getInstance();
 		Set<String> sources = o1.getEntities(e);
 		Set<String> targets = o2.getEntities(e);
+		sources.removeAll(maps.getSources());
+		targets.removeAll(maps.getTargets());
+		if(e.equals(EntityType.INDIVIDUAL))
+		{
+			sources.retainAll(aml.getSourceIndividualsToMatch());
+			targets.retainAll(aml.getTargetIndividualsToMatch());
+		}
 		Alignment a = new Alignment();
 		for(String i : sources)
 		{
-			if(maps.containsEntity(i) || (e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i)))
-				continue;
 			Map2Set<String,String> toMap = new Map2Set<String,String>();
 			for(String j : targets)
 			{
-				if(maps.containsEntity(j) || (e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
-						(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-						!aml.getEntityMap().shareClass(i,j)))))
+				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+						!aml.getEntityMap().shareClass(i,j))
 					continue;
 				toMap.add(i,j);
 			}
@@ -95,17 +99,19 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 		AML aml = AML.getInstance();
 		Set<String> sources = o1.getEntities(e);
 		Set<String> targets = o2.getEntities(e);
+		if(e.equals(EntityType.INDIVIDUAL))
+		{
+			sources.retainAll(aml.getSourceIndividualsToMatch());
+			targets.retainAll(aml.getTargetIndividualsToMatch());
+		}
 		Alignment a = new Alignment();
 		for(String i : sources)
 		{
-			if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
-				continue;
 			Map2Set<String,String> toMap = new Map2Set<String,String>();
 			for(String j : targets)
 			{
-				if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
-						(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-						!aml.getEntityMap().shareClass(i,j))))
+				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+						!aml.getEntityMap().shareClass(i,j))
 					continue;
 				toMap.add(i,j);
 			}
