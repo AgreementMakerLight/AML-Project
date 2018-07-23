@@ -65,7 +65,16 @@ public class ExternalLexicon
 		while((line = inStream.readLine()) != null)
 		{
 			String[] lex = line.split("\t");
-			String uri = (new File(file)).toURI() + "#" + lex[0];
+			String uri;
+			try
+			{
+				int id = Integer.parseInt(lex[0]);
+				uri = (new File(file)).toURI() + "#" + id;
+			}
+			catch(NumberFormatException e)
+			{
+				uri = lex[0];
+			}
 			String name = lex[1];
 			double weight = Double.parseDouble(lex[2]);
 			add(uri,name,weight);
@@ -211,7 +220,7 @@ public class ExternalLexicon
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		for(String i : nameEntities.keySet())
 			for(String n : nameEntities.get(i))
-				outStream.println(i.substring(i.indexOf("#")+1) + "\t" + n + "\t" + getWeight(n,i));
+				outStream.println(i + "\t" + n + "\t" + getWeight(n,i));
 		outStream.close();
 	}
 }
