@@ -19,7 +19,7 @@
 *                                                                             *
 * @author Giorgos Stoilos (adapted and modified by Daniel Faria)              *
 ******************************************************************************/
-package aml.util;
+package aml.util.similarity;
 
 public class ISub
 {
