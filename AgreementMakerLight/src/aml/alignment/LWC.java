@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,7 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Computes the linear weighted combination between two alignments.            *
+* Computes the linear weighted combination between two alignments (simple     *
+* mappings only).                                                             *
 *                                                                             *
 * @author Catarina Martins, Daniel Faria                                      *
 ******************************************************************************/
@@ -40,18 +41,22 @@ public class LWC
 	{
 		Alignment combine = new Alignment();
 	
-		for(SimpleMapping m: a)
+		for(AbstractMapping m: a)
 		{
-			double similarity = m.getSimilarity()*weight + 
-					b.getSimilarity(m.getSourceId(), m.getTargetId())*(1-weight);
-			combine.add(m.getSourceId(), m.getTargetId(), similarity);
+			if(m instanceof SimpleMapping)
+			{
+				double similarity = m.getSimilarity()*weight;
+				if(b.contains(m))
+					similarity += b.getSimilarity((String)m.getEntity1(), (String)m.getEntity2())*(1-weight);
+				combine.add((String)m.getEntity1(),(String)m.getEntity2(),similarity);
+			}
 		}
-		for(SimpleMapping m : b)
+		for(AbstractMapping m : b)
 		{
-			if(!a.containsMapping(m))
+			if(!a.containsMapping(m) && m instanceof SimpleMapping)
 			{
 				double similarity = m.getSimilarity()*(1-weight);
-				combine.add(m.getSourceId(), m.getTargetId(), similarity);
+				combine.add((String)m.getEntity1(),(String)m.getEntity2(),similarity);
 			}
 		}
 		return combine;

@@ -26,7 +26,7 @@ import java.util.Set;
 
 import aml.AML;
 import aml.alignment.Alignment;
-import aml.alignment.Mapping;
+import aml.alignment.AbstractMapping;
 import aml.alignment.SimpleMapping;
 import aml.match.AbstractParallelMatcher;
 import aml.match.UnsupportedEntityTypeException;
@@ -117,7 +117,7 @@ public class StringMatcher extends AbstractParallelMatcher
 			for(int i = 0; i < 10 && ext.size() > size; i++)
 			{
 				size = ext.size();
-				for(Mapping m : aux)
+				for(AbstractMapping m : aux)
 					if(!a.containsConflict(m))
 						ext.add(m);
 				aux = extendChildrenAndParents(aux,thresh);
@@ -248,7 +248,7 @@ public class StringMatcher extends AbstractParallelMatcher
 		AML aml = AML.getInstance();
 		EntityMap rels = aml.getEntityMap();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
-		for(Mapping input : a)
+		for(AbstractMapping input : a)
 		{
 			if(input instanceof SimpleMapping && rels.isClass((String)input.getEntity1()))
 			{
@@ -286,7 +286,7 @@ public class StringMatcher extends AbstractParallelMatcher
 		AML aml = AML.getInstance();
 		EntityMap rels = aml.getEntityMap();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
-		for(Mapping input : a)
+		for(AbstractMapping input : a)
 		{
 			if(input instanceof SimpleMapping && aml.getEntityMap().isClass((String)input.getEntity1()))
 			{

@@ -37,7 +37,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.alignment.Alignment;
 import aml.alignment.AlignmentIO;
-import aml.alignment.Mapping;
+import aml.alignment.AbstractMapping;
 import aml.alignment.MappingStatus;
 import aml.filter.CustomFilterer;
 import aml.filter.CustomFlagger;
@@ -1043,7 +1043,7 @@ public class AML
 	public void removeIncorrect()
 	{
 		Alignment reviewed = new Alignment();
-		for(Mapping m : a)
+		for(AbstractMapping m : a)
 			if(!m.getStatus().equals(MappingStatus.INCORRECT))
 				reviewed.add(m);
 		if(a.size() > reviewed.size())

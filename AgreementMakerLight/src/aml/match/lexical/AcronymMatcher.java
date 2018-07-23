@@ -18,12 +18,14 @@
 * @author Amruta Nanavaty, Daniel Faria                                       *
 ******************************************************************************/
 
-package aml.match;
+package aml.match.lexical;
 
 import java.util.ArrayList;
 
 import aml.AML;
 import aml.alignment.Alignment;
+import aml.match.PrimaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;

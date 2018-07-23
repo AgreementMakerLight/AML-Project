@@ -28,7 +28,7 @@ import java.util.concurrent.Future;
 
 import aml.AML;
 import aml.alignment.Alignment;
-import aml.alignment.Mapping;
+import aml.alignment.AbstractMapping;
 import aml.alignment.SimpleMapping;
 import aml.match.PrimaryMatcher;
 import aml.match.Rematcher;
@@ -126,7 +126,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 		AML aml = AML.getInstance();
 		Alignment maps = new Alignment();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
-		for(Mapping m : a)
+		for(AbstractMapping m : a)
 		{
 			if(m instanceof SimpleMapping)
 			{

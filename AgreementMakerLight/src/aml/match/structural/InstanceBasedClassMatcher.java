@@ -17,13 +17,15 @@
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 
-package aml.match;
+package aml.match.structural;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
 import aml.alignment.Alignment;
+import aml.match.PrimaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.semantics.EntityMap;

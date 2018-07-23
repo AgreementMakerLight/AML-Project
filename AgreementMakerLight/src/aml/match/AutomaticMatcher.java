@@ -39,6 +39,7 @@ import aml.match.bk.MediatingXRefMatcher;
 import aml.match.bk.MultiWordMatcher;
 import aml.match.bk.ThesaurusMatcher;
 import aml.match.bk.WordNetMatcher;
+import aml.match.lexical.AcronymMatcher;
 import aml.match.lexical.HybridStringMatcher;
 import aml.match.lexical.LexicalMatcher;
 import aml.match.lexical.SpacelessLexicalMatcher;

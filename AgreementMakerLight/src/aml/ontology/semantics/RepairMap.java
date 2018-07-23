@@ -84,7 +84,7 @@ public class RepairMap implements Iterable<Integer>
 		//order of the original alignment is altered
 		a = new Alignment(aml.getAlignment());
 		//Remove the FLAGGED status from all mappings that have it
-		for(Mapping m : a)
+		for(AbstractMapping m : a)
 			if(m.getStatus().equals(MappingStatus.FLAGGED))
 				m.setStatus(MappingStatus.UNKNOWN);
 		threads = Runtime.getRuntime().availableProcessors();
