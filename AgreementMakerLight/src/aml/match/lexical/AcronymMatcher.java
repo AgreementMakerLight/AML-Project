@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -27,6 +27,7 @@ import aml.alignment.Alignment;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 
@@ -65,12 +66,12 @@ public class AcronymMatcher implements PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		AML aml = AML.getInstance();
-		Lexicon sourceLex = aml.getSource().getLexicon();
-		Lexicon targetLex = aml.getTarget().getLexicon();
+		Lexicon sourceLex = o1.getLexicon();
+		Lexicon targetLex = o2.getLexicon();
 		
 		Alignment maps = new Alignment();
 
@@ -140,11 +141,11 @@ public class AcronymMatcher implements PrimaryMatcher
 				sim /= total;
 				if(sim >= thresh)
 				{
-					for(int sourceId : sourceLex.getEntities(e,sName))
+					for(String sourceId : sourceLex.getEntities(e,sName))
 					{
 						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(sourceId))
 							continue;
-						for(int targetId : targetLex.getEntities(e,tName))
+						for(String targetId : targetLex.getEntities(e,tName))
 						{
 							if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(targetId) ||
 									(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
