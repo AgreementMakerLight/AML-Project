@@ -18,7 +18,7 @@
 *                                                                             *
 * @author Daniel Faria, Claudia Duarte                                        *
 ******************************************************************************/
-package aml.knowledge;
+package aml.ontology.io;
 
 import java.io.File;
 import java.util.Iterator;
