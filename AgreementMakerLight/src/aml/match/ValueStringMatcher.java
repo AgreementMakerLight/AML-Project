@@ -34,8 +34,8 @@ import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ValueMap;
 import aml.settings.InstanceMatchingCategory;
-import aml.util.NameSimilarity;
 import aml.util.data.Map2Set;
+import aml.util.similarity.NameSimilarity;
 
 public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 {

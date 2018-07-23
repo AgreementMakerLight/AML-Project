@@ -26,9 +26,9 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.EntityMap;
-import aml.util.Similarity;
+import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2Set;
+import aml.util.similarity.Similarity;
 
 public class InstanceBasedClassMatcher implements PrimaryMatcher
 {

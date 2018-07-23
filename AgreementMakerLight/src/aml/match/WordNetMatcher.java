@@ -26,13 +26,13 @@ import java.util.Vector;
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
-import aml.knowledge.WordNet;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.LexiconExtender;
 import aml.ontology.lexicon.StringParser;
 import aml.settings.InstanceMatchingCategory;
+import aml.util.similarity.WordNet;
 
 public class WordNetMatcher implements PrimaryMatcher, LexiconExtender
 {

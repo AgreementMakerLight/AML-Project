@@ -23,7 +23,7 @@ import aml.alignment.Alignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.EntityMap;
+import aml.ontology.semantics.EntityMap;
 import aml.settings.SelectionType;
 import aml.util.InteractionManager;
 

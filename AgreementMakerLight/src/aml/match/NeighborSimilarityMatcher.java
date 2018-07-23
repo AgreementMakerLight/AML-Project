@@ -31,7 +31,7 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.EntityMap;
+import aml.ontology.semantics.EntityMap;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.util.data.Map2Set;
 

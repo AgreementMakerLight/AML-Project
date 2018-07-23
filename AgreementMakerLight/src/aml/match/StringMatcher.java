@@ -38,14 +38,14 @@ import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.EntityMap;
 import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;
+import aml.ontology.semantics.EntityMap;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.StringSimMeasure;
-import aml.util.ISub;
 import aml.util.data.Map2Set;
+import aml.util.similarity.ISub;
 
 public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatcher
 {

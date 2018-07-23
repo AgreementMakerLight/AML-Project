@@ -26,9 +26,9 @@ import aml.alignment.Alignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.EntityMap;
 import aml.ontology.URIMap;
-import aml.util.Similarity;
+import aml.ontology.semantics.EntityMap;
+import aml.util.similarity.Similarity;
 
 public class DomainAndRangeFilterer implements Filterer
 {

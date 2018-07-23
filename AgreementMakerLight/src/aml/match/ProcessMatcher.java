@@ -27,11 +27,11 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.EntityMap;
 import aml.ontology.lexicon.StopList;
 import aml.ontology.lexicon.StringParser;
-import aml.util.ISub;
-import aml.util.Similarity;
+import aml.ontology.semantics.EntityMap;
+import aml.util.similarity.ISub;
+import aml.util.similarity.Similarity;
 
 public class ProcessMatcher implements PrimaryMatcher
 {

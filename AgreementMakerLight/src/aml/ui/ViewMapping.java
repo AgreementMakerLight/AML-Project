@@ -70,14 +70,14 @@ import aml.alignment.SimpleMapping;
 import aml.alignment.MappingRelation;
 import aml.alignment.MappingStatus;
 import aml.filter.QualityFlagger;
-import aml.filter.RepairMap;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.EntityMap;
 import aml.ontology.URIMap;
 import aml.ontology.ValueMap;
 import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;
+import aml.ontology.semantics.EntityMap;
+import aml.ontology.semantics.RepairMap;
 import aml.util.data.Map2Set;
 import processing.core.PApplet;
  

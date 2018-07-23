@@ -24,13 +24,13 @@ import java.util.Set;
 
 import aml.AML;
 import aml.alignment.Alignment;
-import aml.knowledge.WordNet;
 import aml.ontology.EntityType;
-import aml.ontology.EntityMap;
 import aml.ontology.ValueMap;
 import aml.ontology.lexicon.Lexicon;
-import aml.util.ISub;
-import aml.util.Similarity;
+import aml.ontology.semantics.EntityMap;
+import aml.util.similarity.ISub;
+import aml.util.similarity.Similarity;
+import aml.util.similarity.WordNet;
 
 public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 {

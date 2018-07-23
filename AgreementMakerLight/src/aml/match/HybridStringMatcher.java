@@ -36,8 +36,8 @@ import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
-import aml.util.NameSimilarity;
 import aml.util.data.Map2Set;
+import aml.util.similarity.NameSimilarity;
 
 public class HybridStringMatcher implements PrimaryMatcher, Rematcher
 {

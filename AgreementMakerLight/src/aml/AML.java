@@ -42,18 +42,17 @@ import aml.alignment.MappingStatus;
 import aml.filter.CustomFilterer;
 import aml.filter.CustomFlagger;
 import aml.filter.QualityFlagger;
-import aml.filter.RepairMap;
 import aml.filter.Repairer;
-import aml.knowledge.Dictionary;
 import aml.match.ManualMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.match.AutomaticMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.OntologyParser;
+import aml.ontology.io.OntologyParser;
 import aml.ontology.lexicon.ParenthesisExtender;
 import aml.ontology.lexicon.StopWordExtender;
 import aml.ontology.semantics.EntityMap;
+import aml.ontology.semantics.RepairMap;
 import aml.settings.Problem;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
@@ -69,7 +68,8 @@ import aml.ui.GUI;
 import aml.ui.OntologyFileChooser;
 import aml.util.ExtensionFilter;
 import aml.util.InteractionManager;
-import aml.util.Similarity;
+import aml.util.similarity.Similarity;
+import aml.util.translate.Dictionary;
 
 public class AML
 {

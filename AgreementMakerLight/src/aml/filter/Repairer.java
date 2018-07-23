@@ -21,6 +21,7 @@ package aml.filter;
 import aml.AML;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
+import aml.ontology.semantics.RepairMap;
 import aml.util.InteractionManager;
 
 public class Repairer implements Filterer, Flagger

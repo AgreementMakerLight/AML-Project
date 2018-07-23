@@ -25,7 +25,7 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.EntityMap;
+import aml.ontology.semantics.EntityMap;
 
 public class BlockRematcher implements Rematcher
 {
