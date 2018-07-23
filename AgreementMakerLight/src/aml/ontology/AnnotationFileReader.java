@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,7 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Reads an annotation file associated with a given ontology, adding the       *
+* Reads an annotation file (such as a GO Annotation File or a TSV file        *
+* obtained from BioMart) associated with a given ontology, adding the         *
 * instances and their class associations to that ontology.                    *
 *                                                                             *
 * @author Daniel Faria                                                        *
@@ -25,6 +26,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import aml.AML;
+import aml.ontology.semantics.EntityMap;
 
 public class AnnotationFileReader
 {
@@ -39,9 +41,7 @@ public class AnnotationFileReader
 	 */
 	public static void readGAF(String annotFile, Ontology o)
 	{
-		AML aml = AML.getInstance();
-		URIMap uris = aml.getURIMap();
-		EntityMap rels = aml.getEntityMap();
+		EntityMap uris = AML.getInstance().getEntityMap();
 		
 		try
 		{
@@ -66,16 +66,16 @@ public class AnnotationFileReader
 				if(!o.getLocalNames().contains(term))
 					continue;
 				//Get the class index
-				int classIndex = o.getIndex(term);
+				String classUri = o.getURI(term);
 				//Add/get the instance index
-				int instanceIndex = uris.addURI(instance, EntityType.INDIVIDUAL);
+				uris.addURI(instance, EntityType.INDIVIDUAL);
 				//Add it to the ontology
-				o.add(instanceIndex);
+				o.add(instance, EntityType.INDIVIDUAL);
 				//Add the relation between the individual and class
-				rels.addInstance(instanceIndex, classIndex);
+				uris.addInstance(instance, classUri);
 				//Then a relation between the individual and each superclass
-				for(Integer parent : rels.getSuperClasses(classIndex,false))
-					rels.addInstance(instanceIndex, parent);
+				for(String parent : uris.getSuperclasses(classUri))
+					uris.addInstance(instance, parent);
 			}
 			in.close();
 		}
@@ -95,9 +95,7 @@ public class AnnotationFileReader
 	 */
 	public static void readTSV(String annotFile, Ontology o, boolean header)
 	{
-		AML aml = AML.getInstance();
-		URIMap uris = aml.getURIMap();
-		EntityMap rels = aml.getEntityMap();
+		EntityMap uris = AML.getInstance().getEntityMap();
 		
 		try
 		{
@@ -118,16 +116,16 @@ public class AnnotationFileReader
 				if(!o.getLocalNames().contains(term))
 					continue;
 				//Get the class index
-				int classIndex = o.getIndex(term);
+				String classUri = o.getURI(term);
 				//Add/get the instance index
-				int instanceIndex = uris.addURI(instance, EntityType.INDIVIDUAL);
+				uris.addURI(instance, EntityType.INDIVIDUAL);
 				//Add it to the ontology
-				o.add(instanceIndex);
+				o.add(instance, EntityType.INDIVIDUAL);
 				//Add the relation between the individual and class
-				rels.addInstance(instanceIndex, classIndex);
+				uris.addInstance(instance, classUri);
 				//Then a relation between the individual and each superclass
-				for(Integer parent : rels.getSuperClasses(classIndex,false))
-					rels.addInstance(instanceIndex, parent);
+				for(String parent : uris.getSuperclasses(classUri))
+					uris.addInstance(instance, parent);
 			}
 			in.close();
 		}
