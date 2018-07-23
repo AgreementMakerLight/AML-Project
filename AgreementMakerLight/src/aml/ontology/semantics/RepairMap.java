@@ -17,7 +17,7 @@
 *                                                                             *
 * @authors Daniel Faria & Emanuel Santos                                      *
 ******************************************************************************/
-package aml.filter;
+package aml.ontology.semantics;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,7 +38,7 @@ import aml.AML;
 import aml.alignment.Alignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
-import aml.ontology.EntityMap;
+import aml.filter.Path;
 import aml.util.data.Map2Map2List;
 import aml.util.data.Map2Map2Set;
 import aml.util.data.Map2Set;
@@ -84,7 +84,7 @@ public class RepairMap implements Iterable<Integer>
 		//order of the original alignment is altered
 		a = new Alignment(aml.getAlignment());
 		//Remove the FLAGGED status from all mappings that have it
-		for(SimpleMapping m : a)
+		for(Mapping m : a)
 			if(m.getStatus().equals(MappingStatus.FLAGGED))
 				m.setStatus(MappingStatus.UNKNOWN);
 		threads = Runtime.getRuntime().availableProcessors();
@@ -242,7 +242,7 @@ public class RepairMap implements Iterable<Integer>
 		
 		//Build the classList, starting with the classes
 		//involved in disjoint clauses
-		classList.addAll(rels.getDisjoint());
+		classList.addAll(rels.getDisjointClasses());
 		//If there aren't any, there is nothing else to do
 		if(classList.size() == 0)
 		{
@@ -659,7 +659,7 @@ public class RepairMap implements Iterable<Integer>
 		Vector<Path> classConflicts = new Vector<Path>();
 		for(Integer i : disj)
 		{
-			for(Integer j : rels.getDisjoint(i))
+			for(Integer j : rels.getDisjointClasses(i))
 			{
 				if(i > j || !disj.contains(j))
 					continue;

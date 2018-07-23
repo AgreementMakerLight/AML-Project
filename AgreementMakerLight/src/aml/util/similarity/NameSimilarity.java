@@ -23,8 +23,6 @@ package aml.util.similarity;
 
 import java.util.HashSet;
 
-import aml.knowledge.WordNet;
-
 public class NameSimilarity
 {
 	private WordNet wn = null;
