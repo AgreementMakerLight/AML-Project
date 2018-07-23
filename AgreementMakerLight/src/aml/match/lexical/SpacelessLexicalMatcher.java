@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -17,12 +17,15 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.match;
+package aml.match.lexical;
 
 
 import aml.AML;
 import aml.alignment.Alignment;
+import aml.match.PrimaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.data.Map2Set;
@@ -64,15 +67,15 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 	}
 
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running Spaceless Lexical Matcher");
 		long time = System.currentTimeMillis()/1000;
 		//Get the lexicons of the source and target Ontologies
 		AML aml = AML.getInstance();
-		Lexicon sLex = aml.getSource().getLexicon();
-		Lexicon tLex = aml.getTarget().getLexicon();
+		Lexicon sLex = o1.getLexicon();
+		Lexicon tLex = o2.getLexicon();
 		//Create spaceless lexicons
 		Map2Set<String,String> sourceConv = new Map2Set<String,String>();
 		for(String n : sLex.getNames(e))
@@ -89,14 +92,14 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 				continue;
 			for(String s : sourceConv.get(c))
 			{
-				for(Integer i : sLex.getEntities(e,s))
+				for(String i : sLex.getEntities(e,s))
 				{
 					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
 						continue;
 					double weight = sLex.getCorrectedWeight(s, i) * WEIGHT;
 					for(String t : targetConv.get(c))
 					{
-						for(Integer j : tLex.getEntities(e,t))
+						for(String j : tLex.getEntities(e,t))
 						{
 							if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
 									(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&

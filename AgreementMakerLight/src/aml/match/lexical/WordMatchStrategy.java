@@ -16,7 +16,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.settings;
+package aml.match.lexical;
 
 public enum WordMatchStrategy
 {

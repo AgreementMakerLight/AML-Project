@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -17,14 +17,17 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.match;
+package aml.match.lexical;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
 import aml.alignment.Alignment;
+import aml.match.PrimaryMatcher;
+import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.StringParser;
 import aml.settings.InstanceMatchingCategory;
@@ -65,15 +68,15 @@ public class LexicalMatcher implements PrimaryMatcher
 	}
 
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
+		AML aml = AML.getInstance();
 		checkEntityType(e);
 		System.out.println("Running Lexical Matcher");
 		long time = System.currentTimeMillis()/1000;
 		//Get the lexicons of the source and target Ontologies
-		AML aml = AML.getInstance();
-		Lexicon sLex = aml.getSource().getLexicon();
-		Lexicon tLex = aml.getTarget().getLexicon();
+		Lexicon sLex = o1.getLexicon();
+		Lexicon tLex = o2.getLexicon();
 		//Initialize the alignment
 		Alignment maps = new Alignment();
 		//To minimize iterations, we want to iterate through the
@@ -98,19 +101,19 @@ public class LexicalMatcher implements PrimaryMatcher
 				for(String l : languages)
 				{
 					//Get all term indexes for the name in both ontologies
-					Set<Integer> sourceIndexes = sLex.getEntitiesWithLanguage(e,s,l);
-					Set<Integer> targetIndexes = tLex.getEntitiesWithLanguage(e,s,l);
+					Set<String> sourceIndexes = sLex.getEntitiesWithLanguage(e,s,l);
+					Set<String> targetIndexes = tLex.getEntitiesWithLanguage(e,s,l);
 					//If the name doesn't exist in either ontology, skip it
 					if(sourceIndexes == null || targetIndexes == null)
 						continue;
 					//Otherwise, match all indexes
-					for(Integer i : sourceIndexes)
+					for(String i : sourceIndexes)
 					{
 						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
 							continue;
 						//Get the weight of the name for the term in the smaller lexicon
 						double weight = sLex.getCorrectedWeight(s, i);
-						for(Integer j : targetIndexes)
+						for(String j : targetIndexes)
 						{
 							if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
 									(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
@@ -134,13 +137,13 @@ public class LexicalMatcher implements PrimaryMatcher
 			for(String s : names)
 			{
 				boolean isSmallFormula = StringParser.isFormula(s) && s.length() < 10;
-				Set<Integer> sourceIndexes = sLex.getEntities(e,s);
-				Set<Integer> targetIndexes = tLex.getEntities(e,s);
+				Set<String> sourceIndexes = sLex.getEntities(e,s);
+				Set<String> targetIndexes = tLex.getEntities(e,s);
 				//If the name doesn't exist in either ontology, skip it
 				if(sourceIndexes == null || targetIndexes == null)
 					continue;
 				//Otherwise, match all indexes
-				for(Integer i : sourceIndexes)
+				for(String i : sourceIndexes)
 				{
 					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
 						continue;
@@ -148,7 +151,7 @@ public class LexicalMatcher implements PrimaryMatcher
 						continue;
 					//Get the weight of the name for the term in the smaller lexicon
 					double weight = sLex.getCorrectedWeight(s, i);
-					for(Integer j : targetIndexes)
+					for(String j : targetIndexes)
 					{
 						if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
 								(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
