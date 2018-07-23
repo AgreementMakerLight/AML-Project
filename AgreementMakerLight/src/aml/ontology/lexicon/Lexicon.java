@@ -92,7 +92,7 @@ public class Lexicon
 		LexicalMetadata p;
 
 		//Get the types of the entity
-		Set<EntityType> types = AML.getInstance().getURIMap().getTypes(uri);
+		Set<EntityType> types = AML.getInstance().getEntityMap().getTypes(uri);
 
 		//If the name is not in english we parse it as a formula
 		if(!language.equals("en"))

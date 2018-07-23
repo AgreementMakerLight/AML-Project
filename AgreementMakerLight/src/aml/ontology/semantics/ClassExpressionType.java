@@ -16,7 +16,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.ontology;
+package aml.ontology.semantics;
 
 public enum ClassExpressionType
 {
