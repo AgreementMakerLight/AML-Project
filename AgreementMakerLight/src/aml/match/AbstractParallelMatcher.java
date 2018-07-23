@@ -38,7 +38,7 @@ import aml.ontology.Ontology;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.data.Map2Set;
 
-public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematcher
+public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematcher, SecondaryMatcher
 {
 
 //Attributes
@@ -64,6 +64,32 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 
 	public abstract EntityType[] getSupportedEntityTypes();
 	
+	@Override
+	public Alignment extendAlignment(Ontology o1, Ontology o2, Alignment maps, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		AML aml = AML.getInstance();
+		Set<String> sources = o1.getEntities(e);
+		Set<String> targets = o2.getEntities(e);
+		Alignment a = new Alignment();
+		for(String i : sources)
+		{
+			if(maps.containsEntity(i) || (e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i)))
+				continue;
+			Map2Set<String,String> toMap = new Map2Set<String,String>();
+			for(String j : targets)
+			{
+				if(maps.containsEntity(j) || (e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(j) ||
+						(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+						!aml.getEntityMap().shareClass(i,j)))))
+					continue;
+				toMap.add(i,j);
+			}
+			a.addAll(mapInParallel(toMap,thresh));
+		}
+		return a;
+	}
+	
+	@Override
 	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		AML aml = AML.getInstance();
