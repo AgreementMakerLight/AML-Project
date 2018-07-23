@@ -30,8 +30,8 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.ontology.EntityType;
+import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2MapComparable;
-import aml.ontology.EntityMap;
 
 public class Alignment implements Collection<Mapping>
 {
@@ -289,8 +289,8 @@ public class Alignment implements Collection<Mapping>
 	{
 		EntityMap rels = AML.getInstance().getEntityMap();
 		
-		Set<String> sourceAncestors = rels.getAncestors(entity1);
-		Set<String> targetAncestors = rels.getAncestors(entity2);
+		Set<String> sourceAncestors = rels.getSuperclasses(entity1);
+		Set<String> targetAncestors = rels.getSuperclasses(entity2);
 		
 		for(String sa : sourceAncestors)
 		{
@@ -379,8 +379,8 @@ public class Alignment implements Collection<Mapping>
 	{
 		EntityMap rels = AML.getInstance().getEntityMap();
 		
-		Set<String> sourceDescendants = rels.getDescendants(entity1);
-		Set<String> targetDescendants = rels.getDescendants(entity2);
+		Set<String> sourceDescendants = rels.getSubclasses(entity1);
+		Set<String> targetDescendants = rels.getSubclasses(entity2);
 		
 		for(String sa : sourceDescendants)
 		{
@@ -434,8 +434,8 @@ public class Alignment implements Collection<Mapping>
 	{
 		EntityMap rels = AML.getInstance().getEntityMap();
 		
-		Set<String> sourceAncestors = rels.getParents(entity1);
-		Set<String> targetAncestors = rels.getParents(entity2);
+		Set<String> sourceAncestors = rels.getSubclasses(entity1,1);
+		Set<String> targetAncestors = rels.getSubclasses(entity2,1);
 		
 		for(String sa : sourceAncestors)
 			if(containsMapping(sa,entity2))
