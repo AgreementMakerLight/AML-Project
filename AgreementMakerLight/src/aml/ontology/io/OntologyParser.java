@@ -16,7 +16,7 @@
 *																			  *
 * @author Daniel Faria, Catia Pesquita                                        *
 ******************************************************************************/
-package aml.ontology;
+package aml.ontology.io;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -63,11 +63,16 @@ import uk.ac.manchester.cs.owl.owlapi.OWLDataHasValueImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataSomeValuesFromImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLObjectCardinalityRestrictionImpl;
 import aml.AML;
+import aml.ontology.EntityType;
+import aml.ontology.Ontology;
+import aml.ontology.ReferenceMap;
+import aml.ontology.SKOS;
 import aml.ontology.lexicon.LexicalMetadata;
 import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.StringParser;
 import aml.ontology.lexicon.WordLexicon;
+import aml.ontology.semantics.EntityMap;
 import aml.util.MapSorter;
 import aml.util.data.Map2MapComparable;
 import aml.util.data.Map2Set;
@@ -393,7 +398,7 @@ public class OntologyParser
 				Set<String> top2 = getTopParents(j);
 				for(String k : top1)
 					for(String n : top2)
-						rm.addDisjoint(k, n);
+						rm.addDisjointClasses(k, n);
 			}
 		}
 	}
@@ -1017,7 +1022,7 @@ public class OntologyParser
 				{
 					int parent = uris.getIndex(dClass.asOWLClass().getIRI().toString());
 					if(parent > -1)
-						rm.addDisjoint(child, parent);
+						rm.addDisjointClasses(child, parent);
 				}
 				//If it is a union, process it
 				else if(type.equals(ClassExpressionType.OBJECT_UNION_OF))
@@ -1027,7 +1032,7 @@ public class OntologyParser
 					{
 						int parent = uris.getIndex(ce.getIRI().toString());
 						if(parent > -1)
-							rm.addDisjoint(child, parent);
+							rm.addDisjointClasses(child, parent);
 					}
 				}
 				//If it is an intersection, check for common descendants
@@ -1043,7 +1048,7 @@ public class OntologyParser
 					}
 					Set<Integer> subclasses = rm.getCommonSubClasses(intersect);
 					for(Integer i : subclasses)
-						rm.addDisjoint(child,i);
+						rm.addDisjointClasses(child,i);
 				}
 			}
 		}
@@ -1058,19 +1063,19 @@ public class OntologyParser
 			for(int i = 0; i < exact.size()-1; i++)
 				for(int j = i+1; j < exact.size(); j++)
 					if(card.get(prop, exact.get(i)) != card.get(prop, exact.get(j)))
-						rm.addDisjoint(exact.get(i), exact.get(j));
+						rm.addDisjointClasses(exact.get(i), exact.get(j));
 			Set<Integer> max = maxCard.keySet(prop);
 			if(max != null)
 				for(int i = 0; i < exact.size(); i++)
 					for(Integer j : max)
 						if(card.get(prop, exact.get(i)) > maxCard.get(prop, j))
-							rm.addDisjoint(exact.get(i), j);
+							rm.addDisjointClasses(exact.get(i), j);
 			Set<Integer> min = minCard.keySet(prop);
 			if(min != null)
 				for(int i = 0; i < exact.size(); i++)
 					for(Integer j : min)
 						if(card.get(prop, exact.get(i)) > minCard.get(prop, j))
-							rm.addDisjoint(exact.get(i), j);				
+							rm.addDisjointClasses(exact.get(i), j);				
 		}
 		//Then min vs max cardinalities
 		for(Integer prop : minCard.keySet())
@@ -1083,7 +1088,7 @@ public class OntologyParser
 			for(Integer i : min)
 				for(Integer j : max)
 					if(minCard.get(prop, i) > maxCard.get(prop, j))
-						rm.addDisjoint(i, j);
+						rm.addDisjointClasses(i, j);
 		}
 		//Data properties with incompatible values
 		//First hasValue restrictions on functional data properties
@@ -1093,7 +1098,7 @@ public class OntologyParser
 			for(int i = 0; i < cl.size()-1; i++)
 				for(int j = i+1; j < cl.size(); j++)
 					if(!dataHasValue.get(prop, cl.get(i)).equals(dataHasValue.get(prop, cl.get(j))))
-						rm.addDisjoint(cl.get(i), cl.get(j));
+						rm.addDisjointClasses(cl.get(i), cl.get(j));
 		}
 		//Then incompatible someValues restrictions on functional data properties
 		for(Integer prop : dataSomeValues.keySet())
@@ -1108,7 +1113,7 @@ public class OntologyParser
 					{
 						if(!dataSomeValues.get(prop, cl.get(i)).contains(d))
 						{
-							rm.addDisjoint(cl.get(i), cl.get(j));
+							rm.addDisjointClasses(cl.get(i), cl.get(j));
 							break;
 						}
 					}
@@ -1129,7 +1134,7 @@ public class OntologyParser
 					{
 						if(!dataAllValues.get(prop, cl.get(i)).contains(d))
 						{
-							rm.addDisjoint(cl.get(i), cl.get(j));
+							rm.addDisjointClasses(cl.get(i), cl.get(j));
 							break;
 						}
 					}
@@ -1147,7 +1152,7 @@ public class OntologyParser
 					{
 						if(!dataAllValues.get(prop, i).contains(d))
 						{
-							rm.addDisjoint(i, j);
+							rm.addDisjointClasses(i, j);
 							break;
 						}
 					}
@@ -1167,7 +1172,7 @@ public class OntologyParser
 				{
 					int c2 = objectAllValues.get(prop, cl.get(j));
 					if(c1 != c2 && rm.areDisjoint(c1, c2))
-						rm.addDisjoint(cl.get(i), cl.get(j));
+						rm.addDisjointClasses(cl.get(i), cl.get(j));
 				}
 			}
 
@@ -1181,7 +1186,7 @@ public class OntologyParser
 				{
 					int c2 = objectSomeValues.get(prop, j);
 					if(c1 != c2 && rm.areDisjoint(c1, c2))
-						rm.addDisjoint(i, j);
+						rm.addDisjointClasses(i, j);
 				}
 			}
 		}
@@ -1201,7 +1206,7 @@ public class OntologyParser
 				{
 					int c2 = objectSomeValues.get(prop, cl.get(j));
 					if(c1 != c2 && rm.areDisjoint(c1, c2))
-						rm.addDisjoint(cl.get(i), cl.get(j));
+						rm.addDisjointClasses(cl.get(i), cl.get(j));
 				}
 			}
 		}
@@ -1319,7 +1324,7 @@ public class OntologyParser
 				OWLDataProperty sProp = de.asOWLDataProperty();
 				int sId = uris.getIndex(sProp.getIRI().toString());
 				if(sId != -1)
-					rm.addSubProperty(propId,sId);	
+					rm.addSubproperty(propId,sId);	
 			}
 		}
 		//Object Properties
@@ -1335,7 +1340,7 @@ public class OntologyParser
 				OWLObjectProperty sProp = oe.asOWLObjectProperty();
 				int sId = uris.getIndex(sProp.getIRI().toString());
 				if(sId != -1)
-					rm.addSubProperty(propId,sId);	
+					rm.addSubproperty(propId,sId);	
 			}
 			Set<OWLObjectPropertyExpression> iProps = op.getInverses(o);
 			for(OWLObjectPropertyExpression oe : iProps)

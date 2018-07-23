@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -19,7 +19,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.knowledge;
+package aml.ontology.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -32,7 +32,7 @@ public class UMLSParser
 {
 	public static void main(String[] args) throws Exception
 	{
-		Map2Set<Integer,String> termSources = new Map2Set<Integer,String>();
+		Map2Set<String,String> termSources = new Map2Set<String,String>();
 		ExternalLexicon med = new ExternalLexicon();
 		
 		BufferedReader inStream = new BufferedReader(new FileReader("store/knowledge/MRCONSO.RRF"));
@@ -40,7 +40,7 @@ public class UMLSParser
 		while((line = inStream.readLine()) != null)
 		{
 			String[] cols = line.split("\\|");
-			int id = Integer.parseInt(cols[0].substring(1));
+			String id = "UMLS_Metathesaurus/" + cols[0].substring(1);
 			String source = cols[11];
 			String name = cols[14];
 			LexicalType type = LexicalType.LABEL;

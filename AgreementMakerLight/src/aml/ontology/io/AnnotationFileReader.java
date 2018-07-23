@@ -19,13 +19,15 @@
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 
-package aml.ontology;
+package aml.ontology.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 import aml.AML;
+import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.ontology.semantics.EntityMap;
 
 public class AnnotationFileReader

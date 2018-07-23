@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -53,11 +53,11 @@ public class MeSHParser
 				Element c = (Element)conc.next();
 				String conceptName = c.element("ConceptName").elementText("String");
 				concepts.add(conceptName);
-				med.add(index, conceptName, 0.90);
+				med.add("MeSH/" + index, conceptName, 0.90);
 				
 				String casN1Name = c.elementText("CASN1Name");
 				if(casN1Name != null)
-					med.add(index, casN1Name, 0.85);
+					med.add("MeSH/" +index, casN1Name, 0.85);
 					
 				Element termList = c.element("TermList");
 				Iterator<?> terms = termList.elementIterator("Term");
@@ -66,7 +66,7 @@ public class MeSHParser
 					Element t = (Element)terms.next();
 					String termName = t.elementText("String");
 					if(!conceptName.equals(termName))
-						med.add(index, termName, 0.85);
+						med.add("MeSH/" + index, termName, 0.85);
 				}
 				index++;
 			}
