@@ -25,12 +25,16 @@ import aml.alignment.Alignment;
 import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
 import aml.filter.Selector;
+import aml.match.lexical.HybridStringMatcher;
+import aml.match.lexical.LexicalMatcher;
+import aml.match.lexical.StringMatcher;
+import aml.match.lexical.WordMatchStrategy;
+import aml.match.lexical.WordMatcher;
 import aml.ontology.EntityType;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
-import aml.settings.WordMatchStrategy;
 
 public class ManualMatcher
 {

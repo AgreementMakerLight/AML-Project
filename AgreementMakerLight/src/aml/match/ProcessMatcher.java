@@ -158,7 +158,7 @@ public class ProcessMatcher implements PrimaryMatcher
 		for(String s : tW)
 			if(!stopSet.contains(s))
 				n2Words.add(s);
-		wordSim = Similarity.jaccard(n1Words, n2Words);
+		wordSim = Similarity.jaccardSimilarity(n1Words, n2Words);
 		
 		//Return the maximum of the string and word similarity
 		return Math.max(stringSim, wordSim);

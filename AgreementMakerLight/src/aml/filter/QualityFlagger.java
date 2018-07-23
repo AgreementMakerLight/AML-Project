@@ -27,13 +27,13 @@ import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.match.BlockRematcher;
 import aml.match.NeighborSimilarityMatcher;
-import aml.match.StringMatcher;
 import aml.match.UnsupportedEntityTypeException;
-import aml.match.WordMatcher;
+import aml.match.lexical.StringMatcher;
+import aml.match.lexical.WordMatchStrategy;
+import aml.match.lexical.WordMatcher;
 import aml.ontology.EntityType;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SizeCategory;
-import aml.settings.WordMatchStrategy;
 
 public class QualityFlagger implements Flagger
 {

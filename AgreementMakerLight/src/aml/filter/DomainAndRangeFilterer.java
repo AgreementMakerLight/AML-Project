@@ -132,7 +132,7 @@ public class DomainAndRangeFilterer implements Filterer
 			return true;
 		if(sRange.size() == 0 || tRange.size() == 0)
 			return false;
-		double sim = Similarity.jaccard(sRange,tRange);
+		double sim = Similarity.jaccardSimilarity(sRange,tRange);
 		return (sim > 0.5);
 	}	
 }

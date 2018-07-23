@@ -47,12 +47,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import aml.AML;
+import aml.match.lexical.WordMatchStrategy;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
-import aml.settings.StringSimMeasure;
-import aml.settings.WordMatchStrategy;
+import aml.util.similarity.StringSimMeasure;
 
 public class DetailedOptions extends JDialog implements ActionListener, ItemListener, ListSelectionListener
 {

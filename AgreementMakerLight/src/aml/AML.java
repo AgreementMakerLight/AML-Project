@@ -45,6 +45,7 @@ import aml.filter.QualityFlagger;
 import aml.filter.Repairer;
 import aml.match.ManualMatcher;
 import aml.match.UnsupportedEntityTypeException;
+import aml.match.lexical.WordMatchStrategy;
 import aml.match.AutomaticMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
@@ -60,8 +61,6 @@ import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
-import aml.settings.StringSimMeasure;
-import aml.settings.WordMatchStrategy;
 import aml.ui.AMLColor;
 import aml.ui.AlignmentFileChooser;
 import aml.ui.ExtensionFilter;
@@ -69,6 +68,7 @@ import aml.ui.GUI;
 import aml.ui.OntologyFileChooser;
 import aml.util.interactive.InteractionManager;
 import aml.util.similarity.Similarity;
+import aml.util.similarity.StringSimMeasure;
 import aml.util.translate.Dictionary;
 
 public class AML
@@ -246,7 +246,7 @@ public class AML
 		if(matchIndividuals)
 		{
 			inst = InstanceMatchingCategory.DIFFERENT_ONTOLOGIES;
-			double share = Similarity.jaccard(source.getEntities(EntityType.CLASS),
+			double share = Similarity.jaccardSimilarity(source.getEntities(EntityType.CLASS),
 					target.getEntities(EntityType.CLASS));
 			if(share >= 0.5)
 			{

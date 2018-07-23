@@ -33,11 +33,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Vector;
 
+import aml.match.lexical.WordMatchStrategy;
 import aml.settings.MatchStep;
 import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
-import aml.settings.StringSimMeasure;
-import aml.settings.WordMatchStrategy;
+import aml.util.similarity.StringSimMeasure;
 
 public class Main
 {

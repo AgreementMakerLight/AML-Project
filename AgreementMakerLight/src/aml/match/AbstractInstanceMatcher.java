@@ -152,7 +152,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 						Set<Integer> targetProps = rels.getIndividualProperties(j, to);
 						//Check if there is at least one property in common
 						//Note: again, this only works if the ontologies share the Tbox
-						if(Similarity.jaccard(sourceProps, targetProps) == 0)
+						if(Similarity.jaccardSimilarity(sourceProps, targetProps) == 0)
 							continue;
 						
 						relatedSim = Math.max(relatedSim,nameSimilarity(so,to,useWordNet));
@@ -211,7 +211,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 		}
 		
 		//Compute the Jaccard word similarity between the properties
-		double wordSim = Similarity.jaccard(sWords,tWords)*0.9;
+		double wordSim = Similarity.jaccardSimilarity(sWords,tWords)*0.9;
 		//and the String similarity
 		double simString = ISub.stringSimilarity(n1,n2)*0.9;
 		//Combine the two
@@ -219,7 +219,7 @@ public abstract class AbstractInstanceMatcher implements PrimaryMatcher
 		if(useWordNet)
 		{
 			//Check if the WordNet similarity
-			double wordNetSim = Similarity.jaccard(sSyns,tSyns);
+			double wordNetSim = Similarity.jaccardSimilarity(sSyns,tSyns);
 			//Is greater than the name similarity
 			if(wordNetSim > sim)
 				//And if so, return it

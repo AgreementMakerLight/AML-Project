@@ -99,7 +99,7 @@ public class InstanceBasedClassMatcher implements PrimaryMatcher
 			for(int t : pairs.get(s))
 			{
 				Set<Integer> ti = rm.getClassIndividuals(t);
-				double sim = Similarity.jaccard(si, ti);
+				double sim = Similarity.jaccardSimilarity(si, ti);
 				if(sim >= thresh)
 					a.add(s,t,sim);
 			}			

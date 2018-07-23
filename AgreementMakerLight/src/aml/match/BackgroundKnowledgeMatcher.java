@@ -34,6 +34,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import aml.AML;
 import aml.alignment.Alignment;
 import aml.knowledge.MediatorOntology;
+import aml.match.lexical.LexicalMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.ExternalLexicon;
 import aml.settings.SelectionType;
