@@ -38,7 +38,7 @@ public abstract class AbstractMatcher
 	/**
 	 * @return this Matcher's textual description
 	 */
-	public String getDescription()
+	public static String getDescription()
 	{
 		return DESCRIPTION;
 	}
@@ -46,7 +46,7 @@ public abstract class AbstractMatcher
 	/**
 	 * @return this Matcher's name
 	 */
-	public String getName()
+	public static String getName()
 	{
 		return NAME;
 	}
@@ -54,7 +54,7 @@ public abstract class AbstractMatcher
 	/**
 	 * @return the list of EntityTypes supported by this Matcher
 	 */
-	public EntityType[] getSupportedEntityTypes()
+	public static EntityType[] getSupportedEntityTypes()
 	{
 		return SUPPORT;
 	}
