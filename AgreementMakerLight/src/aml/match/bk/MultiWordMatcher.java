@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -19,38 +19,43 @@
 * WARNING: This matching algorithm takes O(N^2) time, and thus should be used *
 * only to match small ontologies.                                             *
 *                                                                             *
-* @author Amruta Nanavaty, Daniel Faria                                       *
+* @author Daniel Faria, Amruta Nanavaty                                       *
 ******************************************************************************/
 package aml.match.bk;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.match.PrimaryMatcher;
-import aml.match.UnsupportedEntityTypeException;
+import aml.match.AbstractParallelMatcher;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.StopList;
 import aml.ontology.lexicon.WordLexicon;
-import aml.settings.InstanceMatchingCategory;
 import aml.util.similarity.WordNet;
 
-public class MultiWordMatcher implements PrimaryMatcher
+public class MultiWordMatcher extends AbstractParallelMatcher
 {
 	
 //Attributes
 	
-	private static final String DESCRIPTION = "Matches entities that have Lexicon entries\n" +
-											  "with two words where one word is shared\n"+
-											  "between them and the other word is related\n" + 
-											  "through WordNet.";
-	private static final String NAME = "Lexical Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected static final String DESCRIPTION = "Matches entities that have English Lexicon\n" +
+											  "entries with two words where one word is\n"+
+											  "shared between them and the other word is\n" + 
+											  "related through WordNet.";
+	protected static final String NAME = "Multi-Word Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	private WordNet wn;
 	//The set of stop words
 	private Set<String> stopset;
+	//The Lexicons
+	private Lexicon sourceLex, targetLex;
+	private WordLexicon sourceWLex, targetWLex;
+	//The language
+	private static final String LANG = "en";
+	//The confidence score
+	private final double CONFIDENCE = 0.9;
 
 //Constructors
 	
@@ -63,43 +68,34 @@ public class MultiWordMatcher implements PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public String getDescription()
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-	
-	@Override
-	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
-	{
-		checkEntityType(e);
+		sourceLex = o1.getLexicon();
+		targetLex = o2.getLexicon();
+		sourceWLex = o1.getWordLexicon(e, LANG);
+		targetWLex = o2.getWordLexicon(e, LANG);
+		
 		System.out.println("Running Multi-Word Matcher");
 		long time = System.currentTimeMillis()/1000;
-		AML aml = AML.getInstance();
-		Lexicon sourceLex = aml.getSource().getLexicon();
-		Lexicon targetLex = aml.getTarget().getLexicon();
-		WordLexicon sourceWLex = aml.getSource().getWordLexicon(e);
-		WordLexicon targetWLex = aml.getTarget().getWordLexicon(e);
-		
-		SimpleAlignment maps = new SimpleAlignment();
-		for(String sName : sourceLex.getNames(e))
+		SimpleAlignment a = super.match(o1, o2, e, thresh);
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
+		return a;
+	}
+
+//Protected Methods
+	
+	@Override
+	protected double mapTwoEntities(String uri1, String uri2)
+	{
+		double maxSim = 0.0;
+		for(String sName : sourceLex.getNamesWithLanguage(uri1,LANG))
 		{
 			String[] sWords = sName.split(" ");
 			if(sWords.length < 2 || sWords.length > 3)
 				continue;
 			
-			for(String tName : targetLex.getNames(e))
+			for(String tName : targetLex.getNamesWithLanguage(uri2,LANG))
 			{
 				if(sName.equals(tName))
 					continue;
@@ -135,46 +131,16 @@ public class MultiWordMatcher implements PrimaryMatcher
 				if(sim < 1.5)
 					continue;
 				sim /= sWords.length;
-				for(Integer srcId : sourceLex.getEntities(e,sName))
-				{
-					if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(srcId))
-						continue;
-					for(Integer tgtId : targetLex.getEntities(e,tName))
-					{
-						if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(tgtId) ||
-								(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-								!aml.getEntityMap().shareClass(srcId,tgtId))))
-							continue;
-						double finalSim = sim * sourceLex.getCorrectedWeight(sName, srcId) *
-								targetLex.getCorrectedWeight(tName, tgtId);
-						if(finalSim < thresh)
-							finalSim = thresh;
-						maps.add(srcId, tgtId, finalSim);
-					}
-				}
+				double finalSim = sim * sourceLex.getCorrectedWeight(sName, uri1) *
+								targetLex.getCorrectedWeight(tName, uri2);
+				if(finalSim > maxSim)
+					maxSim = finalSim;
 			}
 		}
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
-		return maps;
+		return maxSim*CONFIDENCE;
 	}
-
-//Private Methods
 	
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
-	}
+//Private Methods
 	
 	private HashSet<String> getAllWordForms(String s)
 	{
