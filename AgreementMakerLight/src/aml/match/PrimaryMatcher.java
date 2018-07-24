@@ -22,7 +22,7 @@ import aml.alignment.SimpleAlignment;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 
-public interface PrimaryMatcher extends Matcher
+public interface PrimaryMatcher
 {
 	/**
 	 * Matches the source and target Ontologies, returning an Alignment between them

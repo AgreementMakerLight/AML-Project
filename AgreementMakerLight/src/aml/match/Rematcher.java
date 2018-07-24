@@ -23,7 +23,7 @@ import aml.alignment.SimpleAlignment;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 
-public interface Rematcher extends Matcher
+public interface Rematcher
 {
 	/**
 	 * Recomputes similarities for mappings of a given Alignment

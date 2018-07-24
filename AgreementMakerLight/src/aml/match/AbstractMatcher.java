@@ -20,7 +20,7 @@ package aml.match;
 
 import aml.ontology.EntityType;
 
-public abstract class AbstractMatcher implements Matcher
+public abstract class AbstractMatcher
 {
 
 //Attributes
@@ -35,19 +35,25 @@ public abstract class AbstractMatcher implements Matcher
 	
 //Public Methods
 	
-	@Override
+	/**
+	 * @return this Matcher's textual description
+	 */
 	public String getDescription()
 	{
 		return DESCRIPTION;
 	}
 
-	@Override
+	/**
+	 * @return this Matcher's name
+	 */
 	public String getName()
 	{
 		return NAME;
 	}
 	
-	@Override
+	/**
+	 * @return the list of EntityTypes supported by this Matcher
+	 */
 	public EntityType[] getSupportedEntityTypes()
 	{
 		return SUPPORT;
