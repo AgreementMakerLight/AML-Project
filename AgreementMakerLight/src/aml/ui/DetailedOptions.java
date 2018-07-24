@@ -48,8 +48,8 @@ import javax.swing.event.ListSelectionListener;
 
 import aml.AML;
 import aml.match.lexical.WordMatchStrategy;
+import aml.match.structural.NeighborSimilarityStrategy;
 import aml.settings.MatchStep;
-import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
 import aml.util.similarity.StringSimMeasure;

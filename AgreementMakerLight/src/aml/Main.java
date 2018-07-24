@@ -34,8 +34,8 @@ import java.io.FileReader;
 import java.util.Vector;
 
 import aml.match.lexical.WordMatchStrategy;
+import aml.match.structural.NeighborSimilarityStrategy;
 import aml.settings.MatchStep;
-import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
 import aml.util.similarity.StringSimMeasure;
 

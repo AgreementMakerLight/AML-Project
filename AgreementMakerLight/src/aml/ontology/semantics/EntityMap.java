@@ -52,9 +52,7 @@ public class EntityMap
 	//Subclass relations between class expressions with transitive closure
 	private Map2Set<String,String> ancestorExpressions; //Expression -> Broader Expression
 	//Disjointness relations between classes (direct only, no transitive closure)
-	private Map2Set<String,String> disjointClasses; //Class -> Disjoint Class
-	//Disjointness relations between class expressions (direct only, no transitive closure)
-	private Map2Set<String,String> disjointExpressions; //Expression -> Disjoint Expression
+	private Map2Set<String,String> disjointMap; //Class/Expression -> Disjoint Class/Expression
 	//High level classes
 	private HashSet<String> highLevelClasses;
 	
@@ -118,8 +116,7 @@ public class EntityMap
 		ancestorClasses = new Map2Map<String,String,Integer>();
 		classExpressions = new Map2Map<String,String,Boolean>();
 		ancestorExpressions = new Map2Set<String,String>();
-		disjointClasses = new Map2Set<String,String>();
-		disjointExpressions = new Map2Set<String,String>();
+		disjointMap = new Map2Set<String,String>();
 		instanceOfMap = new Map2Set<String,String>();
 		hasInstanceMap = new Map2Set<String,String>();
 		activeRelation = new Map2Map2Set<String,String,String>();		
@@ -185,24 +182,10 @@ public class EntityMap
 	 * @param class1: the uri of the first disjoint class
 	 * @param class2: the uri of the second disjoint class
 	 */
-	public void addDisjointClasses(String class1, String class2)
+	public void addDisjoint(String class1, String class2)
 	{
-		if(!class1.equals(class2))
-		{
-			disjointClasses.add(class1, class2);
-			disjointClasses.add(class2, class1);
-		}
-	}
-
-	/**
-	 * Adds a new disjointness relations between two classes
-	 * @param exp1: the uri of the first disjoint class expression
-	 * @param exp2: the uri of the second disjoint class expression
-	 */
-	public void addDisjointExpressions(String exp1, String exp2)
-	{
-		disjointExpressions.add(exp1, exp2);
-		disjointExpressions.add(exp2, exp1);
+		disjointMap.add(class1, class2);
+		disjointMap.add(class2, class1);
 	}
 
 	/**
@@ -524,7 +507,7 @@ public class EntityMap
 	{
 		//The size is divided by 2 since the disjoint
 		//clauses are stored in both directions
-		return disjointClasses.size()/2;
+		return disjointMap.size()/2;
 	}
 	
 	/**
@@ -627,38 +610,19 @@ public class EntityMap
 	/**
 	 * @return the set of classes that have disjoint clauses
 	 */
-	public Set<String> getDisjointClasses()
+	public Set<String> getDisjoint()
 	{
-		return disjointClasses.keySet();
+		return disjointMap.keySet();
 	}
 
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @return the list of classes disjoint with the given class
 	 */
-	public Set<String> getDisjointClasses(String uri)
+	public Set<String> getDisjoint(String uri)
 	{
-		if(disjointClasses.contains(uri))
-			return disjointClasses.get(uri);
-		return new HashSet<String>();
-	}
-	
-	/**
-	 * @return the set of expressions that have disjoint clauses
-	 */
-	public Set<String> getDisjointExpressions()
-	{
-		return disjointExpressions.keySet();
-	}
-
-	/**
-	 * @param uri: the id of the class expression to search in the map
-	 * @return the list of expressions disjoint with the given class
-	 */
-	public Set<String> getDisjointExpressions(String uri)
-	{
-		if(disjointExpressions.contains(uri))
-			return disjointExpressions.get(uri);
+		if(disjointMap.contains(uri))
+			return disjointMap.get(uri);
 		return new HashSet<String>();
 	}
 	
@@ -669,14 +633,26 @@ public class EntityMap
 	 */
 	public Set<String> getDisjointTransitive(String uri)
 	{
-		//Get the disjoint clauses for the class
-		Set<String> disj = getDisjointClasses(uri);
-		//Then get all superclasses of the class
-		Set<String> ancestors = getSuperclasses(uri);
-		//For each superclass
-		for(String i : ancestors)
-			//Add its disjoint clauses to the list
-			disj.addAll(getDisjointClasses(i));
+		HashSet<String> toSearch = new HashSet<String>();
+		toSearch.add(uri);
+		if(isClass(uri))
+		{
+			toSearch.addAll(getSuperclasses(uri));
+			toSearch.addAll(getClassExpressions(uri));
+		}
+		else if(entityType.get(uri).equals(EntityType.CLASS_EXPRESSION))
+			toSearch.addAll(getSuperexpressions(uri));
+		//Get the disjoint clauses for the class/expression
+		Set<String> disj = getDisjoint(uri);
+		if(isClass(uri))
+		{
+			//Then get all superclasses of the class
+			Set<String> ancestors = getSuperclasses(uri);
+			//For each superclass
+			for(String i : ancestors)
+				//Add its disjoint clauses to the list
+				disj.addAll(getDisjoint(i));
+		}
 		return disj;
 	}
 	
@@ -1179,7 +1155,7 @@ public class EntityMap
 	 */
 	public boolean hasDisjoint(String uri)
 	{
-		return disjointClasses.contains(uri);
+		return disjointMap.contains(uri);
 	}
 
 	/**
@@ -1196,7 +1172,7 @@ public class EntityMap
 		//Run through the set of superclasses
 		for(String i : ancestors)
 			//And check if any have disjoint clauses
-			if(disjointClasses.contains(i))
+			if(disjointMap.contains(i))
 				return true;
 		return false;
 	}
@@ -1208,7 +1184,7 @@ public class EntityMap
 	 */
 	public boolean hasDisjointClause(String one, String two)
 	{
-		return (disjointClasses.contains(one) && disjointClasses.contains(one,two));
+		return (disjointMap.contains(one) && disjointMap.contains(one,two));
 	}
 	
 	/**

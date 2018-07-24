@@ -242,7 +242,7 @@ public class RepairMap implements Iterable<Integer>
 		
 		//Build the classList, starting with the classes
 		//involved in disjoint clauses
-		classList.addAll(rels.getDisjointClasses());
+		classList.addAll(rels.getDisjoint());
 		//If there aren't any, there is nothing else to do
 		if(classList.size() == 0)
 		{
@@ -659,7 +659,7 @@ public class RepairMap implements Iterable<Integer>
 		Vector<Path> classConflicts = new Vector<Path>();
 		for(Integer i : disj)
 		{
-			for(Integer j : rels.getDisjointClasses(i))
+			for(Integer j : rels.getDisjoint(i))
 			{
 				if(i > j || !disj.contains(j))
 					continue;

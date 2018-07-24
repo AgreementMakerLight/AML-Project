@@ -34,10 +34,10 @@ import aml.match.lexical.WordMatchStrategy;
 import aml.match.lexical.WordMatcher;
 import aml.match.structural.BlockRematcher;
 import aml.match.structural.NeighborSimilarityMatcher;
+import aml.match.structural.NeighborSimilarityStrategy;
 import aml.ontology.EntityType;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
-import aml.settings.NeighborSimilarityStrategy;
 import aml.settings.SelectionType;
 
 public class ManualMatcher

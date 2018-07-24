@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -26,9 +26,9 @@ import java.util.Set;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.knowledge.MediatorOntology;
+import aml.match.AbstractMatcher;
 import aml.match.PrimaryMatcher;
-import aml.match.UnsupportedEntityTypeException;
+import aml.ontology.Ontology;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.LexicalType;
 import aml.ontology.lexicon.Lexicon;
@@ -37,17 +37,17 @@ import aml.ontology.lexicon.ExternalLexicon;
 import aml.util.data.Map2MapComparable;
 import aml.util.data.MapSorter;
 
-public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
+public class MediatingMatcher extends AbstractMatcher implements LexiconExtender, PrimaryMatcher
 {
 
 //Attributes
 
-	private static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
+	protected static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
 			  								  "String matches between their Lexicon entries\n" +
 			  								  "and a common Lexicon entry of a background\n" +
 			  								  "knowledge source.";
-	private static final String NAME = "Mediating Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS};
+	protected static final String NAME = "Mediating Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The MediatorLexicon used by this matcher
 	protected ExternalLexicon ext;
 	protected String uri;
@@ -60,9 +60,9 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 	 * Constructs a MediatingMatcher with the given external Ontology
 	 * @param x: the external Ontology
 	 */
-	public MediatingMatcher(MediatorOntology x)
+	public MediatingMatcher(Ontology x)
 	{
-		ext = x.getMediatorLexicon();
+		ext = x.getExternalLexicon();
 		uri = x.getURI();
 	}
 	
