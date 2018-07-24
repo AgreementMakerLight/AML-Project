@@ -24,10 +24,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import aml.AML;
 import aml.alignment.SimpleAlignment;
 import aml.match.AbstractMatcher;
 import aml.match.PrimaryMatcher;
+import aml.ontology.MediatorOntology;
 import aml.ontology.Ontology;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.LexicalType;
@@ -60,7 +60,7 @@ public class MediatingMatcher extends AbstractMatcher implements LexiconExtender
 	 * Constructs a MediatingMatcher with the given external Ontology
 	 * @param x: the external Ontology
 	 */
-	public MediatingMatcher(Ontology x)
+	public MediatingMatcher(MediatorOntology x)
 	{
 		ext = x.getExternalLexicon();
 		uri = x.getURI();
@@ -80,23 +80,21 @@ public class MediatingMatcher extends AbstractMatcher implements LexiconExtender
 //Public Methods
 	
 	@Override
-	public void extendLexicons()
+	public void extendLexicon(Lexicon l)
 	{
-		System.out.println("Extending Lexicons with Mediating Matcher using " + uri);
+		System.out.println("Extending Lexicon with Mediating Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
-		AML aml = AML.getInstance();
-		Lexicon source = aml.getSource().getLexicon();
-		Map2MapComparable<Integer,Integer,Double> maps = match(source,0.0);
-		for(Integer s : maps.keySet())
+		Map2MapComparable<String,String,Double> maps = match(l,0.0);
+		for(String s : maps.keySet())
 		{
-			int hit;
+			String hit;
 			//If there are multiple mappings, choose the best
 			if(maps.entryCount(s) > 1)
 			{
-				Map<Integer,Double> results = MapSorter.sortDescending(maps.get(s));
-				Iterator<Integer> i = results.keySet().iterator();
+				Map<String,Double> results = MapSorter.sortDescending(maps.get(s));
+				Iterator<String> i = results.keySet().iterator();
 				hit = i.next();
-				int secondHit = i.next();
+				String secondHit = i.next();
 				//If there is a tie, then skip to next class
 				if(maps.get(s,hit) == maps.get(s,secondHit))
 					continue;
@@ -107,80 +105,39 @@ public class MediatingMatcher extends AbstractMatcher implements LexiconExtender
 			for(String n : names)
 			{
 				double sim = maps.get(s,hit);
-				source.add(s, n, "en", TYPE, uri, sim);
-			}
-		}
-		Lexicon target = aml.getTarget().getLexicon();
-		maps = match(target,0.0);
-		for(Integer s : maps.keySet())
-		{
-			int hit;
-			//If there are multiple mappings, choose the best
-			if(maps.entryCount(s) > 1)
-			{
-				Map<Integer,Double> results = MapSorter.sortDescending(maps.get(s));
-				Iterator<Integer> i = results.keySet().iterator();
-				hit = i.next();
-				int secondHit = i.next();
-				//If there is a tie, then skip to next class
-				if(maps.get(s,hit) == maps.get(s,secondHit))
-					continue;
-			}
-			else
-				hit = maps.keySet(s).iterator().next();
-			Set<String> names = ext.getNames(hit);
-			for(String n : names)
-			{
-				double sim = maps.get(s,hit);
-				target.add(s, n, "en", TYPE, uri, sim);
+				l.add(s, n, "en", TYPE, uri, sim);
 			}
 		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 	}
 	
-	@Override
-	public String getDescription()
-	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
 	
 	@Override
-	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		checkEntityType(e);
+		SimpleAlignment maps = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return maps;
 		System.out.println("Running Mediating Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
-		AML aml = AML.getInstance();
-		Lexicon source = aml.getSource().getLexicon();
-		Lexicon target = aml.getTarget().getLexicon();
-		Map2MapComparable<Integer,Integer,Double> src = match(source,thresh);
-		Map2MapComparable<Integer,Integer,Double> tgt = match(target,thresh);
+		Lexicon source = o1.getLexicon();
+		Lexicon target = o2.getLexicon();
+		Map2MapComparable<String,String,Double> src = match(source,thresh);
+		Map2MapComparable<String,String,Double> tgt = match(target,thresh);
 		//Reverse the target alignment table
-		Map2MapComparable<Integer,Integer,Double> rev = new Map2MapComparable<Integer,Integer,Double>();
-		for(Integer s : tgt.keySet())
-			for(Integer t : tgt.keySet(s))
+		Map2MapComparable<String,String,Double> rev = new Map2MapComparable<String,String,Double>();
+		for(String s : tgt.keySet())
+			for(String t : tgt.keySet(s))
 				rev.add(t, s, tgt.get(s, t));
-		SimpleAlignment maps = new SimpleAlignment();
-		for(Integer s : src.keySet())
+		
+		for(String s : src.keySet())
 		{
-			for(Integer med : src.keySet(s))
+			for(String med : src.keySet(s))
 			{
 				if(!rev.contains(med))
 					continue;
-				for(Integer t : rev.keySet(med))
+				for(String t : rev.keySet(med))
 				{
 					double similarity = Math.min(src.get(s, med), rev.get(med, t));
 					maps.add(s,t,similarity);
@@ -194,37 +151,22 @@ public class MediatingMatcher extends AbstractMatcher implements LexiconExtender
 	
 //Private Methods
 	
-	protected void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
+	protected Map2MapComparable<String,String,Double> match(Lexicon source, double thresh)
 	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
-	}
-	
-	protected Map2MapComparable<Integer,Integer,Double> match(Lexicon source, double thresh)
-	{
-		Map2MapComparable<Integer,Integer,Double> maps = new Map2MapComparable<Integer,Integer,Double>();
+		Map2MapComparable<String,String,Double> maps = new Map2MapComparable<String,String,Double>();
 		for(String s : source.getNames(EntityType.CLASS))
 		{
-			Set<Integer> sourceIndexes = source.getEntities(EntityType.CLASS,s);
-			Set<Integer> targetIndexes = ext.getEntities(s);
+			Set<String> sourceIndexes = source.getEntities(EntityType.CLASS,s);
+			Set<String> targetIndexes = ext.getEntities(s);
 			//If the name doesn't exist in either ontology, skip it
 			if(sourceIndexes == null || targetIndexes == null)
 				continue;
 			//count += sourceIndexes.size()*targetIndexes.size();
 			//Otherwise, match all indexes
-			for(Integer i : sourceIndexes)
+			for(String i : sourceIndexes)
 			{
 				double weight = source.getCorrectedWeight(s, i);
-				for(Integer j : targetIndexes)
+				for(String j : targetIndexes)
 				{
 					//Get the weight of the name for the term in the larger lexicon
 					double similarity = ext.getWeight(s, j);
