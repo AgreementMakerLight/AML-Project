@@ -29,7 +29,6 @@ import aml.alignment.SimpleAlignment;
 import aml.alignment.AbstractMapping;
 import aml.alignment.SimpleMapping;
 import aml.match.AbstractParallelMatcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.LexicalType;
@@ -45,11 +44,11 @@ public class StringMatcher extends AbstractParallelMatcher
 
 //Attributes
 
-	private static final String DESCRIPTION = "Matches entities by computing the maximum\n" +
+	protected static final String DESCRIPTION = "Matches entities by computing the maximum\n" +
 											  "String similarity between their Lexicon\n" +
 											  "entries, using a String similarity measure";
-	private static final String NAME = "String Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected static final String NAME = "String Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	//Similarity measure
 	private StringSimMeasure measure = StringSimMeasure.ISUB;
 	//Correction factor (to make string similarity values comparable to word similarity values
@@ -82,27 +81,8 @@ public class StringMatcher extends AbstractParallelMatcher
 //Public Methods
 	
 	@Override
-	public String getDescription()
-	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-	
-	@Override
-	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e, double thresh)
 	{	
-		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Extending Alignment with String Matcher");
@@ -135,9 +115,8 @@ public class StringMatcher extends AbstractParallelMatcher
 	}
 	
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Running String Matcher");
@@ -149,9 +128,8 @@ public class StringMatcher extends AbstractParallelMatcher
 	}
 		
 	@Override
-	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
 	{
-		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Computing String Similarity");
@@ -227,21 +205,6 @@ public class StringMatcher extends AbstractParallelMatcher
 	}
 	
 //Private Methods
-	
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
-	}
 	
 	private SimpleAlignment extendChildrenAndParents(SimpleAlignment a, double thresh)
 	{

@@ -56,24 +56,6 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 //Public Methods
 	
 	@Override
-	public String getDescription()
-	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-	
-	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		sLex = o1.getLexicon();

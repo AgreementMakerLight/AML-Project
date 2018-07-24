@@ -22,24 +22,24 @@ package aml.match.lexical;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
+import aml.match.AbstractMatcher;
 import aml.match.PrimaryMatcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.data.Map2Set;
 
-public class SpacelessLexicalMatcher implements PrimaryMatcher
+public class SpacelessLexicalMatcher extends AbstractMatcher implements PrimaryMatcher
 {
 	
 //Attributes
 	
-	private static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
+	protected static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
 											  "String matches between their Lexicon entries\n" +
 											  "after removing their white spaces";
-	private static final String NAME = "Lexical Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected static final String NAME = "Lexical Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	private static final double WEIGHT = 0.99;
 		
 //Constructors
@@ -47,33 +47,19 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 	public SpacelessLexicalMatcher(){}
 	
 //Public Methods
-	
-	@Override
-	public String getDescription()
-	{
-		return DESCRIPTION;
-	}
 
 	@Override
-	public String getName()
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-
-	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
-	{
-		checkEntityType(e);
+		//Initialize the alignment
+		SimpleAlignment maps = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return maps;
+		AML aml = AML.getInstance();
+		
 		System.out.println("Running Spaceless Lexical Matcher");
 		long time = System.currentTimeMillis()/1000;
 		//Get the lexicons of the source and target Ontologies
-		AML aml = AML.getInstance();
 		Lexicon sLex = o1.getLexicon();
 		Lexicon tLex = o2.getLexicon();
 		//Create spaceless lexicons
@@ -83,9 +69,6 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 		Map2Set<String,String> targetConv = new Map2Set<String,String>();
 		for(String n : tLex.getNames(e))
 			targetConv.add(n.replace(" ", ""), n);
-		
-		//Initialize the alignment
-		SimpleAlignment maps = new SimpleAlignment();
 		for(String c : sourceConv.keySet())
 		{
 			if(!targetConv.contains(c))
@@ -117,22 +100,5 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
-	}
-	
-//Private Methods
-	
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }

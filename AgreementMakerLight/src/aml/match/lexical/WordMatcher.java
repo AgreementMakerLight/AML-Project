@@ -19,14 +19,15 @@
 ******************************************************************************/
 package aml.match.lexical;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
+import aml.alignment.AbstractMapping;
 import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.match.AbstractParallelMatcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.WordLexicon;
@@ -39,12 +40,12 @@ public class WordMatcher extends AbstractParallelMatcher
 
 //Attributes
 	
-	private static final String DESCRIPTION = "Matches entities by checking for words\n" +
+	protected static final String DESCRIPTION = "Matches entities by checking for words\n" +
 			  								  "they share in their Lexicon entries.\n" +
 			  								  "Computes word similarity by entity, by\n" +
 			  								  "by entry, or combined";
-	private static final String NAME = "Word Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected static final String NAME = "Word Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	private WordLexicon sourceLex;
 	private WordLexicon targetLex;
 	private WordMatchStrategy strategy = WordMatchStrategy.AVERAGE;
@@ -75,27 +76,23 @@ public class WordMatcher extends AbstractParallelMatcher
 //Public Methods
 	
 	@Override
-	public String getDescription()
+	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e, double thresh)
 	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
+		SimpleAlignment b = match(o1,o2,e,thresh);
+		HashSet<AbstractMapping> toRemove = new HashSet<AbstractMapping>();
+		for(AbstractMapping m : b)
+			if(a.containsConflict(m))
+				toRemove.add(m);
+		b.removeAll(toRemove);
+		return b;				
 	}
 	
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		checkEntityType(e);
+		SimpleAlignment a = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return a;
 		AML aml = AML.getInstance();
 		System.out.println("Building Word Lexicons");
 		long time = System.currentTimeMillis()/1000;
@@ -104,7 +101,7 @@ public class WordMatcher extends AbstractParallelMatcher
 		targetLex = aml.getTarget().getWordLexicon(e,language);
 
 		System.out.println("Running Word Matcher");
-		SimpleAlignment a = new SimpleAlignment();
+		
 		//If the strategy is BY_CLASS, the alignment can be computed
 		//globally. Otherwise we need to compute a preliminary
 		//alignment and then rematch according to the strategy.
@@ -160,9 +157,8 @@ public class WordMatcher extends AbstractParallelMatcher
 	}
 	
 	@Override
-	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
 	{
-		checkEntityType(e);
 		System.out.println("Building Word Lexicons");
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Language: " + language);
@@ -211,21 +207,6 @@ public class WordMatcher extends AbstractParallelMatcher
 	}
 	
 //Private Methods
-	
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
-	}
 	
 	//Computes the word-based (bag-of-words) similarity between two
 	//classes, for use by rematch()
