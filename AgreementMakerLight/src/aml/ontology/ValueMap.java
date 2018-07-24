@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -30,10 +30,10 @@ public class ValueMap
 
 //Attributes	
 
-	//The table of individual indexes (Integer), property indexes (Integer), and property values (String)
-	private Map2Map2Set<Integer,Integer,String> valueIndividuals;
-	//The table of property indexes (Integer), property values (String), and individual indexes (Integer)
-	private Map2Map2Set<Integer,String,Integer> individualValues;
+	//The table of individual indexes (String), property indexes (String), and property values (String)
+	private Map2Map2Set<String,String,String> valueIndividuals;
+	//The table of property indexes (String), property values (String), and individual indexes (String)
+	private Map2Map2Set<String,String,String> individualValues;
 	
 //Constructors
 	
@@ -42,8 +42,8 @@ public class ValueMap
 	 */
 	public ValueMap()
 	{
-		valueIndividuals = new Map2Map2Set<Integer,Integer,String>();
-		individualValues = new Map2Map2Set<Integer,String,Integer>();
+		valueIndividuals = new Map2Map2Set<String,String,String>();
+		individualValues = new Map2Map2Set<String,String,String>();
 	}
 	
 //Public Methods
@@ -55,7 +55,7 @@ public class ValueMap
 	 * for which the individual has the value
 	 * @param value: the value of the individual
 	 */
-	public void add(int indivId, int propId, String value)
+	public void add(String indivId, String propId, String value)
 	{
 		valueIndividuals.add(indivId, propId, value);
 		individualValues.add(propId, value, indivId);
@@ -64,7 +64,7 @@ public class ValueMap
 	/**
 	 * @return the set of individuals with values in the ValueMap
 	 */
-	public Set<Integer> getIndividuals()
+	public Set<String> getIndividuals()
 	{
 		return valueIndividuals.keySet();
 	}
@@ -74,17 +74,17 @@ public class ValueMap
 	 * @param value: the value of that property to search in the ValueMap
 	 * @return the set of Individuals that have the given value for the given property
 	 */
-	public Set<Integer> getIndividuals(int propId, String value)
+	public Set<String> getIndividuals(String propId, String value)
 	{
 		if(individualValues.contains(propId,value))
 			return individualValues.get(propId,value);
-		return new HashSet<Integer>();
+		return new HashSet<String>();
 	}
 	
 	/**
 	 * @return the set of data and annotation properties with values in the ValueMap
 	 */
-	public Set<Integer> getProperties()
+	public Set<String> getProperties()
 	{
 		return individualValues.keySet();
 	}
@@ -93,18 +93,18 @@ public class ValueMap
 	 * @param indivId: the index of the individual to search in the ValueMap
 	 * @return the set of data and annotation properties with values for the given individual
 	 */
-	public Set<Integer> getProperties(int indivId)
+	public Set<String> getProperties(String indivId)
 	{
 		if(valueIndividuals.contains(indivId))
 			return valueIndividuals.keySet(indivId);
-		return new HashSet<Integer>();
+		return new HashSet<String>();
 	}
 	
 	/**
 	 * @param propId: the index of the property to search in the ValueMap
 	 * @return the set of values for that property in the ValueMap
 	 */
-	public Set<String> getValues(int propId)
+	public Set<String> getValues(String propId)
 	{
 		if(individualValues.contains(propId))
 			return individualValues.keySet(propId);
@@ -116,7 +116,7 @@ public class ValueMap
 	 * @param propId: the index of the property to search in the ValueMap
 	 * @return the set of values for the individual and property pair
 	 */
-	public Set<String> getValues(int indivId, int propId)
+	public Set<String> getValues(String indivId, String propId)
 	{
 		if(valueIndividuals.contains(indivId,propId))
 			return valueIndividuals.get(indivId,propId);
