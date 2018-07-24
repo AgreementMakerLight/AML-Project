@@ -59,12 +59,6 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 
 //Public Methods
 	
-	public abstract String getDescription();
-
-	public abstract String getName();
-
-	public abstract EntityType[] getSupportedEntityTypes();
-	
 	@Override
 	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment maps, EntityType e, double thresh)
 	{
