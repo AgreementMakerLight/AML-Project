@@ -34,5 +34,5 @@ public interface SecondaryMatcher extends Matcher
 	 * @param thresh: the similarity threshold for the extention
 	 * @return the alignment with (only) the new mappings between the Ontologies
 	 */
-	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException;
+	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e, double thresh);
 }

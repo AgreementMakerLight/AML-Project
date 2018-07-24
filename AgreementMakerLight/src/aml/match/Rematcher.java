@@ -33,5 +33,5 @@ public interface Rematcher extends Matcher
 	 * @param e: the EntityType for which to recompute similarities
 	 * @return the Alignment with the new similarities
 	 */
-	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException;
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e);
 }

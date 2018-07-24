@@ -65,7 +65,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	public abstract EntityType[] getSupportedEntityTypes();
 	
 	@Override
-	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment maps, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment maps, EntityType e, double thresh)
 	{
 		AML aml = AML.getInstance();
 		Set<String> sources = o1.getEntities(e);
@@ -94,7 +94,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	}
 	
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		AML aml = AML.getInstance();
 		Set<String> sources = o1.getEntities(e);
@@ -121,7 +121,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	}
 		
 	@Override
-	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
 	{
 		AML aml = AML.getInstance();
 		SimpleAlignment maps = new SimpleAlignment();
@@ -132,7 +132,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 			{
 				String source = (String)m.getEntity1();
 				String target = (String)m.getEntity2();
-				if(!aml.getEntityMap().getTypes(source).equals(e))
+				if(!aml.getEntityMap().getTypes(source).contains(e))
 					continue;
 				if(o1.contains(source) && o2.contains(target))
 					toMap.add(source,target);
