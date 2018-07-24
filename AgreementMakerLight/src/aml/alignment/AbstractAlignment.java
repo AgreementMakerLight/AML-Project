@@ -21,9 +21,7 @@ package aml.alignment;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
@@ -72,33 +70,6 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	
 //Public Methods
 
-	/**
-	 * Adds a new AbstractMapping to the AbstractAlignment
-	 * @param entity1: the entity1 to add to the Alignment
-	 * @param entity2: the entity2 to add to the Alignment
-	 * @param sim: the similarity between the classes
-	 */
-	public abstract boolean add(Object entity1, Object entity2, double sim);
-	
-	/**
-	 * Adds a new AbstractMapping to the AbstractAlignment
-	 * @param entity1: the entity1 to add to the Alignment
-	 * @param entity2: the entity2 to add to the Alignment
-	 * @param sim: the similarity between the classes
-	 * @param r: the mapping relationship between the classes
-	 */
-	public abstract boolean add(Object entity1, Object entity2, double sim, MappingRelation r);
-	
-	/**
-	 * Adds a new AbstractMapping to the AbstractAlignment
-	 * @param entity1: the entity1 to add to the Alignment
-	 * @param entity2: the entity2 to add to the Alignment
-	 * @param sim: the similarity between the classes
-	 * @param r: the mapping relationship between the classes
-	 * @param s: the mapping status
-	 */
-	public abstract boolean add(Object entity1, Object entity2, double sim, MappingRelation r, MappingStatus s);
-	
 	@Override
 	public boolean add(AbstractMapping m)
 	{
@@ -146,12 +117,6 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 */
 	public abstract double cardinality();
 	
-	/**
-	 * @param uri: the entity to check in the Alignment
-	 * @return the cardinality of the entity in the Alignment
-	 */
-	public abstract int cardinality(String uri);
-	
 	@Override
 	public void clear()
 	{
@@ -162,34 +127,6 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	public boolean contains(Object o)
 	{
 		return o instanceof AbstractMapping && maps.contains((SimpleMapping)o);
-	}
-	
-	/**
-	 * @param entity1: the entity1 to check in the Alignment
- 	 * @param entity2: the entity2 to check in the Alignment
-	 * @return whether the Alignment contains a Mapping between entity1 and entity2
-	 */
-	public boolean contains(Object entity1, Object entity2)
-	{
-		for(AbstractMapping m : maps)
-			if(m.getEntity1().equals(entity1) && m.getEntity2().equals(entity2))
-				return true;
-		return false;
-	}
-	
-	/**
-	 * @param entity1: the entity1 to check in the Alignment
- 	 * @param entity2: the entity2 to check in the Alignment
- 	 * @param r: the MappingRelation to check in the Alignment
-	 * @return whether the Alignment contains a Mapping between entity1 and entity2
-	 * with relationship r
-	 */
-	public boolean contains(Object entity1, Object entity2, MappingRelation r)
-	{
-		for(AbstractMapping m : maps)
-			if(m.getEntity1().equals(entity1) && m.getEntity2().equals(entity2) && m.getRelationship().equals(r))
-				return true;
-		return false;
 	}
 	
 	@Override
@@ -209,6 +146,12 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	public abstract boolean containsBetterMapping(AbstractMapping m);
 	
 	/**
+ 	 * @param m: the Mapping to check in the Alignment 
+	 * @return whether the Alignment contains another Mapping involving either entity in m
+	 */
+	public abstract boolean containsConflict(AbstractMapping m);
+	
+	/**
  	 * @param entity: the entity to check in the Alignment 
 	 * @return whether the Alignment contains a Mapping with that entity
 	 * (either as entity1 or entity2)
@@ -220,43 +163,15 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	
 	/**
 	 * @param entity1: the entity1 to check in the Alignment
- 	 * @param entity2: the entity2 to check in the Alignment 
-	 * @return whether the Alignment contains another Mapping for entity1 or for entity2
-	 */
-	public abstract boolean containsConflict(Object entity1, Object entity2);
-	
-	/**
- 	 * @param m: the Mapping to check in the Alignment 
-	 * @return whether the Alignment contains another Mapping involving either entity in m
-	 */
-	public boolean containsConflict(AbstractMapping m)
-	{
-		return containsConflict(m.getEntity1(),m.getEntity2());
-	}
-	
-	/**
-	 * @param entity1: the entity1 to check in the Alignment
  	 * @return whether the Alignment contains a Mapping for entity1
 	 */
-	public boolean containsSource(Object entity1)
-	{
-		for(AbstractMapping m : maps)
-			if(m.getEntity1().equals(entity1))
-				return true;
-		return false;
-	}
+	public abstract boolean containsSource(Object entity1);
 
 	/**
 	 * @param entity2: the entity2 to check in the Alignment
  	 * @return whether the Alignment contains a Mapping for entity1
 	 */
-	public boolean containsTarget(Object entity2)
-	{
-		for(AbstractMapping m : maps)
-			if(m.getEntity2().equals(entity2))
-				return true;
-		return false;
-	}
+	public abstract boolean containsTarget(Object entity2);
 	
 	/**
  	 * @return the number of conflict mappings in this alignment
@@ -286,26 +201,7 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 * @param ref: the reference Alignment to evaluate this Alignment
 	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
-	public int[] evaluate(AbstractAlignment ref)
-	{
-		int[] count = new int[2];
-		for(AbstractMapping m : maps)
-		{
-			if(ref.contains(m))
-			{
-				count[0]++;
-				m.setStatus(MappingStatus.CORRECT);
-			}
-			else if(ref.contains((String)m.getEntity1(),(String)m.getEntity2(),MappingRelation.UNKNOWN))
-			{
-				count[1]++;
-				m.setStatus(MappingStatus.UNKNOWN);
-			}
-			else
-				m.setStatus(MappingStatus.INCORRECT);
-		}
-		return count;
-	}
+	public abstract int[] evaluate(AbstractAlignment ref);
 
 	/**
 	 * @param a: the base Alignment to which this Alignment will be compared 
@@ -342,115 +238,25 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the entity1 to check in the Alignment
-	 * @param entity2: the entity2 to check in the Alignment
- 	 * @return the Mapping between the entity1 and entity2 classes or null if no
- 	 * such Mapping exists
-	 */
-	public abstract AbstractMapping get(Object entity1, Object entity2);
-	
-	/**
 	 * @param m: the Mapping to check on the Alignment
 	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping
 	 */
 	public abstract Vector<AbstractMapping> getConflicts(AbstractMapping m);
 	
 	/**
-	 * @param entity1: the entity1
-	 * @param entity2: the entity2
-	 * @return the uri of the Mapping between the given classes in
-	 * the list of Mappings, or -1 if the Mapping doesn't exist
+	 * @param m: the Mapping to search in the Alignment
+	 * @return the index of the Mapping
 	 */
-	public int getIndex(Object entity1, Object entity2)
+	public int getIndex(AbstractMapping m)
 	{
 		for(int i = 0; i < maps.size(); i++)
 		{
-			AbstractMapping m = maps.get(i);
-			if(m.getEntity1().equals(entity1) && m.getEntity2().equals(entity2))
+			if(maps.get(i).equals(m))
 				return i;
 		}
 		return -1;
 	}
 	
-	/**
-	 * @param entity: the entity to check in the Alignment
- 	 * @return the set of entities mapped to the given entity
-	 */
-	public Set<Object> getMappingsBidirectional(Object entity)
-	{
-		HashSet<Object> mappings = new HashSet<Object>();
-		for(AbstractMapping m : maps)
-		{
-			if(m.getEntity1().equals(entity))
-				mappings.add(m.getEntity2());
-			else if(m.getEntity2().equals(entity))
-				mappings.add(m.getEntity1());
-		}
-		return mappings;
-	}
-	
-	/**
-	 * @param entity1: the entity1 to check in the Alignment
- 	 * @return the highest similarity in mappings involving entity1
-	 */
-	public abstract double getMaxSourceSim(Object entity1);
-
-	/**
-	 * @param entity2: the entity2 to check in the Alignment
- 	 * @return the highest similarity in mappings involving entity2
-	 */
-	public abstract double getMaxTargetSim(String entity2);
-	
-	/**
-	 * @param entity1: the entity1 in the Alignment
-	 * @param entity2: the entity2 in the Alignment
-	 * @return the mapping relationship between entity1 and entity2
-	 */
-	public MappingRelation getRelationship(String entity1, String entity2)
-	{
-		AbstractMapping m = get(entity1, entity2);
-		if(m == null)
-			return null;
-		return m.getRelationship();
-	}
-	
-	/**
-	 * @param entity1: the entity1 in the Alignment
-	 * @param entity2: the entity2 in the Alignment
-	 * @return the similarity between entity1 and entity2
-	 */
-	public double getSimilarity(String entity1, String entity2)
-	{
-		AbstractMapping m = get(entity1, entity2);
-		if(m == null)
-			return 0.0;
-		return m.getSimilarity();
-	}
-	
-	/**
-	 * @param entity1: the entity1 in the Alignment
-	 * @param entity2: the entity2 in the Alignment
-	 * @return the similarity between entity1 and entity2 in percentage
-	 */
-	public String getSimilarityPercent(String entity1, String entity2)
-	{
-		AbstractMapping m = get(entity1, entity2);
-		if(m == null)
-			return "0%";
-		return m.getSimilarityPercent();
-	}
-	
-	/**
-	 * @param entity1: the entity1 to check in the Alignment
- 	 * @return the list of all entity2 mapped to entity1
-	 */
-	public abstract Set<Object> getSourceMappings(Object entity1);
-	
-	/**
- 	 * @return the list of all entity1 that have mappings
-	 */
-	public abstract Set<Object> getSources();
-
 	/**
 	 * @return the URI of the source ontology
 	 */
@@ -460,24 +266,12 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity2: the entity2 to check in the Alignment
- 	 * @return the list of all entity1 mapped to entity2
-	 */
-	public abstract Set<Object> getTargetMappings(Object entity2);
-	
-	/**
- 	 * @return the list of all entity2 that have mappings
-	 */
-	public abstract Set<Object> getTargets();
-	
-	/**
 	 * @return the URI of the target ontology
 	 */
 	public String getTargetURI()
 	{
 		return targetURI;
 	}
-
 
 	@Override
 	public int hashCode()
@@ -512,17 +306,6 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	public boolean remove(Object o)
 	{
 		return maps.remove(o);
-	}
-	
-	/**
-	 * Removes the Mapping between the given classes from the Alignment
-	 * @param entity1: the entity1 to remove from the Alignment
-	 * @param entity2: the entity2 to remove from the Alignment
-	 */
-	public boolean remove(String entity1, String entity2)
-	{
-		AbstractMapping m = new SimpleMapping(entity1, entity2, 1.0);
-		return remove(m);
 	}
 	
 	@Override
