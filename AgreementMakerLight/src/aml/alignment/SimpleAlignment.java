@@ -533,12 +533,15 @@ public class SimpleAlignment extends AbstractAlignment
 	public Vector<AbstractMapping> getConflicts(AbstractMapping m)
 	{
 		Vector<AbstractMapping> conflicts = new Vector<AbstractMapping>();
-		for(String t : sourceMaps.keySet((String)m.getEntity1()))
-			if(t != (String)m.getEntity2())
-				conflicts.add(sourceMaps.get((String)m.getEntity1(),t));
-		for(String s : targetMaps.keySet((String)m.getEntity2()))
-			if(s != (String)m.getEntity1())
-				conflicts.add(sourceMaps.get(s,(String)m.getEntity2()));
+		if(m instanceof SimpleMapping)
+		{
+			for(String t : sourceMaps.keySet((String)m.getEntity1()))
+				if(t != (String)m.getEntity2())
+					conflicts.add(sourceMaps.get((String)m.getEntity1(),t));
+			for(String s : targetMaps.keySet((String)m.getEntity2()))
+				if(s != (String)m.getEntity1())
+					conflicts.add(sourceMaps.get(s,(String)m.getEntity2()));
+		}
 		return conflicts;
 	}
 	
