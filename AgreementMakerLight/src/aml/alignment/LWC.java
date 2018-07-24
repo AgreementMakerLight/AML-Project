@@ -53,7 +53,7 @@ public class LWC
 		}
 		for(AbstractMapping m : b)
 		{
-			if(!a.containsMapping(m) && m instanceof SimpleMapping)
+			if(!a.contains(m) && m instanceof SimpleMapping)
 			{
 				double similarity = m.getSimilarity()*(1-weight);
 				combine.add((String)m.getEntity1(),(String)m.getEntity2(),similarity);
