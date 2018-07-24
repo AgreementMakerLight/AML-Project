@@ -25,12 +25,29 @@ public abstract class AbstractMatcher implements Matcher
 
 //Attributes
 
+	//The description of this matcher
+	protected static final String DESCRIPTION = "";
+	//The name of this matcher
+	protected static final String NAME = "Abstract Matcher";
 	//The support (empty since this cannot actually generate alignments)
 	protected static final EntityType[] SUPPORT = {};
 	
 	
 //Public Methods
 	
+	@Override
+	public String getDescription()
+	{
+		return DESCRIPTION;
+	}
+
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+	
+	@Override
 	public EntityType[] getSupportedEntityTypes()
 	{
 		return SUPPORT;
