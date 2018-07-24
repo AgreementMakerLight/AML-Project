@@ -24,22 +24,22 @@ import java.util.ArrayList;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
+import aml.match.AbstractMatcher;
 import aml.match.PrimaryMatcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 
-public class AcronymMatcher implements PrimaryMatcher
+public class AcronymMatcher extends AbstractMatcher implements PrimaryMatcher
 {
 
 //Attributes
 	
-	private static final String DESCRIPTION = "Matches entities where the Lexicon entry of one\n" +
+	protected static final String DESCRIPTION = "Matches entities where the Lexicon entry of one\n" +
 											  "is an acronym of the Lexicon entry of the other\n";
-	private static final String NAME = "Acronym Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected static final String NAME = "Acronym Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 			
 //Constructors
 
@@ -48,33 +48,14 @@ public class AcronymMatcher implements PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public String getDescription()
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-	
-	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
-	{
-		checkEntityType(e);
+		SimpleAlignment maps = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return maps;
 		AML aml = AML.getInstance();
 		Lexicon sourceLex = o1.getLexicon();
 		Lexicon targetLex = o2.getLexicon();
-		
-		SimpleAlignment maps = new SimpleAlignment();
-
 		for(String sName : sourceLex.getNames(e))
 		{
 			//Split the source name into words
@@ -160,22 +141,5 @@ public class AcronymMatcher implements PrimaryMatcher
 			}
 		}
 		return maps;
-	}
-	
-//Private Methods
-	
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }
