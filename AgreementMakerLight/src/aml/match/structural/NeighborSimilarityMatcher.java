@@ -35,7 +35,6 @@ import aml.match.SecondaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.semantics.EntityMap;
-import aml.settings.NeighborSimilarityStrategy;
 import aml.util.data.Map2Set;
 
 public class NeighborSimilarityMatcher implements SecondaryMatcher, Rematcher
