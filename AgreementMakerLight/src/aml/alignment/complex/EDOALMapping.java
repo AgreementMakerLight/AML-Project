@@ -26,7 +26,7 @@ import aml.alignment.AbstractMapping;
 import aml.alignment.MappingRelation;
 import aml.alignment.MappingStatus;
 
-public class ComplexMapping extends AbstractMapping
+public class EDOALMapping extends AbstractMapping
 {
 
 //Constructors
@@ -37,7 +37,7 @@ public class ComplexMapping extends AbstractMapping
 	 * @param entity2: the EDOAL expression of the target ontology
 	 * @param sim: the similarity between the entities
 	 */
-	public ComplexMapping(EDOALExpression entity1, EDOALExpression entity2, double sim)
+	public EDOALMapping(EDOALExpression entity1, EDOALExpression entity2, double sim)
 	{
 		this(entity1,entity2,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
 	}
@@ -49,7 +49,7 @@ public class ComplexMapping extends AbstractMapping
 	 * @param sim: the similarity between the entities
 	 * @param r: the mapping relationship between the entities
 	 */
-	public ComplexMapping(EDOALExpression entity1, EDOALExpression entity2, double sim, MappingRelation r)
+	public EDOALMapping(EDOALExpression entity1, EDOALExpression entity2, double sim, MappingRelation r)
 	{
 		this(entity1,entity2,sim,r,MappingStatus.UNKNOWN);
 	}
@@ -63,7 +63,7 @@ public class ComplexMapping extends AbstractMapping
 	 * @param r: the mapping relationship between the entities
 	 * @param s: the status of the mapping
 	 */
-	public ComplexMapping(EDOALExpression entity1, EDOALExpression entity2, double sim, MappingRelation r, MappingStatus s)
+	public EDOALMapping(EDOALExpression entity1, EDOALExpression entity2, double sim, MappingRelation r, MappingStatus s)
 	{
 		super(entity1, entity2, sim, r, s);
 	}
@@ -72,7 +72,7 @@ public class ComplexMapping extends AbstractMapping
 	 * Creates a new mapping that is a copy of m
 	 * @param m: the mapping to copy
 	 */
-	public ComplexMapping(ComplexMapping m)
+	public EDOALMapping(EDOALMapping m)
 	{
 		this(m.getEntity1(),m.getEntity2(),m.similarity,m.rel,m.status);
 	}
