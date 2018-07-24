@@ -25,7 +25,7 @@ public abstract class AbstractMatcher implements Matcher
 
 //Attributes
 
-	//The support
+	//The support (empty since this cannot actually generate alignments)
 	protected static final EntityType[] SUPPORT = {};
 	
 	

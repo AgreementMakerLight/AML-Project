@@ -32,19 +32,20 @@ import aml.alignment.AbstractMapping;
 import aml.alignment.SimpleMapping;
 import aml.match.PrimaryMatcher;
 import aml.match.Rematcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.data.Map2Set;
 
-public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematcher, SecondaryMatcher
+public abstract class AbstractParallelMatcher extends AbstractMatcher implements PrimaryMatcher, Rematcher, SecondaryMatcher
 {
 
 //Attributes
 
 	//The available CPU threads
 	protected int threads;
+	//The support (empty since this cannot actually generate alignments)
+	protected static final EntityType[] SUPPORT = {};
 
 //Constructors
 	
@@ -67,6 +68,9 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	@Override
 	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment maps, EntityType e, double thresh)
 	{
+		SimpleAlignment a = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return a;
 		AML aml = AML.getInstance();
 		Set<String> sources = o1.getEntities(e);
 		Set<String> targets = o2.getEntities(e);
@@ -77,7 +81,6 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 			sources.retainAll(aml.getSourceIndividualsToMatch());
 			targets.retainAll(aml.getTargetIndividualsToMatch());
 		}
-		SimpleAlignment a = new SimpleAlignment();
 		for(String i : sources)
 		{
 			Map2Set<String,String> toMap = new Map2Set<String,String>();
@@ -96,6 +99,9 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
+		SimpleAlignment a = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return a;
 		AML aml = AML.getInstance();
 		Set<String> sources = o1.getEntities(e);
 		Set<String> targets = o2.getEntities(e);
@@ -104,7 +110,6 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 			sources.retainAll(aml.getSourceIndividualsToMatch());
 			targets.retainAll(aml.getTargetIndividualsToMatch());
 		}
-		SimpleAlignment a = new SimpleAlignment();
 		for(String i : sources)
 		{
 			Map2Set<String,String> toMap = new Map2Set<String,String>();
@@ -123,8 +128,10 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	@Override
 	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
 	{
-		AML aml = AML.getInstance();
 		SimpleAlignment maps = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return maps;
+		AML aml = AML.getInstance();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
 		for(AbstractMapping m : a)
 		{
