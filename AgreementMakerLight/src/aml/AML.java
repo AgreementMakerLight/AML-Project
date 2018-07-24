@@ -44,11 +44,11 @@ import aml.filter.CustomFlagger;
 import aml.filter.QualityFlagger;
 import aml.filter.Repairer;
 import aml.match.ManualMatcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.match.lexical.WordMatchStrategy;
 import aml.match.structural.NeighborSimilarityStrategy;
 import aml.match.AutomaticMatcher;
 import aml.ontology.EntityType;
+import aml.ontology.MediatorOntology;
 import aml.ontology.Ontology;
 import aml.ontology.io.OntologyParser;
 import aml.ontology.lexicon.ParenthesisExtender;
@@ -84,7 +84,7 @@ public class AML
 	private EntityMap entities;
 	private Ontology source;
 	private Ontology target;
-	private Ontology bk;
+	private MediatorOntology bk;
 	private SimpleAlignment a;
 	private SimpleAlignment ref;
 	private RepairMap rep;
@@ -385,7 +385,7 @@ public class AML
     /**
      * @return the current background knowledge ontology
      */
-	public Ontology getBKOntology()
+	public MediatorOntology getBKOntology()
 	{
 		return bk;
 	}
@@ -709,14 +709,7 @@ public class AML
     public void matchAuto()
     {
     	im = new InteractionManager();
-   		try
-   		{
-			AutomaticMatcher.match();
-		}
-   		catch(UnsupportedEntityTypeException e)
-   		{
-			e.printStackTrace();
-		}
+		AutomaticMatcher.match();
     	evaluation = null;
     	rep = null;
     	if(a.size() > 0)
@@ -768,14 +761,7 @@ public class AML
     public void matchManual()
     {
     	im = new InteractionManager();
-   		try
-   		{
-			ManualMatcher.match();
-		}
-   		catch(UnsupportedEntityTypeException e)
-   		{
-			e.printStackTrace();
-		}
+ 		ManualMatcher.match();
     	evaluation = null;
     	rep = null;
     	if(a.size() > 0)
@@ -858,7 +844,7 @@ public class AML
 	{
 		System.out.println("Loading mediating ontology " + name);
 		long time = System.currentTimeMillis()/1000;
-		bk = OntologyParser.parse(dir + BK_PATH + name,true);
+		bk = OntologyParser.parseMediator(dir + BK_PATH + name);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(bk.getURI() + " loaded in " + time + " seconds");
 	}
@@ -872,7 +858,7 @@ public class AML
 			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = OntologyParser.parse(src,false);
+		source = OntologyParser.parse(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.count(EntityType.CLASS));
@@ -880,7 +866,7 @@ public class AML
 		System.out.println("Properties: " + (source.count(EntityType.DATA_PROP)+source.count(EntityType.OBJECT_PROP)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
-		target = OntologyParser.parse(tgt,false);
+		target = OntologyParser.parse(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
@@ -915,7 +901,7 @@ public class AML
 			PropertyConfigurator.configure(dir + LOG);
 		long time = System.currentTimeMillis()/1000;
 		System.out.println("Loading source ontology");	
-		source = OntologyParser.parse(src,false);
+		source = OntologyParser.parse(src);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(source.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + source.count(EntityType.CLASS));
@@ -923,7 +909,7 @@ public class AML
 		System.out.println("Properties: " + (source.count(EntityType.DATA_PROP)+source.count(EntityType.OBJECT_PROP)));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Loading target ontology");
-		target = OntologyParser.parse(tgt,false);
+		target = OntologyParser.parse(tgt);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println(target.getURI() + " loaded in " + time + " seconds");
 		System.out.println("Classes: " + target.count(EntityType.CLASS));

@@ -49,7 +49,7 @@ public class ManualMatcher
 	
 //Public Methods
 
-	public static void match() throws UnsupportedEntityTypeException
+	public static void match()
 	{
 		//Get the AML instance and settings
 		AML aml = AML.getInstance();

@@ -94,7 +94,7 @@ public class AutomaticMatcher
 	
 //Public Methods
 
-	public static void match() throws UnsupportedEntityTypeException
+	public static void match()
 	{
 		//Get the AML instance
 		aml = AML.getInstance();
@@ -121,7 +121,7 @@ public class AutomaticMatcher
 //Private Methods
 
 	//Matching procedure for classes (or classes+properties)
-	private static void matchClasses() throws UnsupportedEntityTypeException
+	private static void matchClasses()
 	{
     	if(im.isInteractive())
     		thresh += INTERACTIVE_MOD;
@@ -344,7 +344,7 @@ public class AutomaticMatcher
 	}
 	
 	//Matching procedure for individuals
-	private static void matchIndividuals() throws UnsupportedEntityTypeException
+	private static void matchIndividuals()
 	{
 		LanguageSetting lang = LanguageSetting.getLanguageSetting();
 		double connectivity = aml.getIndividualConnectivity();
@@ -432,7 +432,7 @@ public class AutomaticMatcher
 	}
 	
 	//Matching procedure for properties only
-	private static void matchProperties() throws UnsupportedEntityTypeException
+	private static void matchProperties()
 	{
 		HybridStringMatcher pm = new HybridStringMatcher(true);
 		a.addAll(pm.match(EntityType.DATA_PROP, thresh));
