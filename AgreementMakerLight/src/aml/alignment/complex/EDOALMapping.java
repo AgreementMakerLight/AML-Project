@@ -19,9 +19,6 @@
 ******************************************************************************/
 package aml.alignment.complex;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import aml.alignment.AbstractMapping;
 import aml.alignment.MappingRelation;
 import aml.alignment.MappingStatus;
@@ -79,17 +76,6 @@ public class EDOALMapping extends AbstractMapping
 
 //Public Methods
 
-	public Set<String> getElements1()
-	{
-		return getEntity1().getElements();
-	}
-
-	public Set<String> getElements2()
-	{
-		return getEntity1().getElements();
-	}
-
-	
 	@Override
 	public EDOALExpression getEntity1()
 	{

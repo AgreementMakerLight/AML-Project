@@ -31,4 +31,9 @@ public abstract class EDOALExpression
 		return elements;
 	}
 	
+	@Override
+	public int hashCode()
+	{
+		return elements.hashCode();
+	}
 }
