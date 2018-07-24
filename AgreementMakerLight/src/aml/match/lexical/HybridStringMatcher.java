@@ -25,7 +25,6 @@ import java.util.Set;
 import aml.AML;
 import aml.alignment.SimpleAlignment;
 import aml.match.AbstractParallelMatcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
@@ -37,12 +36,12 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 	
 //Attributes
 	
-	private static final String DESCRIPTION = "Matches entities by comparing their Lexicon\n" +
+	protected static final String DESCRIPTION = "Matches entities by comparing their Lexicon\n" +
 											  "entries through a combination of string- and\n" +
 											  "word-matching algorithms, with the optional\n" +
 											  "use of WordNet";
-	private static final String NAME = "Hybrid String Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.DATA_PROP,EntityType.INDIVIDUAL,EntityType.OBJECT_PROP};
+	protected static final String NAME = "Hybrid String Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.DATA_PROP,EntityType.INDIVIDUAL,EntityType.OBJECT_PROP};
 	private Lexicon sLex;
 	private Lexicon tLex;
 	private boolean useWordNet;
@@ -75,9 +74,8 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 	}
 	
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Running Hybrid String Matcher");
@@ -89,9 +87,8 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 	}
 		
 	@Override
-	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
 	{
-		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Computing Hybrid String Similarity");
@@ -136,22 +133,5 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 					maxSim = Math.max(maxSim,Similarity.nameSimilarity(s,t,useWordNet));
 		}
 		return maxSim;
-	}
-	
-//Private Methods
-	
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }
