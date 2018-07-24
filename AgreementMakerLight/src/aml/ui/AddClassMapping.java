@@ -234,7 +234,7 @@ public class AddClassMapping extends JDialog implements ActionListener
 					    "Warning",
 					    JOptionPane.WARNING_MESSAGE);
 			}
-			else if(aml.getAlignment().containsMapping(sourceId, targetId))
+			else if(aml.getAlignment().contains(sourceId, targetId))
 			{
 				JOptionPane.showMessageDialog(this,
 					    "Source and target classes are already mapped.",

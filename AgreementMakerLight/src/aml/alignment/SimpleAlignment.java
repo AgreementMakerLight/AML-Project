@@ -12,46 +12,33 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An alignment between two Ontologies, stored both as a list of Mappings and  *
-* as a Table of indexes, and including methods for input and output.          *
+* A simple alignment between two Ontologies, stored both as a list of         *
+* Mappings and as a bidirectional table of mapped uris.                       *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.alignment.complex.ComplexMapping;
 import aml.ontology.EntityType;
 import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2Map;
 
-public class SimpleAlignment implements Collection<AbstractMapping>
+public class SimpleAlignment extends AbstractAlignment
 {
 
 //Attributes
 
-	//Ontology uris (as listed in alignment file)
-	private String sourceURI;
-	private String targetURI;
-	//Mappings organized in list
-	private Vector<AbstractMapping> maps;
 	//Simple mappings organized by entity1 (entity1, entity2, Mapping)
 	private Map2Map<String,String,SimpleMapping> sourceMaps;
 	//Simple mappings organized by entity2 (entity2, entity1, Mapping)
 	private Map2Map<String,String,SimpleMapping> targetMaps;
-	//Complex mappings organized by elements in entity1 (entity1 elements, entity2 elements, Mapping)
-	private Map2Map<Set<String>,Set<String>,ComplexMapping> sourceComplexMaps;
-	//Complex mappings organized by elements in entity2 (entity2 elements, entity1 elements, Mapping)
-	private Map2Map<Set<String>,Set<String>,ComplexMapping> targetComplexMaps;
 	
 //Constructors
 
@@ -60,7 +47,9 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	 */
 	public SimpleAlignment()
 	{
-		this(AML.getInstance().getSource().getURI(), AML.getInstance().getTarget().getURI());
+		super();
+		sourceMaps = new Map2Map<String,String,SimpleMapping>();
+		targetMaps = new Map2Map<String,String,SimpleMapping>();
 	}
 
 	/**
@@ -68,13 +57,9 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	 */
 	public SimpleAlignment(String sourceUri, String targetUri)
 	{
-		this.sourceURI = sourceUri;
-		this.targetURI = targetUri;
-		maps = new Vector<AbstractMapping>(0,1);
+		super(sourceUri,targetUri);
 		sourceMaps = new Map2Map<String,String,SimpleMapping>();
 		targetMaps = new Map2Map<String,String,SimpleMapping>();
-		sourceComplexMaps = new Map2Map<Set<String>,Set<String>,ComplexMapping>();
-		targetComplexMaps = new Map2Map<Set<String>,Set<String>,ComplexMapping>();
 	}
 
 	/**
@@ -83,8 +68,7 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	 */
 	public SimpleAlignment(Collection<AbstractMapping> a)
 	{
-		this();
-		addAll(a);
+		super(a);
 	}
 	
 //Public Methods
@@ -93,21 +77,21 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	 * Adds a new SimpleMapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
 	 * to the maximum similarity of the two redundant Mappings
-	 * @param entity1: the uri of the entity1 class to add to the Alignment
-	 * @param entity2: the uri of the entity2 class to add to the Alignment
+	 * @param entity1: the entity1 to add to the Alignment
+	 * @param entity2: the entity2 to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 */
-	public void add(String entity1, String entity2, double sim)
+	public boolean add(String entity1, String entity2, double sim)
 	{
-		add(entity1,entity2,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
+		return add(entity1,entity2,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
 	}
 	
 	/**
 	 * Adds a new SimpleMapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
 	 * to the maximum similarity of the two redundant Mappings
-	 * @param entity1: the uri of the entity1 class to add to the Alignment
-	 * @param entity2: the uri of the entity2 class to add to the Alignment
+	 * @param entity1: the entity1 to add to the Alignment
+	 * @param entity2: the entity2 to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 * @param r: the mapping relationship between the classes
 	 */
@@ -120,8 +104,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	 * Adds a new SimpleMapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
 	 * to the maximum similarity of the two redundant Mappings
-	 * @param entity1: the uri of the entity1 class to add to the Alignment
-	 * @param entity2: the uri of the entity2 class to add to the Alignment
+	 * @param entity1: the entity1 to add to the Alignment
+	 * @param entity2: the entity2 to add to the Alignment
 	 * @param sim: the similarity between the classes
 	 * @param r: the mapping relationship between the classes
 	 * @param s: the mapping status
@@ -136,7 +120,7 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 			return false;
 		
 		//Construct the Mapping
-		AbstractMapping m = new SimpleMapping(entity1, entity2, sim, r);
+		SimpleMapping m = new SimpleMapping(entity1, entity2, sim, r);
 		m.setStatus(s);
 		//If it isn't listed yet, add it
 		if(!sourceMaps.contains(entity1,entity2))
@@ -170,11 +154,10 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 		}
 	}
 	
-	
 	@Override
 	public boolean add(AbstractMapping m)
 	{
-		if(m instanceof AbstractMapping)
+		if(m instanceof SimpleMapping)
 			return add((String)m.getEntity1(),(String)m.getEntity2(),m.getSimilarity(),m.getRelationship(),m.getStatus());
 		else
 			return false;
@@ -189,43 +172,7 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 		return check;
 	}
 	
-	/**
-	 * Adds all Mappings in a to this Alignment as long as
-	 * they don't conflict with any Mapping in a
-	 * @param a: the Alignment to add to this Alignment
-	 */
-	public void addAllNonConflicting(SimpleAlignment a)
-	{
-		Vector<AbstractMapping> nonConflicting = new Vector<AbstractMapping>();
-		for(AbstractMapping m : a.maps)
-			if(!this.containsConflict(m))
-				nonConflicting.add(m);
-		addAll(nonConflicting);
-	}
-	
-	/**
-	 * Adds all Mappings in a to this Alignment as long as
-	 * they don't conflict with any Mapping in a
-	 * @param a: the Alignment to add to this Alignment
-	 */
-	public void addAllOneToOne(SimpleAlignment a)
-	{
-		a.sortDescending();
-		for(AbstractMapping m : a.maps)
-			if(!this.containsConflict(m))
-				add(m);
-	}
-	
-	public boolean addComplex(ComplexMapping m)
-	{
-		Set<String> sources = m.getElements1();
-		Set<String> targets = m.getElements2();
-		return false;
-	}
-	
-	/**
-	 * @return the average cardinality of this Alignment
-	 */
+	@Override
 	public double cardinality()
 	{
 		double cardinality = 0.0;
@@ -258,14 +205,24 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	@Override
 	public void clear()
 	{
-		maps = new Vector<AbstractMapping>(0,1);
-		sourceMaps = new Map2MapComparable<String,String,AbstractMapping>();
-		targetMaps = new Map2MapComparable<String,String,AbstractMapping>();		
+		super.clear();
+		sourceMaps = new Map2Map<String,String,SimpleMapping>();
+		targetMaps = new Map2Map<String,String,SimpleMapping>();		
+	}
+
+	/**
+	 * @param entity1: the entity1 to check in the Alignment
+	 * @param entity2: the entity2 to check in the Alignment
+	 * @return whether the Alignment contains a Mapping between entity1 and entity2
+	 */
+	public boolean contains(String entity1, String entity2)
+	{
+		return sourceMaps.contains(entity1, entity2);
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
- 	 * @param entity2: the uri of the entity2 class to check in the Alignment
+	 * @param entity1: the entity1 to check in the Alignment
+ 	 * @param entity2: the entity2 to check in the Alignment
  	 * @param r: the MappingRelation to check in the Alignment
 	 * @return whether the Alignment contains a Mapping between entity1 and entity2
 	 * with relationship r
@@ -283,18 +240,9 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 				(String)((SimpleMapping)o).getEntity2(), ((SimpleMapping)o).getRelationship());
 	}
 	
-	@Override
-	public boolean containsAll(Collection<?> c)
-	{
-		for(Object o : c)
-			if(!contains(o))
-				return false;
-		return true;
-	}
-	
 	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
- 	 * @param entity2: the uri of the entity2 class to check in the Alignment 
+	 * @param entity1: the entity1 to check in the Alignment
+ 	 * @param entity2: the entity2 to check in the Alignment 
 	 * @return whether the Alignment contains a Mapping that is ancestral to the given pair of classes
 	 * (i.e. includes one ancestor of entity1 and one ancestor of entity2)
 	 */
@@ -346,35 +294,22 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
- 	 * @param uri: the uri of the class to check in the Alignment 
-	 * @return whether the Alignment contains a Mapping with that class
-	 * (either as a entity1 or as a entity2 class)
-	 */
-	public boolean containsEntity(String uri)
-	{
-		return containsSource(uri) || containsTarget(uri);
-	}
-	
-	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
- 	 * @param entity2: the uri of the entity2 class to check in the Alignment 
-	 * @return whether the Alignment contains another Mapping for entity1 or for entity2
-	 */
+	 * @param entity1: the entity1 to check in the Alignment
+ 	 * @param entity2: the entity2 to check in the Alignment 
+	 * @return whether the Alignment contains another Mapping that includes entity1 or entity2
+	 */	
 	public boolean containsConflict(String entity1, String entity2)
 	{
-		for(String s : getTargetMappings(entity2))
+		for(String s : getTargetMappings((String)entity2))
 			if(!s.equals(entity1))
 				return true;
-		for(String t : getSourceMappings(entity1))
+		for(String t : getSourceMappings((String)entity1))
 			if(!t.equals(entity2))
 				return true;
 		return false;
 	}
 	
-	/**
- 	 * @param m: the Mapping to check in the Alignment 
-	 * @return whether the Alignment contains another Mapping involving either class in m
-	 */
+	@Override
 	public boolean containsConflict(AbstractMapping m)
 	{
 		if(m instanceof SimpleMapping)
@@ -406,40 +341,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
-	 * @param entity2: the uri of the entity2 class to check in the Alignment
-	 * @return whether the Alignment contains a Mapping between entity1 and entity2
-	 */
-	public boolean containsMapping(String entity1, String entity2)
-	{
-		return sourceMaps.contains(entity1, entity2);
-	}
-	
-	/**
-	 * @param m: the Mapping to check in the Alignment
-	 * @return whether the Alignment contains a Mapping with the same entity1
-	 * and entity2 as m (regardless of the mapping relation)
-	 */
-	public boolean containsMapping(AbstractMapping m)
-	{
-		return sourceMaps.contains((String)m.getEntity1(), (String)m.getEntity2());
-	}
-	
-	/**
-	 * @param lm: the List of Mapping to check in the Alignment
-	 * @return whether the Alignment contains all the Mapping listed in m
-	 */
-	public boolean containsMappings(List<AbstractMapping> lm)
-	{
-		for(AbstractMapping m: lm)
-			if(!containsMapping(m))
-				return false;
-		return true;
-	}
-	
-	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
- 	 * @param entity2: the uri of the entity2 class to check in the Alignment 
+	 * @param entity1: the entity1 to check in the Alignment
+ 	 * @param entity2: the entity2 to check in the Alignment 
 	 * @return whether the Alignment contains a Mapping that is parent to the
 	 * given pair of classes on one side only
 	 */
@@ -451,54 +354,38 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 		Set<String> targetAncestors = rels.getSubclasses(entity2,1);
 		
 		for(String sa : sourceAncestors)
-			if(containsMapping(sa,entity2))
+			if(contains(sa,entity2))
 				return true;
 		for(String ta : targetAncestors)
-			if(containsMapping(entity1,ta))
+			if(contains(entity1,ta))
 				return true;
 		return false;
 	}
 	
-	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
- 	 * @return whether the Alignment contains a Mapping for entity1
-	 */
-	public boolean containsSource(String entity1)
+	@Override
+	public boolean containsSource(Object entity1)
 	{
-		return sourceMaps.contains(entity1);
+		return entity1 instanceof String && sourceMaps.contains((String)entity1);
 	}
 
-	/**
-	 * @param entity2: the uri of the entity2 class to check in the Alignment
- 	 * @return whether the Alignment contains a Mapping for entity2
-	 */
-	public boolean containsTarget(String entity2)
+	@Override
+	public boolean containsTarget(Object entity2)
 	{
-		return targetMaps.contains(entity2);
+		return entity2 instanceof String && sourceMaps.contains((String)entity2);
 	}
 	
-	/**
- 	 * @return the number of conflict mappings in this alignment
-	 */
-	public int countConflicts()
-	{
-		int count = 0;
-		for(AbstractMapping m : maps)
-			if(m.getRelationship().equals(MappingRelation.UNKNOWN))
-				count++;
-		return count;
-	}
-	
-	/**
-	 * @param a: the Alignment to subtract from this Alignment 
-	 * @return the Alignment corresponding to the difference between this Alignment and a
-	 */
-	public SimpleAlignment difference(SimpleAlignment a)
+	@Override
+	public SimpleAlignment difference(AbstractAlignment a)
 	{
 		SimpleAlignment diff = new SimpleAlignment();
-		for(AbstractMapping m : maps)
-			if(!a.contains(m))
-				diff.add(m);
+		if(a instanceof SimpleAlignment)
+		{
+			for(AbstractMapping m : maps)
+				if(!a.contains(m))
+					diff.add(m);
+		}
+		else
+			diff.addAll(maps);
 		return diff;
 	}
 	
@@ -512,40 +399,28 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	 * @param ref: the reference Alignment to evaluate this Alignment
 	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
-	public int[] evaluate(SimpleAlignment ref)
+	public int[] evaluate(AbstractAlignment ref)
 	{
 		int[] count = new int[2];
-		for(AbstractMapping m : maps)
+		if(ref instanceof SimpleAlignment)
 		{
-			if(ref.contains(m))
+			for(AbstractMapping m : maps)
 			{
-				count[0]++;
-				m.setStatus(MappingStatus.CORRECT);
+				if(ref.contains(m))
+				{
+					count[0]++;
+					m.setStatus(MappingStatus.CORRECT);
+				}
+				else if(((SimpleAlignment)ref).contains((String)m.getEntity1(),(String)m.getEntity2(),MappingRelation.UNKNOWN))
+				{
+					count[1]++;
+					m.setStatus(MappingStatus.UNKNOWN);
+				}
+				else
+					m.setStatus(MappingStatus.INCORRECT);
 			}
-			else if(ref.contains((String)m.getEntity1(),(String)m.getEntity2(),MappingRelation.UNKNOWN))
-			{
-				count[1]++;
-				m.setStatus(MappingStatus.UNKNOWN);
-			}
-			else
-				m.setStatus(MappingStatus.INCORRECT);
 		}
 		return count;
-	}
-
-	/**
-	 * @param a: the base Alignment to which this Alignment will be compared 
-	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
-	 * in comparison with the base Alignment
-	 */
-	public double gain(SimpleAlignment a)
-	{
-		double gain = 0.0;
-		for(AbstractMapping m : maps)
-			if(!a.containsMapping(m))
-				gain++;
-		gain /= a.size();
-		return gain;
 	}
 	
 	/**
@@ -553,7 +428,7 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
-	public double gainOneToOne(SimpleAlignment a)
+	public double gainOneToOne(AbstractAlignment a)
 	{
 		double sourceGain = 0.0;
 		Set<String> sources = sourceMaps.keySet();
@@ -583,8 +458,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
-	 * @param entity2: the uri of the entity2 class to check in the Alignment
+	 * @param entity1: the entity1 to check in the Alignment
+	 * @param entity2: the entity2 to check in the Alignment
  	 * @return the Mapping between the entity1 and entity2 classes or null if no
  	 * such Mapping exists
 	 */
@@ -610,8 +485,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
- 	 * @return the uri of the entity2 class that best matches entity1
+	 * @param entity1: the entity1 to check in the Alignment
+ 	 * @return the entity2 that best matches entity1
 	 */
 	public String getBestSourceMatch(String entity1)
 	{
@@ -631,8 +506,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 
 	/**
-	 * @param entity2: the uri of the entity2 class to check in the Alignment
- 	 * @return the uri of the entity1 class that best matches entity2
+	 * @param entity2: the entity2 to check in the Alignment
+ 	 * @return the entity1 that best matches entity2
 	 */
 	public String getBestTargetMatch(String entity2)
 	{
@@ -699,8 +574,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class
-	 * @param entity2: the uri of the entity2 class
+	 * @param entity1: the entity1
+	 * @param entity2: the entity2
 	 * @return the uri of the Mapping between the given classes in
 	 * the list of Mappings, or -1 if the Mapping doesn't exist
 	 */
@@ -743,8 +618,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
- 	 * @return the uri of the entity2 class that best matches entity1
+	 * @param entity1: the entity1 to check in the Alignment
+ 	 * @return the entity2 that best matches entity1
 	 */
 	public double getMaxSourceSim(String entity1)
 	{
@@ -760,8 +635,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 
 	/**
-	 * @param entity2: the uri of the entity2 class to check in the Alignment
- 	 * @return the uri of the entity1 class that best matches entity2
+	 * @param entity2: the entity2 to check in the Alignment
+ 	 * @return the entity1 that best matches entity2
 	 */
 	public double getMaxTargetSim(String entity2)
 	{
@@ -777,8 +652,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class in the Alignment
-	 * @param entity2: the uri of the entity2 class in the Alignment
+	 * @param entity1: the entity1 in the Alignment
+	 * @param entity2: the entity2 in the Alignment
 	 * @return the mapping relationship between entity1 and entity2
 	 */
 	public MappingRelation getRelationship(String entity1, String entity2)
@@ -790,8 +665,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class in the Alignment
-	 * @param entity2: the uri of the entity2 class in the Alignment
+	 * @param entity1: the entity1 in the Alignment
+	 * @param entity2: the entity2 in the Alignment
 	 * @return the similarity between entity1 and entity2
 	 */
 	public double getSimilarity(String entity1, String entity2)
@@ -803,8 +678,8 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class in the Alignment
-	 * @param entity2: the uri of the entity2 class in the Alignment
+	 * @param entity1: the entity1 in the Alignment
+	 * @param entity2: the entity2 in the Alignment
 	 * @return the similarity between entity1 and entity2 in percentage
 	 */
 	public String getSimilarityPercent(String entity1, String entity2)
@@ -816,7 +691,7 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity1: the uri of the entity1 class to check in the Alignment
+	 * @param entity1: the entity1 to check in the Alignment
  	 * @return the list of all entity2 classes mapped to the entity1 class
 	 */
 	public Set<String> getSourceMappings(String entity1)
@@ -845,7 +720,7 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	/**
-	 * @param entity2: the uri of the entity2 class to check in the Alignment
+	 * @param entity2: the entity2 to check in the Alignment
  	 * @return the list of all entity1 classes mapped to the entity2 class
 	 */
 	public Set<String> getTargetMappings(String entity2)
@@ -884,13 +759,13 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	 * @param a: the Alignment to intersect with this Alignment 
 	 * @return the Alignment corresponding to the intersection between this Alignment and a
 	 */
-	public SimpleAlignment intersection(SimpleAlignment a)
+	public SimpleAlignment intersection(AbstractAlignment a)
 	{
-		//Otherwise, compute the intersection
 		SimpleAlignment intersection = new SimpleAlignment();
-		for(AbstractMapping m : maps)
-			if(a.contains(m))
-				intersection.add(m);
+		if(a instanceof SimpleAlignment)
+			for(AbstractMapping m : maps)
+				if(a.contains(m))
+					intersection.add(m);
 		return intersection;
 	}
 	
@@ -960,65 +835,12 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 	}
 	
 	@Override
-	public boolean removeAll(Collection<?> c)
-	{
-		boolean check = false;
-		for(Object o : c)
-			check = remove(o) || check;
-		return check;
-	}
-	
-	@Override
-	public boolean retainAll(Collection<?> c)
-	{
-		boolean check = false;
-		for(AbstractMapping m : this)
-			if(!c.contains(m))
-				check = remove(m) || check;
-		return check;
-	}
-	
-	@Override
-	public int size()
-	{
-		return maps.size();
-	}
-
-	/**
-	 * Sorts the Alignment ascendingly
-	 */
-	public void sortAscending()
-	{
-		Collections.sort(maps);
-	}
-	
-	/**
-	 * Sorts the Alignment descendingly
-	 */
-	public void sortDescending()
-	{
-		Collections.sort(maps,new Comparator<AbstractMapping>()
-        {
-			//Sorting in descending order can be done simply by
-			//reversing the order of the elements in the comparison
-            public int compare(AbstractMapping m1, AbstractMapping m2)
-            {
-        		return m2.compareTo(m1);
-            }
-        } );
-	}
-	
-	/**
-	 * @return the number of entity1 entities mapped in this Alignment
-	 */
 	public int sourceCount()
 	{
 		return sourceMaps.keyCount();
 	}
 	
-	/**
-	 * @return the fraction of entity1 classes mapped in this Alignment
-	 */
+	@Override
 	public double sourceCoverage(EntityType e)
 	{
 		double coverage = 0.0;
@@ -1033,17 +855,13 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 		return coverage / count;
 	}
 	
-	/**
-	 * @return the number of entity2 entities mapped in this Alignment
-	 */
+	@Override
 	public int targetCount()
 	{
 		return targetMaps.keyCount();
 	}
 	
-	/**
-	 * @return the fraction of entity2 classes mapped in this Alignment
-	 */
+	@Override
 	public double targetCoverage(EntityType e)
 	{
 		double coverage = 0.0;
@@ -1056,17 +874,5 @@ public class SimpleAlignment implements Collection<AbstractMapping>
 		else
 			count = AML.getInstance().getTarget().count(e);
 		return coverage / count;
-	}
-	
-	@Override
-	public Object[] toArray()
-	{
-		return maps.toArray();
-	}
-	
-	@Override
-	public <T> T[] toArray(T[] a)
-	{
-		return maps.toArray(a);
 	}
 }

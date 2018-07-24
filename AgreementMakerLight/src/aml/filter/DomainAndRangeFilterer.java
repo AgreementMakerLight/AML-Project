@@ -105,21 +105,21 @@ public class DomainAndRangeFilterer implements Filterer
 	{
 		EntityMap rm = aml.getEntityMap();
 
-		if(sIndex == tIndex || aml.getAlignment().containsMapping(sIndex, tIndex))
+		if(sIndex == tIndex || aml.getAlignment().contains(sIndex, tIndex))
 	    	return true;
 		
 		Set<Integer> sParent= rm.getParents(sIndex);
 		if(sParent.size()==1)
 		{
 			int spId = sParent.iterator().next();
-			if(aml.getAlignment().containsMapping(spId, tIndex))
+			if(aml.getAlignment().contains(spId, tIndex))
 				return true;
 		}
 		Set<Integer> tParent= rm.getParents(tIndex);
 		if(tParent.size()==1)
 		{
 			int tpId=tParent.iterator().next();
-			if(aml.getAlignment().containsMapping(sIndex, tpId))
+			if(aml.getAlignment().contains(sIndex, tpId))
 				return true;
 		}
 		return false;
