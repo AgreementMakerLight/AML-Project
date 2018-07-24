@@ -19,7 +19,7 @@
 package aml.match.bk;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
@@ -68,13 +68,13 @@ public class DirectXRefMatcher implements PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running " + NAME);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
 		ReferenceMap sourceRefs = source.getReferenceMap();

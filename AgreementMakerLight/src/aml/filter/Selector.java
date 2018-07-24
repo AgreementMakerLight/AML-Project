@@ -19,7 +19,7 @@
 package aml.filter;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
@@ -35,8 +35,8 @@ public class Selector implements Filterer, Flagger
 	private AML aml;
 	private double thresh;
 	private SelectionType type;
-	private Alignment a;
-	private Alignment aux;
+	private SimpleAlignment a;
+	private SimpleAlignment aux;
 	private InteractionManager im;
 	
 //Constructors
@@ -74,7 +74,7 @@ public class Selector implements Filterer, Flagger
 	 * @param thresh: the similarity threshold
 	 * @param aux: the auxiliary Alignment
 	 */
-	public Selector(double thresh, Alignment aux)
+	public Selector(double thresh, SimpleAlignment aux)
 	{
 		this(thresh);
 		this.aux = aux;
@@ -88,7 +88,7 @@ public class Selector implements Filterer, Flagger
 	 * @param type: the SelectionType
 	 * @param aux: the auxiliary Alignment
 	 */
-	public Selector(double thresh, SelectionType type, Alignment aux)
+	public Selector(double thresh, SelectionType type, SimpleAlignment aux)
 	{
 		this(thresh, type);
 		this.aux = aux;
@@ -101,7 +101,7 @@ public class Selector implements Filterer, Flagger
 	{
 		System.out.println("Performing Selection");
 		long time = System.currentTimeMillis()/1000;
-		Alignment selected;
+		SimpleAlignment selected;
 		a = aml.getAlignment();
 		if(!type.equals(SelectionType.HYBRID))
 			selected = parentFilter(a);
@@ -126,9 +126,9 @@ public class Selector implements Filterer, Flagger
 	 * @param a: the Alignment to select
 	 * @return: the selected Alignment
 	 */
-	public Alignment filter(Alignment a)
+	public SimpleAlignment filter(SimpleAlignment a)
 	{
-		Alignment selected = new Alignment();
+		SimpleAlignment selected = new SimpleAlignment();
 		a.sortDescending();
 		for(SimpleMapping m : a)
 		{
@@ -163,10 +163,10 @@ public class Selector implements Filterer, Flagger
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}
 	
-	private Alignment filterNormal()
+	private SimpleAlignment filterNormal()
 	{
 		//The alignment to store selected mappings
-		Alignment selected = new Alignment();
+		SimpleAlignment selected = new SimpleAlignment();
 		//Sort the active alignment
 		a.sortDescending();
 		//Then select Mappings in ranking order (by similarity)
@@ -200,10 +200,10 @@ public class Selector implements Filterer, Flagger
 		return selected;
 	}
 	
-	private Alignment filterWithAux()
+	private SimpleAlignment filterWithAux()
 	{
 		//The alignment to store selected mappings
-		Alignment selected = new Alignment();
+		SimpleAlignment selected = new SimpleAlignment();
 		//Sort the auxiliary alignment
 		aux.sortDescending();
 		//Then perform selection based on it
@@ -232,10 +232,10 @@ public class Selector implements Filterer, Flagger
 		return selected;
 	}
 	
-	private Alignment parentFilter(Alignment in)
+	private SimpleAlignment parentFilter(SimpleAlignment in)
 	{
 		EntityMap r = aml.getEntityMap();
-		Alignment out = new Alignment();
+		SimpleAlignment out = new SimpleAlignment();
 		for(SimpleMapping m : in)
 		{
 			int src = m.getSourceId();

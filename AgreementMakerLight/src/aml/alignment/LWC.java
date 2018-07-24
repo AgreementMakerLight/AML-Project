@@ -37,9 +37,9 @@ public class LWC
 	 * multiplied by 1-weight)
 	 * @return: the combined alignment
 	 */
-	public static Alignment combine(Alignment a, Alignment b, double weight)
+	public static SimpleAlignment combine(SimpleAlignment a, SimpleAlignment b, double weight)
 	{
-		Alignment combine = new Alignment();
+		SimpleAlignment combine = new SimpleAlignment();
 	
 		for(AbstractMapping m: a)
 		{

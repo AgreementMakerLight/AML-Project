@@ -21,7 +21,7 @@ package aml.match;
 import java.util.Vector;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.LWC;
 import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
@@ -58,8 +58,8 @@ public class ManualMatcher
 		boolean hierarchic = aml.isHierarchic();
 		
 		//Initialize the alignment
-		Alignment a = new Alignment();
-		Alignment aux;
+		SimpleAlignment a = new SimpleAlignment();
+		SimpleAlignment aux;
 		
 		//Start the matching procedure
 		if(steps.contains(MatchStep.TRANSLATE))
@@ -84,7 +84,7 @@ public class ManualMatcher
 			}
 			else
 			{
-				aux = new Alignment();
+				aux = new SimpleAlignment();
 				for(String l : aml.getLanguages())
 				{
 					WordMatcher wm = new WordMatcher(l,wms);
@@ -140,10 +140,10 @@ public class ManualMatcher
 			if(aml.structuralSelection())
 			{
 				BlockRematcher br = new BlockRematcher();
-				Alignment b = br.rematch(a,EntityType.CLASS);
+				SimpleAlignment b = br.rematch(a,EntityType.CLASS);
 				NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(
 						NeighborSimilarityStrategy.MAXIMUM,true);
-				Alignment c = nb.rematch(a,EntityType.CLASS);
+				SimpleAlignment c = nb.rematch(a,EntityType.CLASS);
 				b = LWC.combine(b, c, 0.75);
 				b = LWC.combine(a, b, 0.8);
 				Selector s = new Selector(thresh-0.05,sType);

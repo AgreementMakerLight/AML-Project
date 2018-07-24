@@ -18,7 +18,7 @@
 ******************************************************************************/
 package aml.match;
 
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 
@@ -32,5 +32,5 @@ public interface PrimaryMatcher extends Matcher
 	 * @param thresh: the similarity threshold for the alignment
 	 * @return the alignment between the source and target ontologies
 	 */
-	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException;
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException;
 }

@@ -22,7 +22,7 @@ package aml.filter;
 import java.util.Vector;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.match.UnsupportedEntityTypeException;
@@ -41,10 +41,10 @@ public class QualityFlagger implements Flagger
 //Attributes
 	
 	private AML aml;
-	private Alignment a;
+	private SimpleAlignment a;
 	private SizeCategory size;
 	private Vector<String> auxMatchers;
-	private Vector<Alignment> auxAlignments;
+	private Vector<SimpleAlignment> auxAlignments;
 	private final double AVERAGE_THRESH = 0.2;
 	
 //Constructors
@@ -56,7 +56,7 @@ public class QualityFlagger implements Flagger
 		size = aml.getSizeCategory();
 		//Construct the list of auxiliary (re)matchers and alignments
 		auxMatchers = new Vector<String>();
-		auxAlignments = new Vector<Alignment>();
+		auxAlignments = new Vector<SimpleAlignment>();
 		try
 		{
 			auxMatchers.add("Word Similarity: ");
@@ -154,7 +154,7 @@ public class QualityFlagger implements Flagger
 	public double getMaxSimilarity(int sourceId, int targetId)
 	{
 		double max = a.getSimilarity(sourceId, targetId);
-		for(Alignment aux : auxAlignments)
+		for(SimpleAlignment aux : auxAlignments)
 			max = Math.max(max, aux.getSimilarity(sourceId, targetId));
 		return max;
 	}

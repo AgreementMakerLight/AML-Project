@@ -25,7 +25,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
@@ -81,7 +81,7 @@ public class ThesaurusMatcher implements PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running Thesaurus Matcher");
@@ -91,7 +91,7 @@ public class ThesaurusMatcher implements PrimaryMatcher
 		Lexicon target = new Lexicon(aml.getTarget().getLexicon());
 		extendLexicon(source,e,thresh);
 		extendLexicon(target,e,thresh);
-		Alignment a = match(source,target,e,thresh);
+		SimpleAlignment a = match(source,target,e,thresh);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
@@ -213,10 +213,10 @@ public class ThesaurusMatcher implements PrimaryMatcher
 	}
 	
 	//Matches two Lexicons
-	private Alignment match(Lexicon source, Lexicon target, EntityType e, double thresh)
+	private SimpleAlignment match(Lexicon source, Lexicon target, EntityType e, double thresh)
 	{
 		AML aml = AML.getInstance();
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		Set<String> names = source.getNames(e);
 		for(String s : names)
 		{

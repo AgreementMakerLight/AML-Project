@@ -23,7 +23,7 @@ package aml.match.lexical;
 import java.util.ArrayList;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
@@ -66,14 +66,14 @@ public class AcronymMatcher implements PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		AML aml = AML.getInstance();
 		Lexicon sourceLex = o1.getLexicon();
 		Lexicon targetLex = o2.getLexicon();
 		
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 
 		for(String sName : sourceLex.getNames(e))
 		{

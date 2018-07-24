@@ -34,7 +34,7 @@ import aml.ontology.EntityType;
 import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2Map;
 
-public class Alignment implements Collection<AbstractMapping>
+public class SimpleAlignment implements Collection<AbstractMapping>
 {
 
 //Attributes
@@ -58,7 +58,7 @@ public class Alignment implements Collection<AbstractMapping>
 	/**
 	 * Creates a new empty Alignment between the source and target ontologies
 	 */
-	public Alignment()
+	public SimpleAlignment()
 	{
 		this(AML.getInstance().getSource().getURI(), AML.getInstance().getTarget().getURI());
 	}
@@ -66,7 +66,7 @@ public class Alignment implements Collection<AbstractMapping>
 	/**
 	 * Creates a new empty Alignment
 	 */
-	public Alignment(String sourceUri, String targetUri)
+	public SimpleAlignment(String sourceUri, String targetUri)
 	{
 		this.sourceURI = sourceUri;
 		this.targetURI = targetUri;
@@ -81,7 +81,7 @@ public class Alignment implements Collection<AbstractMapping>
 	 * Creates a new Alignment that contains the input collection of mappings
 	 * @param a: the collection of mappings to include in this Alignment
 	 */
-	public Alignment(Collection<AbstractMapping> a)
+	public SimpleAlignment(Collection<AbstractMapping> a)
 	{
 		this();
 		addAll(a);
@@ -194,7 +194,7 @@ public class Alignment implements Collection<AbstractMapping>
 	 * they don't conflict with any Mapping in a
 	 * @param a: the Alignment to add to this Alignment
 	 */
-	public void addAllNonConflicting(Alignment a)
+	public void addAllNonConflicting(SimpleAlignment a)
 	{
 		Vector<AbstractMapping> nonConflicting = new Vector<AbstractMapping>();
 		for(AbstractMapping m : a.maps)
@@ -208,7 +208,7 @@ public class Alignment implements Collection<AbstractMapping>
 	 * they don't conflict with any Mapping in a
 	 * @param a: the Alignment to add to this Alignment
 	 */
-	public void addAllOneToOne(Alignment a)
+	public void addAllOneToOne(SimpleAlignment a)
 	{
 		a.sortDescending();
 		for(AbstractMapping m : a.maps)
@@ -493,9 +493,9 @@ public class Alignment implements Collection<AbstractMapping>
 	 * @param a: the Alignment to subtract from this Alignment 
 	 * @return the Alignment corresponding to the difference between this Alignment and a
 	 */
-	public Alignment difference(Alignment a)
+	public SimpleAlignment difference(SimpleAlignment a)
 	{
-		Alignment diff = new Alignment();
+		SimpleAlignment diff = new SimpleAlignment();
 		for(AbstractMapping m : maps)
 			if(!a.contains(m))
 				diff.add(m);
@@ -505,14 +505,14 @@ public class Alignment implements Collection<AbstractMapping>
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof Alignment && containsAll((Alignment)o);
+		return o instanceof SimpleAlignment && containsAll((SimpleAlignment)o);
 	}
 	
 	/**
 	 * @param ref: the reference Alignment to evaluate this Alignment
 	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
-	public int[] evaluate(Alignment ref)
+	public int[] evaluate(SimpleAlignment ref)
 	{
 		int[] count = new int[2];
 		for(AbstractMapping m : maps)
@@ -538,7 +538,7 @@ public class Alignment implements Collection<AbstractMapping>
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
-	public double gain(Alignment a)
+	public double gain(SimpleAlignment a)
 	{
 		double gain = 0.0;
 		for(AbstractMapping m : maps)
@@ -553,7 +553,7 @@ public class Alignment implements Collection<AbstractMapping>
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
-	public double gainOneToOne(Alignment a)
+	public double gainOneToOne(SimpleAlignment a)
 	{
 		double sourceGain = 0.0;
 		Set<String> sources = sourceMaps.keySet();
@@ -672,11 +672,11 @@ public class Alignment implements Collection<AbstractMapping>
 	 * (the similarity between high level classes is given by the
 	 * fraction of classes in this Alignment that are their descendents)
 	 */
-	public Alignment getHighLevelAlignment()
+	public SimpleAlignment getHighLevelAlignment()
 	{
 		EntityMap rels = AML.getInstance().getEntityMap();
 		
-		Alignment a = new Alignment();
+		SimpleAlignment a = new SimpleAlignment();
 		int total = maps.size();
 		for(AbstractMapping m : maps)
 		{
@@ -691,7 +691,7 @@ public class Alignment implements Collection<AbstractMapping>
 				}
 			}
 		}
-		Alignment b = new Alignment();
+		SimpleAlignment b = new SimpleAlignment();
 		for(AbstractMapping m : a)
 			if(m.getSimilarity() >= 0.01)
 				b.add(m);
@@ -884,10 +884,10 @@ public class Alignment implements Collection<AbstractMapping>
 	 * @param a: the Alignment to intersect with this Alignment 
 	 * @return the Alignment corresponding to the intersection between this Alignment and a
 	 */
-	public Alignment intersection(Alignment a)
+	public SimpleAlignment intersection(SimpleAlignment a)
 	{
 		//Otherwise, compute the intersection
-		Alignment intersection = new Alignment();
+		SimpleAlignment intersection = new SimpleAlignment();
 		for(AbstractMapping m : maps)
 			if(a.contains(m))
 				intersection.add(m);

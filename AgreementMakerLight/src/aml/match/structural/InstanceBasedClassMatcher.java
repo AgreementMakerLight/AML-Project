@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
@@ -67,10 +67,10 @@ public class InstanceBasedClassMatcher implements PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
-		Alignment a = new Alignment();
+		SimpleAlignment a = new SimpleAlignment();
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();

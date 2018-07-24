@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.knowledge.MediatorOntology;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
@@ -158,7 +158,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running Mediating Matcher using " + uri);
@@ -173,7 +173,7 @@ public class MediatingMatcher implements LexiconExtender, PrimaryMatcher
 		for(Integer s : tgt.keySet())
 			for(Integer t : tgt.keySet(s))
 				rev.add(t, s, tgt.get(s, t));
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		for(Integer s : src.keySet())
 		{
 			for(Integer med : src.keySet(s))

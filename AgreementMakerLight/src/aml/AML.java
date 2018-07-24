@@ -35,7 +35,7 @@ import javax.swing.UIManager;
 import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.AlignmentIO;
 import aml.alignment.AbstractMapping;
 import aml.alignment.MappingStatus;
@@ -85,8 +85,8 @@ public class AML
 	private Ontology source;
 	private Ontology target;
 	private Ontology bk;
-	private Alignment a;
-	private Alignment ref;
+	private SimpleAlignment a;
+	private SimpleAlignment ref;
 	private RepairMap rep;
 	private QualityFlagger qf;
 	//The user interaction manager
@@ -369,7 +369,7 @@ public class AML
 	/**
 	 * @return the current alignment
 	 */
-	public Alignment getAlignment()
+	public SimpleAlignment getAlignment()
     {
     	return a;
     }
@@ -534,7 +534,7 @@ public class AML
 	/**
 	 * @return the current reference alignment
 	 */
-	public Alignment getReferenceAlignment()
+	public SimpleAlignment getReferenceAlignment()
     {
     	return ref;
     }
@@ -1042,7 +1042,7 @@ public class AML
 
 	public void removeIncorrect()
 	{
-		Alignment reviewed = new Alignment();
+		SimpleAlignment reviewed = new SimpleAlignment();
 		for(AbstractMapping m : a)
 			if(!m.getStatus().equals(MappingStatus.INCORRECT))
 				reviewed.add(m);
@@ -1083,7 +1083,7 @@ public class AML
     	needSave = false;
     }
     
-	public void setAlignment(Alignment maps)
+	public void setAlignment(SimpleAlignment maps)
 	{
 		a = maps;
 		if(a.size() > 0)

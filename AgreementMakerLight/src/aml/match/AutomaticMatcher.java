@@ -24,7 +24,7 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.LWC;
 import aml.filter.CardinalitySelector;
 import aml.filter.DifferentClassPenalizer;
@@ -85,8 +85,8 @@ public class AutomaticMatcher
 	private static final double INTERACTIVE_MOD = -0.3;
 	private static final double PSM_MOD = 0.1;
 	//Alignments
-	private static Alignment a;
-	private static Alignment lex;
+	private static SimpleAlignment a;
+	private static SimpleAlignment lex;
 	
 //Constructors	
 	
@@ -108,7 +108,7 @@ public class AutomaticMatcher
 		matchProperties = aml.matchProperties();
 		size = aml.getSizeCategory();
 		//Initialize the alignment
-		a = new Alignment();
+		a = new SimpleAlignment();
 		thresh = aml.getThreshold();
 		if(matchClasses)
 			matchClasses();
@@ -148,7 +148,7 @@ public class AutomaticMatcher
 			if(size.equals(SizeCategory.SMALL))
 			{
 				WordNetMatcher wn = new WordNetMatcher();
-				Alignment wordNet = wn.match(EntityType.CLASS, thresh);
+				SimpleAlignment wordNet = wn.match(EntityType.CLASS, thresh);
 				//Deciding whether to use it based on its coverage of the input ontologies
 				//(as we expect a high gain if the coverage is high given that WordNet will
 				//generate numerous synonyms)
@@ -177,7 +177,7 @@ public class AutomaticMatcher
 						{
 							ExternalLexicon ml = new ExternalLexicon(BK_PATH + bk);
 							MediatingMatcher mm = new MediatingMatcher(ml, BK_PATH + bk);
-							Alignment med = mm.match(EntityType.CLASS, thresh);
+							SimpleAlignment med = mm.match(EntityType.CLASS, thresh);
 							double gain = med.gain(lex);
 							if(gain >= MIN_GAIN_THRESH)
 							{
@@ -207,7 +207,7 @@ public class AutomaticMatcher
 							continue;
 						}
 						MediatingXRefMatcher xr = new MediatingXRefMatcher(aml.getBKOntology());
-						Alignment ref = xr.match(EntityType.CLASS, thresh);
+						SimpleAlignment ref = xr.match(EntityType.CLASS, thresh);
 						double gain = ref.gain(lex);
 						//In the case of Ontologies, if the mapping gain is very high, we can
 						//use them for Lexical Extension, which will effectively enable Word-
@@ -234,7 +234,7 @@ public class AutomaticMatcher
 		}
 		if(!size.equals(SizeCategory.HUGE))
 		{
-			Alignment word = new Alignment();
+			SimpleAlignment word = new SimpleAlignment();
 			if(lang.equals(LanguageSetting.SINGLE))
 			{
 				WordMatcher wm = new WordMatcher();
@@ -308,10 +308,10 @@ public class AutomaticMatcher
 			or.filter();
 				
 			BlockRematcher hl = new BlockRematcher();
-			Alignment b = hl.rematch(a,EntityType.CLASS);
+			SimpleAlignment b = hl.rematch(a,EntityType.CLASS);
 			NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(
 					NeighborSimilarityStrategy.MAXIMUM,true);
-			Alignment c = nb.rematch(a,EntityType.CLASS);
+			SimpleAlignment c = nb.rematch(a,EntityType.CLASS);
 			b = LWC.combine(b, c, 0.75);
 			b = LWC.combine(a, b, 0.8);
 			CardinalitySelector s = new CardinalitySelector(thresh-0.05,card,sType);
@@ -354,7 +354,7 @@ public class AutomaticMatcher
 		{
 			aml.translateOntologies();
 			LexicalMatcher lm = new LexicalMatcher();
-			Alignment a = lm.match(EntityType.INDIVIDUAL,thresh);
+			SimpleAlignment a = lm.match(EntityType.INDIVIDUAL,thresh);
 			StringMatcher sm = new StringMatcher();
 			a.addAll(sm.match(EntityType.INDIVIDUAL,thresh));
 			for(String l : aml.getLanguages())
@@ -386,7 +386,7 @@ public class AutomaticMatcher
 		else
 		{
 			ValueMatcher vm = new ValueMatcher();
-			Alignment b = vm.match(EntityType.INDIVIDUAL, thresh);
+			SimpleAlignment b = vm.match(EntityType.INDIVIDUAL, thresh);
 			double cov = Math.min(b.sourceCoverage(EntityType.INDIVIDUAL),
 					b.targetCoverage(EntityType.INDIVIDUAL));
 			System.out.println("ValueMatcher coverage : " + cov);
@@ -417,9 +417,9 @@ public class AutomaticMatcher
 				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
 					DifferentClassPenalizer.penalize();
 
-				Alignment c = vsm.rematch(a, EntityType.INDIVIDUAL);
-				Alignment d = vlm.rematch(a, EntityType.INDIVIDUAL);
-				Alignment aux = LWC.combine(c, d, 0.75);
+				SimpleAlignment c = vsm.rematch(a, EntityType.INDIVIDUAL);
+				SimpleAlignment d = vlm.rematch(a, EntityType.INDIVIDUAL);
+				SimpleAlignment aux = LWC.combine(c, d, 0.75);
 				aux = LWC.combine(aux, b, 0.65);
 				aux = LWC.combine(aux, a, 0.8);
 				

@@ -23,7 +23,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.match.AbstractParallelMatcher;
 import aml.match.UnsupportedEntityTypeException;
@@ -93,7 +93,7 @@ public class WordMatcher extends AbstractParallelMatcher
 	}
 	
 	@Override
-	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		AML aml = AML.getInstance();
@@ -104,7 +104,7 @@ public class WordMatcher extends AbstractParallelMatcher
 		targetLex = aml.getTarget().getWordLexicon(e,language);
 
 		System.out.println("Running Word Matcher");
-		Alignment a = new Alignment();
+		SimpleAlignment a = new SimpleAlignment();
 		//If the strategy is BY_CLASS, the alignment can be computed
 		//globally. Otherwise we need to compute a preliminary
 		//alignment and then rematch according to the strategy.
@@ -160,7 +160,7 @@ public class WordMatcher extends AbstractParallelMatcher
 	}
 	
 	@Override
-	public Alignment rematch(Ontology o1, Ontology o2, Alignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Building Word Lexicons");
@@ -169,7 +169,7 @@ public class WordMatcher extends AbstractParallelMatcher
 		sourceLex = o1.getWordLexicon(e,language);
 		targetLex = o2.getWordLexicon(e,language);
 		System.out.println("Computing Word Similarity");
-		Alignment maps = super.rematch(o1, o2, a, e);
+		SimpleAlignment maps = super.rematch(o1, o2, a, e);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;

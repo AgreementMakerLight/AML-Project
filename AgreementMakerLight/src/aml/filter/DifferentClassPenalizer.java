@@ -20,7 +20,7 @@
 package aml.filter;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 
 public class DifferentClassPenalizer
@@ -36,7 +36,7 @@ public class DifferentClassPenalizer
 	public static void penalize()
 	{
 		AML aml = AML.getInstance();
-		Alignment a = aml.getAlignment();
+		SimpleAlignment a = aml.getAlignment();
 		for(SimpleMapping m : a)
 		{
 			if(!aml.getEntityMap().shareClass(m.getSourceId(),m.getTargetId()))

@@ -27,7 +27,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
@@ -81,7 +81,7 @@ public class MultiWordMatcher implements PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running Multi-Word Matcher");
@@ -92,7 +92,7 @@ public class MultiWordMatcher implements PrimaryMatcher
 		WordLexicon sourceWLex = aml.getSource().getWordLexicon(e);
 		WordLexicon targetWLex = aml.getTarget().getWordLexicon(e);
 		
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		for(String sName : sourceLex.getNames(e))
 		{
 			String[] sWords = sName.split(" ");

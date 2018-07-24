@@ -19,12 +19,12 @@ import aml.settings.Namespace;
 
 public class AlignmentIO
 {
-	public static Alignment parse(String file, boolean active) throws Exception
+	public static SimpleAlignment parse(String file, boolean active) throws Exception
 	{
 		return null;
 	}
 
-	public static Alignment parseRDF(String file, boolean active) throws DocumentException
+	public static SimpleAlignment parseRDF(String file, boolean active) throws DocumentException
 	{
 		
 		//Open the Alignment file using SAXReader
@@ -76,11 +76,11 @@ public class AlignmentIO
 			}
 			if(target == null)
 				target = "";
-			Alignment a;
+			SimpleAlignment a;
 			if(!active)
-				a = new Alignment(source,target);
+				a = new SimpleAlignment(source,target);
 			else
-				a = new Alignment(AML.getInstance().getSource().getURI(),AML.getInstance().getTarget().getURI());
+				a = new SimpleAlignment(AML.getInstance().getSource().getURI(),AML.getInstance().getTarget().getURI());
 			
 			//Get an iterator over the mappings
 			Iterator<?> map = align.elementIterator(RDFElement.MAP.toString());
@@ -125,9 +125,9 @@ public class AlignmentIO
 		}
 	}
 	
-	public static Alignment parseTSV(String file) throws Exception
+	public static SimpleAlignment parseTSV(String file) throws Exception
 	{
-		Alignment a = new Alignment();
+		SimpleAlignment a = new SimpleAlignment();
 		BufferedReader inStream = new BufferedReader(new FileReader(file));
 		//First line contains the reference to AML
 		inStream.readLine();
@@ -186,7 +186,7 @@ public class AlignmentIO
 	 * @param a: the Alignment to save
 	 * @param file: the output file
 	 */
-	public static void saveDoubles(Alignment a, String file) throws FileNotFoundException
+	public static void saveDoubles(SimpleAlignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		for(AbstractMapping m : a)
@@ -199,7 +199,7 @@ public class AlignmentIO
 	 * @param a: the Alignment to save
 	 * @param file: the output file
 	 */
-	public static void saveRDF(Alignment a, String file) throws FileNotFoundException
+	public static void saveRDF(SimpleAlignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		outStream.println("<?xml version='1.0' encoding='utf-8'?>");
@@ -228,7 +228,7 @@ public class AlignmentIO
 	 * @param a: the Alignment to save
 	 * @param file: the output file
 	 */
-	public static void saveTSV(Alignment a, String file) throws FileNotFoundException
+	public static void saveTSV(SimpleAlignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		outStream.println("#AgreementMakerLight Alignment File");

@@ -47,7 +47,7 @@ import javax.swing.border.EmptyBorder;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.util.data.MapSorter;
 
@@ -91,7 +91,7 @@ public class SearchAlignment extends JDialog implements ActionListener
 		desc.setFont(boldFont);
 		JPanel labelPanel = new JPanel();
 		labelPanel.add(desc);
-		Alignment a = AML.getInstance().getAlignment();
+		SimpleAlignment a = AML.getInstance().getAlignment();
 		int total = a.size();
 		mappings = new ArrayList<String>(total);
 		for(int i = 0; i < total; i++)

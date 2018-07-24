@@ -25,7 +25,7 @@ package aml.match.lexical;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.AbstractMapping;
 import aml.alignment.SimpleMapping;
 import aml.match.AbstractParallelMatcher;
@@ -100,19 +100,19 @@ public class StringMatcher extends AbstractParallelMatcher
 	}
 	
 	@Override
-	public Alignment extendAlignment(Ontology o1, Ontology o2, Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{	
 		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Extending Alignment with String Matcher");
 		long time = System.currentTimeMillis()/1000;
-		Alignment ext;
+		SimpleAlignment ext;
 		if(e.equals(EntityType.CLASS))
 		{
 			System.out.println("Matching Children & Parents");
 			ext = extendChildrenAndParents(a,thresh);
-			Alignment aux = extendChildrenAndParents(ext,thresh);
+			SimpleAlignment aux = extendChildrenAndParents(ext,thresh);
 			int size = 0;
 			for(int i = 0; i < 10 && ext.size() > size; i++)
 			{
@@ -135,28 +135,28 @@ public class StringMatcher extends AbstractParallelMatcher
 	}
 	
 	@Override
-	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Running String Matcher");
 		long time = System.currentTimeMillis()/1000;
-		Alignment a = super.match(o1, o2, e, thresh);
+		SimpleAlignment a = super.match(o1, o2, e, thresh);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
 	}
 		
 	@Override
-	public Alignment rematch(Ontology o1, Ontology o2, Alignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Computing String Similarity");
 		long time = System.currentTimeMillis()/1000;
-		Alignment maps = super.rematch(o1, o2, a, e);
+		SimpleAlignment maps = super.rematch(o1, o2, a, e);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
@@ -243,7 +243,7 @@ public class StringMatcher extends AbstractParallelMatcher
 			throw new UnsupportedEntityTypeException(e.toString());
 	}
 	
-	private Alignment extendChildrenAndParents(Alignment a, double thresh)
+	private SimpleAlignment extendChildrenAndParents(SimpleAlignment a, double thresh)
 	{
 		AML aml = AML.getInstance();
 		EntityMap rels = aml.getEntityMap();
@@ -281,7 +281,7 @@ public class StringMatcher extends AbstractParallelMatcher
 		return mapInParallel(toMap,thresh);
 	}
 	
-	private Alignment extendSiblings(Alignment a, double thresh)
+	private SimpleAlignment extendSiblings(SimpleAlignment a, double thresh)
 	{		
 		AML aml = AML.getInstance();
 		EntityMap rels = aml.getEntityMap();

@@ -22,7 +22,7 @@ package aml.match.value;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.match.PrimaryMatcher;
 import aml.match.SecondaryMatcher;
@@ -49,7 +49,7 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 //Public Methods
 
 	@Override
-	public Alignment extendAlignment(Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment extendAlignment(SimpleAlignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running Value Matcher");
@@ -57,7 +57,7 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 		AML aml = AML.getInstance();
 		ValueMap sVal = aml.getSource().getValueMap();
 		ValueMap tVal = aml.getTarget().getValueMap();
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 
 		for(Integer i : sVal.getProperties())
 		{
@@ -115,7 +115,7 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 	}
 
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running Value Matcher");
@@ -123,7 +123,7 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 		AML aml = AML.getInstance();
 		ValueMap sVal = aml.getSource().getValueMap();
 		ValueMap tVal = aml.getTarget().getValueMap();
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 
 		for(Integer i : sVal.getProperties())
 		{

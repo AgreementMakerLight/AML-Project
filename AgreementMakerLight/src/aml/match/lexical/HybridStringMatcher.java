@@ -23,7 +23,7 @@ package aml.match.lexical;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.match.AbstractParallelMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
@@ -75,28 +75,28 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 	}
 	
 	@Override
-	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Running Hybrid String Matcher");
 		long time = System.currentTimeMillis()/1000;
-		Alignment a = super.match(o1, o2, e, thresh);
+		SimpleAlignment a = super.match(o1, o2, e, thresh);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
 	}
 		
 	@Override
-	public Alignment rematch(Ontology o1, Ontology o2, Alignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
 		System.out.println("Computing Hybrid String Similarity");
 		long time = System.currentTimeMillis()/1000;
-		Alignment maps = super.rematch(o1, o2, a, e);
+		SimpleAlignment maps = super.rematch(o1, o2, a, e);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;

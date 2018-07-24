@@ -65,7 +65,7 @@ import org.gephi.project.api.ProjectController;
 import org.openide.util.Lookup;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.alignment.MappingRelation;
 import aml.alignment.MappingStatus;
@@ -96,7 +96,7 @@ public class ViewMapping extends JDialog implements ActionListener
 	private URIMap uris;
 	private EntityMap rm;
 	private Ontology source, target;
-  	private Alignment a;
+  	private SimpleAlignment a;
 	private int mapping, sourceId, targetId;
 	private SimpleMapping m;
 	private EntityType t;

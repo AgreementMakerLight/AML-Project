@@ -24,7 +24,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.match.PrimaryMatcher;
 import aml.ontology.EntityType;
@@ -80,9 +80,9 @@ public class ProcessMatcher implements PrimaryMatcher
 	}
 
 	@Override
-	public Alignment match(EntityType e, double threshold)
+	public SimpleAlignment match(EntityType e, double threshold)
 	{
-		Alignment a = new Alignment();
+		SimpleAlignment a = new SimpleAlignment();
 		//For each combination of individuals, do a string and word match
 		for(Integer s : aml.getSource().getEntities(e))
 		{
@@ -101,7 +101,7 @@ public class ProcessMatcher implements PrimaryMatcher
 			a = neighborSimilarity(a);
 			a = neighborSimilarity(a);
 		}
-		Alignment b = new Alignment();
+		SimpleAlignment b = new SimpleAlignment();
 		for(SimpleMapping m : a)
 		{
 			if(aml.isToMatchSource(m.getSourceId()) && aml.isToMatchTarget(m.getTargetId()) &&
@@ -165,9 +165,9 @@ public class ProcessMatcher implements PrimaryMatcher
 		return Math.max(stringSim, wordSim);
 	}
 	
-	public Alignment neighborSimilarity(Alignment a)
+	public SimpleAlignment neighborSimilarity(SimpleAlignment a)
 	{
-		Alignment b = new Alignment();
+		SimpleAlignment b = new SimpleAlignment();
 		for(SimpleMapping m : a)
 		{
 			double maxSim = 0.0;

@@ -31,7 +31,7 @@ import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 
@@ -116,7 +116,7 @@ public class ResourcePanel extends JInternalFrame
 			}
 			
 			doc.insertString(doc.getLength(), "Alignment: ", bold);
-			Alignment a = AML.getInstance().getAlignment();
+			SimpleAlignment a = AML.getInstance().getAlignment();
 			if(a == null)
 				doc.insertString(doc.getLength(), "N/A\n", def);
 			else

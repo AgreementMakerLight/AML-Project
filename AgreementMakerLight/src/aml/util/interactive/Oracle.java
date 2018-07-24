@@ -20,7 +20,7 @@
 package aml.util.interactive;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.MappingRelation;
 import aml.ontology.URIMap;
 import aml.util.data.Map2MapComparable;
@@ -32,7 +32,7 @@ public class Oracle
 //Attributes	
 	
 	//The reference alignment to use in this Oracle
-	private static Alignment reference;
+	private static SimpleAlignment reference;
 	private static double error;
 	private static Map2MapComparable<Integer,Integer,MappingRelation> positive;
 	private static Map2MapComparable<Integer,Integer,MappingRelation> negative;
@@ -92,7 +92,7 @@ public class Oracle
 		return reference != null;
 	}
 	
-	public static void makeOracle(Alignment ref, double err)
+	public static void makeOracle(SimpleAlignment ref, double err)
 	{
 		reference = ref;
 		error = err;

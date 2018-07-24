@@ -22,7 +22,7 @@ package aml.match.structural;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.match.Rematcher;
 import aml.match.UnsupportedEntityTypeException;
@@ -66,14 +66,14 @@ public class BlockRematcher implements Rematcher
 	}
 	
 	@Override
-	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Computing High-Level Structure Overlap");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		Alignment maps = new Alignment();
-		Alignment high = a.getHighLevelAlignment();
+		SimpleAlignment maps = new SimpleAlignment();
+		SimpleAlignment high = a.getHighLevelAlignment();
 		EntityMap rMap = aml.getEntityMap();
 		for(SimpleMapping m : a)
 		{

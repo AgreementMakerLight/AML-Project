@@ -39,7 +39,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 
@@ -50,7 +50,7 @@ public class AlignmentPanel extends JInternalFrame implements ActionListener, It
 	
 	private static final long serialVersionUID = 3893526178457620945L;
 	private AML aml;
-	private Alignment a;
+	private SimpleAlignment a;
 	private Vector<JCheckBox> check;
 	private Vector<MappingButton> mappings;
 	private JCheckBox selectAll;

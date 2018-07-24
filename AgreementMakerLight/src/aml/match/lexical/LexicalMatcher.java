@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
@@ -68,7 +68,7 @@ public class LexicalMatcher implements PrimaryMatcher
 	}
 
 	@Override
-	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		AML aml = AML.getInstance();
 		checkEntityType(e);
@@ -78,7 +78,7 @@ public class LexicalMatcher implements PrimaryMatcher
 		Lexicon sLex = o1.getLexicon();
 		Lexicon tLex = o2.getLexicon();
 		//Initialize the alignment
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		//To minimize iterations, we want to iterate through the
 		//Ontology with the smallest Lexicon
 		boolean sourceIsSmaller = (sLex.nameCount(e) <= tLex.nameCount(e));

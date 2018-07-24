@@ -32,7 +32,7 @@ import java.util.Vector;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.knowledge.MediatorOntology;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
@@ -96,22 +96,22 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running Background Knowledge Matcher");
 		long time = System.currentTimeMillis()/1000;
 		LexicalMatcher lm = new LexicalMatcher();
 		//The baseline alignment
-		Alignment base = lm.match(e,thresh);
+		SimpleAlignment base = lm.match(e,thresh);
 		//The alignment to return
 		//(note that if no background knowledge sources are selected
 		//this matcher will return the baseline Lexical alignment)
-		Alignment a = new Alignment(base);
+		SimpleAlignment a = new SimpleAlignment(base);
 		//The map of pre-selected lexical alignments and their gains
-		HashMap<Alignment,Double> selected = new HashMap<Alignment,Double>();
+		HashMap<SimpleAlignment,Double> selected = new HashMap<SimpleAlignment,Double>();
 		//Auxiliary variables
-		Alignment temp;
+		SimpleAlignment temp;
 		Double gain;
 		
 		//First go through the listed sources
@@ -165,13 +165,13 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 			else
 				gain = temp.gain(base);
 			if(gain >= GAIN_THRESH)
-				selected.put(new Alignment(temp),gain);
+				selected.put(new SimpleAlignment(temp),gain);
 		}
 		System.out.println("Sorting and selecting background knowledge sources");
 		//Get the set of background knowledge alignments sorted by gain
-		Set<Alignment> orderedSelection = MapSorter.sortDescending(selected).keySet();
+		Set<SimpleAlignment> orderedSelection = MapSorter.sortDescending(selected).keySet();
 		//And reevaluate them
-		for(Alignment s : orderedSelection)
+		for(SimpleAlignment s : orderedSelection)
 		{
 			if(oneToOne)
 				gain = s.gainOneToOne(a);

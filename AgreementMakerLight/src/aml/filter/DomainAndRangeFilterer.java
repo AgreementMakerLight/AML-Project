@@ -22,7 +22,7 @@ package aml.filter;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.ontology.EntityType;
@@ -53,7 +53,7 @@ public class DomainAndRangeFilterer implements Filterer
 	{
 		System.out.println("Running Domain & Range Filter");
 		long time = System.currentTimeMillis()/1000;
-		Alignment a = aml.getAlignment();
+		SimpleAlignment a = aml.getAlignment();
 		URIMap uris = aml.getURIMap();
 		for(SimpleMapping m : a)
 		{

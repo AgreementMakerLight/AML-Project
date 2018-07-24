@@ -21,7 +21,7 @@ package aml.match.lexical;
 
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.match.PrimaryMatcher;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
@@ -67,7 +67,7 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 	}
 
 	@Override
-	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running Spaceless Lexical Matcher");
@@ -85,7 +85,7 @@ public class SpacelessLexicalMatcher implements PrimaryMatcher
 			targetConv.add(n.replace(" ", ""), n);
 		
 		//Initialize the alignment
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		for(String c : sourceConv.keySet())
 		{
 			if(!targetConv.contains(c))

@@ -27,7 +27,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.AbstractMapping;
 import aml.alignment.SimpleMapping;
 import aml.match.PrimaryMatcher;
@@ -65,7 +65,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	public abstract EntityType[] getSupportedEntityTypes();
 	
 	@Override
-	public Alignment extendAlignment(Ontology o1, Ontology o2, Alignment maps, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment maps, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		AML aml = AML.getInstance();
 		Set<String> sources = o1.getEntities(e);
@@ -77,7 +77,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 			sources.retainAll(aml.getSourceIndividualsToMatch());
 			targets.retainAll(aml.getTargetIndividualsToMatch());
 		}
-		Alignment a = new Alignment();
+		SimpleAlignment a = new SimpleAlignment();
 		for(String i : sources)
 		{
 			Map2Set<String,String> toMap = new Map2Set<String,String>();
@@ -94,7 +94,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	}
 	
 	@Override
-	public Alignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		AML aml = AML.getInstance();
 		Set<String> sources = o1.getEntities(e);
@@ -104,7 +104,7 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 			sources.retainAll(aml.getSourceIndividualsToMatch());
 			targets.retainAll(aml.getTargetIndividualsToMatch());
 		}
-		Alignment a = new Alignment();
+		SimpleAlignment a = new SimpleAlignment();
 		for(String i : sources)
 		{
 			Map2Set<String,String> toMap = new Map2Set<String,String>();
@@ -121,10 +121,10 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 	}
 		
 	@Override
-	public Alignment rematch(Ontology o1, Ontology o2, Alignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
 		AML aml = AML.getInstance();
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
 		for(AbstractMapping m : a)
 		{
@@ -147,9 +147,9 @@ public abstract class AbstractParallelMatcher implements PrimaryMatcher, Rematch
 //Protected Methods
 	
 	//Maps a table of classes in parallel, using all available threads
-	protected Alignment mapInParallel(Map2Set<String, String> toMap, double thresh)
+	protected SimpleAlignment mapInParallel(Map2Set<String, String> toMap, double thresh)
 	{
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		ArrayList<MappingTask> tasks = new ArrayList<MappingTask>();
 		for(String i : toMap.keySet())
 			for(String j : toMap.get(i))

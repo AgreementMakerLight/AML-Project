@@ -23,7 +23,7 @@ package aml.match.bk;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.knowledge.MediatorOntology;
 import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
@@ -122,7 +122,7 @@ public class MediatingXRefMatcher extends MediatingMatcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running " + NAME + " using " + uri);
@@ -137,7 +137,7 @@ public class MediatingXRefMatcher extends MediatingMatcher
 		for(Integer s : tgt.keySet())
 			for(Integer t : tgt.keySet(s))
 				rev.add(t, s, tgt.get(s, t));
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		for(Integer s : src.keySet())
 		{
 			for(Integer med : src.keySet(s))

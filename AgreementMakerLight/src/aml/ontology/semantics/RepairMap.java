@@ -35,7 +35,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.filter.Path;
@@ -50,7 +50,7 @@ public class RepairMap implements Iterable<Integer>
 	
 	private AML aml;
 	private EntityMap rels;
-	private Alignment a;
+	private SimpleAlignment a;
 	//The list of classes that are relevant for coherence checking
 	private HashSet<Integer> classList;
 	//The list of classes that must be checked for coherence
@@ -82,7 +82,7 @@ public class RepairMap implements Iterable<Integer>
 		rels = aml.getEntityMap();
 		//We use a clone of the alignment to avoid problems if the
 		//order of the original alignment is altered
-		a = new Alignment(aml.getAlignment());
+		a = new SimpleAlignment(aml.getAlignment());
 		//Remove the FLAGGED status from all mappings that have it
 		for(AbstractMapping m : a)
 			if(m.getStatus().equals(MappingStatus.FLAGGED))

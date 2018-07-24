@@ -19,7 +19,7 @@
 ******************************************************************************/
 package aml.match;
 
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 
@@ -33,5 +33,5 @@ public interface Rematcher extends Matcher
 	 * @param e: the EntityType for which to recompute similarities
 	 * @return the Alignment with the new similarities
 	 */
-	public Alignment rematch(Ontology o1, Ontology o2, Alignment a, EntityType e) throws UnsupportedEntityTypeException;
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException;
 }

@@ -19,7 +19,7 @@
 package aml.filter;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.ontology.Ontology;
@@ -41,7 +41,7 @@ public class ObsoleteFilterer implements Filterer, Flagger
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
-		Alignment a = aml.getAlignment();
+		SimpleAlignment a = aml.getAlignment();
 		for(SimpleMapping m : a)
 		{
 			if((source.isObsoleteClass(m.getSourceId()) ||
@@ -63,7 +63,7 @@ public class ObsoleteFilterer implements Filterer, Flagger
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
-		Alignment a = aml.getAlignment();
+		SimpleAlignment a = aml.getAlignment();
 		for(SimpleMapping m : a)
 			if((source.isObsoleteClass(m.getSourceId()) ||
 					target.isObsoleteClass(m.getTargetId())) &&

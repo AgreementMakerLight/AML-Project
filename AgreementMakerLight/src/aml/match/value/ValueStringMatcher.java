@@ -28,7 +28,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.match.PrimaryMatcher;
 import aml.match.Rematcher;
@@ -92,7 +92,7 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	}
 	
 	@Override
-	public Alignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Running Value String Matcher");
@@ -101,7 +101,7 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 		sources.retainAll(aml.getSourceIndividualsToMatch());
 		Set<Integer> targets = tVal.getIndividuals();
 		targets.retainAll(aml.getTargetIndividualsToMatch());
-		Alignment a = new Alignment();
+		SimpleAlignment a = new SimpleAlignment();
 		for(Integer i : sources)
 		{
 			Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
@@ -120,12 +120,12 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	}
 		
 	@Override
-	public Alignment rematch(Alignment a, EntityType e) throws UnsupportedEntityTypeException
+	public SimpleAlignment rematch(SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
 	{
 		checkEntityType(e);
 		System.out.println("Computing Value String Similarity");
 		long time = System.currentTimeMillis()/1000;
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		Map2Set<Integer,Integer> toMap = new Map2Set<Integer,Integer>();
 		for(SimpleMapping m : a)
 		{
@@ -156,9 +156,9 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	}
 	
 	//Maps a table of classes in parallel, using all available threads
-	private Alignment mapInParallel(Map2Set<Integer,Integer> toMap, double thresh)
+	private SimpleAlignment mapInParallel(Map2Set<Integer,Integer> toMap, double thresh)
 	{
-		Alignment maps = new Alignment();
+		SimpleAlignment maps = new SimpleAlignment();
 		ArrayList<MappingTask> tasks = new ArrayList<MappingTask>();
 		for(Integer i : toMap.keySet())
 			for(Integer j : toMap.get(i))

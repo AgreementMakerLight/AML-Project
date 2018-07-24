@@ -20,7 +20,7 @@
 package aml.filter;
 
 import aml.AML;
-import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.MappingStatus;
 import aml.alignment.SimpleMapping;
 import aml.settings.SizeCategory;
@@ -33,7 +33,7 @@ public class InteractiveFilterer implements Filterer
 
 	private AML aml;
 	private InteractionManager im;
-	private Alignment a;
+	private SimpleAlignment a;
 	private QualityFlagger qf;
 	//Selection thresholds
 	private final double HIGH_THRESH = 0.7;
@@ -65,7 +65,7 @@ public class InteractiveFilterer implements Filterer
 		//1) Sort the input alignment
 		a.sortDescending();
 		//2) Initialize the final alignment
-		Alignment selected = new Alignment();
+		SimpleAlignment selected = new SimpleAlignment();
 		//3) Start the consecutive negative count and set the limit
 		int consecutiveNegativeCount = 0;
 		boolean updated = false;
