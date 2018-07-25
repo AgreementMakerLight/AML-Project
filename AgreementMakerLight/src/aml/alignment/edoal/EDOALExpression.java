@@ -21,9 +21,6 @@ package aml.alignment.edoal;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.lang.StringEscapeUtils;
-
-import aml.AML;
 import aml.alignment.RDFElement;
 
 public abstract class EDOALExpression
