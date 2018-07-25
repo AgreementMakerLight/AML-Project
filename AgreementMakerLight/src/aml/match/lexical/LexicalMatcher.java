@@ -24,8 +24,7 @@ import java.util.Set;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.match.AbstractMatcher;
-import aml.match.PrimaryMatcher;
+import aml.match.AbstractHashMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
@@ -33,7 +32,7 @@ import aml.ontology.lexicon.StringParser;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 
-public class LexicalMatcher extends AbstractMatcher implements PrimaryMatcher
+public class LexicalMatcher extends AbstractHashMatcher
 {
 	
 //Attributes
@@ -47,19 +46,16 @@ public class LexicalMatcher extends AbstractMatcher implements PrimaryMatcher
 
 	public LexicalMatcher(){}
 	
-//Public Methods
+//Protected Methods
 
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
+	public SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		//Initialize the alignment
 		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return maps;
 		AML aml = AML.getInstance();
-		
-		System.out.println("Running Lexical Matcher");
-		long time = System.currentTimeMillis()/1000;
 		//Get the lexicons of the source and target Ontologies
 		Lexicon sLex = o1.getLexicon();
 		Lexicon tLex = o2.getLexicon();
@@ -155,9 +151,6 @@ public class LexicalMatcher extends AbstractMatcher implements PrimaryMatcher
 				}
 			}
 		}
-		//And match them
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 }

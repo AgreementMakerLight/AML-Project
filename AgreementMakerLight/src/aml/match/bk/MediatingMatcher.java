@@ -25,8 +25,7 @@ import java.util.Map;
 import java.util.Set;
 
 import aml.alignment.SimpleAlignment;
-import aml.match.AbstractMatcher;
-import aml.match.PrimaryMatcher;
+import aml.match.AbstractHashMatcher;
 import aml.ontology.MediatorOntology;
 import aml.ontology.Ontology;
 import aml.ontology.EntityType;
@@ -37,7 +36,7 @@ import aml.ontology.lexicon.ExternalLexicon;
 import aml.util.data.Map2MapComparable;
 import aml.util.data.MapSorter;
 
-public class MediatingMatcher extends AbstractMatcher implements LexiconExtender, PrimaryMatcher
+public class MediatingMatcher extends AbstractHashMatcher implements LexiconExtender
 {
 
 //Attributes
@@ -82,7 +81,7 @@ public class MediatingMatcher extends AbstractMatcher implements LexiconExtender
 	@Override
 	public void extendLexicon(Ontology o)
 	{
-		System.out.println("Extending Lexicon with Mediating Matcher using " + uri);
+		System.out.println("Extending Lexicon with " + NAME + " using " + uri);
 		long time = System.currentTimeMillis()/1000;
 		Lexicon l = o.getLexicon();
 		Map2MapComparable<String,String,Double> maps = match(l,0.0);
@@ -112,16 +111,14 @@ public class MediatingMatcher extends AbstractMatcher implements LexiconExtender
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 	}
-	
+
+//Protected Methods
 	
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
+	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
-		if(!checkEntityType(e))
-			return maps;
-		System.out.println("Running Mediating Matcher using " + uri);
-		long time = System.currentTimeMillis()/1000;
+		System.out.println("Using: " + uri);
 		Lexicon source = o1.getLexicon();
 		Lexicon target = o2.getLexicon();
 		Map2MapComparable<String,String,Double> src = match(source,thresh);
@@ -145,12 +142,8 @@ public class MediatingMatcher extends AbstractMatcher implements LexiconExtender
 				}
 			}
 		}
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
-	
-//Private Methods
 	
 	protected Map2MapComparable<String,String,Double> match(Lexicon source, double thresh)
 	{

@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -33,27 +33,29 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.knowledge.MediatorOntology;
+import aml.match.AbstractMatcher;
 import aml.match.PrimaryMatcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.match.lexical.LexicalMatcher;
 import aml.ontology.EntityType;
+import aml.ontology.MediatorOntology;
+import aml.ontology.Ontology;
+import aml.ontology.io.OntologyParser;
 import aml.ontology.lexicon.ExternalLexicon;
 import aml.settings.SelectionType;
 import aml.util.data.MapSorter;
 
-public class BackgroundKnowledgeMatcher implements PrimaryMatcher
+public class BackgroundKnowledgeMatcher extends AbstractMatcher implements PrimaryMatcher
 {
 	
 //Attributes
 
-	private static final String DESCRIPTION = "Matches classes by testing all available\n" +
+	protected static final String DESCRIPTION = "Matches classes by testing all available\n" +
 											  "sources of background knowledge, and using\n" +
 											  "those that have a significant mapping gain\n" +
 											  "(with Cross-Reference Matcher, Mediating\n" +
 											  "Matcher, and/or WordNet Matcher).";
-	private static final String NAME = "Background Knowledge Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS};
+	protected static final String NAME = "Background Knowledge Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The path to the background knowledge sources
 	private final String BK_PATH = "store/knowledge/";
 	private String path;
@@ -78,32 +80,15 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public String getDescription()
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-	
-	@Override
-	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
-	{
-		checkEntityType(e);
-		System.out.println("Running Background Knowledge Matcher");
+		if(!checkEntityType(e))
+			return new SimpleAlignment(o1.getURI(),o2.getURI());
+		System.out.println("Running " + NAME);
 		long time = System.currentTimeMillis()/1000;
 		LexicalMatcher lm = new LexicalMatcher();
 		//The baseline alignment
-		SimpleAlignment base = lm.match(e,thresh);
+		SimpleAlignment base = lm.match(o1, o2, e,thresh);
 		//The alignment to return
 		//(note that if no background knowledge sources are selected
 		//this matcher will return the baseline Lexical alignment)
@@ -125,7 +110,7 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 				{
 					ExternalLexicon ml = new ExternalLexicon(path + s);
 					MediatingMatcher mm = new MediatingMatcher(ml, (new File(path + s)).toURI().toString());
-					temp = mm.match(e,thresh);
+					temp = mm.match(o1,o2,e,thresh);
 				}
 				catch(IOException io)
 				{
@@ -138,7 +123,7 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 			else if(s.equals("WordNet"))
 			{
 				WordNetMatcher wn = new WordNetMatcher();
-				temp = wn.match(e,thresh);
+				temp = wn.match(o1,o2,e,thresh);
 			}
 			//Ontologies
 			else
@@ -146,11 +131,11 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 				try
 				{
 					long ontoTime = System.currentTimeMillis()/1000;
-					MediatorOntology mo = new MediatorOntology(path + s);
+					MediatorOntology mo = OntologyParser.parseMediator(path + s);
 					ontoTime = System.currentTimeMillis()/1000 - time;
 					System.out.println(mo.getURI() + " loaded in " + ontoTime + " seconds");
 					MediatingXRefMatcher x = new MediatingXRefMatcher(mo);
-					temp = x.match(e,thresh);
+					temp = x.match(o1,o2,e,thresh);
 				}
 				catch(OWLOntologyCreationException o)
 				{
@@ -183,22 +168,5 @@ public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;
-	}
-	
-//Private Methods
-	
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }

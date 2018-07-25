@@ -27,8 +27,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
-import aml.match.AbstractMatcher;
-import aml.match.PrimaryMatcher;
+import aml.match.AbstractHashMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
@@ -37,7 +36,7 @@ import aml.settings.InstanceMatchingCategory;
 import aml.util.data.Map2List;
 import aml.util.data.Map2MapComparable;
 
-public class ThesaurusMatcher extends AbstractMatcher implements PrimaryMatcher
+public class ThesaurusMatcher extends AbstractHashMatcher
 {
 	
 //Attributes
@@ -57,19 +56,18 @@ public class ThesaurusMatcher extends AbstractMatcher implements PrimaryMatcher
 	
 	public ThesaurusMatcher(){}
 
-//Public Methods
+//Protected Methods
 	
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
+	public SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
-		if(!checkEntityType(e))
-			return maps;
-		System.out.println("Running Thesaurus Matcher");
-		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		Map2MapComparable<String,String,Double> source = thesaurusLexicon(o1,e);
-		Map2MapComparable<String,String,Double> target = thesaurusLexicon(o2,e);
+		System.out.println("Building Thesaurus for " + o1.getURI());
+		Map2MapComparable<String,String,Double> source = thesaurusLexicon(o1,e,thresh);
+		System.out.println("Building Thesaurus for " + o2.getURI());
+		Map2MapComparable<String,String,Double> target = thesaurusLexicon(o2,e,thresh);
+		System.out.println("Matching Thesauri");
 		for(String s : source.keySet())
 		{
 			//Get all term indexes for the name in both ontologies
@@ -82,7 +80,7 @@ public class ThesaurusMatcher extends AbstractMatcher implements PrimaryMatcher
 			{
 				if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(i))
 					continue;
-				//Get the weight of the name for the term in the smaller lexicon
+				//Get the weight of the name for the term in the source lexicon
 				double weight = source.get(s,i);
 				for(String j : tIndexes)
 				{
@@ -90,7 +88,7 @@ public class ThesaurusMatcher extends AbstractMatcher implements PrimaryMatcher
 							(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
 							!aml.getEntityMap().shareClass(i,j))))
 						continue;
-					//Get the weight of the name for the term in the larger lexicon
+					//Get the weight of the name for the term in the target lexicon
 					double similarity = target.get(s,j);
 					//Then compute the similarity, by multiplying the two weights
 					similarity *= weight;
@@ -100,15 +98,13 @@ public class ThesaurusMatcher extends AbstractMatcher implements PrimaryMatcher
 				}
 			}
 		}
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
 		return maps;	
 	}
 	
 //Private Methods
 	
 	//Extends a Lexicon with Thesaurus synonyms
-	private Map2MapComparable<String,String,Double> thesaurusLexicon(Ontology o, EntityType e)
+	private Map2MapComparable<String,String,Double> thesaurusLexicon(Ontology o, EntityType e, double thresh)
 	{
 		Map2MapComparable<String,String,Double> thesaurusLexicon = new Map2MapComparable<String,String,Double>();
 		//Get the entities and the Lexicon
@@ -144,7 +140,7 @@ public class ThesaurusMatcher extends AbstractMatcher implements PrimaryMatcher
 					for(String i: terms)
 					{
 						double weight = lex.getWeight(n,i) * CONFIDENCE;
-						if(!lex.contains(i, newName))
+						if(!lex.contains(i, newName) && weight >= thresh)
 							thesaurusLexicon.addUpgrade(newName, i, weight);
 					}
 				}

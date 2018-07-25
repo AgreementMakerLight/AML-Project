@@ -19,13 +19,12 @@
 package aml.match.bk;
 
 import aml.alignment.SimpleAlignment;
-import aml.match.AbstractMatcher;
-import aml.match.PrimaryMatcher;
+import aml.match.AbstractHashMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
 
-public class DirectXRefMatcher extends AbstractMatcher implements PrimaryMatcher
+public class DirectXRefMatcher extends AbstractHashMatcher
 {
 	
 //Attributes
@@ -46,16 +45,12 @@ public class DirectXRefMatcher extends AbstractMatcher implements PrimaryMatcher
 	 */
 	public DirectXRefMatcher(){}
 
-//Public Methods
+//Protected Methods
 
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
+	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
-		if(!checkEntityType(e))
-			return maps;
-		System.out.println("Running " + NAME);
-		long time = System.currentTimeMillis()/1000;
 		ReferenceMap sourceRefs = o1.getReferenceMap();
 		ReferenceMap targetRefs = o2.getReferenceMap();
 				
@@ -125,8 +120,6 @@ public class DirectXRefMatcher extends AbstractMatcher implements PrimaryMatcher
 				}
 			}
 		}
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 }

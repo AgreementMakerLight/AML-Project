@@ -22,15 +22,14 @@ package aml.match.lexical;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.match.AbstractMatcher;
-import aml.match.PrimaryMatcher;
+import aml.match.AbstractHashMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.data.Map2Set;
 
-public class SpacelessLexicalMatcher extends AbstractMatcher implements PrimaryMatcher
+public class SpacelessLexicalMatcher extends AbstractHashMatcher
 {
 	
 //Attributes
@@ -46,19 +45,14 @@ public class SpacelessLexicalMatcher extends AbstractMatcher implements PrimaryM
 
 	public SpacelessLexicalMatcher(){}
 	
-//Public Methods
+//Protected Methods
 
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
+	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		//Initialize the alignment
 		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
-		if(!checkEntityType(e))
-			return maps;
 		AML aml = AML.getInstance();
-		
-		System.out.println("Running Spaceless Lexical Matcher");
-		long time = System.currentTimeMillis()/1000;
 		//Get the lexicons of the source and target Ontologies
 		Lexicon sLex = o1.getLexicon();
 		Lexicon tLex = o2.getLexicon();
@@ -96,9 +90,6 @@ public class SpacelessLexicalMatcher extends AbstractMatcher implements PrimaryM
 				}
 			}
 		}
-		//And match them
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 }

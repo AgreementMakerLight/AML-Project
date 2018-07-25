@@ -79,15 +79,14 @@ public class MediatingXRefMatcher extends MediatingMatcher
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 	}
+
+//Protected Methods
 	
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
+	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
-		if(!checkEntityType(e))
-			return maps;
-		System.out.println("Running " + NAME + " using " + uri);
-		long time = System.currentTimeMillis()/1000;
+		System.out.println("Using " + uri);
 		Map2MapComparable<String,String,Double> a = match(o1,thresh);
 		Map2MapComparable<String,String,Double> b = match(o2,thresh);
 		//Reverse the target alignment table
@@ -109,8 +108,6 @@ public class MediatingXRefMatcher extends MediatingMatcher
 				}
 			}
 		}
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 	
