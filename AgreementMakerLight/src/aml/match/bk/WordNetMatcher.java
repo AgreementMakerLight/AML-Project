@@ -69,12 +69,12 @@ public class WordNetMatcher extends AbstractMatcher implements PrimaryMatcher, L
 //Public Methods
 
 	@Override
-	public void extendLexicon(Lexicon l)
+	public void extendLexicon(Ontology o)
 	{
 		System.out.println("Extending Lexicon with WordNet Matcher");
 		long time = System.currentTimeMillis()/1000;
 		for(EntityType e : EntityType.values())
-			extendLexicon(l,e,0.0);
+			extendLexicon(o.getLexicon(),e,0.0);
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 	}

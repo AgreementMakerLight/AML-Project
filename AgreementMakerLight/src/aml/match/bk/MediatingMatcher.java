@@ -80,10 +80,11 @@ public class MediatingMatcher extends AbstractMatcher implements LexiconExtender
 //Public Methods
 	
 	@Override
-	public void extendLexicon(Lexicon l)
+	public void extendLexicon(Ontology o)
 	{
 		System.out.println("Extending Lexicon with Mediating Matcher using " + uri);
 		long time = System.currentTimeMillis()/1000;
+		Lexicon l = o.getLexicon();
 		Map2MapComparable<String,String,Double> maps = match(l,0.0);
 		for(String s : maps.keySet())
 		{

@@ -18,10 +18,12 @@
 ******************************************************************************/
 package aml.ontology.lexicon;
 
+import aml.ontology.Ontology;
+
 public interface LexiconExtender
 {
 	/**
-	 * Extends the given Lexicon
+	 * Extends the Lexicon of the given Ontology
 	 */
-	public void extendLexicon(Lexicon l);
+	public void extendLexicon(Ontology o);
 }

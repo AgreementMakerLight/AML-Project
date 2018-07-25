@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -22,12 +22,10 @@ package aml.match.bk;
 
 import java.util.Set;
 
-import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.knowledge.MediatorOntology;
-import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
+import aml.ontology.MediatorOntology;
 import aml.ontology.ReferenceMap;
 import aml.util.data.Map2MapComparable;
 
@@ -36,18 +34,15 @@ public class MediatingXRefMatcher extends MediatingMatcher
 	
 //Attributes
 
-	private static final String DESCRIPTION = "Matches entities that are cross-referenced by\n" +
+	protected static final String DESCRIPTION = "Matches entities that are cross-referenced by\n" +
 											  "the same entity of a background knowledge\n" +
 											  "source, and/or using the Mediating Matcher.";
-	private static final String NAME = "Mediating Cross-Reference Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS};
+	protected static final String NAME = "Mediating Cross-Reference Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The external ontology's ReferenceMap
 	private ReferenceMap rm;
 	//The weight used for matching and Lexicon extension
 	private final double WEIGHT = 0.95;
-	//The source and target alignments
-	Map2MapComparable<Integer,Integer,Double> src;
-	Map2MapComparable<Integer,Integer,Double> tgt;
 	
 //Constructors
 
@@ -64,56 +59,20 @@ public class MediatingXRefMatcher extends MediatingMatcher
 //Public Methods
 
 	@Override
-	public String getDescription()
+	public void extendLexicon(Ontology o)
 	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-	
-	@Override
-	public void extendLexicons()
-	{
-		System.out.println("Extending Lexicons with " + NAME + " using " + uri);
+		System.out.println("Extending Lexicon with " + NAME + " using " + uri);
 		long time = System.currentTimeMillis()/1000;
-		AML aml = AML.getInstance();
-		Ontology source = aml.getSource();
-		if(src == null)
-			src = match(source,0.0);
-		for(Integer s : src.keySet())
+		Map2MapComparable<String,String,Double> a = match(o,0.0);
+		for(String s : a.keySet())
 		{
-			for(Integer hit : src.keySet(s))
+			for(String hit : a.keySet(s))
 			{
 				Set<String> names = ext.getNames(hit);
 				for(String n : names)
 				{
-					double sim = src.get(s,hit) * ext.getWeight(n, hit);
-					source.getLexicon().add(s, n, "en", TYPE, uri, sim);
-				}
-			}
-		}
-		Ontology target = aml.getTarget();
-		if(tgt == null)
-			tgt = match(target,0.0);
-		for(Integer s : tgt.keySet())
-		{
-			for(Integer hit : tgt.keySet(s))
-			{
-				Set<String> names = ext.getNames(hit);
-				for(String n : names)
-				{
-					double sim = tgt.get(s,hit) * ext.getWeight(n, hit);
-					target.getLexicon().add(s, n, "en", TYPE, uri, sim);
+					double sim = a.get(s,hit) * ext.getWeight(n, hit);
+					o.getLexicon().add(s, n, "en", TYPE, uri, sim);
 				}
 			}
 		}
@@ -122,31 +81,29 @@ public class MediatingXRefMatcher extends MediatingMatcher
 	}
 	
 	@Override
-	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		checkEntityType(e);
+		SimpleAlignment maps = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return maps;
 		System.out.println("Running " + NAME + " using " + uri);
 		long time = System.currentTimeMillis()/1000;
-		AML aml = AML.getInstance();
-		Ontology source = aml.getSource();
-		Ontology target = aml.getTarget();
-		src = match(source,thresh);
-		tgt = match(target,thresh);
+		Map2MapComparable<String,String,Double> a = match(o1,thresh);
+		Map2MapComparable<String,String,Double> b = match(o2,thresh);
 		//Reverse the target alignment table
-		Map2MapComparable<Integer,Integer,Double> rev = new Map2MapComparable<Integer,Integer,Double>();
-		for(Integer s : tgt.keySet())
-			for(Integer t : tgt.keySet(s))
-				rev.add(t, s, tgt.get(s, t));
-		SimpleAlignment maps = new SimpleAlignment();
-		for(Integer s : src.keySet())
+		Map2MapComparable<String,String,Double> rev = new Map2MapComparable<String,String,Double>();
+		for(String s : b.keySet())
+			for(String t : b.keySet(s))
+				rev.add(t, s, b.get(s, t));
+		for(String s : a.keySet())
 		{
-			for(Integer med : src.keySet(s))
+			for(String med : a.keySet(s))
 			{
 				if(!rev.contains(med))
 					continue;
-				for(Integer t : rev.keySet(med))
+				for(String t : rev.keySet(med))
 				{
-					double similarity = Math.min(src.get(s, med), rev.get(med, t));
+					double similarity = Math.min(a.get(s, med), rev.get(med, t));
 					similarity = Math.min(similarity,WEIGHT);
 					maps.add(s,t,similarity);
 				}
@@ -159,9 +116,9 @@ public class MediatingXRefMatcher extends MediatingMatcher
 	
 //Private Methods
 	
-	private Map2MapComparable<Integer,Integer,Double> match(Ontology o, double thresh)
+	private Map2MapComparable<String,String,Double> match(Ontology o, double thresh)
 	{
-		Map2MapComparable<Integer,Integer,Double> maps = new Map2MapComparable<Integer,Integer,Double>();
+		Map2MapComparable<String,String,Double> maps = new Map2MapComparable<String,String,Double>();
 		if(rm != null)
 		{
 			Set<String> refs = rm.getReferences();
@@ -170,20 +127,20 @@ public class MediatingXRefMatcher extends MediatingMatcher
 			{
 				if(names.contains(r))
 				{
-					Set<Integer> terms = rm.getEntities(r);
+					Set<String> terms = rm.getEntities(r);
 					//Penalize cases where multiple terms have the same xref
 					//(note that sim = 1 when the xref is unique) 
 					double sim = 1.3 - (terms.size() * 0.3);
 					if(sim < thresh)
 						continue;
-					for(Integer i : terms)
-						if(!maps.contains(o.getIndex(r), i) || maps.get(o.getIndex(r), i) > sim)
-							maps.add(o.getIndex(r), i, sim);
+					for(String i : terms)
+						if(!maps.contains(o.getURI(r), i) || maps.get(o.getURI(r), i) > sim)
+							maps.add(o.getURI(r), i, sim);
 				}
 			}
 		}
 		//Step 2 - Do a lexical match
-		Map2MapComparable<Integer,Integer,Double> lex = match(o.getLexicon(),thresh);
+		Map2MapComparable<String,String,Double> lex = match(o.getLexicon(),thresh);
 		
 		//Step 3 - Compare the two
 		//If the coverage of the lexical match is at least double
@@ -191,11 +148,11 @@ public class MediatingXRefMatcher extends MediatingMatcher
 		//few or no xrefs) merge the two
 		if(lex.keySet().size() > maps.keySet().size() * 2)
 		{
-			for(Integer s : lex.keySet())
+			for(String s : lex.keySet())
 			{
 				if(maps.contains(s))
 					continue;
-				for(Integer t : lex.keySet(s))
+				for(String t : lex.keySet(s))
 					maps.add(s, t, lex.get(s, t));
 			}
 		}
