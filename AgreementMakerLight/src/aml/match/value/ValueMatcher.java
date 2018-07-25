@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright 2013-2016 LASIGE                                                  *
+ * Copyright 2013-2018 LASIGE                                                  *
  *                                                                             *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
  * not use this file except in compliance with the License. You may obtain a   *
@@ -23,109 +23,38 @@ import java.util.Set;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.SimpleMapping;
-import aml.match.PrimaryMatcher;
-import aml.match.SecondaryMatcher;
-import aml.match.UnsupportedEntityTypeException;
+import aml.match.AbstractHashMatcher;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.ontology.ValueMap;
 import aml.settings.InstanceMatchingCategory;
 
-public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
+public class ValueMatcher extends AbstractHashMatcher
 {
 
 //Attributes
 
-	private static final String DESCRIPTION = "Matches individuals that have equal values for\n" +
+	protected static final String DESCRIPTION = "Matches individuals that have equal values for\n" +
 											  "the same Annotation or Data Property, or for\n" +
 											  "for matching properties (in secondary mode)";
-	private static final String NAME = "Value Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
+	protected static final String NAME = "Value Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
 
 //Constructors
 
 	public ValueMatcher(){}
-
-//Public Methods
+	
+//Protected Methods
 
 	@Override
-	public SimpleAlignment extendAlignment(SimpleAlignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		checkEntityType(e);
-		System.out.println("Running Value Matcher");
-		long time = System.currentTimeMillis()/1000;
-		AML aml = AML.getInstance();
-		ValueMap sVal = aml.getSource().getValueMap();
-		ValueMap tVal = aml.getTarget().getValueMap();
 		SimpleAlignment maps = new SimpleAlignment();
-
-		for(Integer i : sVal.getProperties())
-		{
-			if(!a.containsSource(i))
-				continue;
-
-			for(Integer h : a.getSourceMappings(i))
-			{
-				for(String s : sVal.getValues(i))
-				{
-					if(!tVal.getValues(h).contains(s))
-						continue;
-					Set<Integer> sourceIndexes = sVal.getIndividuals(i,s);
-					Set<Integer> targetIndexes = tVal.getIndividuals(i,s);
-					for(Integer j : sourceIndexes)
-					{
-						for(Integer k : targetIndexes)
-						{
-							double similarity = maps.getSimilarity(j, k);
-							similarity += a.getSimilarity(i, h) / Math.min(sVal.getValues(j, i).size(), tVal.getValues(k, i).size());			
-							maps.add(i, j, similarity);
-						}
-					}
-				}
-			}
-		}
-		for(SimpleMapping m : maps)
-		{
-			double similarity = m.getSimilarity() / Math.min(sVal.getProperties(m.getSourceId()).size(),
-					tVal.getProperties(m.getTargetId()).size());
-			if(similarity >= thresh)
-				a.add(m.getSourceId(),m.getTargetId(),similarity);
-		}
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
-		return a;
-	}
-
-	@Override
-	public String getDescription()
-	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-
-	@Override
-	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
-	{
-		checkEntityType(e);
-		System.out.println("Running Value Matcher");
-		long time = System.currentTimeMillis()/1000;
+		ValueMap sVal = o1.getValueMap();
+		ValueMap tVal = o2.getValueMap();
 		AML aml = AML.getInstance();
-		ValueMap sVal = aml.getSource().getValueMap();
-		ValueMap tVal = aml.getTarget().getValueMap();
-		SimpleAlignment maps = new SimpleAlignment();
-
-		for(Integer i : sVal.getProperties())
+		
+		for(String i : sVal.getProperties())
 		{
 			if(!tVal.getProperties().contains(i))
 				continue;
@@ -134,14 +63,14 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 			{
 				if(!tVal.getValues(i).contains(s))
 					continue;
-				Set<Integer> sourceIndexes = sVal.getIndividuals(i,s);
+				Set<String> sourceIndexes = sVal.getIndividuals(i,s);
 				sourceIndexes.retainAll(aml.getSourceIndividualsToMatch());
-				Set<Integer> targetIndexes = tVal.getIndividuals(i,s);
+				Set<String> targetIndexes = tVal.getIndividuals(i,s);
 				targetIndexes.retainAll(aml.getTargetIndividualsToMatch());
 				int count = Math.min(sourceIndexes.size(), targetIndexes.size());
-				for(Integer j : sourceIndexes)
+				for(String j : sourceIndexes)
 				{
-					for(Integer k : targetIndexes)
+					for(String k : targetIndexes)
 					{
 						if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
 								!aml.getEntityMap().shareClass(j,k))
@@ -155,25 +84,6 @@ public class ValueMatcher implements PrimaryMatcher, SecondaryMatcher
 				}
 			}
 		}
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
 		return maps;
-	}
-	
-//Private Methods
-
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }
