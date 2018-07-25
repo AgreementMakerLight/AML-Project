@@ -18,6 +18,8 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
+
 import aml.AML;
 
 public class ClassId extends ClassExpression
@@ -41,6 +43,12 @@ public class ClassId extends ClassExpression
 	{
 		return o instanceof ClassId &&
 				((ClassId)o).elements.equals(this.elements);
+	}
+	
+	@Override
+	public Collection<EDOALExpression> getComponents()
+	{
+		return null;
 	}
 	
 	@Override

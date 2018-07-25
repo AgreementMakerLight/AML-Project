@@ -18,6 +18,7 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
 import java.util.Set;
 
 public class RelationUnion extends RelationExpression
@@ -47,6 +48,13 @@ public class RelationUnion extends RelationExpression
 	{
 		return o instanceof RelationUnion &&
 				((RelationUnion)o).union.equals(this.union);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<RelationExpression> getComponents()
+	{
+		return union;
 	}
 	
 	@Override

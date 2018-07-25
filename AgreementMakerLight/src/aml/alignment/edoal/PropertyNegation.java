@@ -18,6 +18,9 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
+import java.util.HashSet;
+
 public class PropertyNegation extends PropertyExpression
 {
 
@@ -44,6 +47,15 @@ public class PropertyNegation extends PropertyExpression
 	{
 		return o instanceof PropertyNegation &&
 				((PropertyNegation)o).neg.equals(this.neg);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<PropertyExpression> getComponents()
+	{
+		HashSet<PropertyExpression> components = new HashSet<PropertyExpression>();
+		components.add(neg);
+		return components;
 	}
 	
 	@Override

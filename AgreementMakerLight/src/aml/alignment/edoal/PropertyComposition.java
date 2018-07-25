@@ -20,6 +20,7 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
 import java.util.Vector;
 
 public class PropertyComposition extends PropertyExpression
@@ -54,6 +55,14 @@ public class PropertyComposition extends PropertyExpression
 		return o instanceof PropertyComposition &&
 				((PropertyComposition)o).end.equals(this.end) &&
 				((PropertyComposition)o).path.equals(this.path);
+	}
+	
+	@Override
+	public Collection<EDOALExpression> getComponents()
+	{
+		Vector<EDOALExpression> components = new Vector<EDOALExpression>(path);
+		components.add(end);
+		return components;
 	}
 	
 	@Override

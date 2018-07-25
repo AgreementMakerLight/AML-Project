@@ -18,6 +18,8 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
+
 import aml.AML;
 
 public class RelationId extends RelationExpression
@@ -41,6 +43,12 @@ public class RelationId extends RelationExpression
 	{
 		return o instanceof RelationId &&
 				((RelationId)o).elements.equals(this.elements);
+	}
+	
+	@Override
+	public Collection<EDOALExpression> getComponents()
+	{
+		return null;
 	}
 	
 	@Override

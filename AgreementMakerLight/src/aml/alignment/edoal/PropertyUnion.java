@@ -18,6 +18,7 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
 import java.util.Set;
 
 public class PropertyUnion extends PropertyExpression
@@ -47,6 +48,13 @@ public class PropertyUnion extends PropertyExpression
 	{
 		return o instanceof PropertyUnion &&
 				((PropertyUnion)o).union.equals(this.union);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<PropertyExpression> getComponents()
+	{
+		return union;
 	}
 	
 	@Override

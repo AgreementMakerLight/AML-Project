@@ -18,6 +18,9 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
+import java.util.HashSet;
+
 public class RelationNegation extends RelationExpression
 {
 
@@ -44,6 +47,15 @@ public class RelationNegation extends RelationExpression
 	{
 		return o instanceof RelationNegation &&
 				((RelationNegation)o).neg.equals(this.neg);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<RelationExpression> getComponents()
+	{
+		HashSet<RelationExpression> components = new HashSet<RelationExpression>();
+		components.add(neg);
+		return components;
 	}
 	
 	@Override

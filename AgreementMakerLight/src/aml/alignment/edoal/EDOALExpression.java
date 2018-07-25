@@ -18,6 +18,7 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,6 +50,11 @@ public abstract class EDOALExpression
 	{
 		return elements;
 	}
+	
+	/**
+	 * @return the EDOALExpressions that compose this EDOALExpression
+	 */
+	public abstract <E extends EDOALExpression> Collection<E> getComponents();
 	
 	@Override
 	public int hashCode()

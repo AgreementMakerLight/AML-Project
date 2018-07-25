@@ -19,6 +19,7 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
 import java.util.Vector;
 
 public class RelationComposition extends RelationExpression
@@ -48,6 +49,13 @@ public class RelationComposition extends RelationExpression
 	{
 		return o instanceof RelationComposition &&
 				((RelationComposition)o).path.equals(this.path);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<RelationExpression> getComponents()
+	{
+		return path;
 	}
 	
 	@Override

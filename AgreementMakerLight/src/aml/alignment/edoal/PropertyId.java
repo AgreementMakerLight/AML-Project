@@ -18,6 +18,8 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
+
 import aml.AML;
 
 public class PropertyId extends PropertyExpression
@@ -41,6 +43,12 @@ public class PropertyId extends PropertyExpression
 	{
 		return o instanceof PropertyId &&
 				((PropertyId)o).elements.equals(this.elements);
+	}
+	
+	@Override
+	public Collection<EDOALExpression> getComponents()
+	{
+		return null;
 	}
 	
 	@Override

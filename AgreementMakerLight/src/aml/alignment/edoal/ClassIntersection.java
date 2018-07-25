@@ -18,6 +18,7 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
 import java.util.Set;
 
 public class ClassIntersection extends ClassExpression
@@ -47,6 +48,13 @@ public class ClassIntersection extends ClassExpression
 	{
 		return o instanceof ClassIntersection &&
 				((ClassIntersection)o).intersect.equals(this.intersect);
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<ClassExpression> getComponents()
+	{
+		return intersect;
 	}
 	
 	@Override
