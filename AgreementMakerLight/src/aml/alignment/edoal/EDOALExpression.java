@@ -16,7 +16,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.alignment.complex;
+package aml.alignment.edoal;
 
 import java.util.HashSet;
 import java.util.Set;

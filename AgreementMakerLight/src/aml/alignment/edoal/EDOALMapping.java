@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.alignment.complex;
+package aml.alignment.edoal;
 
 import aml.alignment.AbstractMapping;
 import aml.alignment.MappingRelation;

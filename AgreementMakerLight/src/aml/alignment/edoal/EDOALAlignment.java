@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.alignment.complex;
+package aml.alignment.edoal;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -42,6 +42,8 @@ public class EDOALAlignment extends AbstractAlignment
 	private Map2Map<EDOALExpression,EDOALExpression,EDOALMapping> sourceMaps;
 	//Simple mappings organized by entity2 (entity2, entity1, Mapping)
 	private Map2Map<EDOALExpression,EDOALExpression,EDOALMapping> targetMaps;
+	//The EDOAL Alignment Level
+	public static final String LEVEL = "2EDOAL";
 	
 //Constructors
 
