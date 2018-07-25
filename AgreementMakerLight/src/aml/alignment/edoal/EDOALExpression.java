@@ -21,6 +21,8 @@ package aml.alignment.edoal;
 import java.util.HashSet;
 import java.util.Set;
 
+import aml.alignment.RDFElement;
+
 public abstract class EDOALExpression
 {
 	
@@ -28,7 +30,9 @@ public abstract class EDOALExpression
 	
 	//To enable efficient hashing, an EDOAL Expression 
 	//must list all elements that compose it
-	private HashSet<String> elements;
+	protected HashSet<String> elements;
+	//The RDFElement that identifies this expression
+	protected static final RDFElement E = null;
 	
 //Constructors
 	
@@ -45,6 +49,14 @@ public abstract class EDOALExpression
 	public Set<String> getElements()
 	{
 		return elements;
+	}
+	
+	/**
+	 * @return the RDFElement that identifies this expression
+	 */
+	public RDFElement getRDFElement()
+	{
+		return E;
 	}
 	
 	@Override
