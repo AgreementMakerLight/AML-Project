@@ -23,11 +23,8 @@ package aml.match.lexical;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.SimpleAlignment;
 import aml.match.AbstractParallelMatcher;
 import aml.ontology.EntityType;
-import aml.ontology.Ontology;
-import aml.ontology.lexicon.Lexicon;
 import aml.settings.LanguageSetting;
 import aml.util.similarity.Similarity;
 
@@ -42,8 +39,6 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 											  "use of WordNet";
 	protected static final String NAME = "Hybrid String Matcher";
 	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.DATA_PROP,EntityType.INDIVIDUAL,EntityType.OBJECT_PROP};
-	private Lexicon sLex;
-	private Lexicon tLex;
 	private boolean useWordNet;
 	
 //Constructors
@@ -53,40 +48,10 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 		this.useWordNet = useWordNet;
 	}
 	
-//Public Methods
-	
-	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
-	{
-		sLex = o1.getLexicon();
-		tLex = o2.getLexicon();
-		System.out.println("Running Hybrid String Matcher");
-		long time = System.currentTimeMillis()/1000;
-		SimpleAlignment a = super.match(o1, o2, e, thresh);
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
-		return a;
-	}
-		
-	@Override
-	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
-	{
-		sLex = o1.getLexicon();
-		tLex = o2.getLexicon();
-		System.out.println("Computing Hybrid String Similarity");
-		long time = System.currentTimeMillis()/1000;
-		SimpleAlignment maps = super.rematch(o1, o2, a, e);
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
-		return maps;
-	}
 	
 //Protected Methods
 	
-	/**
-	 * Computes the maximum String similarity between two Classes by doing a
-	 * pairwise comparison of all their names
-	 */
+	@Override
 	protected double mapTwoEntities(String sId, String tId)
 	{
 		double maxSim = 0.0;

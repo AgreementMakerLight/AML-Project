@@ -34,6 +34,7 @@ import aml.match.PrimaryMatcher;
 import aml.match.Rematcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
+import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.data.Map2Set;
 
@@ -46,6 +47,8 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 	protected int threads;
 	//The support (empty since this cannot actually generate alignments)
 	protected static final EntityType[] SUPPORT = {};
+	//Lexicons to match
+	protected Lexicon sLex, tLex;
 
 //Constructors
 	
@@ -65,7 +68,11 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return a;
+		System.out.println("Running " + NAME  + " in alignment extension mode");
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
+		sLex = o1.getLexicon();
+		tLex = o2.getLexicon();
 		Set<String> sources = o1.getEntities(e);
 		Set<String> targets = o2.getEntities(e);
 		sources.removeAll(maps.getSources());
@@ -87,6 +94,8 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 			}
 			a.addAll(mapInParallel(toMap,thresh));
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return a;
 	}
 	
@@ -96,7 +105,11 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return a;
+		System.out.println("Running " + NAME + " in match mode");
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
+		sLex = o1.getLexicon();
+		tLex = o2.getLexicon();
 		Set<String> sources = o1.getEntities(e);
 		Set<String> targets = o2.getEntities(e);
 		if(e.equals(EntityType.INDIVIDUAL))
@@ -116,6 +129,8 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 			}
 			a.addAll(mapInParallel(toMap,thresh));
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return a;
 	}
 		
@@ -125,7 +140,11 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return maps;
+		System.out.println("Running " + NAME + " in rematch mode");
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
+		sLex = o1.getLexicon();
+		tLex = o2.getLexicon();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
 		for(AbstractMapping m : a)
 		{
@@ -142,6 +161,8 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 			}
 		}
 		maps.addAll(mapInParallel(toMap,0.0));
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 	

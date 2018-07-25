@@ -32,7 +32,6 @@ import aml.match.AbstractParallelMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.LexicalType;
-import aml.ontology.lexicon.Lexicon;
 import aml.ontology.semantics.EntityMap;
 import aml.settings.LanguageSetting;
 import aml.util.data.Map2Set;
@@ -54,8 +53,6 @@ public class StringMatcher extends AbstractParallelMatcher
 	//Correction factor (to make string similarity values comparable to word similarity values
 	//and thus enable their combination and proper selection; 0.8 is optimized for the ISub measure)
 	private final double CORRECTION = 0.80;
-	//Lexicons to match
-	private Lexicon sLex, tLex;
 
 //Constructors
 	
@@ -83,13 +80,13 @@ public class StringMatcher extends AbstractParallelMatcher
 	@Override
 	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e, double thresh)
 	{	
-		sLex = o1.getLexicon();
-		tLex = o2.getLexicon();
-		System.out.println("Extending Alignment with String Matcher");
-		long time = System.currentTimeMillis()/1000;
-		SimpleAlignment ext = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(e.equals(EntityType.CLASS))
 		{
+			System.out.println("Running " + NAME  + " in alignment extension mode");
+			long time = System.currentTimeMillis()/1000;
+			sLex = o1.getLexicon();
+			tLex = o2.getLexicon();
+			SimpleAlignment ext = new SimpleAlignment(o1.getURI(),o2.getURI());
 			System.out.println("Matching Children & Parents");
 			ext.addAll(extendChildrenAndParents(a,thresh));
 			SimpleAlignment aux = extendChildrenAndParents(ext,thresh);
@@ -104,48 +101,17 @@ public class StringMatcher extends AbstractParallelMatcher
 			}
 			System.out.println("Matching Siblings");
 			ext.addAll(extendSiblings(a,thresh));
+			time = System.currentTimeMillis()/1000 - time;
+			System.out.println("Finished in " + time + " seconds");
+			return ext;
 		}
 		else
-		{
-			ext = super.extendAlignment(o1, o2, a, e, thresh);
-		}
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
-		return ext;
-	}
-	
-	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
-	{
-		sLex = o1.getLexicon();
-		tLex = o2.getLexicon();
-		System.out.println("Running String Matcher");
-		long time = System.currentTimeMillis()/1000;
-		SimpleAlignment a = super.match(o1, o2, e, thresh);
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
-		return a;
-	}
-		
-	@Override
-	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
-	{
-		sLex = o1.getLexicon();
-		tLex = o2.getLexicon();
-		System.out.println("Computing String Similarity");
-		long time = System.currentTimeMillis()/1000;
-		SimpleAlignment maps = super.rematch(o1, o2, a, e);
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
-		return maps;
+			return super.extendAlignment(o1, o2, a, e, thresh);
 	}
 	
 //Protected Methods
 
-	/**
-	 * Computes the maximum String similarity between two Classes by doing a
-	 * pairwise comparison of all their names
-	 */
+	@Override
 	protected double mapTwoEntities(String sId, String tId)
 	{
 		double maxSim = 0.0;

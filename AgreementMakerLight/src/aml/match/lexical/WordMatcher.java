@@ -96,11 +96,10 @@ public class WordMatcher extends AbstractParallelMatcher
 		AML aml = AML.getInstance();
 		System.out.println("Building Word Lexicons");
 		long time = System.currentTimeMillis()/1000;
-		System.out.println("Language: " + language);
 		sourceLex = aml.getSource().getWordLexicon(e,language);
 		targetLex = aml.getTarget().getWordLexicon(e,language);
 
-		System.out.println("Running Word Matcher");
+		System.out.println("Running " + NAME + " in match mode");
 		
 		//If the strategy is BY_CLASS, the alignment can be computed
 		//globally. Otherwise we need to compute a preliminary
@@ -160,20 +159,15 @@ public class WordMatcher extends AbstractParallelMatcher
 	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
 	{
 		System.out.println("Building Word Lexicons");
-		long time = System.currentTimeMillis()/1000;
 		System.out.println("Language: " + language);
 		sourceLex = o1.getWordLexicon(e,language);
 		targetLex = o2.getWordLexicon(e,language);
-		System.out.println("Computing Word Similarity");
-		SimpleAlignment maps = super.rematch(o1, o2, a, e);
-		time = System.currentTimeMillis()/1000 - time;
-		System.out.println("Finished in " + time + " seconds");
-		return maps;
+		return super.rematch(o1, o2, a, e);
 	}
 	
 //Protected Methods	
 
-	//Maps two classes according to the selected strategy.
+	@Override
 	protected double mapTwoEntities(String sourceId, String targetId)
 	{
 		//If the strategy is not by name, compute the class similarity

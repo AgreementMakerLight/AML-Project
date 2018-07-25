@@ -46,7 +46,7 @@ public class ThesaurusMatcher extends AbstractMatcher implements PrimaryMatcher
 											  "String matches between their Lexicon entries\n" +
 											  "after extension using an internally generated\n" +
 											  "Thesaurus";
-	protected static final String NAME = "WordNet Matcher";
+	protected static final String NAME = "Thesaurus Matcher";
 	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	//The confidence score
 	private final double CONFIDENCE = 0.85;
