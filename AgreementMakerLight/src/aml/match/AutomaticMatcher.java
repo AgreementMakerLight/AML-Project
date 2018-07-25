@@ -136,11 +136,11 @@ public class AutomaticMatcher
 		if(aml.hasReferences())
 		{
 			DirectXRefMatcher dx = new DirectXRefMatcher();
-			a.addAll(dx.match(EntityType.CLASS, thresh));
+			a.addAll(dx.match(source,target,EntityType.CLASS, thresh));
 		}
 		
 		LexicalMatcher lm = new LexicalMatcher();
-		lex = lm.match(EntityType.CLASS, thresh);
+		lex = lm.match(source,target,EntityType.CLASS, thresh);
 		a.addAll(lex);
 		
 		if(lang.equals(LanguageSetting.SINGLE))
@@ -148,7 +148,7 @@ public class AutomaticMatcher
 			if(size.equals(SizeCategory.SMALL))
 			{
 				WordNetMatcher wn = new WordNetMatcher();
-				SimpleAlignment wordNet = wn.match(EntityType.CLASS, thresh);
+				SimpleAlignment wordNet = wn.match(source,target,EntityType.CLASS, thresh);
 				//Deciding whether to use it based on its coverage of the input ontologies
 				//(as we expect a high gain if the coverage is high given that WordNet will
 				//generate numerous synonyms)
@@ -177,7 +177,7 @@ public class AutomaticMatcher
 						{
 							ExternalLexicon ml = new ExternalLexicon(BK_PATH + bk);
 							MediatingMatcher mm = new MediatingMatcher(ml, BK_PATH + bk);
-							SimpleAlignment med = mm.match(EntityType.CLASS, thresh);
+							SimpleAlignment med = mm.match(source,target,EntityType.CLASS, thresh);
 							double gain = med.gain(lex);
 							if(gain >= MIN_GAIN_THRESH)
 							{
@@ -207,7 +207,7 @@ public class AutomaticMatcher
 							continue;
 						}
 						MediatingXRefMatcher xr = new MediatingXRefMatcher(aml.getBKOntology());
-						SimpleAlignment ref = xr.match(EntityType.CLASS, thresh);
+						SimpleAlignment ref = xr.match(source,target,EntityType.CLASS, thresh);
 						double gain = ref.gain(lex);
 						//In the case of Ontologies, if the mapping gain is very high, we can
 						//use them for Lexical Extension, which will effectively enable Word-
@@ -215,10 +215,12 @@ public class AutomaticMatcher
 						if(gain >= HIGH_GAIN_THRESH)
 						{
 							System.out.println(bk + " selected for lexical extension");
-							xr.extendLexicons();
+							xr.extendLexicon(source);
+							xr.extendLexicon(target);
+							
 							//If that is the case, we must compute a new Lexical alignment
 							//after the extension
-							a.addAll(lm.match(EntityType.CLASS, thresh));
+							a.addAll(lm.match(source,target,EntityType.CLASS, thresh));
 						}
 						//Otherwise, we add the BK alignment as normal
 						else if(gain >= MIN_GAIN_THRESH)
@@ -235,18 +237,10 @@ public class AutomaticMatcher
 		if(!size.equals(SizeCategory.HUGE))
 		{
 			SimpleAlignment word = new SimpleAlignment();
-			if(lang.equals(LanguageSetting.SINGLE))
+			for(String l : aml.getLanguages())
 			{
-				WordMatcher wm = new WordMatcher();
-				word.addAll(wm.match(EntityType.CLASS, thresh));
-			}
-			else if(lang.equals(LanguageSetting.MULTI))
-			{
-				for(String l : aml.getLanguages())
-				{
-					WordMatcher wm = new WordMatcher(l);
-					word.addAll(wm.match(EntityType.CLASS, thresh));
-				}
+				WordMatcher wm = new WordMatcher(l);
+				word.addAll(wm.match(source,target,EntityType.CLASS, thresh));
 			}
 			a.addAllOneToOne(word);
 		}
@@ -256,43 +250,43 @@ public class AutomaticMatcher
 		{
 			if(lang.equals(LanguageSetting.SINGLE))
 			{
-				a.addAll(psm.match(EntityType.CLASS, thresh + PSM_MOD));
+				a.addAll(psm.match(source,target,EntityType.CLASS, thresh + PSM_MOD));
 				MultiWordMatcher mwm = new MultiWordMatcher();
-				a.addAllOneToOne(mwm.match(EntityType.CLASS, thresh));
+				a.addAllOneToOne(mwm.match(source,target,EntityType.CLASS, thresh));
 				AcronymMatcher am = new AcronymMatcher();
-				a.addAllOneToOne(am.match(EntityType.CLASS, thresh));
+				a.addAllOneToOne(am.match(source,target,EntityType.CLASS, thresh));
 			}
 			else
-				a.addAll(psm.match(EntityType.CLASS, thresh));
+				a.addAll(psm.match(source,target,EntityType.CLASS, thresh));
 		}
 		//Otherwise we use it in extendAlignment mode
 		else
-			a.addAllOneToOne(psm.extendAlignment(a,EntityType.CLASS,thresh));
+			a.addAllOneToOne(psm.extendAlignment(source,target,a,EntityType.CLASS,thresh));
 
 		if(!size.equals(SizeCategory.HUGE))
 		{
 			SpacelessLexicalMatcher sl = new SpacelessLexicalMatcher();
-			a.addAllNonConflicting(sl.match(EntityType.CLASS, thresh));
+			a.addAllNonConflicting(sl.match(source,target,EntityType.CLASS, thresh));
 			double nameRatio = Math.max(1.0*source.getLexicon().nameCount(EntityType.CLASS)/source.count(EntityType.CLASS),
 					1.0*target.getLexicon().nameCount(EntityType.CLASS)/target.count(EntityType.CLASS));
 			if(nameRatio >= 1.2)
 			{
 				ThesaurusMatcher tm = new ThesaurusMatcher();
-				a.addAllOneToOne(tm.match(EntityType.CLASS, thresh));
+				a.addAllOneToOne(tm.match(source,target,EntityType.CLASS, thresh));
 			}
 		}
 		if(size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM))
 		{
 			NeighborSimilarityMatcher nsm = new NeighborSimilarityMatcher(
 					aml.getNeighborSimilarityStrategy(),aml.directNeighbors());
-			a.addAllOneToOne(nsm.extendAlignment(a,EntityType.CLASS,thresh));
+			a.addAllOneToOne(nsm.extendAlignment(source,target,a,EntityType.CLASS,thresh));
 		}
 		aml.setAlignment(a);
 		if(matchProperties)
 		{
 			HybridStringMatcher pm = new HybridStringMatcher(true);
-			a.addAll(pm.match(EntityType.DATA_PROP, thresh));
-			a.addAll(pm.match(EntityType.OBJECT_PROP, thresh));
+			a.addAll(pm.match(source,target,EntityType.DATA_PROP, thresh));
+			a.addAll(pm.match(source,target,EntityType.OBJECT_PROP, thresh));
 			aml.setAlignment(a);
 			DomainAndRangeFilterer dr = new DomainAndRangeFilterer();
 			dr.filter();
@@ -308,10 +302,10 @@ public class AutomaticMatcher
 			or.filter();
 				
 			BlockRematcher hl = new BlockRematcher();
-			SimpleAlignment b = hl.rematch(a,EntityType.CLASS);
+			SimpleAlignment b = hl.rematch(source,target,a,EntityType.CLASS);
 			NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(
 					NeighborSimilarityStrategy.MAXIMUM,true);
-			SimpleAlignment c = nb.rematch(a,EntityType.CLASS);
+			SimpleAlignment c = nb.rematch(source,target,a,EntityType.CLASS);
 			b = LWC.combine(b, c, 0.75);
 			b = LWC.combine(a, b, 0.8);
 			CardinalitySelector s = new CardinalitySelector(thresh-0.05,card,sType);
@@ -354,13 +348,13 @@ public class AutomaticMatcher
 		{
 			aml.translateOntologies();
 			LexicalMatcher lm = new LexicalMatcher();
-			SimpleAlignment a = lm.match(EntityType.INDIVIDUAL,thresh);
+			SimpleAlignment a = lm.match(source,target,EntityType.INDIVIDUAL,thresh);
 			StringMatcher sm = new StringMatcher();
-			a.addAll(sm.match(EntityType.INDIVIDUAL,thresh));
+			a.addAll(sm.match(source,target,EntityType.INDIVIDUAL,thresh));
 			for(String l : aml.getLanguages())
 			{
 				WordMatcher wm = new WordMatcher(l);
-				a.addAll(wm.match(EntityType.INDIVIDUAL, thresh));
+				a.addAll(wm.match(source,target,EntityType.INDIVIDUAL, thresh));
 			}
 			aml.setAlignment(a);
 			if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
@@ -372,7 +366,7 @@ public class AutomaticMatcher
 		else if(connectivity >= 0.9 || (connectivity >= 0.4 && valueCoverage < 0.2))
 		{
 			ProcessMatcher pm = new ProcessMatcher();
-			a = pm.match(EntityType.INDIVIDUAL, thresh);
+			a = pm.match(source,target,EntityType.INDIVIDUAL, thresh);
 			aml.setAlignment(a);
 			if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
 				DifferentClassPenalizer.penalize();
@@ -386,7 +380,7 @@ public class AutomaticMatcher
 		else
 		{
 			ValueMatcher vm = new ValueMatcher();
-			SimpleAlignment b = vm.match(EntityType.INDIVIDUAL, thresh);
+			SimpleAlignment b = vm.match(source,target,EntityType.INDIVIDUAL, thresh);
 			double cov = Math.min(b.sourceCoverage(EntityType.INDIVIDUAL),
 					b.targetCoverage(EntityType.INDIVIDUAL));
 			System.out.println("ValueMatcher coverage : " + cov);
@@ -394,7 +388,7 @@ public class AutomaticMatcher
 			if(cov >= 0.5)
 			{
 				HybridStringMatcher sm = new HybridStringMatcher(aml.getSizeCategory().equals(SizeCategory.SMALL));
-				a = sm.match(EntityType.INDIVIDUAL, thresh);
+				a = sm.match(source,target,EntityType.INDIVIDUAL, thresh);
 				a.addAll(b);
 				aml.setAlignment(a);
 				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
@@ -406,19 +400,19 @@ public class AutomaticMatcher
 			else
 			{
 				thresh = 0.2;
-				b = vm.match(EntityType.INDIVIDUAL, thresh);
+				b = vm.match(source,target,EntityType.INDIVIDUAL, thresh);
 				HybridStringMatcher sm = new HybridStringMatcher(size.equals(SizeCategory.SMALL));
-				a = sm.match(EntityType.INDIVIDUAL, thresh);
+				a = sm.match(source,target,EntityType.INDIVIDUAL, thresh);
 				ValueStringMatcher vsm = new ValueStringMatcher();
-				a.addAll(vsm.match(EntityType.INDIVIDUAL, thresh));
+				a.addAll(vsm.match(source,target,EntityType.INDIVIDUAL, thresh));
 				Value2LexiconMatcher vlm = new Value2LexiconMatcher(size.equals(SizeCategory.SMALL)); 
-				a.addAll(vlm.match(EntityType.INDIVIDUAL, thresh));
+				a.addAll(vlm.match(source,target,EntityType.INDIVIDUAL, thresh));
 				aml.setAlignment(a);
 				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
 					DifferentClassPenalizer.penalize();
 
-				SimpleAlignment c = vsm.rematch(a, EntityType.INDIVIDUAL);
-				SimpleAlignment d = vlm.rematch(a, EntityType.INDIVIDUAL);
+				SimpleAlignment c = vsm.rematch(source,target,a,EntityType.INDIVIDUAL);
+				SimpleAlignment d = vlm.rematch(source,target,a,EntityType.INDIVIDUAL);
 				SimpleAlignment aux = LWC.combine(c, d, 0.75);
 				aux = LWC.combine(aux, b, 0.65);
 				aux = LWC.combine(aux, a, 0.8);
@@ -435,8 +429,8 @@ public class AutomaticMatcher
 	private static void matchProperties()
 	{
 		HybridStringMatcher pm = new HybridStringMatcher(true);
-		a.addAll(pm.match(EntityType.DATA_PROP, thresh));
-		a.addAll(pm.match(EntityType.OBJECT_PROP, thresh));
+		a.addAll(pm.match(source,target,EntityType.DATA_PROP, thresh));
+		a.addAll(pm.match(source,target,EntityType.OBJECT_PROP, thresh));
 		aml.setAlignment(a);
 	}
 }

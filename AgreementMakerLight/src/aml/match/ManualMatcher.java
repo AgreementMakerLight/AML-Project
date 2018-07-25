@@ -36,7 +36,7 @@ import aml.match.structural.BlockRematcher;
 import aml.match.structural.NeighborSimilarityMatcher;
 import aml.match.structural.NeighborSimilarityStrategy;
 import aml.ontology.EntityType;
-import aml.settings.LanguageSetting;
+import aml.ontology.Ontology;
 import aml.settings.MatchStep;
 import aml.settings.SelectionType;
 
@@ -53,6 +53,8 @@ public class ManualMatcher
 	{
 		//Get the AML instance and settings
 		AML aml = AML.getInstance();
+		Ontology source = aml.getSource();
+		Ontology target = aml.getTarget();
 		Vector<MatchStep> steps = aml.getMatchSteps();
 		double thresh = aml.getThreshold();
 		boolean hierarchic = aml.isHierarchic();
@@ -67,29 +69,21 @@ public class ManualMatcher
 		if(steps.contains(MatchStep.BK))
 		{
 			BackgroundKnowledgeMatcher bk = new BackgroundKnowledgeMatcher();
-			a = bk.match(EntityType.CLASS,thresh);
+			a = bk.match(source,target,EntityType.CLASS,thresh);
 		}
 		else
 		{
 			LexicalMatcher lm = new LexicalMatcher();
-			a = lm.match(EntityType.CLASS,thresh);
+			a = lm.match(source,target,EntityType.CLASS,thresh);
 		}
 		if(steps.contains(MatchStep.WORD))
 		{
 			WordMatchStrategy wms = aml.getWordMatchStrategy();
-			if(aml.getLanguageSetting().equals(LanguageSetting.SINGLE))
+			aux = new SimpleAlignment();
+			for(String l : aml.getLanguages())
 			{
-				WordMatcher wm = new WordMatcher(wms);
-				aux = wm.match(EntityType.CLASS,thresh);
-			}
-			else
-			{
-				aux = new SimpleAlignment();
-				for(String l : aml.getLanguages())
-				{
-					WordMatcher wm = new WordMatcher(l,wms);
-					aux.addAll(wm.match(EntityType.CLASS,thresh));
-				}
+				WordMatcher wm = new WordMatcher(l,wms);
+				aux.addAll(wm.match(source,target,EntityType.CLASS,thresh));
 			}
 			if(hierarchic)
 				a.addAllOneToOne(aux);
@@ -100,9 +94,9 @@ public class ManualMatcher
 		{
 			StringMatcher sm = new StringMatcher(aml.getStringSimMeasure());
 			if(aml.primaryStringMatcher())
-				aux = sm.match(EntityType.CLASS,thresh);
+				aux = sm.match(source,target,EntityType.CLASS,thresh);
 			else
-				aux = sm.extendAlignment(a,EntityType.CLASS,thresh);
+				aux = sm.extendAlignment(source,target,a,EntityType.CLASS,thresh);
 			if(hierarchic)
 				a.addAllOneToOne(aux);
 			else
@@ -112,7 +106,7 @@ public class ManualMatcher
 		{
 			NeighborSimilarityMatcher nsm = new NeighborSimilarityMatcher(
 					aml.getNeighborSimilarityStrategy(),aml.directNeighbors());
-			aux = nsm.extendAlignment(a,EntityType.CLASS,thresh);
+			aux = nsm.extendAlignment(source,target,a,EntityType.CLASS,thresh);
 			if(hierarchic)
 				a.addAllOneToOne(aux);
 			else
@@ -121,8 +115,8 @@ public class ManualMatcher
 		if(steps.contains(MatchStep.PROPERTY))
 		{
 			HybridStringMatcher pm = new HybridStringMatcher(true);
-			aux = pm.match(EntityType.DATA_PROP,thresh);
-			aux.addAll(pm.match(EntityType.OBJECT_PROP,thresh));
+			aux = pm.match(source,target,EntityType.DATA_PROP,thresh);
+			aux.addAll(pm.match(source,target,EntityType.OBJECT_PROP,thresh));
 			if(hierarchic)
 				a.addAllOneToOne(aux);
 			else
@@ -140,10 +134,10 @@ public class ManualMatcher
 			if(aml.structuralSelection())
 			{
 				BlockRematcher br = new BlockRematcher();
-				SimpleAlignment b = br.rematch(a,EntityType.CLASS);
+				SimpleAlignment b = br.rematch(source,target,a,EntityType.CLASS);
 				NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(
 						NeighborSimilarityStrategy.MAXIMUM,true);
-				SimpleAlignment c = nb.rematch(a,EntityType.CLASS);
+				SimpleAlignment c = nb.rematch(source,target,a,EntityType.CLASS);
 				b = LWC.combine(b, c, 0.75);
 				b = LWC.combine(a, b, 0.8);
 				Selector s = new Selector(thresh-0.05,sType);
