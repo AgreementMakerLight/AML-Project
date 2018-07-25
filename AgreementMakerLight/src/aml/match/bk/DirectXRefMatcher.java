@@ -18,7 +18,6 @@
 ******************************************************************************/
 package aml.match.bk;
 
-import aml.AML;
 import aml.alignment.SimpleAlignment;
 import aml.match.AbstractMatcher;
 import aml.match.PrimaryMatcher;
@@ -57,7 +56,6 @@ public class DirectXRefMatcher extends AbstractMatcher implements PrimaryMatcher
 			return maps;
 		System.out.println("Running " + NAME);
 		long time = System.currentTimeMillis()/1000;
-		AML aml = AML.getInstance();
 		ReferenceMap sourceRefs = o1.getReferenceMap();
 		ReferenceMap targetRefs = o2.getReferenceMap();
 				
