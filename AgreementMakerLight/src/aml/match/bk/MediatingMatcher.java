@@ -117,7 +117,7 @@ public class MediatingMatcher extends AbstractMatcher implements LexiconExtender
 	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment maps = new SimpleAlignment();
+		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return maps;
 		System.out.println("Running Mediating Matcher using " + uri);

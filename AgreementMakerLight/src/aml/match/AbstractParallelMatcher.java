@@ -62,7 +62,7 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 	@Override
 	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment maps, EntityType e, double thresh)
 	{
-		SimpleAlignment a = new SimpleAlignment();
+		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return a;
 		AML aml = AML.getInstance();
@@ -93,7 +93,7 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment a = new SimpleAlignment();
+		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return a;
 		AML aml = AML.getInstance();
@@ -122,7 +122,7 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 	@Override
 	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
 	{
-		SimpleAlignment maps = new SimpleAlignment();
+		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return maps;
 		AML aml = AML.getInstance();

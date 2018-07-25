@@ -52,7 +52,7 @@ public class SpacelessLexicalMatcher extends AbstractMatcher implements PrimaryM
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		//Initialize the alignment
-		SimpleAlignment maps = new SimpleAlignment();
+		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return maps;
 		AML aml = AML.getInstance();

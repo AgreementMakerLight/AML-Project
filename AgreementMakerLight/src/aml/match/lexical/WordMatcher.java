@@ -90,7 +90,7 @@ public class WordMatcher extends AbstractParallelMatcher
 	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment a = new SimpleAlignment();
+		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
 			return a;
 		AML aml = AML.getInstance();

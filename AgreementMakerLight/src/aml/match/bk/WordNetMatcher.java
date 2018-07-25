@@ -82,15 +82,16 @@ public class WordNetMatcher extends AbstractMatcher implements PrimaryMatcher, L
 	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
+		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(!checkEntityType(e))
-			return new SimpleAlignment();
+			return a;
 		System.out.println("Running WordNet Matcher");
 		long time = System.currentTimeMillis()/1000;
 		Lexicon source = new Lexicon(o1.getLexicon());
 		Lexicon target = new Lexicon(o2.getLexicon());
 		extendLexicon(source,e,thresh);
 		extendLexicon(target,e,thresh);
-		SimpleAlignment a = match(source,target,e,thresh);
+		a.addAllOneToOne(match(source,target,e,thresh));//TODO: Check the performance of this
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return a;

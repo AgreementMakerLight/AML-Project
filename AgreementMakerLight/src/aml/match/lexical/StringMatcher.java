@@ -87,11 +87,11 @@ public class StringMatcher extends AbstractParallelMatcher
 		tLex = o2.getLexicon();
 		System.out.println("Extending Alignment with String Matcher");
 		long time = System.currentTimeMillis()/1000;
-		SimpleAlignment ext;
+		SimpleAlignment ext = new SimpleAlignment(o1.getURI(),o2.getURI());
 		if(e.equals(EntityType.CLASS))
 		{
 			System.out.println("Matching Children & Parents");
-			ext = extendChildrenAndParents(a,thresh);
+			ext.addAll(extendChildrenAndParents(a,thresh));
 			SimpleAlignment aux = extendChildrenAndParents(ext,thresh);
 			int size = 0;
 			for(int i = 0; i < 10 && ext.size() > size; i++)
