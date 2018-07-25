@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -24,28 +24,30 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.AbstractMapping;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.SimpleMapping;
+import aml.match.AbstractMatcher;
 import aml.match.PrimaryMatcher;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.ontology.lexicon.StopList;
 import aml.ontology.lexicon.StringParser;
 import aml.ontology.semantics.EntityMap;
 import aml.util.similarity.ISub;
 import aml.util.similarity.Similarity;
 
-public class ProcessMatcher implements PrimaryMatcher
+public class ProcessMatcher extends AbstractMatcher implements PrimaryMatcher
 {
 	
 //Attributes
 	
-	private static final String DESCRIPTION = "Matches individuals in a process (i.e.," +
+	protected static final String DESCRIPTION = "Matches individuals in a process (i.e.," +
 											  "individuals that are part of a workflow" +
 											  "and thereby organized sequentially)" +
 											  "through a combination of String matching" +
 											  "and similarity flooding";
-	private static final String NAME = "Process Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
+	protected static final String NAME = "Process Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
 	private Set<String> stopSet;
 	private AML aml;
 	private EntityMap rels;
@@ -62,33 +64,15 @@ public class ProcessMatcher implements PrimaryMatcher
 //Public Methods
 	
 	@Override
-	public String getDescription()
-	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-
-	@Override
-	public SimpleAlignment match(EntityType e, double threshold)
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double threshold)
 	{
 		SimpleAlignment a = new SimpleAlignment();
 		//For each combination of individuals, do a string and word match
-		for(Integer s : aml.getSource().getEntities(e))
+		for(String s : aml.getSource().getEntities(e))
 		{
-			for(Integer t : aml.getTarget().getEntities(e))
+			for(String t : aml.getTarget().getEntities(e))
 			{
-				double sim = nameSimilarity(s, t, true);
+				double sim = entitySimilarity(s, t, true);
 				if(sim > 0)
 					a.add(s,t,sim);
 			}
@@ -102,9 +86,9 @@ public class ProcessMatcher implements PrimaryMatcher
 			a = neighborSimilarity(a);
 		}
 		SimpleAlignment b = new SimpleAlignment();
-		for(SimpleMapping m : a)
+		for(AbstractMapping m : a)
 		{
-			if(aml.isToMatchSource(m.getSourceId()) && aml.isToMatchTarget(m.getTargetId()) &&
+			if(aml.isToMatchSource((String)m.getEntity1()) && aml.isToMatchTarget((String)m.getEntity2()) &&
 					m.getSimilarity() >= threshold)
 				b.add(m);
 		}
@@ -113,7 +97,7 @@ public class ProcessMatcher implements PrimaryMatcher
 
 //Private Methods
 	
-	protected double nameSimilarity(int i1, int i2, boolean useWordNet)
+	protected double entitySimilarity(String i1, String i2, boolean useWordNet)
 	{
 		double sim = 0.0;
 		for(String n1 : aml.getSource().getLexicon().getNames(i1))
@@ -165,59 +149,59 @@ public class ProcessMatcher implements PrimaryMatcher
 		return Math.max(stringSim, wordSim);
 	}
 	
-	public SimpleAlignment neighborSimilarity(SimpleAlignment a)
+	private SimpleAlignment neighborSimilarity(SimpleAlignment a)
 	{
 		SimpleAlignment b = new SimpleAlignment();
-		for(SimpleMapping m : a)
+		for(AbstractMapping m : a)
 		{
 			double maxSim = 0.0;
-			HashSet<Integer> sourceChildren = getChildren(m.getSourceId(),false);
-			HashSet<Integer> targetChildren = getChildren(m.getTargetId(),false);
-			for(Integer s : sourceChildren)
+			HashSet<String> sourceChildren = getChildren((String)m.getEntity1(),false);
+			HashSet<String> targetChildren = getChildren((String)m.getEntity2(),false);
+			for(String s : sourceChildren)
 			{
-				for(Integer t : targetChildren)
+				for(String t : targetChildren)
 				{
-					SimpleMapping n = a.getBidirectional(s, t);
+					AbstractMapping n = a.getBidirectional(s, t);
 					if(n != null && n.getSimilarity() > maxSim)
 						maxSim = n.getSimilarity();
 				}
 			}
 				
-			HashSet<Integer> sourceParents = getParents(m.getSourceId(),false);
-			HashSet<Integer> targetParents = getParents(m.getTargetId(),false);
-			for(Integer s : sourceParents)
+			HashSet<String> sourceParents = getParents((String)m.getEntity1(),false);
+			HashSet<String> targetParents = getParents((String)m.getEntity2(),false);
+			for(String s : sourceParents)
 			{
-				for(Integer t : targetParents)
+				for(String t : targetParents)
 				{
-					SimpleMapping n = a.getBidirectional(s, t);
+					AbstractMapping n = a.getBidirectional(s, t);
 					if(n != null && n.getSimilarity() > maxSim)
 						maxSim = n.getSimilarity();
 				}
 			}
-			b.add(m.getSourceId(),m.getTargetId(), (maxSim * 0.25) + (m.getSimilarity() * 0.75));
+			b.add((String)m.getEntity1(),(String)m.getEntity2(), (maxSim * 0.25) + (m.getSimilarity() * 0.75));
 		}
 		return b;
 	}
 	
-	private HashSet<Integer> getChildren(int index, boolean recursive)
+	private HashSet<String> getChildren(String index, boolean recursive)
 	{
-		HashSet<Integer> children = new HashSet<Integer>(rels.getIndividualActiveRelations(index));
+		HashSet<String> children = new HashSet<String>(rels.getIndividualActiveRelations(index));
 		if(recursive)
-			for(Integer c : rels.getIndividualActiveRelations(index))
-				for(Integer rel : rels.getIndividualProperties(index, c))
-					for(Integer cc : rels.getIndividualActiveRelations(c))
+			for(String c : rels.getIndividualActiveRelations(index))
+				for(String rel : rels.getIndividualProperties(index, c))
+					for(String cc : rels.getIndividualActiveRelations(c))
 						if(rels.getIndividualProperties(c, cc).contains(rel))
 							children.add(cc);
 		return children;
 	}
 	
-	private HashSet<Integer> getParents(int index, boolean recursive)
+	private HashSet<String> getParents(String index, boolean recursive)
 	{
-		HashSet<Integer> parents = new HashSet<Integer>(rels.getIndividualPassiveRelations(index));
+		HashSet<String> parents = new HashSet<String>(rels.getIndividualPassiveRelations(index));
 		if(recursive)
-			for(Integer p : rels.getIndividualPassiveRelations(index))
-				for(Integer rel : rels.getIndividualProperties(p, index))
-					for(Integer pp : rels.getIndividualPassiveRelations(p))
+			for(String p : rels.getIndividualPassiveRelations(index))
+				for(String rel : rels.getIndividualProperties(p, index))
+					for(String pp : rels.getIndividualPassiveRelations(p))
 						if(rels.getIndividualProperties(pp, p).contains(rel))
 							parents.add(pp);
 		return parents;
