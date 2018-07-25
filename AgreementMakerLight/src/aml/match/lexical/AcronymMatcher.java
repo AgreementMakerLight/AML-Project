@@ -22,16 +22,10 @@ package aml.match.lexical;
 
 import java.util.ArrayList;
 
-import aml.AML;
-import aml.alignment.SimpleAlignment;
-import aml.match.AbstractMatcher;
-import aml.match.PrimaryMatcher;
+import aml.match.AbstractParallelMatcher;
 import aml.ontology.EntityType;
-import aml.ontology.Ontology;
-import aml.ontology.lexicon.Lexicon;
-import aml.settings.InstanceMatchingCategory;
 
-public class AcronymMatcher extends AbstractMatcher implements PrimaryMatcher
+public class AcronymMatcher extends AbstractParallelMatcher
 {
 
 //Attributes
@@ -44,23 +38,19 @@ public class AcronymMatcher extends AbstractMatcher implements PrimaryMatcher
 //Constructors
 
 	public AcronymMatcher(){}
+
 	
-//Public Methods
+//Protected Methods
 	
 	@Override
-	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
+	protected double mapTwoEntities(String sId, String tId)
 	{
-		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
-		if(!checkEntityType(e))
-			return maps;
-		AML aml = AML.getInstance();
-		Lexicon sourceLex = o1.getLexicon();
-		Lexicon targetLex = o2.getLexicon();
-		for(String sName : sourceLex.getNames(e))
+		double maxSim = 0.0;
+		for(String sName : sLex.getNames(sId))
 		{
 			//Split the source name into words
 			String[] srcWords = sName.split(" ");
-			for(String tName : targetLex.getNames(e))
+			for(String tName : tLex.getNames(tId))
 			{
 				//Do the same for the target name
 				String[] tgtWords = tName.split(" ");
@@ -120,26 +110,10 @@ public class AcronymMatcher extends AbstractMatcher implements PrimaryMatcher
 				if(!match)
 					continue;
 				sim /= total;
-				if(sim >= thresh)
-				{
-					for(String sourceId : sourceLex.getEntities(e,sName))
-					{
-						if(e.equals(EntityType.INDIVIDUAL) && !aml.isToMatchSource(sourceId))
-							continue;
-						for(String targetId : targetLex.getEntities(e,tName))
-						{
-							if(e.equals(EntityType.INDIVIDUAL) && (!aml.isToMatchTarget(targetId) ||
-									(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
-									!aml.getEntityMap().shareClass(sourceId,targetId))))
-								continue;
-							maps.add(sourceId, targetId, sim * 
-								Math.sqrt(sourceLex.getCorrectedWeight(sName, sourceId) *
-									targetLex.getCorrectedWeight(tName, targetId)));
-						}
-					}
-				}
+				if(maxSim > sim)
+					maxSim = sim;
 			}
 		}
-		return maps;
+		return maxSim;
 	}
 }
