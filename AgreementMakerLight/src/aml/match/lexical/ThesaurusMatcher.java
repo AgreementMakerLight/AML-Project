@@ -18,7 +18,7 @@
 *                                                                             *
 * @authors Catia Pesquita, Daniel Faria                                       *
 ******************************************************************************/
-package aml.match.bk;
+package aml.match.lexical;
 
 import java.util.HashSet;
 import java.util.Set;
