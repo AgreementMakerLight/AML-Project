@@ -30,6 +30,15 @@ public abstract class EDOALExpression
 	//must list all elements that compose it
 	private HashSet<String> elements;
 	
+//Constructors
+	
+	protected EDOALExpression()
+	{
+		elements = new HashSet<String>();
+	}
+	
+//Public Methods
+	
 	/**
 	 * @return the ontology entities listed in this EDOAL expression
 	 */
