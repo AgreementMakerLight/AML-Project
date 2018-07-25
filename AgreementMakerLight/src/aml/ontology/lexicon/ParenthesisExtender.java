@@ -23,12 +23,14 @@ import java.util.HashSet;
 import java.util.Vector;
 
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 
 public class ParenthesisExtender implements LexiconExtender
 {
 	@Override
-	public void extendLexicon(Lexicon l)
+	public void extendLexicon(Ontology o)
 	{
+		Lexicon l = o.getLexicon();
 		for(EntityType e : EntityType.values())
 		{
 			Vector<String> nm = new Vector<String>(l.getNames(e));

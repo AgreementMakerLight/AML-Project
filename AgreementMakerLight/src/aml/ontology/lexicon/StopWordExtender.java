@@ -23,6 +23,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 
 public class StopWordExtender implements LexiconExtender
 {
@@ -52,8 +53,9 @@ public class StopWordExtender implements LexiconExtender
 //Public Methods
 	
 	@Override
-	public void extendLexicon(Lexicon l)
+	public void extendLexicon(Ontology o)
 	{
+		Lexicon l = o.getLexicon();
 		Vector<String> nm = new Vector<String>(l.getNames(type));
 		for(String n: nm)
 		{
