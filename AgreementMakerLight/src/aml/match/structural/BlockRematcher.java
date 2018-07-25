@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -22,24 +22,25 @@ package aml.match.structural;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.AbstractMapping;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.SimpleMapping;
+import aml.match.AbstractMatcher;
 import aml.match.Rematcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.ontology.semantics.EntityMap;
 
-public class BlockRematcher implements Rematcher
+public class BlockRematcher extends AbstractMatcher implements Rematcher
 {
 	
 //Attributes
 	
-	private static final String DESCRIPTION = "Rematches classes by computing the fraction\n" +
+	protected static final String DESCRIPTION = "Rematches classes by computing the fraction\n" +
 											  "of mappings that fall within the blocks of the\n" +
 											  "ontologies (i.e., have the same high-level\n" +
 											  "classes.";
-	private static final String NAME = "Block Rematcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS};
+	protected static final String NAME = "Block Rematcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
 
 //Constructors
 	
@@ -48,48 +49,32 @@ public class BlockRematcher implements Rematcher
 //Public Methods
 	
 	@Override
-	public String getDescription()
+	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
 	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-	
-	@Override
-	public SimpleAlignment rematch(SimpleAlignment a, EntityType e) throws UnsupportedEntityTypeException
-	{
-		checkEntityType(e);
+		SimpleAlignment maps = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return maps;
 		System.out.println("Computing High-Level Structure Overlap");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		SimpleAlignment maps = new SimpleAlignment();
+		
 		SimpleAlignment high = a.getHighLevelAlignment();
 		EntityMap rMap = aml.getEntityMap();
-		for(SimpleMapping m : a)
+		for(AbstractMapping m : a)
 		{
-			int sId = m.getSourceId();
-			int tId = m.getTargetId();
-			if(!aml.getURIMap().isClass(sId))
+			String sId = (String)m.getEntity1();
+			String tId = (String)m.getEntity2();
+			if(!aml.getEntityMap().isClass(sId))
 			{
 				maps.add(m);
 				continue;
 			}
-			Set<Integer> sourceAncestors = rMap.getHighLevelAncestors(sId);
-			Set<Integer> targetAncestors = rMap.getHighLevelAncestors(tId);
+			Set<String> sourceAncestors = rMap.getHighLevelAncestors(sId);
+			Set<String> targetAncestors = rMap.getHighLevelAncestors(tId);
 			double maxSim = 0;
-			for(Integer i : sourceAncestors)
+			for(String i : sourceAncestors)
 			{
-				for(Integer j : targetAncestors)
+				for(String j : targetAncestors)
 				{
 					double sim = high.getSimilarity(i, j);
 					if(sim > maxSim)
@@ -101,22 +86,5 @@ public class BlockRematcher implements Rematcher
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
-	}
-	
-//Private Methods
-	
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }
