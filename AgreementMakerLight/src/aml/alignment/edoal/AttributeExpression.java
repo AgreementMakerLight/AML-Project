@@ -12,16 +12,17 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An EDOAL Relation (i.e., Object Property) Expression.                       *
+* An EDOAL Attribute represents a Property or Relation and thus an OWL Data   *
+* or ObjectProperty.                                                          *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment.edoal;
 
 
-public abstract class RelationExpression extends AttributeExpression
+public abstract class AttributeExpression extends EDOALExpression
 {
-	protected RelationExpression()
+	protected AttributeExpression()
 	{
 		super();
 	}

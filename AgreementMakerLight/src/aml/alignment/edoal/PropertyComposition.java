@@ -59,9 +59,10 @@ public class PropertyComposition extends PropertyExpression
 	}
 	
 	@Override
-	public Collection<EDOALExpression> getComponents()
+	@SuppressWarnings("unchecked")
+	public Collection<AttributeExpression> getComponents()
 	{
-		Vector<EDOALExpression> components = new Vector<EDOALExpression>(path);
+		Vector<AttributeExpression> components = new Vector<AttributeExpression>(path);
 		components.add(end);
 		return components;
 	}
