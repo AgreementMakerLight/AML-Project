@@ -34,6 +34,7 @@ import aml.match.PrimaryMatcher;
 import aml.match.Rematcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
+import aml.ontology.ValueMap;
 import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.data.Map2Set;
@@ -47,6 +48,8 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 	protected int threads;
 	//Lexicons to match
 	protected Lexicon sLex, tLex;
+	//ValueMaps to match
+	protected ValueMap sVal, tVal;
 
 //Constructors
 	
@@ -71,6 +74,8 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 		AML aml = AML.getInstance();
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
+		sVal = o1.getValueMap();
+		tVal = o2.getValueMap();
 		Set<String> sources = o1.getEntities(e);
 		Set<String> targets = o2.getEntities(e);
 		sources.removeAll(maps.getSources());
@@ -108,6 +113,8 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 		AML aml = AML.getInstance();
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
+		sVal = o1.getValueMap();
+		tVal = o2.getValueMap();
 		Set<String> sources = o1.getEntities(e);
 		Set<String> targets = o2.getEntities(e);
 		if(e.equals(EntityType.INDIVIDUAL))
@@ -143,6 +150,8 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 		AML aml = AML.getInstance();
 		sLex = o1.getLexicon();
 		tLex = o2.getLexicon();
+		sVal = o1.getValueMap();
+		tVal = o2.getValueMap();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
 		for(AbstractMapping m : a)
 		{
