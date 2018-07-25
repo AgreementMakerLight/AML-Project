@@ -39,6 +39,9 @@ public abstract class EDOALExpression
 	
 //Public Methods
 	
+	@Override
+	public abstract boolean equals(Object o);
+	
 	/**
 	 * @return the ontology entities listed in this EDOAL expression
 	 */

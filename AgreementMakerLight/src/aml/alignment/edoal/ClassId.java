@@ -22,6 +22,9 @@ import aml.AML;
 
 public class ClassId extends ClassExpression
 {
+	
+//Constructor
+	
 	/**
 	 * Constructs a new ClassId from the given uri
 	 * @param uri: the URI of the class
@@ -29,6 +32,15 @@ public class ClassId extends ClassExpression
 	public ClassId(String uri)
 	{
 		elements.add(uri);
+	}
+	
+//Public Methods
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		return o instanceof ClassId &&
+				((ClassId)o).elements.equals(this.elements);
 	}
 	
 	@Override

@@ -22,6 +22,9 @@ import aml.AML;
 
 public class PropertyId extends PropertyExpression
 {
+	
+//Constructor
+	
 	/**
 	 * Constructs a new PropertyId from the given uri
 	 * @param uri: the URI of the data property
@@ -29,6 +32,15 @@ public class PropertyId extends PropertyExpression
 	public PropertyId(String uri)
 	{
 		elements.add(uri);
+	}
+	
+//Public Methods
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		return o instanceof PropertyId &&
+				((PropertyId)o).elements.equals(this.elements);
 	}
 	
 	@Override

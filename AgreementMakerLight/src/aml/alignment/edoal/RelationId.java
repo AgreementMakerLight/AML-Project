@@ -22,6 +22,9 @@ import aml.AML;
 
 public class RelationId extends RelationExpression
 {
+
+//Constructor
+	
 	/**
 	 * Constructs a new PropertyId from the given uri
 	 * @param uri: the URI of the data property
@@ -29,6 +32,15 @@ public class RelationId extends RelationExpression
 	public RelationId(String uri)
 	{
 		elements.add(uri);
+	}
+	
+//Public Methods
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		return o instanceof RelationId &&
+				((RelationId)o).elements.equals(this.elements);
 	}
 	
 	@Override
