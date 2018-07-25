@@ -23,9 +23,16 @@ import java.util.Set;
 
 public abstract class EDOALExpression
 {
-	//TODO: Everything
+	
+//Attributes
+	
+	//To enable efficient hashing, an EDOAL Expression 
+	//must list all elements that compose it
 	private HashSet<String> elements;
 	
+	/**
+	 * @return the ontology entities listed in this EDOAL expression
+	 */
 	public Set<String> getElements()
 	{
 		return elements;
