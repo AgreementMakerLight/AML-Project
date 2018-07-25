@@ -62,7 +62,7 @@ public class StringMatcher extends AbstractParallelMatcher
 	 */
 	public StringMatcher()
 	{
-		threads = Runtime.getRuntime().availableProcessors();
+		super();
 	}
 
 	/**

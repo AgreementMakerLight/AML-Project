@@ -61,6 +61,7 @@ public class MultiWordMatcher extends AbstractParallelMatcher
 	
 	public MultiWordMatcher()
 	{
+		super();
 		wn = new WordNet();
 		stopset=StopList.read();
 	}

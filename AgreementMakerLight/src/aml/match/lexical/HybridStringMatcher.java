@@ -45,6 +45,7 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 	
 	public HybridStringMatcher(boolean useWordNet)
 	{
+		super();
 		this.useWordNet = useWordNet;
 	}
 	

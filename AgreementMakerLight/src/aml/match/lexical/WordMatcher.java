@@ -59,6 +59,7 @@ public class WordMatcher extends AbstractParallelMatcher
 	 */
 	public WordMatcher(String lang)
 	{
+		super();
 		language = lang;
 	}
 	

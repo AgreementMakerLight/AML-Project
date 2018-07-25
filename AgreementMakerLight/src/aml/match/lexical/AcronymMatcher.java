@@ -37,7 +37,10 @@ public class AcronymMatcher extends AbstractParallelMatcher
 			
 //Constructors
 
-	public AcronymMatcher(){}
+	public AcronymMatcher()
+	{
+		super();
+	}
 
 	
 //Protected Methods
