@@ -19,13 +19,15 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import aml.alignment.AbstractMapping;
 import aml.alignment.MappingRelation;
 import aml.alignment.MappingStatus;
 
 public class EDOALMapping extends AbstractMapping
 {
-
+	
 //Constructors
 
 	/**
@@ -91,21 +93,34 @@ public class EDOALMapping extends AbstractMapping
 	@Override
 	public String toRDF()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String out = "\t<map>\n" +
+				"\t\t<Cell>\n" +
+				"\t\t\t<entity1>\n" +
+				((EDOALExpression)entity1).toRDF() +
+				"\n\t\t\t</entity1>\n\n" +
+				"\t\t\t<entity2>\n" +
+				((EDOALExpression)entity2).toRDF() +
+				"\n\t\t\t</entity2>\n\n" +
+				"\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
+				"\t\t\t<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";
+			out += "\t\t</Cell>\n" +
+				"\t</map>\n";
+			return out;
 	}
 	
 	@Override
 	public String toString()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return entity1.toString() + " " + rel.toString() + " " + entity2.toString() +
+				" (" + getSimilarityPercent() + ") ";
 	}
 	
 	@Override
 	public String toTSV()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String out = entity1.toString() + "\t\t" + entity2.toString() + "\t\t" + similarity + "\t" + rel.toString();
+		if(!status.equals(MappingStatus.UNKNOWN))
+			out += "\t" + status;
+		return out;
 	}
 }

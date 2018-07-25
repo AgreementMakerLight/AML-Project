@@ -12,67 +12,14 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An EDOAL Expression.                                                        *
+* An EDOAL (Data) Property Expression.                                        *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment.edoal;
 
-import java.util.HashSet;
-import java.util.Set;
 
-import org.apache.commons.lang.StringEscapeUtils;
-
-import aml.AML;
-import aml.alignment.RDFElement;
-
-public abstract class EDOALExpression
+public abstract class PropertyExpression extends EDOALExpression
 {
-	
-//Attributes
-	
-	//To enable efficient hashing, an EDOAL Expression 
-	//must list all elements that compose it
-	protected HashSet<String> elements;
-	//The RDFElement that identifies this expression
-	protected static final RDFElement E = null;
-	
-//Constructors
-	
-	protected EDOALExpression()
-	{
-		elements = new HashSet<String>();
-	}
-	
-//Public Methods
-	
-	/**
-	 * @return the ontology entities listed in this EDOAL expression
-	 */
-	public Set<String> getElements()
-	{
-		return elements;
-	}
-	
-	/**
-	 * @return the RDFElement that identifies this expression
-	 */
-	public RDFElement getRDFElement()
-	{
-		return E;
-	}
-	
-	@Override
-	public int hashCode()
-	{
-		return elements.hashCode();
-	}
-
-	/**
-	 * @return this EDOAL expression in RDF form
-	 */
-	public abstract String toRDF();
-
-	@Override
-	public abstract String toString();
+	//Placeholder class
 }
