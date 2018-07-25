@@ -21,5 +21,8 @@ package aml.alignment.edoal;
 
 public abstract class ClassExpression extends EDOALExpression
 {
-	//Placeholder class
+	protected ClassExpression()
+	{
+		super();
+	}
 }

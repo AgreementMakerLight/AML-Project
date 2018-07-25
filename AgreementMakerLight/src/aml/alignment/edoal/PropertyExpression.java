@@ -21,5 +21,8 @@ package aml.alignment.edoal;
 
 public abstract class PropertyExpression extends EDOALExpression
 {
-	//Placeholder class
+	protected PropertyExpression()
+	{
+		super();
+	}
 }

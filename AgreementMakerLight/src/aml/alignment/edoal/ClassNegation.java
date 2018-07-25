@@ -36,6 +36,7 @@ public class ClassNegation extends ClassExpression
 	 */
 	public ClassNegation(ClassExpression neg)
 	{
+		super();
 		this.neg = neg;
 		elements.addAll(neg.getElements());
 	}

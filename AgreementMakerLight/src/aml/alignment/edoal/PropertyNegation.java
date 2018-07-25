@@ -36,6 +36,7 @@ public class PropertyNegation extends PropertyExpression
 	 */
 	public PropertyNegation(PropertyExpression neg)
 	{
+		super();
 		this.neg = neg;
 		elements.addAll(neg.getElements());
 	}

@@ -36,6 +36,7 @@ public class RelationUnion extends RelationExpression
 	 */
 	public RelationUnion(Set<RelationExpression> union)
 	{
+		super();
 		this.union = union;
 		for(RelationExpression e : union)
 			elements.addAll(e.getElements());

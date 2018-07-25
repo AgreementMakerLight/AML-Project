@@ -36,6 +36,7 @@ public class ClassIntersection extends ClassExpression
 	 */
 	public ClassIntersection(Set<ClassExpression> intersect)
 	{
+		super();
 		this.intersect = intersect;
 		for(ClassExpression e : intersect)
 			elements.addAll(e.getElements());

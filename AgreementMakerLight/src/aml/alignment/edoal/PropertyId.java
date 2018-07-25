@@ -33,6 +33,7 @@ public class PropertyId extends PropertyExpression
 	 */
 	public PropertyId(String uri)
 	{
+		super();
 		elements.add(uri);
 	}
 	

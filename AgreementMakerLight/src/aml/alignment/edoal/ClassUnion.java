@@ -36,6 +36,7 @@ public class ClassUnion extends ClassExpression
 	 */
 	public ClassUnion(Set<ClassExpression> union)
 	{
+		super();
 		this.union = union;
 		for(ClassExpression e : union)
 			elements.addAll(e.getElements());

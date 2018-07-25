@@ -36,6 +36,7 @@ public class PropertyUnion extends PropertyExpression
 	 */
 	public PropertyUnion(Set<PropertyExpression> union)
 	{
+		super();
 		this.union = union;
 		for(PropertyExpression e : union)
 			elements.addAll(e.getElements());

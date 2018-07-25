@@ -36,6 +36,7 @@ public class PropertyIntersection extends PropertyExpression
 	 */
 	public PropertyIntersection(Set<PropertyExpression> intersect)
 	{
+		super();
 		this.intersect = intersect;
 		for(PropertyExpression e : intersect)
 			elements.addAll(e.getElements());

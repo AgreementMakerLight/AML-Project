@@ -36,6 +36,7 @@ public class RelationIntersection extends RelationExpression
 	 */
 	public RelationIntersection(Set<RelationExpression> intersect)
 	{
+		super();
 		this.intersect = intersect;
 		for(RelationExpression e : intersect)
 			elements.addAll(e.getElements());

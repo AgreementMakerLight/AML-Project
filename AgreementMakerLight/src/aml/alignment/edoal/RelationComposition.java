@@ -37,6 +37,7 @@ public class RelationComposition extends RelationExpression
 	 */
 	public RelationComposition(Vector<RelationExpression> path)
 	{
+		super();
 		this.path = path;
 		for(RelationExpression e : path)
 			elements.addAll(e.getElements());

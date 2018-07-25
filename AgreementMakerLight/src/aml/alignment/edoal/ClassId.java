@@ -33,6 +33,7 @@ public class ClassId extends ClassExpression
 	 */
 	public ClassId(String uri)
 	{
+		super();
 		elements.add(uri);
 	}
 	

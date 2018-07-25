@@ -40,6 +40,7 @@ public class PropertyComposition extends PropertyExpression
 	 */
 	public PropertyComposition(Vector<RelationExpression> path, PropertyExpression end)
 	{
+		super();
 		this.path = path;
 		this.end = end;
 		for(RelationExpression e : path)
