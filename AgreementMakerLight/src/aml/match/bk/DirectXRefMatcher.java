@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2017 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -20,21 +20,21 @@ package aml.match.bk;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
+import aml.match.AbstractMatcher;
 import aml.match.PrimaryMatcher;
-import aml.match.UnsupportedEntityTypeException;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
 
-public class DirectXRefMatcher implements PrimaryMatcher
+public class DirectXRefMatcher extends AbstractMatcher implements PrimaryMatcher
 {
 	
 //Attributes
 
-	private static final String DESCRIPTION = "Matches entities that have the same cross-reference\n" +
+	protected static final String DESCRIPTION = "Matches entities that have the same cross-reference\n" +
 											  "or the where one cross-references the other.";
-	private static final String NAME = "Direct Cross-Reference Matcher";
-	private static final EntityType[] SUPPORT = {EntityType.CLASS};
+	protected static final String NAME = "Direct Cross-Reference Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The weight used for matching and Lexicon extension
 	private final double WEIGHT1 = 0.99;
 	private final double WEIGHT2 = 0.95;
@@ -50,71 +50,52 @@ public class DirectXRefMatcher implements PrimaryMatcher
 //Public Methods
 
 	@Override
-	public String getDescription()
+	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		return DESCRIPTION;
-	}
-
-	@Override
-	public String getName()
-	{
-		return NAME;
-	}
-
-	@Override
-	public EntityType[] getSupportedEntityTypes()
-	{
-		return SUPPORT;
-	}
-	
-	@Override
-	public SimpleAlignment match(EntityType e, double thresh) throws UnsupportedEntityTypeException
-	{
-		checkEntityType(e);
+		SimpleAlignment maps = new SimpleAlignment();
+		if(!checkEntityType(e))
+			return maps;
 		System.out.println("Running " + NAME);
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
-		SimpleAlignment maps = new SimpleAlignment();
-		Ontology source = aml.getSource();
-		Ontology target = aml.getTarget();
-		ReferenceMap sourceRefs = source.getReferenceMap();
-		ReferenceMap targetRefs = target.getReferenceMap();
+		ReferenceMap sourceRefs = o1.getReferenceMap();
+		ReferenceMap targetRefs = o2.getReferenceMap();
 				
 		//1 - Check for direct references between the ontologies in one direction
 		for(String r : sourceRefs.getReferences())
 		{
 			//Test the reference with no processing
-			int j = target.getIndex(r);
+			String t = o2.getURI(r);
 			//If not found, test it after truncating the prexif
-			if(j == -1)
+			if(t == null)
 			{
 				int index = r.indexOf('_');
 				if(index < 0)
 					continue;
-				j = target.getIndex(r.substring(index+1));
-				if(j == -1)
+				t = o2.getURI(r.substring(index+1));
+				if(t == null)
 					continue;
 			}
-			for(Integer i : sourceRefs.getEntities(r))
-				maps.add(i,j,WEIGHT1);
+			for(String s : sourceRefs.getEntities(r))
+				maps.add(s,t,WEIGHT1);
 		}
 		//2 - Check for direct references between the ontologies in the opposite direction
 		for(String r : targetRefs.getReferences())
 		{
 			//Test the reference with no processing
-			int j = source.getIndex(r);
+			String s = o1.getURI(r);
 			//If not found, test it after truncating the prexif
-			if(j == -1)
+			if(s == null)
 			{
 				int index = r.indexOf('_');
 				if(index < 0)
 					continue;
-				j = target.getIndex(r.substring(index+1));
-				if(j == -1)
+				s = o1.getURI(r.substring(index+1));
+				if(s == null)
 					continue;
 			}
-			for(Integer i : targetRefs.getEntities(r))
-				maps.add(j,i,WEIGHT1);
+			for(String t : targetRefs.getEntities(r))
+				maps.add(s,t,WEIGHT1);
 		}
 		//3 - Check for common references of the ontologies
 		//Start by determining the smallest ReferenceMap to minimize computations
@@ -135,9 +116,9 @@ public class DirectXRefMatcher implements PrimaryMatcher
 		{
 			if(!largest.contains(r))
 				continue;
-			for(Integer i : smallest.getEntities(r))
+			for(String i : smallest.getEntities(r))
 			{
-				for(Integer j : largest.getEntities(r))
+				for(String j : largest.getEntities(r))
 				{
 					if(sourceIsSmallest)
 						maps.add(i,j,WEIGHT2);
@@ -149,22 +130,5 @@ public class DirectXRefMatcher implements PrimaryMatcher
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return maps;
-	}
-	
-//Private Methods
-	
-	private void checkEntityType(EntityType e) throws UnsupportedEntityTypeException
-	{
-		boolean check = false;
-		for(EntityType t : SUPPORT)
-		{
-			if(t.equals(e))
-			{
-				check = true;
-				break;
-			}
-		}
-		if(!check)
-			throw new UnsupportedEntityTypeException(e.toString());
 	}
 }
