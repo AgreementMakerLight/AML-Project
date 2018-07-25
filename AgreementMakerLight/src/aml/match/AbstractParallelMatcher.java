@@ -45,8 +45,6 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 
 	//The available CPU threads
 	protected int threads;
-	//The support (empty since this cannot actually generate alignments)
-	protected static final EntityType[] SUPPORT = {};
 	//Lexicons to match
 	protected Lexicon sLex, tLex;
 
