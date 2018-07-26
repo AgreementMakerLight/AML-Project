@@ -12,8 +12,9 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An AttributeOccurrenceRestriction constrains the cardinality of a property  *
-* or relation.                                                                *
+* An AttributeOccurrenceRestriction represents the set of individuals whose   *
+* cardinality for a given property or relation falls under the specified      *
+* restriction.                                                                *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -78,7 +79,7 @@ public class AttributeOccurrenceRestriction extends ClassExpression
 		rdf += onAttribute.toRDF() + "\n";
 		rdf += "</onAttribute>\n";
 		rdf += comp.toRDF() + "\n";
-		rdf += "<edoal:value>" + val.toRDF() + "<edoal:value>\n";
+		rdf += "<edoal:value>" + val.toRDF() + "</edoal:value>\n";
 		rdf += "</edoal:AttributeOccurenceRestriction>\n";
 		return rdf;
 	}

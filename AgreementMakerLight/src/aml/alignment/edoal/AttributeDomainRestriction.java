@@ -12,8 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An AttributeValueRestriction represents the set of individuals whose value  *
-* for a given property or relation falls under the specified restriction.     *
+* An AttributeDomainRestriction represents the set of individuals whose value *
+* for a given relation falls under the specified restrictions.                *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -22,32 +22,29 @@ package aml.alignment.edoal;
 import java.util.Collection;
 import java.util.Vector;
 
-public class AttributeValueRestriction extends ClassExpression
+public class AttributeDomainRestriction extends ClassExpression
 {
 
 //Attributes
 	
 	private AttributeExpression onAttribute;
-	private Comparator comp;
-	private ValueExpression val;
+	private ClassExpression rest;
 	
 //Constructor
 	
 	/**
-	 * Constructs a new AttributeValueRestriction on the given attribute with the given comparator and value
+	 * Constructs a new AttributeOccurrenceRestriction on the given attribute with the given comparator and value
 	 * @param onAttribute: the restricted attribute
 	 * @param comp: the comparator (typically an EDOALComparator)
 	 * @param val: the value (must be a non-negative integer)
 	 */
-	public AttributeValueRestriction(AttributeExpression onAttribute, Comparator comp, ValueExpression val)
+	public AttributeDomainRestriction(AttributeExpression onAttribute, ClassExpression rest)
 	{
 		super();
 		this.onAttribute = onAttribute;
-		this.comp = comp;
-		this.val = val;
+		this.rest = rest;
 		elements.addAll(onAttribute.getElements());
-		//The ValueExpression may be an IndividualId or AttributeExpression, so we must add its elements as well
-		elements.addAll(val.getElements());
+		elements.addAll(rest.getElements());
 	}
 	
 //Public Methods
@@ -55,10 +52,9 @@ public class AttributeValueRestriction extends ClassExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof AttributeValueRestriction &&
-				((AttributeValueRestriction)o).comp.equals(this.comp) &&
-				((AttributeValueRestriction)o).val.equals(this.val) &&
-				((AttributeValueRestriction)o).onAttribute.equals(this.onAttribute);
+		return o instanceof AttributeDomainRestriction &&
+				((AttributeDomainRestriction)o).rest.equals(this.rest) &&
+				((AttributeDomainRestriction)o).onAttribute.equals(this.onAttribute);
 	}
 	
 	@Override
@@ -66,27 +62,25 @@ public class AttributeValueRestriction extends ClassExpression
 	{
 		Vector<Expression> components = new Vector<Expression>();
 		components.add(onAttribute);
-		components.add(comp);
-		components.add(val);
+		components.add(rest);
 		return components;
 	}
 	
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:AttributeValueRestriction>\n" +
+		String rdf = "<edoal:AttributeDomainRestriction>\n" +
 				"<onAttribute>\n";
 		rdf += onAttribute.toRDF() + "\n";
 		rdf += "</onAttribute>\n";
-		rdf += comp.toRDF() + "\n";
-		rdf += "<edoal:value>\n" + val.toRDF() + "\n</edoal:value>\n";
-		rdf += "</edoal:AttributeValueRestriction>\n";
+		rdf += "<edoal:class>\n" + rest.toRDF() + "\n</edoal:class>\n";
+		rdf += "</edoal:AttributeDomainRestriction>\n";
 		return rdf;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "value(" + onAttribute.toString() + ") " + comp.toString() + " " + val.toString();
+		return "range(" + onAttribute.toString() + ") " + rest.toString();
 	}
 }
