@@ -79,6 +79,7 @@ public class AttributeOccurrenceRestriction extends ClassExpression
 		rdf += "</onAttribute>\n";
 		rdf += comp.toRDF() + "\n";
 		rdf += "<edoal:value>" + val.toRDF() + "<edoal:value>\n";
+		rdf += "</edoal:AttributeOccurenceRestriction>\n";
 		return rdf;
 	}
 

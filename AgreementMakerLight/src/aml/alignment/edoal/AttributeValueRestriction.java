@@ -34,7 +34,7 @@ public class AttributeValueRestriction extends ClassExpression
 //Constructor
 	
 	/**
-	 * Constructs a new AttributeOccurrenceRestriction on the given attribute with the given comparator and value
+	 * Constructs a new AttributeValueRestriction on the given attribute with the given comparator and value
 	 * @param onAttribute: the restricted attribute
 	 * @param comp: the comparator (typically an EDOALComparator)
 	 * @param val: the value (must be a non-negative integer)
@@ -74,19 +74,19 @@ public class AttributeValueRestriction extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		//In RDF we have to stick with the typo on "occurence" as it is now part of the official syntax...
-		String rdf = "<edoal:AttributeOccurenceRestriction>\n" +
+		String rdf = "<edoal:AttributeValueRestriction>\n" +
 				"<onAttribute>\n";
 		rdf += onAttribute.toRDF() + "\n";
 		rdf += "</onAttribute>\n";
 		rdf += comp.toRDF() + "\n";
-		rdf += "<edoal:value>" + val.toRDF() + "<edoal:value>\n";
+		rdf += "<edoal:value>\n" + val.toRDF() + "\n<edoal:value>\n";
+		rdf += "</edoal:AttributeValueRestriction>\n";
 		return rdf;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "occurrence(" + onAttribute.toString() + ") " + comp.toString() + " " + val.toString();
+		return "value(" + onAttribute.toString() + ") " + comp.toString() + " " + val.toString();
 	}
 }
