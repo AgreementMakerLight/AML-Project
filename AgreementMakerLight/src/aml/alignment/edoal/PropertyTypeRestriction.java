@@ -58,11 +58,11 @@ public class PropertyTypeRestriction extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:AttributeTypeRestriction>\n" +
+		return "<edoal:PropertyTypeRestriction>\n" +
 				"<edoal:datatype>\n" +
 				type.toRDF() +
 				"\n</edoal:datatype>\n" +
-				"</edoal:AttributeTypeRestriction>\n";
+				"</edoal:PropertyTypeRestriction>\n";
 	}
 
 	@Override

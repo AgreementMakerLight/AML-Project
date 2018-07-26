@@ -66,7 +66,7 @@ public class RelationDomainRestriction extends RelationExpression
 				"<edoal:class>\n" +
 				rest.toRDF() + 
 				"\n</edoal:class>\n" +
-				"</edoal:<RelationDomainRestriction>\n";
+				"</edoal:RelationDomainRestriction>\n";
 		return rdf;
 	}
 
