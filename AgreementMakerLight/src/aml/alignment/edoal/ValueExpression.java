@@ -12,57 +12,14 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An Individual (which is the only type of Individual Expression in EDOAL).   *
+* An expression that can be used as a value restriction, which can be a       *
+* Literal, an Individual, a Property or Relation Expression (indicating any   *
+* Literal or Individual that can be "seen" by that Property or that Relation  *
+* expression, respectively), or a Function.                                   *
+* This interface serves for grouping purposes only.                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment.edoal;
 
-import java.util.Collection;
-
-import aml.AML;
-
-public class IndividualId extends EDOALExpression implements ValueExpression
-{
-	
-//Constructor
-	
-	/**
-	 * Constructs a new IndividualId from the given uri
-	 * @param uri: the URI of the class
-	 */
-	public IndividualId(String uri)
-	{
-		super();
-		elements.add(uri);
-	}
-	
-//Public Methods
-	
-	@Override
-	public boolean equals(Object o)
-	{
-		return o instanceof IndividualId &&
-				((IndividualId)o).elements.equals(this.elements);
-	}
-	
-	@Override
-	public Collection<EDOALExpression> getComponents()
-	{
-		return null;
-	}
-	
-	@Override
-	public String toRDF()
-	{
-		return "<edoal:Instance rdf:about=\"" +
-				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next()) +
-				"\"/>";
-	}
-
-	@Override
-	public String toString()
-	{
-		return AML.getInstance().getEntityMap().getLocalName(elements.iterator().next());
-	}
-}
+public interface ValueExpression{}

@@ -19,7 +19,7 @@
 package aml.alignment.edoal;
 
 
-public abstract class PropertyExpression extends AttributeExpression
+public abstract class PropertyExpression extends AttributeExpression implements ValueExpression
 {
 	protected PropertyExpression()
 	{

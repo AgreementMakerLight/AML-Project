@@ -20,7 +20,7 @@ package aml.alignment.edoal;
 
 import java.util.Collection;
 
-public class Literal extends EDOALExpression
+public class Literal extends EDOALExpression implements ValueExpression
 {
 
 //Attributes
