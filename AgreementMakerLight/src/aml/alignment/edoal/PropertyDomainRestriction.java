@@ -13,7 +13,7 @@
 *                                                                             *
 *******************************************************************************
 * A PropertyDomainRestriction represents the set of properties whose domain   *
-* falls under the given restrictions.                                         *
+* falls under the given restriction.                                          *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/

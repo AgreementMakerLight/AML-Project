@@ -12,9 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An AttributeDomainRestriction, despite the VERY misleading name, represents *
-* the set of individuals whose value for a given relation falls under the     *
-* specified range restriction.                                                *
+* A RelationDomainRestriction represents the set of relations whose domain    *
+* falls under the given restriction.                                          *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -23,27 +22,23 @@ package aml.alignment.edoal;
 import java.util.Collection;
 import java.util.Vector;
 
-public class AttributeDomainRestriction extends ClassExpression
+public class RelationDomainRestriction extends RelationExpression
 {
 
-//Attributes
+//Propertys
 	
-	private RelationExpression onAttribute;
 	private ClassExpression rest;
 	
 //Constructor
 	
 	/**
-	 * Constructs a new AttributeDomainRestriction on the given attribute with the class expression as range
-	 * @param onAttribute: the restricted relation
-	 * @param rest: the class expression restricting the range of the attribute
+	 * Constructs a new PropertyDomainRestriction with the class expression as domain
+	 * @param rest: the class expression defining the domain
 	 */
-	public AttributeDomainRestriction(RelationExpression onAttribute, ClassExpression rest)
+	public RelationDomainRestriction(ClassExpression rest)
 	{
 		super();
-		this.onAttribute = onAttribute;
 		this.rest = rest;
-		elements.addAll(onAttribute.getElements());
 		elements.addAll(rest.getElements());
 	}
 	
@@ -52,16 +47,14 @@ public class AttributeDomainRestriction extends ClassExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof AttributeDomainRestriction &&
-				((AttributeDomainRestriction)o).rest.equals(this.rest) &&
-				((AttributeDomainRestriction)o).onAttribute.equals(this.onAttribute);
+		return o instanceof RelationDomainRestriction &&
+				((RelationDomainRestriction)o).rest.equals(this.rest);
 	}
 	
 	@Override
 	public Collection<Expression> getComponents()
 	{
 		Vector<Expression> components = new Vector<Expression>();
-		components.add(onAttribute);
 		components.add(rest);
 		return components;
 	}
@@ -69,19 +62,17 @@ public class AttributeDomainRestriction extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:AttributeDomainRestriction>\n" +
-				"<onAttribute>\n" +
-				onAttribute.toRDF() +
-				"\n</onAttribute>\n" +
+		String rdf = "<edoal:RelationDomainRestriction>\n" +
 				"<edoal:class>\n" +
-				rest.toRDF() +
+				rest.toRDF() + 
 				"\n</edoal:class>\n" +
-				"</edoal:AttributeDomainRestriction>\n";
+				"</edoal:<RelationDomainRestriction>\n";
+		return rdf;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "range(" + onAttribute.toString() + ") " + rest.toString();
+		return "Object Domain(" + rest.toString() + ")";
 	}
 }
