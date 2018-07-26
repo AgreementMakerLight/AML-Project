@@ -22,4 +22,4 @@
 ******************************************************************************/
 package aml.alignment.edoal;
 
-public interface ValueExpression{}
+public interface ValueExpression extends Expression{}

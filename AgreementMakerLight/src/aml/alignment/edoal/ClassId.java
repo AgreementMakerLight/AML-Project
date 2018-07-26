@@ -47,7 +47,7 @@ public class ClassId extends ClassExpression
 	}
 	
 	@Override
-	public Collection<EDOALExpression> getComponents()
+	public Collection<Expression> getComponents()
 	{
 		return null;
 	}

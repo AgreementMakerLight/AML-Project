@@ -36,7 +36,7 @@ public class EDOALMapping extends Mapping
 	 * @param entity2: the EDOAL expression of the target ontology
 	 * @param sim: the similarity between the entities
 	 */
-	public EDOALMapping(EDOALExpression entity1, EDOALExpression entity2, double sim)
+	public EDOALMapping(AbstractExpression entity1, AbstractExpression entity2, double sim)
 	{
 		this(entity1,entity2,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
 	}
@@ -48,7 +48,7 @@ public class EDOALMapping extends Mapping
 	 * @param sim: the similarity between the entities
 	 * @param r: the mapping relationship between the entities
 	 */
-	public EDOALMapping(EDOALExpression entity1, EDOALExpression entity2, double sim, MappingRelation r)
+	public EDOALMapping(AbstractExpression entity1, AbstractExpression entity2, double sim, MappingRelation r)
 	{
 		this(entity1,entity2,sim,r,MappingStatus.UNKNOWN);
 	}
@@ -62,7 +62,7 @@ public class EDOALMapping extends Mapping
 	 * @param r: the mapping relationship between the entities
 	 * @param s: the status of the mapping
 	 */
-	public EDOALMapping(EDOALExpression entity1, EDOALExpression entity2, double sim, MappingRelation r, MappingStatus s)
+	public EDOALMapping(AbstractExpression entity1, AbstractExpression entity2, double sim, MappingRelation r, MappingStatus s)
 	{
 		super(entity1, entity2, sim, r, s);
 	}
@@ -79,15 +79,15 @@ public class EDOALMapping extends Mapping
 //Public Methods
 
 	@Override
-	public EDOALExpression getEntity1()
+	public AbstractExpression getEntity1()
 	{
-		return (EDOALExpression)entity1;
+		return (AbstractExpression)entity1;
 	}
 
 	@Override
-	public EDOALExpression getEntity2()
+	public AbstractExpression getEntity2()
 	{
-		return (EDOALExpression)entity2;
+		return (AbstractExpression)entity2;
 	}
 
 	@Override
@@ -96,10 +96,10 @@ public class EDOALMapping extends Mapping
 		String out = "\t<map>\n" +
 				"\t\t<Cell>\n" +
 				"\t\t\t<entity1>\n" +
-				((EDOALExpression)entity1).toRDF() +
+				((AbstractExpression)entity1).toRDF() +
 				"\n\t\t\t</entity1>\n\n" +
 				"\t\t\t<entity2>\n" +
-				((EDOALExpression)entity2).toRDF() +
+				((AbstractExpression)entity2).toRDF() +
 				"\n\t\t\t</entity2>\n\n" +
 				"\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
 				"\t\t\t<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";

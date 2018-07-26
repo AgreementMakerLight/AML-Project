@@ -24,7 +24,7 @@ import java.util.Collection;
 
 import aml.AML;
 
-public class Comparator extends EDOALExpression
+public class Comparator extends AbstractExpression
 {
 
 //Attributes
@@ -54,7 +54,7 @@ public class Comparator extends EDOALExpression
 	}
 	
 	@Override
-	public Collection<EDOALExpression> getComponents()
+	public Collection<Expression> getComponents()
 	{
 		return null;
 	}

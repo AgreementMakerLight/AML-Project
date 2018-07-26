@@ -47,7 +47,7 @@ public class PropertyId extends PropertyExpression
 	}
 	
 	@Override
-	public Collection<EDOALExpression> getComponents()
+	public Collection<Expression> getComponents()
 	{
 		return null;
 	}

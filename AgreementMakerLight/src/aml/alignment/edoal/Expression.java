@@ -12,18 +12,41 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An EDOAL Attribute represents a Property or Relation and thus an OWL Data   *
-* or ObjectProperty.                                                          *
+* An Expression.                                                              *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment.edoal;
 
+import java.util.Collection;
+import java.util.Set;
 
-public abstract class AttributeExpression extends AbstractExpression
+public interface Expression
 {
-	protected AttributeExpression()
-	{
-		super();
-	}
+	
+//Public Methods
+	
+	@Override
+	public boolean equals(Object o);
+	
+	/**
+	 * @return the ontology entities listed in this Expression
+	 */
+	public Set<String> getElements();
+	
+	/**
+	 * @return the Expressions that compose this Expression
+	 */
+	public <E extends Expression> Collection<E> getComponents();
+	
+	@Override
+	public int hashCode();
+
+	/**
+	 * @return this Expression in RDF form
+	 */
+	public String toRDF();
+
+	@Override
+	public String toString();
 }

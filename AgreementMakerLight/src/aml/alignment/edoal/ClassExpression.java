@@ -19,7 +19,7 @@
 package aml.alignment.edoal;
 
 
-public abstract class ClassExpression extends EDOALExpression
+public abstract class ClassExpression extends AbstractExpression
 {
 	protected ClassExpression()
 	{

@@ -22,7 +22,7 @@ import java.util.Collection;
 
 import aml.AML;
 
-public class IndividualId extends EDOALExpression implements ValueExpression
+public class IndividualId extends AbstractExpression implements ValueExpression
 {
 	
 //Constructor
@@ -47,7 +47,7 @@ public class IndividualId extends EDOALExpression implements ValueExpression
 	}
 	
 	@Override
-	public Collection<EDOALExpression> getComponents()
+	public Collection<Expression> getComponents()
 	{
 		return null;
 	}

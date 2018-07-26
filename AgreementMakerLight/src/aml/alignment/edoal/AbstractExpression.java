@@ -22,7 +22,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class EDOALExpression
+public abstract class AbstractExpression implements Expression
 {
 	
 //Attributes
@@ -33,7 +33,7 @@ public abstract class EDOALExpression
 	
 //Constructors
 	
-	protected EDOALExpression()
+	protected AbstractExpression()
 	{
 		elements = new HashSet<String>();
 	}
@@ -43,18 +43,14 @@ public abstract class EDOALExpression
 	@Override
 	public abstract boolean equals(Object o);
 	
-	/**
-	 * @return the ontology entities listed in this EDOAL expression
-	 */
+	@Override
 	public Set<String> getElements()
 	{
 		return elements;
 	}
 	
-	/**
-	 * @return the EDOALExpressions that compose this EDOALExpression
-	 */
-	public abstract <E extends EDOALExpression> Collection<E> getComponents();
+	@Override
+	public abstract <E extends Expression> Collection<E> getComponents();
 	
 	@Override
 	public int hashCode()
@@ -62,9 +58,7 @@ public abstract class EDOALExpression
 		return elements.hashCode();
 	}
 
-	/**
-	 * @return this EDOAL expression in RDF form
-	 */
+	@Override
 	public abstract String toRDF();
 
 	@Override
