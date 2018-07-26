@@ -12,8 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An AttributeDomainRestriction represents the set of individuals whose value *
-* for a given relation falls under the specified restriction.                 *
+* An AttributeTypeRestriction represents the set of individuals whose value   *
+* for a given property falls under the specified restriction.                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -22,28 +22,27 @@ package aml.alignment.edoal;
 import java.util.Collection;
 import java.util.Vector;
 
-public class AttributeDomainRestriction extends ClassExpression
+public class AttributeTypeRestriction extends ClassExpression
 {
 
 //Attributes
 	
-	private RelationExpression onAttribute;
-	private ClassExpression rest;
+	private PropertyExpression onAttribute;
+	private Datatype type;
 	
 //Constructor
 	
 	/**
-	 * Constructs a new AttributeDomainRestriction on the given attribute with the class expression as range
-	 * @param onAttribute: the restricted relation
-	 * @param rest: the class expression restricting the range of the attribute
+	 * Constructs a new AttributeTypeRestriction on the given attribute with the given comparator and value
+	 * @param onAttribute: the restricted property
+	 * @param type: the datatype to restrict the range of the property
 	 */
-	public AttributeDomainRestriction(RelationExpression onAttribute, ClassExpression rest)
+	public AttributeTypeRestriction(PropertyExpression onAttribute, Datatype type)
 	{
 		super();
 		this.onAttribute = onAttribute;
-		this.rest = rest;
+		this.type = type;
 		elements.addAll(onAttribute.getElements());
-		elements.addAll(rest.getElements());
 	}
 	
 //Public Methods
@@ -51,9 +50,9 @@ public class AttributeDomainRestriction extends ClassExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof AttributeDomainRestriction &&
-				((AttributeDomainRestriction)o).rest.equals(this.rest) &&
-				((AttributeDomainRestriction)o).onAttribute.equals(this.onAttribute);
+		return o instanceof AttributeTypeRestriction &&
+				((AttributeTypeRestriction)o).type.equals(this.type) &&
+				((AttributeTypeRestriction)o).onAttribute.equals(this.onAttribute);
 	}
 	
 	@Override
@@ -61,25 +60,24 @@ public class AttributeDomainRestriction extends ClassExpression
 	{
 		Vector<Expression> components = new Vector<Expression>();
 		components.add(onAttribute);
-		components.add(rest);
 		return components;
 	}
 	
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:AttributeDomainRestriction>\n" +
+		String rdf = "<edoal:AttributeTypeRestriction>\n" +
 				"<onAttribute>\n";
 		rdf += onAttribute.toRDF() + "\n";
 		rdf += "</onAttribute>\n";
-		rdf += "<edoal:class>\n" + rest.toRDF() + "\n</edoal:class>\n";
-		rdf += "</edoal:AttributeDomainRestriction>\n";
+		rdf += "<edoal:datatype>\n" + type.toRDF() + "\n</edoal:datatype>\n";
+		rdf += "</edoal:AttributeTypeRestriction>\n";
 		return rdf;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "range(" + onAttribute.toString() + ") " + rest.toString();
+		return "range(" + onAttribute.toString() + ") " + type.toString();
 	}
 }
