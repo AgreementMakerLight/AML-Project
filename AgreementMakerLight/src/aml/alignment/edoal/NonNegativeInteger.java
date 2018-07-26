@@ -12,37 +12,29 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A Literal.                                                                  *
+* A non-negative integer Literal.                                             *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment.edoal;
 
-import java.util.Collection;
 
-public class Literal extends AbstractExpression implements ValueExpression
+public class NonNegativeInteger extends Literal
 {
 
 //Attributes
 	
-	protected String type;
-	protected String lang;
-	protected String value;
+	private static final String TYPE = "&xsd;integer";
 	
 //Constructor
 
 	/**
-	 * Constructs a new Literal of the given type, language and value
-	 * @param type: the type of the Literal (use null for rdfs:PlainLiteral)
-	 * @param lang: the language of the Literal (use null if none is declared)
-	 * @param value: the value of the Literal (must not be null)
+	 * Constructs a new non-negative int Literal
+	 * @param value: the value of the Literal (must be a non-negative int)
 	 */
-	public Literal(String type, String lang, String value)
+	public NonNegativeInteger(int value)
 	{
-		super();
-		this.type = type;
-		this.lang = lang;
-		this.value = value;
+		super(TYPE, null, "" + value);
 	}
 
 //Public Methods
@@ -50,39 +42,12 @@ public class Literal extends AbstractExpression implements ValueExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		if(o instanceof Literal)
+		if(o instanceof NonNegativeInteger)
 		{
-			Literal l = (Literal)o;
-			return l.type.equals(this.type) &&
-				l.value.equals(this.value) &&
-				((l.lang == null && this.lang == null) || l.lang.equals(this.lang));
+			NonNegativeInteger l = (NonNegativeInteger)o;
+			return l.value.equals(this.value);
 		}
 		else
 			return false;
-	}
-	
-	@Override
-	public Collection<Expression> getComponents()
-	{
-		return null;
-	}
-	
-	@Override
-	public String toRDF()
-	{
-		String rdf = "<edoal:Literal "; 
-		if(type != null)
-			rdf += "edoal:type=\"" + type + "\" ";
-		if(lang != null)
-			rdf += "edoal:lang=\"" + lang + "\" ";
-		rdf += "edoal:string=\"" + value + "\"/>";
-		return rdf;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "\"" + value + (lang == null ? "" : "@" + lang) + "\"" +
-				(type == null ? "" : "^^" + type);
 	}
 }
