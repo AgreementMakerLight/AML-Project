@@ -12,8 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An AttributeValueRestriction represents the set of individuals whose value  *
-* for a given property or relation falls under the specified restriction.     *
+* A PropertyValueRestriction represents the set of properties whose range     *
+* falls under the given value restriction.                                    *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -22,30 +22,27 @@ package aml.alignment.edoal;
 import java.util.Collection;
 import java.util.Vector;
 
-public class PropertyValueRestriction extends ClassExpression
+public class PropertyValueRestriction extends PropertyExpression
 {
 
 //Attributes
 	
-	private AttributeExpression onAttribute;
 	private Comparator comp;
 	private ValueExpression val;
 	
 //Constructor
 	
 	/**
-	 * Constructs a new AttributeValueRestriction on the given attribute with the given comparator and value
+	 * Constructs a new PropertyValueRestriction on the given attribute with the given comparator and value
 	 * @param onAttribute: the restricted attribute
 	 * @param comp: the comparator (typically an EDOALComparator)
 	 * @param val: the value (must be a non-negative integer)
 	 */
-	public PropertyValueRestriction(AttributeExpression onAttribute, Comparator comp, ValueExpression val)
+	public PropertyValueRestriction(Comparator comp, ValueExpression val)
 	{
 		super();
-		this.onAttribute = onAttribute;
 		this.comp = comp;
 		this.val = val;
-		elements.addAll(onAttribute.getElements());
 		//The ValueExpression may be an IndividualId or AttributeExpression, so we must add its elements as well
 		elements.addAll(val.getElements());
 	}
@@ -57,15 +54,13 @@ public class PropertyValueRestriction extends ClassExpression
 	{
 		return o instanceof PropertyValueRestriction &&
 				((PropertyValueRestriction)o).comp.equals(this.comp) &&
-				((PropertyValueRestriction)o).val.equals(this.val) &&
-				((PropertyValueRestriction)o).onAttribute.equals(this.onAttribute);
+				((PropertyValueRestriction)o).val.equals(this.val);
 	}
 	
 	@Override
 	public Collection<Expression> getComponents()
 	{
 		Vector<Expression> components = new Vector<Expression>();
-		components.add(onAttribute);
 		components.add(comp);
 		components.add(val);
 		return components;
@@ -74,19 +69,17 @@ public class PropertyValueRestriction extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:AttributeValueRestriction>\n" +
-				"<onAttribute>\n";
-		rdf += onAttribute.toRDF() + "\n";
-		rdf += "</onAttribute>\n";
-		rdf += comp.toRDF() + "\n";
-		rdf += "<edoal:value>\n" + val.toRDF() + "\n</edoal:value>\n";
-		rdf += "</edoal:AttributeValueRestriction>\n";
-		return rdf;
+		return "<edoal:PropertyValueRestriction>\n" +
+				comp.toRDF() + 
+				"\n<edoal:value>\n" +
+				val.toRDF() +
+				"\n</edoal:value>\n" +
+				"</edoal:PropertyValueRestriction>\n";
 	}
 
 	@Override
 	public String toString()
 	{
-		return "value(" + onAttribute.toString() + ") " + comp.toString() + " " + val.toString();
+		return "Data Range(" + comp.toString() + " " + val.toString() + ")";
 	}
 }

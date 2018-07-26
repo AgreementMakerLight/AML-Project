@@ -73,6 +73,6 @@ public class PropertyDomainRestriction extends PropertyExpression
 	@Override
 	public String toString()
 	{
-		return "data property domain(" + rest.toString() + ")";
+		return "Data Domain(" + rest.toString() + ")";
 	}
 }

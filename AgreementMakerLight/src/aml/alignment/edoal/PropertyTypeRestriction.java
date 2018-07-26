@@ -13,7 +13,7 @@
 *                                                                             *
 *******************************************************************************
 * A PropertyDomainRestriction represents the set of properties whose range    *
-* falls under the given restrictions.                                         *
+* falls under the given type restriction.                                     *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -68,6 +68,6 @@ public class PropertyTypeRestriction extends PropertyExpression
 	@Override
 	public String toString()
 	{
-		return "data property range(" + type.toString() + ")";
+		return "Data Range(" + type.toString() + ")";
 	}
 }
