@@ -32,8 +32,10 @@ public class Literal extends EDOALExpression implements ValueExpression
 //Constructor
 
 	/**
-	 * Constructs a new Literal from the given uri
-	 * @param uri: the URI of the class
+	 * Constructs a new Literal of the given type, language and value
+	 * @param type: the type of the Literal (use null for rdfs:PlainLiteral)
+	 * @param lang: the language of the Literal (use null if none is declared)
+	 * @param value: the value of the Literal (must not be null)
 	 */
 	public Literal(String type, String lang, String value)
 	{
