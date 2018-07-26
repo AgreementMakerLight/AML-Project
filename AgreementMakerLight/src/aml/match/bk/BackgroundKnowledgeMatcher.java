@@ -33,7 +33,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.match.AbstractMatcher;
+import aml.match.Matcher;
 import aml.match.PrimaryMatcher;
 import aml.match.lexical.LexicalMatcher;
 import aml.ontology.EntityType;
@@ -44,7 +44,7 @@ import aml.ontology.lexicon.ExternalLexicon;
 import aml.settings.SelectionType;
 import aml.util.data.MapSorter;
 
-public class BackgroundKnowledgeMatcher extends AbstractMatcher implements PrimaryMatcher
+public class BackgroundKnowledgeMatcher extends Matcher implements PrimaryMatcher
 {
 	
 //Attributes

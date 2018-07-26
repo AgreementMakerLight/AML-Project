@@ -28,7 +28,7 @@ import java.util.concurrent.Future;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.AbstractMapping;
+import aml.alignment.Mapping;
 import aml.alignment.SimpleMapping;
 import aml.match.PrimaryMatcher;
 import aml.match.Rematcher;
@@ -39,7 +39,7 @@ import aml.ontology.lexicon.Lexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.util.data.Map2Set;
 
-public abstract class AbstractParallelMatcher extends AbstractMatcher implements PrimaryMatcher, Rematcher, SecondaryMatcher
+public abstract class AbstractParallelMatcher extends Matcher implements PrimaryMatcher, Rematcher, SecondaryMatcher
 {
 
 //Attributes
@@ -153,7 +153,7 @@ public abstract class AbstractParallelMatcher extends AbstractMatcher implements
 		sVal = o1.getValueMap();
 		tVal = o2.getValueMap();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 		{
 			if(m instanceof SimpleMapping)
 			{

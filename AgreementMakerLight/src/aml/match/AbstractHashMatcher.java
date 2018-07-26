@@ -23,7 +23,7 @@ import aml.match.PrimaryMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 
-public abstract class AbstractHashMatcher extends AbstractMatcher implements PrimaryMatcher
+public abstract class AbstractHashMatcher extends Matcher implements PrimaryMatcher
 {
 
 //Constructors

@@ -26,14 +26,14 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.alignment.AbstractAlignment;
-import aml.alignment.AbstractMapping;
+import aml.alignment.Alignment;
+import aml.alignment.Mapping;
 import aml.alignment.MappingRelation;
 import aml.alignment.MappingStatus;
 import aml.ontology.EntityType;
 import aml.util.data.Map2Map;
 
-public class EDOALAlignment extends AbstractAlignment
+public class EDOALAlignment extends Alignment
 {
 
 //Attributes
@@ -71,7 +71,7 @@ public class EDOALAlignment extends AbstractAlignment
 	 * Creates a new Alignment that contains the input collection of mappings
 	 * @param a: the collection of mappings to include in this Alignment
 	 */
-	public EDOALAlignment(Collection<AbstractMapping> a)
+	public EDOALAlignment(Collection<Mapping> a)
 	{
 		super(a);
 	}
@@ -160,7 +160,7 @@ public class EDOALAlignment extends AbstractAlignment
 	}
 	
 	@Override
-	public boolean add(AbstractMapping m)
+	public boolean add(Mapping m)
 	{
 		if(m instanceof EDOALMapping)
 			return add((EDOALExpression)m.getEntity1(),(EDOALExpression)m.getEntity2(),m.getSimilarity(),m.getRelationship(),m.getStatus());
@@ -169,10 +169,10 @@ public class EDOALAlignment extends AbstractAlignment
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends AbstractMapping> a)
+	public boolean addAll(Collection<? extends Mapping> a)
 	{
 		boolean check = false;
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 			check = add(m) || check;
 		return check;
 	}
@@ -250,7 +250,7 @@ public class EDOALAlignment extends AbstractAlignment
 	 * @return whether the Alignment contains a Mapping that conflicts with the given
 	 * Mapping and has a higher similarity
 	 */
-	public boolean containsBetterMapping(AbstractMapping m)
+	public boolean containsBetterMapping(Mapping m)
 	{
 		if(!(m instanceof EDOALMapping))
 			return false;
@@ -293,7 +293,7 @@ public class EDOALAlignment extends AbstractAlignment
 	}
 	
 	@Override
-	public boolean containsConflict(AbstractMapping m)
+	public boolean containsConflict(Mapping m)
 	{
 		if(m instanceof EDOALMapping)
 			return containsConflict((EDOALExpression)m.getEntity1(),(EDOALExpression)m.getEntity2());
@@ -313,12 +313,12 @@ public class EDOALAlignment extends AbstractAlignment
 	}
 	
 	@Override
-	public EDOALAlignment difference(AbstractAlignment a)
+	public EDOALAlignment difference(Alignment a)
 	{
 		EDOALAlignment diff = new EDOALAlignment();
 		if(a instanceof EDOALAlignment)
 		{
-			for(AbstractMapping m : maps)
+			for(Mapping m : maps)
 				if(!a.contains(m))
 					diff.add(m);
 		}
@@ -337,12 +337,12 @@ public class EDOALAlignment extends AbstractAlignment
 	 * @param ref: the reference Alignment to evaluate this Alignment
 	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
-	public int[] evaluate(AbstractAlignment ref)
+	public int[] evaluate(Alignment ref)
 	{
 		int[] count = new int[2];
 		if(ref instanceof EDOALAlignment)
 		{
-			for(AbstractMapping m : maps)
+			for(Mapping m : maps)
 			{
 				if(ref.contains(m))
 				{
@@ -366,7 +366,7 @@ public class EDOALAlignment extends AbstractAlignment
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
-	public double gainOneToOne(AbstractAlignment a)
+	public double gainOneToOne(Alignment a)
 	{
 		double sourceGain = 0.0;
 		Set<EDOALExpression> sources = sourceMaps.keySet();
@@ -388,7 +388,7 @@ public class EDOALAlignment extends AbstractAlignment
  	 * @return the Mapping at the input index (note that the uri will change
  	 * during sorting) or null if the uri falls outside the list
 	 */
-	public AbstractMapping get(int index)
+	public Mapping get(int index)
 	{
 		if(index < 0 || index >= maps.size())
 			return null;
@@ -401,7 +401,7 @@ public class EDOALAlignment extends AbstractAlignment
  	 * @return the Mapping between the entity1 and entity2 classes or null if no
  	 * such Mapping exists
 	 */
-	public AbstractMapping get(EDOALExpression entity1, EDOALExpression entity2)
+	public Mapping get(EDOALExpression entity1, EDOALExpression entity2)
 	{
 		return sourceMaps.get(entity1, entity2);
 	}
@@ -412,7 +412,7 @@ public class EDOALAlignment extends AbstractAlignment
  	 * @return the Mapping between the classes or null if no such Mapping exists
  	 * in either direction
 	 */
-	public AbstractMapping getBidirectional(EDOALExpression uri1, EDOALExpression uri2)
+	public Mapping getBidirectional(EDOALExpression uri1, EDOALExpression uri2)
 	{
 		if(sourceMaps.contains(uri1, uri2))
 			return sourceMaps.get(uri1, uri2);
@@ -426,9 +426,9 @@ public class EDOALAlignment extends AbstractAlignment
 	 * @param m: the Mapping to check on the Alignment
 	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping
 	 */
-	public Vector<AbstractMapping> getConflicts(AbstractMapping m)
+	public Vector<Mapping> getConflicts(Mapping m)
 	{
-		Vector<AbstractMapping> conflicts = new Vector<AbstractMapping>();
+		Vector<Mapping> conflicts = new Vector<Mapping>();
 		for(EDOALExpression t : sourceMaps.keySet((EDOALExpression)m.getEntity1()))
 			if(t != (EDOALExpression)m.getEntity2())
 				conflicts.add(sourceMaps.get((EDOALExpression)m.getEntity1(),t));
@@ -523,7 +523,7 @@ public class EDOALAlignment extends AbstractAlignment
 	 */
 	public MappingRelation getRelationship(EDOALExpression entity1, EDOALExpression entity2)
 	{
-		AbstractMapping m = sourceMaps.get(entity1, entity2);
+		Mapping m = sourceMaps.get(entity1, entity2);
 		if(m == null)
 			return null;
 		return m.getRelationship();
@@ -536,7 +536,7 @@ public class EDOALAlignment extends AbstractAlignment
 	 */
 	public double getSimilarity(EDOALExpression entity1, EDOALExpression entity2)
 	{
-		AbstractMapping m = sourceMaps.get(entity1, entity2);
+		Mapping m = sourceMaps.get(entity1, entity2);
 		if(m == null)
 			return 0.0;
 		return m.getSimilarity();
@@ -549,7 +549,7 @@ public class EDOALAlignment extends AbstractAlignment
 	 */
 	public String getSimilarityPercent(EDOALExpression entity1, EDOALExpression entity2)
 	{
-		AbstractMapping m = sourceMaps.get(entity1, entity2);
+		Mapping m = sourceMaps.get(entity1, entity2);
 		if(m == null)
 			return "0%";
 		return m.getSimilarityPercent();
@@ -624,11 +624,11 @@ public class EDOALAlignment extends AbstractAlignment
 	 * @param a: the Alignment to intersect with this Alignment 
 	 * @return the Alignment corresponding to the intersection between this Alignment and a
 	 */
-	public EDOALAlignment intersection(AbstractAlignment a)
+	public EDOALAlignment intersection(Alignment a)
 	{
 		EDOALAlignment intersection = new EDOALAlignment();
 		if(a instanceof EDOALAlignment)
-			for(AbstractMapping m : maps)
+			for(Mapping m : maps)
 				if(a.contains(m))
 					intersection.add(m);
 		return intersection;
@@ -641,7 +641,7 @@ public class EDOALAlignment extends AbstractAlignment
 	}
 	
 	@Override
-	public Iterator<AbstractMapping> iterator()
+	public Iterator<Mapping> iterator()
 	{
 		return maps.iterator();
 	}
@@ -676,7 +676,7 @@ public class EDOALAlignment extends AbstractAlignment
 	{
 		if(o instanceof EDOALMapping && contains(o))
 		{
-			AbstractMapping m = (AbstractMapping)o;
+			Mapping m = (Mapping)o;
 			EDOALExpression entity1 = (EDOALExpression)m.getEntity1();
 			EDOALExpression entity2 = (EDOALExpression)m.getEntity2();
 			sourceMaps.remove(entity1, entity2);
@@ -695,7 +695,7 @@ public class EDOALAlignment extends AbstractAlignment
 	 */
 	public boolean remove(EDOALExpression entity1, EDOALExpression entity2)
 	{
-		AbstractMapping m = new EDOALMapping(entity1, entity2, 1.0);
+		Mapping m = new EDOALMapping(entity1, entity2, 1.0);
 		return remove(m);
 	}
 	

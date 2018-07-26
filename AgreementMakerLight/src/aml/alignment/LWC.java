@@ -41,7 +41,7 @@ public class LWC
 	{
 		SimpleAlignment combine = new SimpleAlignment();
 	
-		for(AbstractMapping m: a)
+		for(Mapping m: a)
 		{
 			if(m instanceof SimpleMapping)
 			{
@@ -51,7 +51,7 @@ public class LWC
 				combine.add((String)m.getEntity1(),(String)m.getEntity2(),similarity);
 			}
 		}
-		for(AbstractMapping m : b)
+		for(Mapping m : b)
 		{
 			if(!a.contains(m) && m instanceof SimpleMapping)
 			{

@@ -24,7 +24,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.alignment.AbstractMapping;
+import aml.alignment.Mapping;
 import aml.alignment.SimpleAlignment;
 import aml.alignment.SimpleMapping;
 import aml.match.AbstractParallelMatcher;
@@ -80,8 +80,8 @@ public class WordMatcher extends AbstractParallelMatcher
 	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e, double thresh)
 	{
 		SimpleAlignment b = match(o1,o2,e,thresh);
-		HashSet<AbstractMapping> toRemove = new HashSet<AbstractMapping>();
-		for(AbstractMapping m : b)
+		HashSet<Mapping> toRemove = new HashSet<Mapping>();
+		for(Mapping m : b)
 			if(a.containsConflict(m))
 				toRemove.add(m);
 		b.removeAll(toRemove);

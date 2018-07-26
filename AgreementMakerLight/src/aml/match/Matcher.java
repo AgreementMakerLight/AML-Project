@@ -20,7 +20,7 @@ package aml.match;
 
 import aml.ontology.EntityType;
 
-public abstract class AbstractMatcher
+public abstract class Matcher
 {
 
 //Attributes

@@ -30,7 +30,7 @@ import aml.ontology.EntityType;
 import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2Map;
 
-public class SimpleAlignment extends AbstractAlignment
+public class SimpleAlignment extends Alignment
 {
 
 //Attributes
@@ -66,7 +66,7 @@ public class SimpleAlignment extends AbstractAlignment
 	 * Creates a new Alignment that contains the input collection of mappings
 	 * @param a: the collection of mappings to include in this Alignment
 	 */
-	public SimpleAlignment(Collection<AbstractMapping> a)
+	public SimpleAlignment(Collection<Mapping> a)
 	{
 		super(a);
 	}
@@ -155,7 +155,7 @@ public class SimpleAlignment extends AbstractAlignment
 	}
 	
 	@Override
-	public boolean add(AbstractMapping m)
+	public boolean add(Mapping m)
 	{
 		if(m instanceof SimpleMapping)
 			return add((String)m.getEntity1(),(String)m.getEntity2(),m.getSimilarity(),m.getRelationship(),m.getStatus());
@@ -164,10 +164,10 @@ public class SimpleAlignment extends AbstractAlignment
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends AbstractMapping> a)
+	public boolean addAll(Collection<? extends Mapping> a)
 	{
 		boolean check = false;
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 			check = add(m) || check;
 		return check;
 	}
@@ -268,7 +268,7 @@ public class SimpleAlignment extends AbstractAlignment
 	 * @return whether the Alignment contains a Mapping that conflicts with the given
 	 * Mapping and has a higher similarity
 	 */
-	public boolean containsBetterMapping(AbstractMapping m)
+	public boolean containsBetterMapping(Mapping m)
 	{
 		if(!(m instanceof SimpleMapping))
 			return false;
@@ -310,7 +310,7 @@ public class SimpleAlignment extends AbstractAlignment
 	}
 	
 	@Override
-	public boolean containsConflict(AbstractMapping m)
+	public boolean containsConflict(Mapping m)
 	{
 		if(m instanceof SimpleMapping)
 			return containsConflict((String)m.getEntity1(),(String)m.getEntity2());
@@ -375,12 +375,12 @@ public class SimpleAlignment extends AbstractAlignment
 	}
 	
 	@Override
-	public SimpleAlignment difference(AbstractAlignment a)
+	public SimpleAlignment difference(Alignment a)
 	{
 		SimpleAlignment diff = new SimpleAlignment();
 		if(a instanceof SimpleAlignment)
 		{
-			for(AbstractMapping m : maps)
+			for(Mapping m : maps)
 				if(!a.contains(m))
 					diff.add(m);
 		}
@@ -399,12 +399,12 @@ public class SimpleAlignment extends AbstractAlignment
 	 * @param ref: the reference Alignment to evaluate this Alignment
 	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
-	public int[] evaluate(AbstractAlignment ref)
+	public int[] evaluate(Alignment ref)
 	{
 		int[] count = new int[2];
 		if(ref instanceof SimpleAlignment)
 		{
-			for(AbstractMapping m : maps)
+			for(Mapping m : maps)
 			{
 				if(ref.contains(m))
 				{
@@ -428,7 +428,7 @@ public class SimpleAlignment extends AbstractAlignment
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
-	public double gainOneToOne(AbstractAlignment a)
+	public double gainOneToOne(Alignment a)
 	{
 		double sourceGain = 0.0;
 		Set<String> sources = sourceMaps.keySet();
@@ -450,7 +450,7 @@ public class SimpleAlignment extends AbstractAlignment
  	 * @return the Mapping at the input index (note that the uri will change
  	 * during sorting) or null if the uri falls outside the list
 	 */
-	public AbstractMapping get(int index)
+	public Mapping get(int index)
 	{
 		if(index < 0 || index >= maps.size())
 			return null;
@@ -463,7 +463,7 @@ public class SimpleAlignment extends AbstractAlignment
  	 * @return the Mapping between the entity1 and entity2 classes or null if no
  	 * such Mapping exists
 	 */
-	public AbstractMapping get(String entity1, String entity2)
+	public Mapping get(String entity1, String entity2)
 	{
 		return sourceMaps.get(entity1, entity2);
 	}
@@ -474,7 +474,7 @@ public class SimpleAlignment extends AbstractAlignment
  	 * @return the Mapping between the classes or null if no such Mapping exists
  	 * in either direction
 	 */
-	public AbstractMapping getBidirectional(String uri1, String uri2)
+	public Mapping getBidirectional(String uri1, String uri2)
 	{
 		if(sourceMaps.contains(uri1, uri2))
 			return sourceMaps.get(uri1, uri2);
@@ -530,9 +530,9 @@ public class SimpleAlignment extends AbstractAlignment
 	 * @param m: the Mapping to check on the Alignment
 	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping
 	 */
-	public Vector<AbstractMapping> getConflicts(AbstractMapping m)
+	public Vector<Mapping> getConflicts(Mapping m)
 	{
-		Vector<AbstractMapping> conflicts = new Vector<AbstractMapping>();
+		Vector<Mapping> conflicts = new Vector<Mapping>();
 		if(m instanceof SimpleMapping)
 		{
 			for(String t : sourceMaps.keySet((String)m.getEntity1()))
@@ -556,7 +556,7 @@ public class SimpleAlignment extends AbstractAlignment
 		
 		SimpleAlignment a = new SimpleAlignment();
 		int total = maps.size();
-		for(AbstractMapping m : maps)
+		for(Mapping m : maps)
 		{
 			Set<String> sourceAncestors = rels.getHighLevelAncestors((String)m.getEntity1());
 			Set<String> targetAncestors = rels.getHighLevelAncestors((String)m.getEntity2());
@@ -570,7 +570,7 @@ public class SimpleAlignment extends AbstractAlignment
 			}
 		}
 		SimpleAlignment b = new SimpleAlignment();
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 			if(m.getSimilarity() >= 0.01)
 				b.add(m);
 		return b;
@@ -661,7 +661,7 @@ public class SimpleAlignment extends AbstractAlignment
 	 */
 	public MappingRelation getRelationship(String entity1, String entity2)
 	{
-		AbstractMapping m = sourceMaps.get(entity1, entity2);
+		Mapping m = sourceMaps.get(entity1, entity2);
 		if(m == null)
 			return null;
 		return m.getRelationship();
@@ -674,7 +674,7 @@ public class SimpleAlignment extends AbstractAlignment
 	 */
 	public double getSimilarity(String entity1, String entity2)
 	{
-		AbstractMapping m = sourceMaps.get(entity1, entity2);
+		Mapping m = sourceMaps.get(entity1, entity2);
 		if(m == null)
 			return 0.0;
 		return m.getSimilarity();
@@ -687,7 +687,7 @@ public class SimpleAlignment extends AbstractAlignment
 	 */
 	public String getSimilarityPercent(String entity1, String entity2)
 	{
-		AbstractMapping m = sourceMaps.get(entity1, entity2);
+		Mapping m = sourceMaps.get(entity1, entity2);
 		if(m == null)
 			return "0%";
 		return m.getSimilarityPercent();
@@ -762,11 +762,11 @@ public class SimpleAlignment extends AbstractAlignment
 	 * @param a: the Alignment to intersect with this Alignment 
 	 * @return the Alignment corresponding to the intersection between this Alignment and a
 	 */
-	public SimpleAlignment intersection(AbstractAlignment a)
+	public SimpleAlignment intersection(Alignment a)
 	{
 		SimpleAlignment intersection = new SimpleAlignment();
 		if(a instanceof SimpleAlignment)
-			for(AbstractMapping m : maps)
+			for(Mapping m : maps)
 				if(a.contains(m))
 					intersection.add(m);
 		return intersection;
@@ -779,7 +779,7 @@ public class SimpleAlignment extends AbstractAlignment
 	}
 	
 	@Override
-	public Iterator<AbstractMapping> iterator()
+	public Iterator<Mapping> iterator()
 	{
 		return maps.iterator();
 	}
@@ -814,7 +814,7 @@ public class SimpleAlignment extends AbstractAlignment
 	{
 		if(o instanceof SimpleMapping && contains(o))
 		{
-			AbstractMapping m = (AbstractMapping)o;
+			Mapping m = (Mapping)o;
 			String entity1 = (String)m.getEntity1();
 			String entity2 = (String)m.getEntity2();
 			sourceMaps.remove(entity1, entity2);
@@ -833,7 +833,7 @@ public class SimpleAlignment extends AbstractAlignment
 	 */
 	public boolean remove(String entity1, String entity2)
 	{
-		AbstractMapping m = new SimpleMapping(entity1, entity2, 1.0);
+		Mapping m = new SimpleMapping(entity1, entity2, 1.0);
 		return remove(m);
 	}
 	

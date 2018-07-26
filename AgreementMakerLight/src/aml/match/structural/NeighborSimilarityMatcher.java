@@ -22,7 +22,7 @@ package aml.match.structural;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.AbstractMapping;
+import aml.alignment.Mapping;
 import aml.alignment.SimpleAlignment;
 import aml.match.AbstractParallelMatcher;
 import aml.ontology.EntityType;
@@ -78,7 +78,7 @@ public class NeighborSimilarityMatcher extends AbstractParallelMatcher
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
 		for(int i = 0; i < input.size(); i++)
 		{
-			AbstractMapping m = input.get(i);
+			Mapping m = input.get(i);
 			if(!aml.getEntityMap().isClass((String)m.getEntity1()))
 				continue;
 			Set<String> sourceSubClasses = rels.getSubclasses((String)m.getEntity1(),1);

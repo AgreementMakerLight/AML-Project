@@ -18,7 +18,7 @@
 ******************************************************************************/
 package aml.alignment;
 
-public abstract class AbstractMapping implements Comparable<AbstractMapping>
+public abstract class Mapping implements Comparable<Mapping>
 {
 	
 //Attributes
@@ -44,7 +44,7 @@ public abstract class AbstractMapping implements Comparable<AbstractMapping>
 	 * @param r: the mapping relationship between the entities
 	 * @param s: the status of the maping
 	 */
-	public AbstractMapping(Object entity1, Object entity2, double sim, MappingRelation r, MappingStatus s)
+	public Mapping(Object entity1, Object entity2, double sim, MappingRelation r, MappingStatus s)
 	{
 		this.entity1 = entity1;
 		this.entity2 = entity2;
@@ -63,7 +63,7 @@ public abstract class AbstractMapping implements Comparable<AbstractMapping>
 	 * Creates a new mapping that is a copy of m
 	 * @param m: the mapping to copy
 	 */
-	public AbstractMapping(AbstractMapping m)
+	public Mapping(Mapping m)
 	{
 		this(m.entity1,m.entity2,m.similarity,m.rel,m.status);
 	}
@@ -78,7 +78,7 @@ public abstract class AbstractMapping implements Comparable<AbstractMapping>
 	 * status at that stage.
 	 */
 	@Override
-	public int compareTo(AbstractMapping o)
+	public int compareTo(Mapping o)
 	{
 		if(this.getStatus().equals(o.getStatus()))
 		{
@@ -100,9 +100,9 @@ public abstract class AbstractMapping implements Comparable<AbstractMapping>
 	@Override
 	public boolean equals(Object o)
 	{
-		if(!(o instanceof AbstractMapping))
+		if(!(o instanceof Mapping))
 			return false;
-		AbstractMapping m = (AbstractMapping)o;
+		Mapping m = (Mapping)o;
 		return (this.entity1.equals(m.entity1) && this.entity2.equals(m.entity2));
 	}
 

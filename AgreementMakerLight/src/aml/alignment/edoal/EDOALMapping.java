@@ -21,11 +21,11 @@ package aml.alignment.edoal;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
-import aml.alignment.AbstractMapping;
+import aml.alignment.Mapping;
 import aml.alignment.MappingRelation;
 import aml.alignment.MappingStatus;
 
-public class EDOALMapping extends AbstractMapping
+public class EDOALMapping extends Mapping
 {
 	
 //Constructors

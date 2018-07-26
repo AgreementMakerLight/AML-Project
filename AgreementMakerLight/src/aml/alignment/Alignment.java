@@ -27,7 +27,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.ontology.EntityType;
 
-public abstract class AbstractAlignment implements Collection<AbstractMapping>
+public abstract class Alignment implements Collection<Mapping>
 {
 
 //Attributes
@@ -36,14 +36,14 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	protected String sourceURI;
 	protected String targetURI;
 	//Mappings organized in list
-	protected Vector<AbstractMapping> maps;
+	protected Vector<Mapping> maps;
 	
 //Constructors
 
 	/**
 	 * Creates a new empty Alignment between the source and target ontologies
 	 */
-	public AbstractAlignment()
+	public Alignment()
 	{
 		this(AML.getInstance().getSource().getURI(), AML.getInstance().getTarget().getURI());
 	}
@@ -51,18 +51,18 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	/**
 	 * Creates a new empty Alignment
 	 */
-	public AbstractAlignment(String sourceUri, String targetUri)
+	public Alignment(String sourceUri, String targetUri)
 	{
 		this.sourceURI = sourceUri;
 		this.targetURI = targetUri;
-		maps = new Vector<AbstractMapping>(0,1);
+		maps = new Vector<Mapping>(0,1);
 	}
 
 	/**
 	 * Creates a new Alignment that contains the input collection of mappings
 	 * @param a: the collection of mappings to include in this Alignment
 	 */
-	public AbstractAlignment(Collection<AbstractMapping> a)
+	public Alignment(Collection<Mapping> a)
 	{
 		this();
 		addAll(a);
@@ -71,13 +71,13 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 //Public Methods
 
 	@Override
-	public boolean add(AbstractMapping m)
+	public boolean add(Mapping m)
 	{
 		return maps.add(m);
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends AbstractMapping> a)
+	public boolean addAll(Collection<? extends Mapping> a)
 	{
 		return maps.addAll(a);
 	}
@@ -88,10 +88,10 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 * in this Alignment
 	 * @param a: the collection of Mappings to add to this Alignment
 	 */
-	public void addAllNonConflicting(Collection<? extends AbstractMapping> a)
+	public void addAllNonConflicting(Collection<? extends Mapping> a)
 	{
-		Vector<AbstractMapping> nonConflicting = new Vector<AbstractMapping>();
-		for(AbstractMapping m : a)
+		Vector<Mapping> nonConflicting = new Vector<Mapping>();
+		for(Mapping m : a)
 			if(!this.containsConflict(m))
 				nonConflicting.add(m);
 		addAll(nonConflicting);
@@ -104,10 +104,10 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 * Alignment
 	 * @param a: the Alignment to add to this Alignment
 	 */
-	public void addAllOneToOne(AbstractAlignment a)
+	public void addAllOneToOne(Alignment a)
 	{
 		a.sortDescending();
-		for(AbstractMapping m : a.maps)
+		for(Mapping m : a.maps)
 			if(!this.containsConflict(m))
 				add(m);
 	}
@@ -120,13 +120,13 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	@Override
 	public void clear()
 	{
-		maps = new Vector<AbstractMapping>(0,1);
+		maps = new Vector<Mapping>(0,1);
 	}
 	
 	@Override
 	public boolean contains(Object o)
 	{
-		return o instanceof AbstractMapping && maps.contains((SimpleMapping)o);
+		return o instanceof Mapping && maps.contains((SimpleMapping)o);
 	}
 	
 	@Override
@@ -143,13 +143,13 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 * @return whether the Alignment contains a Mapping that conflicts with the given
 	 * Mapping and has a higher similarity
 	 */
-	public abstract boolean containsBetterMapping(AbstractMapping m);
+	public abstract boolean containsBetterMapping(Mapping m);
 	
 	/**
  	 * @param m: the Mapping to check in the Alignment 
 	 * @return whether the Alignment contains another Mapping involving either entity in m
 	 */
-	public abstract boolean containsConflict(AbstractMapping m);
+	public abstract boolean containsConflict(Mapping m);
 	
 	/**
  	 * @param entity: the entity to check in the Alignment 
@@ -179,7 +179,7 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	public int countConflicts()
 	{
 		int count = 0;
-		for(AbstractMapping m : maps)
+		for(Mapping m : maps)
 			if(m.getRelationship().equals(MappingRelation.UNKNOWN))
 				count++;
 		return count;
@@ -189,29 +189,29 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 * @param a: the Alignment to subtract from this Alignment 
 	 * @return the Alignment corresponding to the difference between this Alignment and a
 	 */
-	public abstract AbstractAlignment difference(AbstractAlignment a);
+	public abstract Alignment difference(Alignment a);
 	
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof AbstractAlignment && containsAll((AbstractAlignment)o);
+		return o instanceof Alignment && containsAll((Alignment)o);
 	}
 	
 	/**
 	 * @param ref: the reference Alignment to evaluate this Alignment
 	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
-	public abstract int[] evaluate(AbstractAlignment ref);
+	public abstract int[] evaluate(Alignment ref);
 
 	/**
 	 * @param a: the base Alignment to which this Alignment will be compared 
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
-	public double gain(AbstractAlignment a)
+	public double gain(Alignment a)
 	{
 		double gain = 0.0;
-		for(AbstractMapping m : maps)
+		for(Mapping m : maps)
 			if(!a.contains(m))
 				gain++;
 		gain /= a.size();
@@ -223,14 +223,14 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
-	public abstract double gainOneToOne(AbstractAlignment a);
+	public abstract double gainOneToOne(Alignment a);
 	
 	/**
 	 * @param index: the index of the Mapping to return in the list of Mappings
  	 * @return the Mapping at the input index (note that the index will change
  	 * during sorting) or null if the uri falls outside the list
 	 */
-	public AbstractMapping get(int index)
+	public Mapping get(int index)
 	{
 		if(index < 0 || index >= maps.size())
 			return null;
@@ -241,13 +241,13 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 * @param m: the Mapping to check on the Alignment
 	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping
 	 */
-	public abstract Vector<AbstractMapping> getConflicts(AbstractMapping m);
+	public abstract Vector<Mapping> getConflicts(Mapping m);
 	
 	/**
 	 * @param m: the Mapping to search in the Alignment
 	 * @return the index of the Mapping
 	 */
-	public int getIndex(AbstractMapping m)
+	public int getIndex(Mapping m)
 	{
 		for(int i = 0; i < maps.size(); i++)
 		{
@@ -283,7 +283,7 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 * @param a: the Alignment to intersect with this Alignment 
 	 * @return the Alignment corresponding to the intersection between this Alignment and a
 	 */
-	public abstract AbstractAlignment intersection(AbstractAlignment a);
+	public abstract Alignment intersection(Alignment a);
 	
 	@Override
 	public boolean isEmpty()
@@ -292,7 +292,7 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	}
 	
 	@Override
-	public Iterator<AbstractMapping> iterator()
+	public Iterator<Mapping> iterator()
 	{
 		return maps.iterator();
 	}
@@ -321,7 +321,7 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	public boolean retainAll(Collection<?> c)
 	{
 		boolean check = false;
-		for(AbstractMapping m : this)
+		for(Mapping m : this)
 			if(!c.contains(m))
 				check = remove(m) || check;
 		return check;
@@ -346,11 +346,11 @@ public abstract class AbstractAlignment implements Collection<AbstractMapping>
 	 */
 	public void sortDescending()
 	{
-		Collections.sort(maps,new Comparator<AbstractMapping>()
+		Collections.sort(maps,new Comparator<Mapping>()
         {
 			//Sorting in descending order can be done simply by
 			//reversing the order of the elements in the comparison
-            public int compare(AbstractMapping m1, AbstractMapping m2)
+            public int compare(Mapping m1, Mapping m2)
             {
         		return m2.compareTo(m1);
             }

@@ -15,6 +15,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
+import aml.alignment.edoal.EDOALAlignment;
 import aml.settings.Namespace;
 
 public class AlignmentIO
@@ -37,7 +38,7 @@ public class AlignmentIO
 		
 		//Read the alignment level
 		String level = align.elementText(RDFElement.LEVEL.toString());
-		boolean edoal = level.contains("EDOAL");
+		boolean edoal = level.equals(EDOALAlignment.LEVEL);
 
 		if(edoal)
 		{
@@ -189,7 +190,7 @@ public class AlignmentIO
 	public static void saveDoubles(SimpleAlignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 			outStream.println("<" + m.getEntity1() + "> <" + m.getEntity2() + ">");
 		outStream.close();
 	}
@@ -216,7 +217,7 @@ public class AlignmentIO
 			outStream.println("\t<" + RDFElement.TYPE + ">??</" + RDFElement.TYPE + ">");
 		outStream.println("\t<" + RDFElement.ONTO1 + ">" + a.getSourceURI() + "</" + RDFElement.ONTO1 + ">");
 		outStream.println("\t<" + RDFElement.ONTO2 + ">" + a.getTargetURI() + "</" + RDFElement.ONTO2 + ">");
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 			outStream.println(m.toRDF());
 		outStream.println("</" + RDFElement.ALIGNMENT_ + ">");
 		outStream.println("</rdf:RDF>");		
@@ -235,7 +236,7 @@ public class AlignmentIO
 		outStream.println("#entity1 ontology:\t" + a.getSourceURI());
 		outStream.println("#entity2 ontology:\t" + a.getTargetURI());
 		outStream.println("entity1 URI\tSource Label\tTarget URI\tTarget Label\tSimilarity\tRelationship\tStatus");
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 			outStream.println(m.toString());
 		outStream.close();
 	}

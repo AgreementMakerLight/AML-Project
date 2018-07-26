@@ -24,9 +24,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.AbstractMapping;
+import aml.alignment.Mapping;
 import aml.alignment.SimpleAlignment;
-import aml.match.AbstractMatcher;
+import aml.match.Matcher;
 import aml.match.PrimaryMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
@@ -36,7 +36,7 @@ import aml.ontology.semantics.EntityMap;
 import aml.util.similarity.ISub;
 import aml.util.similarity.Similarity;
 
-public class ProcessMatcher extends AbstractMatcher implements PrimaryMatcher
+public class ProcessMatcher extends Matcher implements PrimaryMatcher
 {
 	
 //Attributes
@@ -86,7 +86,7 @@ public class ProcessMatcher extends AbstractMatcher implements PrimaryMatcher
 			a = neighborSimilarity(a);
 		}
 		SimpleAlignment b = new SimpleAlignment();
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 		{
 			if(aml.isToMatchSource((String)m.getEntity1()) && aml.isToMatchTarget((String)m.getEntity2()) &&
 					m.getSimilarity() >= threshold)
@@ -152,7 +152,7 @@ public class ProcessMatcher extends AbstractMatcher implements PrimaryMatcher
 	private SimpleAlignment neighborSimilarity(SimpleAlignment a)
 	{
 		SimpleAlignment b = new SimpleAlignment();
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 		{
 			double maxSim = 0.0;
 			HashSet<String> sourceChildren = getChildren((String)m.getEntity1(),false);
@@ -161,7 +161,7 @@ public class ProcessMatcher extends AbstractMatcher implements PrimaryMatcher
 			{
 				for(String t : targetChildren)
 				{
-					AbstractMapping n = a.getBidirectional(s, t);
+					Mapping n = a.getBidirectional(s, t);
 					if(n != null && n.getSimilarity() > maxSim)
 						maxSim = n.getSimilarity();
 				}
@@ -173,7 +173,7 @@ public class ProcessMatcher extends AbstractMatcher implements PrimaryMatcher
 			{
 				for(String t : targetParents)
 				{
-					AbstractMapping n = a.getBidirectional(s, t);
+					Mapping n = a.getBidirectional(s, t);
 					if(n != null && n.getSimilarity() > maxSim)
 						maxSim = n.getSimilarity();
 				}

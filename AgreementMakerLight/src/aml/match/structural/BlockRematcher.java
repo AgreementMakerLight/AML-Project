@@ -22,15 +22,15 @@ package aml.match.structural;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.AbstractMapping;
+import aml.alignment.Mapping;
 import aml.alignment.SimpleAlignment;
-import aml.match.AbstractMatcher;
+import aml.match.Matcher;
 import aml.match.Rematcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.semantics.EntityMap;
 
-public class BlockRematcher extends AbstractMatcher implements Rematcher
+public class BlockRematcher extends Matcher implements Rematcher
 {
 	
 //Attributes
@@ -60,7 +60,7 @@ public class BlockRematcher extends AbstractMatcher implements Rematcher
 		
 		SimpleAlignment high = a.getHighLevelAlignment();
 		EntityMap rMap = aml.getEntityMap();
-		for(AbstractMapping m : a)
+		for(Mapping m : a)
 		{
 			String sId = (String)m.getEntity1();
 			String tId = (String)m.getEntity2();
