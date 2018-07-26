@@ -12,8 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An AttributeOccurrenceRestriction constrains the cardinality of a property  *
-* or relation.                                                                *
+* An AttributeValueRestriction restricts the value of properties or relations *
+* to a particular value.                                                      *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -22,14 +22,14 @@ package aml.alignment.edoal;
 import java.util.Collection;
 import java.util.Vector;
 
-public class AttributeOccurrenceRestriction extends ClassExpression
+public class AttributeValueRestriction extends ClassExpression
 {
 
 //Attributes
 	
 	private AttributeExpression onAttribute;
 	private Comparator comp;
-	private NonNegativeInteger val;
+	private ValueExpression val;
 	
 //Constructor
 	
@@ -39,13 +39,15 @@ public class AttributeOccurrenceRestriction extends ClassExpression
 	 * @param comp: the comparator (typically an EDOALComparator)
 	 * @param val: the value (must be a non-negative integer)
 	 */
-	public AttributeOccurrenceRestriction(AttributeExpression onAttribute, Comparator comp, NonNegativeInteger val)
+	public AttributeValueRestriction(AttributeExpression onAttribute, Comparator comp, ValueExpression val)
 	{
 		super();
 		this.onAttribute = onAttribute;
 		this.comp = comp;
 		this.val = val;
 		elements.addAll(onAttribute.getElements());
+		//The ValueExpression may be an IndividualId or AttributeExpression, so we must add its elements as well
+		elements.addAll(val.getElements());
 	}
 	
 //Public Methods
@@ -53,10 +55,10 @@ public class AttributeOccurrenceRestriction extends ClassExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof AttributeOccurrenceRestriction &&
-				((AttributeOccurrenceRestriction)o).comp.equals(this.comp) &&
-				((AttributeOccurrenceRestriction)o).val.equals(this.val) &&
-				((AttributeOccurrenceRestriction)o).onAttribute.equals(this.onAttribute);
+		return o instanceof AttributeValueRestriction &&
+				((AttributeValueRestriction)o).comp.equals(this.comp) &&
+				((AttributeValueRestriction)o).val.equals(this.val) &&
+				((AttributeValueRestriction)o).onAttribute.equals(this.onAttribute);
 	}
 	
 	@Override
