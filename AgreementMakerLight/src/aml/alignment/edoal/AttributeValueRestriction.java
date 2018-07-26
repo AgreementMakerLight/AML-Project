@@ -74,14 +74,15 @@ public class AttributeValueRestriction extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:AttributeValueRestriction>\n" +
-				"<onAttribute>\n";
-		rdf += onAttribute.toRDF() + "\n";
-		rdf += "</onAttribute>\n";
-		rdf += comp.toRDF() + "\n";
-		rdf += "<edoal:value>\n" + val.toRDF() + "\n</edoal:value>\n";
-		rdf += "</edoal:AttributeValueRestriction>\n";
-		return rdf;
+		return "<edoal:AttributeValueRestriction>\n" +
+				"<onAttribute>\n" +
+				onAttribute.toRDF() +
+				"\n</onAttribute>\n" +
+				comp.toRDF() +
+				"\n<edoal:value>\n" +
+				val.toRDF() +
+				"\n</edoal:value>\n" +
+				"</edoal:AttributeValueRestriction>\n";
 	}
 
 	@Override

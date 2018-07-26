@@ -12,9 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An AttributeOccurrenceRestriction represents the set of individuals whose   *
-* cardinality for a given property or relation falls under the specified      *
-* restriction.                                                                *
+* An AttributeValueRestriction represents the set of individuals whose value  *
+* for a given property or relation falls under the specified restriction.     *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -23,30 +22,32 @@ package aml.alignment.edoal;
 import java.util.Collection;
 import java.util.Vector;
 
-public class AttributeOccurrenceRestriction extends ClassExpression
+public class PropertyValueRestriction extends ClassExpression
 {
 
 //Attributes
 	
 	private AttributeExpression onAttribute;
 	private Comparator comp;
-	private NonNegativeInteger val;
+	private ValueExpression val;
 	
 //Constructor
 	
 	/**
-	 * Constructs a new AttributeOccurrenceRestriction on the given attribute with the given comparator and value
+	 * Constructs a new AttributeValueRestriction on the given attribute with the given comparator and value
 	 * @param onAttribute: the restricted attribute
 	 * @param comp: the comparator (typically an EDOALComparator)
 	 * @param val: the value (must be a non-negative integer)
 	 */
-	public AttributeOccurrenceRestriction(AttributeExpression onAttribute, Comparator comp, NonNegativeInteger val)
+	public PropertyValueRestriction(AttributeExpression onAttribute, Comparator comp, ValueExpression val)
 	{
 		super();
 		this.onAttribute = onAttribute;
 		this.comp = comp;
 		this.val = val;
 		elements.addAll(onAttribute.getElements());
+		//The ValueExpression may be an IndividualId or AttributeExpression, so we must add its elements as well
+		elements.addAll(val.getElements());
 	}
 	
 //Public Methods
@@ -54,10 +55,10 @@ public class AttributeOccurrenceRestriction extends ClassExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof AttributeOccurrenceRestriction &&
-				((AttributeOccurrenceRestriction)o).comp.equals(this.comp) &&
-				((AttributeOccurrenceRestriction)o).val.equals(this.val) &&
-				((AttributeOccurrenceRestriction)o).onAttribute.equals(this.onAttribute);
+		return o instanceof PropertyValueRestriction &&
+				((PropertyValueRestriction)o).comp.equals(this.comp) &&
+				((PropertyValueRestriction)o).val.equals(this.val) &&
+				((PropertyValueRestriction)o).onAttribute.equals(this.onAttribute);
 	}
 	
 	@Override
@@ -73,21 +74,19 @@ public class AttributeOccurrenceRestriction extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		//In RDF we have to stick with the typo on "occurence" as it is now part of the official syntax...
-		return "<edoal:AttributeOccurenceRestriction>\n" +
-				"<onAttribute>\n" +
-				onAttribute.toRDF() +
-				"\n</onAttribute>\n" +
-				comp.toRDF() + 
-				"\n<edoal:value>" +
-				val.toRDF() +
-				"</edoal:value>\n" +
-				"</edoal:AttributeOccurenceRestriction>\n";
+		String rdf = "<edoal:AttributeValueRestriction>\n" +
+				"<onAttribute>\n";
+		rdf += onAttribute.toRDF() + "\n";
+		rdf += "</onAttribute>\n";
+		rdf += comp.toRDF() + "\n";
+		rdf += "<edoal:value>\n" + val.toRDF() + "\n</edoal:value>\n";
+		rdf += "</edoal:AttributeValueRestriction>\n";
+		return rdf;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "occurrence(" + onAttribute.toString() + ") " + comp.toString() + " " + val.toString();
+		return "value(" + onAttribute.toString() + ") " + comp.toString() + " " + val.toString();
 	}
 }

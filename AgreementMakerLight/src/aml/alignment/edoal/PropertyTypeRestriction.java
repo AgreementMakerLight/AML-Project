@@ -12,33 +12,32 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A negation of an EDOAL/OWL Class.                                           *
+* A PropertyDomainRestriction represents the set of properties whose range    *
+* falls under the given restrictions.                                         *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment.edoal;
 
 import java.util.Collection;
-import java.util.HashSet;
 
-public class ClassNegation extends ClassExpression
+public class PropertyTypeRestriction extends PropertyExpression
 {
 
 //Attributes
 	
-	private ClassExpression neg;
+	private Datatype type;
 	
 //Constructor
 	
 	/**
-	 * Constructs a new ClassNegation from the given class expression
-	 * @param neg: the class expression in the negation
+	 * Constructs a new PropertyTypeRestriction with the range
+	 * @param type: the datatype to restrict the range of the property
 	 */
-	public ClassNegation(ClassExpression neg)
+	public PropertyTypeRestriction(Datatype type)
 	{
 		super();
-		this.neg = neg;
-		elements.addAll(neg.getElements());
+		this.type = type;
 	}
 	
 //Public Methods
@@ -46,32 +45,29 @@ public class ClassNegation extends ClassExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof ClassNegation &&
-				((ClassNegation)o).neg.equals(this.neg);
+		return o instanceof PropertyTypeRestriction &&
+				((PropertyTypeRestriction)o).type.equals(this.type);
 	}
 	
 	@Override
-	@SuppressWarnings("unchecked")
-	public Collection<ClassExpression> getComponents()
+	public Collection<Expression> getComponents()
 	{
-		HashSet<ClassExpression> components = new HashSet<ClassExpression>();
-		components.add(neg);
-		return components;
+		return null;
 	}
 	
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Class>\n" +
-				"<edoal:not>\n" +
-				neg.toRDF() + 
-				"\n</edoal:not>\n" +
-				"</edoal:Class>\n";
+		return "<edoal:AttributeTypeRestriction>\n" +
+				"<edoal:datatype>\n" +
+				type.toRDF() +
+				"\n</edoal:datatype>\n" +
+				"</edoal:AttributeTypeRestriction>\n";
 	}
 
 	@Override
 	public String toString()
 	{
-		return "NOT[" + neg.toString() + "]";
+		return "data property range(" + type.toString() + ")";
 	}
 }

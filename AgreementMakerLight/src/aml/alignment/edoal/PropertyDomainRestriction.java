@@ -12,33 +12,34 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A negation of an EDOAL/OWL Class.                                           *
+* A PropertyDomainRestriction represents the set of properties whose domain   *
+* falls under the given restrictions.                                         *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment.edoal;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Vector;
 
-public class ClassNegation extends ClassExpression
+public class PropertyDomainRestriction extends PropertyExpression
 {
 
-//Attributes
+//Propertys
 	
-	private ClassExpression neg;
+	private ClassExpression rest;
 	
 //Constructor
 	
 	/**
-	 * Constructs a new ClassNegation from the given class expression
-	 * @param neg: the class expression in the negation
+	 * Constructs a new PropertyDomainRestriction with the class expression as domain
+	 * @param rest: the class expression defining the domain
 	 */
-	public ClassNegation(ClassExpression neg)
+	public PropertyDomainRestriction(ClassExpression rest)
 	{
 		super();
-		this.neg = neg;
-		elements.addAll(neg.getElements());
+		this.rest = rest;
+		elements.addAll(rest.getElements());
 	}
 	
 //Public Methods
@@ -46,32 +47,32 @@ public class ClassNegation extends ClassExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof ClassNegation &&
-				((ClassNegation)o).neg.equals(this.neg);
+		return o instanceof PropertyDomainRestriction &&
+				((PropertyDomainRestriction)o).rest.equals(this.rest);
 	}
 	
 	@Override
-	@SuppressWarnings("unchecked")
-	public Collection<ClassExpression> getComponents()
+	public Collection<Expression> getComponents()
 	{
-		HashSet<ClassExpression> components = new HashSet<ClassExpression>();
-		components.add(neg);
+		Vector<Expression> components = new Vector<Expression>();
+		components.add(rest);
 		return components;
 	}
 	
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Class>\n" +
-				"<edoal:not>\n" +
-				neg.toRDF() + 
-				"\n</edoal:not>\n" +
-				"</edoal:Class>\n";
+		String rdf = "<edoal:PropertyDomainRestriction>\n" +
+				"<edoal:class>\n" +
+				rest.toRDF() + 
+				"\n</edoal:class>\n" +
+				"</edoal:PropertyDomainRestriction>\n";
+		return rdf;
 	}
 
 	@Override
 	public String toString()
 	{
-		return "NOT[" + neg.toString() + "]";
+		return "data property domain(" + rest.toString() + ")";
 	}
 }

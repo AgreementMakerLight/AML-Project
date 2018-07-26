@@ -33,7 +33,7 @@ public class AttributeTypeRestriction extends ClassExpression
 //Constructor
 	
 	/**
-	 * Constructs a new AttributeTypeRestriction on the given attribute with the given comparator and value
+	 * Constructs a new AttributeTypeRestriction on the given attribute with the given datatype
 	 * @param onAttribute: the restricted property
 	 * @param type: the datatype to restrict the range of the property
 	 */
