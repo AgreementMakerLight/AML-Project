@@ -37,7 +37,7 @@ public class Datatype extends AbstractExpression
 	{
 		super();
 		this.uri = uri;
-		//Datatypes are not matcheable, so even if the datatype in question is
+		//Datatypes are not matchable, so even if the datatype in question is
 		//specific to any of the input ontologies, we don't add it to the entities
 	}
 
@@ -56,6 +56,15 @@ public class Datatype extends AbstractExpression
 	public Collection<Expression> getComponents()
 	{
 		return null;
+	}
+	
+	@Override
+	/**
+	 * A Datatype has no (matchable) elements, so its hashCode is defined by its URI
+	 */
+	public int hashCode()
+	{
+		return uri.hashCode();
 	}
 	
 	@Override

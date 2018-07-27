@@ -71,6 +71,15 @@ public class Literal extends AbstractExpression implements ValueExpression
 	}
 	
 	@Override
+	/**
+	 * A Literal has no (matchable) elements, so its hashCode is defined by its value
+	 */
+	public int hashCode()
+	{
+		return value.hashCode();
+	}
+	
+	@Override
 	public String toRDF()
 	{
 		String rdf = "<edoal:Literal "; 
