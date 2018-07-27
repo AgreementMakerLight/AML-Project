@@ -47,6 +47,9 @@ public class PropertyId extends PropertyExpression
 	}
 	
 	@Override
+	/**
+	 * A PropertyId has no subcomponents
+	 */
 	public Collection<Expression> getComponents()
 	{
 		return null;

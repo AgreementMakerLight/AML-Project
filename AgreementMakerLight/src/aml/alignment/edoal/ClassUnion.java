@@ -53,6 +53,10 @@ public class ClassUnion extends ClassExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * The components of a ClassUnion are the set of class expressions
+	 * in the union
+	 */
 	public Collection<ClassExpression> getComponents()
 	{
 		return union;

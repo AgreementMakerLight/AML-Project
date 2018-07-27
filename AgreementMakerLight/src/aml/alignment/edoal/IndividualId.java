@@ -47,6 +47,9 @@ public class IndividualId extends AbstractExpression implements ValueExpression
 	}
 	
 	@Override
+	/**
+	 * An IndividualId has no subcomponents
+	 */
 	public Collection<Expression> getComponents()
 	{
 		return null;

@@ -51,6 +51,9 @@ public class ReflexiveRelation extends RelationExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * A ReflexiveRelation has as single subcomponent the reflexive relation expression
+	 */
 	public Collection<RelationExpression> getComponents()
 	{
 		HashSet<RelationExpression> components = new HashSet<RelationExpression>();

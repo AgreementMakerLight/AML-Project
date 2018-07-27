@@ -60,6 +60,11 @@ public class PropertyComposition extends PropertyExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * The components of a PropertyComposition are the list of attribute expressions that
+	 * form the composition, with the last being a property expression and all other being
+	 * relation expressions
+	 */
 	public Collection<AttributeExpression> getComponents()
 	{
 		Vector<AttributeExpression> components = new Vector<AttributeExpression>(path);

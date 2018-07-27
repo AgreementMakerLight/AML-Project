@@ -61,6 +61,12 @@ public class AttributeOccurrenceRestriction extends ClassExpression
 	}
 	
 	@Override
+	/**
+	 * The components of an AttributeDomainRestriction are
+	 * {attribute expression,comparator,non-negative integer (literal)}
+	 * corresponding to the restricted relation/propertye, the restriction
+	 * comparator, and the restricted cardinality
+	 */
 	public Collection<Expression> getComponents()
 	{
 		Vector<Expression> components = new Vector<Expression>();

@@ -52,6 +52,9 @@ public class SymmetricRelation extends RelationExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * A SymmetricRelation has as single subcomponent the symmetric relation expression
+	 */
 	public Collection<RelationExpression> getComponents()
 	{
 		HashSet<RelationExpression> components = new HashSet<RelationExpression>();

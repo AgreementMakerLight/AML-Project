@@ -62,6 +62,9 @@ public class Literal extends AbstractExpression implements ValueExpression
 	}
 	
 	@Override
+	/**
+	 * A Literal has no subcomponents
+	 */
 	public Collection<Expression> getComponents()
 	{
 		return null;

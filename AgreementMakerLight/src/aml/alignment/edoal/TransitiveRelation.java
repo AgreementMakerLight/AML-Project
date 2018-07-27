@@ -51,6 +51,9 @@ public class TransitiveRelation extends RelationExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * A TransitiveRelation has as single subcomponent the transitive relation expression
+	 */
 	public Collection<RelationExpression> getComponents()
 	{
 		HashSet<RelationExpression> components = new HashSet<RelationExpression>();

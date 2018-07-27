@@ -53,6 +53,10 @@ public class ClassIntersection extends ClassExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * The components of a ClassIntersection are the set of class expressions
+	 * in the intersection
+	 */
 	public Collection<ClassExpression> getComponents()
 	{
 		return intersect;

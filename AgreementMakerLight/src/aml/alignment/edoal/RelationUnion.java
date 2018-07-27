@@ -53,6 +53,10 @@ public class RelationUnion extends RelationExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * The components of a RelationUnion are the set of relation
+	 * expressions in the union
+	 */
 	public Collection<RelationExpression> getComponents()
 	{
 		return union;

@@ -52,6 +52,10 @@ public class PropertyNegation extends PropertyExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * A PropertyNegation has as single subcomponent the property expression
+	 * restricting the domain of the property
+	 */
 	public Collection<PropertyExpression> getComponents()
 	{
 		HashSet<PropertyExpression> components = new HashSet<PropertyExpression>();

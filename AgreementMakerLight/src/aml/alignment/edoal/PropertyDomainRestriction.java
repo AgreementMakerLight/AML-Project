@@ -52,9 +52,14 @@ public class PropertyDomainRestriction extends PropertyExpression
 	}
 	
 	@Override
-	public Collection<Expression> getComponents()
+	@SuppressWarnings("unchecked")
+	/**
+	 * A PropertyDomainRestriction has as single subcomponent the class expression
+	 * restricting the domain of the property
+	 */
+	public Collection<ClassExpression> getComponents()
 	{
-		Vector<Expression> components = new Vector<Expression>();
+		Vector<ClassExpression> components = new Vector<ClassExpression>();
 		components.add(rest);
 		return components;
 	}

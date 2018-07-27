@@ -53,6 +53,10 @@ public class PropertyIntersection extends PropertyExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * The components of a PropertyIntersection are the set of property
+	 * expressions in the intersection
+	 */
 	public Collection<PropertyExpression> getComponents()
 	{
 		return intersect;

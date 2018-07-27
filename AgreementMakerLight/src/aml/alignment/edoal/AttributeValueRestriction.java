@@ -62,6 +62,12 @@ public class AttributeValueRestriction extends ClassExpression
 	}
 	
 	@Override
+	/**
+	 * The components of an AttributeValueRestriction are
+	 * {attribute expression,comparator,value expression}
+	 * corresponding to the restricted propertye, the restriction
+	 * comparator, and the range restriction
+	 */
 	public Collection<Expression> getComponents()
 	{
 		Vector<Expression> components = new Vector<Expression>();

@@ -20,6 +20,7 @@
 package aml.alignment.edoal;
 
 import java.util.Collection;
+import java.util.Vector;
 
 public class PropertyTypeRestriction extends PropertyExpression
 {
@@ -50,9 +51,16 @@ public class PropertyTypeRestriction extends PropertyExpression
 	}
 	
 	@Override
-	public Collection<Expression> getComponents()
+	@SuppressWarnings("unchecked")
+	/**
+	 * A PropertyTypeRestriction has as single subcomponent the datatype
+	 * restricting the range of the property
+	 */
+	public Collection<Datatype> getComponents()
 	{
-		return null;
+		Vector<Datatype> components = new Vector<Datatype>();
+		components.add(type);
+		return components;
 	}
 	
 	@Override

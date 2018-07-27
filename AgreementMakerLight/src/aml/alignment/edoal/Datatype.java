@@ -50,6 +50,9 @@ public class Datatype extends AbstractExpression
 	}
 	
 	@Override
+	/**
+	 * A Datatype has no subcomponents
+	 */
 	public Collection<Expression> getComponents()
 	{
 		return null;

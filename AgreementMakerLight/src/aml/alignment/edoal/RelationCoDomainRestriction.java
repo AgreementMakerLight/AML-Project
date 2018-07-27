@@ -52,9 +52,14 @@ public class RelationCoDomainRestriction extends RelationExpression
 	}
 	
 	@Override
-	public Collection<Expression> getComponents()
+	@SuppressWarnings("unchecked")
+	/**
+	 * A RelationCoDomainRestriction has as single argument the class expression
+	 * restricting the range of the relation
+	 */
+	public Collection<ClassExpression> getComponents()
 	{
-		Vector<Expression> components = new Vector<Expression>();
+		Vector<ClassExpression> components = new Vector<ClassExpression>();
 		components.add(rest);
 		return components;
 	}

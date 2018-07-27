@@ -56,10 +56,15 @@ public class AttributeTypeRestriction extends ClassExpression
 	}
 	
 	@Override
+	/**
+	 * The components of an AttributeTypeRestriction are {relation expression,datatype}
+	 * corresponding to the restricted property and the range restriction
+	 */
 	public Collection<Expression> getComponents()
 	{
 		Vector<Expression> components = new Vector<Expression>();
 		components.add(onAttribute);
+		components.add(type);
 		return components;
 	}
 	

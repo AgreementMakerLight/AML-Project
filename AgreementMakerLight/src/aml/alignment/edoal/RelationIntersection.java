@@ -53,6 +53,10 @@ public class RelationIntersection extends RelationExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * The components of a RelationIntersection are the set of relation
+	 * expressions in the intersection
+	 */
 	public Collection<RelationExpression> getComponents()
 	{
 		return intersect;

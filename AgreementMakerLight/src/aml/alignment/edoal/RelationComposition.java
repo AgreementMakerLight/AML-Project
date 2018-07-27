@@ -54,6 +54,10 @@ public class RelationComposition extends RelationExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * The components of a RelationComposition are the list of relation
+	 * expressions in the composition
+	 */
 	public Collection<RelationExpression> getComponents()
 	{
 		return path;

@@ -51,6 +51,9 @@ public class InverseRelation extends RelationExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * An InverseRelation has as single subcomponent the inversed relation expression
+	 */
 	public Collection<RelationExpression> getComponents()
 	{
 		HashSet<RelationExpression> components = new HashSet<RelationExpression>();

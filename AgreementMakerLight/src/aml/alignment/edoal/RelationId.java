@@ -46,6 +46,9 @@ public class RelationId extends RelationExpression
 	}
 	
 	@Override
+	/**
+	 * A RelationId has no subcomponents
+	 */
 	public Collection<Expression> getComponents()
 	{
 		return null;

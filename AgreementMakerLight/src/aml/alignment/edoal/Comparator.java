@@ -54,6 +54,9 @@ public class Comparator extends AbstractExpression
 	}
 	
 	@Override
+	/**
+	 * A Comparator has no subcomponents
+	 */
 	public Collection<Expression> getComponents()
 	{
 		return null;

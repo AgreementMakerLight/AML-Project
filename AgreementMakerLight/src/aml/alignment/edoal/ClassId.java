@@ -47,6 +47,9 @@ public class ClassId extends ClassExpression
 	}
 	
 	@Override
+	/**
+	 * A ClassId has no subcomponents
+	 */
 	public Collection<Expression> getComponents()
 	{
 		return null;

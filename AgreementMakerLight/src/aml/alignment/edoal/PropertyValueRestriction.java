@@ -58,6 +58,9 @@ public class PropertyValueRestriction extends PropertyExpression
 	}
 	
 	@Override
+	/**
+	 * The components of a PropertyValueRestriction are {comparator, value expression}
+	 */
 	public Collection<Expression> getComponents()
 	{
 		Vector<Expression> components = new Vector<Expression>();

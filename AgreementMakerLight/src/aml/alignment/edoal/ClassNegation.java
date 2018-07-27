@@ -52,6 +52,9 @@ public class ClassNegation extends ClassExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * A ClassNegation has as single subcomponent the negated class expression
+	 */
 	public Collection<ClassExpression> getComponents()
 	{
 		HashSet<ClassExpression> components = new HashSet<ClassExpression>();

@@ -58,6 +58,10 @@ public class AttributeDomainRestriction extends ClassExpression
 	}
 	
 	@Override
+	/**
+	 * The components of an AttributeDomainRestriction are {relation expression,class expression}
+	 * corresponding to the restricted relation and the range restriction
+	 */
 	public Collection<Expression> getComponents()
 	{
 		Vector<Expression> components = new Vector<Expression>();

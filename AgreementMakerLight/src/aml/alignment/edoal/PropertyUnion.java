@@ -53,6 +53,10 @@ public class PropertyUnion extends PropertyExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * The components of a PropertyIntersection are the set of property
+	 * expressions in the union
+	 */
 	public Collection<PropertyExpression> getComponents()
 	{
 		return union;

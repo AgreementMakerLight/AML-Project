@@ -51,6 +51,9 @@ public class RelationNegation extends RelationExpression
 	
 	@Override
 	@SuppressWarnings("unchecked")
+	/**
+	 * A RelationNegation has as single subcomponent the negated relation expression
+	 */
 	public Collection<RelationExpression> getComponents()
 	{
 		HashSet<RelationExpression> components = new HashSet<RelationExpression>();
