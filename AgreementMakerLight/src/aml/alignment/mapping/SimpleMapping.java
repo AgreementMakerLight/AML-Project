@@ -34,7 +34,7 @@ public class SimpleMapping extends Mapping
 	 */
 	public SimpleMapping(String uri1, String uri2)
 	{
-		this(uri1,uri2,1.0,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
+		this(uri1,uri2,1.0,MappingRelation.EQUIVALENCE);
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class SimpleMapping extends Mapping
 	 */
 	public SimpleMapping(String uri1, String uri2, double sim)
 	{
-		this(uri1,uri2,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
+		this(uri1,uri2,sim,MappingRelation.EQUIVALENCE);
 	}
 	
 	/**
@@ -57,22 +57,9 @@ public class SimpleMapping extends Mapping
 	 */
 	public SimpleMapping(String uri1, String uri2, double sim, MappingRelation r)
 	{
-		this(uri1,uri2,sim,r,MappingStatus.UNKNOWN);
+		super(uri1,uri2,sim,r);
 	}
 	
-	
-	/**
-	 * Creates a mapping between uri1 and uri2 with the given similarity, relation and status
-	 * @param uri1: the uri of the source ontology entity
-	 * @param uri2: the uri of the target ontology entity
-	 * @param sim: the similarity between the entities
-	 * @param r: the mapping relationship between the entities
-	 * @param s: the status of the mapping
-	 */
-	public SimpleMapping(String uri1, String uri2, double sim, MappingRelation r, MappingStatus s)
-	{
-		super(uri1,uri2,sim,r,s);
-	}
 	
 	/**
 	 * Creates a new mapping that is a copy of m
@@ -80,7 +67,8 @@ public class SimpleMapping extends Mapping
 	 */
 	public SimpleMapping(SimpleMapping m)
 	{
-		this(m.getEntity1(),m.getEntity2(),m.similarity,m.rel,m.status);
+		this(m.getEntity1(),m.getEntity2(),m.similarity,m.rel);
+		this.status = m.status;
 	}
 
 //Public Methods
@@ -101,15 +89,14 @@ public class SimpleMapping extends Mapping
 	@Override
 	public String toRDF()
 	{
-		String out = "\t<map>\n" +
-			"\t\t<Cell>\n" +
-			"\t\t\t<entity1 rdf:resource=\""+ entity1 +"\"/>\n" +
-			"\t\t\t<entity2 rdf:resource=\""+ entity2 +"\"/>\n" +
-			"\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
-			"\t\t\t<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";
-		out += "\t\t</Cell>\n" +
-			"\t</map>\n";
-		return out;
+		return "<map>\n" +
+			"<Cell>\n" +
+			"<entity1 rdf:resource=\""+ entity1 +"\"/>\n" +
+			"<entity2 rdf:resource=\""+ entity2 +"\"/>\n" +
+			"<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
+			"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n" +
+			"</Cell>\n" +
+			"</map>\n";
 	}
 
 	/**

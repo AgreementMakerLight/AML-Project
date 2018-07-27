@@ -35,7 +35,7 @@ public class EDOALMapping extends Mapping
 	 */
 	public EDOALMapping(AbstractExpression entity1, AbstractExpression entity2, double sim)
 	{
-		this(entity1,entity2,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
+		this(entity1,entity2,sim,MappingRelation.EQUIVALENCE);
 	}
 	
 	/**
@@ -47,22 +47,9 @@ public class EDOALMapping extends Mapping
 	 */
 	public EDOALMapping(AbstractExpression entity1, AbstractExpression entity2, double sim, MappingRelation r)
 	{
-		this(entity1,entity2,sim,r,MappingStatus.UNKNOWN);
+		super(entity1,entity2,sim,r);
 	}
 	
-	
-	/**
-	 * Creates a mapping between entity1 and entity2 with the given similarity, relation and status
-	 * @param entity1: the uri of the source ontology entity
-	 * @param entity2: the uri of the target ontology entity
-	 * @param sim: the similarity between the entities
-	 * @param r: the mapping relationship between the entities
-	 * @param s: the status of the mapping
-	 */
-	public EDOALMapping(AbstractExpression entity1, AbstractExpression entity2, double sim, MappingRelation r, MappingStatus s)
-	{
-		super(entity1, entity2, sim, r, s);
-	}
 	
 	/**
 	 * Creates a new mapping that is a copy of m
@@ -70,7 +57,8 @@ public class EDOALMapping extends Mapping
 	 */
 	public EDOALMapping(EDOALMapping m)
 	{
-		this(m.getEntity1(),m.getEntity2(),m.similarity,m.rel,m.status);
+		this(m.getEntity1(),m.getEntity2(),m.similarity,m.rel);
+		this.status = m.status;
 	}
 
 //Public Methods
@@ -90,18 +78,18 @@ public class EDOALMapping extends Mapping
 	@Override
 	public String toRDF()
 	{
-		String out = "\t<map>\n" +
-				"\t\t<Cell>\n" +
-				"\t\t\t<entity1>\n" +
+		String out = "<map>\n" +
+				"<Cell>\n" +
+				"<entity1>\n" +
 				((AbstractExpression)entity1).toRDF() +
-				"\n\t\t\t</entity1>\n\n" +
-				"\t\t\t<entity2>\n" +
+				"\n</entity1>\n\n" +
+				"<entity2>\n" +
 				((AbstractExpression)entity2).toRDF() +
-				"\n\t\t\t</entity2>\n\n" +
-				"\t\t\t<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
-				"\t\t\t<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";
-			out += "\t\t</Cell>\n" +
-				"\t</map>\n";
+				"\n</entity2>\n\n" +
+				"<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
+				"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";
+			out += "</Cell>\n" +
+				"</map>\n";
 			return out;
 	}
 	

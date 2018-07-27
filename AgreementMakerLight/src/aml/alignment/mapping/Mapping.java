@@ -44,7 +44,7 @@ public abstract class Mapping implements Comparable<Mapping>
 	 * @param r: the mapping relationship between the entities
 	 * @param s: the status of the maping
 	 */
-	public Mapping(Object entity1, Object entity2, double sim, MappingRelation r, MappingStatus s)
+	public Mapping(Object entity1, Object entity2, double sim, MappingRelation r)
 	{
 		this.entity1 = entity1;
 		this.entity2 = entity2;
@@ -56,7 +56,7 @@ public abstract class Mapping implements Comparable<Mapping>
 			this.similarity = sim;
 		this.similarity = Math.round(this.similarity*1000)/1000.0;
 		this.rel = r;
-		this.status = s;
+		this.status = MappingStatus.UNKNOWN;
 	}
 	
 	/**
@@ -65,7 +65,8 @@ public abstract class Mapping implements Comparable<Mapping>
 	 */
 	public Mapping(Mapping m)
 	{
-		this(m.entity1,m.entity2,m.similarity,m.rel,m.status);
+		this(m.entity1,m.entity2,m.similarity,m.rel);
+		this.status = m.status;
 	}
 
 //Public Methods	

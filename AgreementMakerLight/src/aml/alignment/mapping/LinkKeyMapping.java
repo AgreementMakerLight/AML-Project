@@ -12,83 +12,93 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A transformation is a form of mapping that expresses constraints on         *
-* instances that should match. They typically should include an Apply (i.e.,  *
-* an operation/function) in one of the entities, but that is not enforced.    *
-* Although this is not clearly stated in the documentation, I'm assuming that *
-* transformation mappings have no similarity or relation.                     *
+* An EDOAL mapping that includes linkkeys, and thus declares the conditions   *
+* under which instances of the two mapped classes can be considered equal.    *
+* Although documentation is unclear, I am assuming that no similarity should  *
+* be provided in such a mapping, and that the relation is always equivalence 
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment.mapping;
 
-import aml.alignment.edoal.AbstractExpression;
+import org.apache.commons.lang.StringEscapeUtils;
 
-public class Transformation extends EDOALMapping
+import aml.alignment.edoal.ClassExpression;
+import aml.alignment.edoal.LinkKey;
+
+public class LinkKeyMapping extends EDOALMapping
 {
 
 //Attributes
-
-	//The direction of the transformation
-	private String direction;
+	
+	private LinkKey l;
 	
 //Constructors
-	
+
 	/**
-	 * Creates a transformation mapping between entity1 and entity2 with the given similarity
-	 * @param entity1: the EDOAL expression of the source ontology
-	 * @param entity2: the EDOAL expression of the target ontology
-	 * @param sim: the similarity between the entities
-	 * @param dir: the direction of the transformation
+	 * Creates a mapping between entity1 and entity2 with the given similarity
+	 * @param entity1: the EDOAL class expression of the source ontology
+	 * @param entity2: the EDOAL class expression of the target ontology
+	 * @param l: the link keys between properties of instances of the class expressions
 	 */
-	public Transformation(AbstractExpression entity1, AbstractExpression entity2, String dir)
+	public LinkKeyMapping(ClassExpression entity1, ClassExpression entity2, LinkKey l)
 	{
 		super(entity1,entity2,1.0,MappingRelation.EQUIVALENCE);
-		direction = dir;
+		this.l = l;
 	}
 	
 	/**
-	 * Creates a new transformation mapping that is a copy of m
+	 * Creates a new mapping that is a copy of m
 	 * @param m: the mapping to copy
 	 */
-	public Transformation(Transformation m)
+	public LinkKeyMapping(LinkKeyMapping m)
 	{
-		this(m.getEntity1(),m.getEntity2(),m.direction);
+		this(m.getEntity1(),m.getEntity2(),m.l);
 	}
-	
+
 //Public Methods
-	
+
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof Transformation &&
-				((Transformation)o).direction.equals(this.direction) &&
+		return o instanceof LinkKeyMapping &&
+				((LinkKeyMapping)o).l.equals(this.l) &&
 				super.equals(o);
 	}
 	
-	/**
-	 * @return the direction of this transformation
-	 */
-	public String getDirection()
+	@Override
+	public ClassExpression getEntity1()
 	{
-		return direction;
+		return (ClassExpression)entity1;
+	}
+
+	@Override
+	public ClassExpression getEntity2()
+	{
+		return (ClassExpression)entity2;
 	}
 	
+	/**
+	 * @return the LinkKey of this mapping
+	 */
+	public LinkKey getLinkKey()
+	{
+		return l;
+	}
+
 	@Override
 	public String toRDF()
 	{
 		return "<map>\n" +
-				"<Cell>\n" +
-				"<edoal:transformation>\n" +
-				"<edoal:Transformation edoal:direction=\"" + direction + "\">\n" +
+				"<align:Cell rdf:about=\"#cell-with-linkkey\">\n" +
 				"<entity1>\n" +
-				((AbstractExpression)entity1).toRDF() +
+				((ClassExpression)entity1).toRDF() +
 				"\n</entity1>\n\n" +
 				"<entity2>\n" +
-				((AbstractExpression)entity2).toRDF() +
+				((ClassExpression)entity2).toRDF() +
 				"\n</entity2>\n\n" +
-				"<edoal:Transformation>\n" +
-				"<edoal:transformation>\n" +
+				"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n" +
+				l.toRDF() +
 				"</Cell>\n" +
 				"</map>\n";
 	}
@@ -96,13 +106,14 @@ public class Transformation extends EDOALMapping
 	@Override
 	public String toString()
 	{
-		return  "TRANSF[" + entity1.toString() + " " + direction + " " + entity2.toString() + "]";
+		return entity1.toString() + " " + rel.toString() + " " + entity2.toString() +
+				" (" + getSimilarityPercent() + ") ";
 	}
 	
 	@Override
 	public String toTSV()
 	{
-		String out = entity1.toString() + "\t\t" + entity2.toString() + "\t\t" + direction + "\tTRANSFORMATION";
+		String out = entity1.toString() + "\t\t" + entity2.toString() + "\t\t" + similarity + "\t" + rel.toString();
 		if(!status.equals(MappingStatus.UNKNOWN))
 			out += "\t" + status;
 		return out;
