@@ -17,7 +17,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.alignment.edoal;
+package aml.alignment;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -26,10 +26,11 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.alignment.Alignment;
-import aml.alignment.Mapping;
-import aml.alignment.MappingRelation;
-import aml.alignment.MappingStatus;
+import aml.alignment.edoal.AbstractExpression;
+import aml.alignment.mapping.EDOALMapping;
+import aml.alignment.mapping.Mapping;
+import aml.alignment.mapping.MappingRelation;
+import aml.alignment.mapping.MappingStatus;
 import aml.ontology.EntityType;
 import aml.util.data.Map2Map;
 

@@ -15,7 +15,9 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
-import aml.alignment.edoal.EDOALAlignment;
+import aml.alignment.mapping.Mapping;
+import aml.alignment.mapping.MappingRelation;
+import aml.alignment.mapping.MappingStatus;
 import aml.settings.Namespace;
 
 public class AlignmentIO

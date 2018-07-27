@@ -16,7 +16,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.alignment;
+package aml.alignment.mapping;
 
 import org.apache.commons.lang.StringEscapeUtils;
 

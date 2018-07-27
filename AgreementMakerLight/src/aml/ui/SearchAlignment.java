@@ -48,7 +48,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.SimpleMapping;
 import aml.util.data.MapSorter;
 
 public class SearchAlignment extends JDialog implements ActionListener

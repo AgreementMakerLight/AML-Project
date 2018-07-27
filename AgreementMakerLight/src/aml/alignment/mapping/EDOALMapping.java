@@ -16,13 +16,11 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.alignment.edoal;
+package aml.alignment.mapping;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
-import aml.alignment.Mapping;
-import aml.alignment.MappingRelation;
-import aml.alignment.MappingStatus;
+import aml.alignment.edoal.AbstractExpression;
 
 public class EDOALMapping extends Mapping
 {

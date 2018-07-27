@@ -21,8 +21,8 @@ package aml.ui;
 
 import javax.swing.JButton;
 
-import aml.alignment.MappingStatus;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.MappingStatus;
+import aml.alignment.mapping.SimpleMapping;
 
 
 public class MappingButton extends JButton

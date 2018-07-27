@@ -36,8 +36,8 @@ import java.util.concurrent.Future;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.MappingStatus;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.MappingStatus;
+import aml.alignment.mapping.SimpleMapping;
 import aml.filter.Path;
 import aml.util.data.Map2Map2List;
 import aml.util.data.Map2Map2Set;

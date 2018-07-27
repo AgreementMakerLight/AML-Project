@@ -28,8 +28,8 @@ import java.util.concurrent.Future;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.Mapping;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.Mapping;
+import aml.alignment.mapping.SimpleMapping;
 import aml.match.PrimaryMatcher;
 import aml.match.Rematcher;
 import aml.ontology.EntityType;

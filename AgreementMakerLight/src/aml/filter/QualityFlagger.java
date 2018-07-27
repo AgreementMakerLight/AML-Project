@@ -23,8 +23,8 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.MappingStatus;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.MappingStatus;
+import aml.alignment.mapping.SimpleMapping;
 import aml.match.UnsupportedEntityTypeException;
 import aml.match.lexical.StringMatcher;
 import aml.match.lexical.WordMatchStrategy;

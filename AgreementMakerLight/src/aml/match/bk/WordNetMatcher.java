@@ -25,7 +25,7 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.SimpleMapping;
 import aml.match.AbstractHashMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;

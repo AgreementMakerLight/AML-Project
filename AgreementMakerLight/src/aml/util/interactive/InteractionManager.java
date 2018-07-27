@@ -23,8 +23,8 @@
 package aml.util.interactive;
 
 import aml.AML;
-import aml.alignment.MappingStatus;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.MappingStatus;
+import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.URIMap;
 
 //Uncomment below to switch to the Oracle from the SEALS OMT client

@@ -40,8 +40,8 @@ import javax.swing.border.BevelBorder;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.MappingStatus;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.MappingStatus;
+import aml.alignment.mapping.SimpleMapping;
 
 public class AlignmentPanel extends JInternalFrame implements ActionListener, ItemListener
 {

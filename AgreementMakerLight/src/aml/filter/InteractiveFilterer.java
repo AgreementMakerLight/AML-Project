@@ -21,8 +21,8 @@ package aml.filter;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.MappingStatus;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.MappingStatus;
+import aml.alignment.mapping.SimpleMapping;
 import aml.settings.SizeCategory;
 import aml.util.interactive.InteractionManager;
 

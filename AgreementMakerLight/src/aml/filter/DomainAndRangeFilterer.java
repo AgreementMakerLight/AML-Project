@@ -23,8 +23,8 @@ import java.util.Set;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.MappingStatus;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.MappingStatus;
+import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.EntityType;
 import aml.ontology.URIMap;
 import aml.ontology.semantics.EntityMap;

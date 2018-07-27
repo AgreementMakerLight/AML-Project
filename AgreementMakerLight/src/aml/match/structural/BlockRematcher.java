@@ -22,8 +22,8 @@ package aml.match.structural;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Mapping;
 import aml.alignment.SimpleAlignment;
+import aml.alignment.mapping.Mapping;
 import aml.match.Matcher;
 import aml.match.Rematcher;
 import aml.ontology.EntityType;

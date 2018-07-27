@@ -66,9 +66,9 @@ import org.openide.util.Lookup;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.SimpleMapping;
-import aml.alignment.MappingRelation;
-import aml.alignment.MappingStatus;
+import aml.alignment.mapping.MappingRelation;
+import aml.alignment.mapping.MappingStatus;
+import aml.alignment.mapping.SimpleMapping;
 import aml.filter.QualityFlagger;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;

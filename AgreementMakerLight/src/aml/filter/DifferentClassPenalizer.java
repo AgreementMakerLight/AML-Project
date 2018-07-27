@@ -21,7 +21,7 @@ package aml.filter;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.SimpleMapping;
+import aml.alignment.mapping.SimpleMapping;
 
 public class DifferentClassPenalizer
 {

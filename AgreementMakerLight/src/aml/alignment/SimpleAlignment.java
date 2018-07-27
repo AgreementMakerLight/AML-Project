@@ -26,6 +26,10 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
+import aml.alignment.mapping.Mapping;
+import aml.alignment.mapping.MappingRelation;
+import aml.alignment.mapping.MappingStatus;
+import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.EntityType;
 import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2Map;

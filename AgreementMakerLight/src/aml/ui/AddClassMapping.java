@@ -43,7 +43,7 @@ import javax.swing.border.TitledBorder;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import aml.AML;
-import aml.alignment.MappingRelation;
+import aml.alignment.mapping.MappingRelation;
 import aml.ontology.EntityType;
 import aml.ontology.lexicon.Lexicon;
 import aml.util.data.MapSorter;

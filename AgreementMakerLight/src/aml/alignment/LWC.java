@@ -19,6 +19,9 @@
 ******************************************************************************/
 package aml.alignment;
 
+import aml.alignment.mapping.Mapping;
+import aml.alignment.mapping.SimpleMapping;
+
 public class LWC
 {
 

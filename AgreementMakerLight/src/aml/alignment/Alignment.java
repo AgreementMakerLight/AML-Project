@@ -25,6 +25,9 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import aml.AML;
+import aml.alignment.mapping.Mapping;
+import aml.alignment.mapping.MappingRelation;
+import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.EntityType;
 
 public abstract class Alignment implements Collection<Mapping>

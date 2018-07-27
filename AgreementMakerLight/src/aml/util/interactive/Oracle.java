@@ -21,7 +21,7 @@ package aml.util.interactive;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.MappingRelation;
+import aml.alignment.mapping.MappingRelation;
 import aml.ontology.URIMap;
 import aml.util.data.Map2MapComparable;
 

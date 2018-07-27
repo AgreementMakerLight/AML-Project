@@ -36,9 +36,9 @@ import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.alignment.SimpleAlignment;
+import aml.alignment.mapping.Mapping;
+import aml.alignment.mapping.MappingStatus;
 import aml.alignment.AlignmentIO;
-import aml.alignment.Mapping;
-import aml.alignment.MappingStatus;
 import aml.filter.CustomFilterer;
 import aml.filter.CustomFlagger;
 import aml.filter.QualityFlagger;

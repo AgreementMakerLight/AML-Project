@@ -24,8 +24,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.Mapping;
 import aml.alignment.SimpleAlignment;
+import aml.alignment.mapping.Mapping;
 import aml.match.Matcher;
 import aml.match.PrimaryMatcher;
 import aml.ontology.EntityType;

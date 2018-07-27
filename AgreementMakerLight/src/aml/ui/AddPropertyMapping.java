@@ -35,7 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import aml.AML;
-import aml.alignment.MappingRelation;
+import aml.alignment.mapping.MappingRelation;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 

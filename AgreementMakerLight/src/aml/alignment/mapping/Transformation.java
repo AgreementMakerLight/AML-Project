@@ -20,10 +20,9 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.alignment.edoal;
+package aml.alignment.mapping;
 
-import aml.alignment.MappingRelation;
-import aml.alignment.MappingStatus;
+import aml.alignment.edoal.AbstractExpression;
 
 public class Transformation extends EDOALMapping
 {
