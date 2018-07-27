@@ -33,6 +33,7 @@ public class RelationId extends RelationExpression
 	 */
 	public RelationId(String uri)
 	{
+		super();
 		elements.add(uri);
 	}
 	

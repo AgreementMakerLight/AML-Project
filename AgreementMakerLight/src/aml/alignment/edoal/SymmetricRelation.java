@@ -37,6 +37,7 @@ public class SymmetricRelation extends RelationExpression
 	 */
 	public SymmetricRelation(RelationExpression sym)
 	{
+		super();
 		this.sym = sym;
 		elements.addAll(sym.getElements());
 	}

@@ -36,6 +36,7 @@ public class RelationNegation extends RelationExpression
 	 */
 	public RelationNegation(RelationExpression neg)
 	{
+		super();
 		this.neg = neg;
 		elements.addAll(neg.getElements());
 	}

@@ -36,6 +36,7 @@ public class ReflexiveRelation extends RelationExpression
 	 */
 	public ReflexiveRelation(RelationExpression ref)
 	{
+		super();
 		this.ref = ref;
 		elements.addAll(ref.getElements());
 	}

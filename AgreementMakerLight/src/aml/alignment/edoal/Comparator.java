@@ -63,6 +63,15 @@ public class Comparator extends AbstractExpression
 	}
 	
 	@Override
+	/**
+	 * A Comparator has no (matchable) elements, so its hashCode is defined by its URI
+	 */
+	public int hashCode()
+	{
+		return uri.hashCode();
+	}
+	
+	@Override
 	public String toRDF()
 	{
 		return "<edoal:comparator rdf:resource=\"" + uri + "\"/>"; 

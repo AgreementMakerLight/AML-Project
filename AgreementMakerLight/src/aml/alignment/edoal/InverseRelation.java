@@ -36,6 +36,7 @@ public class InverseRelation extends RelationExpression
 	 */
 	public InverseRelation(RelationExpression inv)
 	{
+		super();
 		this.inv = inv;
 		elements.addAll(inv.getElements());
 	}

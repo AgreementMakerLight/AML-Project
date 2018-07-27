@@ -36,6 +36,7 @@ public class TransitiveRelation extends RelationExpression
 	 */
 	public TransitiveRelation(RelationExpression trans)
 	{
+		super();
 		this.trans = trans;
 		elements.addAll(trans.getElements());
 	}
