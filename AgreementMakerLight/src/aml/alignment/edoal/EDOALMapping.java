@@ -12,8 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A complex mapping involving three or more entities of two ord more          *
-* Ontologies.                                                                 *
+* A complex mapping based on EDOAL syntax.                                    *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
