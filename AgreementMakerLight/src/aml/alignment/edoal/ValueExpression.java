@@ -15,7 +15,7 @@
 * An expression that can be used as a value restriction, which can be a       *
 * Literal, an Individual, a Property or Relation Expression (indicating any   *
 * Literal or Individual that can be "seen" by that Property or that Relation  *
-* expression, respectively), or a Function.                                   *
+* expression, respectively), or an Apply (i.e., an operation/function).       *
 * This interface serves for grouping purposes only.                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
