@@ -20,14 +20,33 @@ package aml.alignment.edoal;
 
 public enum EDOALComparator
 {
+//Values
+	
 	EQUALS("edoal:equals"),
 	LOWER("edoal:lower-than"),
 	GREATER("edoal:greater-than");
 	
+//Attributes
+	
 	public final String uri;
+	
+//Constructors
 	
 	private EDOALComparator(String u)
 	{
 		uri = u;
+	}
+	
+	/**
+	 * Parses a comparator from a string source (such as an rdf document)
+	 * @param u: the string value to parse
+	 * @return the EDOALComparator corresponding to u
+	 */
+	public static EDOALComparator parseComparator(String u)
+	{
+		for(EDOALComparator e : EDOALComparator.values())
+			if(e.uri.equals(u) || e.uri.endsWith(":" + u))
+				return e;
+		return null;
 	}
 }
