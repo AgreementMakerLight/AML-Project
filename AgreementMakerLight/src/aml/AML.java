@@ -38,7 +38,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import aml.alignment.SimpleAlignment;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
-import aml.alignment.AlignmentIO;
+import aml.alignment.AlignmentReader;
 import aml.filter.CustomFilterer;
 import aml.filter.CustomFlagger;
 import aml.filter.QualityFlagger;
@@ -831,7 +831,7 @@ public class AML
      */
     public void openAlignment(String path) throws Exception
     {
-    	a = AlignmentIO.parse(path,true);
+    	a = AlignmentReader.read(path,true);
     	evaluation = null;
     	if(a.size() > 0)
     		activeMapping = 0;
@@ -937,7 +937,7 @@ public class AML
     
     public void openReferenceAlignment(String path) throws Exception
     {
-    	ref = AlignmentIO.parse(path,true);
+    	ref = AlignmentReader.read(path,true);
     }
     
     public boolean primaryStringMatcher()
@@ -1059,13 +1059,13 @@ public class AML
 
     public void saveAlignmentRDF(String file) throws Exception
     {
-    	AlignmentIO.saveRDF(a,file);
+    	AlignmentReader.saveRDF(a,file);
     	needSave = false;
     }
     
     public void saveAlignmentTSV(String file) throws Exception
     {
-    	AlignmentIO.saveTSV(a,file);
+    	AlignmentReader.saveTSV(a,file);
     	needSave = false;
     }
     

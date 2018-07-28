@@ -1,11 +1,26 @@
+/******************************************************************************
+* Copyright 2013-2018 LASIGE                                                  *
+*                                                                             *
+* Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+* not use this file except in compliance with the License. You may obtain a   *
+* copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+*                                                                             *
+* Unless required by applicable law or agreed to in writing, software         *
+* distributed under the License is distributed on an "AS IS" BASIS,           *
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+* See the License for the specific language governing permissions and         *
+* limitations under the License.                                              *
+*                                                                             *
+*******************************************************************************
+* Utility class with methods for reading Ontology Alignment files.            *
+*                                                                             *
+* @author Daniel Faria                                                        *
+******************************************************************************/
 package aml.alignment;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.Iterator;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -20,14 +35,45 @@ import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.MappingStatus;
 import aml.settings.Namespace;
 
-public class AlignmentIO
+public class AlignmentReader
 {
-	public static SimpleAlignment parse(String file, boolean active) throws Exception
+	/**
+	 * Reads an alignment file in either RDF (simple or EDOAL) or TSV (AML format)
+	 * @param file: the path to the file to read
+	 * @param active: whether the alignment is between the active ontologies
+	 * @return the Alignment
+	 * @throws Exception if unable to read the alignment file
+	 */
+	public static Alignment read(String file, boolean active) throws Exception
 	{
-		return null;
+		Alignment a = null;
+		//Read the first few lines of the file (until a non-empty line is reached)
+		//to figure out how to parse it
+		BufferedReader inStream = new BufferedReader(new FileReader(file));
+		String line = inStream.readLine().trim();
+		while((line.isEmpty()))
+			line = inStream.readLine().trim();
+		inStream.close();
+		//AgreementMakerLight TSV format
+		if(line.contains("#AgreementMakerLight"))
+			a = parseTSV(file, active);
+		//RDF Alignment format
+		else if(line.contains("<?xml"))
+			a = readRDF(file, active);
+		//Unknow format
+		else
+			throw new Exception("Unable to read: " + file + " - unknown alignment format!");
+		return a;
 	}
 
-	public static SimpleAlignment parseRDF(String file, boolean active) throws DocumentException
+	/**
+	 * Reads an RDF alignment file (simple or EDOAL)
+	 * @param file: the path to the file to read
+	 * @param active: whether the alignment is between the active ontologies
+	 * @return the Alignment
+	 * @throws Exception if unable to read the alignment file
+	 */
+	public static Alignment readRDF(String file, boolean active) throws DocumentException
 	{
 		
 		//Open the Alignment file using SAXReader
@@ -128,7 +174,7 @@ public class AlignmentIO
 		}
 	}
 	
-	public static SimpleAlignment parseTSV(String file) throws Exception
+	public static Alignment parseTSV(String file, boolean active) throws Exception
 	{
 		SimpleAlignment a = new SimpleAlignment();
 		BufferedReader inStream = new BufferedReader(new FileReader(file));
@@ -181,65 +227,5 @@ public class AlignmentIO
 		}
 		inStream.close();
 		return a;
-	}
-
-	
-	/**
-	 * Saves an Alignment into a text file as a list of douples
-	 * @param a: the Alignment to save
-	 * @param file: the output file
-	 */
-	public static void saveDoubles(SimpleAlignment a, String file) throws FileNotFoundException
-	{
-		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		for(Mapping m : a)
-			outStream.println("<" + m.getEntity1() + "> <" + m.getEntity2() + ">");
-		outStream.close();
-	}
-
-	/**
-	 * Saves the Alignment into an .rdf file in OAEI format
-	 * @param a: the Alignment to save
-	 * @param file: the output file
-	 */
-	public static void saveRDF(SimpleAlignment a, String file) throws FileNotFoundException
-	{
-		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		outStream.println("<?xml version='1.0' encoding='utf-8'?>");
-		outStream.println("<rdf:RDF xmlns='" + Namespace.ALIGNMENT.uri + "'"); 
-		outStream.println("\t xmlns:rdf='" + Namespace.RDF.uri + "' "); 
-		outStream.println("\t xmlns:xsd='" + Namespace.XSD.uri + "' ");
-		outStream.println("<" + RDFElement.ALIGNMENT_ + ">");
-		outStream.println("\t<" + RDFElement.XML + ">yes</" + RDFElement.XML +">");
-		outStream.println("\t<" + RDFElement.LEVEL + ">0</" + RDFElement.LEVEL + ">");
-		double card = a.cardinality();
-		if(card < 1.02)
-			outStream.println("\t<" + RDFElement.TYPE + ">11</" + RDFElement.TYPE + ">");
-		else
-			outStream.println("\t<" + RDFElement.TYPE + ">??</" + RDFElement.TYPE + ">");
-		outStream.println("\t<" + RDFElement.ONTO1 + ">" + a.getSourceURI() + "</" + RDFElement.ONTO1 + ">");
-		outStream.println("\t<" + RDFElement.ONTO2 + ">" + a.getTargetURI() + "</" + RDFElement.ONTO2 + ">");
-		for(Mapping m : a)
-			outStream.println(m.toRDF());
-		outStream.println("</" + RDFElement.ALIGNMENT_ + ">");
-		outStream.println("</rdf:RDF>");		
-		outStream.close();
-	}
-	
-	/**
-	 * Saves the Alignment into a .tsv file in AML format
-	 * @param a: the Alignment to save
-	 * @param file: the output file
-	 */
-	public static void saveTSV(SimpleAlignment a, String file) throws FileNotFoundException
-	{
-		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		outStream.println("#AgreementMakerLight Alignment File");
-		outStream.println("#entity1 ontology:\t" + a.getSourceURI());
-		outStream.println("#entity2 ontology:\t" + a.getTargetURI());
-		outStream.println("entity1 URI\tSource Label\tTarget URI\tTarget Label\tSimilarity\tRelationship\tStatus");
-		for(Mapping m : a)
-			outStream.println(m.toString());
-		outStream.close();
 	}
 }

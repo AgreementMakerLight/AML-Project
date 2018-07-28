@@ -22,19 +22,23 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.SimpleMapping;
-import aml.ontology.EntityType;
 
 public abstract class Alignment implements Collection<Mapping>
 {
 
 //Attributes
 
+	//The level of the alignment
+	protected final String LEVEL = "0";
+	//The type of the alignment
+	protected String type;
 	//Ontology uris (as listed in alignment file)
 	protected String sourceURI;
 	protected String targetURI;
@@ -261,6 +265,11 @@ public abstract class Alignment implements Collection<Mapping>
 	}
 	
 	/**
+	 * @return the source entities mapped in this alignment
+	 */
+	public abstract Set<String> getSources();
+	
+	/**
 	 * @return the URI of the source ontology
 	 */
 	public String getSourceURI()
@@ -269,11 +278,63 @@ public abstract class Alignment implements Collection<Mapping>
 	}
 	
 	/**
+	 * @return the target entities mapped in this alignment
+	 */
+	public abstract Set<String> getTargets();
+	
+	/**
 	 * @return the URI of the target ontology
 	 */
 	public String getTargetURI()
 	{
 		return targetURI;
+	}
+	
+	/**
+	 * @return the type of this Alignment, which is the 
+	 * two-character string, either originally provided
+	 * for the Alignment, or one generated automatically
+	 * using the following notation:
+	 * "1" for injective and total
+	 * "?" for injective
+	 * "+" for total
+	 * "*" for neither injective nor total
+	 */
+	public String getType()
+	{
+		if(type == null)
+		{
+			type = "";
+			double sourceCard = maps.size() * 1.0 / sourceCount();
+			double sourceCov = sourceCoverage();
+			if(sourceCard <= 1.1)
+			{
+				if(sourceCov >= 0.9)
+					type += "1";
+				else
+					type += "?";
+			}
+			else if(sourceCov >= 0.9)
+				type += "+";
+			else
+				type += "*";
+			double targetCard = maps.size() * 1.0 / targetCount();
+			double targetCov = targetCoverage();
+			if(targetCard <= 1.1)
+			{
+				if(targetCov >= 0.9)
+					type += "1";
+				else
+					type += "?";
+			}
+			else if(targetCov >= 0.9)
+				type += "+";
+			else
+				type += "*";
+
+		}
+		return type;
+		
 	}
 
 	@Override
@@ -329,6 +390,21 @@ public abstract class Alignment implements Collection<Mapping>
 				check = remove(m) || check;
 		return check;
 	}
+
+	/**
+	 * Sets the type of the alignment
+	 * @param type: the alignment type, a two-character string
+	 * recommended to use the following notation:
+	 * "1" for injective and total
+	 * "?" for injective
+	 * "+" for total
+	 * "*" for neither injective nor total
+	 * Alternatively "1m", "n1", and "nm" may also be used 
+	 */
+	public void setType(String type)
+	{
+		this.type = type;
+	}
 	
 	@Override
 	public int size()
@@ -363,24 +439,30 @@ public abstract class Alignment implements Collection<Mapping>
 	/**
 	 * @return the number of entity1 mapped in this Alignment
 	 */
-	public abstract int sourceCount();
+	public int sourceCount()
+	{
+		return getSources().size();
+	}
 	
 	/**
 	 * @param e: the EntityType to search in the Alignment
 	 * @return the fraction of entity1 of the given type mapped in this Alignment
 	 */
-	public abstract double sourceCoverage(EntityType e);
+	public abstract double sourceCoverage();
 	
 	/**
 	 * @return the number of entity2 mapped in this Alignment
 	 */
-	public abstract int targetCount();
+	public int targetCount()
+	{
+		return getTargets().size();
+	}
 	
 	/**
 	 * @param e: the EntityType to search in the Alignment
 	 * @return the fraction of entity2 of the given type mapped in this Alignment
 	 */
-	public abstract double targetCoverage(EntityType e);
+	public abstract double targetCoverage();
 	
 	@Override
 	public Object[] toArray()
