@@ -22,7 +22,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 import aml.AML;
 
-public class SimpleMapping extends Mapping
+public class SimpleMapping extends Mapping<String>
 {
 
 //Constructors

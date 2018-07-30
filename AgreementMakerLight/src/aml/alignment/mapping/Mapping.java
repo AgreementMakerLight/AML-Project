@@ -18,15 +18,15 @@
 ******************************************************************************/
 package aml.alignment.mapping;
 
-public abstract class Mapping implements Comparable<Mapping>
+public abstract class Mapping<A> implements Comparable<Mapping<A>>
 {
 	
 //Attributes
 
 	//The source ontology entity
-	protected Object entity1;
+	protected A entity1;
 	//The target ontology entity
-	protected Object entity2;
+	protected A entity2;
 	//The similarity between the terms
 	protected double similarity;
 	//The relationship between the terms
@@ -44,7 +44,7 @@ public abstract class Mapping implements Comparable<Mapping>
 	 * @param r: the mapping relationship between the entities
 	 * @param s: the status of the maping
 	 */
-	public Mapping(Object entity1, Object entity2, double sim, MappingRelation r)
+	public Mapping(A entity1, A entity2, double sim, MappingRelation r)
 	{
 		this.entity1 = entity1;
 		this.entity2 = entity2;
@@ -63,7 +63,7 @@ public abstract class Mapping implements Comparable<Mapping>
 	 * Creates a new mapping that is a copy of m
 	 * @param m: the mapping to copy
 	 */
-	public Mapping(Mapping m)
+	public Mapping(Mapping<A> m)
 	{
 		this(m.entity1,m.entity2,m.similarity,m.rel);
 		this.status = m.status;
@@ -79,7 +79,7 @@ public abstract class Mapping implements Comparable<Mapping>
 	 * status at that stage.
 	 */
 	@Override
-	public int compareTo(Mapping o)
+	public int compareTo(Mapping<A> o)
 	{
 		if(this.getStatus().equals(o.getStatus()))
 		{
@@ -99,6 +99,7 @@ public abstract class Mapping implements Comparable<Mapping>
 	 * (this enables finding redundant Mappings)
 	 */
 	@Override
+	@SuppressWarnings("rawtypes")
 	public boolean equals(Object o)
 	{
 		if(!(o instanceof Mapping))
@@ -110,7 +111,7 @@ public abstract class Mapping implements Comparable<Mapping>
 	/**
 	 * @return the source entity in the Mapping
 	 */
-	public Object getEntity1()
+	public A getEntity1()
 	{
 		return entity1;
 	}
@@ -118,7 +119,7 @@ public abstract class Mapping implements Comparable<Mapping>
 	/**
 	 * @return the target entity in the Mapping
 	 */
-	public Object getEntity2()
+	public A getEntity2()
 	{
 		return entity2;
 	}

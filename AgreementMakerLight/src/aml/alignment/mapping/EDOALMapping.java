@@ -22,7 +22,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 import aml.alignment.edoal.AbstractExpression;
 
-public class EDOALMapping extends Mapping
+public class EDOALMapping extends Mapping<AbstractExpression>
 {
 	
 //Constructors
