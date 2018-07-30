@@ -640,7 +640,7 @@ public class EntityMap
 			toSearch.addAll(getSuperclasses(uri));
 			toSearch.addAll(getClassExpressions(uri));
 		}
-		else if(entityType.get(uri).equals(EntityType.CLASS_EXPRESSION))
+		else if(entityType.get(uri).contains(EntityType.CLASS_EXPRESSION))
 			toSearch.addAll(getSuperexpressions(uri));
 		//Get the disjoint clauses for the class/expression
 		Set<String> disj = getDisjoint(uri);
