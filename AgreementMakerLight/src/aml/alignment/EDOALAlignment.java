@@ -42,10 +42,11 @@ public class EDOALAlignment extends Alignment
 
 	//The EDOAL Alignment Level
 	public static final String LEVEL = "2EDOAL";
-	//Simple mappings organized by entity1 (entity1, entity2, Mapping)
-	private Map2Map<AbstractExpression,AbstractExpression,EDOALMapping> sourceMaps;
-	//Simple mappings organized by entity2 (entity2, entity1, Mapping)
-	private Map2Map<AbstractExpression,AbstractExpression,EDOALMapping> targetMaps;
+	//Mappings organized by entity1
+	protected Map2Set<AbstractExpression,EDOALMapping> sourceMaps;
+	//Mappings organized by entity2
+	protected Map2Set<AbstractExpression,EDOALMapping> targetMaps;
+	
 	
 //Constructors
 

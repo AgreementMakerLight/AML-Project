@@ -27,9 +27,11 @@ import java.util.Vector;
 
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
+import aml.alignment.mapping.MappingStatus;
 import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
+import aml.util.data.Map2Set;
 
 public abstract class Alignment implements Collection<Mapping>
 {
@@ -37,7 +39,7 @@ public abstract class Alignment implements Collection<Mapping>
 //Attributes
 
 	//The level of the alignment
-	protected final String LEVEL = "0";
+	protected final String LEVEL = null;
 	//The type of the alignment
 	protected String type;
 	//Ontology uris (as listed in alignment file)
@@ -48,6 +50,10 @@ public abstract class Alignment implements Collection<Mapping>
 	protected Ontology target;
 	//Mappings organized in list
 	protected Vector<Mapping> maps;
+	//Mappings organized by entity1
+	protected Map2Set<Object,Mapping> sourceMaps;
+	//Mappings organized by entity2
+	protected Map2Set<Object,Mapping> targetMaps;
 	
 //Constructors
 
@@ -199,10 +205,16 @@ public abstract class Alignment implements Collection<Mapping>
 	}
 	
 	/**
-	 * @param a: the Alignment to subtract from this Alignment 
-	 * @return the Alignment corresponding to the difference between this Alignment and a
+	 * Removes all mappings in the given Alignment from this Alignment
+	 * @param a: the Alignment to subtract from this Alignment
 	 */
-	public abstract Alignment difference(Alignment a);
+	public boolean difference(Alignment a)
+	{
+		boolean check = false;
+		for(Mapping m : a.maps)
+			check = check || this.maps.remove(m);
+		return check;
+	}
 	
 	@Override
 	public boolean equals(Object o)
@@ -214,7 +226,26 @@ public abstract class Alignment implements Collection<Mapping>
 	 * @param ref: the reference Alignment to evaluate this Alignment
 	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
-	public abstract int[] evaluate(Alignment ref);
+	public int[] evaluate(Alignment ref)
+	{
+		int[] count = new int[2];
+		for(Mapping m : maps)
+		{
+			if(ref.contains(m))
+			{
+				count[0]++;
+				m.setStatus(MappingStatus.CORRECT);
+			}
+			else if(((SimpleAlignment)ref).contains((String)m.getEntity1(),(String)m.getEntity2(),MappingRelation.UNKNOWN))
+			{
+				count[1]++;
+				m.setStatus(MappingStatus.UNKNOWN);
+			}
+			else
+				m.setStatus(MappingStatus.INCORRECT);
+		}
+		return count;
+	}
 
 	/**
 	 * @param a: the base Alignment to which this Alignment will be compared 

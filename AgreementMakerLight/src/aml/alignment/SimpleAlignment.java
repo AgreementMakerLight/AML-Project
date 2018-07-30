@@ -19,7 +19,6 @@
 ******************************************************************************/
 package aml.alignment;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -31,6 +30,7 @@ import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.MappingStatus;
 import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2Map;
 
@@ -39,6 +39,8 @@ public class SimpleAlignment extends Alignment
 
 //Attributes
 
+	//The level of the alignment
+	protected final String LEVEL = "0";
 	//Simple mappings organized by entity1 (entity1, entity2, Mapping)
 	private Map2Map<String,String,SimpleMapping> sourceMaps;
 	//Simple mappings organized by entity2 (entity2, entity1, Mapping)
@@ -47,7 +49,7 @@ public class SimpleAlignment extends Alignment
 //Constructors
 
 	/**
-	 * Creates a new empty Alignment between the source and target ontologies
+	 * Creates a new empty Alignment
 	 */
 	public SimpleAlignment()
 	{
@@ -57,22 +59,13 @@ public class SimpleAlignment extends Alignment
 	}
 
 	/**
-	 * Creates a new empty Alignment
+	 * Creates a new empty Alignment between the source and target ontologies
 	 */
-	public SimpleAlignment(String sourceUri, String targetUri)
+	public SimpleAlignment(Ontology source, Ontology target)
 	{
-		super(sourceUri,targetUri);
+		super(source,target);
 		sourceMaps = new Map2Map<String,String,SimpleMapping>();
 		targetMaps = new Map2Map<String,String,SimpleMapping>();
-	}
-
-	/**
-	 * Creates a new Alignment that contains the input collection of mappings
-	 * @param a: the collection of mappings to include in this Alignment
-	 */
-	public SimpleAlignment(Collection<Mapping> a)
-	{
-		super(a);
 	}
 	
 //Public Methods
@@ -353,52 +346,9 @@ public class SimpleAlignment extends Alignment
 	}
 	
 	@Override
-	public SimpleAlignment difference(Alignment a)
-	{
-		SimpleAlignment diff = new SimpleAlignment();
-		if(a instanceof SimpleAlignment)
-		{
-			for(Mapping m : maps)
-				if(!a.contains(m))
-					diff.add(m);
-		}
-		else
-			diff.addAll(maps);
-		return diff;
-	}
-	
-	@Override
 	public boolean equals(Object o)
 	{
 		return o instanceof SimpleAlignment && containsAll((SimpleAlignment)o);
-	}
-	
-	/**
-	 * @param ref: the reference Alignment to evaluate this Alignment
-	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
-	 */
-	public int[] evaluate(Alignment ref)
-	{
-		int[] count = new int[2];
-		if(ref instanceof SimpleAlignment)
-		{
-			for(Mapping m : maps)
-			{
-				if(ref.contains(m))
-				{
-					count[0]++;
-					m.setStatus(MappingStatus.CORRECT);
-				}
-				else if(((SimpleAlignment)ref).contains((String)m.getEntity1(),(String)m.getEntity2(),MappingRelation.UNKNOWN))
-				{
-					count[1]++;
-					m.setStatus(MappingStatus.UNKNOWN);
-				}
-				else
-					m.setStatus(MappingStatus.INCORRECT);
-			}
-		}
-		return count;
 	}
 	
 	/**
@@ -521,6 +471,18 @@ public class SimpleAlignment extends Alignment
 					conflicts.add(sourceMaps.get(s,(String)m.getEntity2()));
 		}
 		return conflicts;
+	}
+	
+	@Override
+	public Set<EntityType> getEntityTypes()
+	{
+		HashSet<EntityType> types = new HashSet<EntityType>();
+		for(Mapping m : maps)
+		{
+			types.addAll(AML.getInstance().getEntityMap().getTypes((String)m.getEntity1()));
+			types.addAll(AML.getInstance().getEntityMap().getTypes((String)m.getEntity2()));
+		}
+		return types;
 	}
 	
 	/**
@@ -813,59 +775,5 @@ public class SimpleAlignment extends Alignment
 	{
 		Mapping m = new SimpleMapping(entity1, entity2, 1.0);
 		return remove(m);
-	}
-	
-	@Override
-	public int sourceCount()
-	{
-		return sourceMaps.keyCount();
-	}
-	
-	@Override
-	public double sourceCoverage(EntityType e)
-	{
-		double coverage = 0.0;
-		for(String i : sourceMaps.keySet())
-			if(AML.getInstance().getEntityMap().getTypes(i).contains(e))
-				coverage++;
-		int count;
-		if(e.equals(EntityType.INDIVIDUAL))
-			count = AML.getInstance().getSourceIndividualsToMatch().size();
-		else
-			count = AML.getInstance().getSource().count(e);
-		return coverage / count;
-	}
-	
-	@Override
-	public int targetCount()
-	{
-		return targetMaps.keyCount();
-	}
-	
-	@Override
-	public double targetCoverage(EntityType e)
-	{
-		double coverage = 0.0;
-		for(String i : targetMaps.keySet())
-			if(AML.getInstance().getEntityMap().getTypes(i).contains(e))
-				coverage++;
-		int count;
-		if(e.equals(EntityType.INDIVIDUAL))
-			count = AML.getInstance().getTargetIndividualsToMatch().size();
-		else
-			count = AML.getInstance().getTarget().count(e);
-		return coverage / count;
-	}
-
-	@Override
-	public double sourceCoverage() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double targetCoverage() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	}	
 }
