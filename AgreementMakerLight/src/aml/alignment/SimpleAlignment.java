@@ -167,32 +167,6 @@ public class SimpleAlignment extends Alignment
 			return false;
 	}
 
-	@Override
-	public boolean addAll(Collection<? extends Mapping> a)
-	{
-		boolean check = false;
-		for(Mapping m : a)
-			check = add(m) || check;
-		return check;
-	}
-	
-	@Override
-	public double cardinality()
-	{
-		double cardinality = 0.0;
-		
-		Set<String> sources = sourceMaps.keySet();
-		for(String i : sources)
-			cardinality += sourceMaps.keySet(i).size();
-		
-		Set<String> targets = targetMaps.keySet();
-		for(String i : targets)
-			cardinality += targetMaps.keySet(i).size();
-		cardinality /= sources.size() + targets.size();
-		
-		return cardinality;		
-	}
-	
 	/**
 	 * @param uri: the uri of the entity to check in the Alignment
 	 * @return the cardinality of the entity in the Alignment
@@ -881,5 +855,17 @@ public class SimpleAlignment extends Alignment
 		else
 			count = AML.getInstance().getTarget().count(e);
 		return coverage / count;
+	}
+
+	@Override
+	public double sourceCoverage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double targetCoverage() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

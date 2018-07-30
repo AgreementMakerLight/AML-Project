@@ -25,10 +25,11 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
-import aml.AML;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.SimpleMapping;
+import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 
 public abstract class Alignment implements Collection<Mapping>
 {
@@ -42,39 +43,38 @@ public abstract class Alignment implements Collection<Mapping>
 	//Ontology uris (as listed in alignment file)
 	protected String sourceURI;
 	protected String targetURI;
+	//Links to the Ontologies mapped in this Alignment
+	protected Ontology source;
+	protected Ontology target;
 	//Mappings organized in list
 	protected Vector<Mapping> maps;
 	
 //Constructors
 
 	/**
-	 * Creates a new empty Alignment between the source and target ontologies
+	 * Creates a new empty Alignment with no ontologies
+	 * Use when you want to manipulate an Alignment
+	 * without opening its ontolologies
 	 */
 	public Alignment()
 	{
-		this(AML.getInstance().getSource().getURI(), AML.getInstance().getTarget().getURI());
-	}
-
-	/**
-	 * Creates a new empty Alignment
-	 */
-	public Alignment(String sourceUri, String targetUri)
-	{
-		this.sourceURI = sourceUri;
-		this.targetURI = targetUri;
 		maps = new Vector<Mapping>(0,1);
 	}
 
 	/**
-	 * Creates a new Alignment that contains the input collection of mappings
-	 * @param a: the collection of mappings to include in this Alignment
+	 * Creates a new empty Alignment between the source and target ontologies
+	 * @param source: the source ontology
+	 * @param target: the target ontology
 	 */
-	public Alignment(Collection<Mapping> a)
+	public Alignment(Ontology source, Ontology target)
 	{
-		this();
-		addAll(a);
+		this.source = source;
+		this.sourceURI = source.getURI();
+		this.target = target;
+		this.targetURI = target.getURI();
+		maps = new Vector<Mapping>(0,1);
 	}
-	
+
 //Public Methods
 
 	@Override
@@ -86,7 +86,10 @@ public abstract class Alignment implements Collection<Mapping>
 	@Override
 	public boolean addAll(Collection<? extends Mapping> a)
 	{
-		return maps.addAll(a);
+		boolean check = false;
+		for(Mapping m : a)
+			check = add(m) || check;
+		return check;
 	}
 	
 	/**
@@ -122,7 +125,10 @@ public abstract class Alignment implements Collection<Mapping>
 	/**
 	 * @return the average cardinality of this Alignment
 	 */
-	public abstract double cardinality();
+	public double cardinality()
+	{
+		return (this.sourceCount()*0.5+this.targetCount()*0.5)/this.size();
+	}
 	
 	@Override
 	public void clear()
@@ -249,6 +255,12 @@ public abstract class Alignment implements Collection<Mapping>
 	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping
 	 */
 	public abstract Vector<Mapping> getConflicts(Mapping m);
+	
+	
+	/**
+	 * @return the EntityTypes of all entities mapped in this Alignment
+	 */
+	public abstract Set<EntityType> getEntityTypes();
 	
 	/**
 	 * @param m: the Mapping to search in the Alignment
@@ -445,10 +457,19 @@ public abstract class Alignment implements Collection<Mapping>
 	}
 	
 	/**
-	 * @param e: the EntityType to search in the Alignment
-	 * @return the fraction of entity1 of the given type mapped in this Alignment
+	 * @return the fraction of entities from the source ontology
+	 * mapped in this Alignment (counting only entity types that
+	 * are mapped)
 	 */
-	public abstract double sourceCoverage();
+	public double sourceCoverage()
+	{
+		if(source == null)
+			return 0;
+		int count = 0;
+		for(EntityType e : this.getEntityTypes())
+			count += source.count(e);
+		return sourceCount()*1.0/count;
+	}
 	
 	/**
 	 * @return the number of entity2 mapped in this Alignment
@@ -459,10 +480,19 @@ public abstract class Alignment implements Collection<Mapping>
 	}
 	
 	/**
-	 * @param e: the EntityType to search in the Alignment
-	 * @return the fraction of entity2 of the given type mapped in this Alignment
+	 * @return the fraction of entities from the target ontology
+	 * mapped in this Alignment (counting only entity types that
+	 * are mapped)
 	 */
-	public abstract double targetCoverage();
+	public double targetCoverage()
+	{
+		if(target == null)
+			return 0;
+		int count = 0;
+		for(EntityType e : this.getEntityTypes())
+			count += target.count(e);
+		return targetCount()*1.0/count;
+	}
 	
 	@Override
 	public Object[] toArray()

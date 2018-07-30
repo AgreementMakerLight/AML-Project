@@ -32,6 +32,7 @@ import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.MappingStatus;
 import aml.ontology.EntityType;
+import aml.ontology.Ontology;
 import aml.util.data.Map2Map;
 
 public class EDOALAlignment extends Alignment
@@ -39,17 +40,17 @@ public class EDOALAlignment extends Alignment
 
 //Attributes
 
+	//The EDOAL Alignment Level
+	public static final String LEVEL = "2EDOAL";
 	//Simple mappings organized by entity1 (entity1, entity2, Mapping)
 	private Map2Map<AbstractExpression,AbstractExpression,EDOALMapping> sourceMaps;
 	//Simple mappings organized by entity2 (entity2, entity1, Mapping)
 	private Map2Map<AbstractExpression,AbstractExpression,EDOALMapping> targetMaps;
-	//The EDOAL Alignment Level
-	public static final String LEVEL = "2EDOAL";
 	
 //Constructors
 
 	/**
-	 * Creates a new empty Alignment between the source and target ontologies
+	 * Creates a new empty Alignment
 	 */
 	public EDOALAlignment()
 	{
@@ -59,24 +60,15 @@ public class EDOALAlignment extends Alignment
 	}
 
 	/**
-	 * Creates a new empty Alignment
+	 * Creates a new empty Alignment between the source and target ontologies
 	 */
-	public EDOALAlignment(String sourceUri, String targetUri)
+	public EDOALAlignment(Ontology source, Ontology target)
 	{
-		super(sourceUri,targetUri);
+		super(source,target);
 		sourceMaps = new Map2Map<AbstractExpression,AbstractExpression,EDOALMapping>();
 		targetMaps = new Map2Map<AbstractExpression,AbstractExpression,EDOALMapping>();
 	}
 
-	/**
-	 * Creates a new Alignment that contains the input collection of mappings
-	 * @param a: the collection of mappings to include in this Alignment
-	 */
-	public EDOALAlignment(Collection<Mapping> a)
-	{
-		super(a);
-	}
-	
 //Public Methods
 
 	/**
@@ -169,45 +161,6 @@ public class EDOALAlignment extends Alignment
 			return false;
 	}
 
-	@Override
-	public boolean addAll(Collection<? extends Mapping> a)
-	{
-		boolean check = false;
-		for(Mapping m : a)
-			check = add(m) || check;
-		return check;
-	}
-	
-	@Override
-	public double cardinality()
-	{
-		double cardinality = 0.0;
-		
-		Set<AbstractExpression> sources = sourceMaps.keySet();
-		for(AbstractExpression i : sources)
-			cardinality += sourceMaps.keySet(i).size();
-		
-		Set<AbstractExpression> targets = targetMaps.keySet();
-		for(AbstractExpression i : targets)
-			cardinality += targetMaps.keySet(i).size();
-		cardinality /= sources.size() + targets.size();
-		
-		return cardinality;		
-	}
-	
-	/**
-	 * @param uri: the uri of the entity to check in the Alignment
-	 * @return the cardinality of the entity in the Alignment
-	 */
-	public int cardinality(AbstractExpression uri)
-	{
-		if(sourceMaps.contains(uri))
-			return sourceMaps.get(uri).size();
-		if(targetMaps.contains(uri))
-			return targetMaps.get(uri).size();
-		return 0;
-	}
-	
 	@Override
 	public void clear()
 	{
@@ -746,5 +699,23 @@ public class EDOALAlignment extends Alignment
 		else
 			count = AML.getInstance().getTarget().count(e);
 		return coverage / count;
+	}
+
+	@Override
+	public double sourceCoverage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double targetCoverage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Set<EntityType> getEntityTypes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
