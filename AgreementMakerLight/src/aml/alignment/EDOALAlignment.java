@@ -162,14 +162,6 @@ public class EDOALAlignment extends Alignment
 			return false;
 	}
 
-	@Override
-	public void clear()
-	{
-		super.clear();
-		sourceMaps = new Map2Map<AbstractExpression,AbstractExpression,EDOALMapping>();
-		targetMaps = new Map2Map<AbstractExpression,AbstractExpression,EDOALMapping>();		
-	}
-
 	/**
 	 * @param entity1: the entity1 to check in the Alignment
 	 * @param entity2: the entity2 to check in the Alignment

@@ -12,7 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* An alignment between two Ontologies, represented as a list of Mappings.     *
+* An alignment between two Ontologies, represented both as a list of Mappings *
+* and as a table of mapped entities.                                          *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -21,6 +22,7 @@ package aml.alignment;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
@@ -28,12 +30,11 @@ import java.util.Vector;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.MappingStatus;
-import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.util.data.Map2Set;
+import aml.util.data.Map2List;
 
-public abstract class Alignment implements Collection<Mapping>
+public abstract class Alignment<A> implements Collection<Mapping<A>>
 {
 
 //Attributes
@@ -49,22 +50,24 @@ public abstract class Alignment implements Collection<Mapping>
 	protected Ontology source;
 	protected Ontology target;
 	//Mappings organized in list
-	protected Vector<Mapping> maps;
+	protected Vector<Mapping<A>> maps;
 	//Mappings organized by entity1
-	protected Map2Set<Object,Mapping> sourceMaps;
+	protected Map2List<A,Mapping<A>> sourceMaps;
 	//Mappings organized by entity2
-	protected Map2Set<Object,Mapping> targetMaps;
+	protected Map2List<A,Mapping<A>> targetMaps;
 	
 //Constructors
 
 	/**
 	 * Creates a new empty Alignment with no ontologies
-	 * Use when you want to manipulate an Alignment
-	 * without opening its ontolologies
+	 * [Use when you want to manipulate an Alignment
+	 * without opening its ontolologies]
 	 */
 	public Alignment()
 	{
-		maps = new Vector<Mapping>(0,1);
+		maps = new Vector<Mapping<A>>(0,1);
+		sourceMaps = new Map2List<A,Mapping<A>>();
+		targetMaps = new Map2List<A,Mapping<A>>();
 	}
 
 	/**
@@ -74,26 +77,52 @@ public abstract class Alignment implements Collection<Mapping>
 	 */
 	public Alignment(Ontology source, Ontology target)
 	{
+		this();
 		this.source = source;
 		this.sourceURI = source.getURI();
 		this.target = target;
 		this.targetURI = target.getURI();
-		maps = new Vector<Mapping>(0,1);
 	}
 
 //Public Methods
 
 	@Override
-	public boolean add(Mapping m)
+	public boolean add(Mapping<A> m)
 	{
-		return maps.add(m);
+		boolean isNew = !this.contains(m);
+		if(isNew)
+		{
+			maps.add(m);
+			sourceMaps.add(m.getEntity1(), m);
+			targetMaps.add(m.getEntity2(), m);
+		}
+		else
+		{
+			Mapping<A> n = (this.get(this.getIndex(m)));
+			if(m.getSimilarity() > n.getSimilarity())
+			{
+				n.setSimilarity(m.getSimilarity());
+				isNew = true;
+			}
+			if(!m.getRelationship().equals(n.getRelationship()))
+			{
+				m.setRelationship(n.getRelationship());
+				isNew = true;
+			}
+			if(!m.getStatus().equals(n.getStatus()))
+			{
+				m.setStatus(n.getStatus());
+				isNew = true;
+			}
+		}
+		return isNew;
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends Mapping> a)
+	public boolean addAll(Collection<? extends Mapping<A>> a)
 	{
 		boolean check = false;
-		for(Mapping m : a)
+		for(Mapping<A> m : a)
 			check = add(m) || check;
 		return check;
 	}
@@ -104,10 +133,10 @@ public abstract class Alignment implements Collection<Mapping>
 	 * in this Alignment
 	 * @param a: the collection of Mappings to add to this Alignment
 	 */
-	public void addAllNonConflicting(Collection<? extends Mapping> a)
+	public void addAllNonConflicting(Collection<? extends Mapping<A>> a)
 	{
-		Vector<Mapping> nonConflicting = new Vector<Mapping>();
-		for(Mapping m : a)
+		Vector<Mapping<A>> nonConflicting = new Vector<Mapping<A>>();
+		for(Mapping<A> m : a)
 			if(!this.containsConflict(m))
 				nonConflicting.add(m);
 		addAll(nonConflicting);
@@ -120,10 +149,10 @@ public abstract class Alignment implements Collection<Mapping>
 	 * Alignment
 	 * @param a: the Alignment to add to this Alignment
 	 */
-	public void addAllOneToOne(Alignment a)
+	public void addAllOneToOne(Alignment<A> a)
 	{
 		a.sortDescending();
-		for(Mapping m : a.maps)
+		for(Mapping<A> m : a.maps)
 			if(!this.containsConflict(m))
 				add(m);
 	}
@@ -139,13 +168,16 @@ public abstract class Alignment implements Collection<Mapping>
 	@Override
 	public void clear()
 	{
-		maps = new Vector<Mapping>(0,1);
+		maps = new Vector<Mapping<A>>(0,1);
+		sourceMaps = new Map2List<A,Mapping<A>>();
+		targetMaps = new Map2List<A,Mapping<A>>();		
 	}
 	
 	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public boolean contains(Object o)
 	{
-		return o instanceof Mapping && maps.contains((SimpleMapping)o);
+		return o instanceof Mapping && sourceMaps.get(((Mapping<A>)o).getEntity1()).contains((Mapping)o);
 	}
 	
 	@Override
@@ -162,35 +194,35 @@ public abstract class Alignment implements Collection<Mapping>
 	 * @return whether the Alignment contains a Mapping that conflicts with the given
 	 * Mapping and has a higher similarity
 	 */
-	public abstract boolean containsBetterMapping(Mapping m);
+	public abstract boolean containsBetterMapping(Mapping<A> m);
 	
 	/**
  	 * @param m: the Mapping to check in the Alignment 
 	 * @return whether the Alignment contains another Mapping involving either entity in m
 	 */
-	public abstract boolean containsConflict(Mapping m);
+	public abstract boolean containsConflict(Mapping<A> m);
 	
 	/**
  	 * @param entity: the entity to check in the Alignment 
 	 * @return whether the Alignment contains a Mapping with that entity
 	 * (either as entity1 or entity2)
 	 */
-	public boolean containsEntity(Object entity)
+	public boolean containsEntity(String entity)
 	{
 		return containsSource(entity) || containsTarget(entity);
 	}
 	
 	/**
-	 * @param entity1: the entity1 to check in the Alignment
- 	 * @return whether the Alignment contains a Mapping for entity1
+	 * @param s: the element of the source Ontology to check in the Alignment
+ 	 * @return whether the Alignment contains a Mapping for s
 	 */
-	public abstract boolean containsSource(Object entity1);
+	public abstract boolean containsSource(String s);
 
 	/**
-	 * @param entity2: the entity2 to check in the Alignment
- 	 * @return whether the Alignment contains a Mapping for entity1
+	 * @param t: the element of the target Ontology to check in the Alignment
+ 	 * @return whether the Alignment contains a Mapping for t
 	 */
-	public abstract boolean containsTarget(Object entity2);
+	public abstract boolean containsTarget(String t);
 	
 	/**
  	 * @return the number of conflict mappings in this alignment
@@ -198,7 +230,7 @@ public abstract class Alignment implements Collection<Mapping>
 	public int countConflicts()
 	{
 		int count = 0;
-		for(Mapping m : maps)
+		for(Mapping<A> m : maps)
 			if(m.getRelationship().equals(MappingRelation.UNKNOWN))
 				count++;
 		return count;
@@ -208,15 +240,16 @@ public abstract class Alignment implements Collection<Mapping>
 	 * Removes all mappings in the given Alignment from this Alignment
 	 * @param a: the Alignment to subtract from this Alignment
 	 */
-	public boolean difference(Alignment a)
+	public boolean difference(Alignment<A> a)
 	{
 		boolean check = false;
-		for(Mapping m : a.maps)
+		for(Mapping<A> m : a.maps)
 			check = check || this.maps.remove(m);
 		return check;
 	}
 	
 	@Override
+	@SuppressWarnings("rawtypes")
 	public boolean equals(Object o)
 	{
 		return o instanceof Alignment && containsAll((Alignment)o);
@@ -226,10 +259,10 @@ public abstract class Alignment implements Collection<Mapping>
 	 * @param ref: the reference Alignment to evaluate this Alignment
 	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
 	 */
-	public int[] evaluate(Alignment ref)
+	public int[] evaluate(Alignment<A> ref)
 	{
 		int[] count = new int[2];
-		for(Mapping m : maps)
+		for(Mapping<A> m : maps)
 		{
 			if(ref.contains(m))
 			{
@@ -252,10 +285,10 @@ public abstract class Alignment implements Collection<Mapping>
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
-	public double gain(Alignment a)
+	public double gain(Alignment<A> a)
 	{
 		double gain = 0.0;
-		for(Mapping m : maps)
+		for(Mapping<A> m : maps)
 			if(!a.contains(m))
 				gain++;
 		gain /= a.size();
@@ -267,14 +300,27 @@ public abstract class Alignment implements Collection<Mapping>
 	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
 	 * in comparison with the base Alignment
 	 */
-	public abstract double gainOneToOne(Alignment a);
+	public double gainOneToOne(Alignment<A> a)
+	{
+		double sourceGain = 0.0;
+		for(String i : this.getSources())
+			if(!a.containsSource(i))
+				sourceGain++;
+		sourceGain /= a.sourceCount();
+		double targetGain = 0.0;
+		for(String i : this.getTargets())
+			if(!a.containsTarget(i))
+				targetGain++;
+		targetGain /= a.targetCount();
+		return Math.min(sourceGain, targetGain);
+	}
 	
 	/**
 	 * @param index: the index of the Mapping to return in the list of Mappings
  	 * @return the Mapping at the input index (note that the index will change
  	 * during sorting) or null if the uri falls outside the list
 	 */
-	public Mapping get(int index)
+	public Mapping<A> get(int index)
 	{
 		if(index < 0 || index >= maps.size())
 			return null;
@@ -285,7 +331,7 @@ public abstract class Alignment implements Collection<Mapping>
 	 * @param m: the Mapping to check on the Alignment
 	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping
 	 */
-	public abstract Vector<Mapping> getConflicts(Mapping m);
+	public abstract Vector<Mapping<A>> getConflicts(Mapping<A> m);
 	
 	
 	/**
@@ -297,7 +343,7 @@ public abstract class Alignment implements Collection<Mapping>
 	 * @param m: the Mapping to search in the Alignment
 	 * @return the index of the Mapping
 	 */
-	public int getIndex(Mapping m)
+	public int getIndex(Mapping<A> m)
 	{
 		for(int i = 0; i < maps.size(); i++)
 		{
@@ -387,10 +433,21 @@ public abstract class Alignment implements Collection<Mapping>
 	}
 	
 	/**
+	 * Intersects this Alignment with a given Aligmment, retaining only
+	 * the common mappings
 	 * @param a: the Alignment to intersect with this Alignment 
-	 * @return the Alignment corresponding to the intersection between this Alignment and a
 	 */
-	public abstract Alignment intersection(Alignment a);
+	public boolean intersection(Alignment<A> a)
+	{
+		HashSet<Mapping<A>> toRemove = new HashSet<Mapping<A>>();
+		for(Mapping<A> m : a)
+			if(!this.contains(m))
+				toRemove.add(m);
+		for(Mapping<A> m : this)
+			if(!a.contains(m))
+				toRemove.add(m);
+		return this.removeAll(toRemove);
+	}
 	
 	@Override
 	public boolean isEmpty()
@@ -399,7 +456,7 @@ public abstract class Alignment implements Collection<Mapping>
 	}
 	
 	@Override
-	public Iterator<Mapping> iterator()
+	public Iterator<Mapping<A>> iterator()
 	{
 		return maps.iterator();
 	}
@@ -410,9 +467,17 @@ public abstract class Alignment implements Collection<Mapping>
 	public abstract double maxCardinality();
 	
 	@Override
+	@SuppressWarnings("unchecked")
 	public boolean remove(Object o)
 	{
-		return maps.remove(o);
+		if(o instanceof Mapping)
+		{			
+			Mapping<A> m = (Mapping<A>)o;
+			sourceMaps.remove(m.getEntity1(), m);
+			targetMaps.remove(m.getEntity2(), m);
+			return maps.remove(o);
+		}
+		return false;
 	}
 	
 	@Override
@@ -428,7 +493,7 @@ public abstract class Alignment implements Collection<Mapping>
 	public boolean retainAll(Collection<?> c)
 	{
 		boolean check = false;
-		for(Mapping m : this)
+		for(Mapping<A> m : this)
 			if(!c.contains(m))
 				check = remove(m) || check;
 		return check;
@@ -468,11 +533,11 @@ public abstract class Alignment implements Collection<Mapping>
 	 */
 	public void sortDescending()
 	{
-		Collections.sort(maps,new Comparator<Mapping>()
+		Collections.sort(maps,new Comparator<Mapping<A>>()
         {
 			//Sorting in descending order can be done simply by
 			//reversing the order of the elements in the comparison
-            public int compare(Mapping m1, Mapping m2)
+            public int compare(Mapping<A> m1, Mapping<A> m2)
             {
         		return m2.compareTo(m1);
             }

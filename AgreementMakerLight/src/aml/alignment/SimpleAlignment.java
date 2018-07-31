@@ -32,19 +32,15 @@ import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.semantics.EntityMap;
-import aml.util.data.Map2Map;
+import aml.util.data.Map2List;
 
-public class SimpleAlignment extends Alignment
+public class SimpleAlignment extends Alignment<String>
 {
 
 //Attributes
 
 	//The level of the alignment
 	protected final String LEVEL = "0";
-	//Simple mappings organized by entity1 (entity1, entity2, Mapping)
-	private Map2Map<String,String,SimpleMapping> sourceMaps;
-	//Simple mappings organized by entity2 (entity2, entity1, Mapping)
-	private Map2Map<String,String,SimpleMapping> targetMaps;
 	
 //Constructors
 
@@ -54,8 +50,6 @@ public class SimpleAlignment extends Alignment
 	public SimpleAlignment()
 	{
 		super();
-		sourceMaps = new Map2Map<String,String,SimpleMapping>();
-		targetMaps = new Map2Map<String,String,SimpleMapping>();
 	}
 
 	/**
@@ -64,8 +58,6 @@ public class SimpleAlignment extends Alignment
 	public SimpleAlignment(Ontology source, Ontology target)
 	{
 		super(source,target);
-		sourceMaps = new Map2Map<String,String,SimpleMapping>();
-		targetMaps = new Map2Map<String,String,SimpleMapping>();
 	}
 	
 //Public Methods
@@ -119,47 +111,9 @@ public class SimpleAlignment extends Alignment
 		//Construct the Mapping
 		SimpleMapping m = new SimpleMapping(entity1, entity2, sim, r);
 		m.setStatus(s);
-		//If it isn't listed yet, add it
-		if(!sourceMaps.contains(entity1,entity2))
-		{
-			maps.add(m);
-			sourceMaps.add(entity1, entity2, m);
-			targetMaps.add(entity2, entity1, m);
-			return true;
-		}
-		//Otherwise update the similarity
-		else
-		{
-			m = sourceMaps.get(entity1,entity2);
-			boolean check = false;
-			if(m.getSimilarity() < sim)
-			{
-				m.setSimilarity(sim);
-				check = true;
-			}
-			if(!m.getRelationship().equals(r))
-			{
-				m.setRelationship(r);
-				check = true;
-			}
-			if(!m.getStatus().equals(s))
-			{
-				m.setStatus(s);
-				check = true;
-			}
-			return check;
-		}
+		return this.add(m);
 	}
 	
-	@Override
-	public boolean add(Mapping m)
-	{
-		if(m instanceof SimpleMapping)
-			return add((String)m.getEntity1(),(String)m.getEntity2(),m.getSimilarity(),m.getRelationship(),m.getStatus());
-		else
-			return false;
-	}
-
 	/**
 	 * @param uri: the uri of the entity to check in the Alignment
 	 * @return the cardinality of the entity in the Alignment
@@ -173,14 +127,6 @@ public class SimpleAlignment extends Alignment
 		return 0;
 	}
 	
-	@Override
-	public void clear()
-	{
-		super.clear();
-		sourceMaps = new Map2Map<String,String,SimpleMapping>();
-		targetMaps = new Map2Map<String,String,SimpleMapping>();		
-	}
-
 	/**
 	 * @param entity1: the entity1 to check in the Alignment
 	 * @param entity2: the entity2 to check in the Alignment
@@ -188,7 +134,7 @@ public class SimpleAlignment extends Alignment
 	 */
 	public boolean contains(String entity1, String entity2)
 	{
-		return sourceMaps.contains(entity1, entity2);
+		return this.contains(new SimpleMapping(entity1,entity2,1.0));
 	}
 	
 	/**
@@ -200,15 +146,13 @@ public class SimpleAlignment extends Alignment
 	 */
 	public boolean contains(String entity1, String entity2, MappingRelation r)
 	{
-		return sourceMaps.contains(entity1, entity2) &&
-				getRelationship(entity1,entity2).equals(r);
+		return this.contains(new SimpleMapping(entity1,entity2,1.0,r));
 	}
 
 	@Override
 	public boolean contains(Object o)
 	{
-		return o instanceof SimpleMapping && contains((String)((SimpleMapping)o).getEntity1(),
-				(String)((SimpleMapping)o).getEntity2(), ((SimpleMapping)o).getRelationship());
+		return o instanceof SimpleMapping && super.contains(o);
 	}
 	
 	/**
@@ -239,26 +183,20 @@ public class SimpleAlignment extends Alignment
 	 * @return whether the Alignment contains a Mapping that conflicts with the given
 	 * Mapping and has a higher similarity
 	 */
-	public boolean containsBetterMapping(Mapping m)
+	public boolean containsBetterMapping(SimpleMapping m)
 	{
 		if(!(m instanceof SimpleMapping))
 			return false;
-		
-		String entity1 = (String)m.getEntity1();
-		String entity2 = (String)m.getEntity2();
-		double sim = m.getSimilarity();
-		if(containsSource(entity1))
+		if(this.containsSource(m.getEntity1()))
 		{
-			Set<String> targets = sourceMaps.keySet(entity1);
-			for(String i : targets)
-				if(getSimilarity(entity1,i) > sim)
+			for(Mapping<String> n : sourceMaps.get(m.getEntity1()))
+				if(n.getSimilarity() > m.getSimilarity())
 					return true;
 		}
-		if(containsTarget(entity2))
+		if(containsTarget(m.getEntity2()))
 		{
-			Set<String> sources = targetMaps.keySet(entity2);
-			for(String i : sources)
-				if(getSimilarity(i,entity2) > sim)
+			for(Mapping<String> n : targetMaps.get(m.getEntity2()))
+				if(n.getSimilarity() > m.getSimilarity())
 					return true;
 		}
 		return false;
@@ -271,20 +209,20 @@ public class SimpleAlignment extends Alignment
 	 */	
 	public boolean containsConflict(String entity1, String entity2)
 	{
-		for(String s : getTargetMappings((String)entity2))
+		for(SimpleMapping m : getTargetMappings(entity2))
 			if(!s.equals(entity1))
 				return true;
-		for(String t : getSourceMappings((String)entity1))
+		for(String t : getSourceMappings(entity1))
 			if(!t.equals(entity2))
 				return true;
 		return false;
 	}
 	
 	@Override
-	public boolean containsConflict(Mapping m)
+	public boolean containsConflict(Mapping<String> m)
 	{
 		if(m instanceof SimpleMapping)
-			return containsConflict((String)m.getEntity1(),(String)m.getEntity2());
+			return containsConflict(m.getEntity1(),m.getEntity2());
 		return false;
 	}
 	
@@ -349,40 +287,6 @@ public class SimpleAlignment extends Alignment
 	public boolean equals(Object o)
 	{
 		return o instanceof SimpleAlignment && containsAll((SimpleAlignment)o);
-	}
-	
-	/**
-	 * @param a: the base Alignment to which this Alignment will be compared 
-	 * @return the gain (i.e. the fraction of new Mappings) of this Alignment
-	 * in comparison with the base Alignment
-	 */
-	public double gainOneToOne(Alignment a)
-	{
-		double sourceGain = 0.0;
-		Set<String> sources = sourceMaps.keySet();
-		for(String i : sources)
-			if(!a.containsSource(i))
-				sourceGain++;
-		sourceGain /= a.sourceCount();
-		double targetGain = 0.0;
-		Set<String> targets = targetMaps.keySet();
-		for(String i : targets)
-			if(!a.containsTarget(i))
-				targetGain++;
-		targetGain /= a.targetCount();
-		return Math.min(sourceGain, targetGain);
-	}
-	
-	/**
-	 * @param index: the uri of the Mapping to return in the list of Mappings
- 	 * @return the Mapping at the input index (note that the uri will change
- 	 * during sorting) or null if the uri falls outside the list
-	 */
-	public Mapping get(int index)
-	{
-		if(index < 0 || index >= maps.size())
-			return null;
-		return maps.get(index);
 	}
 	
 	/**
