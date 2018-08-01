@@ -32,7 +32,7 @@ public class AlignmentWriter
 	 * @param a: the Alignment to save
 	 * @param file: the output file
 	 */
-	public static void saveDoubles(SimpleAlignment a, String file) throws FileNotFoundException
+	public static void saveDoubles(Alignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		for(Mapping m : a)
@@ -45,7 +45,7 @@ public class AlignmentWriter
 	 * @param a: the Alignment to save
 	 * @param file: the output file
 	 */
-	public static void saveRDF(SimpleAlignment a, String file) throws FileNotFoundException
+	public static void saveRDF(Alignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		outStream.println("<?xml version='1.0' encoding='utf-8'?>");
@@ -74,7 +74,7 @@ public class AlignmentWriter
 	 * @param a: the Alignment to save
 	 * @param file: the output file
 	 */
-	public static void saveTSV(SimpleAlignment a, String file) throws FileNotFoundException
+	public static void saveTSV(Alignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		outStream.println("#AgreementMakerLight Alignment File");

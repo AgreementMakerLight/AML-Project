@@ -78,11 +78,11 @@ public class NeighborSimilarityMatcher extends AbstractParallelMatcher
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
 		for(int i = 0; i < input.size(); i++)
 		{
-			Mapping m = input.get(i);
-			if(!aml.getEntityMap().isClass((String)m.getEntity1()))
+			Mapping<String> m = input.get(i);
+			if(!aml.getEntityMap().isClass(m.getEntity1()))
 				continue;
-			Set<String> sourceSubClasses = rels.getSubclasses((String)m.getEntity1(),1);
-			Set<String> targetSubClasses = rels.getSubclasses((String)m.getEntity2(),1);
+			Set<String> sourceSubClasses = rels.getSubclasses(m.getEntity1(),1);
+			Set<String> targetSubClasses = rels.getSubclasses(m.getEntity2(),1);
 			for(String s : sourceSubClasses)
 			{
 				if(input.containsSource(s))
@@ -94,8 +94,8 @@ public class NeighborSimilarityMatcher extends AbstractParallelMatcher
 					toMap.add(s, t);
 				}
 			}
-			Set<String> sourceSuperClasses = rels.getSuperclasses((String)m.getEntity1(),1);
-			Set<String> targetSuperClasses = rels.getSuperclasses((String)m.getEntity2(),1);
+			Set<String> sourceSuperClasses = rels.getSuperclasses(m.getEntity1(),1);
+			Set<String> targetSuperClasses = rels.getSuperclasses(m.getEntity2(),1);
 			for(String s : sourceSuperClasses)
 			{
 				if(input.containsSource(s))

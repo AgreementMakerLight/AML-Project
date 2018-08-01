@@ -52,7 +52,7 @@ public class LexicalMatcher extends AbstractHashMatcher
 	public SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		//Initialize the alignment
-		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment maps = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return maps;
 		AML aml = AML.getInstance();

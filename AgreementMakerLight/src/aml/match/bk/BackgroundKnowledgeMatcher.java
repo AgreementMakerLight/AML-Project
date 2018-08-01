@@ -83,7 +83,7 @@ public class BackgroundKnowledgeMatcher extends Matcher implements PrimaryMatche
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		if(!checkEntityType(e))
-			return new SimpleAlignment(o1.getURI(),o2.getURI());
+			return new SimpleAlignment(o1,o2);
 		System.out.println("Running " + NAME);
 		long time = System.currentTimeMillis()/1000;
 		LexicalMatcher lm = new LexicalMatcher();
@@ -92,7 +92,8 @@ public class BackgroundKnowledgeMatcher extends Matcher implements PrimaryMatche
 		//The alignment to return
 		//(note that if no background knowledge sources are selected
 		//this matcher will return the baseline Lexical alignment)
-		SimpleAlignment a = new SimpleAlignment(base);
+		SimpleAlignment a = new SimpleAlignment(o1,o2);
+		a.addAll(base);
 		//The map of pre-selected lexical alignments and their gains
 		HashMap<SimpleAlignment,Double> selected = new HashMap<SimpleAlignment,Double>();
 		//Auxiliary variables
@@ -150,7 +151,7 @@ public class BackgroundKnowledgeMatcher extends Matcher implements PrimaryMatche
 			else
 				gain = temp.gain(base);
 			if(gain >= GAIN_THRESH)
-				selected.put(new SimpleAlignment(temp),gain);
+				selected.put(temp,gain);
 		}
 		System.out.println("Sorting and selecting background knowledge sources");
 		//Get the set of background knowledge alignments sorted by gain

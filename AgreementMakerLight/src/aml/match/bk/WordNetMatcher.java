@@ -65,7 +65,7 @@ public class WordNetMatcher extends AbstractHashMatcher
 	@Override
 	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment a = new SimpleAlignment(o1,o2);
 		AML aml = AML.getInstance();
 		System.out.println("Building WordNet Lexicon for " + o1.getURI());
 		Map2MapComparable<String,String,Double> source = wordNetLexicon(o1.getLexicon(),e,thresh);

@@ -66,7 +66,7 @@ public class ProcessMatcher extends Matcher implements PrimaryMatcher
 	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double threshold)
 	{
-		SimpleAlignment a = new SimpleAlignment();
+		SimpleAlignment a = new SimpleAlignment(o1,o2);
 		//For each combination of individuals, do a string and word match
 		for(String s : aml.getSource().getEntities(e))
 		{
@@ -85,10 +85,10 @@ public class ProcessMatcher extends Matcher implements PrimaryMatcher
 			a = neighborSimilarity(a);
 			a = neighborSimilarity(a);
 		}
-		SimpleAlignment b = new SimpleAlignment();
-		for(Mapping m : a)
+		SimpleAlignment b = new SimpleAlignment(o1,o2);
+		for(Mapping<String> m : a)
 		{
-			if(aml.isToMatchSource((String)m.getEntity1()) && aml.isToMatchTarget((String)m.getEntity2()) &&
+			if(aml.isToMatchSource(m.getEntity1()) && aml.isToMatchTarget(m.getEntity2()) &&
 					m.getSimilarity() >= threshold)
 				b.add(m);
 		}
@@ -152,7 +152,7 @@ public class ProcessMatcher extends Matcher implements PrimaryMatcher
 	private SimpleAlignment neighborSimilarity(SimpleAlignment a)
 	{
 		SimpleAlignment b = new SimpleAlignment();
-		for(Mapping m : a)
+		for(Mapping<String> m : a)
 		{
 			double maxSim = 0.0;
 			HashSet<String> sourceChildren = getChildren((String)m.getEntity1(),false);
@@ -161,7 +161,7 @@ public class ProcessMatcher extends Matcher implements PrimaryMatcher
 			{
 				for(String t : targetChildren)
 				{
-					Mapping n = a.getBidirectional(s, t);
+					Mapping<String> n = a.get(s, t);
 					if(n != null && n.getSimilarity() > maxSim)
 						maxSim = n.getSimilarity();
 				}
@@ -173,7 +173,7 @@ public class ProcessMatcher extends Matcher implements PrimaryMatcher
 			{
 				for(String t : targetParents)
 				{
-					Mapping n = a.getBidirectional(s, t);
+					Mapping<String> n = a.get(s, t);
 					if(n != null && n.getSimilarity() > maxSim)
 						maxSim = n.getSimilarity();
 				}

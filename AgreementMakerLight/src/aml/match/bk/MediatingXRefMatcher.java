@@ -85,7 +85,7 @@ public class MediatingXRefMatcher extends MediatingMatcher
 	@Override
 	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment maps = new SimpleAlignment(o1,o2);
 		System.out.println("Using " + uri);
 		Map2MapComparable<String,String,Double> a = match(o1,thresh);
 		Map2MapComparable<String,String,Double> b = match(o2,thresh);

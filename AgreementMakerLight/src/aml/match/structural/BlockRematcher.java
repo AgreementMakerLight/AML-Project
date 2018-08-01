@@ -60,10 +60,10 @@ public class BlockRematcher extends Matcher implements Rematcher
 		
 		SimpleAlignment high = a.getHighLevelAlignment();
 		EntityMap rMap = aml.getEntityMap();
-		for(Mapping m : a)
+		for(Mapping<String> m : a)
 		{
-			String sId = (String)m.getEntity1();
-			String tId = (String)m.getEntity2();
+			String sId = m.getEntity1();
+			String tId = m.getEntity2();
 			if(!aml.getEntityMap().isClass(sId))
 			{
 				maps.add(m);

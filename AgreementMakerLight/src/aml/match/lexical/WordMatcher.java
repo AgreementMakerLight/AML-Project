@@ -80,8 +80,8 @@ public class WordMatcher extends AbstractParallelMatcher
 	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e, double thresh)
 	{
 		SimpleAlignment b = match(o1,o2,e,thresh);
-		HashSet<Mapping> toRemove = new HashSet<Mapping>();
-		for(Mapping m : b)
+		HashSet<Mapping<String>> toRemove = new HashSet<Mapping<String>>();
+		for(Mapping<String> m : b)
 			if(a.containsConflict(m))
 				toRemove.add(m);
 		b.removeAll(toRemove);
@@ -91,7 +91,7 @@ public class WordMatcher extends AbstractParallelMatcher
 	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment a = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return a;
 		AML aml = AML.getInstance();

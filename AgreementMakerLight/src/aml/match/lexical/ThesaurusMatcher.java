@@ -61,7 +61,7 @@ public class ThesaurusMatcher extends AbstractHashMatcher
 	@Override
 	public SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment maps = new SimpleAlignment(o1,o2);
 		AML aml = AML.getInstance();
 		System.out.println("Building Thesaurus for " + o1.getURI());
 		Map2MapComparable<String,String,Double> source = thesaurusLexicon(o1,e,thresh);

@@ -117,7 +117,7 @@ public class MediatingMatcher extends AbstractHashMatcher implements LexiconExte
 	@Override
 	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment maps = new SimpleAlignment(o1,o2);
 		System.out.println("Using: " + uri);
 		Lexicon source = o1.getLexicon();
 		Lexicon target = o2.getLexicon();

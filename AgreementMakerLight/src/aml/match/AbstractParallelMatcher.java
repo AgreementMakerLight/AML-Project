@@ -66,7 +66,7 @@ public abstract class AbstractParallelMatcher extends Matcher implements Primary
 	@Override
 	public SimpleAlignment extendAlignment(Ontology o1, Ontology o2, SimpleAlignment maps, EntityType e, double thresh)
 	{
-		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment a = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return a;
 		System.out.println("Running " + NAME  + " in alignment extension mode");
@@ -105,7 +105,7 @@ public abstract class AbstractParallelMatcher extends Matcher implements Primary
 	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment a = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return a;
 		System.out.println("Running " + NAME + " in match mode");
@@ -142,7 +142,7 @@ public abstract class AbstractParallelMatcher extends Matcher implements Primary
 	@Override
 	public SimpleAlignment rematch(Ontology o1, Ontology o2, SimpleAlignment a, EntityType e)
 	{
-		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment maps = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return maps;
 		System.out.println("Running " + NAME + " in rematch mode");
@@ -153,12 +153,12 @@ public abstract class AbstractParallelMatcher extends Matcher implements Primary
 		sVal = o1.getValueMap();
 		tVal = o2.getValueMap();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
-		for(Mapping m : a)
+		for(Mapping<String> m : a)
 		{
 			if(m instanceof SimpleMapping)
 			{
-				String source = (String)m.getEntity1();
-				String target = (String)m.getEntity2();
+				String source = m.getEntity1();
+				String target = m.getEntity2();
 				if(!aml.getEntityMap().getTypes(source).contains(e))
 					continue;
 				if(o1.contains(source) && o2.contains(target))

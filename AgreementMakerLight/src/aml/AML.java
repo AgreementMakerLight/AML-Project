@@ -27,6 +27,7 @@ import java.io.FileFilter;
 import java.io.FileReader;
 import java.net.URI;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
@@ -38,7 +39,10 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import aml.alignment.SimpleAlignment;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
+import aml.alignment.Alignment;
 import aml.alignment.AlignmentReader;
+import aml.alignment.AlignmentWriter;
+import aml.alignment.EDOALAlignment;
 import aml.filter.CustomFilterer;
 import aml.filter.CustomFlagger;
 import aml.filter.QualityFlagger;
@@ -85,8 +89,10 @@ public class AML
 	private Ontology source;
 	private Ontology target;
 	private MediatorOntology bk;
-	private SimpleAlignment a;
-	private SimpleAlignment ref;
+	@SuppressWarnings("rawtypes")
+	private Alignment a;
+	@SuppressWarnings("rawtypes")
+	private Alignment ref;
 	private RepairMap rep;
 	private QualityFlagger qf;
 	//The user interaction manager
@@ -298,6 +304,7 @@ public class AML
 	/**
 	 * Evaluates the current alignment using the reference alignment
 	 */
+	@SuppressWarnings("unchecked")
 	public void evaluate()
 	{
 		boolean gui = userInterface != null;
@@ -369,7 +376,8 @@ public class AML
 	/**
 	 * @return the current alignment
 	 */
-	public SimpleAlignment getAlignment()
+	@SuppressWarnings("rawtypes")
+	public Alignment getAlignment()
     {
     	return a;
     }
@@ -534,7 +542,8 @@ public class AML
 	/**
 	 * @return the current reference alignment
 	 */
-	public SimpleAlignment getReferenceAlignment()
+	@SuppressWarnings("rawtypes")
+	public Alignment getReferenceAlignment()
     {
     	return ref;
     }
@@ -1026,12 +1035,21 @@ public class AML
     	userInterface.refresh();
     }
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void removeIncorrect()
 	{
-		SimpleAlignment reviewed = new SimpleAlignment();
-		for(Mapping m : a)
+		Alignment reviewed;
+		if(a.LEVEL.equals("0"))
+			reviewed = new SimpleAlignment();
+		else
+			reviewed = new EDOALAlignment();
+		Iterator<Mapping> it = a.iterator();
+		while(it.hasNext())
+		{
+			Mapping m = it.next();
 			if(!m.getStatus().equals(MappingStatus.INCORRECT))
 				reviewed.add(m);
+		}
 		if(a.size() > reviewed.size())
 		{
 			aml.setAlignment(reviewed);
@@ -1059,19 +1077,20 @@ public class AML
 
     public void saveAlignmentRDF(String file) throws Exception
     {
-    	AlignmentReader.saveRDF(a,file);
+    	AlignmentWriter.saveRDF(a,file);
     	needSave = false;
     }
     
     public void saveAlignmentTSV(String file) throws Exception
     {
-    	AlignmentReader.saveTSV(a,file);
+    	AlignmentWriter.saveTSV(a,file);
     	needSave = false;
     }
     
-	public void setAlignment(SimpleAlignment maps)
+	@SuppressWarnings("rawtypes")
+	public void setAlignment(Alignment reviewed)
 	{
-		a = maps;
+		a = reviewed;
 		if(a.size() > 0)
 			activeMapping = 0;
 		qf = null;

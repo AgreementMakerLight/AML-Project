@@ -86,7 +86,7 @@ public class StringMatcher extends AbstractParallelMatcher
 			long time = System.currentTimeMillis()/1000;
 			sLex = o1.getLexicon();
 			tLex = o2.getLexicon();
-			SimpleAlignment ext = new SimpleAlignment(o1.getURI(),o2.getURI());
+			SimpleAlignment ext = new SimpleAlignment(o1,o2);
 			System.out.println("Matching Children & Parents");
 			ext.addAll(extendChildrenAndParents(a,thresh));
 			SimpleAlignment aux = extendChildrenAndParents(ext,thresh);
@@ -94,7 +94,7 @@ public class StringMatcher extends AbstractParallelMatcher
 			for(int i = 0; i < 10 && ext.size() > size; i++)
 			{
 				size = ext.size();
-				for(Mapping m : aux)
+				for(Mapping<String> m : aux)
 					if(!a.containsConflict(m))
 						ext.add(m);
 				aux = extendChildrenAndParents(aux,thresh);
@@ -177,12 +177,12 @@ public class StringMatcher extends AbstractParallelMatcher
 		AML aml = AML.getInstance();
 		EntityMap rels = aml.getEntityMap();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
-		for(Mapping input : a)
+		for(Mapping<String> input : a)
 		{
 			if(input instanceof SimpleMapping && rels.isClass((String)input.getEntity1()))
 			{
-				Set<String> sourceChildren = rels.getSubclasses((String)input.getEntity1(),1);
-				Set<String> targetChildren = rels.getSubclasses((String)input.getEntity2(),1);
+				Set<String> sourceChildren = rels.getSubclasses(input.getEntity1(),1);
+				Set<String> targetChildren = rels.getSubclasses(input.getEntity2(),1);
 				for(String s : sourceChildren)
 				{
 					if(a.containsSource(s))
@@ -193,8 +193,8 @@ public class StringMatcher extends AbstractParallelMatcher
 							toMap.add(s,t);
 					}
 				}
-				Set<String> sourceParents = rels.getSuperclasses((String)input.getEntity1(),1);
-				Set<String> targetParents = rels.getSuperclasses((String)input.getEntity2(),1);
+				Set<String> sourceParents = rels.getSuperclasses(input.getEntity1(),1);
+				Set<String> targetParents = rels.getSuperclasses(input.getEntity2(),1);
 				for(String s : sourceParents)
 				{
 					if(a.containsSource(s))
@@ -215,12 +215,12 @@ public class StringMatcher extends AbstractParallelMatcher
 		AML aml = AML.getInstance();
 		EntityMap rels = aml.getEntityMap();
 		Map2Set<String,String> toMap = new Map2Set<String,String>();
-		for(Mapping input : a)
+		for(Mapping<String> input : a)
 		{
-			if(input instanceof SimpleMapping && aml.getEntityMap().isClass((String)input.getEntity1()))
+			if(input instanceof SimpleMapping && aml.getEntityMap().isClass(input.getEntity1()))
 			{
-				Set<String> sourceSiblings = rels.getSiblings((String)input.getEntity1());
-				Set<String> targetSiblings = rels.getSiblings((String)input.getEntity2());
+				Set<String> sourceSiblings = rels.getSiblings(input.getEntity1());
+				Set<String> targetSiblings = rels.getSiblings(input.getEntity2());
 				if(sourceSiblings.size() > 200 || targetSiblings.size() > 200)
 					continue;
 				for(String s : sourceSiblings)

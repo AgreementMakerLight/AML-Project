@@ -50,7 +50,7 @@ public class DirectXRefMatcher extends AbstractHashMatcher
 	@Override
 	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment maps = new SimpleAlignment(o1,o2);
 		ReferenceMap sourceRefs = o1.getReferenceMap();
 		ReferenceMap targetRefs = o2.getReferenceMap();
 				

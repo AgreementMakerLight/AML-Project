@@ -51,7 +51,7 @@ public class SpacelessLexicalMatcher extends AbstractHashMatcher
 	protected SimpleAlignment hashMatch(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
 		//Initialize the alignment
-		SimpleAlignment maps = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment maps = new SimpleAlignment(o1,o2);
 		AML aml = AML.getInstance();
 		//Get the lexicons of the source and target Ontologies
 		Lexicon sLex = o1.getLexicon();

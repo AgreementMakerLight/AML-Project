@@ -152,8 +152,8 @@ public class AutomaticMatcher
 				//Deciding whether to use it based on its coverage of the input ontologies
 				//(as we expect a high gain if the coverage is high given that WordNet will
 				//generate numerous synonyms)
-				double coverage = Math.min(wordNet.sourceCoverage(EntityType.CLASS),
-						wordNet.targetCoverage(EntityType.CLASS));
+				double coverage = Math.min(wordNet.sourceCoverage(),
+						wordNet.targetCoverage());
 				
 				if(coverage >= WN_THRESH)
 				{
@@ -381,8 +381,8 @@ public class AutomaticMatcher
 		{
 			ValueMatcher vm = new ValueMatcher();
 			SimpleAlignment b = vm.match(source,target,EntityType.INDIVIDUAL, thresh);
-			double cov = Math.min(b.sourceCoverage(EntityType.INDIVIDUAL),
-					b.targetCoverage(EntityType.INDIVIDUAL));
+			double cov = Math.min(b.sourceCoverage(),
+					b.targetCoverage());
 			System.out.println("ValueMatcher coverage : " + cov);
 			//ValueMatcher based strategy
 			if(cov >= 0.5)

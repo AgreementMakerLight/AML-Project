@@ -38,7 +38,7 @@ public abstract class AbstractHashMatcher extends Matcher implements PrimaryMatc
 	@Override
 	public SimpleAlignment match(Ontology o1, Ontology o2, EntityType e, double thresh)
 	{
-		SimpleAlignment a = new SimpleAlignment(o1.getURI(),o2.getURI());
+		SimpleAlignment a = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return a;
 		System.out.println("Running " + NAME + " in match mode");

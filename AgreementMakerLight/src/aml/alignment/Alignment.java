@@ -40,7 +40,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 //Attributes
 
 	//The level of the alignment
-	protected final String LEVEL = null;
+	public final String LEVEL = null;
 	//The type of the alignment
 	protected String type;
 	//Ontology uris (as listed in alignment file)
@@ -98,7 +98,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		}
 		else
 		{
-			Mapping<A> n = (this.get(this.getIndex(m)));
+			Mapping<A> n = (maps.get(this.getIndex(m)));
 			if(m.getSimilarity() > n.getSimilarity())
 			{
 				n.setSimilarity(m.getSimilarity());
@@ -165,6 +165,12 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		return (this.sourceCount()*0.5+this.targetCount()*0.5)/this.size();
 	}
 	
+	/**
+	 * @param uri: the uri of the entity to check in the Alignment
+	 * @return the cardinality of the entity in the Alignment
+	 */
+	public abstract int cardinality(String uri);
+	
 	@Override
 	public void clear()
 	{
@@ -178,6 +184,25 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	public boolean contains(Object o)
 	{
 		return o instanceof Mapping && sourceMaps.get(((Mapping<A>)o).getEntity1()).contains((Mapping)o);
+	}
+	
+	/**
+	 * @param m: the Mapping to search in the Alignment
+	 * @return whether the Alignment contains a mapping equivalent to m but with unknown relation
+	 */
+	public boolean containsUnknown(Mapping<A> m)
+	{
+		for(Mapping<A> n : sourceMaps.get(m.getEntity1()))
+		{
+			if(n.equals(m))
+			{
+				if(n.getRelationship().equals(MappingRelation.UNKNOWN))
+					return true;
+				else
+					break;
+			}
+		}
+		return false;
 	}
 	
 	@Override
@@ -194,13 +219,43 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	 * @return whether the Alignment contains a Mapping that conflicts with the given
 	 * Mapping and has a higher similarity
 	 */
-	public abstract boolean containsBetterMapping(Mapping<A> m);
+	public boolean containsBetterMapping(Mapping<A> m)
+	{
+		if(sourceMaps.contains(m.getEntity1()))
+		{
+			for(Mapping<A> n : sourceMaps.get(m.getEntity1()))
+				if(n.getSimilarity() > m.getSimilarity())
+					return true;
+		}
+		if(targetMaps.contains(m.getEntity2()))
+		{
+			for(Mapping<A> n : targetMaps.get(m.getEntity1()))
+				if(n.getSimilarity() > m.getSimilarity())
+					return true;
+		}
+		return false;
+	}
 	
 	/**
  	 * @param m: the Mapping to check in the Alignment 
 	 * @return whether the Alignment contains another Mapping involving either entity in m
 	 */
-	public abstract boolean containsConflict(Mapping<A> m);
+	public boolean containsConflict(Mapping<A> m)
+	{
+		if(sourceMaps.contains(m.getEntity1()))
+		{
+			for(Mapping<A> n : sourceMaps.get(m.getEntity1()))
+				if(!n.equals(m))
+					return true;
+		}
+		if(targetMaps.contains(m.getEntity2()))
+		{
+			for(Mapping<A> n : targetMaps.get(m.getEntity1()))
+				if(!n.equals(m))
+					return true;
+		}
+		return false;
+	}
 	
 	/**
  	 * @param entity: the entity to check in the Alignment 
@@ -264,15 +319,15 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		int[] count = new int[2];
 		for(Mapping<A> m : maps)
 		{
-			if(ref.contains(m))
-			{
-				count[0]++;
-				m.setStatus(MappingStatus.CORRECT);
-			}
-			else if(((SimpleAlignment)ref).contains((String)m.getEntity1(),(String)m.getEntity2(),MappingRelation.UNKNOWN))
+			if(ref.containsUnknown(m))
 			{
 				count[1]++;
 				m.setStatus(MappingStatus.UNKNOWN);
+			}
+			else if(ref.contains(m))
+			{
+				count[0]++;
+				m.setStatus(MappingStatus.CORRECT);
 			}
 			else
 				m.setStatus(MappingStatus.INCORRECT);
@@ -328,11 +383,41 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	}
 	
 	/**
+	 * @param entity1: the entity1 to check in the Alignment
+	 * @param entity2: the entity2 to check in the Alignment
+ 	 * @return the Mapping between the entity1 and entity2 classes or null if no
+ 	 * such Mapping exists
+	 */
+	public Mapping<A> get(A entity1, A entity2)
+	{
+		if(sourceMaps.contains(entity1) && targetMaps.contains(entity2))
+			for(Mapping<A> m : sourceMaps.get(entity1))
+				if(m.getEntity2().equals(entity2))
+					return m;
+		return null;
+	}
+	
+	/**
 	 * @param m: the Mapping to check on the Alignment
 	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping
 	 */
-	public abstract Vector<Mapping<A>> getConflicts(Mapping<A> m);
-	
+	public Vector<Mapping<A>> getConflicts(Mapping<A> m)
+	{
+		Vector<Mapping<A>> conflicts = new Vector<Mapping<A>>();
+		if(sourceMaps.contains(m.getEntity1()))
+		{
+			for(Mapping<A> n : sourceMaps.get(m.getEntity1()))
+				if(!n.equals(m) && !conflicts.contains(m))
+					conflicts.add(n);
+		}
+		if(targetMaps.contains(m.getEntity2()))
+		{
+			for(Mapping<A> n : targetMaps.get(m.getEntity1()))
+				if(!n.equals(m) && !conflicts.contains(m))
+					conflicts.add(n);
+		}
+		return conflicts;
+	}
 	
 	/**
 	 * @return the EntityTypes of all entities mapped in this Alignment
@@ -353,6 +438,26 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		return -1;
 	}
 	
+	/**
+	 * @param entity1: the entity1 in the Alignment
+	 * @param entity2: the entity2 in the Alignment
+	 * @return the similarity between entity1 and entity2
+	 */
+	public double getSimilarity(A entity1, A entity2)
+	{
+		return get(entity1,entity2).getSimilarity();
+	}
+	
+	/**
+	 * @param entity1: the entity1 in the Alignment
+	 * @param entity2: the entity2 in the Alignment
+	 * @return the similarity between entity1 and entity2 in percentage
+	 */
+	public String getSimilarityPercent(A entity1, A entity2)
+	{
+		return get(entity1,entity2).getSimilarityPercent();
+	}
+
 	/**
 	 * @return the source entities mapped in this alignment
 	 */
