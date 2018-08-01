@@ -23,8 +23,8 @@ package aml.alignment.mapping;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
-import aml.alignment.edoal.ClassExpression;
-import aml.alignment.edoal.LinkKey;
+import aml.alignment.rdf.ClassExpression;
+import aml.alignment.rdf.LinkKey;
 
 public class LinkKeyMapping extends EDOALMapping
 {

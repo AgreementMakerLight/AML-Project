@@ -20,7 +20,7 @@ package aml.alignment.mapping;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
-import aml.alignment.edoal.AbstractExpression;
+import aml.alignment.rdf.AbstractExpression;
 
 public class EDOALMapping extends Mapping<AbstractExpression>
 {

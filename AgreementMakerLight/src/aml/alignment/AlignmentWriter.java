@@ -23,6 +23,7 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
 import aml.alignment.mapping.Mapping;
+import aml.alignment.rdf.RDFElement;
 import aml.settings.Namespace;
 
 public class AlignmentWriter

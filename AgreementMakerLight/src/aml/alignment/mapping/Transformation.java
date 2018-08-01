@@ -22,7 +22,7 @@
 ******************************************************************************/
 package aml.alignment.mapping;
 
-import aml.alignment.edoal.AbstractExpression;
+import aml.alignment.rdf.AbstractExpression;
 
 public class Transformation extends EDOALMapping
 {

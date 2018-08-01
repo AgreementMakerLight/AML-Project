@@ -30,13 +30,22 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
-import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.MappingStatus;
+import aml.alignment.rdf.RDFElement;
 import aml.settings.Namespace;
 
 public class AlignmentReader
 {
+	
+//Attributes
+	
+	//The Alignment variable
+	@SuppressWarnings("rawtypes")
+	private static Alignment a;
+	
+//Public Methods
+	
 	/**
 	 * Reads an alignment file in either RDF (simple or EDOAL) or TSV (AML format)
 	 * @param file: the path to the file to read
@@ -44,9 +53,9 @@ public class AlignmentReader
 	 * @return the Alignment
 	 * @throws Exception if unable to read the alignment file
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Alignment read(String file, boolean active) throws Exception
 	{
-		Alignment a = null;
 		//Read the first few lines of the file (until a non-empty line is reached)
 		//to figure out how to parse it
 		BufferedReader inStream = new BufferedReader(new FileReader(file));
@@ -73,6 +82,7 @@ public class AlignmentReader
 	 * @return the Alignment
 	 * @throws Exception if unable to read the alignment file
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Alignment readRDF(String file, boolean active) throws DocumentException
 	{
 		
@@ -83,31 +93,35 @@ public class AlignmentReader
 		//Read the root, then go to the "Alignment" element
 		Element root = doc.getRootElement();
 		Element align = root.element(RDFElement.ALIGNMENT_.toString());
-		
 		//Read the alignment level
 		String level = align.elementText(RDFElement.LEVEL.toString());
 		boolean edoal = level.equals(EDOALAlignment.LEVEL);
-
+		//Initialize the Alignment
+		if(active)
+		{
+			if(edoal)
+				a = new EDOALAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
+			else
+				a = new SimpleAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
+		}
+		else
+		{
+			if(edoal)
+				a = new EDOALAlignment();
+			else
+				a = new SimpleAlignment();			
+		}
+		//Try to read the ontologies
+		String source = null;
+		parseOntology(align.element(RDFElement.ONTO1.toString()),1);
+		
 		if(edoal)
 		{
 			return null;
 		}
 		else
 		{
-			//Try to read the ontologies
-			String source = null;
-			Element onto1 = align.element(RDFElement.ONTO1.toString());
-			if(onto1 != null)
-			{
-				if(onto1.isTextOnly())
-					source = onto1.getText();
-				else
-				{
-					Element ont = onto1.element(RDFElement.ONTOLOGY_.toString());
-					if(ont != null)
-						source = ont.attributeValue(RDFElement.RDF_ABOUT.toString());
-				}
-			}
+
 			if(source == null)
 				source = "";
 			String target = null;
@@ -127,9 +141,9 @@ public class AlignmentReader
 				target = "";
 			SimpleAlignment a;
 			if(!active)
-				a = new SimpleAlignment(source,target);
+				a = new SimpleAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
 			else
-				a = new SimpleAlignment(AML.getInstance().getSource().getURI(),AML.getInstance().getTarget().getURI());
+				a = new SimpleAlignment();
 			
 			//Get an iterator over the mappings
 			Iterator<?> map = align.elementIterator(RDFElement.MAP.toString());
@@ -173,7 +187,8 @@ public class AlignmentReader
 			return a;
 		}
 	}
-	
+
+	@SuppressWarnings("rawtypes")
 	public static Alignment parseTSV(String file, boolean active) throws Exception
 	{
 		SimpleAlignment a = new SimpleAlignment();
@@ -227,5 +242,23 @@ public class AlignmentReader
 		}
 		inStream.close();
 		return a;
+	}
+	
+//Private Methods
+	
+	private static void parseOntology(Element e, int i)
+	{
+		if(e != null)
+		{
+			if(onto1.isTextOnly())
+				source = onto1.getText();
+			else
+			{
+				Element ont = onto1.element(RDFElement.ONTOLOGY_.toString());
+				if(ont != null)
+					source = ont.attributeValue(RDFElement.RDF_ABOUT.toString());
+			}
+		}
+
 	}
 }

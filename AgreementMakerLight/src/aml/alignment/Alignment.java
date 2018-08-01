@@ -43,9 +43,15 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	public final String LEVEL = null;
 	//The type of the alignment
 	protected String type;
-	//Ontology uris (as listed in alignment file)
+	//Ontology info (as listed in alignment file)
 	protected String sourceURI;
+	protected String sourceLocation;
+	protected String sourceFormalismName;
+	protected String sourceFormalismURI;
 	protected String targetURI;
+	protected String targetLocation;
+	protected String targetFormalismName;
+	protected String targetFormalismURI;
 	//Links to the Ontologies mapped in this Alignment
 	protected Ontology source;
 	protected Ontology target;
@@ -457,7 +463,39 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	{
 		return get(entity1,entity2).getSimilarityPercent();
 	}
+	
+	/**
+	 * @return the name of the formalism of the source ontology
+	 */
+	public String getSourceFormalismName()
+	{
+		return sourceFormalismName;
+	}
 
+	/**
+	 * @return the URI of the formalism of the source ontology
+	 */
+	public String getSourceFormalismURI()
+	{
+		return sourceFormalismURI;
+	}
+	
+	/**
+	 * @return the location of the source ontology
+	 */
+	public String getSourceLocation()
+	{
+		return sourceLocation;
+	}
+	
+	/**
+	 * @return the source ontology of this alignment
+	 */
+	public Ontology getSourceOntology()
+	{
+		return source;
+	}
+	
 	/**
 	 * @return the source entities mapped in this alignment
 	 */
@@ -469,6 +507,38 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	public String getSourceURI()
 	{
 		return sourceURI;
+	}
+	
+	/**
+	 * @return the name of the formalism of the target ontology
+	 */
+	public String getTargetFormalismName()
+	{
+		return targetFormalismName;
+	}
+
+	/**
+	 * @return the URI of the formalism of the target ontology
+	 */
+	public String getTargetFormalismURI()
+	{
+		return targetFormalismURI;
+	}
+	
+	/**
+	 * @return the location of the target ontology
+	 */
+	public String getTargetLocation()
+	{
+		return targetLocation;
+	}
+	
+	/**
+	 * @return the target ontology of this alignment
+	 */
+	public Ontology getTargetOntology()
+	{
+		return target;
 	}
 	
 	/**
@@ -604,6 +674,82 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		return check;
 	}
 
+	/**
+	 * Sets the name of the formalism of the source ontology
+	 * @param s: the name to set
+	 */
+	public void setSourceFormalismName(String s)
+	{
+		sourceFormalismName = s;
+	}
+
+	/**
+	 * Sets the URI of the formalism of the source ontology
+	 * @param s: the URI to set
+	 */
+	public void setSourceFormalismURI(String s)
+	{
+		sourceFormalismURI = s;
+	}
+	
+	/**
+	 * Sets the location of the source ontology
+	 * @param s: the location to set
+	 */
+	public void setSourceLocation(String s)
+	{
+		sourceLocation = s;
+	}
+	
+	/**
+	 * Sets the URI of the source ontology (only if the
+	 * Alignment holds no link to the Ontology)
+	 * @param s: the URI to set
+	 */
+	public void setSourceURI(String s)
+	{
+		if(source != null)
+			sourceURI = s;
+	}
+	
+	/**
+	 * Sets the name of the formalism of the target ontology
+	 * @param s: the name to set
+	 */
+	public void setTargetFormalismName(String s)
+	{
+		targetFormalismName = s;
+	}
+
+	/**
+	 * Sets the URI of the formalism of the target ontology
+	 * @param s: the URI to set
+	 */
+	public void setTargetFormalismURI(String s)
+	{
+		targetFormalismURI = s;
+	}
+	
+	/**
+	 * Sets the location of the target ontology
+	 * @param s: the location to set
+	 */
+	public void setTargetLocation(String s)
+	{
+		targetLocation = s;
+	}
+	
+	/**
+	 * Sets the URI of the target ontology (only if the
+	 * Alignment holds no link to the Ontology)
+	 * @param s: the URI to set
+	 */
+	public void setTargetURI(String s)
+	{
+		if(target != null)
+			targetURI = s;
+	}
+	
 	/**
 	 * Sets the type of the alignment
 	 * @param type: the alignment type, a two-character string

@@ -24,11 +24,11 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
-import aml.alignment.edoal.AbstractExpression;
 import aml.alignment.mapping.EDOALMapping;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.MappingStatus;
+import aml.alignment.rdf.AbstractExpression;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.util.data.Map2List;
