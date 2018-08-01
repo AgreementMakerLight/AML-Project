@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.dom4j.Document;
@@ -30,9 +31,9 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
-import aml.alignment.mapping.MappingRelation;
-import aml.alignment.mapping.MappingStatus;
-import aml.alignment.rdf.RDFElement;
+import aml.alignment.mapping.*;
+import aml.alignment.rdf.*;
+import aml.ontology.EntityType;
 import aml.settings.Namespace;
 
 public class AlignmentReader
@@ -43,6 +44,7 @@ public class AlignmentReader
 	//The Alignment variable
 	@SuppressWarnings("rawtypes")
 	private static Alignment a;
+	private static boolean isEDOAL;
 	
 //Public Methods
 	
@@ -95,97 +97,37 @@ public class AlignmentReader
 		Element align = root.element(RDFElement.ALIGNMENT_.toString());
 		//Read the alignment level
 		String level = align.elementText(RDFElement.LEVEL.toString());
-		boolean edoal = level.equals(EDOALAlignment.LEVEL);
+		isEDOAL = level.equals(EDOALAlignment.LEVEL);
 		//Initialize the Alignment
 		if(active)
 		{
-			if(edoal)
+			if(isEDOAL)
 				a = new EDOALAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
 			else
 				a = new SimpleAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
 		}
 		else
 		{
-			if(edoal)
+			if(isEDOAL)
 				a = new EDOALAlignment();
 			else
 				a = new SimpleAlignment();			
 		}
 		//Try to read the ontologies
-		String source = null;
-		parseOntology(align.element(RDFElement.ONTO1.toString()),1);
+		parseOntology(align.element(RDFElement.ONTO1.toString()),true);
+		parseOntology(align.element(RDFElement.ONTO2.toString()),false);
 		
-		if(edoal)
+		//Get an iterator over the mappings
+		Iterator<?> map = align.elementIterator(RDFElement.MAP.toString());
+		while(map.hasNext())
 		{
-			return null;
+			//Get the "Cell" in each mapping
+			Element cell = ((Element)map.next()).element(RDFElement.CELL_.toString());
+			if(cell == null)
+				continue;
+			parseCell(cell,active);
 		}
-		else
-		{
-
-			if(source == null)
-				source = "";
-			String target = null;
-			Element onto2 = align.element(RDFElement.ONTO1.toString());
-			if(onto2 != null)
-			{
-				if(onto2.isTextOnly())
-					target = onto2.getText();
-				else
-				{
-					Element ont = onto2.element(RDFElement.ONTOLOGY_.toString());
-					if(ont != null)
-						target = ont.attributeValue(RDFElement.RDF_ABOUT.toString());
-				}
-			}
-			if(target == null)
-				target = "";
-			SimpleAlignment a;
-			if(!active)
-				a = new SimpleAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
-			else
-				a = new SimpleAlignment();
-			
-			//Get an iterator over the mappings
-			Iterator<?> map = align.elementIterator(RDFElement.MAP.toString());
-			while(map.hasNext())
-			{
-				//Get the "Cell" in each mapping
-				Element e = ((Element)map.next()).element(RDFElement.CELL_.toString());
-				if(e == null)
-					continue;
-				
-				//Get the entities
-				String sourceURI = e.element(RDFElement.ENTITY1.toString()).attributeValue(RDFElement.RDF_RESOURCE.toString());
-				String targetURI = e.element(RDFElement.ENTITY2.toString()).attributeValue(RDFElement.RDF_RESOURCE.toString());
-				//Get the similarity measure
-				String measure = e.elementText(RDFElement.MEASURE.toString());
-				//Parse it, assuming 1 if a valid measure is not found
-				double similarity = 1;
-				if(measure != null)
-				{
-					try{ similarity = Double.parseDouble(measure); }
-	            	catch(Exception ex){/*Do nothing - use the default value*/};
-	            }
-	            if(similarity < 0 || similarity > 1)
-	            	similarity = 1;
-	            
-	            //Get the relation
-	            String r = e.elementText(RDFElement.MEASURE.toString());
-	            if(r == null)
-	            	r = "?";
-	            MappingRelation rel = MappingRelation.parseRelation(StringEscapeUtils.unescapeXml(r));
-	            //Get the status
-	            String s = e.elementText(RDFElement.STATUS.toString());
-	            if(s == null)
-	            	s = "?";
-	            MappingStatus st = MappingStatus.parseStatus(s);
-	            if(!active || (AML.getInstance().getSource().contains(sourceURI) && AML.getInstance().getTarget().contains(targetURI)))
-	            	a.add(sourceURI, targetURI, similarity, rel, st);
-	            else if(AML.getInstance().getSource().contains(targetURI) && AML.getInstance().getTarget().contains(sourceURI))
-					a.add(targetURI, sourceURI, similarity, rel, st);
-			}
-			return a;
-		}
+		return a;
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -246,19 +188,204 @@ public class AlignmentReader
 	
 //Private Methods
 	
-	private static void parseOntology(Element e, int i)
+	private static void parseOntology(Element e, boolean isSource)
 	{
 		if(e != null)
 		{
-			if(onto1.isTextOnly())
-				source = onto1.getText();
+			String uri;
+			String location = null;
+			String formalismName = null;
+			String formalismURI = null;
+			if(e.isTextOnly())
+				uri = e.getText();
 			else
 			{
-				Element ont = onto1.element(RDFElement.ONTOLOGY_.toString());
-				if(ont != null)
-					source = ont.attributeValue(RDFElement.RDF_ABOUT.toString());
+				Element ont = e.element(RDFElement.ONTOLOGY_.toString());
+				if(ont == null)
+					return;
+				uri = ont.attributeValue(RDFElement.RDF_ABOUT.toString());
+				Element loc = ont.element(RDFElement.LOCATION.toString());
+				if(loc != null)
+					location = loc.getText();
+				Element form = ont.element(RDFElement.FORMALISM.toString());
+				if(form != null)
+				{
+					form = form.element(RDFElement.FORMALISM_.toString());
+					formalismName = form.attributeValue(RDFElement.NAME.toString());
+					formalismURI = form.attributeValue(RDFElement.URI.toString());
+				}
+			}
+			if(isSource)
+			{
+				a.setSourceURI(uri);
+				a.setSourceLocation(location);
+				a.setSourceFormalismName(formalismName);
+				a.setSourceFormalismURI(formalismURI);
+			}
+			else
+			{
+				a.setTargetURI(uri);
+				a.setTargetLocation(location);
+				a.setTargetFormalismName(formalismName);
+				a.setTargetFormalismURI(formalismURI);
 			}
 		}
-
 	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private static void parseCell(Element e, boolean active)
+	{
+		//If this is EDOAL, first check whether it is a transformation mapping
+		//as that precedes the entities
+		if(isEDOAL)
+		{
+			Element transform = e.element(RDFElement.TRANSFORMATION.toString());
+			//If so, parse it independently
+			if(transform != null)
+			{
+				parseTransformation(transform, active);
+				return;
+			}
+		}
+		//Otherwise, declare the mapping
+		Mapping m = null;
+		//Get the entities
+		Element entity1 = e.element(RDFElement.ENTITY1.toString());
+		Element entity2 = e.element(RDFElement.ENTITY2.toString());
+		//Get the similarity measure
+		String measure = e.elementText(RDFElement.MEASURE.toString());
+		//Parse it, assuming 1 if a valid measure is not found
+		double similarity = 1;
+		if(measure != null)
+		{
+			try{ similarity = Double.parseDouble(measure); }
+        	catch(Exception ex){/*Do nothing - use the default value*/};
+        }
+        if(similarity < 0 || similarity > 1)
+        	similarity = 1;
+        //Get the relation
+        String r = e.elementText(RDFElement.RULE_RELATION.toString());
+        if(r == null)
+        	r = "?";
+        MappingRelation rel = MappingRelation.parseRelation(StringEscapeUtils.unescapeXml(r));
+        //Get the status (NOTE: this an extension to the Alignment format used by AML)
+        String s = e.elementText(RDFElement.STATUS.toString());
+        if(s == null)
+        	s = "?";
+        MappingStatus st = MappingStatus.parseStatus(s);
+		if(!isEDOAL)
+		{
+			String sourceURI = entity1.attributeValue(RDFElement.RDF_RESOURCE.toString());
+			String targetURI = entity2.attributeValue(RDFElement.RDF_RESOURCE.toString());
+			
+			if(!active || (AML.getInstance().getSource().contains(sourceURI) && AML.getInstance().getTarget().contains(targetURI)))
+				m = new SimpleMapping(sourceURI, targetURI, similarity, rel);
+			else if(AML.getInstance().getSource().contains(targetURI) && AML.getInstance().getTarget().contains(sourceURI))
+				m = new SimpleMapping(targetURI, sourceURI, similarity, rel);
+			if(m != null)
+			{
+				m.setStatus(st);
+				a.add(m);
+			}	
+		}
+		else
+		{
+			AbstractExpression source = null;
+			AbstractExpression target = null;
+			//Check if we have a simple entity1 (even though this is an EDOAL alignment)
+			if(entity1.nodeCount() == 0)
+			{
+				String sourceURI = entity1.attributeValue(RDFElement.RDF_RESOURCE.toString());
+				Set<EntityType> t = AML.getInstance().getEntityMap().getTypes(sourceURI);
+				if(t.isEmpty())
+					return;
+				if(t.contains(EntityType.CLASS))
+					source = new ClassId(sourceURI);
+				else if(t.contains(EntityType.OBJECT_PROP))
+					source = new RelationId(sourceURI);
+				else if(t.contains(EntityType.DATA_PROP))
+					source = new PropertyId(sourceURI);
+				else if(t.contains(EntityType.INDIVIDUAL))
+					source = new IndividualId(sourceURI);
+			}
+			//If not, parse it normally
+			else
+				source = parseEDOALEntity(entity1);
+			//Check if we have a simple entity2 (even though this is an EDOAL alignment)
+			if(entity2.nodeCount() == 0)
+			{
+				String targetURI = entity2.attributeValue(RDFElement.RDF_RESOURCE.toString());
+				Set<EntityType> t = AML.getInstance().getEntityMap().getTypes(targetURI);
+				if(t.contains(EntityType.CLASS))
+					target = new ClassId(targetURI);
+				else if(t.contains(EntityType.OBJECT_PROP))
+					target = new RelationId(targetURI);
+				else if(t.contains(EntityType.DATA_PROP))
+					target = new PropertyId(targetURI);
+				else if(t.contains(EntityType.INDIVIDUAL))
+					target = new IndividualId(targetURI);
+			}
+			//If not, parse it normally
+			else
+				target = parseEDOALEntity(entity2);
+			//Check for linkkeys
+			Element key = e.element(RDFElement.LINKKEY.toString());
+			if(key != null)
+			{
+				LinkKey l = parseLinkKey(key);
+				if(source instanceof ClassExpression && target instanceof ClassExpression)
+				{
+					if(!active || (AML.getInstance().getSource().containsAll(source.getElements()) &&
+							AML.getInstance().getTarget().containsAll(target.getElements())))
+						m = new LinkKeyMapping((ClassExpression)source,(ClassExpression)target,l);
+					else if(AML.getInstance().getSource().containsAll(target.getElements()) &&
+							AML.getInstance().getTarget().containsAll(source.getElements()))
+						m = new LinkKeyMapping((ClassExpression)target,(ClassExpression)source,l);
+					if(m != null)
+					{
+						m.setStatus(st);
+						a.add(m);
+					}
+				}
+				
+				
+			}
+		}
+	}
+
+	private static void parseTransformation(Element transform, boolean active)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private static AbstractExpression parseEDOALEntity(Element e)
+	{
+		Element f = e.element(RDFElement.CLASS_.toString());
+		if(f != null)
+		{
+			System.out.println("class");
+			return null;
+		}
+		f = e.element(RDFElement.PROPERTY_.toString());
+		if(f != null)
+		{
+			System.out.println("property");
+			return null;
+		}
+		f = e.element(RDFElement.RELATION_.toString());
+		if(f != null)
+		{
+			System.out.println("relation");
+			return null;
+		}
+		return null;
+	}
+	
+	private static LinkKey parseLinkKey(Element key)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

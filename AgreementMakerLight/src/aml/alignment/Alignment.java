@@ -189,7 +189,8 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public boolean contains(Object o)
 	{
-		return o instanceof Mapping && sourceMaps.get(((Mapping<A>)o).getEntity1()).contains((Mapping)o);
+		return o instanceof Mapping && sourceMaps.contains(((Mapping<A>)o).getEntity1()) &&
+				sourceMaps.get(((Mapping<A>)o).getEntity1()).contains((Mapping)o);
 	}
 	
 	/**

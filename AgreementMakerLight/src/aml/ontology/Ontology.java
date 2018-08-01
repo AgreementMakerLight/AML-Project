@@ -97,6 +97,18 @@ public class Ontology
 	{
 		return entities.contains(uri);
 	}
+	
+	/**
+	 * @param elements: the set of entity uris to search in the Ontology
+	 * @return whether the Ontology contains all the entities
+	 */
+	public boolean containsAll(Set<String> uris)
+	{
+		for(String e : uris)
+			if(!contains(e))
+				return false;
+		return true;
+	}
 
 	/**
 	 * @param e: the EntityType to check in the Ontology
