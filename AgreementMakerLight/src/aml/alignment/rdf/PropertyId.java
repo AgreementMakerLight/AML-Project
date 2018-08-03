@@ -25,16 +25,22 @@ import aml.AML;
 public class PropertyId extends PropertyExpression
 {
 	
+//Attributes
+	
+	private String lang;
+	
 //Constructor
 	
 	/**
 	 * Constructs a new PropertyId from the given uri
 	 * @param uri: the URI of the data property
+	 * @param lang: the language of the data property
 	 */
-	public PropertyId(String uri)
+	public PropertyId(String uri, String lang)
 	{
 		super();
 		elements.add(uri);
+		this.lang = lang;
 	}
 	
 //Public Methods
@@ -42,8 +48,12 @@ public class PropertyId extends PropertyExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof PropertyId &&
-				((PropertyId)o).elements.equals(this.elements);
+		if(!(o instanceof PropertyId))
+			return false;
+		PropertyId p = ((PropertyId)o);
+		return p.elements.equals(this.elements) &&
+				(p.lang == null && this.lang == null) ||
+				p.lang.equals(this.lang);
 	}
 	
 	@Override
@@ -58,9 +68,12 @@ public class PropertyId extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Property rdf:about=\"" +
-				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next()) +
-				"\"/>";
+		String s = "<edoal:Property rdf:about=\"" +
+				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next());
+		if(lang != null)
+			s += "\" edoal:lang=\"" + lang;
+		s += "\"/>";
+		return s;
 	}
 
 	@Override
