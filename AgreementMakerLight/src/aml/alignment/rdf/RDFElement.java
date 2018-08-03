@@ -62,6 +62,7 @@ public enum RDFElement
 	AGGREGATE_				(Namespace.EDOAL, "Aggregate"),
 	APPLY_					(Namespace.EDOAL, "Apply"),
 	ARGUMENTS				(Namespace.EDOAL, "arguments"),
+	ATTR_DOMAIN_REST_		(Namespace.EDOAL, "AttributeDomainRestriction"),
 	ATTR_OCCURRENCE_REST_	(Namespace.EDOAL, "AttributeOccurenceRestriction"),
 	ATTR_TYPE_REST_			(Namespace.EDOAL, "AttributeTypeRestriction"),
 	ATTR_VALUE_REST_		(Namespace.EDOAL, "AttributeValueRestriction"),
