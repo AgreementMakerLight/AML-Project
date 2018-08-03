@@ -37,12 +37,12 @@ public class Literal extends AbstractExpression implements ValueExpression
 	 * @param lang: the language of the Literal (use null if none is declared)
 	 * @param value: the value of the Literal (must not be null)
 	 */
-	public Literal(String type, String lang, String value)
+	public Literal(String value, String type, String lang)
 	{
 		super();
+		this.value = value;
 		this.type = type;
 		this.lang = lang;
-		this.value = value;
 	}
 
 //Public Methods
