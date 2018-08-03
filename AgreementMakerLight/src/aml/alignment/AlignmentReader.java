@@ -21,8 +21,11 @@ package aml.alignment;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 import org.apache.commons.lang.StringEscapeUtils;
 import org.dom4j.Document;
@@ -34,7 +37,6 @@ import aml.AML;
 import aml.alignment.mapping.*;
 import aml.alignment.rdf.*;
 import aml.ontology.EntityType;
-import aml.settings.Namespace;
 
 public class AlignmentReader
 {
@@ -282,19 +284,16 @@ public class AlignmentReader
 				m = new SimpleMapping(sourceURI, targetURI, similarity, rel);
 			else if(AML.getInstance().getSource().contains(targetURI) && AML.getInstance().getTarget().contains(sourceURI))
 				m = new SimpleMapping(targetURI, sourceURI, similarity, rel);
-			if(m != null)
-			{
-				m.setStatus(st);
-				a.add(m);
-			}	
 		}
 		else
 		{
 			AbstractExpression source = null;
 			AbstractExpression target = null;
 			//Check if we have a simple entity1 (even though this is an EDOAL alignment)
-			if(entity1.nodeCount() == 0)
+			List<Element> list = entity1.elements();
+			if(list.isEmpty())
 			{
+				//If so, treat it as an id expression of the appropriate type
 				String sourceURI = entity1.attributeValue(RDFElement.RDF_RESOURCE.toString());
 				Set<EntityType> t = AML.getInstance().getEntityMap().getTypes(sourceURI);
 				if(t.isEmpty())
@@ -304,15 +303,23 @@ public class AlignmentReader
 				else if(t.contains(EntityType.OBJECT_PROP))
 					source = new RelationId(sourceURI);
 				else if(t.contains(EntityType.DATA_PROP))
-					source = new PropertyId(sourceURI);
+					source = new PropertyId(sourceURI,null);
 				else if(t.contains(EntityType.INDIVIDUAL))
 					source = new IndividualId(sourceURI);
 			}
 			//If not, parse it normally
-			else
-				source = parseEDOALEntity(entity1);
-			//Check if we have a simple entity2 (even though this is an EDOAL alignment)
-			if(entity2.nodeCount() == 0)
+			//(An alignment entity must have a single element,
+			//although it may have several sub-elements)
+			else if(list.size() == 1)
+				source = parseEDOALEntity(list.get(0));
+			if(source == null)
+			{
+				System.err.println("WARNING: Unable to parse entity1: " + entity1.asXML());
+				return;
+			}
+			//Repeat for entity2
+			list = entity2.elements();
+			if(list.isEmpty())
 			{
 				String targetURI = entity2.attributeValue(RDFElement.RDF_RESOURCE.toString());
 				Set<EntityType> t = AML.getInstance().getEntityMap().getTypes(targetURI);
@@ -321,13 +328,17 @@ public class AlignmentReader
 				else if(t.contains(EntityType.OBJECT_PROP))
 					target = new RelationId(targetURI);
 				else if(t.contains(EntityType.DATA_PROP))
-					target = new PropertyId(targetURI);
+					target = new PropertyId(targetURI,null);
 				else if(t.contains(EntityType.INDIVIDUAL))
 					target = new IndividualId(targetURI);
 			}
-			//If not, parse it normally
-			else
-				target = parseEDOALEntity(entity2);
+			else if(list.size() == 1)
+				target = parseEDOALEntity(list.get(0));
+			if(target == null)
+			{
+				System.err.println("WARNING: Unable to parse entity2: " + entity2.asXML());
+				return;
+			}
 			//Check for linkkeys
 			Element key = e.element(RDFElement.LINKKEY.toString());
 			if(key != null)
@@ -341,15 +352,22 @@ public class AlignmentReader
 					else if(AML.getInstance().getSource().containsAll(target.getElements()) &&
 							AML.getInstance().getTarget().containsAll(source.getElements()))
 						m = new LinkKeyMapping((ClassExpression)target,(ClassExpression)source,l);
-					if(m != null)
-					{
-						m.setStatus(st);
-						a.add(m);
-					}
-				}
-				
-				
+				}				
 			}
+			else
+			{
+				if(!active || (AML.getInstance().getSource().containsAll(source.getElements()) &&
+						AML.getInstance().getTarget().containsAll(target.getElements())))
+					m = new EDOALMapping(source,target,similarity,rel);
+				else if(AML.getInstance().getSource().containsAll(target.getElements()) &&
+						AML.getInstance().getTarget().containsAll(source.getElements()))
+					m = new EDOALMapping(target,source,similarity,rel);
+			}
+		}
+		if(m != null)
+		{
+			m.setStatus(st);
+			a.add(m);
 		}
 	}
 
@@ -361,27 +379,548 @@ public class AlignmentReader
 	
 	private static AbstractExpression parseEDOALEntity(Element e)
 	{
-		Element f = e.element(RDFElement.CLASS_.toString());
-		if(f != null)
+		AbstractExpression a = null;
+		//Parse it according to its name
+		if(e.getName().equals(RDFElement.CLASS_.toString()))
+			a = parseClass(e);
+		else if(e.getName().equals(RDFElement.PROPERTY_.toString()))
+			a = parseProperty(e);
+		else if(e.getName().equals(RDFElement.RELATION_.toString()))
+			a = parseRelation(e);
+		else if(e.getName().equals(RDFElement.INSTANCE_.toString()))
+			a = parseInstance(e);
+		else if(e.getName().equals(RDFElement.ATTR_DOMAIN_REST_.toString()))
+			a = parseADR(e);
+		else if(e.getName().equals(RDFElement.ATTR_OCCURRENCE_REST_.toString()))
+			a = parseAOR(e);
+		else if(e.getName().equals(RDFElement.ATTR_TYPE_REST_.toString()))
+			a = parseATR(e);
+		else if(e.getName().equals(RDFElement.ATTR_VALUE_REST_.toString()))
+			a = parseAVR(e);
+		else if(e.getName().equals(RDFElement.PROPERTY_DOMAIN_REST_.toString()))
+			a = parsePDR(e);
+		else if(e.getName().equals(RDFElement.PROPERTY_TYPE_REST_.toString()))
+			a = parsePTR(e);
+		else if(e.getName().equals(RDFElement.PROPERTY_VALUE_REST_.toString()))
+			a = parsePVR(e);
+		else if(e.getName().equals(RDFElement.RELATION_CODOMAIN_REST_.toString()))
+			a = parseRCR(e);
+		else if(e.getName().equals(RDFElement.RELATION_DOMAIN_REST_.toString()))
+			a = parseRDR(e);
+		return a;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static ClassExpression parseClass(Element e)
+	{
+		//<Class> nodes are either class ids (with no subnodes)
+		List<Element> list = e.elements();
+		if(list.isEmpty())
 		{
-			System.out.println("class");
-			return null;
+			String uri = e.attributeValue(RDFElement.RDF_ABOUT.toString());
+			if(uri != null)
+				return new ClassId(uri);
 		}
-		f = e.element(RDFElement.PROPERTY_.toString());
-		if(f != null)
+		//Or compositions (and, or, not)
+		else if(list.size() == 1)
 		{
-			System.out.println("property");
-			return null;
-		}
-		f = e.element(RDFElement.RELATION_.toString());
-		if(f != null)
-		{
-			System.out.println("relation");
-			return null;
+			Element f = list.get(0);
+			//Start by checking if it is a negation, which is simpler
+			if(f.getName().equals(RDFElement.NOT.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.size() != 1)
+					return null;
+				AbstractExpression a = parseEDOALEntity(l.get(0));
+				if(a instanceof ClassExpression)
+					return new ClassNegation((ClassExpression)a);
+				else
+					return null;
+			}
+			//Then intersection
+			else if(f.getName().equals(RDFElement.AND.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.isEmpty())
+					return null;
+				HashSet<ClassExpression> composition = new HashSet<ClassExpression>();
+				for(Element g : l)
+				{
+					AbstractExpression a = parseEDOALEntity(g);
+					if(a instanceof ClassExpression)
+						composition.add((ClassExpression)a);
+					else
+						return null;
+				}
+				if(!composition.isEmpty())
+					return new ClassIntersection(composition);
+			}
+			//Then union
+			else if(f.getName().equals(RDFElement.OR.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.isEmpty())
+					return null;
+				HashSet<ClassExpression> composition = new HashSet<ClassExpression>();
+				for(Element g : l)
+				{
+					AbstractExpression a = parseEDOALEntity(g);
+					if(a instanceof ClassExpression)
+						composition.add((ClassExpression)a);
+					else
+						return null;
+				}
+				if(!composition.isEmpty())
+					return new ClassUnion(composition);
+			}
 		}
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	private static PropertyExpression parseProperty(Element e)
+	{
+		//<Property> nodes are either property ids (with no subnodes)
+		List<Element> list = e.elements();
+		if(list.isEmpty())
+		{
+			String uri = e.attributeValue(RDFElement.RDF_ABOUT.toString());
+			String lang = e.attributeValue(RDFElement.LANG.toString());
+			if(uri != null)
+				return new PropertyId(uri,lang);
+		}
+		else if(list.size() == 1)
+		{
+			Element f = list.get(0);
+			//Start by checking if it is a negation, which is simpler
+			if(f.getName().equals(RDFElement.NOT.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.size() != 1)
+					return null;
+				AbstractExpression a = parseEDOALEntity(l.get(0));
+				if(a instanceof PropertyExpression)
+					return new PropertyNegation((PropertyExpression)a);
+			}
+			//If it is not a negation, it should be a composition, intersection or union
+			//Check for intersection first
+			else if(f.getName().equals(RDFElement.AND.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.isEmpty())
+					return null;
+				HashSet<PropertyExpression> composition = new HashSet<PropertyExpression>();
+				for(Element g : l)
+				{
+					AbstractExpression a = parseEDOALEntity(g);
+					if(a instanceof PropertyExpression)
+						composition.add((PropertyExpression)a);
+					else
+						return null;
+				}
+				if(!composition.isEmpty())
+					return new PropertyIntersection(composition);
+			}
+			//Then union
+			else if(f.getName().equals(RDFElement.OR.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.isEmpty())
+					return null;
+				HashSet<PropertyExpression> composition = new HashSet<PropertyExpression>();
+				for(Element g : l)
+				{
+					AbstractExpression a = parseEDOALEntity(g);
+					if(a instanceof PropertyExpression)
+						composition.add((PropertyExpression)a);
+					else
+						return null;
+				}
+				if(!composition.isEmpty())
+					return new PropertyUnion(composition);
+			}
+			//Then compose
+			else if(f.getName().equals(RDFElement.COMPOSE.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.size() < 2)
+					return null;
+				Vector<RelationExpression> composition = new Vector<RelationExpression>();
+				for(int i = 0; i < l.size()-1; i++)
+				{
+					AbstractExpression a = parseEDOALEntity(l.get(i));
+					if(a instanceof RelationExpression)
+						composition.add((RelationExpression)a);
+					else
+						return null;
+				}
+				AbstractExpression end = parseEDOALEntity(l.get(l.size()-1));
+				if(!composition.isEmpty() && end instanceof PropertyExpression)
+					return new PropertyComposition(composition, (PropertyExpression)end);
+			}
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static RelationExpression parseRelation(Element e)
+	{
+		//<Relation> nodes are either property ids (with no subnodes)
+		List<Element> list = e.elements();
+		if(list.isEmpty())
+		{
+			String uri = e.attributeValue(RDFElement.RDF_ABOUT.toString());
+			if(uri != null)
+				return new RelationId(uri);
+		}
+		//Or compositions (compose, and, or, not, inverse, reflexive, symmetric, transitive)
+		else if(list.size() == 1)
+		{
+			Element f = list.get(0);
+			//Start by checking the cases not involving a collection
+			if(f.getName().equals(RDFElement.NOT.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.size() != 1)
+					return null;
+				AbstractExpression a = parseEDOALEntity(l.get(0));
+				if(a instanceof RelationExpression)
+					return new RelationNegation((RelationExpression)a);
+			}
+			else if(f.getName().equals(RDFElement.INVERSE.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.size() != 1)
+					return null;
+				AbstractExpression a = parseEDOALEntity(l.get(0));
+				if(a instanceof RelationExpression)
+					return new InverseRelation((RelationExpression)a);
+			}
+			else if(f.getName().equals(RDFElement.REFLEXIVE.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.size() != 1)
+					return null;
+				AbstractExpression a = parseEDOALEntity(l.get(0));
+				if(a instanceof RelationExpression)
+					return new ReflexiveRelation((RelationExpression)a);
+			}
+			else if(f.getName().equals(RDFElement.SYMMETRIC.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.size() != 1)
+					return null;
+				AbstractExpression a = parseEDOALEntity(l.get(0));
+				if(a instanceof RelationExpression)
+					return new SymmetricRelation((RelationExpression)a);
+			}
+			else if(f.getName().equals(RDFElement.TRANSITIVE.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.size() != 1)
+					return null;
+				AbstractExpression a = parseEDOALEntity(l.get(0));
+				if(a instanceof RelationExpression)
+					return new TransitiveRelation((RelationExpression)a);
+			}
+			//If it is not a negation, it should be a composition, intersection or union
+			//Check for intersection first
+			else if(f.getName().equals(RDFElement.AND.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.isEmpty())
+					return null;
+				HashSet<RelationExpression> composition = new HashSet<RelationExpression>();
+				for(Element g : l)
+				{
+					AbstractExpression a = parseEDOALEntity(g);
+					if(a instanceof RelationExpression)
+						composition.add((RelationExpression)a);
+					else
+						return null;
+				}
+				if(!composition.isEmpty())
+					return new RelationIntersection(composition);
+			}
+			else if(f.getName().equals(RDFElement.OR.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.isEmpty())
+					return null;
+				HashSet<RelationExpression> composition = new HashSet<RelationExpression>();
+				for(Element g : l)
+				{
+					AbstractExpression a = parseEDOALEntity(g);
+					if(a instanceof RelationExpression)
+						composition.add((RelationExpression)a);
+					else
+						return null;
+				}
+				if(!composition.isEmpty())
+					return new RelationIntersection(composition);
+			}
+			else if(f.getName().equals(RDFElement.COMPOSE.toString()))
+			{
+				List<Element> l = f.elements();
+				if(l.isEmpty())
+					return null;
+				HashSet<RelationExpression> composition = new HashSet<RelationExpression>();
+				for(Element g : l)
+				{
+					AbstractExpression a = parseEDOALEntity(g);
+					if(a instanceof RelationExpression)
+						composition.add((RelationExpression)a);
+					else
+						return null;
+				}
+				if(!composition.isEmpty())
+					return new RelationIntersection(composition);
+			}
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static AttributeDomainRestriction parseADR(Element e)
+	{
+		//ADRs should have exactly 2 elements: an onAttribute statement and a class restriction,
+		//each of which should consist of a single element
+		List<Element> list = e.elements();
+		if(list.size() == 2 && list.get(0).getName().equals(RDFElement.ON_ATTRIBUTE.toString()) &&
+				list.get(0).elements().size() == 1 &&
+				list.get(1).elements().size() == 1)
+		{
+			AbstractExpression a = parseEDOALEntity((Element)list.get(0).elements().get(0));
+			AbstractExpression c = parseEDOALEntity((Element)list.get(1).elements().get(0));
+			RestrictionElement r = RestrictionElement.parse(list.get(1).getName());
+			if(a instanceof RelationExpression && c instanceof ClassExpression && r != null)
+				return new AttributeDomainRestriction((RelationExpression)a,(ClassExpression)c, r);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static AttributeOccurrenceRestriction parseAOR(Element e)
+	{
+		//AORs should have exactly 3 elements: an onAttribute statement (with 1 sub-element),
+		//a comparator (with no sub-elements), and a value expression (with 1 sub-element or 1
+		//value that must be a positive integer literal)
+		List<Element> list = e.elements();
+		if(list.size() == 3 && list.get(0).getName().equals(RDFElement.ON_ATTRIBUTE.toString()) &&
+				list.get(0).elements().size() == 1 && 
+				list.get(1).getName().equals(RDFElement.COMPARATOR.toString()) &&
+				list.get(1).nodeCount() == 0 &&
+				list.get(2).getName().equals(RDFElement.VALUE.toString()))
+		{
+			AbstractExpression a = parseEDOALEntity((Element)list.get(0).elements().get(0));
+			Comparator c = parseComparator(list.get(1));
+			ValueExpression v = parseValue(list.get(2));
+			if(a instanceof AttributeExpression && c != null && v instanceof NonNegativeInteger)
+				return new AttributeOccurrenceRestriction((AttributeExpression)a, c, (NonNegativeInteger)v);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static AttributeTypeRestriction parseATR(Element e)
+	{
+		//ATRs should have exactly 2 elements: an onAttribute statement (with 1 sub-element),
+		//and a type restriction (with exactly 1 datatype as sub-element)
+		List<Element> list = e.elements();
+		if(list.size() == 2 && list.get(0).getName().equals(RDFElement.ON_ATTRIBUTE.toString()) &&
+				list.get(0).elements().size() == 1 && 
+				list.get(1).getName().equals(RDFElement.DATATYPE.toString()) &&
+				list.get(0).elements().size() == 1)
+		{
+			AbstractExpression a = parseEDOALEntity((Element)list.get(0).elements().get(0));
+			Datatype d = parseDatatype((Element)list.get(1).elements().get(0));
+			if(d != null && a instanceof PropertyExpression)
+				return new AttributeTypeRestriction((PropertyExpression)a, d);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static AttributeValueRestriction parseAVR(Element e)
+	{
+		//AVRs should have exactly 3 elements: an onAttribute statement (with 1 sub-element),
+		//a comparator (with no sub-elements), and a value expression (with 1 sub-element or 1
+		//value)
+		List<Element> list = e.elements();
+		if(list.size() == 3 && list.get(0).getName().equals(RDFElement.ON_ATTRIBUTE.toString()) &&
+				list.get(0).elements().size() == 1 && 
+				list.get(1).getName().equals(RDFElement.COMPARATOR.toString()) &&
+				list.get(1).nodeCount() == 0 &&
+				list.get(2).getName().equals(RDFElement.VALUE.toString()))
+		{
+			AbstractExpression a = parseEDOALEntity((Element)list.get(0).elements().get(0));
+			Comparator c = parseComparator(list.get(1));
+			ValueExpression v = parseValue(list.get(2));
+			if(a instanceof AttributeExpression && c != null && v != null)
+				return new AttributeValueRestriction((AttributeExpression)a, c, v);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static PropertyDomainRestriction parsePDR(Element e)
+	{
+		//PDRs should have a single element that is a class restriction, consisting also of a single class expression
+		List<Element> list = e.elements();
+		if(list.size() == 1 && list.get(0).getName().equals(RDFElement.CLASS.toString()) &&
+				list.get(0).elements().size() == 1)
+		{
+			AbstractExpression c = parseEDOALEntity((Element)list.get(0).elements().get(0));
+			if(c instanceof ClassExpression)
+				return new PropertyDomainRestriction((ClassExpression)c);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static PropertyTypeRestriction parsePTR(Element e)
+	{
+		//PTRs should have a single element that is a datatype restriction, consisting of a datatype
+		List<Element> list = e.elements();
+		if(list.size() == 1 && list.get(0).getName().equals(RDFElement.DATATYPE.toString()) &&
+				list.get(0).elements().size() == 1)
+		{
+			Datatype d = parseDatatype((Element)list.get(0).elements().get(0));
+			if(d != null)
+				return new PropertyTypeRestriction(d);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static PropertyValueRestriction parsePVR(Element e)
+	{
+		//PVRs should have exactly 2 elements: a comparator (with no sub-elements),
+		//and a value expression (with 1 sub-element or 1 value)
+		List<Element> list = e.elements();
+		if(list.size() == 2 && list.get(0).getName().equals(RDFElement.COMPARATOR.toString()) &&
+				list.get(1).nodeCount() == 0 && list.get(1).getName().equals(RDFElement.VALUE.toString()))
+		{
+			Comparator c = parseComparator(list.get(0));
+			ValueExpression v = parseValue(list.get(1));
+			if(c != null && v != null)
+				return new PropertyValueRestriction(c, v);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static RelationCoDomainRestriction parseRCR(Element e)
+	{
+		//PDRs should have a single element that is a class restriction, consisting also of a single class expression
+		List<Element> list = e.elements();
+		if(list.size() == 1 && list.get(0).getName().equals(RDFElement.CLASS.toString()) &&
+				list.get(0).elements().size() == 1)
+		{
+			AbstractExpression c = parseEDOALEntity((Element)list.get(0).elements().get(0));
+			if(c instanceof ClassExpression)
+				return new RelationCoDomainRestriction((ClassExpression)c);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static RelationDomainRestriction parseRDR(Element e)
+	{
+		//PDRs should have a single element that is a class restriction, consisting also of a single class expression
+		List<Element> list = e.elements();
+		if(list.size() == 1 && list.get(0).getName().equals(RDFElement.CLASS.toString()) &&
+				list.get(0).elements().size() == 1)
+		{
+			AbstractExpression c = parseEDOALEntity((Element)list.get(0).elements().get(0));
+			if(c instanceof ClassExpression)
+				return new RelationDomainRestriction((ClassExpression)c);
+		}
+		return null;
+	}
+	
+	private static IndividualId parseInstance(Element e)
+	{
+		//Individual expressions currently encompass only individual ids
+		if(e.nodeCount() == 0)
+		{
+			String uri = e.attributeValue(RDFElement.RDF_ABOUT.toString());
+			if(uri != null)
+				return new IndividualId(uri);
+		}
+		return null;
+	}
+	
+	private static Comparator parseComparator(Element e)
+	{
+		if(e.nodeCount() == 0)
+		{
+			String uri = e.attributeValue(RDFElement.RDF_RESOURCE.toString());
+			if(uri != null)
+				return new Comparator(uri);
+		}
+		return null;
+	}
+	
+	private static Datatype parseDatatype(Element e)
+	{
+		if(e.nodeCount() == 0)
+		{
+			String uri = e.attributeValue(RDFElement.RDF_ABOUT.toString());
+			if(uri != null)
+				return new Datatype(uri);
+		}
+		return null;
+	}
+	
+	private static ValueExpression parseValue(Element e)
+	{
+		//If the value is provided as text, it must be a literal
+		if(e.isTextOnly())
+		{
+			String value = e.getText();
+			//Check if it is a NonNegativeInteger
+			try
+			{
+				int v = Integer.parseInt(value);
+				if(v > -1)
+					return new NonNegativeInteger(v);
+			}
+			catch(NumberFormatException n){	/*Do nothing*/ }
+			return new Literal(value, null, null);
+		}
+		//Otherwise
+		else if(e.elements().size() == 1)
+		{
+			Element f = (Element)e.elements().get(0);
+			//It may be a literal
+			if(f.getName().equals(RDFElement.LITERAL_.toString()))
+			{
+				String value = f.attributeValue(RDFElement.STRING.toString());
+				String type = f.attributeValue(RDFElement.TYPE.toString());
+				String lang = f.attributeValue(RDFElement.LANG.toString());
+				if(value == null)
+					return null;
+				if((type == null && lang == null) || type.contains("int"))
+				{
+					try
+					{
+						int v = Integer.parseInt(value);
+						if(v > -1)
+							return new NonNegativeInteger(v);
+					}
+					catch(NumberFormatException n){	/*Do nothing*/ }
+				}
+				return new Literal(value, type, lang);
+			}
+			//But also one of several expressions
+			AbstractExpression a = parseEDOALEntity(f);
+			if(a instanceof ValueExpression)
+				return (ValueExpression)a;
+		}
+		return null;
+	}
+
 	private static LinkKey parseLinkKey(Element key)
 	{
 		// TODO Auto-generated method stub
