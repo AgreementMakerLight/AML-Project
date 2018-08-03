@@ -52,8 +52,8 @@ public class PropertyId extends PropertyExpression
 			return false;
 		PropertyId p = ((PropertyId)o);
 		return p.elements.equals(this.elements) &&
-				(p.lang == null && this.lang == null) ||
-				p.lang.equals(this.lang);
+				((p.lang == null && this.lang == null) ||
+				p.lang.equals(this.lang));
 	}
 	
 	@Override
