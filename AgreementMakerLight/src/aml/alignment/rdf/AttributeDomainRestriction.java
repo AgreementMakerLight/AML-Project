@@ -30,6 +30,7 @@ public class AttributeDomainRestriction extends ClassExpression
 	
 	private RelationExpression onAttribute;
 	private ClassExpression rest;
+	private RestrictionElement e;
 	
 //Constructor
 	
@@ -38,11 +39,12 @@ public class AttributeDomainRestriction extends ClassExpression
 	 * @param onAttribute: the restricted relation
 	 * @param rest: the class expression restricting the range of the attribute
 	 */
-	public AttributeDomainRestriction(RelationExpression onAttribute, ClassExpression rest)
+	public AttributeDomainRestriction(RelationExpression onAttribute, ClassExpression rest, RestrictionElement e)
 	{
 		super();
 		this.onAttribute = onAttribute;
 		this.rest = rest;
+		this.e = e;
 		elements.addAll(onAttribute.getElements());
 		elements.addAll(rest.getElements());
 	}
@@ -54,6 +56,7 @@ public class AttributeDomainRestriction extends ClassExpression
 	{
 		return o instanceof AttributeDomainRestriction &&
 				((AttributeDomainRestriction)o).rest.equals(this.rest) &&
+				((AttributeDomainRestriction)o).e.equals(this.e) &&
 				((AttributeDomainRestriction)o).onAttribute.equals(this.onAttribute);
 	}
 	
@@ -77,9 +80,9 @@ public class AttributeDomainRestriction extends ClassExpression
 				"<onAttribute>\n" +
 				onAttribute.toRDF() +
 				"\n</onAttribute>\n" +
-				"<edoal:class>\n" +
+				"<" + e.toString() + ">\n" +
 				rest.toRDF() +
-				"\n</edoal:class>\n" +
+				"\n</" + e.toString() + ">\n" +
 				"</edoal:AttributeDomainRestriction>\n";
 	}
 
