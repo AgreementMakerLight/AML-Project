@@ -12,7 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Application of an operator to a list of arguments (which can be any type of *
+* Aggregation of values from a list of arguments (which can be any type of    *
 * Expression).                                                                *
 *                                                                             *
 * @author Daniel Faria                                                        *
@@ -24,7 +24,7 @@ import java.util.Vector;
 
 import aml.AML;
 
-public class Apply extends AbstractExpression implements ValueExpression
+public class Aggregate extends AbstractExpression implements ValueExpression
 {
 
 //Attributes
@@ -41,7 +41,7 @@ public class Apply extends AbstractExpression implements ValueExpression
 	 * @param operator: the uri of the operator to apply
 	 * @param arguments: the expressions that are arguments of the operation
 	 */
-	public Apply(String operator, Vector<AbstractExpression> arguments)
+	public Aggregate(String operator, Vector<AbstractExpression> arguments)
 	{
 		super();
 		this.operator = operator;
@@ -55,9 +55,9 @@ public class Apply extends AbstractExpression implements ValueExpression
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof Apply &&
-				((Apply)o).operator.equals(this.operator) &&
-				((Apply)o).arguments.equals(this.arguments);
+		return o instanceof Aggregate &&
+				((Aggregate)o).operator.equals(this.operator) &&
+				((Aggregate)o).arguments.equals(this.arguments);
 	}
 	
 	@Override
@@ -81,12 +81,12 @@ public class Apply extends AbstractExpression implements ValueExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Apply edoal:operator=\"" + operator + "\">" +
+		String rdf = "<edoal:Aggregate edoal:operator=\"" + operator + "\">" +
 				"<edoal:arguments rdf:parseType=\"Collection\">\n";
 		for(AbstractExpression e : arguments)
 			rdf += e.toRDF() + "\n";
 		rdf += "</edoal:arguments>\n";
-		rdf += "</edoal:Apply>\n";
+		rdf += "</edoal:Aggregate>\n";
 		return rdf;
 	}
 
