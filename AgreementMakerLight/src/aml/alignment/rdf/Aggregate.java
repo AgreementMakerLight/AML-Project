@@ -32,7 +32,7 @@ public class Aggregate extends AbstractExpression implements ValueExpression
 	private String operator;
 	//It is unclear whether the order of the arguments matters or not
 	//so to be on the safe side, we'll preserve it
-	private Vector<AbstractExpression> arguments;
+	private Vector<ValueExpression> arguments;
 	
 //Constructor
 	
@@ -41,12 +41,12 @@ public class Aggregate extends AbstractExpression implements ValueExpression
 	 * @param operator: the uri of the operator to apply
 	 * @param arguments: the expressions that are arguments of the operation
 	 */
-	public Aggregate(String operator, Vector<AbstractExpression> arguments)
+	public Aggregate(String operator, Vector<ValueExpression> arguments)
 	{
 		super();
 		this.operator = operator;
 		this.arguments = arguments;
-		for(AbstractExpression e : arguments)
+		for(ValueExpression e : arguments)
 			elements.addAll(e.getElements());
 	}
 	
@@ -65,7 +65,7 @@ public class Aggregate extends AbstractExpression implements ValueExpression
 	/**
 	 * The components of an Apply are the list of arguments
 	 */
-	public Collection<AbstractExpression> getComponents()
+	public Collection<ValueExpression> getComponents()
 	{
 		return arguments;
 	}
@@ -83,7 +83,7 @@ public class Aggregate extends AbstractExpression implements ValueExpression
 	{
 		String rdf = "<edoal:Aggregate edoal:operator=\"" + operator + "\">" +
 				"<edoal:arguments rdf:parseType=\"Collection\">\n";
-		for(AbstractExpression e : arguments)
+		for(ValueExpression e : arguments)
 			rdf += e.toRDF() + "\n";
 		rdf += "</edoal:arguments>\n";
 		rdf += "</edoal:Aggregate>\n";
@@ -94,7 +94,7 @@ public class Aggregate extends AbstractExpression implements ValueExpression
 	public String toString()
 	{
 		String s = AML.getInstance().getEntityMap().getLocalName(operator) + " [";
-		for(AbstractExpression e : arguments)
+		for(ValueExpression e : arguments)
 			s += e.toString() + ", ";
 		s = s.substring(0, s.lastIndexOf(',')) + "]";
 		return s;
