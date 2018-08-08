@@ -33,8 +33,8 @@ public class Transformation extends AbstractExpression
 
 	//The direction of the transformation
 	private String direction;
-	private AbstractExpression entity1;
-	private AbstractExpression entity2;
+	private ValueExpression entity1;
+	private ValueExpression entity2;
 	
 //Constructors
 	
@@ -45,13 +45,13 @@ public class Transformation extends AbstractExpression
 	 * @param entity1: the EDOAL expression of the source ontology
 	 * @param entity2: the EDOAL expression of the target ontology
 	 */
-	public Transformation(String direction, AbstractExpression entity1, AbstractExpression entity2)
+	public Transformation(String direction, ValueExpression entity1, ValueExpression entity2)
 	{
 		this.direction = direction;
 		this.entity1 = entity1;
 		this.entity2 = entity2;
-		elements.addAll(entity1.elements);
-		elements.addAll(entity2.elements);
+		elements.addAll(entity1.getElements());
+		elements.addAll(entity2.getElements());
 	}
 	
 //Public Methods
@@ -75,9 +75,9 @@ public class Transformation extends AbstractExpression
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Collection<AbstractExpression> getComponents()
+	public Collection<ValueExpression> getComponents()
 	{
-		Vector<AbstractExpression> components = new Vector<AbstractExpression>(2);
+		Vector<ValueExpression> components = new Vector<ValueExpression>(2);
 		components.add(entity1);
 		components.add(entity2);
 		return components;
