@@ -113,7 +113,6 @@ public class SimpleMapping extends Mapping<String>
 	/**
 	 * @return the Mapping in TSV form
 	 */
-	@Override
 	public String toTSV()
 	{
 		AML aml = AML.getInstance();

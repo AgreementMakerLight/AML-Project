@@ -99,13 +99,4 @@ public class EDOALMapping extends Mapping<AbstractExpression>
 		return entity1.toString() + " " + rel.toString() + " " + entity2.toString() +
 				" (" + getSimilarityPercent() + ") ";
 	}
-	
-	@Override
-	public String toTSV()
-	{
-		String out = entity1.toString() + "\t\t" + entity2.toString() + "\t\t" + similarity + "\t" + rel.toString();
-		if(!status.equals(MappingStatus.UNKNOWN))
-			out += "\t" + status;
-		return out;
-	}
 }

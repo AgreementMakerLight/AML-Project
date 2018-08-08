@@ -41,9 +41,9 @@ public class LinkKeyMapping extends EDOALMapping
 	 * @param entity2: the EDOAL class expression of the target ontology
 	 * @param l: the link keys between properties of instances of the class expressions
 	 */
-	public LinkKeyMapping(ClassExpression entity1, ClassExpression entity2, LinkKey l)
+	public LinkKeyMapping(ClassExpression entity1, ClassExpression entity2, double similarity, MappingRelation r, LinkKey l)
 	{
-		super(entity1,entity2,1.0,MappingRelation.EQUIVALENCE);
+		super(entity1,entity2,similarity,r);
 		this.l = l;
 	}
 	
@@ -53,7 +53,8 @@ public class LinkKeyMapping extends EDOALMapping
 	 */
 	public LinkKeyMapping(LinkKeyMapping m)
 	{
-		this(m.getEntity1(),m.getEntity2(),m.l);
+		this(m.getEntity1(),m.getEntity2(),m.getSimilarity(),m.getRelationship(),m.l);
+		this.status = m.status;
 	}
 
 //Public Methods
@@ -91,31 +92,12 @@ public class LinkKeyMapping extends EDOALMapping
 	{
 		return "<map>\n" +
 				"<align:Cell rdf:about=\"#cell-with-linkkey\">\n" +
-				"<entity1>\n" +
-				((ClassExpression)entity1).toRDF() +
-				"\n</entity1>\n\n" +
-				"<entity2>\n" +
-				((ClassExpression)entity2).toRDF() +
-				"\n</entity2>\n\n" +
+				"<entity1>\n" +	entity1.toRDF() + "\n</entity1>\n\n" +
+				"<entity2>\n" + entity2.toRDF() + "\n</entity2>\n\n" +
 				"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n" +
+				"<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
 				l.toRDF() +
 				"</Cell>\n" +
 				"</map>\n";
-	}
-	
-	@Override
-	public String toString()
-	{
-		return entity1.toString() + " " + rel.toString() + " " + entity2.toString() +
-				" (" + getSimilarityPercent() + ") ";
-	}
-	
-	@Override
-	public String toTSV()
-	{
-		String out = entity1.toString() + "\t\t" + entity2.toString() + "\t\t" + similarity + "\t" + rel.toString();
-		if(!status.equals(MappingStatus.UNKNOWN))
-			out += "\t" + status;
-		return out;
 	}
 }

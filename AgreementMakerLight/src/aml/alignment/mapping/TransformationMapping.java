@@ -12,25 +12,27 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A transformation is a form of mapping that expresses constraints on         *
-* instances that should match. They typically should include an Apply (i.e.,  *
-* an operation/function) in one of the entities, but that is not enforced.    *
-* Although this is not clearly stated in the documentation, I'm assuming that *
-* transformation mappings have no similarity or relation.                     *
+* An EDOAL mapping that includes transformations, thus expressing constraints *
+* on instances that should match.                                             *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.alignment.mapping;
 
-import aml.alignment.rdf.AbstractExpression;
+import java.util.Set;
 
-public class Transformation extends EDOALMapping
+import org.apache.commons.lang.StringEscapeUtils;
+
+import aml.alignment.rdf.ClassExpression;
+import aml.alignment.rdf.Transformation;
+
+public class TransformationMapping extends EDOALMapping
 {
 
 //Attributes
 
 	//The direction of the transformation
-	private String direction;
+	private Set<Transformation> transformations;
 	
 //Constructors
 	
@@ -41,19 +43,20 @@ public class Transformation extends EDOALMapping
 	 * @param sim: the similarity between the entities
 	 * @param dir: the direction of the transformation
 	 */
-	public Transformation(AbstractExpression entity1, AbstractExpression entity2, String dir)
+	public TransformationMapping(ClassExpression entity1, ClassExpression entity2, double similarity, MappingRelation r, Set<Transformation> t)
 	{
 		super(entity1,entity2,1.0,MappingRelation.EQUIVALENCE);
-		direction = dir;
+		transformations = t;
 	}
 	
 	/**
 	 * Creates a new transformation mapping that is a copy of m
 	 * @param m: the mapping to copy
 	 */
-	public Transformation(Transformation m)
+	public TransformationMapping(TransformationMapping m)
 	{
-		this(m.getEntity1(),m.getEntity2(),m.direction);
+		this(m.getEntity1(),m.getEntity2(),m.similarity,m.rel,m.transformations);
+		this.status = m.status;
 	}
 	
 //Public Methods
@@ -61,50 +64,43 @@ public class Transformation extends EDOALMapping
 	@Override
 	public boolean equals(Object o)
 	{
-		return o instanceof Transformation &&
-				((Transformation)o).direction.equals(this.direction) &&
+		return o instanceof TransformationMapping &&
+				((TransformationMapping)o).transformations.equals(this.transformations) &&
 				super.equals(o);
 	}
 	
-	/**
-	 * @return the direction of this transformation
-	 */
-	public String getDirection()
+	@Override
+	public ClassExpression getEntity1()
 	{
-		return direction;
+		return (ClassExpression)entity1;
+	}
+
+	@Override
+	public ClassExpression getEntity2()
+	{
+		return (ClassExpression)entity2;
+	}
+	
+	/**
+	 * @return the set of transformations in this mapping
+	 */
+	public Set<Transformation> getTransformations()
+	{
+		return transformations;
 	}
 	
 	@Override
 	public String toRDF()
 	{
-		return "<map>\n" +
-				"<Cell>\n" +
-				"<edoal:transformation>\n" +
-				"<edoal:Transformation edoal:direction=\"" + direction + "\">\n" +
-				"<entity1>\n" +
-				((AbstractExpression)entity1).toRDF() +
-				"\n</entity1>\n\n" +
-				"<entity2>\n" +
-				((AbstractExpression)entity2).toRDF() +
-				"\n</entity2>\n\n" +
-				"<edoal:Transformation>\n" +
-				"<edoal:transformation>\n" +
-				"</Cell>\n" +
-				"</map>\n";
-	}
-	
-	@Override
-	public String toString()
-	{
-		return  "TRANSF[" + entity1.toString() + " " + direction + " " + entity2.toString() + "]";
-	}
-	
-	@Override
-	public String toTSV()
-	{
-		String out = entity1.toString() + "\t\t" + entity2.toString() + "\t\t" + direction + "\tTRANSFORMATION";
-		if(!status.equals(MappingStatus.UNKNOWN))
-			out += "\t" + status;
-		return out;
+		String s = "<map>\n" +
+				"<align:Cell rdf:about=\"#cell-with-linkkey\">\n" +
+				"<entity1>\n" + entity1.toRDF() + "\n</entity1>\n\n" +
+				"<entity2>\n" +	entity2.toRDF() + "\n</entity2>\n\n" +
+				"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n" +
+				"<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n";
+		for(Transformation t : transformations)
+			s += t.toRDF();
+		s += "</Cell>\n</map>\n";
+		return s;
 	}
 }

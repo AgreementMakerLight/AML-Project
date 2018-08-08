@@ -193,9 +193,4 @@ public abstract class Mapping<A> implements Comparable<Mapping<A>>
 	 * @return the Mapping in RDF form
 	 */
 	public abstract String toRDF();
-
-	/**
-	 * @return the Mapping in TSV form
-	 */
-	public abstract String toTSV();
 }
