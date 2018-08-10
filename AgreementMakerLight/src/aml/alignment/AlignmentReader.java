@@ -237,19 +237,7 @@ public class AlignmentReader
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static void parseCell(Element e, boolean active)
 	{
-		//If this is EDOAL, first check whether it is a transformation mapping
-		//as that precedes the entities
-		if(isEDOAL)
-		{
-			Element transform = e.element(RDFElement.TRANSFORMATION.toString());
-			//If so, parse it independently
-			if(transform != null)
-			{
-				parseTransformation(transform, active);
-				return;
-			}
-		}
-		//Otherwise, declare the mapping
+		//Declare the mapping
 		Mapping m = null;
 		//Get the entities
 		Element entity1 = e.element(RDFElement.ENTITY1.toString());
@@ -268,7 +256,7 @@ public class AlignmentReader
         //Get the relation
         String r = e.elementText(RDFElement.RULE_RELATION.toString());
         if(r == null)
-        	r = "?";
+        	r = "=";
         MappingRelation rel = MappingRelation.parseRelation(StringEscapeUtils.unescapeXml(r));
         //Get the status (NOTE: this an extension to the Alignment format used by AML)
         String s = e.elementText(RDFElement.STATUS.toString());
@@ -279,11 +267,20 @@ public class AlignmentReader
 		{
 			String sourceURI = entity1.attributeValue(RDFElement.RDF_RESOURCE.toString());
 			String targetURI = entity2.attributeValue(RDFElement.RDF_RESOURCE.toString());
-			
+			if(sourceURI == null || targetURI == null)
+			{
+				System.err.println("WARNING: Skipping mapping - missing alignment entity!\n" + e.asXML());
+				return;
+			}			
 			if(!active || (AML.getInstance().getSource().contains(sourceURI) && AML.getInstance().getTarget().contains(targetURI)))
 				m = new SimpleMapping(sourceURI, targetURI, similarity, rel);
 			else if(AML.getInstance().getSource().contains(targetURI) && AML.getInstance().getTarget().contains(sourceURI))
-				m = new SimpleMapping(targetURI, sourceURI, similarity, rel);
+				m = new SimpleMapping(targetURI, sourceURI, similarity, rel.inverse());
+			else
+			{
+				System.err.println("WARNING: Skipping mapping - alignment entity not found in input ontology!\n" + e.asXML());
+				return;
+			}					
 		}
 		else
 		{
@@ -295,16 +292,13 @@ public class AlignmentReader
 			{
 				//If so, treat it as an id expression of the appropriate type
 				String sourceURI = entity1.attributeValue(RDFElement.RDF_RESOURCE.toString());
-				Set<EntityType> t = AML.getInstance().getEntityMap().getTypes(sourceURI);
-				if(t.isEmpty())
-					return;
-				if(t.contains(EntityType.CLASS))
+				if(AML.getInstance().getEntityMap().isClass(sourceURI))
 					source = new ClassId(sourceURI);
-				else if(t.contains(EntityType.OBJECT_PROP))
+				else if(AML.getInstance().getEntityMap().isObjectProperty(sourceURI))
 					source = new RelationId(sourceURI);
-				else if(t.contains(EntityType.DATA_PROP))
+				else if(AML.getInstance().getEntityMap().isDataProperty(sourceURI))
 					source = new PropertyId(sourceURI,null);
-				else if(t.contains(EntityType.INDIVIDUAL))
+				else if(AML.getInstance().getEntityMap().isIndividual(sourceURI))
 					source = new IndividualId(sourceURI);
 			}
 			//If not, parse it normally
@@ -314,7 +308,7 @@ public class AlignmentReader
 				source = parseEDOALEntity(list.get(0));
 			if(source == null)
 			{
-				System.err.println("WARNING: Unable to parse entity1: " + entity1.asXML());
+				System.err.println("WARNING: Skipping mapping - unable to parse entity1!\n" + entity1.asXML());
 				return;
 			}
 			//Repeat for entity2
@@ -322,47 +316,89 @@ public class AlignmentReader
 			if(list.isEmpty())
 			{
 				String targetURI = entity2.attributeValue(RDFElement.RDF_RESOURCE.toString());
-				Set<EntityType> t = AML.getInstance().getEntityMap().getTypes(targetURI);
-				if(t.contains(EntityType.CLASS))
+				if(AML.getInstance().getEntityMap().isClass(targetURI))
 					target = new ClassId(targetURI);
-				else if(t.contains(EntityType.OBJECT_PROP))
+				else if(AML.getInstance().getEntityMap().isObjectProperty(targetURI))
 					target = new RelationId(targetURI);
-				else if(t.contains(EntityType.DATA_PROP))
+				else if(AML.getInstance().getEntityMap().isDataProperty(targetURI))
 					target = new PropertyId(targetURI,null);
-				else if(t.contains(EntityType.INDIVIDUAL))
+				else if(AML.getInstance().getEntityMap().isIndividual(targetURI))
 					target = new IndividualId(targetURI);
 			}
 			else if(list.size() == 1)
 				target = parseEDOALEntity(list.get(0));
 			if(target == null)
 			{
-				System.err.println("WARNING: Unable to parse entity2: " + entity2.asXML());
+				System.err.println("WARNING: Skipping mapping - unable to parse entity2!\n" + entity2.asXML());
 				return;
 			}
-			//Check for linkkeys
-			Element key = e.element(RDFElement.LINKKEY.toString());
-			if(key != null)
+			//If the alignment is active, check if the entities can be found in the open ontologies
+			//(and if they are in the right order or reversed)
+			boolean reverse = false;
+			if(active)
 			{
-				LinkKey l = parseLinkKey(key);
-				if(source instanceof ClassExpression && target instanceof ClassExpression)
-				{
-					if(!active || (AML.getInstance().getSource().containsAll(source.getElements()) &&
-							AML.getInstance().getTarget().containsAll(target.getElements())))
-						m = new LinkKeyMapping((ClassExpression)source,(ClassExpression)target,l);
-					else if(AML.getInstance().getSource().containsAll(target.getElements()) &&
-							AML.getInstance().getTarget().containsAll(source.getElements()))
-						m = new LinkKeyMapping((ClassExpression)target,(ClassExpression)source,l);
-				}				
-			}
-			else
-			{
-				if(!active || (AML.getInstance().getSource().containsAll(source.getElements()) &&
-						AML.getInstance().getTarget().containsAll(target.getElements())))
-					m = new EDOALMapping(source,target,similarity,rel);
+				if(AML.getInstance().getSource().containsAll(source.getElements()) &&
+						AML.getInstance().getTarget().containsAll(target.getElements()))
+					reverse = false;
 				else if(AML.getInstance().getSource().containsAll(target.getElements()) &&
 						AML.getInstance().getTarget().containsAll(source.getElements()))
-					m = new EDOALMapping(target,source,similarity,rel);
+				{
+					reverse = true;
+					//If they are reversed, invert the elements
+					AbstractExpression temp = source;
+					source = target;
+					target = temp;
+					rel = rel.inverse();
+					
+				}
+				else
+				{
+					System.err.println("WARNING: Skipping mapping - alignment entity not found in input ontology!\n" + e.asXML());
+					return;					
+				}
 			}
+			
+			//Check for transformations (of which there can be any number) and linkkeys
+			List<Element> transform = e.elements(RDFElement.TRANSFORMATION.toString());
+			Element key = e.element(RDFElement.LINKKEY.toString());
+			//If there are transformations, parse them
+			if(transform != null && !transform.isEmpty())
+			{
+				Set<Transformation> t = new HashSet<Transformation>();
+				for(Element f : transform)
+				{
+					Transformation tf = parseTransformation(f,reverse);
+					if(tf != null)
+						t.add(tf);
+					else
+					{
+						System.err.println("WARNING: Skipping mapping - unable to parse transformation!\n" + f.asXML());
+						return;
+					}
+				}
+				//Check that the entities are class expressions
+				if(!(source instanceof ClassExpression && target instanceof ClassExpression))
+				{
+					System.err.println("WARNING: Skipping mapping - entities must be class expressions in transformation mapping!\n" + e.asXML());
+					return;
+				}
+				m = new TransformationMapping((ClassExpression)source,(ClassExpression)target,similarity,rel,t);
+			}
+			//Otherwise, if there are linkkeys, parse them (there shouldn't be both transformations and linkkeys)
+			else if(key != null)
+			{
+				LinkKey l = parseLinkKey(key,active);
+				//Check that the entities are class expressions
+				if(!(source instanceof ClassExpression && target instanceof ClassExpression))
+				{
+					System.err.println("WARNING: Skipping mapping - entities must be class expressions in linkkey mapping!\n" + e.asXML());
+					return;
+				}
+				m = new LinkKeyMapping((ClassExpression)source,(ClassExpression)target,similarity,rel,l);
+			}				
+			//Otherwise initialize the mapping as a normal EDOALMapping
+			else
+				m = new EDOALMapping(source,target,similarity,rel);
 		}
 		if(m != null)
 		{
@@ -371,12 +407,6 @@ public class AlignmentReader
 		}
 	}
 
-	private static void parseTransformation(Element transform, boolean active)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
 	private static AbstractExpression parseEDOALEntity(Element e)
 	{
 		AbstractExpression a = null;
@@ -407,6 +437,10 @@ public class AlignmentReader
 			a = parseRCR(e);
 		else if(e.getName().equals(RDFElement.RELATION_DOMAIN_REST_.toString()))
 			a = parseRDR(e);
+		else if(e.getName().equals(RDFElement.APPLY_.toString()))
+			a = parseApply(e);
+		else if(e.getName().equals(RDFElement.AGGREGATE_.toString()))
+			a = parseAggregate(e);
 		return a;
 	}
 	
@@ -921,9 +955,117 @@ public class AlignmentReader
 		return null;
 	}
 
-	private static LinkKey parseLinkKey(Element key)
+	@SuppressWarnings("unchecked")
+	private static Apply parseApply(Element e)
 	{
-		// TODO Auto-generated method stub
+		//The operator should be an attribute of the Apply element itself
+		String operator = e.attributeValue(RDFElement.OPERATOR.toString());
+		//Apply should have a single sub-element "arguments" which is a collection of value expressions
+		List<Element> list = e.elements();
+		if(operator != null && list.size() == 1 && list.get(0).getName().equals(RDFElement.ARGUMENTS.toString()))
+		{
+			Vector<ValueExpression> attributes = new Vector<ValueExpression>();
+			list = list.get(0).elements();
+			for(Element f : list)
+			{
+				ValueExpression x = parseValue(f);
+				if(x == null)
+					return null;
+				attributes.add(x);
+			}
+			if(!attributes.isEmpty())
+				return new Apply(operator, attributes);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static Aggregate parseAggregate(Element e)
+	{
+		//The operator should be an attribute of the Aggregate element itself
+		String operator = e.attributeValue(RDFElement.OPERATOR.toString());
+		//Aggregate should have a single sub-element "arguments" which is a collection of value expressions
+		List<Element> list = e.elements();
+		if(operator != null && list.size() == 1 && list.get(0).getName().equals(RDFElement.ARGUMENTS.toString()))
+		{
+			Vector<ValueExpression> attributes = new Vector<ValueExpression>();
+			list = list.get(0).elements();
+			for(Element f : list)
+			{
+				ValueExpression x = parseValue(f);
+				if(x == null)
+					return null;
+				attributes.add(x);
+			}
+			if(!attributes.isEmpty())
+				return new Aggregate(operator, attributes);
+		}
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private static LinkKey parseLinkKey(Element key, boolean reverse)
+	{
+		//The first element under <linkkey> should be <Linkkey>
+		Element e = key.element(RDFElement.LINKKEY_.toString());
+		if(e == null)
+			return null;
+		//<Linkkey> may have a <lk:type> and should have one or two <binding>
+		List<Element> list = e.elements();
+		if(operator != null && list.size() == 1 && list.get(0).getName().equals(RDFElement.ARGUMENTS.toString()))
+		{
+			Vector<ValueExpression> attributes = new Vector<ValueExpression>();
+			list = list.get(0).elements();
+			for(Element f : list)
+			{
+				ValueExpression x = parseValue(f);
+				if(x == null)
+					return null;
+				attributes.add(x);
+			}
+			if(!attributes.isEmpty())
+				return new Apply(operator, attributes);
+		}
+		return null;
+	}
+
+	private static Transformation parseTransformation(Element e, boolean reverse)
+	{
+		//Set e to the <Transformation> element, as the entities will be listed therein 
+		Element f = e.element(RDFElement.TRANSFORMATION_.toString());
+		//Record the direction attribute
+		String direction = e.attributeValue(RDFElement.DIRECTION.toString());
+		//Parse the entities
+		Element entity1 = e.element(RDFElement.ENTITY1.toString());
+		Element entity2 = e.element(RDFElement.ENTITY2.toString());
+		if(entity1 == null || entity2 == null)
+			return null;
+		AbstractExpression source, target;
+		if(reverse)
+		{
+			source = parseEDOALEntity(entity2);
+			target = parseEDOALEntity(entity1);
+		}
+		else
+		{
+			source = parseEDOALEntity(entity1);
+			target = parseEDOALEntity(entity2);
+		}
+		//One of the entities in a transformation must be an apply or aggregate,
+		//as indicated by the direction of the transformation
+
+		if(direction.equalsIgnoreCase("-o") && !(source instanceof Apply || source instanceof Aggregate))
+		{
+			System.err.println("WARNING: Transformation requires Apply/Aggregate as entity1: " + entity1.asXML());
+			return;
+		}
+		if(!active || (AML.getInstance().getSource().containsAll(source.getElements()) &&
+				AML.getInstance().getTarget().containsAll(target.getElements())))
+			m = new Transformation((ClassExpression)source,(ClassExpression)target,direction);
+		else if(AML.getInstance().getSource().containsAll(target.getElements()) &&
+				AML.getInstance().getTarget().containsAll(source.getElements()))
+			m = new Transformation((ClassExpression)target,(ClassExpression)source,direction);				
+
 		return null;
 	}
 
