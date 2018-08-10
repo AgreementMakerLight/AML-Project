@@ -14,8 +14,7 @@
 *******************************************************************************
 * A transformation expresses constraints on instances that should match.      *
 * It lists the direction of the transformation, and two entities, one of      *
-* which must be an operation (Aggregate or Apply), as indicated by the        *
-* direction.                                                                  *
+* which should be an operation (Aggregate or Apply).                          *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
