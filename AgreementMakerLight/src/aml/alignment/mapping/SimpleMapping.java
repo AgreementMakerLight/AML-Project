@@ -21,6 +21,8 @@ package aml.alignment.mapping;
 import org.apache.commons.lang.StringEscapeUtils;
 
 import aml.AML;
+import aml.alignment.rdf.RDFElement;
+import aml.settings.Namespace;
 
 public class SimpleMapping extends Mapping<String>
 {
@@ -91,9 +93,9 @@ public class SimpleMapping extends Mapping<String>
 	{
 		return "<map>\n" +
 			"<Cell>\n" +
-			"<entity1 rdf:resource=\""+ entity1 +"\"/>\n" +
-			"<entity2 rdf:resource=\""+ entity2 +"\"/>\n" +
-			"<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
+			"<entity1 " + RDFElement.RDF_RESOURCE.toRDF() + "=\"" + entity1 +"\"/>\n" +
+			"<entity2 " + RDFElement.RDF_RESOURCE.toRDF() + "=\"" + entity2 +"\"/>\n" +
+			"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.prefix() + "float\">"+ similarity +"</measure>\n" +
 			"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n" +
 			"</Cell>\n" +
 			"</map>\n";
