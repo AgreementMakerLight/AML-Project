@@ -71,8 +71,8 @@ public class AlignmentReader
 			line = inStream.readLine().trim();
 		inStream.close();
 		//AgreementMakerLight TSV format
-		if(line.contains("#AgreementMakerLight"))
-			a = parseTSV(file, active);
+		if(line.equals("#AgreementMakerLight Alignment File"))
+			a = readTSV(file, active);
 		//RDF Alignment format
 		else if(line.contains("<?xml"))
 			a = readRDF(file, active);
@@ -135,17 +135,26 @@ public class AlignmentReader
 		return a;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public static Alignment parseTSV(String file, boolean active) throws Exception
+	public static SimpleAlignment readTSV(String file, boolean active) throws Exception
 	{
 		SimpleAlignment a = new SimpleAlignment();
 		BufferedReader inStream = new BufferedReader(new FileReader(file));
-		//First line contains the reference to AML
+		//First line contains the reference to AML Alignment Format
 		inStream.readLine();
-		//Second line contains the entity1 ontology
-		inStream.readLine();
-		//Third line contains the entity2 ontology
-		inStream.readLine();
+		//Second line contains the source ontology
+		String onto1 = inStream.readLine();
+		//Third line contains the target ontology
+		String onto2 = inStream.readLine();
+		boolean reverse = false;
+		if(active && onto1.equals(AML.getInstance().getTarget().getURI()) &&
+				onto2.equals(AML.getInstance().getSource().getURI()))
+			reverse = true;
+		else if(active && !onto1.equals(AML.getInstance().getSource().getURI()) &&
+				onto2.equals(AML.getInstance().getTarget().getURI()))
+		{
+			inStream.close();
+			throw new Exception("Unable to read: " + file + " - ontology mismatch!");
+		}	
 		//Fourth line contains the headers
 		inStream.readLine();
 		//And from the fifth line forward we have mappings
@@ -185,7 +194,10 @@ public class AlignmentReader
 			//For compatibility with previous tsv format without listed relation
 			else
 				st = MappingStatus.UNKNOWN;
-			a.add(sourceURI, targetURI, similarity, rel, st);
+			if(reverse)
+				a.add(targetURI, sourceURI, similarity, rel.inverse(), st);
+			else
+				a.add(sourceURI, targetURI, similarity, rel, st);
 		}
 		inStream.close();
 		return a;
