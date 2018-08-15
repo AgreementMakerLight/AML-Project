@@ -48,4 +48,9 @@ public enum Namespace
 	{
 		return uri + separator;
 	}
+	
+	public String toString()
+	{
+		return ns;
+	}
 }
