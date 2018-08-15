@@ -114,35 +114,35 @@ public class LinkKey extends AbstractExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:linkkey>\n" +
-					"<edoal:Linkkey>\n";
+		String rdf = "<" + RDFElement.LINKKEY.toRDF() + ">\n" +
+					"<" + RDFElement.LINKKEY_.toRDF() + ">\n";
 		if(type != null)
 			rdf += "<lk:type>" + type + "</lk:type>\n";
 		for(AttributeExpression e : equals.keySet())
 		{
-			rdf += "<edoal:binding>\n" + 
-					"<edoal:Equals>\n" +
-					"<edoal:property1>\n" +
+			rdf += "<" + RDFElement.BINDING.toRDF() + ">\n" + 
+					"<" + RDFElement.EQUALS_.toRDF() + ">\n" +
+					"<" + RDFElement.PROPERTY1.toRDF() + ">\n" +
 					e.toRDF() +
-					"</edoal:property1>" +
-					"<edoal:property2>\n" +
+					"</" + RDFElement.PROPERTY1.toRDF() + ">" +
+					"<" + RDFElement.PROPERTY2.toRDF() + ">\n" +
 					equals.get(e).toRDF() +
-					"</edoal:property2>" +
-					"</edoal:Equals>\n" +
-					"</edoal:binding>\n";
+					"</" + RDFElement.PROPERTY2.toRDF() + ">" +
+					"</" + RDFElement.EQUALS_.toRDF() + ">\n" +
+					"</" + RDFElement.BINDING.toRDF() + ">\n";
 		}
 		for(AttributeExpression e : intersects.keySet())
 		{
-			rdf += "<edoal:binding>\n" + 
-					"<edoal:Intersects>\n" +
-					"<edoal:property1>\n" +
+			rdf += "<" + RDFElement.BINDING.toRDF() + ">\n" + 
+					"<" + RDFElement.INTERSECTS_.toRDF() + ">\n" +
+					"<" + RDFElement.PROPERTY1.toRDF() + ">\n" +
 					e.toRDF() +
-					"</edoal:property1>" +
-					"<edoal:property2>\n" +
+					"</" + RDFElement.PROPERTY1.toRDF() + ">" +
+					"<" + RDFElement.PROPERTY2.toRDF() + ">\n" +
 					intersects.get(e).toRDF() +
-					"</edoal:property2>" +
-					"</edoal:Intersects>\n" +
-					"</edoal:binding>\n";
+					"</" + RDFElement.PROPERTY2.toRDF() + ">" +
+					"</" + RDFElement.INTERSECTS_.toRDF() + ">\n" +
+					"</" + RDFElement.BINDING.toRDF() + ">\n";
 		}
 		rdf += "</edoal:Linkkey>\n";
 		rdf += "</edoal:linkkey>\n";

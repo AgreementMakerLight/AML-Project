@@ -67,11 +67,11 @@ public class PropertyDomainRestriction extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:PropertyDomainRestriction>\n" +
-				"<edoal:class>\n" +
+		String rdf = "<" + RDFElement.PROPERTY_DOMAIN_REST_.toRDF() + ">\n" +
+				"<" + RDFElement.CLASS.toRDF() + ">\n" +
 				rest.toRDF() + 
-				"\n</edoal:class>\n" +
-				"</edoal:PropertyDomainRestriction>\n";
+				"\n</" + RDFElement.CLASS.toRDF() + ">\n" +
+				"</" + RDFElement.PROPERTY_DOMAIN_REST_.toRDF() + ">\n";
 		return rdf;
 	}
 

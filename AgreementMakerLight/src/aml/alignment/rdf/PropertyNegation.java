@@ -66,11 +66,11 @@ public class PropertyNegation extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Property>\n" +
-				"<edoal:not>\n" +
+		return "<" + RDFElement.PROPERTY_.toRDF() + ">\n" +
+				"<" + RDFElement.NOT.toRDF() + ">\n" +
 				neg.toRDF() +
-				"\\n</edoal:not>\n" +
-				"</edoal:Property>\n";
+				"\\n</" + RDFElement.NOT.toRDF() + ">\n" +
+				"</" + RDFElement.PROPERTY_.toRDF() + ">\n";
 	}
 
 	@Override

@@ -65,12 +65,12 @@ public class PropertyIntersection extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Property>\n" +
-				"<edoal:and rdf:parseType=\"Collection\">\n";
+		String rdf = "<" + RDFElement.PROPERTY_.toRDF() + ">\n" +
+				"<" + RDFElement.AND.toRDF() + " " + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(PropertyExpression e : intersect)
 			rdf += e.toRDF() + "\n";
-		rdf += "</edoal:and>\n";
-		rdf += "</edoal:Property>\n";
+		rdf += "</" + RDFElement.AND.toRDF() + ">\n";
+		rdf += "</" + RDFElement.PROPERTY_.toRDF() + ">\n";
 		return rdf;
 	}
 

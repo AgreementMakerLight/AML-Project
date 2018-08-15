@@ -70,7 +70,7 @@ public class Datatype extends AbstractExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Datatype rdf:about=\"" + uri + "\"/>";
+		return "<" + RDFElement.DATATYPE_.toRDF() + " " + RDFElement.RDF_ABOUT.toRDF() + "=\"" + uri + "\"/>";
 	}
 
 	@Override

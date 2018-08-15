@@ -74,7 +74,7 @@ public class Comparator extends AbstractExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:comparator rdf:resource=\"" + uri + "\"/>"; 
+		return "<" + RDFElement.COMPARATOR.toRDF() + " " + RDFElement.RDF_RESOURCE.toRDF() + "=\"" + uri + "\"/>"; 
 	}
 
 	@Override

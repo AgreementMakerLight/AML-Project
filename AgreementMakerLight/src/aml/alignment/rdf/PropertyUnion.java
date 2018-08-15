@@ -65,12 +65,12 @@ public class PropertyUnion extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Property>\n" +
-				"<edoal:or rdf:parseType=\"Collection\">\n";
+		String rdf = "<" + RDFElement.PROPERTY_.toRDF() + ">\n" +
+				"<" + RDFElement.OR.toRDF() + " " + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(PropertyExpression e : union)
 			rdf += e.toRDF() + "\n";
-		rdf += "</edoal:or>\n";
-		rdf += "</edoal:Property>\n";
+		rdf += "</" + RDFElement.OR.toRDF() + ">\n";
+		rdf += "</" + RDFElement.PROPERTY_.toRDF() + ">\n";
 		return rdf;
 	}
 

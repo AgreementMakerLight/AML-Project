@@ -72,12 +72,12 @@ public class PropertyValueRestriction extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:PropertyValueRestriction>\n" +
+		return "<" + RDFElement.PROPERTY_VALUE_REST_.toRDF() + ">\n" +
 				comp.toRDF() + 
-				"\n<edoal:value>\n" +
+				"\n<" + RDFElement.VALUE.toRDF() + ">\n" +
 				val.toRDF() +
-				"\n</edoal:value>\n" +
-				"</edoal:PropertyValueRestriction>\n";
+				"\n</" + RDFElement.VALUE.toRDF() + ">\n" +
+				"</" + RDFElement.PROPERTY_VALUE_REST_.toRDF() + ">\n";
 	}
 
 	@Override

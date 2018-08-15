@@ -66,11 +66,11 @@ public class PropertyTypeRestriction extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:PropertyTypeRestriction>\n" +
-				"<edoal:datatype>\n" +
+		return "<" + RDFElement.PROPERTY_TYPE_REST_.toRDF() + ">\n" +
+				"<" + RDFElement.DATATYPE.toRDF() + ">\n" +
 				type.toRDF() +
-				"\n</edoal:datatype>\n" +
-				"</edoal:PropertyTypeRestriction>\n";
+				"\n</" + RDFElement.DATATYPE.toRDF() + ">\n" +
+				"</" + RDFElement.PROPERTY_TYPE_REST_.toRDF() + ">\n";
 	}
 
 	@Override

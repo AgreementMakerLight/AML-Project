@@ -75,13 +75,13 @@ public class PropertyComposition extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Property>\n" +
-				"<edoal:compose rdf:parseType=\"Collection\">\n";
+		String rdf = "<" + RDFElement.PROPERTY_.toRDF() + ">\n" +
+				"<" + RDFElement.COMPOSE.toRDF() + " " + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(RelationExpression e : path)
 			rdf += e.toRDF() + "\n";
 		rdf += end.toRDF() + "\n";
-		rdf += "</edoal:compose>\n";
-		rdf += "</edoal:Property>\n";
+		rdf += "</" + RDFElement.COMPOSE.toRDF() + ">\n";
+		rdf += "</" + RDFElement.PROPERTY_.toRDF() + ">\n";
 		return rdf;
 	}
 

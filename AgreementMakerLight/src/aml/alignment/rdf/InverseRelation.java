@@ -65,11 +65,11 @@ public class InverseRelation extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Relation>\n" +
-				"<edoal:inverse>\n" +
+		return "<" + RDFElement.RELATION_.toRDF() + ">\n" +
+				"<" + RDFElement.INVERSE.toRDF() + ">\n" +
 				inv.toRDF() +
-				"\n</edoal:inverse>\n" +
-				"</edoal:Relation>\n";
+				"\n</" + RDFElement.INVERSE.toRDF() + ">\n" +
+				"</" + RDFElement.RELATION_.toRDF() + ">\n";
 	}
 
 	@Override
