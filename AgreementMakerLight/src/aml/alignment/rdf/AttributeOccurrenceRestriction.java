@@ -80,15 +80,15 @@ public class AttributeOccurrenceRestriction extends ClassExpression
 	public String toRDF()
 	{
 		//In RDF we have to stick with the typo on "occurence" as it is now part of the official syntax...
-		return "<edoal:AttributeOccurenceRestriction>\n" +
-				"<onAttribute>\n" +
+		return "<" + RDFElement.ATTR_OCCURRENCE_REST_.toRDF() + ">\n" +
+				"<" + RDFElement.ON_ATTRIBUTE.toRDF() + ">\n" +
 				onAttribute.toRDF() +
-				"\n</onAttribute>\n" +
+				"\n</" + RDFElement.ON_ATTRIBUTE.toRDF() + ">\n" +
 				comp.toRDF() + 
-				"\n<edoal:value>" +
+				"\n<" + RDFElement.VALUE.toRDF() + ">" +
 				val.toRDF() +
-				"</edoal:value>\n" +
-				"</edoal:AttributeOccurenceRestriction>\n";
+				"</" + RDFElement.VALUE.toRDF() + ">\n" +
+				"</" + RDFElement.ATTR_OCCURRENCE_REST_.toRDF() + ">\n";
 	}
 
 	@Override

@@ -71,12 +71,12 @@ public class AttributeTypeRestriction extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:AttributeTypeRestriction>\n" +
-				"<onAttribute>\n";
-		rdf += onAttribute.toRDF() + "\n";
-		rdf += "</onAttribute>\n";
-		rdf += "<edoal:datatype>\n" + type.toRDF() + "\n</edoal:datatype>\n";
-		rdf += "</edoal:AttributeTypeRestriction>\n";
+		String rdf = "<" + RDFElement.ATTR_TYPE_REST_.toRDF() + ">\n" +
+				"<" + RDFElement.ON_ATTRIBUTE.toRDF() + ">\n" +
+				onAttribute.toRDF() +
+				"\n</" + RDFElement.ON_ATTRIBUTE.toRDF() + ">\n";
+		rdf += "<" + RDFElement.DATATYPE + ">\n" + type.toRDF() + "\n</" + RDFElement.DATATYPE + ">\n";
+		rdf += "</" + RDFElement.ATTR_TYPE_REST_.toRDF() + ">\n";
 		return rdf;
 	}
 

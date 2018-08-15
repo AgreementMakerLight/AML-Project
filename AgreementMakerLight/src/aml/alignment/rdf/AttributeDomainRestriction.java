@@ -76,14 +76,14 @@ public class AttributeDomainRestriction extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:AttributeDomainRestriction>\n" +
-				"<onAttribute>\n" +
+		return "<" + RDFElement.ATTR_DOMAIN_REST_.toRDF() + ">\n" +
+				"<" + RDFElement.ON_ATTRIBUTE.toRDF() + ">\n" +
 				onAttribute.toRDF() +
-				"\n</onAttribute>\n" +
+				"\n</" + RDFElement.ON_ATTRIBUTE.toRDF() + ">\n" +
 				"<" + e.toString() + ">\n" +
 				rest.toRDF() +
 				"\n</" + e.toString() + ">\n" +
-				"</edoal:AttributeDomainRestriction>\n";
+				"</" + RDFElement.ATTR_DOMAIN_REST_.toRDF() + ">\n";
 	}
 
 	@Override

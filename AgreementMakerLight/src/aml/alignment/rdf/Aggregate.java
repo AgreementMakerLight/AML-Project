@@ -81,12 +81,13 @@ public class Aggregate extends AbstractExpression implements ValueExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Aggregate edoal:operator=\"" + operator + "\">" +
-				"<edoal:arguments rdf:parseType=\"Collection\">\n";
+		String rdf = "<" + RDFElement.AGGREGATE_.toRDF() + " " + RDFElement.OPERATOR.toRDF() +
+				"=\"" + operator + "\">\n" +
+				"<" + RDFElement.ARGUMENTS.toRDF() + " " + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(ValueExpression e : arguments)
 			rdf += e.toRDF() + "\n";
-		rdf += "</edoal:arguments>\n";
-		rdf += "</edoal:Aggregate>\n";
+		rdf += "</" + RDFElement.ARGUMENTS.toRDF() + ">\n";
+		rdf += "</" + RDFElement.AGGREGATE_.toRDF() + ">\n";
 		return rdf;
 	}
 

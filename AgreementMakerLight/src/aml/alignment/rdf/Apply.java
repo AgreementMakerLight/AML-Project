@@ -81,12 +81,13 @@ public class Apply extends AbstractExpression implements ValueExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Apply edoal:operator=\"" + operator + "\">" +
-				"<edoal:arguments rdf:parseType=\"Collection\">\n";
+		String rdf = "<" + RDFElement.APPLY_.toRDF() + " " + RDFElement.OPERATOR.toRDF() +
+				"=\"" + operator + "\">\n" +
+				"<" + RDFElement.ARGUMENTS.toRDF() + " " + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(ValueExpression e : arguments)
 			rdf += e.toRDF() + "\n";
-		rdf += "</edoal:arguments>\n";
-		rdf += "</edoal:Apply>\n";
+		rdf += "</" + RDFElement.ARGUMENTS.toRDF() + ">\n";
+		rdf += "</" + RDFElement.APPLY_.toRDF() + ">\n";
 		return rdf;
 	}
 

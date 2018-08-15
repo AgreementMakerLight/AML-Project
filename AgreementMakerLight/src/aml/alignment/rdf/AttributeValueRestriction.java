@@ -80,15 +80,15 @@ public class AttributeValueRestriction extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:AttributeValueRestriction>\n" +
-				"<onAttribute>\n" +
+		return "<" + RDFElement.ATTR_VALUE_REST_.toRDF() + ">\n" +
+				"<" + RDFElement.ON_ATTRIBUTE.toRDF() + ">\n" +
 				onAttribute.toRDF() +
-				"\n</onAttribute>\n" +
+				"\n</" + RDFElement.ON_ATTRIBUTE.toRDF() + ">\n" +
 				comp.toRDF() +
-				"\n<edoal:value>\n" +
+				"\n<" + RDFElement.VALUE.toRDF() + ">\n" +
 				val.toRDF() +
-				"\n</edoal:value>\n" +
-				"</edoal:AttributeValueRestriction>\n";
+				"\n</" + RDFElement.VALUE.toRDF() + ">\n" +
+				"</" + RDFElement.ATTR_VALUE_REST_.toRDF() + ">\n";
 	}
 
 	@Override
