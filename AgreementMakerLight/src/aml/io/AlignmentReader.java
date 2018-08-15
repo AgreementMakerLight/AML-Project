@@ -21,6 +21,7 @@ package aml.io;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -39,7 +40,6 @@ import aml.alignment.EDOALAlignment;
 import aml.alignment.SimpleAlignment;
 import aml.alignment.mapping.*;
 import aml.alignment.rdf.*;
-import aml.ontology.EntityType;
 
 public class AlignmentReader
 {
@@ -1015,21 +1015,55 @@ public class AlignmentReader
 			return null;
 		//<Linkkey> may have a <lk:type> and should have one or two <binding>
 		List<Element> list = e.elements();
-		if(operator != null && list.size() == 1 && list.get(0).getName().equals(RDFElement.ARGUMENTS.toString()))
+		String type = null;
+		HashMap<AttributeExpression,AttributeExpression> equals = new HashMap<AttributeExpression,AttributeExpression>();
+		HashMap<AttributeExpression,AttributeExpression> intersects = new HashMap<AttributeExpression,AttributeExpression>();
+		for(Element f : list)
 		{
-			Vector<ValueExpression> attributes = new Vector<ValueExpression>();
-			list = list.get(0).elements();
-			for(Element f : list)
+			if(f.getName().equals("lk:type"))
+				type = f.getText();
+			else if(f.getName().equals(RDFElement.BINDING.toString()))
 			{
-				ValueExpression x = parseValue(f);
-				if(x == null)
+				List<Element> binding = f.elements();
+				if(binding == null || binding.size() != 1)
 					return null;
-				attributes.add(x);
+				String name = binding.get(0).getName();
+				boolean eq = name.equals(RDFElement.EQUALS_.toString());
+				if(!eq && !name.equals(RDFElement.INTERSECTS_.toString()))
+					return null;
+				if(binding.get(0).elements().size() != 2)
+					return null;
+				Element prop1 = binding.get(0).element(RDFElement.PROPERTY1.toString());
+				Element prop2 = binding.get(0).element(RDFElement.PROPERTY2.toString());
+				if(prop1 == null || prop2 == null ||
+						prop1.elements().size() != 1 ||
+						prop2.elements().size() != 1)
+					return null;
+				prop1 = (Element)prop1.elements().get(0);
+				prop2 = (Element)prop2.elements().get(0);
+				AttributeExpression p1 = null, p2 = null;
+				if(prop1.getName().equals(RDFElement.RELATION_.toString()))
+					p1 = parseRelation(prop1);
+				else if(prop1.getName().equals(RDFElement.PROPERTY_.toString()))
+					p1 = parseProperty(prop1);
+				else
+					return null;
+				if(prop2.getName().equals(RDFElement.RELATION_.toString()))
+					p2 = parseRelation(prop2);
+				else if(prop2.getName().equals(RDFElement.PROPERTY_.toString()))
+					p2 = parseProperty(prop2);
+				else
+					return null;
+				if(eq)
+					equals.put(p1, p2);
+				else
+					intersects.put(p1, p2);
 			}
-			if(!attributes.isEmpty())
-				return new Apply(operator, attributes);
 		}
-		return null;
+		if(equals.size() + intersects.size() == 0)
+			return null;
+		else
+			return new LinkKey(type, equals, intersects);
 	}
 
 	private static Transformation parseTransformation(Element e, boolean reverse)
@@ -1037,10 +1071,10 @@ public class AlignmentReader
 		//Set e to the <Transformation> element, as the entities will be listed therein 
 		Element f = e.element(RDFElement.TRANSFORMATION_.toString());
 		//Record the direction attribute
-		String direction = e.attributeValue(RDFElement.DIRECTION.toString());
+		String direction = f.attributeValue(RDFElement.DIRECTION.toString());
 		//Parse the entities
-		Element entity1 = e.element(RDFElement.ENTITY1.toString());
-		Element entity2 = e.element(RDFElement.ENTITY2.toString());
+		Element entity1 = f.element(RDFElement.ENTITY1.toString());
+		Element entity2 = f.element(RDFElement.ENTITY2.toString());
 		if(entity1 == null || entity2 == null)
 			return null;
 		AbstractExpression source, target;
@@ -1054,22 +1088,15 @@ public class AlignmentReader
 			source = parseEDOALEntity(entity1);
 			target = parseEDOALEntity(entity2);
 		}
-		//One of the entities in a transformation must be an apply or aggregate,
-		//as indicated by the direction of the transformation
-
-		if(direction.equalsIgnoreCase("-o") && !(source instanceof Apply || source instanceof Aggregate))
-		{
-			System.err.println("WARNING: Transformation requires Apply/Aggregate as entity1: " + entity1.asXML());
-			return;
-		}
-		if(!active || (AML.getInstance().getSource().containsAll(source.getElements()) &&
-				AML.getInstance().getTarget().containsAll(target.getElements())))
-			m = new Transformation((ClassExpression)source,(ClassExpression)target,direction);
-		else if(AML.getInstance().getSource().containsAll(target.getElements()) &&
-				AML.getInstance().getTarget().containsAll(source.getElements()))
-			m = new Transformation((ClassExpression)target,(ClassExpression)source,direction);				
-
-		return null;
+		//The entities in a transformation should value expressions and one of them should
+		//be an apply or aggregate; all their elements must belong to the respective ontology
+		if(!(source instanceof ValueExpression && target instanceof ValueExpression) ||
+				!(source instanceof Apply || source instanceof Aggregate || 
+				target instanceof Apply || target instanceof Aggregate) ||
+				!AML.getInstance().getSource().containsAll(source.getElements()) ||
+				AML.getInstance().getTarget().containsAll(target.getElements()))
+			return null;
+		return new Transformation(direction,(ValueExpression)source,(ValueExpression)target);
 	}
 
 }
