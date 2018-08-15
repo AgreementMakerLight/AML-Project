@@ -21,6 +21,8 @@ package aml.alignment.mapping;
 import org.apache.commons.lang.StringEscapeUtils;
 
 import aml.alignment.rdf.AbstractExpression;
+import aml.alignment.rdf.RDFElement;
+import aml.settings.Namespace;
 
 public class EDOALMapping extends Mapping<AbstractExpression>
 {
@@ -86,7 +88,7 @@ public class EDOALMapping extends Mapping<AbstractExpression>
 				"<entity2>\n" +
 				((AbstractExpression)entity2).toRDF() +
 				"\n</entity2>\n\n" +
-				"<measure rdf:datatype=\"http://www.w3.org/2001/XMLSchema#float\">"+ similarity +"</measure>\n" +
+				"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.prefix() + "float\">"+ similarity +"</measure>\n" +
 				"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";
 			out += "</Cell>\n" +
 				"</map>\n";
