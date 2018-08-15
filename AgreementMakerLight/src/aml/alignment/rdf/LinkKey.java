@@ -118,36 +118,30 @@ public class LinkKey extends AbstractExpression
 					"<edoal:Linkkey>\n";
 		if(type != null)
 			rdf += "<lk:type>" + type + "</lk:type>\n";
-		if(!equals.isEmpty())
+		for(AttributeExpression e : equals.keySet())
 		{
 			rdf += "<edoal:binding>\n" + 
-					"<edoal:Equals>\n";
-			for(AttributeExpression e : equals.keySet())
-			{
-				rdf += "<edoal:property1>\n" +
-						e.toRDF() +
-						"</edoal:property1>" +
-						"<edoal:property2>\n" +
-						equals.get(e).toRDF() +
-						"</edoal:property2>";
-			}
-			rdf += "</edoal:Equals>\n" +
+					"<edoal:Equals>\n" +
+					"<edoal:property1>\n" +
+					e.toRDF() +
+					"</edoal:property1>" +
+					"<edoal:property2>\n" +
+					equals.get(e).toRDF() +
+					"</edoal:property2>" +
+					"</edoal:Equals>\n" +
 					"</edoal:binding>\n";
 		}
-		if(!intersects.isEmpty())
+		for(AttributeExpression e : intersects.keySet())
 		{
 			rdf += "<edoal:binding>\n" + 
-					"<edoal:Intersects>\n";
-			for(AttributeExpression e : intersects.keySet())
-			{
-				rdf += "<edoal:property1>\n" +
-						e.toRDF() +
-						"</edoal:property1>" +
-						"<edoal:property2>\n" +
-						intersects.get(e).toRDF() +
-						"</edoal:property2>";
-			}
-			rdf += "</edoal:Intersects>\n" +
+					"<edoal:Intersects>\n" +
+					"<edoal:property1>\n" +
+					e.toRDF() +
+					"</edoal:property1>" +
+					"<edoal:property2>\n" +
+					intersects.get(e).toRDF() +
+					"</edoal:property2>" +
+					"</edoal:Intersects>\n" +
 					"</edoal:binding>\n";
 		}
 		rdf += "</edoal:Linkkey>\n";
