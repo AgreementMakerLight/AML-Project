@@ -119,6 +119,11 @@ public enum RDFElement
 		this.element = element;
 	}
 
+	public String toRDF()
+	{
+		return ns.toString() + ":" + element;
+	}
+	
 	public String toString()
 	{
 		return element;
