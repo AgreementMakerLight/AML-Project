@@ -70,7 +70,7 @@ public class PropertyTypeRestriction extends PropertyExpression
 				"<" + RDFElement.DATATYPE.toRDF() + ">\n" +
 				type.toRDF() +
 				"\n</" + RDFElement.DATATYPE.toRDF() + ">\n" +
-				"</" + RDFElement.PROPERTY_TYPE_REST_.toRDF() + ">\n";
+				"</" + RDFElement.PROPERTY_TYPE_REST_.toRDF() + ">";
 	}
 
 	@Override

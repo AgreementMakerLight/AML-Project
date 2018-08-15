@@ -70,7 +70,7 @@ public class RelationIntersection extends RelationExpression
 		for(RelationExpression e : intersect)
 			rdf += e.toRDF() + "\n";
 		rdf += "</" + RDFElement.AND.toRDF() + ">\n";
-		rdf += "</" + RDFElement.RELATION_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.RELATION_.toRDF() + ">";
 		return rdf;
 	}
 

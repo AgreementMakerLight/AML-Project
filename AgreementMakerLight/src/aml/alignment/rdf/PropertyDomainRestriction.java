@@ -71,7 +71,7 @@ public class PropertyDomainRestriction extends PropertyExpression
 				"<" + RDFElement.CLASS.toRDF() + ">\n" +
 				rest.toRDF() + 
 				"\n</" + RDFElement.CLASS.toRDF() + ">\n" +
-				"</" + RDFElement.PROPERTY_DOMAIN_REST_.toRDF() + ">\n";
+				"</" + RDFElement.PROPERTY_DOMAIN_REST_.toRDF() + ">";
 		return rdf;
 	}
 

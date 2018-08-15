@@ -88,7 +88,7 @@ public class AttributeOccurrenceRestriction extends ClassExpression
 				"\n<" + RDFElement.VALUE.toRDF() + ">" +
 				val.toRDF() +
 				"</" + RDFElement.VALUE.toRDF() + ">\n" +
-				"</" + RDFElement.ATTR_OCCURRENCE_REST_.toRDF() + ">\n";
+				"</" + RDFElement.ATTR_OCCURRENCE_REST_.toRDF() + ">";
 	}
 
 	@Override

@@ -69,7 +69,7 @@ public class ClassNegation extends ClassExpression
 				"<" + RDFElement.NOT.toRDF() + ">\n" +
 				neg.toRDF() + 
 				"\n</" + RDFElement.NOT.toRDF() + ">\n" +
-				"</" + RDFElement.CLASS_.toRDF() + ">\n";
+				"</" + RDFElement.CLASS_.toRDF() + ">";
 	}
 
 	@Override

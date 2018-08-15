@@ -70,7 +70,7 @@ public class RelationUnion extends RelationExpression
 		for(RelationExpression e : union)
 			rdf += e.toRDF() + "\n";
 		rdf += "</" + RDFElement.OR.toRDF() + ">\n";
-		rdf += "</" + RDFElement.RELATION_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.RELATION_.toRDF() + ">";
 		return rdf;
 	}
 

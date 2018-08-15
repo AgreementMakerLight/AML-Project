@@ -70,7 +70,7 @@ public class SymmetricRelation extends RelationExpression
 				"<" + RDFElement.SYMMETRIC.toRDF() + ">\n" +
 				sym.toRDF() +
 				"\n</" + RDFElement.SYMMETRIC.toRDF() + ">\n" +
-				"</" + RDFElement.RELATION_.toRDF() + ">\n";
+				"</" + RDFElement.RELATION_.toRDF() + ">";
 	}
 
 	@Override

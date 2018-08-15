@@ -70,7 +70,7 @@ public class PropertyIntersection extends PropertyExpression
 		for(PropertyExpression e : intersect)
 			rdf += e.toRDF() + "\n";
 		rdf += "</" + RDFElement.AND.toRDF() + ">\n";
-		rdf += "</" + RDFElement.PROPERTY_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.PROPERTY_.toRDF() + ">";
 		return rdf;
 	}
 

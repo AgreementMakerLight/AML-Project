@@ -83,7 +83,7 @@ public class AttributeDomainRestriction extends ClassExpression
 				"<" + e.toString() + ">\n" +
 				rest.toRDF() +
 				"\n</" + e.toString() + ">\n" +
-				"</" + RDFElement.ATTR_DOMAIN_REST_.toRDF() + ">\n";
+				"</" + RDFElement.ATTR_DOMAIN_REST_.toRDF() + ">";
 	}
 
 	@Override

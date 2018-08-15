@@ -69,7 +69,7 @@ public class InverseRelation extends RelationExpression
 				"<" + RDFElement.INVERSE.toRDF() + ">\n" +
 				inv.toRDF() +
 				"\n</" + RDFElement.INVERSE.toRDF() + ">\n" +
-				"</" + RDFElement.RELATION_.toRDF() + ">\n";
+				"</" + RDFElement.RELATION_.toRDF() + ">";
 	}
 
 	@Override

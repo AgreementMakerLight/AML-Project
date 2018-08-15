@@ -69,7 +69,7 @@ public class TransitiveRelation extends RelationExpression
 				"<" + RDFElement.TRANSITIVE.toRDF() + ">\n" +
 				trans.toRDF() +
 				"\n</" + RDFElement.TRANSITIVE.toRDF() + ">\n" +
-				"</" + RDFElement.RELATION_.toRDF() + ">\n";
+				"</" + RDFElement.RELATION_.toRDF() + ">";
 	}
 
 	@Override

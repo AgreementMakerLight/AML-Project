@@ -87,7 +87,7 @@ public class Apply extends AbstractExpression implements ValueExpression
 		for(ValueExpression e : arguments)
 			rdf += e.toRDF() + "\n";
 		rdf += "</" + RDFElement.ARGUMENTS.toRDF() + ">\n";
-		rdf += "</" + RDFElement.APPLY_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.APPLY_.toRDF() + ">";
 		return rdf;
 	}
 

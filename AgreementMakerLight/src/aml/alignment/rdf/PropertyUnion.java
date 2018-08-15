@@ -70,7 +70,7 @@ public class PropertyUnion extends PropertyExpression
 		for(PropertyExpression e : union)
 			rdf += e.toRDF() + "\n";
 		rdf += "</" + RDFElement.OR.toRDF() + ">\n";
-		rdf += "</" + RDFElement.PROPERTY_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.PROPERTY_.toRDF() + ">";
 		return rdf;
 	}
 

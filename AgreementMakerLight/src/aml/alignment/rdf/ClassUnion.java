@@ -70,7 +70,7 @@ public class ClassUnion extends ClassExpression
 		for(ClassExpression e : union)
 			rdf += e.toRDF() + "\n";
 		rdf += "</" + RDFElement.OR.toRDF() + ">\n";
-		rdf += "</" + RDFElement.CLASS_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.CLASS_.toRDF() + ">";
 		return rdf;
 	}
 

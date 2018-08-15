@@ -69,7 +69,7 @@ public class RelationNegation extends RelationExpression
 				"<" + RDFElement.NOT.toRDF() + ">\n" +
 				neg.toRDF() +
 				"\n</" + RDFElement.NOT.toRDF() + ">\n" +
-				"</" + RDFElement.RELATION_.toRDF() + ">\n";
+				"</" + RDFElement.RELATION_.toRDF() + ">";
 	}
 
 	@Override

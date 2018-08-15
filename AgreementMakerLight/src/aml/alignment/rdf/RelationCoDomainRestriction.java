@@ -71,7 +71,7 @@ public class RelationCoDomainRestriction extends RelationExpression
 				"<" + RDFElement.CLASS.toRDF() + ">\n" +
 				rest.toRDF() + 
 				"\n</" + RDFElement.CLASS.toRDF() + ">\n" +
-				"</" + RDFElement.RELATION_CODOMAIN_REST_.toRDF() + ">\n";
+				"</" + RDFElement.RELATION_CODOMAIN_REST_.toRDF() + ">";
 		return rdf;
 	}
 

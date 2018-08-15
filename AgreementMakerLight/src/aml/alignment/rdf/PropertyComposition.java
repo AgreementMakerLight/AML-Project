@@ -81,7 +81,7 @@ public class PropertyComposition extends PropertyExpression
 			rdf += e.toRDF() + "\n";
 		rdf += end.toRDF() + "\n";
 		rdf += "</" + RDFElement.COMPOSE.toRDF() + ">\n";
-		rdf += "</" + RDFElement.PROPERTY_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.PROPERTY_.toRDF() + ">";
 		return rdf;
 	}
 

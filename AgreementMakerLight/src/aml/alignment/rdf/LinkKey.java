@@ -145,7 +145,7 @@ public class LinkKey extends AbstractExpression
 					"</" + RDFElement.BINDING.toRDF() + ">\n";
 		}
 		rdf += "</edoal:Linkkey>\n";
-		rdf += "</edoal:linkkey>\n";
+		rdf += "</edoal:linkkey>";
 		return rdf;
 	}
 

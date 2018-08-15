@@ -70,7 +70,7 @@ public class ClassIntersection extends ClassExpression
 		for(ClassExpression e : intersect)
 			rdf += e.toRDF() + "\n";
 		rdf += "</" + RDFElement.AND.toRDF() + ">\n";
-		rdf += "</" + RDFElement.CLASS_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.CLASS_.toRDF() + ">";
 		return rdf;
 	}
 

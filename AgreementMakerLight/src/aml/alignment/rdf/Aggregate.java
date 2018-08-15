@@ -87,7 +87,7 @@ public class Aggregate extends AbstractExpression implements ValueExpression
 		for(ValueExpression e : arguments)
 			rdf += e.toRDF() + "\n";
 		rdf += "</" + RDFElement.ARGUMENTS.toRDF() + ">\n";
-		rdf += "</" + RDFElement.AGGREGATE_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.AGGREGATE_.toRDF() + ">";
 		return rdf;
 	}
 

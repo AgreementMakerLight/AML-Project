@@ -77,7 +77,7 @@ public class PropertyValueRestriction extends PropertyExpression
 				"\n<" + RDFElement.VALUE.toRDF() + ">\n" +
 				val.toRDF() +
 				"\n</" + RDFElement.VALUE.toRDF() + ">\n" +
-				"</" + RDFElement.PROPERTY_VALUE_REST_.toRDF() + ">\n";
+				"</" + RDFElement.PROPERTY_VALUE_REST_.toRDF() + ">";
 	}
 
 	@Override

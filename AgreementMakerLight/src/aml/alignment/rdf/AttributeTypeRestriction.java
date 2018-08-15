@@ -76,7 +76,7 @@ public class AttributeTypeRestriction extends ClassExpression
 				onAttribute.toRDF() +
 				"\n</" + RDFElement.ON_ATTRIBUTE.toRDF() + ">\n";
 		rdf += "<" + RDFElement.DATATYPE + ">\n" + type.toRDF() + "\n</" + RDFElement.DATATYPE + ">\n";
-		rdf += "</" + RDFElement.ATTR_TYPE_REST_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.ATTR_TYPE_REST_.toRDF() + ">";
 		return rdf;
 	}
 

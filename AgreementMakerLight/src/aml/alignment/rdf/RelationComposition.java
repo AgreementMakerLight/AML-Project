@@ -71,7 +71,7 @@ public class RelationComposition extends RelationExpression
 		for(RelationExpression e : path)
 			rdf += e.toRDF() + "\n";
 		rdf += "</" + RDFElement.COMPOSE.toRDF() + ">\n";
-		rdf += "</" + RDFElement.RELATION_.toRDF() + ">\n";
+		rdf += "</" + RDFElement.RELATION_.toRDF() + ">";
 		return rdf;
 	}
 

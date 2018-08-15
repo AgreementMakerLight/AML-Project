@@ -69,7 +69,7 @@ public class ReflexiveRelation extends RelationExpression
 				"<" + RDFElement.REFLEXIVE.toRDF() + ">\n" +
 				ref.toRDF() +
 				"\n</" + RDFElement.REFLEXIVE.toRDF() + ">\n" +
-				"</" + RDFElement.RELATION_.toRDF() + ">\n";
+				"</" + RDFElement.RELATION_.toRDF() + ">";
 	}
 
 	@Override

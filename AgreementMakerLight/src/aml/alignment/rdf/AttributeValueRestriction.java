@@ -88,7 +88,7 @@ public class AttributeValueRestriction extends ClassExpression
 				"\n<" + RDFElement.VALUE.toRDF() + ">\n" +
 				val.toRDF() +
 				"\n</" + RDFElement.VALUE.toRDF() + ">\n" +
-				"</" + RDFElement.ATTR_VALUE_REST_.toRDF() + ">\n";
+				"</" + RDFElement.ATTR_VALUE_REST_.toRDF() + ">";
 	}
 
 	@Override

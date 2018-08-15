@@ -70,7 +70,7 @@ public class PropertyNegation extends PropertyExpression
 				"<" + RDFElement.NOT.toRDF() + ">\n" +
 				neg.toRDF() +
 				"\\n</" + RDFElement.NOT.toRDF() + ">\n" +
-				"</" + RDFElement.PROPERTY_.toRDF() + ">\n";
+				"</" + RDFElement.PROPERTY_.toRDF() + ">";
 	}
 
 	@Override
