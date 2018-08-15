@@ -58,7 +58,7 @@ public class ClassId extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Class rdf:about=\"" +
+		return "<" + RDFElement.CLASS_.toRDF() + " " +  RDFElement.RDF_ABOUT.toRDF() + "=\"" +
 				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next()) +
 				"\"/>";
 	}

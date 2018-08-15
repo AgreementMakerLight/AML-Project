@@ -82,12 +82,12 @@ public class Literal extends AbstractExpression implements ValueExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Literal "; 
+		String rdf = "<" + RDFElement.LITERAL_.toRDF(); 
 		if(type != null)
-			rdf += "edoal:type=\"" + type + "\" ";
+			rdf += " " + RDFElement.TYPE.toRDF() + "=\"" + type + "\"";
 		if(lang != null)
-			rdf += "edoal:lang=\"" + lang + "\" ";
-		rdf += "edoal:string=\"" + value + "\"/>";
+			rdf += " "+ RDFElement.LANG.toRDF() + "=\"" + lang + "\"";
+		rdf += " " + RDFElement.STRING.toRDF() + "=\"" + value + "\"/>";
 		return rdf;
 	}
 

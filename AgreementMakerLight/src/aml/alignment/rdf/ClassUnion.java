@@ -65,12 +65,12 @@ public class ClassUnion extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Class>\n" +
-				"<edoal:or rdf:parseType=\"Collection\">\n";
+		String rdf = "<" + RDFElement.CLASS_.toRDF() + ">\n" +
+				"<" + RDFElement.OR.toRDF() + " "  + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(ClassExpression e : union)
 			rdf += e.toRDF() + "\n";
-		rdf += "</edoal:or>\n";
-		rdf += "</edoal:Class>\n";
+		rdf += "</" + RDFElement.OR.toRDF() + ">\n";
+		rdf += "</" + RDFElement.CLASS_.toRDF() + ">\n";
 		return rdf;
 	}
 

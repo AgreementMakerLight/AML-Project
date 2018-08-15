@@ -65,12 +65,12 @@ public class ClassIntersection extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Class>\n" +
-				"<edoal:and rdf:parseType=\"Collection\">\n";
+		String rdf = "<" + RDFElement.CLASS_.toRDF() + ">\n" +
+				"<" + RDFElement.AND.toRDF() + " "  + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(ClassExpression e : intersect)
 			rdf += e.toRDF() + "\n";
-		rdf += "</edoal:and>\n";
-		rdf += "</edoal:Class>\n";
+		rdf += "</" + RDFElement.AND.toRDF() + ">\n";
+		rdf += "</" + RDFElement.CLASS_.toRDF() + ">\n";
 		return rdf;
 	}
 

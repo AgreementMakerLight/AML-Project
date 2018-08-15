@@ -65,11 +65,11 @@ public class ClassNegation extends ClassExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Class>\n" +
-				"<edoal:not>\n" +
+		return "<" + RDFElement.CLASS_.toRDF() + ">\n" +
+				"<" + RDFElement.NOT.toRDF() + ">\n" +
 				neg.toRDF() + 
-				"\n</edoal:not>\n" +
-				"</edoal:Class>\n";
+				"\n</" + RDFElement.NOT.toRDF() + ">\n" +
+				"</" + RDFElement.CLASS_.toRDF() + ">\n";
 	}
 
 	@Override

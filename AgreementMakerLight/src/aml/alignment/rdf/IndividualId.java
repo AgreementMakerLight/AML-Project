@@ -58,7 +58,7 @@ public class IndividualId extends AbstractExpression implements ValueExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Instance rdf:about=\"" +
+		return "<" + RDFElement.INSTANCE_.toRDF() + " " +  RDFElement.RDF_ABOUT.toRDF() + "=\"" +
 				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next()) +
 				"\"/>";
 	}

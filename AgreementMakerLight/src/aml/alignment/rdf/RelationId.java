@@ -58,7 +58,7 @@ public class RelationId extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Relation rdf:about=\"" +
+		return "<" + RDFElement.RELATION_.toRDF() + " " +  RDFElement.RDF_ABOUT.toRDF() + "=\"" +
 				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next()) +
 				"\"/>";
 	}

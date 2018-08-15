@@ -68,7 +68,7 @@ public class PropertyId extends PropertyExpression
 	@Override
 	public String toRDF()
 	{
-		String s = "<edoal:Property rdf:about=\"" +
+		String s = "<" + RDFElement.PROPERTY_.toRDF() + " " +  RDFElement.RDF_ABOUT.toRDF() + "=\"" +
 				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next());
 		if(lang != null)
 			s += "\" edoal:lang=\"" + lang;
