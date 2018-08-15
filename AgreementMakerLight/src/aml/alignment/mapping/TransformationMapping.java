@@ -96,13 +96,13 @@ public class TransformationMapping extends EDOALMapping
 	{
 		String s = "<map>\n" +
 				"<align:Cell rdf:about=\"#cell-with-linkkey\">\n" +
-				"<entity1>\n" + entity1.toRDF() + "\n</entity1>\n\n" +
-				"<entity2>\n" +	entity2.toRDF() + "\n</entity2>\n\n" +
+				"<entity1>\n" + entity1.toRDF() + "\n</entity1>\n" +
+				"<entity2>\n" +	entity2.toRDF() + "\n</entity2>\n" +
 				"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n" +
 				"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.prefix() + "float\">"+ similarity +"</measure>\n";
 		for(Transformation t : transformations)
 			s += t.toRDF();
-		s += "</Cell>\n</map>\n";
+		s += "</Cell>\n</map>";
 		return s;
 	}
 }

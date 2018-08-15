@@ -98,7 +98,7 @@ public class SimpleMapping extends Mapping<String>
 			"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.prefix() + "float\">"+ similarity +"</measure>\n" +
 			"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n" +
 			"</Cell>\n" +
-			"</map>\n";
+			"</map>";
 	}
 
 	/**
