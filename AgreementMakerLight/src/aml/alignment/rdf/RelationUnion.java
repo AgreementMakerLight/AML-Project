@@ -65,12 +65,12 @@ public class RelationUnion extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Relation>\n" +
-				"<edoal:or rdf:parseType=\"Collection\">\n";
+		String rdf =  "<" + RDFElement.RELATION_.toRDF() + ">\n" +
+				"<" + RDFElement.OR.toRDF() + " " + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(RelationExpression e : union)
 			rdf += e.toRDF() + "\n";
-		rdf += "</edoal:or>\n";
-		rdf += "</edoal:Relation>\n";
+		rdf += "</" + RDFElement.OR.toRDF() + ">\n";
+		rdf += "</" + RDFElement.RELATION_.toRDF() + ">\n";
 		return rdf;
 	}
 

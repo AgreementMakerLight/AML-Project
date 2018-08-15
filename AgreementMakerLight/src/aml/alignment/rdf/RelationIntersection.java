@@ -65,12 +65,12 @@ public class RelationIntersection extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Relation>\n" +
-				"<edoal:and rdf:parseType=\"Collection\">\n";
+		String rdf =  "<" + RDFElement.RELATION_.toRDF() + ">\n" +
+				"<" + RDFElement.AND.toRDF() + " " + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(RelationExpression e : intersect)
 			rdf += e.toRDF() + "\n";
-		rdf += "</edoal:and>\n";
-		rdf += "</edoal:Relation>\n";
+		rdf += "</" + RDFElement.AND.toRDF() + ">\n";
+		rdf += "</" + RDFElement.RELATION_.toRDF() + ">\n";
 		return rdf;
 	}
 

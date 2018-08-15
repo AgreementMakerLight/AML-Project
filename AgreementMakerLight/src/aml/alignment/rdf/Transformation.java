@@ -85,14 +85,17 @@ public class Transformation extends AbstractExpression
 	@Override
 	public String toRDF()
 	{
-		return "<map>\n" +
-				"<edoal:transformation>\n" +
-				"<edoal:Transformation edoal:direction=\"" + direction + "\">\n" +
-				"<entity1>\n" + entity1.toRDF() + "\n</entity1>\n\n" +
-				"<entity2>\n" + entity2.toRDF() + "\n</entity2>\n\n" +
-				"<edoal:Transformation>\n" +
-				"<edoal:transformation>\n" +
-				"</map>\n";
+		return "<" + RDFElement.TRANSFORMATION.toRDF() + ">\n" +
+				"<" + RDFElement.TRANSFORMATION_.toRDF() + " " + 
+				RDFElement.DIRECTION.toRDF() + "=\"" + direction + "\">\n" +
+				"<" + RDFElement.EDOAL_ENTITY1.toRDF() + ">\n" +
+				entity1.toRDF() +
+				"\n</" + RDFElement.EDOAL_ENTITY1.toRDF() + ">\n" +
+				"<" + RDFElement.EDOAL_ENTITY2.toRDF() + ">\n" +
+				entity2.toRDF() +
+				"\n</" + RDFElement.EDOAL_ENTITY2.toRDF() + ">\n" +
+				"</" + RDFElement.TRANSFORMATION_.toRDF() + ">\n" +
+				"</" + RDFElement.TRANSFORMATION.toRDF() +">";
 	}
 	
 	@Override

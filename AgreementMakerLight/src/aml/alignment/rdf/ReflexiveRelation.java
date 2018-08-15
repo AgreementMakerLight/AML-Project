@@ -65,11 +65,11 @@ public class ReflexiveRelation extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Relation>\n" +
-				"<edoal:reflexive>\n" +
+		return "<" + RDFElement.RELATION_.toRDF() + ">\n" +
+				"<" + RDFElement.REFLEXIVE.toRDF() + ">\n" +
 				ref.toRDF() +
-				"\n</edoal:reflexive>\n" +
-				"</edoal:Relation>\n";
+				"\n</" + RDFElement.REFLEXIVE.toRDF() + ">\n" +
+				"</" + RDFElement.RELATION_.toRDF() + ">\n";
 	}
 
 	@Override

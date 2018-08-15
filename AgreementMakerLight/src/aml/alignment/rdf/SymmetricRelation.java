@@ -66,11 +66,11 @@ public class SymmetricRelation extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Relation>\n" +
-				"<edoal:symmetric>\n" +
+		return "<" + RDFElement.RELATION_.toRDF() + ">\n" +
+				"<" + RDFElement.SYMMETRIC.toRDF() + ">\n" +
 				sym.toRDF() +
-				"\n</edoal:symmetric>\n" +
-				"</edoal:Relation>\n";
+				"\n</" + RDFElement.SYMMETRIC.toRDF() + ">\n" +
+				"</" + RDFElement.RELATION_.toRDF() + ">\n";
 	}
 
 	@Override

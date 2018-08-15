@@ -65,11 +65,11 @@ public class RelationNegation extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Relation>\n" +
-				"<edoal:not>\n" +
+		return "<" + RDFElement.RELATION_.toRDF() + ">\n" +
+				"<" + RDFElement.NOT.toRDF() + ">\n" +
 				neg.toRDF() +
-				"\n</edoal:not>\n" +
-				"</edoal:Relation>\n";
+				"\n</" + RDFElement.NOT.toRDF() + ">\n" +
+				"</" + RDFElement.RELATION_.toRDF() + ">\n";
 	}
 
 	@Override

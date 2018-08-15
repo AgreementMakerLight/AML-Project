@@ -65,11 +65,11 @@ public class TransitiveRelation extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		return "<edoal:Relation>\n" +
-				"<edoal:transitive>\n" +
+		return "<" + RDFElement.RELATION_.toRDF() + ">\n" +
+				"<" + RDFElement.TRANSITIVE.toRDF() + ">\n" +
 				trans.toRDF() +
-				"\n</edoal:transitive>\n" +
-				"</edoal:Relation>\n";
+				"\n</" + RDFElement.TRANSITIVE.toRDF() + ">\n" +
+				"</" + RDFElement.RELATION_.toRDF() + ">\n";
 	}
 
 	@Override

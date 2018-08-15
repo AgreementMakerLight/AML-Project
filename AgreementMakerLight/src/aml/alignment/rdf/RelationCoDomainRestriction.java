@@ -67,11 +67,11 @@ public class RelationCoDomainRestriction extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:RelationCoDomainRestriction>\n" +
-				"<edoal:class>\n" +
+		String rdf = "<" + RDFElement.RELATION_CODOMAIN_REST_.toRDF() + ">\n" +
+				"<" + RDFElement.CLASS.toRDF() + ">\n" +
 				rest.toRDF() + 
-				"\n</edoal:class>\n" +
-				"</edoal:RelationCoDomainRestriction>\n";
+				"\n</" + RDFElement.CLASS.toRDF() + ">\n" +
+				"</" + RDFElement.RELATION_CODOMAIN_REST_.toRDF() + ">\n";
 		return rdf;
 	}
 

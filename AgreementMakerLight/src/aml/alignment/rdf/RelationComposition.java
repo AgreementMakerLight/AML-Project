@@ -66,12 +66,12 @@ public class RelationComposition extends RelationExpression
 	@Override
 	public String toRDF()
 	{
-		String rdf = "<edoal:Relation>\n" +
-				"<edoal:compose rdf:parseType=\"Collection\">\n";
+		String rdf =  "<" + RDFElement.RELATION_.toRDF() + ">\n" +
+				"<" + RDFElement.COMPOSE.toRDF() + " " + RDFElement.RDF_PARSETYPE.toRDF() + "=\"Collection\">\n";
 		for(RelationExpression e : path)
 			rdf += e.toRDF() + "\n";
-		rdf += "</edoal:compose>\n";
-		rdf += "</edoal:Relation>\n";
+		rdf += "</" + RDFElement.COMPOSE.toRDF() + ">\n";
+		rdf += "</" + RDFElement.RELATION_.toRDF() + ">\n";
 		return rdf;
 	}
 
