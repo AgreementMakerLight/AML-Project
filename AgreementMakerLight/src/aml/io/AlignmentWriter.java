@@ -16,12 +16,13 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.alignment;
+package aml.io;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
+import aml.alignment.Alignment;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.rdf.RDFElement;
 import aml.settings.Namespace;

@@ -19,7 +19,7 @@
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 
-package aml.ontology.io;
+package aml.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

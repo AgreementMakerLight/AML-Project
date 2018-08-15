@@ -16,7 +16,7 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.alignment;
+package aml.io;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,6 +34,9 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.EDOALAlignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.mapping.*;
 import aml.alignment.rdf.*;
 import aml.ontology.EntityType;

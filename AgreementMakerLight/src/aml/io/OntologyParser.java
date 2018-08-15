@@ -16,7 +16,7 @@
 *																			  *
 * @author Daniel Faria, Catia Pesquita                                        *
 ******************************************************************************/
-package aml.ontology.io;
+package aml.io;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
