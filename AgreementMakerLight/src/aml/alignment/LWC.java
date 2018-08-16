@@ -20,7 +20,6 @@
 package aml.alignment;
 
 import aml.alignment.mapping.Mapping;
-import aml.alignment.mapping.SimpleMapping;
 
 public class LWC
 {
@@ -44,19 +43,16 @@ public class LWC
 	{
 		SimpleAlignment combine = new SimpleAlignment();
 	
-		for(Mapping m: a)
+		for(Mapping<String> m: a)
 		{
-			if(m instanceof SimpleMapping)
-			{
-				double similarity = m.getSimilarity()*weight;
-				if(b.contains(m))
-					similarity += b.getSimilarity((String)m.getEntity1(), (String)m.getEntity2())*(1-weight);
-				combine.add((String)m.getEntity1(),(String)m.getEntity2(),similarity);
-			}
+			double similarity = m.getSimilarity()*weight;
+			if(b.contains(m))
+				similarity += b.getSimilarity(m.getEntity1(),m.getEntity2())*(1-weight);
+				combine.add(m.getEntity1(),m.getEntity2(),similarity);
 		}
-		for(Mapping m : b)
+		for(Mapping<String> m : b)
 		{
-			if(!a.contains(m) && m instanceof SimpleMapping)
+			if(!a.contains(m))
 			{
 				double similarity = m.getSimilarity()*(1-weight);
 				combine.add((String)m.getEntity1(),(String)m.getEntity2(),similarity);
