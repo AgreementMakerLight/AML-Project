@@ -170,7 +170,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		if(sourceComponentMaps.contains(entity1) && targetComponentMaps.contains(entity2))
 		{
 			for(Mapping<AbstractExpression> m : sourceComponentMaps.get(entity1))
-				if(m.getEntity2().getComponents().contains(entity2))
+				if(m.getEntity2().getElements().contains(entity2))
 					return true;
 		}
 		return false;
