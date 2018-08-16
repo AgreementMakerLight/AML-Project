@@ -870,53 +870,56 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 				"<" + RDFElement.XML + ">yes</" + RDFElement.XML +">" +
 				"<" + RDFElement.LEVEL + ">" + LEVEL + "</" + RDFElement.LEVEL + ">" +
 				"<" + RDFElement.TYPE + ">" + type + "</" + RDFElement.TYPE + ">";
-		if(sourceLocation == null && sourceFormalismName == null && sourceFormalismURI != null)
-			s += "<" + RDFElement.ONTO1 + ">" + sourceURI + "</" + RDFElement.ONTO1 + ">\n";
-		else
+		if(sourceURI != null && targetURI != null)
 		{
-			s += "<" + RDFElement.ONTO1 + ">\n" +
-					"<" + RDFElement.ONTOLOGY_ + " " + RDFElement.RDF_ABOUT.toRDF() +
-					"=\"" + sourceURI + "\">\n";
-			if(sourceLocation != null)
-				s += "<" + RDFElement.LOCATION + ">" + sourceLocation + "</" + RDFElement.LOCATION + ">\n";
-			if(sourceFormalismName != null || sourceFormalismURI != null)
+			if(sourceLocation == null && sourceFormalismName == null && sourceFormalismURI != null)
+				s += "<" + RDFElement.ONTO1 + ">" + sourceURI + "</" + RDFElement.ONTO1 + ">\n";
+			else
 			{
-				s += "<" + RDFElement.FORMALISM + ">\n" +
-						"<" + RDFElement.FORMALISM_;
-				if(sourceFormalismName != null)
-					s += " " + RDFElement.NAME + "=\"" + sourceFormalismName + "\"";
-				if(sourceFormalismURI != null)
-					s += " " + RDFElement.URI + "=\"" + sourceFormalismURI + "\"";
-				s += "/>\n" +
-					"</" + RDFElement.FORMALISM + ">\n";
-				
+				s += "<" + RDFElement.ONTO1 + ">\n" +
+						"<" + RDFElement.ONTOLOGY_ + " " + RDFElement.RDF_ABOUT.toRDF() +
+						"=\"" + sourceURI + "\">\n";
+				if(sourceLocation != null)
+					s += "<" + RDFElement.LOCATION + ">" + sourceLocation + "</" + RDFElement.LOCATION + ">\n";
+				if(sourceFormalismName != null || sourceFormalismURI != null)
+				{
+					s += "<" + RDFElement.FORMALISM + ">\n" +
+							"<" + RDFElement.FORMALISM_;
+					if(sourceFormalismName != null)
+						s += " " + RDFElement.NAME + "=\"" + sourceFormalismName + "\"";
+					if(sourceFormalismURI != null)
+						s += " " + RDFElement.URI + "=\"" + sourceFormalismURI + "\"";
+					s += "/>\n" +
+							"</" + RDFElement.FORMALISM + ">\n";
+
+				}
+				s += "</" + RDFElement.ONTOLOGY + ">\n" +
+						"</" + RDFElement.ONTO1 + ">\n";
 			}
-			s += "</" + RDFElement.ONTOLOGY + ">\n" +
-					"</" + RDFElement.ONTO1 + ">\n";
-		}
-		if(targetLocation == null && targetFormalismName == null && targetFormalismURI != null)
-			s += "<" + RDFElement.ONTO2 + ">" + targetURI + "</" + RDFElement.ONTO2 + ">\n";
-		else
-		{
-			s += "<" + RDFElement.ONTO2 + ">\n" +
-					"<" + RDFElement.ONTOLOGY_ + " " + RDFElement.RDF_ABOUT.toRDF() +
-					"=\"" + targetURI + "\">\n";
-			if(targetLocation != null)
-				s += "<" + RDFElement.LOCATION + ">" + targetLocation + "</" + RDFElement.LOCATION + ">\n";
-			if(targetFormalismName != null || targetFormalismURI != null)
+			if(targetLocation == null && targetFormalismName == null && targetFormalismURI != null)
+				s += "<" + RDFElement.ONTO2 + ">" + targetURI + "</" + RDFElement.ONTO2 + ">\n";
+			else
 			{
-				s += "<" + RDFElement.FORMALISM + ">\n" +
-						"<" + RDFElement.FORMALISM_;
-				if(targetFormalismName != null)
-					s += " " + RDFElement.NAME + "=\"" + targetFormalismName + "\"";
-				if(targetFormalismURI != null)
-					s += " " + RDFElement.URI + "=\"" + targetFormalismURI + "\"";
-				s += "/>\n" +
-					"</" + RDFElement.FORMALISM + ">\n";
-				
+				s += "<" + RDFElement.ONTO2 + ">\n" +
+						"<" + RDFElement.ONTOLOGY_ + " " + RDFElement.RDF_ABOUT.toRDF() +
+						"=\"" + targetURI + "\">\n";
+				if(targetLocation != null)
+					s += "<" + RDFElement.LOCATION + ">" + targetLocation + "</" + RDFElement.LOCATION + ">\n";
+				if(targetFormalismName != null || targetFormalismURI != null)
+				{
+					s += "<" + RDFElement.FORMALISM + ">\n" +
+							"<" + RDFElement.FORMALISM_;
+					if(targetFormalismName != null)
+						s += " " + RDFElement.NAME + "=\"" + targetFormalismName + "\"";
+					if(targetFormalismURI != null)
+						s += " " + RDFElement.URI + "=\"" + targetFormalismURI + "\"";
+					s += "/>\n" +
+							"</" + RDFElement.FORMALISM + ">\n";
+
+				}
+				s += "</" + RDFElement.ONTOLOGY + ">\n" +
+						"</" + RDFElement.ONTO2 + ">\n";
 			}
-			s += "</" + RDFElement.ONTOLOGY + ">\n" +
-					"</" + RDFElement.ONTO2 + ">\n";
 		}
 		for(Mapping m : this)
 			s += m.toRDF() + "\n";
