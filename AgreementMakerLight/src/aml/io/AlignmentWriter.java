@@ -23,9 +23,9 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
 import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.mapping.Mapping;
-import aml.alignment.rdf.RDFElement;
-import aml.settings.Namespace;
+import aml.alignment.mapping.SimpleMapping;
 
 public class AlignmentWriter
 {
@@ -34,10 +34,10 @@ public class AlignmentWriter
 	 * @param a: the Alignment to save
 	 * @param file: the output file
 	 */
-	public static void saveDoubles(Alignment a, String file) throws FileNotFoundException
+	public static void saveDoubles(SimpleAlignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		for(Mapping m : a)
+		for(Mapping<String> m : a)
 			outStream.println("<" + m.getEntity1() + "> <" + m.getEntity2() + ">");
 		outStream.close();
 	}
@@ -47,27 +47,24 @@ public class AlignmentWriter
 	 * @param a: the Alignment to save
 	 * @param file: the output file
 	 */
+	@SuppressWarnings("rawtypes")
 	public static void saveRDF(Alignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
-		outStream.println("<?xml version='1.0' encoding='utf-8'?>");
-		outStream.println("<rdf:RDF xmlns='" + Namespace.ALIGNMENT.uri + "'"); 
-		outStream.println("\t xmlns:rdf='" + Namespace.RDF.uri + "' "); 
-		outStream.println("\t xmlns:xsd='" + Namespace.XSD.uri + "' ");
-		outStream.println("<" + RDFElement.ALIGNMENT_ + ">");
-		outStream.println("\t<" + RDFElement.XML + ">yes</" + RDFElement.XML +">");
-		outStream.println("\t<" + RDFElement.LEVEL + ">0</" + RDFElement.LEVEL + ">");
-		double card = a.cardinality();
-		if(card < 1.02)
-			outStream.println("\t<" + RDFElement.TYPE + ">11</" + RDFElement.TYPE + ">");
-		else
-			outStream.println("\t<" + RDFElement.TYPE + ">??</" + RDFElement.TYPE + ">");
-		outStream.println("\t<" + RDFElement.ONTO1 + ">" + a.getSourceURI() + "</" + RDFElement.ONTO1 + ">");
-		outStream.println("\t<" + RDFElement.ONTO2 + ">" + a.getTargetURI() + "</" + RDFElement.ONTO2 + ">");
-		for(Mapping m : a)
-			outStream.println(m.toRDF());
-		outStream.println("</" + RDFElement.ALIGNMENT_ + ">");
-		outStream.println("</rdf:RDF>");		
+		String s = a.toRDF();
+		String[] line = s.split("\n");
+		int index = 0;
+		for(String l : line)
+		{
+			if(l.startsWith("</"))
+				index--;
+			for(int i = 0; i < index; i++)
+				outStream.print("\t");
+			outStream.println(l);
+			if(l.startsWith("<") && !l.startsWith("</") && !l.startsWith("<?") &&
+					!l.endsWith("/>") && !l.contains("</"))
+				index++;
+		}
 		outStream.close();
 	}
 	
@@ -76,15 +73,15 @@ public class AlignmentWriter
 	 * @param a: the Alignment to save
 	 * @param file: the output file
 	 */
-	public static void saveTSV(Alignment a, String file) throws FileNotFoundException
+	public static void saveTSV(SimpleAlignment a, String file) throws FileNotFoundException
 	{
 		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
 		outStream.println("#AgreementMakerLight Alignment File");
 		outStream.println("#entity1 ontology:\t" + a.getSourceURI());
 		outStream.println("#entity2 ontology:\t" + a.getTargetURI());
 		outStream.println("entity1 URI\tSource Label\tTarget URI\tTarget Label\tSimilarity\tRelationship\tStatus");
-		for(Mapping m : a)
-			outStream.println(m.toString());
+		for(Mapping<String> m : a)
+			outStream.println(((SimpleMapping)m).toTSV());
 		outStream.close();
 	}
 }
