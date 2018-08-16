@@ -1083,8 +1083,11 @@ public class AML
     
     public void saveAlignmentTSV(String file) throws Exception
     {
-    	AlignmentWriter.saveTSV(a,file);
-    	needSave = false;
+    	if(a instanceof SimpleAlignment)
+    	{
+    		AlignmentWriter.saveTSV((SimpleAlignment)a,file);
+    		needSave = false;
+    	}
     }
     
 	@SuppressWarnings("rawtypes")
