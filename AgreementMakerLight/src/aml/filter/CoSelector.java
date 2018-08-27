@@ -12,7 +12,8 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A filtering algorithm based on cardinality.                                 *
+* A filtering algorithm based on cardinality that uses an auxiliary alignment *
+* to rank mappings.                                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -23,37 +24,44 @@ import aml.alignment.SimpleAlignment;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
 
-public class Selector implements Filterer, Flagger
+public class CoSelector implements Filterer
 {
 	
 //Attributes
 	
 	private double thresh;
 	private SelectionType type;
+	private SimpleAlignment aux;
 	
 //Constructors
 	
 	/**
-	 * Constructs a Selector with the given similarity threshold
-	 * and automatic SelectionType
+	 * Constructs a CoSelector with the given similarity threshold
+	 * and automatic SelectionType, and using the given auxiliary
+	 * Alignment as the basis for selection
 	 * @param thresh: the similarity threshold
+	 * @param aux: the auxiliary Alignment
 	 */
-	public Selector(double thresh)
+	public CoSelector(double thresh, SimpleAlignment aux)
 	{
 		this.thresh = thresh;
-		type = SelectionType.getSelectionType();
+		this.type = SelectionType.getSelectionType();
+		this.aux = aux;
 	}
-	
+
 	/**
-	 * Constructs a Selector with the given similarity threshold
-	 * and SelectionType
+	 * Constructs a CoSelector with the given similarity threshold
+	 * and SelectionType, and using the given auxiliary Alignment
+	 * as the basis for selection
 	 * @param thresh: the similarity threshold
 	 * @param type: the SelectionType
+	 * @param aux: the auxiliary Alignment
 	 */
-	public Selector(double thresh, SelectionType type)
+	public CoSelector(double thresh, SelectionType type, SimpleAlignment aux)
 	{
-		this(thresh);
+		this.thresh = thresh;
 		this.type = type;
+		this.aux = aux;
 	}
 
 //Public Methods
@@ -68,32 +76,27 @@ public class Selector implements Filterer, Flagger
 			return a;
 		}
 		System.out.println("Performing Selection");
+
 		long time = System.currentTimeMillis()/1000;
 		SimpleAlignment in = (SimpleAlignment)a;
-		//The alignment to store selected mappings
-		SimpleAlignment out = new SimpleAlignment();
-		//Sort the active alignment
-		in.sortDescending();
-		//Then select Mappings in ranking order (by similarity)
-		for(Mapping<String> m : in)
+		SimpleAlignment out = new SimpleAlignment(in.getSourceOntology(),in.getTargetOntology());
+		aux.sortDescending();
+		//Then perform selection based on it
+		for(Mapping<String> m : aux)
 		{
-			//If the Mapping is CORRECT, select it, regardless of anything else
-			if(m.getStatus().equals(MappingStatus.CORRECT))
-				out.add(m);
-			//If it is INCORRECT or below the similarity threshold, discard it
-			else if(m.getSimilarity() < thresh || m.getStatus().equals(MappingStatus.INCORRECT))
+			Mapping<String> n = in.get(m.getEntity1(), m.getEntity2());
+			if(n == null)
 				continue;
-			//Otherwise, add it if it obeys the rules for the chosen SelectionType:
-					//In STRICT selection no conflicts are allowed
-			else if((type.equals(SelectionType.STRICT) && !out.containsConflict(m)) ||
-					//In PERMISSIVE selection only conflicts of equal similarity are allowed
-					(type.equals(SelectionType.PERMISSIVE) && !out.containsBetterMapping(m)) ||
-					//And in HYBRID selection a cardinality of 2 is allowed above 0.75 similarity
-					(type.equals(SelectionType.HYBRID) && ((m.getSimilarity() > 0.75 &&
-					out.cardinality(m.getEntity1()) < 2 && out.cardinality(m.getEntity2()) < 2) ||
-					//And PERMISSIVE selection is employed below this limit
-					!out.containsBetterMapping(m))))
-				out.add(m);
+			if(n.getStatus().equals(MappingStatus.CORRECT))
+				out.add(n);
+			else if(n.getSimilarity() < thresh || n.getStatus().equals(MappingStatus.INCORRECT))
+				continue;
+			if((type.equals(SelectionType.STRICT) && !out.containsConflict(n)) ||
+					(type.equals(SelectionType.PERMISSIVE) && !aux.containsBetterMapping(m)) ||
+					(type.equals(SelectionType.HYBRID) && ((n.getSimilarity() > 0.75 && 
+					out.cardinality(n.getEntity1()) < 2 && out.cardinality(n.getEntity2()) < 2) ||
+					!out.containsBetterMapping(n))))
+				out.add(n);
 		}
 		if(out.size() < a.size())
 		{
@@ -103,23 +106,5 @@ public class Selector implements Filterer, Flagger
 		}
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 		return out;
-	}
-	
-	@Override
-	@SuppressWarnings("rawtypes")
-	public void flag(Alignment a)
-	{
-		if(!(a instanceof SimpleAlignment))
-		{
-			System.out.println("Warning: cannot flag non-simple alignment!");
-			return;
-		}
-		System.out.println("Running Cardinality Flagger");
-		long time = System.currentTimeMillis()/1000;
-		SimpleAlignment b = (SimpleAlignment)a;
-		for(Mapping<String> m : b)
-			if(b.containsConflict(m) && m.getStatus().equals(MappingStatus.UNKNOWN))
-				m.setStatus(MappingStatus.FLAGGED);
-		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 	}
 }
