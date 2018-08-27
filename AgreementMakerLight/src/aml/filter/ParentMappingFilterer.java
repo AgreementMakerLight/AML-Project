@@ -28,7 +28,7 @@ import aml.alignment.mapping.MappingStatus;
 import aml.ontology.EntityType;
 import aml.ontology.semantics.EntityMap;
 
-public class ParentSelector implements Filterer
+public class ParentMappingFilterer implements Filterer
 {
 	
 //Constructors
@@ -36,7 +36,7 @@ public class ParentSelector implements Filterer
 	/**
 	 * Constructs a ParentSelector
 	 */
-	public ParentSelector(){}
+	public ParentMappingFilterer(){}
 	
 
 //Public Methods

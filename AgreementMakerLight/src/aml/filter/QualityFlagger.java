@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -19,13 +19,14 @@
 ******************************************************************************/
 package aml.filter;
 
-import java.util.Vector;
+import java.util.HashMap;
+import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.alignment.SimpleAlignment;
+import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
-import aml.alignment.mapping.SimpleMapping;
-import aml.match.UnsupportedEntityTypeException;
 import aml.match.lexical.StringMatcher;
 import aml.match.lexical.WordMatchStrategy;
 import aml.match.lexical.WordMatcher;
@@ -43,75 +44,72 @@ public class QualityFlagger implements Flagger
 	private AML aml;
 	private SimpleAlignment a;
 	private SizeCategory size;
-	private Vector<String> auxMatchers;
-	private Vector<SimpleAlignment> auxAlignments;
+	private HashMap<String,SimpleAlignment> auxAlignments;
 	private final double AVERAGE_THRESH = 0.2;
 	
 //Constructors
 	
-	public QualityFlagger()
-	{
-		aml = AML.getInstance();
-		a = aml.getAlignment();
-		size = aml.getSizeCategory();
-		//Construct the list of auxiliary (re)matchers and alignments
-		auxMatchers = new Vector<String>();
-		auxAlignments = new Vector<SimpleAlignment>();
-		try
-		{
-			auxMatchers.add("Word Similarity: ");
-			WordMatcher wm = new WordMatcher(WordMatchStrategy.AVERAGE);
-			auxAlignments.add(wm.rematch(a,EntityType.CLASS));
-			auxMatchers.add("String Similarity: ");
-			StringMatcher sm = new StringMatcher();
-			auxAlignments.add(sm.rematch(a,EntityType.CLASS));
-			auxMatchers.add("Descendant Similarity: ");
-			NeighborSimilarityMatcher nm = new NeighborSimilarityMatcher(
-					NeighborSimilarityStrategy.DESCENDANTS,
-					!size.equals(SizeCategory.SMALL));
-			auxAlignments.add(nm.rematch(a,EntityType.CLASS));
-			auxMatchers.add("Ancestor Similarity: ");
-			nm = new NeighborSimilarityMatcher(
-					NeighborSimilarityStrategy.ANCESTORS,
-					!size.equals(SizeCategory.SMALL));
-			auxAlignments.add(nm.rematch(a,EntityType.CLASS));
-			if(size.equals(SizeCategory.HUGE))
-			{
-				auxMatchers.add("High-Level Similarity: ");
-				BlockRematcher br = new BlockRematcher();
-				auxAlignments.add(br.rematch(a,EntityType.CLASS));
-			}
-		}
-		catch(UnsupportedEntityTypeException e)
-		{
-			e.printStackTrace();
-		}
-	}
+	public QualityFlagger(){}
 	
 //Public Methods
 	
 	@Override
-	public void flag()
+	@SuppressWarnings("rawtypes")
+	public void flag(Alignment a)
 	{
-		System.out.println("Running Quality Flagger");
-		long time = System.currentTimeMillis()/1000;
-		for(SimpleMapping m : a)
+		if(!(a instanceof SimpleAlignment))
 		{
-			int sourceId = m.getSourceId();
-			int targetId = m.getTargetId();
+			System.out.println("Warning: cannot flag non-simple alignment!");
+			return;
+		}
+		System.out.println("Running Quality Flagger");
+		SimpleAlignment in = (SimpleAlignment)a;
+		long time = System.currentTimeMillis()/1000;
+		aml = AML.getInstance();
+		size = aml.getSizeCategory();
+		//Construct the list of auxiliary (re)matchers and alignments
+		auxAlignments = new HashMap<String,SimpleAlignment>();
+		for(String lang : aml.getLanguages())
+		{
+			WordMatcher wm = new WordMatcher(lang, WordMatchStrategy.AVERAGE);
+			auxAlignments.put("Word Similarity (" + lang + "): ", 
+					wm.rematch(aml.getSource(), aml.getTarget(), in, EntityType.CLASS));
+		}
+		StringMatcher sm = new StringMatcher();
+		auxAlignments.put("String Similarity: ",
+				sm.rematch(aml.getSource(), aml.getTarget(), in, EntityType.CLASS));
+		NeighborSimilarityMatcher nm = new NeighborSimilarityMatcher(
+				NeighborSimilarityStrategy.DESCENDANTS, !size.equals(SizeCategory.SMALL));
+		auxAlignments.put("Descendant Similarity: ", 
+				nm.rematch(aml.getSource(), aml.getTarget(), in, EntityType.CLASS));
+		nm = new NeighborSimilarityMatcher(
+				NeighborSimilarityStrategy.ANCESTORS,
+				!size.equals(SizeCategory.SMALL));
+		auxAlignments.put("Ancestor Similarity: ",
+				nm.rematch(aml.getSource(), aml.getTarget(), in, EntityType.CLASS));
+		if(size.equals(SizeCategory.HUGE))
+		{
+			BlockRematcher br = new BlockRematcher();
+			auxAlignments.put("High-Level Similarity: ",
+					br.rematch(aml.getSource(), aml.getTarget(), in, EntityType.CLASS));
+		}
+		for(Mapping<String> m : in)
+		{
+			String source = m.getEntity1();
+			String target = m.getEntity2();
 			double average = m.getSimilarity();
 			int support = 0;
-			for(int i = 0; i < auxAlignments.size(); i++)
+			for(String s : auxAlignments.keySet())
 			{
-				double sim = auxAlignments.get(i).getSimilarity(sourceId, targetId);
+				double sim = auxAlignments.get(s).getSimilarity(source, target);
 				//High level similarity doesn't count towards the support
-				if(i != 4 && sim > 0)
+				if(!s.equals("High-Level Similarity: ") && sim > 0)
 					support++;
 				//Ancestor similarity doesn't count towards the average
-				if(i != 3)
+				if(!s.equals("Ancestor Similarity: "))
 					average += sim;
 			}
-			average /= auxAlignments.size();
+			average /= auxAlignments.size()-1;
 			
 			if((support < 2 || average < AVERAGE_THRESH) &&
 					m.getStatus().equals(MappingStatus.UNKNOWN))
@@ -121,79 +119,79 @@ public class QualityFlagger implements Flagger
 	}
 	
 	/**
-	 * @param sourceId: the id of the source Ontology Entity
-	 * @param targetId: the id of the target Ontology Entity
+	 * @param source: the id of the source Ontology Entity
+	 * @param target: the id of the target Ontology Entity
 	 * @return the average similarity between the Entities
 	 */
-	public double getAverageSimilarity(int sourceId, int targetId)
+	public double getAverageSimilarity(String source, String target)
 	{
-		double avg = a.getSimilarity(sourceId, targetId);
-		for(int i = 0; i < auxAlignments.size(); i++)
+		double average = 0.0;
+		for(String s : auxAlignments.keySet())
 		{
-			double sim = auxAlignments.get(i).getSimilarity(sourceId, targetId);
 			//Ancestor similarity doesn't count towards the average
-			if(i != 3)
-				avg += sim;
+			if(!s.equals("Ancestor Similarity: "))
+				average += auxAlignments.get(s).getSimilarity(source, target);
 		}
-		return avg / auxAlignments.size();
+		average /= auxAlignments.size()-1;
+		return average;
 	}
 
 	/**
 	 * @return the labels of the auxiliary Alignments
 	 */
-	public Vector<String> getLabels()
+	public Set<String> getLabels()
 	{
-		return auxMatchers;
+		return auxAlignments.keySet();
 	}
 	
 	/**
-	 * @param sourceId: the id of the source Ontology Entity
-	 * @param targetId: the id of the target Ontology Entity
+	 * @param source: the id of the source Ontology Entity
+	 * @param target: the id of the target Ontology Entity
 	 * @return the maximum similarity between the Entities
 	 */
-	public double getMaxSimilarity(int sourceId, int targetId)
+	public double getMaxSimilarity(String source, String target)
 	{
-		double max = a.getSimilarity(sourceId, targetId);
-		for(SimpleAlignment aux : auxAlignments)
-			max = Math.max(max, aux.getSimilarity(sourceId, targetId));
+		double max = a.getSimilarity(source, target);
+		for(String s : auxAlignments.keySet())
+			max = Math.max(max, auxAlignments.get(s).getSimilarity(source, target));
 		return max;
 	}
 	
 	/**
-	 * @param sourceId: the id of the source Ontology Entity
-	 * @param targetId: the id of the target Ontology Entity
-	 * @param matcher: the index of the auxiliary Alignment
+	 * @param source: the id of the source Ontology Entity
+	 * @param target: the id of the target Ontology Entity
+	 * @param matcher: the label of the auxiliary Alignment
 	 * @return the similarity between the Entities in the auxiliary Alignment
 	 */
-	public double getSimilarity(int sourceId, int targetId, int matcher)
+	public double getSimilarity(String source, String target, String matcher)
 	{
-		return auxAlignments.get(matcher).getSimilarity(sourceId, targetId);
+		return auxAlignments.get(matcher).getSimilarity(source, target);
 	}
 	
 	/**
-	 * @param sourceId: the id of the source Ontology Entity
-	 * @param targetId: the id of the target Ontology Entity
-	 * @param matcher: the index of the auxiliary Alignment
+	 * @param source: the id of the source Ontology Entity
+	 * @param target: the id of the target Ontology Entity
+	 * @param matcher: the label of the auxiliary Alignment
 	 * @return the similarity between the Entities in the auxiliary Alignment in percentage
 	 */
-	public String getSimilarityPercent(int sourceId, int targetId, int matcher)
+	public String getSimilarityPercent(String source, String target, String matcher)
 	{
-		return auxAlignments.get(matcher).getSimilarityPercent(sourceId, targetId);
+		return auxAlignments.get(matcher).getSimilarityPercent(source, target);
 	}
 	
 	/**
-	 * @param sourceId: the id of the source Ontology Entity
-	 * @param targetId: the id of the target Ontology Entity
+	 * @param source: the id of the source Ontology Entity
+	 * @param target: the id of the target Ontology Entity
 	 * @return the support for a mapping between the Entities
 	 */
-	public int getSupport(int sourceId, int targetId)
+	public int getSupport(String source, String target)
 	{
 		int support = 0;
-		for(int i = 0; i < auxAlignments.size(); i++)
+		for(String s : auxAlignments.keySet())
 		{
-			double sim = auxAlignments.get(i).getSimilarity(sourceId, targetId);
+			double sim = auxAlignments.get(s).getSimilarity(source, target);
 			//High level similarity doesn't count towards the support
-			if(i != 4 && sim > 0)
+			if(!s.equals("High-Level Similarity: ") && sim > 0)
 				support++;
 		}
 		return support;

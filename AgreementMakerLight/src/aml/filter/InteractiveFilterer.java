@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -20,7 +20,9 @@
 package aml.filter;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.alignment.SimpleAlignment;
+import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
 import aml.alignment.mapping.SimpleMapping;
 import aml.settings.SizeCategory;
@@ -31,41 +33,38 @@ public class InteractiveFilterer implements Filterer
 	
 //Attributes
 
-	private AML aml;
-	private InteractionManager im;
-	private SimpleAlignment a;
-	private QualityFlagger qf;
 	//Selection thresholds
 	private final double HIGH_THRESH = 0.7;
 	private final double AVERAGE_THRESH = 0.2;
 	private double lowThresh = 0.45;
-	//Auxiliary variables
-	private SizeCategory size;
 	
 //Constructors
 	
-	public InteractiveFilterer()
-	{
-		aml = AML.getInstance();
-		im = aml.getInteractionManager();
-		size = aml.getSizeCategory();
-		a = aml.getAlignment();
-		qf = aml.buildQualityFlagger();
-	}
+	public InteractiveFilterer(){}
 	
 //Public Methods
 	
 	@Override
-	public void filter()
+	@SuppressWarnings("rawtypes")
+	public Alignment filter(Alignment a)
 	{
-		long time = System.currentTimeMillis()/1000;
+		if(!(a instanceof SimpleAlignment))
+		{
+			System.out.println("Warning: cannot filter non-simple alignment!");
+			return a;
+		}
 		System.out.println("Performing Interactive Selection");
-		
+		long time = System.currentTimeMillis()/1000;
+
+		AML aml = AML.getInstance();
+		InteractionManager im = aml.getInteractionManager();
+		SizeCategory size = aml.getSizeCategory();
+		SimpleAlignment in = (SimpleAlignment)a;
 		//Setup:
 		//1) Sort the input alignment
-		a.sortDescending();
+		in.sortDescending();
 		//2) Initialize the final alignment
-		SimpleAlignment selected = new SimpleAlignment();
+		SimpleAlignment out = new SimpleAlignment();
 		//3) Start the consecutive negative count and set the limit
 		int consecutiveNegativeCount = 0;
 		boolean updated = false;
@@ -74,27 +73,32 @@ public class InteractiveFilterer implements Filterer
 			consecutiveNegativeLimit = 5;
 		else
 			consecutiveNegativeLimit = 10;
-
+		//4) Run the QualityFlagger
+		QualityFlagger qf = new QualityFlagger();
+		qf.flag(in);
+		
 		//Select - for each mapping:
-		for(SimpleMapping m : a)
+		for(Mapping<String> m : in)
 		{
 			//Get the ids
-			int sourceId = m.getSourceId();
-			int targetId = m.getTargetId();
+			String source = m.getEntity1();
+			String target = m.getEntity2();
 			double finalSim = m.getSimilarity();
 			//Compute the auxiliary parameters
-			double maxSim = qf.getMaxSimilarity(sourceId, targetId);
-			double average = qf.getAverageSimilarity(sourceId, targetId);
-			int support = qf.getSupport(sourceId, targetId);
+			double maxSim = qf.getMaxSimilarity(source, target);
+			double average = qf.getAverageSimilarity(source, target);
+			int support = qf.getSupport(source, target);
 			
 			if(finalSim >= HIGH_THRESH)
 			{
-				if(support < 2 || selected.containsConflict(m))
+				if(support < 2 || out.containsConflict(m))
 				{
 					if(im.isInteractive())
-						im.classify(m);
-					else
+						im.classify((SimpleMapping)m);
+					else if(out.containsBetterMapping(m))
 						m.setStatus(MappingStatus.INCORRECT);
+					else
+						m.setStatus(MappingStatus.CORRECT);
 				}
 			}
 			else if(finalSim >= lowThresh || maxSim >= lowThresh)
@@ -102,9 +106,9 @@ public class InteractiveFilterer implements Filterer
 				if(im.isInteractive())
 				{
 					if(support > 1 && average > AVERAGE_THRESH &&
-							!selected.containsConflict(m))
+							!out.containsConflict(m))
 					{
-						im.classify(m);
+						im.classify((SimpleMapping)m);
 						//Update the consecutive negative query count
 						if(m.getStatus().equals(MappingStatus.INCORRECT))
 							consecutiveNegativeCount++;
@@ -128,10 +132,10 @@ public class InteractiveFilterer implements Filterer
 			else
 				break;
 			if(!m.getStatus().equals(MappingStatus.INCORRECT))
-				selected.add(sourceId, targetId, maxSim);
+				out.add(source, target, maxSim);
 		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
-		aml.setAlignment(selected);
+		return out;
 	}
 }
