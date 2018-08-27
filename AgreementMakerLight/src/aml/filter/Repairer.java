@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -19,6 +19,8 @@
 package aml.filter;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.alignment.mapping.MappingStatus;
 import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.semantics.RepairMap;
@@ -38,24 +40,28 @@ public class Repairer implements Filterer, Flagger
 	/**
 	 * Constructs a Repairer for automatic repair
 	 */
-	public Repairer()
-	{
-		aml = AML.getInstance();
-		rMap = aml.getRepairMap();
-		if(rMap == null)
-			rMap = aml.buildRepairMap();
-		im = aml.getInteractionManager();
-	}
+	public Repairer(){}
 
 //Public Methods
 	
 	@Override
-	public void filter()
+	@SuppressWarnings("rawtypes")
+	public Alignment filter(Alignment a)
 	{
+		if(!(a instanceof SimpleAlignment))
+		{
+			System.out.println("Warning: cannot filter non-simple alignment!");
+			return a;
+		}
+		aml = AML.getInstance();
+		rMap = aml.getRepairMap(); //TODO: Fix this - RepairMap should receive Alignment as input
+		if(rMap == null)
+			rMap = aml.buildRepairMap();
+		im = aml.getInteractionManager();
 		if(rMap.isCoherent())
 		{
 			System.out.println("Alignment is coherent");
-			return;
+			return a;
 		}
 		System.out.println("Repairing Alignment");
 		long time = System.currentTimeMillis()/1000;
@@ -83,11 +89,18 @@ public class Repairer implements Filterer, Flagger
 		System.out.println("Finished Repair in " + 
 				(System.currentTimeMillis()/1000-time) + " seconds");
 		System.out.println("Removed " + repairCount + " mappings");
+		return aml.getAlignment();
 	}
 	
 	@Override
-	public void flag()
+	@SuppressWarnings("rawtypes")
+	public void flag(Alignment a)
 	{
+		if(!(a instanceof SimpleAlignment))
+		{
+			System.out.println("Warning: cannot flag non-simple alignment!");
+			return;
+		}
 		System.out.println("Running Coherence Flagger");
 		long time = System.currentTimeMillis()/1000;
 		for(Integer i : rMap)

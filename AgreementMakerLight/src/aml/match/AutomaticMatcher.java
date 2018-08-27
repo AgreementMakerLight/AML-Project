@@ -26,7 +26,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import aml.AML;
 import aml.alignment.SimpleAlignment;
 import aml.alignment.LWC;
-import aml.filter.CardinalitySelector;
+import aml.filter.CoSelector;
 import aml.filter.DifferentClassPenalizer;
 import aml.filter.DomainAndRangeFilterer;
 import aml.filter.InteractiveFilterer;
@@ -281,25 +281,19 @@ public class AutomaticMatcher
 					aml.getNeighborSimilarityStrategy(),aml.directNeighbors());
 			a.addAllOneToOne(nsm.extendAlignment(source,target,a,EntityType.CLASS,thresh));
 		}
-		aml.setAlignment(a);
 		if(matchProperties)
 		{
 			HybridStringMatcher pm = new HybridStringMatcher(true);
 			a.addAll(pm.match(source,target,EntityType.DATA_PROP, thresh));
 			a.addAll(pm.match(source,target,EntityType.OBJECT_PROP, thresh));
-			aml.setAlignment(a);
 			DomainAndRangeFilterer dr = new DomainAndRangeFilterer();
-			dr.filter();
+			a = (SimpleAlignment) dr.filter(a);
 		}
 		SelectionType sType = aml.getSelectionType();
-		int card = Math.max(aml.getSource().count(EntityType.CLASS), aml.getTarget().count(EntityType.CLASS))/
-				Math.min(aml.getSource().count(EntityType.CLASS), aml.getTarget().count(EntityType.CLASS));
-		if(size.equals(SizeCategory.SMALL))
-			card = 1;
 		if(size.equals(SizeCategory.HUGE))
 		{
 			ObsoleteFilterer or = new ObsoleteFilterer();
-			or.filter();
+			a = (SimpleAlignment) or.filter(a);
 				
 			BlockRematcher hl = new BlockRematcher();
 			SimpleAlignment b = hl.rematch(source,target,a,EntityType.CLASS);
@@ -308,15 +302,15 @@ public class AutomaticMatcher
 			SimpleAlignment c = nb.rematch(source,target,a,EntityType.CLASS);
 			b = LWC.combine(b, c, 0.75);
 			b = LWC.combine(a, b, 0.8);
-			CardinalitySelector s = new CardinalitySelector(thresh-0.05,card,sType);
-			b = s.filter(b);
-			s = new CardinalitySelector(thresh,card,sType,b);
-			s.filter();
+			Selector s = new Selector(thresh-0.05,sType);
+			b = (SimpleAlignment) s.filter(b);
+			CoSelector cs = new CoSelector(thresh,sType,b);
+			a = (SimpleAlignment) cs.filter(a);
 		}
 		else if(!im.isInteractive())
 		{
-			CardinalitySelector s = new CardinalitySelector(thresh,card,sType);
-			s.filter();
+			Selector s = new Selector(thresh,sType);
+			a = (SimpleAlignment) s.filter(a);
 		}
 		if(im.isInteractive())
 		{
@@ -325,16 +319,18 @@ public class AutomaticMatcher
 			else
 				im.setLimit((int)Math.round(a.size()*0.15));
 			InteractiveFilterer in = new InteractiveFilterer();
-			in.filter();
+			a = (SimpleAlignment) in.filter(a);
 			im.setLimit((int)Math.round(a.size()*0.05));
 		}
 		else
 			im.setLimit(0);
 		if(!size.equals(SizeCategory.HUGE) || aml.getAlignment().cardinality() < 1.5)
 		{
+			aml.setAlignment(a);
 			Repairer r = new Repairer();
-			r.filter();
+			a = (SimpleAlignment) r.filter(a);
 		}
+		aml.setAlignment(a);
 	}
 	
 	//Matching procedure for individuals
@@ -356,26 +352,24 @@ public class AutomaticMatcher
 				WordMatcher wm = new WordMatcher(l);
 				a.addAll(wm.match(source,target,EntityType.INDIVIDUAL, thresh));
 			}
-			aml.setAlignment(a);
 			if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
-				DifferentClassPenalizer.penalize();
+				DifferentClassPenalizer.penalize(a);
 			Selector s = new Selector(thresh,SelectionType.PERMISSIVE);
-			s.filter();
+			a = (SimpleAlignment) s.filter(a);
 		}
 		//Process matching problem
 		else if(connectivity >= 0.9 || (connectivity >= 0.4 && valueCoverage < 0.2))
 		{
 			ProcessMatcher pm = new ProcessMatcher();
 			a = pm.match(source,target,EntityType.INDIVIDUAL, thresh);
-			aml.setAlignment(a);
 			if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
-				DifferentClassPenalizer.penalize();
+				DifferentClassPenalizer.penalize(a);
 			Selector s;
-			if(aml.getAlignment().cardinality() >= 2.0)
+			if(a.cardinality() >= 2.0)
 				s = new Selector(thresh,SelectionType.HYBRID);
 			else
 				s = new Selector(thresh,SelectionType.PERMISSIVE);
-			s.filter();
+			a = (SimpleAlignment) s.filter(a);
 		}
 		else
 		{
@@ -392,9 +386,9 @@ public class AutomaticMatcher
 				a.addAll(b);
 				aml.setAlignment(a);
 				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
-					DifferentClassPenalizer.penalize();
+					DifferentClassPenalizer.penalize(a);
 				Selector s = new Selector(thresh,SelectionType.PERMISSIVE);
-				s.filter();
+				a = (SimpleAlignment) s.filter(a);
 			}
 			//Default strategy
 			else
@@ -409,7 +403,7 @@ public class AutomaticMatcher
 				a.addAll(vlm.match(source,target,EntityType.INDIVIDUAL, thresh));
 				aml.setAlignment(a);
 				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
-					DifferentClassPenalizer.penalize();
+					DifferentClassPenalizer.penalize(a);
 
 				SimpleAlignment c = vsm.rematch(source,target,a,EntityType.INDIVIDUAL);
 				SimpleAlignment d = vlm.rematch(source,target,a,EntityType.INDIVIDUAL);
@@ -417,12 +411,11 @@ public class AutomaticMatcher
 				aux = LWC.combine(aux, b, 0.65);
 				aux = LWC.combine(aux, a, 0.8);
 				
-				Selector s = new Selector(thresh,SelectionType.PERMISSIVE,aux);
-				s.filter();
-				System.out.println(aml.getSelectionType());
-				System.out.println(aml.getAlignment().cardinality());
+				CoSelector s = new CoSelector(thresh,SelectionType.PERMISSIVE,aux);
+				a = (SimpleAlignment) s.filter(a);
 			}
 		}
+		aml.setAlignment(a);
 	}
 	
 	//Matching procedure for properties only
@@ -431,6 +424,8 @@ public class AutomaticMatcher
 		HybridStringMatcher pm = new HybridStringMatcher(true);
 		a.addAll(pm.match(source,target,EntityType.DATA_PROP, thresh));
 		a.addAll(pm.match(source,target,EntityType.OBJECT_PROP, thresh));
+		DomainAndRangeFilterer f = new DomainAndRangeFilterer();
+		a = (SimpleAlignment) f.filter(a);
 		aml.setAlignment(a);
 	}
 }

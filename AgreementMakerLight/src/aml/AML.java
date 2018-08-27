@@ -41,8 +41,7 @@ import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
 import aml.alignment.Alignment;
 import aml.alignment.EDOALAlignment;
-import aml.filter.CustomFilterer;
-import aml.filter.CustomFlagger;
+import aml.filter.Ensemble;
 import aml.filter.QualityFlagger;
 import aml.filter.Repairer;
 import aml.filter.SelectionType;
@@ -166,16 +165,6 @@ public class AML
 
 //Public Methods
 
-	/**
-	 * Constructs a new QualityFlagger for the current Alignment
-	 * @return the QualityFlagger
-	 */
-	public QualityFlagger buildQualityFlagger()
-	{
-		qf = new QualityFlagger();
-		return qf;
-	}
-	
 	/**
 	 * Constructs a new RepairMap for the current Alignment
 	 * @return the RepairMap
@@ -348,7 +337,7 @@ public class AML
      */
     public void filter()
     {
-   		CustomFilterer.filter();
+   		Ensemble.filter(a);
     	if(userInterface != null)
     		userInterface.refresh();
     	needSave = true;
@@ -359,7 +348,7 @@ public class AML
      */
     public void flag()
     {
-   		CustomFlagger.flag();
+   		Ensemble.flag(a);
     	if(userInterface != null)
     		userInterface.refresh();
     	needSave = true;
@@ -536,6 +525,8 @@ public class AML
 
 	public QualityFlagger getQualityFlagger()
 	{
+		if(qf == null)
+			qf = new QualityFlagger();
 		return qf;
 	}
 	
@@ -1066,7 +1057,7 @@ public class AML
 		im = new InteractionManager();
 		rep = new RepairMap();
 		Repairer r = new Repairer();
-		r.filter();
+		r.filter(a);
 		needSave = true;
 	}
 	

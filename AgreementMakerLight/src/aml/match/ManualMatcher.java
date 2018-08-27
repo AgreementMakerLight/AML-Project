@@ -23,6 +23,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.alignment.SimpleAlignment;
 import aml.alignment.LWC;
+import aml.filter.CoSelector;
 import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
 import aml.filter.SelectionType;
@@ -122,11 +123,11 @@ public class ManualMatcher
 			else
 				a.addAll(aux);
 		}
-		aml.setAlignment(a);
+		
 		if(steps.contains(MatchStep.OBSOLETE))
 		{
 			ObsoleteFilterer or = new ObsoleteFilterer();
-			or.filter();
+			a = (SimpleAlignment) or.filter(a);
 		}
 		if(steps.contains(MatchStep.SELECT))
 		{
@@ -141,21 +142,23 @@ public class ManualMatcher
 				b = LWC.combine(b, c, 0.75);
 				b = LWC.combine(a, b, 0.8);
 				Selector s = new Selector(thresh-0.05,sType);
-				b = s.filter(b);
-				s = new Selector(thresh, sType, b);
-				s.filter();
+				b = (SimpleAlignment) s.filter(b);
+				CoSelector cs = new CoSelector(thresh, sType, b);
+				a = (SimpleAlignment) cs.filter(a);
 				
 			}
 			else
 			{
 				Selector s = new Selector(thresh, sType);
-				s.filter();
+				a = (SimpleAlignment) s.filter(a);
 			}
 		}
 		if(steps.contains(MatchStep.REPAIR))
 		{
+			aml.setAlignment(a);
 			Repairer r = new Repairer();
-			r.filter();
+			a = (SimpleAlignment) r.filter(a);
 		}
+		aml.setAlignment(a);
 	}
 }
