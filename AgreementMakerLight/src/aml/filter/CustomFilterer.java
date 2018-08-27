@@ -22,7 +22,6 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.settings.Problem;
-import aml.settings.SelectionType;
 
 public class CustomFilterer
 {

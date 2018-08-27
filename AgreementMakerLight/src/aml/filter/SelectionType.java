@@ -16,9 +16,10 @@
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
-package aml.settings;
+package aml.filter;
 
 import aml.AML;
+import aml.settings.SizeCategory;
 
 public enum SelectionType
 {

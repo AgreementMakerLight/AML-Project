@@ -25,6 +25,7 @@ import aml.alignment.SimpleAlignment;
 import aml.alignment.LWC;
 import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
+import aml.filter.SelectionType;
 import aml.filter.Selector;
 import aml.match.bk.BackgroundKnowledgeMatcher;
 import aml.match.lexical.HybridStringMatcher;
@@ -38,7 +39,6 @@ import aml.match.structural.NeighborSimilarityStrategy;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.settings.MatchStep;
-import aml.settings.SelectionType;
 
 public class ManualMatcher
 {

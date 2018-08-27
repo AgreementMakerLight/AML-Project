@@ -32,6 +32,7 @@ import aml.filter.DomainAndRangeFilterer;
 import aml.filter.InteractiveFilterer;
 import aml.filter.ObsoleteFilterer;
 import aml.filter.Repairer;
+import aml.filter.SelectionType;
 import aml.filter.Selector;
 import aml.match.bk.DirectXRefMatcher;
 import aml.match.bk.MediatingMatcher;
@@ -57,7 +58,6 @@ import aml.ontology.Ontology;
 import aml.ontology.lexicon.ExternalLexicon;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
-import aml.settings.SelectionType;
 import aml.settings.SizeCategory;
 import aml.util.interactive.InteractionManager;
 

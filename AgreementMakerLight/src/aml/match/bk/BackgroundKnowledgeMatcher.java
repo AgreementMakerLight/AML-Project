@@ -33,6 +33,7 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
+import aml.filter.SelectionType;
 import aml.io.OntologyParser;
 import aml.match.Matcher;
 import aml.match.PrimaryMatcher;
@@ -41,7 +42,6 @@ import aml.ontology.EntityType;
 import aml.ontology.MediatorOntology;
 import aml.ontology.Ontology;
 import aml.ontology.lexicon.ExternalLexicon;
-import aml.settings.SelectionType;
 import aml.util.data.MapSorter;
 
 public class BackgroundKnowledgeMatcher extends Matcher implements PrimaryMatcher
