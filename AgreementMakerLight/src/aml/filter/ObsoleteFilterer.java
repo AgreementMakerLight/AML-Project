@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,16 +12,17 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Filtering algorithm based on obsolete classes.                              *
+* Filtering algorithm that removes/flags mappings involving obsolete classes. *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
 package aml.filter;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.alignment.SimpleAlignment;
+import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
-import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.Ontology;
 
 public class ObsoleteFilterer implements Filterer, Flagger
@@ -34,39 +35,56 @@ public class ObsoleteFilterer implements Filterer, Flagger
 //Public Methods
 	
 	@Override
-	public void filter()
+	@SuppressWarnings("rawtypes")
+	public Alignment filter(Alignment a)
 	{
+		if(!(a instanceof SimpleAlignment))
+		{
+			System.out.println("Warning: cannot filter non-simple alignment!");
+			return a;
+		}
 		System.out.println("Running Obsoletion Filter");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
-		SimpleAlignment a = aml.getAlignment();
-		for(SimpleMapping m : a)
+		SimpleAlignment in = (SimpleAlignment)a;
+		SimpleAlignment out = new SimpleAlignment(in.getSourceOntology(), in.getTargetOntology());
+		for(Mapping<String> m : in)
 		{
-			if((source.isObsoleteClass(m.getSourceId()) ||
-					target.isObsoleteClass(m.getTargetId())) &&
-					!m.getStatus().equals(MappingStatus.CORRECT))
-				m.setStatus(MappingStatus.INCORRECT);
-			else if(m.getStatus().equals(MappingStatus.FLAGGED))
-				m.setStatus(MappingStatus.UNKNOWN);
+			if(m.getStatus().equals(MappingStatus.CORRECT) ||
+					(!source.isObsoleteClass(m.getEntity1()) &&
+					!target.isObsoleteClass(m.getEntity2())))
+				out.add(m);
 		}
-		aml.removeIncorrect();
+		if(out.size() < a.size())
+		{
+			for(Mapping<String> m : out)
+				if(m.getStatus().equals(MappingStatus.FLAGGED))
+					m.setStatus(MappingStatus.UNKNOWN);
+		}
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
+		return out;
 	}
 	
 	@Override
-	public void flag()
+	@SuppressWarnings("rawtypes")
+	public void flag(Alignment a)
 	{
+		if(!(a instanceof SimpleAlignment))
+		{
+			System.out.println("Warning: cannot flag non-simple alignment!");
+			return;
+		}
 		System.out.println("Running Obsoletion Flagger");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
-		SimpleAlignment a = aml.getAlignment();
-		for(SimpleMapping m : a)
-			if((source.isObsoleteClass(m.getSourceId()) ||
-					target.isObsoleteClass(m.getTargetId())) &&
+		SimpleAlignment in = (SimpleAlignment)a;
+		for(Mapping<String> m : in)
+			if((source.isObsoleteClass(m.getEntity1()) ||
+					target.isObsoleteClass(m.getEntity1())) &&
 					m.getStatus().equals(MappingStatus.UNKNOWN))
 				m.setStatus(MappingStatus.FLAGGED);
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");

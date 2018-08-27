@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -22,11 +22,11 @@ package aml.filter;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.Alignment;
 import aml.alignment.SimpleAlignment;
+import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
-import aml.alignment.mapping.SimpleMapping;
 import aml.ontology.EntityType;
-import aml.ontology.URIMap;
 import aml.ontology.semantics.EntityMap;
 import aml.util.similarity.Similarity;
 
@@ -37,6 +37,7 @@ public class DomainAndRangeFilterer implements Filterer
 	
 	private AML aml;
 	private EntityMap rm;
+	private SimpleAlignment in;
 	
 //Constructors
 	
@@ -49,44 +50,52 @@ public class DomainAndRangeFilterer implements Filterer
 //Public Methods
 	
 	@Override
-	public void filter()
+	@SuppressWarnings("rawtypes")
+	public Alignment filter(Alignment a)
 	{
+		if(!(a instanceof SimpleAlignment))
+		{
+			System.out.println("Warning: cannot filter non-simple alignment!");
+			return a;
+		}
 		System.out.println("Running Domain & Range Filter");
 		long time = System.currentTimeMillis()/1000;
-		SimpleAlignment a = aml.getAlignment();
-		URIMap uris = aml.getURIMap();
-		for(SimpleMapping m : a)
+		in = (SimpleAlignment)a;
+		SimpleAlignment out = new SimpleAlignment();
+		for(Mapping<String> m : in)
 		{
 			if(m.getStatus().equals(MappingStatus.CORRECT))
 				continue;
-			if(uris.getTypes(m.getSourceId()).equals(EntityType.DATA_PROP))
+			if(rm.getTypes(m.getEntity1()).contains(EntityType.DATA_PROP))
 			{
-				if(!idsMatch(rm.getDomains(m.getSourceId()),rm.getDomains(m.getTargetId())) || 
-						!valuesMatch(rm.getDataRanges(m.getSourceId()),rm.getDataRanges(m.getTargetId())))
-					m.setStatus(MappingStatus.INCORRECT);				
+				if(idsMatch(rm.getDomains(m.getEntity1()),rm.getDomains(m.getEntity2())) && 
+						valuesMatch(rm.getRanges(m.getEntity1()),rm.getRanges(m.getEntity2())))
+					out.add(m);				
 			}
-			else if(uris.getTypes(m.getSourceId()).equals(EntityType.OBJECT_PROP))
+			else if(rm.getTypes(m.getEntity1()).contains(EntityType.OBJECT_PROP))
 			{
-				if(!idsMatch(rm.getDomains(m.getSourceId()),rm.getDomains(m.getTargetId())) || 
-						!idsMatch(rm.getObjectRanges(m.getSourceId()),rm.getObjectRanges(m.getTargetId())))
-					m.setStatus(MappingStatus.INCORRECT);
+				if(idsMatch(rm.getDomains(m.getEntity1()),rm.getDomains(m.getEntity2())) || 
+						idsMatch(rm.getRanges(m.getEntity1()),rm.getRanges(m.getEntity2())))
+					out.add(m);
 			}
 		}
-		aml.removeIncorrect();
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
+		return out;
 	}
 	
+//Private Methods
+	
 	//Checks if two lists of ids match (i.e., have Jaccard similarity above 50%)
-	private boolean idsMatch(Set<Integer> sIds, Set<Integer> tIds)
+	private boolean idsMatch(Set<String> sIds, Set<String> tIds)
 	{
 		if(sIds.size() == 0 && tIds.size() == 0)
 			return true;
 		if(sIds.size() == 0 || tIds.size() == 0)
 			return false;
 		double matches = 0.0;
-		for(Integer i : sIds)
+		for(String i : sIds)
 		{
-			for(Integer j : tIds)
+			for(String j : tIds)
 			{
 				if(idsMatch(i,j))
 				{
@@ -101,25 +110,23 @@ public class DomainAndRangeFilterer implements Filterer
 	
 	//Checks if two ids match (i.e., are either equal, aligned
 	//or one is aligned to the parent of the other)
-	private boolean idsMatch(int sIndex, int tIndex)
+	private boolean idsMatch(String sIndex, String tIndex)
 	{
-		EntityMap rm = aml.getEntityMap();
-
-		if(sIndex == tIndex || aml.getAlignment().contains(sIndex, tIndex))
+		if(sIndex == tIndex || in.contains(sIndex, tIndex))
 	    	return true;
 		
-		Set<Integer> sParent= rm.getParents(sIndex);
-		if(sParent.size()==1)
+		Set<String> sParent = rm.getSuperclasses(sIndex);
+		if(sParent.size() == 1)
 		{
-			int spId = sParent.iterator().next();
-			if(aml.getAlignment().contains(spId, tIndex))
+			String spId = sParent.iterator().next();
+			if(in.contains(spId, tIndex))
 				return true;
 		}
-		Set<Integer> tParent= rm.getParents(tIndex);
-		if(tParent.size()==1)
+		Set<String> tParent= rm.getSuperclasses(tIndex);
+		if(tParent.size() == 1)
 		{
-			int tpId=tParent.iterator().next();
-			if(aml.getAlignment().contains(sIndex, tpId))
+			String tpId = tParent.iterator().next();
+			if(in.contains(sIndex, tpId))
 				return true;
 		}
 		return false;

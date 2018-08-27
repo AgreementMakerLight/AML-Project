@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -18,25 +18,18 @@
 ******************************************************************************/
 package aml.filter;
 
-import aml.AML;
+import aml.alignment.Alignment;
 import aml.alignment.SimpleAlignment;
+import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
-import aml.alignment.mapping.SimpleMapping;
-import aml.ontology.EntityType;
-import aml.ontology.semantics.EntityMap;
-import aml.util.interactive.InteractionManager;
 
 public class CardinalitySelector implements Filterer, Flagger
 {
 
 //Attributes
 
-	private AML aml;
 	private double thresh;
 	private SelectionType type;
-	private SimpleAlignment a;
-	private SimpleAlignment aux;
-	private InteractionManager im;
 	private int card;
 
 //Constructors
@@ -48,11 +41,8 @@ public class CardinalitySelector implements Filterer, Flagger
 	 */
 	public CardinalitySelector(double thresh, int c)
 	{
-		aml = AML.getInstance();
 		this.thresh = thresh;
 		type = SelectionType.getSelectionType();
-		aux = null;
-		im = aml.getInteractionManager();
 		card = c;
 	}
 
@@ -64,208 +54,66 @@ public class CardinalitySelector implements Filterer, Flagger
 	 */
 	public CardinalitySelector(double thresh, int c, SelectionType type)
 	{
-		this(thresh,c);
+		this.thresh = thresh;
 		this.type = type;
-	}
-
-	/**
-	 * Constructs a Selector with the given similarity threshold
-	 * and automatic SelectionType, and using the given auxiliary
-	 * Alignment as the basis for selection
-	 * @param thresh: the similarity threshold
-	 * @param aux: the auxiliary Alignment
-	 */
-	public CardinalitySelector(double thresh, int c, SimpleAlignment aux)
-	{
-		this(thresh,c);
-		this.aux = aux;
-	}
-
-	/**
-	 * Constructs a Selector with the given similarity threshold
-	 * and SelectionType, and using the given auxiliary Alignment
-	 * as the basis for selection
-	 * @param thresh: the similarity threshold
-	 * @param type: the SelectionType
-	 * @param aux: the auxiliary Alignment
-	 */
-	public CardinalitySelector(double thresh, int c, SelectionType type, SimpleAlignment aux)
-	{
-		this(thresh, c, type);
-		this.aux = aux;
+		card = c;
 	}
 
 //Public Methods
 
 	@Override
-	public void filter()
+	@SuppressWarnings("rawtypes")
+	public Alignment filter(Alignment a)
 	{
+		if(!(a instanceof SimpleAlignment))
+		{
+			System.out.println("Warning: cannot filter non-simple alignment!");
+			return a;
+		}
 		System.out.println("Performing Selection");
 		long time = System.currentTimeMillis()/1000;
-		SimpleAlignment selected;
-		a = aml.getAlignment();
-		if(!type.equals(SelectionType.HYBRID))
-			selected = parentFilter(a);
-		//In normal selection mode
-		if(aux == null)
-			selected = filterNormal();
-		//In co-selection mode
-		else
-			selected = filterWithAux();
-		if(selected.size() < a.size())
+		SimpleAlignment in = (SimpleAlignment)a;
+		SimpleAlignment out = new SimpleAlignment();
+		in.sortDescending();
+		for(Mapping<String> m : in)
 		{
-			for(SimpleMapping m : selected)
-				if(m.getStatus().equals(MappingStatus.FLAGGED))
-					m.setStatus(MappingStatus.UNKNOWN);
-			aml.setAlignment(selected);
-		}
-		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
-	}
-
-	/**
-	 * Selects a given Alignment
-	 * @param a: the Alignment to select
-	 * @return: the selected Alignment
-	 */
-	public SimpleAlignment filter(SimpleAlignment a)
-	{
-		SimpleAlignment selected = new SimpleAlignment();
-		a.sortDescending();
-		for(SimpleMapping m : a)
-		{
-			boolean toAdd = false;
 			if(m.getStatus().equals(MappingStatus.CORRECT))
-				toAdd = true;
+				out.add(m);
 			else if(m.getSimilarity() >= thresh && !m.getStatus().equals(MappingStatus.INCORRECT))
 			{
-				int sourceCard = selected.getSourceMappings(m.getSourceId()).size();
-				int targetCard = selected.getTargetMappings(m.getTargetId()).size();
+				int sourceCard = out.getSourceMappings(m.getEntity1()).size();
+				int targetCard = out.getTargetMappings(m.getEntity2()).size();
 				if((sourceCard < card && targetCard < card) ||
-						(!type.equals(SelectionType.STRICT) && !selected.containsBetterMapping(m)) ||
+						(!type.equals(SelectionType.STRICT) && !out.containsBetterMapping(m)) ||
 						(type.equals(SelectionType.HYBRID) && m.getSimilarity() > 0.75 && sourceCard <= card && targetCard <= card))
-					toAdd = true;
+					out.add(m);
 			}
-			if(toAdd)
-				selected.add(new SimpleMapping(m));
 		}
-		return selected;
+		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
+		return out;
 	}
 
 	@Override
-	public void flag()
+	@SuppressWarnings("rawtypes")
+	public void flag(Alignment a)
 	{
+		if(!(a instanceof SimpleAlignment))
+		{
+			System.out.println("Warning: cannot filter non-simple alignment!");
+			return;
+		}
 		System.out.println("Running Cardinality Flagger");
 		long time = System.currentTimeMillis()/1000;
-		a = aml.getAlignment();
-		for(SimpleMapping m : a)
-			if(a.containsConflict(m) && m.getStatus().equals(MappingStatus.UNKNOWN))
-				m.setStatus(MappingStatus.FLAGGED);
+		SimpleAlignment in = (SimpleAlignment)a;
+		for(Mapping<String> m : in)
+		{
+			if(m.getStatus().equals(MappingStatus.UNKNOWN))
+			{		
+				if(in.getSourceMappings(m.getEntity1()).size() > card ||
+						in.getTargetMappings(m.getEntity2()).size() > card)
+					m.setStatus(MappingStatus.FLAGGED);
+			}
+		}
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
-	}
-
-	private SimpleAlignment filterNormal()
-	{
-		//The alignment to store selected mappings
-		SimpleAlignment selected = new SimpleAlignment();
-		//Sort the active alignment
-		a.sortDescending();
-		//Then select Mappings in ranking order (by similarity)
-		for(SimpleMapping m : a)
-		{
-			boolean toAdd = false;
-			if(m.getStatus().equals(MappingStatus.CORRECT))
-				toAdd = true;
-			else if(m.getSimilarity() >= thresh && !m.getStatus().equals(MappingStatus.INCORRECT))
-			{
-				int sourceCard = selected.getSourceMappings(m.getSourceId()).size();
-				int targetCard = selected.getTargetMappings(m.getTargetId()).size();
-				if((sourceCard < card && targetCard < card) ||
-						(!type.equals(SelectionType.STRICT) && !selected.containsBetterMapping(m)) ||
-						(type.equals(SelectionType.HYBRID) && m.getSimilarity() > 0.75 && sourceCard <= card && targetCard <= card))
-					toAdd = true;
-				else if(im.isInteractive())
-				{
-					im.classify(m);
-					if(m.getStatus().equals(MappingStatus.CORRECT))
-						toAdd = true;
-				}
-			}
-			if(toAdd)
-				selected.add(m);
-		}
-		return selected;
-	}
-
-	private SimpleAlignment filterWithAux()
-	{
-		//The alignment to store selected mappings
-		SimpleAlignment selected = new SimpleAlignment();
-		//Sort the auxiliary alignment
-		aux.sortDescending();
-		//Then perform selection based on it
-		for(SimpleMapping n : aux)
-		{
-			SimpleMapping m = a.get(n.getSourceId(), n.getTargetId());
-			if(m == null)
-				continue;
-			boolean toAdd = false;
-			if(m.getStatus().equals(MappingStatus.CORRECT))
-				toAdd = true;
-			else if(m.getSimilarity() >= thresh && !m.getStatus().equals(MappingStatus.INCORRECT))
-			{
-				int sourceCard = selected.getSourceMappings(m.getSourceId()).size();
-				int targetCard = selected.getTargetMappings(m.getTargetId()).size();
-				if((sourceCard < card && targetCard < card) ||
-						(!type.equals(SelectionType.STRICT) && !selected.containsBetterMapping(m)) ||
-						(type.equals(SelectionType.HYBRID) && m.getSimilarity() > 0.75 && sourceCard <= card && targetCard <= card))
-					toAdd = true;
-				else if(im.isInteractive())
-				{
-					im.classify(m);
-					if(m.getStatus().equals(MappingStatus.CORRECT))
-						toAdd = true;
-				}
-			}
-			if(toAdd)
-				selected.add(m);
-		}
-		return selected;
-	}
-
-	private SimpleAlignment parentFilter(SimpleAlignment in)
-	{
-		EntityMap r = aml.getEntityMap();
-		SimpleAlignment out = new SimpleAlignment();
-		for(SimpleMapping m : in)
-		{
-			int src = m.getSourceId();
-			int tgt = m.getTargetId();
-			if(!aml.getURIMap().getTypes(src).equals(EntityType.CLASS))
-				continue;
-			boolean add = true;
-			for(Integer t : in.getSourceMappings(src))
-			{
-				if(r.isSubclass(t,tgt) &&
-						in.getSimilarity(src, t) >= in.getSimilarity(src, tgt))
-				{
-					add = false;
-					break;
-				}
-			}
-			if(!add)
-				continue;
-			for(Integer s : in.getTargetMappings(tgt))
-			{
-				if(r.isSubclass(s,src) &&
-						in.getSimilarity(s, tgt) >= in.getSimilarity(src, tgt))
-				{
-					add = false;
-					break;
-				}
-			}
-			if(add)
-				out.add(m);
-		}
-		return out;
 	}
 }

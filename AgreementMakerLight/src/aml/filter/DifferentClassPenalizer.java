@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,7 +12,9 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* A filtering algorithm based on cardinality.                                 *
+* Reduces the score of mappings between individuals that aren't instances of  *
+* the same class (if same ontology) or of matching classes (if different      *
+* ontologies).
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -21,7 +23,9 @@ package aml.filter;
 
 import aml.AML;
 import aml.alignment.SimpleAlignment;
-import aml.alignment.mapping.SimpleMapping;
+import aml.alignment.mapping.Mapping;
+import aml.ontology.semantics.EntityMap;
+import aml.settings.InstanceMatchingCategory;
 
 public class DifferentClassPenalizer
 {
@@ -33,14 +37,28 @@ public class DifferentClassPenalizer
 	
 //Public Methods
 	
-	public static void penalize()
+	public static void penalize(SimpleAlignment a)
 	{
-		AML aml = AML.getInstance();
-		SimpleAlignment a = aml.getAlignment();
-		for(SimpleMapping m : a)
+		EntityMap map = AML.getInstance().getEntityMap();
+		InstanceMatchingCategory c = AML.getInstance().getInstanceMatchingCategory();
+		for(Mapping<String> m : a)
 		{
-			if(!aml.getEntityMap().shareClass(m.getSourceId(),m.getTargetId()))
+			if((c.equals(InstanceMatchingCategory.DIFFERENT_ONTOLOGIES) &&
+					!haveMatchingClasses(m.getEntity1(),m.getEntity2(),a)) ||
+					!map.shareClass(m.getEntity1(),m.getEntity2()))
 				m.setSimilarity(m.getSimilarity() * 0.9);
 		}
+	}
+	
+//Private Methods
+	
+	private static boolean haveMatchingClasses(String source, String target, SimpleAlignment a)
+	{
+		EntityMap map = AML.getInstance().getEntityMap();
+		for(String s : map.getIndividualClasses(source))
+			for(String t : map.getIndividualClasses(target))
+				if(a.contains(s, t))
+					return true;
+		return false;
 	}
 }

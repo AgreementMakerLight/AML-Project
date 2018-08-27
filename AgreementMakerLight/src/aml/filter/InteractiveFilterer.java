@@ -95,10 +95,8 @@ public class InteractiveFilterer implements Filterer
 				{
 					if(im.isInteractive())
 						im.classify((SimpleMapping)m);
-					else if(out.containsBetterMapping(m))
-						m.setStatus(MappingStatus.INCORRECT);
 					else
-						m.setStatus(MappingStatus.CORRECT);
+						m.setStatus(MappingStatus.INCORRECT);
 				}
 			}
 			else if(finalSim >= lowThresh || maxSim >= lowThresh)
