@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -12,7 +12,7 @@
 * limitations under the License.                                              *
 *                                                                             *
 *******************************************************************************
-* Customizable ensemble of problem filtering algorithms.                      *
+* Customizable ensemble of problem filtering / flagging algorithms.           *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
@@ -21,36 +21,76 @@ package aml.filter;
 import java.util.Vector;
 
 import aml.AML;
+import aml.alignment.Alignment;
+import aml.alignment.SimpleAlignment;
 import aml.settings.Problem;
 
-public class CustomFilterer
+public class Ensemble
 {
 	
 //Constructors	
 	
-	private CustomFilterer(){}
+	private Ensemble(){}
 	
 //Public Methods
 
-	public static void filter()
+	@SuppressWarnings("rawtypes")
+	public static void flag(Alignment a)
 	{
-		//Get the AML instance and settings
-		AML aml = AML.getInstance();
-		Vector<Problem> steps = aml.getFlagSteps();
-		if(steps.contains(Problem.OBSOLETION))
+		if(!(a instanceof SimpleAlignment))
 		{
-			ObsoleteFilterer o = new ObsoleteFilterer();
-			o.filter();
+			System.out.println("Warning: cannot flag non-simple alignment!");
+			return;
 		}
+		Vector<Problem> steps = AML.getInstance().getFlagSteps();
+		//Start the matching procedure
 		if(steps.contains(Problem.CARDINALITY))
 		{
-			Selector s = new Selector(0.0, SelectionType.STRICT);
-			s.filter();
+			Selector s = new Selector(0.0);
+			s.flag(a);
 		}
 		if(steps.contains(Problem.COHERENCE))
 		{
 			Repairer r = new Repairer();
-			r.filter();
+			r.flag(a);
 		}
+		if(steps.contains(Problem.OBSOLETION))
+		{
+			ObsoleteFilterer o = new ObsoleteFilterer();
+			o.flag(a);
+		}
+		if(steps.contains(Problem.QUALITY))
+		{
+			QualityFlagger q = new QualityFlagger();
+			q.flag(a);
+		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public static Alignment filter(Alignment a)
+	{
+		if(!(a instanceof SimpleAlignment))
+		{
+			System.out.println("Warning: cannot filter non-simple alignment!");
+			return a;
+		}
+		Vector<Problem> steps = AML.getInstance().getFlagSteps();
+		SimpleAlignment b = (SimpleAlignment)a;
+		if(steps.contains(Problem.OBSOLETION))
+		{
+			ObsoleteFilterer o = new ObsoleteFilterer();
+			b = (SimpleAlignment)o.filter(a);
+		}
+		if(steps.contains(Problem.CARDINALITY))
+		{
+			Selector s = new Selector(0.0, SelectionType.STRICT);
+			b = (SimpleAlignment)s.filter(a);
+		}
+		if(steps.contains(Problem.COHERENCE))
+		{
+			Repairer r = new Repairer();
+			b = (SimpleAlignment)r.filter(a);
+		}
+		return b;
 	}
 }
