@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -18,10 +18,14 @@
 ******************************************************************************/
 package aml.filter;
 
+import aml.alignment.Alignment;
+
 public interface Filterer
 {
 	/**
-	 * Filters problem mappings from the active Alignment
+	 * Filters problem mappings from the given Alignment
+	 * @param a: the Alignment to flag
 	 */
-	public void filter();
+	@SuppressWarnings("rawtypes")
+	public Alignment filter(Alignment a);
 }
