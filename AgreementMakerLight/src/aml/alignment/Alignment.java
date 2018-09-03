@@ -42,7 +42,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 //Attributes
 
 	//The level of the alignment
-	public final String LEVEL = null;
+	protected String level;
 	//The type of the alignment
 	protected String type;
 	//Ontology info (as listed in alignment file)
@@ -76,6 +76,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		maps = new Vector<Mapping<A>>(0,1);
 		sourceMaps = new Map2List<A,Mapping<A>>();
 		targetMaps = new Map2List<A,Mapping<A>>();
+		level = null;
 	}
 
 	/**
@@ -863,13 +864,13 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 				"<rdf:RDF xmlns='" + Namespace.ALIGNMENT.uri + "'\n" + 
 				"xmlns:rdf='" + Namespace.RDF.uri + "'\n" + 
 				"xmlns:xsd='" + Namespace.XSD.uri + "'";
-		if(LEVEL.equals(EDOALAlignment.LEVEL))
+		if(level.equals(EDOALAlignment.LEVEL))
 			s += "\nxmlns:xsd='" + Namespace.EDOAL.uri + "'";
 		s += ">\n";
 		s += "<" + RDFElement.ALIGNMENT_ + ">\n" +
-				"<" + RDFElement.XML + ">yes</" + RDFElement.XML +">" +
-				"<" + RDFElement.LEVEL + ">" + LEVEL + "</" + RDFElement.LEVEL + ">" +
-				"<" + RDFElement.TYPE + ">" + type + "</" + RDFElement.TYPE + ">";
+				"<" + RDFElement.XML + ">yes</" + RDFElement.XML +">\n" +
+				"<" + RDFElement.LEVEL + ">" + level + "</" + RDFElement.LEVEL + ">\n" +
+				"<" + RDFElement.TYPE + ">" + type + "</" + RDFElement.TYPE + ">\n";
 		if(sourceURI != null && targetURI != null)
 		{
 			if(sourceLocation == null && sourceFormalismName == null && sourceFormalismURI != null)

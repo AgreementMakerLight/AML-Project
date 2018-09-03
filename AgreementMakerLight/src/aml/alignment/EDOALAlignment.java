@@ -56,6 +56,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		super();
 		sourceComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
 		targetComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
+		level = LEVEL;
 	}
 
 	/**
@@ -66,6 +67,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		super(source,target);
 		sourceComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
 		targetComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
+		level = LEVEL;
 	}
 
 //Public Methods

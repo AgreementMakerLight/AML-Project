@@ -1030,10 +1030,12 @@ public class AML
 	public void removeIncorrect()
 	{
 		Alignment reviewed;
-		if(a.LEVEL.equals("0"))
+		if(a instanceof SimpleAlignment)
 			reviewed = new SimpleAlignment();
-		else
+		else if(a instanceof EDOALAlignment)
 			reviewed = new EDOALAlignment();
+		else
+			return;
 		Iterator<Mapping> it = a.iterator();
 		while(it.hasNext())
 		{
