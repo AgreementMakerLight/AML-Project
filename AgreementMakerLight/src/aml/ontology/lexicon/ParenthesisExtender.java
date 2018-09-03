@@ -27,52 +27,63 @@ import aml.ontology.Ontology;
 
 public class ParenthesisExtender implements LexiconExtender
 {
+
+//Attributes
+	
+	private EntityType type;
+	
+//Constructors
+	
+	public ParenthesisExtender(EntityType e)
+	{
+		type = e;
+	}
+	
+//Public Methods
+	
 	@Override
 	public void extendLexicon(Ontology o)
 	{
 		Lexicon l = o.getLexicon();
-		for(EntityType e : EntityType.values())
+		Vector<String> nm = new Vector<String>(l.getNames(type));
+		for(String n: nm)
 		{
-			Vector<String> nm = new Vector<String>(l.getNames(e));
-			for(String n: nm)
+			if(StringParser.isFormula(n) || !n.contains("(") || !n.contains(")"))
+				continue;
+			String newName;
+			double weight = 0.0;
+			if(n.matches("\\([^()]+\\)") || n.contains(") or ("))
 			{
-				if(StringParser.isFormula(n) || !n.contains("(") || !n.contains(")"))
-					continue;
-				String newName;
-				double weight = 0.0;
-				if(n.matches("\\([^()]+\\)") || n.contains(") or ("))
-				{
-					newName = n.replaceAll("[()]", "");
-					weight = 1.0;
-				}
-				else if(n.contains(")("))
-					continue;
-				else
-				{
-					newName = "";
-					char[] chars = n.toCharArray();
-					boolean copy = true;
-					for(char c : chars)
-					{
-						if(c == '(')
-							copy = false;
-						if(copy)
-							newName += c;
-						if(c == ')')
-							copy = true;					
-					}
-					newName = newName.trim();
-					weight = Math.sqrt(newName.length() * 1.0 / n.length());
-				}
-				if(newName.equals(""))
-					continue;
-				//Get the classes with the name
-				HashSet<String> tr = new HashSet<String>(l.getInternalEntities(e, n));
-				for(String j : tr)
-					for(LexicalMetadata p : l.get(n, j))
-						l.add(j, newName, p.getLanguage(),
-								LexicalType.INTERNAL_SYNONYM, p.getSource(), weight*p.getWeight());
+				newName = n.replaceAll("[()]", "");
+				weight = 1.0;
 			}
+			else if(n.contains(")("))
+				continue;
+			else
+			{
+				newName = "";
+				char[] chars = n.toCharArray();
+				boolean copy = true;
+				for(char c : chars)
+				{
+					if(c == '(')
+						copy = false;
+					if(copy)
+						newName += c;
+					if(c == ')')
+						copy = true;					
+				}
+				newName = newName.trim();
+				weight = Math.sqrt(newName.length() * 1.0 / n.length());
+			}
+			if(newName.equals(""))
+				continue;
+			//Get the classes with the name
+			HashSet<String> tr = new HashSet<String>(l.getInternalEntities(type, n));
+			for(String j : tr)
+				for(LexicalMetadata p : l.get(n, j))
+					l.add(j, newName, p.getLanguage(),
+							LexicalType.INTERNAL_SYNONYM, p.getSource(), weight*p.getWeight());
 		}
 	}
 }
