@@ -38,7 +38,7 @@ public class SimpleAlignment extends Alignment<String>
 //Attributes
 
 	//The level of the alignment
-	public final String LEVEL = "0";
+	public static final String LEVEL = "0";
 	
 //Constructors
 
@@ -56,6 +56,7 @@ public class SimpleAlignment extends Alignment<String>
 	public SimpleAlignment(Ontology source, Ontology target)
 	{
 		super(source,target);
+		level = LEVEL;
 	}
 	
 //Public Methods

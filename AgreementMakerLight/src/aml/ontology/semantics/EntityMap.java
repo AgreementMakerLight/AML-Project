@@ -1218,7 +1218,7 @@ public class EntityMap
 	 */
 	public boolean isClass(String uri)
 	{
-		return entityType.get(uri).contains(EntityType.CLASS);
+		return entityType.contains(uri) && entityType.get(uri).contains(EntityType.CLASS);
 	}
 
 	/**
@@ -1227,7 +1227,7 @@ public class EntityMap
 	 */
 	public boolean isDataProperty(String uri)
 	{
-		return entityType.get(uri).contains(EntityType.DATA_PROP);
+		return entityType.contains(uri) && entityType.get(uri).contains(EntityType.DATA_PROP);
 	}
 	
 	/**
@@ -1245,7 +1245,7 @@ public class EntityMap
 	 */
 	public boolean isIndividual(String uri)
 	{
-		return entityType.get(uri).contains(EntityType.INDIVIDUAL);
+		return entityType.contains(uri) && entityType.get(uri).contains(EntityType.INDIVIDUAL);
 	}
 	
 	/**
@@ -1263,7 +1263,7 @@ public class EntityMap
 	 */
 	public boolean isObjectProperty(String uri)
 	{
-		return entityType.get(uri).contains(EntityType.OBJECT_PROP);
+		return entityType.contains(uri) && entityType.get(uri).contains(EntityType.OBJECT_PROP);
 	}
 	
 	/**

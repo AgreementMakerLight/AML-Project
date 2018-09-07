@@ -325,11 +325,40 @@ public class AML
 	 */
 	public void extendLexicons()
 	{
-		//TODO: Update this
-//    	StopWordExtender sw = new StopWordExtender();
-//    	sw.extendLexicons();
-//    	ParenthesisExtender p = new ParenthesisExtender();
-//    	p.extendLexicons();
+		if(matchClasses)
+		{
+			StopWordExtender sw = new StopWordExtender(EntityType.CLASS,
+					(size.equals(SizeCategory.LARGE) || size.equals(SizeCategory.HUGE)));
+			sw.extendLexicon(source);
+			sw.extendLexicon(target);
+			ParenthesisExtender p = new ParenthesisExtender(EntityType.CLASS);
+			p.extendLexicon(source);
+			p.extendLexicon(target);
+		}
+		if(matchProperties)
+		{
+			StopWordExtender sw = new StopWordExtender(EntityType.DATA_PROP,true);
+			sw.extendLexicon(source);
+			sw.extendLexicon(target);
+			ParenthesisExtender p = new ParenthesisExtender(EntityType.DATA_PROP);
+			p.extendLexicon(source);
+			p.extendLexicon(target);
+			sw = new StopWordExtender(EntityType.OBJECT_PROP,true);
+			sw.extendLexicon(source);
+			sw.extendLexicon(target);
+			p = new ParenthesisExtender(EntityType.OBJECT_PROP);
+			p.extendLexicon(source);
+			p.extendLexicon(target);
+		}
+		if(matchIndividuals)
+		{
+			StopWordExtender sw = new StopWordExtender(EntityType.INDIVIDUAL,true);
+			sw.extendLexicon(source);
+			sw.extendLexicon(target);
+			ParenthesisExtender p = new ParenthesisExtender(EntityType.INDIVIDUAL);
+			p.extendLexicon(source);
+			p.extendLexicon(target);
+		}
 	}
 	
     /**
@@ -1030,10 +1059,12 @@ public class AML
 	public void removeIncorrect()
 	{
 		Alignment reviewed;
-		if(a.LEVEL.equals("0"))
+		if(a instanceof SimpleAlignment)
 			reviewed = new SimpleAlignment();
-		else
+		else if(a instanceof EDOALAlignment)
 			reviewed = new EDOALAlignment();
+		else
+			return;
 		Iterator<Mapping> it = a.iterator();
 		while(it.hasNext())
 		{
