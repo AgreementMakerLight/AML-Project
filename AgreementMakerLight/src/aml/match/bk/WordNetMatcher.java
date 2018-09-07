@@ -40,15 +40,15 @@ public class WordNetMatcher extends AbstractHashMatcher
 	
 //Attributes
 
-	protected static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
+	protected String description = "Matches entities that have one or more exact\n" +
 			  								  "String matches between a Lexicon entry and a\n" +
 			  								  "WordNet synonym or between WordNet synonyms";
-	protected static final String NAME = "WordNet Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected String name = "WordNet Matcher";
+	protected EntityType[] support = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	//The WordNet class
 	private WordNet wn;
 	//The confidence score of WordNet
-	private final double CONFIDENCE = 0.9;
+	private static final double CONFIDENCE = 0.9;
 	
 //Constructors
 

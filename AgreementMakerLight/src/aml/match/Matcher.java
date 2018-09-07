@@ -26,11 +26,11 @@ public abstract class Matcher
 //Attributes
 
 	//The description of this matcher
-	protected static final String DESCRIPTION = "";
+	protected String description = "";
 	//The name of this matcher
-	protected static final String NAME = "Abstract Matcher";
+	protected String name = "Abstract Matcher";
 	//The support (empty since this cannot actually generate alignments)
-	protected static final EntityType[] SUPPORT = {};
+	protected EntityType[] support = {};
 	
 	
 //Public Methods
@@ -38,25 +38,25 @@ public abstract class Matcher
 	/**
 	 * @return this Matcher's textual description
 	 */
-	public static String getDescription()
+	public String getDescription()
 	{
-		return DESCRIPTION;
+		return description;
 	}
 
 	/**
 	 * @return this Matcher's name
 	 */
-	public static String getName()
+	public String getName()
 	{
-		return NAME;
+		return name;
 	}
 	
 	/**
 	 * @return the list of EntityTypes supported by this Matcher
 	 */
-	public static EntityType[] getSupportedEntityTypes()
+	public EntityType[] getSupportedEntityTypes()
 	{
-		return SUPPORT;
+		return support;
 	}
 	
 	
@@ -65,7 +65,7 @@ public abstract class Matcher
 	protected boolean checkEntityType(EntityType e)
 	{
 		boolean check = false;
-		for(EntityType t : SUPPORT)
+		for(EntityType t : support)
 		{
 			if(t.equals(e))
 			{

@@ -69,7 +69,7 @@ public abstract class AbstractParallelMatcher extends Matcher implements Primary
 		SimpleAlignment a = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return a;
-		System.out.println("Running " + NAME  + " in alignment extension mode");
+		System.out.println("Running " + name  + " in alignment extension mode");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		sLex = o1.getLexicon();
@@ -108,7 +108,7 @@ public abstract class AbstractParallelMatcher extends Matcher implements Primary
 		SimpleAlignment a = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return a;
-		System.out.println("Running " + NAME + " in match mode");
+		System.out.println("Running " + name + " in match mode");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		sLex = o1.getLexicon();
@@ -145,7 +145,7 @@ public abstract class AbstractParallelMatcher extends Matcher implements Primary
 		SimpleAlignment maps = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return maps;
-		System.out.println("Running " + NAME + " in rematch mode");
+		System.out.println("Running " + name + " in rematch mode");
 		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		sLex = o1.getLexicon();

@@ -30,10 +30,10 @@ public class AcronymMatcher extends AbstractParallelMatcher
 
 //Attributes
 	
-	protected static final String DESCRIPTION = "Matches entities where the Lexicon entry of one\n" +
+	protected String description = "Matches entities where the Lexicon entry of one\n" +
 											  "is an acronym of the Lexicon entry of the other\n";
-	protected static final String NAME = "Acronym Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected String name = "Acronym Matcher";
+	protected EntityType[] support = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 			
 //Constructors
 

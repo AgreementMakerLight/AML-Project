@@ -35,11 +35,11 @@ public class NeighborSimilarityMatcher extends AbstractParallelMatcher
 	
 //Attributes
 	
-	protected static final String DESCRIPTION = "Matches classes that have matching neighbor\n" +
+	protected String description = "Matches classes that have matching neighbor\n" +
 											  "classes (ancestors and/or descendants) by\n" +
 											  "propagating neighbor similarity.";
-	protected static final String NAME = "Neighbor Similarity Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
+	protected String name = "Neighbor Similarity Matcher";
+	protected EntityType[] support = {EntityType.CLASS};
 	//Links to ontology data structures
 	private AML aml;
 	private EntityMap rels;

@@ -34,11 +34,11 @@ public class SpacelessLexicalMatcher extends AbstractHashMatcher
 	
 //Attributes
 	
-	protected static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
+	protected String description = "Matches entities that have one or more exact\n" +
 											  "String matches between their Lexicon entries\n" +
 											  "after removing their white spaces";
-	protected static final String NAME = "Lexical Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected String name = "Lexical Matcher";
+	protected EntityType[] support = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	private static final double WEIGHT = 0.99;
 		
 //Constructors

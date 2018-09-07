@@ -34,11 +34,11 @@ public class ValueMatcher extends AbstractHashMatcher
 
 //Attributes
 
-	protected static final String DESCRIPTION = "Matches individuals that have equal values for\n" +
+	protected String description = "Matches individuals that have equal values for\n" +
 											  "the same Annotation or Data Property, or for\n" +
 											  "for matching properties (in secondary mode)";
-	protected static final String NAME = "Value Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
+	protected String name = "Value Matcher";
+	protected EntityType[] support = {EntityType.INDIVIDUAL};
 
 //Constructors
 

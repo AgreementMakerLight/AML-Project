@@ -41,12 +41,12 @@ public class ThesaurusMatcher extends AbstractHashMatcher
 	
 //Attributes
 	
-	protected static final String DESCRIPTION = "Matches entities that have one or more exact\n" +
+	protected String description = "Matches entities that have one or more exact\n" +
 											  "String matches between their Lexicon entries\n" +
 											  "after extension using an internally generated\n" +
 											  "Thesaurus";
-	protected static final String NAME = "Thesaurus Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected String name = "Thesaurus Matcher";
+	protected EntityType[] support = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	//The confidence score
 	private final double CONFIDENCE = 0.85;
 	//The Thesaurus of synonym words (String,String)

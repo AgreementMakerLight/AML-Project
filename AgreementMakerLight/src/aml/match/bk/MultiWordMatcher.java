@@ -40,12 +40,12 @@ public class MultiWordMatcher extends AbstractParallelMatcher
 	
 //Attributes
 	
-	protected static final String DESCRIPTION = "Matches entities that have English Lexicon\n" +
+	protected String description = "Matches entities that have English Lexicon\n" +
 											  "entries with two words where one word is\n"+
 											  "shared between them and the other word is\n" + 
 											  "related through WordNet.";
-	protected static final String NAME = "Multi-Word Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected String name = "Multi-Word Matcher";
+	protected EntityType[] support = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	private WordNet wn;
 	//The set of stop words
 	private Set<String> stopset;
@@ -55,7 +55,7 @@ public class MultiWordMatcher extends AbstractParallelMatcher
 	//The language
 	private static final String LANG = "en";
 	//The confidence score
-	private final double CONFIDENCE = 0.9;
+	private static final double CONFIDENCE = 0.9;
 
 //Constructors
 	

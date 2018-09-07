@@ -34,15 +34,15 @@ public class MediatingXRefMatcher extends MediatingMatcher
 	
 //Attributes
 
-	protected static final String DESCRIPTION = "Matches entities that are cross-referenced by\n" +
+	protected String description = "Matches entities that are cross-referenced by\n" +
 											  "the same entity of a background knowledge\n" +
 											  "source, and/or using the Mediating Matcher.";
-	protected static final String NAME = "Mediating Cross-Reference Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
+	protected String name = "Mediating Cross-Reference Matcher";
+	protected EntityType[] support = {EntityType.CLASS};
 	//The external ontology's ReferenceMap
 	private ReferenceMap rm;
 	//The weight used for matching and Lexicon extension
-	private final double WEIGHT = 0.95;
+	private static final double WEIGHT = 0.95;
 	
 //Constructors
 

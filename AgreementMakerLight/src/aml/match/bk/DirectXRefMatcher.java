@@ -29,13 +29,13 @@ public class DirectXRefMatcher extends AbstractHashMatcher
 	
 //Attributes
 
-	protected static final String DESCRIPTION = "Matches entities that have the same cross-reference\n" +
+	protected String description = "Matches entities that have the same cross-reference\n" +
 											  "or the where one cross-references the other.";
-	protected static final String NAME = "Direct Cross-Reference Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
+	protected String name = "Direct Cross-Reference Matcher";
+	protected EntityType[] support = {EntityType.CLASS};
 	//The weight used for matching and Lexicon extension
-	private final double WEIGHT1 = 0.99;
-	private final double WEIGHT2 = 0.95;
+	private static final double WEIGHT1 = 0.99;
+	private static final double WEIGHT2 = 0.95;
 	
 //Constructors
 

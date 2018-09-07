@@ -33,12 +33,12 @@ public class HybridStringMatcher extends AbstractParallelMatcher
 	
 //Attributes
 	
-	protected static final String DESCRIPTION = "Matches entities by comparing their Lexicon\n" +
+	protected String description = "Matches entities by comparing their Lexicon\n" +
 											  "entries through a combination of string- and\n" +
 											  "word-matching algorithms, with the optional\n" +
 											  "use of WordNet";
-	protected static final String NAME = "Hybrid String Matcher";
-	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.DATA_PROP,EntityType.INDIVIDUAL,EntityType.OBJECT_PROP};
+	protected String name = "Hybrid String Matcher";
+	protected EntityType[] support = {EntityType.CLASS,EntityType.DATA_PROP,EntityType.INDIVIDUAL,EntityType.OBJECT_PROP};
 	private boolean useWordNet;
 	
 //Constructors

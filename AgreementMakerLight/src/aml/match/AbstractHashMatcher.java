@@ -41,7 +41,7 @@ public abstract class AbstractHashMatcher extends Matcher implements PrimaryMatc
 		SimpleAlignment a = new SimpleAlignment(o1,o2);
 		if(!checkEntityType(e))
 			return a;
-		System.out.println("Running " + NAME + " in match mode");
+		System.out.println("Running " + name + " in match mode");
 		long time = System.currentTimeMillis()/1000;
 		a.addAll(hashMatch(o1,o2,e,thresh));
 		time = System.currentTimeMillis()/1000 - time;
