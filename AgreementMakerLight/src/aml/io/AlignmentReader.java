@@ -21,6 +21,8 @@ package aml.io;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -280,8 +282,8 @@ public class AlignmentReader
         MappingStatus st = MappingStatus.parseStatus(s);
 		if(!isEDOAL)
 		{
-			String sourceURI = entity1.attributeValue(RDFElement.RDF_RESOURCE.toString());
-			String targetURI = entity2.attributeValue(RDFElement.RDF_RESOURCE.toString());
+			String sourceURI = decode(entity1.attributeValue(RDFElement.RDF_RESOURCE.toString()));
+			String targetURI = decode(entity2.attributeValue(RDFElement.RDF_RESOURCE.toString()));
 			if(sourceURI == null || targetURI == null)
 			{
 				System.err.println("WARNING: Skipping mapping - missing alignment entity!\n" + e.asXML());
@@ -306,7 +308,7 @@ public class AlignmentReader
 			if(list.isEmpty())
 			{
 				//If so, treat it as an id expression of the appropriate type
-				String sourceURI = entity1.attributeValue(RDFElement.RDF_RESOURCE.toString());
+				String sourceURI = decode(entity1.attributeValue(RDFElement.RDF_RESOURCE.toString()));
 				if(AML.getInstance().getEntityMap().isClass(sourceURI))
 					source = new ClassId(sourceURI);
 				else if(AML.getInstance().getEntityMap().isObjectProperty(sourceURI))
@@ -330,7 +332,7 @@ public class AlignmentReader
 			list = entity2.elements();
 			if(list.isEmpty())
 			{
-				String targetURI = entity2.attributeValue(RDFElement.RDF_RESOURCE.toString());
+				String targetURI = decode(entity2.attributeValue(RDFElement.RDF_RESOURCE.toString()));
 				if(AML.getInstance().getEntityMap().isClass(targetURI))
 					target = new ClassId(targetURI);
 				else if(AML.getInstance().getEntityMap().isObjectProperty(targetURI))
@@ -466,7 +468,7 @@ public class AlignmentReader
 		List<Element> list = e.elements();
 		if(list.isEmpty())
 		{
-			String uri = e.attributeValue(RDFElement.RDF_ABOUT.toString());
+			String uri = decode(e.attributeValue(RDFElement.RDF_ABOUT.toString()));
 			if(uri != null)
 				return new ClassId(uri);
 		}
@@ -533,7 +535,7 @@ public class AlignmentReader
 		List<Element> list = e.elements();
 		if(list.isEmpty())
 		{
-			String uri = e.attributeValue(RDFElement.RDF_ABOUT.toString());
+			String uri = decode(e.attributeValue(RDFElement.RDF_ABOUT.toString()));
 			String lang = e.attributeValue(RDFElement.LANG.toString());
 			if(uri != null)
 				return new PropertyId(uri,lang);
@@ -618,7 +620,7 @@ public class AlignmentReader
 		List<Element> list = e.elements();
 		if(list.isEmpty())
 		{
-			String uri = e.attributeValue(RDFElement.RDF_ABOUT.toString());
+			String uri = decode(e.attributeValue(RDFElement.RDF_ABOUT.toString()));
 			if(uri != null)
 				return new RelationId(uri);
 		}
@@ -1111,4 +1113,20 @@ public class AlignmentReader
 		return new Transformation(direction,(ValueExpression)source,(ValueExpression)target);
 	}
 
+	private static String decode(String uri)
+	{
+		String newUri = uri;
+		if(newUri.contains("%") || newUri.contains("&"))
+		{
+			try
+			{
+				newUri = URLDecoder.decode(newUri,"UTF-8");
+			}
+			catch(UnsupportedEncodingException e)
+			{
+				//Do nothing
+			}
+		}
+		return newUri;
+	}
 }
