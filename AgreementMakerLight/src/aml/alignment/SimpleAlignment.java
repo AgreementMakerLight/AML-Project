@@ -132,6 +132,18 @@ public class SimpleAlignment extends Alignment<String>
 		return this.contains(new SimpleMapping(entity1,entity2,1.0));
 	}
 	
+	/**
+	 * @param entity1: the entity1 to check in the Alignment
+	 * @param entity2: the entity2 to check in the Alignment
+	 * @param r: the MappingRelation between the entities
+	 * @return whether the Alignment contains a Mapping between entity1 and entity2 with relation r
+	 */
+	public boolean contains(String entity1, String entity2, MappingRelation r)
+	{
+		SimpleMapping m = (SimpleMapping) this.get(entity1,entity2);
+		return m != null && m.getRelationship().equals(r);
+	}
+	
 	@Override
 	public boolean contains(Object o)
 	{
