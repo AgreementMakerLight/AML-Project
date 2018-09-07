@@ -127,7 +127,7 @@ public abstract class AbstractParallelMatcher extends Matcher implements Primary
 			Map2Set<String,String> toMap = new Map2Set<String,String>();
 			for(String j : targets)
 			{
-				if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
+				if(e.equals(EntityType.INDIVIDUAL) && aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_CLASSES) &&
 						!aml.getEntityMap().shareClass(i,j))
 					continue;
 				toMap.add(i,j);
