@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -19,10 +19,8 @@
 ******************************************************************************/
 package aml.util.interactive;
 
-import aml.AML;
 import aml.alignment.SimpleAlignment;
 import aml.alignment.mapping.MappingRelation;
-import aml.ontology.URIMap;
 import aml.util.data.Map2MapComparable;
 
 
@@ -34,8 +32,8 @@ public class Oracle
 	//The reference alignment to use in this Oracle
 	private static SimpleAlignment reference;
 	private static double error;
-	private static Map2MapComparable<Integer,Integer,MappingRelation> positive;
-	private static Map2MapComparable<Integer,Integer,MappingRelation> negative;
+	private static Map2MapComparable<String,String,MappingRelation> positive;
+	private static Map2MapComparable<String,String,MappingRelation> negative;
 
 //Constructors
 	
@@ -54,29 +52,26 @@ public class Oracle
 	public static boolean check(String uri1, String uri2, String rel)
 	{
 		MappingRelation r = MappingRelation.parseRelation(rel);
-		URIMap uris = AML.getInstance().getURIMap();
-		int id1 = uris.getIndex(uri1);
-		int id2 = uris.getIndex(uri2);
 		//If the query was already done, return the result
-		if(positive.contains(id1, id2, r))
+		if(positive.contains(uri1, uri2, r))
 			return true;
-		if(negative.contains(id1, id2, r))
+		if(negative.contains(uri1, uri2, r))
 			return false;
 		//Otherwise, if the mapping between uri1 and uri2 is 'unknown' in the
 		//reference alignment return true by default, but do not store it or
 		//count it as a query (it will also not count in the evaluation)
-		if((reference.contains(id1, id2, MappingRelation.UNKNOWN)))
+		if(reference.contains(uri1, uri2, MappingRelation.UNKNOWN))
 			return false;
 		//Check if the query is present in the reference alignment
-		boolean classification = reference.contains(id1, id2, r);
+		boolean classification = reference.contains(uri1, uri2, r);
 		//Reverse the classification with probability given by the error
 		if(Math.random() < error)
 			classification = !classification;
 		//Store the request
 		if(classification)
-			positive.add(id1, id2, r);
+			positive.add(uri1, uri2, r);
 		else
-			negative.add(id1, id2, r);
+			negative.add(uri1, uri2, r);
 		return classification;
 	}
 	
@@ -96,8 +91,8 @@ public class Oracle
 	{
 		reference = ref;
 		error = err;
-		positive = new Map2MapComparable<Integer,Integer,MappingRelation>();
-		negative = new Map2MapComparable<Integer,Integer,MappingRelation>();
+		positive = new Map2MapComparable<String,String,MappingRelation>();
+		negative = new Map2MapComparable<String,String,MappingRelation>();
 	}
 	
 	public static int negativeInteractions()

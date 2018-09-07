@@ -1,5 +1,5 @@
 /******************************************************************************
-* Copyright 2013-2016 LASIGE                                                  *
+* Copyright 2013-2018 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
 * not use this file except in compliance with the License. You may obtain a   *
@@ -22,10 +22,8 @@
 
 package aml.util.interactive;
 
-import aml.AML;
 import aml.alignment.mapping.MappingStatus;
 import aml.alignment.mapping.SimpleMapping;
-import aml.ontology.URIMap;
 
 //Uncomment below to switch to the Oracle from the SEALS OMT client
 //import eu.sealsproject.omt.client.interactive.Oracle;
@@ -40,9 +38,6 @@ public class InteractionManager
 	private int count;
 	//Whether user interaction is available
 	private boolean isInteractive;
-	//The URI map used to convert ids to URIs for
-	//interfacing with the Oracle
-	private URIMap uris;
 	
 //Constructors
 	
@@ -56,7 +51,6 @@ public class InteractionManager
 		limit = 0;
 		count = 0;
 		isInteractive = Oracle.isInteractive();
-		uris = AML.getInstance().getURIMap();
 	}
 	
 //Public Methods
@@ -71,8 +65,7 @@ public class InteractionManager
 			return;
 		if(limit > count++)
 		{
-			boolean check = Oracle.check(uris.getURI(m.getSourceId()),
-				uris.getURI(m.getTargetId()), m.getRelationship().toString());
+			boolean check = Oracle.check(m.getEntity1(), m.getEntity2(), m.getRelationship().toString());
 			if(check)
 				m.setStatus(MappingStatus.CORRECT);
 			else
