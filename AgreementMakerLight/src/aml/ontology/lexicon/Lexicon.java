@@ -446,7 +446,9 @@ public class Lexicon
 	 */
 	public Set<String> getNames(EntityType e)
 	{
-		return nameURIs.keySet(e);
+		if(nameURIs.contains(e))
+			return nameURIs.keySet(e);
+		return new HashSet<String>();
 	}
 
 	/**
