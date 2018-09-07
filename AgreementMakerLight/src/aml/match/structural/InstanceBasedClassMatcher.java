@@ -36,14 +36,19 @@ public class InstanceBasedClassMatcher extends AbstractHashMatcher
 	
 //Attributes
 	
-	protected String description = "Matches classes that have a high fraction\n" +
+	protected static final String DESCRIPTION = "Matches classes that have a high fraction\n" +
 											  "of instances in common.";
-	protected String name = "Instance-Based Class Matcher";
-	protected EntityType[] support = {EntityType.CLASS};
+	protected static final String NAME = "Instance-Based Class Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
 	
 //Constructors
 	
-	public InstanceBasedClassMatcher(){}
+	public InstanceBasedClassMatcher()
+	{
+		description = DESCRIPTION;
+		name = NAME;
+		support = SUPPORT;
+	}
 	
 //Protected Methods
 	

@@ -43,11 +43,11 @@ public class StringMatcher extends AbstractParallelMatcher
 
 //Attributes
 
-	protected String description = "Matches entities by computing the maximum\n" +
+	protected static final String DESCRIPTION = "Matches entities by computing the maximum\n" +
 											  "String similarity between their Lexicon\n" +
 											  "entries, using a String similarity measure";
-	protected String name = "String Matcher";
-	protected EntityType[] support = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected static final String NAME = "String Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	//Similarity measure
 	private StringSimMeasure measure = StringSimMeasure.ISUB;
 	//Correction factor (to make string similarity values comparable to word similarity values
@@ -63,6 +63,9 @@ public class StringMatcher extends AbstractParallelMatcher
 	public StringMatcher()
 	{
 		super();
+		description = DESCRIPTION;
+		name = NAME;
+		support = SUPPORT;
 	}
 
 	/**

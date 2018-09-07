@@ -41,13 +41,13 @@ public class ProcessMatcher extends Matcher implements PrimaryMatcher
 	
 //Attributes
 	
-	protected String description = "Matches individuals in a process (i.e.," +
+	protected static final String DESCRIPTION = "Matches individuals in a process (i.e.," +
 											  "individuals that are part of a workflow" +
 											  "and thereby organized sequentially)" +
 											  "through a combination of String matching" +
 											  "and similarity flooding";
-	protected String name = "Process Matcher";
-	protected EntityType[] support = {EntityType.INDIVIDUAL};
+	protected static final String NAME = "Process Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
 	private Set<String> stopSet;
 	private AML aml;
 	private EntityMap rels;
@@ -59,6 +59,9 @@ public class ProcessMatcher extends Matcher implements PrimaryMatcher
 		aml = AML.getInstance();
 		rels = aml.getEntityMap();
 		stopSet = StopList.read();
+		description = DESCRIPTION;
+		name = NAME;
+		support = SUPPORT;
 	}
 	
 //Public Methods

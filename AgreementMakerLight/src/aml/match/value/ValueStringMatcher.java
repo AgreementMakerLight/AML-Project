@@ -29,16 +29,19 @@ public class ValueStringMatcher extends AbstractParallelMatcher
 	
 //Attributes
 	
-	protected String description = "Matches individuals by comparing their ValueMap\n" +
+	protected static final String DESCRIPTION = "Matches individuals by comparing their ValueMap\n" +
 											  "entries using the ISub string similarity metric";
-	protected String name = "Value String Matcher";
-	protected EntityType[] support = {EntityType.INDIVIDUAL};
+	protected static final String NAME = "Value String Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
 	
 //Constructors
 	
 	public ValueStringMatcher()
 	{
 		super();
+		description = DESCRIPTION;
+		name = NAME;
+		support = SUPPORT;
 	}
 	
 //Protected Methods

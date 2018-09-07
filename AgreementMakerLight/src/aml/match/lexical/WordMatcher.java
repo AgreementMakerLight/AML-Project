@@ -40,12 +40,12 @@ public class WordMatcher extends AbstractParallelMatcher
 
 //Attributes
 	
-	protected String description = "Matches entities by checking for words\n" +
+	protected static final String DESCRIPTION = "Matches entities by checking for words\n" +
 			  								  "they share in their Lexicon entries.\n" +
 			  								  "Computes word similarity by entity, by\n" +
 			  								  "by entry, or combined";
-	protected String name = "Word Matcher";
-	protected EntityType[] support = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
+	protected static final String NAME = "Word Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS,EntityType.INDIVIDUAL,EntityType.DATA_PROP,EntityType.OBJECT_PROP};
 	private WordLexicon sourceLex;
 	private WordLexicon targetLex;
 	private WordMatchStrategy strategy = WordMatchStrategy.AVERAGE;
@@ -61,6 +61,9 @@ public class WordMatcher extends AbstractParallelMatcher
 	{
 		super();
 		language = lang;
+		description = DESCRIPTION;
+		name = NAME;
+		support = SUPPORT;
 	}
 	
 	/**

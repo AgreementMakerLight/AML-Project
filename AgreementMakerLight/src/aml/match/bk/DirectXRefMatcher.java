@@ -29,13 +29,13 @@ public class DirectXRefMatcher extends AbstractHashMatcher
 	
 //Attributes
 
-	protected String description = "Matches entities that have the same cross-reference\n" +
+	protected static final String DESCRIPTION = "Matches entities that have the same cross-reference\n" +
 											  "or the where one cross-references the other.";
-	protected String name = "Direct Cross-Reference Matcher";
-	protected EntityType[] support = {EntityType.CLASS};
+	protected static final String NAME = "Direct Cross-Reference Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The weight used for matching and Lexicon extension
-	private static final double WEIGHT1 = 0.99;
-	private static final double WEIGHT2 = 0.95;
+	private final double WEIGHT1 = 0.99;
+	private final double WEIGHT2 = 0.95;
 	
 //Constructors
 
@@ -43,7 +43,12 @@ public class DirectXRefMatcher extends AbstractHashMatcher
 	 * Constructs a XRefDirectMatcher with the given external Ontology
 	 * @param x: the external Ontology
 	 */
-	public DirectXRefMatcher(){}
+	public DirectXRefMatcher()
+	{
+		description = DESCRIPTION;
+		name = NAME;
+		support = SUPPORT;
+	}
 
 //Protected Methods
 

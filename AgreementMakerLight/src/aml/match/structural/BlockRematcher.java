@@ -35,16 +35,21 @@ public class BlockRematcher extends Matcher implements Rematcher
 	
 //Attributes
 	
-	protected String description = "Rematches classes by computing the fraction\n" +
+	protected static final String DESCRIPTION = "Rematches classes by computing the fraction\n" +
 											  "of mappings that fall within the blocks of the\n" +
 											  "ontologies (i.e., have the same high-level\n" +
 											  "classes.";
-	protected String name = "Block Rematcher";
-	protected EntityType[] support = {EntityType.CLASS};
+	protected static final String NAME = "Block Rematcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
 
 //Constructors
 	
-	public BlockRematcher(){}
+	public BlockRematcher()
+	{
+		description = DESCRIPTION;
+		name = NAME;
+		support = SUPPORT;
+	}
 	
 //Public Methods
 	

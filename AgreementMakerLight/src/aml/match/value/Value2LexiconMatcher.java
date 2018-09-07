@@ -29,12 +29,12 @@ public class Value2LexiconMatcher extends AbstractParallelMatcher
 	
 //Attributes
 	
-	protected String description = "Matches individuals by comparing the Lexicon\n" +
+	protected static final String DESCRIPTION = "Matches individuals by comparing the Lexicon\n" +
 											  "entries of one to the ValueMap entries of the\n" +
 											  "other using a combination of string- and word-\n" +
 											  "matching algorithms, and optionally the WordNet";
-	protected String name = "Value-to-Lexicon Matcher";
-	protected EntityType[] support = {EntityType.INDIVIDUAL};
+	protected static final String NAME = "Value-to-Lexicon Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.INDIVIDUAL};
 	boolean useWordNet;
 	
 //Constructors
@@ -43,6 +43,9 @@ public class Value2LexiconMatcher extends AbstractParallelMatcher
 	{
 		super();
 		this.useWordNet = useWordNet;
+		description = DESCRIPTION;
+		name = NAME;
+		support = SUPPORT;
 	}
 	
 //Protected Methods

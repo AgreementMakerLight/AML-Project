@@ -49,19 +49,19 @@ public class BackgroundKnowledgeMatcher extends Matcher implements PrimaryMatche
 	
 //Attributes
 
-	protected String description = "Matches classes by testing all available\n" +
+	protected static final String DESCRIPTION = "Matches classes by testing all available\n" +
 											  "sources of background knowledge, and using\n" +
 											  "those that have a significant mapping gain\n" +
 											  "(with Cross-Reference Matcher, Mediating\n" +
 											  "Matcher, and/or WordNet Matcher).";
-	protected String name = "Background Knowledge Matcher";
-	protected EntityType[] support = {EntityType.CLASS};
+	protected static final String NAME = "Background Knowledge Matcher";
+	protected static final EntityType[] SUPPORT = {EntityType.CLASS};
 	//The path to the background knowledge sources
 	private final String BK_PATH = "store/knowledge/";
 	private String path;
 	private AML aml;
 	//The minimum gain threshold
-	private static final double GAIN_THRESH = 0.02;
+	private final double GAIN_THRESH = 0.02;
 	//Whether to use 1-to-1 gain or global gain
 	private boolean oneToOne;
 	//The list of ontologies available as background knowledge
@@ -75,6 +75,9 @@ public class BackgroundKnowledgeMatcher extends Matcher implements PrimaryMatche
 		path = aml.getPath() + BK_PATH;
 		sources = aml.getSelectedBKSources();
 		oneToOne = !aml.getSelectionType().equals(SelectionType.HYBRID);
+		description = DESCRIPTION;
+		name = NAME;
+		support = SUPPORT;
 	}
 
 //Public Methods
