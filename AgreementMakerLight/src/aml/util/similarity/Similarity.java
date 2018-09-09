@@ -14,13 +14,15 @@
 *******************************************************************************
 * Metrics for measuring similarity between collections and/or lists.          *
 *                                                                             *
-* @author Daniel Faria                                                        *
+* @author Daniel Faria, Catia Pesquita                                        *
 ******************************************************************************/
 package aml.util.similarity;
 
 import java.util.Collection;
 import java.util.HashSet;
 
+import aml.util.snowball.EnglishStemmer;
+import aml.util.snowball.SnowballStemmer;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
@@ -114,6 +116,62 @@ public class Similarity
 				sim = wordNetSim;
 		}
 		return sim;
+	}
+	
+	/**
+	 * Computes the bag-of-words similarity between two names 
+	 * @param n1: the first name to compare
+	 * @param n2: the second name to compare
+	 * @param stemming: whether to use stemming
+	 * @return the similarity between the two names
+	 */
+	public static double wordSimilarity(String n1, String n2, boolean stemming)
+	{
+		
+		//We don't compare two-character names at all
+		if(n1.length() < 3 || n2.length() < 3)
+			return 0.0;
+		//If the names are equal, no need to compute similarity
+		if(n1.equals(n2))
+			return 1.0;
+		
+		//Split the source name into words
+		String[] sW = n1.split(" ");
+		HashSet<String> sWords = new HashSet<String>();
+		
+		for(String w : sW)
+		{			
+			if(stemming)
+			{
+				SnowballStemmer snowballStemmer = new EnglishStemmer();
+				snowballStemmer.setCurrent(w);
+				snowballStemmer.stem();
+				w = snowballStemmer.getCurrent();	
+			}
+			sWords.add(w);
+			
+		}
+		
+		//Split the target name into words
+		String[] tW = n2.split(" ");
+		HashSet<String> tWords = new HashSet<String>();
+			
+		for(String w : tW)
+		{
+			if(stemming)
+			{
+				SnowballStemmer snowballStemmer = new EnglishStemmer();
+				snowballStemmer.setCurrent(w);
+				snowballStemmer.stem();
+				w = snowballStemmer.getCurrent();	
+			}
+			tWords.add(w);			
+		}
+		
+		//Compute the Jaccard word similarity between the properties
+		double wordSim = Similarity.jaccardSimilarity(sWords,tWords)*0.9;
+		
+		return wordSim;
 	}
 	
 	/**
