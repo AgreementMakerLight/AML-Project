@@ -22,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -94,46 +95,28 @@ public class AlignmentReader
 	@SuppressWarnings("rawtypes")
 	public static Alignment readRDF(String file, boolean active) throws DocumentException
 	{
-		
 		//Open the Alignment file using SAXReader
 		SAXReader reader = new SAXReader();
 		File f = new File(file);
 		Document doc = reader.read(f);
-		//Read the root, then go to the "Alignment" element
-		Element root = doc.getRootElement();
-		Element align = root.element(RDFElement.ALIGNMENT_.toString());
-		//Read the alignment level
-		String level = align.elementText(RDFElement.LEVEL.toString());
-		isEDOAL = level.equals(EDOALAlignment.LEVEL);
-		//Initialize the Alignment
-		if(active)
-		{
-			if(isEDOAL)
-				a = new EDOALAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
-			else
-				a = new SimpleAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
-		}
-		else
-		{
-			if(isEDOAL)
-				a = new EDOALAlignment();
-			else
-				a = new SimpleAlignment();			
-		}
-		//Try to read the ontologies
-		parseOntology(align.element(RDFElement.ONTO1.toString()),true);
-		parseOntology(align.element(RDFElement.ONTO2.toString()),false);
-		
-		//Get an iterator over the mappings
-		Iterator<?> map = align.elementIterator(RDFElement.MAP.toString());
-		while(map.hasNext())
-		{
-			//Get the "Cell" in each mapping
-			Element cell = ((Element)map.next()).element(RDFElement.CELL_.toString());
-			if(cell == null)
-				continue;
-			parseCell(cell,active);
-		}
+		readDoc(doc,active);
+		return a;
+	}
+	
+	/**
+	 * Reads an RDF alignment from a URL (simple or EDOAL)
+	 * @param url: the URL of the alignment to read
+	 * @param active: whether the alignment is between the active ontologies
+	 * @return the Alignment
+	 * @throws Exception if unable to read the alignment file
+	 */
+	@SuppressWarnings("rawtypes")
+	public static Alignment readRDF(URL url, boolean active) throws DocumentException
+	{
+		//Open the Alignment file using SAXReader
+		SAXReader reader = new SAXReader();
+		Document doc = reader.read(url);
+		readDoc(doc,active);
 		return a;
 	}
 
@@ -206,6 +189,45 @@ public class AlignmentReader
 	}
 	
 //Private Methods
+	
+	private static void readDoc(Document doc, boolean active)
+	{		
+		//Read the root, then go to the "Alignment" element
+		Element root = doc.getRootElement();
+		Element align = root.element(RDFElement.ALIGNMENT_.toString());
+		//Read the alignment level
+		String level = align.elementText(RDFElement.LEVEL.toString());
+		isEDOAL = level.equals(EDOALAlignment.LEVEL);
+		//Initialize the Alignment
+		if(active)
+		{
+			if(isEDOAL)
+				a = new EDOALAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
+			else
+				a = new SimpleAlignment(AML.getInstance().getSource(),AML.getInstance().getTarget());
+		}
+		else
+		{
+			if(isEDOAL)
+				a = new EDOALAlignment();
+			else
+				a = new SimpleAlignment();			
+		}
+		//Try to read the ontologies
+		parseOntology(align.element(RDFElement.ONTO1.toString()),true);
+		parseOntology(align.element(RDFElement.ONTO2.toString()),false);
+		
+		//Get an iterator over the mappings
+		Iterator<?> map = align.elementIterator(RDFElement.MAP.toString());
+		while(map.hasNext())
+		{
+			//Get the "Cell" in each mapping
+			Element cell = ((Element)map.next()).element(RDFElement.CELL_.toString());
+			if(cell == null)
+				continue;
+			parseCell(cell,active);
+		}
+	}
 	
 	private static void parseOntology(Element e, boolean isSource)
 	{
