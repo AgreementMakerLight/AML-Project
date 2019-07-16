@@ -14,7 +14,7 @@
 *******************************************************************************
 * An Ontology object, loaded using the OWL API.								  *
 *																			  *
-* @author Daniel Faria														  *
+* @author Daniel Faria, Catia Pesquita   									  *
 ******************************************************************************/
 package aml.ontology;
 
@@ -31,28 +31,7 @@ import java.util.Vector;
 
 import org.semanticweb.elk.owlapi.ElkReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.AxiomType;
-import org.semanticweb.owlapi.model.ClassExpressionType;
-import org.semanticweb.owlapi.model.IRI;
-import org.semanticweb.owlapi.model.OWLAnnotation;
-import org.semanticweb.owlapi.model.OWLAnnotationProperty;
-import org.semanticweb.owlapi.model.OWLAnnotationValue;
-import org.semanticweb.owlapi.model.OWLAxiom;
-import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.model.OWLClassExpression;
-import org.semanticweb.owlapi.model.OWLDataFactory;
-import org.semanticweb.owlapi.model.OWLDataProperty;
-import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
-import org.semanticweb.owlapi.model.OWLDataRange;
-import org.semanticweb.owlapi.model.OWLDatatype;
-import org.semanticweb.owlapi.model.OWLIndividual;
-import org.semanticweb.owlapi.model.OWLLiteral;
-import org.semanticweb.owlapi.model.OWLNamedIndividual;
-import org.semanticweb.owlapi.model.OWLObjectProperty;
-import org.semanticweb.owlapi.model.OWLObjectPropertyExpression;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
+import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
@@ -624,10 +603,8 @@ public class Ontology
 		double weight;
 		//The label property
 		OWLAnnotationProperty label = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
-		//Get an iterator over the ontology classes
-		Set<OWLClass> owlClasses = o.getClassesInSignature(true);
-		//Then get the URI for each class
-		for(OWLClass c : owlClasses)
+		//Get the ontology classes
+		for(OWLClass c : o.getClassesInSignature(true))
 		{
 			String classUri = c.getIRI().toString();
 			if(classUri == null || classUri.endsWith("owl#Thing") || classUri.endsWith("owl:Thing"))
@@ -637,7 +614,6 @@ public class Ontology
 			//Add it to the Ontology
 			entities.add(id);
 			entityTypes.add(EntityType.CLASS, id);
-
 			//Get the local name from the URI
 			String name = uris.getLocalName(id);
 			//Add the name to the classNames map
@@ -770,8 +746,7 @@ public class Ontology
 				.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
 
 		//Get the Data Properties
-		Set<OWLDataProperty> dProps = o.getDataPropertiesInSignature(true);
-		for(OWLDataProperty dp : dProps)
+		for(OWLDataProperty dp : o.getDataPropertiesInSignature(true))
 		{
 			String propUri = dp.getIRI().toString();
 			if(propUri == null)
@@ -836,8 +811,7 @@ public class Ontology
 			}
 		}
 		//Get the Object Properties
-		Set<OWLObjectProperty> oProps = o.getObjectPropertiesInSignature(true);
-		for(OWLObjectProperty op : oProps)
+		for(OWLObjectProperty op : o.getObjectPropertiesInSignature(true))
 		{
 			String propUri = op.getIRI().toString();
 			if(propUri == null)
@@ -913,7 +887,7 @@ public class Ontology
 		}
 		//Process "transitive over" relations
 		//(This requires that all properties be indexed, and thus has to be done in a 2nd pass)
-		for(OWLObjectProperty op : oProps)
+		for(OWLObjectProperty op : o.getObjectPropertiesInSignature(true))
 		{
 			//In OWL, the OBO transitive_over relation is encoded as a sub-property chain of
 			//the form: "SubObjectPropertyOf(ObjectPropertyChain( <p1> <p2> ) <this_p> )"
@@ -963,10 +937,8 @@ public class Ontology
 		double weight;
 		//The label property
 		OWLAnnotationProperty label = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
-		//Get an iterator over the ontology individuals
-		Set<OWLNamedIndividual> indivs = o.getIndividualsInSignature();
-		//Then get the URI for each class
-		for(OWLNamedIndividual i : indivs)
+		//Get the ontology individuals
+		for(OWLNamedIndividual i : o.getIndividualsInSignature())
 		{
 			String indivUri = i.getIRI().toString();
 			//Note that this should never happen as a named individual must
@@ -1052,39 +1024,38 @@ public class Ontology
 							localLang = lang;
 						lex.add(id, name, localLang, type, "", weight);
 					}
-					else if(annotation.getValue() instanceof IRI)
-					{
-						String iri = ((IRI)annotation.getValue()).toString();
-						String name = getLocalName(iri);
-						if(!StringParser.isNumericId(name))
-							lex.add(id, name, lang, type, "", weight);
-						OWLNamedIndividual ni = factory.getOWLNamedIndividual((IRI) annotation.getValue());
-						for(OWLAnnotation a : ni.getAnnotations(o,label))
-						{
-							if(a.getValue() instanceof OWLLiteral)
-							{
-								OWLLiteral val = (OWLLiteral) a.getValue();
-								name = val.getLiteral();
-								String localLang = val.getLang();
-								if(localLang.equals(""))
-									localLang = lang;
-								lex.add(id, name, localLang, type, "", weight);
-							}
-						}
-					}
 				}
 				//Otherwise, literal annotations go to the ValueMap
+				//(IRI annotations are assumed to corresponde to undeclared
+				//ObjectProperties and are caught in the getOWLRelationships method)
 				else if(annotation.getValue() instanceof OWLLiteral)
 				{
 					OWLLiteral val = (OWLLiteral) annotation.getValue();
 					String v = val.getLiteral();
-					//We must first add the annotation property to the URIMap and Ontology
-					//(if it was already added, nothing happens)
-					int propId = uris.addURI(propUri, EntityType.ANNOTATION);
-					entities.add(propId);
-					entityTypes.add(EntityType.ANNOTATION, propId);
-					//Then add the value to the ValueMap
-					vMap.add(id, propId, v);
+					//FIX: If the annotations are not plain literals, we assumed the
+					//property is an undeclared DataProperty (this is a bit of a stretch
+					//as AnnotationProperties can have typed values, but they seldom do
+					//and this is needed to catch undeclared DataProperties)
+					if(!val.isRDFPlainLiteral())
+					{
+						//We must first add the data property to the URIMap and Ontology
+						//(if it was already added, nothing happens)
+						int propId = uris.addURI(propUri, EntityType.DATA);						
+						entities.add(propId);
+						entityTypes.add(EntityType.DATA, propId);
+						//Then add the value to the ValueMap
+						vMap.add(id, propId, v);
+					}
+					else
+					{
+						//We must first add the annotation property to the URIMap and Ontology
+						//(if it was already added, nothing happens)
+						int propId = uris.addURI(propUri, EntityType.ANNOTATION);
+						entities.add(propId);
+						entityTypes.add(EntityType.ANNOTATION, propId);
+						//Then add the value to the ValueMap
+						vMap.add(id, propId, v);
+					}
 				}
 			}
 			//Get the data properties associated with the individual and their values
@@ -1433,7 +1404,6 @@ public class Ontology
 		objectSomeValues = null;
 
 		//II - Relationships between named individuals
-		//@author: Catia Pesquita
 		//Get an iterator over the named individuals
 		Set<OWLNamedIndividual> individuals = o.getIndividualsInSignature();
 		for(OWLNamedIndividual i : individuals)
