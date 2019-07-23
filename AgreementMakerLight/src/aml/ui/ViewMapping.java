@@ -552,9 +552,15 @@ public class ViewMapping extends JDialog implements ActionListener
 	{
 		if(a == null)
 			return;
-		for(Mapping m : a)
-			if(nodes.contains(m.getSourceId()) && nodes.contains(m.getTargetId()))
-				addMapping(m.getSourceId(), m.getTargetId());
+		for(int i : nodes)
+		{
+			for(int j : a.getSourceMappings(i))
+				if(nodes.contains(j))
+					addMapping(i, j);
+			for(int j : a.getTargetMappings(i))
+				if(nodes.contains(j))
+					addMapping(j, i);
+		}
 	}
 	
 	//Adds all ancestors of the given entity to the graph
@@ -586,26 +592,17 @@ public class ViewMapping extends JDialog implements ActionListener
 		}
 		else if(t.equals(EntityType.INDIVIDUAL))
 		{
-			for(int i = 0; i < individualDistance; i++)
+			for(int k : rm.getIndividualActiveRelations(id))
 			{
-				descendants = new HashSet<Integer>(ancestors);
-				ancestors = new HashSet<Integer>();
-				for(int j : descendants)
+				Set<Integer> rels = rm.getIndividualProperties(id, k);
+				if(rels.size() > 0)
 				{
-					for(int k : rm.getIndividualActiveRelations(j))
-					{
-						Set<Integer> rels = rm.getIndividualProperties(j, k);
-						if(rels.size() > 0)
-						{
-							if(directedGraph.getNode("" + k) == null)
-								addNode(k, 6);
-							if(!edges.contains(j,k) && !edges.contains(k,j))
-								addEdge(j, k, rels.iterator().next());
-						}
-						ancestors.add(k);
-					}
+					if(directedGraph.getNode("" + k) == null)
+						addNode(k, 6);
+					if(!edges.contains(id,k) && !edges.contains(k,id))
+						addEdge(id, k, rels.iterator().next());
 				}
-				nodes.addAll(ancestors);
+				nodes.add(k);
 			}
 		}
 	}
@@ -633,30 +630,6 @@ public class ViewMapping extends JDialog implements ActionListener
 							addEdge(k, j, rm.getRelationship(k, j).getProperty());
 					}
 					descendants.addAll(children);
-				}
-				nodes.addAll(descendants);
-			}
-		}
-		else if(t.equals(EntityType.INDIVIDUAL))
-		{
-			for(int i = 0; i < individualDistance; i++)
-			{
-				ancestors = new HashSet<Integer>(descendants);
-				descendants = new HashSet<Integer>();
-				for(int j : ancestors)
-				{
-					for(int k : rm.getIndividualPassiveRelations(j))
-					{
-						Set<Integer> rels = rm.getIndividualProperties(j, k);
-						if(rels.size() > 0)
-						{
-							if(directedGraph.getNode("" + k) == null)
-								addNode(k, 6);
-							if(!edges.contains(j,k) && !edges.contains(k,j))
-								addEdge(k, j, rels.iterator().next());
-						}
-						descendants.add(k);
-					}
 				}
 				nodes.addAll(descendants);
 			}
