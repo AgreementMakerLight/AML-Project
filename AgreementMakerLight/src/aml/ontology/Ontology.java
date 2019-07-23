@@ -264,7 +264,9 @@ public class Ontology
 	 */
 	public String getName(int index)
 	{
-		return getLexicon().getBestName(index);
+		if(lex.containsNonSmallFormula(index))
+			return getLexicon().getBestName(index);
+		return uris.getLocalName(index);
 	}
 
 	/**
