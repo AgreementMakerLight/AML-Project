@@ -16,8 +16,27 @@
 		    <id>jitpack.io</id>
 		    <url>https://jitpack.io</url>
 		</repository>
+		<repository>
+			<id>iesl-umass-repository</id>
+			<name>IESL UMass Repository</name>
+			<url>https://dev-iesl.cs.umass.edu/nexus/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>maven.aksw.internal</id>
+			<name>University Leipzig, AKSW Maven2 Repository</name>
+			<url>http://maven.aksw.org/repository/internal</url>
+		</repository>
+		<repository>
+			<id>maven.aksw.snapshots</id>
+			<name>University Leipzig, AKSW Maven2 Repository</name>
+			<url>http://maven.aksw.org/repository/snapshots</url>
+		</repository>
+		<repository>
+			<id>aml-lib</id>
+			<url>file://${project.basedir}/src/lib</url>
+		</repository>
 	</repositories>
-<properties>
+  <properties>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
   </properties>
@@ -82,14 +101,14 @@
       <artifactId>gephi-toolkit</artifactId>
       <version>0.8.2</version>
       <scope>system</scope>
-      <systemPath>/home/ubuntu/git/AML-Project/AgreementMakerLight/src/lib/gephi-toolkit.jar</systemPath>
+      <systemPath>${project.basedir}/src/lib/gephi-toolkit.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>edu.smu.tspell.wordnet</groupId>
       <artifactId>jaws</artifactId>
       <version>1.3.3</version>
       <scope>system</scope>
-      <systemPath>/home/ubuntu/git/AML-Project/AgreementMakerLight/src/lib/jaws.jar</systemPath>
+      <systemPath>${project.basedir}/src/lib/jaws.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
@@ -116,8 +135,8 @@
       <groupId>uk.ac.shef.wit</groupId>
       <artifactId>simmetrics</artifactId>
       <version>1.6.2</version>
-<scope>system</scope>
-<systemPath>/home/ubuntu/git/AML-Project/AgreementMakerLight/src/lib/simmetrics.jar</systemPath>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/src/lib/simmetrics.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>org.swinglabs.swingx</groupId>
