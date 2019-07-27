@@ -26,6 +26,7 @@ public enum EntityType
     DATA_PROP			("Data Property", true),
 	DATATYPE			("Datatype", false),
 	INDIVIDUAL			("Individual", true),
+	ANON_INDIVIDUAL     ("Anonymous Individual", false),
     OBJECT_PROP			("Object Property", true),
     OBJECT_EXPRESSION	("Object Property Expression", false);
     

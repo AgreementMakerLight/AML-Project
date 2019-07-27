@@ -36,6 +36,7 @@ import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLAnnotationProperty;
 import org.semanticweb.owlapi.model.OWLAnnotationValue;
+import org.semanticweb.owlapi.model.OWLAnonymousIndividual;
 import org.semanticweb.owlapi.model.OWLAxiom;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
@@ -895,7 +896,57 @@ public class OntologyParser
 			}	
 		}
 
-	//5 - Class relationships and Class-Individual relationships
+	//5 - Anonymous Individuals and their data values
+		for(OWLAnonymousIndividual i : o.getAnonymousIndividuals())
+		{
+			//Get the ID of each anonymous individual
+			String indivID = i.getID().toString();
+			
+			// This should never happen but better safe than sorry
+			if (indivID == null)
+				continue;
+			
+			//Add the ID to the global list of URIs
+			rm.addURI(indivID, EntityType.INDIVIDUAL);
+			//Add it to the Ontology
+			l.add(indivID, EntityType.ANON_INDIVIDUAL);
+			
+			//Get the data properties associated with the individual and their values
+			Map<OWLDataPropertyExpression,Set<OWLLiteral>> dataPropValues = i.getDataPropertyValues(o);
+			for(OWLDataPropertyExpression prop : dataPropValues.keySet())
+			{
+				//Check that the data property expression is a named data property
+				if(prop.isAnonymous())
+					continue;
+				//And if so, process its URI
+				String propUri = prop.asOWLDataProperty().getIRI().toString();
+				if(!rm.isDataProperty(propUri))
+					continue;
+
+				//Data Properties with a LexicalType go to the Lexicon
+				type = LexicalType.getLexicalType(propUri);
+				if(type != null)
+				{
+					weight = type.getDefaultWeight();
+					for(OWLLiteral val : dataPropValues.get(prop))
+						lex.add(indivID, val.getLiteral(), "en", type, "", weight);
+				}
+				//Otherwise, they go to the ValueMap
+				else
+				{
+					//Then get its values for the individual
+					for(OWLLiteral val : dataPropValues.get(prop))
+						vMap.add(indivID, propUri, val.getLiteral());
+				}
+				//FIX: Filling in missing types of individuals from data property restrictions
+				//(Sometimes ontologies fail to declare individual types)
+				if(rm.getIndividualClasses(indivID).isEmpty() && rm.getDomains(propUri).size() == 1)
+					rm.addInstance(indivID, rm.getDomains(propUri).iterator().next());
+			}	
+		}
+
+		
+	//6 - Class relationships and Class-Individual relationships
 		//For each class index
 		for(OWLClass c : classes)
 		{
@@ -949,6 +1000,12 @@ public class OntologyParser
 					if(rm.isIndividual(indivUri))
 						rm.addInstance(indivUri, child);
 				}
+				else if (i.isAnonymous())
+				{
+					String indivID = i.asOWLAnonymousIndividual().getID().toString();
+					if(rm.isIndividual(indivID))
+						rm.addInstance(indivID, child);
+				}
 			}
 			//Get the syntactic disjoints
 			Set<OWLClassExpression> disjClasses = c.getDisjointClasses(o);
@@ -972,7 +1029,7 @@ public class OntologyParser
 			}
 		}
 
-	//6 - Individual Relationships
+	//7 - Individual Relationships
 		for(OWLNamedIndividual i : indivs)
 		{
 			//Get the numeric id for each individual
@@ -1024,6 +1081,13 @@ public class OntologyParser
 						if(rm.getIndividualClasses(relIndivUri).isEmpty() && rm.getRanges(propUri).size() == 1)
 							rm.addInstance(relIndivUri, rm.getRanges(propUri).iterator().next());
 					}
+					else // Anonymous individuals
+					{
+						String relIndivID = rI.asOWLAnonymousIndividual().getID().toString();
+						if(!rm.isIndividual(relIndivID))
+							continue;
+						rm.addIndividualRelationship(indivUri, relIndivID, propUri);
+					}
 				}
 			}
 			//FIX: Relationships between individuals encoded by AnnotationProperties
@@ -1053,8 +1117,71 @@ public class OntologyParser
 				}
 			}
 		}
+		// Same as above but for anonymous individuals
+		for(OWLAnonymousIndividual i : o.getAnonymousIndividuals())
+		{
+			//Get the numeric id for each individual
+			String indivUri = i.getID().toString();
+			if(!rm.isIndividual(indivUri))
+				continue;
 
-	//7 - Relationships between Data Properties
+			Map<OWLObjectPropertyExpression, Set<OWLIndividual>> iProps = i.getObjectPropertyValues(o);
+			for(OWLObjectPropertyExpression prop : iProps.keySet())
+			{
+				if(prop.isAnonymous())
+					continue;
+
+				String propUri = prop.asOWLObjectProperty().getIRI().toString();
+				if(!rm.isObjectProperty(propUri))
+					continue;
+
+				//FIX: Filling in missing types of individuals from object property restrictions
+				//(Sometimes ontologies fail to declare individual types)
+				if(rm.getIndividualClasses(indivUri).isEmpty() && rm.getDomains(propUri).size() == 1)
+					rm.addInstance(indivUri, rm.getDomains(propUri).iterator().next());
+
+				for(OWLIndividual rI : iProps.get(prop))
+				{
+					if(rI.isNamed())
+					{
+						String relIndivUri = rI.asOWLNamedIndividual().getIRI().toString();
+						if(!rm.isIndividual(relIndivUri))
+							continue;
+						rm.addIndividualRelationship(indivUri, relIndivUri, propUri);
+						//If the individual is an alias of the related individual
+						//use the individual's lexical entries to extend those of
+						//the related individual
+						if(propUri.endsWith("isAliasOf"))
+						{
+							for(String name : lex.getNames(indivUri))
+							{
+								for(LexicalMetadata p : lex.get(name, indivUri))
+								{
+									LexicalType t = p.getType();
+									if(t.equals(LexicalType.LABEL) || t.equals(LexicalType.LOCAL_NAME))
+										t = LexicalType.EXACT_SYNONYM;
+									lex.add(relIndivUri,name,p.getLanguage(),t,"",t.getDefaultWeight());
+								}
+							}
+						}
+						//FIX: Filling in missing types of individuals from object property restrictions
+						//(Sometimes ontologies fail to declare individual types)
+						if(rm.getIndividualClasses(relIndivUri).isEmpty() && rm.getRanges(propUri).size() == 1)
+							rm.addInstance(relIndivUri, rm.getRanges(propUri).iterator().next());
+					}
+					else // Anonymous individuals
+					{
+						String relIndivID = rI.asOWLAnonymousIndividual().getID().toString();
+						if(!rm.isIndividual(relIndivID))
+								continue;
+						rm.addIndividualRelationship(indivUri, relIndivID, propUri);
+					}
+				}
+			}
+		}
+
+
+	//8 - Relationships between Data Properties
 		for(OWLDataProperty dp : dProps)
 		{
 			String propUri = dp.getIRI().toString();
