@@ -157,6 +157,13 @@ public abstract class Mapping<A> implements Comparable<Mapping<A>>
 	}
 	
 	/**
+	 * Creates a copy of this mapping with the source and target
+	 * entities swapped and with the inverse relationship.
+	 * @return the new mapping
+	 */
+	public abstract Mapping<A> reverse();
+
+	/**
 	 * Sets the MappingRelation of the Mapping
 	 * @param r: the MappingRelation to set
 	 */

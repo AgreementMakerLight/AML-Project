@@ -370,6 +370,25 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		return remove(m);
 	}
 	
+	/**
+	 * Returns a copy of the alignment with the source and the target
+	 * ontologies swapped.
+	 */
+	public EDOALAlignment reverse()
+	{
+		EDOALAlignment a = new EDOALAlignment(source, target);
+
+		a.setSourceFormalismName(this.getTargetFormalismName());
+		a.setSourceFormalismURI(this.getTargetFormalismURI());
+		a.setTargetFormalismName(this.getSourceFormalismName());
+		a.setTargetFormalismURI(this.getTargetFormalismURI());
+		
+		for (Mapping<AbstractExpression> m : this)
+			a.add(m.reverse());
+
+		return a;
+	}
+	
 	@Override
 	public int sourceCount()
 	{
