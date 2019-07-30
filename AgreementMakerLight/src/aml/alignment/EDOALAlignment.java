@@ -204,13 +204,15 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		Set<String> sources = m.getEntity1().getElements();
 		Set<String> targets = m.getEntity2().getElements();
 		for(String s : sources)
-			for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
-				if(!n.equals(m))
-					return true;
+			if (sourceComponentMaps.contains(s))
+				for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
+					if(!n.equals(m))
+						return true;
 		for(String t : targets)
-			for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
-				if(!n.equals(m))
-					return true;
+			if (targetComponentMaps.contains(t))
+				for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
+					if(!n.equals(m))
+						return true;
 		return false;
 	}
 	
@@ -239,13 +241,15 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		Set<String> sources = m.getEntity1().getElements();
 		Set<String> targets = m.getEntity2().getElements();
 		for(String s : sources)
-			for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
-				if(!n.equals(m) && !conflicts.contains(m))
-					conflicts.add(m);
+			if (sourceComponentMaps.contains(s))
+				for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
+					if(!n.equals(m) && !conflicts.contains(m))
+						conflicts.add(m);
 		for(String t : targets)
-			for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
-				if(!n.equals(m) && !conflicts.contains(m))
-					conflicts.add(m);
+			if (sourceComponentMaps.contains(t))
+				for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
+					if(!n.equals(m) && !conflicts.contains(m))
+						conflicts.add(m);
 		return conflicts;
 	}
 	
