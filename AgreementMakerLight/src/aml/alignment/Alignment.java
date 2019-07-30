@@ -239,7 +239,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		}
 		if(targetMaps.contains(m.getEntity2()))
 		{
-			for(Mapping<A> n : targetMaps.get(m.getEntity1()))
+			for(Mapping<A> n : targetMaps.get(m.getEntity2()))
 				if(n.getSimilarity() > m.getSimilarity())
 					return true;
 		}
@@ -260,7 +260,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		}
 		if(targetMaps.contains(m.getEntity2()))
 		{
-			for(Mapping<A> n : targetMaps.get(m.getEntity1()))
+			for(Mapping<A> n : targetMaps.get(m.getEntity2()))
 				if(!n.equals(m))
 					return true;
 		}
@@ -422,7 +422,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		}
 		if(targetMaps.contains(m.getEntity2()))
 		{
-			for(Mapping<A> n : targetMaps.get(m.getEntity1()))
+			for(Mapping<A> n : targetMaps.get(m.getEntity2()))
 				if(!n.equals(m) && !conflicts.contains(m))
 					conflicts.add(n);
 		}
