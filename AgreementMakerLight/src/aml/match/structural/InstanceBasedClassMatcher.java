@@ -110,7 +110,7 @@ public class InstanceBasedClassMatcher extends AbstractHashMatcher
 				for(String t : targets)
 					pairs.add(s, t);
 		}
-		System.out.println("Pairs: " + pairs.size());
+
 		for(String s : pairs.keySet())
 		{
 			Set<String> si = rm.getClassIndividuals(s);
@@ -183,7 +183,6 @@ public class InstanceBasedClassMatcher extends AbstractHashMatcher
 					continue;
 				
 				a.add(p1, p2, 1.0);
-				System.out.println("Found a link between " + p1 +  " and  "  + p2);
 			}
 		}
 		
