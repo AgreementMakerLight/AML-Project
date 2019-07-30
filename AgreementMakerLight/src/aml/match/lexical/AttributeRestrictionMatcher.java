@@ -258,6 +258,10 @@ public class AttributeRestrictionMatcher extends BiDirectionalMatcher
 		SimpleAlignment ref = (SimpleAlignment) aml.getAlignment();
 		if (ref == null)
 			return null;
+
+		// Treat undeclared superclasses as common
+		if (aml.getEntityMap().getSuperclasses(classURI).isEmpty())
+			return new Couple<>("", "");
 		
 		for (String sc : aml.getEntityMap().getSuperclasses(classURI)) {
 			for (String domain : aml.getEntityMap().getDomains(propertyURI)) {
@@ -294,6 +298,10 @@ public class AttributeRestrictionMatcher extends BiDirectionalMatcher
 		if (ref == null)
 			return null;
 		
+		// Treat undeclared superclasses as common
+		if (aml.getEntityMap().getSuperclasses(classURI).isEmpty())
+			return new Couple<>("", "");
+
 		for (String sc : aml.getEntityMap().getSuperclasses(classURI)) {
 			for (String domain : aml.getEntityMap().getRanges(propertyURI)) {
 				// Check in both directions as o1 and o2 could be either source or target
@@ -330,12 +338,12 @@ public class AttributeRestrictionMatcher extends BiDirectionalMatcher
 		// Retrieve all classes and object properties in each ontology
 		Set<String> srcClasses = o1.getEntities(EntityType.CLASS);
 		Set<String> tgtClasses = o2.getEntities(EntityType.CLASS);
-
+		
 		// Remove from consideration any classes which already have a mapping
 		srcClasses = removeMappedEntities(srcClasses);
 		tgtClasses = removeMappedEntities(tgtClasses);
 
-	    // For each class in o1, find properties pin o2 such that the
+		// For each class in o1, find properties pin o2 such that the
 		// superclass of the class and the superclass of the domain of p2 are equivalent.
 		for (String c : srcClasses) {
 			EDOALMapping bestMapping = null;
@@ -500,14 +508,13 @@ public class AttributeRestrictionMatcher extends BiDirectionalMatcher
 	private static String lazyStemmer(String s)
 	{
 		String r = s.trim();
-		if (r.endsWith("ed"))
-			r = s.replaceAll("ed$", "");
-		else if (r.endsWith("er"))
-			r = s.replaceAll("er$", "");
-		else if (r.endsWith("ion"))
-			r = s.replaceAll("ion$", "");
-		else if (r.endsWith("ance"))
-			r = s.replaceAll("ance$", "");
+
+		r = r.replaceAll("zer$", "se");
+		r = r.replaceAll("ed$", "");
+		r = r.replaceAll("es$", "e");
+		r = r.replaceAll("er$", "");
+		r = r.replaceAll("ion$", "");
+		r = r.replaceAll("ance$", "");
 		
 		// Remove one of any doubled letters at the end
 		if (r.length() > 2 && r.charAt(r.length() - 1) == r.charAt(r.length() - 2)) {
