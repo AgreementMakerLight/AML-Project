@@ -139,6 +139,25 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	/**
 	 * Adds all Mappings in a to this Alignment as long as
 	 * they don't conflict with any Mapping already present
+	 * in this Alignment. In case of any conflict, the inferior
+	 * Mapping is removed.
+	 * @param a: the collection of Mappings to add to this Alignment
+	 */
+	public void addAllImprovements(Collection<? extends Mapping<A>> a)
+	{
+		Vector<Mapping<A>> improvements = new Vector<Mapping<A>>();
+		for(Mapping<A> m : a)
+			if(!this.containsConflict(m))
+				if(!this.containsBetterMapping(m)) {
+					this.removeAll(this.getConflicts(m));
+					improvements.add(m);
+				}
+		addAll(improvements);
+	}
+	
+	/**
+	 * Adds all Mappings in a to this Alignment as long as
+	 * they don't conflict with any Mapping already present
 	 * in this Alignment
 	 * @param a: the collection of Mappings to add to this Alignment
 	 */
