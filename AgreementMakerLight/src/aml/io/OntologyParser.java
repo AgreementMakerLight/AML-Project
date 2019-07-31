@@ -690,6 +690,24 @@ public class OntologyParser
 						rm.addRange(propUri, cf.asOWLClass().getIRI().toString());
 				}
 			}
+			//Sometimes ontologies fail to explicitly declare domains/ranges. 
+			//In this case use domains/ranges from its inverse when available.
+			if (domains.isEmpty())
+			{
+				for (OWLObjectPropertyExpression inverse : op.getInverses(o))
+					for (OWLClassExpression range : inverse.getRanges(o))
+						for(OWLClassExpression cf : range.asDisjunctSet())
+							if(cf instanceof OWLClass)
+								rm.addDomain(propUri, cf.asOWLClass().getIRI().toString());
+			}
+			if (ranges.isEmpty())
+			{
+				for (OWLObjectPropertyExpression inverse : op.getInverses(o))
+					for (OWLClassExpression domain : inverse.getDomains(o))
+						for(OWLClassExpression cf : domain.asDisjunctSet())
+							if(cf instanceof OWLClass)
+								rm.addRange(propUri, cf.asOWLClass().getIRI().toString());
+			}
 		}
 		//Process property chains (including "transitive over" relations)
 		//This requires that all properties be indexed, and thus has to be done in a 2nd pass
