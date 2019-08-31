@@ -90,7 +90,7 @@ public class Alignment implements Collection<Mapping>
 	public Alignment(String file) throws Exception
 	{
 		this();
-		if(file.endsWith(".rdf"))
+		if(file.endsWith(".rdf") || file.endsWith(".xml"))
 			loadMappingsRDF(file);
 		else if(file.endsWith(".tsv"))
 			loadMappingsTSV(file);
