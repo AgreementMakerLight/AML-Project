@@ -31,13 +31,15 @@ import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.ontology.Ontology;
+import aml.ontology.RelationshipMap;
 import aml.ontology.ValueMap;
 import aml.settings.EntityType;
 import aml.settings.InstanceMatchingCategory;
+import aml.settings.MappingRelation;
 import aml.util.NameSimilarity;
 import aml.util.Table2Set;
 
-public class ValueStringMatcher implements PrimaryMatcher, Rematcher
+public class ValueStringMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 {
 	
 //Attributes
@@ -86,6 +88,82 @@ public class ValueStringMatcher implements PrimaryMatcher, Rematcher
 	public EntityType[] getSupportedEntityTypes()
 	{
 		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment extendAlignment(Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{
+		checkEntityType(e);
+		System.out.println("Running Value String Matcher");
+		long time = System.currentTimeMillis()/1000;
+		RelationshipMap rels = aml.getRelationshipMap();
+		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+		for(int i = 0; i < a.size(); i++)
+		{
+			Mapping input = a.get(i);
+			if(!aml.getURIMap().isIndividual(input.getSourceId()))
+				continue;
+			Set<Integer> sourceChildren = rels.getIndividualActiveRelations(input.getSourceId());
+			Set<Integer> targetChildren = rels.getIndividualActiveRelations(input.getTargetId());
+			for(Integer s : sourceChildren)
+			{
+				if(a.containsSource(s) || !aml.getURIMap().isIndividual(s))
+					continue;
+				for(Integer t : targetChildren)
+				{
+					if(a.containsTarget(t))
+						continue;
+					boolean checkRels = false;
+					for(Integer r1 : rels.getIndividualProperties(input.getSourceId(), s))
+					{
+						if(checkRels)
+							break;
+						for(Integer r2 : rels.getIndividualProperties(input.getTargetId(), t))
+						{
+							if(r1 == r2 || a.contains(r1, r2, MappingRelation.EQUIVALENCE))
+							{
+								checkRels = true;
+								break;
+							}
+						}
+					}
+					if(checkRels)
+						toMap.add(s,t);
+				}
+			}
+			Set<Integer> sourceParents = rels.getIndividualPassiveRelations(input.getSourceId());
+			Set<Integer> targetParents = rels.getIndividualPassiveRelations(input.getTargetId());
+			for(Integer s : sourceParents)
+			{
+				if(a.containsSource(s))
+					continue;
+				for(Integer t : targetParents)
+				{
+					if(a.containsTarget(t))
+						continue;
+					boolean checkRels = false;
+					for(Integer r1 : rels.getIndividualProperties(s, input.getSourceId()))
+					{
+						if(checkRels)
+							break;
+						for(Integer r2 : rels.getIndividualProperties(t, input.getTargetId()))
+						{
+							if(r1 == r2 || a.contains(r1, r2, MappingRelation.EQUIVALENCE))
+							{
+								checkRels = true;
+								break;
+							}
+						}
+					}
+					if(checkRels)
+						toMap.add(s, t);
+				}
+			}
+		}
+		Alignment ext = mapInParallel(toMap,thresh);
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
+		return ext;		
 	}
 	
 	@Override
