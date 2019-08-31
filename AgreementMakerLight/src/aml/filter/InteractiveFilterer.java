@@ -23,7 +23,6 @@ import aml.AML;
 import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.settings.MappingStatus;
-import aml.settings.SizeCategory;
 import aml.util.InteractionManager;
 
 public class InteractiveFilterer implements Filterer
@@ -39,8 +38,6 @@ public class InteractiveFilterer implements Filterer
 	private final double HIGH_THRESH = 0.7;
 	private final double AVERAGE_THRESH = 0.2;
 	private double lowThresh = 0.45;
-	//Auxiliary variables
-	private SizeCategory size;
 	
 //Constructors
 	
@@ -48,7 +45,6 @@ public class InteractiveFilterer implements Filterer
 	{
 		aml = AML.getInstance();
 		im = aml.getInteractionManager();
-		size = aml.getSizeCategory();
 		a = aml.getAlignment();
 		qf = aml.buildQualityFlagger();
 	}
@@ -70,7 +66,7 @@ public class InteractiveFilterer implements Filterer
 		int consecutiveNegativeCount = 0;
 		boolean updated = false;
 		int consecutiveNegativeLimit;
-		if(size.equals(SizeCategory.SMALL) && size.equals(SizeCategory.MEDIUM))
+		if(a.size() < 10000)
 			consecutiveNegativeLimit = 5;
 		else
 			consecutiveNegativeLimit = 10;

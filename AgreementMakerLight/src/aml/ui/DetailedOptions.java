@@ -128,7 +128,7 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		string = new JComboBox<String>(measures);
 		string.setSelectedItem(aml.getStringSimMeasure().toString());
 		primaryString = new JCheckBox("Global Match");
-		primaryString.setSelected(aml.getSizeCategory().equals(SizeCategory.SMALL));
+		primaryString.setSelected(aml.getSizeClasses().equals(SizeCategory.SMALL));
 		//Structural Matcher
 		Vector<String> strategies = new Vector<String>(5);
 		for(NeighborSimilarityStrategy ns : NeighborSimilarityStrategy.values())
@@ -144,7 +144,7 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 		select = new JComboBox<String>(types);
 		select.setSelectedItem(aml.getSelectionType().toString());
 		structSelection = new JCheckBox("Structure-Based Selection");
-		structSelection.setSelected(aml.getSizeCategory().equals(SizeCategory.HUGE));
+		structSelection.setSelected(aml.getSizeClasses().equals(SizeCategory.HUGE));
 		
         //Options Panel
         optionPanel = new JPanel();
@@ -268,7 +268,7 @@ public class DetailedOptions extends JDialog implements ActionListener, ItemList
 			panel.add(p1);
 			JPanel p2 = new JPanel();
 			p2.add(primaryString, BorderLayout.CENTER);
-			if(!aml.getSizeCategory().equals(SizeCategory.SMALL))
+			if(!aml.getSizeClasses().equals(SizeCategory.SMALL))
 			{
 				JLabel warning = new JLabel("Warning: quadratic time-complexity!");
 				warning.setForeground(Color.RED);

@@ -18,9 +18,6 @@
 ******************************************************************************/
 package aml.settings;
 
-import aml.AML;
-import aml.ontology.Ontology;
-
 public enum SizeCategory
 {
 	SMALL,
@@ -34,15 +31,11 @@ public enum SizeCategory
 	 * Computes the size category of the matching problem
 	 * based on the number of classes of the input ontologies
 	 */
-	public static SizeCategory getSizeCategory()
+	public static SizeCategory getSizeCategory(int sourceEntities, int targetEntities)
 	{
-		Ontology source = AML.getInstance().getSource();
-		Ontology target = AML.getInstance().getTarget();
-		int sSize = source.count();
-		int tSize = target.count();
-		int max = Math.max(sSize, tSize);
-		int min = Math.min(sSize, tSize);
-		if(max > 60000 || (min > 30000 && sSize*tSize > 1000000000))
+		int max = Math.max(sourceEntities, targetEntities);
+		int min = Math.min(sourceEntities, targetEntities);
+		if(max > 60000 || min > 40000)
 			return HUGE;
 		else if(max > 5000)
 			return LARGE;

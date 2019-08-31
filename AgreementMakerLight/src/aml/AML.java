@@ -111,7 +111,9 @@ public class AML
 	private Set<Integer> targetIndividualsToMatch;
 	private InstanceMatchingCategory inst;
 	private LanguageSetting lang;
-	private SizeCategory size;
+	private SizeCategory classSize;
+	private SizeCategory propSize;
+	private SizeCategory indivSize;
 	private Set<String> languages;
     private SelectionType sType;
 	//Manual matching settings
@@ -257,18 +259,14 @@ public class AML
 				matchClasses = false;
 				matchProperties = false;
 			}
-			else if(sourceRatio > 1 && targetRatio > 1)
-			{
-				matchClasses = false;
-				matchProperties = false;
-			}
 			sourceIndividualsToMatch = source.getEntities(EntityType.INDIVIDUAL);
 			targetIndividualsToMatch = target.getEntities(EntityType.INDIVIDUAL);
 		}
 		
-    	size = SizeCategory.getSizeCategory();
-    	if(size.equals(SizeCategory.HUGE))
-    		threshold = 0.7;
+    	classSize = SizeCategory.getSizeCategory(source.count(EntityType.CLASS), target.count(EntityType.CLASS));
+    	propSize = SizeCategory.getSizeCategory(source.count(EntityType.DATA)+source.count(EntityType.OBJECT), target.count(EntityType.DATA)+target.count(EntityType.OBJECT));
+    	indivSize = SizeCategory.getSizeCategory(source.count(EntityType.INDIVIDUAL), target.count(EntityType.INDIVIDUAL));
+
     	lang = LanguageSetting.getLanguageSetting();
 		languages = new HashSet<String>();
 		for(String s : source.getLexicon().getLanguages())
@@ -283,7 +281,7 @@ public class AML
 		nss = NeighborSimilarityStrategy.DESCENDANTS;
 		directNeighbors = false;
 		sType = SelectionType.getSelectionType();
-		structuralSelection = size.equals(SizeCategory.HUGE);
+		structuralSelection = classSize.equals(SizeCategory.HUGE);
 		flagSteps = new Vector<Problem>();
 		for(Problem f : Problem.values())
 			flagSteps.add(f);
@@ -554,11 +552,27 @@ public class AML
 	}
 	
 	/**
-	 * @return the SizeCategory of the current ontology pair
+	 * @return the SizeCategory of the classes in the current ontology pair
 	 */
-	public SizeCategory getSizeCategory()
+	public SizeCategory getSizeClasses()
 	{
-		return size;
+		return classSize;
+	}
+
+	/**
+	 * @return the SizeCategory of the properties in the current ontology pair
+	 */
+	public SizeCategory getSizeProperties()
+	{
+		return propSize;
+	}
+
+	/**
+	 * @return the SizeCategory of the individuals in the current ontology pair
+	 */
+	public SizeCategory getSizeIndividuals()
+	{
+		return indivSize;
 	}
 	
 	/**

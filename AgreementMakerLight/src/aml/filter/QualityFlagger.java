@@ -53,7 +53,7 @@ public class QualityFlagger implements Flagger
 	{
 		aml = AML.getInstance();
 		a = aml.getAlignment();
-		size = aml.getSizeCategory();
+		size = aml.getSizeClasses();
 		//Construct the list of auxiliary (re)matchers and alignments
 		auxMatchers = new Vector<String>();
 		auxAlignments = new Vector<Alignment>();

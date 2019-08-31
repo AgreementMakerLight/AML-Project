@@ -40,7 +40,7 @@ public enum SelectionType
    	
 	public static SelectionType getSelectionType()
 	{
-		SizeCategory size = AML.getInstance().getSizeCategory();
+		SizeCategory size = AML.getInstance().getSizeClasses();
 		if(size.equals(SizeCategory.SMALL))
 			return SelectionType.STRICT;
 		else if(size.equals(SizeCategory.MEDIUM))

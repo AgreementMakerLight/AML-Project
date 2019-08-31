@@ -47,7 +47,7 @@ public class StopWordExtender implements LexiconExtender
 	{
 		stopList = StopList.read();
 		AML aml = AML.getInstance();
-		s = aml.getSizeCategory();
+		s = aml.getSizeClasses();
 		Lexicon source = aml.getSource().getLexicon();
 		extend(source);
 		Lexicon target = aml.getTarget().getLexicon();
