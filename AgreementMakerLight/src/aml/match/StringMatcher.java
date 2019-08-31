@@ -41,6 +41,7 @@ import aml.settings.EntityType;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.LexicalType;
+import aml.settings.MappingRelation;
 import aml.settings.StringSimMeasure;
 import aml.util.ISub;
 import aml.util.Table2Set;
@@ -144,11 +145,12 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 			System.out.println("Matching Siblings");
 			ext.addAll(extendSiblings(a,thresh));
 		}
-		else
+		else if(e.equals(EntityType.INDIVIDUAL))
 		{
-			//TODO: Add support for other EntityTypes
-			ext = new Alignment();
+			ext = extendNeighbors(a,thresh);
 		}
+		else
+			ext = new Alignment();
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
 		return ext;
@@ -249,6 +251,75 @@ public class StringMatcher implements PrimaryMatcher, Rematcher, SecondaryMatche
 				for(Integer t : targetParents)
 				{
 					if(!a.containsTarget(t))
+						toMap.add(s, t);
+				}
+			}
+		}
+		return mapInParallel(toMap,thresh);
+	}
+	
+	private Alignment extendNeighbors(Alignment a, double thresh)
+	{
+		RelationshipMap rels = aml.getRelationshipMap();
+		Table2Set<Integer,Integer> toMap = new Table2Set<Integer,Integer>();
+		for(int i = 0; i < a.size(); i++)
+		{
+			Mapping input = a.get(i);
+			if(!aml.getURIMap().isIndividual(input.getSourceId()))
+				continue;
+			Set<Integer> sourceChildren = rels.getIndividualActiveRelations(input.getSourceId());
+			Set<Integer> targetChildren = rels.getIndividualActiveRelations(input.getTargetId());
+			for(Integer s : sourceChildren)
+			{
+				if(a.containsSource(s) || !aml.getURIMap().isIndividual(s))
+					continue;
+				for(Integer t : targetChildren)
+				{
+					if(a.containsTarget(t))
+						continue;
+					boolean checkRels = false;
+					for(Integer r1 : rels.getIndividualProperties(input.getSourceId(), s))
+					{
+						if(checkRels)
+							break;
+						for(Integer r2 : rels.getIndividualProperties(input.getTargetId(), t))
+						{
+							if(r1 == r2 || a.contains(r1, r2, MappingRelation.EQUIVALENCE))
+							{
+								checkRels = true;
+								break;
+							}
+						}
+					}
+					if(checkRels)
+						toMap.add(s,t);
+				}
+			}
+			Set<Integer> sourceParents = rels.getIndividualPassiveRelations(input.getSourceId());
+			Set<Integer> targetParents = rels.getIndividualPassiveRelations(input.getTargetId());
+			for(Integer s : sourceParents)
+			{
+				if(a.containsSource(s))
+					continue;
+				for(Integer t : targetParents)
+				{
+					if(a.containsTarget(t))
+						continue;
+					boolean checkRels = false;
+					for(Integer r1 : rels.getIndividualProperties(s, input.getSourceId()))
+					{
+						if(checkRels)
+							break;
+						for(Integer r2 : rels.getIndividualProperties(t, input.getTargetId()))
+						{
+							if(r1 == r2 || a.contains(r1, r2, MappingRelation.EQUIVALENCE))
+							{
+								checkRels = true;
+								break;
+							}
+						}
+					}
+					if(checkRels)
 						toMap.add(s, t);
 				}
 			}
