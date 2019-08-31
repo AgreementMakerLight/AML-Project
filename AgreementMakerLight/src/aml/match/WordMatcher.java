@@ -23,14 +23,16 @@ import java.util.Set;
 import java.util.Vector;
 
 import aml.AML;
+import aml.ontology.RelationshipMap;
 import aml.ontology.WordLexicon;
 import aml.settings.EntityType;
 import aml.settings.InstanceMatchingCategory;
+import aml.settings.MappingRelation;
 import aml.settings.WordMatchStrategy;
 import aml.util.Table2Map;
 import aml.util.Table2Set;
 
-public class WordMatcher implements PrimaryMatcher, Rematcher
+public class WordMatcher implements PrimaryMatcher, SecondaryMatcher, Rematcher
 {
 
 //Attributes
@@ -104,6 +106,53 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	public EntityType[] getSupportedEntityTypes()
 	{
 		return SUPPORT;
+	}
+	
+	@Override
+	public Alignment extendAlignment(Alignment a, EntityType e, double thresh) throws UnsupportedEntityTypeException
+	{	
+		checkEntityType(e);
+		AML aml = AML.getInstance();
+		System.out.println("Extending Alignment with Word Matcher");
+		long time = System.currentTimeMillis()/1000;
+		if(!language.isEmpty())
+		{
+			System.out.println("Language: " + language);
+			sourceLex = aml.getSource().getWordLexicon(e,language);
+			targetLex = aml.getTarget().getWordLexicon(e,language);
+		}
+		else
+		{
+			sourceLex = aml.getSource().getWordLexicon(e);
+			targetLex = aml.getTarget().getWordLexicon(e);
+		}
+		Alignment ext;
+		if(e.equals(EntityType.CLASS))
+		{
+			System.out.println("Matching Children & Parents");
+			ext = extendChildrenAndParents(a,thresh);
+			Alignment aux = extendChildrenAndParents(ext,thresh);
+			int size = 0;
+			for(int i = 0; i < 10 && ext.size() > size; i++)
+			{
+				size = ext.size();
+				for(Mapping m : aux)
+					if(!a.containsConflict(m))
+						ext.add(m);
+				aux = extendChildrenAndParents(aux,thresh);
+			}
+			System.out.println("Matching Siblings");
+			ext.addAll(extendSiblings(a,thresh));
+		}
+		else if(e.equals(EntityType.INDIVIDUAL))
+		{
+			ext = extendNeighbors(a,thresh);
+		}
+		else
+			ext = new Alignment();
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
+		return ext;
 	}
 	
 	@Override
@@ -203,7 +252,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		for(Mapping m : a)
 		{
 			if(aml.getURIMap().getType(m.getSourceId()).equals(e))
-				maps.add(mapTwoClasses(m.getSourceId(),m.getTargetId()));
+				maps.add(mapTwoEntities(m.getSourceId(),m.getTargetId()));
 		}
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Finished in " + time + " seconds");
@@ -245,6 +294,162 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 		}			
 		union -= intersection;
 		return intersection / union;
+	}
+	
+	private Alignment extendChildrenAndParents(Alignment a, double thresh)
+	{
+		AML aml = AML.getInstance();
+		RelationshipMap rels = aml.getRelationshipMap();
+		Alignment ext = new Alignment();
+		for(int i = 0; i < a.size(); i++)
+		{
+			Mapping input = a.get(i);
+			if(!aml.getURIMap().isClass(input.getSourceId()))
+				continue;
+			Set<Integer> sourceChildren = rels.getChildren(input.getSourceId());
+			Set<Integer> targetChildren = rels.getChildren(input.getTargetId());
+			for(Integer s : sourceChildren)
+			{
+				if(a.containsSource(s) || !aml.getURIMap().isClass(s))
+					continue;
+				for(Integer t : targetChildren)
+				{
+					if(!a.containsTarget(t))
+					{
+						Mapping m = mapTwoEntities(s,t);
+						if(m.getSimilarity() >= thresh)
+							ext.add(m);
+					}
+				}
+			}
+			Set<Integer> sourceParents = rels.getParents(input.getSourceId());
+			Set<Integer> targetParents = rels.getParents(input.getTargetId());
+			for(Integer s : sourceParents)
+			{
+				if(a.containsSource(s))
+					continue;
+				for(Integer t : targetParents)
+				{
+					if(!a.containsTarget(t))
+					{
+						Mapping m = mapTwoEntities(s,t);
+						if(m.getSimilarity() >= thresh)
+							ext.add(m);
+					}
+				}
+			}
+		}
+		return ext;
+	}
+	
+	private Alignment extendNeighbors(Alignment a, double thresh)
+	{
+		AML aml = AML.getInstance();
+		RelationshipMap rels = aml.getRelationshipMap();
+		Alignment ext = new Alignment();
+		for(int i = 0; i < a.size(); i++)
+		{
+			Mapping input = a.get(i);
+			if(!aml.getURIMap().isIndividual(input.getSourceId()))
+				continue;
+			Set<Integer> sourceChildren = rels.getIndividualActiveRelations(input.getSourceId());
+			Set<Integer> targetChildren = rels.getIndividualActiveRelations(input.getTargetId());
+			for(Integer s : sourceChildren)
+			{
+				if(a.containsSource(s) || !aml.getURIMap().isIndividual(s))
+					continue;
+				for(Integer t : targetChildren)
+				{
+					if(a.containsTarget(t))
+						continue;
+					boolean checkRels = false;
+					for(Integer r1 : rels.getIndividualProperties(input.getSourceId(), s))
+					{
+						if(checkRels)
+							break;
+						for(Integer r2 : rels.getIndividualProperties(input.getTargetId(), t))
+						{
+							if(r1 == r2 || a.contains(r1, r2, MappingRelation.EQUIVALENCE))
+							{
+								checkRels = true;
+								break;
+							}
+						}
+					}
+					if(checkRels)
+					{
+						Mapping m = mapTwoEntities(s,t);
+						if(m.getSimilarity() >= thresh)
+							ext.add(m);
+					}
+				}
+			}
+			Set<Integer> sourceParents = rels.getIndividualPassiveRelations(input.getSourceId());
+			Set<Integer> targetParents = rels.getIndividualPassiveRelations(input.getTargetId());
+			for(Integer s : sourceParents)
+			{
+				if(a.containsSource(s))
+					continue;
+				for(Integer t : targetParents)
+				{
+					if(a.containsTarget(t))
+						continue;
+					boolean checkRels = false;
+					for(Integer r1 : rels.getIndividualProperties(s, input.getSourceId()))
+					{
+						if(checkRels)
+							break;
+						for(Integer r2 : rels.getIndividualProperties(t, input.getTargetId()))
+						{
+							if(r1 == r2 || a.contains(r1, r2, MappingRelation.EQUIVALENCE))
+							{
+								checkRels = true;
+								break;
+							}
+						}
+					}
+					if(checkRels)
+					{
+						Mapping m = mapTwoEntities(s,t);
+						if(m.getSimilarity() >= thresh)
+							ext.add(m);
+					}
+				}
+			}
+		}
+		return ext;
+	}
+	
+	private Alignment extendSiblings(Alignment a, double thresh)
+	{		
+		AML aml = AML.getInstance();
+		RelationshipMap rels = aml.getRelationshipMap();
+		Alignment ext = new Alignment();
+		for(int i = 0; i < a.size(); i++)
+		{
+			Mapping input = a.get(i);
+			if(!aml.getURIMap().isClass(input.getSourceId()))
+				continue;
+			Set<Integer> sourceSiblings = rels.getAllSiblings(input.getSourceId());
+			Set<Integer> targetSiblings = rels.getAllSiblings(input.getTargetId());
+			if(sourceSiblings.size() > 200 || targetSiblings.size() > 200)
+				continue;
+			for(Integer s : sourceSiblings)
+			{
+				if(a.containsSource(s))
+					continue;
+				for(Integer t : targetSiblings)
+				{
+					if(!a.containsTarget(t))
+					{
+						Mapping m = mapTwoEntities(s,t);
+						if(m.getSimilarity() >= thresh)
+							ext.add(m);
+					}
+				}
+			}
+		}
+		return ext;
 	}
 	
 	//Matches two WordLexicon blocks by class.
@@ -309,7 +514,7 @@ public class WordMatcher implements PrimaryMatcher, Rematcher
 	
 	//Maps two classes according to the selected strategy.
 	//Used by rematch() only.
-	private Mapping mapTwoClasses(int sourceId, int targetId)
+	private Mapping mapTwoEntities(int sourceId, int targetId)
 	{
 		//If the strategy is not by name, compute the class similarity
 		double classSim = 0.0;
