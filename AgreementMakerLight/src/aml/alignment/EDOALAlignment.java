@@ -204,13 +204,15 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		Set<String> sources = m.getEntity1().getElements();
 		Set<String> targets = m.getEntity2().getElements();
 		for(String s : sources)
-			for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
-				if(!n.equals(m))
-					return true;
+			if (sourceComponentMaps.contains(s))
+				for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
+					if(!n.equals(m))
+						return true;
 		for(String t : targets)
-			for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
-				if(!n.equals(m))
-					return true;
+			if (targetComponentMaps.contains(t))
+				for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
+					if(!n.equals(m))
+						return true;
 		return false;
 	}
 	
@@ -239,13 +241,15 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		Set<String> sources = m.getEntity1().getElements();
 		Set<String> targets = m.getEntity2().getElements();
 		for(String s : sources)
-			for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
-				if(!n.equals(m) && !conflicts.contains(m))
-					conflicts.add(m);
+			if (sourceComponentMaps.contains(s))
+				for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
+					if(!n.equals(m) && !conflicts.contains(m))
+						conflicts.add(m);
 		for(String t : targets)
-			for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
-				if(!n.equals(m) && !conflicts.contains(m))
-					conflicts.add(m);
+			if (sourceComponentMaps.contains(t))
+				for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
+					if(!n.equals(m) && !conflicts.contains(m))
+						conflicts.add(m);
 		return conflicts;
 	}
 	
@@ -368,6 +372,25 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	{
 		EDOALMapping m = new EDOALMapping(entity1, entity2, 1.0);
 		return remove(m);
+	}
+	
+	/**
+	 * Returns a copy of the alignment with the source and the target
+	 * ontologies swapped.
+	 */
+	public EDOALAlignment reverse()
+	{
+		EDOALAlignment a = new EDOALAlignment(source, target);
+
+		a.setSourceFormalismName(this.getTargetFormalismName());
+		a.setSourceFormalismURI(this.getTargetFormalismURI());
+		a.setTargetFormalismName(this.getSourceFormalismName());
+		a.setTargetFormalismURI(this.getTargetFormalismURI());
+		
+		for (Mapping<AbstractExpression> m : this)
+			a.add(m.reverse());
+
+		return a;
 	}
 	
 	@Override

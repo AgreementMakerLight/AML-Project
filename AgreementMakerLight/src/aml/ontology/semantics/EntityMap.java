@@ -1245,7 +1245,25 @@ public class EntityMap
 	 */
 	public boolean isIndividual(String uri)
 	{
+		return isNamedIndividual(uri) || isAnonymousIndividual(uri);
+	}
+	
+	/**
+	 * @param uri: the uri of the Ontology entity
+	 * @return whether the entity is a named Individual
+	 */
+	public boolean isNamedIndividual(String uri)
+	{
 		return entityType.contains(uri) && entityType.get(uri).contains(EntityType.INDIVIDUAL);
+	}
+
+	/**
+	 * @param uri: the uri of the Ontology entity
+	 * @return whether the entity is an anonymous Individual
+	 */
+	public boolean isAnonymousIndividual(String uri)
+	{
+		return entityType.contains(uri) && entityType.get(uri).contains(EntityType.ANON_INDIVIDUAL);
 	}
 	
 	/**

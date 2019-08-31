@@ -379,5 +379,24 @@ public class SimpleAlignment extends Alignment<String>
 	{
 		SimpleMapping m = new SimpleMapping(entity1, entity2, 1.0);
 		return remove(m);
-	}	
+	}
+	
+	/**
+	 * Returns a copy of the alignment with the source and the target
+	 * ontologies swapped.
+	 */
+	public SimpleAlignment reverse()
+	{
+		SimpleAlignment a = new SimpleAlignment(source, target);
+
+		a.setSourceFormalismName(this.getTargetFormalismName());
+		a.setSourceFormalismURI(this.getTargetFormalismURI());
+		a.setTargetFormalismName(this.getSourceFormalismName());
+		a.setTargetFormalismURI(this.getTargetFormalismURI());
+		
+		for (Mapping<String> m : this)
+			a.add(m.reverse());
+
+		return a;
+	}
 }

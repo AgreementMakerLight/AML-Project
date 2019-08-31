@@ -88,6 +88,16 @@ public class SimpleMapping extends Mapping<String>
 		return (String)entity2;
 	}
 
+	/**
+	 * Creates a copy of this mapping with the source and target
+	 * entities swapped and with the inverse relationship.
+	 * @return the new mapping
+	 */
+	public SimpleMapping reverse()
+	{
+		return new SimpleMapping(this.getEntity2(), this.getEntity1(), this.getSimilarity(), this.getRelationship().inverse());
+	}
+
 	@Override
 	public String toRDF()
 	{

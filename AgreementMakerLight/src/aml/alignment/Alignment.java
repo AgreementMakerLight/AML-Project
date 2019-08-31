@@ -139,6 +139,25 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	/**
 	 * Adds all Mappings in a to this Alignment as long as
 	 * they don't conflict with any Mapping already present
+	 * in this Alignment. In case of any conflict, the inferior
+	 * Mapping is removed.
+	 * @param a: the collection of Mappings to add to this Alignment
+	 */
+	public void addAllImprovements(Collection<? extends Mapping<A>> a)
+	{
+		Vector<Mapping<A>> improvements = new Vector<Mapping<A>>();
+		for(Mapping<A> m : a)
+			if(!this.containsConflict(m))
+				if(!this.containsBetterMapping(m)) {
+					this.removeAll(this.getConflicts(m));
+					improvements.add(m);
+				}
+		addAll(improvements);
+	}
+	
+	/**
+	 * Adds all Mappings in a to this Alignment as long as
+	 * they don't conflict with any Mapping already present
 	 * in this Alignment
 	 * @param a: the collection of Mappings to add to this Alignment
 	 */
@@ -239,7 +258,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		}
 		if(targetMaps.contains(m.getEntity2()))
 		{
-			for(Mapping<A> n : targetMaps.get(m.getEntity1()))
+			for(Mapping<A> n : targetMaps.get(m.getEntity2()))
 				if(n.getSimilarity() > m.getSimilarity())
 					return true;
 		}
@@ -260,7 +279,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		}
 		if(targetMaps.contains(m.getEntity2()))
 		{
-			for(Mapping<A> n : targetMaps.get(m.getEntity1()))
+			for(Mapping<A> n : targetMaps.get(m.getEntity2()))
 				if(!n.equals(m))
 					return true;
 		}
@@ -422,7 +441,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 		}
 		if(targetMaps.contains(m.getEntity2()))
 		{
-			for(Mapping<A> n : targetMaps.get(m.getEntity1()))
+			for(Mapping<A> n : targetMaps.get(m.getEntity2()))
 				if(!n.equals(m) && !conflicts.contains(m))
 					conflicts.add(n);
 		}

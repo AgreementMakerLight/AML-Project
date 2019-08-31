@@ -1,3 +1,4 @@
+a
 about
 activity
 an
@@ -9,7 +10,9 @@ conference
 do
 for
 from
+has
 in
+is
 like
 of
 on
@@ -18,4 +21,5 @@ receive
 structure
 the
 to
+was
 with
