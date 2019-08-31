@@ -133,7 +133,7 @@ public class AML
 	private OntologyFileChooser ofc;
 	private AlignmentFileChooser afc;
 	private int classDistance = 2;
-	private int individualDistance = 2;
+	private int individualDistance = 1;
 	private boolean showAncestors = true;
 	private boolean showDescendants = true;
     private String language = "en";
