@@ -53,7 +53,7 @@ public class AutomaticMatcher
 	private static InteractionManager im;
 	//Settings
 	private static boolean matchClasses, matchIndividuals, matchProperties;
-	private static SizeCategory size;
+	private static LanguageSetting lang;
 	//BackgroundKnowledge path
 	private static final String BK_PATH = "store/knowledge/";
 	//Thresholds
@@ -86,33 +86,56 @@ public class AutomaticMatcher
 		matchClasses = aml.matchClasses();
 		matchIndividuals = aml.matchIndividuals();
 		matchProperties = aml.matchProperties();
-		size = aml.getSizeCategory();
-		//Initialize the alignment
-		a = new Alignment();
-		thresh = aml.getThreshold();
-		if(matchClasses)
-			matchClasses();
-		else if(matchProperties)
-			matchProperties();
-		if(matchIndividuals)
-			matchIndividuals();
-	}
-		
-//Private Methods
-
-	//Matching procedure for classes (or classes+properties)
-	private static void matchClasses() throws UnsupportedEntityTypeException
-	{
-    	if(im.isInteractive())
-    		thresh += INTERACTIVE_MOD;
 		//If translation is necessary, translate
-		LanguageSetting lang = LanguageSetting.getLanguageSetting();
+		lang = LanguageSetting.getLanguageSetting();
 		if(lang.equals(LanguageSetting.TRANSLATE))
 		{
 			aml.translateOntologies();
     		lang = LanguageSetting.getLanguageSetting();
 		}
+		//Initialize the alignment
+		a = new Alignment();
+		thresh = aml.getThreshold();
+		if(matchClasses & matchProperties & matchIndividuals)
+			matchAll();
+		else if(matchClasses & matchProperties)
+			matchClassesAndProperties();
+		else if(matchClasses)
+		{
+			matchClasses();
+			filterClasses();
+		}
+		else if(matchProperties)
+			matchProperties();
+		else if(matchIndividuals)
+			matchIndividuals();
+	}
 		
+//Private Methods
+
+	private static void matchAll() throws UnsupportedEntityTypeException
+	{
+		matchClasses();
+		matchProperties();
+		filterClasses();
+		matchIndividuals();
+	}
+	
+	private static void matchClassesAndProperties() throws UnsupportedEntityTypeException
+	{
+		matchClasses();
+		matchProperties();
+		DomainAndRangeFilterer dr = new DomainAndRangeFilterer();
+		dr.filter();
+		filterClasses();
+	}
+	
+	//Matching procedure for classes (or classes+properties)
+	private static void matchClasses() throws UnsupportedEntityTypeException
+	{
+		SizeCategory size = aml.getSizeClasses();
+    	if(im.isInteractive())
+    		thresh += INTERACTIVE_MOD;
 		if(aml.hasReferences())
 		{
 			DirectXRefMatcher dx = new DirectXRefMatcher();
@@ -268,79 +291,46 @@ public class AutomaticMatcher
 			a.addAllOneToOne(nsm.extendAlignment(a,EntityType.CLASS,thresh));
 		}
 		aml.setAlignment(a);
-		if(matchProperties)
-		{
-			HybridStringMatcher pm = new HybridStringMatcher(true);
-			a.addAll(pm.match(EntityType.DATA, thresh));
-			a.addAll(pm.match(EntityType.OBJECT, thresh));
-			aml.setAlignment(a);
-			DomainAndRangeFilterer dr = new DomainAndRangeFilterer();
-			dr.filter();
-		}
-		SelectionType sType = aml.getSelectionType();
-		int card = Math.max(aml.getSource().count(EntityType.CLASS), aml.getTarget().count(EntityType.CLASS))/
-				Math.min(aml.getSource().count(EntityType.CLASS), aml.getTarget().count(EntityType.CLASS));
-		if(size.equals(SizeCategory.SMALL))
-			card = 1;
-		if(size.equals(SizeCategory.HUGE))
-		{
-			ObsoleteFilterer or = new ObsoleteFilterer();
-			or.filter();
-				
-			BlockRematcher hl = new BlockRematcher();
-			Alignment b = hl.rematch(a,EntityType.CLASS);
-			NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(
-					NeighborSimilarityStrategy.MAXIMUM,true);
-			Alignment c = nb.rematch(a,EntityType.CLASS);
-			b = LWC.combine(b, c, 0.75);
-			b = LWC.combine(a, b, 0.8);
-			CardinalitySelector s = new CardinalitySelector(thresh-0.05,card,sType);
-			b = s.filter(b);
-			s = new CardinalitySelector(thresh,card,sType,b);
-			s.filter();
-		}
-		else if(!im.isInteractive())
-		{
-			CardinalitySelector s = new CardinalitySelector(thresh,card,sType);
-			s.filter();
-		}
-		if(im.isInteractive())
-		{
-			if(size.equals(SizeCategory.SMALL))
-				im.setLimit((int)Math.round(a.size()*0.45));
-			else
-				im.setLimit((int)Math.round(a.size()*0.15));
-			InteractiveFilterer in = new InteractiveFilterer();
-			in.filter();
-			im.setLimit((int)Math.round(a.size()*0.05));
-		}
-		else
-			im.setLimit(0);
-		if(!size.equals(SizeCategory.HUGE) || aml.getAlignment().cardinality() < 1.5)
-		{
-			Repairer r = new Repairer();
-			r.filter();
-		}
 	}
 	
 	//Matching procedure for individuals
 	private static void matchIndividuals() throws UnsupportedEntityTypeException
 	{
-		LanguageSetting lang = LanguageSetting.getLanguageSetting();
+		SizeCategory size = aml.getSizeIndividuals();
 		double connectivity = aml.getIndividualConnectivity();
 		double valueCoverage = aml.getIndividualValueDensity();
-		//Translation problem
-		if(lang.equals(LanguageSetting.TRANSLATE))
+		double nameCoverage = Math.min(aml.getSource().getLexicon().nameCount(EntityType.INDIVIDUAL)*1.0/aml.getSource().count(EntityType.INDIVIDUAL),
+				aml.getTarget().getLexicon().nameCount(EntityType.INDIVIDUAL)*1.0/aml.getTarget().count(EntityType.INDIVIDUAL));
+		
+		//Lexical problem
+		if(nameCoverage > 0.8)
 		{
-			aml.translateOntologies();
 			LexicalMatcher lm = new LexicalMatcher();
-			Alignment a = lm.match(EntityType.INDIVIDUAL,thresh);
+			Alignment b = lm.match(EntityType.INDIVIDUAL,thresh);
+			a.addAll(b);
 			StringMatcher sm = new StringMatcher();
-			a.addAll(sm.match(EntityType.INDIVIDUAL,thresh));
+			if(size.equals(SizeCategory.HUGE))
+				a.addAll(sm.extendAlignment(a, EntityType.INDIVIDUAL, thresh));
+			else
+				a.addAll(sm.match(EntityType.INDIVIDUAL,thresh));
 			for(String l : aml.getLanguages())
 			{
 				WordMatcher wm = new WordMatcher(l);
-				a.addAll(wm.match(EntityType.INDIVIDUAL, thresh));
+				if(size.equals(SizeCategory.HUGE))
+					a.addAll(wm.extendAlignment(a, EntityType.INDIVIDUAL, thresh));
+				else
+					a.addAll(wm.match(EntityType.INDIVIDUAL,thresh));
+			}
+			ValueMatcher vm = new ValueMatcher();
+			b = vm.match(EntityType.INDIVIDUAL, thresh);
+			if(b.sourceCoverage(EntityType.INDIVIDUAL) > 0.3 && b.targetCoverage(EntityType.INDIVIDUAL) > 0.3)
+			{
+				a.addAllNonConflicting(b);
+				ValueStringMatcher vsm = new ValueStringMatcher();
+				if(size.equals(SizeCategory.HUGE))
+					a.addAll(vsm.extendAlignment(a, EntityType.INDIVIDUAL, thresh));
+				else
+					a.addAll(vsm.match(EntityType.INDIVIDUAL,thresh));				
 			}
 			aml.setAlignment(a);
 			if(aml.getInstanceMatchingCategory().equals(InstanceMatchingCategory.SAME_ONTOLOGY))
@@ -348,7 +338,7 @@ public class AutomaticMatcher
 			Selector s = new Selector(thresh,SelectionType.PERMISSIVE);
 			s.filter();
 		}
-		//Process matching problem
+		//Structural problem
 		else if(connectivity >= 0.9 || (connectivity >= 0.4 && valueCoverage < 0.2))
 		{
 			ProcessMatcher pm = new ProcessMatcher();
@@ -363,6 +353,7 @@ public class AutomaticMatcher
 				s = new Selector(thresh,SelectionType.PERMISSIVE);
 			s.filter();
 		}
+		//Data problem
 		else
 		{
 			ValueMatcher vm = new ValueMatcher();
@@ -373,7 +364,7 @@ public class AutomaticMatcher
 			//ValueMatcher based strategy
 			if(cov >= 0.5)
 			{
-				HybridStringMatcher sm = new HybridStringMatcher(aml.getSizeCategory().equals(SizeCategory.SMALL));
+				HybridStringMatcher sm = new HybridStringMatcher(size.equals(SizeCategory.SMALL));
 				a = sm.match(EntityType.INDIVIDUAL, thresh);
 				a.addAll(b);
 				aml.setAlignment(a);
@@ -418,5 +409,54 @@ public class AutomaticMatcher
 		a.addAll(pm.match(EntityType.DATA, thresh));
 		a.addAll(pm.match(EntityType.OBJECT, thresh));
 		aml.setAlignment(a);
+	}
+	
+	private static void filterClasses() throws UnsupportedEntityTypeException
+	{
+		SizeCategory size = aml.getSizeClasses();
+		SelectionType sType = aml.getSelectionType();
+		int card = Math.max(aml.getSource().count(EntityType.CLASS), aml.getTarget().count(EntityType.CLASS))/
+				Math.min(aml.getSource().count(EntityType.CLASS), aml.getTarget().count(EntityType.CLASS));
+		if(size.equals(SizeCategory.SMALL))
+			card = 1;
+		if(size.equals(SizeCategory.HUGE))
+		{
+			ObsoleteFilterer or = new ObsoleteFilterer();
+			or.filter();
+				
+			BlockRematcher hl = new BlockRematcher();
+			Alignment b = hl.rematch(a,EntityType.CLASS);
+			NeighborSimilarityMatcher nb = new NeighborSimilarityMatcher(
+					NeighborSimilarityStrategy.MAXIMUM,true);
+			Alignment c = nb.rematch(a,EntityType.CLASS);
+			b = LWC.combine(b, c, 0.75);
+			b = LWC.combine(a, b, 0.8);
+			CardinalitySelector s = new CardinalitySelector(thresh-0.05,card,sType);
+			b = s.filter(b);
+			s = new CardinalitySelector(thresh,card,sType,b);
+			s.filter();
+		}
+		else if(!im.isInteractive())
+		{
+			CardinalitySelector s = new CardinalitySelector(thresh,card,sType);
+			s.filter();
+		}
+		if(im.isInteractive())
+		{
+			if(size.equals(SizeCategory.SMALL))
+				im.setLimit((int)Math.round(a.size()*0.45));
+			else
+				im.setLimit((int)Math.round(a.size()*0.15));
+			InteractiveFilterer in = new InteractiveFilterer();
+			in.filter();
+			im.setLimit((int)Math.round(a.size()*0.05));
+		}
+		else
+			im.setLimit(0);
+		if(!size.equals(SizeCategory.HUGE) || aml.getAlignment().cardinality() < 1.5)
+		{
+			Repairer r = new Repairer();
+			r.filter();
+		}
 	}
 }
