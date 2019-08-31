@@ -123,7 +123,7 @@ public class ViewMapping extends JDialog implements ActionListener
   	private DirectedGraph directedGraph;
   	private HashSet<Integer> nodes;
   	private Table2Set<Integer,Integer> edges;
-  	private int classDistance, individualDistance;
+  	private int classDistance;
   	private float[] sourceColor, targetColor;
 
 //Constructors
@@ -350,7 +350,6 @@ public class ViewMapping extends JDialog implements ActionListener
 		edges = new Table2Set<Integer,Integer>();
 		//Get the maximum distance
 		classDistance = aml.getClassDistance();
-		individualDistance = aml.getIndividualDistance();
 		
 		//Add the starting source and target nodes to the graph
 		addNode(sourceId,8);
