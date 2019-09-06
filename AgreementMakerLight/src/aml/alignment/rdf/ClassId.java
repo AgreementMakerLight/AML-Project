@@ -59,8 +59,7 @@ public class ClassId extends ClassExpression
 	public String toRDF()
 	{
 		return "<" + RDFElement.CLASS_.toRDF() + " " +  RDFElement.RDF_ABOUT.toRDF() + "=\"" +
-				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next()) +
-				"\"/>";
+				elements.iterator().next() + "\"/>";
 	}
 
 	@Override

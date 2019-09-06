@@ -59,8 +59,7 @@ public class IndividualId extends AbstractExpression implements ValueExpression
 	public String toRDF()
 	{
 		return "<" + RDFElement.INSTANCE_.toRDF() + " " +  RDFElement.RDF_ABOUT.toRDF() + "=\"" +
-				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next()) +
-				"\"/>";
+				elements.iterator().next() + "\"/>";
 	}
 
 	@Override

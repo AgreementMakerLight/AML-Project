@@ -53,7 +53,7 @@ public class PropertyId extends PropertyExpression
 		PropertyId p = ((PropertyId)o);
 		return p.elements.equals(this.elements) &&
 				((p.lang == null && this.lang == null) ||
-				p.lang.equals(this.lang));
+				(p.lang != null && this.lang != null && p.lang.equals(this.lang)));
 	}
 	
 	@Override
@@ -69,7 +69,7 @@ public class PropertyId extends PropertyExpression
 	public String toRDF()
 	{
 		String s = "<" + RDFElement.PROPERTY_.toRDF() + " " +  RDFElement.RDF_ABOUT.toRDF() + "=\"" +
-				AML.getInstance().getEntityMap().getLocalName(elements.iterator().next());
+				elements.iterator().next();
 		if(lang != null)
 			s += "\" edoal:lang=\"" + lang;
 		s += "\"/>";
