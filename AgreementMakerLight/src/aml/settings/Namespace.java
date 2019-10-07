@@ -20,33 +20,26 @@ package aml.settings;
 
 public enum Namespace
 {
-    ALIGN_SVC		("alignsvc","http://exmo.inrialpes.fr/align/service","#"),
-    ALIGN_EXT		("alext","http://exmo.inrialpes.fr/align/ext/1.0/",""),
-    ALIGNMENT		("align","http://knowledgeweb.semanticweb.org/heterogeneity/alignment","#"),
-    DUBLIN_CORE		("dc","http://purl.org/dc/elements/1.1/",""),
-    EDOAL			("edoal","http://ns.inria.org/edoal/1.0/","#"),
-    OWL				("owl","http://www.w3.org/2002/07/owl#",""),
-    RDF				("rdf","http://www.w3.org/1999/02/22-rdf-syntax-ns#",""),
-    RDFS			("rdfs","http://www.w3.org/2000/01/rdf-schema#",""),
-    SKOS			("skos","http://www.w3.org/2004/02/skos/core#",""),
-    SOAP			("SOAP-ENV","http://schemas.xmlsoap.org/soap/envelope/",""),
-    XSD				("xsd","http://www.w3.org/2001/XMLSchema","#"),
-    XSI				("xsi","http://www.w3.org/1999/XMLSchema-instance","");
+    ALIGN_SVC		("alignsvc","http://exmo.inrialpes.fr/align/service#"),
+    ALIGN_EXT		("alext","http://exmo.inrialpes.fr/align/ext/1.0/"),
+    ALIGNMENT		("align","http://knowledgeweb.semanticweb.org/heterogeneity/alignment#"),
+    DUBLIN_CORE		("dc","http://purl.org/dc/elements/1.1/"),
+    EDOAL			("edoal","http://ns.inria.org/edoal/1.0/"),
+    OWL				("owl","http://www.w3.org/2002/07/owl#"),
+    RDF				("rdf","http://www.w3.org/1999/02/22-rdf-syntax-ns#"),
+    RDFS			("rdfs","http://www.w3.org/2000/01/rdf-schema#"),
+    SKOS			("skos","http://www.w3.org/2004/02/skos/core#"),
+    SOAP			("SOAP-ENV","http://schemas.xmlsoap.org/soap/envelope/"),
+    XSD				("xsd","http://www.w3.org/2001/XMLSchema#"),
+    XSI				("xsi","http://www.w3.org/1999/XMLSchema-instance");
 	
 	final public String ns;
 	final public String uri;
-	final public String separator;
 	
-	Namespace(String ns, String uri, String separator)
+	Namespace(String ns, String uri)
 	{
 		this.ns = ns;
 		this.uri = uri;
-		this.separator = separator;
-	}
-	
-	public String prefix()
-	{
-		return uri + separator;
 	}
 	
 	public String toString()

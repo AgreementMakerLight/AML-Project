@@ -105,7 +105,7 @@ public class SimpleMapping extends Mapping<String>
 			"<Cell>\n" +
 			"<entity1 " + RDFElement.RDF_RESOURCE.toRDF() + "=\"" + entity1 +"\"/>\n" +
 			"<entity2 " + RDFElement.RDF_RESOURCE.toRDF() + "=\"" + entity2 +"\"/>\n" +
-			"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.prefix() + "float\">"+ similarity +"</measure>\n" +
+			"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.uri + "float\">"+ similarity +"</measure>\n" +
 			"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n" +
 			"</Cell>\n" +
 			"</map>";

@@ -367,11 +367,11 @@ public class AttributeRestrictionMatcher extends BiDirectionalMatcher
 
 							double sim = stringSimilarity(className, rangeName, thresh);
 							if (sim >= thresh) {
-								AttributeDomainRestriction e1 =
+								ClassId e1 = new ClassId(c);
+								AttributeDomainRestriction e2 =
 										new AttributeDomainRestriction(new RelationId(p), 
 												new ClassId(rangeSubclass),
 												RestrictionElement.ALL);
-								ClassId e2 = new ClassId(c);
 							
 								if (bestMapping == null || bestMapping.getSimilarity() < sim)
 									bestMapping = new EDOALMapping(e1, e2, sim);

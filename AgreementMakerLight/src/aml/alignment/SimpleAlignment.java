@@ -28,6 +28,10 @@ import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.MappingStatus;
 import aml.alignment.mapping.SimpleMapping;
+import aml.alignment.rdf.ClassId;
+import aml.alignment.rdf.IndividualId;
+import aml.alignment.rdf.PropertyId;
+import aml.alignment.rdf.RelationId;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.semantics.EntityMap;
@@ -47,7 +51,7 @@ public class SimpleAlignment extends Alignment<String>
 	 */
 	public SimpleAlignment()
 	{
-		super();
+		super(LEVEL);
 	}
 
 	/**
@@ -55,8 +59,7 @@ public class SimpleAlignment extends Alignment<String>
 	 */
 	public SimpleAlignment(Ontology source, Ontology target)
 	{
-		super(source,target);
-		level = LEVEL;
+		super(LEVEL, source,target);
 	}
 	
 //Public Methods
@@ -111,6 +114,25 @@ public class SimpleAlignment extends Alignment<String>
 		SimpleMapping m = new SimpleMapping(entity1, entity2, sim, r);
 		m.setStatus(s);
 		return this.add(m);
+	}
+	
+	public EDOALAlignment asEDOAL()
+	{
+		EDOALAlignment a = new EDOALAlignment();
+		for(Mapping<String> m : maps)
+		{
+			String s = m.getEntity1();
+			String t = m.getEntity2();
+			if(AML.getInstance().getEntityMap().isClass(s))
+				a.add(new ClassId(s), new ClassId(t), m.getSimilarity(), m.getRelationship());
+			else if(AML.getInstance().getEntityMap().isObjectProperty(s))
+				a.add(new RelationId(s), new RelationId(t), m.getSimilarity(), m.getRelationship());
+			else if(AML.getInstance().getEntityMap().isDataProperty(s))
+				a.add(new PropertyId(s,"en"), new PropertyId(t,null), m.getSimilarity(), m.getRelationship());
+			else if(AML.getInstance().getEntityMap().isIndividual(s))
+				a.add(new IndividualId(s), new IndividualId(t), m.getSimilarity(), m.getRelationship());
+		}
+		return a;
 	}
 	
 	@Override

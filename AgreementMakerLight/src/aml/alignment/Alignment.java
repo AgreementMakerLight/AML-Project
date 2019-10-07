@@ -71,12 +71,26 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	 * [Use when you want to manipulate an Alignment
 	 * without opening its ontolologies]
 	 */
-	public Alignment()
+	public Alignment(String level)
 	{
 		maps = new Vector<Mapping<A>>(0,1);
 		sourceMaps = new Map2List<A,Mapping<A>>();
 		targetMaps = new Map2List<A,Mapping<A>>();
-		level = null;
+		this.level = level;
+	}
+	
+	/**
+	 * Creates a new empty Alignment between the source and target ontologies
+	 * @param source: the source ontology
+	 * @param target: the target ontology
+	 */
+	public Alignment(String level, Ontology source, Ontology target)
+	{
+		this(level);
+		this.source = source;
+		this.sourceURI = source.getURI();
+		this.target = target;
+		this.targetURI = target.getURI();
 	}
 
 	/**
@@ -84,15 +98,21 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	 * @param source: the source ontology
 	 * @param target: the target ontology
 	 */
-	public Alignment(Ontology source, Ontology target)
+	public Alignment(String level, Ontology source, Ontology target, String sourceFormalismName, 
+			String sourceFormalismURI, String targetFormalismName, String targetFormalismURI)
 	{
-		this();
+		this(level);
 		this.source = source;
 		this.sourceURI = source.getURI();
+		this.sourceFormalismName = sourceFormalismName;
+		this.sourceFormalismURI = sourceFormalismURI;
 		this.target = target;
 		this.targetURI = target.getURI();
+		this.targetFormalismName = targetFormalismName;
+		this.targetFormalismURI = targetFormalismURI;
 	}
 
+	
 //Public Methods
 
 	@Override
@@ -884,7 +904,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 				"xmlns:rdf='" + Namespace.RDF.uri + "'\n" + 
 				"xmlns:xsd='" + Namespace.XSD.uri + "'";
 		if(level.equals(EDOALAlignment.LEVEL))
-			s += "\nxmlns:xsd='" + Namespace.EDOAL.uri + "'";
+			s += "\nxmlns:align='" +  Namespace.ALIGNMENT.uri + "'\nxmlns:edoal='" + Namespace.EDOAL.uri + "'";
 		s += ">\n";
 		s += "<" + RDFElement.ALIGNMENT_ + ">\n" +
 				"<" + RDFElement.XML + ">yes</" + RDFElement.XML +">\n" +
@@ -913,7 +933,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 							"</" + RDFElement.FORMALISM + ">\n";
 
 				}
-				s += "</" + RDFElement.ONTOLOGY + ">\n" +
+				s += "</" + RDFElement.ONTOLOGY_ + ">\n" +
 						"</" + RDFElement.ONTO1 + ">\n";
 			}
 			if(targetLocation == null && targetFormalismName == null && targetFormalismURI != null)
@@ -937,7 +957,7 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 							"</" + RDFElement.FORMALISM + ">\n";
 
 				}
-				s += "</" + RDFElement.ONTOLOGY + ">\n" +
+				s += "</" + RDFElement.ONTOLOGY_ + ">\n" +
 						"</" + RDFElement.ONTO2 + ">\n";
 			}
 		}

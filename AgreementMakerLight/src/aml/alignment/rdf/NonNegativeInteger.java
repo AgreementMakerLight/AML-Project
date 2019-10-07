@@ -24,7 +24,7 @@ public class NonNegativeInteger extends Literal
 
 //Attributes
 	
-	private static final String TYPE = "&xsd;integer";
+	private static final String TYPE = "http://www.w3.org/2001/XMLSchema#integer";
 	
 //Constructor
 
@@ -34,7 +34,7 @@ public class NonNegativeInteger extends Literal
 	 */
 	public NonNegativeInteger(int value)
 	{
-		super(TYPE, null, "" + value);
+		super("" + value, TYPE, null);
 	}
 
 //Public Methods

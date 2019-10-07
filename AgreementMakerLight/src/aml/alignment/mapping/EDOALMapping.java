@@ -98,7 +98,7 @@ public class EDOALMapping extends Mapping<AbstractExpression>
 				"<entity2>\n" +
 				((AbstractExpression)entity2).toRDF() +
 				"\n</entity2>\n" +
-				"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.prefix() + "float\">"+ similarity +"</measure>\n" +
+				"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.uri + "float\">"+ similarity +"</measure>\n" +
 				"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";
 			out += "</Cell>\n" +
 				"</map>";

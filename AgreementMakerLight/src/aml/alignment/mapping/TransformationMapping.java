@@ -99,7 +99,7 @@ public class TransformationMapping extends EDOALMapping
 				"<entity1>\n" + entity1.toRDF() + "\n</entity1>\n" +
 				"<entity2>\n" +	entity2.toRDF() + "\n</entity2>\n" +
 				"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n" +
-				"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.prefix() + "float\">"+ similarity +"</measure>\n";
+				"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.uri + "float\">"+ similarity +"</measure>\n";
 		for(Transformation t : transformations)
 			s += t.toRDF();
 		s += "</Cell>\n</map>";

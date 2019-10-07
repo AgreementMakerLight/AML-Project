@@ -40,6 +40,8 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 
 	//The EDOAL Alignment Level
 	public static final String LEVEL = "2EDOAL";
+	public static final String FORMALISM_NAME = "owl";
+	public static final String FORMALISM_URI = "http://www.w3.org/TR/owl-guide/";
 	//Mappings organized by ontology entities mentioned in entity1
 	private Map2List<String,Mapping<AbstractExpression>> sourceComponentMaps;
 	//Mappings organized by entity2
@@ -53,10 +55,9 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	 */
 	public EDOALAlignment()
 	{
-		super();
+		super(LEVEL);
 		sourceComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
 		targetComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
-		level = LEVEL;
 	}
 
 	/**
@@ -64,7 +65,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	 */
 	public EDOALAlignment(Ontology source, Ontology target)
 	{
-		super(source,target);
+		super(LEVEL, source, target, FORMALISM_NAME, FORMALISM_URI, FORMALISM_NAME, FORMALISM_URI);
 		sourceComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
 		targetComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
 		level = LEVEL;

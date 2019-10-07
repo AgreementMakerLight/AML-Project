@@ -22,6 +22,7 @@ import java.util.Set;
 import aml.AML;
 import aml.alignment.EDOALAlignment;
 import aml.alignment.mapping.EDOALMapping;
+import aml.alignment.mapping.Mapping;
 import aml.alignment.rdf.*;
 import aml.match.BiDirectionalMatcher;
 import aml.ontology.EntityType;
@@ -182,7 +183,6 @@ public class UnionMatcher extends BiDirectionalMatcher
 				}
 			}
 		}
-		
 		return a;
 	}
 
