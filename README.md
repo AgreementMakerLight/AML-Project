@@ -1,4 +1,4 @@
-# AgreementMakerLight
+# AgreementMakerLight (AML)
 
 ## Installing AML
 
