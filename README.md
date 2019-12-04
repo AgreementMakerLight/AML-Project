@@ -49,4 +49,4 @@ AML includes software developed at LASIGE (https://www.lasige.di.fc.ul.pt/) in c
 
 If you use AML, please cite the following publication:
 
-  D. Faria, C. Pesquita, E. Santos, M. Palmonari, I. Cruz, and F. Couto, The AgreementMakerLight ontology matching system, ODBASE 2013.
+    D. Faria, C. Pesquita, E. Santos, M. Palmonari, I. Cruz, and F. Couto, The AgreementMakerLight ontology matching system, ODBASE 2013.
