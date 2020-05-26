@@ -75,7 +75,7 @@ public enum SKOS
      */
     public IRI toIRI()
     {
-    	return IRI.create(Namespace.SKOS + uri);
+    	return IRI.create(Namespace.SKOS.prefix() + uri);
     }
     
     public String toString()
