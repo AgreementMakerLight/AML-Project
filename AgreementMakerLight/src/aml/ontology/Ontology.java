@@ -465,6 +465,8 @@ public class Ontology
 							if(a.getValue() instanceof OWLLiteral)
 							{
 								OWLLiteral val = (OWLLiteral) a.getValue();
+								if(!val.isRDFPlainLiteral())
+									continue;
 								name = val.getLiteral();
 								String lang = val.getLang();
 								if(lang.equals(""))
@@ -547,6 +549,7 @@ public class Ontology
 						else if(rel.equals(SKOS.RELATED.toIRI()))
 						{
 							rm.addEquivalence(child, parent, related, false);
+							//Note that SKOS:related are disjoint by definition
 							disj.add(child, parent);
 						}
 					}
@@ -577,20 +580,10 @@ public class Ontology
 					else if(rel.equals(SKOS.RELATED.toIRI()))
 					{
 						rm.addEquivalence(child, parent, related, false);
+						//Note that SKOS:related are disjoint by definition
 						disj.add(child, parent);
 					}
 				}
-			}
-		}
-		for(Integer i : disj.keySet())
-		{
-			Set<Integer> top1 = getTopParents(i);
-			for(Integer j : disj.get(i))
-			{
-				Set<Integer> top2 = getTopParents(j);
-				for(Integer k : top1)
-					for(Integer l : top2)
-						rm.addDisjoint(k, l);
 			}
 		}
 	}
@@ -658,6 +651,8 @@ public class Ontology
 							if(a.getValue() instanceof OWLLiteral)
 							{
 								OWLLiteral val = (OWLLiteral) a.getValue();
+								if(!val.isRDFPlainLiteral())
+									continue;
 								name = val.getLiteral();
 								String lang = val.getLang();
 								if(lang.equals(""))
@@ -1504,6 +1499,8 @@ public class Ontology
 			Set<OWLDataPropertyExpression> sProps = dp.getSuperProperties(o);
 			for(OWLDataPropertyExpression de : sProps)
 			{
+				if(de.isAnonymous())
+					continue;
 				OWLDataProperty sProp = de.asOWLDataProperty();
 				int sId = uris.getIndex(sProp.getIRI().toString());
 				if(sId != -1)
@@ -1520,6 +1517,8 @@ public class Ontology
 			Set<OWLObjectPropertyExpression> sProps = op.getSuperProperties(o);
 			for(OWLObjectPropertyExpression oe : sProps)
 			{
+				if(oe.isAnonymous())
+					continue;
 				OWLObjectProperty sProp = oe.asOWLObjectProperty();
 				int sId = uris.getIndex(sProp.getIRI().toString());
 				if(sId != -1)
@@ -1772,28 +1771,6 @@ public class Ontology
 			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
 			minCard.add(property, child, cardinality);					
 		}
-	}
-
-	//Gets the top level parents of a class (recursively)
-	private Set<Integer> getTopParents(int classId)
-	{
-		return getTopParents(rm.getSuperClasses(classId, true));
-	}
-
-	//Gets the top level parents of a class (recursively)
-	private Set<Integer> getTopParents(Set<Integer> classes)
-	{
-		Set<Integer> parents = new HashSet<Integer>();
-		for(int i : classes)
-		{
-			boolean check = parents.addAll(rm.getSuperClasses(i, true));
-			if(!check)
-				parents.add(i);
-		}
-		if(parents.equals(classes))
-			return classes;
-		else
-			return getTopParents(parents);
 	}
 
 	//Get the local name of an entity from its URI
