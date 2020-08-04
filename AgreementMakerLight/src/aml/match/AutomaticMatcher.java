@@ -276,12 +276,15 @@ public class AutomaticMatcher
 		{
 			SpacelessLexicalMatcher sl = new SpacelessLexicalMatcher();
 			a.addAllNonConflicting(sl.match(EntityType.CLASS, thresh));
-			double nameRatio = Math.max(1.0*source.getLexicon().nameCount(EntityType.CLASS)/source.count(EntityType.CLASS),
-					1.0*target.getLexicon().nameCount(EntityType.CLASS)/target.count(EntityType.CLASS));
-			if(nameRatio >= 1.2)
+			if(lang.equals(LanguageSetting.SINGLE))
 			{
-				ThesaurusMatcher tm = new ThesaurusMatcher();
-				a.addAllOneToOne(tm.match(EntityType.CLASS, thresh));
+				double nameRatio = Math.max(1.0*source.getLexicon().nameCount(EntityType.CLASS)/source.count(EntityType.CLASS),
+						1.0*target.getLexicon().nameCount(EntityType.CLASS)/target.count(EntityType.CLASS));
+				if(nameRatio >= 1.2)
+				{
+					ThesaurusMatcher tm = new ThesaurusMatcher();
+					a.addAllOneToOne(tm.match(EntityType.CLASS, thresh));
+				}
 			}
 		}
 		if(size.equals(SizeCategory.SMALL) || size.equals(SizeCategory.MEDIUM))
