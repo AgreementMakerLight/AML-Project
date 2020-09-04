@@ -786,6 +786,14 @@ public class EntityMap
 	}
 	
 	/**
+	 * @return the whole table of active relations
+	 */
+	public Map2Map2Set<String,String,String> getIndividualActiveRelations()
+	{
+		return activeRelation;
+	}
+	
+	/**
 	 * @param indivId: the id of the individual to search in the map
 	 * @return the set of individuals to which the given individual is actively related
 	 */
@@ -795,6 +803,7 @@ public class EntityMap
 			return activeRelation.keySet(indivId);
 		return new HashSet<String>();
 	}
+
 	
 	/**
 	 * @param indivId: the id of the individual to search in the map
