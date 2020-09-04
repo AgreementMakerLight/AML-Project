@@ -104,12 +104,14 @@ public class OntologyParser
 	 * @return the AML Ontology encoding the ontology/thesaurus in the file
 	 * @throws OWLOntologyCreationException
 	 */
+	@SuppressWarnings("deprecation")
 	public static Ontology parse(String path) throws OWLOntologyCreationException
 	{
 		//Increase the entity expansion limit to allow large ontologies
 		System.setProperty(LIMIT, "1000000");
 		//Get an Ontology Manager and Data Factory
 		manager = OWLManager.createOWLOntologyManager();
+		manager.setSilentMissingImportsHandling(true);
 		factory = manager.getOWLDataFactory();
 		//Load the local ontology
 		File f = new File(path);
@@ -135,12 +137,14 @@ public class OntologyParser
 	 * @return the AML Ontology encoding the ontology/thesaurus in the file
 	 * @throws OWLOntologyCreationException
 	 */
+	@SuppressWarnings("deprecation")
 	public static Ontology parse(URI uri) throws OWLOntologyCreationException
 	{
 		//Increase the entity expansion limit to allow large ontologies
 		System.setProperty(LIMIT, "1000000");
 		//Get an Ontology Manager and Data Factory
 		manager = OWLManager.createOWLOntologyManager();
+		manager.setSilentMissingImportsHandling(true);
 		factory = manager.getOWLDataFactory();
 		OWLOntology o;
 		//Check if the URI is local
