@@ -83,7 +83,8 @@ public class LexicalMatcher implements PrimaryMatcher
 			names = sLex.getNames(e);
 		else
 			names = tLex.getNames(e);
-		
+		System.out.println(names.size());
+		int count = 0;
 		//If we have a multi-language Lexicon, we must match language by language
 		if(aml.getLanguageSetting().equals(LanguageSetting.MULTI))
 		{
@@ -99,8 +100,9 @@ public class LexicalMatcher implements PrimaryMatcher
 					//Get all term indexes for the name in both ontologies
 					Set<Integer> sourceIndexes = sLex.getEntitiesWithLanguage(e,s,l);
 					Set<Integer> targetIndexes = tLex.getEntitiesWithLanguage(e,s,l);
-					//If the name doesn't exist in either ontology, skip it
-					if(sourceIndexes == null || targetIndexes == null)
+					//If the name doesn't exist in either ontology, or if it is too common skip it
+					if(sourceIndexes == null || targetIndexes == null ||
+							sourceIndexes.size() > 5 || targetIndexes.size() > 5)
 						continue;
 					//Otherwise, match all indexes
 					for(Integer i : sourceIndexes)
@@ -135,8 +137,9 @@ public class LexicalMatcher implements PrimaryMatcher
 				boolean isSmallFormula = StringParser.isFormula(s) && s.length() < 10;
 				Set<Integer> sourceIndexes = sLex.getEntities(e,s);
 				Set<Integer> targetIndexes = tLex.getEntities(e,s);
-				//If the name doesn't exist in either ontology, skip it
-				if(sourceIndexes == null || targetIndexes == null)
+				//If the name doesn't exist in either ontology, or if it is too common skip it
+				if(sourceIndexes == null || targetIndexes == null ||
+						sourceIndexes.size() > 5 || targetIndexes.size() > 5)
 					continue;
 				//Otherwise, match all indexes
 				for(Integer i : sourceIndexes)
@@ -165,6 +168,9 @@ public class LexicalMatcher implements PrimaryMatcher
 					}
 				}
 			}
+			count++;
+			if(count%1000==0)
+				System.out.println(count);
 		}
 		//And match them
 		time = System.currentTimeMillis()/1000 - time;
