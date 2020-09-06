@@ -83,8 +83,6 @@ public class LexicalMatcher implements PrimaryMatcher
 			names = sLex.getNames(e);
 		else
 			names = tLex.getNames(e);
-		System.out.println(names.size());
-		int count = 0;
 		//If we have a multi-language Lexicon, we must match language by language
 		if(aml.getLanguageSetting().equals(LanguageSetting.MULTI))
 		{
@@ -168,9 +166,6 @@ public class LexicalMatcher implements PrimaryMatcher
 					}
 				}
 			}
-			count++;
-			if(count%1000==0)
-				System.out.println(count);
 		}
 		//And match them
 		time = System.currentTimeMillis()/1000 - time;
