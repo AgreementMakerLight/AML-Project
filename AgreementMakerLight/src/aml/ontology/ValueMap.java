@@ -23,17 +23,23 @@ package aml.ontology;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.semanticweb.owlapi.model.OWLDatatype;
+
+import aml.alignment.rdf.Datatype;
+import aml.util.data.Map2Map2Map;
 import aml.util.data.Map2Map2Set;
+import aml.util.data.Map2Triple;
+import aml.util.data.Triple;
 
 public class ValueMap
 {
 
 //Attributes	
 
-	//The table of individual indexes (String), property indexes (String), and property values (String)
-	private Map2Map2Set<String,String,String> valueIndividuals;
-	//The table of property indexes (String), property values (String), and individual indexes (String)
-	private Map2Map2Set<String,String,String> individualValues;
+	//The table of individual indexes (String), property indexes (String), property values (String) and type of value (Datatype)
+	public Map2Map2Map<String,String,String,OWLDatatype> valueIndividuals;
+	//The table of property indexes (String), property values (String), individual indexes (String) and type of value (Datatype)
+	private Map2Map2Map<String,String,String,OWLDatatype> individualValues;
 	
 //Constructors
 	
@@ -42,8 +48,8 @@ public class ValueMap
 	 */
 	public ValueMap()
 	{
-		valueIndividuals = new Map2Map2Set<String,String,String>();
-		individualValues = new Map2Map2Set<String,String,String>();
+		valueIndividuals = new Map2Map2Map<String,String,String,OWLDatatype>();
+		individualValues = new Map2Map2Map<String,String,String,OWLDatatype>();
 	}
 	
 //Public Methods
@@ -55,10 +61,24 @@ public class ValueMap
 	 * for which the individual has the value
 	 * @param value: the value of the individual
 	 */
-	public void add(String indivId, String propId, String value)
+	public void add(String indivId, String propId, String value, OWLDatatype type)
 	{
-		valueIndividuals.add(indivId, propId, value);
-		individualValues.add(propId, value, indivId);
+		valueIndividuals.add(indivId, propId, value, type);
+		individualValues.add(propId, value, indivId, type);
+	}
+	
+	/**
+	 * @param propId: the index of the property to search in the ValueMap
+	 * @param value: the value of that property to search in the ValueMap
+	 * @return the set of Individuals that have the given value for the given property
+	 */
+	public OWLDatatype getDataType(String indivId, String propId, String value)
+	{
+		if(valueIndividuals.contains(indivId, propId,value)) 
+		{
+			return valueIndividuals.get(indivId,propId,value);
+		}	
+		return null;
 	}
 	
 	/**
@@ -77,7 +97,7 @@ public class ValueMap
 	public Set<String> getIndividuals(String propId, String value)
 	{
 		if(individualValues.contains(propId,value))
-			return individualValues.get(propId,value);
+			return individualValues.get(propId,value).keySet();
 		return new HashSet<String>();
 	}
 	
@@ -119,7 +139,7 @@ public class ValueMap
 	public Set<String> getValues(String indivId, String propId)
 	{
 		if(valueIndividuals.contains(indivId,propId))
-			return valueIndividuals.get(indivId,propId);
+			return valueIndividuals.get(indivId,propId).keySet();
 		return new HashSet<String>();
 	}
 	
