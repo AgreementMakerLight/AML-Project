@@ -1,21 +1,21 @@
 /******************************************************************************
-* Copyright 2013-2018 LASIGE												  *
-*																			  *
-* Licensed under the Apache License, Version 2.0 (the "License"); you may	  *
-* not use this file except in compliance with the License. You may obtain a	  *
-* copy of the License at http://www.apache.org/licenses/LICENSE-2.0			  *
-*																			  *
-* Unless required by applicable law or agreed to in writing, software		  *
-* distributed under the License is distributed on an "AS IS" BASIS,			  *
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.	  *
-* See the License for the specific language governing permissions and		  *
-* limitations under the License.											  *
-*																			  *
-*******************************************************************************
-* An Ontology file parser based on the OWL API.								  *
-*																			  *
-* @author Daniel Faria, Catia Pesquita                                        *
-******************************************************************************/
+ * Copyright 2013-2018 LASIGE												  *
+ *																			  *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may	  *
+ * not use this file except in compliance with the License. You may obtain a	  *
+ * copy of the License at http://www.apache.org/licenses/LICENSE-2.0			  *
+ *																			  *
+ * Unless required by applicable law or agreed to in writing, software		  *
+ * distributed under the License is distributed on an "AS IS" BASIS,			  *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.	  *
+ * See the License for the specific language governing permissions and		  *
+ * limitations under the License.											  *
+ *																			  *
+ *******************************************************************************
+ * An Ontology file parser based on the OWL API.								  *
+ *																			  *
+ * @author Daniel Faria, Catia Pesquita                                        *
+ ******************************************************************************/
 package aml.io;
 
 import java.io.File;
@@ -64,6 +64,7 @@ import uk.ac.manchester.cs.owl.owlapi.OWLDataHasValueImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLDataSomeValuesFromImpl;
 import uk.ac.manchester.cs.owl.owlapi.OWLObjectCardinalityRestrictionImpl;
 import aml.AML;
+import aml.alignment.rdf.Datatype;
 import aml.ontology.EntityType;
 import aml.ontology.MediatorOntology;
 import aml.ontology.Ontology;
@@ -84,15 +85,15 @@ import aml.util.data.MapSorter;
 public class OntologyParser
 {
 
-//Attributes
-	
+	//Attributes
+
 	//The OWL Ontology Manager and Data Factory
 	private static OWLOntologyManager manager;
 	private static OWLDataFactory factory;
 	//The entity expansion limit property
 	private static final String LIMIT = "entityExpansionLimit";
-	
-//Public Methods
+
+	//Public Methods
 
 	/**
 	 * Creates an AML Ontology object from an OWL ontology or SKOS thesaurus local file
@@ -168,7 +169,7 @@ public class OntologyParser
 		//Return the ontology
 		return l;
 	}
-	
+
 	public static MediatorOntology parseMediator(String path) throws OWLOntologyCreationException
 	{
 		//Increase the entity expansion limit to allow large ontologies
@@ -185,24 +186,24 @@ public class OntologyParser
 			m.setURI(o.getOntologyID().getOntologyIRI().toString());
 		else
 			m.setURI((new File(path)).toURI().toString());
-		
+
 		parse(o,m);
 		//Close the OntModel
-        manager.removeOntology(o);
-        //Reset the entity expansion limit
-        System.clearProperty(LIMIT);
-        
-        //Check if a xrefs file with the same name as the ontology exists 
+		manager.removeOntology(o);
+		//Reset the entity expansion limit
+		System.clearProperty(LIMIT);
+
+		//Check if a xrefs file with the same name as the ontology exists 
 		//And if so, use it to extend the ReferenceMap
 		String refName = path.substring(0,path.lastIndexOf(".")) + ".xrefs";
 		File f2 = new File(refName);
 		if(f2.exists())
 			m.getReferenceMap().extend(refName);
-		
+
 		return m;
 	}
 
-//Private Methods	
+	//Private Methods	
 
 	//Builds the ontology data structures
 	private static void parse(OWLOntology o, Ontology l)
@@ -233,7 +234,7 @@ public class OntologyParser
 
 	private static void parseSKOS(OWLOntology o, Ontology l)
 	{
-	//1 - SKOS Concepts (which are technically OWL individuals, but will be treated as Classes)
+		//1 - SKOS Concepts (which are technically OWL individuals, but will be treated as Classes)
 		//The Lexical type and weight
 		EntityMap rm = AML.getInstance().getEntityMap();
 		Lexicon lex = l.getLexicon();
@@ -309,7 +310,7 @@ public class OntologyParser
 			}
 		}
 
-	//2 - SKOS relationships
+		//2 - SKOS relationships
 		//For simplicity, we convert "broader", "broader_transitive", "narrower"
 		//and "narrower_transitive" to subclass relationships
 		//We treat "related" as a someValues restriction on property "related"
@@ -410,7 +411,7 @@ public class OntologyParser
 	//WARNING: Read source code at your own peril
 	private static void parseOWL(OWLOntology o, Ontology l)
 	{
-	//1 - OWL Classes
+		//1 - OWL Classes
 		EntityMap rm = AML.getInstance().getEntityMap();
 		Lexicon lex = l.getLexicon();
 		ReferenceMap refs = l.getReferenceMap();
@@ -549,7 +550,7 @@ public class OntologyParser
 			}
 		}
 
-	//2 - Data Properties
+		//2 - Data Properties
 		Set<OWLDataProperty> dProps = o.getDataPropertiesInSignature(true);
 		for(OWLDataProperty dp : dProps)
 		{
@@ -560,7 +561,7 @@ public class OntologyParser
 			rm.addURI(propUri,EntityType.DATA_PROP);
 			//And to the ontology
 			l.add(propUri,EntityType.DATA_PROP);
-			
+
 			//Get the local name from the URI
 			String localName = rm.getLocalName(propUri);
 			//Get the label(s)
@@ -614,8 +615,8 @@ public class OntologyParser
 					rm.addRange(propUri, dr.asOWLDatatype().toStringID());
 			}
 		}
-		
-	//3 - Object Properties
+
+		//3 - Object Properties
 		Set<OWLObjectProperty> oProps = o.getObjectPropertiesInSignature(true);
 		for(OWLObjectProperty op : oProps)
 		{
@@ -759,7 +760,7 @@ public class OntologyParser
 			}
 		}
 
-	//4 - Named Individuals and their data values
+		//4 - Named Individuals and their data values
 		ValueMap vMap = l.getValueMap();
 		Map<String,Integer> langCounts = new LinkedHashMap<String,Integer>();
 		//Get an iterator over the ontology individuals
@@ -836,6 +837,7 @@ public class OntologyParser
 				if(annotation.getProperty().equals(label))
 					continue;
 				String propUri = annotation.getProperty().getIRI().toString();
+
 				//Annotations with a LexicalType go to the Lexicon
 				type = LexicalType.getLexicalType(propUri);
 				if(type != null)
@@ -881,7 +883,7 @@ public class OntologyParser
 					rm.addURI(propUri, EntityType.ANNOTATION_PROP);
 					l.add(propUri, EntityType.ANNOTATION_PROP);
 					//Then add the value to the ValueMap
-					vMap.add(indivUri, propUri, v);
+					vMap.add(indivUri, propUri, v, val.getDatatype());
 				}
 			}
 			//Get the data properties associated with the individual and their values
@@ -909,30 +911,30 @@ public class OntologyParser
 				{
 					//Then get its values for the individual
 					for(OWLLiteral val : dataPropValues.get(prop))
-						vMap.add(indivUri, propUri, val.getLiteral());
+						vMap.add(indivUri, propUri, val.getLiteral(), val.getDatatype());
 				}
 				//FIX: Filling in missing types of individuals from data property restrictions
 				//(Sometimes ontologies fail to declare individual types)
 				if(rm.getIndividualClasses(indivUri).isEmpty() && rm.getDomains(propUri).size() == 1)
 					rm.addInstance(indivUri, rm.getDomains(propUri).iterator().next());
-			}	
+			}
 		}
 
-	//5 - Anonymous Individuals and their data values
+		//5 - Anonymous Individuals and their data values
 		for(OWLAnonymousIndividual i : o.getAnonymousIndividuals())
 		{
 			//Get the ID of each anonymous individual
 			String indivID = i.getID().toString();
-			
+
 			// This should never happen but better safe than sorry
 			if (indivID == null)
 				continue;
-			
+
 			//Add the ID to the global list of URIs
 			rm.addURI(indivID, EntityType.INDIVIDUAL);
 			//Add it to the Ontology
 			l.add(indivID, EntityType.ANON_INDIVIDUAL);
-			
+
 			//Get the data properties associated with the individual and their values
 			Map<OWLDataPropertyExpression,Set<OWLLiteral>> dataPropValues = i.getDataPropertyValues(o);
 			for(OWLDataPropertyExpression prop : dataPropValues.keySet())
@@ -958,7 +960,7 @@ public class OntologyParser
 				{
 					//Then get its values for the individual
 					for(OWLLiteral val : dataPropValues.get(prop))
-						vMap.add(indivID, propUri, val.getLiteral());
+						vMap.add(indivID, propUri, val.getLiteral(), val.getDatatype());
 				}
 				//FIX: Filling in missing types of individuals from data property restrictions
 				//(Sometimes ontologies fail to declare individual types)
@@ -967,8 +969,8 @@ public class OntologyParser
 			}	
 		}
 
-		
-	//6 - Class relationships and Class-Individual relationships
+
+		//6 - Class relationships and Class-Individual relationships
 		//For each class index
 		for(OWLClass c : classes)
 		{
@@ -1051,7 +1053,7 @@ public class OntologyParser
 			}
 		}
 
-	//7 - Individual Relationships
+		//7 - Individual Relationships
 		for(OWLNamedIndividual i : indivs)
 		{
 			//Get the numeric id for each individual
@@ -1059,16 +1061,23 @@ public class OntologyParser
 			if(!rm.isIndividual(indivUri))
 				continue;
 
+			// owl:sameAs relationships
+			for(OWLIndividual i2: i.getSameIndividuals(o)) 
+			{
+				if(i2.equals(i) || i2.isAnonymous())
+					continue;
+				rm.addEquivalentIndividuals(indivUri, i2.asOWLNamedIndividual().getIRI().toString());
+				rm.addEquivalentIndividuals(i2.asOWLNamedIndividual().getIRI().toString(), indivUri);
+			}
+
 			Map<OWLObjectPropertyExpression, Set<OWLIndividual>> iProps = i.getObjectPropertyValues(o);
 			for(OWLObjectPropertyExpression prop : iProps.keySet())
 			{
 				if(prop.isAnonymous())
 					continue;
-
 				String propUri = prop.asOWLObjectProperty().getIRI().toString();
 				if(!rm.isObjectProperty(propUri))
 					continue;
-
 				//FIX: Filling in missing types of individuals from object property restrictions
 				//(Sometimes ontologies fail to declare individual types)
 				if(rm.getIndividualClasses(indivUri).isEmpty() && rm.getDomains(propUri).size() == 1)
@@ -1195,7 +1204,7 @@ public class OntologyParser
 					{
 						String relIndivID = rI.asOWLAnonymousIndividual().getID().toString();
 						if(!rm.isIndividual(relIndivID))
-								continue;
+							continue;
 						rm.addIndividualRelationship(indivUri, relIndivID, propUri);
 					}
 				}
@@ -1203,7 +1212,7 @@ public class OntologyParser
 		}
 
 
-	//8 - Relationships between Data Properties
+		//8 - Relationships between Data Properties
 		for(OWLDataProperty dp : dProps)
 		{
 			String propUri = dp.getIRI().toString();
@@ -1218,8 +1227,8 @@ public class OntologyParser
 					rm.addSubproperty(propUri,sPropUri);	
 			}
 		}
-		
-	//8 - Relationships between Object Properties
+
+		//8 - Relationships between Object Properties
 		for(OWLObjectProperty op : oProps)
 		{
 			String propUri = op.getIRI().toString();
@@ -1250,12 +1259,12 @@ public class OntologyParser
 		EntityMap rm = AML.getInstance().getEntityMap();
 		ExternalLexicon lex = m.getExternalLexicon();
 		ReferenceMap refs = m.getReferenceMap();
-		
+
 		//Get the classes and their lexical and cross-reference information
 		//The Lexical type and weight
 		LexicalType type;
 		double weight;
-		
+
 		//The label property
 		OWLAnnotationProperty label = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI());
 		//Get an iterator over the ontology classes
@@ -1280,51 +1289,51 @@ public class OntologyParser
 			Set<OWLAnnotation> annots = c.getAnnotations(o);
 			for(OWLOntology ont : o.getImports())
 				annots.addAll(c.getAnnotations(ont));
-            for(OWLAnnotation annotation : annots)
-            {
-            	//Labels and synonyms go to the Lexicon
-            	String propUri = annotation.getProperty().getIRI().toString();
-            	type = LexicalType.getLexicalType(propUri);
-            	if(type != null)
-            	{
-	            	weight = type.getDefaultWeight();
-	            	if(annotation.getValue() instanceof OWLLiteral)
-	            	{
-	            		OWLLiteral val = (OWLLiteral) annotation.getValue();
-	            		name = val.getLiteral();
-	            		String lang = val.getLang();
-	            		if(lang.equals(""))
-	            			lang = "en";
-	            		lex.add(classUri, name, weight);
-		            }
-	            	else if(annotation.getValue() instanceof IRI)
-	            	{
-	            		OWLNamedIndividual ni = factory.getOWLNamedIndividual((IRI) annotation.getValue());
-	                    for(OWLAnnotation a : ni.getAnnotations(o,label))
-	                    {
-	                       	if(a.getValue() instanceof OWLLiteral)
-	                       	{
-	                       		OWLLiteral val = (OWLLiteral) a.getValue();
-	                       		name = val.getLiteral();
-    		            		lex.add(classUri, name, weight);
-	                       	}
-	            		}
-	            	}
-            	}
-            	//xRefs go to the ReferenceMap
-            	else if(propUri.endsWith("hasDbXref") &&
-            			annotation.getValue() instanceof OWLLiteral)
-            	{
-            		OWLLiteral val = (OWLLiteral) annotation.getValue();
+			for(OWLAnnotation annotation : annots)
+			{
+				//Labels and synonyms go to the Lexicon
+				String propUri = annotation.getProperty().getIRI().toString();
+				type = LexicalType.getLexicalType(propUri);
+				if(type != null)
+				{
+					weight = type.getDefaultWeight();
+					if(annotation.getValue() instanceof OWLLiteral)
+					{
+						OWLLiteral val = (OWLLiteral) annotation.getValue();
+						name = val.getLiteral();
+						String lang = val.getLang();
+						if(lang.equals(""))
+							lang = "en";
+						lex.add(classUri, name, weight);
+					}
+					else if(annotation.getValue() instanceof IRI)
+					{
+						OWLNamedIndividual ni = factory.getOWLNamedIndividual((IRI) annotation.getValue());
+						for(OWLAnnotation a : ni.getAnnotations(o,label))
+						{
+							if(a.getValue() instanceof OWLLiteral)
+							{
+								OWLLiteral val = (OWLLiteral) a.getValue();
+								name = val.getLiteral();
+								lex.add(classUri, name, weight);
+							}
+						}
+					}
+				}
+				//xRefs go to the ReferenceMap
+				else if(propUri.endsWith("hasDbXref") &&
+						annotation.getValue() instanceof OWLLiteral)
+				{
+					OWLLiteral val = (OWLLiteral) annotation.getValue();
 					String xRef = val.getLiteral();
 					if(!xRef.startsWith("http"))
 						refs.add(classUri,xRef.replace(':','_'));
-            	}
-	        }
+				}
+			}
 		}
 	}
-	
-//Auxiliary Methods
+
+	//Auxiliary Methods
 
 	//Gets a named class from the given OWLOntology 
 	private static OWLClass getClass(OWLOntology o, IRI classIRI)
@@ -1344,221 +1353,221 @@ public class OntologyParser
 	//Add a relationship between two classes to the RelationshipMap
 	private static void addRelationship(OWLOntology o, OWLClass c, OWLClassExpression e, boolean sub, boolean inverse)
 	{
-//		int child = rm.getIndex(c.getIRI().toString());
-//		int parent;
-//		ClassExpressionType type = e.getClassExpressionType();
-//		//If it is a class, and we didn't use the reasoner, process it here
-//		if(type.equals(ClassExpressionType.OWL_CLASS))
-//		{
-//			parent = rm.getIndex(e.asOWLClass().getIRI().toString());
-//			if(parent < 0)
-//				return;
-//			if(sub)
-//			{
-//				if(inverse)
-//					rm.addSubclass(parent, child);
-//				else
-//					rm.addSubclass(child, parent);
-//				String name = getName(parent);
-//				if(name.contains("Obsolete") || name.contains("obsolete") ||
-//						name.contains("Retired") || name.contains ("retired") ||
-//						name.contains("Deprecated") || name.contains("deprecated"))
-//					obsolete.add(child);
-//			}
-//			else
-//				rm.addEquivalentClass(child, parent);
-//		}
-//		//If it is a 'some values' object property restriction, process it
-//		else if(type.equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM))
-//		{
-//			//TODO: parse someValuesFrom intersections and unions
-//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLObjectProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			Set<OWLClass> sup = e.getClassesInSignature();
-//			if(sup == null || sup.size() != 1)
-//				return;					
-//			OWLClass cls = sup.iterator().next();
-//			parent = rm.getIndex(cls.getIRI().toString());
-//			if(parent == -1 || property == -1)
-//				return;
-//			if(sub)
-//			{
-//				if(inverse)
-//					rm.addClassRelationship(parent, child, property, false);
-//				else
-//					rm.addClassRelationship(child, parent, property, false);
-//			}
-//			else
-//				rm.addEquivalence(child, parent, property, false);
-//			objectSomeValues.add(property, child, parent);
-//		}
-//		//If it is a 'all values' object property restriction, process it
-//		else if(type.equals(ClassExpressionType.OBJECT_ALL_VALUES_FROM))
-//		{
-//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLObjectProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			Set<OWLClass> sup = e.getClassesInSignature();
-//			if(sup == null || sup.size() != 1)
-//				return;					
-//			OWLClass cls = sup.iterator().next();
-//			parent = rm.getIndex(cls.getIRI().toString());
-//			if(parent == -1 || property == -1)
-//				return;
-//			if(sub)
-//			{
-//				if(inverse)
-//					rm.addClassRelationship(parent, child, property, false);
-//				else
-//					rm.addClassRelationship(child, parent, property, false);
-//			}
-//			else
-//				rm.addEquivalence(child, parent, property, false);
-//
-//			objectAllValues.add(property, child, parent);
-//		}
-//		//If it is an intersection of classes, capture the implied subclass relationships
-//		else if(type.equals(ClassExpressionType.OBJECT_INTERSECTION_OF))
-//		{
-//			//TODO: control nesting when revising this method
-//			Set<OWLClassExpression> inter = e.asConjunctSet();
-//			for(OWLClassExpression cls : inter)
-//				addRelationship(o,c,cls,true,false);
-//		}
-//		//If it is a union of classes, capture the implied subclass relationships
-//		else if(type.equals(ClassExpressionType.OBJECT_UNION_OF))
-//		{
-//			Set<OWLClassExpression> union = e.asDisjunctSet();
-//			for(OWLClassExpression cls : union)
-//				addRelationship(o,c,cls,true,true);
-//		}
-//		//Otherwise, we're only interested in properties that may lead to disjointness
-//		else if(type.equals(ClassExpressionType.OBJECT_EXACT_CARDINALITY))
-//		{
-//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLObjectProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			if(property == -1)
-//				return;
-//			int cardinality = ((OWLObjectCardinalityRestrictionImpl)e).getCardinality();
-//			card.add(property, child, cardinality);					
-//		}
-//		else if(type.equals(ClassExpressionType.OBJECT_MAX_CARDINALITY))
-//		{
-//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLObjectProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			if(property == -1)
-//				return;
-//			int cardinality = ((OWLObjectCardinalityRestrictionImpl)e).getCardinality();
-//			maxCard.add(property, child, cardinality);					
-//		}
-//		else if(type.equals(ClassExpressionType.OBJECT_MIN_CARDINALITY))
-//		{
-//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLObjectProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			if(property == -1)
-//				return;
-//			int cardinality = ((OWLObjectCardinalityRestrictionImpl)e).getCardinality();
-//			minCard.add(property, child, cardinality);					
-//		}
-//		else if(type.equals(ClassExpressionType.DATA_ALL_VALUES_FROM))
-//		{
-//			OWLDataAllValuesFromImpl av = (OWLDataAllValuesFromImpl)e;
-//			Set<OWLDataProperty> props = av.getDataPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLDataProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			if(property == -1)
-//				return;
-//			Set<OWLDatatype> dt = av.getDatatypesInSignature();
-//			String value = "";
-//			for(OWLDatatype d : dt)
-//				value += d.toString() + " ";
-//			value.trim();
-//			dataAllValues.add(property, child, value);
-//		}
-//		else if(type.equals(ClassExpressionType.DATA_SOME_VALUES_FROM))
-//		{
-//			OWLDataSomeValuesFromImpl av = (OWLDataSomeValuesFromImpl)e;
-//			Set<OWLDataProperty> props = av.getDataPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLDataProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			if(property == -1)
-//				return;
-//			Set<OWLDatatype> dt = av.getDatatypesInSignature();
-//			String value = "";
-//			for(OWLDatatype d : dt)
-//				value += d.toString() + " ";
-//			value.trim();
-//			dataSomeValues.add(property, child, value);
-//		}
-//		else if(type.equals(ClassExpressionType.DATA_HAS_VALUE))
-//		{
-//			OWLDataHasValueImpl hv = (OWLDataHasValueImpl)e; 
-//			Set<OWLDataProperty> props = hv.getDataPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLDataProperty p = props.iterator().next();
-//			if(!p.isFunctional(o))
-//				return;
-//			int property = rm.getIndex(p.getIRI().toString());
-//			if(property == -1)
-//				return;
-//			String value = hv.getValue().toString();
-//			if(p.isFunctional(o))
-//				dataHasValue.add(property, child, value);
-//		}
-//		else if(type.equals(ClassExpressionType.DATA_EXACT_CARDINALITY))
-//		{
-//			Set<OWLDataProperty> props = e.getDataPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLDataProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			if(property == -1)
-//				return;
-//			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
-//			card.add(property, child, cardinality);					
-//		}
-//		else if(type.equals(ClassExpressionType.DATA_MAX_CARDINALITY))
-//		{
-//			Set<OWLDataProperty> props = e.getDataPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLDataProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			if(property == -1)
-//				return;
-//			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
-//			maxCard.add(property, child, cardinality);					
-//		}
-//		else if(type.equals(ClassExpressionType.DATA_MIN_CARDINALITY))
-//		{
-//			Set<OWLDataProperty> props = e.getDataPropertiesInSignature();
-//			if(props == null || props.size() != 1)
-//				return;
-//			OWLDataProperty p = props.iterator().next();
-//			int property = rm.getIndex(p.getIRI().toString());
-//			if(property == -1)
-//				return;
-//			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
-//			minCard.add(property, child, cardinality);					
-//		}
+		//		int child = rm.getIndex(c.getIRI().toString());
+		//		int parent;
+		//		ClassExpressionType type = e.getClassExpressionType();
+		//		//If it is a class, and we didn't use the reasoner, process it here
+		//		if(type.equals(ClassExpressionType.OWL_CLASS))
+		//		{
+		//			parent = rm.getIndex(e.asOWLClass().getIRI().toString());
+		//			if(parent < 0)
+		//				return;
+		//			if(sub)
+		//			{
+		//				if(inverse)
+		//					rm.addSubclass(parent, child);
+		//				else
+		//					rm.addSubclass(child, parent);
+		//				String name = getName(parent);
+		//				if(name.contains("Obsolete") || name.contains("obsolete") ||
+		//						name.contains("Retired") || name.contains ("retired") ||
+		//						name.contains("Deprecated") || name.contains("deprecated"))
+		//					obsolete.add(child);
+		//			}
+		//			else
+		//				rm.addEquivalentClass(child, parent);
+		//		}
+		//		//If it is a 'some values' object property restriction, process it
+		//		else if(type.equals(ClassExpressionType.OBJECT_SOME_VALUES_FROM))
+		//		{
+		//			//TODO: parse someValuesFrom intersections and unions
+		//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLObjectProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			Set<OWLClass> sup = e.getClassesInSignature();
+		//			if(sup == null || sup.size() != 1)
+		//				return;					
+		//			OWLClass cls = sup.iterator().next();
+		//			parent = rm.getIndex(cls.getIRI().toString());
+		//			if(parent == -1 || property == -1)
+		//				return;
+		//			if(sub)
+		//			{
+		//				if(inverse)
+		//					rm.addClassRelationship(parent, child, property, false);
+		//				else
+		//					rm.addClassRelationship(child, parent, property, false);
+		//			}
+		//			else
+		//				rm.addEquivalence(child, parent, property, false);
+		//			objectSomeValues.add(property, child, parent);
+		//		}
+		//		//If it is a 'all values' object property restriction, process it
+		//		else if(type.equals(ClassExpressionType.OBJECT_ALL_VALUES_FROM))
+		//		{
+		//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLObjectProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			Set<OWLClass> sup = e.getClassesInSignature();
+		//			if(sup == null || sup.size() != 1)
+		//				return;					
+		//			OWLClass cls = sup.iterator().next();
+		//			parent = rm.getIndex(cls.getIRI().toString());
+		//			if(parent == -1 || property == -1)
+		//				return;
+		//			if(sub)
+		//			{
+		//				if(inverse)
+		//					rm.addClassRelationship(parent, child, property, false);
+		//				else
+		//					rm.addClassRelationship(child, parent, property, false);
+		//			}
+		//			else
+		//				rm.addEquivalence(child, parent, property, false);
+		//
+		//			objectAllValues.add(property, child, parent);
+		//		}
+		//		//If it is an intersection of classes, capture the implied subclass relationships
+		//		else if(type.equals(ClassExpressionType.OBJECT_INTERSECTION_OF))
+		//		{
+		//			//TODO: control nesting when revising this method
+		//			Set<OWLClassExpression> inter = e.asConjunctSet();
+		//			for(OWLClassExpression cls : inter)
+		//				addRelationship(o,c,cls,true,false);
+		//		}
+		//		//If it is a union of classes, capture the implied subclass relationships
+		//		else if(type.equals(ClassExpressionType.OBJECT_UNION_OF))
+		//		{
+		//			Set<OWLClassExpression> union = e.asDisjunctSet();
+		//			for(OWLClassExpression cls : union)
+		//				addRelationship(o,c,cls,true,true);
+		//		}
+		//		//Otherwise, we're only interested in properties that may lead to disjointness
+		//		else if(type.equals(ClassExpressionType.OBJECT_EXACT_CARDINALITY))
+		//		{
+		//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLObjectProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			if(property == -1)
+		//				return;
+		//			int cardinality = ((OWLObjectCardinalityRestrictionImpl)e).getCardinality();
+		//			card.add(property, child, cardinality);					
+		//		}
+		//		else if(type.equals(ClassExpressionType.OBJECT_MAX_CARDINALITY))
+		//		{
+		//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLObjectProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			if(property == -1)
+		//				return;
+		//			int cardinality = ((OWLObjectCardinalityRestrictionImpl)e).getCardinality();
+		//			maxCard.add(property, child, cardinality);					
+		//		}
+		//		else if(type.equals(ClassExpressionType.OBJECT_MIN_CARDINALITY))
+		//		{
+		//			Set<OWLObjectProperty> props = e.getObjectPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLObjectProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			if(property == -1)
+		//				return;
+		//			int cardinality = ((OWLObjectCardinalityRestrictionImpl)e).getCardinality();
+		//			minCard.add(property, child, cardinality);					
+		//		}
+		//		else if(type.equals(ClassExpressionType.DATA_ALL_VALUES_FROM))
+		//		{
+		//			OWLDataAllValuesFromImpl av = (OWLDataAllValuesFromImpl)e;
+		//			Set<OWLDataProperty> props = av.getDataPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLDataProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			if(property == -1)
+		//				return;
+		//			Set<OWLDatatype> dt = av.getDatatypesInSignature();
+		//			String value = "";
+		//			for(OWLDatatype d : dt)
+		//				value += d.toString() + " ";
+		//			value.trim();
+		//			dataAllValues.add(property, child, value);
+		//		}
+		//		else if(type.equals(ClassExpressionType.DATA_SOME_VALUES_FROM))
+		//		{
+		//			OWLDataSomeValuesFromImpl av = (OWLDataSomeValuesFromImpl)e;
+		//			Set<OWLDataProperty> props = av.getDataPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLDataProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			if(property == -1)
+		//				return;
+		//			Set<OWLDatatype> dt = av.getDatatypesInSignature();
+		//			String value = "";
+		//			for(OWLDatatype d : dt)
+		//				value += d.toString() + " ";
+		//			value.trim();
+		//			dataSomeValues.add(property, child, value);
+		//		}
+		//		else if(type.equals(ClassExpressionType.DATA_HAS_VALUE))
+		//		{
+		//			OWLDataHasValueImpl hv = (OWLDataHasValueImpl)e; 
+		//			Set<OWLDataProperty> props = hv.getDataPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLDataProperty p = props.iterator().next();
+		//			if(!p.isFunctional(o))
+		//				return;
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			if(property == -1)
+		//				return;
+		//			String value = hv.getValue().toString();
+		//			if(p.isFunctional(o))
+		//				dataHasValue.add(property, child, value);
+		//		}
+		//		else if(type.equals(ClassExpressionType.DATA_EXACT_CARDINALITY))
+		//		{
+		//			Set<OWLDataProperty> props = e.getDataPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLDataProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			if(property == -1)
+		//				return;
+		//			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
+		//			card.add(property, child, cardinality);					
+		//		}
+		//		else if(type.equals(ClassExpressionType.DATA_MAX_CARDINALITY))
+		//		{
+		//			Set<OWLDataProperty> props = e.getDataPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLDataProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			if(property == -1)
+		//				return;
+		//			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
+		//			maxCard.add(property, child, cardinality);					
+		//		}
+		//		else if(type.equals(ClassExpressionType.DATA_MIN_CARDINALITY))
+		//		{
+		//			Set<OWLDataProperty> props = e.getDataPropertiesInSignature();
+		//			if(props == null || props.size() != 1)
+		//				return;
+		//			OWLDataProperty p = props.iterator().next();
+		//			int property = rm.getIndex(p.getIRI().toString());
+		//			if(property == -1)
+		//				return;
+		//			int cardinality = ((OWLDataCardinalityRestrictionImpl)e).getCardinality();
+		//			minCard.add(property, child, cardinality);					
+		//		}
 	}
 }
