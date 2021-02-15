@@ -1,22 +1,22 @@
 /******************************************************************************
-* Copyright 2013-2018 LASIGE                                                  *
-*                                                                             *
-* Licensed under the Apache License, Version 2.0 (the "License"); you may     *
-* not use this file except in compliance with the License. You may obtain a   *
-* copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
-*                                                                             *
-* Unless required by applicable law or agreed to in writing, software         *
-* distributed under the License is distributed on an "AS IS" BASIS,           *
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
-* See the License for the specific language governing permissions and         *
-* limitations under the License.                                              *
-*                                                                             *
-*******************************************************************************
-* Registry of entities in the ontologies opened by AML and all of their       *
-* semantics, including relationships, restrictions, properties, etc...        *
-*                                                                             *
-* @author Daniel Faria                                                        *
-******************************************************************************/
+ * Copyright 2013-2018 LASIGE                                                  *
+ *                                                                             *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+ * not use this file except in compliance with the License. You may obtain a   *
+ * copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+ *                                                                             *
+ * Unless required by applicable law or agreed to in writing, software         *
+ * distributed under the License is distributed on an "AS IS" BASIS,           *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+ * See the License for the specific language governing permissions and         *
+ * limitations under the License.                                              *
+ *                                                                             *
+ *******************************************************************************
+ * Registry of entities in the ontologies opened by AML and all of their       *
+ * semantics, including relationships, restrictions, properties, etc...        *
+ *                                                                             *
+ * @author Daniel Faria                                                        *
+ ******************************************************************************/
 package aml.ontology.semantics;
 
 import java.util.HashMap;
@@ -36,13 +36,13 @@ import aml.util.data.Map2Triple;
 
 public class EntityMap
 {
-	
-//Attributes
+
+	//Attributes
 
 	//0) The map of entities to EntityTypes 
 	private Map2Set<String,EntityType> entityType;
 	private Map2Set<EntityType,String> typeEntity;
-	
+
 	//1) Structural data on classes (& class expressions)
 	//Equivalence (distance=0) and Subclass relations (distance>0) between classes with transitive closure (min distance only)
 	private Map2Map<String,String,Integer> ancestorClasses; //Class -> Ancestor -> Distance
@@ -55,12 +55,13 @@ public class EntityMap
 	private Map2Set<String,String> disjointMap; //Class/Expression -> Disjoint Class/Expression
 	//High level classes
 	private HashSet<String> highLevelClasses;
-	
+
 	//2) Structural data on individuals
 	//Relationships between individuals and classes
 	private Map2Set<String,String> instanceOfMap; //Individual -> Class 
 	private Map2Set<String,String> hasInstanceMap; //Class -> Individual
 	//Relationships between individuals
+	private Map2Set<String,String> sameIndivAs; //Individual -> Set of Equivalent Individuals
 	private Map2Map2Set<String,String,String> activeRelation; //Source Individual -> Target Individual -> Property
 	private Map2Map2Set<String,String,String> passiveRelation; //Target Individual -> Source Individual -> Property
 
@@ -84,7 +85,7 @@ public class EntityMap
 	private Map2Set<String,String> transitiveOver; //Property1 -> Property2 over which 1 is transitive
 	//Complex property chains (e.g. father * father = grandfather)
 	private Map2Set<String,Vector<String>> propChain; //Property -> Property Chain
-	
+
 	//5) Class expressions
 	//Expression -> ClassExpressionType
 	private HashMap<String,ClassExpressionType> expressionTypes;
@@ -102,8 +103,8 @@ public class EntityMap
 	private Map2Triple<String,String,String,Integer> maxCard;
 	//ExactCardinality restriction -> {restricted Property; Expression in the restricted range; Cardinality}
 	private Map2Triple<String,String,String,Integer> exactCard;
-	
-//Constructors
+
+	//Constructors
 
 	/**
 	 * Creates a new empty RelationshipMap
@@ -119,6 +120,7 @@ public class EntityMap
 		disjointMap = new Map2Set<String,String>();
 		instanceOfMap = new Map2Set<String,String>();
 		hasInstanceMap = new Map2Set<String,String>();
+		sameIndivAs = new Map2Set<String,String>();
 		activeRelation = new Map2Map2Set<String,String,String>();		
 		passiveRelation = new Map2Map2Set<String,String,String>();		
 		subProp = new Map2Set<String,String>();
@@ -142,8 +144,8 @@ public class EntityMap
 		maxCard = new Map2Triple<String,String,String,Integer>();
 		exactCard = new Map2Triple<String,String,String,Integer>();
 	}
-	
-//Public Methods
+
+	//Public Methods
 
 	/**
 	 * Adds an allValues restriction to the EntityMap
@@ -156,7 +158,7 @@ public class EntityMap
 		expressionTypes.put(exp,ClassExpressionType.ALL_VALUES);
 		allValues.add(exp, prop, range);
 	}
-	
+
 	/**
 	 * Sets a  property as asymmetric
 	 * @param prop: the property to set as asymmetric
@@ -176,7 +178,7 @@ public class EntityMap
 	{
 		classExpressions.add(classUri, expUri, isEquiv);
 	}
-	
+
 	/**
 	 * Adds a new disjointness relations between two classes
 	 * @param class1: the uri of the first disjoint class
@@ -197,7 +199,7 @@ public class EntityMap
 	{
 		domain.add(propId, uri);
 	}
-	
+
 	/**
 	 * Adds an equivalence relationship between two classes
 	 * @param class1: the uri of the first equivalent class
@@ -222,13 +224,23 @@ public class EntityMap
 	}
 
 	/**
+	 * Adds an equivalence relationship between two classes
+	 * @param class1: the uri of the first equivalent class
+	 * @param class2: the uri of the second equivalent class
+	 */
+	public void addEquivalentIndividuals(String indiv1, String indiv2)
+	{
+		sameIndivAs.add(indiv1, indiv2);
+	}
+
+	/**
 	 * @param prop: the property to set as functional
 	 */
 	public void addFunctional(String prop)
 	{
 		functional.add(prop);
 	}
-	
+
 	/**
 	 * Adds a hasValues restriction to the EntityMap
 	 * @param exp: the uri of the allValues class expression
@@ -240,7 +252,7 @@ public class EntityMap
 		expressionTypes.put(exp,ClassExpressionType.HAS_VALUE);
 		hasValue.add(exp, prop, range);
 	}
-	
+
 	/**
 	 * Adds a relationship between two individuals through a given property
 	 * @param indiv1: the uri of the first individual
@@ -252,7 +264,7 @@ public class EntityMap
 		activeRelation.add(indiv1,indiv2,prop);
 		passiveRelation.add(indiv2,indiv1,prop);
 	}
-	
+
 	/**
 	 * Adds an instantiation relationship between an individual and a class
 	 * @param individualId: the uri of the individual
@@ -263,7 +275,7 @@ public class EntityMap
 		instanceOfMap.add(individualId,uri);
 		hasInstanceMap.add(uri,individualId);
 	}
-	
+
 	/**
 	 * Adds an intersection expression to the EntityMap
 	 * @param exp: the uri of the allValues class expression
@@ -274,7 +286,7 @@ public class EntityMap
 		expressionTypes.put(exp,ClassExpressionType.INTERSECTION);
 		intersect.addAll(exp,inter);
 	}
-	
+
 	/**
 	 * Adds a new inverse relationship between two properties if it doesn't exist
 	 * @param property1: the uri of the first property
@@ -288,7 +300,7 @@ public class EntityMap
 			inverseProp.add(property2, property1);
 		}
 	}
-	
+
 	/**
 	 * @param prop: the property to set as irreflexive
 	 */
@@ -296,7 +308,7 @@ public class EntityMap
 	{
 		irreflexive.add(prop);
 	}
-	
+
 	/**
 	 * Adds a max cardinality restriction to the EntityMap
 	 * @param exp: the uri of the allValues class expression
@@ -309,7 +321,7 @@ public class EntityMap
 		expressionTypes.put(exp,ClassExpressionType.MAX_CARDINALITY);
 		maxCard.add(exp, prop, range, card);
 	}
-	
+
 	/**
 	 * Adds a min cardinality restriction to the EntityMap
 	 * @param exp: the uri of the allValues class expression
@@ -322,7 +334,7 @@ public class EntityMap
 		expressionTypes.put(exp,ClassExpressionType.MIN_CARDINALITY);
 		minCard.add(exp, prop, range, card);
 	}
-	
+
 	/**
 	 * Adds a property chain axiom to a given property
 	 * @param prop: the uri of the property equivalent to the chain
@@ -332,7 +344,7 @@ public class EntityMap
 	{
 		propChain.add(prop, chain);
 	}
-	
+
 	/**
 	 * Adds a new range (class) to a given object property
 	 * @param propId: the uri of the property with the range
@@ -342,7 +354,7 @@ public class EntityMap
 	{
 		range.add(propId, uri);
 	}
-	
+
 	/**
 	 * @param prop: the property to set as reflexive
 	 */
@@ -350,7 +362,7 @@ public class EntityMap
 	{
 		reflexive.add(prop);
 	}
-	
+
 	/**
 	 * Adds a direct hierarchical relationship between two classes
 	 * @param child: the uri of the child class
@@ -360,7 +372,7 @@ public class EntityMap
 	{
 		addSubclass(child,parent,1);
 	}
-	
+
 	/**
 	 * Adds a subclass relationship between two classes with a given distance
 	 * @param child: the uri of the child class
@@ -393,7 +405,7 @@ public class EntityMap
 		subProp.add(parent,child);
 		superProp.add(child,parent);
 	}
-	
+
 	/**
 	 * @param prop: the property to set as symmetric
 	 */
@@ -401,7 +413,7 @@ public class EntityMap
 	{
 		symmetric.add(prop);
 	}
-	
+
 	/**
 	 * @param prop: the property to set as transitive
 	 */
@@ -409,7 +421,7 @@ public class EntityMap
 	{
 		transitiveOver.add(prop,prop);
 	}
-	
+
 	/**
 	 * @param prop1: the property to set as transitive over prop2
 	 * @param prop2: the property over which prop1 is transitive
@@ -438,7 +450,7 @@ public class EntityMap
 		entityType.add(uri,t);
 		typeEntity.add(t,uri);
 	}
-	
+
 	/**
 	 * @param class1: the first class to check for disjointness
 	 * @param class2: the second class to check for disjointness
@@ -454,7 +466,7 @@ public class EntityMap
 			Set<String> ancs = new HashSet<String>(getSuperclasses(class2));
 			//Including class two itself
 			ancs.add(class2);
-		
+
 			//Two classes are disjoint if the list of transitive disjoint clauses
 			//involving one of them contains the other or any of its 'is_a' ancestors
 			for(String i : ancs)
@@ -463,7 +475,7 @@ public class EntityMap
 		}
 		return false;
 	}
-	
+
 	/**
 	 * @param child: the uri of the child class
 	 * @param parent: the uri of the parent class
@@ -473,7 +485,7 @@ public class EntityMap
 	{
 		return descendantClasses.contains(parent,child);
 	}
-	
+
 	/**
 	 * Checks whether an individual belongs to a class
 	 * @param indivId: the uri of the individual to check
@@ -490,7 +502,7 @@ public class EntityMap
 				return true;
 		return false;	
 	}
-	
+
 	/**
 	 * @param uri: the uri to search in the EntityMap
 	 * @return whether the EntityMap contains the uri
@@ -499,7 +511,7 @@ public class EntityMap
 	{
 		return entityType.contains(uri);
 	}
-	
+
 	/**
 	 * @return the number of disjoint clauses
 	 */
@@ -509,7 +521,7 @@ public class EntityMap
 		//clauses are stored in both directions
 		return disjointMap.size()/2;
 	}
-	
+
 	/**
 	 * @return the number of entities registered in the EntityMap
 	 */
@@ -517,7 +529,7 @@ public class EntityMap
 	{
 		return entityType.keyCount();
 	}
-	
+
 	/**
 	 * @return the set of classes with ancestors in the map
 	 */
@@ -527,7 +539,7 @@ public class EntityMap
 			return ancestorClasses.keySet();
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @return the set of expressions that the given class is equivalent to or a subclass of
@@ -538,7 +550,7 @@ public class EntityMap
 			return classExpressions.keySet(uri);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @param isEquiv: whether to get equivalent or subclass expressions
@@ -553,7 +565,7 @@ public class EntityMap
 					exps.add(s);
 		return exps;
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @return the list of individuals that instantiate the given class
@@ -564,7 +576,7 @@ public class EntityMap
 			return hasInstanceMap.get(uri);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param classes: the set the class to search in the map
 	 * @return the list of direct subclasses shared by the set of classes
@@ -606,7 +618,7 @@ public class EntityMap
 		}
 		return new HashSet<String>(subclasses);
 	}
-	
+
 	/**
 	 * @return the set of classes that have disjoint clauses
 	 */
@@ -625,7 +637,7 @@ public class EntityMap
 			return disjointMap.get(uri);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @return the list of classes disjoint with the given class
@@ -655,7 +667,7 @@ public class EntityMap
 		}
 		return disj;
 	}
-	
+
 	/**
 	 * @param child: the uri of the child class
 	 * @param parent: the uri of the parent class
@@ -670,7 +682,7 @@ public class EntityMap
 			return -1;
 		return ancestorClasses.get(child,parent);
 	}
-	
+
 	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the list of class indexes in the domain of the input property
@@ -681,7 +693,7 @@ public class EntityMap
 			return domain.get(propId);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param t: the EntityType to search in the map
 	 * @return the set of entities of the given type
@@ -690,7 +702,7 @@ public class EntityMap
 	{
 		return typeEntity.get(t);
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @return the set of equivalences of the given class
@@ -699,7 +711,7 @@ public class EntityMap
 	{
 		return getSubclasses(uri, 0);
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @return the set of classes equivalent to the given class
@@ -712,7 +724,23 @@ public class EntityMap
 				equivs.add(e);
 		return equivs;
 	}
-	
+
+	/**
+	 * @return the whole map of equivalences between individuals
+	 */
+	public Map2Set<String, String> getEquivalentIndividuals()
+	{
+		return sameIndivAs;
+	}
+	/**
+	 * @param uri: the id of the individual to search in the map
+	 * @return the set of individuals equivalent to the given individual
+	 */
+	public Set<String> getEquivalentIndividuals(String uri)
+	{
+		return sameIndivAs.get(uri);
+	}
+
 	/**
 	 * @param uri: the uri of the class expression
 	 * @return the type of class expression
@@ -721,7 +749,7 @@ public class EntityMap
 	{
 		return expressionTypes.get(uri);
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @return the set of high level ancestors of the given class
@@ -737,7 +765,7 @@ public class EntityMap
 				highAncs.add(i);
 		return highAncs;
 	}
-	
+
 	/**
 	 * @return the set of high level classes in the ontology
 	 */
@@ -745,9 +773,9 @@ public class EntityMap
 	{
 		if(highLevelClasses != null)
 			return highLevelClasses;
-		
+
 		highLevelClasses = new HashSet<String>();
-		
+
 		//First get the very top classes
 		HashSet<String> sourceTop = new HashSet<String>();
 		HashSet<String> targetTop = new HashSet<String>();
@@ -781,10 +809,10 @@ public class EntityMap
 		}
 		highLevelClasses.addAll(sourceTop);
 		highLevelClasses.addAll(targetTop);
-		
+
 		return highLevelClasses;
 	}
-	
+
 	/**
 	 * @return the whole table of active relations
 	 */
@@ -792,7 +820,7 @@ public class EntityMap
 	{
 		return activeRelation;
 	}
-	
+
 	/**
 	 * @param indivId: the id of the individual to search in the map
 	 * @return the set of individuals to which the given individual is actively related
@@ -804,7 +832,7 @@ public class EntityMap
 		return new HashSet<String>();
 	}
 
-	
+
 	/**
 	 * @param indivId: the id of the individual to search in the map
 	 * @return the set of classes instanced by the given individual
@@ -815,7 +843,7 @@ public class EntityMap
 			return instanceOfMap.get(indivId);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param indivId: the id of the individual to search in the map
 	 * @return the set of individuals that are actively related with of the given individual
@@ -838,7 +866,7 @@ public class EntityMap
 			return activeRelation.get(sourceInd,targetInd);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @return the set of individuals with active relations
 	 */
@@ -854,7 +882,7 @@ public class EntityMap
 	{
 		return passiveRelation.keySet();
 	}
-	
+
 	/**
 	 * @param indivId: the id of the individual to search in the map
 	 * @return the set of classes instanced by the given individual
@@ -863,7 +891,7 @@ public class EntityMap
 	{
 		return hasInstanceMap.keySet();
 	}
-	
+
 	/**
 	 * @param uri: the uri of the intersection expression
 	 * @return the class expressions in the intersection
@@ -872,7 +900,7 @@ public class EntityMap
 	{
 		return intersect.get(uri);
 	}
-	
+
 	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the set of inverse properties of the input property
@@ -884,7 +912,7 @@ public class EntityMap
 		else
 			return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param uri: the uri of the entity to get the name
 	 * @return the local name of the entity with the given index
@@ -912,7 +940,7 @@ public class EntityMap
 					types.add(e);
 		return types;
 	}
-	
+
 	/**
 	 * @return the set of classes with ancestors in the map
 	 */
@@ -943,7 +971,7 @@ public class EntityMap
 	{
 		return propChain.get(prop);
 	}
-	
+
 	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the set of classes / datatypes in the range of the input property
@@ -954,7 +982,7 @@ public class EntityMap
 			return range.get(propId);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param uri: the uri of the restriction expression
 	 * @return the cardinality restricted in the expression
@@ -1013,7 +1041,7 @@ public class EntityMap
 		else
 			return null;
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @param prop: the relationship property between the class and its ancestors
@@ -1043,7 +1071,7 @@ public class EntityMap
 			return descendantClasses.keySet(uri);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @param distance: the distance between the class and its subclasses
@@ -1060,7 +1088,7 @@ public class EntityMap
 		return desc;
 	}
 
-	
+
 	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the set of sub-properties of the input property
@@ -1072,7 +1100,7 @@ public class EntityMap
 		else
 			return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param uri: the id of the class to search in the map
 	 * @return the set of all superclasses of the given class
@@ -1083,7 +1111,7 @@ public class EntityMap
 			return ancestorClasses.keySet(uri);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param uri: the uri of the class to search in the map
 	 * @param distance: the distance between the class and its superclasses
@@ -1099,7 +1127,7 @@ public class EntityMap
 				asc.add(i);
 		return asc;
 	}
-	
+
 	/**
 	 * @param uri: the uri of the class expression to search in the map
 	 * @return the set of superexpressions of the given expression
@@ -1110,7 +1138,7 @@ public class EntityMap
 			return ancestorClasses.keySet(uri);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the set of super-properties of the input property
@@ -1122,7 +1150,7 @@ public class EntityMap
 		else
 			return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @return the table of transitive properties
 	 */
@@ -1130,7 +1158,7 @@ public class EntityMap
 	{
 		return transitiveOver;
 	}
-	
+
 	/**
 	 * @param uri: the uri of the Ontology entity
 	 * @return the EntityTypes of the entity
@@ -1141,7 +1169,7 @@ public class EntityMap
 			return entityType.get(uri);
 		return new HashSet<EntityType>();
 	}
-	
+
 	/**
 	 * @param uri: the uri of the union expression
 	 * @return the class expressions in the union
@@ -1150,7 +1178,7 @@ public class EntityMap
 	{
 		return union.get(uri);
 	}
-	
+
 	/**
 	 * @return the URIs in the EntityMap
 	 */
@@ -1185,7 +1213,7 @@ public class EntityMap
 				return true;
 		return false;
 	}
-	
+
 	/**
 	 * @param one: the first class to check for disjointness
 	 * @param two: the second class to check for disjointness
@@ -1195,7 +1223,7 @@ public class EntityMap
 	{
 		return (disjointMap.contains(one) && disjointMap.contains(one,two));
 	}
-	
+
 	/**
 	 * @return the number of instantiations in the map
 	 */
@@ -1203,7 +1231,7 @@ public class EntityMap
 	{
 		return activeRelation.size();
 	}
-	
+
 	/**
 	 * @return the number of instantiations in the map
 	 */
@@ -1211,7 +1239,7 @@ public class EntityMap
 	{
 		return instanceOfMap.size();
 	}
-	
+
 	/**
 	 * @param prop: the uri of the property to check
 	 * @return whether the property is asymmetric
@@ -1220,7 +1248,7 @@ public class EntityMap
 	{
 		return asymmetric.contains(prop);
 	}
-	
+
 	/**
 	 * @param uri: the uri of the Ontology entity
 	 * @return whether the entity is a Class
@@ -1238,7 +1266,7 @@ public class EntityMap
 	{
 		return entityType.contains(uri) && entityType.get(uri).contains(EntityType.DATA_PROP);
 	}
-	
+
 	/**
 	 * @param prop: the uri of the property to check
 	 * @return whether the property is functional
@@ -1256,7 +1284,7 @@ public class EntityMap
 	{
 		return isNamedIndividual(uri) || isAnonymousIndividual(uri);
 	}
-	
+
 	/**
 	 * @param uri: the uri of the Ontology entity
 	 * @return whether the entity is a named Individual
@@ -1274,7 +1302,7 @@ public class EntityMap
 	{
 		return entityType.contains(uri) && entityType.get(uri).contains(EntityType.ANON_INDIVIDUAL);
 	}
-	
+
 	/**
 	 * @param prop: the uri of the property to check
 	 * @return whether the property is irreflexive
@@ -1283,7 +1311,7 @@ public class EntityMap
 	{
 		return irreflexive.contains(prop);
 	}
-	
+
 	/**
 	 * @param uri: the uri of the Ontology entity
 	 * @return whether the entity is an Object Property
@@ -1292,7 +1320,7 @@ public class EntityMap
 	{
 		return entityType.contains(uri) && entityType.get(uri).contains(EntityType.OBJECT_PROP);
 	}
-	
+
 	/**
 	 * @param prop: the uri of the property to check
 	 * @return whether the property is reflexive
@@ -1301,7 +1329,7 @@ public class EntityMap
 	{
 		return reflexive.contains(prop);
 	}
-	
+
 	/**
 	 * @param child: the uri of the child class
 	 * @param parent: the uri of the parent class
@@ -1311,7 +1339,7 @@ public class EntityMap
 	{
 		return descendantClasses.contains(parent,child);
 	}
-	
+
 	/**
 	 * @param prop: the uri of the property to check
 	 * @return whether the property is symmetric
@@ -1320,7 +1348,7 @@ public class EntityMap
 	{
 		return symmetric.contains(prop);
 	}
-	
+
 	/**
 	 * @return the number of class relationships in the map
 	 */
@@ -1328,7 +1356,7 @@ public class EntityMap
 	{
 		return ancestorClasses.size();
 	}
-	
+
 	/**
 	 * Checks whether two individuals share a direct class assignment
 	 * @param ind1Id: the first individual to check
@@ -1345,7 +1373,7 @@ public class EntityMap
 				return true;
 		return false;
 	}
-	
+
 	/**
 	 * Compute the transitive closure of the RelationshipMap
 	 * by adding inherited relationships (and their distances)
@@ -1369,8 +1397,63 @@ public class EntityMap
 						addSubclass(h, j, getDistance(i,j) + getDistance(h,i));
 			}
 		}
+
+		//Transitive closure for equivalent individuals
+		// For the purpose of comments and variables, consider:
+		// I1 = individual from ontology A
+		// I2 = individual from ontology A, who has some relationship to I1
+		// I3 = individual from ontology B, equivalent to I1
+		// I4 = individual from ontology B, who has some relationship to I3 and is equivalent to I2 
+		// I5 = individual from ontology B, who has some relationship to I3 but has no equivalence in ontA 
+
+		for (String i1: sameIndivAs.keySet()) 
+		{
+			Set<String> i2Set = new HashSet<String>();
+			if(activeRelation.get(i1) != null) 
+				i2Set = activeRelation.get(i1).keySet();
+
+			for(String i3: sameIndivAs.get(i1)) 
+			{
+				//Add classes
+				if (instanceOfMap.get(i3) != null) 
+				{
+					for(String eqClass: instanceOfMap.get(i3)) 
+						addInstance(i1, eqClass);
+				}
+
+				//Add relations
+				if(i2Set.size()<1) 
+					continue;
+				if (activeRelation.get(i3) != null) 
+				{
+					Set<String> i3InteractingIndivSet = activeRelation.get(i3).keySet(); // either I4 or I5 individuals
+					for (String indv: i3InteractingIndivSet) 
+					{
+						// Add I3's relations to I1:indv
+						for(String relation: activeRelation.get(i3, indv))
+							addIndividualRelationship(i1, indv, relation);
+						
+						// Also add I1:I4 relations
+						// For that, try to find the I2 to which indv is equivalent
+						if(sameIndivAs.get(indv)!= null)
+						{	
+							Set<String> indvEquivs = sameIndivAs.get(indv);
+							for(String i2: i2Set)
+							{
+								if (indvEquivs.contains(i2)) 
+								{
+									for (String relation: activeRelation.get(i3, indv)) 
+										addIndividualRelationship(i1, i2, relation);
+								}
+							}
+						}
+					}
+				}	
+			}
+		}
 	}
-	
+
+
 	/**
 	 * @param child: the child class in the relationship
 	 * @param parent: the parent class in the relationship
@@ -1387,7 +1470,7 @@ public class EntityMap
 		Set<String> ancestors = getSuperclasses(parent);
 		//Plus the parent itself
 		ancestors.add(parent);
-		
+
 		//For each descendant
 		for(String i : descendants)
 			//And each ancestor
