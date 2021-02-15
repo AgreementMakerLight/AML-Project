@@ -1,3 +1,22 @@
+/******************************************************************************
+ * Copyright 2013-2020 LASIGE                                                  *
+ *                                                                             *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+ * not use this file except in compliance with the License. You may obtain a   *
+ * copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+ *                                                                             *
+ * Unless required by applicable law or agreed to in writing, software         *
+ * distributed under the License is distributed on an "AS IS" BASIS,           *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+ * See the License for the specific language governing permissions and         *
+ * limitations under the License.                                              *
+ *                                                                             *
+ *******************************************************************************
+ * Matcher based on association rules. Finds complex (1:n) relationships       *
+ * between classes and AttributeTypeRestrictions - Class by Attribute Value    *
+ * (CAV) patterns.                                                             *
+ * @authors Beatriz Lima, Daniel Faria                                         *
+ ******************************************************************************/
 package aml.match.association;
 
 import java.util.ArrayList;
@@ -27,11 +46,10 @@ public class CAVARMatcher extends aml.match.association.AbstractAssociationRuleM
 	}
 
 	//Protected methods
-	/**
+	/*
 	 * Populates EntitySupport and MappingSupport tables
-	 * CAV - Class by attribute value
-	 * We want to find rules of the type: Class -> object property| data type
-	 * being the antecedent and consequent from different ontologies 
+	 * @param o1: source ontology
+	 * @param o2: target ontology
 	 */
 	protected void computeSupport(Ontology o1, Ontology o2) 
 	{
@@ -50,14 +68,6 @@ public class CAVARMatcher extends aml.match.association.AbstractAssociationRuleM
 			// Find all classes of that instance
 			Set<String> cSet = rels.getIndividualClasses(si);
 
-			// See if equivalent instances have classes as well
-			if(rels.getEquivalentIndividuals(si) != null) 
-			{
-				equivIndv= rels.getEquivalentIndividuals(si);
-				for(String i: equivIndv) 
-					cSet.addAll(rels.getIndividualClasses(i));
-			}
-
 			// Switch to list since we need indexes 
 			List<String> i1Classes = new ArrayList<String>(cSet);
 			// If empty list of classes, move on to next instance
@@ -70,15 +80,6 @@ public class CAVARMatcher extends aml.match.association.AbstractAssociationRuleM
 			if (tgtValueMap.getProperties(si) != null) 
 				tgtProperties = new HashSet<String>(tgtValueMap.getProperties(si));
 
-			// See if equivalent instances have more properties to be added to the list
-			if (equivIndv.size()>0) 
-			{
-				for(String eqv: equivIndv) 
-					srcProperties.addAll(srcValueMap.getProperties(eqv));
-				for(String eqv: equivIndv) 
-					tgtProperties.addAll(tgtValueMap.getProperties(eqv));
-			}
-			
 			for (int i = 0; i < len; i++) 
 			{
 				// Transform string uri into correspondent AbstractExpression
@@ -86,7 +87,7 @@ public class CAVARMatcher extends aml.match.association.AbstractAssociationRuleM
 				if (c1URI.equals("http://www.w3.org/2002/07/owl#Thing")) {continue;}
 				ClassId c1 = new ClassId(c1URI);
 
-				// Add class to EntitySupport if not already in keys
+				// Add class to EntitySupport
 				incrementEntitySupport(c1);
 
 				// Only proceed to populate mappingSupport if there are any relationships 
