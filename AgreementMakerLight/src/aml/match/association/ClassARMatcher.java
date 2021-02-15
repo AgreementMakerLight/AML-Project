@@ -12,7 +12,7 @@
  * limitations under the License.                                              *
  *                                                                             *
  *******************************************************************************
- * Abstract Matcher based on association rules.  Finds 1:1 simple equivalences *
+ * Matcher based on association rules. Finds simple (1:1) relationships        *
  * between source and target classes.                                          *
  * @authors Beatriz Lima, Daniel Faria                                         *
  ******************************************************************************/
@@ -43,7 +43,11 @@ public class ClassARMatcher extends AbstractAssociationRuleMatcher {
 
 
 	// Protected methods
-
+	/*
+	 * Populates EntitySupport and MappingSupport tables
+	 * @param o1: source ontology
+	 * @param o2: target ontology
+	 */
 	protected void computeSupport(Ontology o1, Ontology o2) 
 	{
 		System.out.println("Get class support");
@@ -55,14 +59,6 @@ public class ClassARMatcher extends AbstractAssociationRuleMatcher {
 			// Find all classes associated to that instance
 			Set<String> cSet = rels.getIndividualClasses(si);
 
-			// See if equivalent instances have classes as well
-			if(rels.getEquivalentIndividuals(si) != null) 
-			{
-				Set<String> equivIndv= new HashSet<String>(rels.getEquivalentIndividuals(si));
-				for(String i: equivIndv)
-					cSet.addAll(rels.getIndividualClasses(i));
-			}
-			
 			// Switch to list since we need indexes 
 			List<String> cList = new ArrayList<String>(cSet);
 			// If empty list of classes, move on to next instance
@@ -74,8 +70,8 @@ public class ClassARMatcher extends AbstractAssociationRuleMatcher {
 			{
 				// Transform string uri into correspondent AbstractExpression
 				ClassId c1 = new ClassId(cList.get(i));
-				
-				// Add class to EntitySupport if not already in keys
+
+				// Add class to EntitySupport  already in keys
 				incrementEntitySupport(c1);
 
 				// If there are not at least two classes for this instance (one for each ontology)
@@ -89,10 +85,10 @@ public class ClassARMatcher extends AbstractAssociationRuleMatcher {
 					ClassId c2 = new ClassId(cList.get(j));
 					// Make sure we are not mapping entities from the same ontology
 					if( (o1.contains(cList.get(j)) && o1.contains(cList.get(i)))
-						| (!o1.contains(cList.get(j)) && !o1.contains(cList.get(i))))
+							| (!o1.contains(cList.get(j)) && !o1.contains(cList.get(i))))
 						continue;
-						
-					// Add class to MappingSupport if not already in keys
+
+					// Add class to MappingSupport
 					incrementMappingSupport(c1, c2);
 				}
 			}
