@@ -31,6 +31,7 @@ import java.util.Vector;
 
 import org.semanticweb.elk.owlapi.ElkReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.io.IRIDocumentSource;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
@@ -59,6 +60,7 @@ public class Ontology
 	//The OWL Ontology Manager and Data Factory
 	protected OWLOntologyManager manager;
 	protected OWLDataFactory factory;
+	protected OWLOntologyLoaderConfiguration conf;
 	//The entity expansion limit property
 	 protected final String LIMIT = "entityExpansionLimit"; 
 	//The URI of the ontology
@@ -105,6 +107,7 @@ public class Ontology
 		//Get an Ontology Manager and Data Factory
 		manager = OWLManager.createOWLOntologyManager();
 		factory = manager.getOWLDataFactory();
+		conf = new OWLOntologyLoaderConfiguration().setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT);
 		//Initialize the data structures
 		entities = new HashSet<Integer>();
 		entityTypes = new Table2Set<EntityType,Integer>();
@@ -149,17 +152,8 @@ public class Ontology
 	{
 		this();
 		OWLOntology o;
-		//Check if the URI is local
-		if(uri.toString().startsWith("file:"))
-		{
-			File f = new File(uri);
-			o = manager.loadOntologyFromOntologyDocument(f);
-		}
-		else
-		{
-			IRI i = IRI.create(uri);
-			o = manager.loadOntology(i);
-		}
+		IRIDocumentSource source = new IRIDocumentSource(IRI.create(uri));
+		o = manager.loadOntologyFromOntologyDocument(source,conf);
 		this.uri = uri.toString(); 
 		init(o);
 		//Close the OntModel
