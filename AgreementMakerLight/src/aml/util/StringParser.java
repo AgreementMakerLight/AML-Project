@@ -71,6 +71,10 @@ public class StringParser
 			|| name.matches("[a-zA-Z]{1}")
 			//a single letter followed by digits
 			|| name.matches("[a-zA-Z]{1}[0-9]{1,3}")
+			//letter+digit+underscore+digits
+			|| name.matches("[a-zA-Z]{1}[0-9]{1}[_:][0-9]{1,}")
+			//letter+underscore+digits&letters
+			|| name.matches("[a-zA-Z]{1}[_:][a-zA-Z0-9]{6,}")
 			//OBO Foundry style (e.g., "GO:000001")
 			|| name.matches("[a-zA-Z]{2,}[_:][0-9\\.]{4,}")
 			//akin to OBO Foundry style (e.g., "C_A00001")

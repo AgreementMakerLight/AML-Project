@@ -431,14 +431,14 @@ public class Lexicon
 	{
 		int index = getIndex(e);
 		Set<Integer> hits = entityNames[index].keySet(name);
-		HashSet<Integer> classesLang = new HashSet<Integer>();
+		HashSet<Integer> entitiesLang = new HashSet<Integer>();
 		if(hits == null)
-			return classesLang;
+			return entitiesLang;
 		for(Integer i : hits)
 			for(Provenance p : entityNames[index].get(name,i))
 				if(p.getLanguage().equals(lang))
-					classesLang.add(i);
-		return classesLang;
+					entitiesLang.add(i);
+		return entitiesLang;
 	}
 	
 	/**

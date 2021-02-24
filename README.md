@@ -43,7 +43,11 @@ Use the following command:
 
 Note: We have found a few errors when compiling AML with Maven. We are working on fixing them, but please avoid this solution for the time being, and try downloading the latest AML release instead.
 
-## Copyright 2013-2019 LASIGE
+## Acknowledgements
+
+AML is partially funded by the Portuguese FCT through the LASIGE Research Unit, and also by the SMILAX project (PTDC/EEI-ESS/4633/2014).
+
+## Copyright 2013-2020 LASIGE
 
 AML includes software developed at LASIGE (https://www.lasige.di.fc.ul.pt/) in collaboration with the ADVIS Lab (http://www.cs.uic.edu/Advis) and the Bioinformatics Unit of the IGC (http://bioinformatics.igc.gulbenkian.pt/ubi/).
 
