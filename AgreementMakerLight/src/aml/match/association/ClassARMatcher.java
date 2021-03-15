@@ -24,23 +24,15 @@ import java.util.List;
 import java.util.Set;
 
 import aml.AML;
-import aml.alignment.rdf.AbstractExpression;
 import aml.alignment.rdf.ClassId;
-import aml.ontology.EntityType;
 import aml.ontology.Ontology;
-import aml.ontology.ValueMap;
-import aml.ontology.lexicon.Lexicon;
 import aml.ontology.semantics.EntityMap;
 
 
-public class ClassARMatcher extends AbstractAssociationRuleMatcher {
-
+public class ClassARMatcher extends AbstractAssociationRuleMatcher 
+{
 	// Constructor
-	public ClassARMatcher() 
-	{
-		super();
-	}
-
+	public ClassARMatcher(){}
 
 	// Protected methods
 	/*
@@ -50,7 +42,7 @@ public class ClassARMatcher extends AbstractAssociationRuleMatcher {
 	 */
 	protected void computeSupport(Ontology o1, Ontology o2) 
 	{
-		System.out.println("Get class support");
+		System.out.println("Initialising Class Matcher");
 		Set<String> sharedInstances = new HashSet<String>(getSharedInstances(o1,o2));
 		EntityMap rels = AML.getInstance().getEntityMap();
 
@@ -84,7 +76,7 @@ public class ClassARMatcher extends AbstractAssociationRuleMatcher {
 				{
 					ClassId c2 = new ClassId(cList.get(j));
 					// Make sure we are not mapping entities from the same ontology
-					if( (o1.contains(cList.get(j)) && o1.contains(cList.get(i)))
+					if((o1.contains(cList.get(j)) && o1.contains(cList.get(i)))
 							| (!o1.contains(cList.get(j)) && !o1.contains(cList.get(i))))
 						continue;
 
