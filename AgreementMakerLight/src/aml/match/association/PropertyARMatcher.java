@@ -34,10 +34,7 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher{
 
 	// Constructor
 
-	public PropertyARMatcher() 
-	{
-		super();
-	}
+	public PropertyARMatcher(){}
 
 	//Protected methods
 	/*
@@ -122,11 +119,24 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher{
 				incrementEntitySupport(p1);
 
 				// Add to MappingSupport 
-				Set<String> srcValues = srcValueMap.getValues(si, srcUri); 
+				Set<String> srcValues = srcValueMap.getValues(si, srcUri);
+				if(srcValues.size()<1)
+					continue;
 				for(String tgtUri: tgtDataProperties) 
 				{
-					PropertyId p2 = new PropertyId(tgtUri, null); 
-					incrementMappingSupport(p1, p2); 
+					Set<String> tgtValues = tgtValueMap.getValues(si, tgtUri);
+					for (String srcV: srcValues) // Only map properties if they have the same range datatype
+					{
+						for (String tgtV: tgtValues) 
+						{
+							if(srcValueMap.getDataType(si, srcUri, srcV).equals(tgtValueMap.getDataType(si, tgtUri, tgtV)))
+							{
+								PropertyId p2 = new PropertyId(tgtUri, null);
+								incrementMappingSupport(p1, p2);
+								break;
+							}
+						}
+					}
 				} 
 			} 
 			//Also increment entity support for tgt properties 
