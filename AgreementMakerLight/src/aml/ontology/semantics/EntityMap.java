@@ -63,8 +63,9 @@ public class EntityMap
 	//Relationships between individuals
 	private Map2Set<String,String> sameIndivAs; //Individual -> Set of Equivalent Individuals
 	private Map2Map2Set<String,String,String> activeRelation; //Source Individual -> Target Individual -> Property
+	private Map2Map2Set<String,String,String> activeRelationIndividual; //Property -> Source Individual -> Target Individual 
 	private Map2Map2Set<String,String,String> passiveRelation; //Target Individual -> Source Individual -> Property
-
+	
 	//3) Structural data on properties
 	//Hierarchical and inverse relations between properties (and expressions)
 	private Map2Set<String,String> subProp; //Property -> SubProperty
@@ -121,8 +122,9 @@ public class EntityMap
 		instanceOfMap = new Map2Set<String,String>();
 		hasInstanceMap = new Map2Set<String,String>();
 		sameIndivAs = new Map2Set<String,String>();
-		activeRelation = new Map2Map2Set<String,String,String>();		
-		passiveRelation = new Map2Map2Set<String,String,String>();		
+		activeRelation = new Map2Map2Set<String,String,String>();
+		activeRelationIndividual = new Map2Map2Set<String,String,String>();
+		passiveRelation = new Map2Map2Set<String,String,String>();
 		subProp = new Map2Set<String,String>();
 		superProp = new Map2Set<String,String>();
 		inverseProp = new Map2Set<String,String>();
@@ -262,6 +264,7 @@ public class EntityMap
 	public void addIndividualRelationship(String indiv1, String indiv2, String prop)
 	{
 		activeRelation.add(indiv1,indiv2,prop);
+		activeRelationIndividual.add(prop, indiv1,indiv2);
 		passiveRelation.add(indiv2,indiv1,prop);
 	}
 
@@ -529,7 +532,17 @@ public class EntityMap
 	{
 		return entityType.keyCount();
 	}
-
+	
+	/**
+	 * @param propId: the id of the property to search in the map
+	 * @return the Map2Set of individuals who are related through the given property
+	 */
+	public Map2Set<String, String> getActiveRelationIndividuals(String propId)
+	{
+		if(activeRelationIndividual.contains(propId))
+			return activeRelationIndividual.get(propId);
+		return new Map2Set<String, String>();
+	}
 	/**
 	 * @return the set of classes with ancestors in the map
 	 */
@@ -962,7 +975,7 @@ public class EntityMap
 			return activeRelation.get(indivId,prop);
 		return new HashSet<String>();
 	}
-
+	
 	/**
 	 * @param prop: the uri of the property with the property chain(s)
 	 * @return the set of property chains that are equivalent to the prop
