@@ -25,6 +25,7 @@ import java.util.Set;
 import aml.AML;
 import aml.ontology.lexicon.Lexicon;
 import aml.ontology.lexicon.WordLexicon;
+import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2Map;
 import aml.util.data.Map2Set;
 
@@ -237,5 +238,11 @@ public class Ontology
 	public void setURI(String uri)
 	{
 		this.uri = uri;
+	}
+	
+	public void transitiveClosure()
+	{
+		EntityMap eMap = AML.getInstance().getEntityMap();
+		vMap.extend(eMap.getEquivalentIndividuals());
 	}
 }
