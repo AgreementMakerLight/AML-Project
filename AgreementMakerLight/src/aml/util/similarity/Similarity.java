@@ -1,24 +1,25 @@
 /******************************************************************************
-* Copyright 2013-2018 LASIGE                                                  *
-*                                                                             *
-* Licensed under the Apache License, Version 2.0 (the "License"); you may     *
-* not use this file except in compliance with the License. You may obtain a   *
-* copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
-*                                                                             *
-* Unless required by applicable law or agreed to in writing, software         *
-* distributed under the License is distributed on an "AS IS" BASIS,           *
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
-* See the License for the specific language governing permissions and         *
-* limitations under the License.                                              *
-*                                                                             *
-*******************************************************************************
-* Metrics for measuring similarity between collections and/or lists.          *
-*                                                                             *
-* @author Daniel Faria, Catia Pesquita                                        *
-******************************************************************************/
+ * Copyright 2013-2018 LASIGE                                                  *
+ *                                                                             *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+ * not use this file except in compliance with the License. You may obtain a   *
+ * copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+ *                                                                             *
+ * Unless required by applicable law or agreed to in writing, software         *
+ * distributed under the License is distributed on an "AS IS" BASIS,           *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+ * See the License for the specific language governing permissions and         *
+ * limitations under the License.                                              *
+ *                                                                             *
+ *******************************************************************************
+ * Metrics for measuring similarity between collections and/or lists.          *
+ *                                                                             *
+ * @author Daniel Faria, Catia Pesquita                                        *
+ ******************************************************************************/
 package aml.util.similarity;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import aml.util.snowball.EnglishStemmer;
@@ -53,7 +54,59 @@ public class Similarity
 		union += c2.size();
 		return intersection/union;
 	}
-	
+
+	/**
+	 * Computes the Weighted Jaccard similarity between two Collections of Objects
+	 * @param <X>
+	 * @param c1: the first Collection 
+	 * @param c2: the second Collection
+	 * @return the Weighted Jaccard similarity between c1 and c2
+	 */
+	public static <X extends Object> double weightedJaccardSimilarity(Collection<X> c1, Collection<X> c2)
+	{
+		if(c1.size() == 0 || c2.size() == 0)
+			return 0.0;
+		if(c1.equals(c2))
+			return 1.0;
+
+		double intersection = 0.0;
+		double union = 0.0;
+		
+		// Get term count HashMaps
+		HashMap<Object, Integer> count1 = new HashMap<Object, Integer>();
+		for(Object o: c1) 
+		{
+			if(!count1.containsKey(o)) 
+				count1.put(o, 1);
+			else 
+				count1.put(o, count1.get(o)+1);
+		}
+		HashMap<Object, Integer> count2 = new HashMap<Object, Integer>();
+		for(Object o: c2) 
+		{
+			if(!count2.containsKey(o)) 
+				count2.put(o, 1);
+			else 
+				count2.put(o, count2.get(o)+1);
+		}
+
+		// Compute weighted Jaccard
+		for (Object o: count1.keySet())
+		{
+			if (count2.containsKey(o))
+			{
+				intersection += Math.min(count1.get(o),count2.get(o));
+				union += Math.max(count1.get(o),count2.get(o));
+				count2.remove(o);
+			}
+			else union += count1.get(o);
+		}
+		for (Object o: count2.keySet())
+			union += count2.get(o);
+
+		return intersection/union;
+	}
+
 	/**
 	 * Computes the similarity between two names using a combination of String-, Word-
 	 * and WordNet-Similarity measures
@@ -73,7 +126,7 @@ public class Similarity
 		//If the names are equal, no need to compute similarity
 		if(n1.equals(n2))
 			return 1.0;
-		
+
 		//Split the source name into words
 		String[] sW = n1.split(" ");
 		HashSet<String> sWords = new HashSet<String>();
@@ -86,7 +139,7 @@ public class Similarity
 			if(wn != null && w.length() > 2)
 				sSyns.addAll(wn.getAllNounWordForms(w));
 		}
-		
+
 		//Split the target name into words
 		String[] tW = n2.split(" ");
 		HashSet<String> tWords = new HashSet<String>();
@@ -99,7 +152,7 @@ public class Similarity
 			if(wn != null && w.length() > 3)
 				tSyns.addAll(wn.getAllWordForms(w));
 		}
-		
+
 		//Compute the Jaccard word similarity between the properties
 		double wordSim = Similarity.jaccardSimilarity(sWords,tWords)*0.9;
 		//and the String similarity
@@ -117,7 +170,7 @@ public class Similarity
 		}
 		return sim;
 	}
-	
+
 	/**
 	 * Computes the bag-of-words similarity between two names 
 	 * @param n1: the first name to compare
@@ -127,18 +180,18 @@ public class Similarity
 	 */
 	public static double wordSimilarity(String n1, String n2, boolean stemming)
 	{
-		
+
 		//We don't compare two-character names at all
 		if(n1.length() < 3 || n2.length() < 3)
 			return 0.0;
 		//If the names are equal, no need to compute similarity
 		if(n1.equals(n2))
 			return 1.0;
-		
+
 		//Split the source name into words
 		String[] sW = n1.split(" ");
 		HashSet<String> sWords = new HashSet<String>();
-		
+
 		for(String w : sW)
 		{			
 			if(stemming)
@@ -149,13 +202,13 @@ public class Similarity
 				w = snowballStemmer.getCurrent();	
 			}
 			sWords.add(w);
-			
+
 		}
-		
+
 		//Split the target name into words
 		String[] tW = n2.split(" ");
 		HashSet<String> tWords = new HashSet<String>();
-			
+
 		for(String w : tW)
 		{
 			if(stemming)
@@ -167,13 +220,13 @@ public class Similarity
 			}
 			tWords.add(w);			
 		}
-		
+
 		//Compute the Jaccard word similarity between the properties
 		double wordSim = Similarity.jaccardSimilarity(sWords,tWords)*0.9;
-		
+
 		return wordSim;
 	}
-	
+
 	/**
 	 * Computes the string the similarity between two Strings
 	 * @param s: the first String
