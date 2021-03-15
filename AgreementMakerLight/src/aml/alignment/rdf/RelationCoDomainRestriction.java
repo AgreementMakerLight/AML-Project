@@ -32,7 +32,7 @@ public class RelationCoDomainRestriction extends RelationExpression
 //Constructor
 	
 	/**
-	 * Constructs a new PropertyDomainRestriction with the class expression as domain
+	 * Constructs a new RelationCoDomainRestriction with the class expression as CoDomain
 	 * @param rest: the class expression defining the domain
 	 */
 	public RelationCoDomainRestriction(ClassExpression rest)
