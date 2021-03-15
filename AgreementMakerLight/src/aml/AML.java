@@ -21,10 +21,9 @@
 ******************************************************************************/
 package aml;
 
-import java.io.BufferedReader;
+import java.io.*;
 import java.io.File;
-import java.io.FileFilter;
-import java.io.FileReader;
+import java.io.BufferedReader;
 import java.net.URI;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -36,11 +35,13 @@ import javax.swing.UIManager;
 import org.apache.log4j.PropertyConfigurator;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 
-import aml.alignment.SimpleAlignment;
-import aml.alignment.mapping.Mapping;
-import aml.alignment.mapping.MappingStatus;
 import aml.alignment.Alignment;
 import aml.alignment.EDOALAlignment;
+import aml.alignment.SimpleAlignment;
+import aml.alignment.evaluation.EditDistance;
+import aml.alignment.evaluation.Evaluator;
+import aml.alignment.mapping.Mapping;
+import aml.alignment.mapping.MappingStatus;
 import aml.filter.Ensemble;
 import aml.filter.QualityFlagger;
 import aml.filter.Repairer;
@@ -48,10 +49,10 @@ import aml.filter.SelectionType;
 import aml.io.AlignmentReader;
 import aml.io.AlignmentWriter;
 import aml.io.OntologyParser;
+import aml.match.AutomaticMatcher;
 import aml.match.ManualMatcher;
 import aml.match.lexical.WordMatchStrategy;
 import aml.match.structural.NeighborSimilarityStrategy;
-import aml.match.AutomaticMatcher;
 import aml.ontology.EntityType;
 import aml.ontology.MediatorOntology;
 import aml.ontology.Ontology;
@@ -59,10 +60,10 @@ import aml.ontology.lexicon.ParenthesisExtender;
 import aml.ontology.lexicon.StopWordExtender;
 import aml.ontology.semantics.EntityMap;
 import aml.ontology.semantics.RepairMap;
-import aml.settings.Problem;
 import aml.settings.InstanceMatchingCategory;
 import aml.settings.LanguageSetting;
 import aml.settings.MatchStep;
+import aml.settings.Problem;
 import aml.settings.SizeCategory;
 import aml.ui.AMLColor;
 import aml.ui.AlignmentFileChooser;
@@ -294,10 +295,10 @@ public class AML
 	 * Evaluates the current alignment using the reference alignment
 	 */
 	@SuppressWarnings("unchecked")
-	public void evaluate()
+	public void evaluate(Evaluator e)
 	{
 		boolean gui = userInterface != null;
-		int[] eval = a.evaluate(ref); 
+		int[] eval = e.evaluate(a,ref); 
 		int found = a.size() - eval[1];
 		int correct = eval[0];
 		int total = ref.size() - ref.countConflicts();
@@ -903,12 +904,19 @@ public class AML
 		System.out.println("Properties: " + (target.count(EntityType.DATA_PROP)+target.count(EntityType.OBJECT_PROP)));
 		System.out.println("Direct Relationships: " + entities.relationshipCount());
 		time = System.currentTimeMillis()/1000;
-		System.out.println("Running transitive closure on RelationshipMap");
+		System.out.println("Running transitive closure on EntityMap");
 		entities.transitiveClosure();
 		time = System.currentTimeMillis()/1000 - time;
 		System.out.println("Transitive closure finished in " + time + " seconds");	
 		System.out.println("Extended Relationships: " + entities.relationshipCount());
 		System.out.println("Disjoints: " + entities.disjointCount());
+		time = System.currentTimeMillis()/1000;
+		System.out.println("Running transitive closure on ValueMap");
+		source.transitiveClosure();
+		target.transitiveClosure();
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Transitive closure finished in " + time + " seconds");	
+		
     	//Reset the alignment, mapping, and evaluation
     	a = null;
     	activeMapping = -1;
