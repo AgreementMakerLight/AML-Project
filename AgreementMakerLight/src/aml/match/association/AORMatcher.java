@@ -25,6 +25,7 @@ import java.util.Set;
 
 import aml.AML;
 import aml.alignment.rdf.AbstractExpression;
+import aml.alignment.rdf.AttributeDomainRestriction;
 import aml.alignment.rdf.AttributeOccurrenceRestriction;
 import aml.alignment.rdf.ClassId;
 import aml.alignment.rdf.Comparator;
@@ -52,6 +53,7 @@ public class AORMatcher extends aml.match.association.AbstractAssociationRuleMat
 	 */
 	protected void computeSupport(Ontology o1, Ontology o2) 
 	{
+		System.out.println("Initialising Attribute Occurence Matcher");
 		// Get entity map of relations
 		Set<String> sharedInstances = new HashSet<String>(getSharedInstances(o1,o2));
 		EntityMap rels = AML.getInstance().getEntityMap();
@@ -65,89 +67,48 @@ public class AORMatcher extends aml.match.association.AbstractAssociationRuleMat
 			int len = i1Classes.size();
 			if(len < 1)
 				continue;
-			if (i1Classes.contains("http://gmo#Place")) {
-				System.out.println("HERE");
-				if (rels.getIndividualActiveRelations().get(si) != null) 
-				{
-					System.out.println("It does have relations");
-				}
-				else {
-					System.out.println("It doenst have relations");
-				}
-				
-			}
+			// If map does not have any other triples involving this instance, move on to next instance
+			if (rels.getIndividualActiveRelations().get(si) == null)
+				continue;
 
+			Set<AttributeOccurrenceRestriction> foundAORsInstance = new HashSet<AttributeOccurrenceRestriction>(); //AORs found for this instance si
 			// If map contains any other triples involving that instance, get them
-			if (rels.getIndividualActiveRelations().get(si) != null) 
+			activeRelations = new Map2Set<String, String>(rels.getIndividualActiveRelations().get(si));
+			for (String c1URI: i1Classes) 
 			{
-				activeRelations = new Map2Set<String, String>(rels.getIndividualActiveRelations().get(si));
-				for (int i = 0; i < len; i++) 
+				// Transform string uri into correspondent AbstractExpression
+				ClassId c1 = new ClassId(c1URI);
+				incrementEntitySupport(c1);
+				Set<AttributeOccurrenceRestriction> foundAORsClass = new HashSet<AttributeOccurrenceRestriction>(); //AORs found for this class c1
+
+				// Only proceed to populate mappingSupport if there are any other triples involving that instance
+				// besides class assignment
+				for(String i2: activeRelations.keySet()) 
 				{
-					// Transform string uri into correspondent AbstractExpression
-					String c1URI = i1Classes.get(i);
-					if (c1URI.equals("http://www.w3.org/2002/07/owl#Thing")) {continue;}
-					ClassId c1 = new ClassId(c1URI);
-					// Add class to EntitySupport
-					incrementEntitySupport(c1);
-					Set<AttributeOccurrenceRestriction> foundAORs = new HashSet<AttributeOccurrenceRestriction>();
-
-					// Only proceed to populate mappingSupport if there are any other triples involving that instance
-					// besides class assignment
-					if (activeRelations.size() > 0) 
+					//Iterate relations between si and i2 and save the corresponding attribute
+					for (String attributeURI: activeRelations.get(i2)) 
 					{
-						for(String i2: activeRelations.keySet()) 
-						{
-							//Iterate relations between si and i2 and save the corresponding attribute
-							for (String attributeURI: activeRelations.get(i2)) 
-							{
-								// Filter out cases where relation is from the same ontology as c1
-								if (o1.contains(c1URI) && o1.contains(attributeURI)) {continue;}
-								else if(o2.contains(c1URI) && o2.contains(attributeURI)){continue;}
+						// Filter out cases where relation is from the same ontology as c1
+						if (o1.contains(c1URI) && o1.contains(attributeURI)) {continue;}
+						else if(o2.contains(c1URI) && o2.contains(attributeURI)){continue;}
 
-								AttributeOccurrenceRestriction aor = new AttributeOccurrenceRestriction(
-										new RelationId(attributeURI),
-										new Comparator("http://ns.inria.org/edoal/1.0/#greater-than"),
-										new NonNegativeInteger(0));
-
-								// Only increment mapping and entity support if that AOR hasn't yet been found for si
-								if (!foundAORs.contains(aor)) 
-								{
-									foundAORs.add(aor);
-									incrementEntitySupport(aor);
-									incrementMappingSupport(c1,aor);
-								}
-							}
-						}
+						AttributeOccurrenceRestriction aor = new AttributeOccurrenceRestriction(
+								new RelationId(attributeURI),
+								new Comparator("http://ns.inria.org/edoal/1.0/#greater-than"),
+								new NonNegativeInteger(0));
+						foundAORsClass.add(aor);
 					}
 				}
+				// Increment mapping support for all the ADRs found for this class
+				for(AbstractExpression aor: foundAORsClass)
+					incrementMappingSupport(c1, aor);
+				// Add classes AORs to list of ADRs for this instance si
+				foundAORsInstance.addAll(foundAORsClass);
 			}
+			// Increment entity support for all the ADRs found for this instance
+			for(AbstractExpression aor: foundAORsInstance)
+				incrementEntitySupport(aor);
 		}
-		/*
-		 * Set<String> relevant = new HashSet<String>(); relevant.add("Place");
-		 * relevant.add("Platform"); relevant.add("Cruise");
-		 * relevant.add("PhysicalSample");
-		 * 
-		 * Set<String> relevantRel = new HashSet<String>();
-		 * relevant.add("hasGeoFeatureType"); relevant.add("hasPlatformType");
-		 * relevant.add("hasCruiseType"); relevant.add("gbo#hasPlaceType");
-		 * relevant.add("gbo#hasSampleType");
-		 * 
-		 * 
-		 * //print mappingsupport for (AbstractExpression l1: mappingSupport.keySet()) {
-		 * for(AbstractExpression l2: mappingSupport.keySet(l1)) {
-		 * if(relevant.contains(l1.toString()) || relevant.contains(l2.toString())) {
-		 * System.out.println("1: " + l1.toRDF()); System.out.println("2: " +
-		 * l2.toRDF()); System.out.println("Sup: " + mappingSupport.get(l1,l2));
-		 * System.out.println(" "); } } }
-		 * 55
-		 * //print entitySupport for (AbstractExpression l1: entitySupport.keySet()) {
-		 * if(relevant.contains(l1.toString())) { System.out.println(l1.toRDF());
-		 * System.out.println("Sup: " + entitySupport.get(l1)); System.out.println(" ");
-		 * } if(relevantRel.contains(l1.toString())) { System.out.println(l1.toRDF());
-		 * System.out.println("Sup: " + entitySupport.get(l1)); System.out.println(" ");
-		 * } }
-		 */
-
 	}
 }
 
