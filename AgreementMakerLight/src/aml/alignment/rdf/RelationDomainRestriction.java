@@ -25,14 +25,14 @@ import java.util.Vector;
 public class RelationDomainRestriction extends RelationExpression
 {
 
-//Propertys
+//Attributes
 	
 	private ClassExpression rest;
 	
 //Constructor
 	
 	/**
-	 * Constructs a new PropertyDomainRestriction with the class expression as domain
+	 * Constructs a new RelationDomainRestriction with the class expression as domain
 	 * @param rest: the class expression defining the domain
 	 */
 	public RelationDomainRestriction(ClassExpression rest)
@@ -54,7 +54,7 @@ public class RelationDomainRestriction extends RelationExpression
 	@Override
 	@SuppressWarnings("unchecked")
 	/**
-	 * A RelationCoDomainRestriction has as single argument the class expression
+	 * A RelationDomainRestriction has as single argument the class expression
 	 * restricting the domain of the relation
 	 */
 	public Collection<ClassExpression> getComponents()
