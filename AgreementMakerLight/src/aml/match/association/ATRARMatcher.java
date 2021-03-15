@@ -19,12 +19,11 @@
  ******************************************************************************/
 package aml.match.association;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.semanticweb.owlapi.model.OWLDatatype;
+
 import aml.AML;
 import aml.alignment.rdf.AttributeTypeRestriction;
 import aml.alignment.rdf.ClassId;
@@ -34,16 +33,10 @@ import aml.ontology.Ontology;
 import aml.ontology.ValueMap;
 import aml.ontology.semantics.EntityMap;
 
-public class CAVARMatcher extends aml.match.association.AbstractAssociationRuleMatcher
+public class ATRARMatcher extends aml.match.association.AbstractAssociationRuleMatcher
 {
-
-	// Attributes
-
 	//Constructor
-	public CAVARMatcher() 
-	{
-		super();
-	}
+	public ATRARMatcher(){}
 
 	//Protected methods
 	/*
@@ -53,6 +46,7 @@ public class CAVARMatcher extends aml.match.association.AbstractAssociationRuleM
 	 */
 	protected void computeSupport(Ontology o1, Ontology o2) 
 	{
+		System.out.println("Initialising Attribute Type Restriction Matcher");
 		// Get entity map of relations
 		Set<String> sharedInstances = new HashSet<String>(getSharedInstances(o1,o2));
 		EntityMap rels = AML.getInstance().getEntityMap();
@@ -60,19 +54,13 @@ public class CAVARMatcher extends aml.match.association.AbstractAssociationRuleM
 		ValueMap tgtValueMap = o2.getValueMap();
 		Set<String> srcProperties = null;
 		Set<String> tgtProperties = null;
-		Set<String> equivIndv = new HashSet<String>();
-
 
 		for(String si : sharedInstances) 
 		{
 			// Find all classes of that instance
 			Set<String> cSet = rels.getIndividualClasses(si);
-
-			// Switch to list since we need indexes 
-			List<String> i1Classes = new ArrayList<String>(cSet);
 			// If empty list of classes, move on to next instance
-			int len = i1Classes.size();
-			if(len < 1) {continue;}
+			if(cSet.size() < 1) {continue;}
 
 			// If map contains any properties linking to that instance, get them
 			if (srcValueMap.getProperties(si) != null) 
@@ -80,25 +68,20 @@ public class CAVARMatcher extends aml.match.association.AbstractAssociationRuleM
 			if (tgtValueMap.getProperties(si) != null) 
 				tgtProperties = new HashSet<String>(tgtValueMap.getProperties(si));
 
-			for (int i = 0; i < len; i++) 
+			for (String c1URI: cSet) 
 			{
 				// Transform string uri into correspondent AbstractExpression
-				String c1URI = i1Classes.get(i);
-				if (c1URI.equals("http://www.w3.org/2002/07/owl#Thing")) {continue;}
 				ClassId c1 = new ClassId(c1URI);
-
-				// Add class to EntitySupport
 				incrementEntitySupport(c1);
 
 				// Only proceed to populate mappingSupport if there are any relationships 
 				// for that instance besides class assignment
 				Set<AttributeTypeRestriction> atrs = new HashSet<AttributeTypeRestriction>();
-
 				if(o1.contains(c1URI))
 					atrs.addAll(findATRs(si, tgtProperties, tgtValueMap));
 				else 
 					atrs.addAll(findATRs(si, srcProperties, srcValueMap));
-
+				
 				for(AttributeTypeRestriction atr: atrs)
 				{
 					incrementEntitySupport(atr);
@@ -118,15 +101,15 @@ public class CAVARMatcher extends aml.match.association.AbstractAssociationRuleM
 	{
 		// Since atrs is a set, no repeated elements will be added.
 		Set<AttributeTypeRestriction> atrs = new HashSet<AttributeTypeRestriction>();
-
+		
 		if (properties != null) 
 		{
 			for(String pURI: properties) 
 			{
 				PropertyId p = new PropertyId(pURI, null);
-				for(String v: vmap.getValues(instance, pURI)) 
+				for(String value: vmap.getValues(instance, pURI)) 
 				{
-					OWLDatatype dataType = vmap.getDataType(instance, pURI, v);
+					OWLDatatype dataType = vmap.getDataType(instance, pURI, value);
 					Datatype dt = new Datatype(dataType.toString());
 					AttributeTypeRestriction atr = new AttributeTypeRestriction(p, dt);
 					atrs.add(atr);
