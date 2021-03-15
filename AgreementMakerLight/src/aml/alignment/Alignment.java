@@ -358,31 +358,6 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	{
 		return o instanceof Alignment && containsAll((Alignment)o);
 	}
-	
-	/**
-	 * @param ref: the reference Alignment to evaluate this Alignment
-	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
-	 */
-	public int[] evaluate(Alignment<A> ref)
-	{
-		int[] count = new int[2];
-		for(Mapping<A> m : maps)
-		{
-			if(ref.containsUnknown(m))
-			{
-				count[1]++;
-				m.setStatus(MappingStatus.UNKNOWN);
-			}
-			else if(ref.contains(m))
-			{
-				count[0]++;
-				m.setStatus(MappingStatus.CORRECT);
-			}
-			else
-				m.setStatus(MappingStatus.INCORRECT);
-		}
-		return count;
-	}
 
 	/**
 	 * @param a: the base Alignment to which this Alignment will be compared 
