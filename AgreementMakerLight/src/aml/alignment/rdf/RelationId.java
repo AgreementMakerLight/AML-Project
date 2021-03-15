@@ -67,4 +67,9 @@ public class RelationId extends RelationExpression
 	{
 		return AML.getInstance().getEntityMap().getLocalName(elements.iterator().next());
 	}
+	
+	public String toURI() 
+	{
+		return elements.iterator().next();
+	}
 }
