@@ -12,7 +12,8 @@
  * limitations under the License.                                              *
  *                                                                             *
  *******************************************************************************
- * Abstract Matcher based on association rules.                                *
+ * Abstract Matcher based on association rules. Finds Association Rules and    *
+ * assesses their confidence.                                                  *
  *                                                                             *
  * @authors Beatriz Lima, Daniel Faria                                         *
  ******************************************************************************/
@@ -21,20 +22,23 @@ package aml.match.association;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+
+import aml.AML;
 import aml.alignment.EDOALAlignment;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.rdf.AbstractExpression;
+import aml.match.Matcher;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
+import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2Map;
 
-public abstract class AbstractAssociationRuleMatcher
+public abstract class AbstractAssociationRuleMatcher extends Matcher
 {
-
 	// Attributes
 	protected HashMap<AbstractExpression, Integer> entitySupport;
 	protected Map2Map<AbstractExpression, AbstractExpression, Integer> mappingSupport;
-	protected final int minSup = 10; //about 1% of all transactions
+	protected final int minSup = 1; //about 1% of all transactions
 	protected final double minConf = 0.5;
 	protected Map2Map<AbstractExpression, AbstractExpression, Double> ARules;
 
@@ -47,38 +51,41 @@ public abstract class AbstractAssociationRuleMatcher
 	}
 
 	// Public methods
-	public EDOALAlignment match(Ontology o1, Ontology o2) {
+	public EDOALAlignment match(Ontology o1, Ontology o2) 
+	{
 		computeSupport(o1, o2);
-		for (AbstractExpression e1 : mappingSupport.keySet()) {
-			for (AbstractExpression e2 : mappingSupport.get(e1).keySet()) {
+		for (AbstractExpression e1 : mappingSupport.keySet()) 
+		{
+			for (AbstractExpression e2 : mappingSupport.get(e1).keySet()) 
+			{
 				//Filter by support then confidence
-				if (mappingSupport.get(e1, e2) >= minSup) {
+				if (mappingSupport.get(e1, e2) >= minSup) ///// should be entitySupport??
+				{
 					double conf = getConfidence(e1, e2);
 					if (conf > minConf) 
-					{
-						ARules.add(e1, e2, conf);
-					}
+						ARules.add(e1, e2, conf);	
 				}
 			}
 		}
-
 		EDOALAlignment a = new EDOALAlignment();
-
-		for (AbstractExpression e1 : ARules.keySet()) {
-			for (AbstractExpression e2 : ARules.get(e1).keySet()) {
-
+		for (AbstractExpression e1 : ARules.keySet()) 
+		{
+			for (AbstractExpression e2 : ARules.get(e1).keySet()) 
+			{
 				// If the rule is bidirectional, then it is an equivalence relation
-				if(ARules.contains(e2,e1)) {
+				if(ARules.contains(e2,e1)) 
+				{
+					double conf = Math.sqrt(ARules.get(e1, e2) * ARules.get(e2, e1));
 					// Make sure that mapping is directional (src->tgt)
-					if(o1.containsAll(e1.getElements()))
-						a.add(e1, e2, ARules.get(e1, e2), MappingRelation.EQUIVALENCE);
+					if(o1.containsAll(e1.getElements())) 
+						a.add(e1, e2, conf, MappingRelation.EQUIVALENCE);
+
 					else
-						a.add(e2, e1, ARules.get(e1, e2), MappingRelation.EQUIVALENCE);
-						
-						
+						a.add(e2, e1, conf, MappingRelation.EQUIVALENCE);
 				}
-				// If rule is unidirectional (A->B) then A is subsummed by B
-				else {
+				// If rule is unidirectional (A->B) then A is subsumed by B (<)
+				else 
+				{
 					if(o1.containsAll(e1.getElements())) 
 						a.add(e1, e2, ARules.get(e1, e2), MappingRelation.SUBSUMED_BY);
 					else
@@ -89,9 +96,7 @@ public abstract class AbstractAssociationRuleMatcher
 		return a;
 	}
 
-
 	// Protected methods
-
 	/**
 	 * Populates EntitySupport and MappingSupport tables
 	 */
@@ -101,46 +106,67 @@ public abstract class AbstractAssociationRuleMatcher
 	 * Increments entity support
 	 * @param e: entity to account for
 	 */
-	protected void incrementEntitySupport(AbstractExpression e) {
-		if(!entitySupport.containsKey(e)) {
+	protected void incrementEntitySupport(AbstractExpression e) 
+	{
+		if(!entitySupport.containsKey(e))
 			entitySupport.put(e, 1);
-		}
-		else {
+		else 
 			entitySupport.put(e, entitySupport.get(e)+1);
-		}
 	}
 
 	/*
 	 * Increments mapping support for entities e1 and e2
 	 * It's a symmetric map to facilitate searches
 	 */
-	protected void incrementMappingSupport(AbstractExpression e1, AbstractExpression e2) {
-
-		if(!mappingSupport.contains(e1,e2)) {	
+	protected void incrementMappingSupport(AbstractExpression e1, AbstractExpression e2) 
+	{
+		if(!mappingSupport.contains(e1,e2)) 
+		{	
 			mappingSupport.add(e1,e2, 1);
 			mappingSupport.add(e2,e1, 1);
 		}
-		else {
+		else 
+		{
 			mappingSupport.add(e1,e2, mappingSupport.get(e1,e2)+1);
 			mappingSupport.add(e2,e1, mappingSupport.get(e2,e1)+1);
 		}
 	}
-	
+
 	/**
 	 * Gets the individuals shared by the two ontologies
 	 */
-	protected Set<String> getSharedInstances(Ontology o1, Ontology o2) {
+	protected static Set<String> getSharedInstances(Ontology o1, Ontology o2) 
+	{
 		// Find shared instances in the two ontologies
 		Set<String> sharedInstances = new HashSet<String>();
 		sharedInstances = o1.getEntities(EntityType.INDIVIDUAL);
 		sharedInstances.retainAll(o2.getEntities(EntityType.INDIVIDUAL));
-		System.out.println("Shared instances: "+ sharedInstances.size());
 		
+		//Remove equivalent instances --> multiplicated info
+		EntityMap rels = AML.getInstance().getEntityMap();
+		Set<String> sharedInstancesCopy = new HashSet<String>(sharedInstances);
+
+		if(rels.getEquivalentIndividuals().size()>0) 
+		{
+			for(String instance: sharedInstancesCopy) 
+			{
+				Set<String> eqvIndividuals = new HashSet<String>(rels.getEquivalentIndividuals(instance));
+				if(eqvIndividuals.size()>0) 
+				{
+					// Skip instances from third parties - those don't have any relationships
+					if(rels.getIndividualActiveRelations().get(instance) == null) 
+						continue;
+					sharedInstances.removeAll(rels.getEquivalentIndividuals(instance));
+					sharedInstances.add(instance); // Add itself -- we are left with only one ontology instance - the spokesman
+				}
+			}
+		}
 		return sharedInstances;
 	}
 
 	// Private methods	
-	private double getConfidence(AbstractExpression e1, AbstractExpression e2) {
+	private double getConfidence(AbstractExpression e1, AbstractExpression e2) 
+	{
 		double conf = (double)mappingSupport.get(e1, e2) / (double)entitySupport.get(e1);
 		return conf;
 	}
