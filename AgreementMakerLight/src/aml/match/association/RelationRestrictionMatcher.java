@@ -38,6 +38,7 @@ import aml.alignment.rdf.RelationIntersection;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.semantics.EntityMap;
+import aml.util.data.Map2Map;
 
 public class RelationRestrictionMatcher
 {
@@ -49,6 +50,8 @@ public class RelationRestrictionMatcher
 	private Ontology o1;
 	private Ontology o2;
 	private EDOALAlignment in;
+	protected int minSup; //about 1% of all transactions
+	protected final double minConf = 0.5;
 
 	// Public methods
 	/**
@@ -82,7 +85,11 @@ public class RelationRestrictionMatcher
 					out.addAll(getRelationRestriction((RelationId)src, (RelationId)tgt));
 				else if (m.getRelationship() == MappingRelation.SUBSUMES) // tgt < src
 					out.addAll(getRelationRestriction((RelationId)tgt, (RelationId)src));
+				//	else 
+				//		out.add(m); // Equivalence or unknown
 			}	
+			//else
+			//	out.add(m);	
 		}
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 		return out;
@@ -90,23 +97,39 @@ public class RelationRestrictionMatcher
 
 	// Private methods
 	/**
-	 * Extracts both RelationDomainRestrictions and  RelationRangeRestrictions given a subsumption mapping 
+	 * Extracts both RelationDomainRestrictions and RelationRangeRestrictions given a subsumption mapping 
 	 * such as "smallerRelation < broaderRelation"
 	 * @return a set of RelationExpression objects that include RelationRestrictions
 	 */
 	private Set<Mapping<AbstractExpression>> getRelationRestriction(RelationId smallerRelation, RelationId broaderRelation)
 	{
-		HashMap<AbstractExpression, Integer> restrictionSupport = new HashMap<AbstractExpression, Integer>();
+		HashMap<AbstractExpression, Integer> entitySupport = new HashMap<AbstractExpression, Integer>();
+		Map2Map<AbstractExpression, AbstractExpression, Integer> mappingSupport = new Map2Map<AbstractExpression, AbstractExpression, Integer>();
+		Map2Map<AbstractExpression, AbstractExpression, Double> ARules = new Map2Map<>();
+		Set<Mapping<AbstractExpression>> mappings = new HashSet<Mapping<AbstractExpression>>();
 		String smallerRelationURI = smallerRelation.toURI();
+		String broaderRelationURI = broaderRelation.toURI();
 		Set<String> sharedInstances = AbstractAssociationRuleMatcher.getSharedInstances(o1, o2);
-
+		minSup = sharedInstances.size()/100;
+		
 		// Compute Support
-		// TransactionDB will only encompass instances that have a smallerRelation to some other instance
-		Set<String> individuals1 = map.getActiveRelationIndividuals(smallerRelationURI).keySet();
+		// TransactionDB will only encompass instances that have a broaderRelation to some other instance
+		Set<String> individuals1 = map.getActiveRelationIndividuals(broaderRelationURI).keySet();
+		Set<String> smallerIndividuals = map.getActiveRelationIndividuals(smallerRelationURI).keySet();
 		individuals1.retainAll(sharedInstances); // only work with shared instances
-
+		
+		if(individuals1.size()<=minSup)
+			return mappings;
+		
 		for (String i1: individuals1) 
 		{
+			boolean containsBothRelations = false;
+			if(smallerIndividuals.contains(i1)) 
+			{
+				incrementEntitySupport(smallerRelation, entitySupport);
+				containsBothRelations = true;
+			}
+
 			// DOMAIN RESTRICTION
 			// Find all classes associated to instance i1
 			Set<String> domainClasses = map.getIndividualClasses(i1);
@@ -119,22 +142,22 @@ public class RelationRestrictionMatcher
 				// Transform string uri into correspondent AbstractExpression
 				ClassId classId = new ClassId(classURI);
 				RelationExpression restriction = constructRelationRestriction(broaderRelation, classId, "Domain");
-				// Increment restriction support 
-				if(!restrictionSupport.containsKey(restriction))
-					restrictionSupport.put(restriction, 1);
-				else 
-					restrictionSupport.put(restriction, restrictionSupport.get(restriction)+1);
+				// Increment entity support 
+				incrementEntitySupport(restriction, entitySupport);
+
+				if(containsBothRelations) 
+					incrementMappingSupport(smallerRelation, restriction, mappingSupport);
 			}
 
-			// CO-DOMAIN RESTRICTION
-			Set<String> individuals2 = map.getActiveRelationIndividuals(smallerRelationURI).get(i1);
+			// RANGE RESTRICTION
+			Set<String> individuals2 = map.getActiveRelationIndividuals(broaderRelationURI).get(i1);
 			Set<RelationExpression> foundRangeRestriction = new HashSet<RelationExpression>();
 
 			// Find all classes associated to instance i2
 			for(String i2: individuals2) 
 			{
-				Set<String> RangeClasses = map.getIndividualClasses(i2);
-				for (String classURI: RangeClasses) 
+				Set<String> rangeClasses = map.getIndividualClasses(i2);
+				for (String classURI: rangeClasses) 
 				{
 					if((o1.contains(classURI) && o1.contains(smallerRelationURI))
 							| (!o1.contains(classURI) && !o1.contains(smallerRelationURI)))
@@ -145,37 +168,48 @@ public class RelationRestrictionMatcher
 					foundRangeRestriction.add(constructRelationRestriction(broaderRelation, classId, "Range"));
 				}
 			}
-			// Increment restriction support 
+			// Increment range restriction support 
 			for(RelationExpression restriction: foundRangeRestriction) 
 			{
-				if(!restrictionSupport.containsKey(restriction))
-					restrictionSupport.put(restriction, 1);
-				else 
-					restrictionSupport.put(restriction, restrictionSupport.get(restriction)+1);
+				incrementEntitySupport(restriction, entitySupport);
+				if(containsBothRelations)
+					incrementMappingSupport(smallerRelation, restriction, mappingSupport);
 			}
 		}
-		// Compute confidence in rules of type smallerRelation -> broaderRelation ˆ restriction
-		// Given that all instances in this transactionDB contain the smallerRelation:
-		// sup(smallerRelation U (broaderRelation ˆ restriction)) =  restrictionSupport
-		// sup(smallerRelation) = # of individual that have the smallerRelation (size of DB)
-		double max = 0.0;
-		Set<AbstractExpression> bestRestriction = new HashSet<AbstractExpression>();
-		for(AbstractExpression restriction: restrictionSupport.keySet()) 
-		{
-			double conf = restrictionSupport.get(restriction)*1.0 / individuals1.size();
-			if (conf>=max) 
-			{
-				max = conf;
-				bestRestriction.add(restriction);
-			}		
-		}
-		Set<Mapping<AbstractExpression>> mappings = new HashSet<Mapping<AbstractExpression>>(); 
-		for(AbstractExpression b: bestRestriction) 
-			mappings.add(new EDOALMapping(smallerRelation, b, max, MappingRelation.EQUIVALENCE));
-		
-		return mappings;
-	}
 
+		// Compute confidence in rules
+		for (AbstractExpression e1 : mappingSupport.keySet()) 
+		{
+			for (AbstractExpression e2 : mappingSupport.get(e1).keySet()) 
+			{
+				//Filter by support then confidence
+				if (mappingSupport.get(e1, e2) >= minSup)
+				{
+					double conf = (double)mappingSupport.get(e1, e2) / (double)entitySupport.get(e1);
+					if (conf > minConf) 
+						ARules.add(e1, e2, conf);	
+				}
+			}
+		}
+		
+		for (AbstractExpression e1 : ARules.keySet()) 
+		{
+			for (AbstractExpression e2 : ARules.get(e1).keySet()) 
+			{
+				// If the rule is bidirectional, then it is an equivalence relation
+				if(ARules.contains(e2,e1)) 
+				{
+					double conf = Math.sqrt(ARules.get(e1, e2) * ARules.get(e2, e1));
+					// Make sure that mapping is directional (src->tgt)
+					if(o1.containsAll(e1.getElements())) 
+						mappings.add(new EDOALMapping(e1, e2, conf, MappingRelation.EQUIVALENCE));
+					else
+						mappings.add(new EDOALMapping(e2, e1, conf, MappingRelation.EQUIVALENCE));
+				}
+			}
+		}
+		return mappings;	
+	}
 	/**
 	 * Constructs a Relation expression that includes a relation and restriction
 	 * @param mode: either "Domain" for DomainRestriction or "Range" for RangeRestriction
@@ -196,6 +230,33 @@ public class RelationRestrictionMatcher
 			relationComplexExpression.add(restriction);
 		}
 		return new RelationIntersection(relationComplexExpression);
+	}	
+	/*
+	 * Increments entity support
+	 * @param e: entity to account for
+	 */
+	private void incrementEntitySupport(AbstractExpression e, HashMap<AbstractExpression, Integer> entitySupport) 
+	{
+		if(!entitySupport.containsKey(e))
+			entitySupport.put(e, 1);
+		else 
+			entitySupport.put(e, entitySupport.get(e)+1);
 	}
-
+	/*
+	 * Increments mapping support for entities e1 and e2
+	 * It's a symmetric map to facilitate searches
+	 */
+	private void incrementMappingSupport(AbstractExpression e1, AbstractExpression e2, Map2Map<AbstractExpression, AbstractExpression, Integer> mappingSupport) 
+	{
+		if(!mappingSupport.contains(e1,e2)) 
+		{	
+			mappingSupport.add(e1,e2, 1);
+			mappingSupport.add(e2,e1, 1);
+		}
+		else 
+		{
+			mappingSupport.add(e1,e2, mappingSupport.get(e1,e2)+1);
+			mappingSupport.add(e2,e1, mappingSupport.get(e2,e1)+1);
+		}
+	}
 }
