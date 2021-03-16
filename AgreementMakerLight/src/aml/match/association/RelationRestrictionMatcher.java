@@ -12,7 +12,7 @@
  * limitations under the License.                                              *
  *                                                                             *
  *******************************************************************************
- * This matcher searches for Relation Domain/ CoDomain Restrictions that can   *
+ * This matcher searches for Relation Domain/ Range Restrictions that can   *
  * be extracted from simple relation-relation mappings present in the input    *
  * alignment.													               *
  * @authors Beatriz Lima, Daniel Faria                                         *
@@ -62,7 +62,7 @@ public class RelationRestrictionMatcher
 	 */
 	public EDOALAlignment extendAlignment(Ontology o1, Ontology o2, EDOALAlignment a, EntityType e, double thresh)
 	{
-		System.out.println("Searching for Relation Domain/CoDomain Restrictions");
+		System.out.println("Searching for Relation Domain/Range Restrictions");
 		long time = System.currentTimeMillis()/1000;
 		EDOALAlignment out = new EDOALAlignment();
 		this.o1 = o1;
@@ -90,7 +90,7 @@ public class RelationRestrictionMatcher
 
 	// Private methods
 	/**
-	 * Extracts both RelationDomainRestrictions and  RelationCoDomainRestrictions given a subsumption mapping 
+	 * Extracts both RelationDomainRestrictions and  RelationRangeRestrictions given a subsumption mapping 
 	 * such as "smallerRelation < broaderRelation"
 	 * @return a set of RelationExpression objects that include RelationRestrictions
 	 */
@@ -128,13 +128,13 @@ public class RelationRestrictionMatcher
 
 			// CO-DOMAIN RESTRICTION
 			Set<String> individuals2 = map.getActiveRelationIndividuals(smallerRelationURI).get(i1);
-			Set<RelationExpression> foundCoDomainRestriction = new HashSet<RelationExpression>();
+			Set<RelationExpression> foundRangeRestriction = new HashSet<RelationExpression>();
 
 			// Find all classes associated to instance i2
 			for(String i2: individuals2) 
 			{
-				Set<String> coDomainClasses = map.getIndividualClasses(i2);
-				for (String classURI: coDomainClasses) 
+				Set<String> RangeClasses = map.getIndividualClasses(i2);
+				for (String classURI: RangeClasses) 
 				{
 					if((o1.contains(classURI) && o1.contains(smallerRelationURI))
 							| (!o1.contains(classURI) && !o1.contains(smallerRelationURI)))
@@ -142,11 +142,11 @@ public class RelationRestrictionMatcher
 
 					// Transform string uri into correspondent AbstractExpression
 					ClassId classId = new ClassId(classURI);
-					foundCoDomainRestriction.add(constructRelationRestriction(broaderRelation, classId, "CoDomain"));
+					foundRangeRestriction.add(constructRelationRestriction(broaderRelation, classId, "Range"));
 				}
 			}
 			// Increment restriction support 
-			for(RelationExpression restriction: foundCoDomainRestriction) 
+			for(RelationExpression restriction: foundRangeRestriction) 
 			{
 				if(!restrictionSupport.containsKey(restriction))
 					restrictionSupport.put(restriction, 1);
@@ -178,7 +178,7 @@ public class RelationRestrictionMatcher
 
 	/**
 	 * Constructs a Relation expression that includes a relation and restriction
-	 * @param mode: either "Domain" for DomainRestriction or "CoDomain" for CoDomainRestriction
+	 * @param mode: either "Domain" for DomainRestriction or "Range" for RangeRestriction
 	 */
 	private RelationExpression constructRelationRestriction(RelationId relation, ClassExpression clas, String mode) 
 	{
@@ -190,7 +190,7 @@ public class RelationRestrictionMatcher
 			RelationDomainRestriction restriction = new RelationDomainRestriction(clas);
 			relationComplexExpression.add(restriction);
 		}
-		else if (mode.equals("CoDomain")) 
+		else if (mode.equals("Range")) 
 		{
 			RelationCoDomainRestriction restriction = new RelationCoDomainRestriction(clas);
 			relationComplexExpression.add(restriction);
