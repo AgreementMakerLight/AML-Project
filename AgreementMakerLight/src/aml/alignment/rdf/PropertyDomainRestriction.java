@@ -51,6 +51,11 @@ public class PropertyDomainRestriction extends PropertyExpression
 				((PropertyDomainRestriction)o).rest.equals(this.rest);
 	}
 	
+	public ClassExpression getClassRestriction() 
+	{
+		return rest;
+	}
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	/**

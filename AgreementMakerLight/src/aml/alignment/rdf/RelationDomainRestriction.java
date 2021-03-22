@@ -51,6 +51,11 @@ public class RelationDomainRestriction extends RelationExpression
 				((RelationDomainRestriction)o).rest.equals(this.rest);
 	}
 	
+	public ClassExpression getClassRestriction() 
+	{
+		return rest;
+	}
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	/**
