@@ -1,22 +1,22 @@
 /******************************************************************************
-* Copyright 2013-2018 LASIGE                                                  *
-*                                                                             *
-* Licensed under the Apache License, Version 2.0 (the "License"); you may     *
-* not use this file except in compliance with the License. You may obtain a   *
-* copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
-*                                                                             *
-* Unless required by applicable law or agreed to in writing, software         *
-* distributed under the License is distributed on an "AS IS" BASIS,           *
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
-* See the License for the specific language governing permissions and         *
-* limitations under the License.                                              *
-*                                                                             *
-*******************************************************************************
-* A simple alignment between two Ontologies, stored both as a list of         *
-* Mappings and as a bidirectional table of mapped uris.                       *
-*                                                                             *
-* @author Daniel Faria                                                        *
-******************************************************************************/
+ * Copyright 2013-2018 LASIGE                                                  *
+ *                                                                             *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+ * not use this file except in compliance with the License. You may obtain a   *
+ * copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+ *                                                                             *
+ * Unless required by applicable law or agreed to in writing, software         *
+ * distributed under the License is distributed on an "AS IS" BASIS,           *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+ * See the License for the specific language governing permissions and         *
+ * limitations under the License.                                              *
+ *                                                                             *
+ *******************************************************************************
+ * A simple alignment between two Ontologies, stored both as a list of         *
+ * Mappings and as a bidirectional table of mapped uris.                       *
+ *                                                                             *
+ * @author Daniel Faria                                                        *
+ ******************************************************************************/
 package aml.alignment;
 
 import java.util.HashSet;
@@ -36,7 +36,7 @@ import aml.util.data.Map2List;
 public class EDOALAlignment extends Alignment<AbstractExpression>
 {
 
-//Attributes
+	//Attributes
 
 	//The EDOAL Alignment Level
 	public static final String LEVEL = "2EDOAL";
@@ -46,10 +46,9 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	private Map2List<String,Mapping<AbstractExpression>> sourceComponentMaps;
 	//Mappings organized by entity2
 	private Map2List<String,Mapping<AbstractExpression>> targetComponentMaps;
-	
-	
-//Constructors
 
+
+	//Constructors
 	/**
 	 * Creates a new empty Alignment
 	 */
@@ -71,7 +70,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		level = LEVEL;
 	}
 
-//Public Methods
+	//Public Methods
 
 	/**
 	 * Adds a new EDOALMapping to the Alignment if it is non-redundant
@@ -85,7 +84,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	{
 		return add(entity1,entity2,sim,MappingRelation.EQUIVALENCE,MappingStatus.UNKNOWN);
 	}
-	
+
 	/**
 	 * Adds a new EDOALMapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
@@ -99,7 +98,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	{
 		return add(entity1,entity2,sim,r,MappingStatus.UNKNOWN);
 	}
-	
+
 	/**
 	 * Adds a new EDOALMapping to the Alignment if it is non-redundant
 	 * Otherwise, updates the similarity of the already present Mapping
@@ -116,7 +115,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		EDOALMapping m = new EDOALMapping(entity1, entity2, sim, r);
 		return add(m);
 	}
-	
+
 	@Override
 	public boolean add(Mapping<AbstractExpression> m)
 	{
@@ -152,7 +151,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		}
 		return isNew;
 	}
-	
+
 	@Override
 	public int cardinality(String uri)
 	{
@@ -179,8 +178,14 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		return false;
 	}
 	
+	public boolean contains(AbstractExpression entity1, AbstractExpression entity2)
+	{
+		EDOALMapping m = new EDOALMapping(entity1, entity2, 1.0);
+		return contains(m);
+	}
+
 	/**
- 	 * @param m: the Mapping to check in the Alignment 
+	 * @param m: the Mapping to check in the Alignment 
 	 * @return whether the Alignment contains a Mapping that conflicts with the given
 	 * Mapping and has a higher similarity
 	 */
@@ -189,13 +194,17 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		Set<String> sources = m.getEntity1().getElements();
 		Set<String> targets = m.getEntity2().getElements();
 		for(String s : sources)
+		{
 			for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
 				if(n.getSimilarity() > m.getSimilarity())
 					return true;
+		}
 		for(String t : targets)
+		{
 			for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
 				if(n.getSimilarity() > m.getSimilarity())
 					return true;
+		}
 		return false;
 	}
 	
@@ -204,19 +213,24 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	{
 		Set<String> sources = m.getEntity1().getElements();
 		Set<String> targets = m.getEntity2().getElements();
-		for(String s : sources)
-			if (sourceComponentMaps.contains(s))
-				for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
+		for(String s : sources) 
+		{
+			if (sourceComponentMaps.contains(s)) 
+				for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s)) 
 					if(!n.equals(m))
 						return true;
-		for(String t : targets)
-			if (targetComponentMaps.contains(t))
-				for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
+		}
+
+		for(String t : targets) 
+		{
+			if (targetComponentMaps.contains(t)) 
+				for(Mapping<AbstractExpression> n : targetComponentMaps.get(t)) 
 					if(!n.equals(m))
 						return true;
-		return false;
+		}
+		return false;	
 	}
-	
+
 	@Override
 	public boolean containsSource(String entity1)
 	{
@@ -228,32 +242,41 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	{
 		return sourceComponentMaps.contains(entity2);
 	}
-	
+
 	@Override
 	public boolean equals(Object o)
 	{
 		return o instanceof EDOALAlignment && containsAll((EDOALAlignment)o);
 	}
-	
+
 	@Override
 	public Vector<Mapping<AbstractExpression>> getConflicts(Mapping<AbstractExpression> m)
 	{
 		Vector<Mapping<AbstractExpression>> conflicts = new Vector<Mapping<AbstractExpression>>();
 		Set<String> sources = m.getEntity1().getElements();
 		Set<String> targets = m.getEntity2().getElements();
-		for(String s : sources)
-			if (sourceComponentMaps.contains(s))
+		for(String s : sources) 
+		{
+			if (sourceComponentMaps.contains(s)) 
+			{
 				for(Mapping<AbstractExpression> n : sourceComponentMaps.get(s))
-					if(!n.equals(m) && !conflicts.contains(m))
-						conflicts.add(m);
-		for(String t : targets)
-			if (sourceComponentMaps.contains(t))
-				for(Mapping<AbstractExpression> n : targetComponentMaps.get(t))
-					if(!n.equals(m) && !conflicts.contains(m))
-						conflicts.add(m);
+					if(!n.equals(m) && !conflicts.contains(m)) 
+						conflicts.add(n);
+			}
+		}	
+
+		for(String t : targets) 
+		{
+			if (targetComponentMaps.contains(t)) 
+			{
+				for(Mapping<AbstractExpression> n : targetComponentMaps.get(t)) 
+					if(!n.equals(m) && !conflicts.contains(m)) 
+						conflicts.add(n);
+			}
+		}
 		return conflicts;
 	}
-	
+
 	@Override
 	public Set<EntityType> getEntityTypes()
 	{
@@ -264,10 +287,17 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 			types.addAll(AML.getInstance().getEntityMap().getTypes(t));
 		return types;
 	}
-	
+
+	public Vector<Mapping<AbstractExpression>> getEntityMappings(String ent)
+	{
+		if(!sourceComponentMaps.contains(ent))
+			return targetComponentMaps.get(ent);
+		return sourceComponentMaps.get(ent);
+	}
+
 	/**
 	 * @param uri: the source entity to check in the Alignment
- 	 * @return the list of all Mappings where entity1 includes the source entity
+	 * @return the list of all Mappings where entity1 includes the source entity
 	 */
 	public Vector<Mapping<AbstractExpression>> getSourceMappings(String uri)
 	{
@@ -277,13 +307,21 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	}
 	
 	/**
- 	 * @return the list of all source entities involved in mappings
+	 * @return the list of all source entities involved in mappings
 	 */
 	public Set<String> getSources()
 	{
 		return new HashSet<String>(sourceComponentMaps.keySet());
 	}
-
+	
+	/**
+	 * @return the list of all source expressions (entity1) involved in mappings
+	 */
+	public Set<AbstractExpression> getSourceExpressions()
+	{
+		return new HashSet<AbstractExpression>(sourceMaps.keySet());
+	}
+	
 	/**
 	 * @return the URI of the source ontology
 	 */
@@ -291,10 +329,10 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	{
 		return sourceURI;
 	}
-	
+
 	/**
 	 * @param uri: the target entity to check in the Alignment
- 	 * @return the list of all Mappings where entity1 includes the source entity
+	 * @return the list of all Mappings where entity1 includes the source entity
 	 */
 	public Vector<Mapping<AbstractExpression>> getTargetMappings(String uri)
 	{
@@ -302,15 +340,23 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 			return targetComponentMaps.get(uri);
 		return new Vector<Mapping<AbstractExpression>>();
 	}
-	
+
 	/**
- 	 * @return the list of all target entities involved in mappings
+	 * @return the list of all target entities involved in mappings
 	 */
 	public Set<String> getTargets()
 	{
-		return new HashSet<String>(targetComponentMaps.keySet());
+			return new HashSet<String>(targetComponentMaps.keySet());
 	}
 	
+	/**
+	 * @return the list of all target expressions (entity2) involved in mappings
+	 */
+	public Set<AbstractExpression> getTargetExpressions()
+	{
+		return new HashSet<AbstractExpression>(targetMaps.keySet());
+	}
+
 	/**
 	 * @return the URI of the target ontology
 	 */
@@ -342,7 +388,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		}
 		return max;		
 	}
-	
+
 	@Override
 	public boolean remove(Object o)
 	{
@@ -363,9 +409,9 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		else
 			return false;
 	}
-	
+
 	/**
-	 * Removes the Mapping between the given classes from the Alignment
+	 * Removes the Mapping between the given entities from the Alignment
 	 * @param entity1: the entity1 class to remove from the Alignment
 	 * @param entity2: the entity2 class to remove from the Alignment
 	 */
@@ -374,7 +420,7 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		EDOALMapping m = new EDOALMapping(entity1, entity2, 1.0);
 		return remove(m);
 	}
-	
+
 	/**
 	 * Returns a copy of the alignment with the source and the target
 	 * ontologies swapped.
@@ -387,19 +433,29 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		a.setSourceFormalismURI(this.getTargetFormalismURI());
 		a.setTargetFormalismName(this.getSourceFormalismName());
 		a.setTargetFormalismURI(this.getTargetFormalismURI());
-		
+
 		for (Mapping<AbstractExpression> m : this)
 			a.add(m.reverse());
 
 		return a;
 	}
-	
+
 	@Override
 	public int sourceCount()
 	{
 		return sourceComponentMaps.keyCount();
 	}
 	
+	public boolean superContainsConflict(Mapping<AbstractExpression> m)
+	{
+		return super.containsConflict(m);
+	}
+	
+	public Vector<Mapping<AbstractExpression>> superGetConflicts(Mapping<AbstractExpression> m)
+	{
+		return super.getConflicts(m);
+	}
+
 	@Override
 	public int targetCount()
 	{
