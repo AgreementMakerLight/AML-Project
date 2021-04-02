@@ -70,7 +70,6 @@ public abstract class AbstractRestrictionMatcher
 			{
 				if(computeSupport(src,tgt)) 
 				{
-					
 					Set<Mapping<AbstractExpression>> candidates = generateRules();
 					if(candidates.size()==1)
 						out.add(candidates.iterator().next());
@@ -140,11 +139,12 @@ public abstract class AbstractRestrictionMatcher
 				// If the rule is bidirectional, then it is an equivalence relation
 				if(ARules.contains(e2,e1)) 
 				{	
+					double conf = Math.sqrt(ARules.get(e1, e2) * ARules.get(e2, e1));
 					// Make sure that mapping is directional (src->tgt)
 					if(o1.containsAll(e1.getElements())) 
-						mappings.add(new EDOALMapping(e1, e2, ARules.get(e1, e2), MappingRelation.EQUIVALENCE));
+						mappings.add(new EDOALMapping(e1, e2, conf, MappingRelation.EQUIVALENCE));
 					else
-						mappings.add(new EDOALMapping(e2, e1, ARules.get(e2, e1), MappingRelation.EQUIVALENCE));
+						mappings.add(new EDOALMapping(e2, e1, conf, MappingRelation.EQUIVALENCE));
 				}
 			}
 		}
