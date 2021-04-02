@@ -62,7 +62,7 @@ public class AORMatcher extends aml.match.association.AbstractAssociationRuleMat
 		for(String si : sharedInstances) 
 		{
 			// Find all classes associated to that instance
-			List<String> i1Classes = new ArrayList<String>(rels.getIndividualClasses(si));
+			List<String> i1Classes = new ArrayList<String>(rels.getIndividualClassesTransitive(si));
 			// If empty set of classes, move on to next instance
 			int len = i1Classes.size();
 			if(len < 1)

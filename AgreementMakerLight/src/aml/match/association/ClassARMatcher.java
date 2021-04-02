@@ -49,7 +49,7 @@ public class ClassARMatcher extends AbstractAssociationRuleMatcher
 		for(String si : sharedInstances) 
 		{	
 			// Find all classes associated to that instance
-			Set<String> cSet = rels.getIndividualClasses(si);
+			Set<String> cSet = rels.getIndividualClassesTransitive(si);
 
 			// Switch to list since we need indexes 
 			List<String> cList = new ArrayList<String>(cSet);

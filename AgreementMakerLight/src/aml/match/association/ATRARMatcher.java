@@ -35,8 +35,13 @@ import aml.ontology.semantics.EntityMap;
 
 public class ATRARMatcher extends aml.match.association.AbstractAssociationRuleMatcher
 {
+	EntityMap eMap;
+	
 	//Constructor
-	public ATRARMatcher(){}
+	public ATRARMatcher()
+	{
+		eMap = AML.getInstance().getEntityMap();
+	}
 
 	//Protected methods
 	/*
@@ -49,7 +54,6 @@ public class ATRARMatcher extends aml.match.association.AbstractAssociationRuleM
 		System.out.println("Initialising Attribute Type Restriction Matcher");
 		// Get entity map of relations
 		Set<String> sharedInstances = new HashSet<String>(getSharedInstances(o1,o2));
-		EntityMap rels = AML.getInstance().getEntityMap();
 		ValueMap srcValueMap = o1.getValueMap();
 		ValueMap tgtValueMap = o2.getValueMap();
 		Set<String> srcProperties = null;
@@ -58,7 +62,7 @@ public class ATRARMatcher extends aml.match.association.AbstractAssociationRuleM
 		for(String si : sharedInstances) 
 		{
 			// Find all classes of that instance
-			Set<String> cSet = rels.getIndividualClasses(si);
+			Set<String> cSet = eMap.getIndividualClassesTransitive(si);
 			// If empty list of classes, move on to next instance
 			if(cSet.size() < 1) {continue;}
 
@@ -101,15 +105,20 @@ public class ATRARMatcher extends aml.match.association.AbstractAssociationRuleM
 	{
 		// Since atrs is a set, no repeated elements will be added.
 		Set<AttributeTypeRestriction> atrs = new HashSet<AttributeTypeRestriction>();
-		
 		if (properties != null) 
 		{
 			for(String pURI: properties) 
 			{
 				PropertyId p = new PropertyId(pURI, null);
+				// Make sure we don't find redundant ATRs, i.e. we don't want to restrict 
+				// a property to a type which is already specified in the ontology as its range
+				Set<String> range = eMap.getRanges(pURI);
+				
 				for(String value: vmap.getValues(instance, pURI)) 
 				{
 					OWLDatatype dataType = vmap.getDataType(instance, pURI, value);
+					if(range.contains(dataType.toString()))
+						continue;
 					Datatype dt = new Datatype(dataType.toString());
 					AttributeTypeRestriction atr = new AttributeTypeRestriction(p, dt);
 					atrs.add(atr);
