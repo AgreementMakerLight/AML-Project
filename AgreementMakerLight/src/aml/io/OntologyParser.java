@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -968,8 +969,6 @@ public class OntologyParser
 					rm.addInstance(indivID, rm.getDomains(propUri).iterator().next());
 			}	
 		}
-
-
 		//6 - Class relationships and Class-Individual relationships
 		//For each class index
 		for(OWLClass c : classes)
@@ -1050,9 +1049,9 @@ public class OntologyParser
 				{
 					//TODO: Handle disjointness with expressions
 				}
-			}
+			}	
 		}
-
+		
 		//7 - Individual Relationships
 		for(OWLNamedIndividual i : indivs)
 		{
@@ -1060,8 +1059,50 @@ public class OntologyParser
 			String indivUri = i.getIRI().toString();
 			if(!rm.isIndividual(indivUri))
 				continue;
-
+			
+			//FIX: Remove redundant Instance-Class relationships
+			//i.e. instance annotated to both a class and its ancestor
+			//@author: Beatriz Lima 
+			Vector<String> indvClasses = new Vector<String>(rm.getIndividualClasses(indivUri));
+			int len = indvClasses.size();
+			int removedClasses = 0;
+ 			for (int j=0; j<len; j++)
+			{
+				if(len-removedClasses == 1) //Only one element left
+					break;
+				String c1 =  indvClasses.get(j);
+				boolean foundParent = false;
+				boolean foundChild = false;
+				for (int k=j+1; k<len; k++) 
+				{	
+					String c2 = indvClasses.get(k);
+					// Is c1 a parent of this class (c2)?
+					if(foundChild == false && rm.isSubclass(c2, c1)) 
+					{
+						foundChild = true;
+						if(rm.getIndividualClasses(indivUri).contains(c1)) 
+						{
+							removedClasses++;
+							rm.removeIndividualClassAssignment(indivUri, c1);
+						}	
+					}
+					// Is it c2's child?
+					else if(foundParent == false && rm.isSubclass(c1, c2)) 
+					{
+						foundParent = true;
+						if(rm.getIndividualClasses(indivUri).contains(c2)) 
+						{
+							removedClasses++;
+							rm.removeIndividualClassAssignment(indivUri, c2);
+						}	
+					}
+					if(foundParent && foundChild)
+						break;
+				}
+			}
+			
 			// owl:sameAs relationships
+			//@author: Beatriz Lima 
 			for(OWLIndividual i2: i.getSameIndividuals(o)) 
 			{
 				if(i2.equals(i) || i2.isAnonymous())
