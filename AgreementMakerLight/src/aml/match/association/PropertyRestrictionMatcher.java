@@ -1,5 +1,6 @@
 package aml.match.association;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,148 +13,168 @@ import aml.alignment.mapping.MappingRelation;
 import aml.alignment.rdf.AbstractExpression;
 import aml.alignment.rdf.ClassExpression;
 import aml.alignment.rdf.ClassId;
+import aml.alignment.rdf.ClassIntersection;
+import aml.alignment.rdf.Expression;
 import aml.alignment.rdf.PropertyDomainRestriction;
 import aml.alignment.rdf.PropertyExpression;
 import aml.alignment.rdf.PropertyId;
 import aml.alignment.rdf.PropertyIntersection;
+import aml.alignment.rdf.RelationCoDomainRestriction;
+import aml.alignment.rdf.RelationDomainRestriction;
+import aml.alignment.rdf.RelationExpression;
+import aml.alignment.rdf.RelationId;
+import aml.alignment.rdf.RelationIntersection;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
 import aml.ontology.ValueMap;
 import aml.ontology.semantics.EntityMap;
+import aml.util.data.Map2Map;
 
-public class PropertyRestrictionMatcher 
+public class PropertyRestrictionMatcher extends AbstractRestrictionMatcher
 {
+	// Attributes
+	private ValueMap srcValueMap;
+	private ValueMap tgtValueMap;
+
 	// Constructor
-		public PropertyRestrictionMatcher(){};
+	public PropertyRestrictionMatcher(){}
 
-		// Attributes
-		private Ontology o1;
-		private Ontology o2;
-		private EDOALAlignment in;
-		private ValueMap srcValueMap;
-		private ValueMap tgtValueMap;
-		private EntityMap map = AML.getInstance().getEntityMap();
+	// Private methods
+	/**
+	 * Extracts PropertyDomainRestrictions given a subsumption mapping 
+	 * such as "smallerProperty < broaderProperty"
+	 * @return a set of PropertyExpression objects that include PropertyDomainRestrictions
+	 */
+	protected boolean computeSupport(AbstractExpression smallerExpression, AbstractExpression broaderExpression)
+	{
+		if(!(smallerExpression instanceof PropertyId && broaderExpression instanceof PropertyId))
+			return false;
 
-		// Public methods
-		/**
-		 * Extends the given Alignment between the source and target Ontologies
-		 * @param o1: the source Ontology to match
-		 * @param o2: the target Ontology to match
-		 * @param a: the existing alignment to extend
-		 * @param e: the EntityType to match
-		 * @param thresh: the similarity threshold for the extention
-		 * @return the alignment with (only) the new mappings between the Ontologies
-		 */
-		public EDOALAlignment extendAlignment(Ontology o1, Ontology o2, EDOALAlignment a, EntityType e, double thresh)
+		PropertyId smallerProperty = (PropertyId) smallerExpression;
+		PropertyId broaderProperty = (PropertyId) broaderExpression;
+		String smallerPropertyURI = smallerProperty.toURI();
+		String broaderPropertyURI = broaderProperty.toURI();
+
+		entitySupport = new HashMap<AbstractExpression, Integer>();
+		mappingSupport = new Map2Map<AbstractExpression, AbstractExpression, Integer>();
+		ARules = new Map2Map<AbstractExpression, AbstractExpression, Double>();
+
+		// Compute Support
+		// TransactionDB will only encompass instances that have a broaderRelation to some other instance
+		Set<String> individuals1 = new HashSet<String>();
+		Set<String> smallerIndividuals = new HashSet<String>();
+		boolean smallIsSource = false;
+
+		if(individuals1.size()<=minSup)
+			return false;
+
+		if(o1.contains(smallerPropertyURI)) 
 		{
-			System.out.println("Searching for Property Domain Restrictions");
-			long time = System.currentTimeMillis()/1000;
-			EDOALAlignment out = new EDOALAlignment();
-			this.o1 = o1;
-			this.o2 = o1;
-			this.in = a;
-			this.srcValueMap = o1.getValueMap();
-			this.tgtValueMap = o2.getValueMap();
-
-			for(Mapping<AbstractExpression> m: in) 
-			{
-				AbstractExpression src = m.getEntity1();
-				AbstractExpression tgt = m.getEntity2();
-
-				// Property-property mappings 
-				if(src instanceof aml.alignment.rdf.PropertyId && tgt instanceof aml.alignment.rdf.PropertyId) 
-				{
-					// We want to apply the restriction to the broader property in the subsumption mapping
-					if (m.getRelationship() == MappingRelation.SUBSUMED_BY) // src < tgt
-						out.addAll(getPropertyRestriction((PropertyId)src, (PropertyId)tgt));
-					else if (m.getRelationship() == MappingRelation.SUBSUMES) // tgt < src
-						out.addAll(getPropertyRestriction((PropertyId)tgt, (PropertyId)src));
-				}	
-			}
-			System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
-			return out;
+			smallIsSource = true;
+			individuals1 = srcValueMap.getIndividuals(broaderPropertyURI);
+			smallerIndividuals = tgtValueMap.getIndividuals(smallerPropertyURI);
 		}
-
-		// Private methods
-		/**
-		 * Extracts PropertyDomainRestrictions given a subsumption mapping 
-		 * such as "smallerProperty < broaderProperty"
-		 * @return a set of PropertyExpression objects that include PropertyDomainRestrictions
-		 */
-		private Set<Mapping<AbstractExpression>> getPropertyRestriction(PropertyId smallerProperty, PropertyId broaderProperty)
+		else 
 		{
-			HashMap<AbstractExpression, Integer> restrictionSupport = new HashMap<AbstractExpression, Integer>();
-			String smallerPropertyURI = smallerProperty.toURI();
-			Set<String> sharedInstances = AbstractAssociationRuleMatcher.getSharedInstances(o1, o2);
-			Set<String> individuals1 = new HashSet<String>();
-			boolean smallIsSource = false;
+			individuals1 = tgtValueMap.getIndividuals(broaderPropertyURI);
+			smallerIndividuals = srcValueMap.getIndividuals(smallerPropertyURI);
+		}	
 
-			if(o1.contains(smallerPropertyURI)) 
+		individuals1.retainAll(sharedInstances); // only work with shared instances
+		if(individuals1.size()<=minSup)
+			return false;
+
+		// Compute Support
+		// TransactionDB will only encompass instances that have a broaderProperty to some other instance
+		for (String i1: individuals1) 
+		{
+			boolean containsBothRelations = false;
+			if(smallerIndividuals.contains(i1)) 
 			{
-				smallIsSource = true;
-				individuals1 = srcValueMap.getIndividuals(smallerPropertyURI);
+				incrementEntitySupport(smallerProperty);
+				containsBothRelations = true;
 			}
-			else 
+			// DOMAIN RESTRICTION
+			// Find all classes associated to instance i1
+			Set<String> domainClasses = map.getIndividualClassesTransitive(i1);
+			for (String classURI: domainClasses) 
 			{
-				individuals1 = tgtValueMap.getIndividuals(smallerPropertyURI);
+				if((o1.contains(classURI) && smallIsSource)
+						| (!o1.contains(classURI) && !smallIsSource))
+					continue;
+
+				// Transform string uri into correspondent AbstractExpression
+				ClassId classId = new ClassId(classURI);
+				PropertyExpression restriction = constructPropertyRestriction(broaderProperty, classId); 
+				// Increment entity support 
+				incrementEntitySupport(restriction);
+
+				if(containsBothRelations) 
+					incrementMappingSupport(smallerProperty, restriction);
 			}
-			
-			individuals1.retainAll(sharedInstances); // only work with shared instances
-			// Compute Support
-			// TransactionDB will only encompass instances that have a smallerProperty to some other instance
-			for (String i1: individuals1) 
+		}
+		return true;
+	}
+
+	/** 
+	 * Constructs a Property expression that includes a property and restriction
+	 */
+	private PropertyExpression constructPropertyRestriction(PropertyId prop, ClassExpression clas) 
+	{
+		Set<PropertyExpression> propComplexExpression = new HashSet<PropertyExpression>(); // Property + restriction
+		propComplexExpression.add(prop);
+		PropertyDomainRestriction restriction = new PropertyDomainRestriction(clas);
+		propComplexExpression.add(restriction);
+
+		return new PropertyIntersection(propComplexExpression);
+	}
+
+	protected Mapping<AbstractExpression> filter(Set<Mapping<AbstractExpression>> candidates)
+	{
+		Mapping<AbstractExpression> element = candidates.iterator().next();
+		if (candidates.size()==1)
+			return element;
+
+		AbstractExpression e1 = element.getEntity1();
+		AbstractExpression e2 = element.getEntity2();
+		boolean e1Complex = false;
+
+		//  Find out which one is complex
+		if(e2 instanceof PropertyId) 
+			e1Complex = true; // e1 is complex
+
+		Set<PropertyExpression> propComplexExpression = new HashSet<PropertyExpression>();
+		Set<ClassExpression> classes = new HashSet<ClassExpression>();
+		PropertyId broaderProperty = null;
+
+		// Intersection of domain classes
+		for(Mapping<AbstractExpression> m: candidates) 
+		{
+			Collection<Expression> components = new HashSet<Expression>();
+			if(e1Complex) 
+				components = m.getEntity1().getComponents();
+			else
+				components = m.getEntity2().getComponents();
+			for(Expression c: components) 
 			{
-				// DOMAIN RESTRICTION
-				// Find all classes associated to instance i1
-				Set<String> domainClasses = map.getIndividualClasses(i1);
-				for (String classURI: domainClasses) 
+				if(c instanceof PropertyDomainRestriction)
 				{
-					if((o1.contains(classURI) && smallIsSource)
-							| (!o1.contains(classURI) && !smallIsSource))
-						continue;
-
-					// Transform string uri into correspondent AbstractExpression
-					ClassId classId = new ClassId(classURI);
-					PropertyExpression restriction = constructPropertyRestriction(broaderProperty, classId);
-					// Increment restriction support 
-					if(!restrictionSupport.containsKey(restriction))
-						restrictionSupport.put(restriction, 1);
-					else 
-						restrictionSupport.put(restriction, restrictionSupport.get(restriction)+1);
+					classes.add(((PropertyDomainRestriction) c).getClassRestriction());
+				}
+				else { //broader relation 
+					broaderProperty = (PropertyId) c;
 				}
 			}
-			// Compute confidence in rules of type smallerProperty -> broaderProperty ˆ domain
-			// Given that all instances in this transactionDB contain the smallerProperty:
-			// sup(smallerProperty U (broaderProperty ˆ domainw)) =  restrictionSupport
-			// sup(smallerProperty) = # of individual that have the smallerProperty (size of DB)
-			double max = 0.0;
-			Set<AbstractExpression> bestRestriction = new HashSet<AbstractExpression>();
-			for(AbstractExpression restriction: restrictionSupport.keySet()) 
-			{
-				double conf = restrictionSupport.get(restriction)*1.0 / individuals1.size();
-				if (conf>=max) 
-				{
-					max = conf;
-					bestRestriction.add(restriction);
-				}		
-			}
-			Set<Mapping<AbstractExpression>> mappings = new HashSet<Mapping<AbstractExpression>>(); 
-			for(AbstractExpression b: bestRestriction) 
-				mappings.add(new EDOALMapping(smallerProperty, b, max, MappingRelation.EQUIVALENCE));
-			
-			return mappings;
 		}
-
-		/** 
-		 * Constructs a Property expression that includes a property and restriction
-		 */
-		private PropertyExpression constructPropertyRestriction(PropertyId prop, ClassExpression clas) 
-		{
-			Set<PropertyExpression> propComplexExpression = new HashSet<PropertyExpression>(); // Property + restriction
-			propComplexExpression.add(prop);
-			PropertyDomainRestriction restriction = new PropertyDomainRestriction(clas);
-			propComplexExpression.add(restriction);
-			
-			return new PropertyIntersection(propComplexExpression);
-		}
+		ClassIntersection restriction = new ClassIntersection(classes);
+		propComplexExpression.add(new PropertyDomainRestriction(restriction));
+		propComplexExpression.add(broaderProperty);
+	
+		PropertyIntersection newRestriction = new PropertyIntersection(propComplexExpression);	
+		if(e1Complex)
+			return new EDOALMapping(newRestriction, e2, 1.0, MappingRelation.EQUIVALENCE);
+		else
+			return new EDOALMapping(e1, newRestriction, 1.0, MappingRelation.EQUIVALENCE);
+	}
 }
+
