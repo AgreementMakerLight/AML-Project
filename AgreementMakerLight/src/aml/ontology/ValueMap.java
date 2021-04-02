@@ -25,6 +25,7 @@ import java.util.Set;
 
 import org.semanticweb.owlapi.model.OWLDatatype;
 
+import aml.alignment.rdf.Datatype;
 import aml.util.data.Map2Map2Map;
 import aml.util.data.Map2Set;
 
@@ -88,6 +89,22 @@ public class ValueMap
 		}
 	} 
 
+	/**
+	 * @param propId: the index of the property to search in the ValueMap
+	 * @param value: the value of that property to search in the ValueMap
+	 * @return the set of datatypes of the given value for the given property
+	 */
+	public Set<OWLDatatype> getDataType(String propId, String value)
+	{
+		Set<OWLDatatype> types = new HashSet<OWLDatatype>();
+		if(individualValues.contains(propId,value)) 
+		{
+			for(String indv: individualValues.get(propId,value).keySet())
+				types.add(individualValues.get(propId,value, indv));
+		}	
+		return types;
+	}
+	
 	/**
 	 * @param propId: the index of the property to search in the ValueMap
 	 * @param value: the value of that property to search in the ValueMap
