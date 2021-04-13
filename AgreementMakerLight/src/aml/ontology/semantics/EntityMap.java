@@ -65,7 +65,7 @@ public class EntityMap
 	private Map2Map2Set<String,String,String> activeRelation; //Source Individual -> Target Individual -> Property
 	private Map2Map2Set<String,String,String> activeRelationIndividual; //Property -> Source Individual -> Target Individual 
 	private Map2Map2Set<String,String,String> passiveRelation; //Target Individual -> Source Individual -> Property
-	
+
 	//3) Structural data on properties
 	//Hierarchical and inverse relations between properties (and expressions)
 	private Map2Set<String,String> subProp; //Property -> SubProperty
@@ -233,6 +233,7 @@ public class EntityMap
 	public void addEquivalentIndividuals(String indiv1, String indiv2)
 	{
 		sameIndivAs.add(indiv1, indiv2);
+		sameIndivAs.add(indiv2, indiv1);
 	}
 
 	/**
@@ -532,7 +533,7 @@ public class EntityMap
 	{
 		return entityType.keyCount();
 	}
-	
+
 	/**
 	 * @param propId: the id of the property to search in the map
 	 * @return the Map2Set of individuals who are related through the given property
@@ -751,7 +752,10 @@ public class EntityMap
 	 */
 	public Set<String> getEquivalentIndividuals(String uri)
 	{
+		if(!sameIndivAs.contains(uri))
+			return new HashSet<String>();
 		return sameIndivAs.get(uri);
+
 	}
 
 	/**
@@ -838,10 +842,15 @@ public class EntityMap
 	 * @param indivId: the id of the individual to search in the map
 	 * @return the set of individuals to which the given individual is actively related
 	 */
+	// TODO: temporary fix
 	public Set<String> getIndividualActiveRelations(String indivId)
 	{
-		if(activeRelation.contains(indivId))
-			return activeRelation.keySet(indivId);
+		if(activeRelation.contains(indivId)) 
+		{
+			if(sameIndivAs.size()>0) 
+				return removeEquivalentIndividuals(activeRelation.keySet(indivId));
+			else return activeRelation.keySet(indivId);
+		}	
 		return new HashSet<String>();
 	}
 
@@ -859,7 +868,26 @@ public class EntityMap
 
 	/**
 	 * @param indivId: the id of the individual to search in the map
-	 * @return the set of individuals that are actively related with of the given individual
+	 * @return the set of classes instanced by the given individual and its ancestors (i.e. with transitive closure)
+	 */
+	public Set<String> getIndividualClassesTransitive(String indivId)
+	{
+		Set<String> result = new HashSet<String>();
+		if(instanceOfMap.contains(indivId)) 
+		{
+			for (String c: instanceOfMap.get(indivId)) 
+			{
+				result.add(c);
+				result.addAll(getSuperclasses(c));
+			}
+			return result;
+		}
+		return new HashSet<String>();
+	}
+
+	/**
+	 * @param indivId: the id of the individual to search in the map
+	 * @return the set of individuals that are passively related with of the given individual
 	 */
 	public Set<String> getIndividualPassiveRelations(String indivId)
 	{
@@ -975,7 +1003,7 @@ public class EntityMap
 			return activeRelation.get(indivId,prop);
 		return new HashSet<String>();
 	}
-	
+
 	/**
 	 * @param prop: the uri of the property with the property chain(s)
 	 * @return the set of property chains that are equivalent to the prop
@@ -1371,6 +1399,35 @@ public class EntityMap
 	}
 
 	/**
+	 * @return a set of individuals with no equivalent individuals in the same set
+	 */
+	private Set<String> removeEquivalentIndividuals(Set<String> individuals)
+	{
+		Set<String> result = new HashSet<String>();
+		Set<String> resultEquivalents = new HashSet<String>();
+
+		for(String i: individuals) 
+		{
+			if(!resultEquivalents.contains(i)) 
+			{
+				result.add(i);
+				if(sameIndivAs.contains(i))
+					resultEquivalents.addAll(getEquivalentIndividuals(i));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Removes relationship between instance and class from instance map
+	 */
+	public void removeIndividualClassAssignment(String indv, String clas)
+	{
+		instanceOfMap.remove(indv, clas);
+		hasInstanceMap.remove(clas, indv);
+	}
+
+	/**
 	 * Checks whether two individuals share a direct class assignment
 	 * @param ind1Id: the first individual to check
 	 * @param ind2Id: the second individual to check
@@ -1386,6 +1443,8 @@ public class EntityMap
 				return true;
 		return false;
 	}
+
+
 
 	/**
 	 * Compute the transitive closure of the RelationshipMap
@@ -1411,60 +1470,37 @@ public class EntityMap
 			}
 		}
 
-		//Transitive closure for equivalent individuals
+		// Transitive closure for equivalent individuals
 		// For the purpose of comments and variables, consider:
 		// I1 = individual from ontology A
 		// I2 = individual from ontology A, who has some relationship to I1
 		// I3 = individual from ontology B, equivalent to I1
 		// I4 = individual from ontology B, who has some relationship to I3 and is equivalent to I2 
-		// I5 = individual from ontology B, who has some relationship to I3 but has no equivalence in ontA 
-
 		for (String i1: sameIndivAs.keySet()) 
 		{
-			Set<String> i2Set = new HashSet<String>();
-			if(activeRelation.get(i1) != null) 
-				i2Set = activeRelation.get(i1).keySet();
-
-			for(String i3: sameIndivAs.get(i1)) 
+			// "i1" in this loop will eventually be I3, that is why we only add i3's entities to i1 map
+			for(String i3: getEquivalentIndividuals(i1)) 
 			{
-				//Add classes
-				if (instanceOfMap.get(i3) != null) 
-				{
-					for(String eqClass: instanceOfMap.get(i3)) 
+				//Add i3's classes to i1
+				for(String eqClass: getIndividualClasses(i3)) 
 						addInstance(i1, eqClass);
-				}
-
-				//Add relations
-				if(i2Set.size()<1) 
-					continue;
-				if (activeRelation.get(i3) != null) 
+				//Add i3's relations to i1
+				for (String i4: getIndividualActiveRelations(i3)) 
 				{
-					Set<String> i3InteractingIndivSet = activeRelation.get(i3).keySet(); // either I4 or I5 individuals
-					for (String indv: i3InteractingIndivSet) 
+					// I1:I4
+					for(String relation: activeRelation.get(i3, i4)) 
 					{
-						// Add I3's relations to I1:indv
-						for(String relation: activeRelation.get(i3, indv))
-							addIndividualRelationship(i1, indv, relation);
-						
-						// Also add I1:I4 relations
-						// For that, try to find the I2 to which indv is equivalent
-						if(sameIndivAs.get(indv)!= null)
-						{	
-							Set<String> indvEquivs = sameIndivAs.get(indv);
-							for(String i2: i2Set)
-							{
-								if (indvEquivs.contains(i2)) 
-								{
-									for (String relation: activeRelation.get(i3, indv)) 
-										addIndividualRelationship(i1, i2, relation);
-								}
-							}
+						addIndividualRelationship(i1, i4, relation);
+						for(String i5: getEquivalentIndividuals(i4)) 
+						{
+							addIndividualRelationship(i1, i5, relation); // i5 may be i2
 						}
-					}
-				}	
-			}
+					}	
+				}
+			}	
 		}
 	}
+
 
 
 	/**
