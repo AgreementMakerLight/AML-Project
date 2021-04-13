@@ -27,9 +27,11 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
+import aml.alignment.mapping.EDOALMapping;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.mapping.MappingStatus;
+import aml.alignment.rdf.AbstractExpression;
 import aml.alignment.rdf.RDFElement;
 import aml.ontology.EntityType;
 import aml.ontology.Ontology;
@@ -321,6 +323,13 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
  	 * @return whether the Alignment contains a Mapping for s
 	 */
 	public abstract boolean containsSource(String s);
+	
+	public boolean containsSource(A s) 
+	{
+		if(sourceMaps.contains(s))
+			return true;
+		return false;
+	}
 
 	/**
 	 * @param t: the element of the target Ontology to check in the Alignment
@@ -328,6 +337,12 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	 */
 	public abstract boolean containsTarget(String t);
 	
+	public boolean containsTarget(A t) 
+	{
+		if(targetMaps.contains(t))
+			return true;
+		return false;
+	}
 	/**
  	 * @return the number of conflict mappings in this alignment
 	 */
@@ -483,6 +498,22 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	}
 	
 	/**
+	 * @param m: the Mapping to check on the Alignment
+	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping's source expression
+	 */
+	public Vector<Mapping<A>> getSourceConflicts(Mapping<A> m)
+	{
+		Vector<Mapping<A>> conflicts = new Vector<Mapping<A>>();
+		if(sourceMaps.contains(m.getEntity1()))
+		{
+			for(Mapping<A> n : sourceMaps.get(m.getEntity1()))
+				if(!n.equals(m) && !conflicts.contains(m))
+					conflicts.add(n);
+		}
+		return conflicts;
+	}
+	
+	/**
 	 * @return the name of the formalism of the source ontology
 	 */
 	public String getSourceFormalismName()
@@ -507,6 +538,14 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	}
 	
 	/**
+	 * @return the mappings in this alignment pertaining entity1 
+	 */
+	public Vector<Mapping<A>> getSourceMappings(A entity1)
+	{
+		return sourceMaps.get(entity1);
+	}
+	
+	/**
 	 * @return the source ontology of this alignment
 	 */
 	public Ontology getSourceOntology()
@@ -525,6 +564,22 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	public String getSourceURI()
 	{
 		return sourceURI;
+	}
+	
+	/**
+	 * @param m: the Mapping to check on the Alignment
+	 * @return the list of all Mappings that have a cardinality conflict with the given Mapping's target expression
+	 */
+	public Vector<Mapping<A>> getTargetConflicts(Mapping<A> m)
+	{
+		Vector<Mapping<A>> conflicts = new Vector<Mapping<A>>();
+		if(targetMaps.contains(m.getEntity2()))
+		{
+			for(Mapping<A> n : targetMaps.get(m.getEntity2()))
+				if(!n.equals(m) && !conflicts.contains(m))
+					conflicts.add(n);
+		}
+		return conflicts;
 	}
 	
 	/**
@@ -549,6 +604,14 @@ public abstract class Alignment<A> implements Collection<Mapping<A>>
 	public String getTargetLocation()
 	{
 		return targetLocation;
+	}
+	
+	/**
+	 * @return the mappings in this alignment pertaining entity2
+	 */
+	public Vector<Mapping<A>> getTargetMappings(A entity2)
+	{
+		return targetMaps.get(entity2);
 	}
 	
 	/**
