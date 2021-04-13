@@ -40,10 +40,7 @@ public class AORMatcher extends aml.match.association.AbstractAssociationRuleMat
 	// Attributes
 
 	//Constructor
-	public AORMatcher() 
-	{
-		super();
-	}
+	public AORMatcher() {}
 
 	//Protected methods
 	/*
