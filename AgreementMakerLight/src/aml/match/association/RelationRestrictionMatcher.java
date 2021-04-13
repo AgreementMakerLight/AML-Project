@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
 import aml.alignment.mapping.EDOALMapping;
 import aml.alignment.mapping.Mapping;
@@ -37,6 +38,7 @@ import aml.alignment.rdf.RelationExpression;
 import aml.alignment.rdf.RelationId;
 import aml.alignment.rdf.RelationIntersection;
 import aml.util.data.Map2Map;
+import aml.util.data.Map2Set;
 
 public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 {
@@ -47,7 +49,7 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 	/**
 	 * Extracts both RelationDomainRestrictions and RelationRangeRestrictions given a subsumption mapping 
 	 * such as "smallerRelation < broaderRelation"
-	 * @return a set of RelationExpression objects that include RelationRestrictions
+	 * @return whether the computation of support was successful
 	 */
 	protected boolean computeSupport(AbstractExpression smallerExpression, AbstractExpression broaderExpression) 
 	{
@@ -83,12 +85,17 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 			// DOMAIN RESTRICTION
 			// Find all classes associated to instance i1
 			Set<String> domainClasses = map.getIndividualClassesTransitive(i1);
+			Set<String> propDomain = new HashSet<String>();
+			for(String d: map.getDomains(broaderPropertyURI))
+				propDomain.addAll(map.getSubclasses(d));
 			for (String classURI: domainClasses) 
 			{
 				if((o1.contains(classURI) && o1.contains(smallerPropertyURI))
 						| (!o1.contains(classURI) && !o1.contains(smallerPropertyURI)))
 					continue;
-
+				//Filter those are not the domain or a subclass of the domain of property
+				if(!propDomain.contains(classURI))
+					continue;
 				// Transform string uri into correspondent AbstractExpression
 				ClassId classId = new ClassId(classURI);
 				RelationExpression restriction = constructRelationRestriction(broaderProperty, classId, "Domain");
@@ -100,6 +107,9 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 			}
 
 			// RANGE RESTRICTION
+			Set<String> propRange = new HashSet<String>();
+			for(String r: map.getRanges(broaderPropertyURI))
+				propRange.addAll(map.getSubclasses(r));
 			Set<String> individuals2 = map.getActiveRelationIndividuals(broaderPropertyURI).get(i1);
 			Set<RelationExpression> foundRangeRestriction = new HashSet<RelationExpression>();
 
@@ -112,7 +122,9 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 					if((o1.contains(classURI) && o1.contains(smallerPropertyURI))
 							| (!o1.contains(classURI) && !o1.contains(smallerPropertyURI)))
 						continue;
-
+					//Filter those are not the range or a subclass of the range of property
+					if(!propRange.contains(classURI))
+						continue;
 					// Transform string uri into correspondent AbstractExpression
 					ClassId classId = new ClassId(classURI);
 					foundRangeRestriction.add(constructRelationRestriction(broaderProperty, classId, "Range"));
@@ -198,7 +210,8 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 			Set<ClassExpression> classes = new HashSet<ClassExpression>();
 			for(RelationDomainRestriction r: domainCandidates) 
 				classes.add(r.getClassRestriction());
-			ClassIntersection restriction = new ClassIntersection(classes);
+			// Filter redundancies and children
+			ClassIntersection restriction = new ClassIntersection(removeRRChildren(classes, broaderRelation, "Domain"));
 			relationComplexExpression.add(new RelationDomainRestriction(restriction));
 		}
 		if(rangeCandidates.size()==1)
@@ -209,7 +222,7 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 			Set<ClassExpression> classes = new HashSet<ClassExpression>();
 			for(RelationCoDomainRestriction r: rangeCandidates) 
 				classes.add(r.getClassRestriction());
-			ClassIntersection restriction = new ClassIntersection(classes);
+			ClassIntersection restriction = new ClassIntersection(removeRRChildren(classes, broaderRelation, "Range"));
 			relationComplexExpression.add(new RelationCoDomainRestriction(restriction));
 		}
 		RelationIntersection newRestriction = new RelationIntersection(relationComplexExpression);	
@@ -217,5 +230,28 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 			return new EDOALMapping(newRestriction, e2, 1.0, MappingRelation.EQUIVALENCE);
 		else
 			return new EDOALMapping(e1, newRestriction, 1.0, MappingRelation.EQUIVALENCE);
+	}
+	
+	/*
+	 * This method removes child classes from a set of classes, and also the redundant 
+	 * @param complexMappings: the set of RR mappings from which we want to remove the children
+	 * @return: a clean set of ADRs (no children)
+	 */
+	private Set<ClassExpression> removeRRChildren(Set<ClassExpression> classes, RelationId relation, String mode) 
+	{
+		Set<ClassExpression> result = new HashSet<ClassExpression>();
+		
+		// Find children mappings indexes
+		Set<String> children = new HashSet<String>();
+		for(ClassExpression c: classes) 
+			children.addAll(map.getSubclasses(((ClassId) c).toURI()));
+		
+		// Add more generic classes to result set
+		for(ClassExpression c: classes) 
+		{
+			if(!children.contains(((ClassId) c).toURI()))
+				result.add(c);
+		}
+		return result;
 	}
 }
