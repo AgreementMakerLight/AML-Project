@@ -30,13 +30,12 @@ import aml.ontology.Ontology;
 import aml.ontology.ValueMap;
 import aml.ontology.semantics.EntityMap;
 
-public class PropertyARMatcher extends AbstractAssociationRuleMatcher{
-
+public class PropertyARMatcher extends AbstractAssociationRuleMatcher 
+{
 	// Constructor
-
 	public PropertyARMatcher(){}
 
-	//Protected methods
+	// Protected methods
 	/*
 	 * Populates EntitySupport and MappingSupport tables
 	 * @param o1: source ontology
@@ -45,7 +44,7 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher{
 	protected void computeSupport(Ontology o1, Ontology o2) 
 	{
 		System.out.println("Get object/ data property support");
-		Set<String> sharedInstances = new HashSet<String>(getSharedInstances(o1,o2));
+		Set<String> sharedInstances = new HashSet<String>(getSharedInstances(o1, o2));
 		EntityMap rels = AML.getInstance().getEntityMap();
 		ValueMap srcValueMap = o1.getValueMap();
 		ValueMap tgtValueMap = o2.getValueMap();
@@ -55,67 +54,59 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher{
 		for(String si : sharedInstances) 
 		{
 			// Find all properties associated to this instance
-			if (srcValueMap.getProperties(si) != null) 
+			if (srcValueMap.getProperties(si) != null)
 				srcDataProperties = new HashSet<String>(srcValueMap.getProperties(si));
 
-			if (tgtValueMap.getProperties(si) != null) 
-				tgtDataProperties = new HashSet<String>(tgtValueMap.getProperties(si));	
+			if (tgtValueMap.getProperties(si) != null)
+				tgtDataProperties = new HashSet<String>(tgtValueMap.getProperties(si));
 
 			// Find all relations associated to this instance
 			// While filtering out instances with no relationships
-			if (rels.getIndividualActiveRelations(si) != null) 
+			if (rels.getIndividualActiveRelations(si) == null)
+				continue;
+
+			Set<String> individuals2 = new HashSet<String>(rels.getIndividualActiveRelations(si));
+			for (String i2 : individuals2)
 			{
-				Set<String> individuals2 = new HashSet<String>(rels.getIndividualActiveRelations(si));
-				for (String i2: individuals2) 
+				// Set of relations
+				Set<String> rSet = new HashSet<String>(rels.getIndividualProperties(si, i2)); // Avoid duplicates
+				// Switch to list since we need indexes
+				List<String> rList = new ArrayList<String>(rSet);
+				int len = rList.size();
+
+				// Iterate list of relations to count support
+				for (int i=0; i<len; i++) 
 				{
-					//Set of relations
-					Set<String> rSet = rels.getIndividualProperties(si, i2); //Avoid duplicates
+					// Transform string uri into correspondent AbstractExpression
+					RelationId r1 = new RelationId(rList.get(i));
+					incrementEntitySupport(r1); // Add relation to EntitySupport
 
-					// Switch to list since we need indexes 
-					List<String> rList = new ArrayList<String>(rSet);
-					int len = rList.size();
-
-					//Iterate list of relations to count support
-					for (int i = 0; i < len; i++)
-					{ 
-						// Transform string uri into correspondent AbstractExpression
-						RelationId r1 = new RelationId(rList.get(i));
-						// Add relation to EntitySupport
-						incrementEntitySupport(r1);
-
-						// RELATION - RELATION mappings
-						// If there are not at least two classes for this instance (one for each ontology)
-						// do not continue to MappingSupport and move to next instance
-						if(len > 1) 
-						{
-							for (int j = i + 1; j < len; j++) 
-							{
-								RelationId r2 = new RelationId(rList.get(j));
-								// Make sure we are not mapping entities from the same ontology
-								if( (o1.contains(rList.get(j)) && o1.contains(rList.get(i)))
-										| (!o1.contains(rList.get(j)) && !o1.contains(rList.get(i))))
-									continue;
-								// Add to MappingSupport
-								incrementMappingSupport(r1, r2);
-							}
-						}
-
-						// RELATION - PROPERTY mappings 
-						// Make sure the mapping is between entities of opposite ontologies 
-						if (o1.contains(rList.get(i)))
-							relationToPropMapping(r1, tgtDataProperties);
-
-						else if(o2.contains(rList.get(i))) relationToPropMapping(r1,
-								srcDataProperties);
+					// RELATION - RELATION mappings
+					// If there are not at least two classes for this instance (one for each
+					// ontology do not continue to MappingSupport and move to next instance
+					for (int j=i+1; j<len; j++) 
+					{
+						RelationId r2 = new RelationId(rList.get(j));
+						// Make sure we are not mapping entities from the same ontology
+						if (o1.contains(rList.get(j)) && o1.contains(rList.get(i)))
+							continue;
+						if(!o1.contains(rList.get(j)) && !o1.contains(rList.get(i)))
+							continue;
+						// Add to MappingSupport
+						incrementMappingSupport(r1, r2);
 					}
+					// RELATION - PROPERTY mappings
+					// Make sure the mapping is between entities of opposite ontologies
+					if (o1.contains(rList.get(i)))
+						relationToPropMapping(r1, tgtDataProperties);
+					else if (o2.contains(rList.get(i)))
+						relationToPropMapping(r1, srcDataProperties);
 				}
 			}
-
-
 			// PROPERTY - PROPERTY mappings
-			for(String srcUri: srcDataProperties) 
-			{ 
-				PropertyId p1 = new PropertyId(srcUri, null); 
+			for (String srcUri : srcDataProperties) 
+			{
+				PropertyId p1 = new PropertyId(srcUri, null);
 				incrementEntitySupport(p1);
 
 				// Add to MappingSupport 
@@ -138,13 +129,13 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher{
 						}
 					}
 				} 
-			} 
-			//Also increment entity support for tgt properties 
-			for(String tgtUri: tgtDataProperties) 
-			{ 
-				PropertyId p = new PropertyId(tgtUri, null); 
-				// Add property to EntitySupport 
-				incrementEntitySupport(p); 
+			}
+			// Also increment entity support for tgt properties
+			for (String tgtUri : tgtDataProperties) 
+			{
+				PropertyId p = new PropertyId(tgtUri, null);
+				// Add property to EntitySupport
+				incrementEntitySupport(p);
 			}
 		}
 	}
@@ -162,6 +153,4 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher{
 		}
 	}
 
-
 }
-
