@@ -48,7 +48,7 @@ public abstract class AbstractRestrictionMatcher
 	 * @param a: the existing alignment to extend
 	 * @param e: the EntityType to match
 	 * @param thresh: the similarity threshold for the extention
-	 * @return the alignment with (only) the new mappings between the Ontologies
+	 * @return the alignment with the new mappings between the Ontologies
 	 */
 	public EDOALAlignment extendAlignment(Ontology o1, Ontology o2, EDOALAlignment a)
 	{
@@ -80,8 +80,7 @@ public abstract class AbstractRestrictionMatcher
 				}
 				else 
 					out.add(m);
-			}
-				
+			}			
 			else if (m.getRelationship() == MappingRelation.SUBSUMES) // tgt < src
 			{
 				if(computeSupport(tgt, src)) 
@@ -145,6 +144,14 @@ public abstract class AbstractRestrictionMatcher
 						mappings.add(new EDOALMapping(e1, e2, conf, MappingRelation.EQUIVALENCE));
 					else
 						mappings.add(new EDOALMapping(e2, e1, conf, MappingRelation.EQUIVALENCE));
+				}
+				// If rule is unidirectional (A->B) then A is subsumed by B (<)
+				else 
+				{
+					if(o1.containsAll(e1.getElements())) 
+						mappings.add(new EDOALMapping(e1, e2, ARules.get(e1, e2), MappingRelation.SUBSUMED_BY));
+					else
+						mappings.add(new EDOALMapping(e2, e1, ARules.get(e1, e2), MappingRelation.SUBSUMES));
 				}
 			}
 		}
