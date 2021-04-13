@@ -32,13 +32,12 @@ import aml.alignment.rdf.RelationId;
 import aml.alignment.rdf.RestrictionElement;
 import aml.ontology.Ontology;
 import aml.ontology.semantics.EntityMap;
-import aml.util.data.Map2Map;
 import aml.util.data.Map2Set;
 
 public class CATARMatcher extends aml.match.association.AbstractAssociationRuleMatcher
 {
 	//Constructor
-	public CATARMatcher() {}
+	public CATARMatcher(){}
 
 	//Protected methods
 	/*
@@ -53,11 +52,12 @@ public class CATARMatcher extends aml.match.association.AbstractAssociationRuleM
 		Set<String> sharedInstances = new HashSet<String>(getSharedInstances(o1,o2));
 		EntityMap rels = AML.getInstance().getEntityMap();
 		Map2Set<String, String> activeRelations = null;
-
+		Map2Set<String, String> ontRanges = new Map2Set<String, String>();
+		
 		for(String si : sharedInstances) 
 		{
 			// Find all classes associated to that instance
-			List<String> i1Classes = new ArrayList<String>(rels.getIndividualClasses(si));
+			List<String> i1Classes = new ArrayList<String>(rels.getIndividualClassesTransitive(si));
 			// If empty set of classes, move on to next instance
 			int len = i1Classes.size();
 			if(len < 1)
@@ -68,6 +68,7 @@ public class CATARMatcher extends aml.match.association.AbstractAssociationRuleM
 
 			Set<AttributeDomainRestriction> foundADRsInstance = new HashSet<AttributeDomainRestriction>(); //ADRs found for this instance si
 			activeRelations = new Map2Set<String, String>(rels.getIndividualActiveRelations().get(si));
+			
 			for (String c1URI: i1Classes) 
 			{
 				// Transform string uri into correspondent AbstractExpression
@@ -78,7 +79,7 @@ public class CATARMatcher extends aml.match.association.AbstractAssociationRuleM
 				for(String i2: activeRelations.keySet()) 
 				{
 					// Find out i2's classes
-					Set<String> i2Classes = new HashSet<String>(rels.getIndividualClasses(i2));
+					Set<String> i2Classes = new HashSet<String>(rels.getIndividualClassesTransitive(i2));
 					for(String c2URI: i2Classes) 
 					{
 						// Filter out cases where both classes are from the same ontology
@@ -86,9 +87,6 @@ public class CATARMatcher extends aml.match.association.AbstractAssociationRuleM
 						else if(o2.contains(c1URI) && o2.contains(c2URI)){continue;}
 
 						ClassId c2 = new ClassId(c2URI);
-						// We also take into account all of the 2nd class' ancestors
-						Set<String> c2Ancestors = new HashSet<String>(rels.getSuperclasses(c2URI));
-
 						//Iterate relations between si and i2 and save the corresponding attribute domain restriction
 						for (String attributeURI: activeRelations.get(i2)) 
 						{
@@ -96,17 +94,21 @@ public class CATARMatcher extends aml.match.association.AbstractAssociationRuleM
 							if (o1.contains(c1URI) && o1.contains(attributeURI)) {continue;}
 							else if(o2.contains(c1URI) && o2.contains(attributeURI)){continue;}
 
+							// Filter out cases where c2 is not a subclass of the relation's ontology range (or the range itself)
+							if(ontRanges.contains(attributeURI)) 
+							{
+								if(!ontRanges.get(attributeURI).contains(c2URI)) 
+									continue;
+							}
+							else // add to ontRanges
+							{
+								ontRanges.addAll(attributeURI, rels.getRanges(attributeURI));
+								for(String ontRange: rels.getRanges(attributeURI))
+									ontRanges.addAll(attributeURI, rels.getSubclasses(ontRange));
+							}
 							RelationId attribute = new RelationId(attributeURI);
 							AttributeDomainRestriction adr = new AttributeDomainRestriction(attribute, c2, RestrictionElement.CLASS);
 							foundADRsClass.add(adr);
-
-							// Also account for all of c2's ancestors
-							for(String ancestorURI: c2Ancestors) 
-							{
-								ClassId ancestor = new ClassId(ancestorURI);
-								AttributeDomainRestriction adr2 = new AttributeDomainRestriction(attribute, ancestor, RestrictionElement.CLASS);
-								foundADRsClass.add(adr2);
-							}
 						}
 					}
 				}
