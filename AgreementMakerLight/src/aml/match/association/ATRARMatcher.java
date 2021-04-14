@@ -25,6 +25,8 @@ import java.util.Set;
 import org.semanticweb.owlapi.model.OWLDatatype;
 
 import aml.AML;
+import aml.alignment.rdf.AbstractExpression;
+import aml.alignment.rdf.AttributeDomainRestriction;
 import aml.alignment.rdf.AttributeTypeRestriction;
 import aml.alignment.rdf.ClassId;
 import aml.alignment.rdf.Datatype;
@@ -33,10 +35,10 @@ import aml.ontology.Ontology;
 import aml.ontology.ValueMap;
 import aml.ontology.semantics.EntityMap;
 
-public class ATRARMatcher extends aml.match.association.AbstractAssociationRuleMatcher
+public class ATRARMatcher extends AbstractAssociationRuleMatcher
 {
 	EntityMap eMap;
-	
+
 	//Constructor
 	public ATRARMatcher()
 	{
@@ -59,6 +61,7 @@ public class ATRARMatcher extends aml.match.association.AbstractAssociationRuleM
 		Set<String> srcProperties = null;
 		Set<String> tgtProperties = null;
 
+
 		for(String si : sharedInstances) 
 		{
 			// Find all classes of that instance
@@ -72,26 +75,29 @@ public class ATRARMatcher extends aml.match.association.AbstractAssociationRuleM
 			if (tgtValueMap.getProperties(si) != null) 
 				tgtProperties = new HashSet<String>(tgtValueMap.getProperties(si));
 
+			Set<AttributeTypeRestriction> foundATRsInstance = new HashSet<AttributeTypeRestriction>(); //ATRs found for this instance si
 			for (String c1URI: cSet) 
 			{
 				// Transform string uri into correspondent AbstractExpression
 				ClassId c1 = new ClassId(c1URI);
 				incrementEntitySupport(c1);
+				Set<AttributeTypeRestriction> foundATRsClass = new HashSet<AttributeTypeRestriction>(); // ADRs found for this class c1
 
 				// Only proceed to populate mappingSupport if there are any relationships 
 				// for that instance besides class assignment
-				Set<AttributeTypeRestriction> atrs = new HashSet<AttributeTypeRestriction>();
 				if(o1.contains(c1URI))
-					atrs.addAll(findATRs(si, tgtProperties, tgtValueMap));
+					foundATRsClass.addAll(findATRs(si, tgtProperties, tgtValueMap));
 				else 
-					atrs.addAll(findATRs(si, srcProperties, srcValueMap));
-				
-				for(AttributeTypeRestriction atr: atrs)
-				{
-					incrementEntitySupport(atr);
+					foundATRsClass.addAll(findATRs(si, srcProperties, srcValueMap));
+
+				// Increment mapping support for all the ATRs found for this class
+				for(AttributeTypeRestriction atr: foundATRsClass)
 					incrementMappingSupport(c1, atr);
-				}
+				foundATRsInstance.addAll(foundATRsClass);
 			}	
+			// Increment entity support for all the ADRs found for this instance
+			for(AbstractExpression atr: foundATRsInstance)
+				incrementEntitySupport(atr);
 		}
 	}
 
@@ -113,7 +119,7 @@ public class ATRARMatcher extends aml.match.association.AbstractAssociationRuleM
 				// Make sure we don't find redundant ATRs, i.e. we don't want to restrict 
 				// a property to a type which is already specified in the ontology as its range
 				Set<String> range = eMap.getRanges(pURI);
-				
+
 				for(String value: vmap.getValues(instance, pURI)) 
 				{
 					OWLDatatype dataType = vmap.getDataType(instance, pURI, value);
