@@ -38,8 +38,8 @@ public abstract class AbstractAssociationRuleMatcher extends Matcher
 	// Attributes
 	protected HashMap<AbstractExpression, Integer> entitySupport;
 	protected Map2Map<AbstractExpression, AbstractExpression, Integer> mappingSupport;
-	protected final int minSup = 1; //about 1% of all transactions
-	protected final double minConf = 0.5;
+	protected static int minSup; //1% of all transactions
+	protected final double minConf = 0.7;
 	protected Map2Map<AbstractExpression, AbstractExpression, Double> ARules;
 
 	// Constructors
@@ -59,7 +59,7 @@ public abstract class AbstractAssociationRuleMatcher extends Matcher
 			for (AbstractExpression e2 : mappingSupport.get(e1).keySet()) 
 			{
 				//Filter by support then confidence
-				if (mappingSupport.get(e1, e2) >= minSup) ///// should be entitySupport??
+				if (mappingSupport.get(e1, e2) >= minSup)
 				{
 					double conf = getConfidence(e1, e2);
 					if (conf > minConf) 
@@ -161,6 +161,8 @@ public abstract class AbstractAssociationRuleMatcher extends Matcher
 				}
 			}
 		}
+		minSup = (int) (0.01*sharedInstances.size());
+		System.out.println("Shared instances: "+ sharedInstances.size());
 		return sharedInstances;
 	}
 
