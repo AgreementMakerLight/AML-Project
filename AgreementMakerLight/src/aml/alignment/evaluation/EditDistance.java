@@ -1,5 +1,6 @@
 package aml.alignment.evaluation;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
@@ -9,36 +10,31 @@ import aml.alignment.EDOALAlignment;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingStatus;
 import aml.alignment.rdf.AbstractExpression;
+import aml.util.data.Map2Set;
 import aml.util.similarity.Similarity;
 
 public class EditDistance implements Evaluator
 {
-	//Attributes
-	Set<String> restrictions;
-
 	//Constructor
-	public EditDistance() 
-	{
-		Set<String> restrictions = new HashSet<String>();
-		restrictions.add("greater-than");
-	}
+	public EditDistance() {}
 
 	//Public methods
 	/**
 	 * This method evaluates an EDOAL Alignment under the edit-distance premise, given a reference alignment
 	 * @param alignment: the Alignment we want to evaluate
 	 * @param reference: the reference Alignment that we will use for comparison
-	 * @return the evaluation of this Alignment {# correct mappings, # conflict mappings}
+	 * @return the evaluation of this Alignment {#TP for precision, #conflict mappings, #TP for recall}
 	 */
 	@SuppressWarnings("rawtypes")
-	public int[] evaluate(Alignment alignment, Alignment reference) 
+	public double[] evaluate(Alignment alignment, Alignment reference) 
 	{
 		System.out.println("Performing Evaluation");
 		long time = System.currentTimeMillis()/1000;
 		EDOALAlignment algn = (EDOALAlignment)alignment;
 		EDOALAlignment ref = (EDOALAlignment)reference;
+		HashMap<Mapping<AbstractExpression>, Double> usedRefMappings = new HashMap<Mapping<AbstractExpression>, Double>();
 
-		int[] count = new int[2];
+		double[] count = new double[3];
 		for(Mapping<AbstractExpression> m : algn) 
 		{
 			// Exact matches
@@ -47,6 +43,11 @@ public class EditDistance implements Evaluator
 				System.out.println("Exact match!");
 				count[0]++;
 				m.setStatus(MappingStatus.CORRECT);
+				if(!usedRefMappings.containsKey(m))
+					usedRefMappings.put(m, 1.0);
+				else if(usedRefMappings.get(m)< 1.0)
+					usedRefMappings.put(m, 1.0);
+
 			}
 			// Jaccard similarity
 			else
@@ -76,11 +77,12 @@ public class EditDistance implements Evaluator
 
 				System.out.println("------------------------");
 				System.out.println("algnMapping: "+m);
-				System.out.println("algnSet: "+algnElements);
 				System.out.println("refMappings: "+srcRefMappings);
 
 				// Find the maximum Jaccard similarity between the ref mappings and the mapping being evaluated
 				double max = 0;
+				Mapping<AbstractExpression> chosenRef = null;
+
 				for (Mapping<AbstractExpression> mRef: srcRefMappings) 
 				{
 					// Construct a vector containing the single entities, relationship and constructors of the reference mapping
@@ -91,13 +93,28 @@ public class EditDistance implements Evaluator
 
 					System.out.println("refSet"+refElements);
 					double sim = Similarity.weightedJaccardSimilarity(algnElements, refElements);
-					if (sim > max)
+					if (sim > max) 
+					{
 						max = sim;
+						chosenRef = mRef;
+					}
 				}
 				System.out.println("Jaccard: "+ max);
 				count[0]+= max;
+				if(!usedRefMappings.containsKey(chosenRef))
+					usedRefMappings.put(chosenRef, max);
+				else if(usedRefMappings.get(chosenRef)< max)
+					usedRefMappings.put(chosenRef, max);	
 			}
 		}
+		
+		// sum usedRefMappings max scores to obtain recall correct TP
+		for(Mapping<AbstractExpression> m: usedRefMappings.keySet()) 
+			count[2] += usedRefMappings.get(m);
+		
+		System.out.println("# used reference mappings: "+ usedRefMappings.size());
+		System.out.println("recall score: "+ count[2]);
+		System.out.println("precision score: "+ count[0]);
 		System.out.println("Finished in " +	(System.currentTimeMillis()/1000-time) + " seconds");
 		return count;
 	}
@@ -117,6 +134,7 @@ public class EditDistance implements Evaluator
 		constructors.addAll(searchKeyword(m, "NOT"));
 		constructors.addAll(searchKeyword(m, "PATH"));
 		constructors.addAll(searchKeyword(m, "INVERSE"));
+		constructors.addAll(searchKeyword(m, "COMPOSE"));
 		constructors.addAll(searchKeyword(m, "greater-than "));
 		elements.addAll(constructors);
 	}
@@ -139,7 +157,7 @@ public class EditDistance implements Evaluator
 				keyword += split[1].substring(1, 2);
 			}
 			// also add other value expressions
-			
+
 			for (int i=0; i<(split.length-1); i++) 
 				result.add(keyword);
 		}
