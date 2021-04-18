@@ -1484,7 +1484,7 @@ public class EntityMap
 				//Add i3's classes to i1
 				for(String eqClass: getIndividualClasses(i3)) 
 						addInstance(i1, eqClass);
-				//Add i3's relations to i1
+				//Add i3's active relations to i1
 				for (String i4: getIndividualActiveRelations(i3)) 
 				{
 					// I1:I4
@@ -1497,6 +1497,20 @@ public class EntityMap
 						}
 					}	
 				}
+				//Add i3's passive relations to i1
+				for (String i4: getIndividualPassiveRelations(i3)) 
+				{
+					// I6:I1
+					for(String relation: passiveRelation.get(i3, i4)) 
+					{
+						addIndividualRelationship(i4, i1, relation);
+						for(String i5: getEquivalentIndividuals(i4)) 
+						{
+							addIndividualRelationship(i5, i1, relation); // i5 may be i2
+						}
+					}	
+				}
+				
 			}	
 		}
 	}
