@@ -31,6 +31,7 @@ import java.util.Vector;
 
 import org.semanticweb.elk.owlapi.ElkReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.io.FileDocumentSource;
 import org.semanticweb.owlapi.io.IRIDocumentSource;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.Node;
@@ -133,8 +134,9 @@ public class Ontology
 		this();
 		//Load the local ontology
 		File f = new File(path);
+		FileDocumentSource s = new FileDocumentSource(f); 
 		OWLOntology o;
-		o = manager.loadOntologyFromOntologyDocument(f);
+		o = manager.loadOntologyFromOntologyDocument(s,conf);
 		uri = f.getAbsolutePath();
 		init(o);
 		//Close the OntModel
