@@ -46,6 +46,9 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	private Map2List<String,Mapping<AbstractExpression>> sourceComponentMaps;
 	//Mappings organized by entity2
 	private Map2List<String,Mapping<AbstractExpression>> targetComponentMaps;
+	//Simple and complex mappings
+	protected Vector<Mapping<AbstractExpression>> simpleMaps;
+	protected Vector<Mapping<AbstractExpression>> complexMaps;
 
 
 	//Constructors
@@ -57,6 +60,8 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		super(LEVEL);
 		sourceComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
 		targetComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
+		simpleMaps = new Vector<Mapping<AbstractExpression>>();
+		complexMaps = new Vector<Mapping<AbstractExpression>>();
 	}
 
 	/**
@@ -67,6 +72,8 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		super(LEVEL, source, target, FORMALISM_NAME, FORMALISM_URI, FORMALISM_NAME, FORMALISM_URI);
 		sourceComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
 		targetComponentMaps = new Map2List<String,Mapping<AbstractExpression>>();
+		simpleMaps = new Vector<Mapping<AbstractExpression>>();
+		complexMaps = new Vector<Mapping<AbstractExpression>>();
 		level = LEVEL;
 	}
 
@@ -129,6 +136,10 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 				sourceComponentMaps.add(s, m);
 			for(String t : m.getEntity2().getElements())
 				targetComponentMaps.add(t, m);
+			if(m.isComplex())
+				complexMaps.add(m);
+			else
+				simpleMaps.add(m);
 		}
 		else
 		{
@@ -248,6 +259,14 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 	{
 		return o instanceof EDOALAlignment && containsAll((EDOALAlignment)o);
 	}
+	
+	/**
+	 * @return the list of all complex mappings
+	 */
+	public Vector<Mapping<AbstractExpression>> getComplexMappings()
+	{
+		return complexMaps;
+	}
 
 	@Override
 	public Vector<Mapping<AbstractExpression>> getConflicts(Mapping<AbstractExpression> m)
@@ -293,6 +312,14 @@ public class EDOALAlignment extends Alignment<AbstractExpression>
 		if(!sourceComponentMaps.contains(ent))
 			return targetComponentMaps.get(ent);
 		return sourceComponentMaps.get(ent);
+	}
+	
+	/**
+	 * @return the list of all simple mappings
+	 */
+	public Vector<Mapping<AbstractExpression>> getSimpleMappings()
+	{
+		return simpleMaps;
 	}
 
 	/**

@@ -1,34 +1,35 @@
 /******************************************************************************
-* Copyright 2013-2018 LASIGE                                                  *
-*                                                                             *
-* Licensed under the Apache License, Version 2.0 (the "License"); you may     *
-* not use this file except in compliance with the License. You may obtain a   *
-* copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
-*                                                                             *
-* Unless required by applicable law or agreed to in writing, software         *
-* distributed under the License is distributed on an "AS IS" BASIS,           *
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
-* See the License for the specific language governing permissions and         *
-* limitations under the License.                                              *
-*                                                                             *
-*******************************************************************************
-* A complex mapping based on EDOAL syntax.                                    *
-*                                                                             *
-* @author Daniel Faria                                                        *
-******************************************************************************/
+ * Copyright 2013-2018 LASIGE                                                  *
+ *                                                                             *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+ * not use this file except in compliance with the License. You may obtain a   *
+ * copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+ *                                                                             *
+ * Unless required by applicable law or agreed to in writing, software         *
+ * distributed under the License is distributed on an "AS IS" BASIS,           *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+ * See the License for the specific language governing permissions and         *
+ * limitations under the License.                                              *
+ *                                                                             *
+ *******************************************************************************
+ * A complex mapping based on EDOAL syntax.                                    *
+ *                                                                             *
+ * @author Daniel Faria                                                        *
+ ******************************************************************************/
 package aml.alignment.mapping;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
 import aml.alignment.rdf.AbstractExpression;
+import aml.alignment.rdf.ClassId;
+import aml.alignment.rdf.PropertyId;
 import aml.alignment.rdf.RDFElement;
+import aml.alignment.rdf.RelationId;
 import aml.settings.Namespace;
 
 public class EDOALMapping extends Mapping<AbstractExpression>
 {
-	
-//Constructors
-
+	//Constructors
 	/**
 	 * Creates a mapping between entity1 and entity2 with the given similarity
 	 * @param entity1: the EDOAL expression of the source ontology
@@ -38,8 +39,17 @@ public class EDOALMapping extends Mapping<AbstractExpression>
 	public EDOALMapping(AbstractExpression entity1, AbstractExpression entity2, double sim)
 	{
 		this(entity1,entity2,sim,MappingRelation.EQUIVALENCE);
+
+		// Check if mapping is simple or complex
+		if (entity1 instanceof ClassId && entity2 instanceof ClassId)
+			isComplex = false;
+		else if (entity1 instanceof RelationId && (entity2 instanceof RelationId || entity2 instanceof PropertyId))
+			isComplex = false;
+		else if (entity1 instanceof PropertyId && (entity2 instanceof RelationId || entity2 instanceof PropertyId))
+			isComplex = false;
+		else isComplex = true;
 	}
-	
+
 	/**
 	 * Creates a mapping between entity1 and entity2 with the given similarity and relation
 	 * @param entity1: the uri of the source ontology entity
@@ -50,9 +60,16 @@ public class EDOALMapping extends Mapping<AbstractExpression>
 	public EDOALMapping(AbstractExpression entity1, AbstractExpression entity2, double sim, MappingRelation r)
 	{
 		super(entity1,entity2,sim,r);
+		// Check if mapping is simple or complex
+		if (entity1 instanceof ClassId && entity2 instanceof ClassId)
+			isComplex = false;
+		else if (entity1 instanceof RelationId && (entity2 instanceof RelationId || entity2 instanceof PropertyId))
+			isComplex = false;
+		else if (entity1 instanceof PropertyId && (entity2 instanceof RelationId || entity2 instanceof PropertyId))
+			isComplex = false;
+		else isComplex = true;
 	}
-	
-	
+
 	/**
 	 * Creates a new mapping that is a copy of m
 	 * @param m: the mapping to copy
@@ -61,9 +78,10 @@ public class EDOALMapping extends Mapping<AbstractExpression>
 	{
 		this(m.getEntity1(),m.getEntity2(),m.similarity,m.rel);
 		this.status = m.status;
+		this.isComplex = m.isComplex();
 	}
 
-//Public Methods
+	//Public Methods
 
 	@Override
 	public AbstractExpression getEntity1()
@@ -76,7 +94,7 @@ public class EDOALMapping extends Mapping<AbstractExpression>
 	{
 		return (AbstractExpression)entity2;
 	}
-	
+
 	/**
 	 * Creates a copy of this mapping with the source and target
 	 * entities swapped and with the inverse relationship.
@@ -100,11 +118,11 @@ public class EDOALMapping extends Mapping<AbstractExpression>
 				"\n</entity2>\n" +
 				"<measure " + RDFElement.RDF_DATATYPE.toRDF() + "=\"" + Namespace.XSD.uri + "float\">"+ similarity +"</measure>\n" +
 				"<relation>" + StringEscapeUtils.escapeXml(rel.toString()) + "</relation>\n";
-			out += "</Cell>\n" +
+		out += "</Cell>\n" +
 				"</map>";
-			return out;
+		return out;
 	}
-	
+
 	@Override
 	public String toString()
 	{
