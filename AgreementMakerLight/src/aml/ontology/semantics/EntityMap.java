@@ -854,7 +854,6 @@ public class EntityMap
 		return new HashSet<String>();
 	}
 
-
 	/**
 	 * @param indivId: the id of the individual to search in the map
 	 * @return the set of classes instanced by the given individual
@@ -908,6 +907,26 @@ public class EntityMap
 		return new HashSet<String>();
 	}
 
+	/**
+	 * @param sourceInd: the id of the source individual in the relation
+	 * @param targetInd: the id of the target individual in the relation
+	 * @return the set of object properties actively relating sourceInd to targetInd
+	 */
+	public Set<String> getIndividualPropertiesTransitive(String sourceInd, String targetInd)
+	{
+		Set<String> result = new HashSet<String>();
+		if(activeRelation.contains(sourceInd,targetInd)) 
+		{
+			for (String p: activeRelation.get(sourceInd,targetInd))
+			{
+				result.add(p);
+				result.addAll(getSuperproperties(p));
+			}
+			return result;
+		}
+		return new HashSet<String>();
+	}
+	
 	/**
 	 * @return the set of individuals with active relations
 	 */
