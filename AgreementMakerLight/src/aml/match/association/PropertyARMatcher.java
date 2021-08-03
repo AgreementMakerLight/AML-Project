@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 
 import aml.AML;
+import aml.alignment.rdf.AbstractExpression;
 import aml.alignment.rdf.PropertyId;
 import aml.alignment.rdf.RelationId;
 import aml.ontology.Ontology;
@@ -62,14 +63,14 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher
 
 			// Find all relations associated to this instance
 			// While filtering out instances with no relationships
-			if (rels.getIndividualActiveRelations(si) == null)
+			Set<String> individuals2 = new HashSet<String>(rels.getIndividualActiveRelations(si));
+			if(individuals2.size()==0)
 				continue;
 
-			Set<String> individuals2 = new HashSet<String>(rels.getIndividualActiveRelations(si));
 			for (String i2 : individuals2)
 			{
 				// Set of relations
-				Set<String> rSet = new HashSet<String>(rels.getIndividualProperties(si, i2)); // Avoid duplicates
+				Set<String> rSet = new HashSet<String>(rels.getIndividualPropertiesTransitive(si, i2)); // Avoid duplicates
 				// Switch to list since we need indexes
 				List<String> rList = new ArrayList<String>(rSet);
 				int len = rList.size();
@@ -80,9 +81,9 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher
 					// Transform string uri into correspondent AbstractExpression
 					RelationId r1 = new RelationId(rList.get(i));
 					incrementEntitySupport(r1); // Add relation to EntitySupport
-
-					// RELATION - RELATION mappings
-					// If there are not at least two classes for this instance (one for each
+				
+					// OBJ - OBJ property mappings
+					// If there are not at least two properties for this instance (one for each
 					// ontology do not continue to MappingSupport and move to next instance
 					for (int j=i+1; j<len; j++) 
 					{
@@ -95,12 +96,12 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher
 						// Add to MappingSupport
 						incrementMappingSupport(r1, r2);
 					}
-					// RELATION - PROPERTY mappings
-					// Make sure the mapping is between entities of opposite ontologies
-					if (o1.contains(rList.get(i)))
-						relationToPropMapping(r1, tgtDataProperties);
-					else if (o2.contains(rList.get(i)))
-						relationToPropMapping(r1, srcDataProperties);
+//					//  OBJ - DATA property mappings
+//					// Make sure the mapping is between entities of opposite ontologies
+//					if (o1.contains(rList.get(i)))
+//						relationToPropMapping(r1, tgtDataProperties);
+//					else if (o2.contains(rList.get(i)))
+//						relationToPropMapping(r1, srcDataProperties);
 				}
 			}
 			// PROPERTY - PROPERTY mappings
@@ -116,11 +117,11 @@ public class PropertyARMatcher extends AbstractAssociationRuleMatcher
 				for(String tgtUri: tgtDataProperties) 
 				{
 					Set<String> tgtValues = tgtValueMap.getValues(si, tgtUri);
-					for (String srcV: srcValues) // Only map properties if they have the same range datatype
+					for (String srcV: srcValues) // Only map properties if they have the same value
 					{
 						for (String tgtV: tgtValues) 
 						{
-							if(srcValueMap.getDataType(si, srcUri, srcV).equals(tgtValueMap.getDataType(si, tgtUri, tgtV)))
+							if(srcV.equals(tgtV))
 							{
 								PropertyId p2 = new PropertyId(tgtUri, null);
 								incrementMappingSupport(p1, p2);
