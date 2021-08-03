@@ -22,7 +22,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 import aml.alignment.mapping.EDOALMapping;
 import aml.alignment.mapping.Mapping;
@@ -44,7 +43,7 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 {
 	// Constructor
 	public RelationRestrictionMatcher(){}
-	
+
 	// Private methods
 	/**
 	 * Extracts both RelationDomainRestrictions and RelationRangeRestrictions given a subsumption mapping 
@@ -110,7 +109,7 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 			Set<String> propRange = new HashSet<String>();
 			for(String r: map.getRanges(broaderPropertyURI))
 				propRange.addAll(map.getSubclasses(r));
-			Set<String> individuals2 = map.getActiveRelationIndividuals(broaderPropertyURI).get(i1);
+			Set<String> individuals2 = map.getIndividualActiveRelations(i1);
 			Set<RelationExpression> foundRangeRestriction = new HashSet<RelationExpression>();
 
 			// Find all classes associated to instance i2
@@ -150,7 +149,7 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 	{
 		Set<RelationExpression> relationComplexExpression = new HashSet<RelationExpression>(); // Relation + restriction
 		relationComplexExpression.add(relation);
-		
+
 		if(mode.equals("Domain")) 
 		{
 			RelationDomainRestriction restriction = new RelationDomainRestriction(clas);
@@ -178,7 +177,7 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 		//  Find out which one is complex
 		if(e2 instanceof RelationId) 
 			e1Complex = true; // e1 is complex
-		
+
 		// Separate in domain and range restriction candidates
 		Set<RelationDomainRestriction> domainCandidates = new HashSet<RelationDomainRestriction>();
 		Set<RelationCoDomainRestriction> rangeCandidates = new HashSet<RelationCoDomainRestriction>();
@@ -201,7 +200,7 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 		}
 		Set<RelationExpression> relationComplexExpression = new HashSet<RelationExpression>();
 		relationComplexExpression.add(broaderRelation);
-		
+
 		if(domainCandidates.size()==1) 
 			relationComplexExpression.add(domainCandidates.iterator().next());
 		else if(domainCandidates.size()>1)
@@ -231,7 +230,7 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 		else
 			return new EDOALMapping(e1, newRestriction, 1.0, MappingRelation.EQUIVALENCE);
 	}
-	
+
 	/*
 	 * This method removes child classes from a set of classes, and also the redundant 
 	 * @param complexMappings: the set of RR mappings from which we want to remove the children
@@ -240,12 +239,12 @@ public class RelationRestrictionMatcher extends AbstractRestrictionMatcher
 	private Set<ClassExpression> removeRRChildren(Set<ClassExpression> classes, RelationId relation, String mode) 
 	{
 		Set<ClassExpression> result = new HashSet<ClassExpression>();
-		
+
 		// Find children mappings indexes
 		Set<String> children = new HashSet<String>();
 		for(ClassExpression c: classes) 
 			children.addAll(map.getSubclasses(((ClassId) c).toURI()));
-		
+
 		// Add more generic classes to result set
 		for(ClassExpression c: classes) 
 		{
