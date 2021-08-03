@@ -51,9 +51,8 @@ public class CATARMatcher extends aml.match.association.AbstractAssociationRuleM
 		// Get entity map of relations
 		Set<String> sharedInstances = new HashSet<String>(getSharedInstances(o1,o2));
 		EntityMap rels = AML.getInstance().getEntityMap();
-		Map2Set<String, String> activeRelations = null;
 		Map2Set<String, String> ontRanges = new Map2Set<String, String>();
-		
+
 		for(String si : sharedInstances) 
 		{
 			// Find all classes associated to that instance
@@ -62,21 +61,21 @@ public class CATARMatcher extends aml.match.association.AbstractAssociationRuleM
 			int len = i1Classes.size();
 			if(len < 1)
 				continue;
-			// If map does not have any other triples involving this instance, move on to next instance
-			if (rels.getIndividualActiveRelations().get(si) == null)
-				continue;
-
-			Set<AttributeDomainRestriction> foundADRsInstance = new HashSet<AttributeDomainRestriction>(); //ADRs found for this instance si
-			activeRelations = new Map2Set<String, String>(rels.getIndividualActiveRelations().get(si));
 			
+			// If map does not have any other triples involving this instance, move on to next instance
+			Set<String> activeRelations = new HashSet<String>(rels.getIndividualActiveRelations(si));
+			if(activeRelations.size()==0)
+				continue;
+			Set<AttributeDomainRestriction> foundADRsInstance = new HashSet<AttributeDomainRestriction>(); //ADRs found for this instance si
+
 			for (String c1URI: i1Classes) 
 			{
 				// Transform string uri into correspondent AbstractExpression
 				ClassId c1 = new ClassId(c1URI);
 				incrementEntitySupport(c1); 
 				Set<AttributeDomainRestriction> foundADRsClass = new HashSet<AttributeDomainRestriction>(); // ADRs found for this class c1
-
-				for(String i2: activeRelations.keySet()) 
+				
+				for(String i2: activeRelations) 
 				{
 					// Find out i2's classes
 					Set<String> i2Classes = new HashSet<String>(rels.getIndividualClassesTransitive(i2));
@@ -88,7 +87,7 @@ public class CATARMatcher extends aml.match.association.AbstractAssociationRuleM
 
 						ClassId c2 = new ClassId(c2URI);
 						//Iterate relations between si and i2 and save the corresponding attribute domain restriction
-						for (String attributeURI: activeRelations.get(i2)) 
+						for (String attributeURI: rels.getIndividualProperties(si, i2)) 
 						{
 							// Filter out cases where relation is from the same ontology as c1
 							if (o1.contains(c1URI) && o1.contains(attributeURI)) {continue;}

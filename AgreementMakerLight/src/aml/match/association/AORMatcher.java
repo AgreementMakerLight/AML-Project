@@ -25,7 +25,6 @@ import java.util.Set;
 
 import aml.AML;
 import aml.alignment.rdf.AbstractExpression;
-import aml.alignment.rdf.AttributeDomainRestriction;
 import aml.alignment.rdf.AttributeOccurrenceRestriction;
 import aml.alignment.rdf.ClassId;
 import aml.alignment.rdf.Comparator;
@@ -54,8 +53,7 @@ public class AORMatcher extends aml.match.association.AbstractAssociationRuleMat
 		// Get entity map of relations
 		Set<String> sharedInstances = new HashSet<String>(getSharedInstances(o1,o2));
 		EntityMap rels = AML.getInstance().getEntityMap();
-		Map2Set<String, String> activeRelations = null;
-
+		
 		for(String si : sharedInstances) 
 		{
 			// Find all classes associated to that instance
@@ -64,26 +62,26 @@ public class AORMatcher extends aml.match.association.AbstractAssociationRuleMat
 			int len = i1Classes.size();
 			if(len < 1)
 				continue;
+			
 			// If map does not have any other triples involving this instance, move on to next instance
-			if (rels.getIndividualActiveRelations().get(si) == null)
+			Set<String> activeRelations = new HashSet<String>(rels.getIndividualActiveRelations(si));
+			if(activeRelations.size()==0)
 				continue;
-
 			Set<AttributeOccurrenceRestriction> foundAORsInstance = new HashSet<AttributeOccurrenceRestriction>(); //AORs found for this instance si
-			// If map contains any other triples involving that instance, get them
-			activeRelations = new Map2Set<String, String>(rels.getIndividualActiveRelations().get(si));
+			
 			for (String c1URI: i1Classes) 
 			{
 				// Transform string uri into correspondent AbstractExpression
 				ClassId c1 = new ClassId(c1URI);
 				incrementEntitySupport(c1);
-				Set<AttributeOccurrenceRestriction> foundAORsClass = new HashSet<AttributeOccurrenceRestriction>(); //AORs found for this class c1
+				Set<AttributeOccurrenceRestriction> foundAORsClass = new HashSet<AttributeOccurrenceRestriction>(); //AORs found for class c1
 
 				// Only proceed to populate mappingSupport if there are any other triples involving that instance
 				// besides class assignment
-				for(String i2: activeRelations.keySet()) 
+				for(String i2: activeRelations) 
 				{
 					//Iterate relations between si and i2 and save the corresponding attribute
-					for (String attributeURI: activeRelations.get(i2)) 
+					for (String attributeURI: rels.getIndividualProperties(si, i2)) 
 					{
 						// Filter out cases where relation is from the same ontology as c1
 						if (o1.contains(c1URI) && o1.contains(attributeURI)) {continue;}
@@ -91,7 +89,7 @@ public class AORMatcher extends aml.match.association.AbstractAssociationRuleMat
 
 						AttributeOccurrenceRestriction aor = new AttributeOccurrenceRestriction(
 								new RelationId(attributeURI),
-								new Comparator("http://ns.inria.org/edoal/1.0/#greater-than"),
+								new Comparator("http://ns.inria.org/edoal/1.0/#equals"),
 								new NonNegativeInteger(0));
 						foundAORsClass.add(aor);
 					}
