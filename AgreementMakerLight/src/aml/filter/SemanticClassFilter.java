@@ -23,23 +23,19 @@ import aml.ontology.semantics.EntityMap;
 import aml.util.data.Map2Map2Set;
 import aml.util.data.Map2Set;
 
-public class SemanticClassFilter3 implements Filterer
+public class SemanticClassFilter implements Filterer
 {
 	EDOALAlignment in;
 	EDOALAlignment out;
 	protected EntityMap map;
 	Map2Map2Set<AbstractExpression, MappingRelation, Mapping<AbstractExpression>> subsumption;
-	Set<AbstractExpression> srcLeftover;
-	Set<AbstractExpression> tgtLeftover;
 
 	// Constructor
-	public SemanticClassFilter3() 
+	public SemanticClassFilter() 
 	{
 		out = new EDOALAlignment();
 		map = AML.getInstance().getEntityMap();
 		subsumption = new Map2Map2Set<AbstractExpression, MappingRelation, Mapping<AbstractExpression>>();
-		srcLeftover = new HashSet<AbstractExpression>();
-		tgtLeftover = new HashSet<AbstractExpression>();
 	}
 
 	//Public Methods
@@ -54,8 +50,10 @@ public class SemanticClassFilter3 implements Filterer
 		System.out.println("Performing Class Selection");
 		long time = System.currentTimeMillis()/1000;
 		this.in = (EDOALAlignment) a;
+		Set<AbstractExpression> srcLeftover = new HashSet<AbstractExpression>();
+		Set<AbstractExpression> tgtLeftover = new HashSet<AbstractExpression>();
 
-		// 1) Iterate through source classes and search for perfect equivalence mappings 
+		// 1) Iterate through classes and search for perfect equivalence mappings 
 		for(AbstractExpression src: in.getSourceExpressions())
 		{		
 			if(!(src instanceof aml.alignment.rdf.ClassId))
@@ -67,8 +65,6 @@ public class SemanticClassFilter3 implements Filterer
 			else
 				srcLeftover.add(src);
 		}
-		// 2) Iterate through target classes and search for perfect equivalence mappings, 
-		// skipping those that have been already mapped
 		for(AbstractExpression tgt: in.getTargetExpressions())
 		{		
 			if(!(tgt instanceof aml.alignment.rdf.ClassId) || out.containsTarget(tgt))
@@ -80,7 +76,7 @@ public class SemanticClassFilter3 implements Filterer
 			else
 				tgtLeftover.add(tgt);
 		}
-		// 3) Attempt to find equivalence mappings again, this time lowering the threshold
+		// 2) Attempt to find equivalence mappings again, this time lowering the threshold
 		for(AbstractExpression src: srcLeftover) 
 		{
 			if(out.containsSource(src))
@@ -88,7 +84,6 @@ public class SemanticClassFilter3 implements Filterer
 			Set<Mapping<AbstractExpression>> bestEquivalence = new HashSet<Mapping<AbstractExpression>>(findBestEquivalence(src, false, null));
 			if(bestEquivalence.size() >0)
 				out.addAll(bestEquivalence);
-
 		}	
 		for(AbstractExpression tgt: tgtLeftover) 
 		{
@@ -98,31 +93,43 @@ public class SemanticClassFilter3 implements Filterer
 			if(bestEquivalence.size() >0)
 				out.addAll(bestEquivalence);				
 		}
-		// 4) Iterate through remaining source classes and search for subsumption mappings
-		if(srcLeftover.size() > 0) 
-		{
-			for(AbstractExpression src: srcLeftover)
-			{		
-				if(out.containsSource(src))
-					continue;
-				if(subsumption.contains(src, MappingRelation.SUBSUMED_BY))
-					out.addAll(findBestSubsumption(subsumption.get(src, MappingRelation.SUBSUMED_BY), false, 1.0));
-				if(subsumption.contains(src, MappingRelation.SUBSUMES)) 
-					out.addAll(findBestSubsumption(subsumption.get(src, MappingRelation.SUBSUMES), false, 1.0));
-			}
+		// 3) Search for perfect subsumption mappings
+		for(AbstractExpression src: srcLeftover)
+		{		
+			if(out.containsSource(src))
+				continue;
+			if(subsumption.contains(src, MappingRelation.SUBSUMED_BY))
+				out.addAll(findBestSubsumption(subsumption.get(src, MappingRelation.SUBSUMED_BY), false, 1.0));
+			if(subsumption.contains(src, MappingRelation.SUBSUMES)) 
+				out.addAll(findBestSubsumption(subsumption.get(src, MappingRelation.SUBSUMES), false, 1.0));
 		}
-		// 5) Iterate through remaining target classes and search for subsumption mappings
-		if(tgtLeftover.size()>0) 
-		{
-			for(AbstractExpression tgt: in.getTargetExpressions())
-			{		
-				if(out.containsTarget(tgt))
-					continue;
-				if(subsumption.contains(tgt, MappingRelation.SUBSUMED_BY))
-					out.addAll(findBestSubsumption(subsumption.get(tgt, MappingRelation.SUBSUMED_BY), true, 1.0));
-				if(subsumption.contains(tgt, MappingRelation.SUBSUMES))
-					out.addAll(findBestSubsumption(subsumption.get(tgt, MappingRelation.SUBSUMES), true, 1.0));
-			}
+		for(AbstractExpression tgt: tgtLeftover)
+		{		
+			if(out.containsTarget(tgt))
+				continue;
+			if(subsumption.contains(tgt, MappingRelation.SUBSUMED_BY))
+				out.addAll(findBestSubsumption(subsumption.get(tgt, MappingRelation.SUBSUMED_BY), true, 1.0));
+			if(subsumption.contains(tgt, MappingRelation.SUBSUMES))
+				out.addAll(findBestSubsumption(subsumption.get(tgt, MappingRelation.SUBSUMES), true, 1.0));
+		}
+		// 4) Search for subsumption mappings with lower threshold
+		for(AbstractExpression src: srcLeftover)
+		{		
+			if(out.containsSource(src))
+				continue;
+			if(subsumption.contains(src, MappingRelation.SUBSUMED_BY))
+				out.addAll(findBestSubsumption(subsumption.get(src, MappingRelation.SUBSUMED_BY), false, null));
+			if(subsumption.contains(src, MappingRelation.SUBSUMES)) 
+				out.addAll(findBestSubsumption(subsumption.get(src, MappingRelation.SUBSUMES), false, null));
+		}
+		for(AbstractExpression tgt: tgtLeftover)
+		{		
+			if(out.containsTarget(tgt))
+				continue;
+			if(subsumption.contains(tgt, MappingRelation.SUBSUMED_BY))
+				out.addAll(findBestSubsumption(subsumption.get(tgt, MappingRelation.SUBSUMED_BY), true, null));
+			if(subsumption.contains(tgt, MappingRelation.SUBSUMES))
+				out.addAll(findBestSubsumption(subsumption.get(tgt, MappingRelation.SUBSUMES), true, null));
 		}
 
 		System.out.println("Filtered out "+ (in.size() - out.size()) + " mappings");
@@ -190,7 +197,7 @@ public class SemanticClassFilter3 implements Filterer
 			options = in.getTargetMappings(simpleClass);
 		else
 			options = in.getSourceMappings(simpleClass);
-		
+
 		// Find maximum confidence in equivalent mappings
 		double maxConf = 0.0;
 		if(thres == null) 
@@ -217,7 +224,7 @@ public class SemanticClassFilter3 implements Filterer
 					continue;
 				else if( m.getEntity2() instanceof ClassId && out.containsTarget(m.getEntity2()))
 					continue;
-				
+
 				candidates.add(getClassMappingPattern(m), m);
 			}
 			// Save subsumption mappings for later in case we need them
@@ -232,21 +239,34 @@ public class SemanticClassFilter3 implements Filterer
 		return new HashSet<Mapping<AbstractExpression>>();
 	}
 
-	private Set<Mapping<AbstractExpression>> findBestSubsumption(Set<Mapping<AbstractExpression>> options, boolean srcIsComplex, double thres) 
+	private Set<Mapping<AbstractExpression>> findBestSubsumption(Set<Mapping<AbstractExpression>> options, boolean srcIsComplex, Double thres) 
 	{
 		// Type of mapping (simple / patterns) -> list of mappings
 		Map2Set<String, Mapping<AbstractExpression>> candidates = new Map2Set<String, Mapping<AbstractExpression>>();
 
+		// Find maximum confidence
+		double maxConf = 0.0;
+		if(thres == null) 
+		{
+			for(Mapping<AbstractExpression> m: options) 
+			{
+				if(m.getSimilarity() > maxConf)
+					maxConf = m.getSimilarity();
+			}
+		}
+		else
+			maxConf = thres;
+
 		// Apply filters and separate conflicting mappings into simple or complex patterns
 		for(Mapping<AbstractExpression> m: options) 
 		{
-			// Discard mappings if they will cause conflict (of any kind)
-			if(srcIsComplex && out.containsSource(m.getEntity1()))
+			// Discard mappings if they will cause conflict (even for complex entities)
+			if(out.containsSource(m.getEntity1()))
 				continue;
 			else if(out.containsTarget(m.getEntity2()))
 				continue;
 			// If above threshold consider as candidate
-			if(m.getSimilarity() >= thres)
+			if(m.getSimilarity() >= maxConf)
 				candidates.add(getClassMappingPattern(m), m);
 		}
 		if(candidates.size()>0)
@@ -296,7 +316,7 @@ public class SemanticClassFilter3 implements Filterer
 		// Only search for complex mappings if there aren't any valid simple ones
 		if(bestCandidates.size()>0)
 			return bestCandidates;
-		
+
 		// COMPLEX
 		// AOR
 		if(candidates.keySet().contains("AOR")) 
@@ -351,7 +371,7 @@ public class SemanticClassFilter3 implements Filterer
 		return bestCandidates;
 	}
 
-	
+
 
 	/*
 	 * This method removes child ADRs from a set of ADR mappings, i.e. if an ADR property or class restriction
@@ -445,7 +465,7 @@ public class SemanticClassFilter3 implements Filterer
 
 		return result;
 	}
-	
+
 	@Deprecated
 	/*
 	 * This method removes redundant ancestor ADRs from a set of ADR mappings, i.e. if an ADR property or class restriction

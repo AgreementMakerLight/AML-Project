@@ -9,6 +9,7 @@ import aml.alignment.EDOALAlignment;
 import aml.alignment.mapping.Mapping;
 import aml.alignment.mapping.MappingRelation;
 import aml.alignment.rdf.AbstractExpression;
+import aml.alignment.rdf.ClassId;
 import aml.alignment.rdf.InverseRelation;
 import aml.alignment.rdf.PropertyExpression;
 import aml.alignment.rdf.PropertyId;
@@ -26,8 +27,6 @@ public class SemanticPropertyFilter implements Filterer
 	EDOALAlignment out;
 	protected EntityMap map;	
 	Map2Map2Set<AbstractExpression, MappingRelation, Mapping<AbstractExpression>> subsumption;
-	Set<AbstractExpression> srcLeftover;
-	Set<AbstractExpression> tgtLeftover;
 
 	// Constructor
 	public SemanticPropertyFilter() 
@@ -35,8 +34,6 @@ public class SemanticPropertyFilter implements Filterer
 		out = new EDOALAlignment();
 		map = AML.getInstance().getEntityMap();
 		subsumption = new Map2Map2Set<AbstractExpression, MappingRelation, Mapping<AbstractExpression>>();
-		srcLeftover = new HashSet<AbstractExpression>();
-		tgtLeftover = new HashSet<AbstractExpression>();
 	}
 
 	//Public Methods
@@ -63,8 +60,10 @@ public class SemanticPropertyFilter implements Filterer
 	@SuppressWarnings("rawtypes")
 	private void filterPipeline(Class clazz, String mappingType) 
 	{	
-		//REALTION - RELATION
-		// 1) Iterate through source object properties and search for perfect equivalence mappings 
+		Set<AbstractExpression> srcLeftover = new HashSet<AbstractExpression>();
+		Set<AbstractExpression> tgtLeftover = new HashSet<AbstractExpression>();
+
+		// 1) Iterate through properties and search for perfect equivalence mappings 
 		for(AbstractExpression src: in.getSourceExpressions())
 		{		
 			if(!clazz.isInstance(src))
@@ -72,13 +71,11 @@ public class SemanticPropertyFilter implements Filterer
 			// Add best candidates to final alignment
 			Set<Mapping<AbstractExpression>> bestEquivalence = new HashSet<Mapping<AbstractExpression>>(
 					findBestEquivalence(src, false, 1.0, mappingType));
-			if(bestEquivalence.size() > 0)
+			if(bestEquivalence.size()>0)
 				out.addAll(bestEquivalence);
 			else
 				srcLeftover.add(src);
 		}
-		// 2) Iterate through target classes and search for perfect equivalence mappings, 
-		// skipping those that have been already mapped
 		for(AbstractExpression tgt: in.getTargetExpressions())
 		{		
 			if(!(clazz.isInstance(tgt)) || out.containsTarget(tgt))
@@ -86,19 +83,19 @@ public class SemanticPropertyFilter implements Filterer
 			// Add best candidates to final alignment
 			Set<Mapping<AbstractExpression>> bestEquivalence = new HashSet<Mapping<AbstractExpression>>(
 					findBestEquivalence(tgt, true, 1.0, mappingType));
-			if(bestEquivalence.size() > 0)
+			if(bestEquivalence.size()>0)
 				out.addAll(bestEquivalence);
 			else
 				tgtLeftover.add(tgt);
 		}
-		// 3) Attempt to find equivalence mappings again, this time lowering the threshold
+		// 2) Attempt to find equivalence mappings again, this time lowering the threshold
 		for(AbstractExpression src: srcLeftover) 
 		{
 			if(out.containsSource(src))
 				continue;
 			Set<Mapping<AbstractExpression>> bestEquivalence = new HashSet<Mapping<AbstractExpression>>(
 					findBestEquivalence(src, false, null, mappingType));
-			if(bestEquivalence.size() >0)
+			if(bestEquivalence.size()>0)
 				out.addAll(bestEquivalence);
 
 		}	
@@ -108,11 +105,36 @@ public class SemanticPropertyFilter implements Filterer
 				continue;
 			Set<Mapping<AbstractExpression>> bestEquivalence = new HashSet<Mapping<AbstractExpression>>(
 					findBestEquivalence(tgt, true, null, mappingType));
-			if(bestEquivalence.size() >0)
+			if(bestEquivalence.size()>0)
 				out.addAll(bestEquivalence);				
 		}
-		// 4) Iterate through remaining source object properties and search for subsumption mappings
-		if(srcLeftover.size() > 0) 
+		// 3) Search for perfect subsumption mappings
+		if(srcLeftover.size()>0) 
+		{
+			for(AbstractExpression src: srcLeftover)
+			{		
+				if(out.containsSource(src))
+					continue;
+				if(subsumption.contains(src, MappingRelation.SUBSUMED_BY))
+					out.addAll(findBestSubsumption(subsumption.get(src, MappingRelation.SUBSUMED_BY), false, 1.0, mappingType));
+				if(subsumption.contains(src, MappingRelation.SUBSUMES)) 
+					out.addAll(findBestSubsumption(subsumption.get(src, MappingRelation.SUBSUMES), false, 1.0, mappingType));
+			}
+		}
+		if(tgtLeftover.size()>0) 
+		{
+			for(AbstractExpression tgt: in.getTargetExpressions())
+			{		
+				if(out.containsTarget(tgt))
+					continue;
+				if(subsumption.contains(tgt, MappingRelation.SUBSUMED_BY))
+					out.addAll(findBestSubsumption(subsumption.get(tgt, MappingRelation.SUBSUMED_BY), true, 1.0, mappingType));
+				if(subsumption.contains(tgt, MappingRelation.SUBSUMES))
+					out.addAll(findBestSubsumption(subsumption.get(tgt, MappingRelation.SUBSUMES), true, 1.0, mappingType));
+			}
+		}
+		// 4) Search for subsumption mappings with lower threshold
+		if(srcLeftover.size()>0) 
 		{
 			for(AbstractExpression src: srcLeftover)
 			{		
@@ -124,7 +146,6 @@ public class SemanticPropertyFilter implements Filterer
 					out.addAll(findBestSubsumption(subsumption.get(src, MappingRelation.SUBSUMES), false, null, mappingType));
 			}
 		}
-		// 5) Iterate through remaining object properties and search for subsumption mappings
 		if(tgtLeftover.size()>0) 
 		{
 			for(AbstractExpression tgt: in.getTargetExpressions())
@@ -139,17 +160,17 @@ public class SemanticPropertyFilter implements Filterer
 		}
 	}
 
-	/* This method finds the best equivalence mapping for a given source or target single class
-	 * @param simpleClass: the simple class that we want to map
-	 * @param srcIsComplex: whether the source is complex, i.e. true if the simpleClass is from the target
+	/* This method finds the best equivalence mapping for a given source or target property
+	 * @param simpleProperty: the simple property that we want to map
+	 * @param srcIsComplex: whether the source is complex, i.e. true if the simpleProperty is from the target
 	 * ontology, false if it's from the source ontology
 	 * @param thres: confidence threshold; null if we want the maximum confidence among options
 	 * @param mode: "Relation-Relation", "Property-Property" or "Relation-Property"
-	 * @return a set of the best equivalence mappings found for the simpleClass
+	 * @return a set of the best equivalence mappings found for the simpleProperty
 	 * */
 	private Set<Mapping<AbstractExpression>> findBestEquivalence(AbstractExpression simpleProperty, boolean srcIsComplex, Double thres, String mode) 
 	{
-		// Type of mapping (simple / patterns) -> list of mappings
+		// Type of mapping (simple/patterns) -> list of mappings
 		Map2Set<String, Mapping<AbstractExpression>> candidates = new Map2Set<String, Mapping<AbstractExpression>>();
 		Vector<Mapping<AbstractExpression>> options = new Vector<Mapping<AbstractExpression>>();
 
@@ -196,9 +217,9 @@ public class SemanticPropertyFilter implements Filterer
 						if(!(src instanceof PropertyExpression) || !(tgt instanceof PropertyExpression))
 							continue loop;
 						// Discard mappings if they will cause conflict (case simple -> simple)
-						if(srcIsComplex && src instanceof RelationId && out.containsSource(src))
+						if(srcIsComplex && src instanceof PropertyId && out.containsSource(src))
 							continue loop;
-						else if(tgt instanceof RelationId && out.containsTarget(tgt))
+						else if(tgt instanceof PropertyId && out.containsTarget(tgt))
 							continue loop;
 						break;
 					}
@@ -212,7 +233,7 @@ public class SemanticPropertyFilter implements Filterer
 			}
 
 		if(candidates.size()>0)
-			return processPropertyCandidates(candidates, srcIsComplex); 
+			return processPropertyCandidates(candidates, srcIsComplex, mode); 
 
 		return new HashSet<Mapping<AbstractExpression>>();
 	}
@@ -222,7 +243,7 @@ public class SemanticPropertyFilter implements Filterer
 		// Type of mapping (simple / patterns) -> list of mappings
 		Map2Set<String, Mapping<AbstractExpression>> candidates = new Map2Set<String, Mapping<AbstractExpression>>();
 
-		// Find maximum confidence in equivalent mappings
+		// Find maximum confidence
 		double maxConf = 0.0;
 		if(thres == null) 
 		{
@@ -274,7 +295,7 @@ public class SemanticPropertyFilter implements Filterer
 				candidates.add(getPropertyMappingPattern(src, tgt), m);
 			}
 		if(candidates.size()>0)
-			return processPropertyCandidates(candidates, srcIsComplex); 
+			return processPropertyCandidates(candidates, srcIsComplex, mode); 
 		return new HashSet<Mapping<AbstractExpression>>();
 	}
 
@@ -303,7 +324,7 @@ public class SemanticPropertyFilter implements Filterer
 	 * @return set of best candidates out of candidates
 	 * */
 	private Set<Mapping<AbstractExpression>> processPropertyCandidates(
-			Map2Set<String, Mapping<AbstractExpression>> candidates, boolean srcIsComplex) 
+			Map2Set<String, Mapping<AbstractExpression>> candidates, boolean srcIsComplex, String mode) 
 	{
 		Set<Mapping<AbstractExpression>> bestCandidates = new HashSet<Mapping<AbstractExpression>>();
 
@@ -311,7 +332,7 @@ public class SemanticPropertyFilter implements Filterer
 		if(candidates.keySet().contains("Simple")) 
 		{
 			Vector<Mapping<AbstractExpression>> options = new Vector<Mapping<AbstractExpression>>(candidates.get("Simple"));
-			for(Mapping<AbstractExpression> option: options)
+			for(Mapping<AbstractExpression> option: removeSimpleChildren(options, mode))
 				bestCandidates.add(option);
 		}
 		// Only search for complex mappings if there aren't any valid simple ones
@@ -329,10 +350,61 @@ public class SemanticPropertyFilter implements Filterer
 		if(candidates.keySet().contains("InverseRelation")) 
 		{
 			Vector<Mapping<AbstractExpression>> options = new Vector<Mapping<AbstractExpression>>(candidates.get("InverseRelation"));
-			for(Mapping<AbstractExpression> option: options)
-				bestCandidates.add(option);
+			for(Mapping<AbstractExpression> option: options) 
+			{
+				//Filter redundant inverse, discard InverseOf(r1)=r2 and keep r1=InverseOf(r2)
+				if(option.getEntity2() instanceof InverseRelation)
+					bestCandidates.add(option);	
+			}		
 		}
 		return bestCandidates;
+	}
+
+	/*
+	 * This method removes mappings containing child property from a set of mappings
+	 * @param mappings: the set of mappings containing at least one simple class from which we want to remove the children
+	 * @param mode: "Relation-Relation", "Property-Property" or "Relation-Property"
+	 * @return: a clean set of mappings (no children)
+	 */
+	private Set<Mapping<AbstractExpression>> removeSimpleChildren(Vector<Mapping<AbstractExpression>> mappings, String mode) 
+	{
+		Set<Mapping<AbstractExpression>> result = new HashSet<Mapping<AbstractExpression>>();
+		if (mappings.size()==1) 
+		{
+			result.addAll(mappings);
+			return result;
+		}
+		Vector<String> srcURIs = new Vector<String>();
+		Vector<String> tgtURIs = new Vector<String>();
+		Set<String> children = new HashSet<String>();
+
+		for(Mapping<AbstractExpression> m: mappings) 
+		{	
+			String src=null;
+			String tgt=null;
+			
+			switch(mode) {
+			case "Relation-Relation":
+				src = ((RelationId) m.getEntity1()).toURI();
+				tgt =  ((RelationId) m.getEntity2()).toURI();
+				break;
+			case "Property-Property":
+				src = ((PropertyId) m.getEntity1()).toURI();
+				tgt =  ((PropertyId) m.getEntity2()).toURI();
+				break;
+			}
+			
+			srcURIs.add(src);
+			tgtURIs.add(tgt);
+			children.addAll(map.getSubproperties(src));
+			children.addAll(map.getSubproperties(tgt));
+		}
+		for(int i=0; i<mappings.size(); i++) 
+		{	
+			if(!children.contains(srcURIs.get(i)) && !children.contains(tgtURIs.get(i))) 
+				result.add(mappings.get(i));
+		}
+		return result;
 	}
 
 }
