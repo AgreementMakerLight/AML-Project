@@ -38,8 +38,9 @@ public abstract class AbstractAssociationRuleMatcher extends Matcher
 	// Attributes
 	protected HashMap<AbstractExpression, Integer> entitySupport;
 	protected Map2Map<AbstractExpression, AbstractExpression, Integer> mappingSupport;
-	protected static int minSup; //1% of all transactions
+	protected final int minSup = 50;
 	protected final double minConf = 0.7;
+	protected final double minLift = 1.0;
 	protected Map2Map<AbstractExpression, AbstractExpression, Double> ARules;
 
 	// Constructors
@@ -51,19 +52,32 @@ public abstract class AbstractAssociationRuleMatcher extends Matcher
 	}
 
 	// Public methods
-	public EDOALAlignment match(Ontology o1, Ontology o2) 
+	/**
+	 * @param lift: true to use lift as metric; false to use confidence instead
+	 */
+	public EDOALAlignment match(Ontology o1, Ontology o2, Boolean lift) 
 	{
 		computeSupport(o1, o2);
 		for (AbstractExpression e1 : mappingSupport.keySet()) 
 		{
 			for (AbstractExpression e2 : mappingSupport.get(e1).keySet()) 
 			{
-				//Filter by support then confidence
+				//Filter by support then confidence/lift
 				if (mappingSupport.get(e1, e2) >= minSup)
 				{
-					double conf = getConfidence(e1, e2);
-					if (conf > minConf) 
-						ARules.add(e1, e2, conf);	
+					double score = 0.0;
+					if(lift) 
+					{
+						score = getLift(e1, e2);
+						if(score > minLift) 
+							ARules.add(e1, e2, score);
+					}
+					else 
+					{
+						score = getConfidence(e1, e2);
+						if (score > minConf) 
+							ARules.add(e1, e2, score);
+					}
 				}
 			}
 		}
@@ -80,14 +94,16 @@ public abstract class AbstractAssociationRuleMatcher extends Matcher
 					if(o1.containsAll(e1.getElements())) 
 						a.add(e1, e2, conf, MappingRelation.EQUIVALENCE);
 
-					else
-						a.add(e2, e1, conf, MappingRelation.EQUIVALENCE);
+					else 
+						a.add(e2, e1, conf, MappingRelation.EQUIVALENCE);	
 				}
 				// If rule is unidirectional (A->B) then A is subsumed by B (<)
 				else 
 				{
-					if(o1.containsAll(e1.getElements())) 
+					
+					if(o1.containsAll(e1.getElements()))
 						a.add(e1, e2, ARules.get(e1, e2), MappingRelation.SUBSUMED_BY);
+						
 					else
 						a.add(e2, e1, ARules.get(e1, e2), MappingRelation.SUBSUMES);
 				}
@@ -161,7 +177,7 @@ public abstract class AbstractAssociationRuleMatcher extends Matcher
 				}
 			}
 		}
-		minSup = (int) (0.01*sharedInstances.size());
+		//minSup = (int) (0.01*sharedInstances.size());
 		System.out.println("Shared instances: "+ sharedInstances.size());
 		return sharedInstances;
 	}
@@ -170,6 +186,11 @@ public abstract class AbstractAssociationRuleMatcher extends Matcher
 	private double getConfidence(AbstractExpression e1, AbstractExpression e2) 
 	{
 		double conf = (double)mappingSupport.get(e1, e2) / (double)entitySupport.get(e1);
+		return conf;
+	}
+	private double getLift(AbstractExpression e1, AbstractExpression e2) 
+	{
+		double conf = (double)mappingSupport.get(e1, e2) / ((double)entitySupport.get(e1) * (double)entitySupport.get(e2));
 		return conf;
 	}
 
