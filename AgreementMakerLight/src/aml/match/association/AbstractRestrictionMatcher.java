@@ -28,7 +28,6 @@ public abstract class AbstractRestrictionMatcher
 	protected Map2Map<AbstractExpression, AbstractExpression, Integer> mappingSupport;
 	protected Map2Map<AbstractExpression, AbstractExpression, Double> ARules;
 	protected int minSup;
-	protected final double minConf = 1.0;
 
 	// Constructor
 	public AbstractRestrictionMatcher()
@@ -70,11 +69,11 @@ public abstract class AbstractRestrictionMatcher
 			{
 				if(computeSupport(src,tgt)) 
 				{
-					Set<Mapping<AbstractExpression>> candidates = generateRules();
+					Set<Mapping<AbstractExpression>> candidates = generateRules(m.getSimilarity());
 					if(candidates.size()==1)
 						out.add(candidates.iterator().next());
 					else if(candidates.size()>1)
-						out.add(filter(candidates));
+						out.add(filter(candidates));						
 					else
 						out.add(m); //no candidates
 				}
@@ -85,7 +84,7 @@ public abstract class AbstractRestrictionMatcher
 			{
 				if(computeSupport(tgt, src)) 
 				{
-					Set<Mapping<AbstractExpression>> candidates = generateRules();
+					Set<Mapping<AbstractExpression>> candidates = generateRules(m.getSimilarity());
 					if(candidates.size()==1)
 						out.add(candidates.iterator().next());
 					else if(candidates.size()>1)
@@ -113,8 +112,8 @@ public abstract class AbstractRestrictionMatcher
 	 * Filter mappings
 	 */
 	protected abstract Mapping<AbstractExpression> filter(Set<Mapping<AbstractExpression>> candidates);
-
-	protected Set<Mapping<AbstractExpression>> generateRules() 
+	
+	protected Set<Mapping<AbstractExpression>> generateRules(Double minConf) 
 	{
 		Set<Mapping<AbstractExpression>> mappings = new HashSet<Mapping<AbstractExpression>>();
 		// Compute confidence in rules
