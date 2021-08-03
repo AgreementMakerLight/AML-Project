@@ -62,6 +62,11 @@ public class InverseRelation extends RelationExpression
 		return components;
 	}
 	
+	public RelationExpression getRelation() 
+	{
+		return inv;
+	}
+	
 	@Override
 	public String toRDF()
 	{
