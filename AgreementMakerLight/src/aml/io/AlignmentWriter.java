@@ -29,6 +29,8 @@ import aml.alignment.mapping.SimpleMapping;
 
 public class AlignmentWriter
 {
+	//TODO: check xmlns:edoal='http://ns.inria.org/edoal/1.0/' declaration, in geolink it showed xmlns:xsd='http://ns.inria.org/edoal/1.0/'>
+	
 	/**
 	 * Saves an Alignment into a text file as a list of douples
 	 * @param a: the Alignment to save

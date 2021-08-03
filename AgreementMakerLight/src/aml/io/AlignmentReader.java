@@ -46,6 +46,7 @@ import aml.alignment.rdf.*;
 
 public class AlignmentReader
 {
+	//TODO: check parsing of literals in AttributeOccurrenceRestrictions
 	
 //Attributes
 	
