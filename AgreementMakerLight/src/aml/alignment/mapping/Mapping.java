@@ -33,6 +33,8 @@ public abstract class Mapping<A> implements Comparable<Mapping<A>>
 	protected MappingRelation rel;
 	//The status of the Mapping
 	protected MappingStatus status;
+	// Whether the mapping is complex
+	protected boolean isComplex;
 	
 //Constructors
 	
@@ -154,6 +156,11 @@ public abstract class Mapping<A> implements Comparable<Mapping<A>>
 	public MappingStatus getStatus()
 	{
 		return status;
+	}
+	
+	public boolean isComplex()
+	{
+		return isComplex;
 	}
 	
 	/**
