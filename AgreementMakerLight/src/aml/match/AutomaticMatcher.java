@@ -100,15 +100,18 @@ public class AutomaticMatcher
 			matchAll();
 		else if(matchClasses & matchProperties)
 			matchClassesAndProperties();
-		else if(matchClasses)
+		else
 		{
-			matchClasses();
-			filterClasses();
+			if(matchClasses)
+			{
+				matchClasses();
+				filterClasses();
+			}
+			if(matchProperties)
+				matchProperties();
+			if(matchIndividuals)
+				matchIndividuals();
 		}
-		else if(matchProperties)
-			matchProperties();
-		else if(matchIndividuals)
-			matchIndividuals();
 	}
 		
 //Private Methods
@@ -299,6 +302,7 @@ public class AutomaticMatcher
 	//Matching procedure for individuals
 	private static void matchIndividuals() throws UnsupportedEntityTypeException
 	{
+		System.out.println("Here!");
 		SizeCategory size = aml.getSizeIndividuals();
 		double connectivity = aml.getIndividualConnectivity();
 		double valueCoverage = aml.getIndividualValueDensity();
