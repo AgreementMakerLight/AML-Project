@@ -702,30 +702,42 @@ public class RelationshipMap
 		Set<Integer> ancestors = descendantClasses.keySet();
 		//Which are classes that have children but not parents
 		//NOTE: This may not work out well if the ontologies are not is_a complete
+		int sources = 0, targets = 0;
 		for(Integer a : ancestors)
 		{
-			if(getParents(a).size() == 0 && getChildren(a).size() > 0)
+			if(aml.getSource().contains(a))
 			{
-				if(aml.getSource().contains(a))
+				sources++;
+				if(getParents(a).size() == 0 && getChildren(a).size() > 0)
 					sourceTop.add(a);
-				if(aml.getTarget().contains(a))
+			}
+			if(aml.getTarget().contains(a))
+			{
+				targets++;
+				if(getParents(a).size() == 0 && getChildren(a).size() > 0)
 					targetTop.add(a);
 			}
 		}
 		//Now we go down the ontologies until we reach a significant branching
-		while(sourceTop.size() < 3)
+		if(sources >= 30)
 		{
-			HashSet<Integer> newTop = new HashSet<Integer>();
-			for(Integer a : sourceTop)
-				newTop.addAll(getChildren(a));
-			sourceTop = newTop;
+			while(sourceTop.size() < 3 && !sourceTop.isEmpty())
+			{
+				HashSet<Integer> newTop = new HashSet<Integer>();
+				for(Integer a : sourceTop)
+					newTop.addAll(getChildren(a));
+				sourceTop = newTop;
+			}
 		}
-		while(targetTop.size() < 3)
+		if(targets >= 30)
 		{
-			HashSet<Integer> newTop = new HashSet<Integer>();
-			for(Integer a : targetTop)
-				newTop.addAll(getChildren(a));
-			targetTop = newTop;
+			while(targetTop.size() < 3 && !targetTop.isEmpty())
+			{
+				HashSet<Integer> newTop = new HashSet<Integer>();
+				for(Integer a : targetTop)
+					newTop.addAll(getChildren(a));
+				targetTop = newTop;
+			}
 		}
 		highLevelClasses.addAll(sourceTop);
 		highLevelClasses.addAll(targetTop);
