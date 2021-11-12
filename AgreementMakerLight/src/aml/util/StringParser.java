@@ -76,7 +76,7 @@ public class StringParser
 			//letter+underscore+digits&letters
 			|| name.matches("[a-zA-Z]{1}[_:][a-zA-Z0-9]{6,}")
 			//OBO Foundry style (e.g., "GO:000001")
-			|| name.matches("[a-zA-Z]{2,}[_:][0-9\\.]{4,}")
+			|| name.matches("[a-zA-Z]{2,}[_:][0-9\\.]{1,}")
 			//akin to OBO Foundry style (e.g., "C_A00001")
 			|| name.matches("[a-zA-Z]+[_:]?[a-zA-Z]?[0-9\\.]{5,}")
 			//simple letters-dash-numbers-dash-numbers pattern
@@ -124,7 +124,7 @@ public class StringParser
 		
 		//Then replace all non-word characters with white spaces
 		//except for apostrophes and brackets
-		parsed = parsed.replaceAll(" *[^a-zA-Z0-9'()ÁÀÂÄÉÈÊËÍÌÎÏÓÒÔÖÚÙÛÜÇÑáàâãäéèêëíìîïóòôõöúùûüçñ] *"," ");
+		parsed = parsed.replaceAll(" *[^a-zA-Z0-9'()Ã�Ã€Ã‚Ã„Ã‰ÃˆÃŠÃ‹Ã�ÃŒÃŽÃ�Ã“Ã’Ã”Ã–ÃšÃ™Ã›ÃœÃ‡Ã‘Ã¡Ã Ã¢Ã£Ã¤Ã©Ã¨ÃªÃ«Ã­Ã¬Ã®Ã¯Ã³Ã²Ã´ÃµÃ¶ÃºÃ¹Ã»Ã¼Ã§Ã±] *"," ");
 		
 		//Then remove multiple, leading and trailing spaces
 		parsed = parsed.replaceAll(" {2,}"," ");
