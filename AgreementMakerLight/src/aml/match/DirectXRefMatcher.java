@@ -18,6 +18,8 @@
 ******************************************************************************/
 package aml.match;
 
+import java.util.Set;
+
 import aml.AML;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
@@ -130,11 +132,15 @@ public class DirectXRefMatcher implements PrimaryMatcher
 		}
 		for(String r : smallest.getReferences())
 		{
-			if(!largest.contains(r))
+			Set<Integer> small = smallest.get(r);
+			Set<Integer> large = largest.get(r);
+			//We can't match if the reference is not in the other ontology
+			//and we don't want to match if the reference is promiscuous
+			if(large == null || small.size() > 2 || large.size() > 2)
 				continue;
-			for(Integer i : smallest.get(r))
+			for(Integer i : small)
 			{
-				for(Integer j : largest.get(r))
+				for(Integer j : large)
 				{
 					if(sourceIsSmallest)
 						maps.add(i,j,WEIGHT2);
