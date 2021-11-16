@@ -95,6 +95,7 @@ public class AutomaticMatcher
 		}
 		//Initialize the alignment
 		a = new Alignment();
+		aml.setAlignment(a);
 		thresh = aml.getThreshold();
 		if(matchClasses & matchProperties & matchIndividuals)
 			matchAll();
