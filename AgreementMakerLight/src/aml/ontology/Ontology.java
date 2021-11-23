@@ -1249,7 +1249,7 @@ public class Ontology
 			if(min != null)
 				for(int i = 0; i < exact.size(); i++)
 					for(Integer j : min)
-						if(card.get(prop, exact.get(i)) > minCard.get(prop, j))
+						if(card.get(prop, exact.get(i)) < minCard.get(prop, j))
 							rm.addDisjoint(exact.get(i), j);				
 		}
 		//Then min vs max cardinalities
