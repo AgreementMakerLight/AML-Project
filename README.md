@@ -1,5 +1,9 @@
 # AgreementMakerLight (AML)
 
+AgreementMakerLight is an automated and efficient ontology matching system. It has a flexible and extensible framework and is primarily based on the use of element-level matching techniques supported by background knowledge. AgreementMakerLight has been very successful in the OAEI competition, ranking first in F-measure in the several tracks throughout the years including: Anatomy, Conference, Multifarm, Library, Interactive Matching Evaluation, and Large Biomedical Ontologies.
+AgreementMakerLight has been used by several institutions, including NASA, the Janssen Pharmaceutical Companies of Johnson & Johnson, and in the Global Agricultural Concept Scheme (GACS) from the Food and Agriculture Organization of the United Nations.
+
+
 ## Installing AML
 
 AML comes in a ready-to-run jar file, which requires no installation.
