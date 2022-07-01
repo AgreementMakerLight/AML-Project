@@ -647,9 +647,8 @@ public class Ontology
 							if(a.getValue() instanceof OWLLiteral)
 							{
 								OWLLiteral val = (OWLLiteral) a.getValue();
-								if(!val.isRDFPlainLiteral())
-									continue;
 								name = val.getLiteral();
+								System.out.println(name);
 								String lang = val.getLang();
 								if(lang.equals(""))
 									lang = "en";
