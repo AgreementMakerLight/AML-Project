@@ -648,7 +648,6 @@ public class Ontology
 							{
 								OWLLiteral val = (OWLLiteral) a.getValue();
 								name = val.getLiteral();
-								System.out.println(name);
 								String lang = val.getLang();
 								if(lang.equals(""))
 									lang = "en";
