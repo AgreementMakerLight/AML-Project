@@ -203,7 +203,7 @@ public class Main
 			{
 				if(mode.equals("manual"))
 				{
-					readConfigFile();
+					aml.readConfigFile();
 					aml.matchManual();
 				}
 				else
@@ -277,120 +277,5 @@ public class Main
 		System.out.println("|  -r (--repair) -> repair alignment mode                      |");
 		System.out.println("|                                                              |");
 		System.out.println("\\______________________________________________________________/");
-	}
-
-	private static void readConfigFile()
-	{
-		File conf = new File(dir + CONFIG);
-		if(!conf.canRead())
-		{
-			System.out.println("Warning: Config file not found");
-			System.out.println("Matching will proceed with default configuration");
-		}
-		try
-		{
-			Vector<MatchStep> selection = new Vector<MatchStep>();
-			BufferedReader in = new BufferedReader(new FileReader(conf));
-			String line;
-			while((line=in.readLine()) != null)
-			{
-				if(line.startsWith("#") || line.isEmpty())
-					continue;
-				String[] option = line.split("=");
-				option[0] = option[0].trim();
-				option[1] = option[1].trim();
-				if(option[0].equals("use_translator"))
-				{
-					if(option[1].equalsIgnoreCase("true") ||
-							(option[1].equalsIgnoreCase("auto") &&
-							aml.getMatchSteps().contains(MatchStep.TRANSLATE)))
-						selection.add(MatchStep.TRANSLATE);
-				}
-				else if(option[0].equals("bk_sources"))
-				{
-					if(option[1].equalsIgnoreCase("none"))
-						continue;
-					selection.add(MatchStep.BK);
-					if(!option[1].equalsIgnoreCase("all"))
-					{
-						Vector<String> sources = new Vector<String>();
-						for(String s : option[1].split(","))
-						{
-							String source = s.trim();
-							File bk = new File(BK_PATH + source);
-							if(bk.canRead())
-								sources.add(source);
-						}							
-						aml.setSelectedSources(sources);
-					}
-				}
-				else if(option[0].equals("word_matcher"))
-				{
-					if(option[1].equalsIgnoreCase("none") ||
-							(option[1].equalsIgnoreCase("auto") &&
-							!aml.getMatchSteps().contains(MatchStep.WORD)))
-						continue;
-					selection.add(MatchStep.WORD);
-					if(!option[1].equalsIgnoreCase("auto"))
-						aml.setWordMatchStrategy(WordMatchStrategy.parseStrategy(option[1]));
-				}
-				else if(option[0].equals("string_matcher"))
-				{
-					if(option[1].equalsIgnoreCase("none"))
-						continue;
-					selection.add(MatchStep.STRING);
-					boolean primary = aml.primaryStringMatcher();
-					if(option[1].equalsIgnoreCase("global"))
-						primary = true;
-					else if(option[1].equalsIgnoreCase("local"))
-						primary = false;
-					aml.setPrimaryStringMatcher(primary);
-				}
-				else if(option[0].equals("string_measure"))
-				{
-					StringSimMeasure sm = StringSimMeasure.parseMeasure(option[1]);
-					aml.setStringSimMeasure(sm);
-				}
-				else if(option[0].equals("struct_matcher"))
-				{
-					if(option[1].equalsIgnoreCase("none") ||
-							(option[1].equalsIgnoreCase("auto") &&
-							!aml.getMatchSteps().contains(MatchStep.STRUCT)))
-						continue;
-					selection.add(MatchStep.STRUCT);
-					if(!option[1].equalsIgnoreCase("auto"))
-						aml.setNeighborSimilarityStrategy(NeighborSimilarityStrategy.parseStrategy(option[1]));
-				}
-				else if(option[0].equals("match_properties"))
-				{
-					if(option[1].equalsIgnoreCase("true") ||
-							(option[1].equalsIgnoreCase("auto") &&
-							aml.getMatchSteps().contains(MatchStep.PROPERTY)))
-						selection.add(MatchStep.PROPERTY);
-				}
-				else if(option[0].equals("selection_type"))
-				{
-					if(option[1].equalsIgnoreCase("none"))
-						continue;
-					selection.add(MatchStep.SELECT);
-					if(!option[1].equalsIgnoreCase("auto"))
-						aml.setSelectionType(SelectionType.parseSelector(option[1]));
-				}
-				else if(option[0].equals("repair_alignment"))
-				{
-					if(option[1].equalsIgnoreCase("true"))
-						selection.add(MatchStep.REPAIR);
-				}
-			}
-			in.close();
-			aml.setMatchSteps(selection);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error: Could not read config file");
-			e.printStackTrace();
-			System.out.println("Matching will proceed with default configuration");
-			aml.defaultConfig();
-		}
 	}
 }

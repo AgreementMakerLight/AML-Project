@@ -996,6 +996,7 @@ public class AML
 				System.out.println("Reading config.ini file");
 				BufferedReader in = new BufferedReader(new FileReader(conf));
 				String line;
+				Vector<MatchStep> selection = new Vector<MatchStep>();
 				while((line=in.readLine()) != null)
 				{
 					if(line.startsWith("#") || line.isEmpty())
@@ -1004,22 +1005,41 @@ public class AML
 					option[0] = option[0].trim();
 					option[1] = option[1].trim();
 					if(option[0].equals("match_classes"))
-						matchClasses = option[1].equalsIgnoreCase("true");
-					else if(option[0].equals("match_individuals"))
-						matchIndividuals = option[1].equalsIgnoreCase("true");
-					else if(option[0].equals("match_properties"))
-						matchProperties = option[1].equalsIgnoreCase("true");
-					else if(option[0].equals("threshold"))
-						threshold = Double.parseDouble(option[1]);
-					else if(option[0].equals("class_correspondence"))
 					{
 						if(option[1].equalsIgnoreCase("true"))
-							inst = InstanceMatchingCategory.SAME_CLASSES;
+							matchClasses = true;
+						else if(option[1].equalsIgnoreCase("false"))
+							matchClasses = false;
 					}
-					else if(option[0].equals("use_reasoner"))
-						useReasoner = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("match_properties"))
+					{
+						if(option[1].equalsIgnoreCase("true"))
+							matchProperties = true;
+						else if(option[1].equalsIgnoreCase("false"))
+							matchProperties = false;
+						if(matchProperties)
+							selection.add(MatchStep.PROPERTY);
+					}
+					else if(option[0].equals("match_individuals"))
+					{
+						if(option[1].equalsIgnoreCase("true"))
+							matchIndividuals = true;
+						else if(option[1].equalsIgnoreCase("false"))
+							matchIndividuals = false;
+					}
+					else if(option[0].equals("threshold"))
+						threshold = Double.parseDouble(option[1]);
 					else if(option[0].equals("match_same_uri"))
 						matchSameURI = option[1].equalsIgnoreCase("true");
+					else if(option[0].equals("instance_matching_mode"))
+					{
+						if(option[1].equalsIgnoreCase("same_ontology"))
+							inst = InstanceMatchingCategory.SAME_ONTOLOGY;
+						else if(option[1].equalsIgnoreCase("matching_classes"))
+							inst = InstanceMatchingCategory.SAME_CLASSES;
+						else if(option[1].equalsIgnoreCase("different_classes"))
+							inst = InstanceMatchingCategory.DIFFERENT_ONTOLOGIES;
+					}
 					else if(option[0].equals("source_classes"))
 					{
 						if(option[1].equals(""))
@@ -1040,8 +1060,84 @@ public class AML
 							toMatch.add(i);
 						setTargetClassesToMatch(toMatch);
 					}
+					if(option[0].equals("use_translator"))
+					{
+						if(option[1].equalsIgnoreCase("true") ||
+								(option[1].equalsIgnoreCase("auto") &&
+								aml.getMatchSteps().contains(MatchStep.TRANSLATE)))
+							selection.add(MatchStep.TRANSLATE);
+					}
+					else if(option[0].equals("bk_sources"))
+					{
+						if(option[1].equalsIgnoreCase("none"))
+							continue;
+						selection.add(MatchStep.BK);
+						if(!option[1].equalsIgnoreCase("all"))
+						{
+							Vector<String> sources = new Vector<String>();
+							for(String s : option[1].split(";"))
+							{
+								String source = s.trim();
+								File bk = new File(BK_PATH + source);
+								if(bk.canRead())
+									sources.add(source);
+							}							
+							aml.setSelectedSources(sources);
+						}
+					}
+					else if(option[0].equals("word_matcher"))
+					{
+						if(option[1].equalsIgnoreCase("none") ||
+								(option[1].equalsIgnoreCase("auto") &&
+								!aml.getMatchSteps().contains(MatchStep.WORD)))
+							continue;
+						selection.add(MatchStep.WORD);
+						if(!option[1].equalsIgnoreCase("auto"))
+							aml.setWordMatchStrategy(WordMatchStrategy.parseStrategy(option[1]));
+					}
+					else if(option[0].equals("string_matcher"))
+					{
+						if(option[1].equalsIgnoreCase("none"))
+							continue;
+						selection.add(MatchStep.STRING);
+						boolean primary = aml.primaryStringMatcher();
+						if(option[1].equalsIgnoreCase("global"))
+							primary = true;
+						else if(option[1].equalsIgnoreCase("local"))
+							primary = false;
+						aml.setPrimaryStringMatcher(primary);
+					}
+					else if(option[0].equals("string_measure"))
+					{
+						StringSimMeasure sm = StringSimMeasure.parseMeasure(option[1]);
+						aml.setStringSimMeasure(sm);
+					}
+					else if(option[0].equals("struct_matcher"))
+					{
+						if(option[1].equalsIgnoreCase("none") ||
+								(option[1].equalsIgnoreCase("auto") &&
+								!aml.getMatchSteps().contains(MatchStep.STRUCT)))
+							continue;
+						selection.add(MatchStep.STRUCT);
+						if(!option[1].equalsIgnoreCase("auto"))
+							aml.setNeighborSimilarityStrategy(NeighborSimilarityStrategy.parseStrategy(option[1]));
+					}
+					else if(option[0].equals("selection_type"))
+					{
+						if(option[1].equalsIgnoreCase("none"))
+							continue;
+						selection.add(MatchStep.SELECT);
+						if(!option[1].equalsIgnoreCase("auto"))
+							aml.setSelectionType(SelectionType.parseSelector(option[1]));
+					}
+					else if(option[0].equals("repair_alignment"))
+					{
+						if(option[1].equalsIgnoreCase("true"))
+							selection.add(MatchStep.REPAIR);
+					}
 				}
 				in.close();
+				aml.setMatchSteps(selection);
 			}
 			catch(Exception e)
 			{
