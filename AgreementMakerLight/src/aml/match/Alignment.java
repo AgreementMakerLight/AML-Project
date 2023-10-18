@@ -997,7 +997,8 @@ public class Alignment implements Collection<Mapping>
 	public boolean retainAll(Collection<?> c)
 	{
 		boolean check = false;
-		for(Mapping m : this)
+		Vector<Mapping> clone = new Vector<Mapping>(this);
+		for(Mapping m : clone)
 			if(!c.contains(m))
 				check = remove(m) || check;
 		return check;
