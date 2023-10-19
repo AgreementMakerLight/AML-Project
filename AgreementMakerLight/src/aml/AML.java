@@ -901,7 +901,7 @@ public class AML
 		System.out.println("Classes: " + target.count(EntityType.CLASS));
 		System.out.println("Individuals: " + target.count(EntityType.INDIVIDUAL));
 		System.out.println("Properties: " + (target.count(EntityType.DATA)+target.count(EntityType.OBJECT)));
-		System.out.println("Direct Relationships: " + rels.relationshipCount());
+		System.out.println("Names: " + target.getLexicon().nameCount(EntityType.CLASS));
 		time = System.currentTimeMillis()/1000;
 		System.out.println("Running transitive closure on RelationshipMap");
 		rels.transitiveClosure();
@@ -1002,6 +1002,8 @@ public class AML
 					if(line.startsWith("#") || line.isEmpty())
 						continue;
 					String[] option = line.split("=");
+					if(option.length != 2)
+						continue;
 					option[0] = option[0].trim();
 					option[1] = option[1].trim();
 					if(option[0].equals("match_classes"))
