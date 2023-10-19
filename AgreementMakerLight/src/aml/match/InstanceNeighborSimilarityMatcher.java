@@ -13,7 +13,7 @@
 *                                                                             *
 *******************************************************************************
 * Matches Ontologies by computing the neighbor structural similarity between  *
-* their classes.                                                              *
+* their instances.                                                            *
 *                                                                             *
 * @author Daniel Faria                                                        *
 ******************************************************************************/
