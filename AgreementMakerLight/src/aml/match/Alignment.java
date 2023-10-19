@@ -368,8 +368,17 @@ public class Alignment implements Collection<Mapping>
 	 */
 	public boolean containsBetterMapping(Mapping m)
 	{
+		return containsBetterSourceMapping(m) || containsBetterTargetMapping(m);
+	}
+	
+	/**
+ 	 * @param m: the Mapping to check in the Alignment 
+	 * @return whether the Alignment contains a Mapping that conflicts with the given
+	 * Mapping and has a higher similarity for the source entity
+	 */
+	public boolean containsBetterSourceMapping(Mapping m)
+	{
 		int source = m.getSourceId();
-		int target = m.getTargetId();
 		double sim = m.getSimilarity();
 		
 		if(containsSource(source))
@@ -379,6 +388,20 @@ public class Alignment implements Collection<Mapping>
 				if(getSimilarity(source,i) > sim)
 					return true;
 		}
+		return false;
+	}
+	
+	
+	/**
+ 	 * @param m: the Mapping to check in the Alignment 
+	 * @return whether the Alignment contains a Mapping that conflicts with the given
+	 * Mapping and has a higher similarity for the target entity
+	 */
+	public boolean containsBetterTargetMapping(Mapping m)
+	{
+		int target = m.getTargetId();
+		double sim = m.getSimilarity();
+		
 		if(containsTarget(target))
 		{
 			Set<Integer> sources = targetMaps.keySet(target);
