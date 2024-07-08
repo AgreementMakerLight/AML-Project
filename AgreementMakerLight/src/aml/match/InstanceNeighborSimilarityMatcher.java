@@ -148,16 +148,12 @@ public class InstanceNeighborSimilarityMatcher implements PrimaryMatcher
 		 Set<Integer> sources = rels.getIndividualActiveRelations(sId);
 		 Set<Integer> targets = rels.getIndividualActiveRelations(tId);
 		 double sim = 0.0;
-		 double union = 0.0;
 		 for(Integer i : sources)
 		 {
 			 if(targets.contains(i))
 				 sim++;
-			 else
-				 union++;
 		 }
-		 union += targets.size();
-		 sim /= union;
+		 sim /= sources.size();
 		 return sim;
 	}
 	
