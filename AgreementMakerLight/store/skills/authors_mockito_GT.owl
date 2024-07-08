@@ -1,0 +1,2735 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://purl.org/nemo/competence#"
+     xml:base="http://purl.org/nemo/competence"
+     xmlns:dct="http://purl.org/dc/terms/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:gufo="http://purl.org/nemo/gufo#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://purl.org/nemo/competence">
+        <vann:preferredNamespaceUri rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://purl.org/nemo/competence#</vann:preferredNamespaceUri>
+        <dc:date xml:lang="en">2021-06-30</dc:date>
+        <dc:title xml:lang="en">A Lightweight Competence Ontology based on gUFO</dc:title>
+        <dc:creator>Calhau, Rodrigo F.</dc:creator>
+        <dc:creator>Azevedo, Carlos L.B.</dc:creator>
+        <dc:creator>Almeida, João Paulo A.</dc:creator>
+        <dct:rights xml:lang="en">This work is distributed under Creative Commons Attribution License CC BY 4.0 &lt;https://creativecommons.org/licenses/by/4.0/legalcode&gt;</dct:rights>
+        <owl:versionIRI rdf:resource="http://purl.org/nemo/competence/0.1.2"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/rights -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/rights"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#categorizes -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/nemo/gufo#categorizes"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann/preferredNamespaceUri -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespaceUri"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/nemo/competence#activates -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#activates">
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#CompetenceContext"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#PersonalCompetence"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#contributedToTrigger"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#basedOn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#basedOn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#PersonalCompetence"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#PersonalCompetence"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#historicallyDependsOn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#engagedIn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#engagedIn">
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#CompetenceManifestation"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#participatedIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#hasEfficiencyLevel -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#hasEfficiencyLevel">
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Efficiency"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#EfficiencyLevel"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#hasReifiedQualityValue"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#hasProficiencyLevel -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#hasProficiencyLevel">
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Proficiency"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#ProficiencyLevel"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#hasReifiedQualityValue"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#hasSkill -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#hasSkill">
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isAResultOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isAResultOf">
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#Task"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/gufo#Object"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#wasCreatedIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isBasicCompetenceProperPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isBasicCompetenceProperPartOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Attitude"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#BasicCompetence"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#HumanCharacteristic"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Knowledge"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Skill"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#isAspectProperPartOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isCompetenceManifestedIn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isCompetenceManifestedIn">
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#CompetenceManifestation"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#PersonalCompetence"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/competence#manifestsIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isCompetenceProperPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isCompetenceProperPartOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#ComplexCompetence"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#PersonalCompetence"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#isAspectProperPartOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isConsumedIn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isConsumedIn">
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#Task"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/gufo#Object"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#participatedIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isInherentToCompetence -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isInherentToCompetence">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#PersonalCompetence"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Proficiency"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#inheresIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isInherentToPerson -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isInherentToPerson">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#HumanCapability"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#inheresIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isInherentToTask -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isInherentToTask">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Efficiency"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#Task"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#inheresIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isRequiredTo -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isRequiredTo">
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#CompetenceType"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/gufo#Role"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#isTaskProperPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#isTaskProperPartOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#Task"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Task"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#isEventProperPartOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#manifestsIn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#manifestsIn">
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#HumanCapability"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#Task"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#manifestedIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#requiresSkill -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#requiresSkill">
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Task"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/competence#resultsIn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/competence#resultsIn">
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#CompetenceManifestation"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/gufo#Situation"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/nemo/gufo#broughtAbout"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#broughtAbout -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#broughtAbout"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#contributedToTrigger -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#contributedToTrigger"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#hasReifiedQualityValue -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#hasReifiedQualityValue"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#historicallyDependsOn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#historicallyDependsOn"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#inheresIn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#inheresIn"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#isAspectProperPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#isAspectProperPartOf"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#isEventProperPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#isEventProperPartOf"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#manifestedIn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#manifestedIn"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#participatedIn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#participatedIn"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#wasCreatedIn -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/nemo/gufo#wasCreatedIn"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty">
+        <rdfs:domain rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <rdfs:range rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/nemo/competence#AffectiveTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#AffectiveTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#TaskType"/>
+        <rdfs:comment xml:lang="en">based on Bloom&apos;s taxonomy</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#AnalyzeTask -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#AnalyzeTask">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTask"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#AnalyzeTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#AnalyzeTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#App -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#App">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ApplicationTask -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ApplicationTask">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTask"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ApplicationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ApplicationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ArticulationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ArticulationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#PsycomotorTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ArtifactType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ArtifactType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#EndurantType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Attitude -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Attitude">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#IntrinsicMode"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#AttitudeType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#AttitudeType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#EndurantType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#BasicCompetence -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#BasicCompetence">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#PersonalCompetence"/>
+        <owl:disjointWith rdf:resource="http://purl.org/nemo/competence#ComplexCompetence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#CognitiveCompetenceType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#CognitiveCompetenceType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CompetenceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#CognitiveTask -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#CognitiveTask">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Task"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#CognitiveTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#CognitiveTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#TaskType"/>
+        <rdfs:comment>based on Bloom&apos;s taxonomi</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#CompetenceContext -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#CompetenceContext">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Situation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#CompetenceManifestation -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#CompetenceManifestation">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#CompetenceType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#CompetenceType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#EndurantType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ComplexCompetence -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ComplexCompetence">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#PersonalCompetence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ComprehensionTask -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ComprehensionTask">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTask"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ComprehensionTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ComprehensionTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#CreationTask -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#CreationTask">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTask"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#CreationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#CreationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Efficiency -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Efficiency">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Quality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#EfficiencyLevel -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#EfficiencyLevel">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#QualityValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Error_Handling -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Error_Handling">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#EvaluationTask -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#EvaluationTask">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTask"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#EvaluationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#EvaluationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Event_Handling -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Event_Handling">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#HumanCapability -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#HumanCapability">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#IntrinsicMode"/>
+        <owl:disjointWith rdf:resource="http://purl.org/nemo/competence#HumanCharacteristic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#HumanCharacteristic -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#HumanCharacteristic">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#IntrinsicMode"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#IO -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#IO">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ImitationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ImitationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#PsycomotorTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#InternalizationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#InternalizationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#AffectiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Interpreter -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Interpreter">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Knowledge -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Knowledge">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#IntrinsicMode"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#KnowledgeType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#KnowledgeType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#EndurantType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Lang -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Lang">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Logic -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Logic">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ManipulationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ManipulationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#PsycomotorTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#MemorizationTask -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#MemorizationTask">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTask"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#MemorizationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#MemorizationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CognitiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#MetaCognitiveCompetenceType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#MetaCognitiveCompetenceType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CompetenceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#NaturalizationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#NaturalizationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#PsycomotorTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Network -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Network">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#OperationalCompetenceType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#OperationalCompetenceType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CompetenceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#OrganizationTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#OrganizationTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#AffectiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Person -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Person">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#FunctionalComplex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#PersonalCompetence -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#PersonalCompetence">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#HumanCapability"/>
+        <owl:disjointWith rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#PrecisionTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#PrecisionTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#PsycomotorTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Proficiency -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Proficiency">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#Quality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ProficiencyLevel -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ProficiencyLevel">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#QualityValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#PsycomotorTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#PsycomotorTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#TaskType"/>
+        <rdfs:comment xml:lang="en">based on Bloom&apos;s taxonomy</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ReceivingTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ReceivingTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#AffectiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#RespondTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#RespondTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#AffectiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Security -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Security">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Setup -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Setup">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Skill -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Skill">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#HumanCapability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#SkillType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#SkillType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#EndurantType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#SocialCompetenceType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#SocialCompetenceType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CompetenceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Task -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Task">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#CompetenceManifestation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#TaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#TaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/gufo#EventType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#TeamWork -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#TeamWork">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#SocialCompetenceType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Util -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#Util">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#ValuingTaskType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#ValuingTaskType">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#AffectiveTaskType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/competence#i18n -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/competence#i18n">
+        <rdfs:subClassOf rdf:resource="http://purl.org/nemo/competence#Skill"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#EndurantType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#EndurantType"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#Event -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#Event"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#EventType -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#EventType"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#FunctionalComplex -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#FunctionalComplex"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#IntrinsicMode -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#IntrinsicMode"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#Object -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#Object"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#Quality -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#Quality"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#QualityValue -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#QualityValue"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#Role -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#Role"/>
+    
+
+
+    <!-- http://purl.org/nemo/gufo#Situation -->
+
+    <owl:Class rdf:about="http://purl.org/nemo/gufo#Situation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ahmad_M -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ahmad_M">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Alex_Simkin -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Alex_Simkin">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Allan_Wang -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Allan_Wang">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Allon_Murienik -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Allon_Murienik">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Security"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Andrei_Silviu_Dragnea -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Andrei_Silviu_Dragnea">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Andrew_Ash -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Andrew_Ash">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Anuraag_Agrawal -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Anuraag_Agrawal">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#App -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#App">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Arend_v__Reinersdorff -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Arend_v__Reinersdorff">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ariel_Isaac -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ariel_Isaac">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Artem_Prigoda -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Artem_Prigoda">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Security"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Attitude -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Attitude">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#AttitudeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Bastien_Jansen -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Bastien_Jansen">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ben_Yu -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ben_Yu">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Brice_Dutheil -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Brice_Dutheil">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Bruno_Bonanno -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Bruno_Bonanno">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Carlos_Aguayo -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Carlos_Aguayo">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Charles_Munger -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Charles_Munger">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Christian_Schwarz -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Christian_Schwarz">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Christoph_Dreis -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Christoph_Dreis">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Christoph_Wagner -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Christoph_Wagner">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Daniel_Kroening -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Daniel_Kroening">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Danny_M_sch -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Danny_M_sch">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#David_Genesis_Geniza_Cruz -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#David_Genesis_Geniza_Cruz">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#David_J__M__Karlsen -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#David_J__M__Karlsen">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#David_Xia -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#David_Xia">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Deleted_user -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Deleted_user">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Dennis_Cheung -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Dennis_Cheung">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Dimos_Raptis -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Dimos_Raptis">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Dmitriy_Zaitsev -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Dmitriy_Zaitsev">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Security"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Dmitry_Timofeev -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Dmitry_Timofeev">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Dominik_Stadler -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Dominik_Stadler">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Dr__Thomas_Tautenhahn -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Dr__Thomas_Tautenhahn">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Eitan_Adler -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Eitan_Adler">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Emory_Merryman -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Emory_Merryman">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Erhard_Pointl -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Erhard_Pointl">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Error_Handling -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Error_Handling">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Eugene_Ivakhno -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Eugene_Ivakhno">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Event_Handling -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Event_Handling">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Evgeny_Astafyev -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Evgeny_Astafyev">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Fabian_Mendez -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Fabian_Mendez">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Federico_Fissore -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Federico_Fissore">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Fr_Jeremy_Krieg -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Fr_Jeremy_Krieg">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Frank_Pavageau -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Frank_Pavageau">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Security"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#G_bor_Lipt_k -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#G_bor_Lipt_k">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ga_tan_Muller -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ga_tan_Muller">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Guillermo_Pascual -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Guillermo_Pascual">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Gunnar_Wagenknecht -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Gunnar_Wagenknecht">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Hans_Joachim_Desserud -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Hans_Joachim_Desserud">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Hugh_Hamill -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Hugh_Hamill">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#IO -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#IO">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ilmir_Usmanov -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ilmir_Usmanov">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Interpreter -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Interpreter">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Isma_l_Mej_a -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Isma_l_Mej_a">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ivan_Vershinin -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ivan_Vershinin">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ivo__m_d -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ivo__m_d">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Jakob_J_nasson -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Jakob_J_nasson">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Jakub_Vr_na -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Jakub_Vr_na">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Jan_Mosig -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Jan_Mosig">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Jean_Michel_Leclercq -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Jean_Michel_Leclercq">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Jeffrey_Falgout -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Jeffrey_Falgout">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Joseph_Walton -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Joseph_Walton">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Kamil_Szyma_ski -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Kamil_Szyma_ski">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Kayvan_Najafzadeh -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Kayvan_Najafzadeh">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Kengo_TODA -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Kengo_TODA">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Knowledge -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Knowledge">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#KnowledgeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Krzysztof_Wolny -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Krzysztof_Wolny">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Kurt_Alfred_Kluever -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Kurt_Alfred_Kluever">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Lang -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Lang">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Logic -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Logic">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Lovro_Pand_i_ -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Lovro_Pand_i_">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Lukasz_Szewc -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Lukasz_Szewc">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Marc_Philipp -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Marc_Philipp">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Marcin_Grzejszczak -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Marcin_Grzejszczak">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Marcin_Miko_ajczyk -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Marcin_Miko_ajczyk">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Marcin_Zaj_czkowski -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Marcin_Zaj_czkowski">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Matthew_Ouyang -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Matthew_Ouyang">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Max_Grabenhorst -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Max_Grabenhorst">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Max_Zhu -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Max_Zhu">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Michael_Keppler -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Michael_Keppler">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Michael_Pinnegar -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Michael_Pinnegar">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Michael_Schieder -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Michael_Schieder">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Michal_Kordas -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Michal_Kordas">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Myrle_Krantz -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Myrle_Krantz">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Naoki_Takezoe -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Naoki_Takezoe">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Network -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Network">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Niklas_Baudy -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Niklas_Baudy">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Nikolas_Falco -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Nikolas_Falco">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Pascal_Schumacher -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Pascal_Schumacher">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Pawe__Pamu_a -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Pawe__Pamu_a">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Per_Lundberg -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Per_Lundberg">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#PersonalCompetence -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#PersonalCompetence">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#CompetenceType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Philip_P__Moltmann -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Philip_P__Moltmann">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Philipp_Jardas -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Philipp_Jardas">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Piotrek__ygie_o -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Piotrek__ygie_o">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Przemyslaw_Bielicki -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Przemyslaw_Bielicki">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Rafael_Winterhalter -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Rafael_Winterhalter">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Security"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ravi_van_Rooijen -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ravi_van_Rooijen">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Robert_Chmielowiec -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Robert_Chmielowiec">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Robert_Stupp -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Robert_Stupp">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Security"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Roi_Atalla -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Roi_Atalla">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ross_Black -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ross_Black">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Ryan_Pickett -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Ryan_Pickett">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Sangwoo_Lee -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Sangwoo_Lee">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Security -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Security">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Sergey -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Sergey">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Setup -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Setup">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Shaun_Abram -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Shaun_Abram">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Shyam_Sundar_J -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Shyam_Sundar_J">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Skill -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Skill">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Slawomir_Jaranowski -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Slawomir_Jaranowski">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Stefan_Bohn -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Stefan_Bohn">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Stefano_Cordio -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Stefano_Cordio">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Stephan_Schroevers -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Stephan_Schroevers">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Stuart_Blair -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Stuart_Blair">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Szczepan_Faber -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Szczepan_Faber">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Security"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#TDurak -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#TDurak">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Task -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Task">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#TaskType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Tim_Cooke -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Tim_Cooke">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Tim_Perry -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Tim_Perry">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Tim_van_der_Lippe -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Tim_van_der_Lippe">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Lang"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Security"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Tokuhiro_Matsuno -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Tokuhiro_Matsuno">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Tom_Ball -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Tom_Ball">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Tsuyoshi_Murakami -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Tsuyoshi_Murakami">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Urs_Metz -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Urs_Metz">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Util -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Util">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Vineet_Kumar -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Vineet_Kumar">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Vinicius_Scheidegger -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Vinicius_Scheidegger">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Vladislav -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Vladislav">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Walter_Scott_Johnson -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Walter_Scott_Johnson">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#Xu_Tan -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#Xu_Tan">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#Person"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#App"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Error_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Event_Handling"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#IO"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Interpreter"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Logic"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Network"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Setup"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#Util"/>
+        <hasSkill rdf:resource="http://purl.org/nemo/competence#i18n"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/nemo/competence#i18n -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/nemo/competence#i18n">
+        <rdf:type rdf:resource="http://purl.org/nemo/competence#SkillType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#Attitude"/>
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#HumanCapability"/>
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#Knowledge"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#ArtifactType"/>
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#AttitudeType"/>
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#CompetenceType"/>
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#KnowledgeType"/>
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#SkillType"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#CognitiveCompetenceType"/>
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#MetaCognitiveCompetenceType"/>
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#OperationalCompetenceType"/>
+            <rdf:Description rdf:about="http://purl.org/nemo/competence#SocialCompetenceType"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.10-SNAPSHOT) http://owlapi.sourceforge.net -->
+
